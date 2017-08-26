@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>摇奖-621幸运参展客户</title>
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<link rel="stylesheet" href="css/index.css?p=7" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+		<script src="http://b.zz91.com/comm/js/comm.js"></script>
+	    <script src="http://b.zz91.com/layer/layer.js"></script>
+	</head>
+	<body>
+		
+		<div class="page">
+			<div class="pylogo"></div>
+			<div class="bg1"></div>
+			<div class="bg2"></div>
+			<div class="bg3"></div>
+			<div class="bg4"></div>
+			<div class="bg5"></div>
+			<div class="main">
+				<script type="text/javascript" src="js/comm.js"></script>
+				<div class="fl play-left">
+					
+					<div class="pyjq">
+						<div class="table-py">
+							<span class="table-sp">----</span>
+						</div>
+						<span class="pyjq-word j_pyjq">----</span>
+					</div>
+					<div class="btnbox clearfix">
+						<span class="btn-start fl">开始</span>
+						<span class="btn-next fr">下一轮</span>
+					</div>
+				</div>
+				<div class="fl play-right">
+					<div class="play-right-tt">幸运参展客户</div>
+					<div class="play-succ-list j_list">
+						<!-- <div class="play-md">
+							<span class="play-num">1</span>
+							<span class="play-ts">参展证编号：</span>
+							<span class="play-nam"></span>
+						</div> -->
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	</body>
+	
+</html>
+<script>
+	var playJson = []
+	var time;//定时器
+	var i = 0;
+	var playNum = 0;//每轮的抽奖序号
+	var canPy = true;//判断活动结束
+	
+	$(function(){
+		ajaxinfo();
+		$(".j_list").on("click",".closecz",function(){
+			var self=$(this);
+			var zheng_no=self.attr("zno");
+			var data={
+				zheng_no:zheng_no,
+				delflag:1
+			}
+			zzajax("get","/zt/fh621_luck_save.html",data,function(ret){
+				self.parent().remove();
+				playNum-=1;
+			})
+		})
+		$(".btn-next").on("click",function(){
+			i = 0;
+		    playNum = 0;
+		    $(".j_list").html("");
+		})
+		$(".btn-start").on("click",function(){
+			var self=$(this);
+			zzajax("get","/zt/fh621_luck.html","",function(ret){
+				playJson=ret;
+				if(playNum>=5||!canPy){
+					return;
+				}
+				var playLength = playJson.length;
+				
+				var playSucc = playJson[i];
+				var showNub = $(".j_pyjq");
+				if (playLength<=0){
+					layer.msg("没有抽奖人员")
+					return;
+				}
+				
+				if(self.hasClass("j_play")){
+					console.log(playJson[i])
+					canPy = false;
+					playNum +=1;
+					var htmlMd = '<div class="play-md">'
+									//+'<span class="play-num">'+ playNum +'</span>'
+									+'<span class="play-ts">参展证编号：</span>'
+									+'<span class="play-nam">'+playJson[i]+'</span>'
+									+'<span class="closecz" zno="'+playJson[i]+'"><span class="aui-iconfont aui-icon-close"></span></span>'
+							    +'</div>'
+					self.removeClass("j_play");
+					self.text("开始");
+					clearInterval(time);
+					console.log(playJson[i])
+					$(".table-sp").html(playJson[i])
+					$(".table-py").addClass("table-moving");
+					$(".j_list").append(htmlMd);
+					ajaxluck(playJson[i])
+					setTimeout(function(){
+						//$(".play-nam").eq(0).html(playJson[i]);
+						canPy = true;
+					},0)
+				}else{
+					self.addClass("j_play");
+					$(".table-py").removeClass("table-moving");
+					self.text("停止");
+					time = setInterval(function(){
+						i = parseInt(Math.random() * (playLength - 0) + 0);
+						playSucc = playJson[i];
+						showNub.text(playSucc)
+					},100)
+				}
+			})
+		})
+    });
+	function ajaxinfo(){
+		zzajax("get","/zt/fh621_luck.html","",function(ret){
+			playJson=ret;
+		})
+	}
+	function ajaxluck(zheng_no){
+		var data={
+			zheng_no:zheng_no
+		}
+		zzajax("get","/zt/fh621_luck_save.html",data,function(ret){
+			if (ret.err=='true'){
+				layer.msg(ret.errkey);
+			}
+		})
+	}
+	
+	
+	
+</script>

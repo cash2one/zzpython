@@ -1,0 +1,18 @@
+{%for l in prolist%}<a href="/mobile/productdetail{{l.pdt_id}}.htm">
+<div class="phoneItem">
+    <div class="phoneItem-img">
+        <img src="{{l.pdt_images}}" />
+    </div>
+    <div class="phoneItem-box">
+        <div class="phoneItem-box-text">
+            {{l.pdt_name}}
+        </div>
+        <div class="phoneItem-box-button">
+            <div class="phoneItem-button-img2">
+                <img src="{{htmlincludes.img}}images/icon5.jpg" />
+            </div>
+        </div>
+    </div>
+    <div class="cb"></div>
+</div></a>
+{%endfor%}

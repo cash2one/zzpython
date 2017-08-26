@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="http://m.zz91.com/css/offer.css" />
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent" style="margin:0 0px;padding:0px;">
+	<div>
+	<form method="post" action="/registerSave/" name="form">
+		<input type="hidden" name="action" value="member/RegisterHandler">	
+		<table class="reg-table">
+			<tbody><tr>
+				<td>
+					<div class="reg-logo">
+						免费注册
+			        </div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span class="c-red"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>{%if errtext1%}<div class="c-red">{{errtext1}}<br/></div>{%endif%}
+
+					会员名(以字母开头，4-20位字母或数字)<span class="xinghao">*</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input id="userName" class="text" type="text" name="userName" value="{{userName}}" autocomplete="off" maxlength="20">
+				</td>
+			</tr>
+			<tr>
+				<td>{%if errtext2%}<div class="c-red">{{errtext2}}<br/></div>{%endif%}密码(6-20位字母,数字或符号)<span class="xinghao">*</span></td>
+			</tr>
+			<tr>
+				<td>
+					<input id="password1" class="text" type="password" name="password1" value="{{password1}}" autocomplete="off" maxlength="20">
+				</td>     
+			</tr>
+			<tr>
+				<td>{%if errtext3%}<div class="c-red">{{errtext3}}<br/></div>{%endif%}再次输入密码<span class="xinghao">*</span></td>
+			</tr>
+			<tr>
+				<td><input id="password2" class="text" type="password" name="password2" value="{{password2}}" autocomplete="off" maxlength="20">
+				</td>
+			</tr>
+			<tr>
+				<td>{%if errtext4%}<div class="c-red">{{errtext4}}<br/></div>{%endif%}电子邮箱<span class="xinghao">*</span></td>
+			</tr>
+			<tr>
+				<td>
+					<input id="email" class="text" type="text" name="email" value="{{email}}" autocomplete="off">
+				</td>
+			</tr>
+			<tr>
+				<td>{%if errtext5%}<div class="c-red">{{errtext5}}<br/></div>{%endif%}手机号码(13/14/15/18开头的手机号码)<span class="xinghao">*</span></td>
+			</tr>
+			<tr>
+				<td>
+					<input class="text" type="text" id="mobile" name="mobile" value="{{mobile}}" autocomplete="off" maxlength="13" placeholder="请输入11位的手机号">
+				</td>
+			</tr>
+			<tr>
+				<td>{%if errtext9%}<div class="c-red">{{errtext9}}<br/></div>{%endif%}联系人<span class="xinghao">*</span></td>
+			</tr>
+			<tr>
+				<td>
+					<input class="text" type="text" id="contact" name="contact" value="{{contact}}" autocomplete="off" maxlength="13" placeholder="">
+				</td>
+			</tr>
+			<tr>
+			  <td class="col colleft">{%if errtext6%}<div class="c-red">{{errtext6}}<br/></div>{%endif%}电话*</td>
+			  </tr>
+			<tr>
+			  <td class="col colleft"><input class="text" type="text" id="tel" name="tel" value="{{tel}}" autocomplete="off" maxlength="13" placeholder="请输入电话号码"></td>
+			  </tr>
+			<tr>
+			  <td class="col colleft">{%if errtext7%}<div class="c-red">{{errtext7}}<br/></div>{%endif%}公司名称*</td>
+			  </tr>
+			<tr>
+			  <td class="col colleft"><input class="text" type="text" id="company" name="company" value="{{company}}" autocomplete="off" maxlength="13" placeholder="请输入公司名称"></td>
+			  </tr>
+			<tr>
+			  <td class="col colleft">主营产品</td>
+			  </tr>
+			<tr>
+			  <td class="col colleft"><textarea name="productslist"  style="height:50px;" rows="5" class="text" id="productslist" autocomplete="off" placeholder="请输入主营产品">{{productslist}}</textarea></td>
+			  </tr>
+			<tr>
+				<td class="col colleft">				
+					{%if errtext8%}<div class="c-red">{{errtext8}}<br/></div>{%endif%}验证码<span class="xinghao">*</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+                
+                <a href="###" ><img src="/verifycode/?t={{t}}&d='+Math.random()" id="yzpic" onClick="this.src='/verifycode/?t={{t}}&d='+Math.random()"/></a><a href="###" onClick="document.getElementById('yzpic').src='/verifycode/?t={{t}}&d='+Math.random()"><font color="#003399">看不清楚?换一张</font></a>
+					<input id="valcode1" class="text" type="text" name="valcode1" value="" autocomplete="off" maxlength="6">
+                    <input id="t" type="hidden" name="t" value="{{t}}">
+                   
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" name="_fm.r._0.i" checked="true" value="agree" autocomplete="off" onClick="checkAgree(this,document.getElementById('submit'));">我已看过并同意<a href="/serviceterms/">《ZZ91再生网服务条款》</a><p class="normal"></p><p class="error"></p>
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align:center;">
+					<input type="submit" id="submit" class="commonBtn" name="event_submit_do_register" value="立即注册">
+				</td>
+			</tr>
+		</tbody></table>
+	</form>
+</div>
+
+</div>
+{%include 'bottom.html'%}
+<!--http://zhdoc.bitsrv.net/django/html/index.html
+http://www.360doc.com/content/11/0523/11/1290342_118747497.shtml-->
+</div>
+</body>
+</html>

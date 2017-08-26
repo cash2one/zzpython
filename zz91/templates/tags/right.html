@@ -1,0 +1,196 @@
+
+<div class="tags_mainright">
+        	<div class="tagsrightbox">
+            	<div class="tagsrighttitle">搜索标签</div>
+                <div class="tagsrightcontent"><form id="form1" name="form1" method="get" action="/search/a/">关键字
+					<input name="tagName" id="tagName" type="text" style="width: 116px" />
+					<input type="submit" value="搜索" style="width:38px;"/>
+				</form></div>
+            </div>
+            
+        </div>
+        <div class="tags_mainright">
+		<script src="http://pyapp.zz91.com/showppctxtadscript/?keywords={{tags_keywords}}&showposition=&m=5&w=228&showborder=1"></script>
+        </div>
+		<div class="tags_mainright mt">
+            <div class="tagsrightbox">
+            	<div class="tagsrighttitle">行情导读</div>
+                <div class="tagsrightcontent">
+                    
+                          <a href="http://price.zz91.com/priceList_t51_metal.htm" target="_blank">废金属</a>
+                          <a href="http://price.zz91.com/moreList_p3_t40_metal.htm" target="_blank">废铜</a>
+                          <a href="http://price.zz91.com/moreList_p3_t42_metal.htm" target="_blank">废铁</a>
+                          <a href="http://price.zz91.com/moreList_p3_t45_metal.htm" target="_blank">废钢</a>
+                          <a href="http://price.zz91.com/moreList_p3_t41_metal.htm" target="_blank">废铝</a>
+                          <a href="http://price.zz91.com/moreList_p3_t44_metal.htm" target="_blank">废不锈钢</a>
+                          <a href="http://price.zz91.com/priceList_t137_plastic.htm" target="_blank">废塑料</a>
+                          <a href="http://price.zz91.com/priceList_t109_plastic.htm" target="_blank">PET</a>
+                          <a href="http://price.zz91.com/priceList_t107_plastic.htm" target="_blank">LDPE</a>
+                          <a href="http://price.zz91.com/priceList_t108_plastic.htm" target="_blank">PP</a>
+                          <a href="http://price.zz91.com/priceList_t102_plastic.htm" target="_blank">PVC</a>
+                          <a href="http://price.zz91.com/priceList_t23_metal.htm" target="_blank">废纸</a>
+                          <a href="http://price.zz91.com/priceList_t27_metal.htm" target="_blank">日废</a>
+                          <a href="http://price.zz91.com/priceList_t28_metal.htm" target="_blank">美废</a>
+                                <a href="http://price.zz91.com/priceList_t206_metal.htm" target="_blank">沪钢</a>
+                                <a href="http://price.zz91.com/priceList_t69_metal.htm" target="_blank">沪锌</a>
+                                <a href="http://price.zz91.com/priceList_t210_metal.htm" target="_blank">上海有色</a>
+                                <a href="http://price.zz91.com/priceList_t83_metal.htm" target="_blank">华通有色</a>
+                                <a href="http://price.zz91.com/priceList_t74_metal.htm" target="_blank">北京有色</a>
+                                <a href="http://price.zz91.com/priceList_t66_metal.htm" target="_blank">生铁</a>
+                                <a href="http://price.zz91.com/priceList_t103_plastic.htm" target="_blank">ABS</a>
+                                <a href="http://price.zz91.com/priceList_t101_plastic.htm" target="_blank">PA</a>
+                                <a href="http://price.zz91.com/priceList_t105_plastic.htm" target="_blank">PS</a>
+                                <a href="http://price.zz91.com/priceList_t106_plastic.htm" target="_blank">PC</a>
+                                <a href="http://price.zz91.com/priceList_t100_plastic.htm" target="_blank">PMMA</a>
+                                <a href="http://price.zz91.com/moreList_p15_paper.htm" target="_blank">废橡胶</a>
+                                <a href="http://xianhuo.zz91.com/" target="_blank">现货</a>
+                                <a href="http://price.zz91.com/priceList_t216_metal.htm" target="_blank">行情动态</a>
+                             
+              </div>
+            </div>
+        </div>
+		{%if seolist%}
+		<div class="tags_mainright mt">
+            <div class="tagsrightbox1">
+            	<div class="tagsrighttitle1">产品导航</div>
+                <div class="tagsrightcontent">
+					{%for list in seolist%}
+                    <a href="{{list.url}}" target=_blank>{{list.label}}</a>
+					{%endfor%}
+					{%for list in cplist%}
+                    <a href="http://www.zz91.com/cp/{{list.pingyin}}/" target=_blank>{{list.label}}</a>
+					{%endfor%}
+					
+            </div>
+            </div>
+        </div>
+		{%endif%}
+        <div class="tags_mainright mt">
+            <div class="tagsrightbox1">
+            	<div class="tagsrighttitle1">废金属供求</div>
+                <div class="tagsrightcontent">
+                    <a href="http://trade.zz91.com/offerlist--mc10001001.htm">有色金属</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10001000.htm">废钢铁</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10001008.htm">硅</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10001002.htm">稀有金属</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10001003.htm">贵金属</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10001005.htm">金属混合</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10001004.htm">再生金属</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10001007.htm">金属助剂</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10001006.htm">金属处理设备</a>
+            </div>
+            </div>
+        </div>
+		<div class="tags_mainright mt">
+   	    <div class="tagsrightbox1">
+            	
+           <div class="tagsrightcontent">
+					<script type="text/javascript">
+					/*230*500，创建于2013-1-24*/
+					var cpro_id = "u1200653";
+					</script>
+					<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+					</div>
+            </div>
+        </div>
+        <div class="tags_mainright mt">
+   	    <div class="tagsrightbox1">
+            	<div class="tagsrighttitle1">废塑料供求</div>
+                <div class="tagsrightcontent">
+                    <a href="http://trade.zz91.com/offerlist--mc10011000.htm">通用废塑料</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10011002.htm">特种废塑料</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10011001.htm">工程废塑料</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10011003.htm">塑料混合</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10011004.htm">再生颗粒</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10011006.htm">塑料处理设备</a>
+                    <a href="http://trade.zz91.com/offerlist--mc10011005.htm">塑料助剂</a>
+      			</div>
+         </div>
+        </div>
+        <div class="tags_mainright mt">
+   	  <div class="tagsrightbox1">
+            	<div class="tagsrighttitle1">综合废料供求</div>
+                <div class="tagsrightcontent">
+                    <a href="http://trade.zz91.com/offerlist--mc1005.htm">废电子电器</a>
+                    <a href="http://trade.zz91.com/offerlist--mc1002.htm">废橡胶</a>
+                    <a href="http://trade.zz91.com/offerlist--mc1007.htm">废旧二手设备</a>
+                    <a href="http://trade.zz91.com/offerlist--mc1003.htm">废纺织品</a>
+                    <a href="http://trade.zz91.com/offerlist--mc1002.htm">废纸</a>
+                    <a href="http://trade.zz91.com/offerlist--mc1006.htm">废玻璃</a>
+                    <a href="http://trade.zz91.com/offerlist--mc1009.htm">废料服务</a>
+                </div>
+            </div>
+        </div>
+		<div class="tags_mainright mt">
+   	    <div class="tagsrightbox">	
+			<div class="tagsrighttitle">一键寻找匹配商机</div>
+            <div class="tagsrightcontent">
+              <ul>
+                  <li><a href="http://map.zz91.com/guangdong.htm" target="_blank" title="广东废料网">广东废料网</a></li>
+                  <li><a href="http://map.zz91.com/zhejiang.htm" target="_blank" title="浙江废料网">浙江废料网</a></li>
+                  <li><a href="http://map.zz91.com/shandong.htm" target="_blank" title="山东废料网">山东废料网</a></li>
+                  <li><a href="http://map.zz91.com/jiangsu.htm" target="_blank" title="江苏废料网">江苏废料网</a></li>
+                  <li><a href="http://map.zz91.com/beijing.htm" target="_blank" title="北京废料网">北京废料网</a></li>
+                  <li><a href="http://map.zz91.com/shanghai.htm" target="_blank" title="上海废料网">上海废料网</a></li>
+                  <li><a href="http://map.zz91.com/tianjin.htm" target="_blank" title="天津废料网">天津废料网</a></li>
+                  <li><a href="http://map.zz91.com/hebei.htm" target="_blank" title="河北废料网">河北废料网</a></li>
+                  <li><a href="http://map.zz91.com/henan.htm" target="_blank" title="河南废料网">河南废料网</a></li>
+                  <li><a href="http://map.zz91.com/hunan.htm" target="_blank" title="湖南废料网">湖南废料网</a></li>
+              </ul>
+              <div class="clearboth"></div>
+            </div>
+        </div>
+        </div>
+        {%if listall_tags%}
+        <div class="tags_mainright mt">
+        	<div class="tagsrightbox">
+            	<div class="tagsrighttitle">相关标签</div>
+                <div class="tagsrightcontent">
+					{% for list in listall_tags %}
+				    <a href='http://tags.zz91.com/s/{{list.kname_hex}}/' target='_blank' class="o{{list.classid}}">{{list.kname}}</a> 
+				    {% endfor %}
+					</div>
+            </div>
+        </div>
+		{%endif%}
+		
+        <div class="tags_mainright mt">
+        	<div class="tagsrightbox">
+            	<div class="tagsrighttitle">废料产品导航</div>
+                <div class="tagsrightcontent">
+					<ul>
+						<li><a href="http://daohang.zz91.com/ " target="_blank">废料产品导航</a></li>
+                        <li><a href="http://daohang.zz91.com/jinshu/" target="_blank">金属产品</a></li>
+                        <li><a href="http://daohang.zz91.com/suliao/" target="_blank">废塑料产品</a></li>
+                        <li><a href="http://daohang.zz91.com/feizhi/" target="_blank">废纸产品</a></li>
+                        <li><a href="http://daohang.zz91.com/xiangjiao/" target="_blank">废橡胶产品</a></li>
+                        <li><a href="http://daohang.zz91.com/dianzhi/" target="_blank">电子电器</a></li>
+                        <li><a href="http://daohang.zz91.com/shebei/" target="_blank">二手设备</a></li>
+                        <li><a href="http://daohang.zz91.com/feifangzhi/" target="_blank">纺织产品</a></li>
+                        <li><a href="http://daohang.zz91.com/feiliaofuwu/" target="_blank">废料服务</a></li>
+                        <li><a href="http://daohang.zz91.com/feitie/" target="_blank">废铁价格</a></li>
+                        <li><a href="http://daohang.zz91.com/feitong/" target="_blank">废铜价格</a></li>
+                        <li><a href="http://daohang.zz91.com/feiluntai/" target="_blank">废旧轮胎</a></li>
+                        <li><a href="http://daohang.zz91.com/feidianping/" target="_blank">废电瓶</a></li>
+                        <li><a href="http://daohang.zz91.com/guijinshu/" target="_blank">贵金属</a></li>
+                        <li><a href="http://daohang.zz91.com/shengtie/" target="_blank">生铁</a></li>
+                        <li><a href="http://daohang.zz91.com/feilv/" target="_blank">废铝</a></li>
+                        <li><a href="http://daohang.zz91.com/feixin/" target="_blank">废锌</a></li>
+                        <li><a href="http://daohang.zz91.com/feixi/" target="_blank">废锡网</a></li>
+                        <li><a href="http://daohang.zz91.com/gongchengsuliao/" target="_blank">工程塑料</a></li>
+                        <li><a href="http://daohang.zz91.com/suliaokeli/" target="_blank">塑料颗粒</a></li>
+                        <li><a href="http://daohang.zz91.com/feisuliaowang/" target="_blank">废塑料</a></li>
+                        <li><a href="http://daohang.zz91.com/ershouyifu/" target="_blank">二手衣服</a></li>
+                        <li><a href="http://daohang.zz91.com/jiuyifu/" target="_blank">旧衣服</a></li>
+					</ul>
+                    <div class="clearboth"></div>
+                </div>
+            </div>
+        </div>
+		<div class="tags_mainright mt">
+   	    <div class="tagsrightbox1">	
+           <div class="tagsrightcontent">
+					<script type="text/javascript" src="http://gg.zz91.com/show?p=83"></script>
+            </div>
+        </div>
+</div>

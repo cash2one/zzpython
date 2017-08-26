@@ -1,0 +1,49 @@
+@charset "utf-8";
+
+.top{height:748px;background:url(../images/top.jpg) no-repeat;background-position:center}
+.bg{height:2876px;background:url(../images/bg.jpg) no-repeat;background-position:center}
+
+.content{width:980px;margin:0 auto}
+
+/*.tg_top {width:400px;height:220px;vertical-align:middle;display:block;margin: 0 auto;text-align:center;padding-top:280px}*/
+.tg_top {width:170px;height:220px;position:relative;left:33%;top:40%;display:block;}
+
+/* 热门推荐 */
+.block {height:420px;padding:90px 0 0 0}
+.content ul.hot li{float:left;}
+.block .box{width:214px;border:5px solid #e8e9e3;float:left;display:inline;margin:30px 10px}
+.block .box-img{width:214px;height:203px;display:table-cell;text-align:center;vertical-align:middle}
+.block .box-text{height:28px;line-height:28px;background:#21120f;overflow:hidden;text-align:center;color:#fff;font-size:14px}
+.block .box-info{color:#666666;background:#e8e9e3;padding-top:2px}
+
+.box-info-text{padding:0 10px}
+.box-info-text p{line-height:22px;font-size:13px;}
+.box-img img{vertical-align:middle}
+
+/* 高级会员 */
+.block1 {margin-top:140px}
+.block1 .box{width:214px;height:277px;border:5px solid #fff;float:left;display:inline;margin:10px;background:#fff;}
+.block1 .box-img{width:214px;height:203px;background:#dfdfdf;display:table-cell;text-align:center;vertical-align:middle}
+.block1 .box-text{height:28px;line-height:28px;background:#5c0e00;overflow:hidden;text-align:center;color:#fff;font-size:14px}
+.block1 .box-text a{color:#fff}
+.block1 .box-info{color:#666666;background:#fff;padding-top:2px}
+
+/* 普通会员 */
+.block2{width:960px;height:180px;margin:210px 10px 200px 10px;float:left}
+.m2-item{width:440px;height:168px;overflow:hidden;margin-top:15px}
+.m2-item-title{width:230px;height:24px;line-height:24px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;float:left;display:inline;white-space:nowrap}
+.m2-item-title a{color:#fff}
+.m2-item-text{width:140px;height:24px;line-height:24px;text-align:right;color:#666;overflow:hidden;float:right;display:inline}
+.m2-item-text a{color:#fff}
+
+/* 下期预告 */
+.block3 img{margin-left:10px}
+
+/* 翻页 */
+.page{width:610px;height:30px;padding-top:30px;clear:both;padding-left:140px;margin:0 auto}
+.page-style {width:50px;height:28px;border:1px solid #ccc;text-align:center;line-height:28px;float:left;margin-right:7px}
+.page-style a {width:50px;height:28px;display:block;color:#666666;background:#fff}
+.page ul {float:left}
+.page ul li {border:1px solid #ccc;margin-right:7px;float:left}
+.page ul li a {padding:5px 8px;display:block;color:#666666;background:#fff}
+.page .p_cur{color:#fff;background:#5c0e00}

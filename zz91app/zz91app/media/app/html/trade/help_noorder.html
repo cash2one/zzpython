@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<style>
+			html, body {
+				background: transparent;
+				height: 100%;
+				background: rgba(50,50,50,0.1);
+				overflow: hidden;
+			}
+			.noorderimg{
+				margin-top: -60px;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="../../image/order_price.png" style="width:100%" onclick="closeselect()" class="noorderimg">
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript">
+		function closeselect() {
+			api.execScript({
+				name : api.winName,
+				script : "keybackFun('1')"
+			});
+			api.closeFrame();
+		}
+		
+		apiready = function() {
+			var $body = $api.dom('body');
+			$api.addEvt($body, 'click', function(e) {
+				if (e.target == $body) {
+					closeselect();
+				} else {
+					e.stopPropagation();
+				}
+			});
+		};
+	</script>
+</html>

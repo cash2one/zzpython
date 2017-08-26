@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>{{webtitle}}</title>
+		<meta name="keywords" content="" />
+		<meta name="description" content="{{webdescription}}" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		{%if seohost%}<link rel="canonical" href="http://news.zz91.com/{{seohost}}" >{%endif%}
+		<style>
+			.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+			.clearfix{height:1%}
+			.clearfix{display:block}
+			.aui-bar{
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			.aui-list-item-title a{
+				color: #333
+			}
+			a{
+				color:#333
+			}
+			.new-view-box{
+				padding: 15px 10px;
+    			font-size: 16px;
+    			line-height: 30px;
+    			text-indent: 2em;
+    			color: #333;
+			}
+			.new-view-box p{
+				font-size: 16px;
+				color: #333;
+				margin-bottom: 20px;
+				line-height: 30px;
+			}
+			.new-view-box img{
+				max-width: 100%;
+				width: auto;
+				float: left;
+				height: auto;
+			}
+			.new-other-header{
+				margin: 0;
+			    list-style: none;
+			    display: block;
+			    -webkit-box-sizing: border-box;
+			    box-sizing: border-box;
+			    background-color: #e0e0e0;
+			    color: #212121;
+			    line-height: 1;
+			    padding: 0.4rem 15px;
+			    font-size: 16px;
+			}
+		</style>
+	</head>
+	<body>
+		{%if nottop%}
+		{%else%}
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-title">资讯中心</div>
+		    <a class="aui-pull-right zz91share">
+		        <span class="aui-iconfont aui-icon-share"></span>
+		    </a>
+		</header>
+		<div style="height: 45px;"></div>
+		{%endif%}
+		<div class="aui-content">
+			<h2 class="aui-text-center aui-margin-t-15"><b>{{name}}</b></h2>
+			<div class="aui-line-x" style="margin-top: 20px;margin-bottom: 20px;"></div>
+			<center>
+				<i class="icon2 zx-i-time"></i>开始时间： {{start_time}} 
+				<br /><i class="icon2 zx-i-time"></i>结束时间： {{end_time}} 
+				<br /><i class="icon2 zx-i-dz"></i>会议地点：{{area_name}} 
+			</center>
+			<div class="new-view-box">
+				{{content|safe}}
+			</div>
+			{%if nottop%}
+			{%else%}
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- 微门户 -->
+			<ins class="adsbygoogle"
+			     style="display:block"
+			     data-ad-client="ca-pub-5512236620584335"
+			     data-ad-slot="8274972003"
+			     data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+			<div style="clear: both;"></div>
+			{%endif%}
+		</div>
+		{%if nottop%}
+		{%else%}
+		<script type="text/javascript">
+		    /*kangxianyue 20:5 创建于 2017/4/19*/
+		    var cpro_id = "u2958427";
+		</script>
+		<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/cm.js"></script>
+		{%endif%}
+	</body>
+	
+	<script type="text/javascript">
+		$(".zz91share").on("click", function() {
+			layer.open({
+			  type: 2,
+			  title: false,
+				  closeBtn: 0, //不显示关闭按钮
+			  shadeClose: true,
+			  shade: 0.4,
+			  anim: 2,
+			  area: ['90%', '170px'],
+			  content: '/myrc/share.html?p' //iframe的url
+			}); 
+		})
+		$(function(){
+			//保存分享数据到本地
+			var title = document.title;
+			var nurl = document.URL;
+			localStorage.setItem("share_title", "" + title);
+			localStorage.setItem("share_description", "我正在查看" + title + "，赶紧跟我一起来体验！" + nurl + " 点击链接查看");
+			localStorage.setItem("share_url", nurl);
+			localStorage.setItem("share_pic", "http://img0.zz91.com/zz91/images/indexLogo.png");
+		})
+		
+
+	</script>
+	{%include 'aui/bottom.html'%}
+	{%if nottop%}
+	{%else%}
+	<script type="text/javascript"> 
+	     /*kangxianyue 创建于2016-12-14*/ 
+	     var cpro_id = "u2845509";
+	</script>
+	<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+	{%endif%}
+</html>

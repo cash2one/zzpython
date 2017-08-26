@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZZ91产品导航--废金属_废塑料_废纸_纺织废料_再生资源_废橡胶_ZZ91再生网_频道导航</title>
+<meta content="废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备" name="keywords" />
+<meta content="ZZ91再生网是废料商人的网上贸易市场,这里为您精选了废金属,废塑料,废纸,废橡胶,纺织废料,废旧设备,废电子电器,废玻璃,废皮革,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备等各类废料供求信息.公司黄页.行业资讯.价格行情.展会信息等。" name="description" />
+<link rel="shortcut icon" href="http://img0.zz91.com/favicon.ico">
+<meta name="robots" content="all" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.hack.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/daohang/default.css"/> 
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+{% include 'includes/mobilecontrol.html' %}
+</head>
+<body>
+{% include 'includes/nav.html' %}
+{% include 'includes/lm.html' %}
+<div class="daohangnav">
+	<span>您所在的位置： <a href="http://www.zz91.com">ZZ91再生网</a> > 产品导航</span>
+</div>
+
+{%for list in listall%}
+<table width="960" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#CCCCCC" class="tablelist" style="border-collapse:separate;border-spacing:1px">
+  <tr>
+    <td width="20" rowspan="2" align="center" bgcolor="#FFFFFF"><a href="/tags-{{list.code}}/" target=_blank><b>{{list.label}}</b></a></td>
+    <td bgcolor="#FFFFFF"><div style="float:left; font-size:12px">&gt;   {%if list.toplist%}{%for na in list.toplist%}<a href="/{{na.pingyin}}/" target=_blank>{{na.label}}</a>  |  {%endfor%}{%endif%}</div><div style="width:100px;text-align:right; float:right"><a href="/tags-{{list.code}}/" target=_blank>查看更多</a></div></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">
+    	<div class="typelist">
+        {%for nav in list.navchild%}
+        <a href="/tags-{{nav.main_code}}/{{nav.id}}/" target="_blank" title="{{nav.name}}">{{nav.name}}</a>
+        {%endfor%}
+        </div>
+    </td>
+  </tr>
+</table>
+{%endfor%}
+{% include 'includes/buttom.html' %}
+</body>
+</html>

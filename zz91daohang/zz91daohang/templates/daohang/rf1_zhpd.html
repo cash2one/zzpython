@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZZ91日废网_日废价格_日废网_日废网报价_ZZ91再生网(原中国再生资源交易网)</title>
+        <meta name="keywords" content="日废,日废网,日废报价,日废价格,国内日废价格,日废回收,日废供应">
+    <meta name="description" content="ZZ91旗下日废价格信息网,为日废商家提供最新日废价格,日废价格行情,日废回收,求购日废,供应日废,日废回收方面的日废商机信息!">
+    <meta name="author" content="ZZ91再生网" />
+<meta name="robots" content="all" />
+<link type="text/css" rel="stylesheet" href="../daohang/daohanglistleft2.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/top/header2010_11.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/top/search2010_11.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/top/general2010_11.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/top/comm_hack.css" />
+<script type="text/ecmascript" src="http://img0.zz91.com/front/js/top/default.js"></script>
+</head>
+<body>
+{% include 'daohang/nav.html' %}
+
+<div id="shead">
+
+        	<div id="shead_title">
+
+            	<h1>ZZ91{{keywords}}价格网：</h1>
+
+            </div>
+
+            <div id="shead_tags"> 
+                <a href="http://price.zz91.com/priceList_t27_paper.htm" target="_blank">{{keywords}}价格行情</a> | 
+                
+                <a href="http://price.zz91.com/priceSearch.htm?title={{keywords1}}" target="_blank">今日{{keywords}}价格</a> |  
+
+                <a href="http://price.zz91.com/priceSearch.htm?title={{keywords1}}" target="_blank">{{keywords}}网上报价</a> | 
+
+                <a href="http://trade.zz91.com/offerlist--a1--b--c--d--e--f--p1--{{keywords}}.htm" target="_blank">供应{{keywords}}</a>  | 
+
+                <a href="http://trade.zz91.com/offerlist--a2--b--c--d--e--f--p1--{{keywords}}.htm" target="_blank">回收{{keywords}}</a>  | 
+
+                <a href="http://daohang.zz91.com" target="_blank">废料导航</a>
+
+            </div>
+
+        </div>
+
+        <div style="clear:both"></div>
+
+        <!--box list start-->
+
+    	<div id="sbody">
+
+    	  <div id="sbody_left">
+<div><script type="text/javascript" src="http://gg.zz91.com/show?p=374&keywords={{adkeywords}}"></script></div>
+            <div id="sbody_left_area">
+			{%if offerSalesinfo%}
+              <div id="sbody_left_content">
+
+                <div id="sbody_left_title">
+
+                  <h3>{{label}}供应</h3>
+
+                </div>
+
+                <div id="sbody_left_list">
+
+                  <ul>
+
+                    {% for list in offerSalesinfo %}
+
+                        <li><a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}供应</font></a></li>
+
+                    {% endfor %}
+
+                       
+
+                      
+
+                  </ul>
+
+                </div>
+
+                <div id="morelink"><a href="http://trade.zz91.com/offerlist--a1--b--c--d--e--f--p1--{{keywords}}.htm" id="more_style2" target="_blank" title="更多供应{{label}}信息">>>>更多</a></div>
+
+              </div>
+              {%endif%}
+              {%if offerBuyinfo%}
+              <div id="sbody_left_content">
+
+                <div id="sbody_left_title">
+
+                  <h3>{{label}}回收|求购{{label}}</h3>
+
+                </div>
+
+                <div id="sbody_left_list">
+
+                  <ul>
+
+                        {% for list in offerBuyinfo %}
+                        <li><a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}回收</font></a></li>
+                        {% endfor %}
+                  </ul>
+
+                </div>
+
+                <div id="morelink"><a href="http://trade.zz91.com/offerlist--a2--b--c--d--e--f--p1--{{keywords}}.htm" id="more_style2" target="_blank" title=" 更多{{label}}回收|求购{{label}}信息">>>>更多</a></div>
+
+              </div>
+              {%endif%}
+            </div>
+    	    <div id="sbody_left_area">
+              {%if priceInfo_jzf%}
+              <div id="sbody_left_content">
+                <div id="sbody_left_title">
+                  <h3>江浙沪{{label}}价格网</h3>
+                </div>
+                <div id="sbody_left_list">
+                  <ul>
+                  		{% for list in priceInfo_jzf %}
+                        <li><a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a><span id="content_time_style">{{list.gmt_time}}</span></li>
+                        {% endfor %}
+                  </ul>
+                </div>
+                <div id="morelink"><a href="http://price.zz91.com/priceSearch.htm?title={{keywords1}}" id="more_style2" target="_blank" title="更多江浙沪{{label}}价格信息">>>>更多</a></div>
+              </div>
+              {%endif%}
+              {% if priceInfo_nanhai%}
+    	      <div id="sbody_left_content">
+                <div id="sbody_left_title">
+                  <h3>南海{{label}}价格网</h3>
+                </div>
+    	        <div id="sbody_left_list">
+                  <ul>
+                        {% for list in priceInfo_nanhai %}
+                        <li><a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a><span id="content_time_style">{{list.gmt_time}}</span></li>
+                        {% endfor %}
+                  </ul>
+  	            </div>
+    	        <div id="morelink"><a href="http://price.zz91.com/priceSearch.htm?title={{keywords1}}" id="more_style2" target="_blank" title="更多广州南海{{label}}价格信息">>>>更多</a></div>
+  	          </div>
+			  {%endif%}
+  	      </div>
+
+    	    <div id="sbody_left_area">
+              {%if priceInfo_hangqing%}
+              <div id="sbody_left_content">
+                <div id="sbody_left_title">
+                  <h3>{{label}}行情|{{label}}资讯</h3>
+                </div>
+                <div id="sbody_left_list">
+                  <ul>
+                        {% for list in priceInfo_hangqing %}
+                        <li><a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a><span id="content_time_style">{{list.gmt_time}}</span></li>
+                        {% endfor %}
+                  </ul>
+                </div>
+                <div id="morelink"><a href="http://price.zz91.com/channel/otherWaste.htm" id="more_style2" target="_blank" title="更多{{label}}行情|{{label}}资讯信息">>>>更多</a></div>
+              </div>
+              {%endif%}
+              {%if priceInfo_dongtai%}
+    	      <div id="sbody_left_content">
+                <div id="sbody_left_title">
+                  <h3>{{label}}价格行情网|市场动态</h3>
+                </div>
+    	        <div id="sbody_left_list">
+                  <ul>
+                   
+                        {% for list in priceInfo_dongtai %}
+                        <li><a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a><span id="content_time_style">{{list.gmt_time}}</span></li>
+                        {% endfor %}
+
+                  </ul>
+
+  	          </div>
+
+    	        <div id="morelink"><a href="http://price.zz91.com/priceSearch.htm?title={{keywords}}市场" id="more_style2" target="_blank" title="更多{{label}}价格|{{label}}市场动态信息">>>>更多</a></div>
+
+  	        </div>
+			{%endif%}
+  	      </div>
+
+  	    </div>
+
+<div id="sbody_right">
+
+                    	<div id="sbody_right_style">
+
+            				<div class="sbody_right_style_tit">
+
+                			<h3>{{label}}产品大全</h3>
+
+            				</div>
+
+		    				<div class="right_content_list">
+                             <a href="http://tags.zz91.com/tagssearchList/日废报价/" class='tag1' target="_blank" title="日废报价">日废报价</a> |
+						 <a href="http://tags.zz91.com/tagssearchList/美废/" class='tag2' target="_blank" title="美废">美废</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废纸/" class='tag3' target="_blank" title="废纸">废纸</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/淋膜纸/" class='tag1' target="_blank" title="淋膜纸">淋膜纸</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废瓦楞纸/" class='tag2' target="_blank" title="废瓦楞纸">废瓦楞纸</a> | 
+                              <a href="http://tags.zz91.com/tagssearchList/白板纸/" class='tag1' target="_blank" title="白板纸">白板纸</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/白卡纸/" class='tag2' target="_blank" title="白卡纸">白卡纸</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/新闻纸/" class='tag3' target="_blank" title="新闻纸">新闻纸</a> | 
+
+                              <a href="http://tags.zz91.com/tagssearchList/复合废纸/" class='tag1' target="_blank" title="复合废纸">复合废纸</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/进口废纸/" class='tag2' target="_blank" title="进口废纸">进口废纸</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/卫生纸/" class='tag3' target="_blank" title="卫生纸">卫生纸</a> | 
+
+                          <a href="http://tags.zz91.com/tagssearchList/面巾纸/" class='tag1' target="_blank" title="面巾纸">面巾纸</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/餐巾纸/" class='tag2' target="_blank" title="餐巾纸">餐巾纸</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/锡箔纸/" class='tag3' target="_blank" title="锡箔纸">锡箔纸</a> | 
+
+
+                       <a href="http://tags.zz91.com/tagssearchList/羊皮纸/" class='tag1' target="_blank" title="羊皮纸">羊皮纸</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/办公废纸/" class='tag2' target="_blank" title="办公废纸">办公废纸</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/灰卡纸/" class='tag3' target="_blank" title="灰卡纸">灰卡纸</a> | 
+
+
+                   <a href="http://tags.zz91.com/tagssearchList/黄板纸/" class='tag1' target="_blank" title="黄板纸">黄板纸</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/利乐包/" class='tag2' target="_blank" title="利乐包">利乐包</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/商标纸/" class='tag3' target="_blank" title="商标纸">商标纸</a> | 
+
+
+                   <a href="http://tags.zz91.com/tagssearchList/牛皮纸/" class='tag1' target="_blank" title="牛皮纸">牛皮纸</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/旧纸箱/" class='tag2' target="_blank" title="旧纸箱">旧纸箱</a> | 
+                             <a href="http://tags.zz91.com/tagssearchList/国内日废价格/" class='tag3' target="_blank" title="国内日废价格">国内日废价格</a> | 
+                            
+							
+		                    
+
+                         </div>
+
+           		  </div>
+
+                		<div id="sbody_right_style" style="margin-top:8px;">
+
+                			<div class="sbody_right_style_tit">
+
+                	  			<h3>{{label}}热门话题</h3>
+
+                			</div>
+							<div>
+                            <ul style="padding-left:10px;">
+                            	{% for list in huzhuInfo %}
+
+                                    <li>· <a href="http://huzhu.zz91.com/viewReply{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a></li>
+            
+                                {% endfor %}
+                            </ul>
+                            </div>
+                    		<div class="right_content_list"><a href="http://huzhu.zz91.com/bbsCategory1.htm" id="more_style" target="_blank" title="更多{{label}}行情热门话题">>>>更多{{label}}热门话题</a>
+
+                			</div>
+
+                    	</div>
+
+                        {% include 'daohang/right.html' %}
+
+                        
+
+                	</div>
+
+            	</div>
+
+</div>
+
+        </div>    
+
+<!--box list end-->
+{% include 'daohang/bottom.html' %}
+</div>
+</body>
+</html>
+

@@ -1,0 +1,12 @@
+ {%for list in companylist%}
+<dd>
+	<a href="/company/detail{{list.company_id}}.html" target="_blank" class="">
+		<div class="dealcard">
+			<div class="dealcard-left" style="height: auto;margin-top: 10px;">
+				<div class="dealcard-brand oow">{{list.name}}</div>
+				<div class="title text-block">{{list.business}}</div>
+			</div>
+		</div>
+	</a>
+</dd>
+{% endfor %}

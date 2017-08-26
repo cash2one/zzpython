@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<title>【{{kname}}】_{{kname}}供应_{{kname}}求购_{{kname}}价格行情_{{kname}}回收_{{kname}}社区-ZZ91再生网</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="{{kname}}, {{kname}}价格行情,{{kname}}资讯, {{kname}}供应,{{kname}}求购,出售{{kname}},{{kname}}社区，{{kname}}回收价格" />
+	<meta name="description" content="{{kname}}标签频道为你提供最新最权威的{{kname}}价格行情信息,{{kname}}回收信息,供求{{kname}}信息,以及{{kname}}报价资讯信息等，及时掌握最新行情资讯，让你生意翻倍。" />
+	<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.hack.css" />
+	<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+	<link rel="stylesheet" href="http://tags.zz91.com/tags/css/zz91.tags.css" />
+    <link rel="stylesheet" href="http://tags.zz91.com/tags/css/zz91.tagslist.css" />
+    <link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+    <link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" /> 
+	<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+	<script src="http://img0.zz91.com/front/js/topbar/jquery.topbar.js"></script>
+	<script src="http://img0.zz91.com/front/js/zz91.common.js"></script>
+    <script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+{% include 'includes/head.html' %}
+</head>
+<body>
+{% include 'includes/nav.html' %}
+{% include 'includes/lm.html' %}
+    <div class="wrapper mt2 clearfix"><a href="http://www.zz91.com">ZZ91再生网</a>  ><a href="http://tags.zz91.com">标签专栏</a>  > <a href="http://tags.zz91.com/s/{{keywords_hex}}/">{{kname}}</a></div>
+	<!-- main start -->
+    <div class="wrapper mt">
+    	<style>
+    		.topadlist img{width: 720px;}
+    	</style>
+    	<div class="tags_mainleft">
+			<div class="topadlist"><script type="text/javascript" src="http://gg.zz91.com/show?p=373&keywords={{tags_keywords}}"></script></div>
+			<script type="text/javascript">
+			    /*tags 中部728*90 创建于 2014-07-25*/
+			    var cpro_id = "u1632941";
+			</script>
+			<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+			<div class="tags_nav">
+            	<div class="tags_keywleft">标签：</div><h1 class="tags_keywords red">{{tags_keywords}}</h1><div class="tags_keywright">的信息列表: 供求信息<span class="red">{{listcount}}</span>条 报价<span class="red">{{listcount_baojia}}</span>条 资讯<span class="red">{{listcount_huzhu}}</span>条</div>
+            </div>
+			<div class="tags_tradecontent">
+            	<div class="mt tags_navtitle">
+					<h2>今日{{tags_keywords}}价格行情信息</h2>
+					<div style="float:right">共有<strong>{{tags_keywords}}</strong>价格行情信息{{listcount_baojia_all}}条  |   <a href="/a/{{keywords_hex}}-1/">更多>></a>
+					</div>
+				</div>
+                
+
+            	{%if listall_baojia or listall_baojia_company%}
+                <div class="tags_newsbox ">
+                	<div class="newsboxleft">
+						<div class="tagsnewtitle">企业{{tags_keywords}}产品价格行情：共有<span class=red>{{listcount_baojia_company}}</span>条 <a href="/c/{{keywords_hex}}-1/">查看更多</a></div>
+                    	<ul>
+                        	{% for list in listall_baojia_company %}
+							<li>• <a href="http://jiage.zz91.com/cdetail/{{list.td_id}}.html" target=_blank>{{list.td_title|safe}} <font color="#990000">{{list.price}}</font></a> <span class="t">{{list.td_time}}</span></li>
+							{% endfor %}
+                        </ul>
+                    </div>
+                    <div class="newsboxright">
+                    	{%if havelist_price%}
+                    	<div class="tagsnewtitle">相关{{tags_keywords}}产品价格行情：共有<span class=red>{{listcount_baojia}}</span>条   <a href="/a/{{keywords_hex}}-1/">查看更多</a></div>
+                    	{%else%}
+						<div class="tagsnewtitle">最新价格行情信息</div>
+						{%endif%}
+						<ul>
+                        {% for list in listall_baojia %}
+						<li>• <a href="http://jiage.zz91.com/detail/{{list.td_id}}.html" target=_blank>{{list.td_title|safe}}</a> <span class="t">{{list.td_time}}</span></li>
+						{% endfor %}
+                        </ul>
+                    </div>
+                    <div class="clearboth"></div>
+                </div>
+				{%endif%}
+			</div>
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 标签详细页 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:700px;height:60px"
+     data-ad-client="ca-pub-5512236620584335"
+     data-ad-slot="7667126401"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+			<div class="tags_tradecontent">
+               
+                <div class="clearboth"></div>
+                
+                <div class="mt tags_navtitle"><h2>今日{{tags_keywords}}供应信息</h2><div style="float:right">共有供应<strong>{{tags_keywords}}</strong>信息{{listcount0}}条  |   <a href="/s/{{keywords_hex}}-0-1/">更多>></a></div></div>
+                {%if listall%}
+                {% for list in listall %}
+                <div class="clearboth">
+                
+                
+                <div class="tags_tradedetail">
+                	<div class="tradeimg"><a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target=_blank><img src="{{list.pdt_images}}" title="{{list.fulltitle}}"></a></div>
+                    <div class="tradecontent">
+                    <div class=offertitle><a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target=_blank>{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}</a> <span class=timespan>{{list.pdt_time_en}}</span></div>
+                    {{list.pdt_detail}}....
+                    <br />
+                    {%if list.ldbtel%}
+	    			<div class="ldbphone">
+					免费电话：<font color=red><b>{{list.ldbtel.front_tel}}</b></font>
+					</div>
+					{%endif%}
+                    {%if list.vipflag.vipcheck%}
+                    {%if list.vipflag.vippic%}
+						<img src="{{list.vipflag.vippic}}" alt="{{list.vipflag.vipname}}"/> 
+					{%endif%}
+						<span class="brand">{{list.vipflag.vipname}}</span> 
+						{%else%}
+						普通会员
+						{%endif%}
+						{%if list.vipflag.vipcheck%}
+                    <a href="http://{{list.vipflag.vipsubname}}.zz91.com/" target=_blank class="cpy" title="{{list.com_name}}">{{list.com_name|truncatewords:"10"}}</a>
+                    {%else%}
+                    <a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target=_blank  class="cpy" title="{{list.com_name}}">{{list.com_name}}</a>
+					{%endif%}
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+                <div class="clearboth"></div>
+                {%endif%}
+            </div>
+			
+			
+            <div class="clearboth"></div>
+            <div class="mt tags_navtitle"><h2>今日{{tags_keywords}}求购信息</h2><div style="float:right">共有求购<strong>{{tags_keywords}}</strong>信息{{listcount1}}条  |   <a href="/s/{{keywords_hex}}-1-1/">更多>></a></div></div>
+            <div class="tags_tradecontent">
+            	{%if listall1%}
+                {% for list in listall1 %}
+                <div class="clearboth">
+                <div class="tags_tradedetail">
+                	<div class="tradeimg"><a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target=_blank><img src="{{list.pdt_images}}" title="{{list.fulltitle}}"></a></div>
+                    <div class="tradecontent">
+                    <div class=offertitle><a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target=_blank>{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}</a> <span class=timespan>{{list.pdt_time_en}}</span></div>
+                    {{list.pdt_detail}}....
+                    <br />
+                    {%if list.ldbtel%}
+	    			<div class="ldbphone">
+					免费电话：<font color=red><b>{{list.ldbtel.front_tel}}</b></font>
+					</div>
+					{%endif%}
+                    {%if list.vipflag.vipcheck%}
+                    {%if list.vipflag.vippic%}
+						<img src="{{list.vipflag.vippic}}" alt="{{list.vipflag.vipname}}"/>
+					{%endif%}
+					<span class="brand">{{list.vipflag.vipname}}</span> 
+						{%else%}
+						普通会员
+						{%endif%}
+						{%if list.vipflag.vipcheck%}
+                    <a href="http://{{list.vipflag.vipsubname}}.zz91.com/" target=_blank class="cpy" title="{{list.com_name}}">{{list.com_name|truncatewords:"10"}}</a>
+                    {%else%}
+                    <a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target=_blank  class="cpy" title="{{list.com_name}}">{{list.com_name}}</a>
+					{%endif%}
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+                {%endif%}
+				
+				{%if listall_huzhu%}
+                <div class="clearboth"></div>
+                <div class="mt tags_navtitle">
+					{%if havelist_bbs%}
+					<h2>今日{{tags_keywords}}资讯信息</h2>
+					<div style="float:right">共有<strong>{{tags_keywords}}</strong>资讯信息{{listcount_huzhu}}条  |   <a href="/b/{{keywords_hex}}-1/">更多>></a></div>
+					{%else%}
+					<h2>今日最新资讯信息</h2>
+					<div style="float:right"><a href="http://price.zz91.com" target=_blank>更多>></a></div>
+					{%endif%}
+				</div>
+                <div class="tags_newsbox ">
+					<ul>
+						{% for list in listall_huzhu %}
+					<li>• <a href='http://huzhu.zz91.com/viewReply{{list.td_id}}.htm' target='_blank' title="{{list.td_title_f}}">{{list.td_title}}</a><span class="t">{{list.td_time}}</span></li>
+						{% endfor %}
+					</ul>
+                    <div class="clearboth"></div>
+                </div>
+                {%endif%}
+                
+            </div>
+            <script type="text/javascript">/*728*90，创建于2012-8-2*/ var cpro_id = 'u1007756';</script><script src="http://cpro.baidu.com/cpro/ui/c.js" type="text/javascript"></script>
+            <div class="clearboth"></div>
+        </div>
+        {% include 'tags/right.html' %}
+        
+        
+    </div>
+    <div class="clearboth"></div>
+<!-- main end -->
+{% include 'tags/bottom.html' %}
+</body>
+</html>

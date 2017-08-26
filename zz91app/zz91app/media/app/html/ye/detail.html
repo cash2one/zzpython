@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title>废料产业带</title>
+		<link href="../../css/ye/industrial.m.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div id="deal" style="display:none">
+			<div class="list">
+				<div class="album fix" style="height:200px;background-color:#333">
+				</div>
+				<div class="yedetails"></div>
+				<script id="yelist" type="text/html">
+				<dl class="list" id="deal-terms">
+					<dd style="border: 0;">
+						<dl class="first" style="/*margin-top: 160px;*/border-bottom:none">
+							<dt >
+								市场简介
+							</dt>
+							<dd class="dd-padding">
+								<p class="lh">
+									{{d.introduction}}
+								</p>
+							</dd>
+						</dl>
+					</dd>
+					<dd>
+						<dl>
+							<dt>
+								市场概况
+							</dt>
+							<dd class="dd-padding">
+								<ul>
+									<li id="ok"></li>
+									<li>
+										<p class="lh">
+											所属行业：{{d.industry}}
+										</p>
+									</li>
+									<li>
+										<p class="lh">
+											所在地区：{{d.area}}
+										</p>
+									</li>
+									<li>
+										<p class="lh">
+											主营范围：{{d.business}}
+										</p>
+									</li>
+									<!--<li>
+										<p class="lh">
+											市场商户：<font class="red">{{d.company_num}}</font>家
+										</p>
+									</li>
+									<li>
+										<p class="lh">
+											市场供求：<font class="red">{{d.product_num}}</font>条
+										</p>
+									</li>-->
+									<li class="joinmarket">
+										<div class="btn-wrapper">
+											<a onclick="join_ajax('{{d.industry}}','{{d.area}}','{{d.id}}')" class="btn buy-btn btn-block btn-larger btn-strong" href="javascript:void(0);" rel="nofollow">我是该市场商户,我要加入</a>
+										</div>
+									</li>
+								</ul>
+							</dd>
+						</dl>
+					</dd>
+				</dl>
+				<div style="height:50px"></div>
+				<footer class="czfoot">
+					<li class="btn-one">
+						市场供求(<font class="red">{{d.product_num}}</font>)
+					</li>
+					<li class="btn-two">
+						市场商户(<font class="red">{{d.company_num}}</font>)
+					</li>
+				</footer>
+				</script>
+			</div>
+		</div>
+		<style>
+		.czfoot {
+			position: fixed;
+			bottom: 0px;
+			border-top: solid 1px #EBEBEB;
+			width: 100%;
+			background-color: #F6F6F6;
+			line-height: 50px;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+		}
+		.czfoot li {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+			text-align: center;
+			border-right: 1px solid #e7e7e7;
+			font-size: 16px;
+		}
+		.czfoot li:last-child {
+			border-right: none;
+		}
+		</style>
+		
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript">
+		var nowurl, searchdata,tourl;
+		apiready = function() {
+			searchdata={}
+			tourl = api.pageParam.tourl;
+			nowurl = tourl;
+			
+			searchdata['company_id']=UserInfo.memberID();
+			searchdata['usertoken']=UserInfo.token();
+			searchdata['appsystem']=api.systemType;
+			api.showProgress({
+				title : '加载中',
+				modal : false
+			});
+			ajaxInfo();
+		}
+		var dataload = true;
+		var loadnum = 1;
+		var picpath=[];
+		var piccaptions=[];
+		var marketid;
+		function ajaxInfo() {
+			//zzalert(nowurl)
+			if (dataload == false) {
+				//return;
+			}
+			dataload = false;
+			api.ajax({
+				url : hosturl + nowurl + '?datatype=json',
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : searchdata
+				}
+			}, function(ret, err) {
+				if (ret) {
+					loadnum = 1;
+					//头部图片
+					var piclist = ret.piclist;
+					if (piclist){
+						$.each(piclist, function(index, item) {
+							if (item){
+								picpath.push(item.pic_address);
+								piccaptions.push(ret.detail.name)
+							}
+						});
+					}
+					//基本信息
+					var getTpl = $api.html($api.byId("yelist"));
+					laytpl(getTpl).render(ret.detail, function(html) {
+						$(".yedetails").html(html);
+					});
+					//zzalert(JSON.stringify(picpath))
+					if (piclist){
+						showscrollpic();
+					}else{
+						$(".album").hide();
+					}
+					api.pageUp({
+						'top' : true
+					});
+					//api.refreshHeaderLoadDone();
+					api.hideProgress();
+					//保存分享数据到本地
+					var title=ret.detail.name;
+					localStorage.setItem("share_title",""+title);
+					localStorage.setItem("share_description","我正在查看"+title+"，赶紧跟我一起来体验！http://m.zz91.com/ye/ye_detail/"+ret.ye_pinyin+".html 点击链接查看");
+					localStorage.setItem("share_url","http://m.zz91.com/ye/ye_detail/"+ret.ye_pinyin+".html");
+					localStorage.setItem("share_pic",picpath[0]);
+					//已加入
+					if (ret.is_quit==1){
+						$(".joinmarket").hide();
+					}
+					$("#deal").show();
+					marketid=ret.detail.id;
+			        //打开更多供求
+					$(".btn-one").on("click",function(){
+			            var pageParam = {
+			                wintitle:"更多市场供求",
+			                type:"marketpromore",
+			                marketid:marketid
+			            };
+			            openWin("marketpromore","../ye/pro_list.html",pageParam);
+			        });
+			        //打开更多供求
+					$(".btn-two").on("click",function(){
+			            var pageParam = {
+			                wintitle:"更多市场商家",
+			                type:"marketcompanymore",
+			                marketid:marketid
+			            };
+			            openWin("marketcompanymore","../ye/comp_list.html",pageParam);
+			        });
+				} else {
+					//出错重试3次
+					if (loadnum <= 3) {
+						ajaxInfo();
+					} else {
+						api.toast({
+						    msg: '系统错误，请重试！',
+						    duration: 2000,
+						    location: 'bottom'
+						});
+					}
+				}
+				loadnum = loadnum + 1;
+				dataload = true;
+			})
+		}
+		//顶部滚动图片
+		function showscrollpic() {
+			var UIScrollPicture = api.require('UIScrollPicture');
+			UIScrollPicture.open({
+				rect : {
+					x : 0,
+					y : 0,
+					w : api.winWidth,
+					h : 230
+				},
+				data : {
+					paths : picpath,
+					captions: piccaptions
+				},
+				styles : {
+					caption : {//（可选项）JSON对象；说明文字区域样式
+						height : 25.0, //（可选项）数字类型；说明文字区域高度；默认：35.0
+						color : 'rgba(255,255,255,0.5)', //（可选项）字符串类型；说明文字字体颜色；默认：'#E0FFFF'
+						size : 16.0, //（可选项）数字类型；说明文字字体大小；默认：13.0
+						bgColor : 'rgba(0,0,0,0.5)', //（可选项）说明文字区域的背景色，支持rgb、rgba、#；默认'#696969'
+						position : 'overlay' //（可选项）字符串类型；说明文字区域的显示位置，取值范围：overlay（悬浮在图片上方，底部与图片底部对齐），bottom（紧跟在图片下方，顶部与图片底部对齐）；默认：'bottom'
+					},
+					indicator : {//（可选项）JSON对象；指示器样式；不传则不显示指示器
+						align : 'center', //(可选项)字符串类型；指示器位置，center（居中），left（靠左），right（靠右）；默认：center
+						//color : 'rgba(0,200,0,0.9)', //(可选项)指示器颜色 ，支持rgb、rgba、#；默认：'#FFFFFF'
+						activeColor : 'rgba(0,0,0,0.7)' //(可选项)当前指示器颜色，支持rgb、rgba、#；默认：'#DA70D6'
+					}
+				},
+				placeholderImg : "widget://res/key1.png",
+				contentMode : "scaleAspectFit",
+				interval : 6,
+				auto : true,
+				loop : true,
+				fixedOn : api.frameName,
+				fixed : false
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(ret));
+			});
+		}
+	</script>
+	<script type="text/javascript">
+		function join_ajax(industry, area, market_id) {
+			var pageParam = {
+				wintitle : "加入产业带",
+				type : "joinye",
+				tourl : tourl,
+				bounces : false
+			};
+			if (UserInfo.has_login()) {
+				
+			} else {
+				pageParam.nextUrl = "../price/order-main.html";
+				pageParam.winName = "joinye";
+				openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				return;
+			}
+			api.showProgress({
+				title : '加载中',
+				modal : false
+			});
+			var data ={
+				industry : industry,
+				area : area,
+				market_id : market_id,
+				company_id : UserInfo.memberID()
+			}
+			//zzalert(JSON.stringify(data));
+			api.ajax({
+				url : hosturl + 'ye/join_ye.html?t=' + (new Date()).getTime().toString(),
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(ret))
+				if (ret) {
+					if (ret.err == "true") {
+						zzalert(ret.result)
+					} else {
+						api.toast({
+						    msg: ret.result,
+						    duration: 2000,
+						    location: 'bottom'
+						});
+					}
+				} else {
+					api.toast({
+					    msg: '系统错误，请重试！',
+					    duration: 2000,
+					    location: 'bottom'
+					});
+				};
+				api.hideProgress();
+			});
+		}
+	</script>
+</html>

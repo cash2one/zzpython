@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+<link rel="stylesheet" href="/css/comm-more.css" />
+<link rel="stylesheet" type="text/css" href="/css/qianbao/shop_index.css"/>
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+
+<ul class="bread Fix">
+    <li><a href="/">首页</a></li>
+	<li class="li-bread"><a href="/myrc_index/">生意管家</a></li>
+    <li class="li-bread c9"><span>我的收藏夹</span></li>
+</ul>
+
+<div>
+	<nav class="t-nav-tab t-nav-tab-5">
+		<ul>
+	
+		{%ifequal checkStatus '1'%}
+			<li class="chk"><a href="/myrc_favorite/?checkStatus=1">供求信息(<span class="c-red">{{alist1}}</span>)</a></li>
+			{%else%}
+			<li><a href="/myrc_favorite/?checkStatus=1">供求信息(<span class="c-red">{{alist1}}</span>)</a></li>
+		{%endifequal%}
+		{%ifequal checkStatus '2'%}
+			<li class="chk"><a href="/myrc_favorite/?checkStatus=2">公司信息(<span class="c-red">{{alist2}}</span>)</a></li>
+			{%else%}
+			<li><a href="/myrc_favorite/?checkStatus=2">公司信息(<span class="c-red">{{alist2}}</span>)</a></li>
+		{%endifequal%}
+		{%ifequal checkStatus '3'%}
+			<li class="chk"><a href="/myrc_favorite/?checkStatus=3">报价信息(<span class="c-red">{{alist3}}</span>)</a></li>
+			{%else%}
+			<li><a href="/myrc_favorite/?checkStatus=3">报价信息(<span class="c-red">{{alist3}}</span>)</a></li>
+		{%endifequal%}
+		{%ifequal checkStatus '4'%}
+			<li class="chk"><a href="/myrc_favorite/?checkStatus=4">互助社区(<span class="c-red">{{alist4}}</span>)</a></li>
+			{%else%}
+			<li><a href="/myrc_favorite/?checkStatus=4">互助社区(<span class="c-red">{{alist4}}</span>)</a></li>
+		{%endifequal%}
+		{%ifequal checkStatus '5'%}
+			<li class="chk"><a href="/myrc_favorite/?checkStatus=5">资讯中心(<span class="c-red">{{alist5}}</span>)</a></li>
+			{%else%}
+			<li><a href="/myrc_favorite/?checkStatus=5">资讯中心(<span class="c-red">{{alist5}}</span>)</a></li>
+		{%endifequal%}
+		</ul>
+	</nav>
+</div>
+<div class="result-tip">共找到<span class="c-hl">{{qlistcount}}</span>条相关结果</div>
+{%for list in qlist%}
+<div class="list">
+	<div class="item" style="border-top:1px solid #FFF;">    
+		<p class="c-link lh28"><a href="{{list.favorite_url}}">[{{list.favorite_type}}]{{list.content_title}}</a> &nbsp;&nbsp;&nbsp;<a href="/redelfavorite.html?favid={{list.favid}}" onClick="return confirm('是否将此信息删除?')" style="color:gray">删除</a></p>
+	</div>
+	<div id="moreDiv"></div>
+</div>
+{%endfor%}
+<div>
+<nav class="page Fix">
+	<span class="left">
+    {% if firstpage %}
+    <a class="pageBtnEnable" href="/myrc_favorite/?page={{prvpage}}"><span>上一页</span></a>
+    {% endif %}
+    </span>
+	<i class="ac f14">{{page}}/{{page_listcount}}</i>
+	<span class="right">
+    {% if lastpage%}
+    <a class="pageBtnEnable" href="/myrc_favorite/?page={{nextpage}}"><span>下一页</span></a>
+    {% endif %}
+    </span>
+</nav>
+</div>
+<div class="h20"></div>
+</div>
+{%include 'bottom_myrc.html'%}
+</div>
+</body>
+</html>

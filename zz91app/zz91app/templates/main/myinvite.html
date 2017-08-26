@@ -1,0 +1,54 @@
+<style>
+.invite{
+	line-height: 30px;
+	margin-top: 40px;
+}
+.invite .button{
+	width:50%;
+	margin-top:20px;
+	margin-bottom:20px;
+	background-color:#390;
+	line-height: 40px;
+	color:#FFF;
+	font-size:18px;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#3C0),to(#390) );
+	border-top:1px solid #360;
+	border-right:1px solid #360;
+	border-bottom: 1px solid #360;
+	border-left:1px solid #360;
+	-webkit-border-bottom-left-radius: 2px;
+	-webkit-border-bottom-right-radius: 2px;
+}
+.invite .invite-code{
+	font-size: 30px;
+	line-height: 50px;
+	color: #003399;
+	text-align: center;
+}
+</style>
+<div class="invite">
+	<center>
+	<div class="invite-tle">邀请朋友安装APP<br />即可获得再生钱包 “ <b><font color="#FF0000">5元</font></b> ”</div>
+	<div>我的邀请码</div>
+	<div class="invite-code">
+		{{code}}
+	</div>
+	{%if isios%}
+	<div class="invite_fx">
+		<input type="button" name="sharebutton" id="sharebutton" value="打开分享" class="button" onclick="openhttpurl('{{inviteurl}}')">
+	</div>
+	{%else%}
+	<div class="invite_fx">
+		<input type="button" name="sharebutton" id="sharebutton" value="立即分享" class="button" onclick="shareSystem()">
+	</div>
+	{%endif%}
+	</center>
+</div>
+<img id="pic" src="../img/add.png"/ style="display: none;">
+<input type="hidden" value="输入验证码即可获得20元" id="sharetitle" />
+<textarea id="sharecontent" rows="3" style="display: none;">{{title|safe}}</textarea>
+<input type="hidden" id="zsharehref" value="http://m.zz91.com/invite/help{{code}}.html">
+<input type="hidden" id="zsharehrefTitle" value="输入验证码即可获得20元">
+<input type="hidden" id="zsharehrefDes" value="输入验证码即可获得20元，点击链接查看">
+
+<input type="hidden" id="appnavname" value="我的邀请码" />

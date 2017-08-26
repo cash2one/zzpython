@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>再生钱包</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/myrc/burse.css"/>
+		<style>
+			.czfoot {
+				position: fixed;
+				bottom: 0px;
+				border-top: solid 1px #EBEBEB;
+				width: 100%;
+				background-color: #F6F6F6;
+				line-height: 50px;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+			}
+			.czfoot li {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				text-align: center;
+				border-right: 1px solid #e7e7e7;
+				font-size: 16px;
+			}
+			.czfoot li:last-child {
+				border-right: none;
+			}
+			.aui-img-body {
+				width: 130px;
+				float: left
+			}
+			.buybutton {
+				margin-top: 15px;
+				margin-right: 20px
+			}
+			.howzq {
+				text-align: right;
+				font-size: 12px;
+				color: #666;
+				float: right;
+				margin: 10px 0
+			}
+			.chongzhi{
+				width:150px;
+				line-height: 30px
+			}
+			.allservice li{
+				position:relative;
+			}
+			.aui-img-body {
+				width:100%
+			}
+			.aui-tab-nav li.active {
+				color: #27ae60;
+				border-bottom: 2px #2ecc71 solid;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="surplus">
+			<div class="surplus-td">
+				<div class="surplus-title">
+					当前余额（元）
+				</div>
+				<div class="surplus-moery j_blance">
+					0.00
+				</div>
+			</div>
+		</div>
+		<div class="old-buy clear" style="display: none">
+			<div class="day-but">
+				<p class="old-buy-tg">
+					累计充值（元）
+				</p>
+				<p class="old-buy-moery j_infeeyd">
+					0.00
+				</p>
+			</div>
+			<div class="mouth-buy">
+				<p class="old-buy-tg">
+					累计进账（元）
+				</p>
+				<p class="old-buy-moery j_infeeall">
+					0.00
+				</p>
+			</div>
+			<div class="day-but">
+				<p class="old-buy-tg">
+					昨日消费（元）
+				</p>
+				<p class="old-buy-moery j_outfeeyd">
+					0.00
+				</p>
+			</div>
+			<div class="mouth-buy">
+				<p class="old-buy-tg">
+					总消费（元）
+				</p>
+				<p class="old-buy-moery j_outfeeall">
+					0.00
+				</p>
+			</div>
+		</div>
+		<div style="text-align:center;margin-top: 10px;margin-bottom: 10px;margin-left: auto;margin-right: auto;width: 100%">
+			<div class="aui-btn aui-btn-danger chongzhi">充值</div>
+		</div>
+		<!--<div class="buy-list clear">
+			<span style="border-left:solid 3px #01ba2e;padding-left:10px;margin-left:10px;">再生商城</span><span class="howzq">如何赚钱？</span>
+		</div>-->
+		<div class="aui-tab aui-tab-success">
+	        <ul class="aui-tab-nav">
+	            <li class="active" index=1>我的服务</li>
+	            <li index=2>代金券管理</li>
+	        </ul>
+	    </div>
+	    <script id="info-list" type="text/html">
+			<li class="aui-list-view-cell aui-img">
+				<div class="aui-img-body">
+					<div class="aui-pull-left" style="width: 70%">
+					<span>{{d.servername}}</span> <font color="#ff0000">{{d.status}}</font>
+					<p>
+						开始时间：{{d.gmt_begin}}   <br />结束时间：{{d.gmt_end}}
+					</p>
+					</div>
+					<div style="width: 30%;margin-top: 20px" class="aui-btn aui-pull-right rebuy" dtype="{{d.type}}">
+						继续购买
+					</div>
+				</div>
+			</li>
+		</script>
+		<script id="djq-list" type="text/html">
+			<li class="aui-list-view-cell aui-img">
+				<div class="aui-img-body">
+					<div class="aui-pull-left" style="width: 70%">
+					<span>{{d.fee}}{{d.title}}</span> <br /><font color="#ff0000">编号：{{d.qcode}}</font>
+					<p>
+						开始时间：{{d.begin_time}}   <br />结束时间：{{d.end_time}}
+					</p>
+					</div>
+					<div style="width: 30%;margin-top: 20px" class="aui-btn aui-btn-success aui-pull-right">
+						{{d.usedtext}}
+					</div>
+				</div>
+			</li>
+		</script>
+		<div class="aui-content">
+			<ul class="aui-list-view allservice">
+				<div class="aui-toast"  id="loading">
+			        <div class="aui-toast-loading"></div>
+			        <div class="aui-toast-content">加载中</div>
+			    </div>
+			</ul>
+			<ul class="aui-list-view alldaijinqian" style="display: none">
+				
+			</ul>
+			<div class="noservice" style="display: none;text-align: center;padding-top: 20px;color:#FF6B1A">
+				<span class="aui-iconfont aui-icon-warnfill"></span>
+					您还未开通任何服务<br /><br />
+					<p><div class="aui-btn aui-btn-success zz91service">立即加入服务</div></p>
+				
+			</div>
+			<div style="text-align: center;display:none" class="myservice"><p><div class="aui-btn aui-btn-success aui-btn-outlined">查看更多</div></p></div>
+		</div>
+		<input type="hidden" id="showcontactvalue" value="">
+		<input type="hidden" id="backvalue" value="">
+		<div style="height:60px"></div>
+		<footer class="czfoot">
+			<li class="mypaylist">
+				<span class="aui-iconfont aui-icon-calendar"></span> 收支明细
+			</li>
+			<li class="zz91service">
+				<span class="aui-iconfont aui-icon-service"></span> 产品服务
+			</li>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+	<script type="text/javascript">
+		apiready = function() {
+			var closeiosflag=$api.getStorage("closeiosflag");
+			if (!closeiosflag || closeiosflag==1){
+				$(".czfoot").hide();	
+			}
+			//页面刷新
+			api.setRefreshHeaderInfo({
+				visible : true,
+				bgColor: '#F2F2F2',
+				//bgColor : '#E6E6E6',
+				textColor : '#000000',
+				textDown : '下拉刷新',
+				textUp : '释放刷新',
+			}, function(ret, err) {
+				ajaxInfo();
+				api.toast({
+					msg : '数据已是最新！',
+					duration : 3000,
+					location : 'bottom'
+				});
+			});
+			
+			
+			$(".aui-tab").on("click", "li",function() {
+				$(".aui-tab li").attr("class","");
+				$(this).attr("class","active");
+				var index=$(this).attr("index");
+				//alert(index)
+				if (index==1){
+					$(".allservice").show();
+					$(".alldaijinqian").hide();
+				}else{
+					$(".allservice").hide();
+					$(".alldaijinqian").show();
+				}
+			})
+			
+			//继续购买
+			
+			$("body").on("click", ".rebuy",function() {
+				var dtype=$(this).attr("dtype");
+				var index="1";
+				if (dtype=="zst"){
+					var pageParam = {
+						wintitle : "产品服务",
+						type : "zz91service",
+						bounces : false
+					};
+					openWin("zz91service", "../service/index.html", pageParam);
+					return;
+				}
+				var wintitle="产品服务"
+				if (dtype=="keytop"){
+					index="3"
+					wintitle="供求置顶服务"
+				}
+				if (dtype=="showphone"){
+					index="2"
+					wintitle="显示联系方式"
+				}
+				if (dtype=="autoreflush"){
+					index="12"
+					wintitle="供求自动刷新"
+				}
+				var pageParam = {
+					wintitle : wintitle,
+					type : "serviceshow"+index,
+					bounces : false,
+				};
+				if (dtype){
+					openWin("serviceshow"+index, "../service/show"+index+".html", pageParam);
+				}
+			})
+			$(".chongzhi").on("click", function() {
+				if (!UserInfo.has_login()) {
+		        	var pageParam = {
+						wintitle : "在线充值",
+						type : "chongzhi",
+						nextUrl : "../myrc/call-moery.html",
+						winName : "chongzhi",
+						bounces : false,
+						pagefrom : "qianbao",
+					};
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+					return false;
+		        }
+		        var pageParam = {
+		            wintitle:"在线充值",
+		            type:"chongzhi",
+		            pagefrom : "qianbao",
+		        };
+		        var url="../myrc/call-moery.html";
+		        //var url=hosturl+"qianbao/chongzhi_new.html?company_id="+UserInfo.memberID()+"&paytype=qianbao"
+		        openWin("chongzhi",url,pageParam);
+			})
+			$(".zz91service").on("click", function() {
+				var pageParam = {
+					wintitle : "产品服务",
+					type : "zz91service",
+					bounces : false
+				};
+				openWin("zz91service", "../service/index.html", pageParam);
+			})
+			$(".myservice").on("click", function() {
+				var pageParam = {
+					wintitle : "我的服务",
+					type : "myservice",
+					bounces : false
+				};
+				openWin("myservice", "../service/myservice.html", pageParam);
+			})
+			$(".mypaylist").on("click", function() {
+				var pageParam = {
+					wintitle : "收支明细",
+					type : "burse-bill",
+				};
+				openWin("burse-bill", "../myrc/burse-bill.html", pageParam);
+			})
+			//如何赚钱
+			$(".howzq").on("click", function() {
+				var pageParam = {
+					wintitle : "如何赚钱?",
+					type : "get-moery"
+				};
+				openWin("get-moery", "../comm/get-moery.html", pageParam);
+			})
+			
+			api.showProgress({
+				title : '加载中',
+				modal : false
+			});
+			ajaxInfo();
+		
+		}
+
+		function showcontactcheck(valu) {
+			$("#showcontactvalue").val(valu);
+		}
+		function backvaluecheck(valu) {
+			$("#backvalue").val(valu);
+		}
+
+		function ajaxInfo() {
+			var company_id = UserInfo.memberID();
+			var usertoken = UserInfo.token();
+			api.ajax({
+				url : hosturl + 'qianbao/?company_id=' + company_id + '&usertoken=' + usertoken + '&appsystem=' + api.systemType + '&datatype=json&t=' + (new Date()).getTime().toString(),
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false
+			}, function(ret, err) {
+				if (ret) {
+					// zzalert(JSON.stringify(ret))
+					$(".j_outfeeall").text(ret.outfeeall);
+					$(".j_outfeeyd").text(ret.outfeeyd);
+					$(".j_infeeall").text(ret.infeeall);
+					$(".j_blance").text(ret.blance);
+					$(".j_infeeyd").text(ret.infeeyd);
+					api.hideProgress();
+				} else {
+					if(err){
+						saveerrlog(err.body);
+					}
+					//api.hideProgress();
+				};
+			});
+			//我的服务
+			var data={
+				company_id : UserInfo.memberID(),
+				usertoken : UserInfo.token(),
+				appsystem : api.systemType,
+				datatype : "json",
+			}
+			api.ajax({
+			    url : hosturl + 'qianbao/myservice.html',
+			    method : 'get',
+			    timeout : 30,
+			    dataType : 'json',
+			    returnAll : false,
+			    data : {
+					values : data
+				}
+			}, function(ret, err) {
+			    if (ret) {
+			    	// zzalert(JSON.stringify(ret))
+			        var pageHtml = "";
+			        $.each(ret, function(index, item) {
+			        	
+				        var getTpl = $api.html($api.byId("info-list"));
+				        laytpl(getTpl).render(item, function(html) {
+				            pageHtml = pageHtml + html;
+				        });
+			        })
+			        $(".allservice").html(pageHtml);
+			        if (pageHtml==""){
+			        	$(".noservice").show();
+			        	$(".myservice").hide();
+			        	$(".allservice").hide();
+			        }else{
+			        	$(".noservice").hide();
+			        	$(".myservice").show();
+			        	$(".allservice").show();
+			        }
+			    } else {
+			    	if(err){
+						saveerrlog(err.body);
+					}
+			    };
+			    
+			});
+			//代金券管理
+			var data={}
+			zzappajax("get",hosturl+"qianbao/mydaijinquanlist.html",data,function(ret){
+				var pageHtml = "";
+		        $.each(ret, function(index, item) {
+		        	if (item.used_id==1){
+		        		item.usedclass="";
+		        	}else{
+		        		item.usedclass="aui-btn-success";
+		        	}
+			        var getTpl = $api.html($api.byId("djq-list"));
+			        laytpl(getTpl).render(item, function(html) {
+			            pageHtml = pageHtml + html;
+			        });
+		        })
+		        zzalert(JSON.stringify(ret))
+		        $(".alldaijinqian").html(pageHtml);
+			},function(){
+			
+			})
+			api.hideProgress();
+			api.refreshHeaderLoadDone();
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>{{webtitle}}_ZZ91废料移动商务</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<style>
+			body {
+				background: #fff;
+			}
+			
+			.clearfix:after {
+				content: ".";
+				display: block;
+				height: 0;
+				clear: both;
+				visibility: hidden
+			}
+			
+			.clearfix {
+				height: 1%
+			}
+			
+			a {
+				color: #333
+			}
+			.j_navlist>div{
+				position: relative;
+			}
+			.am-icon-sanjiao{
+				display: inline-block;
+				width: 0;
+				height: 0;
+				border-width: 0px 0px 10px 10px;
+				border-style: solid dashed dashed dashed;
+				border-color: transparent transparent #333 transparent;
+				position: absolute;
+				right: 8px;
+				bottom: 3px;
+			}
+			.navbox{
+				width: 100%;
+				background: #fff;
+				z-index: 2000;
+				position: relative;
+			}
+			.navbox-fix{
+				position: fixed;
+				z-index: 2000;
+				top: 0px;
+				width: 100%;
+				background: #009900;
+				color: #fff;
+			}
+			.this_select{
+				color: red
+			}
+			
+			.news-list .aui-list-view-cell>a {
+				display: inline;
+				padding: 0;
+				margin: 0;
+			}
+			
+			.floatpage {
+				position: fixed;
+				bottom: 55px;
+				width: 100%;
+				height: 54px;
+			}
+			
+			.navfix-box {
+				height: 25px;
+			}
+			
+			.navfix-box-fix {
+				position: fixed;
+				width: 100%;
+				top: 45px;
+				z-index: 1;
+				background: #fff
+			}
+			
+			.navfix-main {
+				width: 100%;
+				overflow: hidden;
+			}
+			
+			.navfix-main-move {
+				position: relative;
+			}
+			
+			.navfix-list li {
+				float: left;
+				font-size: 12px;
+				text-align: center;
+				height: 25px;
+				line-height: 25px;
+				border-bottom: 1px solid #c8c7cc;
+			}
+			
+			.thisNav a {
+				color: #009900
+			}
+			
+			.navbd {
+				position: absolute;
+				height: 2px;
+				background: #009900;
+				z-index: 1;
+				bottom: 0px;
+			}
+			
+			.pop {
+				display: none;
+			}
+			
+			.popshow {
+				display: block;
+			}
+			.popbox{
+				position: fixed;
+				background: rgba(0,0,0,0.5);
+				height: 100%;
+				width: 100%;
+				z-index: 1;
+				top: 0;
+				padding-top: 73px;
+			}
+			.popbox.aui-invisible{
+				z-index: -1
+			}
+			.popmian{
+				position: fixed;
+				height: 100%;
+				width: 100%;
+				transform:translateY(-100%);
+				-ms-transform:translateY(-100%); 	/* IE 9 */
+				-moz-transform:translateY(-100%); 	/* Firefox */
+				-webkit-transform:translateY(-100%); /* Safari 和 Chrome */
+				-o-transform:translateY(-100%); 	/* Opera */
+				transition: transform 0.5s;
+				-moz-transition: transform 0.5s;	/* Firefox 4 */
+				-webkit-transition: transform 0.5s;	/* Safari 和 Chrome */
+				-o-transition: transform 0.5s;	/* Opera */
+			}
+			.popmian.outMd{
+				transform:translateY(0,);
+				-ms-transform:translateY(0); 	/* IE 9 */
+				-moz-transform:translateY(0); 	/* Firefox */
+				-webkit-transform:translateY(0); /* Safari 和 Chrome */
+				-o-transform:translateY(0,); 	/* Opera */
+			}
+			.popmodule{
+				background: #fff;
+			}
+			.text-33 {
+				color: #333;
+			}
+			
+			.text-99 {
+				color: #999;
+			}
+			
+			
+			.red {
+				color: #f00;
+			}
+			
+			.cae {
+				background: #009900;
+				color: #fff;
+				padding: 6px 0;
+			}
+			
+			.gongq-fb {
+				height: 70%;
+			}
+			
+			.gongq-no {
+				height: 100%;
+				display: box;
+				display: -webkit-box;
+				display: -moz-box;
+				-webkit-box-align: center;
+				-moz-box-align: center;
+				-moz-box-pack: center;
+				-webkit-box-pack: center;
+			}
+			
+			.gongq-no .aui-btn {
+				background: #009900;
+				color: #fff;
+			}
+			
+			.aui-radio:checked:before,
+			.aui-radio.aui-checked:before,
+			.aui-checkbox:checked:before,
+			.aui-checkbox.aui-checked:before,
+			.aui-radio:checked:after,
+			.aui-radio.aui-checked:after,
+			.aui-checkbox:checked:after,
+			.aui-checkbox.aui-checked:after {
+				margin-left: 0;
+				margin-top: 0;
+				border: 0;
+				-webkit-transform: none;
+				transform: none;
+			}
+			
+			.aui-nav .aui-bar-tab {
+				background: #f2f2f2;
+			}
+			
+			.color-faa732 {
+				color: #faa732;
+			}
+			.floatdiv {
+				position: fixed;
+				height: 50px;
+				width: 50px;
+				background: #01ba2e;
+				border-radius: 50px;
+				bottom: 125px;
+				left: 10px;
+				text-align: center;
+				line-height: 15px;
+				padding-top: 10px;
+				box-shadow: 0px 0px 5px #888888;
+				color: #ffffff;
+				z-index: 9999;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+			<a class="aui-pull-left" href="/myrc/">
+				<span class="aui-iconfont aui-icon-left"></span>
+			</a>
+			<div class="aui-title">我的供求</div>
+		</header>
+		<div class="navbox">
+			<div class="aui-row aui-font-size-12 aui-text-center aui-border-b j_navlist">
+				<div class="aui-col-xs-12 aui-padded-5">{{statustext}}<i class="am-icon-sanjiao"></i></div>
+			</div>
+		</div>
+		<div class="popbox aui-invisible">
+			<div class="popmian">
+				<div class="popmodule">
+					<div class="aui-content">
+						<ul class="aui-list-view">
+							<li class="aui-list-view-cell">
+								<a href="?">全部(<span class="c-red">{{alist}}</span>)</a>
+							</li>
+							<li class="aui-list-view-cell">
+								<a href="?checkStatus=1">已经审核(<span class="c-red">{{alist1}}</span>)</a>
+							</li>
+							<li class="aui-list-view-cell">
+								<a href="?checkStatus=0">审核中(<span class="c-red">{{alist0}}</span>)</a>
+							</li>
+							<li class="aui-list-view-cell">
+								<a href="?checkStatus=2">审核未通过(<span class="c-red">{{alist2}}</span>)</a>
+							</li>
+							<li class="aui-list-view-cell">
+								<a href="?is_pause=1">暂不发布(<span class="c-red">{{alist3}}</span>)</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="floatdiv">
+			<a href="/products_publish/" style="color: #fff;"><span style="margin-top:10px" class="addhuzhu">发布<br>供求</span></a>
+		</div>
+		<div class="topdiv" onclick="pagetotop();" style="bottom: 60px;"><span class="aui-iconfont aui-icon-top"></span></div>
+		<div class="pop gongq-fb popshow">
+			{%if qlist%}
+			<div class="aui-content">
+				<ul class="aui-list-view news-list">
+					{%for list in qlist%}
+					<li class="aui-list-view-cell aui-img">
+						<div class="aui-img-body aui-row">
+							<div href="" class="aui-col-xs-10">
+								{%if ischeckbox%}
+								<input class="aui-checkbox aui-col-xs-2 aui-margin-l-0 aui-margin-r-10 aui-pull-left" name="proselectbox" proid={{list.proid}} type="checkbox">
+								{%endif%}
+								<div>
+									<p class="text-33 aui-ellipsis-2">
+										{%if list.is_expire%}<font color="red">[过期]</font>{%endif%}
+										{%ifequal list.check_status '1'%}<font color="green">[通过]</font>{%endifequal%}
+										{%ifequal list.check_status '2'%}<font color="red">[未通过]</font>{%endifequal%}
+										{%ifequal list.check_status '0'%}<font color="darkmagenta">[审核中]</font>{%endifequal%}
+										<a href="/trade/detail{{list.proid}}.html">{{list.protitle}}</a>
+									</p>
+									<p class="aui-font-size-12 text-99">
+										刷新时间：{{list.refresh_time}}
+									</p>
+									{%ifequal list.check_status '2'%}
+									<p class="aui-font-size-12 aui-margin-t-0 red">
+										退回原因：{{list.unpass_reason}}
+									</p>
+									{%endifequal%}
+								</div>
+							</div>
+							{%if ismodify%}
+							<a class="aui-col-xs-2 aui-btn aui-text-center aui-margin-t-15 cae modproducts" proid={{list.proid}}>修改</a>
+							{%endif%}
+						</div>
+					</li>
+					{%endfor%}
+				</ul>
+				<div style="height: 30px;"></div>
+			</div>
+			{%else%}
+			<div class="gongq-no">
+				<div>
+					<p class="aui-text-center aui-margin-b-10 aui-font-size-18">暂无相关供求</p>
+					<a href="/products_publish/" class="aui-btn aui-font-size-12">
+						<i class=" aui-iconfont aui-icon-activity"></i>立即发布供求
+					</a>
+				</div>
+			</div>
+			{%endif%}
+			<div style="height: 93px;"></div>
+		</div>
+
+		<div class="floatpage" style="{{pagebottom}}">
+			<div class="page">
+				<ul>
+					{% if firstpage %}
+					<li class="page_prev">
+						<a href="?page={{prvpage}}&checkStatus={{checkStatus}}">上一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+					<li class="page_no">
+						<select onChange="window.location='?page='+this.value+'&checkStatus={{checkStatus}}'">
+							<option>第{{page}}页</option>
+							<option value="1">首页</option>
+							{%for p in page_range%}
+							<option value="{{p.number}}">第{{p.number}}页</option>
+							{%endfor%}
+							<option value="{{page_listcount}}">末页</option>
+						</select> /{{page_listcount}}页
+					</li>
+					{% if lastpage%}
+					<li class="page_next">
+						<a href="?page={{nextpage}}&checkStatus={{checkStatus}}">下一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+		{%ifequal checkStatus '1'%}
+		<div class="aui-nav" id="aui-footer">
+			<ul class="aui-bar-tab aui-border-t">
+				<li class="aui-border-r refurbishone">
+					<span class="aui-iconfont aui-icon-refresh"></span>
+					<p>刷新</p>
+				</li>
+				<li class="aui-border-r refurbishall">
+					<span class="aui-iconfont aui-icon-refresh"></span>
+					<p>一键刷新</p>
+				</li>
+				<li class="aui-border-r">
+					<a href="/service/cp_autoreflush.html">
+						<span class="aui-iconfont aui-icon-camerarotate"></span>
+						<p class="color-faa732">自动刷新</p>
+					</a>
+				</li>
+				<li class="stoppost">
+					<span class="aui-iconfont aui-icon-roundclosefill"></span>
+					<p>暂不发布</p>
+				</li>
+			</ul>
+		</div>
+		{%endifequal%}
+		{%if is_pause%}
+		<div class="aui-nav" id="aui-footer">
+			<ul class="aui-bar-tab aui-border-t">
+				<li class="aui-border-r startpost">
+					<span class="aui-iconfont aui-icon-refresh"></span>
+					<p>重新发布</p>
+				</li>
+			</ul>
+		</div>
+		{%endif%}
+	</body>
+
+	<script type="text/javascript">
+		//选取需要的类别
+		$(".j_navlist").children().on("click",function(){
+			if($(this).hasClass("this_select")){
+				closePop();
+				return;
+			}
+			$(".this_select").removeClass("this_select");
+			$(this).addClass("this_select")
+			var index = $(this).index();
+			$(".popbox").removeClass("aui-invisible");
+			$(".popmian").removeClass("outMd").eq(index).addClass("outMd")
+		})
+		$(document).on("touchstart",function(e){ 
+			e = window.event || e; // 兼容IE7
+			obj = $(e.srcElement || e.target);
+			if ($(obj).is(".popmian")) { 
+				closePop() //隐藏弹出窗口
+				return false;
+			} 
+		}); 
+		function closePop(){
+			$(".this_select").removeClass("this_select");
+			$(".popmian").removeClass("outMd")
+			$(".popbox").addClass("aui-invisible"); //隐藏弹出窗口
+			return false;
+		}
+		function pagetotop(){
+			$('body').animate( {scrollTop: 0}, 500);
+			return false;
+		}
+		$(function(){
+			var scroll = new auiScroll({
+		        listen:true,
+		        distance:20 //判断到达底部的距离，isToBottom为true
+		    },function(ret){
+		        if(ret.isToBottom){
+		        }else{
+			        if (ret.scrollTop>50){
+			        	$(".topdiv").fadeIn();
+			        }else{
+			        	$(".topdiv").fadeOut();
+			        }
+			        if (ret.scrollTop>40){
+			        	$(".navbox").addClass("navbox-fix");
+			        	$(".popbox").css("padding-top","28px");
+			        }else{
+			        	$(".navbox").removeClass("navbox-fix");
+			        	$(".popbox").css("padding-top","72px");
+			        }
+		        }
+		
+		    });
+		    //修改供求
+		    $(".modproducts").click(function(){
+		    	var proid=$(this).attr("proid");
+		    	if (confirm("修改供求我们将对你供求进行重新审核，审核通过前，供求将下线，确实要修改吗！")){
+		    		window.location='/myrc/proupdate.html?proid='+proid;
+		    	}
+		    })
+		    //供求刷新
+		    $(".refurbishone").click(function(){
+		    	refurbishone()
+		    })//一键刷新
+		    $(".refurbishall").click(function(){
+		    	refurbishall()
+		    })
+		    //暂不发布
+		    $(".stoppost").click(function(){
+		    	stoppost()
+		    })
+		    //重新发布
+		    $(".startpost").click(function(){
+		    	startpost()
+		    })
+		    
+		})
+		//单条刷新
+		function refurbishone(){
+			var proid=[];
+			$('input[name="proselectbox"]:checked').each(function(i,item){
+				proid[i] = $(this).attr("proid");
+			})
+			if(proid.length == 0){
+				layer.msg("请选择一条供求刷新!")
+				return;
+			}
+			proid = proid.join(",");
+			var data={
+				proid:proid
+			}
+			zzajax("post","/myrc/refurbish.html",data,function(ret){
+				if (ret.err=="login"){
+					window.location='/login/?done=/myrc/products.html';
+					return;
+				}
+				if (ret.err=='true'){
+					layer.msg(ret.errkey);
+					return
+				}
+				if (ret.err=='false'){
+					layer.msg("操作成功！");
+					window.location.reload();
+				}
+			},function(){
+				
+			})
+		}
+		//一键刷新
+		function refurbishall(){
+			var data={}
+			zzajax("post","/myrc/refurbishall.html",data,function(ret){
+				if (ret.err=="login"){
+					window.location='/login/?done=/myrc/products.html';
+					return;
+				}
+				if (ret.err=='true'){
+					layer.msg(ret.errkey);
+					return
+				}
+				if (ret.err=='false'){
+					layer.msg("已将所有已审核的供求全部刷新成功！");
+					window.location.reload();
+				}
+			},function(){
+				
+			})
+		}
+		function stoppost(){
+			var proid=[];
+			$('input[name="proselectbox"]:checked').each(function(i,item){
+				proid[i] = $(this).attr("proid");
+			})
+			if(proid.length == 0){
+				layer.msg("请选择一条供求!")
+				return;
+			}
+			proid = proid.join(",");
+			var data={
+				proid:proid
+			}
+			zzajax("post","/myrc/prostop.html",data,function(ret){
+				if (ret.err=="login"){
+					window.location='/login/?done=/myrc/products.html';
+					return;
+				}
+				if (ret.err=='true'){
+					layer.msg(ret.errkey);
+					return
+				}
+				if (ret.err=='false'){
+					layer.msg("操作成功！");
+					window.location.reload();
+				}
+			},function(){
+				
+			})
+		}
+		function startpost(){
+			var proid=[];
+			$('input[name="proselectbox"]:checked').each(function(i,item){
+				proid[i] = $(this).attr("proid");
+			})
+			if(proid.length == 0){
+				layer.msg("请选择一条供求!")
+				return;
+			}
+			proid = proid.join(",");
+			var data={
+				proid:proid
+			}
+			zzajax("post","/myrc/prostart.html",data,function(ret){
+				if (ret.err=="login"){
+					window.location='/login/?done=/myrc/products.html';
+					return;
+				}
+				if (ret.err=='true'){
+					layer.msg(ret.errkey);
+					return
+				}
+				if (ret.err=='false'){
+					layer.msg("操作成功！");
+					window.location.reload();
+				}
+			},function(){
+				
+			})
+		}
+	</script>
+
+</html>

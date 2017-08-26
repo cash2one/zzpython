@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>ZZ91再生网-我的采购单</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<style>
+			body{
+				background: #fff;
+			}
+			.aui-bar{
+				position: fixed;
+				top: 0px;
+				z-index: 999;
+			}
+			.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+			.clearfix{height:1%}
+			.clearfix{display:block}
+			a{
+				color:#333
+			}
+			.floatpage{
+				position: fixed;
+				bottom:0px;
+				width:100%;
+				height:54px;
+			}
+			.black{
+				color: #333;
+			}
+			.red{
+				color: #f00;
+			}
+			.number{
+		    	color: #00f;
+		    }
+		    .aui-input-row{
+		    	width: 100%;
+		    }
+			.aui-input-row:first-child:after{
+				border: 0;
+			}
+			.aui-input-row .aui-input{
+				border: 1px solid rgba(0, 0, 0, .2);
+			    border-radius: 3px;
+			    padding: 8px 15px 8px 10px;
+			    min-height: 1.5rem;
+			    line-height: 40px;
+				height: 40px;
+				padding: 0;
+				border-radius: 0;
+			}
+			.aui-input-addon .aui-btn{
+				background: #027cff;
+				border-radius: 0;
+				color: #fff;
+				padding-top: 0;
+				padding-bottom: 0;
+				line-height: 40px;
+				height: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-light">
+		    <a href="zhigou.html" class="aui-pull-left aui-btn">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">我的采购单</div>
+		</header>
+		<div style="height: 45px;"></div>
+		
+		<div class="topdiv" onclick="pagetotop();" style="bottom: 90px; display: none;"><span class="aui-iconfont aui-icon-top"></span></div>
+		
+		<div class="aui-content">
+			<div class="aui-form aui-padded-l-10 aui-margin-r-10">
+				<div class="aui-input-row aui-margin-t-10">
+		            <select class="aui-margin-b-0 aui-input aui-font-size-14">
+                        <option>全部</option>
+                        <option>未审核</option>
+                        <option>正在报价</option>
+                        <option>已有报价</option>
+                        <option>正在洽谈</option>
+                        <option>等待打款</option>
+                        <option>交易完成</option>
+                        <option>交易终止</option>
+                        <option>审核未通过</option>
+                    </select>
+                    <div class="aui-input-addon aui-padded-t-0 aui-padded-b-0 aui-padded-r-0">
+	                    <div class="aui-btn aui-padded-l-10 aui-padded-r-10">
+	                    	搜索
+	                    </div>
+                    </div>
+		        </div>
+		        
+		        <p class="aui-font-size-14 aui-margin-t-0 aui-margin-b-15">
+		        	共：<span class="black">1</span> 条
+		        </p>
+		        
+		        <div class="aui-input-row aui-font-size-14">
+		            <div class="aui-margin-b-5">
+		            	产品:消失殆尽,采购量:1,价格:1,颜色:44,用途:744,级别:问,所在地:显示的,求购详情:想试试
+		            </div>
+		            <div class="aui-row aui-margin-b-5">
+		            	<p class="aui-col-xs-6 aui-text-left">
+		            		No.<span class="number">1701186184</span>
+		            	</p>
+		            	<p class="aui-col-xs-6  aui-text-right">
+		            		状态：<span class="red">审核通过</span>
+		            	</p>
+		            </div>
+		            <div class="aui-row aui-margin-b-5">
+		            	<p class="aui-col-xs-6 aui-text-left">
+		            		跟进交易员：<span>None</span><i class="aui-iconfont aui-icon-mobilefill"></i>
+		            	</p>
+		            	<p class="aui-col-xs-6  aui-text-right">
+		            		时间：2017-01-19
+		            	</p>
+		            </div>
+		        </div>
+			</div>
+		</div>
+		
+		<div style="height: 54px;"></div>
+		<div class="floatpage">
+			<div class="page">
+				<ul>
+					{% if firstpage %}
+					<li class="page_prev">
+						<a href="?{{searchurl}}&page={{prvpage}}">上一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+					<li class="page_no">
+						<select onChange="window.location='?{{searchurl}}&page='+this.value">
+							<option>第{{page}}页</option>
+							<option value="1">首页</option>
+							{%for p in page_range%}
+							<option value="{{p.number}}">第{{p.number}}页</option>
+							{%endfor%}
+							<option value="{{lastpage}}">末页</option>
+						</select> /{{page_listcount}}页
+					</li>
+					{% if lastpage%}
+					<li class="page_next">
+						<a href="?{{searchurl}}&page={{nextpage}}">下一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+	function pagetotop(){
+		$('body').animate( {scrollTop: 0}, 500);
+	}
+
+	var scroll = new auiScroll({
+        listen:true,
+        distance:200 //判断到达底部的距离，isToBottom为true
+    },function(ret){
+        if(ret.isToBottom){
+        	//alert(1)
+        	//getmoreinfo()
+            //document.getElementById("demo").textContent = "已到达底部";
+        }else{
+	        if (ret.scrollTop>50){
+	        	$(".closediv").fadeIn();
+	        }else{
+	        	$(".closediv").fadeOut();
+	        }
+	        if (ret.scrollTop>150){
+	        	$(".topdiv").fadeIn();
+	        }else{
+	        	$(".topdiv").fadeOut();
+	        }
+        }
+
+    });
+</script>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="address=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+	<title>我的通信录-zz91再生网</title>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+</head>
+<style>
+html { background: #f7f9f8;}
+.floatpage{
+	position: fixed;
+	bottom:0px;
+	width:100%;
+	height:54px;
+}
+.deladdressbook{
+	position: absolute;
+	top: 30%;
+	right:10px;
+}
+</style>
+<body>
+	<header class="aui-bar aui-bar-nav aui-bar-primary">
+    	<a class="aui-pull-left" href="/">
+	        <span class="aui-iconfont aui-icon-home"></span>
+	    </a>
+	    <div class="aui-title">我的通信录</div>
+	    <a class="aui-pull-right settings" href="/myrc_index/">
+	        <span class="aui-iconfont aui-icon-myfill"></span>
+	    </a>
+	</header>
+	
+	{%if qlist%}
+    <div class="aui-content">
+        <ul class="aui-user-view addressbooklist">
+        	{%for d in qlist%}
+            <li class="aui-user-view-cell aui-img companybutton" style="position:relative">
+		        <img class="aui-img-object aui-pull-left" src="{{d.faceurl}}" style="width: 100px">
+		        
+		        <div class="aui-img-body ">
+		            <a href="/company/detail{{d.company_id}}.html" class="aui-arrow-right"><span>{{d.contact}}</span>
+		            <p class='aui-ellipsis-1'>{{d.compname}}</p></a>
+		        </div>
+		        
+		        <div class="aui-btn aui-btn-danger deladdressbook" company_id="{{d.company_id}}">删除</div>
+		    </li>
+		    {%endfor%}
+        </ul>
+    </div>
+    {%else%}
+    <div class="nodata" style="display: block;">暂无相关数据
+	<br /><br />
+			<p><a class="aui-btn aui-btn-success" href="/company/"><span class="aui-iconfont aui-icon-activity"></span>查看公司黄页</a></p>
+	</div>
+    {%endif%}
+    <div style="height: 60px;"></div>
+    <div class="floatpage">
+    	<div class="page">
+			<ul>
+				{% if firstpage %}
+				<li class="page_prev">
+					<a href="?{{searchurl}}&page={{prvpage}}">上一页</a>
+				</li>
+				{%else%}
+				<li class="page_prev" style="color:gray">上一页</li>
+				{% endif %}
+				<li class="page_no">
+					<select onChange="window.location='?{{searchurl}}&page='+this.value">
+						<option>第{{page}}页</option>
+						<option value="1">首页</option>
+						{%for p in page_range%}
+						<option value="{{p.number}}">第{{p.number}}页</option>
+						{%endfor%}
+						<option value="{{page_listcount}}">末页</option>
+					</select> /{{page_listcount}}页
+				</li>
+				{% if lastpage%}
+				<li class="page_next">
+					<a href="?{{searchurl}}&page={{nextpage}}">下一页</a>
+				</li>
+				{%else%}
+				<li class="page_prev" style="color:gray">下一页</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var currPage = 1;
+	var editflag="0";
+	$(function(){
+		//删除通信录
+		$(".addressbooklist").on("click",".deladdressbook",function(event){
+			event.stopPropagation();
+			var self=$(this);
+			layer.confirm('确实要删除吗？',{
+					btn : ['确定','取消']
+				}, function() {
+					var forcompany_id=self.attr("company_id");
+					zzajax("get","/myrc/addressbook_del.html?forcompany_id=" + forcompany_id,'',function(ret){
+						if (ret){
+							self.parents("li").slideUp("",function(){
+								self.remove()
+							})
+						}
+					},function(){})
+					layer.closeAll();
+				},function() {
+					layer.closeAll();
+				}
+			)
+		})
+	});
+</script>
+{%include 'aui/bottom.html'%}
+</html>

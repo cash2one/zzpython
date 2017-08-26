@@ -1,0 +1,203 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{{productsdetail.title}}-{{list.name}}</title>
+<meta content="{{productsdetail.details75}}" name="description"/>
+<meta content="" name="keywords"/></head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{{csscode}}/css/base.css" />
+<link rel="stylesheet" href="{{csscode}}/css/modules.css" />
+<link rel="stylesheet" href="{{csscode}}/css/style.css" />
+<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+
+
+
+<body>
+{%include htmlincludes.topinclude%}
+<div id="content">
+	<!--左边主题板块-->
+           <div class="grid-sub fl">
+                    {%include htmlincludes.leftinclude%}
+                    
+                   {%if serieslist%}
+                    <!--产品分类-->
+                    <div class="mod mod-proclass">
+                      <div class="m-body">
+                        <div class="m-header">
+                            <h3>供求分类</h3> 
+                        </div>
+                        <div class="m-content">
+                            <div class="proclass-list">
+                            <ul>
+                            {%for list in serieslist%}
+                                <li><a href="products-{{list.id}}-1.html" title="{{list.name}}">{{list.name}}</a></li>
+                            {%endfor%}
+                            </ul>
+                            </div>
+                        </div>
+                      </div> 
+                    </div>
+                    <!--产品分类结束-->
+                    {%endif%}
+                               </div>
+<!--左边主题板块结束-->
+
+	<!-- 右面主题板块-->
+<div class="main-wrap product_detail_tabs fr">
+		<!-- detail -->
+	<div class="path">
+		<a href="/" title="{{list.name}}">{{list.name}}</a><span>></span>
+        <a href="products-0-1.html" title="供求信息">供求信息</a><span>></span>
+		{{productsdetail.products_type}}{{productsdetail.title}}
+	</div>
+	<div class="detail-wrap">
+		<h1 class="detail-tit">{{productsdetail.title}}</h1>
+		<div class="clf">
+			<div class="pro-gallery fl" id="proGallery">
+				<div class="g-con pic-mid">
+                    <a href="p{{id}}.html" target="_blank">
+                    <img src="{{productsdetail.defaultimages}}" alt="" />
+                    </a>
+				</div>
+				<div class="g-nav">
+					<ul class="g-lst pic-mid">
+                    {%for pic in productsdetail.piclist%}
+						<li class o-src="{{pic.images_big}}">
+							<a href class="small-btpic"><img src="{{pic.images}}" alt /></a>
+						</li>
+                    {%endfor%}
+					</ul>
+				</div>
+			</div>
+			<div class="info-wrap fr">
+				
+				<div class="pro-dis">
+                	{%if productsdetail.price%}
+                	<p><span>{{productsdetail.products_type}}价格：</span></a>{{productsdetail.price}}</p>
+                    {%endif%}
+                    {%if productsdetail.total_quantity%}
+                    <p><span>总量：</span></a>{{productsdetail.total_quantity}}{{productsdetail.quantity_unit}}</p>
+                    {%endif%}
+                    {%if productsdetail.location%}
+					<p><span>现货所在地：</span></a>{{productsdetail.location}}</p>
+					{%endif%}
+					<p><span>公司所在地：</span>{{list.province}}</p>
+                    <p><span>发布日期：</span>{{productsdetail.refresh_time}}</p>
+                    <p><span>信息有效期：</span>{{productsdetail.expire_time}}</p>
+
+                    
+				</div>
+				<div class="clf">
+					<a href="leavewords.html" class="bt-ask J_fsxjd" rel="nofollow">立即询价</a>
+					<a href="contact.html" class="bt-contact" rel="nofollow">查看联系方式</a>
+				</div>
+								
+			</div>
+		</div>
+		<div class="detail-con">
+			<div class="d-tabnav">
+				
+                <ul class="tab-lst">
+					<li class="tab-cur" o-data="content">供求详情</li>
+					<li o-data="contact">联系方式</li>
+				</ul>
+				<div class="product-share" >
+				 <span class="product-share1">分享到：</span>
+				<!-- Baidu Button BEGIN -->
+                            <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+                            <a class="bds_qzone"></a>
+                            <a class="bds_tsina"></a>
+                            <a class="bds_tqq"></a>
+                            <a class="bds_renren"></a>
+                            <a class="bds_t163"></a>
+                            <span class="bds_more">更多</span>
+                            <a class="shareCount"></a>
+                            </div>
+                            <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6712776" ></script>
+                            <script type="text/javascript" id="bdshell_js"></script>
+                            <script type="text/javascript">
+                            document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+                            </script>
+                            <!-- Baidu Button END -->
+							
+				</div>
+			</div>
+			<div class="content">
+				
+				<div class="prodesc">
+					{{productsdetail.detailsfull|safe}}
+				</div>
+			</div>
+		</div>
+	</div>
+   
+    <!-- end detail -->
+	
+	<div class="contact-detailt" style="display:none">
+		<div class="card-imgdetail">
+			<img onerror="this.onerror=null;this.src='http://img0.zz91.com/front/images/esite/logo.gif'" src="http://img0.zz91.com/front/images/esite/logo.gif" />
+			<div class="card-person">
+				<p>
+					<strong>{{list.contact}}</strong>
+					 {{list.position}}
+				</p>
+				<p>电话：<small>{{list.mobile}}</small></p>
+				<div></div>
+			</div>
+		</div>
+		<h4>{{list.name}}</h4>
+		<div class="card-info">
+        				{%if list.tel%}
+						<p class="text-in222">电话：<span>{{list.tel_country_code}} {{list.tel_area_code}} {{list.tel}}</span></p>
+                        {%endif%}
+						<p class="text-in222">地址：{{list.address}}</span></p>
+                        {%if list.address_zip%}
+						<p class="text-in222">邮编：<span>{{list.address_zip}}</span></p>
+                        {%endif%}
+			
+		</div>
+	</div>
+	<p class="lst-tit">其它相关供求</p>
+	<ul class="pro-lst clf">
+    {%for list in otherprolist.list%}
+		<li>
+        <a href="p{{list.pdt_id}}.html" target="_blank">
+			<img src="{{list.pdt_images}}" alt="{{list.pdt_name}}"/>
+			<span>{{list.pdt_name}}</span>
+		</a>
+        </li>
+	{%endfor%}	
+	</ul>
+	<!-- end related -->
+</div>  
+<!-- 右面主题板块结束-->	
+<script type="text/javascript">
+$(document).ready(function() {
+		$(".g-nav li").mouseover(function(){
+			$(".g-nav li").removeClass("act");
+			$(this).addClass("act");
+			$(".g-con img").attr("src",$(this).attr("o-src"));
+		});
+		$(".tab-lst li").click(function(){
+			$(".tab-lst li").removeClass("tab-cur");
+			$(this).addClass("tab-cur");
+			if ($(this).attr("o-data")=="content")
+			{
+				$(".content").css("display","");
+				//$(".pro-hint").css("display","");
+				$(".contact-detailt").css("display","none");
+			}else{
+				$(".content").css("display","none");
+				//$(".pro-hint").css("display","none");
+				$(".contact-detailt").css("display","");
+			}
+		});
+});
+</script>
+</div>
+<div class="hint">
+	<p><strong>友情提醒：</strong>为规避购买风险、保障自己的利益，建议你在购买相关产品之前务必确认供应商的企业资质及产品质量；尽量选择已通过营业执照审核的企业。</p>
+	<p><strong>免责声明：</strong>以上信息由会员自行提供，内容的真实性、合法性及准确性由发布会员负责。ZZ91再生网对此信息及交易过程出现的问题不承担任何责任。</p>
+ </div>
+{%include htmlincludes.buttominclude%}

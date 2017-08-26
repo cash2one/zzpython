@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>样品会员中心_ZZ91再生网</title>
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/index.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/account.css">
+    <script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/index.js"></script>
+</head>
+<body class="gbody1000">
+{%include "include/nav.html"%}
+{%include "include/head.html"%}
+{%include "include/lm.html"%}
+<div class="gm1-5 gw-bcrumb">
+    <span><a href="index.html">会员中心</a></span>
+            <strong>
+        <a href="#">全部订单</a>
+    </strong>
+</div>
+<div class="gMain clearfix">
+        
+        {%include "include/leftmenu.html"%}
+        <div class="gContainer">
+	        <div class="gwTopic clearfix">
+                                    <h2>设置交易密码</h2>
+                                <span class="gwBack"><a href="safe.html">返回安全中心</a></span>
+            </div>
+            <div class="basicForm">
+                <form name="editpw" action="#" method="post" class="ajax">
+                    <input type="hidden" name="type" value="2">
+                                        <div class="bFRow">
+                        <div class="label">交易密码:</div>
+                        <div class="cell">
+                            <input type="password" class="text fl" id="passwd" name="safe">
+                            <div class="cellCon" id="pwdpower" style="display: none;">
+                                <div id="pwdstrength" class="strengthA"><strong>密码强度：</strong><b></b><span>弱</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bFRow">
+                        <div class="label">确认交易密码:</div>
+                        <div class="cell"><input type="password" class="text fl" id="repasswd" name="resafe"></div>
+                    </div>
+                                        <div class="bFRow">
+                        <input class="sCSumbitBtn" type="submit" value="保存修改">
+                    </div>
+                </form>
+            </div>
+		</div>
+	</div>
+	</div>
+{%include "include/bottom.html"%}
+</body>
+</html>

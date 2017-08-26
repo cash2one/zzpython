@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>签到成功-ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<style>
+			body{
+				background: #fff
+			}
+			.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+			.clearfix{height:1%}
+			.clearfix{display:block}
+			a{
+				color:#333
+			}
+			.aui-bar{
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+
+			.avatar{
+				width: 65px;
+			    height: 65px;
+			    margin: 3px auto 0;
+			    border-radius: 99px;
+			    display: inline-block;
+			    font-size: 40px;
+			    color: #fff
+			}
+			.sucess-info{
+				margin: 15px 20px 0;
+			}
+			.sucess-info ul{
+				padding: 15px 10px;
+				font-size: 14px;
+				line-height: 30px
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="http://m.zz91.com/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-title">签到成功</div>
+		    <a href="http://m.zz91.com/app.html" class="aui-pull-right zz91share aui-font-size-12">
+		        APP下载
+		    </a>
+		</header>
+		<div  style="height:45px;"></div>
+		
+		<div>
+			<div class="aui-text-center aui-margin-t-15"><i class="avatar aui-iconfont aui-icon-check aui-bg-success"></i></div>
+			<div class="aui-text-center aui-margin-t-15">
+				您已经成功签到
+			</div>
+			
+			{%ifequal ispay '0'%}
+			<div class="buy-list clear" style="margin-bottom:10px;margin-top: 20px">
+				<span style="border-left:solid 3px #01ba2e;padding-left:10px;margin-left:10px;">请支付参会费用</span>
+			</div>
+			<div class="aui-text-center aui-margin-t-15">
+				￥<font style="color: #FF0000;font-size: 25px;">{{paymoney}}.00</font> 
+				<!--<form action="/zz91pay.html" method="post">
+					<input type="hidden" name="subject" id="subject" value="621再生汇签到费" />
+					<input type="hidden" name="mobile" id="mobile" value="{{mobile}}" />
+					<input type="hidden" name="contact" id="contact" value="{{contact}}" />
+					<input type="hidden" name="payreturn_url" id="payreturn_url" value="{{backurl}}" />
+					<input type="hidden" name="paytype" id="paytype" value="621zsh" />
+					<input type="hidden" name="total_fee" id="total_fee" value="{{paymoney}}" />
+					<input type="hidden" name="nologin" id="nologin" value="1" />
+					<input type="hidden" name="buyer_id" id="buyer_id" value="{{id}}" />
+					<input name="pay" type="submit" value="立即支付{{paymoney}}元" class="aui-btn aui-btn-danger aui-padded-l-18 aui-padded-r-18" />
+				</form>-->
+			</div>
+			<div class="buy-list clear" style="margin-bottom:10px;margin-top: 20px">
+				<span style="border-left:solid 3px #01ba2e;padding-left:10px;margin-left:10px;">支付方式</span>
+			</div>
+			<center>
+				<div style="color: #FF0000;">
+					长按识别二维码，转账支付
+				</div>
+				<img src="http://static.m.zz91.com/pay/weixinpay.png" style="width: 200px;">
+			</center>
+			{%else%}
+			{%if paysuc%}
+			<br /><br />
+		        <div class="aui-tips-content aui-ellipsis-1" style="text-align: center;background-color: #FF3300;">
+		            <i class="aui-iconfont aui-icon-emoji"></i>
+		            参会费已支付成功！
+		        </div><br />
+			{%endif%}
+			{%endifequal%}
+			<div class="buy-list clear" style="margin-bottom:10px;margin-top: 20px">
+				<span style="border-left:solid 3px #01ba2e;padding-left:10px;margin-left:10px;">你的信息</span>
+			</div>
+			<div class="sucess-info">
+				<ul class="aui-bg-default aui-border">
+					<li>参展证编号：{{zheng_no}}</li>
+					<li>联系人：{{contact}}</li>
+					<li>手机号码：{{mobile}}</li>
+					<li>公司名称：{{companyname}}</li>
+					<li>主营：{{business|safe}}</li>
+				</ul>
+			</div>
+			
+			<div class="aui-text-center aui-margin-t-15">
+				<a href="http://m.zz91.com/zt/feizhiluntanH5/index.html" class="aui-btn aui-btn-success aui-padded-l-18 aui-padded-r-18">查看2017废纸产业发展论坛简介</a>
+			</div>
+			<div class="aui-text-center aui-margin-t-15">
+				<a href="?" class="aui-btn aui-padded-l-18 aui-padded-r-18">刷新页面</a>
+			</div>
+			<br /><br />
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		
+	</script>
+</html>

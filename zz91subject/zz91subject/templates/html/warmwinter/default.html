@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>zz91中小企业暖冬计划</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://img0.zz91.com/front/images/logo/favicon.ico">
+<link rel="stylesheet" type="text/css" href="../style/hack.css"/>
+<link rel="stylesheet" type="text/css" href="../style/warm.css"/>
+<link rel="stylesheet" type="text/css" href="http://subject.zz91.com/comm/facebox.css"/>
+<link rel="stylesheet" type="text/css" href="http://subject.zz91.com/comm/comm.css"/>
+<script src="http://subject.zz91.com/comm/jquery-1.2.2.pack.js" type="text/javascript"></script>
+<script src="http://subject.zz91.com/comm/facebox.js" type="text/javascript"></script>
+<script src="http://subject.zz91.com/comm/checkForm.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox() 
+    })
+</script>
+<script>
+/* by zhangxinxu 2010-07-27 
+			* http://www.zhangxinxu.com/
+			* 倒计时的实现
+			*/
+			var fnTimeCountDown = function(d, o){
+				var f = {
+					zero: function(n){
+						var n = parseInt(n, 10);
+						if(n > 0){
+							if(n <= 9){
+								n = "0" + n;	
+							}
+							return String(n);
+						}else{
+							return "00";	
+						}
+					},
+					dv: function(){
+						d = d || Date.UTC(2050, 0, 1); //如果未定义时间，则我们设定倒计时日期是2050年1月1日
+						var future = new Date(d), now = new Date();
+						//现在将来秒差值
+						var dur = Math.round((future.getTime() - now.getTime()) / 1000) + future.getTimezoneOffset() * 60, pms = {
+							sec: "00",
+							mini: "00",
+							hour: "00",
+							day: "00",
+							month: "00",
+							year: "0"
+						};
+						if(dur > 0){
+							pms.sec = f.zero(dur % 60);
+							pms.mini = Math.floor((dur / 60)) > 0? f.zero(Math.floor((dur / 60)) % 60) : "00";
+							pms.hour = Math.floor((dur / 3600)) > 0? f.zero(Math.floor((dur / 3600)) % 24) : "00";
+							pms.day = Math.floor((dur / 86400)) > 0? f.zero(Math.floor((dur / 86400)) % 30) : "00";
+							//月份，以实际平均每月秒数计算
+							pms.month = Math.floor((dur / 2629744)) > 0? f.zero(Math.floor((dur / 2629744)) % 12) : "00";
+							//年份，按按回归年365天5时48分46秒算
+							pms.year = Math.floor((dur / 31556926)) > 0? Math.floor((dur / 31556926)) : "0";
+						}
+						return pms;
+					},
+					ui: function(){
+						if(o.sec){
+							o.sec.innerHTML = f.dv().sec;
+						}
+						if(o.mini){
+							o.mini.innerHTML = f.dv().mini;
+						}
+						if(o.hour){
+							o.hour.innerHTML = f.dv().hour;
+						}
+						if(o.day){
+							o.day.innerHTML = f.dv().day;
+						}
+						if(o.month){
+							o.month.innerHTML = f.dv().month;
+						}
+						if(o.year){
+							o.year.innerHTML = f.dv().year;
+						}
+						setTimeout(f.ui, 1000);
+					}
+				};	
+				f.ui();
+			};
+
+
+</script>
+</head>
+
+<body>
+<div class="topbar">
+<div class="topbarblock">
+{%include 'html/comm/top.html'%}    
+<div class="clear"></div>
+</div>
+</div>
+<div class="wdoc"> 
+     <div class="whder"><img src="../img/wt01.jpg"  /><img src="../img/wt02.jpg"  /></div>
+
+     <div class="wct bbg">
+         <h3>当前世界经济形势简要、问题。</h3>
+         <p>当前经济背景：<br/>
+世界经济发展可谓“冰火两重天”：发达国家经济复苏前景莫测，新兴市场国家经济发展面临过热；欧美日等发达经济体试图采取更宽松的货币政策，而新兴市场国家已启动加息进程，货币政策趋向从紧。IMF对世界房地产市场的预测颇显悲观，认为以中国为代表的发展中国家的房地产市场泡沫严重。发达国家出于恢复贸易收支平衡的动机要求人民币升值，国际贸易中的磨擦加剧，外贸企业经营风险上升。<br/></p>
+          <div class="clear"></div>
+     </div>
+     <div class="bbg wcm">
+       <h3>这么复杂的经济形势，我该怎么办？</h3>
+  <p>专家建议：<br/>
+1：每天及时关注行情变化，掌握最新价格和短期行情走势<br/>
+2：及时清理库存，规避风险<br/>
+3：找准价格时机，为明年开春备好充足货源<br/>
+
+       </p>
+        <div class="clear"></div>
+     </div>
+     <div class="bbg wcbl">
+         <div class="wcblt">
+             <div class="wcbabst"><img src="../img/A01.gif" /></div>
+             <div class="wcbabr">
+                <span class="wcblthd">我要清理库存，规避风险</span>
+                <span class="wcblthc">供求商家紧急招募中  ING......</span>
+             </div>
+         </div>
+         <ul>
+         {% for list in adlist_sales%}
+             <li style="margin-top:15px; margin-right:15px;; margin-left:15px; margin-bottom:5px">
+             <div class="clock">
+             <div class="img"><img src="../img/time.gif" width="45" height="36" style="padding:0px;"/></div>
+             <span id=daojishi_day{{list.id}} class="daojishi"></span><span id="timetext">天</span><span id=daojishi_hour{{list.id}} class="daojishi"></span><span id="timetext">时</span><span id=daojishi_mini{{list.id}} class="daojishi"></span><span id="timetext">分</span><span id=daojishi_sec{{list.id}} class="daojishi"></span><span id="timetext">秒</span>
+             </div>
+			<script type="text/javascript">
+			var zxx = {
+				$: function(id){
+					return document.getElementById(id);    
+				},
+				futureDate: Date.UTC({{list.ayear}}, {{list.amouth}}, {{list.aday}}),
+				obj: function(){
+					return {
+						sec: zxx.$("daojishi_sec{{list.id}}"),
+						mini: zxx.$("daojishi_mini{{list.id}}"),
+						hour: zxx.$("daojishi_hour{{list.id}}"),
+						day: zxx.$("daojishi_day{{list.id}}")
+						//month: zxx.$("month"),
+						//year: zxx.$("year")
+					}
+				}
+			};
+			fnTimeCountDown(zxx.futureDate, zxx.obj());
+			</script>
+             <span><a href="#mydiv" rel="facebox">
+             <img src="{{list.picaddress}}" target="_blank" width="179" height="173"/>
+             </a></span>
+             
+             </li>
+           {%endfor%} 
+             
+         </ul>
+       <div class="clear"></div>
+         <div class="wnewbar"><a href="http://price.zz91.com" target="_blank">最新价格行情动态</a></div>
+     </div>
+     <div class="bbg wcbr">
+        <div class="wcblt">
+             <div class="wcbabst"><img src="../img/wB02.gif" /></div>
+             <div class="wcbabr">
+                <span class="wcblthd">我要备足货源，抓牢机会</span>
+                <span class="wcblthc">12月最新供求信息展示   ING......</span>
+             </div>
+         </div>
+         <ul>
+         	{% for list in adlist_buy%}
+             <li style="float:left; margin-top:15px; margin-right:15px;; margin-left:15px; margin-bottom:5px">
+             <div class="clock">
+             <div class="img"><img src="../img/time.gif" width="45" height="36" style="padding:0px;"/></div>
+             <span id=daojishi_day{{list.id}} class="daojishi"></span><span id="timetext">天</span><span id=daojishi_hour{{list.id}} class="daojishi"></span><span id="timetext">时</span><span id=daojishi_mini{{list.id}} class="daojishi"></span><span id="timetext">分</span><span id=daojishi_sec{{list.id}} class="daojishi"></span><span id="timetext">秒</span>
+             </div>
+			<script type="text/javascript">
+			var zxx = {
+				$: function(id){
+					return document.getElementById(id);    
+				},
+				futureDate: Date.UTC({{list.ayear}}, {{list.amouth}}, {{list.aday}}),
+				obj: function(){
+					return {
+						sec: zxx.$("daojishi_sec{{list.id}}"),
+						mini: zxx.$("daojishi_mini{{list.id}}"),
+						hour: zxx.$("daojishi_hour{{list.id}}"),
+						day: zxx.$("daojishi_day{{list.id}}")
+						//month: zxx.$("month"),
+						//year: zxx.$("year")
+					}
+				}
+			};
+			fnTimeCountDown(zxx.futureDate, zxx.obj());
+			</script>
+             <span><a href="#mydiv" rel="facebox">
+             <img src="{{list.picaddress}}" target="_blank" width="179" height="173"/>
+             </a></span>
+             
+             </li>
+           {%endfor%} 
+         	<!--{% for list in offerInfo%}
+            <li>
+                <div class="wcbrimg"><img src='{{list.pdt_images}}' width='100' height='75' ></div>
+                <div class="wcbrcts">
+					<p><a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target=_blank>{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a></p>
+                    <p>{{list.pdt_detail}}</p>
+					{%if list.vipflag.vipcheck%}
+                    <span style="width:100px;">企业:<A href='http://{{list.vipflag.vipsubname}}.zz91.com/' target='_blank' >{{list.com_name}}</A></span>
+					{%endif%}
+                    <span class="wcbna" style="width:100px;"><a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target=_blank class="agren">[详细介绍]</a></span>
+                    
+                </div>
+                <div class="clear"></div>
+            </li>
+            {%endfor%}
+            -->
+            
+         </ul>
+         <div class="clear"></div>
+         <div class="wnewbar"><a href="http://price.zz91.com" target="_blank">最新价格行情动态</a></div>
+         
+     </div>
+     <div class="clear"></div>
+     <div class="wbotm bbg">
+         <div class="wbtml"><img src="../img/w02.gif"  /></div>
+         <div class="wbtmr"><img src="../img/wtxt.gif"  /></div>
+        
+     </div>
+</div>
+{% include 'html/comm/buttom.html' %}
+</body>
+</html>

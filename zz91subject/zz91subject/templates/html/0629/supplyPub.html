@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport"  content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+	<meta name="format-detection"  content="telephone=no">
+    <title>生意管家-免费发布</title>
+    <link href="css/caigou.m.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+    <script>
+    	$(function(){
+			$("div.supply-nav ul li").each(function(){
+				$(this).click(function(){
+      				$("div.supply-nav ul li").each(function(){
+					$(this).removeClass("on");
+         			var idx = $(this).attr("name");
+          			$("#"+idx).hide();
+    			});
+					$(this).addClass("on");
+     				var ids=$(this).attr("name");
+     				$("#"+ids).show();
+  				});
+			});
+		});
+    </script>
+</head>
+<body>
+	<header>
+    	<div class="header"><h2>免费发布</h2></div>
+    </header>
+    <div class="supply-nav nav-wrap">
+    	<ul>
+        	<li name="form_pub_01" class="on">登陆发布</li>
+            <li name="form_pub_02">免登陆发布</li>
+        </ul>
+    </div>
+    <!--end supply-nav-->
+    <div class="supply">
+    	<div class="supply-publish" id="form_pub_01">
+        	<form action="/" method="get" id="">
+            	<div class="mc">
+                	<div class="block">
+                    	<ul class="form_lst">
+                        	<li class="form_lstw">
+                            	<span class="tit">产&nbsp;&nbsp;&nbsp;品：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" placeholder="sdfsdf" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<span class="tit">采购量：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<span class="tit">价&nbsp;&nbsp;&nbsp;格：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<span class="tit">颜&nbsp;&nbsp;&nbsp;色：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<span class="tit">用&nbsp;&nbsp;&nbsp;途：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<span class="tit">级&nbsp;&nbsp;&nbsp;别：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<span class="tit">所在地：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<p class="tit">求购详情：</p>
+                                <p><textarea class="common-textarea" rows="7"></textarea></p>
+                                <p class="mt15">注：目前免费委托采购只限<font class="red bold">塑料再生颗粒</font></p>
+                                <p class="step"><em>1</em>采购清单&nbsp;&nbsp;>&nbsp;&nbsp;<em>2</em>买家报价&nbsp;&nbsp;>&nbsp;&nbsp;<em>3</em>下单成交</p>
+                            </li>
+                            <li>
+                            	<input type="button" class="sub_btn" id="" name="" value="免费发布" />
+                            </li>
+                		</ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--end supply-publish-->
+        <div class="supply-publish" id="form_pub_02">
+        	<form action="/" method="get" id="">
+            	<div class="mc">
+                	<div class="block">
+                    	<ul class="form_lst">
+                        	<li class="form_lstw">
+                            	<span class="tit">产&nbsp;&nbsp;&nbsp;品：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<span class="tit">采购量：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<span class="tit">价&nbsp;&nbsp;&nbsp;格：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<span class="tit">颜&nbsp;&nbsp;&nbsp;色：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<span class="tit">用&nbsp;&nbsp;&nbsp;途：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<span class="tit">级&nbsp;&nbsp;&nbsp;别：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<span class="tit">所在地：</span>
+                                <span>
+                                	<span class="form_input common-input">
+                                		<input type="text" class="htl-input common-input" notblank="notBlank" autocomplete="off" />
+                                	</span>
+                            	</span>
+                        	</li>
+                            <li class="form_lstw">
+                            	<p class="tit">求购详情：</p>
+                                <p><textarea class="common-textarea" rows="7"></textarea></p>
+                                <p class="mt15">注：目前免费委托采购只限<font class="red bold">塑料再生颗粒</font></p>
+                                <p class="step"><em>1</em>采购清单&nbsp;&nbsp;>&nbsp;&nbsp;<em>2</em>买家报价&nbsp;&nbsp;>&nbsp;&nbsp;<em>3</em>下单成交</p>
+                            </li>
+                            <li>
+                            	<input type="button" class="sub_btn" id="" name="" value="免费发布" />
+                            </li>
+                		</ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!--end supply-publish-->
+    </div>
+    <!--end supply-->
+</body>
+</html>

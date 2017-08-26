@@ -1,0 +1,625 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>淘再生-再生商客</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_2t99u0jbng1wz5mi.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<link href="http://static.m.zz91.com/recyclecrm/mobiscroll/mobiscroll.custom-2.6.2.min.css" rel="stylesheet" type="text/css" />
+		<script src="http://static.m.zz91.com/recyclecrm/mobiscroll/mobiscroll.custom-2.6.2.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/recyclecrm/css/chapman.css" />
+	</head>
+
+	<body>
+		<div style="height:48px;">
+			<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+				<a class="aui-pull-left" href="javascript:history.back(-1)">
+					<span class="aui-iconfont aui-icon-left"></span>
+				</a>
+				<div class="aui-title">
+					跟进记录
+				</div>
+			</header>
+		</div>
+
+		<div class="aui-padded-15 clear">
+			<div class="aui-btn aui-pull-left">&nbsp;
+				<a href="details.html?company_id={{company_id}}" style="color: gray;">详细资料</a>&nbsp;</div>
+			<div class="aui-btn aui-btn-success aui-pull-right">&nbsp;
+				<a href="history.html?company_id={{company_id}}">跟进记录</a>&nbsp;</div>
+		</div>
+	</body>
+
+	<div class="aui-padded-15">
+		<div class="aui-content">
+			<ul class="aui-timeline">
+				{%for list in listall%}
+				<li class="aui-time-label">
+					<span class="aui-bg-warning">
+						{{list.date}}
+		            </span>
+				</li>
+				<li>
+					{%ifequal list.remark_type 2%}
+					<i class="aui-iconfont aui-icon-mobile aui-bg-warning"></i> 
+					{%endifequal%}
+					{%ifequal list.remark_type 1%}
+					<i class="aui-iconfont aui-icon-message aui-bg-primary"></i>
+					{%endifequal%} 
+					{%ifequal list.remark_type 3%}
+					<i class="iconfont icon-kehu1 aui-bg-primary"></i> 
+					{%endifequal%}
+					<div class="aui-timeline-item">
+						<span class="aui-timeline-time"><i class="aui-iconfont aui-icon-time"></i>{{list.recently_contact_time}}</span>
+						<h3 class="aui-timeline-header">{%ifequal list.remark_type 2%}打电话 {%endifequal%}{%ifequal list.remark_type 1%}发短信 {%endifequal%}{%ifequal list.remark_type 3%}约见面{%endifequal%}</h3>
+						<div class="aui-timeline-body">{{list.content}}</div>
+					</div>
+				</li>
+				{%endfor%}
+			</ul>
+		</div>
+	</div>
+
+	<div class="j_kehu" style="display:none">
+		<!-- 加入我的客户 -->
+		<p class="aui-padded-15">加入我的客户</p>
+		<div class="aui-padded-l-15 aui-padded-r-15 man-telphone aui-border-t">
+			<div class="aui-border-b zz-div-box aui-padded-b-10 aui-padded-t-10 mykehu">
+				<div class="iconfont icon-gou2 aui-padded-r-15 column-cnt kehu-get ">
+
+				</div>
+				<div class="zz-div-td1 aui-font-size-18">待回访客户</div>
+				<div class="aui-font-size-20 column-cnt">
+				</div>
+			</div>
+			<div class="aui-border-b zz-div-box aui-padded-b-10 aui-padded-t-10">
+				<div class="iconfont icon-gou2 aui-padded-r-15 column-cnt kehu-get">
+
+				</div>
+				<div class="zz-div-td1 aui-font-size-18">无意向客户</div>
+				<div class="aui-font-size-20 column-cnt color-99">
+					<i class="iconfont icon-xing"></i>
+				</div>
+			</div>
+			<div class="aui-border-b zz-div-box aui-padded-b-10 aui-padded-t-10">
+				<div class="iconfont icon-gou2 aui-padded-r-15 column-cnt kehu-get">
+
+				</div>
+				<div class="zz-div-td1 aui-font-size-18">潜在客户</div>
+				<div class="aui-font-size-20 column-cnt color-99">
+					<i class="iconfont icon-xing"></i>
+					<i class="iconfont icon-xing"></i>
+				</div>
+			</div>
+			<div class="aui-border-b zz-div-box aui-padded-b-10 aui-padded-t-10">
+				<div class="iconfont icon-gou2 aui-padded-r-15 column-cnt kehu-get">
+
+				</div>
+				<div class="zz-div-td1 aui-font-size-18">有意向客户</div>
+				<div class="aui-font-size-20 column-cnt color-99">
+					<i class="iconfont icon-xing"></i>
+					<i class="iconfont icon-xing"></i>
+					<i class="iconfont icon-xing"></i>
+				</div>
+			</div>
+			<div class="aui-border-b zz-div-box aui-padded-b-10 aui-padded-t-10">
+				<div class="iconfont icon-gou2 aui-padded-r-15 column-cnt kehu-get">
+
+				</div>
+				<div class="zz-div-td1 aui-font-size-18">确认合作客户</div>
+				<div class="aui-font-size-20 column-cnt color-99">
+					<i class="iconfont icon-xing"></i>
+					<i class="iconfont icon-xing"></i>
+					<i class="iconfont icon-xing"></i>
+					<i class="iconfont icon-xing"></i>
+				</div>
+			</div>
+			<div class="aui-border-b zz-div-box aui-padded-b-10 aui-padded-t-10">
+				<div class="iconfont icon-gou2 aui-padded-r-15 column-cnt kehu-get">
+
+				</div>
+				<div class="zz-div-td1 aui-font-size-18">重点客户</div>
+				<div class="aui-font-size-20 column-cnt color-99">
+					<i class="iconfont icon-xing"></i>
+					<i class="iconfont icon-xing"></i>
+					<i class="iconfont icon-xing"></i>
+					<i class="iconfont icon-xing"></i>
+					<i class="iconfont icon-xing"></i>
+				</div>
+			</div>
+		</div>
+		<div class="zz-div-box">
+			<div class="zz-div-td2 aui-btn aui-origin-info notradius j_xingd_btn"><i class="iconfont icon-iconfontscrichengshi"></i> 提醒行动</div>
+			<div class="zz-div-td1 aui-btn aui-btn-success notradius">保存</div>
+		</div>
+	</div>
+	<div style="display:none" class="j_lxian">
+		<!-- 立即联系 -->
+		<p class="aui-padded-15 aui-border-b">立即联系</p>
+		<div class="aui-content aui-padded-15 bgcolor-ff">
+			<div class="aui-btn aui-block aui-origin-info j_telphone_btn">打电话</div>
+			<div class="aui-btn aui-block aui-btn-warning aui-margin-t-15 j_xinxi_btn">发短信</div>
+			<div class="aui-btn aui-block aui-btn-success aui-margin-t-15 j_seeman_btn">约见面</div>
+		</div>
+		<div class="aui-btn aui-block notradius">取消</div>
+	</div>
+
+	<div style="display:none" class="j_xingd">
+		<!-- 提醒行动 -->
+		<p class="aui-padded-15 aui-border-b">提醒行动</p>
+		<div class="aui-padded-15">
+			<div class="aui-padded-10">行动</div>
+			<div class="aui-flex-col aui-padded-5 j_btnbox">
+				<div class="aui-flex-item-6 aui-padded-5">
+					<div class="aui-btn aui-block aui-btn-outlined aui-btn-warning" onclick="document.getElementById('lianxi').value=2">打电话</div>
+				</div>
+				<div class="aui-flex-item-6 aui-padded-5">
+					<div class="aui-btn aui-block aui-btn-outlined" onclick="document.getElementById('lianxi').value=1">发短信</div>
+				</div>
+				<div class="aui-flex-item-6 aui-padded-5">
+					<div class="aui-btn aui-block aui-btn-outlined" onclick="document.getElementById('lianxi').value=3">约见面</div>
+				</div>
+				<div class="aui-flex-item-6 aui-padded-5">
+					<div class="aui-btn aui-block aui-btn-outlined">自定义</div>
+				</div>
+			</div>
+		</div>
+		<div class="aui-padded-15">
+			<div class="aui-padded-10">行动</div>
+			<!-- 行动 -->
+			<div class="aui-flex-col aui-padded-5 j_btnbox">
+				<div class="aui-flex-item-6 aui-padded-5">
+					<div class="aui-btn aui-block aui-btn-outlined aui-btn-warning" value="1" onclick="document.getElementById('next_contact_time').value=1">1小时后</div>
+				</div>
+				<div class="aui-flex-item-6 aui-padded-5">
+					<div class="aui-btn aui-block aui-btn-outlined" value="2" onclick="document.getElementById('next_contact_time').value=2">明天9点</div>
+				</div>
+				<div class="aui-flex-item-6 aui-padded-5">
+					<div class="aui-btn aui-block aui-btn-outlined" value="3" onclick="document.getElementById('next_contact_time').value=3">明天15点</div>
+				</div>
+				<div class="aui-flex-item-6 aui-padded-5">
+					<div class="aui-btn aui-block aui-btn-outlined" value="4" onclick="document.getElementById('next_contact_time').value=4">后天9点</div>
+				</div>
+				<div class="aui-flex-item-6 aui-padded-5">
+					<div class="aui-btn aui-block aui-btn-outlined" value="5" onclick="document.getElementById('next_contact_time').value=5">后天15点</div>
+				</div>
+				<div class="aui-flex-item-6 aui-padded-5">
+					<div class="aui-btn aui-block aui-origin-info j_gettime_btn1">自定义</div>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" id="lianxi">
+		<input type="hidden" id="next_contact_time">
+		<div class="aui-btn aui-block aui-btn-success notradius2">完成</div>
+	</div>
+
+	<div style="display:none" class="j_telphone">
+		<!-- 打电话 -->
+		<p class="aui-padded-15 aui-border-b">打电话</p>
+		<div class="aui-padded-l-15 aui-padded-r-15 man-telphone">
+			{%for list in companyuserlist%}
+			<div class="aui-border-b zz-div-box aui-padded-b-10 aui-padded-t-10">
+				<div class="aui-iconfont aui-icon-mobile aui-padded-r-15 column-cnt color-66">
+
+				</div>
+				<div class="zz-div-td1 aui-font-size-18">{{list.mobile}}<br>{{list.contact}}</div>
+				<div class="aui-iconfont aui-icon-right aui-font-size-20 column-cnt notradius{{list.mobile}}"></div>
+			</div>
+			{%endfor%}
+		</div>
+
+		<div class="aui-btn aui-block notradius_j_telphone">取消</div>
+	</div>
+
+	<div style="display:none" class="j_xinxi">
+		<!-- 发短信 -->
+		<p class="aui-padded-15">发短信</p>
+		<div class="aui-content ">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell select-box aui-padded-b-10 aui-padded-t-10">
+					<i class="select-icon aui-iconfont aui-icon-unfold"></i>
+					<select name="" id="text">
+						<option value="请选择联系人">请选择联系人</option>
+						{%for list in companyuserlist%}
+						<option value="{{list.id}}">{{list.contact}}</option>
+						{%endfor%}
+					</select>
+				</li>
+				<li class="aui-list-view-cell">
+					<div class="aui-pull-left">短信内容：</div>
+					<div class="aui-pull-right color-99">50个字符内</div>
+				</li>
+				<li class="aui-list-view-cell">
+					<textarea placeholder="请输入短信留言内容" class="aui-margin-b-0" name="text" id="text_content"></textarea>
+				</li>
+			</ul>
+		</div>
+
+		<div class="aui-btn aui-block aui-btn-success notradius5">确定发送</div>
+	</div>
+
+	<div style="display:none" class="j_seeman">
+		<!-- 约见面 -->
+		<p class="aui-padded-15">约见面</p>
+		<div class="aui-content ">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell select-box aui-padded-b-10 aui-padded-t-10">
+					<i class="select-icon aui-iconfont aui-icon-unfold"></i>
+					<select name="contact" id="contact">
+						<option value="请选择联系人">请选择联系人</option>
+						{%for list in companyuserlist%}
+						<option value="{{list.id}}">{{list.contact}}</option>
+						{%endfor%}
+					</select>
+				</li>
+				<li class="aui-list-view-cell">
+					<div class="aui-padded-10">行动</div>
+					<div class="aui-flex-col aui-padded-5 j_btnbox">
+						<div class="aui-flex-item-6 aui-padded-5">
+							<div class="aui-btn aui-block aui-btn-outlined aui-btn-warning" value="1" onclick="document.getElementById('jianmian').value=1">1小时后</div>
+						</div>
+						<div class="aui-flex-item-6 aui-padded-5">
+							<div class="aui-btn aui-block aui-btn-outlined" value="2" onclick="document.getElementById('jianmian').value=2">明天9点</div>
+						</div>
+						<div class="aui-flex-item-6 aui-padded-5">
+							<div class="aui-btn aui-block aui-btn-outlined" value="3" onclick="document.getElementById('jianmian').value=3">明天15点</div>
+						</div>
+						<div class="aui-flex-item-6 aui-padded-5">
+							<div class="aui-btn aui-block aui-btn-outlined" value="4" onclick="document.getElementById('jianmian').value=4">后天9点</div>
+						</div>
+						<div class="aui-flex-item-6 aui-padded-5">
+							<div class="aui-btn aui-block aui-btn-outlined" value="5" onclick="document.getElementById('jianmian').value=5">后天15点</div>
+						</div>
+						<div class="aui-flex-item-6 aui-padded-5">
+							<div class="aui-btn aui-block aui-origin-info j_gettime_btn">自定义</div>
+						</div>
+						<input type="hidden" id="jianmian">
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="aui-btn aui-block aui-btn-success notradius6">完成</div>
+	</div>
+
+	<div style="display:none" class="j_gettime1">
+		<!-- 修改公司信息 -->
+		<p class="aui-padded-15 aui-border-b">自定义时间</p>
+		<div class="aui-input-row input-div">
+			<label class="aui-input-addon"><div class="aui-input-title">行动时间：</div></label>
+			<input type="text" class="aui-input" value="请输入行动时间" id="getime1">
+		</div>
+		<div class="aui-btn aui-block aui-btn-success notradius2">完成</div>
+	</div>
+
+	<div style="display:none" class="j_gettime2">
+		<!-- 修改公司信息 -->
+		<p class="aui-padded-15 aui-border-b">自定义时间</p>
+		<div class="aui-input-row input-div">
+			<label class="aui-input-addon"><div class="aui-input-title">行动时间：</div></label>
+			<input type="text" class="aui-input" value="请输入行动时间" id="getime2">
+		</div>
+		<div class="aui-btn aui-block aui-btn-success notradius6">完成</div>
+	</div>
+
+	<div style="display:none" class="j_xiaoji">
+		<!-- 客户小计 -->
+		<p class="aui-padded-15">客户小计</p>
+		<div class="aui-content ">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell select-box aui-padded-b-10 aui-padded-t-10">
+					<i class="select-icon aui-iconfont aui-icon-unfold"></i>
+					<select name="user_id" id="user_id">
+						<option value="请选择联系人">请选择联系人</option>
+						{%for list in companyuserlist%}
+						<option value="{{list.id}}">{{list.contact}}</option>
+						{%endfor%}
+					</select>
+				</li>
+				<li class="aui-list-view-cell select-box aui-padded-b-10 aui-padded-t-10">
+					<i class="select-icon aui-iconfont aui-icon-unfold"></i>
+					<select name="star" id="star" class="aui-text-warning">
+						<option value="1">无意向客户★</option>
+						<option value="2">潜在客户★★</option>
+						<option value="3">有意向客户★★★</option>
+						<option value="4">确认合作客户★★★★</option>
+						<option value="5">重点客户★★★★★</option>
+					</select>
+				</li>
+				<li class="aui-list-view-cell">
+					<div class="aui-pull-left">联系小记</div>
+					<div class="aui-pull-right color-99">50个字符内</div>
+				</li>
+				<li class="aui-list-view-cell">
+					<textarea value="请记录客户联系小计" class="aui-margin-b-0" name="bz" id="bz"></textarea>
+				</li>
+				<li class="aui-list-view-cell select-box aui-padded-b-10 aui-padded-t-10">
+					<i class="select-icon aui-iconfont aui-icon-unfold"></i>
+					<select name="" id="next_contact">
+						<option value="下次提醒行动">下次提醒行动</option>
+						<option value="1">1小时后</option>
+						<option value="2">明天9点</option>
+						<option value="3">明天15点</option>
+						<option value="4">后天9点</option>
+						<option value="5">后天15点</option>
+					</select>
+				</li>
+			</ul>
+		</div>
+		<div class="aui-btn aui-btn-success aui-block notradius3">保存</div>
+	</div>
+
+	<div style="height:60px;">
+		<div class="foor-fix bgcolor-ff aui-border-t aui-hide">
+			<div class="aui-padded-15 zz-div-box">
+				<div class="zz-div-td1">
+					<div class="aui-btn aui-btn-info aui-pull-left j_kehu_btn"><i class="iconfont icon-add"></i> 加入我的客户</div>
+				</div>
+				<div class="zz-div-td1">
+					<div class="aui-btn aui-btn-warning aui-pull-right j_lxian_btn"><i class="iconfont icon-dianhua2"></i> 立即联系</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="foor-fix bgcolor-ff aui-border-t ">
+			<div class="aui-padded-15 zz-div-box ">
+				<div class="zz-div-td1">
+					<div class="aui-btn aui-btn-success aui-pull-left aui-font-size-14 j_xingd_btn"><i class="iconfont icon-iconfontscrichengshi"></i> 提醒行动</div>
+				</div>
+				<div class="zz-div-td1 row-cnt">
+					<div class="aui-btn aui-btn-info aui-font-size-14  j_xiaoji_btn"><i class="iconfont icon-liuyan"></i> 客户小计</div>
+				</div>
+				<div class="zz-div-td1">
+					<div class="aui-btn aui-btn-warning aui-pull-right aui-font-size-14 j_lxian_btn"><i class="iconfont icon-dianhua2"></i> 立即联系</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</html>
+
+<script>
+	$(function() {
+		main();
+		getbtn();
+	})
+
+	function main() {
+		var currYear = (new Date()).getFullYear();
+		$("#getime1").mobiscroll({
+			preset: 'datetime', //日期
+			theme: 'android-ics light', //皮肤样式
+			display: 'modal', //显示方式
+			mode: 'scroller', //日期选择模式
+			dateFormat: 'yy-mm-dd', // 日期格式
+			setText: '确定', //确认按钮名称
+			cancelText: '取消', //取消按钮名籍我
+			dateOrder: 'yymmdd', //面板中日期排列格式
+			// dayText: '日', monthText: '月', yearText: '年', //面板中年月日文字
+			yearText: '年',
+			monthText: '月',
+			dayText: '日', //面板中年月日文字
+			endYear: currYear + 2, //结束年份
+			lang: "zh",
+			showNow: true,
+			minDate: new Date(),
+			nowText: '今天',
+			hourText: '小时',
+			minuteText: '分'
+		}); //时间插件
+		
+		$("#getime2").mobiscroll({
+			preset: 'datetime', //日期
+			theme: 'android-ics light', //皮肤样式
+			display: 'modal', //显示方式
+			mode: 'scroller', //日期选择模式
+			dateFormat: 'yy-mm-dd', // 日期格式
+			setText: '确定', //确认按钮名称
+			cancelText: '取消', //取消按钮名籍我
+			dateOrder: 'yymmdd', //面板中日期排列格式
+			// dayText: '日', monthText: '月', yearText: '年', //面板中年月日文字
+			yearText: '年',
+			monthText: '月',
+			dayText: '日', //面板中年月日文字
+			endYear: currYear + 2, //结束年份
+			lang: "zh",
+			showNow: true,
+			minDate: new Date(),
+			nowText: '今天',
+			hourText: '小时',
+			minuteText: '分'
+		}); //时间插件
+		
+		var showType = false; //判断是否显示类别选项
+		$(".j_showtype").on("click", function() {
+			showType = !showType;
+			pdshowType(showType)
+		})
+		$(document).on("click", function(e) { //点击遮罩层
+			e = window.event || e; // 兼容IE7
+			obj = $(e.srcElement || e.target);
+			if($(obj).is(".hy-info-type")) {
+				showType = false;
+				pdshowType(showType)
+			}
+		})
+
+		function pdshowType(showType) {
+			if(showType) {
+				$(this).addClass("rotate90")
+				$(".hy-info-type").addClass("hy-tybox-fx")
+			} else {
+				$(this).removeClass("rotate90")
+				$(".hy-info-type").removeClass("hy-tybox-fx")
+			}
+		}
+
+		layeropen($(".j_gettime_btn1"), $(".j_gettime1")) //行动自定义时间
+		
+		layeropen($(".j_gettime_btn2"), $(".j_gettime2")) //约见面自定义时间
+		
+		layeropen($(".j_xiaoji_btn"), $(".j_xiaoji")) //客户小计
+
+		layeropen($(".j_lxian_btn"), $(".j_lxian")) //立即联系
+
+		layeropen($(".j_xingd_btn"), $(".j_xingd")) //提醒行动
+
+		layeropen($(".j_telphone_btn"), $(".j_telphone")) //打电话
+
+		layeropen($(".j_xinxi_btn"), $(".j_xinxi")) //发短信
+
+		layeropen($(".j_seeman_btn"), $(".j_seeman")) //约见面
+
+		layeropen($(".j_kehu_btn"), $(".j_kehu")) //加入我的客户j_firmlx_btn
+
+	}
+	
+	$("div[class$='notradius2']").click(function(){
+		var data2 = {
+				remark_type:$("#lianxi").val(),
+				next_contact:$("#next_contact_time").val(),
+//				user_id: {{user_id}},
+				next_contact_time:$("#getime1").val(),
+				"user_id":14
+	};
+		zzajax("post","remark.html",data2,function(){
+			layer.closeAll()
+		},function(){
+		});
+	});
+	
+	$("div[class$='notradius3']").click(function(){
+		var data3 = {
+				user_id: $("#user_id").val(),
+				star: $("#star").val(),
+				bz: $("#bz").val(),
+				dotype: 'bz',
+				next_contact:$("#next_contact").val()
+	};
+		zzajax("post","bz.html",data3,function(){
+			layer.closeAll()
+		},function(){
+		});
+	});
+	
+
+	$("div[class$='notradius5']").click(function(){
+		var data5 = {
+				dotype: 'call',
+				remark_type:1,
+//				user_id: {{user_id}},
+				user_id:$("#text").val(),
+				my_user_id:14,
+				content: $("#text_content").val()
+	};
+		zzajax("post","remark.html",data5,function(){
+			layer.closeAll()
+		},function(){
+		});
+	});
+
+	$("div[class$='notradius6']").click(function(){
+		var data6 = {
+				remark_type:3,
+//				user_id: {{user_id}},
+				user_id:$("#contact").val(),
+				my_user_id:14,
+				next_contact: $("#jianmian").val(),
+				next_contact_time:$("#getime2").val()
+	};
+		zzajax("post","remark.html",data6,function(){
+			layer.closeAll()
+		},function(){
+		});
+	});
+	
+	$("div[class$='notradius7']").click(function(){
+		var data7 = {
+				contact:$("#contact_add").val(),
+				mobile:$("#mobile_add").val(),
+	};
+		zzajax("post","contact_add.html",data7,function(){
+			layer.closeAll()
+		},function(){
+		});
+	});
+	
+	{%for list in companyuserlist%}
+	$("div[class$='notradius{{list.id}}']").click(function(){
+		var data{{list.id}} = {
+				contact0:'{{list.contact}}',
+				mobile0:'{{list.mobile}}',
+				contact:$("#contact{{list.id}}").val(),
+				mobile:$("#mobile{{list.id}}").val(),
+	};
+		zzajax("post","contact_mod.html",data{{list.id}},function(){
+			layer.closeAll()
+		},function(){
+		});
+	});
+	{%endfor%}
+	
+	{%for list in companyuserlist%}
+	$("div[class$='notradius{{list.mobile}}']").click(function(){
+		var data{{list.mobile}} = {
+				my_user_id:14,
+				user_id:{{list.id}},
+				remark_type:2,
+	};
+		zzajax("post","remark.html",data{{list.mobile}},function(){
+			layer.closeAll()
+		},function(){
+		});
+	});
+	{%endfor%}
+	
+	$("div[class$='notradius_lianxi']").click(function(){
+		layer.closeAll()
+	})
+	
+	$("div[class$='notradius_j_telphone']").click(function(){
+		layer.closeAll()
+	})
+	
+	var getbtn = function() {
+		$(".j_btnbox .aui-btn").on("click", function() {
+			if(!$(this).hasClass(".aui-origin-info")) {
+				var index = $(this).parent().index();
+				$(this).parents(".j_btnbox").find(".aui-btn").removeClass("aui-btn-warning");
+				$(this).addClass("aui-btn-warning")
+			}
+		})
+	}
+	var layeropen = function(btn, obj) {
+
+		btn.on("click", function() { //加入我的客户
+			layer.closeAll();
+			layer.open({
+				area: '90%',
+				title: false,
+				type: 1,
+				skin: 'layui-layer-demo', //样式类名
+				closeBtn: 1, //不显示关闭按钮
+				anim: 2,
+				zIndex: 800,
+				shadeClose: true, //开启遮罩关闭
+				content: obj
+			});
+		})
+	}
+</script>

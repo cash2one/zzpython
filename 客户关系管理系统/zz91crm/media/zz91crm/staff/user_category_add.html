@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>添加团队</title>
+ <link href="../assets/css/dpl-min.css" rel="stylesheet">
+  <link href="../assets/css/bui-min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="demo-content">
+    
+    <!-- 简单表单页 ================================================== --> 
+    <div class="row">
+        <div class="span16 doc-content">
+            
+          <form action="user_category_add.html" class="form-horizontal" method="post">
+            <br />
+            <br />
+            <div class="control-group">
+              <label class="control-label">团队名称：</label>
+              <div class="controls">
+                <input type="text" class="input-large" name="label">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">排序：</label>
+              <div class="controls">
+                <input type="text" class="input-large" name="ord" value="0">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">开通冻结：</label>
+              <div class="controls">
+                <label class="radio" for="closeflag0"><input type="radio" id="closeflag0" name="closeflag" checked="" value="0"/>开通</label>&nbsp;&nbsp;&nbsp;
+                <label class="radio" for="closeflag1"><input type="radio" id="closeflag1" name="closeflag" value="1"/>冻结</label>
+              </div>
+            </div>
+            <div class="row actions-bar">       
+                <div class="form-actions span13 offset3">
+                  <button type="submit" class="button button-primary">保存</button>
+                  <button type="reset" class="button">重置</button>
+                  <input type="hidden" name="code" value="{{code}}" />
+                  <input type="hidden" name="action" value="add" />
+                </div>
+            </div>       
+          </form>
+        </div>
+    </div>
+<!-- script end -->
+  </div>
+</body>
+</html> 

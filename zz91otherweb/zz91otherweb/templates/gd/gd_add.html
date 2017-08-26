@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>添加工单</title>
+		<link rel="stylesheet" href="//res.layui.com/layui/build/css/layui.css" media="all">
+	</head>
+
+	<body>
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+			<legend>添加工单</legend>
+		</fieldset>
+
+		<form action="/gd/add.html" enctype="multipart/form-data" method="post">
+            问题类型:
+			<select name="question_kind" id="question_kind">
+				<option value="">......</option>
+
+				<option value="1701">常见</option>
+
+				<option value="1702">咨询</option>
+
+				<option value="1703">技术</option>
+
+			</select>
+			<br />
+			<label style="display:inline-block;float: left;">问题描述：</label>
+			<textarea name="question" cols="50" rows="5"></textarea> <br /> 图片
+			<input type="file" name="fileField" id="fileField"><br />
+			<input type="submit" value="提交" />
+		</form>
+
+	</body>
+
+</html>

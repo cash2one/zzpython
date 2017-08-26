@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>步多健分单系统</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <style>
+    	.admin-iframe{position:absolute;border:0;width:100%;height:100%}
+    	body{
+    		SCROLLBAR-FACE-COLOR: #e8e7e7; 
+ SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; 
+ SCROLLBAR-SHADOW-COLOR: #ffffff; 
+ SCROLLBAR-3DLIGHT-COLOR: #cccccc; 
+ SCROLLBAR-ARROW-COLOR: #03B7EC; 
+ SCROLLBAR-TRACK-COLOR: #EFEFEF; 
+ SCROLLBAR-DARKSHADOW-COLOR: #b2b2b2; 
+ SCROLLBAR-BASE-COLOR: #000000;
+    	}
+    </style>
+</head>
+
+<body>
+    <!-- 布局容器 -->
+    <div class="layui-layout layui-layout-admin">
+        <!-- 头部 -->
+        <div class="layui-header">
+            <div class="layui-main">
+                <!-- logo -->
+                <a href="/" style="color: #c2c2c2; font-size: 18px; line-height: 60px;">步多健分单系统</a>
+                <!-- 水平导航 -->
+                <ul class="layui-nav" style="position: absolute; top: 0; right: 0; background: none;">
+                    <!--<li class="layui-nav-item">
+                        <a href="javascript:;">
+                            进入前台
+                        </a>
+                    </li>-->
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            {{username}}
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <a href="logout.html">退出</a>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 侧边栏 -->
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree" lay-filter="left-nav" style="border-radius: 0;">
+                	<li class="layui-nav-item"><a href="index.html" target="main">欢迎</a></li>
+ 					<li class="layui-nav-item"><a href="addorder.html" target="main">添加订单</a></li>
+ 					<li class="layui-nav-item"><a href="orderlist.html" target="main">订单列表</a></li>
+ 					<li class="layui-nav-item"><a href="addagent.html" target="main">添加代理商</a></li>
+ 					<li class="layui-nav-item"><a href="agentlist.html" target="main">代理商管理</a></li>
+ 					<li class="layui-nav-item"><a href="userlist.html" target="main">系统设置</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 主体 -->
+        <div class="layui-body" style="bottom: 0px;">
+            <!-- 顶部切换卡 -->
+            <div class="layui-tab layui-tab-brief" lay-filter="top-tab" lay-allowClose="true" style="margin: 0;">
+                <!--<ul class="layui-tab-title"></ul>-->
+                <div class="layui-tab-content" style="padding: 0px;">
+                	<!--<div class="iframe-mask" id="iframe-mask"></div>-->
+					<iframe class="admin-iframe" id="admin-iframe" name="main" src="./index.html"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部 -->
+        <!--<div class="layui-footer" style="text-align: center; line-height: 44px;">
+            Copyright © 2017  Powered by asto
+        </div>-->
+    </div>
+
+    <script type="text/javascript" src="layui/layui.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="js/comm.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    	$(function(){
+    		
+    		$(".layui-nav-tree li").on("click", function() {
+    			$(".layui-nav-tree li").removeClass("layui-this");
+    			$(this).addClass("layui-this");
+    		})
+    	})
+        /**
+         * 对layui进行全局配置
+         */
+//      layui.config({
+//          base: 'js/'
+//      });
+//		var cms;
+        /**
+         * 初始化整个cms骨架
+         */
+//      layui.use(['cms'], function() {
+//          cms = layui.cms('left-nav', 'top-tab');
+//
+//          cms.addNav([
+//              {id: 1, pid: 0, node: '欢迎', url: 'index.html'},
+//              {id: 2, pid: 0, node: '添加订单', url: 'addorder.html'},
+//              {id: 3, pid: 0, node: '订单列表', url: 'orderlist.html'},
+//              {id: 4, pid: 0, node: '代理商管理', url: 'agentlist.html'},
+//              {id: 5, pid: 0, node: '系统设置', url: 'admin.html'},
+////              {id: 2, pid: 0, node: '搜索引擎', url: ''},
+////              {id: 3, pid: 2, node: '百度', url: 'https://www.baidu.com/'},
+////              {id: 4, pid: 2, node: '必应', url: 'http://cn.bing.com/'},
+////              {id: 5, pid: 2, node: '360', url: 'https://www.so.com/'},
+////              {id: 6, pid: 2, node: '搜狗', url: 'https://www.sogou.com/'},
+//          ], 0, 'id', 'pid', 'node', 'url');
+//
+//          cms.bind(60 + 41 + 20 + 44); //头部高度 + 顶部切换卡标题高度 + 顶部切换卡内容padding + 底部高度
+//
+//          cms.clickLI(0);
+//      });
+    </script>
+</body>
+</html>

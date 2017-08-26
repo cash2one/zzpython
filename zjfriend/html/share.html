@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+<title>分享</title>
+<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+<link rel="stylesheet" type="text/css" href="../css/api.css" />
+<link rel="stylesheet" type="text/css" href="../css/common.css" />
+<link rel="stylesheet" type="text/css" href="../css/animate.css" />
+<link rel="stylesheet" type="text/css" href="../css/share.css" />
+</head>
+<body>
+	<div class="warp">
+		<div class="top">
+		</div>
+		<div class="main">
+			<div class="share_list">
+				<div class="share_type">
+					<img src="../image/share_platform_qqfriends@2x.png">
+					<p>qq分享</p>
+				</div>
+				<div class="share_type share_wx">
+					<img src="../image/share_platform_sina@2x.png">
+					<p>微信分享</p>
+				</div>
+				<div class="share_type">
+					<img src="../image/share_platform_sina@2x11.png">
+					<p>新浪分享</p>
+				</div>
+			</div>
+			<div class="oback">
+				取消
+			</div>
+		</div>
+	</div>
+	<div class="zhezao">
+	</div>
+<script type="text/javascript" src="../script/zepto.min.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+</body>
+<script>
+	function downpage(){
+			$(".main").removeClass('slideInUp').addClass("fadeOutDown");
+			setTimeout(function(){
+				$(".main").removeClass('animated bounceOutDown')
+					api.closeFrame({
+		    			name: 'share'
+				});
+			},1000)
+	}
+	apiready = function() {
+		$(".main").addClass('animated slideInUp');
+		$(".zhezao").height($(".main").height()+$(".top").height())
+		$(".oback").on("click",function(){
+			$(".zhezao").css("display","none");
+			downpage()
+		})
+		$(".top").on("click",function(){
+			$(".zhezao").css("display","none");
+			downpage()
+		})
+		
+		$(".share_wx").on("click",function(){
+			var wx = api.require('wx');
+			wx.isInstalled(function(ret, err){
+	    		if(ret.installed){
+	        		wx.shareWebpage({
+	    				apiKey: 'wx06007f9e20e7bed8',
+	    				scene: 'timeline',
+	   	 				title: '测试标题',
+	    				description: '分享内容的描述',
+	    				thumb: 'widget://a.jpg',
+	    				contentUrl: 'http://apicloud.com'
+					}, function(ret, err){
+	    				if(ret.status){
+	        				alert('分享成功');
+	    				}else{
+	        				alert(err.code);
+	    				}
+					});
+	    		}else{
+	        		alert('当前设备未安装微信客户端');
+	    		}
+			});
+		})
+	}
+	// $( function() {
+	// 	$(".main").addClass('animated slideInUp');
+	// 	$(".oback").on("click",function(){
+	// 		$(".main").removeClass('slideInUp').addClass("bounceOutDown");
+	// 	})
+	// }
+	// )
+</script>
+</html>

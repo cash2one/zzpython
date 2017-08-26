@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="Cache-Control" content="no-transform " />
+    <title>{{seotitle}}</title>
+    <meta name="keywords" content="{{seokeywords}}" />
+    <meta name="description" content="ZZ91再生网行情研究院，作为专业的再生资源行情研究网站，推出关于再生资源行情的{{categoryname1}}，帮助您更快速、更及时、更便捷地了解再生资源行业。" />
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/comm.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/foot.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/top.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/market/css/index.css" />
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <script src="http://b.zz91.com/comm/js/comm.js"></script>
+</head>
+<body>
+    {% include 'comm/new/header.html' %}
+    <div class="navbox">
+        <div class="navmain">
+            <div class="fl logo"><a href="http://www.zz91.com/"><img src="http://b.zz91.com/force/images/logo.jpg"></a></div>
+            <div class="fl page-name"><a href="http://jiage.zz91.com/study/"><img src="http://b.zz91.com/market/images//pagename.png"></a></div>
+            <ul class="fl page-handy">
+                <li class="fl"><i class="icon2 icon2-handy1"></i>市场分析</li>
+                <li class="fl"><i class="icon2 icon2-handy2"></i>行业解读</li>
+                <li class="fl"><i class="icon2 icon2-handy3"></i>专业报告</li>
+            </ul>
+            <div class="fr navmain-list">
+                <ul class="clearfix navmain-ul">
+                    <li class="fl {%ifequal type ''%}thisnav{%endifequal%}"><a href="/study/index.html">首页</a></li>
+                    <li class="fl {%ifequal type 'djgd'%}thisnav{%endifequal%}"><a href="/study/djgd/">独家观点</a></li>
+                    <li class="fl {%ifequal type 'hybg'%}thisnav{%endifequal%}"><a href="/study/hybg/">行业报告</a></li>
+                    <li class="fl {%ifequal type 'zjjd'%}thisnav{%endifequal%}"><a href="/study/zjjd/">专家解读</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="right-movefix">
+        <a href="/study/djgd/" {%ifequal type 'djgd'%}class="this-mfix"{%endifequal%}>
+            <i class="icon2 icon2-leftgo1"></i><br>
+            独家<br>观点
+        </a>
+        <a href="/study/hybg/" {%ifequal type 'hybg'%}class="this-mfix"{%endifequal%}>
+            <i class="icon2 icon2-leftgo2"></i><br>
+            行业<br>报告
+        </a>
+        <a href="/study/zjjd/" {%ifequal type 'zjjd'%}class="this-mfix"{%endifequal%}>
+            <i class="icon2 icon2-leftgo3"></i><br>
+            专家<br>解读
+        </a>
+        <a class="go-top text-cl7 j_gotop" href="javascript:void(0)">
+            <i class="icon2 icon2-leftgo4"></i><br>
+            返回顶部
+        </a>
+    </div>
+
+    <div class="page-ads">
+        <div class="page-ads-main">
+            <i class="icon2 icon2-ads"></i>当前位置：<a href="/study/">行情研究院首页</a> <span class="page-this-ads">{{navlist|safe}}</span>
+        </div>
+    </div>
+    
+    
+
+    <div class="center clearfix">
+
+        <div class="fl void-tell-us">
+            <div class="void-tell-tt">
+            	{%ifequal type 'djgd'%}
+                <img src="http://b.zz91.com/market/images/titleimg1.png" class="fl">
+                {%endifequal%}
+                {%ifequal type 'hybg'%}
+                <img src="http://b.zz91.com/market/images/titleimg2.png" class="fl">
+                {%endifequal%}
+                {%ifequal type 'zjjd'%}
+                <img src="http://b.zz91.com/market/images/titleimg3.png" class="fl">
+                {%endifequal%}
+                {%ifequal type 'djgd'%}
+                <ul class="hq-type-ul fr">
+                	<li class="fl {%ifequal type1 ''%}this-hq-type{%endifequal%}"><a href="/study/djgd/">全部</a></li>
+                	<li class="fl {%ifequal type1 'fjs'%}this-hq-type{%endifequal%}"><a href="/study/djgd/fjs/">废金属</a></li>
+                    <li class="fl {%ifequal type1 'fsl'%}this-hq-type{%endifequal%}"><a href="/study/djgd/fsl/">废塑料</a></li>
+                </ul>
+                {%endifequal%}
+            </div>
+            <ul class="void-tell-list">
+                {%for list in pricelist.list%}
+                <li class="void-tell-li clearfix">
+                    <div class="void-tell-imgbox fl">
+                        <a href="/study/{{list.urlpath}}/detail{{list.td_id}}.html" target="_blank">
+                            <img src="{{list.pic}}" width="186" height="178">
+                            <i class="icon1-void"></i>
+                        </a>
+                    </div>
+                    <div class="void-tell-info fl">
+                        <div class="void-tell-itit"><a href="/study/{{list.urlpath}}/detail{{list.td_id}}.html" target="_blank">{{list.td_title}}</a></div>
+                        <div class="void-tell-iview">
+                            {{list.content}}
+                        </div>
+                        <div class="hq-view-gomore">
+                        	<div class="fl">{{list.gmt_order}}</div>
+                            <a href="/study/{{list.urlpath}}/detail{{list.td_id}}.html" target="_blank" class="hq-view-a">查看全文</a>
+                        </div>
+                    </div>
+                </li>
+				{%endfor%}
+            </ul>
+            <div class="voidpage">
+                <span class="voidpage-span">共{{page}}页/{{listcount}}条数据</span>
+                <a href="p1.html" class="voidpage-a"><<</a>
+                <a href="p{{prvpage}}.html" class="voidpage-a"><</a>
+                	{%for p in page_range%}
+						{%if p.nowpage%}
+						<a href="p{{p.number}}.html" class="voidpage-a thispage">{{p.number}}</a>
+						{%else%}
+						<a href="p{{p.number}}.html" class="voidpage-a">{{p.number}}</a>
+						{%endif%}
+					{%endfor%}
+                <a href="p{{nextpage}}.html" class="voidpage-a">></a>
+                <a href="p{{page_listcount}}.html" class="voidpage-a">>></a>
+            </div>
+        </div>
+        {% include 'study/right.html' %}
+    </div>
+    {% include 'comm/new/footer.html' %}
+</body>
+<script src="http://b.zz91.com/market/js/hq-comm.js"></script>
+<script type="text/javascript">
+</script>
+</html>

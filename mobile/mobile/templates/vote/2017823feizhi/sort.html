@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>评选最新排名-2017废纸产业发展论坛-废纸行业TOP10</title>
+		<link rel="stylesheet" type="text/css" href="http://m.zz91.com/zt/feizhiluntanH5/css/base-min.css" />
+		<link rel="stylesheet" type="text/css" href="http://m.zz91.com/zt/feizhiluntanH5/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_pxwg2gxpsu8wu3di.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+	</head>
+	<body>
+		<img src="http://m.zz91.com/zt/feizhiluntanH5/images/feizhi_sharelogo.jpg" style="display: none;">
+		<script src="http://m.zz91.com/zt/feizhiyaoqingH5/js/viewport.js"></script>
+		<div class="bangdan-warp">
+			<div style="height: 2.4rem;">
+				<div class="nav-top">
+					<div class="nav-main">
+						<a onClick="javascript :history.back(-1)" class="nav-hr"></a>废纸行业TOP10评选微信投票
+					</div>
+				</div>
+			</div>
+			
+			<div class="idx-haop2">
+				<div class="idx-haoptime">活动时间：7.20-8.16</div>
+			</div>
+			{%if votecontent.haveday%}
+			<p class="haop-tle">投票时间：7.31-8.14</p>
+			{%else%}
+			<p class="haop-tle">活动已经结束,感谢所有人的参与。</p>
+			{%endif%}
+
+			<div class="bd-top">
+				<div class="bd-qd">
+					<div class="bd-qdbox">
+						
+						<div class="bd-tp">
+							<div class="bd-paiming">
+								<div class="bd-tptle">
+								最新排名<span>{{ccount}}家入围企业</span>
+								</div>
+								<ul class="bd-paiming-ul">
+									{%for list in listall%}
+									<li class="bd-paiming-li">
+										<a href="view{{list.id}}.html" class="bd-paiming-a">
+											<div class="zz-div-box">
+												<p class="bd-paiming-list">第<span class="bdpm-color">{{list.n}}</span></p>
+												<p class="bd-paiming-name zz-div-td1 aui-ellipsis-1">{{list.orderid}}号：{{list.company_name}}</p>
+											</div>
+											<p class="bd-paiming-num"><span class="bdpm-color">{{list.votecount}}</span>票</p>
+										</a>
+									</li>
+									{%endfor%}
+								</ul>
+							</div>
+						</div>
+						
+						<div class="tp-rule zz-div-box">
+							<div class="tp-rulemain zz-div-td1">
+								<div class="tp-ruletle">
+									投票规则：
+								</div>
+								<p>1.每一个微信号每天最多拥有3次投票机会</p>
+								<p>2.每天投票超过三次者，当天不能再进行投票，可以分享其他朋友进行投票</p>
+								<p>3.微信号投票前需先关注“ZZ91再生网”微信公众号：</p>
+								<p>① 点击投票按钮</p>
+								<p>② 弹出二维码，长按二维码识别</p>
+								<p>③ 进入关注页面，关注成功</p>
+								<p>④ 自动推送一条评选专题链接，打开页面进行投票</p>
+							</div>
+							<div class="tp-ewm">
+								<img src="http://m.zz91.com/zt/feizhiluntanH5/images/ewmimg.png" class="tp-ewmimg" />
+								<p>扫描关注ZZ91再生网<br />获取最新论坛信息</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="haop-hb">
+				<a href="http://m.zz91.com/zt/feizhiluntanH5/chbm.html" class="haop-hbbtn">
+					参会报名
+				</a>
+			</div>
+			
+			<div style="height: 2.725rem;">
+				<div class="foot-nav">
+					<a href="http://m.zz91.com/zt/feizhiluntanH5/index.html" class="foot-a foot-index">
+						<i class="iconfont icon-shouye-shouye"></i>
+						<p>首页</p>
+					</a>
+					<a href="http://m.zz91.com/zt/feizhiluntanH5/xinxi.html" class="foot-a">
+						<i class="foot-icon-xx"></i>
+						<p>信息</p>
+					</a>
+					<a href="http://m.zz91.com/zt/feizhiluntanH5/bangdan.html" class="foot-a foot-this">
+						<i class="foot-icon-bd"></i>
+						<p class="foot-p">TOP10榜单</p>
+					</a>
+					<a href="http://m.zz91.com/zt/feizhiluntanH5/zhaoshang.html" class="foot-a">
+						<i class="foot-icon-zs"></i>
+						<p>招商</p>
+					</a>
+					<a href="http://m.zz91.com/zt/feizhiluntanH5/fuwu.html" class="foot-a">
+						<i class="foot-icon-fw"></i>
+						<p>服务</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script>
+			(function(d, t) {
+				var r = d.createElement(t),
+					s = d.getElementsByTagName(t)[0];
+				r.async = 1;
+				r.src = 'http://m.zz91.com/wechat/weixinshare.js?wurl='+location.href;
+				s.parentNode.insertBefore(r, s);
+			})(document, "script");
+		</script>
+		<div style="display:none">
+		    <script>
+		        var _hmt = _hmt || [];
+		        (function() {
+		            var hm = document.createElement("script");
+		            hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+		            var s = document.getElementsByTagName("script")[0];
+		            s.parentNode.insertBefore(hm, s);
+		        })();
+		    </script>
+		    <!--baidu analysis-->
+		    <script>
+		        var _hmt = _hmt || [];
+		        
+		        (function() {
+		            var hm = document.createElement("script");
+		            hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+		            var s = document.getElementsByTagName("script")[0];
+		            s.parentNode.insertBefore(hm, s);
+		        })();
+		    </script>
+		</div>
+	</body>
+</html>

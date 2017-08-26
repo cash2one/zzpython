@@ -1,0 +1,199 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <title>猴年ZZ91送年货</title>
+    <meta name="keywords" content="猴年砸金蛋">
+	<meta name="description" content="猴年ZZ91送年货">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <script type="text/javascript" src="js/viewport.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/base-min.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+</head>
+<body>
+	<div style="line-height: 60px;background-color: #A60D12;text-align: center;font-size: 20px;"><a href="http://m.zz91.com" style="color: #fff;">点此返回ZZ91再生网</a></div>
+    <div class="top">
+        <img src="images/topband.jpg">
+    </div>
+    <div class="zadan-main">
+        <div class="zadan-title"><img src="images/title1.png"></div>
+        <div class="zadan-ts">（当天还有 <span class="playNum j_playNum">0</span> 次机会）
+        	<br /><font color="#FEE900">点击开砸金蛋</font>
+        </div>
+        <div class="zadan-play">
+            <ul class="zadan-play-ul clear">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <div class="zj-name">
+        <div><img src="images/zjbiao.jpg"></div>
+        <div class="zj-list">
+            <div class="zj-list-mn">
+                <div class="gund-info">
+                    <ul class="zj-list-ul">
+                        <li>宏久*** 有限公司 砸中恭喜发财大礼包 </li>
+                        <li>个体*** (吴女士）砸中财源广进大礼包 </li>
+                        <li>湖北*** 有限公司 砸中万事如意大礼包 </li>
+                        <li>兄弟*** 料加工厂 砸中欢天喜地大礼包 </li>
+                        <li>北京*** 责任公司 砸中财源广进大礼包 </li>
+                        <li>河北*** 料加工厂 砸中五福临门大礼包 </li>
+                        <li>浙北*** 交易市场 砸中金玉满堂大礼包 </li>
+                        <li>个体*** (朱女士）砸中万事如意大礼包 </li>
+                        <li>火鑫*** 有限公司 砸中金玉满堂大礼包 </li>
+                        <li>河南*** 贸易公司 砸中欢天喜地大礼包 </li>
+                        <li>长春*** 料再生厂 砸中财源广进大礼包 </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lastmo"><img src="images/lastimg.jpg"></div>
+    <div class="pop-wq">
+        <div class="pop-wq-tc">
+            <i class="close j_closeTc">x</i>
+            <div  class="czbtn">
+                <a href="http://m.zz91.com/qianbao/chongzhi.html" target="_blank"><img src="images/czimg.png"></a>
+            </div>
+        </div>
+    </div>
+    <div class="popmain">
+        <div class="popmain-jx">
+            <i class="close j_close">x</i>
+            <img src="images/zhongjts1.png" class="j_zjimg">
+        </div>
+    </div>
+    <!-- 加载 -->
+    <div class="j_jz" style="display: none;">
+        <div class="jz-div"><img src="images/loading.gif"></div>
+    </div>
+</body>
+<script type="text/javascript">
+//  var notMoery = true;//没有余额
+//  if(notMoery){
+//      $(".pop-wq").show();
+//  }
+    $(".j_closeTc").click(function(){
+        $(".pop-wq").hide();
+    })
+
+    var time,marginTop,gdHeight;
+    $(function(){
+        gdHeight = $(".gund-info").height();
+        var ulHtml = $(".gund-info").html();
+        $(".gund-info").mouseover(function(){
+            clearInterval(time)
+        })
+        $(".gund-info").mouseout(function(){
+            startmov(ulHtml);
+        })
+        if(gdHeight>$(".gund-info").parent().height()){
+            $(".gund-info").append(ulHtml);
+            marginTop = parseInt($(".gund-info").css("margin-top"));
+            startmov(ulHtml)
+        }
+    })
+    function startmov(ulHtml){
+        time = setInterval(function(){
+            if(marginTop == gdHeight){
+                $(".gund-info").append(ulHtml);
+                $(".gund-info").children("ul").eq(0).remove()
+                marginTop = 0;
+            }
+            marginTop +=1;
+            $(".gund-info").css("margin-top",-marginTop+"px") 
+        },50)
+    }
+
+
+    //砸金蛋 0.三次机会用完 1.没中奖 2.绿茶糕 3.蛋黄酥 4.零食包 5.坚果包 6.广告位 7.20元现金红包
+    var jiangpList = ["images/zhongjts1.png","images/zhongjts2.png","images/zhongjts3.png","images/zhongjts4.png","images/zhongjts5.png","images/zhongjts6.png","images/zhongjts7.png","images/zhongjts8.png"];
+    var zjNum = 1;
+    var company_id={{company_id}};
+    //登录状态
+    function loginstatus(o){
+    	if (company_id!=0){
+			getzajindanstaus(o)
+		}else{
+			window.location="http://m.zz91.com/login/?done=/2016zadanplay/index.html"
+		}
+		return false;
+	}
+    function getzajindanstaus(o){
+    	$(".j_jz").show();
+    	var ajaxurl="http://pyapp.zz91.com/zajindanstaus.html?company_id="+company_id.toString()+"&p="+(new Date()).getTime().toString();
+			$.getScript(ajaxurl, function() {
+				$(".j_jz").hide();
+				//没有余额
+				if (_suggest_result_.qianbaobaoblance>10){
+					if(o.hasClass("offplay")){
+			            return;
+			        }
+					var playNum = parseInt($(".j_playNum").html())-1;
+					//中奖号码
+	            	zjNum = _suggest_result_.xuanzhong;
+			        if(playNum<0){
+			            zjNum = 0;
+			            $(".j_zjimg").attr("src",jiangpList[zjNum]);
+			            $(".popmain").show();
+			            return;
+			        }
+			        
+			        $(".j_playNum").html(playNum)
+			        o.addClass("offplay");
+			        $(".j_zjimg").attr("src",jiangpList[zjNum]);
+			        $(".popmain").show()
+				}else{
+					$(".pop-wq").show();
+				}
+			});
+    }
+    function getchoujiangnum(){
+    	var ajaxurl="http://pyapp.zz91.com/zajindancount.html?company_id="+company_id.toString()+"&p"+(new Date()).getTime().toString();
+		$.getScript(ajaxurl, function() {
+			$(".j_playNum").html(_suggest_result_.count)
+		});
+    }
+    $(".zadan-play-ul li").click(function(){
+    	$(".j_zjimg").attr("src",'images/endplay.png');
+    	$(".popmain").show();
+    	//loginstatus($(this));
+    })
+    $(".j_close").click(function(){
+        $(".popmain").hide()
+    })
+    getchoujiangnum();
+</script>
+<div style="display:none">
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	<!--baidu analysis-->
+	<script>
+		var _hmt = _hmt || [];
+		
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+</div>
+</html>

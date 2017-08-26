@@ -1,0 +1,882 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>首页-导航</title>
+		<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/index.css" />
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="main"></div>
+		</div>
+		<footer class="aui-nav" id="aui-footer">
+			<ul class="aui-bar-tab" style="background-color: #fcfcfc;border-top: 1px solid #ebebeb;">
+				<li class="active-warning" id="tabbar1" tapmode onclick="randomSwitchBtn(this,'tabbar1',0)">
+					<span class="aui-iconfont aui-icon-homefill"></span>
+					<p>
+						首页
+					</p>
+				</li>
+				<li id="tabbar2" tapmode onclick="randomSwitchBtn(this,'tabbar2',1)">
+					<span class="aui-iconfont aui-icon-attention"></span>
+					<p>
+						帮你找
+					</p>
+				</li>
+				
+				<li id="tabbar5" tapmode>
+					<span class="aui-iconfont aui-icon-roundadd" style="font-size:30px"></span>
+					<p>发需求</p>
+				</li>
+				<li id="tabbar3" tapmode onclick="randomSwitchBtn(this,'tabbar3',2)">
+					<span class="aui-iconfont aui-icon-mark"></span>
+					<p>
+						消息
+					</p>
+					<span class="chatmessages messages" style="display:none"></span>
+				</li>
+				<li id="tabbar4" tapmode onclick="randomSwitchBtn(this,'tabbar4',3)">
+					<span class="aui-iconfont aui-icon-my"></span>
+					<p>
+						管家
+					</p>
+					<span class="mymessages messages" style='display:none'></span>
+				</li>
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../script/jquery.js"></script>
+	<script type="text/javascript" src="../script/common.js"></script>
+	<script type="text/javascript">
+		var frame1 = 1, frame2 = 0, frame3 = 0;
+		var frame4 = 0;
+		var nowindex = 0
+		//关闭引导页进入首页
+		function showbody() {
+			//$api.setStorage("loadflag", "1");
+			openFrameGroup();
+			api.hideProgress();
+		}
+
+		apiready = function() {
+			
+			api.setStatusBarStyle({
+				style : 'dark'
+			});
+			//api.clearCache();
+			$api.setStorage("helploadflag",0);
+			$api.setStorage("msgloadflag",0);
+			$api.setStorage("bottompostloadflag",0);
+			tokeninfo();
+			//如监听网络连接事件
+			api.addEventListener({
+			    name: 'online'
+			}, function(ret, err){
+			    if( ret ){
+			    	showbody();
+			    	api.toast({
+						msg : '连网成功！',
+						duration : 2000,
+						location : 'bottom'
+					});
+			         //alert( JSON.stringify( ret ) );
+			    }else{
+			         //alert( JSON.stringify( err ) );
+			    }
+			});
+			//如监听网络连接事件
+			api.addEventListener({
+			    name: 'offline'
+			}, function(ret, err){
+			    if( ret ){
+			    	api.toast({
+						msg : '网络断开，请检查网络是否有问题',
+						duration : 2000,
+						location : 'bottom'
+					});
+			    	 //zzalert("网络断开，请检查网络是否有问题")
+			         //alert( JSON.stringify( ret ) );
+			    }else{
+			         //alert( JSON.stringify( err ) );
+			    }
+			});
+			//$api.setStorage("loadflag", "0");
+			/*
+			//判断app是否安装
+			api.appInstalled({
+			appBundle: "com.zz91.app"
+			},function( ret, err ){
+			if( ret ){
+			zzalert( JSON.stringify( ret ) );
+			}else{
+			zzalert( JSON.stringify( err ) );
+			}
+			});
+			*/
+			//是否全屏显示
+			api.setFullScreen({
+				fullScreen : false
+			});
+			var tencentPush = api.require('tencentPush');
+			//信鸽推送
+			try {
+				// 注册设备并绑定用户账号
+				var tencentPush = api.require('tencentPush');
+				var resultCallback = function(ret, err) {
+					if (ret.status) {
+						//zzalert("注册成功，token为："+ret.token);
+					} else {
+						//zzalert("注册失败，错误码："+err.code+"，错误信息："+err.body);
+					}
+				};
+				// 需要绑定的账号，若为"*"表示解除之前的账号绑定
+				//var params = {account:"*"};
+				//tencentPush.registerPush(params, resultCallback);
+				// 需要绑定的账号，若为"*"表示解除之前的账号绑定
+				//zzalert(api.deviceId)
+				var params = {
+					account : "c" + api.deviceId
+				};
+				tencentPush.registerPush(params, resultCallback);
+				/*
+				 // 解除设备绑定的账号
+				 var tencentPush = api.require('tencentPush');
+				 var resultCallback = function(ret, err){
+				 if(ret.status){
+				 zzalert("注册成功，token为："+ret.token);
+				 }else{
+				 zzalert("注册失败，错误码："+err.code+"，错误信息："+err.body);
+				 }
+				 };
+				 // 需要绑定的账号，若为"*"表示解除之前的账号绑定
+				 var params = {account:"*"};
+				 tencentPush.registerPush(params, resultCallback);
+				 // 添加本地通知
+				 var tencentPush = api.require('tencentPush');
+				 var params = {
+				 title : "测试", // 标题
+				 content : "test content",  // 内容
+				 date : "20150127",  // 日期
+				 hour : "15",  // 时间
+				 min    : "15",   // 分钟
+				 customContent : "{\"key\":\"value\"}",  // 自定义key-value
+				 activity : "",  // 打开的activity
+				 ring : 1,       // 是否响铃
+				 vibrate : 1    // 是否振动
+				 };
+				 var resultCallback = function(ret, err){
+				 if(ret.status){
+				 zzalert("添加通知成功，通知id："+ret.notiId);
+				 }else{
+				 zzalert("添加本地通知失败，错误码："+err.code+"，错误信息："+err.body);
+				 }
+				 };
+				 tencentPush.addlocalNotification(params, resultCallback);
+				 // 注册消息透传（消息命令字）的接收回调
+				 var tencentPush = api.require('tencentPush');
+				 var resultCallback = function(ret, err){
+				 zzalert("收到透传消息，title："+ret.title+"，content："+ret.content+
+				 "，customContent："+ret.customContent);
+				 };
+				 var params = {name:"message"};
+				 tencentPush.setListener(params, resultCallback);
+				 // 注册通知被展示的回调
+				 var tencentPush = api.require('tencentPush');
+				 var resultCallback = function(ret, err){
+				 zzalert("收到通知被展示的回调，title："+ret.title+"，content："+ret.content+"，customContent："+ret.customContent
+				 + ",activity:"+ret.activity+",actionType:"+ret.actionType+",msgid:"+ret.msgid);
+				 };
+				 var params = {name:"notifactionShow"};
+				 tencentPush.setListener(params, resultCallback);
+				 tencentPush.registerPush(params, resultCallback);
+				 */
+				var tencentPush = api.require('tencentPush');
+				// 注册通知被点击的回调
+				var resultCallback = function(ret, err) {
+					//zzalert("收到通知被点击的回调，title："+ret.title+"，content："+ret.content+"，customContent："+ret.customContent
+					//+ ",activity:"+ret.activity+",actionType:"+ret.actionType+",msgid:"+ret.msgid);
+					var customContent = ret.customContent;
+					//zzalert(customContent)
+					if (customContent) {
+						customContent = strToJson(customContent)
+						if (customContent.hasOwnProperty("news")) {
+							var pageParam = {
+								wintitle : "资讯详情",
+								type : "detail",
+								bounces : false,
+								infoid : customContent.news
+							};
+							openWin("detail" + customContent.news, "../news/detail.html", pageParam);
+						}
+						if (customContent.hasOwnProperty("huzhu")) {
+							var pageParam = {
+								wintitle : "互助详情",
+								type : "double-heart",
+								bounces : false, //窗口弹动
+								infoid : customContent.huzhu
+								// module:"回复"
+							};
+							openWin("cunity-detail", "../huzhu/cunity-detail.html", pageParam);
+						}
+						if (customContent.hasOwnProperty("url")) {
+							var pageParam = {
+								wintitle : "详细内容",
+								type : "openother",
+								bounces : true, //窗口弹动
+								infoid : customContent.huzhu
+							};
+							openWin("openother", customContent.url, pageParam);
+						}
+						if (customContent.hasOwnProperty("orderprice")) {
+							var pageParam = {
+								wintitle : "我的行情定制",
+								type : "offer-list",
+								bounces : true, //窗口弹动
+								orderflag:1,
+							};
+							openWin("offer-list", "../price/offer-list.html", pageParam);
+							randomSwitchBtn('','tabbar2',1)
+						}
+						if (customContent.hasOwnProperty("tradeprice")) {
+							var pageParam = {
+								wintitle : "我的供求定制",
+								type : "trade-list",
+								bounces : true, //窗口弹动
+								orderflag:1,
+							};
+							openWin("offer-list", "../trade/trade-list.html", pageParam);
+							randomSwitchBtn('','tabbar2',1)
+						}
+					}
+				}
+				var params = {
+					name : "notifactionClick"
+				};
+				tencentPush.setListener(params, resultCallback);
+				/*
+				 // 注册通知被清除的回调
+				 var tencentPush = api.require('tencentPush');
+				 var resultCallback = function(ret, err){
+				 zzalert("收到通知被清除的回调，title："+ret.title+"，content："+ret.content+"，customContent："+ret.customContent
+				 + ",activity:"+ret.activity+",actionType:"+ret.actionType+",msgid:"+ret.msgid);
+				 }
+				 var params = {name:"notifactionClear"};
+				 tencentPush.setListener(params, resultCallback);
+				 */
+				
+			} catch(e) {
+				//zzalert(e)
+			}
+			//链接服务器，对socket处理
+			//socketdatastart();
+			//融云聊天接入
+			//openFrameGroup();
+			randomSwitchBtn('','tabbar1',0)
+			$(".category").on("click", function() {
+				var pageParam = {
+					wintitle : "产品类目",
+					type : "product-category",
+					bounces : false
+				};
+				openWin("product-category", "../trade/product-category.html", pageParam);
+			})
+			//消息中心
+			$(".my-info").on("click", function() {
+				var pageParam = {
+					wintitle : "消息中心",
+					type : "heart-info"
+				};
+				if (UserInfo.has_login()) {
+					openWin("heart-info", "../comm/heart-info.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/comm/heart-info.html";
+					pageParam.winName = "heart-info";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			//发布页面
+			$(".my-gout").on("click", function() {
+				var pageParam = {
+					wintitle : "发布信息",
+					type : "issue-info",
+					module : "发布"
+				};
+				openWin("issue-info", "../myrc/issue-info.html", pageParam);
+			})
+			api.setFrameClient({
+				frameName : "help"
+			}, function(ret, err) {
+				//范围：0-开始加载；1-加载进度发生变化；2-结束加载；3-title发生变化；4-url发生变化
+				if (ret.state == 2) {
+					frame2 = 1;
+				}
+			});
+			//
+			api.setFrameClient({
+				frameName : "my-home"
+			}, function(ret, err) {
+				//范围：0-开始加载；1-加载进度发生变化；2-结束加载；3-title发生变化；4-url发生变化
+				if (ret.state == 2) {
+					frame4 = 1;
+				}
+			});
+			api.setFrameClient({
+				frameName : "quote"
+			}, function(ret, err) {
+				//范围：0-开始加载；1-加载进度发生变化；2-结束加载；3-title发生变化；4-url发生变化
+				if (ret.state == 2) {
+					frame3 = 1;
+				}
+			});
+			//退出
+			var first;
+			api.addEventListener({
+				name : 'keyback'
+			}, function(ret, err) {
+				if (!first) {
+					first = new Date().getTime();
+					api.toast({
+						msg : '再按一次退出应用',
+						duration : 2000,
+						location : 'bottom'
+					});
+					setTimeout(function() {
+						first = null;
+					}, 1000);
+				} else {
+					if (new Date().getTime() - first < 1000) {
+						//回到桌面
+						//api.toLauncher(); 
+						//后台运行
+						var isAndroid = (/android/gi).test(navigator.appVersion);
+						if(isAndroid){
+						    var rb = api.require('runBackground');
+						    rb.hideActivity();
+						}else{
+							api.closeWidget();
+						}
+					}
+				}
+				return false;
+			});
+			api.addEventListener({
+			    name:'smartupdatefinish'
+			}, function(ret, err){        
+			    api.toast({
+					msg : '云修复已经完成！',
+					duration : 2000,
+					location : 'bottom'
+				});
+			});
+			rongcloudcontact();
+			
+			
+		}
+		
+		
+		
+		function openallpost(){
+			api.openFrame({
+			    name: 'bottom_post',
+			    url: 'comm/bottom_post.html',
+			    rect:{
+			        x:0,
+			        y:0,
+			        w:'auto',
+			        h:api.winHeight-$("footer").height()
+			    },
+			    pageParam: {name:'bottom_post'},
+			    bounces: false,
+			});
+			api.setFrameAttr({
+				name : 'bottom_post',
+				hidden : false
+			});
+			api.bringFrameToFront({
+			    from: 'bottom_post',
+			});
+			api.bringFrameToFront({
+			    from: 'post-add',
+			});
+			var bottompostloadflag=$api.getStorage("bottompostloadflag");
+			if (bottompostloadflag == 1) {
+				api.execScript({
+		    		name:"root",
+					frameName : 'bottom_post',
+					script : 'openpostselect()'
+				});
+			}
+			return;
+		}
+		//显示栏目条中的消息
+		function showmessgesnav() {
+			//消息提醒
+			var data = {
+				company_id : UserInfo.memberID(),
+				usertoken : UserInfo.token(),
+				appsystem : api.systemType,
+				datatype : "json",
+				visitoncode : api.appVersion,
+				clientid : api.deviceId,
+			}
+			api.ajax({
+				url : hosturl + "messagesnoview.html",
+				method : "get",
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				var showsysmesscount = $api.getStorage("showsysmesscount");
+				//alert(ret.count0.toString())
+				var count1=0
+				var ldbvalue=$api.getStorage("ldbvalue");
+    			if (ldbvalue==0){
+    				count1=ret.count1;
+    			}
+				if (showsysmesscount) {
+					if (parseInt(ret.count0)-parseInt(showsysmesscount)>0 || count1 > 0 || ret.count2 > 0 || ret.count3 > 0 || ret.count4 > 0) {
+						$(".chatmessages").show();
+						//显示在应用图标右上角的数字
+						api.setAppIconBadge({
+							badge : ret.count1 + ret.count2 + ret.count3 + ret.count4
+						});
+					} else {
+						$(".chatmessages").hide();
+						//显示在应用图标右上角的数字
+						api.setAppIconBadge({
+							badge : 0
+						});
+					}
+				}
+				if (count1 > 0) {
+					if (frame4 == 1) {
+						api.execScript({
+							frameName : 'my-home',
+							script : "showquestionnum('" + count1 + "')"
+						});
+					}
+					//显示在应用图标右上角的数字
+					api.setAppIconBadge({
+						badge : ret.count1
+					});
+					$(".mymessages").show();
+				} else {
+					$(".mymessages").hide();
+					//显示在应用图标右上角的数字
+					api.setAppIconBadge({
+						badge : 0
+					});
+				}
+			});
+		}
+
+		//隐藏栏目条中管家的消息提醒
+		function hidemainmyhome() {
+			$(".mymessages").hide();
+		}
+
+		//聊天更新
+		function chatrefrush() {
+			if (frame3 == 1) {
+				api.execScript({
+					name : 'root',
+					frameName : 'quote',
+					script : 'refreshmessages()'
+				});
+			} else {
+				api.execScript({
+					name : 'root',
+					script : 'randomSwitchBtn("","",2)'
+				});
+			}
+		}
+
+		//# 生意管家数据更新
+		function changemyrcindex() {
+			if (frame4 == 1) {
+				api.execScript({
+					name : 'root',
+					frameName : 'my-home',
+					script : 'ajaxInfo()'
+				});
+			}
+			if (frame3 == 1) {
+				api.execScript({
+					name : 'root',
+					frameName : 'quote',
+					script : 'refreshmessages()'
+				});
+			}
+		}
+
+		//签到  生意管家里隐藏
+		function hideqiandao() {
+			if (frame4 == 1) {
+				api.execScript({
+					name : 'root',
+					frameName : 'my-home',
+					script : 'hideqiandao()'
+				});
+			}
+		}
+
+		function pro_xzleimu(k) {
+		}
+
+		// 随意切换按钮
+		function randomSwitchBtn(obj, name, index) {
+			
+			nowindex=index;
+			
+			var pageParam=""
+			var frames=[{
+				name : 'index-frame',
+				bounces : true,
+				bgColor : '#ffffff',
+				pageParam : pageParam,
+				url : '../html/index-frame.html'
+			}, {
+				name : 'help',
+				bounces : false,
+				pageParam : {footerheight:$("footer").height()},
+				url : '../html/help/index.html'
+			}, {
+				name : 'quote',
+				bounces : false,
+				pageParam : {footerheight:$("footer").height()},
+				url : '../html/msg/index.html'
+			}, {
+				name : 'my-home',
+				bounces : false,
+				pageParam : pageParam,
+				url : '../html/myrc/my-home.html'
+			}]
+			if (index==1){
+				fheight=48+30;
+			}else{
+				fheight=api.winHeight-$("footer").height()
+			}
+			if(index==2){
+				fheight=48;
+			}
+			opencommframe(frames[index].name,frames[index].url,frames[index].pageParam,fheight)
+			api.bringFrameToFront({
+			    from: 'post-add',
+			});
+			if (index!=2){
+				api.setFrameGroupAttr({
+					name : 'msggroup',
+					hidden : true
+				});
+			}else{
+				api.setFrameGroupAttr({
+					name : 'msggroup',
+					hidden : false
+				});
+				api.setFrameAttr({
+					name : 'quote',
+					hidden : true
+				});
+				api.setFrameAttr({
+					name : 'help',
+					hidden : true
+				});
+				api.setFrameAttr({
+					name : 'my-home',
+					hidden : true
+				});
+				api.setFrameAttr({
+					name : 'index-frame',
+					hidden : true
+				});
+			}
+			if (index!=1){
+				api.setFrameGroupAttr({
+					name : 'list1_group',
+					hidden : true
+				});
+			}else{
+				api.setFrameGroupAttr({
+					name : 'list1_group',
+					hidden : false
+				});
+				api.setFrameAttr({
+					name : 'my-home',
+					hidden : true
+				});
+				api.setFrameAttr({
+					name : 'quote',
+					hidden : true
+				});
+				api.setFrameAttr({
+					name : 'index-frame',
+					hidden : true
+				});
+			}
+			
+			var footer = $api.byId('aui-footer');
+			var footerAct = $api.dom(footer, '.aui-bar-tab li.active-warning');
+			$api.removeCls(footerAct, 'active-warning');
+			
+			$api.addCls($api.byId('tabbar' + (index + 1).toString()), 'active-warning');
+			
+			if (index == 1) {
+				frame2 = 1;
+			}
+			//closeallpost()
+			//消息提醒隐藏
+			if (index == 2) {
+				$(".chatmessages").hide();
+				var msgloadflag=$api.getStorage("msgloadflag");
+				if (msgloadflag == 1) {
+					api.execScript({
+						frameName : 'quote',
+						script : "showmessages()"
+					});
+				}
+				frame3 = 1;
+			}
+			//管家提醒隐藏
+			if (index == 3) {
+				$(".mymessages").hide();
+				frame4 = 1;
+			}
+			for ( i = 0; i <= 3; i++) {
+				if (i == 0) {
+					$("#tabbar1 span").removeClass("aui-icon-homefill");
+					$("#tabbar1 span").addClass("aui-icon-home")
+				}
+				if (i == 1) {
+					$("#tabbar2 span").removeClass("aui-icon-attentionfill");
+					$("#tabbar2 span").addClass("aui-icon-attention")
+				}
+				if (i == 2) {
+					$("#tabbar3 span").removeClass("aui-icon-markfill");
+					$("#tabbar3 span").addClass("aui-icon-mark")
+				}
+				if (i == 3) {
+					$("#tabbar4 span").removeClass("aui-icon-myfill");
+					$("#tabbar4 span").addClass("aui-icon-my")
+				}
+				if (i == index) {
+					var noobj = $("#tabbar" + (i + 1).toString() + " span");
+					var noclass = noobj.attr("class").replace("aui-iconfont ", "");
+					noobj.removeClass(noclass)
+					noobj.addClass(noclass + "fill");
+				}
+			}
+			//统计数据
+			var tongjidata = {
+				company_id : UserInfo.memberID(),
+				usertoken : UserInfo.token(),
+				appsystem : api.systemType,
+				datatype : "json",
+				visitoncode : api.appVersion,
+				clientid : api.deviceId,
+				url : 'index.html' + index
+			}
+			api.ajax({
+				url : hosturl + "tongji/t.html",
+				method : "get",
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : tongjidata
+				}
+			}, function(ret, err) {
+			});
+			//统计数据
+			showmessgesnav();
+			
+		}
+
+		//生意管家调用方法
+		function myHome() {
+			$("#footer").find("li").eq(3).on('click', function() {
+				randomSwitchBtn(this, 'cloud', 3)
+			});
+			$("#footer").find("li").eq(3).click();
+		}
+
+		//返回标志重置
+		function keybackFun(flag) {
+			keybackflag = flag;
+		}
+		function opengonggao(){
+			api.openFrame({
+			    name: 'gonggao',
+			    url: hosturl+"app/html/ad/gonggao.html",
+			    rect:{
+			        x:0,
+			        y:0,
+			        w:'auto',
+			        h:api.winHeight-$("footer").height()
+			    },
+			    bounces: false,
+			});
+			api.bringFrameToFront({
+			    from: 'post-add',
+			});
+		}
+		//打开诚信上传
+		function opencxinfo(){
+			var pageParam = {
+				wintitle : "诚信档案",
+				type : "credibility",
+				bounces : false
+			};
+			if (UserInfo.has_login()) {
+				openWin("credibility", "../myrc/credibility.html", pageParam);
+			} else {
+				pageParam.nextUrl = "widget://html/myrc/credibility.html";
+				pageParam.winName = "pust-data";
+				openWin("frm-login", "../myrc/frm-login.html", pageParam);
+			}
+			return false;
+		}
+
+		//socket 数据处理
+		function managesocketdata(data) {
+			if ( typeof data === 'string') {
+				var login_sn = UserInfo.has_login();
+				if (login_sn) {
+					var returnvalue = eval("(" + data + ")");
+					if (returnvalue) {
+						//留言数量
+						if (returnvalue.sendtype == "question") {
+							if (frame4 == 1) {
+								if (returnvalue.company_id == UserInfo.memberID()) {
+									var questionnum = returnvalue.questionnum
+									$(".mymessages").show();
+									if (frame4 == 1) {
+										api.execScript({
+											frameName : 'my-home',
+											script : "showquestionnum('" + questionnum + "')"
+										});
+									}
+								}
+							}
+						}
+						//zzalert(returnvalue.sendtype)
+						//聊天提醒
+						if (returnvalue.sendtype == "chat") {
+							if (frame3 == 1) {
+								if (returnvalue.company_id == UserInfo.memberID()) {
+									$(".chatmessages").show();
+									if (frame3 == 1) {
+										api.execScript({
+											name : 'root',
+											frameName : 'quote',
+											script : 'ajaxInfo(1)'
+										});
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		//socket start
+		var n = 0;
+		function socketdatastart() {
+			var socketManager = api.require('socketManager');
+			socketManager.createSocket({
+				//type : "udp",
+				host : '121.40.103.220',
+				//udpMode : "broadcast",
+				port : 5000,
+				//localPort : 8000
+			}, function(ret, err) {
+				if (ret) {
+					//zzalert(JSON.stringify(ret))
+					var state = ret.state;
+					var sid = ret.sid;
+					var data = ret.data;
+					var stateStr = "";
+					if (101 === state) {
+						stateStr = "创建成功";
+					} else if (102 === state) {
+						stateStr = "连接成功";
+					} else if (103 === state) {
+						stateStr = "收到消息";
+					} else if (201 === state) {
+						stateStr = "创建失败";
+					} else if (202 === state) {
+						stateStr = "连接失败";
+					} else if (203 === state) {
+						stateStr = "异常断开";
+					} else if (204 === state) {
+						stateStr = "正常断开";
+					} else if (205 === state) {
+						stateStr = "发生未知错误";
+					}
+					//api.alert({msg:msg});
+					if (102 === state) {
+						var msg = 'sid: ' + sid + '\nstate: ' + stateStr + '\ndata: ' + ( data ? data : '') + '\state:' + state;
+						//api.alert({msg:msg});
+					}
+					$api.setStorage("socketsid", sid);
+					if (state == 103) {
+						//managesocketdata(data)
+					}
+					if (state == 203 || state == 204 || state == 205 || state == 202) {
+						socketManager.closeSocket({
+							sid : sid
+						}, function(ret, err) {
+							if (ret.status) {
+								//zzalert( JSON.stringify( ret ) );
+							} else {
+								//zzalert( JSON.stringify( err ) );
+							}
+						});
+						if (n <= 200) {
+							setTimeout("socketdatastart()", 1000 * 30);
+						}
+						n = n + 1;
+					}
+				}
+			});
+		}
+		function opencommframe(wname, url, pageParam,frameheight) {
+			api.openFrame({
+				name : wname,
+				url : url,
+				rect : {
+					x : 0,
+					y : 0,
+					w : 'auto',
+					h : frameheight
+				},
+				pageParam : pageParam,
+				bounces : false,
+				bgColor : 'rgb(255,255,255,255)',
+				vScrollBarEnabled : false,
+				hScrollBarEnabled : false,
+				showProgress : true,
+				allowEdit : false,
+				reload : false,
+				
+			});
+		}
+	    
+		(function(d, t) {
+			var r = d.createElement(t),
+				s = d.getElementsByTagName(t)[0];
+			r.async = 1;
+			r.src = hosturl + '/js/new/index.js?' + (new Date()).getTime().toString();
+			s.parentNode.insertBefore(r, s);
+		})(document, "script");
+	</script>
+</html>

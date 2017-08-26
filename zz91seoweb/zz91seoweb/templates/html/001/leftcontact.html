@@ -1,0 +1,60 @@
+﻿<div class="mod mod-proinfo">
+                      <div class="m-body">
+                        <div class="m-header">
+                            <h3>企业信息</h3> 
+                        </div>
+                        <div class="m-content">
+                          <div class="info-detail">
+                             <p class="business-name">
+                               {{list.name}}
+                             </p>
+                             <p class="linkman">
+                               <span>所在地区：{{list.province}}</span>
+                               <span>营业执照：</span>
+							   {%if integral%}
+                               <span>诚信指数：{{integral}}</span>
+							   {%endif%}
+                               <span>经营范围：{{list.business}}</span>
+                               
+                               
+                             </p>
+                             
+                             <p class="operate">
+                               <span>经营模式：{{list.industry}}</span>
+                               
+                             </p>
+                             <p class="online-collect">
+                                <a href="leavewords.html" class="online-ask J_fsxjd" rel="nofollow">在线询价</a>
+                                <!--<span><a href="#" login="false" class="collect-this js_shoucang" rel="nofollow">收藏该企业</a></span>-->
+                             </p>
+                          </div> 
+                        </div>
+                      </div> 
+                    </div>
+                    <!--企业信息结束-->
+                    <!--联系方式-->
+                    <div class="mod mod-proinfo">
+                      <div class="m-body">
+                        <div class="m-header">
+                            <h3>联系方式</h3> 
+                        </div>
+                        <div class="m-content">
+                          <div class="info-detail">
+                             
+                           <p class="linkman" style="margin-top:0px;">
+                               <span>联系人：{{list.contact}} {{list.position}}</span>
+                               {%if list.tel%}
+                               <span>电话：{{list.tel_country_code}} {{list.tel_area_code}} {{list.tel}}</span>
+                               {%endif%}
+                               {%if list.fax%}
+                               <span>传真：{{list.fax_country_code}} {{list.fax_area_code}} {{list.fax}}</span>
+                               {%endif%}
+                               <span>移动电话：{{list.mobile}}</span>
+                               <span></span>
+                               <span>地址：{{list.address}}</span> 
+                             </p>
+                          </div> 
+                        </div>
+                      </div> 
+                    </div>
+                    <!--企业信息结束-->

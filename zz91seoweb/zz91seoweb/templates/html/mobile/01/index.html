@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>{{list.name}}</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+<!--组件依赖css begin-->
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/widget/slider/slider.css" />
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/widget/slider/slider.default.css" /> <!--皮肤文件，若不使用该皮肤，可以不加载-->
+<!--组件依赖css end-->
+<!--组件依赖js begin-->
+<script type="text/javascript" src="{{htmlincludes.img}}js/zepto.js"></script>
+<script type="text/javascript" src="{{htmlincludes.img}}js/touch.js"></script>      <!--新版zepto合并版中不包括touch.js-->
+<script type="text/javascript" src="{{htmlincludes.img}}js/zepto.extend.js"></script>
+<script type="text/javascript" src="{{htmlincludes.img}}js/zepto.ui.js"></script>
+<script type="text/javascript" src="{{htmlincludes.img}}js/widget/slider.js"></script>
+<!--组件依赖js end-->
+</head>
+<body>
+{%include "html/mobile/01/top.html"%}
+<!--end phoneBanner-->
+<div style="text-align:center"><img src="{{htmlincludes.img}}images/banner2.jpg" style="width:100%" /></div>
+<table class="phoneNav" style="border-collapse:inherit;border-spacing:10px;">
+	
+	<tr>
+    	<td>
+        	<div class="phoneNay-img">
+        		<a href="/mobile/company_profile{{company_id}}.htm"><img src="{{htmlincludes.img}}images/img1.jpg" style="width:100%" /></a>
+            </div>
+            <!--end phoneNay-img-->
+            <div class="phoneNav-text">
+            	<a href="/mobile/company_profile{{company_id}}.htm">公司简介</a>
+            </div>
+            <!--end phoneNav-text-->
+        </td>
+        <td>
+        	<div class="phoneNay-img">
+        		<a href="/mobile/products{{company_id}}-1.htm?pdt_type=0"><img src="{{htmlincludes.img}}images/img2.jpg" /></a>
+            </div>
+            <!--end phoneNay-img-->
+            <div class="phoneNav-text">
+            	<a href="/mobile/products{{company_id}}-1.htm?pdt_type=0">求购信息</a>
+            </div>
+            <!--end phoneNav-text-->
+        </td>
+        <td>
+        	<div class="phoneNay-img">
+        		<a href="/mobile/products{{company_id}}-1.htm?pdt_type=1"><img src="{{htmlincludes.img}}images/img3.jpg" /></a>
+            </div>
+            <!--end phoneNay-img-->
+            <div class="phoneNav-text">
+            	<a href="/mobile/products{{company_id}}-1.htm?pdt_type=1">供应信息</a>
+            </div>
+            <!--end phoneNav-text-->
+        </td>
+    </tr>
+    <tr>
+    	<td>
+        	<div class="phoneNay-img">
+        		<a href="/mobile/contact{{company_id}}.htm"><img src="{{htmlincludes.img}}images/img4.jpg" /></a>
+            </div>
+            <!--end phoneNay-img-->
+            <div class="phoneNav-text">
+            	<a href="/mobile/contact{{company_id}}.htm">在线询盘</a>
+            </div>
+            <!--end phoneNav-text-->
+        </td>
+        <td>
+        	<div class="phoneNay-img">
+        		<a href="/mobile/credit{{company_id}}.htm"><img src="{{htmlincludes.img}}images/img5.jpg" /></a>
+            </div>
+            <!--end phoneNay-img-->
+            <div class="phoneNav-text">
+            	<a href="/mobile/credit{{company_id}}.htm">诚信档案</a>
+            </div>
+            <!--end phoneNav-text-->
+        </td>
+        <td>
+        	<div class="phoneNay-img">
+        		<a href="/mobile/contact{{company_id}}.htm"><img src="{{htmlincludes.img}}images/img6.jpg" /></a>
+            </div>
+            <!--end phoneNay-img-->
+            <div class="phoneNav-text">
+            	<a href="/mobile/contact{{company_id}}.htm">联系方式</a>
+            </div>
+            <!--end phoneNav-text-->
+        </td>
+    </tr>
+</table>
+<!--end phoneNav-->
+<div class="phoneInfo">
+	<img src="{{htmlincludes.img}}images/icon2.jpg" />公司简介
+</div>
+<!--end phoneInfo-->
+
+<div class="phoneBox">
+{%if companyimg%}
+	<div class="phoneBox-divImg">
+    	<div id="slider" style="height:75px"></div>
+        <script>
+		
+			//创建slider组件
+			var slider = $.ui.slider('#slider', {
+				autoPlay:false,
+				showArr:false,
+				viewNum:3,
+				content:[
+					{%for i in companyimg%}{
+						href: "",
+						pic: "{{i.filepath}}",
+						title:''
+					},{%endfor%}
+				]
+			});
+		</script>
+		<!-- 图片高度自适应 -->
+		<script type="text/javascript" src="{{htmlincludes.img}}js/jquery.js"></script>
+		<script type="text/javascript">
+		$(window).load(function(){
+			$('#slider').css('height','75px');
+		})
+		</script>
+		<!-- 代码 结束 -->
+    </div>
+    <!--end phoneBox-divImg-->
+{%endif%}
+    <div class="phoneBox-divText" id="phoneText">
+    {{list.introduction|safe}}
+    </div>
+    <!--end phoneBox-divText-->
+    <center>
+    	<div class="phoneBox-line"><img src="{{htmlincludes.img}}images/icon4.jpg" /></div>
+        <div class="phoneBox-divMore" id="more">
+            展开所有
+        </div>
+        <!--end phoneBox-divMore-->
+    </center>
+</div>
+<!--end phoneBox-->
+<script src="{{htmlincludes.img}}js/index.js"></script>
+<div class="phoneRuturntop">
+	<img src="{{htmlincludes.img}}images/ruturn_top.jpg" class="fr" onclick="bookmarks();" />
+    <div class="cb"></div>
+</div>
+<!--phoneRuturntop-->
+{%include "html/mobile/01/foot.html"%}
+<!--end phoneFooter-->
+</body>
+</html>

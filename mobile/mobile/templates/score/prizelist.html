@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta content="yes" name="apple-mobile-web-app-capable" /> 
+<meta content="black" name="apple-mobile-web-app-status-bar-style" /> 
+<meta content="telephone=no" name="format-detection" /> 
+<meta property="qc:admins" content="10301304622116375" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信签到</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="http://m.zz91.com/css/floatlay.css"/>
+<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+<script src="http://m.zz91.com/js/floatlay.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+<body>
+<div class="topnav"><a href="/">首页</a><a href="/category/">交易中心</a><a href="/priceindex/">行情报价</a><a href="/myrc_index/">生意管家</a></div>
+   <div class="content">
+      <div class="top topbg">
+      	<div class="t-box">
+        <div class="top-txt">用户名:{{username}}</div>
+        <!--end top-txt-->
+        <div class="t1">
+        <div class="top-txt1">可用积分:<span class="scorenum">{{scorecount}}</span></div>
+        <!--end top-txt-->
+        <div class="top-txt1">过期积分:{{limitoutscore}}</div>
+        <!--end top-txt-->
+        </div>
+        <div class="top-txt"><span style="float:left; padding-right:10px;">我的手机号码：<span id="mobilevalue">{{mobile}}</span></span><span class="mbutton"><a href="javascript:openoverlay('','修改手机号码','<form action=savemoble.html method=post><div class=modifymobile>为了顺利兑奖，您的账号需要绑定手机号码！<br /><input type=text name=mobile id=\'mobile\' class=txt /><br /><br /><input type=button value=\'确定修改\' id=\'mobilebutton\' class=\'mobilebutton_gree\' onclick=\'savemobile()\' /></form></div>',160);">修改号码</a></span></div>
+        <!--end t1-->
+        </div>
+      </div>
+      <!--end top-->
+      <div class="list">
+         <div class="l-content">
+            <div class="l-item">
+               <ul>
+                  <li class="listnav">
+                     <div class="l-item-txt3 l-item-txt4_on">兑换奖品</div>
+                     <!--end l-item-txt-->
+                     <a href="prizelog.html"><div class="l-item-txt4 l-item-txt4_off">领奖记录</div></a>
+                  </li>
+                  <div style="clear:both"></div>
+                  {%for list in prizelist%}
+                  <li class="prizelist" onClick="openoverlay('','兑换奖品','<div class=alertcontent><div style=\'text-align:center\'>{{list.title}}</div><div>价格：<font color=#f00>{{list.score}}</font></div><div>奖品说明：{{list.content}}</div><div><center>{%ifequal list.closeflag 0%}<input type=button class=mobilebutton_gree value=确认兑换 onclick=saveprize({{list.id}}) />{%else%}<font color=\'#ff0000\'>该奖品已兑完</font>{%endifequal%}</center></div></div>',200)">
+                  	 <div class="p-pic"><img src="images/{{list.pic}}"></div>
+                     <div class="p-content"><h2>{{list.title}}</h2><span>剩余：<font color="#FF3300">{{list.num}} / {{list.numall}}</font>
+                     {%ifequal list.closeflag 1%}<br /><font color=\'#ff0000\'>该奖品已兑完</font>{%endifequal%}
+                     </span></div>
+                     <div class="p-duihuan"><span>&yen;{{list.score}}积分一次</span></div>
+                  </li>
+                  {%endfor%}
+               </ul>
+            </div>
+            
+             
+            
+            
+            <!--end l-item-->
+         </div>
+         <!--end l-content-->
+         
+         
+         
+      </div>
+      <!--end list-->  
+      <div class="floatNav">
+			<a href="index.html" style="background:none">{{username}}</a>
+            <a href="scorelist.html">积分<font>{{scorecount}}</font></a>
+			<a href="prizelist.html">兑换奖品</a>
+      </div>
+     
+      <div class="bg">
+     
+      </div>
+      <!--end content-->      
+   </div>
+   {%if qiandao%}
+   <script>
+   	openoverlay('','签到成功！','{{rtext}}',50)
+   </script>
+   {%endif%}
+   <!--end content-->
+<script>
+function savemobile(){
+  	  $.post("savemoble.html",
+	  {
+		mobile:$("#mobile").val()
+	  },
+	  function(data,status){
+		if (status=="success"){
+			$("#mobilevalue").html(data)
+			closeoverlay();
+		}
+	  });
+}
+function saveprize(pid){
+  	  $.post("saveprize.html",
+	  {
+		id:pid
+	  },
+	  function(data,status){
+		if (status=="success"){
+			if (data=="0"){
+				$(".alertcontent").html("<div style='text-align:center;color=#f00'>您的积分不足，还不能兑换该奖品!</div>")
+			}else{
+				if (data=="1"){
+					$(".alertcontent").html("<div style='text-align:center'>兑换成功!<br /><a href='/' target=_blank class=mobilebutton_gree>点此立即去手机站</a></div>");
+				}else{
+					$(".alertcontent").html("<div style='text-align:center'>兑换成功!</div>");
+				}
+			}
+			//$("#mobilevalue").html(data)
+			//closeoverlay();
+		}
+	  });
+}
+</script>
+<div style="display:none">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!--baidu analysis-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
+</body>
+</html>

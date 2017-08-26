@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>情况说明记录</title>
+		<link rel="stylesheet" href="/layui/css/layui.css" type="text/css">
+		<style type="text/css">
+			.layui-table td,.layui-table th {
+				font-size: 12px;
+				padding: 2px 5px;
+				text-align: center;
+			}
+			body {
+				width: 60%;
+				margin: auto;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody>
+				<form action="usershow_history.html?uid={{list.uid}}">
+					<center>
+						共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页 &nbsp;&nbsp; {% if firstpage %}
+						<font color="gray">上一页</font>
+						{% else %}
+						<a href="?page={{prvpage}}&uid={{uid}}">上一页</a>
+						{% endif %} {%for p in page_range%} {%if p.nowpage%}
+						<span class='current'>{{p.number}}</span> {%else%}
+						<a href="?page={{p.number}}">{{p.number}}</a>
+						{%endif%} {%endfor%} {%if flag %}
+						<input type="hidden" name="flag" value="{{flag}}"> {%endif%} {%if writer%}
+						<input type="hidden" name="writer" value="{{writer}}"> {%endif%}
+						<input type="hidden" name="uid" value="{{uid}}"> 去第
+						<input type="text" name="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页 {% if lastpage %}
+						<font color="gray">下一页</font>
+						{%else%}
+						<a href="?page={{nextpage}}&uid={{uid}}">下一页</a>
+						{%endif%}&nbsp;&nbsp;&nbsp;
+						<input type="submit" style="display:none"> &nbsp;&nbsp;
+						<a href='?page=1&uid={{uid}}'>首页</a>&nbsp;&nbsp;
+						<a href='?page={{page_listcount}}&uid={{uid}}'>尾页</a>
+					</center>
+				</form>
+			</tbody>
+		</table>
+
+		<div class="layui-form">
+			<table class="layui-table">
+
+				<thead>
+					<tr>
+						<th>联系状态</th>
+						<th>下次面谈时间</th>
+						<th>操作人员</th>
+						<th>事件记录</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for list in listall %}
+					<tr>
+						<td>{{list.label}}</td>
+						<td>{{list.nextteltime}}</td>
+						<td>{{list.realname}}</td>
+						<td>{{list.bz}}</td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+		</div>
+	</body>
+
+</html>

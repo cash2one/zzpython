@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/style.css" />
+</head>
+<body>
+<form class="form-inline definewidth m20" action="index.html" method="get"> 
+<input type="button" value="返回" class="btn btn-success"  onClick="window.location.href='returnpage.html?request_url={{request_url}}'">
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>图片</th>
+        <th>名称</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+<form action="updatetypeok.html">
+    {%for list in listall%}
+	     <tr>
+	        <td><a title="点击预览" href="/{{list.pinyin}}/index.html" target="_blank"><img width="120px" height="60px" src="{{list.pic}}"></a></td>
+	        <td>{{list.name}}</td>
+	        <td><br />
+	        <a href="/{{list.pinyin}}/index.html" title="点击预览" class="btn btn-success" target="_blank">预览此模版</a>&nbsp;&nbsp;
+	        <a href="addusertemp.html?temp_id={{list.id}}&request_url={{request_url}}" class="btn btn-success">应用此模版</a>
+	        </td>
+        </tr>
+     {%endfor%}
+</form>
+</table>
+{%include 'common/turnpage.html'%}
+</body>
+</html>

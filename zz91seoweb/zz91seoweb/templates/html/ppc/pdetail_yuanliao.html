@@ -1,0 +1,354 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>{{productsdetail.title|safe}}-{{list.name}}</title>
+        <meta content="{{productsdetail.details75|safe}}" name="description"/>
+        <meta content="" name="keywords"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="{{csscode}}css/base.css" />
+        <link rel="stylesheet" href="{{csscode}}css/modules.css" />
+        <link rel="stylesheet" href="{{csscode}}css/style.css" />
+        <link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico" />
+        <script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+    </head>
+    <body>
+        {%include htmlincludes.topinclude%}
+        <div id="content">
+            <!--左边主题板块-->
+            <div class="grid-sub fl">
+                {%include htmlincludes.leftinclude%}
+                {%if serieslist%}
+                <!--产品分类-->
+                <div class="mod mod-proclass">
+                    <div class="m-body">
+                        <div class="m-header">
+                            <h3>供求分类</h3>
+                        </div>
+                        <div class="m-content">
+                            <div class="proclass-list">
+                                <ul>
+                                    {%for list in serieslist%}
+                                    <li>
+                                        <a href="products{{company_id}}-{{list.id}}-1.htm" title="{{list.name|safe}}">{{list.name|safe}}</a>
+                                    </li>
+                                    {%endfor%}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--产品分类结束-->
+                {%endif%}
+                {%if productsdetail.tagslist%}
+                <!--产品相关标签-->
+                <div class="mod mod-proclass">
+                    <div class="m-body">
+                        <div class="m-header">
+                            <h3>相关标签</h3>
+                        </div>
+                        <div class="m-content">
+                            <div class="proclass-list">
+                                <ul>
+                                    {%for tag in productsdetail.tagslist%}
+                                    <li>
+                                        <a href="http://daohang.zz91.com/tags-{{tag.main_code}}/{{tag.id}}/" target="_blank">{{tag.name|safe}}</a>
+                                    </li>
+                                    {%endfor%}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--产品相关标签-->
+                {%endif%}
+            </div>
+            <!--左边主题板块结束-->
+            <!-- 右面主题板块-->
+            <div class="main-wrap product_detail_tabs fr">
+                <!-- detail -->
+                <div class="path">
+                    <a href="/ppc/index{{company_id}}.htm" title="{{list.name}}">{{list.name}}</a>
+                    <span>></span>
+                    <a href="/ppc/zxgq{{company_id}}.htm" title="供求信息">原料供求信息</a>
+                    <span>></span>
+                    {{productsdetail.yuanliao_type_code_txt}}{{productsdetail.title|safe}}
+                </div>
+                <div class="detail-wrap">
+                    <div class="clf">
+                        <div class="pro-gallery fl" id="proGallery">
+                            <div class="g-con pic-mid">
+                                <a href="http://trade.zz91.com/pic/{{id}}.html" target="_blank">
+                                    <img src="{{productsdetail.defaultimages}}" alt="{{productsdetail.title|safe}}" />
+                                </a>
+                            </div>
+                            <div class="g-nav">
+                                <ul class="g-lst pic-mid">
+                                    {%for pic in productsdetail.piclist%}
+                                    <li class o-src="{{pic.images_big}}">
+                                        <a href="javascript:;" class="small-btpic">
+                                            <img src="{{pic.images}}" alt="{{productsdetail.title|safe}}" />
+                                        </a>
+                                    </li>
+                                    {%endfor%}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="info-wrap fr">
+                            <div class="pro-dis">
+                                <h1 class="detail-tit">{{productsdetail.yuanliao_type_code_txt}}{{productsdetail.title|safe}}</h1>
+                                {%if laidbflag%}
+                                <div class="detail-yang">
+                                    <div class="logo"></div>
+                                    <div class="yangprice">拿样价格：<font>{{laidblist.take_price}}</font>元</div>
+                                    <div class="clear"></div>
+                                </div>
+                                {%endif%}
+                           		<!-- 原料供求简介开始 -->     
+                                {%if productsdetail.pricetxt%}
+                                <p><span>{{productsdetail.yuanliao_type_code_txt}}价格：</span>{{productsdetail.pricetxt}}{{productsdetail.price_unit}}</p>
+                                {%endif%}
+                                {%if productsdetail.quantity%}
+                                <p><span>{{productsdetail.yuanliao_type_code_txt}}数量：</span>{{productsdetail.quantity}}{{productsdetail.unit}}</p>
+                                {%endif%}
+                                {%if productsdetail.provide_status_text%}
+                                <p><span>{{productsdetail.yuanliao_type_code_txt}}情况：</span>{{productsdetail.provide_status_text}}{{productsdetail.yuanliao_type_code_txt}}</p>
+                                {%endif%}
+                                <p>厂家（产地）：{{productsdetail.factory}}</p>
+                                <p><span>牌号：</span>{{productsdetail.trade_mark}}</p>
+                                {%if productsdetail.locationtxt%}
+                                <p><span>现货所在地：</span>{{productsdetail.locationtxt|safe}}</p>
+                                {%endif%}
+                                {%if productsdetail.send_time%}
+                                <p><span>发货时间：</span>{{productsdetail.send_time}}天内发货</p>
+                                {%endif%}
+                                <p><span>发布日期：</span>{{productsdetail.refresh_time}}</p>
+                                <!-- 原料供求简介结束 -->     
+                            </div>
+							<!--
+                            <div class="card-imgdetail" style="margin:0px;border:1px solid #E0E0E0;width:380px">
+                                <div class="card-person" style="margin:5px;width:380px">
+                                    <img onerror="this.onerror=null;this.src='images/ldblogo.jpg'" src="images/ldblogo.jpg" style="height:60px;width:60px" alt="{{list.contact}}" />
+                                    <p>
+                                        <strong>&nbsp;&nbsp;{{list.contact}} </strong>
+                                        {{list.position}}</p>
+                                        <p>&nbsp;&nbsp;免费服务电话：<small>{{list.ppcphone}}</small>
+                                        </p>
+                                </div>
+                            </div>
+							-->
+                        </div>
+                    </div>
+					<!--start 20150127 update-->
+					<style>
+						.carblock{border:1px solid #E0E0E0;padding-right:20px;margin:10px 0;}
+						.card-box{height:54px;background:url(http://img0.zz91.com/zz91/ppc/images/carbox_bg.jpg) right center no-repeat;padding:20px;font-family:"微软雅黑"}
+						.carbox-person{height:31px;background:url(http://img0.zz91.com/zz91/ppc/images/logo_ldb.jpg) no-repeat;padding-left:39px;margin-bottom:7px;}
+						.carbox-person p{line-height:31px;font-size: 20px;font-family: Arial;font-weight: bold;}
+						.carbox-person span{color: #ff0307;}
+					</style>
+					<div class="carblock">
+						<div class="card-box">
+							<div class="carbox-person">
+								<p>{{list.contact}}&nbsp;&nbsp;<span>{{list.ppcphone}}</span></p>
+							</div>
+							<!--end carbox-person-->
+							<p>该用户开通了来电宝，拨打上方400号码，将接通至该用户手机</p>
+						</div>
+						<!--end card-box-->
+					</div>
+					<!--end 20150127 update-->
+                    <div class="detail-con">
+                        {%if laidbflag%}
+                        <p class="lst-tit">样品交易信息</p>
+                        <div class="d-yang">
+                            <div class="d-yang-img"></div>
+                            <ul class="d-yang-content">
+                                <li>拿样价格：{{laidblist.take_price}}元</li>
+                                <li>运费：{{laidblist.send_price}}元 {%ifequal laidblist.is_cashdelivery 1%}(支持货到付款){%endifequal%}</li>
+                                <li>样品数量：{{laidblist.amount}}件</li>
+                                <li>发货地址：{{laidblist.area_code}}</li>
+                                <li>单位重量：{{laidblist.weight}}千克/件</li>
+                                <li>支付方式：支持支付宝交易</li>
+                                <div class="clear"></div>
+                                <a href="http://yang.zz91.com/sale/{{id}}.htm" class="bt-ask J_fsxjd ny" target="_blank">申请拿样</a>
+                                <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/tradedetails/css/details_style.css"/>
+                                <br />
+                                <br />
+                                <div class="mb10-box-gt-points" style="margin-left:0px">
+                                    <img src="http://img0.zz91.com/zz91/tradedetails/images/bell.jpg" />
+                                    奖励：拿样付款后，可获得<span class="mb10-credit">5个积分</span>
+                                    ,一分=一块钱。<a href="http://yang.zz91.com/score.htm" target="_blank">查看详情</a>
+                                </div>
+                            </ul>
+                        </div>
+                        {%endif%}
+                        <div class="clear"></div>
+                        <div class="d-tabnav">
+                            <ul class="tab-lst">
+                                <li class="tab-cur" o-data="content">供求详情</li>
+                                <li o-data="contact">联系方式</li>
+                            </ul>
+                            <div class="product-share" >
+                                <span class="product-share1">分享到：</span>
+                                <!-- Baidu Button BEGIN -->
+                                <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+                                    <a class="bds_qzone"></a>
+                                    <a class="bds_tsina"></a>
+                                    <a class="bds_tqq"></a>
+                                    <a class="bds_renren"></a>
+                                    <a class="bds_t163"></a>
+                                    <span class="bds_more">更多</span>
+                                    <a class="shareCount"></a>
+                                </div>
+                                <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6712776" ></script>
+                                <script type="text/javascript" id="bdshell_js"></script>
+                                <script type="text/javascript">
+                                    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+                                </script>
+                                <!-- Baidu Button END -->
+                            </div>
+                        </div>
+                        <div class="content">
+	                        	<!--  
+		                            <div class="prodesc">
+		                                {{productsdetail.detailsfull|safe}}
+		                            </div>
+	                            -->
+	                           <div class="prodesc">
+		                             厂家（产地）：{{productsdetail.factory}}
+		                       </div>
+		                       
+		                       <div class="prodesc">
+		                             牌号：{{productsdetail.trade_mark}}
+		                       </div>  
+		                       {%if productsdetail.typetxt%}
+		                       <div class="prodesc">
+		                             产品类型：{{productsdetail.typetxt}}
+		                       </div>
+		                       {%endif%}
+		                       {%if productsdetail.process_level_txt%}
+		                       <div class="prodesc">
+		                             加工级别：{{productsdetail.process_level_txt}}
+		                       </div>
+		                       {%endif%}
+		                       {%if productsdetail.chara_level_txt%}
+		                       <div class="prodesc">
+		                             特性级别：{{productsdetail.chara_level_txt}}
+		                       </div>
+		                       {%endif%}
+		                       {%if productsdetail.useful_leval_txt%}
+		                       <div class="prodesc">
+		                             用途级别：{{productsdetail.useful_leval_txt}}
+		                       </div>
+		                       {%endif%}
+		                       {%if productsdetail.color%}
+		                       <div class="prodesc">
+		                             颜色：{{productsdetail.color}}
+		                       </div>
+		                       {%endif%}
+		                       {%if productsdetail.density%}
+		                       <div class="prodesc">
+		                             密度：{{productsdetail.density}}（g/cm³）
+		                       </div>
+		                       {%endif%}
+		                       {%if productsdetail.hardness%}
+		                       <div class="prodesc">
+		                             硬度：{{productsdetail.hardness}}（HR）
+		                       </div>
+		                       {%endif%}
+		                       {%if productsdetail.tensile%}
+		                       <div class="prodesc">
+		                             拉伸强度：{{productsdetail.tensile}}（kg/cm²）
+		                       </div>
+		                       {%endif%}
+		                       {% if productsdetail.bending%}
+		                       <div class="prodesc">
+		                             弯曲强度：{{productsdetail.bending}}（kg/cm²）
+		                       </div>
+		                       {%endif%}
+		                       <br/>
+		                       <div class="prodesc">
+		                                {{productsdetail.description|safe}}
+		                       </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end detail -->
+                <div class="contact-detailt" style="display:none">
+                    <div class="card-imgdetail">
+                        <img onerror="this.onerror=null;this.src='http://img0.zz91.com/front/images/esite/logo.gif'" src="http://img0.zz91.com/front/images/esite/logo.gif" />
+                        <div class="card-person">
+                            <p>
+                                <strong>{{list.contact}}</strong>
+                                {{list.position}}
+                            </p>
+                            <p>电话：<small>{{list.ppcphone}}</small>
+                            </p>
+                            <div></div>
+                        </div>
+                    </div>
+                    <h4>{{list.name}}</h4>
+                    <div class="card-info">
+                        {%if list.ppcphone%}
+                        <p class="text-in222">电话：<span>{{list.ppcphone}}</span>
+                        </p>
+                        {%endif%}
+                        {%if list.address%}
+                        <p class="text-in222">地址：<span>{{list.address}}</span>
+                        </p>
+                        {%endif%}
+                        {%if list.address_zip%}
+                        <p class="text-in222">邮编：<span>{{list.address_zip}}</span>
+                        </p>
+                        {%endif%}
+                    </div>
+                </div>
+                <p class="lst-tit">其它相关供求</p>
+                <ul class="pro-lst clf">
+                    {%for list in otherprolist%}
+                    <li>
+                        <a href="yuanliaodetail{{list.id}}.htm" target="_blank">
+                            <img src="{{list.buttom_default_pic}}" alt="{{list.yuanliao_type_code_txt}}{{list.title|safe}}"/>
+                            <span>{{list.yuanliao_type_code_txt}}{{list.title|safe}}</span>
+                        </a>
+                    </li>
+                    {%endfor%}	
+                </ul>
+                <!-- end related -->
+            </div>
+            <!-- 右面主题板块结束-->	
+            <script type="text/javascript">
+                $(document).ready(function() {
+                $(".g-nav li").mouseover(function(){
+                $(".g-nav li").removeClass("act");
+                $(this).addClass("act");
+                $(".g-con img").attr("src",$(this).attr("o-src"));
+                });
+                $(".tab-lst li").click(function(){
+                $(".tab-lst li").removeClass("tab-cur");
+                $(this).addClass("tab-cur");
+                if ($(this).attr("o-data")=="content")
+                {
+                $(".content").css("display","");
+                //$(".pro-hint").css("display","");
+                $(".contact-detailt").css("display","none");
+                }else{
+                $(".content").css("display","none");
+                //$(".pro-hint").css("display","none");
+                $(".contact-detailt").css("display","");
+                }
+                });
+                });
+            </script>
+        </div>
+        <div class="hint">
+            <p>
+                <strong>友情提醒：</strong>
+                为规避购买风险、保障自己的利益，建议你在购买相关产品之前务必确认供应商的企业资质及产品质量；尽量选择已通过营业执照审核的企业。</p>
+                <p>
+                    <strong>免责声明：</strong>
+                    以上信息由会员自行提供，内容的真实性、合法性及准确性由发布会员负责。ZZ91再生网对此信息及交易过程出现的问题不承担任何责任。</p>
+        </div>
+        {%include htmlincludes.buttominclude%}
+    </body>
+</html>

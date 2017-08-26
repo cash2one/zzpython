@@ -1,0 +1,19 @@
+<chart>
+    <data>
+        <indexAxis name="日期">
+            <labels>
+                {%for chart in installapplist%}{{chart.gmt_date}},{%endfor%}
+            </labels>
+        </indexAxis>
+        
+        <valueAxis name="安装量" unit="个"></valueAxis>
+        <dataSets>
+            <set name="{{ftypename}}">
+                <values>
+                {%for chart in installapplist%}{{chart.count}},{%endfor%}
+                </values>
+            </set>
+        </dataSets>
+        
+    </data>
+</chart>

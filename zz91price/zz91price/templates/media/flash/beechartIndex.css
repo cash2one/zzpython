@@ -1,0 +1,77 @@
+
+chart{
+    chartWidth:500;
+    chartHeight:300;
+    colors:#A8CE55, #E9930F, #4D99DA, #CE5555, #DCBB29,#55BECE,#AF80DE;
+    leftAxisVisibility: visible;
+}
+
+legend{
+    position: none;
+}
+
+canvas{
+    gridColor         : #C1C1C1;
+    gridThickness     : 1;
+    gridAlpha         : .5;
+    borderThickness   : 2;
+    borderColor       : #CADBF1;
+	priLineStyle: dashed;
+	priLineColor:#a1a1a1;
+}
+
+line{
+    thickness: 2;
+	lineMethod: line;
+	fillAlpha.active: 0;
+	lineMethod.active: curve;
+	fillType.active: gradient;
+	fillType: gradient;
+	fillAlpha: 0;
+	thickness.active: 3;
+}
+
+line dot{
+    color : inherit#color;
+    radius : 5;
+    radius: 0;
+}
+
+/* 
+坐标上显示文字
+line dot label{
+    visibility:visible;
+}
+*/
+
+xaxis{
+	tickLength: 5.8;
+	tickColor: #666666;
+	lineColor: #666666;
+	lineThickness : null;
+	tickThickness: null;
+}
+
+xaxis label{
+	color: #666666;
+	paddingRight: 0;
+	paddingLeft: 0;
+	visibility: visible;
+}
+
+tooltip{
+    enabled:true;
+}
+
+yaxis{
+    tickColor     : #666666;
+    lineThickness : null;
+    tickThickness : null;
+}
+
+yaxis label{
+	color: #666666;
+	paddingRight: 0;
+	paddingLeft: 0;
+	visibility: hidden;
+}

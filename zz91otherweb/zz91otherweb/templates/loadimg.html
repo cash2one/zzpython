@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title></title>
+    <style>
+    	body{
+    		margin: 0px;
+    		padding: 0px;
+    	}
+    </style>
+</head>
+<body>
+
+<img id="litpic5" src="{{pic_url}}" style="width: 50px;height: 50px;"><a href="javascript:window.history.back(-1)">返回继续上传</a>
+<input type="hidden" id="pictype" value="{{type}}">
+<script type="text/javascript">
+function setContent() {
+		var b = document.getElementById("litpic5").src;
+		var radiot=parent.parent.document.getElementById("radio1");
+		if (radiot){
+			if (radiot.checked){
+	        	parent.parent.document.getElementById("litpic7").value = b;
+			}else{
+	        	parent.parent.document.getElementById("litpic8").value = b;
+			}
+		}else{
+			var c=parent.parent.document.getElementById("listpic");
+			if (c){
+				parent.parent.document.getElementById("listpic").value = b;
+			}
+		}
+		var c=parent.document.getElementById("listpic");
+		if (c){
+			parent.document.getElementById("listpic").value=b;
+		}
+        var interval = setTimeout(function(){
+        	var d=parent.parent.document.getElementById("litpic7");
+        	if (d){
+        		parent.parent.document.getElementById("litpic7").src = b;
+        	}
+		}, 2000);
+}
+if (document.getElementById("pictype").value=="pic"){
+	setContent()
+}
+if (document.getElementById("pictype").value=="editor"){
+	var picurl = document.getElementById("litpic5").src;
+	parent.seteditor(picurl);
+}
+</script>
+</body>
+
+</html>

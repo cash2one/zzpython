@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+    <script src="chart/jquery-1.7.2.js"></script>
+    <script>
+	$(function(){
+		$('#protectfunc').click(function(){
+			var gmt_begin6=$('#gmt_begin6').val()
+			var gmt_end6=$('#gmt_end6').val()
+			$('#pro1').html('<font color="blue">分析中</font> &nbsp;<img src="123/imgs/jindutiao.gif">');
+			//alert(gmt_date)
+			$.ajax({
+			   type: "GET",
+			   url: "getpublishdata.html",
+			   data: "gmt_begin="+gmt_begin6+"&gmt_end="+gmt_end6+"&type=1",
+			   success:function(data){
+			   		//alert(data);
+			   		window.location.href='publishdata.html';
+				   },
+			   error:function(data){
+					alert("错误!青重试.");
+			   		window.location.href='publishdata.html?dgmt_date='+gmt_date;
+			   }
+			}); 
+		 });
+	});
+</script>
+</head>
+<body>
+<form name="form" class="form-inline definewidth m20" id="pro1">
+{%if result%}
+正在分析<font color="blue">{{result}}</font>数据... &nbsp;<img src="123/imgs/jindutiao.gif">
+{%else%}
+<input class="Wdate" type="text" style="width:100px" id="gmt_begin6" name="gmt_begin6" onClick="WdatePicker()"> 到 
+<input class="Wdate" type="text" style="width:100px" id="gmt_end6" name="gmt_end6" onClick="WdatePicker()">&nbsp;&nbsp;
+<input class="btn btn-success" id="protectfunc" type="button" value="提交并分析数据">
+{%endif%}
+</form>
+<form class="form-inline definewidth m20">
+&nbsp;高会 <input type="radio" name="is_senior" value="1" {%ifequal is_senior "1"%}checked="checked"{%endifequal%}> 普会 <input type="radio" name="is_senior" value="0" {%ifequal is_senior "0"%}checked="checked"{%endifequal%}>&nbsp;&nbsp;
+
+<select name="type_code" style="width:120px">
+{%if type_name%}<option value="{{type_code}}">{{type_name}}</option>{%endif%}
+<option value="">--请选择</option>
+<option value="10331003">全部供求类型</option>
+<option value="10331000">供应</option>
+<option value="10331001">求购</option>
+<option value="10331002">合作</option>
+</select>&nbsp;&nbsp;
+
+ <input class="Wdate" type="text" style="width:100px" name="gmt_begin" {%if gmt_begin%}value={{gmt_begin}}{%endif%} id="datebegin" onClick="WdatePicker()"> 
+ 到 <input class="Wdate" type="text" style="width:100px" name="gmt_end" {%if gmt_end%}value={{gmt_end}}{%endif%} id="datebegin" onClick="WdatePicker()">&nbsp;&nbsp;
+
+<input class="btn btn-success" type="submit" value="查询">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{%if gmt_begin%}
+<a href="delcompro.html?gmt_begin={{gmt_begin}}&gmt_end={{gmt_end}}&del1=1&del2=1" onClick="return confirm('是否将此信息删除?')">一并删除</a>&nbsp;&nbsp;
+<a href="delcompro.html?gmt_begin={{gmt_begin}}&gmt_end={{gmt_end}}&del1=1" onClick="return confirm('是否将此信息删除?')">只删除发布数据</a>&nbsp;&nbsp;
+<a href="delcompro.html?gmt_begin={{gmt_begin}}&gmt_end={{gmt_end}}&del2=1" onClick="return confirm('是否将此信息删除?')">只删除发布详情数据</a> {%endif%}
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>日期</th>
+        <th>供求类型</th>
+        <th>产品类型</th>
+        <th>数量</th>
+        <th>百分比</th>
+        <th>供求通过</th>
+        <th>供求退回</th>
+        <th>通过率</th>
+    </tr>
+    </thead>
+<form action="updatetypeok.html">
+<input type="hidden" name="typeid" value="{{typeid}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+	{%for pro in productlist.list%}
+	     <tr>
+	     <td>{{pro.gmt_date}}</td>
+	     <td>{{type_name}}</td>
+	     <td>{{pro.category_name}}</td>
+	     <td>{{pro.pro_numb}}</td>
+	     <td>{{pro.pro_score}}</td>
+	     <td>{{pro.pro_pass}}</td>
+	     <td>{{pro.pro_back}}</td>
+	     <td>{{pro.pass_score}}</td>
+         </tr>
+    {%endfor%}
+	     <tr>
+	     <td></td>
+	     <td></td>
+	     <td></td>
+	     <td>{{productlist.countall}}</td>
+	     <td></td>
+	     <td>{{productlist.countall_pass}}</td>
+	     <td>{{productlist.countall_back}}</td>
+	     <td></td>
+         </tr>
+</form>
+        </table>
+<div class="inline pull-right page">
+</div>
+</body>
+</html>

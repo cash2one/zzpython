@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>国庆大转盘活动</title>
+<link rel="stylesheet" href="css/demo.css" type="text/css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/awardRotate.js"></script>
+<script src="http://img0.zz91.com/zz91/js/openoverlay.js"></script>
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/css/openoverlay.css"/>
+<style>
+	
+</style>
+<script type="text/javascript">
+//登录状态
+var company_id=0;
+function loginstatus(){
+	var ajaxurl="http://www.zz91.com/getLoginStatus.htm?p="+(new Date()).getTime().toString();
+	$.getScript(ajaxurl, function() {
+		if (success=="true"){
+			company_id=companyId;
+			$(".getjp").css("display","block");
+			getchoujiangnum();
+			return success;
+		}else{
+			openoverlay('http://www.zz91.com/mini/login.htm?destUrl=http://www.zz91.com/submitCallback.htm&regfrom=10031041','注册/登录',750,430,0);
+			return success;
+		}
+	});
+	return false;
+}
+function getchoujiangnum(){
+	var ajaxurl="http://pyapp.zz91.com/guoqincount2016.html?company_id="+company_id.toString()+"&p"+(new Date()).getTime().toString();
+	$.getScript(ajaxurl, function() {
+		//alert(_suggest_result_.count);
+		if (_suggest_result_.count=="-1"){
+			alert("您已经抽过奖，如有疑问，可以咨询：0571-56633091");
+			return;
+		}
+		if (_suggest_result_.count<=0){
+			alert("你还未获得抽奖权限，如有疑问，可以咨询：0571-56633091");
+			return;
+		}
+	});
+}
+
+$(function (){
+	
+    var rotateTimeOut = function (){
+        $('#rotate').rotate({
+            angle:0,
+            animateTo:2160,
+            duration:8000,
+            callback:function (){
+                alert('网络超时，请检查您的网络设置！');
+            }
+        });
+    };
+    var bRotate = false;
+
+    var rotateFn = function (awards, angles, txt){
+        start();
+        bRotate = !bRotate;
+        $('#rotate').stopRotate();
+        $('#rotate').rotate({
+            angle:0,
+            animateTo:angles+1800,
+            duration:8000,
+            callback:function (){
+                $(".jpname").html(txt);
+                clearInterval(time)
+                $(".popbg").show();
+                bRotate = !bRotate;
+            }
+        })
+    };
+    var time;
+    var imgsee = 0
+    function start(){
+        var imgList = ['url(images/playbg.png)','url(images/playbg1.png)']
+        time = setInterval(function(){
+            if(imgsee==0){
+                imgsee=1;
+            }else{
+                imgsee=0;
+            }
+            $(".turntable-bg").css("background",imgList[imgsee])
+        },200)
+    }
+	$(".close").click(function(){
+        $(".popbg").hide();
+    })
+	$(".getjp").click(function(){
+        alert("拨打0571-56633091咨询");
+    })
+	
+    $('.pointer').click(function (){
+    	if (company_id==0){
+    		loginstatus();
+    		return;
+    	}
+		var ajaxurl="http://pyapp.zz91.com/guoqin2016staus.html?company_id="+company_id.toString()+"&p="+(new Date()).getTime().toString();
+		$.getScript(ajaxurl, function() {
+			//中奖号码
+			var choujiangcount=_suggest_result_.choujiangcount;
+			if (choujiangcount<=0){
+				alert("你还未获得抽奖权限，如有疑问，可以咨询：0571-56633091");
+				return;
+			}
+	        win_prize = _suggest_result_.xuanzhong;
+	        if(bRotate)return;
+	        var item = win_prize;
+	        switch (item) {
+	            case 0:
+	                //var angle = [26, 88, 137, 185, 235, 287, 337];
+	                rotateFn(0, 0,'百度微门户广告6个月');
+	                break;
+	            case 1:
+	                //var angle = [88, 137, 185, 235, 287];
+	                rotateFn(1, -60, '再生钱包600元');
+	                break;
+	            case 2:
+	                //var angle = [137, 185, 235, 287];
+	                rotateFn(2, -120, '移动端自动刷新服务3个月');
+	                break;
+	            case 3:
+	                //var angle = [137, 185, 235, 287];
+	                rotateFn(3, -180, 'APP供求置顶广告2个月');
+	                break;
+	            case 4:
+	                //var angle = [185, 235, 287];
+	                rotateFn(4, -240, '首页广告3个月');
+	                break;
+	            case 5:
+	                //var angle = [185, 235, 287];
+	                rotateFn(5, -300, '再生通会员一年');
+	                break;
+	        }
+		});
+
+        
+    });
+});
+function rnd(n, m){
+    return Math.floor(Math.random()*(m-n+1)+n)
+}
+</script>
+</head>
+<body>
+<div class="band"></div>
+<div class="content">
+    <div class="tsimg">
+        <img src="images/tscj.jpg">
+        <img src="images/ljie.png" class="jss">
+    </div>
+    <div class="playbg">
+        <div class="turntable-bg"> 
+          <div class="pointer"><img src="images/getlp.png" alt="pointer"/></div>
+          <div class="rotate" ><img id="rotate" src="images/palyimg.png" alt="turntable"/></div>
+        </div>
+        <div class="tishiwen">
+            <div class="tishibt">活动规则：</div>
+            <p class="tishixq">2016.09.27-09.30期间，凡是合作ZZ91再生网会员或购买三个月或以上广告服务的客户，即可获得一次抽奖机会！100%中奖率！<br>活动详询：0571-56633091</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="popbg">
+        <div class="popmain">
+            <div class="jpname"></div>
+            <a class="close"><img src="images/close.png"></a>
+            <a class="getjp"><img src="images/lqbtn.png"></a>
+        </div>
+    </div>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>ZZ91再生网简易后台</title>
+		<link rel="stylesheet" type="text/css" href="../mobile/css/aui.css" />
+	</head>
+	<style>
+		body {
+			background: #f7f9f8;
+			padding: 10px;
+		}
+		.aui-nav .aui-bar-tab{
+			background-color: #ebebeb;
+		}
+		.aui-nav li {
+			line-height: 50px;
+		}
+	</style>
+	<body>
+		<div class="aui-tab">
+			<ul class="aui-tab-nav">
+				<li><a href="javascript:window.history.back(-1)">返回列表</a></li>
+				<li class="active"><a href="editpro.html?proid={{proid}}">详情</a></li>
+			</ul>
+		</div>
+		{{result}}
+		<form action="?" method="get">
+			关键词
+			<input type="text" name="keywords" value="" style="width: 80%;"><br />
+			图片<select name="pic" style="width: 80%;"><option value="0">第一张</option><option value="1" selected="">第二张</option><option value="2">第三张</option></select>
+			<br/>样式<select name="cstyle" style="width: 80%;"><option value="1">过滤</option><option value="0">原始</option></select>
+			<input type="hidden" name="request_url" value="{{request_url}}">
+			<select name="typeid" type="select" class="aui-input selectlist" id="typeid">
+				<option value="">请选择</option>
+				{%for list in typelist%}
+				<option value="{{list.id}}">{{list.typename}}</option>
+				{%endfor%}
+			</select>
+			<input type="text" name="weburl" value="">
+			<input type="submit" class="aui-btn aui-btn-success aui-btn-block"/>
+		</form>
+	</body>
+</html>

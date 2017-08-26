@@ -1,0 +1,16 @@
+<style>
+	.navtitle{padding: 10px;background-color: #666;color: #ffffff;}
+</style>
+{%for i in newscolumn%}
+<a href="/news/list.html?typeid={{i.typeid}}"><div class="navtitle">{{i.typename}}<span style="float: right;">更多</span></div></a>
+<ul class="mui-table-view">
+{%for list in i.newslist.list%}
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" href="/news/newsdetail{{list.id}}.html">
+			{{list.title|safe}}
+		</a>
+	</li>
+{%endfor%}
+</ul>
+{%endfor%}
+<input type="hidden" id="appnavname" value="资讯中心" />

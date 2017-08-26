@@ -1,0 +1,77 @@
+<div class="mui-card">
+    	
+    	<span class="mui-table-view-cell" style="margin-top: 0px;display:block;padding-top: 0px;padding-bottom: 0px;border: 0px;background-image: none;">
+	            <button class="mui-btn mui-btn-primary mui-icon mui-icon-search" onclick="zz91search(this.form,'/offerlist/?keywords=','tradelist')">搜索</button>
+	            <input type="search" id="searchtext" placeholder="请输入关键字搜索" style="float: left;width: 78%; margin-top:15px ;" />
+	        </span>
+        
+    	<div style="padding-left: 0px;">
+    		<ul class="zz91-offerlist-bars">
+    			<li onclick="showtrade(this,132);">供应<span></span>
+			    	<div class="tradelistnav" style="display: none;height: 130px;width: 120px;">
+					    <ul>
+					        <a href="javascript:gotourl('/offerlist/?keywords={{keywords}}&ptype=1','trade')"><li>全部</li></a>
+					        <a href="javascript:gotourl('/offerlist/?keywords={{keywords}}&ptype=1&priceflag=1','trade')"><li>价格</li></a>
+					        <a href="javascript:gotourl('/offerlist/?keywords={{keywords}}&ptype=1&havepic=1','trade')"><li>图片</li></a>
+					    </ul>
+					</div>
+    			</li>
+    			<li onclick="showtrade(this,132);">求购<span ></span>
+    				<div class="tradelistnav" style="display: none;height: 130px;width: 120px;">
+					    <ul>
+					        <a href="javascript:gotourl('/offerlist/?keywords={{keywords}}&ptype=2','trade')"><li>全部</li></a>
+					        <a href="javascript:gotourl('/offerlist/?keywords={{keywords}}&ptype=2&priceflag=1','trade')"><li>价格</li></a>
+					        <a href="javascript:gotourl('/offerlist/?keywords={{keywords}}&ptype=2&havepic=1','trade')"><li>图片</li></a>
+					    </ul>
+					</div>
+    			</li>
+    			<li onclick="showtrade(this,88);">报价<span></span>
+    				<div class="tradelistnav" style="display: none;right:0px;width: 120px;">
+					    <ul>
+					        <a href="javascript:gotourl('/trade/pricelist.html?keywords={{keywords}}&type=0','trade')"><li>行情报价</li></a>
+					        <a href="javascript:gotourl('/trade/pricelist.html?keywords={{keywords}}&type=1','trade')"><li>商家报价</li></a>
+					    </ul>
+					</div>
+    			</li>
+    			<style>
+    				.b1-item-ul-ul li{float: left;width: 63px;}
+    			</style>
+    			<li onclick="showtrade(this,302);">筛选<span></span>
+    				<div class="tradelistnav" style="display: none;right: 0px;width: 320px;text-align: left;">
+					    <div class="b1-item">
+			           	
+			            <ul class="b1-item-ul">
+			                	<li>
+			                    	<ul class="b1-item-ul-ul" id="b1_ul">
+			                    	{%for list in arealist%}
+			                        	<a href="javascript:gotourl('/offerlist/?keywords={{keywords}}&province={{list}}','trade')"><li>{{list}}</li></a>
+			                        {%endfor%}	
+			                        	<li area="" >&nbsp;&nbsp;</li>
+			                        	<li area="" >&nbsp;&nbsp;</li>
+			                        </ul>
+			                    </li>
+			                    <div class="clear"></div>
+			                </ul>
+			                <div class="clear"></div>
+			            </div>
+			            
+					</div>
+    			</li>
+    		</ul>
+    	</div>
+
+    	<div class="mui-clearfix"></div>
+    	<div class="mui-h5">
+    		{%if pdt_kindname%}
+               您正在查看&nbsp;&nbsp;{{nowlanmu2}}
+            {%endif%}
+    	</div>
+        <ul class="mui-table-view">
+            {%for list in listall%}
+		    <li class="mui-table-view-cell"><a href="{{list.mobileurl}}">
+		        <span style="font-size:14px">{{list.td_title}} <br /><font color="red">{{list.price}}{{list.price_unit}}</font></span>
+		    </a></li>
+		    {%endfor%}
+	       <div id=pulldiv class='pulldiv' onclick=loadmorep(this,'/trade/pricelist.html?keywords={{keywords}}&type={{type}}')><span class='mui-icon mui-icon-down'></span><span>点此加载更多</span></div>
+        </ul>
+    </div>

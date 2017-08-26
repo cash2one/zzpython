@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>淘再生-再生商客</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://b.zz91.com/comm/js/comm.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_xjfeexxwiw2q33di.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="css/chapman.css"/>
+		<link rel="stylesheet" type="text/css" href="css/chapman-t.css"/>
+	</head>
+	<body>
+		<div style="height:48px;">
+			<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+		    	<a class="aui-pull-left" href="/">
+			        <span class="aui-iconfont aui-icon-left"></span>
+			    </a>
+			    <div class="aui-title">
+			    	联系人
+			    </div>
+			    <a class="aui-pull-right" href="javascript:void(0)">
+			        <i class="iconfont icon-tianjia1 aui-font-size-20"></i>
+			    </a>
+			    <a class="aui-pull-right" href="javascript:void(0)">
+			        <i class="iconfont icon-sousuo1 aui-font-size-20"></i>
+			    </a>
+			</header>
+		</div>
+		<div style="height:34px">
+			<div class="aui-border-b am-type-nav">
+				<div class="aui-row j_type_nav am-nav-get j_select aui-padded-t-10 aui-padded-b-10 bgcolor-ff clear">
+			        <div class="aui-col-xs-4 aui-text-center aui-border-r">客户类型<i class="am-icon-sanjiao"></i></div>
+			        <div class="aui-col-xs-4 aui-text-center aui-border-r">今日待联系<i class="am-icon-sanjiao"></i></div>
+			        <div class="aui-col-xs-4 aui-text-center this_select">跟丢客户</div>
+			    </div>
+		    </div>
+		</div>
+		
+		<div class="pop ">
+	        <div class="pop-main aui-row">
+			    <ul class="aui-list-view aui-in aui-margin-b-0 leixing">
+			        <li class="aui-list-view-cell lx-this">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>无意向客户
+			            <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+			        </li>
+			        <li class="aui-list-view-cell">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>潜在客户
+			            <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+			        </li>
+			        <li class="aui-list-view-cell">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>有意向客户
+			            <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+			        </li>
+			        <li class="aui-list-view-cell">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>确认合作客户
+			            <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+			        </li>
+			        <li class="aui-list-view-cell">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>重点客户
+			            <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+			        </li>
+			    </ul>
+	        </div>
+	    </div>
+	    <div class="pop ">
+	        <div class="pop-main aui-row">
+			    <ul class="aui-list-view aui-in aui-margin-b-0 leixing">
+			        <li class="aui-list-view-cell lx-this">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>今日打电话
+			        </li>
+			        <li class="aui-list-view-cell">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>今日发短信
+			        </li>
+			        <li class="aui-list-view-cell">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>今日约见面
+			        </li>
+			    </ul>
+	        </div>
+	    </div>
+	    
+	    <div class="aui-content">
+		    <div class="aui-list-view aui-border-t-0">
+		        <div class="aui-list-view-cell">
+		       	  	<div class="aui-padded-b-5">
+		       	  		康贤越先生
+		       	  		<span class="aui-text-default aui-font-size-18">主管</span>
+		       	  	</div>
+		       	  	<p class="aui-text-default aui-font-size-18">杭州阿思拓信息科技有限公司</p>
+		       	  	<div class="aui-padded-b-10 aui-padded-t-10 aui-font-size-16">
+		       	  		<span class="lx-bj aui-btn-warning aui-btn-outlined">待回访客户</span>
+		       	  		<span class="lx-bj aui-btn-info aui-btn-outlined">打电话</span>
+		       	  		<span class="lx-bj aui-btn-danger aui-btn-outlined">发短信</span>
+		       	  		<span class="lx-bj aui-btn-primary aui-btn-outlined">约见面</span>
+		       	  	</div>
+		       	  	<p class="aui-padded-b-5">最近联系时间：2017-5-23 6:00:00</p>
+		       	  	<p>下次联系时间：2017-6-23 6:00:00</p>
+		        </div>
+		        <ul class="aui-grid-nine aui-border-t-0">
+			        <li class="aui-col-xs-6 aui-text-center aui-padded-15">
+			        	<p class="aui-text-primary">立即联系</p>
+			        </li>
+			        <li class="aui-col-xs-6 aui-text-center aui-padded-15">
+			            <p class="aui-text-primary">+行动</p>
+			        </li>
+			    </ul>
+		    </div>
+		    
+		    <div class="aui-list-view aui-border-t-0">
+		        <div class="aui-list-view-cell">
+		       	  	<div class="aui-padded-b-5">
+		       	  		康贤越先生
+		       	  		<span class="aui-text-default aui-font-size-18">主管</span>
+		       	  	</div>
+		       	  	<p class="aui-text-default aui-font-size-18">杭州阿思拓信息科技有限公司</p>
+		       	  	<div class="aui-padded-b-10 aui-padded-t-10 aui-font-size-16">
+		       	  		<span class="lx-bj aui-btn-warning aui-btn-outlined">待回访客户</span>
+		       	  		<span class="lx-bj aui-btn-info aui-btn-outlined">打电话</span>
+		       	  		<span class="lx-bj aui-btn-danger aui-btn-outlined">发短信</span>
+		       	  		<span class="lx-bj aui-btn-primary aui-btn-outlined">约见面</span>
+		       	  	</div>
+		       	  	<p class="aui-padded-b-5">最近联系时间：2017-5-23 6:00:00</p>
+		       	  	<p>下次联系时间：2017-6-23 6:00:00</p>
+		        </div>
+		        <ul class="aui-grid-nine aui-border-t-0">
+			        <li class="aui-col-xs-6 aui-text-center aui-padded-15">
+			        	<p class="aui-text-primary">立即联系</p>
+			        </li>
+			        <li class="aui-col-xs-6 aui-text-center aui-padded-15">
+			            <p class="aui-text-primary">+行动</p>
+			        </li>
+			    </ul>
+		    </div>
+		</div>
+	</body>
+	
+</html>
+<script>
+	$(".j_select").children().on("click",function(){
+        if($(this).hasClass("this_select")){
+            closePop2();
+            return;
+        }
+        $(".this_select").removeClass("this_select");
+        $(this).addClass("this_select")
+        var indexNum = $(this).index();
+        $(".popshow").removeClass("popshow")
+        $(".pop").eq(indexNum).addClass("popshow")
+    })
+    $(".j_hylist li").on("click",function(){	//行业类别选择
+		$(this).addClass("thishye").siblings().removeClass("thishye");
+	})
+
+     //关闭弹窗
+    function closePop2(){
+        $(".this_select").removeClass("this_select");
+        $(".popshow").removeClass("popshow");
+    }
+    
+    $(".leixing li").click(function(){
+    	$(this).addClass("lx-this").siblings().removeClass("lx-this");
+    	$(this).children("i:first-child").css("visibility","visible");
+    	$(this).siblings().children("i:first-child").css("visibility","hidden");
+    })
+    
+	$(document).on("click",function(e){ 
+        e = window.event || e; // 兼容IE7
+        obj = $(e.srcElement || e.target);
+        if ($(obj).is(".pop")) { 
+        //要执行的函数b
+            closePop2()
+        } 
+    }); 
+    $(".pop").on("click",function(){
+    })
+</script>

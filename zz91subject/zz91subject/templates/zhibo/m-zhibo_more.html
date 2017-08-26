@@ -1,0 +1,6 @@
+{%for list in zhibolist%}
+<li>
+	<div class="zbhome-time">{{list.gmthoure}}  {{list.gmtdate}}</div>
+	<div class="zbhome-sm">{{list.content|safe}}</div>
+</li>
+{%endfor%}

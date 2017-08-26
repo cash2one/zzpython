@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport"  content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+	<meta name="format-detection"  content="telephone=no">
+    <title>厂家直购-ZZ91再生网</title>
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+	<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+    <link href="/trust/css/caigou.m.css" rel="stylesheet" type="text/css" />
+    {%include 'head.html'%}
+    <link rel="canonical" href="http://caigou.zz91.com/" >
+</head>
+<body>
+	<div class="wrapper">
+	{%include 'top.html'%}
+	
+    <div class="supply-nav">
+    	<h4>委托采购热线：<a href="tel:0571-56600066">0571-56600066</a>&nbsp;&nbsp;&nbsp;&nbsp;<img src="/trust/images/icon_phone.png" />&nbsp;&nbsp;<span style="color: #999;font-size: 10px;">周一到周五 8:30-18:00</span></h4>
+    	<ul>
+        	<li class="nav-item"><a href="supplyPub.html" target="_blank">免费发布</a></li>
+            <li class="nav-item"><a href="listmycaigou.html" style="background:none;color:#333">我的采购单</a></li>
+            <li class="nav-item"><a href="listmysupply.html" style="background:none;color:#333">我的供货单</a></li>
+        </ul>
+    </div>
+    <!--end supply-nav-->
+    <div class="wrap">
+    	<section class="supply-con">
+    	{%for list in listall%}
+        	<div class="mt15">
+        		<ul class="supply-sub current">
+                	<li>
+                		<a class="sub-item react"><strong class="title">{{list.title}}</strong></a>
+                	</li>
+                	<li>
+                		<a class="sub-item react"><strong class="title">{{list.useful}}</strong></a>
+                	</li>
+                	<li>
+                		<a class="sub-item react"><strong class="title">{{list.quantity}}吨/月</strong></a>
+                	</li>
+                	<li><a class="sub-item react"><span class="grey">价   格：</span>{{list.price}}元/吨</a></li>
+                	<li><a class="sub-item react"><span class="grey">所在地：</span>{{list.area}}</a></li>
+                	<li><a class="sub-item react"><span class="grey">No.{{list.buy_no}}</span></a></li>
+                	<li><a class="sub-item react"><span class="grey">颜   色：</span>{{list.color}}</a></li>
+                	<li><a class="sub-item react"><span class="grey">级&nbsp;&nbsp;&nbsp;&nbsp;别：</span>{{list.level}}</a></li>
+                	<li><a class="sub-item react"><span class="grey">{{list.differ_time}}前</span></a></li>
+                	<li class="pb"><a class="sub-item react">{{list.status}}</a></li>
+                	<li class="pb"><a class="sub-item react" href="tel:{{list.dealertel}}"><img src="/trust/images/icon_phone.png" />&nbsp;电话</a></li>
+                	<li class="pb">{%if list.bjdisable%}<a class="supply-btn sub-item react" href="supplyForm.html?buy_no={{list.buy_no}}&buy_id={{list.id}}" target="_blank">我要供货</a>{%endif%}</li>
+            	</ul>
+            </div>
+        {%endfor%}
+        
+        
+        <div class="page" style="line-height: 35px;margin: 0;margin-top: 20px;position:fixed;bottom:0px;z-index: 999;width: 100%;">
+           		<ul>
+           			{% if firstpage %}
+					<a href="/trust/p{{prvpage}}.html{%if searchurl%}?{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}"><li class="page_prev">上一页</li></a>{%else%}<font color="gray"><li class="page_prev">上一页</li></font>{%endif%}
+
+					<li class="page_no">
+					
+
+                        <select onChange="window.location='/trust/p'+this.value+'.html{%if searchurl%}?{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}'">
+                            <option value=1>第1页</option>
+                            <option selected="selected">第{{page}}页</option>
+                            {%for p in page_range%}
+                            <option value="{{p.number}}">第{{p.number}}页</option>
+                            {%endfor%}
+                        </select>
+                        
+                         /共{{page_listcount}}页
+					</li>
+					
+					{% if lastpage%}
+					<a href="/trust/p{{nextpage}}.html{%if searchurl%}?{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}"><li class="page_next">下一页</li></a>{%else%}<font color="gray"><li class="page_next">下一页</li></font>{%endif%}&nbsp;&nbsp;&nbsp;
+                    
+					
+                </ul>
+            </div>
+            <!--end page-->
+        
+        
+        
+        
+        
+        </section>  
+    </div>
+    {%include 'bottom.html'%}
+   </div>
+</body>
+</html>

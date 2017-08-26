@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>生成首页</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap-responsive.css" />
+<link rel="stylesheet" type="text/css" href="/bootstrap/Css/style.css" />
+<style type="text/css"> .graph{ width:450px; border:1px solid #F8B3D0; height:25px; } #bar{ display:block; background:#FFE7F4; float:left; height:100%; text-align:center; } #barNum{ position:absolute; } </style> 
+<script src="/bootstrap/Js/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+var i=0;
+function go(evertm){
+	if(document.getElementById("bar").style.width == "101%"){
+	document.getElementById("bar").style.width="1%"
+	}
+	if(i<99) setTimeout(function(){leavetm=(evertm/10)-((evertm*(i+1))/1000);document.getElementById("clikbutton").innerHTML='预估剩余时间:<font color="red">'+leavetm+'</font>秒';document.getElementById("bar").style.width = parseInt(document.getElementById("bar").style.width) + 1 + "%";document.getElementById("bar").innerHTML=(i+1)+"%";go(evertm)},evertm);
+	i++;
+}
+function jiazaijindu(evertm){
+document.getElementById("clikbutton").innerHTML='<img src="/123/imgs/jindutiao.gif" />'
+i=0;
+go(evertm*10);
+}
+$(function(){
+	$('#buildindex').click(function(){
+		//document.getElementById("clikbutton").innerHTML='<img src="/123/imgs/jindutiao.gif" />'
+		var freshtime = Date.parse(new Date());
+		var evertm=$(this).attr("evertm")
+		i=0;
+		go(evertm*10);
+		$.ajax({
+		   type: "GET",
+		   url: "buildhtmlok.html",
+		   data: "type=1&freshtime="+freshtime,
+		   success:function(data){
+		   		if (data=="1"){
+		   			window.location.href="buildhtmlok.html?freshtime={{freshtime}}"
+					//i=100
+					//document.getElementById("clikbutton").innerHTML='<a style="float:left" class="btn btn-success" id="buildindex" evertm="10">生成首页</a><br />'
+					//document.getElementById("bar").style.width="100%"
+					//document.getElementById("bar").innerHTML="100%"
+					//alert(data)
+		   		}
+			   },
+		   error:function(data){
+				alert("错误!青重试.");
+		   }
+		});
+	 });
+});
+</script>
+
+</head>
+<body>
+<form class="form-inline definewidth m20" action="buildhtmlok.html">
+<br /><div id="clikbutton"><a href='buildhtmlok.html?type=1' style="float:left" class="btn btn-success" id="buildindex1" evertm="12">生成首页</a><br /></div><br />
+<div class="graph">
+{%if getjindu%}<strong id="bar" style="width:100%;">100%</strong>
+{%else%}
+<strong id="bar" style="width:1%;"></strong>
+{%endif%}
+</div>
+</form><br />
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+body,table,tr,td{
+	font-size:12px;
+}
+</style>
+<script>
+function selectOption(menuname,value)
+{
+    var menu = document.getElementById(menuname);
+	if (menu)
+	{
+	for(var i=0;i<=menu.options.length;i++){
+		if(menu.options[i].value==value)
+		{
+			menu.options[i].selected = true;
+			break;
+		}
+	}
+	}
+}
+</script>
+<SCRIPT language=javascript src="http://img0.zz91.com/front/admin/DatePicker.js"></SCRIPT>
+<link href="http://img0.zz91.com/front/admin/datepicker.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<form id="form1" name="form1" method="get" action="/companylist/">
+<table width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#000000">
+  <tr>
+    <td bgcolor="#FFFFFF">客户服务类型编号
+      
+        <select name="service_code" id="service_code">
+        <option value=""></option>
+          {%for list in servicecategorylist%}
+          <option value="{{list.code}}">{{list.label}}</option>
+          {%endfor%}
+        </select>
+        <script>selectOption("service_code","{{service_code}}")</script>
+        <select name="industry_code" id="industry_code">
+        <option value=""></option>
+          {%for list in industry_codelist%}
+          <option value="{{list.code}}">{{list.label}}</option>
+          {%endfor%}
+        </select>
+        <script>selectOption("industry_code","{{industry_code}}")</script>
+        注册时间 <script language=javascript>createDatePicker("regtimefrom",true,"{{regtimefrom}}",false,true,true,true)</script> 到 <script language=javascript>createDatePicker("regtimeto",true,"{{regtimeto}}",false,true,true,true)</script>
+      <input type="submit" name="button" id="button" value="搜索" /></td>
+  </tr>
+</table></form>
+<br />
+<div class='pageBar'>
+总共：{{listcount_comp}}条记录  
+    {% if firstpage %}
+    <a href="?page=1{{searvalue}}" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+    <a href="?page={{prvpage}}{{searvalue}}" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+    {% endif %}
+    {% for p in page_range %}
+    {% if p.nowpage %}
+    <span class="cpb" style="margin-right:5px;">{{p.number}}</span>
+    {% else %}
+    <a href="?page={{p.number}}{{searvalue}}" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+    {% endif %}
+    {% endfor %}
+    &nbsp;
+    {% if lastpage%}
+    <a href="?page={{nextpage}}{{searvalue}}" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+    <a href="?page={{page_listcount}}{{searvalue}}" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+    {% endif %}
+</div>
+    <br>
+<table width="100%" border="0" cellspacing="1" cellpadding="4" bgcolor="#000000">
+  <tr>
+    <td bgcolor="#CCCCCC">公司名称</td>
+    <td bgcolor="#CCCCCC">帐号</td>
+    <td bgcolor="#CCCCCC">服务类型</td>
+    <td bgcolor="#CCCCCC">主营行业</td>
+    <td bgcolor="#CCCCCC">会员类型</td>
+    <td bgcolor="#CCCCCC">注册时间</td>
+    </tr>
+  {%for list in listall_comp%}
+  <tr>
+    <td bgcolor="#FFFFFF"><a href="http://company.zz91.com/compinfo{{list.company_id}}.htm" target="_blank">{{list.name}}</a></td>
+    <td bgcolor="#FFFFFF">{{list.account}}</td>
+    <td bgcolor="#FFFFFF">{{list.servicename}}</td>
+    <td bgcolor="#FFFFFF">{{list.business}}</td>
+    <td bgcolor="#FFFFFF">{{list.viptype.vipname}}</td>
+    <td bgcolor="#FFFFFF">{{list.regtime}}</td>
+  </tr>
+  {%endfor%}
+</table>
+
+</body>
+</html>

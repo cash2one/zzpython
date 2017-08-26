@@ -1,0 +1,22 @@
+{% for list in productList %}
+<li class="mui-table-view-cell">
+	<a href="/detail/?id={{list.pdt_id}}">
+        <div style="width: 80px;height: 80px;float: left;margin: 10px;margin-left: -5px;margin-top:-2px ;position: relative;">
+			<img src="{{list.pdt_images}}" style="width: 80px;height: 80px;">
+			{%if list.phone_level%}<span class="lv_icon lv{{list.phone_level}}" style="z-index: 2;"></span>{%endif%}
+		</div>
+        <div class="mui-media-body">
+            <span class="mui-ellipsis-2">{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}{%if list.isbuycontact%}&nbsp;<img src="http://m.zz91.com/images/pindao/eye.jpg" />{%endif%}</span>
+            <h5 style="float: left;">{{list.com_province}} {{list.pdt_price}}</h5>
+            <div class="mui-text-right">
+                <span class="mui-h5">{{list.pdt_time_en}}</span>
+            </div>
+            <div class="mui-clearfix"></div>
+            <p class="mui-h6 mui-ellipsis-2">{{list.pdt_detail}}</p>
+            {%if list.ldbtel%}
+				<p>免费拨打：<font color="#F40000">{{list.ldbtel.front_tel}}</font><br />{%if list.phone_rate%}{{list.phone_rate}}% 接听率{%endif%}
+				</p>{%endif%}
+        </div>
+    </a>
+</li>
+{%endfor%}

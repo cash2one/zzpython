@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-touch-fullscreen" content="YES">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="http://www.zz91.com/zt/2017swbookh5/css/base-min.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+<title>2017商务大全</title>
+<link rel="stylesheet" type="text/css" href="http://www.zz91.com/zt/2017swbookh5/css/index.css" />
+</head>
+<body>
+<script type="text/javascript" src="http://www.zz91.com/zt/2017swbookh5/js/viewport.js"></script>
+	<div class="bg1"></div>
+	<div class="bg2">
+		<a href="javascript:;" class="btnimg btn1"></a>
+	</div>
+	<div class="bg3"></div>
+	<div class="bg4"><a href="tel:0571-56633145" class="teldiv"></a></div>
+	
+	<div class="bottombox">
+		<div class="bottomfix">
+			<div class="pagename fl"></div>
+			<a href="javascript:;" class="btnimg btn2 fr"></a>
+		</div>
+		
+	</div>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/jquery.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		$(".btnimg").on("click",function() {
+			api.execScript({
+				name : "root",
+				script : "bookopen()"
+			});
+		});
+	};
+</script>
+	
+</html>

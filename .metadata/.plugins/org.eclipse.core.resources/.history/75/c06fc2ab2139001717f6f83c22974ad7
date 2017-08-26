@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>筛选</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<style>
+			html, body {
+				background: transparent;
+				height: 100%;
+				background: rgba(0,0,0,0.1);
+				overflow: hidden;
+			}
+			#aui-header {
+				position: absolute;
+				top: 50px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				padding-top: 0px;
+			}
+			.type_small {
+				background-color: #FAFAFC;
+				border-top: none;
+				overflow: auto;
+				position: absolute;
+				bottom: 45px;
+				top: 140px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				color: #666;
+			}
+			.price-type {
+				background-color: #fff;
+				border-bottom: solid 1px #ebebeb;
+			}
+			.categorylist{
+				
+				
+			}
+			.aui-tab{
+				position: fixed;
+				top:95px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+			}
+			.type_small h5{
+				padding:10px;
+				line-height:30px;
+				width:100%;
+				clear:both;
+			}
+			.categorylist span{
+				float: left;
+				text-align: center;
+				border:solid 1px #ebebeb;
+				margin-right:3%;
+				margin-left:3%;
+				margin-bottom:10px;
+				width:27%;
+				background-color: #fff;
+				line-height:30px;
+				overflow:hidden;
+				text-overflow:ellipsis;
+				white-space:nowrap;
+			}
+			.categorylist .on{
+				color:#FFFFFF;
+				background-color: #006600;
+			}
+			.cconfirmbox{
+				position:fixed;
+				bottom:45px;
+				width:90%;
+				padding:10px;
+				left: 5%;
+				right: 5%;
+				background-color:#fff;
+			}
+			.cconfirmbotton{
+				width:75%;margin-left:10%;margin-right:10%
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-success" id="aui-header">
+			<a class="aui-btn aui-btn-success aui-pull-right" tapmode onclick="closeselect()"> <span class="aui-iconfont aui-icon-roundclosefill"></span> </a>
+			<div class="aui-title">
+				企业报价类别
+			</div>
+		</header>
+		<div class="type_small">
+		    <div class="aui-tab">
+		        <ul class="aui-tab-nav" id="categorytab">
+		            <li class="active" code='1000'>废塑料</li>
+		            <li code='1001'>废金属</li>
+		            <li code='1002'>废纸</li>
+		            <li code='1003'>综合废料</li>
+		        </ul>
+		    </div>
+		    <div class="clist"></div>
+		    <div style="height:80px"></div>
+		</div>
+		<div class="cconfirmbox">
+			<div class="aui-btn aui-btn-success cconfirmbotton" onclick="selectbutton();">
+				确认
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript">
+		var code='1000'
+		function closeselect() {
+			api.execScript({
+				name : api.winName,
+				script : "keybackFun('1')"
+			});
+			api.closeFrame();
+		}
+		apiready = function() {
+			changeserverurl();
+			$("#categorytab").on("click","li", function() {
+				code=$(this).attr("code");
+				$("#categorytab li").removeClass("active");
+				$(this).addClass("active");
+				ajaxinfo();
+			})
+			
+			$(".clist").on("click","span", function() {
+				//code=$(this).attr("code");
+				if ($(this).attr("class")=="on"){
+					$(this).removeClass("on");
+				}else{
+					$(this).addClass("on");
+				}
+			})
+			var $body = $api.dom('body');
+			$api.addEvt($body, 'click', function(e) {
+				if (e.target == $body) {
+					closeselect();
+				} else {
+					e.stopPropagation();
+				}
+			});
+			ajaxinfo()
+		};
+		function ajaxinfo(){
+			var data={
+				code:code
+			}
+			zzappajax("get",hosturl+"price/companycategory.html",data,function(ret){
+				var list=''
+				$.each(ret, function(index, item) {
+					$.each(item.child, function(index, item1) {
+						if (item1.child && item1.child!=''){
+							list+="<h5>"+item1.label+"</h5>";
+							list+="<div class='categorylist'>"
+							$.each(item1.child, function(index, item2) {
+								list+="<span>"+item2.label+"</span>"
+							})
+							list+="</div>"
+						}else{
+							list+="<div class='categorylist' style='margin-top:20px;'>"
+								list+="<span>"+item1.label+"</span>"
+							list+="</div>"
+						}
+					})
+				})
+				$(".clist").html(list)
+			},function(){})
+		}
+		function selectbutton() {
+			var selectlabel = "";
+			$(".categorylist span").each(function() {
+				var timearg = $(this).attr("timearg");
+				if (timearg) {
+					if (timearg.length > 0) {
+						timeselect = timearg
+					}
+				} else {
+					if ($(this).text() != "全部") {
+						provincelist = provincelist + $(this).text() + "|";
+					}
+				}
+			});
+			api.execScript({
+				name : 'trade-list',
+				frameName : 'trade-list_',
+				script : "choicesearch('" + timeselect.toString() + "','" + provincelist + "')"
+			});
+			closeselect()
+		}
+	</script>
+</html>

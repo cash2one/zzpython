@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>ZZ91样品中心火热上线_废料专题_ZZ91再生网</title>
+		<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css"/>
+        <script type="text/javascript">
+	$(document).ready(function(){
+		var view;
+		var page = 1;
+		setSize();
+		//窗口大小变化事件
+		$(window).resize(function(){
+			setSize();
+			moveTo(page);
+		});
+		//增加菜单点击事件
+		$(".menu").click(function(){
+			page = $(this).attr("id").substring(2);
+			moveTo(page)
+		});
+		setSize();
+		$('#a').css({position: "absolute"});
+		//滚轮滚动事件
+		$(document).mousewheel(function(event, delta){
+			//首先取消所有事件
+			$('#a').finish();
+			var height = $('#d').css("height");
+			if(delta == 1){	
+				if(page >1){
+					$("#a").animate({top: '+='+height}, "slow")
+//					$('#a').css("top",'+='+height);
+					page--
+					moveTo(page);
+				}
+			}else{
+				if(page<3){
+					$("#a").animate({top: '-='+height}, "slow");
+//					$('#a').css("top",'-='+height);
+					page++	
+					moveTo(page);
+				}	
+				
+			}
+		});
+		
+		//根据浏览器大小设置页面元素大小
+		function setSize(){
+			view = fnGetWidthHeight();
+			$('#d').width(view.width);
+			$('#d').height(view.height);
+			$('.dh').width(view.width);
+			$('.dh').height(view.height);
+			$('.prd').height(view.height);			
+		}
+		
+		//页面元素滚动显示某个元素
+		function moveTo(page){
+			var height = $('#d').css("height");
+			var top;
+			for(var i=0;i<page;i++){
+				top = -(page-1)*view.height
+			}
+			$("#a").animate({top: top+'px'}, "slow")
+			$(".menu").attr("src","images/point1.png");
+			$("#no"+page).attr("src","images/point.png");
+		}
+	});
+	
+</script>
+<script type="text/javascript" language="javascript">
+		//封装获取浏览区可视区域大小
+        function fnGetWidthHeight() {
+        	var view;
+            var viewportwidth;
+            var viewportheight;
+             // 支持(mozilla/netscape/opera/chrome/IE7) 
+			if (typeof window.innerWidth != 'undefined') {
+                viewportwidth = window.innerWidth;
+                viewportheight = window.innerHeight;
+            }
+            // 支持（IE6）          
+			else if (typeof document.documentElement != 'undefined' && typeof document.documentElement.clientWidth != 'undefined' && document.documentElement.clientWidth != 0) {
+                viewportwidth = document.documentElement.clientWidth;
+                viewportheight = document.documentElement.clientHeight;
+            }
+            // 支持其他浏览器
+
+            else {
+                viewportwidth = document.getElementsByTagName('body')[0].clientWidth;
+                viewportheight = document.getElementsByTagName('body')[0].clientHeight;
+            }
+			view = {
+            	width:viewportwidth,
+            	height:viewportheight
+            }
+//			view = {
+ //           	width:$(document).width() < $('body').width() ? $(document).width()-5 : $('body').width()-5,
+  //          	height:$(document).height() < $('body').height() ? $(document).height()-5 : $('body').height()-5
+ //           }
+//			alert(view.height)
+            return view;
+        }
+    </script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	</head>
+<!--style="overflow-y: hidden;"-->
+	<body style="overflow-y: hidden;">
+	<div id="navFix" class="floatfly">
+		<img class="menu" src="images/point.png" id="no1"/></br>
+		<img class="menu" src="images/point1.png" id="no2"/></br>
+		<img class="menu" src="images/point1.png" id="no3"/></br>
+	</div>
+	<div id='d'>
+		<div id ='a'>
+			<div id='aa' class='ca'>
+               <div class="dh"  align="center">
+                  <img class="prd" src="images/1.jpg"/>
+                  <div class="btn" onclick="window.location.href='http://yang.zz91.com/'">立即体验</div>
+            	  <!--end btn-->
+               </div>
+               <!--end dh-->
+			</div>
+            <!--end ca-->
+			<div id='bb' class='ca'>
+               <div  class="dh"  align="center">
+                  <img class="prd" src="images/2.jpg"/>
+                  <div class="btn" onclick="window.location.href='http://yang.zz91.com/'">立即体验</div>
+            	  <!--end btn-->
+                  <div class="img"></div>
+                  <!--end img-->
+               </div>
+               <!--end dh1-->
+			</div>
+            <!--end ca-->
+			<div id='cc' class='ca'>
+               <div class="dh"  align="center">
+                  <img class="prd" src="images/3.jpg"/>
+                  <div class="btn" onclick="window.location.href='http://yang.zz91.com/'">立即体验</div>
+            	  <!--end btn-->
+               </div>
+               <!--end dh2-->
+			</div>
+            <!--end ca-->
+		</div>
+        <!--end a-->
+	</div>	
+    <!--end d-->	
+	</body>
+</html>

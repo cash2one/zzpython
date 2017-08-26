@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/aui-flex.css" />
+    <style>
+    	body{
+    		background-color: #f2f2f2;
+    	}
+    	.topdiv{
+			padding-top:5px;
+		}
+    	.linegrad{
+			height:10px;background-color:#f2f2f2;
+			clear: both;
+		}
+		.topimg{
+			position: absolute;
+			top: 5px;
+			left:5px;
+			width:16px;
+			height:16px;
+			background-color: #FA6604;
+			border-radius:8px;
+			overflow: hidden;
+			font-size:10px;
+			color:#fff;
+			text-align:center;
+			line-height:17px;
+		}
+		.bg-white { background: #ffffff; }
+    	.boxhearder .aui-iconfont,.boxhearder .aui-iconfont2 {
+			line-height: 35px;
+			font-size: 30px;
+			
+		}
+		
+		
+		.boxhearder{
+			padding-bottom:15px;
+			padding-top:15px;
+			background-color: #fff;
+		}
+		.boxhearder p,.boxhearder2 p{
+			color:#666;
+			line-height: 35px;
+		}
+		.salecount{
+			padding-top:15px;
+			padding-bottom:15px;
+			line-height: 30px;
+		}
+		.boxhearder2 .aui-iconfont,.boxhearder2 .aui-iconfont2 {
+			line-height: 30px;
+			font-size: 30px;
+			
+		}
+    	.boxhearder2{
+			padding-bottom:0px;
+			padding-top:5px;
+			position: fixed;
+			top:0px;
+			width:100%;
+			display:none;
+			z-index: 999;
+			background-color: #fff;
+		}
+		
+		
+		
+		.selectmain {
+			position:relative;
+			background-color: #fff;
+			padding-top:10px;
+			padding-bottom:10px;
+		}
+		
+		
+		.get-xinx {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+			padding:10px
+		}
+		.get-xinx span {
+			display: block;
+			text-align: center;
+			border: 1px solid #e1e1e1;
+			border-radius: 3px;
+			line-height: 30px;
+			margin-bottom: 10px;
+			position: relative;
+			float:left;
+			padding-right:10px;
+			padding-left:10px;
+			margin-right:10px;
+			background-color: #F2F2F2;
+			width:30%;
+			
+		}
+		.get-xinx span font{
+			width:100%;
+			display:block;
+			overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+		}
+		.get-xinx span:last-child {
+			margin-bottom: 0;
+		}
+		.get-xinx {
+			margin-bottom: 15px;
+			min-height: 37px;
+		}
+		.get-xinx span i {
+			display: block;
+			height: 30px;
+			width: 30px;
+			position: absolute;
+			right: -15px;
+			top: -15px;
+			font-size:20px;
+			color:#ff0000;
+		}
+		.pricebox span{
+			color: #ffffff;
+			width: 45px;
+			height: 45px;
+			line-height: 45px;
+			border-radius: 50%;
+			display:block;
+			padding-top:7px;
+			text-align:center;
+			margin-left:auto;
+			margin-right:auto;
+		}
+		.companypricemain{
+			position:relative;
+		}
+		.nodata{
+			position:absolute;
+			font-size:20px;
+			top:50px;
+			padding-top:50px;
+			left:0;
+			color:#999;
+			display:none;
+			width:100%;
+			height:100%;
+			text-align:center;
+			margin-left: 0px;
+			margin-top: 0px;
+			
+			clear: both;
+		}
+		.postprice {
+			position: fixed;
+			height: 60px;
+			width: 60px;
+			background: #01ba2e;
+			border-radius: 50%;
+			bottom: 45px;
+			right: 10px;
+			text-align: center;
+			line-height: 20px;
+			box-shadow: 0px 0px 5px #888888;
+			color: #ffffff;
+			z-index: 999;
+			padding-top: 8px;
+		}
+		.more{
+			text-align:center;
+			background-color:#fff;
+			line-height:50px;
+		}
+    </style>
+</head>
+<body>
+	<section class="aui-flex-col aui-text-center boxhearder">
+        <div class="aui-flex-item-3 aui-text-center pricebox">
+            <span class="aui-iconfont2 aui-zzicon-jinshu aui-bg-warning"></span>
+            <p>废金属行情</p>
+        </div>
+        <div class="aui-flex-item-3 aui-text-center pricebox">
+            <span class="aui-iconfont aui-icon-cascades aui-bg-danger"></span>
+            <p>废塑料行情</p>
+        </div>
+        <div class="aui-flex-item-3 aui-text-center pricebox">
+            <span class="aui-iconfont2 aui-zzicon-paper aui-bg-primary"></span>
+            <p>废纸行情</p>
+        </div>
+        <div class="aui-flex-item-3 aui-text-center pricebox">
+            <span class="aui-iconfont2 aui-zzicon-luntai aui-bg-info"></span>
+            <p>废橡胶/原油</p>
+        </div>
+    </section>
+    <section class="aui-flex-col aui-text-center boxhearder2">
+        <div class="aui-flex-item-3 aui-text-center pricebox">
+            <span class="aui-iconfont2 aui-zzicon-jinshu aui-bg-warning"></span>
+            <p>废金属行情</p>
+        </div>
+        <div class="aui-flex-item-3 aui-text-center pricebox">
+            <span class="aui-iconfont aui-icon-cascades aui-bg-danger"></span>
+            <p>废塑料行情</p>
+        </div>
+        <div class="aui-flex-item-3 aui-text-center pricebox">
+            <span class="aui-iconfont2 aui-zzicon-paper aui-bg-primary"></span>
+            <p>废纸行情</p>
+        </div>
+        <div class="aui-flex-item-3 aui-text-center pricebox">
+            <span class="aui-iconfont2 aui-zzicon-luntai aui-bg-info"></span>
+            <p>废橡胶/原油</p>
+        </div>
+        <div class="aui-line-x" style="clear: both"></div>
+    </section>
+    <div class="topdiv" onclick="pagetotop();"><span class="aui-iconfont aui-icon-top"></span></div>
+	<div class="aui-toast"  id="loading">
+        <div class="aui-toast-loading"></div>
+        <div class="aui-toast-content">加载中</div>
+    </div>
+    <div class="linegrad"></div>
+    <section class="aui-content">
+    	<div class="title aui-border-b aui-padded-5 bg-white">
+			<b style="line-height: 35px;">我关注的行情</b>
+			<span class="aui-pull-right aui-btn aui-btn-success orderbutton orderright"><i class="aui-iconfont aui-icon-order"></i>订阅 </span>
+		</div>
+		<div class="aui-line-x"></div>
+		<div class="selectmain" id="selectmain">
+			<center class="noorderdiv" style="display: none">
+				你还未订阅你关心的行情。<br /><div class="aui-btn aui-btn-success orderbutton">点此订阅>></div>
+			</center>
+			<div class="get-xinx">
+			</div>
+			<div style="clear: both"></div>
+		</div>
+	</section>
+	<section class="aui-content companypricemain">
+    	<div class="title aui-padded-5 bg-white" style="line-height: 35px;">
+			<b>ZZ91行情研究院</b>
+			<span class="aui-pull-right">更多 <i class="aui-iconfont aui-icon-right"></i></span>
+		</div>
+		<div class="aui-tab">
+	        <ul class="aui-tab-nav yanjy_tab">
+	            <li class="active" typeid="359,360">独家观点</li>
+	            <li typeid="357">行业报告</li>
+	            <li typeid="358">专家解读</li>
+	        </ul>
+	    </div>
+	    <ul class=" aui-list-view">
+			<span class="yanjy"></span>
+			<div class="more studymore">点此查看更多</div>
+		</ul>
+		
+	    <script id="yanjy-list" type="text/html">
+			<li class="aui-list-view-cell aui-img" id="{{ d.td_id }}">
+				<a class="aui-arrow-right">
+				<img src="{{ d.pic }}" class="aui-img-object aui-pull-left" style="width: 100px;">
+				<div class="aui-img-body" style="margin-right:18px">
+					<p class="aui-ellipsis-2"  style="color:#000">
+						<b>{{d.td_title}}</b>
+					</p>
+					<p class="aui-ellipsis-2">
+						{{d.content}}
+					</p>
+					<p>
+						{{d.gmt_order}}
+					</p>
+					
+				</div></a>
+			</li>
+		</script>
+	</section>
+	<section class="aui-content companypricemain">
+    	<div class="title aui-padded-5 bg-white" style="line-height: 35px;">
+			<b>企业报价</b>
+			<span class="aui-pull-right" style="color: #DD191B">筛选 <i class="aui-iconfont aui-icon-right"></i></span>
+		</div>
+		<div class="nodata">暂无相关数据<br /><br />
+			<p><div class="aui-btn aui-btn-success postbutton"><span class="aui-iconfont aui-icon-post"></span>我要发布产品报价</div></p>
+			<div class="clear"></div>
+		</div>
+		<div class="postprice">
+			<span>发布<br>报价</span>
+		</div>
+		<ul class="aui-list-view companypricelist">
+			
+		</ul>
+		<script id="info-list" type="text/html">
+			<li class="aui-list-view-cell">
+				<a class="aui-arrow-right">
+				<div class="aui-img-body" style="line-height: 30px">
+					<p class="aui-ellipsis-2"  style="color:#000">
+						<b>{{d.td_title}}</b>
+					</p>
+					
+					<span>价格：<font style="color:#FC9A30;font-size: 16px">{{d.price}}</font></span>
+					<br />所在地：{{d.province}} {{d.city}}
+					<div style="clear: both"></div>
+					
+					<p>发布时间：{{d.td_time}}</p>
+					<p class="aui-ellipsis-2">
+						公司：{{d.companyname}}
+					</p>
+					
+				</div>
+				</a>
+			</li>
+		</script>
+	</section>
+	<div class='la_more'>上拉获取更多信息</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript" src="../../script/aui-scroll.js" ></script>
+<script type="text/javascript">
+	var currPage = 1;
+	var pagecount=0;
+	apiready = function(){
+		$api.setStorage("priceindexopenflag", 1);
+		changeserverurl();
+		//获取我的定制
+		getmyorder();
+		ajaxInfo();
+		
+		var scroll = new auiScroll({
+	        listen:true,
+	        distance:200 //判断到达底部的距离，isToBottom为true
+	    },function(ret){
+	        if(ret.isToBottom){
+	        }else{
+		        if (ret.scrollTop>150){
+		        	$(".topdiv").fadeIn();
+		        }else{
+		        	$(".topdiv").fadeOut();
+		        }
+		        if (ret.scrollTop>100){
+		        	$(".boxhearder2").fadeIn();
+		        }else{
+		        	$(".boxhearder2").fadeOut();
+		        }
+		        
+	        }
+	    });
+	    //页面刷新
+		api.setRefreshHeaderInfo({
+			visible : true,
+			// bgColor: '#F2F2F2',
+			bgColor : '#E6E6E6',
+			textColor : '#000000',
+			textDown : '下拉刷新',
+			textUp : '释放刷新',
+		}, function(ret, err) {
+			
+			currPage = 1;
+			//获取我的定制
+			getmyorder();
+			ajaxInfo();
+			api.toast({
+				msg : '数据已是最新！',
+				duration : 3000,
+				location : 'bottom'
+			});
+		});
+		//底部加载更多
+		api.addEventListener({
+			name : 'scrolltobottom'
+		}, function(ret, err) {
+			if (currPage>pagecount){
+				$(".la_more").html("全部加载完毕");
+				return false;
+			}
+			$(".la_more").html("加载更多中...");
+			setTimeout(function() {
+				ajaxInfo();
+			}, 10)
+		});
+	    //立即订阅
+		$(".orderbutton").on("click",function() {
+			var pageParam = {
+				wintitle : "订阅行情",
+				type : "order_trade",
+				bounces : false
+			};
+			if (UserInfo.has_login()) {
+				openWinNormal("order_trade", "../price/order-main.html", pageParam);
+			} else {
+				pageParam.nextUrl = "../price/order-main.html";
+				pageParam.winName = "order_trade";
+				openWin("frm-login", "../myrc/frm-login.html", pageParam);
+			}
+		})
+		$(".yanjy_tab li").on("click",function() {
+			api.showProgress({
+				title : '加载中',
+				modal : false
+			});
+			$(".yanjy_tab li").removeClass("active");
+			$(this).addClass("active");
+			getstudylist($(this).attr("typeid"));
+		})
+		//行情研究院更多
+		$(".studymore").on("click",function() {
+			var typeid=$(".active").attr("typeid");
+			var pageParam = {
+				wintitle : "行情研究院",
+				type : "studylist",
+				typeid:typeid
+			};
+			openWin("studylist", "../price/studylist.html", pageParam);
+		})
+		
+	};
+	//我的定制
+	function getmyorder(){
+		var lists={};
+		if (!UserInfo.has_login()) {
+			$(".noorderdiv").show();
+			$(".orderright").hide();
+			return;
+		}
+		$(".get-xinx").html("");
+		lists['company_id'] = UserInfo.memberID();
+		lists['usertoken'] = UserInfo.token();
+		lists['appsystem'] = api.systemType;
+		lists['datatype'] = 'json';
+		api.ajax({
+			url : hosturl + 'order/myorderprice.html',
+			method : 'post',
+			timeout : 30,
+			dataType : 'json',
+			returnAll : false,
+			data : {
+				values : lists
+			}
+		}, function(ret, err) {
+			//zzalert(JSON.stringify(ret))
+			if (ret) {
+				if (ret.err == "true") {
+					
+				} else {
+					if (ret.listall){
+						$(".noorderdiv").hide();
+						$.each(ret.listall, function(index, item) {
+							var order_span = '<span><font>' + item.label + '</font></span>';
+							$(".get-xinx").append(order_span);
+						})
+					}else{
+						$(".orderright").hide();
+						$(".noorderdiv").show();
+					}				}
+			} else {
+				api.toast({
+				    msg: '系统错误',
+				    duration: 2000,
+				    location: 'bottom'
+				});
+			};
+			api.hideProgress();
+			api.refreshHeaderLoadDone();
+			//loadinghide();
+		});
+	}
+	function ajaxInfo(){
+		var data={
+			page:currPage
+		}
+		zzappajax("get",hosturl+"price/companypricelist.html",data,function(ret){
+			var pageHtml='';
+			if (currPage==1){	
+				pagecount=ret.pagecount;
+			}
+			
+			$.each(ret.list, function(index, item) {
+				var getTpl = $api.html($api.byId("info-list"));
+				laytpl(getTpl).render(item, function(html) {
+					pageHtml = pageHtml + html;
+				});
+			})
+			if (currPage == 1) {
+				if (pageHtml==""){
+            		$(".nodata").show();
+            		$(".la_more").hide();
+            	}else{
+            		$(".nodata").hide();
+            		$(".la_more").show();
+                }
+				api.pageUp({
+					'top' : true
+				});
+				$(".companypricelist").html(pageHtml);
+			} else {
+				$(".companypricelist").append(pageHtml);
+			}
+			$(".aui-content").show();
+			//行情研究院
+			var pageHtml_dj='';
+			$.each(ret.price_dj.list, function(index, item) {
+				var getTpl = $api.html($api.byId("yanjy-list"));
+				laytpl(getTpl).render(item, function(html) {
+					pageHtml_dj = pageHtml_dj + html;
+				});
+			})
+			$(".yanjy").html(pageHtml_dj);
+			
+			api.refreshHeaderLoadDone();
+			api.hideProgress();
+			$("#loading").hide();
+			if (pageHtml!=""){
+				currPage += 1;
+				$(".la_more").html("上拉获取更多信息");
+			}else{
+				$(".la_more").html("全部加载完毕");
+			}
+		},function(){
+		
+		})
+	}
+	function getstudylist(typeid){
+		//行情研究院
+		var data={
+			typeid:typeid
+		}
+		zzappajax("get",hosturl+"price/studylist.html",data,function(ret){
+			var pageHtml_dj='';
+			$.each(ret.list, function(index, item) {
+				var getTpl = $api.html($api.byId("yanjy-list"));
+				laytpl(getTpl).render(item, function(html) {
+					pageHtml_dj = pageHtml_dj + html;
+				});
+			})
+			$(".yanjy").html(pageHtml_dj);
+			loadinghide()
+		},function(){
+			api.hideProgress();
+		})
+	}
+</script>
+</html>

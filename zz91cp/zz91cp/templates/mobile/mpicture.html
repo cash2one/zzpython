@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{pingyinname}}价格_回收，出售{{pingyinname}}_{{pingyinname}}商家_{{pingyinname}}资讯网-微门户-zz91.com再生网</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="applicable-device" content="mobile">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" /> 
+<meta content="yes" name="apple-mobile-web-app-capable" /> <meta content="black" name="apple-mobile-web-app-status-bar-style" /> <meta content="telephone=no" name="format-detection" /> 
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/cp/css/tags_index.css" />
+<link rel="canonical"href="http://www.zz91.com/cp/{{pingyin}}/picture.html" >
+</head>
+<body>
+<div class="s_shead">
+	<ul  class="s_nav">
+        <li><a href="../{{pingyin}}/?mobileflag=1">{{pingyinname}}</a></li>
+        <li><a href="/cp/{{pingyin}}/price.html?mobileflag=1">价格</a></li>
+        <li><a href="/cp/{{pingyin}}/company.html?mobileflag=1">商家</a></li>
+        <li><a href="/cp/{{pingyin}}/trade.html?mobileflag=1">供求</a></li>
+        <li><a style="color:#00632b" href="/cp/{{pingyin}}/picture.html?mobileflag=1">图片</a></li>
+        <li><a href="/cp/{{pingyin}}/huzhu.html?mobileflag=1">互助</a></li>
+	</ul>
+</div>
+
+<div class="t40"></div>
+<style>
+.appdown{background-color:#FF0;border:solid 1px #F60; line-height:30px; padding-left:5px;}
+</style>
+<div class="appdown">
+	<a href="http://m.zz91.com/app.html">下载移动客户端，获取<b style="color: #FF0000;">20</b>元红包，点此立即下载 。</a>
+</div>
+<div class="zzad">
+	{%if adlist%}
+	{%for list in adlist%}
+	<a href="{{list.url}}" target="_blank"><img src="{{list.picaddress}}" /></a>
+	{%endfor%}
+	{%else%}
+	<!--<center>
+		<div style="margin-top:3px;">
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<ins class="adsbygoogle"
+			     style="display:block"
+			     data-ad-client="ca-pub-5512236620584335"
+			     data-ad-slot="8274972003"
+			     data-ad-format="auto"></ins>
+			<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+		</div>
+	</center>-->
+	{%endif%}
+	<center>
+	<script type="text/javascript">
+	/*kangxianyue 20:5 创建于 2017/4/19*/
+	var cpro_id = "u2958427";
+	</script>
+	<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/cm.js"></script>
+	</center>
+</div>
+<style>
+/*搜索*/
+.s_publicsearchbg{background:url(http://tags.zz91.com/mobile/img/s_120ask_search.png) no-repeat;-webkit-background-size:95px 60px;background-size:95px 60px;}
+input[type="submit"]{-webkit-border-radius:0;border-radius:0;}
+.s_publicwarp{display:-webkit-box;isplay:-webkit-box;display:-moz-box;display:box;padding:11px 12px 17px;background-color: #fff;}
+.s_publicsearch{border:1px solid #8C8C8C;-webkit-box-flex:1;}
+.s_publicsearch input[type="text"]{background-position: -72px -32px;height:33px;border:0 none;display:block;box-sizing:border-box;width:100%;padding:0 5px 0 30px;font-size:15px;color:#666;}
+.s_publicwarp input[type="submit"]{width:96px;height:35px;background-position: 0 0;display: block;font-size:0px;border:1px solid #8C8C8C;border-left:none;}
+/*end*/
+</style>
+<form action="http://m.zz91.com/offerlist/">
+<section class="s_publicwarp">
+    <div class="s_publicsearch">
+        <input type="text" placeholder="请输入搜索关键字" class="s_publicsearchbg" name="keywords" value="{{pingyinname}}" autocomplete="off" autocorrect="off" maxlength="30">
+    </div>
+    <input type="submit" class="s_publicsearchbg" value="">
+</section>
+</form>
+<div class="tagsnav"><a href="/cp/{{pingyin}}/?mobileflag=1">产品微门户 </a>  > <a href="/cp/{{pingyin}}/?mobileflag=1">{{pingyinname}}</a></div>
+{%if piclist.list%}
+<div class="box_css">
+    <ul id="pagenavi1" class="page">
+        <li><a href="javascript:;" class="active">今日{{pingyinname}}图片信息<i></i></a></li>
+    </ul>
+    <div id="slider1" class="swipe">
+      <ul class="box_list">
+                <li class="li_list">
+                <section class="first_list">
+                {%for list in piclist.list%}
+                <a href="http://m.zz91.com/detail/?id={{list.pdt_id}}" target="_blank">
+                <dl>
+                    <dt><img src="{{list.pdt_images}}" title="{{list.title}}" width="80px"></dt>
+                    <dd><span style="font-size:16px; font-weight:bold">{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}</span> {{list.pdt_time_en}}</dd>
+                    {%if list.total_quantity%}<br />{{list.pdt_kind.kindtxt}}量:<span color="#FF3300">{{list.total_quantity}}</font></dd>{%endif%}
+                    {%if list.pdt_price%}<br />价格：<font color="#FF3300">{{list.pdt_price}}</font></dd>{%endif%}
+                </dl>
+                </a>
+                {%endfor%}
+                </section>
+                </li>
+         </ul>
+    </div>
+</div>
+{%endif%}
+
+<center>
+<div style="font-size:16px;line-height:25px;"><a href="picturemore-1.html" style="color:green;">查看更多</a></div>
+</center>
+<script type="text/javascript">
+    /*kangxianyue 创建于 2017/1/14*/
+    var cpro_id = "u2876715";
+</script>
+<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/cm.js"></script>
+
+{%if cplist%}
+<section class="s_disease">
+	<nav><b>相关标签<i></i></b></nav>
+	<div id="s-disease">
+    {% for list in cplist %}
+		<a href="/cp/{{list.pingyin}}/?mobileflag=1" target="_blank" class="o{{list.classid}}">{{list.label}}</a> 
+    {% endfor %}
+    </div>
+</section>
+{%endif%}
+{% include 'mobile/bottom.html' %}
+</body>
+</html>

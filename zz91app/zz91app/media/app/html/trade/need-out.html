@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>发布需求</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/trade/need-out.css"/>
+		<style>
+			.get-xinx {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				padding:10px
+				
+			}
+			.get-xinx span {
+				display: block;
+				text-align: center;
+				border: 1px solid #e1e1e1;
+				border-radius: 3px;
+				line-height: 30px;
+				margin-bottom: 10px;
+				position: relative;
+				padding-right:10px;
+				padding-left:10px;
+				margin-right:10px;
+				background-color: #F2F2F2;
+				width:100%;
+			}
+			.get-xinx span font{
+				width:100%;
+				display:block;
+				overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+			}
+			.get-xinx span:last-child {
+				margin-bottom: 0;
+			}
+			.get-xinx {
+				margin-bottom: 15px;
+				min-height: 37px;
+			}
+			.get-xinx span i {
+				display: block;
+				height: 30px;
+				width: 30px;
+				position: absolute;
+				right: 2px;
+				top: 2px;
+				font-size:20px;
+				color:#ff0000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="into">
+				<span class="tle">供 求：</span>
+				<select class="into-set" id="otype">
+					<option value="0">全部</option>
+					<option value="1">供应</option>
+					<option value="2">求购</option>
+				</select>
+				<span class="xiala"><i></i></span>
+			</div>
+			<div class="into">
+				<span class="tle">类 别：</span>
+				<div class="get-xinx trade_list">
+					<!--<span><font>废铜</font><i class="remove aui-iconfont aui-icon-roundclosefill"></i></span>
+					<span><font>废铜</font><i class="remove aui-iconfont aui-icon-roundclosefill"></i></span>-->
+				</div>
+				<span class="btn-xz j_type">选择</span>
+			</div>
+			<div class="into">
+				<span class="tle">地 区：</span>
+				<div class="get-xinx city-list">
+					<!--<span><font>杭州</font><i class="remove aui-iconfont aui-icon-roundclosefill"></i></span>
+					<span><font>上海</font><i class="remove aui-iconfont aui-icon-roundclosefill"></i></span>-->
+				</div>
+				<span class="btn-xz j_city">选择</span>
+			</div>
+			<div class="into">
+				<span class="tle">时 间：</span>
+				<select class="into-set" id="timelimit">
+					<option value="1">一天内</option>
+					<option value="2">三天内</option>
+					<option value="3">七天内</option>
+					<option value="4">一个月内</option>
+					<option value="5">两个月内</option>
+					<option value="6">三个月内</option>
+					<option value="7">一年内</option>
+				</select>
+				<span class="xiala"><i></i></span>
+			</div>
+		</div>
+		<div style="height:100px"></div>
+		<div class="btn saveorder">确定订阅</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script>
+		var city_list = {}
+		apiready = function() {
+			getmyorder();
+			//选择类型
+			$(".j_type").on("click", function() {
+				openwindows("trade-code", '../trade/category.html')
+			})
+			//选择城市
+			$(".j_city").on("click", function() {
+				openwindows("area-code", '../trade/help_trade_area.html')
+			})
+			//删除地区
+			$(".get-xinx").on("click", ".remove", function() {
+				var spanFt = $(this).parent()
+				spanFt.hide(300, function() {
+					spanFt.remove()
+				})
+			});
+			//保存订阅
+			$(".saveorder").on("click", function() {
+				var otype=$("#otype").val();
+				var timelimit=$("#timelimit").val();
+				var keywordslist="";
+				$(".trade_list span font").each(function() {
+					if ($(this).text() != "全部") {
+						keywordslist = keywordslist + $(this).text() + "|";
+					}
+				});
+				var provincelist="";
+				$(".city-list span font").each(function() {
+					if ($(this).text() != "全部") {
+						provincelist = provincelist + $(this).text() + "|";
+					}
+				});
+				var data={
+					company_id : UserInfo.memberID(),
+					usertoken : UserInfo.token(),
+					appsystem : api.systemType,
+					otype:otype,
+					timelimit:timelimit,
+					keywordslist:keywordslist,
+					provincelist:provincelist
+				}
+				api.ajax({
+					url : hosturl+"order/myordertrade_save.html",
+					method : "post",
+					timeout : 30,
+					dataType : 'json',
+					returnAll : false,
+					data : {
+						values : data
+					}
+				}, function(ret, err) {
+					if (ret.err == "false") {
+						api.execScript({
+							name : 'root',
+							frameName : 'help',
+							script : "openFrame(2,1)"
+						});
+						//更新定制列表
+						api.execScript({
+							name : 'root',
+							frameName : 'frame_1',
+							script : "changsearch_order(0)"
+						});
+						
+						api.closeWin();
+					} else {
+						api.alert({
+							title : '提示',
+							msg : ret.errkey,
+							buttons : ['确定']
+						}, function(ret, err) {
+						})
+					}
+				});
+			})
+		}
+		//获取我的订阅
+		function getmyorder(){
+			api.showProgress({title:'加载中',modal:false});
+			var data={
+				company_id : UserInfo.memberID(),
+				usertoken : UserInfo.token(),
+				appsystem : api.systemType
+			}
+			api.ajax({
+				url : hosturl + 'order/myordertrade.html?'+ (new Date()).getTime().toString(),
+				method : "get",
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(ret));
+				if (ret){
+					if (ret.err == "false" && ret.listall) {
+						var provincelist=ret.listall.provincelist;
+						if (provincelist){
+							intoCity(provincelist)
+						}
+						var keywordslist=ret.listall.keywordslist;
+						if (keywordslist){
+							intoKeywords(keywordslist)
+						}
+						var otype=ret.listall.otype;
+						selectOption("otype",otype);
+						var timelimit=ret.listall.timelimit;
+						selectOption("timelimit",timelimit);
+					}
+				}
+				api.hideProgress();
+			});
+		}
+		//添加供求类别
+		function xztradecode(label,code){
+			var flag=false;
+			$(".trade_list span font").each(function() {
+				if ($(this).text()==label){
+					api.toast({
+					    msg: '已经添加',
+					    duration: 2000,
+					    location: 'bottom'
+					});
+					flag=true;
+					return false;
+				}
+			});
+			if (flag==false){
+				var trade_span = '<span><font>' + label + '</font><i class="remove aui-iconfont aui-icon-roundclosefill"></i></span>';
+				$(".trade_list").append(trade_span);
+			}
+		}
+		//添加城市
+		function intoCity(provincelist) {
+			arrprovince=provincelist.split("|")
+			$(".city-list").html("");
+			if (arrprovince){
+				for (i=0;i<=arrprovince.length-2;i++){
+					var city_span = '<span><font>' + arrprovince[i] + '</font><i class="remove aui-iconfont aui-icon-roundclosefill"></i></span>';
+					$(".city-list").append(city_span);
+				}
+			}
+		}
+		//添加供求
+		function intoKeywords(keywordslist) {
+			arrkeywordslist=keywordslist.split("|")
+			$(".trade_list").html("");
+			if (arrkeywordslist){
+				for (i=0;i<=arrkeywordslist.length-2;i++){
+					var city_span = '<span><font>' + arrkeywordslist[i] + '</font><i class="remove aui-iconfont aui-icon-roundclosefill"></i></span>';
+					$(".trade_list").append(city_span);
+				}
+			}
+		}
+	</script>
+</html>

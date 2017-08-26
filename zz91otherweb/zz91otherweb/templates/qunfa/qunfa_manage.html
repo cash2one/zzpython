@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://www.feiliao123.com/feiliao123/Css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="http://www.feiliao123.com/feiliao123/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" href="http://www.feiliao123.com/feiliao123/Css/style.css"> 
+    <script type="text/javascript" src="http://www.feiliao123.com/feiliao123/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="http://www.feiliao123.com/feiliao123/My97DatePicker/WdatePicker.js"></script>
+    <title>群发任务管理-留言速配服务</title>
+    <script type="text/javascript">
+    	// 修改下拉框选择
+    	function selectOption(menuname, seValue) {
+    		var menu = document.getElementById(menuname);
+    		var menu2 = jQuery('#' + menuname)[0];
+    		// alert(menu2);
+    		if (menu2) {
+    			// alert(menu2.length);
+    			for (var i=0;i<menu.options.length;i++) {
+    				if(menu.options[i].value == seValue) {
+    					menu.options[i].selected=true;
+    					break;
+    				}
+    			}
+    		}
+    	}
+    	// 修改任务执行时间项
+    	function modifyTask(form) {
+    		form.action="qunfa_manage.html";
+    		var startDate = jQuery('#start-date').val();
+    		if (startDate == '')
+    		{
+    			alert('请输入任务执行日期……');
+    			jQuery('#start-date').focus();
+    			return false;
+    		}
+    		else {
+    			form.submit();
+    		}
+    	}
+    </script>
+</head>
+<body>
+<div class="container" style="margin-top: 10px;">
+	<table class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<td colspan="11" style="text-align: center;font-size: 16px;">群发任务管理</td>
+			</tr>
+			<tr>
+				<th>客户名称</th>
+				<th>账号</th>
+				<th>群发内容</th>
+				<th>群发条数</th>
+				<th>已完成条数</th>
+				<th>任务开始日期</th>
+				<th>任务执行时间</th>
+				<th>任务完成时间</th>
+				<th>任务状态</th>
+				<th>查看任务</th>
+				<th>编辑
+			</tr>
+		</thead>
+		<tbody>
+			<form method="post" name="task-manage" id="task-manage" action="">
+			{% for each_data in all_qf_data %}
+			<tr>
+				<td>{{ each_data.10 }}</td>
+				<td>{{ each_data.11 }}</td>
+				<td>{{ each_data.1 | truncatechars:20 }}</td>
+				<td>{{ each_data.5 }}</td>
+				<td>{{ each_data.6 }}</td>
+				<td>{{ each_data.8 | date:'Y-m-d' | default:'-' }}</td>
+				<td>{{ each_data.9 }}</td>
+				<td>{% if each_data.4 != 1 %}{{ each_data.7 | date:'Y-m-d H:i:s' | default:'未开始' }}{% else %}已关闭{% endif %}</td>
+				{% if each_data.4 == 0 %}<td class="text-info" style="font-weight: bold;">开启</td>{% elif each_data.4 == 1 %}<td class="text-warning" style="font-weight: bold;">已关闭</td>{% else %}<td class="text-success" style="font-weight: bold;">已完成</td>{% endif %}
+				<td>
+					<a href="qunfa_add_task.html?qf_id={{ each_data.0 }}" target="_blank">查看任务</a>
+					<input type="hidden" name="task-id" id="task-id" value="{{ each_data.0 }}">
+				</td>
+				<td>
+					<input type="button" value="编辑" class="btn btn-default" style="padding: 0 5px;" onclick="window.location='qunfa_fix_task.html?sq_id={{ each_data.0 }}'">
+				</td>
+			</tr>
+			{% endfor %}
+			</form>
+		</tbody>
+	</table>
+	<div class="page pull-right">
+		共{{ rowcount }}条记录&nbsp;&nbsp;{{ page_num }}/{{ page_list_count }}
+		{% if first_page %}
+		<a href="?page={{ prev_page }}">上一页</a>
+		{% else %}
+		<a href="javascript:void(0)" style="color: gray;text-decoration: none;">上一页</a>
+		{% endif %}
+		{% if last_page %}
+		<a href="?page={{ next_page }}">下一页</a>
+		{% else %}
+		<a href="javascript:void(0)" style="color: gray;text-decoration: none;">下一页</a>
+		{% endif %}
+		<a href="?page=1">首页</a>
+		<a href="?page={{ page_list_count }}">尾页</a>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+    <script src="chart/jquery-1.7.2.js"></script>
+    <script src="chart/flash.js"></script>
+<script>
+   	jQuery(function($){
+	    $('#chart-container').flash({ 
+	       swf        : 'chart/beechart-line.swf?w=500&h=200',
+	       width      : 800, 
+	       height     : 300, 
+	       flashvars  : { 
+	       		dataUrl : 'chongzhicharturl.html?datall={{ftype}}'
+	       } 
+	    });
+	});
+
+function getdata(datebegin,dateend){
+	datall={{ftype}}+','+datebegin+','+dateend
+   	jQuery(function($){
+	    $('#chart-container').flash({ 
+	       swf        : 'chart/beechart-line.swf?w=500&h=200',
+	       width      : 800, 
+	       height     : 300, 
+	       flashvars  : { 
+	       		dataUrl : 'chongzhicharturl.html?datall='+datall
+	       } 
+	    });
+	});
+}
+function getdata2(datebegin,dateend){
+	datall={{ftype}}+','+datebegin+','+dateend
+		$.ajax({
+		   type: "GET",
+		   url: "sunfeechart.html",
+		   data: "datall="+datall,
+		   success:function(data){
+		   		$("#sumfee1").html('总金额 <font color="red">'+data+'</font>')
+		   		//alert(data);
+			   },
+		   error:function(data){
+				alert("错误!青重试.");
+		   }
+		}); 
+}
+$(function(){
+       run();
+       var interval;  
+           function run() {  
+              interval = setInterval(chat, "1000");  
+           }
+           function chat() {
+           		var datebegin=document.getElementById("datebegin").value;
+           		//alert(datebegin);
+           		var dateend=document.getElementById("dateend").value;
+           		var datebegin1=document.getElementById("datebegin1").value;
+           		var dateend1=document.getElementById("dateend1").value;
+           		if (datebegin.length>0&dateend.length>0){
+	           		var argument1=document.getElementById("argument1").value;
+       			    var argument2='结束日期必须大于开始日期'
+           			if (dateend<datebegin){
+           				if (argument1.length==0){
+		           			document.getElementById("argument1").value=argument2;
+	           				alert(argument2);
+	           			}
+           			}
+	           		else if (datebegin1.length==0&dateend1.length==0){
+	           			document.getElementById("datebegin1").value=datebegin;
+	           			document.getElementById("dateend1").value=dateend;
+						getdata(datebegin,dateend);
+						getdata2(datebegin,dateend);
+	           		}
+	           		else if (datebegin1.length>0&dateend1.length>0){
+	           			if (datebegin!=datebegin1||dateend!=dateend1){
+		           			document.getElementById("datebegin1").value=datebegin;
+		           			document.getElementById("dateend1").value=dateend;
+							getdata(datebegin,dateend);
+							getdata2(datebegin,dateend);
+		           		}
+	           		}
+	           	}
+           }
+     $("#closeChat").click(function(){  
+         clearTimeout(interval);  //关闭定时器  
+     })
+   });
+</script>
+</head>
+<body>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>每日充值走势图</th>
+    </tr>
+    <tr>
+        <th><select name="ftype" onchange="window.location='?ftype='+this.value" style="width:170px">
+        <option value="{{ftype}}">{{ftypename}}</option>
+        <option value="">--请选择</option>
+        {%for ptp in paytypelist%}<option value="{{ptp.id}}">{{ptp.name}}</option>{%endfor%}
+        </select>&nbsp;&nbsp;
+	<input class="Wdate" type="text" style="width:100px" name="gmt_begin" {%if gmt_begin%}value={{gmt_begin}}{%endif%} id="datebegin" onClick="WdatePicker()">
+	<input class="Wdate" type="text" style="width:100px" name="gmt_end" {%if gmt_end%}value={{gmt_end}}{%endif%} id="dateend" onClick="WdatePicker()">&nbsp;&nbsp;
+	<span style="font-weight:normal" id='sumfee1'></span>
+	<input type="hidden" id="datebegin1">
+	<input type="hidden" id="dateend1">
+	<input type="hidden" id="argument1">
+        </th>
+        
+    </tr>
+</table>
+<div id="chart-container"></div>
+</body>
+</html>

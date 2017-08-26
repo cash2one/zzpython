@@ -1,0 +1,281 @@
+﻿@charset "utf-8";
+
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0;}
+body{font:12px/1.5 Tahoma,'\5B8B\4F53',arial,Tahoma,helvetica,sans-serif;color:#333333;background-color:#ffffff;position:relative;}
+h1,h2,h3,h4,h5,h6{font-size:100%}
+address,em{font-style:normal;}
+code,kbd,pre,samp{font-family:courier new,courier,monospace;}
+ul,ol{list-style:none outside none;}
+fieldset,img{border:0;}
+img{vertical-align:middle}
+table{border-collapse:collapse;border-spacing:0;font-size:inherit;*font-size:100%;}
+input,button,textarea,select{vertical-align:middle;font:100% Helvetica,Arial,sans-serif; color:inherit}
+input:focus{ outline:none;}
+.clearfix:after{content:'.';display:block;height:0;clear:both;visibility:hidden;}
+.clearfix{*zoom:1;}
+.clear{font-size:0;line-height:0;height:0;clear:both;visibility:hidden;overflow:hidden;}
+.disnone{display:none}
+a{ text-decoration: none; color: #2953a6;}
+a:hover{ color: #ff6600; text-decoration: underline;}
+/*reset end*/
+/*header*/
+.gDrop{}
+.gDropCon{display:none}
+.gDropHover .gDropCon{ display:block}
+.gbody1200 .siteTopbarCon{width:1200px;}
+.gbody1200 .siteHeaderCon{width:1200px;}
+.gbody1200 .sHLogo{float:left; width:350px; background:url('../images/LFCH8mQ5Q1.png') no-repeat 126px 46px;}
+.gbody1200 .siteNavCon{width:1200px;}
+.gbody1200 .sBcrumbCon{width:1200px;}
+.gbody1200 .gm1-5{width:1200px;}
+.siteTopbar{height:26px;background:#F0F0F0; position:relative;z-index:100}
+.siteTopbarCon{width:1000px;margin:0 auto;}
+.sTb-do{float:left;}
+.addFavorite{float:left;height:18px;padding-left:20px;background:url('../images/nhDFr3pWTM.png') no-repeat 0 1px;line-height:18px;margin-top:4px; color:#999999}
+.sTb-fo{float:left;margin-left:10px;height:26px;display:inline}
+.sTb-fo strong{width:42px;height:24px;background:url('../images/nhDFr3pWTM.png') no-repeat 0 -31px; text-indent:-999px;overflow:hidden;float:left;margin-top:0px}
+.sTb-foWx{width:18px;height:18px;float:left;line-height:0;position:relative;z-index:100; margin-left:6px;display:inline;margin-top:4px;}
+.sTb-foWx span{width:18px;height:18px;line-height:0;overflow:hidden;text-indent:-999px; display: block;background:url('../images/nhDFr3pWTM.png') no-repeat -90px 0px;}
+.sTb-foWxShowimg{position:absolute; width:175px;height:206px;background:url('../images/nhDFr3pWTM.png') no-repeat 0 -70px;text-indent:-999px; overflow:hidden;left:-78px;top:18px; display:none}
+.sTb-foTc{width:18px;height:18px;line-height:0;overflow:hidden;text-indent:-999px;float:left;margin-left:8px;position:relative;z-index:101;background:url('../images/nhDFr3pWTM.png') no-repeat -116px 0px;margin-top:4px;}
+.sTb-foSina{width:18px;height:18px;line-height:0;overflow:hidden;text-indent:-999px; float:left;margin-left:8px;position:relative;z-index:101;background:url('../images/nhDFr3pWTM.png') no-repeat -142px 0px;margin-top:4px;}
+.sTb-item{float:right;line-height:26px;}
+.sTb-welText{float:left; margin-right:15px;}
+.sTb-welText a{margin-left:10px;}
+.sTb-a{ float:left;padding-left:1px;background:url('../images/nhDFr3pWTM.png') no-repeat 0px -342px; height:26px;}
+.sTb-a a{float:left;margin:0 0px 0 15px;color:#999999}
+.siteHeader{ background:#fefefe;height:100px;position:relative;z-index:99}		
+.siteHeaderCon{width:1000px; margin:0 auto;height:100px;}
+.sHLogo{float:left; width:250px; height:100px;}
+.sHLogoImg{float:left;margin-top:20px;overflow:hidden}
+.sHLogoImg a{}
+.sHSearch{float:left;margin-top:22px;width:460px;}
+.sHSearchCon{ float:left;width:100%}
+.sHSearchIn{border:2px #D16D00 solid;height:22px; width:366px; padding:5px;font-size:14px;line-height:22px;background:#ffffff; border-right:0;float:left;}
+.sHSearchBtn{ float:left;width:82px;height:36px;line-height:36px; cursor:pointer;background:#D16D00;font-size:16px; float:left;border:0 none;color:#ffffff; font-weight:700;font-family:\5fae\8f6f\96c5\9ed1;}
+.sHSearchBtn2{float:left;width:80px;height:36px;line-height:36px; cursor:pointer;background:#D16D00;font-size:16px; float:left;border:0 none;color:#ffffff; font-weight:700;margin-left:10px;font-family:\5fae\8f6f\96c5\9ed1;}
+.siteShopHeader .sHSearchIn{width:276px;}
+.sHSearchTip{float:left;margin-top:6px;width:460px;height:20px;line-height:20px; overflow:hidden;}
+.sHSearchTip strong{float:left;background:#ffffff;height:20px;position:relative; font-weight:400;color:#666666}
+.sHSearchTip span{display: inline;float: left;height: 20px;line-height: 20px;padding-left: 5px;padding-right: 6px;white-space: nowrap;}	
+.sHSearchTip a{color:#666666}
+.sHSearchTip a:hover{color:#ff6600}	
+.sHTips{float:right;width:248px;height:50px; background:url('../images/nhDFr3pWTM.png') no-repeat 0px -280px; margin:22px 0px 0 0;}
+.siteNav{height:40px;background:#ff9306;position:relative;z-index:98}
+.siteNavCon{width:1000px; margin:0 auto;font-family:\5fae\8f6f\96c5\9ed1;}
+.siteNavConC{padding:0 430px 0 200px}
+.siteNavCon a{color:#ffffff}
+.siteNavCon a:hover{text-decoration:none}
+.sNClass{width:200px;float:left; height:40px;position:relative;margin-left:-200px;display:inline; z-index:2}
+.sNC-Tit{width:200px;background:#D16D00;height:40px; position:relative}
+.sNC-Tit strong{ display:block; padding-left:11px;height:40px;line-height:40px;font-size:16px; color:#ffffff;font-weight:400}
+.sNC-TitIcon{width:10px;height:5px; position:absolute;top:18px;right:12px;background:url('../images/nhDFr3pWTM.png') no-repeat -238px -396px;}
+.sNC-Con{ position:absolute;top:40px;left:0}
+.allClassMenu{border:1px #E9E9E9 solid;width:198px; position:absolute;background:#ffffff;top:0;left:0}
+.allClassMenu a{color:#666666;margin-left:10px; line-height:34px; float:left;width:178px;  font-weight:bold;}
+.allClassMenu ul{float:left;width:100%}
+.allClassMenu li{height:35px;width:100%;float:left;position: relative;border-bottom: 1px  #D9D9D9 dotted;}
+.allClassMenu li dt{border-bottom: 1px  #D9D9D9 dotted;height: 34px;line-height: 34px;margin: 0 10px;position: relative;width:178px; font-weight:700;background:#ffffff}
+.allClassMenu li dd{border-left: 1px solid #F2F2F2;border-bottom: 1px solid #F2F2F2;border-top: 1px solid #F2F2F2;border-right: 1px solid #F2F2F2;box-shadow: 0 1px 3px #F2F2F2;left: 197px;line-height: 25px;padding: 10px 0;position: absolute;width: 480px; display:none;background:#fff;top:-1px}
+.allClassMenu li dd a{color:#666666;margin-left:30px; width:89px; line-height:25px; float:left}
+.allClassMenu li dd a:hover{text-decoration:underline;color:#ff6700}
+.allClassMenu li.current{border-bottom:1px #F2F2F2 solid;border-top:1px #F2F2F2 solid; margin:-1px 0;z-index:3;box-shadow: 0 1px 3px #D9D9D9;}
+.allClassMenu li.current dt{border-bottom:0;z-index:5;margin:0;padding:0 10px}
+.allClassMenu li.current dd{display:block}
+.sNwww{height:40px;line-height:40px;font-size:16px; float:left;width:100%}
+.sNwww ul{float:left; padding-left:10px;}
+.sNwww li{float:left;display:inline}	
+.sNwww li a{padding:0 10px;height:40px;float:left}
+.sNwww li a:hover{background:#D16D00;color:#ffffff}
+.sNEle{float:right; height:40px; margin-right:-430px;display:inline; width:430px}
+.sNEleBox{float:right;padding-left:12px;background:url('../images/nhDFr3pWTM.png') no-repeat 0px -430px;}
+.sNEle ul{ float:left;}
+.sNEle ul li{float:left;height:40px;line-height:40px;font-size:16px;}
+.sNEle ul li a{padding:0 10px;height:40px;float:left}
+.sNEle ul li a:hover,.sNEle ul li.select a{background:#D16D00;color:#ffffff}
+.sNEleIcon{ float:left;width:15px;height:14px;margin-top:13px; background:url('../images/nhDFr3pWTM.png') no-repeat 0px -500px; margin-left:10px;display:inline}
+/*header end*/
+/*footer*/
+.gm1-4{width:1000px;margin:0px auto 0;}
+.fGuide{padding-bottom:20px;margin:10px auto 0;}
+.fGuideCon{overflow:hidden;padding-top:11px;margin:0 auto;border-top:2px #e0e0e0 solid;}
+.fGuideItem{width:200px;float:left;position:relative}
+.fG-newbuyer{background:transparent}
+.fGuideItem em{height:36px;width:36px;position:absolute; left:2px;top:0px;background-image:url('http://1251007114.cdn.myqcloud.com/1251007114/gcstyle/fp/skin2013/common/GwwwTopBottom.png');background-repeat:no-repeat;text-indent:-999px;overflow:hidden}
+.fG-newbuyer em{background-position:-200px 0px}
+.fG-howtobuy em{background-position:-240px 0px}
+.fG-memservice em{background-position:-280px 0px}
+.fG-aboutus em{background-position:-320px 0px}
+.fGuideItem dl{padding-left:48px; position:relative;width:152px;}
+.fGuideItem dt{height:30px;overflow:hidden; line-height:30px;overflow:hidden;font-family:\5FAE\8F6F\96C5\9ED1; font-size:14px;}
+.fGuideItem dd{height:25px;line-height:25px;}
+.fGuideItem dd a{color:#888888;}
+.fGuideItem dd a:hover{color:#ff6600;}
+.fGuideIcon{width:199px;height:172px; float:right;display:inline;margin-top:6px;border-left:1px #e6e6e6 solid}
+.fGuideIcon span{background:url('http://1251007114.cdn.myqcloud.com/1251007114/gcstyle/fp/skin2013/common/GwwwTopBottom.png') no-repeat -200px -50px;width:104px;height:109px;float:left;margin-left:26px;display:inline;overflow:hidden;text-indent:-999px; margin-top:12px}
+
+.footer{line-height:21px; margin-top:5px; padding-bottom:20px;border-top:1px #e6e6e6 solid;margin:0 auto}
+.footerIco{float:left; height:48px;margin-top:11px;font-size:0;}
+.footerM{float:right;text-align:right}
+.fMenu{font-size:0;padding-top:14px}
+.fMenu em{height:21px;line-height:21px;display:inline-block;*zoom:1;*display:inline;font-size:12px;}
+.fMenu a{margin:0 8px;height:21px;display:inline-block;*zoom:1;*display:inline;font-size:12px;color:#666666;line-height:21px;}
+.fMenu a.fM-supLog{padding-right:20px;background:url('http://1251007114.cdn.myqcloud.com/1251007114/gcstyle/fp/skin2013/common/GwwwTopBottom.png') no-repeat 65px -142px; margin-right:0}
+.fMenu b{font-weight:400}
+.fCopy{color:#999999}
+.fCopy a{color:#999999}
+.fCopy a:hover{color:#999999}
+
+.gbody1200 .gm1-4{width:1200px}
+.gbody1200 .fGuideItem{width:208px;}
+.gbody1200 .fGuideItem dl{width:160px;}
+.gbody1200 .fGuideIcon{width:260px;}
+.gbody1200 .fGuideIcon span{margin-left:46px;}
+
+/*footer end*/
+/*bcrumb*/
+.sBcrumbCon,.gm1-5{width:1000px;height:44px;line-height:44px;margin:0px auto 0px;}
+.sBcrumbCon span,.gm1-5 span{float:left;line-height:20px;line-height:20px; padding-right:20px;background:url('../images/nhDFr3pWTM.png') no-repeat right -534px; margin-top:12px;}
+.sBcrumbCon strong,.gm1-5 strong{font-weight:400;float:left;height:20px;line-height:20px;margin-top:12px;}
+.sBcrumbCon a,.gm1-5 a{color:#999999}
+.sBcrumbCon a:hover,.gm1-5 a:hover{color:#ff6700}
+/*bcrumb end*/
+
+
+.gMenuItem .current,.gcTopic h2,.gTab li span i,.ppa,.npa,.closeBtn,.dialogTipCon i,.sucCon i{ background-image: url(../images/6MwZPkpqCr.png); background-repeat: no-repeat;}
+
+.gMain{ width: 1000px; margin: 0 auto;}
+.gMainindex{margin-top:10px;}
+.gBread{ height: 30px; line-height: 30px;}
+.gBread a{ margin: 0 4px; text-decoration: none;}
+.gBread span{ margin: 0 4px;}
+.gMenu{ float: left; width: 200px;}
+.gHome{ display: block; height: 40px; line-height: 40px; text-align: center; text-decoration: none; font-size: 18px; font-family: '\5fae\8f6f\96c5\9ed1'; color: #fff; background-color: #D16D00;}
+.gHome:hover{ text-decoration: none; color: #fff;}
+.gMenuBox{ border: 1px solid #dedede; border-top: none;}
+.gMenuItem{}
+.gMenuItem h3{ height: 32px; line-height: 32px; padding-left: 62px; background-color: #ececec; border-top: 1px solid #dbdbdb; border-bottom: 1px solid #dbdbdb; font-size: 14px; font-family: '\5fae\8f6f\96c5\9ed1'; background-image: url(../images/Mnt7AEUYyr.gif); background-repeat: no-repeat;}
+.order{ background-position: 37px 0;}
+.finance{ background-position: 37px -192px;}
+.account{ background-position: 37px -32px;}
+.helper{ background-position: 37px -64px;}
+.gift{ background-position: 37px -96px;}
+.evaluate{ background-position: 37px -128px;}
+.msg{ background-position: 37px -160px;}
+.gMenuItem ul{ padding: 12px 0;}
+.gMenuItem li{ padding-left: 63px; line-height: 24px;}
+.gMenuItem li a{ text-decoration: none; color: #333;}
+.gMenuItem .current{ background-position: 40px 8px;}
+.gMenuItem .current a{ color: #2953a6;}
+.gContainer{ float: left; width: 790px; margin-left: 10px;}
+.gContainer .messages{
+	color:#ff0000;
+	line-height:25px;
+	background-color: #FFC;
+	border: 1px solid #FC0;
+	padding:10px;
+}
+.gcTopic{ height: 40px; line-height: 35px; position: relative;}
+.gcBor{ height: 39px; border-bottom: 1px solid #dbdbdb;}
+.gcTopic h2{ padding-left: 10px; background-position: 0 -11px; font-size: 18px; font-family: '\5fae\8f6f\96c5\9ed1'; font-weight: normal;}
+.gcTopic a{ display: block; height: 25px; line-height: 25px; padding: 0 7px; background-color: #ff4400; color: #fff; text-decoration: none; position: absolute; right: 0px; top: 5px;}
+.gcTopic a:hover{ text-decoration: none;}
+.optBar{ height: 22px; margin-top: 10px;}
+.listFilter{}
+.listFilter select{ margin-right: 10px;}
+.listFilter input{ height: 18px; line-height: 18px; padding: 1px 5px; border: 1px solid #d0d0d0; }
+.listFilter button{ width: 50px; height: 22px; line-height: 22px; border: none; background-color: #4692e5; color: #fff; cursor: pointer;}
+.optTip{ float: right; text-decoration: none; color: #ff5601;}
+.gTab{ height: 32px; border: 1px solid #dbdbdb; background-color: #f6f6f6;}
+.gTab li{ float: left; height: 32px; line-height: 32px; position: relative; border-right: 1px solid #dbdbdb; border-bottom: none;}
+.gTab li a{ display: block; padding: 0 25px; color: #333; font-size: 14px; font-family: '\5fae\8f6f\96c5\9ed1'; text-decoration: none;}
+.gTab li span{ display: block; height: 14px; line-height: 14px; padding: 0 5px; border-radius: 2px; position: absolute; top: -7px; right: 6px; background-color: #ff5601; color: #fff;}
+.gTab li span i{ display: block; width: 3px; height: 3px; overflow: hidden; background-position: 0 -47px; position: absolute; top: 14px; left: 7px;}
+.gTab .current{ background-color: #fff; border-top: 2px solid #1459a5; margin-top: -1px; line-height: 31px;}
+.gPageBar{ height: 26px; margin-top: 20px;}
+.gPage{ float: right;}
+.ppa{ float:left; width:26px; height:26px; overflow:hidden; background-position: 0px -50px; text-indent:-999px;}
+span.ppa{ background-position: -52px -50px;}
+.pnum{float:left;line-height:26px;padding:0 10px; font-family:Tahoma;}
+.npa{ float:left; width: 26px; height:26px; overflow:hidden; background-position:-26px -50px; text-indent:-999px;}
+span.npa{ background-position:-78px -50px;}
+.gp{float:left;height:26px;line-height:26px;padding-left:18px}
+.gp input{ float:left; width:30px; height: 18px; line-height: 18px; padding: 3px 0; border: 1px solid #dedede; background-color: #f8f8f8; text-align: center; margin:0 5px; display:inline;}
+.gp span{float:left}
+.pagbtn{ float:left; width:44px; height:26px; line-height:26px; margin-left:18px; border:1px solid #dbdbdb; background-color: #ececec; cursor:pointer;}
+
+
+/*dialog*/
+.dialogBg{ width:100%; height:100%;background:#000; opacity:0.5;  position: absolute; left:0; top:0;z-index:1001;filter:  alpha(opacity=50); zoom:1;}
+.dialog{ position:absolute; left:40%;top:40%; z-index:1009; width:460px; box-shadow: 0 0 5px rgba(0,0,0,0.7) ;  background-color:#fff; }
+.closeBtn{ display:block; width:14px; height:14px; overflow:hidden; background-position:0 -79px; position:absolute; top:15px; right:21px; text-indent:-9999px; cursor:pointer;}
+.dialogTit{ height: 42px; line-height: 42px; background: #f5f5f5; border-bottom: 1px solid #ebebeb; position: relative;}
+.dialogTit h2{ font-size: 14px; padding-left: 20px;}
+.dialogCon{ padding:20px 20px 25px; background: #fff;}
+.text{border: 1px solid #e9e9e9;border-top-color: #bfbfbf;height: 20px;line-height: 20px;padding: 2px 3px 2px;width: 195px;margin-right: 5px;outline:none;}
+.row{line-height: 26px; padding: 7px 0 7px 92px;}
+.row .label{ float: left; width: 90px; margin-left: -92px;}
+.row .rCell{ float: left; width: 100%;}
+.dialogSub{ float: left; width: 58px; height: 24px; line-height: 24px; color: #fff; text-align: center; background: #4692e5; border:1px solid #3b86ed; font-size: 14px; font-weight: bold; cursor: pointer; margin-right: 40px; border-radius: 2px;}
+.dialogTipBtn{ width: 60px; margin:20px auto;}
+.dialogTipBtn a{ display: block;width: 58px; height: 24px; line-height: 24px; color: #fff; text-align: center; background: #4692e5; border:1px solid #3b86ed; font-size: 14px; font-weight: bold; border-radius: 2px; text-decoration: none;}
+.dialogReset{ border-color:#999999; background: #aaa;}
+.dialogTips{ line-height: 20px; color: #999; margin-bottom: 6px;}
+.dialogTipBox{}
+.dialogTipCon { position: relative; padding-left:36px; min-height: 22px; height: auto !important; height: 22px; line-height: 22px;}
+.dialogTipCon i{ position: absolute; background-position: -81px -79px; width: 23px; height: 22px; overflow: hidden; left: 0; top: 0;}
+.resultBox{ background: #fafafa; padding: 38px 48px; border: 1px solid #e9e9e9;line-height: 20px; margin: 10px 0;}
+.sucCon{ padding-left: 47px; position: relative; min-height: 31px; height: auto !important; height: 31px; font-size: 14px;}
+.sucCon i{ position: absolute; background-position:-32px -103px; width: 31px; height: 31px; overflow: hidden; left: 0; top: 0;}
+.failCon i{ background-position:0 -103px;}
+.resultBox h3{ margin-bottom:8px;}
+
+
+.gPimg{display:block;overflow:hidden; font-size:0; font-weight:400;font-style:normal;margin-left:auto; margin-right:auto}
+.gPimg a{display:table-cell;text-align:center;vertical-align:middle;*display:block;*font-family:Arial; line-height:0;background:#ffffff}
+.gPimg a img{vertical-align:middle;}
+.gPimg150{height:150px;width:150px;}
+.gPimg150 a{width:150px;height:150px;*font-size:131px;}
+.gPimg150 img{ max-width: 150px; max-height: 150px;}
+.gPimg75 img{ max-width: 75px; max-height: 75px;}
+.gPimg75{height:75px;width:75px;}
+.gPimg75 a{width:75px;height:75px;*font-size:115px;}
+
+/**日期控件**/
+.date-picker-wp {
+display: none;
+position: absolute;
+background: #f1f1f1;
+left: 40px;
+top: 40px;
+border-top: 4px solid #3879d9;
+}
+.date-picker-wp table {
+border: 1px solid #ddd;
+}
+.date-picker-wp td {
+background: #fafafa;
+width: 22px;
+height: 18px;
+border: 1px solid #ccc;
+font-size: 12px;
+text-align: center;
+}
+.date-picker-wp td.noborder {
+border: none;
+background: none;
+}
+.date-picker-wp td a {
+color: #1c93c4;
+text-decoration: none;
+}
+.strong {font-weight: bold}
+.hand {cursor: pointer; color: #3879d9}
+.datetext{
+	margin-left:10px;
+	width:80px;
+	background-image: url(../images/date.gif);
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+

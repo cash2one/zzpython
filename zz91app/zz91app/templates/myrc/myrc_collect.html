@@ -1,0 +1,16 @@
+<table whdth="500px">
+<tr>
+<td>
+{%for b in mybusinesscollect%}
+<a href="/offerlist/?keywords={{b}}">{{b}}</a><br />
+{%endfor%}
+</td>
+<td>&nbsp;
+</td>
+<td>
+{%for p in mypricecollect%}
+{{p.label}}<br />
+{%endfor%}
+</td>
+</tr>
+</table>

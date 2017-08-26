@@ -1,0 +1,358 @@
+.zz-div-box{
+	-webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+.zz-column-box{
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-flex-flow: column;
+           flex-flow: column;
+}
+.zz-div-td1{
+	-webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}
+.zz-div-td2{
+	-webkit-box-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
+}
+.row-column-cnt{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box; 
+	-webkit-box-pack:center;
+	-moz-box-pack:center;
+	-webkit-box-align:center;
+	-moz-box-align:center; 
+}
+.row-cnt{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box; 
+	-webkit-box-pack:center;
+	-moz-box-pack:center;
+}
+.row-right{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box; 
+	-webkit-box-pack:end;
+	-moz-box-pack:end;
+}
+.column-cnt{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box; 
+	-webkit-box-align:center;
+	-moz-box-align:center; 
+}
+.aui-font-size-12 {
+	font-size: 0.6rem !important;
+}
+.aui-font-size-14 {
+	font-size: 0.7rem !important;
+}
+.aui-font-size-16 {
+	font-size: 0.8rem !important;
+}
+.aui-font-size-18 {
+	font-size: 0.9rem !important;
+}
+.aui-font-size-20 {
+	font-size: 1rem !important;
+}
+.aui-font-size-24 {
+	font-size: 1.2rem !important;
+}
+
+body{
+	background: #f2f2f2
+}
+a{
+	color: inherit;
+}
+.clear:after {
+	content:'\20';
+	display:block;
+	height:0;
+	clear:both;
+}
+.clear {	*zoom:1;}
+.huzhu-bg-ff{
+	background: #fff
+}
+.huzhu-text-33{
+	color: #333
+}
+.huzhu-text-66{
+	color: #666
+}
+.huzhu-bg-yel{
+	background: #ffffcc
+}
+.aui-bar{
+	top: 0;
+	position: fixed;
+    z-index: 9999;
+}
+.aui-searchbar .aui-iconfont{
+	color: #ebebeb;
+	line-height: 35px;
+}
+.searchcenter{
+	margin-top: 6px;
+	width: auto;
+	position: absolute;
+	top: 0;
+	right: 30px;
+	left: 30px;
+}
+.nav-fix{
+	position: fixed;
+	top:0px;
+	width: 100%;
+	z-index: 999;
+}
+.popsearch{
+	padding: 10px;
+	height: 100%;
+	position: fixed;
+	width: 100%;
+	top: 0px;
+	background-color: #F4F5F7;
+	z-index: 9999;
+	display: none;
+}
+.nearseach{
+	display: block;
+	padding: 10px;
+	margin-top: 10px;
+	background-color: #f9f9f9;
+}
+.nearseach a{
+	margin-right: 10px;
+	text-align: center;
+	padding: 10px;
+}
+
+.floatpage{
+	position: fixed;
+	bottom:0px;
+	width:100%;
+	height:54px;
+}
+
+.swiper-huzhu{
+	height: 150px;
+}
+.swiper-huzhu .swiper-slide img{
+	width: 100%;
+	height: 100%
+}
+.swiper-pagination-bullet-active{
+	background: #009900
+}
+.huzhu-nav>.zz-div-td1{
+	text-align: center;
+	padding: 10px 0;
+}
+.huzhu-nav>.zz-div-td1:active{
+	background: #eee
+}
+.huzhu-nav>.zz-div-td1 .iconfont{
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 40px;
+	color: #fff;
+	margin-bottom: 5px;
+	font-size: 20px;
+}
+.huzhu-nav>.zz-div-td1:nth-child(1) .iconfont,.huzhu-nav>.zz-div-td1:nth-child(5) .iconfont{
+	background: #cc6600
+}
+.huzhu-nav>.zz-div-td1:nth-child(2) .iconfont{
+	background: #009933
+}
+.huzhu-nav>.zz-div-td1:nth-child(3) .iconfont{
+	background: #3300cc
+}
+.huzhu-nav>.zz-div-td1:nth-child(4) .iconfont{
+	background: #66cc00
+}
+.huzhu-index-title{
+	padding: 10px 15px;
+}
+.huzhu-btn-sz{
+	padding: 3px 10px;
+}
+.huzhu-btn-sz .iconfont{
+	font-size: 20px;
+	vertical-align: middle;
+	line-height: 20px;
+}
+.aui-content {
+    background: #ffffff;
+    overflow: hidden;
+}
+.aui-ask-header {
+    width: 100%;
+    padding: 10px 15px;
+    color: #999;
+    font-size: 14px;
+    overflow: hidden;
+    line-height: 32px;
+}
+.ask-avatar {
+    float: left;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+.ask-time {
+    font-size: 12px;
+}
+.aui-ask-body {
+    width: 100%;
+    padding: 10px 15px;
+    position: relative;
+}
+.ask-nickname {
+    float: left;
+    font-size: 14px;
+    line-height: 32px;
+    margin-left: 10px;
+}
+.aui-ask-title {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+}
+.aui-ask-footer {
+    padding: 0 15px 15px 15px;
+    overflow: hidden;
+    line-height: 20px;
+}
+.aui-ask-footer, .comment {
+    font-size: 12px;
+    color: #999;
+}
+.huzhu-go-fabu{
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	color: #fff;
+	background: #33cc00;
+	line-height: 20px;
+	position: fixed;
+	left: 10px;
+	bottom: 10px;
+	z-index: 2
+}
+.huzhu-go-fabu2{
+	bottom: 60px;
+}
+.huzhu-go-fabu:active{
+	background: #009933
+}
+
+.huzhu-btn-white{
+	background: #fff;
+	border:1px solid #ccc;
+}
+.hun-btn-gz .aui-iconfont{
+	position: absolute;
+	right: -13px;
+	top: -6px;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	overflow: hidden;
+	font-size: 20px;
+	color: red
+}
+.huzhu-btn-yel{
+	background: #ffffcc;
+	border:1px solid #ccc;
+}
+.hunzhu-search{
+	background: #fff;
+	text-align: center;
+	height: 34px;
+	line-height: 34px;
+	color: #666;
+	margin: 15px;;
+	border-radius: 5px;
+	border:1px solid #ccc;
+	font-size: 12px;
+}
+.hunzhu-type{
+	position: fixed;
+	top: 45px;
+	width: 100%;
+	z-index: 2
+}
+.aui-tab-success .aui-tab-nav li.active{
+	color: #2ecc71;
+    border-bottom: 2px #2ecc71 solid;
+}
+.floatpage {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    height: 54px;
+}
+.huzhu-btn-outlined{
+	background: transparent
+}
+.aui-btn-success.huzhu-btn-outlined{
+	color: #27ae60 
+}
+.aui-btn-success.huzhu-btn-outlined:active {
+	background: #27ae60;
+	color: #ffffff;
+}
+.shequ-type-btn .aui-btn{
+	text-align: center;
+	padding: 6px 0;
+}
+.shequ-type-fixed{
+	position: fixed;
+	top: 45px;
+	width: 100%;
+	background: #fff;
+	z-index: 2;
+	border-bottom: 1px solid #ccc;
+	overflow: hidden;
+}
+.j_moretype{
+	display: none;
+}
+.shequ-type-fixed .j_moretype{
+ 	display: block;
+}
+.getmore{
+	transition: height 0.8s;
+	-moz-transition: height 0.8s; /* Firefox 4 */
+	-webkit-transition: height 0.8s; /* Safari 和 Chrome */
+	-o-transition: height 0.8s; /* Opera */
+}
+.close-xypop{
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+	background: #fff
+}
+.popbtn-box{
+	background: #f2f2f2
+}

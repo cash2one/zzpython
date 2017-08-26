@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{typename}}_山东伟力塑料有限公司</title>
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/newcompany/css/forceplastics.css" />
+</head>
+<body>
+{%include "user/weilisuliao/head.html"%}
+  <div class="layout mod-spm">
+  	<div class="mod-ind">
+    	<div class="header">
+            <h1 class="title ms-yh">
+            	<span class="index"><a title=""><img src="http://img0.zz91.com/zz91/newcompany/images/nav_img.jpg" /></a></span>
+            	<a >公司简介</a>
+             </h1>
+        </div>
+        <!--end header-->
+        <div class="content">
+        	<p>
+            &nbsp;&nbsp;&nbsp;&nbsp;{{gsjjtxt.content|safe}}
+            </p>
+        </div>
+        <!--end content-->
+    </div>
+    <!--end mod-ind-->
+    <div class="mod-ind">
+    	<div class="header">
+            <h1 class="title ms-yh">
+            	<span class="index"><a href="zizhizhengshu/"><img src="http://img0.zz91.com/zz91/newcompany/images/nav_img.jpg" /></a></span>
+            	<a href="zizhizhengshu/">资质证书</a>
+             </h1>
+             <a href="zizhizhengshu/" target="_blank" class="more">更多</a>
+        </div>
+        <!--end header-->
+        <div class="content">
+        	<ul class="dmz-list">
+        	{%for zzs in articalist%}
+            	<li>
+                	<img src="{{zzs.litpic}}" alt="{{zzs.title}}" width="231px" height="177px"/>
+                	<div class="title-pro"><a title="{{zzs.title}}">{{zzs.title}}</a></div>
+                </li>
+             {%endfor%}
+            </ul>
+        </div>
+        <!--end content-->
+    </div>
+    <!--end mod-ind-->
+{%include "user/weilisuliao/button.html"%}
+  </div>
+  <!--end layout mod-spm-->
+</body>
+</html>

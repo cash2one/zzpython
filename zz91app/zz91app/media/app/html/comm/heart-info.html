@@ -1,0 +1,418 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>APP</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<style>
+			.topbar {
+				background: #01ba2e;
+				height: 50px;
+				text-align: center;
+				color: #fff;
+				font-size:16px;
+				line-height:45px;
+			}
+			.aui-img-object {
+				width: 48px;
+				text-align: center;
+				color: #fff;
+			}
+			.aui-img-object .aui-iconfont {
+				font-size: 24px;
+			}
+			.icon-bg1 {
+				background-color: #6dc2ff
+			}
+			.icon-bg2 {
+				background-color: #ff6b1a
+			}
+			.icon-bg3 {
+				background-color: #0ea503
+			}
+			.icon-bg4 {
+				background-color: #fc9a30
+			}
+			.icon-bg5 {
+				background-color: #16A085
+			}
+			.aui-user-view-cell .aui-img-body .aui-badge {
+				width: auto;
+				right: 30px;
+				position: absolute;
+				top: 50%;
+				color: #fff;
+				margin-top: -11px;
+			}
+			.aui-badge{
+				display:none
+			}
+			.box-title {
+				margin: 15px 10px 5px 10px;
+				/*margin-bottom: 5px;*/
+				height: 20px;
+				line-height: 20px;
+				border-left: 5px solid #ff9900;
+				color: #666;
+				font-weight: 700;
+				padding-left: 10px;
+				margin-bottom: 10px
+			}
+			.aui-img-body img{
+				width:20px;
+			}
+		</style>
+	</head>
+	<body>
+		<header id="topbar">
+			<div class="topbar">
+				消息
+			</div>
+		</header>
+		<div class="aui-content">
+			<ul class="aui-user-view">
+				<li class="aui-user-view-cell aui-img daiban">
+					<div class="aui-img-object aui-pull-left icon-bg1">
+						<span class="aui-iconfont aui-icon-friend"></span>
+					</div>
+					<div class="aui-img-body aui-arrow-right">
+						<span>待处理事项</span>
+						<p class='aui-ellipsis-1'>
+							待处理事项，移动使你生意更方便
+						</p>
+					</div>
+				</li>
+				<li class="aui-user-view-cell aui-img system" mtype="0">
+					<div class="aui-img-object aui-pull-left icon-bg2">
+						<span class="aui-iconfont aui-icon-community">
+					</div>
+					<div class="aui-img-body aui-arrow-right">
+						<span>系统消息</span>
+						<p class='aui-ellipsis-1'>
+							最新通知，行情快递
+						</p>
+						<span class="aui-badge aui-badge-danger j_xt">0</span>
+					</div>
+				</li>
+				<li class="aui-user-view-cell aui-img system" mtype="3">
+					<div class="aui-img-object aui-pull-left icon-bg3">
+						<span class="aui-iconfont aui-icon-redpacket">
+					</div>
+					<div class="aui-img-body aui-arrow-right">
+						<span>钱包提醒</span>
+						<p class='aui-ellipsis-1'>
+							您的再生钱包最新进账和消费情况
+						</p>
+						<span class="aui-badge aui-badge-danger j_qb">0</span>
+					</div>
+				</li>
+				<li class="aui-user-view-cell aui-img system" mtype="2">
+					<div class="aui-img-object aui-pull-left icon-bg4">
+						<span class="aui-iconfont aui-icon-group">
+					</div>
+					<div class="aui-img-body aui-arrow-right">
+						<span>互动社区</span>
+						<p class='aui-ellipsis-1'>
+							您的社区问题及时提醒
+						</p>
+						<span class="aui-badge aui-badge-danger j_hd">0</span>
+					</div>
+				</li>
+				
+				<li class="aui-user-view-cell aui-img system" mtype="4">
+					<div class="aui-img-object aui-pull-left icon-bg5">
+						<span class="aui-iconfont aui-icon-phone">
+					</div>
+					<div class="aui-img-body aui-arrow-right">
+						<span>来电宝消息</span>
+						<p class='aui-ellipsis-1'>
+							您的来电宝最新信息及时提醒
+						</p>
+						<span class="aui-badge aui-badge-danger j_ldb">0</span>
+					</div>
+				</li>
+				
+			</ul>
+			<div class="box-title">
+				留言消息
+			</div>
+			<ul class="aui-user-view chatlist" style="position:relative">
+				<div class="aui-toast"  id="loading">
+			        <div class="aui-toast-loading"></div>
+			        <div class="aui-toast-content">加载中</div>
+			    </div>
+			</ul>
+			<div class="nodata1" style="position:none;text-align:center;height:50px;display:none">暂无</div>
+			<script id="info-list" type="text/html">
+				<li class="aui-user-view-cell aui-img" company_id="{{d.company_id}}">
+					<img class="aui-img-object aui-pull-left" src="{{d.faceurl}}">
+					<div class="aui-img-body aui-arrow-right">
+						<span>{{d.contact}}</span>
+						<p class='aui-ellipsis-1'>
+							{{d.chat_content}}
+						</p>
+						<span class="aui-badge aui-badge-danger" style="display:{{d.display}}">{{d.chat_count}}</span>
+					</div>
+				</li>
+			</script>
+		</div>
+		<div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;display:none'>上拉获取更多信息</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js" ></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript">
+		var currPage = 1;
+		apiready = function() {
+			//var systemType = api.systemType;
+			//if (systemType != "ios") {
+			//	$("header").css("padding-top", "0px")
+			//}
+			var header = $api.byId('topbar');
+    		$api.fixStatusBar(header);
+			ajaxInfo(currPage);
+			showmessages();
+			//底部加载更多
+			api.addEventListener({
+				name : 'scrolltobottom'
+			}, function(ret, err) {
+				//如果底部没有加载更多提示，添加加载更多提示
+				$(".la_more").html("加载更多中...");
+				setTimeout(function() {
+					ajaxInfo(currPage);
+				}, 1000)
+			});
+			//待处理事项
+			$(".daiban").on("click", function() {
+				var pageParam = {
+					wintitle : "如何赚钱?",
+					type : "get-moery"
+				};
+				openWin("get-moery", "../comm/get-moery.html", pageParam);
+			})
+			//页面刷新
+			api.setRefreshHeaderInfo({
+				visible : true,
+				// bgColor: '#F2F2F2',
+				bgColor : '#01ba2e',
+				textColor : '#FFFFFF',
+				textDown : '下拉刷新',
+				textUp : '释放刷新',
+			}, function(ret, err) {
+				currPage = 1;
+				showmessages();
+				ajaxInfo(currPage);
+				api.toast({
+					msg : '数据已是最新！',
+					duration : 3000,
+					location : 'bottom'
+				});
+			});
+			//系统消息
+			$(".system").on("click", function() {
+				var mtype = $(this).attr("mtype")
+				var viewupdate=$(this).find(".aui-badge").text();
+				$(this).find(".aui-badge").text("0");
+				$(this).find(".aui-badge").hide();
+//				var pageParam = {
+//					wintitle : "消息",
+//					type : "news-list",
+//					nav_list : [{
+//						"typename" : "未读",
+//						"id" : 2
+//					}, {
+//						"typename" : "已读",
+//						"id" : 1
+//					}, {
+//						"typename" : "全部",
+//						"id" : 0
+//					}],
+//					module : "全部标为已读",
+//					frame_url : ["../comm/news-list.html"],
+//					topnumber : 3, //滚动Nav栏数码
+//					mtype : mtype
+//				};
+				var wintitle="消息"
+				if (mtype==0){
+					wintitle="系统消息";
+					$api.setStorage("showsysmesscount", viewupdate);
+				}
+				if (mtype==2){
+					wintitle="社区回复提醒"
+				}
+				if (mtype==3){
+					wintitle="钱包消息提醒"
+				}
+				if (mtype==4){
+					wintitle="来电宝消息提醒"
+				}
+				//zzalert(viewupdate)
+				var pageParam={
+					wintitle : wintitle,
+					type : "news-list",
+					mtype : mtype,
+					viewupdate : viewupdate
+				}
+				openWin("news-list", "../comm/news-list.html", pageParam);
+			})
+			$(".chatlist").on("click",'li', function() {
+				//未登录
+				var forcompany_id = $(this).attr("company_id")
+				if (!havelogin()){
+					return false;
+				};
+				var leaveworddata = {
+					wintitle : "给我留言",
+					type : "huifu",
+					Pid : 0,
+					forcompany_id : forcompany_id,
+					be_inquired_type : 1
+				};
+				openWin("huifu", "../trade/huifu.html", leaveworddata);
+			})
+		}
+		//显示系统消息
+		var showsysmesscount=0;
+		function showmessages(){
+			var data={
+				company_id : UserInfo.memberID(),
+				usertoken : UserInfo.token(),
+				clientid : api.deviceId,
+				appsystem : api.systemType,
+				datatype : "json",
+			}
+			api.ajax({
+				url : hosturl + 'messagesnoview.html?'+(new Date()).getTime().toString(),
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				if (ret) {
+					showsysmesscount=$api.getStorage("showsysmesscount");
+					if (!showsysmesscount){
+						if (ret.count0==0){
+							$(".j_xt").hide();
+						}else{
+							$(".j_xt").show();
+							$(".j_xt").text(ret.count0);
+						}
+					}else{
+						if (ret.count0!=showsysmesscount){
+							if (parseInt(ret.count0)>parseInt(showsysmesscount)){
+								$(".j_xt").show();
+								$(".j_xt").text(parseInt(ret.count0)-parseInt(showsysmesscount));
+							}
+						}else{
+							$(".j_xt").hide();
+						}
+					}
+					if (ret.count0==0){
+						$(".j_xt").hide();
+					}
+					
+					if (ret.count2==0){
+						$(".j_hd").hide();
+					}else{
+						$(".j_hd").show();
+						$(".j_hd").text(ret.count2);
+					}
+					if (ret.count3==0){
+						$(".j_qb").hide();
+					}else{
+						$(".j_qb").show();
+						$(".j_qb").text(ret.count3);
+					}
+					if (ret.count4==0){
+						$(".j_ldb").hide();
+					}else{
+						$(".j_ldb").show();
+						$(".j_ldb").text(ret.count4);
+					}
+					
+				} else {
+					if(err){
+						saveerrlog(err.msg);
+					}
+				};
+			});
+		}
+		function ajaxInfo(page) {
+			currPage=page
+			var data={
+				company_id : UserInfo.memberID(),
+				usertoken : UserInfo.token(),
+				clientid : api.deviceId,
+				appsystem : api.systemType,
+				datatype : "json",
+				page : currPage,
+			}
+			var company_id = UserInfo.memberID();
+			var usertoken = UserInfo.token();
+			api.ajax({
+				url : hosturl + 'messagesindex.html?'+(new Date()).getTime().toString(),
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				if (ret) {
+					var pageHtml = "";
+					$.each(ret.qlist, function(index, item) {
+						var getTpl = $api.html($api.byId("info-list"));
+						var key=item.company_id.toString();
+						var chat_count=item.chat_count;
+						if (chat_count){
+							var chat_countlist=eval('(' + item.chat_count + ')'); 
+							item.chat_count=chat_countlist[key]
+							if (chat_countlist[key] > 0 ){
+								item.display="block";
+							}else{
+								item.display="none";
+							}
+						}
+						if (!item.faceurl){item.faceurl="../../image/noavatar.gif"}
+						laytpl(getTpl).render(item, function(html) {
+							pageHtml = pageHtml + html;
+						});
+					});
+					if (currPage == 1) {
+						if (pageHtml==""){
+		            		$(".nodata1").show();
+		            		$(".la_more").hide();
+		            	}else{
+		            		$(".nodata1").hide();
+		            		$(".la_more").show();
+		                }
+						$(".chatlist").html(pageHtml);
+					}else{
+						$(".chatlist").append(pageHtml);
+					}
+					if (pageHtml!=""){
+						currPage += 1;
+						$(".la_more").html("上拉获取更多信息");
+					}else{
+						$(".la_more").html("全部加载完毕");
+					}
+					
+				} else {
+					if(err){
+						saveerrlog(err.msg);
+					}
+					api.hideProgress();
+				};
+				api.refreshHeaderLoadDone();
+			});
+		}
+	</script>
+</html>

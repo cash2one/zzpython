@@ -1,0 +1,46 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>判断公司是否存在</title>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style></head>
+
+<body>
+	
+<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#CCCCCC">
+{%if listall%}
+{% for list in listall %}
+  <tr>
+    <td bgcolor="#FFFFFF">公司名称：{{list.name}}</td>
+    <td bgcolor="#FFFFFF">账号：{{list.account}}</td>
+    <td bgcolor="#FFFFFF">邮箱：{{list.email}}</td>
+    <td bgcolor="#FFFFFF">手机：{{list.mobile}}</td>
+    <td bgcolor="#FFFFFF">注册时间：{{list.regtime}}</td>
+    <td width="50" bgcolor="#FFFFFF">
+    	{%if newcrm%}
+    	<a href="{{hosturl}}/icd/sqcompany.html?company_id={{list.id}}" target="_blank">申请分配</a>
+    	{%else%}
+    	<a href="compsq/?com_id={{list.id}}&personid={{personid}}&addtype=zst" target="_blank">申请分配</a>
+    	{%endif%}
+    </td>
+  </tr>
+{% endfor %}
+{%else%}
+没有找到对应的信息！可以进行录入。
+{%endif%}
+</table>
+</body>
+</html>

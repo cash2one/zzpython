@@ -1,0 +1,95 @@
+<style>
+.zz91-question-anwser-grad p{color: #333;}
+.huzhumain{padding: 10px;margin-bottom: 50px;;}
+.huzhucontent{color: #000;line-height: 2em;font-size: 16px;padding: 10px;border: solid 1px #9C9EA8;background-color: #fff;;}
+.huzhucontent p{color: #000;}
+.huzhucontent a{color:#0033CC;}
+.louzhu{line-height: 40px;margin-top: 10px;;}
+.zz91-question-main .backbutton{text-align: right;}
+.zz91-question-right,.zz91-question-left {color: #6C6C6C;}
+.zz91-question-right a,.zz91-question-left a{text-decoration:underline;color:#0033CC;}
+</style>
+<div class="huzhumain">
+<div class="huzhucontent">
+	
+    <center><div style="font-size: 16px; color: #006600;">{{title|safe}}</div></center>
+    {%for plist in picurllist%}
+    <img src="{{plist.file_path}}">
+    {%endfor%}
+    {%if content%}
+    	{{content|safe}}
+    {%endif%}
+</div>
+<div class="louzhu"><p class="mui-pull-left"><a href="javascript:gotourl('/companyinfo/?forcid={{company_id}}','blank');">楼主:{{nickname}}</a> {{gmt_created}}</p><a class="mui-btn mui-pull-right" href="javascript:bbsformreply(0,{{company_id}});">回复楼主</a></div>
+<div style="clear: both;"></div>
+<hr size="1" color="#ccc">
+<div class="zz91-question-main">
+	{%for list in listall_reply%}
+	<div class="zz91-question-left">
+		<font class="lt"><a href="javascript:gotourl('/companyinfo/?forcid={{list.company_id}}','blank');">{{list.nickname}}</a>
+		<div class="zz91-question-time">{{list.posttime}}</div>
+		<div class="zz91-question-anwser-grad">
+		    <span class="zz91-question-arrow-grad" ></span>
+		    {{list.content|safe}}
+		    <div class="backbutton"><button onclick="bbsformreply({{list.reply_id}},{{list.company_id}})">回复</button></div>
+		</div>
+	</div>
+	<div class="mui-clearfix"></div>
+	{%if list.replylist.list%}
+	{%for list1 in list.replylist.list%}
+	<div class="zz91-question-right">
+		<font class="lt"><a href="javascript:gotourl('/companyinfo/?forcid={{list1.company_id}}','blank');">{{list1.nickname}}</a></font> 回复 <a href="javascript:gotourl('/companyinfo/?forcid={{list1.tocompany_id}}','blank');"> {{list1.tonickname}}</a> :
+		<div class="zz91-question-time">{{list1.posttime}}</div>
+		<div class="zz91-question-anwser-greed">
+		    <span class="zz91-question-arrow-greed" ></span>
+		    {{list1.content|safe}}<br />
+		<button onclick="bbsformreply({{list.reply_id}},{{list1.company_id}})">回复</button></div>
+		
+		<div class="mui-clearfix"></div>
+	</div>
+	{%endfor%}
+	{%if list.replylist.count%}
+	<div class="mui-clearfix"></div>
+	<div class='pulldiv' style="width: 100px;float: right; background: none;" onclick=loadmorep(this,'/huzhureplymore/?postid={{id}}&replyid={{list.reply_id}}&type=1')><span class='mui-icon mui-icon-down'></span><span>更多回复</span></div>
+	{%endif%}
+	{%endif%}
+	{%endfor%}
+	<div class="mui-clearfix"></div>
+	{%if listall_reply%}{%if moreflag%}
+	<div class='pulldiv' id="pulldiv" onclick=loadmorep(this,'/huzhureplymore/?postid={{id}}&type=0') title="/huzhureplymore/?postid={{id}}&type=0"><span class='mui-icon mui-icon-down'></span><span>点此加载更多</span></div>
+	{%endif%}{%endif%}
+</div>
+</div>
+<div class="d-reply" style="display:none; padding:20px;">
+<form method="post" name="postform" id="postform" onSubmit="return submitfrm(this,'http://app.zz91.com/huzhu_replay/')">
+	<input type="hidden" name="bbs_post_id" id="bbs_post_id" value="{{id}}">
+	<input type="hidden" name="bbs_post_reply_id" id="bbs_post_reply_id" value="0">
+	<input type="hidden" name="tocompany_id" id="tocompany_id" value="{{company_id}}">
+    <input type="hidden" name="title" id="title" value="{{title}}">
+    <div class="r-txt">
+        <textarea name="content" cols="20" rows="4" placeholder="来写点什么吧..." style="border:solid 1px #CCC; padding:10px;"></textarea>
+    </div>
+    <input type="submit" value="立即回复" class="mui-btn mui-btn-success" name="submit"/>
+</form>
+</div>
+<nav class="mui-bar mui-bar-tab" style="text-align: center;">
+<form method="post" name="postform" id="postform">
+	<!--<span class="mui-icon mui-icon-plus zz91-question-addpic"></span>-->
+	<textarea rows="1" placeholder="来写点什么吧..." name="content" class="zz91-question-addtext" title="*来写点什么吧..." style="margin-left: 5px;"></textarea>
+	<input type="hidden" name="bbs_post_id" id="bbs_post_id" value="{{id}}">
+	<input type="hidden" name="bbs_post_reply_id" value="0">
+	<input type="hidden" name="tocompany_id" value="{{company_id}}">
+	<input type="hidden" name="title" id="title" value="{{title}}">
+	<button type="submit" class="mui-btn mui-btn-success" onclick="return backbbsform(this.form)">回复楼主</button>	
+</form>
+</nav>
+<div class="favorite" style="display: none;padding: 20px;">
+	<br />
+	<div style="text-align: left;font-size: 18px;width: 80%;">
+		收藏成功,您可以在“生意管家-我的收藏夹”中查看。
+	</div>
+	<br />
+	<button onclick="closeoverlay()" class="mui-btn mui-btn-danger">  知道了    </button>
+	<br />
+</div>
+<input type="hidden" id="appnavname" value="互助详情-再生互助" />

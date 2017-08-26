@@ -1,0 +1,234 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <title>元宝铺客户满意度调查表</title>
+    <meta name="description" content="填写完毕即可领取惊喜福利！" />
+	<meta name="keywords" content="元宝铺调查表" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <meta content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <link rel="stylesheet" href="css/base-min.css" />
+    <link rel="stylesheet" href="css/ybp_index.css" />
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="http://m.zz91.com/js/qianbao/jquery.lightbox_me.js"></script>
+	<style>
+		.sucshow{
+			background-image:none;
+			text-align: center;
+		}
+		.gzshow{
+			background-image:none;
+			text-align: center;
+		}
+		#contactdiv{
+			line-height: 35px;
+			margin-top: 20px;
+		}
+		#contactdiv .cli{
+			padding: 10px;
+			text-align: center;
+		}
+		#contactdiv .ctext{
+			border: 1px solid #ebebeb;
+			padding: 5px;
+			width: 70%;
+		}
+		.tipp{width:60%;padding:15px;position:relative;display:none;-moz-border-radius:6px;background:#fff;-webkit-border-radius:5px;border-radius:5px;border:1px solid #536376;-webkit-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;-moz-box-shadow:rgba(0,0,0,.6) 0px 2px 12px}
+	</style>
+</head>
+    <body>
+    <div class="page">
+        <div class="band"><img src="images/top_pic.png"></div>
+        <div class="content">
+        	{%for list in votelist%}
+            <div class="question-box">
+                <div class="question-title"><span class="question-icon"></span>{{list.label}}</div>
+                {%if list.child%}
+                <ul class="answer-list">
+                	{%for list1 in list.child%}
+                    <li><label><input type="{%ifequal list1.ctype 1%}checkbox{%else%}radio{%endifequal%}" name="question{{list.n}}" nid="{{list.n}}" ctype="{{list1.ctype}}" cid="{{list1.id}}" class="option-input {%ifequal list1.ctype 1%}checkbox{%else%}radio{%endifequal%}">{{list1.label}}</label></li>
+                    {%ifequal list1.ctype 2%}
+	                <div class="question-you divtext{{list.n}}" id="text{{list1.id}}" nid="{{list.n}}" style="display: none;">
+	                    <input type="text" class="question-ipt" nomust="{{list1.nomust}}" cid="{{list1.id}}" placeholder="请输入您的建议"></input>
+	                </div>
+	                {%endifequal%}
+                    {%endfor%}
+                </ul>
+                {%endif%}
+                {%ifequal list.ctype 2%}
+                <div class="question-you">
+                    <input type="text" class="question-ipt" nomust="{{list.nomust}}" cid="{{list.id}}" placeholder="请输入您的建议"></input>
+                </div>
+                {%endifequal%}
+            </div>
+            {%endfor%}
+            <div id="contactdiv">
+				<div class="cli">姓名：<input type="text" class="ctext" maxlength="100" id="pname" placeholder="请输入您的姓名"></input></div>
+				<div class="cli">电话：<input type="text" class="ctext" maxlength="100" id="pcontact" placeholder="请输入您的电话"></input></div>
+			</div>
+        </div>
+        <div class="foot"><img src="images/bottm_pic.png"></div>
+    </div>
+    <div class="boxbtn">
+        <div class="postBtn">提 交</div>
+    </div>
+
+	
+    <div class="pop gzshow">
+    	<img src="images/ewm.png" style="margin-top: 40%;">
+        <!--<div class="close"><img src="images/cancel.png" width="24"></div>-->
+    </div>
+    
+    <div class="pop sucshow">
+    	<a href="http://e.eqxiu.com/s/0sUxhgs3?eqrcode=1" target="_blank"><img src="images/vote_get.png" width="60%" style="margin-top: 40%;"></a>
+        <div class="close"><img src="images/cancel.png" width="24"></div>
+    </div>
+        
+	
+    <div style="display:none">
+    <script>
+        // var _hmt = _hmt || [];
+        // (function() {
+        //     var hm = document.createElement("script");
+        //     hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+        //     var s = document.getElementsByTagName("script")[0];
+        //     s.parentNode.insertBefore(hm, s);
+        // })();
+    </script>
+    <!--baidu analysis-->
+    <script>
+        // var _hmt = _hmt || [];
+        
+        // (function() {
+        //     var hm = document.createElement("script");
+        //     hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+        //     var s = document.getElementsByTagName("script")[0];
+        //     s.parentNode.insertBefore(hm, s);
+        // })();
+    </script>
+    </div>
+</body>
+<script>
+    var succ = {{showgz}};
+    var havevote ={{havevote}};
+    if(succ==1){
+        $(".gzshow").show()
+    }
+    if (havevote==1){
+    	alert("您已经填写调查问卷!")
+    	$(".sucshow").show();
+    }
+    $(".close").on("click",function(){
+        $(".pop").hide()
+    })
+    $(function(){
+		$(".option-input").click(function(){
+			var cid = $(this).attr("cid");
+			var nid = $(this).attr("nid");
+			var ctype = $(this).attr("ctype");
+			var tnid=$("#text"+cid).attr("nid")
+			if (ctype=="2" && nid==tnid){
+				$("#text"+cid).show();
+			}else{
+				$(".divtext"+nid).hide();
+			}
+			if(succ==1){
+		        $(".gzshow").show()
+		    }
+		})
+		$(".postBtn").click(function(e){
+			if (havevote==1){
+		    	alert("您已经填写调查问卷!")
+		    	$(".sucshow").show();
+		    	return;
+		    }
+			var vote_cidlist="";
+			$(".content input:checked").each(function(){
+				vote_cidlist+=$(this).attr("cid")+",";
+			})
+			var clen=$(".content input:checked").length;
+			if (vote_cidlist!=""){
+				vote_cidlist=vote_cidlist.substr(0,vote_cidlist.length-1)
+			}
+			if (vote_cidlist==""){
+				alert("请填写调查表！")
+				return;
+			}
+			var vote_cidtextid="";
+			var vote_cidtext="";
+			var textret=true;
+			$(".question-ipt").each(function(){
+				var cid=$(this).attr("cid");
+				var cidtext=$(this).val();
+				vote_cidtextid+=cid+"|";
+				vote_cidtext+=cidtext+"|";
+				if ($(this).parent('.question-you').css("display")=="block" && $(this).attr("nomust")=="0"){
+					if (cidtext==""){
+						alert("请填写完整调查表！");
+						textret=false;
+						return false;
+					}
+				}
+			});
+			if (textret==false){
+				return textret;
+			}
+			if (vote_cidtextid!=""){
+				vote_cidtextid=vote_cidtextid.substr(0,vote_cidtextid.length-1);
+				vote_cidtext=vote_cidtext.substr(0,vote_cidtext.length-1)
+			}
+			if (clen<10){
+				alert("请填写完整调查表！")
+				return false;
+			}
+			var pname=$("#pname").val();
+			var pcontact=$("#pcontact").val();
+			if (pname=="" || pcontact==""){
+				alert("请填写联系方式！")
+//				$('#contactdiv').lightbox_me({
+//					overlaySpeed:0,
+//					lightboxSpeed:0,
+//					modalCSS:{top:"20%",width:'80%'},
+//					//centered: true,
+//					onLoad: function() { 
+//						var target = $.event.fix(e).currentTarget;
+//					}
+//				});
+				return;
+			}
+			$('#contactdiv').trigger('close');
+			$(".boxbtn").hide()
+			var ajaxurl1="/vote/ybp_vote_save.html?vote_cidlist="+vote_cidlist+"&vote_cidtextid="+vote_cidtextid+"&vote_cidtext="+vote_cidtext+"&pname="+pname+"&pcontact="+pcontact
+			$.getScript(ajaxurl1, function() {
+				var err=_suggest_result_.err;
+				if (err=="false"){
+					$(".sucshow").show();
+					$(".boxbtn").show()
+				}else{
+					if (_suggest_result_.gz==1){
+						$(".gzshow").show();
+					}
+					if (_suggest_result_.gz==2){
+						alert(_suggest_result_.errtext)
+						$(".sucshow").show();
+						
+					}
+					if (_suggest_result_.gz==3){
+						alert(_suggest_result_.errtext)
+					}
+				}
+				$(".boxbtn").show()
+			});
+		})
+	});
+
+</script>
+
+</html>

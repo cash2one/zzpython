@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>我的社区-{{webtitle}}—生意管家_ZZ91废料移动商务</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-tab.js"></script>
+		<style>
+			body{
+				background-color: #EBEBEB;
+			}
+			
+			.clearfix:after {
+				content: ".";
+				display: block;
+				height: 0;
+				clear: both;
+				visibility: hidden
+			}
+			
+			.clearfix {
+				height: 1%
+			}
+			
+			.clearfix {
+				display: block
+			}
+			
+			.aui-bar {
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			
+			a {
+				color: #333
+			}
+			
+			.floatpage {
+				position: fixed;
+				bottom: 0px;
+				width: 100%;
+				height: 54px;
+			}
+			
+			.navfix-box {
+				height: 25px;
+			}
+			
+			.navfix-box-fix {
+				position: fixed;
+				width: 100%;
+				top: 45px;
+				z-index: 1;
+				background: #fff
+			}
+			
+			.aui-tab-item {
+				font-size: 12px;
+			}
+			
+			.aui-tab-item.aui-active {
+				color: #009900 !important;
+				border-bottom: 2px solid #009900;
+			}
+			
+			.pop {
+				display: none;
+			}
+			
+			.popshow {
+				display: block;
+			}
+			
+			.red {
+				color: #f00;
+			}
+			
+			.text-33 {
+				color: #333;
+			}
+			
+			.text-99 {
+				color: #999;
+			}
+			
+			.text-090 {
+				color: #090;
+			}
+			
+			.bg-f2 {
+				background: #f2f2f2;
+			}
+			
+			.aui-list:before {
+				background-color: #fff;
+			}
+			
+			.mc-btn {
+				color: #fff;
+				background: #009900;
+				padding: 2px 12px;
+			}
+			.aui-content {
+	    		background: #ffffff;
+	    		overflow: hidden;
+	    	}
+	    	.aui-ask-header {
+	    		width: 100%;
+	    		padding: 10px 15px;
+	    		color: #999;
+	    		font-size: 14px;
+	    		overflow: hidden;
+	    		line-height: 32px;
+	    	}
+	    	.ask-avatar {
+	    		float: left;
+	    		width: 32px;
+	    		height: 32px;
+	    		border-radius: 50%;
+	    	}
+	    	.ask-nickname {
+	    		float: left;
+	    		font-size: 14px;
+	    		line-height: 32px;
+	    		margin-left: 10px;
+	    	}
+	    	.ask-time {
+	    		font-size: 12px;
+	    	}
+	    	.aui-ask-body {
+	    		width: 100%;
+	    		padding: 10px 15px;
+	    	}
+	    	.aui-ask-title {
+	    		font-size: 16px;
+	    		color: #333;
+	    		margin-bottom: 5px;
+	    	}
+	    	.aui-ask-footer {
+	    		padding: 0 15px 15px 15px;
+	    		overflow: hidden;
+	    		line-height: 20px;
+	    	}
+	    	.aui-ask-footer, .comment {
+	    		font-size: 12px;
+	    		color: #999;
+	    	}
+	    	.aui-ellipsis-2 img{
+	    		width: 100%;
+	    	}
+		</style>
+	</head>
+
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+			<a class="aui-pull-left" href="/myrc/">
+				<span class="aui-iconfont aui-icon-left"></span>
+			</a>
+			<div class="aui-title">我的社区</div>
+		</header>
+		<div style="height: 80px;"></div>
+
+		<div class="navfix-box">
+			<div class="navfix-box-fix">
+				<div class="aui-tab j_select" id="tab">
+					<a class="aui-tab-item aui-active" href="/myrc/community.html">
+						消息中心
+						{%ifequal huzhureply.notviewcount 0%}{%else%}
+						<div class="aui-badge aui-badge-danger questioncount">{{huzhureply.notviewcount}}</div>
+						{%endifequal%}
+					</a>
+					<a class="aui-tab-item" href="/myrc/mypost.html">我的提问</a>
+					<a class="aui-tab-item" href="/myrc/myreply.html">我的回复</a>
+					<a class="aui-tab-item" href="/myrc/myguanzhu.html">我的关注</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="pop popshow">
+			{%for list in listall%}
+			<div class="aui-content">
+				<div class="aui-ask-header">
+		    		<img src="{{list.faceurl}}" class="ask-avatar"/>
+		        	<div class="aui-text-info ask-nickname"><a href="/companyinfo/?company_id={{list.company_id}}">{{list.nickname}}</a><span class="aui-margin-l-5 aui-margin-r-5">回复了我的提问</span></div>
+		        	<span class="aui-pull-right ask-time">{{list.reply_time}}</span>
+		    	</div>
+		    	<div class="aui-line-x"></div>
+		        <div class="aui-ask-body">
+		            <div class="aui-ask-title aui-ellipsis-2">
+		            	{%if list.isview%}
+		            	<font color="red">[未读]</font>
+		            	回复：<b>{{list.replycontent|safe}}</b>
+						{%else%}
+						回复：{{list.replycontent|safe}}
+						{%endif%}
+						
+		            </div>
+		            {%if list.post_title%}
+		            <a href="viewreply.html?tourl=/huzhu/{{list.post_id}}.html&reply_id={{list.id}}">
+		            <div class="aui-list-item-text aui-border bg-f2">
+                        <div class="aui-list-item-title aui-padded-10 bg-f2 aui-ellipsis-2">
+                        	{{list.post_title}}
+                        </div>
+                    </div>
+                   	</a>
+                    {%endif%}
+		        </div>
+		        <div class="aui-ask-footer">
+		        	<div class="aui-text-center aui-text-warning">
+						<a href="viewreply.html?tourl=/huzhu_replayshow/^wenhao^postid={{list.post_id}}^and^tocompany_id={{list.company_id}}&reply_id={{list.id}}" class="aui-btn aui-btn-success">
+							我要回复
+						</a>
+		        	</div>
+		        </div>
+			</div>
+			{%endfor%}
+		</div>
+
+
+		<div class="pop">
+			<div class="aui-card-list">
+				<div class="aui-card-list-content">
+					<ul class="aui-list aui-media-list">
+						<li class="aui-list-item aui-list-item-middle">
+							<div class="aui-media-list-item-inner">
+								<a href="" class="aui-list-item-inner">
+									<div class="aui-list-item-text">
+										<div class="aui-list-item-title aui-font-size-14" style="color: #0033CC;">
+											ZZ91再生网品牌升级通知
+										</div>
+									</div>
+									<div class="aui-list-item-text aui-padded-t-5 aui-padded-b-5">
+										<div class="aui-list-item-title aui-font-size-12">
+											<span class="">时间：</span>
+											<span class="aui-margin-l-5 text-99">3-2 18:22</span>
+										</div>
+									</div>
+									<div class="aui-list-item-text">
+										<div class="aui-list-item-title">
+											<div href="" class="aui-btn mc-btn">
+												查看
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</li>
+
+						<li class="aui-list-item aui-list-item-middle">
+							<div class="aui-media-list-item-inner">
+								<a href="" class="aui-list-item-inner">
+									<div class="aui-list-item-text">
+										<div class="aui-list-item-title aui-font-size-14" style="color: #0033CC;">
+											ZZ91再生网品牌升级通知
+										</div>
+									</div>
+									<div class="aui-list-item-text aui-padded-t-5 aui-padded-b-5">
+										<div class="aui-list-item-title aui-font-size-12">
+											<span class="">时间：</span>
+											<span class="aui-margin-l-5 text-99">3-2 18:22</span>
+										</div>
+									</div>
+									<div class="aui-list-item-text">
+										<div class="aui-list-item-title">
+											<div href="" class="aui-btn mc-btn">
+												查看
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</li>
+
+						<li class="aui-list-item aui-list-item-middle">
+							<div class="aui-media-list-item-inner">
+								<a href="" class="aui-list-item-inner">
+									<div class="aui-list-item-text">
+										<div class="aui-list-item-title aui-font-size-14" style="color: #0033CC;">
+											ZZ91再生网品牌升级通知
+										</div>
+									</div>
+									<div class="aui-list-item-text aui-padded-t-5 aui-padded-b-5">
+										<div class="aui-list-item-title aui-font-size-12">
+											<span class="">时间：</span>
+											<span class="aui-margin-l-5 text-99">3-2 18:22</span>
+										</div>
+									</div>
+									<div class="aui-list-item-text">
+										<div class="aui-list-item-title">
+											<div href="" class="aui-btn mc-btn">
+												查看
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</li>
+
+						<li class="aui-list-item aui-list-item-middle">
+							<div class="aui-media-list-item-inner">
+								<a href="" class="aui-list-item-inner">
+									<div class="aui-list-item-text">
+										<div class="aui-list-item-title aui-font-size-14" style="color: #0033CC;">
+											ZZ91再生网品牌升级通知
+										</div>
+									</div>
+									<div class="aui-list-item-text aui-padded-t-5 aui-padded-b-5">
+										<div class="aui-list-item-title aui-font-size-12">
+											<span class="">时间：</span>
+											<span class="aui-margin-l-5 text-99">3-2 18:22</span>
+										</div>
+									</div>
+									<div class="aui-list-item-text">
+										<div class="aui-list-item-title">
+											<div href="" class="aui-btn mc-btn">
+												查看
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</li>
+
+						<li class="aui-list-item aui-list-item-middle">
+							<div class="aui-media-list-item-inner">
+								<a href="" class="aui-list-item-inner">
+									<div class="aui-list-item-text">
+										<div class="aui-list-item-title aui-font-size-14" style="color: #0033CC;">
+											ZZ91再生网品牌升级通知
+										</div>
+									</div>
+									<div class="aui-list-item-text aui-padded-t-5 aui-padded-b-5">
+										<div class="aui-list-item-title aui-font-size-12">
+											<span class="">时间：</span>
+											<span class="aui-margin-l-5 text-99">3-2 18:22</span>
+										</div>
+									</div>
+									<div class="aui-list-item-text">
+										<div class="aui-list-item-title">
+											<div href="" class="aui-btn mc-btn">
+												查看
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="topdiv" onclick="pagetotop();"><span class="aui-iconfont aui-icon-top"></span></div>
+		<div style="height: 60px;"></div>
+
+		<div class="floatpage">
+			<div class="page">
+				<ul>
+					{% if firstpage %}
+					<li class="page_prev">
+						<a href="?page={{prvpage}}">上一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+					<li class="page_no">
+						<select onChange="window.location='?page='+this.value">
+							<option>第{{page}}页</option>
+							<option value="1">首页</option>
+							{%for p in page_range%}
+							<option value="{{p.number}}">第{{p.number}}页</option>
+							{%endfor%}
+							<option value="{{page_listcount}}">末页</option>
+						</select> /{{page_listcount}}页
+					</li>
+					{% if lastpage%}
+					<li class="page_next">
+						<a href="?page={{nextpage}}">下一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+
+	</body>
+
+	<script type="text/javascript">
+		//		apiready = function(){
+		//	        api.parseTapmode();
+		//	    }
+		//	    var tab = new auiTab({
+		//	        element:document.getElementById("tab"),
+		//	    },function(ret){
+		//	        console.log(ret)
+		//	    });
+
+		//		$(".j_select").children().on("click",function(){
+		//          var indexNum = $(this).index();
+		//          $(".popshow").removeClass("popshow")
+		//          $(".pop").eq(indexNum).addClass("popshow")
+		//      })
+
+		//		function pagetotop(){
+		//			$('body').animate( {scrollTop: 0}, 500);
+		//		}
+	</script>
+
+</html>

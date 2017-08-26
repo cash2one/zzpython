@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<title>{{content.title}}-资讯中心-ZZ91再生网-手机端</title>
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css" />
+		<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+		<script src="http://img0.zz91.com/zz91/mobile/js/style.js"></script>
+		<script type="text/javascript" src="/js/huzhu/jquery.lightbox_me.js"></script>
+		{%if seohost%}
+		<link rel="canonical" href="http://news.zz91.com/{{seohost}}">{%endif%}
+	</head>
+
+	<body style="background:#f1f1f1">
+
+		{%include 'top.html'%}
+
+		<div class="details">
+			<center>
+				<div style="margin-top:3px;">
+					<!--<script type="text/javascript">
+						/*移动端 kangxianyue 20:5 创建于 2016-01-22*/
+						    var cpro_id = "u2502985";
+					</script>
+					<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+					-->
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5512236620584335" data-ad-slot="9255868807" data-ad-format="auto"></ins>
+					<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+				</div>
+
+			</center>
+			<div class="details-listNav">
+				<a href="/news/{{url}}/list-{{typeid}}.html">{{typename}}</a>>{{content.title|safe}}
+			</div>
+			<!--end details-listNav-->
+			<div class="details-title">
+				<center>
+					<h1>{{content.title|safe}}</h1>
+					<span>发布时间：{{content.pubdate}}</span><span>来源：ZZ91</span><span>浏览量：{{content.click}}</span>
+				</center>
+			</div>
+			<!--end details-title-->
+			<div class="details-content">
+				{{content.content|safe}}
+			</div>
+			<!--end details-content-->
+			<div class="details-before-page">
+				上一篇：<a href="/news/newsdetail{{articalup.id}}.htm{%if typeid%}?typeid={{typeid}}{%endif%}">{{articalup.title}}</a>
+				<Br /> 下一篇：
+				<a href="/news/newsdetail{{articalnx.id}}.htm{%if typeid%}?typeid={{typeid}}{%endif%}">{{articalnx.title}}</a>
+			</div>
+		</div>
+		<div style="width: 100%;text-align: center;line-height: 30px;">关注 “zz91再生网” 微信公众号<br>查看更多资讯<br /><img src="http://www.zz91.com/zt/sqb/images/erwei.png"><br />长按识别二维码</div>
+		<style>
+			#mcover{ position: fixed;top:0;left:0;width:100%;	height:100%;background:rgba(0, 0, 0, 0.7);	display:none;z-index:20000;}
+			#mcover img {position: fixed;right: 18px;top:5px;width: 260px;height: 180px;z-index:20001;}
+		</style>
+		<div class="box">
+			<!--分享-->
+			<div id="mcover" onclick="$('#mcover').hide();">
+				<img src="http://img0.zz91.com/zz91/mobile/images/guide.png" />
+			</div>
+			<div class="bdsharebuttonbox tipp" id="bdsharebuttonbox">
+				<a id="a_wx_wxin" href="javascript:$('#mcover').show();" class="mbds_wxin1"></a>
+				<a id="a_wx_friend" href="javascript:$('#mcover').show();" class="mbds_friend1"></a>
+				<a id="a_sougou_wxin" href="javascript:void(SogouMse.Utility.shareWithInfo({shareTitle:'{{content.title}}-资讯中心-ZZ91再生网', shareContent:'', shareUrl:'http://m.zz91.com/news/newsdetail{{id}}.htm', shareImageUrl:'http://img0.zz91.com/zz91/images/48R.png', shareType:'4'}));"
+				class="mbds_wxin1"></a>
+				<a id="a_sougou_friend" href="javascript:void(SogouMse.Utility.shareWithInfo({shareTitle:'{{content.title}}-资讯中心-ZZ91再生网', shareContent:'', shareUrl:'http://m.zz91.com/news/newsdetail{{id}}.htm', shareImageUrl:'http://img0.zz91.com/zz91/images/48R.png', shareType:'2'}));"
+				class="mbds_friend1"></a>
+				<a id="a_uc_wxin" href="javascript:ucshare('j_ishare_pic','{{content.title}}','{{content.title}}-资讯中心-ZZ91再生网','http://m.zz91.com/news/newsdetail{{id}}.htm','WechatTimeline');" data-platform="WechatTimeline" class="mbds_wxin1"></a>
+				<a id="a_uc_friend" href="javascript:ucshare('j_ishare_pic','{{content.title}}','{{content.title}}-资讯中心-ZZ91再生网','http://m.zz91.com/news/newsdetail{{id}}.htm','WechatFriends');" data-platform="WechatFriends" class="mbds_friend1"></a>
+				<a id="a_qq_wxin" href="javascript:void(mqqShare('timeline'));" data-share-type="wechat_qq:timeline" class="mbds_wxin1"></a>
+				<a id="a_qq_friend" href="javascript:void(mqqShare('friend'));" data-share-type="wechat_qq:friend" class="mbds_friend1"></a>
+				<a href="#" class="bds_qzone1" data-cmd="qzone" title="分享到QQ空间"></a>
+				<a href="#" class="bds_tsina1" data-cmd="tsina" title="分享到新浪微博"></a>
+				<script>
+					window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "32" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+				</script>
+				<style>
+					.bdsharebuttonbox{padding:25px 0 25px 20px;}
+					            .bdsharebuttonbox .mbds_wxin1 {background:url(http://img0.zz91.com/zz91/mobile/images/friend.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:20px!important;display:none;padding-left:0px;}
+					            .bdsharebuttonbox .mbds_friend1 {background:url(http://img0.zz91.com/zz91/mobile/images/wxin.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:20px!important;display:none;padding-left:0px;}            
+					            .bdsharebuttonbox .bds_qzone1 {background:url(http://img0.zz91.com/zz91/mobile/images/kjian.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:20px!important;padding-left:0px;}
+					            .bdsharebuttonbox .bds_tsina1 {background:url(http://img0.zz91.com/zz91/mobile/images/sina.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:10px!important;padding-left:0px;}
+				</style>
+				<script type="text/javascript">
+					var ua = navigator.userAgent.toLowerCase();
+					                if (ua.indexOf("sogoumobilebrowser") > -1) {
+					                    $("#a_sougou_wxin,#a_sougou_friend").show();
+					                }
+					                else if(ua.indexOf("micromessenger") > -1)
+					                {
+					                    $("#span_guanzhu").show();
+					                    $("#a_wx_wxin,#a_wx_friend").show();
+					                }
+					                else if (ua.indexOf("ucbrowser") > -1) {
+					                    $("#a_uc_wxin,#a_uc_friend").show();
+					                }
+					                else if(ua.indexOf("mqqbrowser") > -1)
+					                {
+					                    $("#a_qq_wxin,#a_qq_friend").show();
+					                }
+					                window.article_config = {        
+					                    news_title: "{{content.title}}-资讯中心-ZZ91再生网" ,      
+					                    share_img: "http://img0.zz91.com/zz91/images/48R.png",        
+					                };
+					                $(function () {
+					                    var weixinParams,
+					                    ua = navigator.userAgent,
+					                    isAndroid = /Android/i.test(window.navigator.userAgent),
+					                    newQQbrowerWeixinApi = 'http://jsapi.qq.com/get?api=app.isInstallApk,app.share',
+					                    getQQbrowerVersion = function () {
+					                        try {
+					                            var reg = /MQQBrowser\/(\d{2})/;
+					                            var regRemoveDot = /\./g;
+					                            ua =  ua.replace(regRemoveDot,'');
+					                            var res = reg.exec(ua);
+					                            if(res && res.length > 1){
+					                                return parseInt(res[1], 10);
+					                            }
+					                            return 0;
+					                        }catch(e){
+					                            return 0;
+					                        }
+					                    },
+					                    loadQqPushJs = function (url, callback) {
+					                        var head = document.getElementsByTagName('head')[0];
+					                        var js = document.createElement('script');
+					                        js.setAttribute('type', 'text/javascript'); 
+					                        js.setAttribute('src', url); 
+					                        head.appendChild(js);
+					                        js.onload = callback;
+					                    },
+					                    newWxShareLoad = function (type) {
+					                        if (getQQbrowerVersion() >= 54) {
+					                            loadQqPushJs(newQQbrowerWeixinApi, noInstallDeleteWeixin);
+					                        }
+					                    },
+					                    deleteWeixinShare = function () {
+					                        $('[data-share-type="wechat_qq:timeline"]').remove();
+					                        $('[data-share-type="wechat_qq:friend"]').remove();
+					                    },
+					                    noInstallDeleteWeixin = function () {
+					                        browser.app.isInstallApk(function(data){
+					                            if (!data) {
+					                                deleteWeixinShare();
+					                            }
+					                        }, isAndroid ? {'packagename':'com.tencent.mm'} : {'apkKey':'weixin'});
+					                    },
+					                    handleShareWeixinNewQQbrower = function () {
+					                        browser.app.share(weixinParams);
+					                    },
+					                    mqqShare = function (type) {
+					                        var title, url, imgUrl, to_app, qqbrowerVersion,
+					                            config = window.article_config;
+					                        if (type === 'friend') {
+					                            //Statistics.addStatistics('000022_weixin_QQMB_sharefriend');
+					                            to_app = 1;
+					                        }
+					                        else {
+					                            //Statistics.addStatistics('000022_weixin_QQMB_sharefriends'); 
+					                            to_app = 8;
+					                        }
+					                        title = config.news_title;
+					                        imgUrl = config.share_img;
+					                        url = location.href;
+					                        if (url.indexOf('?') > 0) {
+					                            url += '&_once_=000022_weixin_QQMB_back';
+					                        }
+					                        else {
+					                            url += '?_once_=000022_weixin_QQMB_back';
+					                        }
+					                        weixinParams = {title: title, url: url, img_url: imgUrl, to_app: to_app};
+					                        if (!isAndroid) {
+					                            handleShareWeixinNewQQbrower();
+					                        }
+					                        else {
+					                            if (getQQbrowerVersion() >= 54) {
+					                                handleShareWeixinNewQQbrower();
+					                            }
+					                            else {
+					                                wxShare().init({title: title,url: url,imgUrl: imgUrl,to_app: to_app});
+					                            }
+					                        }
+					                    };
+					                
+					                window.mqqShare = mqqShare;
+					                window.newWxShareLoad = newWxShareLoad;
+					                }());
+					
+					                // 微信分享数据
+					                window.weixinShareData = {
+					                    "img_url": window.article_config.share_img,
+					                    "link": window.location.href,
+					                    "title": window.article_config.news_title,
+					                    "desc": $('meta[name="description"]').attr('content')
+					                };
+					
+					                $(function () {
+					                    newWxShareLoad();
+					                });
+					
+					                function ucshare(obj, title, content, url, platform) {
+					                    var getPos = {
+					                        getTop: function (e) {
+					                            var offset = e.offsetTop;
+					                            if (e.offsetParent != null) offset += getPos.getTop(e.offsetParent);
+					                            return offset;
+					                        },
+					                        getLeft: function (e) {
+					                            var offset = e.offsetLeft;
+					                            if (e.offsetParent != null) offset += getPos.getLeft(e.offsetParent);
+					                            return offset;
+					                        },
+					                        getCss3offsetTop: function (e) {
+					                            var css3offset = getComputedStyle(e, null).webkitTransform;
+					                            if (css3offset == "none") {
+					                                var css3offsetTop = 0;
+					                            } else {//存在CSS3属性
+					                                var css3offsetTop = parseInt(css3offset.split(",")[5].replace(")", ""))
+					                            }
+					                            if (e.parentNode.tagName != "BODY") css3offsetTop += getPos.getCss3offsetTop(e.parentNode);
+					                            return css3offsetTop;
+					                        },
+					                        getCss3offsetLeft: function (e) {
+					                            var css3offset = getComputedStyle(e, null).webkitTransform;
+					                            if (css3offset == "none") {
+					                                var css3offsetLeft = 0;
+					                            } else {//存在CSS3属性
+					                                var css3offsetLeft = parseInt(css3offset.split(",")[4])
+					                            }
+					                            if (e.parentNode.tagName != "BODY") css3offsetLeft += getPos.getCss3offsetLeft(e.parentNode);
+					                            return css3offsetLeft;
+					                        },
+					                        getNodeInfoById: function (e) {
+					                            var myNode = document.getElementById(e);
+					                            if (myNode) {
+					                                var pos = [getPos.getLeft(myNode) + getPos.getCss3offsetLeft(myNode), getPos.getTop(myNode) + getPos.getCss3offsetTop(myNode), myNode.offsetWidth, myNode.offsetHeight]
+					                                return (pos)
+					                            } else {
+					                                return ""
+					                            }
+					                        }
+					                    }
+					
+					                    if (typeof (ucweb) != "undefined") {
+					                        var UCBrowserText = ucweb.startRequest("shell.page_share", [title, content, url, platform, '', '我们正在看【' + title + '】，一起来看吧', getPos.getNodeInfoById(obj)]);
+					                        //var UCBrowserText = ucweb.startRequest("shell.page_share", ['', '使用UC浏览器分享js API', 'http://wap.uc.cn', '', 'invisible:QQ,Qzone', 'UC浏览器','']);
+					                    }
+					                    else if (typeof (ucbrowser) != "undefined") {
+					
+					                        if (platform == _platforms.sweibo[0]) {
+					                            platform = _ucPlatName.iweibo;
+					                        }
+					                        else if (platform == _platforms.friend[0]) {
+					                            platform = _ucPlatName.ifriend;
+					                            url += _frompre + "from=" + _fromPlat.ucfriend;
+					                        }
+					                        else if (platform == _platforms.fsircle[0]) {
+					                            platform = _ucPlatName.ifcircle;
+					                            url += _frompre + "from=" + _fromPlat.ucweichat;
+					                        }
+					
+					
+					                        ucbrowser.web_share(title, content, url, platform, '', '@ZZ91再生网', obj);//title 指html的title
+					                        //ucbrowser.web_share('title', 'content', 'url', 'platform', 'disablePlatform', 'source', 'htmlID');
+					                    }
+					                    else {
+					                        //alert("sorry,your browser version not support!");
+					                    }
+					                }
+				</script>
+			</div>
+		</div>
+		<!--end details-->
+		<script type="text/javascript">
+			/*手机站：首页 20:3，创建于2014-7-22*/
+			var cpro_id = "u1629209";
+		</script>
+		<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+		<div class="details-list">
+			<div>相关资讯</div>
+			<ul>
+				{%for t in typenews%}
+				<li><a href="/news/{{url}}/newsdetail{{t.id}}.htm">{{t.title}}</a></li>
+				{%endfor%}
+			</ul>
+		</div>
+		<!--end details-list-->
+<script type="text/javascript"> 
+     /*kangxianyue 创建于2016-12-14*/ 
+     var cpro_id = "u2845509";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+		<div class="m-btn" style="background: #ebebeb; border-top: solid #ccc 1px;">
+			<input type="button" name="favOffer" onClick="window.location='/openfavorite/?pdtid={{id}}&favorite_type_code=10091012&title={{content.title}}';" value="&nbsp;&nbsp;收藏&nbsp;&nbsp;" class="fav_btn">&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="button" name="sharebutton" id="sharebutton" value="&nbsp;&nbsp;分享&nbsp;&nbsp;" class="fav_btn">
+		</div>
+		{%include 'bottom2.html'%}
+	</body>
+
+</html>

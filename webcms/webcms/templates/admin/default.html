@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>PYCMS管理系统(后台)</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <link href="/bootstrap/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+  <link href="/bootstrap/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+   <link href="/bootstrap/assets/css/main-min.css" rel="stylesheet" type="text/css" />
+ </head>
+ <body>
+
+  <div class="header">
+    
+      <div class="dl-title">
+      </div>
+
+    <div class="dl-log">欢迎您，<span class="dl-log-user">{{username}}</span><a href="../logout.html" title="修改密码" class="dl-log-quit">[修改密码]</a><a href="../logout.html" title="退出系统" class="dl-log-quit">[退出]</a>
+    </div>
+  </div>
+   <div class="content">
+    <div class="dl-main-nav">
+      <div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
+      <ul id="J_Nav"  class="nav-list ks-clear">
+        		<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">客户</div></li>       
+        		
+        		{%for atype in admintypelist%}
+        		<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">{{atype.typename}}</div></li>       
+				{%endfor%}
+      </ul>
+    </div>
+    <ul id="J_NavContent" class="dl-tab-conten">
+    </ul>
+   </div>
+  <script type="text/javascript" src="/bootstrap/assets/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="/bootstrap/assets/js/bui-min.js"></script>
+  <script type="text/javascript" src="/bootstrap/assets/js/common/main-min.js"></script>
+  <script type="text/javascript" src="/bootstrap/assets/js/config-min.js"></script>
+  <script>
+    BUI.use('common/main',function(){
+      var config = [
+      {id:'1',menu:[{text:'客户管理',items:[{id:'1',text:'客户信息列表',href:'userlist.html'},{id:'2',text:'客户模板管理',href:'usertemplist.html'},{id:'3',text:'客户栏目管理',href:'usertypelist.html'},]}],},
+      
+      {%for atype in admintypelist%}
+      {id:'{{atype.typeid}}',menu:[
+      {%for atype2 in atype.nextype%}
+      {text:'{{atype2.typename}}',items:[
+      {%for atype3 in atype2.website%}
+      {id:'{{atype3.id}}',text:'{{atype3.name}}',href:'{{atype3.url}}'},
+      {%endfor%}
+      ]},
+      {%endfor%}
+      ]},
+      {%endfor%}
+      ];
+      new PageUtil.MainPage({
+        modulesConfig : config
+      });
+    });
+  </script>
+ </body>
+</html>

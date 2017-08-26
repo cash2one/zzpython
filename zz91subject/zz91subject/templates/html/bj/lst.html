@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>手机版互助社区</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="js/jquery.lightbox_me.js"></script>
+        <script type="text/javascript" src="js/style.js"></script>
+		 <style type="text/css">
+        	select{display:none}
+			.select_box{font-family: "宋体"; font-size: 13px;color: #000;width:50px;line-height: 20px;position:relative;margin:8px auto}
+			.select_showbox{height:20px;background:url(images/off.png) no-repeat 40px 4px}
+			.select_option{border: 1px solid #c6c6c6;display: none;position:absolute;left:0;top:20px;padding:0}
+			.select_option li{background: #fff;text-align:center}
+			.select_option li.selected{width:48px;color: #000;text-align:center}
+			.select_option li.hover{background:#e9e9e9}
+        </style>
+	</head>
+	<body>
+      <div class="m-content">
+          <div class="c-tle">
+          	<div class="t-left">
+            	当前位置： <a href="">废金属</a> > 废铁
+            </div>
+            <!--end t-left-->
+            <div class="t-right">
+            	<ul>
+                	<li>
+                    	<div class="r_box_">
+                        	<div class="b_fb"><a href=""><img src="images/fb.png"/></a></div>
+                            <!--end b_fb-->
+                            <div class="b_sx">发布</div>
+                            <!--end b_sx-->
+                            <div class="cb"></div>
+                        </div>
+                        <!--end r_box-->
+                    </li>
+                    <li>
+                    	<div class="r_box" id="sx">
+                        	<div class="b_fb"><img src="images/sx.png"/></div>
+                            <!--end b_fb-->
+                            <div class="b_sx">筛选</div>
+                            <!--end b_sx-->
+                            <div class="cb"></div>
+                        </div>
+                        <!--end r_box-->
+                    </li>
+                </ul>
+            </div>
+            <!--end t-right-->
+            <div class="cb"></div>
+          </div>
+          <!--end c-tle-->
+      	    <table width="100%" border="0" cellpadding="0">
+				<tr>
+					<td>
+						<div class="tab_ul">
+                        	<ul>
+                            	<li class="tab_ul_li" onclick="mySwitch()">供应<img src="images/off.png" />
+                                	<ul class="sub-nav" id="nav_1">
+          								<li><a href="">全部</a></li>
+          								<li><a href="">价格</a></li>
+          								<li><a href="">图片</a></li>
+                					</ul>
+                                </li>
+                                <li class="tab_ul_li" onclick="mySwitch1()">求购<img src="images/off.png" />
+                                		<ul class="sub-nav1" id="nav_2">
+          								<li><a href="">全部</a></li>
+          								<li><a href="">价格</a></li>
+          								<li><a href="">图片</a></li>
+                					</ul>
+                                </li>
+                                <li onclick="mySwitch2()">报价<img src="images/off.png" />
+                                		<ul class="sub-nav2" id="nav_3">
+          								<li><a href="">行情报价</a></li>
+          								<li><a href="">企业报价</a></li>
+                					</ul>
+                                </li>
+                            </ul>
+                        </div>
+				   </td>
+				</tr>
+				<tr>
+                  <td>
+					<table cellspacing="10" id="tab1">
+                		<tr>
+                			<td class="chk_txt">您正在查看&nbsp;&nbsp;供应 － 图片</td>
+                		</tr>
+                         <tr>
+							<td class="m-item">
+								<div class="i-box">
+                                	<div class="b-img">
+                                    	<img src="images/i.jpg" />
+                                        <!--<div class="free_tel">免费电话</div-->
+                                    </div>
+                                    <!--end b-img-->
+                                    <div class="b-dt">
+                                    	<ul class="b-ul">
+                                        	<li class="b-ul-li-tle">求购废铁锌水　<span style="color:#6c6c6c;font-size:13px">2014/06/26</span>&nbsp;<img src="images/eye.jpg" /></li>
+                                            <li class="b-ul-li-item">求购废铁锌水求购废铁锌水求购废铁锌水求购废铁锌水</li>
+                                            <li class="b-ul-li-addr">
+                                            	<div class="a-left">上饶县</div>
+                                                <!--end a-left-->
+                                                <div class="a-right">10000.00元</div>
+                                                <!--end a-right-->
+                                                <div class="cb"></div>
+                                            </li>
+                                            <li style="font-size:13px;text-align:right">
+                                            	<!--<a href="" style="color:#666666">点击拨打</a>：&nbsp;<span style="font-weight:700;color:#ff3300">400-106-8801</span>-->
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end b-dt-->
+                                    <div class="cb"></div>
+                                </div>
+                                <!--end i-box-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="i-box">
+                                	<div class="b-img">
+                                    	<img src="images/i.jpg" />
+                                        <div class="free_tel">免费电话</div>
+                                    </div>
+                                    <!--end b-img-->
+                                    <div class="b-dt">
+                                    	<ul class="b-ul">
+                                        	<li class="b-ul-li-tle">求购废铁锌水　<span style="color:#6c6c6c;font-size:13px">2014/06/26</span>&nbsp;</li>
+                                            <li class="b-ul-li-item">求购废铁锌水求购废铁锌水求购废铁锌水求购废铁锌水</li>
+                                            <li class="b-ul-li-addr">
+                                            	<div class="a-left">上饶县</div>
+                                                <!--end a-left-->
+                                                <div class="a-right">10000.00元</div>
+                                                <!--end a-right-->
+                                                <div class="cb"></div>
+                                            </li>
+                                            <li style="font-size:13px;text-align:right">
+                                            	<a href="" style="color:#666666">点击拨打</a>：&nbsp;<span style="font-weight:700;color:#ff3300">400-106-8801</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end b-dt-->
+                                    <div class="cb"></div>
+                                </div>
+                                <!--end i-box-->
+							</td>
+						</tr>
+                        <tr>
+							<td class="m-item">
+								<div class="i-box">
+                                	<div class="b-img">
+                                    	<img src="images/i.jpg" />
+                                         <!--<div class="free_tel">免费电话</div-->
+                                    </div>
+                                    <!--end b-img-->
+                                    <div class="b-dt">
+                                    	<ul class="b-ul">
+                                        	<li class="b-ul-li-tle">求购废铁锌水　<span style="color:#6c6c6c;font-size:13px">2014/06/26</span>&nbsp;</li>
+                                            <li class="b-ul-li-item">求购废铁锌水求购废铁锌水求购废铁锌水求购废铁锌水</li>
+                                            <li class="b-ul-li-addr">
+                                            	<div class="a-left">上饶县</div>
+                                                <!--end a-left-->
+                                                <div class="a-right">10000.00元</div>
+                                                <!--end a-right-->
+                                                <div class="cb"></div>
+                                            </li>
+                                            <li style="font-size:13px;text-align:right">
+                                            	<!--<a href="" style="color:#666666">点击拨打</a>：&nbsp;<span style="font-weight:700;color:#ff3300">400-106-8801</span>-->
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end b-dt-->
+                                    <div class="cb"></div>
+                                </div>
+                                <!--end i-box-->
+							</td>
+						</tr>
+                        <tr>
+							<td class="m-item">
+								<div class="i-box">
+                                	<div class="b-img">
+                                    	<img src="images/i.jpg" />
+                                        <!--<div class="free_tel">免费电话</div-->
+                                    </div>
+                                    <!--end b-img-->
+                                    <div class="b-dt">
+                                    	<ul class="b-ul">
+                                        	<li class="b-ul-li-tle">求购废铁锌水　<span style="color:#6c6c6c;font-size:13px">2014/06/26</span>&nbsp;<img src="images/eye.jpg" /></li>
+                                            <li class="b-ul-li-item">求购废铁锌水求购废铁锌水求购废铁锌水求购废铁锌水</li>
+                                            <li class="b-ul-li-addr">
+                                            	<div class="a-left">上饶县</div>
+                                                <!--end a-left-->
+                                                <div class="a-right">10000.00元</div>
+                                                <!--end a-right-->
+                                                <div class="cb"></div>
+                                            </li>
+                                            <li style="font-size:13px;text-align:right">
+                                            	<!--<a href="" style="color:#666666">点击拨打</a>：&nbsp;<span style="font-weight:700;color:#ff3300">400-106-8801</span>-->
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end b-dt-->
+                                    <div class="cb"></div>
+                                </div>
+                                <!--end i-box-->
+							</td>
+						</tr>
+                        <tr>
+							<td class="m-item">
+								<div class="i-box">
+                                	<div class="b-img">
+                                    	<img src="images/i.jpg" />
+                                         <!--<div class="free_tel">免费电话</div-->
+                                    </div>
+                                    <!--end b-img-->
+                                    <div class="b-dt">
+                                    	<ul class="b-ul">
+                                        	<li class="b-ul-li-tle">求购废铁锌水　<span style="color:#6c6c6c;font-size:13px">2014/06/26</span>&nbsp;</li>
+                                            <li class="b-ul-li-item">求购废铁锌水求购废铁锌水求购废铁锌水求购废铁锌水</li>
+                                            <li class="b-ul-li-addr">
+                                            	<div class="a-left">上饶县</div>
+                                                <!--end a-left-->
+                                                <div class="a-right">10000.00元</div>
+                                                <!--end a-right-->
+                                                <div class="cb"></div>
+                                            </li>
+                                            <li style="font-size:13px;text-align:right">
+                                            	<!--<a href="" style="color:#666666">点击拨打</a>：&nbsp;<span style="font-weight:700;color:#ff3300">400-106-8801</span>-->
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end b-dt-->
+                                    <div class="cb"></div>
+                                </div>
+                                <!--end i-box-->
+							</td>
+						</tr>
+					</table>
+     			  </div>
+      			<!--end m-content-->
+      <div id="reply_div" align="center">
+		<div class="sx-box">
+        	<div class="b1-item">
+            	<div class="b1-item-tle">所在地</div>
+                <ul class="b1-item-ul">
+                	<li>
+                    	<ul class="b1-item-ul-ul" id="b1_ul">
+                        	<li>浙江</li>
+                            <li>广州</li>
+                            <li>江苏</li>
+                            <li>福建</li>
+                            <li>安徽</li>
+                            <li>河南</li>
+                            <li>河北</li>
+                            <li>湖北</li>
+                            <li>湖南</li>
+                            <li>山东</li>
+                            <li>海南</li>
+                            <li>哈尔滨</li>
+                            <li>北京</li>
+                            <li>上海</li>
+                            <li>广西</li>
+                            <li>天津</li>
+                            <li>青海</li>
+                            <li>陕西</li>
+                            <li>山西</li>
+                            <li>贵州</li>
+                            <li>辽宁</li>
+                            <li>宁夏</li>
+                            <li>吉林</li>
+                            <li>内蒙古</li>
+                            <li>广西</li>
+                            <li>云南</li>
+                            <li>西藏</li>
+                            <li>重庆</li>
+                            <li>甘肃</li>
+                            <li>新疆</li>
+                            <li>台湾</li>
+                            <li>香港</li>
+                            <li>澳门</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--end b1-item-->
+            <div class="b1-item">
+            	<div class="b1-item-tle">时间</div>
+                <ul class="b1-item-ul">
+                	<li>
+                    	<ul class="b1-item-ul-ul">
+                        	<li>一天内</li>
+                            <li>三天内</li>
+                            <li>一周内</li>
+                            <li>一个月内</li>
+                            <li>两个月内</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--end b1-item-->
+             <div class="b1-item">
+            	<div class="b1-item-tle">您是不是想找</div>
+                <ul class="b1-item-ul_">
+                	<li><a href="">PP</a></li>
+                    <li><a href="">PP再生颗粒</a></li>
+                    <li><a href="">PP一级料</a></li>
+                    <li><a href="">PP一级料</a></li>
+                    <li><a href="">PP一级料</a></li>
+                    <li><a href="">PP破碎料</a></li>
+                    <li><a href="">PP袋</a></li>
+                    <li><a href="">PP桶</a></li>
+                    <li><a href="">PP瓶盖</a></li>
+                    <li><a href="">PP粉碎料</a></li>
+                    <li><a href="">PP保险杠</a></li>
+                    <li><a href="">PP粉碎料</a></li>
+                    <li><a href="">PP再生颗粒</a></li>
+                    <li><a href="">PP一级料</a></li>
+                    <li><a href="">PP破碎料</a></li>
+                    <li><a href="">PP袋</a></li>
+                    <li><a href="">PP桶</a></li>
+                    <li><a href="">PP瓶盖</a></li>
+                    <li><a href="">PP粉碎料</a></li>
+                </ul>
+            </div>
+            <!--end b1-item-->
+        </div>
+        <!--end sx-box-->
+		<div align="center" style="margin-top:10px;">
+			<div class="btn btn_confirm" onclick="dismiss();">确定</div>
+		</div>
+     </div>
+     
+      
+                  <div class="page">
+                  	<ul>
+                    	<li class="page_prev"><a href="">上一页</a></li>
+                        <li class="page_no"><select name="choose" id="choose">
+								<option value="1/2000" selected="selected">1/10</option>
+                                <option value="2/2000">2/10</option>
+								<option value="3/2000">3/10</option>
+							</select>
+							<script type="text/javascript" src="js/jquery.select.js"></script></li>
+                        <li class="page_next"><a href="">下一页</a></li>
+                    </ul>
+                  </div>
+			     <!--end page-->
+	</body>
+</html>

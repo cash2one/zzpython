@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关键词查询表-seo客户管理系统</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+    	.table th {
+    		background-color: #eaeaea;
+    	}
+    	th, td {
+    		white-space: nowrap;
+    	}
+        td a {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<div class="container" style="margin-top: 10px;">
+    <div class="table">
+    	<table class="table table-bordered table-striped table-hover">
+    		<thead>
+    			<tr>
+    				<th>关键词</th>
+    				<th>百度整体搜索指数</th>
+    				<th>百度搜索量</th>
+    				<th>百度intile搜索量</th>
+    				<th>查询选择</th>
+                    <th>参考价格</th>
+    				<th>参考建议</th>
+    				<th>原因</th>
+    				<th>查询人</th>
+    				<th>查询时间</th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    			{% for each_jl in all_keywords %}
+    			<tr>
+                    {% load myfilter %}
+    				<td><a href="https://www.baidu.com/s?wd={{ each_jl.keywords | encode_url }}&ie=gbk" target="_blank">{{ each_jl.keywords }}</a></td>
+    				<td>{% if each_jl.bd_index == '0' or each_jl.bd_index == '--' %}
+                        <span>{{each_jl.bd_index}}</span>
+                        {%else%}
+                        <a href="http://index.baidu.com/?tpl=trend&word={{ each_jl.keywords | encode_url }}" target="_blank">{{ each_jl.bd_index }}</a>
+                        {% endif %}    
+                    </td>
+                    <td><a href="https://www.baidu.com/s?wd={{ each_jl.keywords | encode_url }}&ie=gbk" target="_blank">{{ each_jl.bd_ssl }}</a></td>
+    				<td><a href="https://www.baidu.com/s?wd=intitle:{{ each_jl.keywords | encode_url }}&ie=gbk" target="_blank">{{ each_jl.bd_intitle_ssl }}</a></td>
+    				<td>{{ each_jl.cx_xz }}</td>
+                    <td>{{ each_jl.ck_jg }}</td>
+    				{% ifequal each_jl.cx_jy 1  %}
+    				<td style="color:#458B00;font-weight: bold;">可以做</td>
+    				{% else %}
+    				<td style="color:#EE2C2C;font-weight: bold;">不能做</td>
+    				{% endifequal %}
+    				<td style="color:#4F94CD;font-weight: bold;white-space: pre-wrap;">{{ each_jl.reason }}</td>
+    				<td>{{ each_jl.person }}</td>
+    				<td>{{ each_jl.create_time | date:"Y-m-d H:i:s" }}</td>
+    			</tr>
+    			{% endfor %}
+    		</tbody>
+    	</table>
+    </div>
+    <div class="inline pull-right page">
+    	共&nbsp;{{ row_count }}条记录&nbsp;&nbsp;{{ paginator.page_num }}/{{ paginator.get_pages }}
+    	{% if paginator.has_previous %}
+    	<a href="?page=1">首页</a>
+    	<a href="?page={{ paginator.previous_page_num }}">上一页</a>
+    	{% endif %}
+    	{% if paginator.has_next %}
+    	<a href="?page={{ paginator.next_page_num }}">下一页</a>
+    	<a href="?page={{ paginator.get_pages }}">尾页</a>
+    	{% endif %}
+    </div>
+</div>
+</body>
+</html>

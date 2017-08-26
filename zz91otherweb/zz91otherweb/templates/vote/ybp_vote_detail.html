@@ -1,0 +1,109 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <title>元宝铺客户满意度调查表</title>
+    <meta name="description" content="填写完毕即可领取惊喜福利！" />
+	<meta name="keywords" content="元宝铺调查表" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <meta content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <link rel="stylesheet" href="http://m.zz91.com/vote/css/base-min.css" />
+    <link rel="stylesheet" href="http://m.zz91.com/vote/css/ybp_index.css" />
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="http://m.zz91.com/js/qianbao/jquery.lightbox_me.js"></script>
+	<style>
+		.sucshow{
+			background-image:none;
+			text-align: center;
+		}
+		.gzshow{
+			background-image:none;
+			text-align: center;
+		}
+		#contactdiv{
+			line-height: 35px;
+			margin-top: 20px;
+		}
+		#contactdiv .cli{
+			padding: 10px;
+			text-align: center;
+		}
+		#contactdiv .ctext{
+			border: 1px solid #ebebeb;
+			padding: 5px;
+			width: 70%;
+		}
+		.tipp{width:60%;padding:15px;position:relative;display:none;-moz-border-radius:6px;background:#fff;-webkit-border-radius:5px;border-radius:5px;border:1px solid #536376;-webkit-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;-moz-box-shadow:rgba(0,0,0,.6) 0px 2px 12px}
+	</style>
+</head>
+    <body>
+    <div class="page">
+        <div class="content">
+        	{%for list in votelist%}
+            <div class="question-box">
+                <div class="question-title"><span class="question-icon"></span>{{list.label}}</div>
+                {%if list.child%}
+                <ul class="answer-list">
+                	{%for list1 in list.child%}
+                    <li><label><input type="{%ifequal list1.ctype 1%}checkbox{%else%}{%ifequal list1.ctype 2%}checkbox{%else%}radio{%endifequal%}{%endifequal%}" name="question{{list.id}}" nid="{{list.n}}" ctype="{{list1.ctype}}" value="{{list1.id}}" class="option-input {%ifequal list1.ctype 1%}checkbox{%else%}radio{%endifequal%}">{{list1.label}} ({{list1.vcount}}) <a href="ybp_admin_userlist.html?vote_cid={{list1.id}}" target="_blank" style="color: #0000FF;">查看</a></label></li>
+                    {%ifequal list1.ctype 2%}
+	                <div class="question-you divtext{{list.n}}" nid="{{list.n}}">
+	                    <input type="text" class="question-ipt" nomust="{{list1.nomust}}" id="text{{list1.id}}" placeholder="请输入您的建议"></input>
+	                </div>
+	                {%endifequal%}
+                    {%endfor%}
+                </ul>
+                {%endif%}
+                {%ifequal list.ctype 2%}
+                <div class="question-you">
+                    <input type="text" class="question-ipt" nomust="{{list.nomust}}" id="text{{list.id}}" placeholder="请输入您的建议"></input>
+                </div>
+                {%endifequal%}
+            </div>
+            {%endfor%}
+            <br />
+            <br />
+        </div>
+    </div>
+        
+</body>
+<script>
+function selectOption(menuname, value) {
+	var menu = document.getElementById(menuname);
+	if (menu) {
+		for (var i = 0; i <= menu.options.length; i++) {
+			if (value) {
+				if (menu.options[i].value == value) {
+					menu.options[i].selected = true;
+					break;
+				}
+			}
+		}
+	}
+}
+
+function selectCheckBox(boxname, thevalue) {
+	if (thevalue){
+	var boxes = document.getElementsByName(boxname);
+	for (var i = 0; i < boxes.length; i++) {
+		if (thevalue) {
+			if (thevalue.toString() == boxes[i].value.toString()) {
+				boxes[i].checked = true;
+			}
+		}
+	}
+	}
+}
+{%for list in ybp_selectlist%}
+	selectCheckBox("question{{list.parent_id}}","{{list.cid}}");
+	$("#text{{list.cid}}").val("{{list.vote_ctext}}");
+{%endfor%}
+</script>
+</html>

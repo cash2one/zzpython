@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZZ91废铅回收网_废铅回收_废铅回收价格_今日废铅回收价格_ZZ91再生网(原中国再生资源交易网)交易网)</title>
+<meta name="keywords" content="回收废铅,废铅回收,废铅回收网,废铅价格,废铅回收价格">
+<meta name="description" content="ZZ91旗下废铅价格信息网,为废铅商家提供今日废铅回收价格,今日废铅价格行情,废铅回收,供应废铅,废铅回收方面的废铅商机信息!">
+<meta name="author" content="ZZ91再生网" />
+<meta name="robots" content="all" />
+<link type="text/css" rel="stylesheet" href="../daohang/daohanglistleft2.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/top/header2010_11.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/top/search2010_11.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/top/general2010_11.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/top/comm_hack.css" />
+<script type="text/ecmascript" src="http://img0.zz91.com/front/js/top/default.js"></script>
+</head>
+<body>
+{% include 'daohang/nav.html' %}
+{% include 'daohang/head2_feiqhs.html' %}
+
+        <div style="clear:both"></div>
+
+        <!--box list start-->
+
+    	<div id="sbody">
+
+    	  <div id="sbody_left">
+<div><script type="text/javascript" src="http://gg.zz91.com/show?p=374&keywords={{adkeywords}}"></script></div>
+            <div id="sbody_left_area">
+			{%if offerSalesinfo%}
+              <div id="sbody_left_content">
+
+                <div id="sbody_left_title">
+
+                  <h3>供应{{keywords}}</h3>
+
+                </div>
+
+                <div id="sbody_left_list">
+
+                  <ul>
+
+                    {% for list in offerSalesinfo %}
+
+                        <li><a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">供应{{list.title}}</font></a></li>
+
+                    {% endfor %}
+
+                       
+
+                      
+
+                  </ul>
+
+                </div>
+
+                <div id="morelink"><a href="http://trade.zz91.com/offerlist--a1--b--c--d--e--f--p1--{{keywords}}.htm" id="more_style2" target="_blank" title="更多供应{{keywords}}信息">>>>更多</a></div>
+
+              </div>
+              {%endif%}
+              {%if offerBuyinfo%}
+              <div id="sbody_left_content">
+
+                <div id="sbody_left_title">
+
+                  <h3>回收{{keywords}}|求购{{keywords}}</h3>
+
+                </div>
+
+                <div id="sbody_left_list">
+
+                  <ul>
+
+                        {% for list in offerBuyinfo %}
+                        <li><a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">回收{{list.title}}</font></a></li>
+                        {% endfor %}
+                  </ul>
+
+                </div>
+
+                <div id="morelink"><a href="http://trade.zz91.com/offerlist--a2--b--c--d--e--f--p1--{{keywords}}.htm" id="more_style2" target="_blank" title=" 更多{{keywords}}回收|求购{{keywords}}信息">>>>更多</a></div>
+
+              </div>
+              {%endif%}
+            </div>
+    	    <div id="sbody_left_area">
+              {%if priceInfo_jzf%}
+              <div id="sbody_left_content">
+                <div id="sbody_left_title">
+                  <h3>江浙沪{{keywords}}价格网</h3>
+                </div>
+                <div id="sbody_left_list">
+                  <ul>
+                  		{% for list in priceInfo_jzf %}
+                        <li><a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a><span id="content_time_style">{{list.gmt_time}}</span></li>
+                        {% endfor %}
+                  </ul>
+                </div>
+                <div id="morelink"><a href="http://price.zz91.com/priceSearch.htm?title={{keywords1}}" id="more_style2" target="_blank" title="更多江浙沪{{keywords}}价格信息">>>>更多</a></div>
+              </div>
+              {%endif%}
+              {% if priceInfo_nanhai%}
+    	      <div id="sbody_left_content">
+                <div id="sbody_left_title">
+                  <h3>南海{{keywords}}价格网</h3>
+                </div>
+    	        <div id="sbody_left_list">
+                  <ul>
+                        {% for list in priceInfo_nanhai %}
+                        <li><a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a><span id="content_time_style">{{list.gmt_time}}</span></li>
+                        {% endfor %}
+                  </ul>
+  	            </div>
+    	        <div id="morelink"><a href="http://price.zz91.com/priceSearch.htm?title={{keywords1}}" id="more_style2" target="_blank" title="更多广州南海{{keywords}}价格信息">>>>更多</a></div>
+  	          </div>
+			  {%endif%}
+  	      </div>
+
+    	    <div id="sbody_left_area">
+              {%if priceInfo_hangqing%}
+              <div id="sbody_left_content">
+                <div id="sbody_left_title">
+                  <h3>{{keywords}}行情|{{keywords}}资讯</h3>
+                </div>
+                <div id="sbody_left_list">
+                  <ul>
+                        {% for list in priceInfo_hangqing %}
+                        <li><a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a><span id="content_time_style">{{list.gmt_time}}</span></li>
+                        {% endfor %}
+                  </ul>
+                </div>
+                <div id="morelink"><a href="http://price.zz91.com/channel/wasteMetal.htm" id="more_style2" target="_blank" title="更多{{keywords}}行情|{{keywords}}资讯信息">>>>更多</a></div>
+              </div>
+              {%endif%}
+              {%if priceInfo_dongtai%}
+    	      <div id="sbody_left_content">
+                <div id="sbody_left_title">
+                  <h3>{{keywords}}价格行情网|市场动态</h3>
+                </div>
+    	        <div id="sbody_left_list">
+                  <ul>
+                   
+                        {% for list in priceInfo_dongtai %}
+                        <li><a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a><span id="content_time_style">{{list.gmt_time}}</span></li>
+                        {% endfor %}
+
+                  </ul>
+
+  	          </div>
+
+    	         <div id="morelink"><a href="http://price.zz91.com/priceSearch.htm?title={{keywords}}市场" id="more_style2" target="_blank" title="更多{{keywords}}价格|{{keywords}}市场动态信息">>>>更多</a></div>
+
+  	        </div>
+			{%endif%}
+  	      </div>
+
+  	    </div>
+
+<div id="sbody_right">
+
+                    	<div id="sbody_right_style">
+
+            				<div class="sbody_right_style_tit">
+
+                			<h3>{{label}}产品大全</h3>
+
+            				</div>
+<div class="right_content_list">
+		    				<a href="http://tags.zz91.com/tagssearchList/回收废铅/" class='tag1' target="_blank" title="回收废铅">回收废铅</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废电瓶铅/" class='tag2' target="_blank" title="废电瓶铅">废电瓶铅</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废电池铅/" class='tag3' target="_blank" title="废电池铅">废电池铅</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/铅渣/" class='tag1' target="_blank" title="铅渣">铅渣</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/铅蓄电池/" class='tag2' target="_blank" title="铅蓄电池">铅蓄电池</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废铅回收/" class='tag3' target="_blank" title="废铅泥回收">废铅泥回收</a> | 
+							
+                          <a href="http://tags.zz91.com/tagssearchList/废金属/" class='tag3' target="_blank" title="废金属">废金属</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废铅回收网/" class='tag2' target="_blank" title="废铅回收网">废铅回收网</a> | 
+							
+ 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/黄铜/" class='tag1' target="_blank" title="黄铜">黄铜</a> | 
+							
+            
+							
+                            <a href="http://tags.zz91.com/tagssearchList/铅箔/" class='tag3' target="_blank" title="铅箔">铅箔</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废电池铅板/" class='tag1' target="_blank" title="废电池铅板">废电池铅板</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废铅价格/" class='tag2' target="_blank" title="废铅价格">废铅价格</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/炼废电瓶铅淀/" class='tag3' target="_blank" title="炼废电瓶铅淀">炼废电瓶铅淀</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废无铅焊锡渣/" class='tag1' target="_blank" title="废无铅焊锡渣">废无铅焊锡渣</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废铅回收价格/" class='tag2' target="_blank" title="废铅回收价格">废铅回收价格</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/汽车废电池铅板/" class='tag3' target="_blank" title="汽车废电池铅板">汽车废电池铅板</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/无铅含银废锡膏/" class='tag1' target="_blank" title="无铅含银废锡膏">无铅含银废锡膏</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废电缆铅/" class='tag2' target="_blank" title="废电缆铅">废电缆铅</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/高铅废玻璃/" class='tag3' target="_blank" title="高铅废玻璃">高铅废玻璃</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废含铅锡渣/" class='tag1' target="_blank" title="废含铅锡渣">废含铅锡渣</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/回收废铅价格/" class='tag2' target="_blank" title="回收废铅价格">回收废铅价格</a> | 
+							
+       
+							
+                            <a href="http://tags.zz91.com/tagssearchList/汽车废铅/" class='tag2' target="_blank" title="汽车废铅">汽车废铅</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/进口废蓄电池铅板/" class='tag3' target="_blank" title="进口废蓄电池铅板">进口废蓄电池铅板</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/含铅非废金属/" class='tag1' target="_blank" title="含铅非废金属">含铅非废金属</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/含铅废玻璃/" class='tag2' target="_blank" title="含铅废玻璃">含铅废玻璃</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/无铅废锡渣/" class='tag3' target="_blank" title="无铅废锡渣">无铅废锡渣</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废亚铅/" class='tag1' target="_blank" title="废亚铅">废亚铅</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废铅管/" class='tag2' target="_blank" title="废铅管">废铅管</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废铅电池/" class='tag3' target="_blank" title="废铅电池">废铅电池</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废锌/铅/" class='tag1' target="_blank" title="废锌/铅">废锌/铅</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废铅渣块/" class='tag2' target="_blank" title="废铅渣块">废铅渣块</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废锡废铅/" class='tag3' target="_blank" title="废锡废铅">废锡废铅</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/锌废/铅/" class='tag1' target="_blank" title="锌废/铅">锌废/铅</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废蛇皮铅/" class='tag2' target="_blank" title="废蛇皮铅">废蛇皮铅</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废无铅锡条块/" class='tag3' target="_blank" title="废无铅锡条块">废无铅锡条块</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/铅废泥/" class='tag1' target="_blank" title="铅废泥">铅废泥</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/有铅废锡/" class='tag2' target="_blank" title="有铅废锡">有铅废锡</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/无铅废锡/" class='tag3' target="_blank" title="无铅废锡">无铅废锡</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/含铅废/" class='tag1' target="_blank" title="含铅废">含铅废</a> | 
+							
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废氧化铅/" class='tag3' target="_blank" title="废氧化铅">废氧化铅</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/铅等废金属/" class='tag1' target="_blank" title="铅等废金属">铅等废金属</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/回收废铅网/" class='tag3' target="_blank" title="回收废铅网">回收废铅网</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废无铅焊锡回收/" class='tag1' target="_blank" title="废无铅焊锡回收">废无铅焊锡回收</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废锡废铅回收/" class='tag2' target="_blank" title="废锡废铅回收">废锡废铅回收</a>
+
+                         </div>
+
+           		  </div>
+
+                		<div id="sbody_right_style" style="margin-top:8px;">
+
+                			<div class="sbody_right_style_tit">
+
+                	  			<h3>{{label}}热门话题</h3>
+
+                			</div>
+							<div>
+                            <ul style="padding-left:10px;">
+                            	{% for list in huzhuInfo %}
+
+                                    <li>· <a href="http://huzhu.zz91.com/viewReply{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a></li>
+            
+                                {% endfor %}
+                            </ul>
+                            </div>
+                    		<div class="right_content_list"><a href="http://huzhu.zz91.com/bbsCategory1.htm" id="more_style" target="_blank" title="更多{{label}}行情热门话题">>>>更多{{label}}热门话题</a>
+
+                			</div>
+
+                    	</div>
+
+                        {% include 'daohang/right.html' %}
+
+                        
+
+                	</div>
+
+            	</div>
+
+</div>
+
+        </div>    
+
+<!--box list end-->
+{% include 'daohang/bottom.html' %}
+</div>
+</body>
+</html>
+

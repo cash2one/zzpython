@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>生成栏目</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/style.css" />
+<script src="/bootstrap/Js/jquery-1.7.2.js"></script>
+<style type="text/css"> 
+body{ 
+text-align:center; 
+} 
+.graph{ 
+width:450px; 
+border:1px solid #F8B3D0; 
+height:25px; 
+} 
+#bar{ 
+display:block; 
+background:#FFE7F4; 
+float:left; 
+height:100%; 
+text-align:center; 
+} 
+#barNum{ 
+position:absolute; 
+} 
+</style> 
+<script type="text/javascript">
+function $(obj){ 
+return document.getElementById(obj); 
+}
+function jindu(num){
+document.getElementById("infod").innerHTML='&nbsp;&nbsp;&nbsp;正在生成 ...';
+if($("bar").style.width == "100%"){
+	$("bar").style.width="1%"
+}
+var bar = window.setInterval("go()",num);
+}
+function go(){ 
+	if($("bar").style.width == "100%"){
+		window.clearInterval(bar); 
+	}
+	else{
+	$("bar").style.width = parseInt($("bar").style.width) + 1 + "%"; 
+	$("bar").innerHTML = $("bar").style.width; 
+	}
+}
+</script>
+
+</head>
+<body>
+
+<form class="form-inline definewidth m20" action="buildhtmlok.html">
+<table>
+<tr><td></td><td><a class="btn btn-success">选择栏目:</a></td><td><a href="cleararthtml.html?freshtime={{freshtime}}" onClick="return confirm('是否清空缓存?')" class="btn btn-success">清空缓存</a> (文章删除后,把静态页面删掉)</td></tr>
+{%for list1 in alltypelist%}
+<tr><td><input type="checkbox" name="buildartical" value="{{list1.id}}"></td><td>{{list1.typename}}: &nbsp;&nbsp;</td><td style="text-align:left"> {%for lt1 in list1.nexttplist%}<input type="checkbox" name="buildartical" value="{{lt1.id}}">&nbsp;{{lt1.typename}} {%endfor%}</td></tr>
+{%endfor%}&nbsp;&nbsp;
+<table>
+<br /><br /><a style="float:left"  href="#" onclick="SelectAll()">全选/反选</a>
+<div style="float:left;width:10px">&nbsp;</div>
+<button type="submit" style="float:left" class="btn btn-success" onClick="jindu(150)">生成内容</button> <div style="float:left;width:10px">&nbsp;</div><button class="btn btn-success" style="float:left;height:30px" id="infod">→</button><br /><br />
+<div class="graph">
+{%if getjindu%}<strong id="bar" style="width:100%;">100%</strong>
+{%else%}
+<strong id="bar" style="width:1%;"></strong>
+{%endif%}
+</div>
+<input type="hidden" name="type" value="3">
+<input type="hidden" name="jindutiao" value="1">
+<input type="hidden" name="freshtime" {%if freshtime%}value="{{freshtime}}"{%endif%}>
+
+</div>
+</form><br />
+<script>
+function SelectAll() {
+ var checkboxs=document.getElementsByName("buildartical");
+ for (var i=0;i<checkboxs.length;i++) {
+  var e=checkboxs[i];
+  e.checked=!e.checked;
+ }
+}
+</script>
+</body>
+</html>

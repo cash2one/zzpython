@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>{{webtitle}}</title>
+	<meta name="keywords" content="{{webkeywords}}" />
+	<meta name="description" content="{{webdescription}}" />
+    <meta http-equiv="Cache-Control" content="no-transform " />
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/comm.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/foot.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/top.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/infomation/css/index.css" />
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <script src="http://b.zz91.com/comm/js/bandMove.js"></script>
+    <script src="http://b.zz91.com/comm/js/comm.js"></script>
+    <script type="text/javascript" src="http://b.zz91.com/infomation/js/zx-comm.js" ></script>
+    <meta http-equiv="mobile-agent" content="format=html5; url=http://m.zz91.com/news/zh/detail{{zhid}}.html"/>
+	<link rel="alternate" id="mobilecontrol" media="only screen and(max-width:640px)" href="http://m.zz91.com/news/zh/detail{{zhid}}.html" >
+    {% include 'new/mobilecontrol.html' %}
+    <style>
+    	.zx-zh-dh{
+    		font-size: 16px;
+    		line-height: 40px;
+    		color: #333333;
+    	}
+    	.zx-zh-dh p{
+    		line-height: 40px;
+    		margin-bottom: 20px;
+    	}
+    </style>
+</head>
+	<body>
+		{% include 'new/header.html' %}
+	    <div class="zx-searchnav">
+	    	<div class="zx-searchnav-con">
+	    		<div class="fl logo">
+	    			<a href="http://www.zz91.com">
+	    				<img src="http://b.zz91.com/infomation/images/zx-logo.png">
+	    			</a>
+	    		</div>
+            	<div class="fl page-name">
+            		<a href="http://news.zz91.com">
+            			<img src="http://b.zz91.com/infomation/images/zx-pagename.png">
+            		</a>
+            	</div>
+            	<div class="fl zx-search">
+            		<div class="zx-search-con">
+            			<form action="/search/" method="get" onsubmit="if(this.keywords.value==''){alert('请输入关键字');this.keywords.focus();return false;}">
+            			<input class="fl j_searchipt" name="keywords" id="keywords" placeholder="搜索您感兴趣的资讯" />
+            			<button class="fl zx-search-main" type="submit" style="border: none;"><i class="icon2 zx-search-icon"></i></button>
+            			</form>
+            		</div>
+            	</div>
+            	<div class="fr navmain-list">
+	                <ul class="clearfix navmain-ul">
+	                	<li class="fl zx-firstli"><a href="/">首页</a></li>
+	                    <li class="fl thisnav"><a href="/zh/">展会聚集</a></li>
+	                    <li class="fl"><a href="/hydt/">行业动态</a></li>
+	                    <li class="fl"><a href="/cjxw/">财经新闻</a></li>
+	                    <li class="fl"><a href="/law/">政策法规</a></li>
+	                    <li class="fl"><a href="/tech/">技术文库</a></li>
+	                </ul>
+	            </div>
+	    	</div>
+	    </div>
+	    
+	    <div class="zx-center clearfix">
+	    	<div class="fl zx-content">
+	    		<div class="zx-content-box zx-box-margin" style="display: none;">
+	    			<div class="zx-content-title zx-hy-title clearfix">
+	    				<ul class="hq-type-ul dy-type-ul fr">
+		                    <li class="fl this-hq-type"><a>会议咨询</a></li>
+		                    <li class="fl"><a>相关资料</a></li>
+		                </ul>
+	    			</div>
+	    			<div class="zx-hy-con zx-on">
+		    			<ul class="clearfix">
+		    				<li class="clearfix">
+		    					<div class="zx-zh-last-box clearfix">
+		    						<a href="" target="_blank" class="fl zx-zh-last-box-img">
+		    							<img src="http://b.zz91.com/infomation/images/zx-zh-images_02.png" />
+		    						</a>
+		    						<div class="fl zx-zh-last-topcon">
+		    							<p class="fl">
+					    					<i class="icon2 zx-i-phone"></i>电话：0571-56612345<br /><i class="icon2 zx-i-chuanzhen"></i>传真：0571-56612345<br /><i class="icon2 zx-i-mail"></i>邮箱：xxxxx@asto.com.cn
+					    				</p>
+					    				<p class="fl">
+					    					<i class="icon2 zx-i-phone"></i>电话：0571-56612345<br /><i class="icon2 zx-i-chuanzhen"></i>传真：0571-56612345<br /><i class="icon2 zx-i-mail"></i>邮箱：xxxxx@asto.com.cn
+					    				</p>
+		    						</div>
+		    					</div>
+		    				</li>
+		    			</ul>
+	    			</div>
+	    			<div class="zx-hy-con">
+		    			<ul class="clearfix">
+		    				<li class="clearfix">
+		    					<div class="zx-zh-last-box clearfix">
+		    						<div class="zx-zh-ziliao-left fl">
+		    							<a href="" target="_blank" class="text-overhidden zx-zh-ziliao-left-a">第十六届中国塑料交易会暨第七届再生塑料展览会……</a>
+		    							<a href="" target="_blank" class="text-overhidden zx-zh-ziliao-left-a">第十六届中国塑料交易会暨第七届再生塑料展会暨第七届会暨第七届览会……</a>
+		    							<a href="" target="_blank" class="text-overhidden zx-zh-ziliao-left-a">第十六届中国塑料交暨第七届再生塑料展览会……</a>
+		    						</div>
+		    						<div class="zx-zh-ziliao-right fr clearfix">
+		    							<p class="">2016-08-28</p>
+		    							<a href="" target="_blank" class="zx-zh-ziliao-btn">更多报道</a>
+		    							<a href="" class="red zx-zh-ziliao-xiazai">会议附件（点击下载）</a>
+		    						</div>
+		    					</div>
+		    				</li>
+		    			</ul>
+	    			</div>
+	    		</div>
+	    		<div class="zx-content-box zx-box-margin">
+	    			<div class="zx-content-title zx-zh-last-lftitle">
+	    				大会仪程
+	    			</div>
+	    			<ul class="clearfix">
+	    				<li class="clearfix">
+	    					<div class="zx-zh-dh">
+	    						<div class="zx-zh-wenzhang-title" style="margin-bottom: 50px;">{{name}}</div>
+
+	    						<p class="zx-zh-dh-icon">
+				    				<i class="icon2 zx-i-time"></i>开始时间： {{start_time}} 
+				    				<br /><i class="icon2 zx-i-time"></i>结束时间： {{end_time}} 
+				    				<br /><i class="icon2 zx-i-dz"></i>会议地点：{{area_name}} 
+				    				<!--<br /><i class="icon2 zx-i-stop"></i>报名截止时间：2016.10.10，请参展及赞助企业于2016.10.10前与会议组委会确定展览事宜-->
+				    			</p>
+				    			<p class="zx-zh-dh-con">
+				    				{{content|safe}}
+				    			</p>
+	    					</div>
+	    				</li>
+	    			</ul>
+	    		</div>
+	    		
+	    		<div class="zx-zh-conbox clearfix">
+		    		<div class="zx-content-title">
+		    			<img src="http://b.zz91.com/infomation/images/zx-zh-title_02.png" class="fl"/>
+		    			<a href="list10371003.html" target="_blank" class="fr zx-xsall">
+		    				显示全部<i class="icon2 zx-xsicon"></i>
+		    			</a>
+		   			</div>
+		   			<ul class="clearfix">
+		   				{%for list in ztlist.list%}
+		   				<li class="{%ifequal list.hnum 1%}fl{%else%}fr{%endifequal%} clearfix zx-zh-ztbaodao">
+		   					<a href="/zh/detail{{list.id}}.html" target="_blank">
+		    					<img src="{{list.photo_cover}}"  class="zx-zh-dh-pic"/>
+		    				</a>
+		    				<div class="zx-zh-dh-main clearfix">
+		    					<a href="/zh/detail{{list.id}}.html" target="_blank" class="zx-zh-dh-main-a">{{list.name}}</a>
+		    					<p class="fl">
+		    						地点：{{list.area_name}}<br /> 开始时间：{{list.start_time}}<br />结束时间：{{list.end_time}}
+		    					</p>
+		    					<a href="/zh/detail{{list.id}}.html" target="_blank" class="zx-zh-zhuanti fl zx-zh-dh-btn">查看展会</a>
+		    				</div>
+		   				</li>
+		   				{%endfor%}
+		   			</ul>
+		    	</div>
+	    	</div>
+	    	
+	    	<div class="fr zx-listright">
+	    		{%if haveday%}
+	    		<div class="zx-listright-box zx-daojishi">
+	    			<p class="zx-daojishi-title">- 距离展会开幕还有 -</p>
+	    			<p class="zx-daojishi-day"><span>{{haveday}}</span>天</p>
+	    		</div>
+	    		{%else%}
+	    		<div style="height: 30px;"></div>
+	    		{%endif%}
+	    		{%if allzhuban%}
+	    		<div class="zx-listright-box zx-box-margin">
+	    			<div class="zx-listright-title clearfix">
+		    			<div class="fl zx-listright-name">
+		    				主办单位/承办单位
+		    				<!--<img src="http://b.zz91.com/infomation/images/zx-zh-title_08.png" />-->
+		    			</div>
+		    		</div>
+		    		<div class="zx-listright-con" style="font-size: 16px;line-height: 30px;">
+		    			{{allzhuban|safe}}
+		    		</div>
+	    		</div>
+	    		{%endif%}
+	    		<script type="text/javascript">
+				    /*kangxianyue 250*250 创建于 2017/3/29*/
+				    var cpro_id = "u2939694";
+				</script>
+				<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"></script>
+	    		
+	    		<div class="zx-listright-box" style="margin-top: 10px;">
+	    			<div class="zx-listright-title clearfix">
+	    				<div class="fl zx-listright-name">
+	    					<font style="font-size: 16px;font-weight: bold;">展会资讯</font>
+	    					<!--<img src="http://b.zz91.com/infomation/images/zx-zh-title_09.png" />-->
+	    				</div>
+	    				<a href="list10371009.html" target="_blank" class="fr zx-xsall">
+		    				更多<i class="icon2 zx-xsicon"></i>
+		    			</a>
+	    			</div>
+	    			<ul class="zx-zh-huiyi-ul">
+	    				{%for list in zhnewslist.list%}
+	    				<li>
+	    					<div class="zx-zh-huiyi">
+	    						<a href="/zh/detail{{list.id}}.html" target="_blank">{{list.name}}</a>
+	    						<p>开始时间：{{list.start_time}}<br />结束时间：{{list.end_time}}<br />地点：{{list.area_name}}</p>
+	    					</div>
+	    				</li>
+	    				{%endfor%}
+	    			</ul>
+	    		</div>
+	    	</div>
+	    </div>
+		
+	    <script>
+	    	$(".hq-type-ul li").click(function(){
+		        $(".hq-type-ul li").eq($(this).index()).addClass("this-hq-type").siblings().removeClass('this-hq-type');
+		        $(".zx-hy-con").eq($(this).index()).addClass("zx-on").siblings().removeClass('zx-on');
+		    });
+	    </script>
+	    {% include 'new/footer.html' %}
+	</body>
+</html>
+

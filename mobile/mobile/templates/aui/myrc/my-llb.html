@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="address=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+	<title>我的流量宝-zz91再生网</title>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+    <style>
+    	.keylist{
+    		border:solid 1px #E6E6E6;
+    		font-size:12px;
+    		background-color: #fff
+    	}
+    	.keylist td{
+    		text-align:center;
+    		border-bottom:solid 1px #ebebeb;
+    		line-height:30px;
+    	}
+    	.keylist thead{
+    		background-color: #f2f2f2;
+    	}
+    	.aui-bar{
+    		position: fixed;
+    		z-index: 9999;
+    		width: 100%;
+    		top: 0;
+    		left: 0;
+    	}
+    	.aui-card-list{
+    		margin-top: 45px;
+    	}
+    </style>
+</head>
+<body>
+	<header class="aui-bar aui-bar-nav aui-bar-primary">
+    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+	        <span class="aui-iconfont aui-icon-left"></span>
+	    </a>
+	    <div class="aui-title">我的流量宝</div>
+	    <a class="aui-pull-right settings" href="/myrc_index/">
+	        <span class="aui-iconfont aui-icon-myfill"></span>
+	    </a>
+	</header>
+	<div class="aui-card-list">
+        <div class="aui-card-list-content">
+            <ul class="aui-list aui-media-list">
+                <li class="aui-list-item aui-list-item-middle">
+                    <div class="aui-media-list-item-inner">
+                        <div class="aui-list-item-inner aui-list-item-arrow">
+                            <div class="aui-pull-left" style="color: #000;font-size: 18px;">
+                                <p style="line-height: 30px;">钱包余额：￥<span class="blance" style="color: #ff0000;">{{blance}}</span></p>
+                            </div>
+                            <a href="/qianbao/chongzhi.html" class="aui-pull-right aui-btn aui-btn-warning" style="margin-right:10px;float:right" bind="0">充值</a>
+                        </div>
+                    </div>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    <div class="aui-content aui-padded-10">
+        <ul class="aui-grid-nine"  style="line-height: 40px">
+            <li class="aui-col-xs-6 aui-text-center" onclick="window.location='/qianbao/jingjia_keywords_paylist.html'">
+                <span>展现量</span>
+                <p class="showcount">{{showcount}}</p>
+            </li>
+            <li class="aui-col-xs-6 aui-text-center" onclick="window.location='/qianbao/jingjia_keywords_clicklist.html'">
+                <span>点击量</span>
+                <p class="clickcount">{{clickcount}}</p>
+            </li>
+            <li class="aui-col-xs-6 aui-text-center">
+                <span>消费</span>
+                <p class="pricecount">{{pricecount}}</p>
+            </li>
+            <li class="aui-col-xs-6 aui-text-center">
+                <span>拨打电话量</span>
+                <p class="phonecount">{{phonecount}}</p>
+            </li>
+        </ul>
+        <div class="aui-padded-20">
+	        <div class="aui-pull-left"><a class="aui-btn aui-btn-success" href="/qianbao/llb_add.html">添加关键词</a></div>
+	        <div class="aui-pull-right"><a class="aui-btn aui-btn-success" href="/qianbao/jingjia_keywords_clicklist.html">数据明细</a></div>
+        </div>
+        <table style="width: 100%;" class="keylist">
+        	<thead>
+        	<tr>
+        		<td>关键词</td>
+        		<td>展现量</td>
+        		<td>点击量</td>
+        		<td>消费</td>
+        		<td>是否在线</td>
+        	</tr>
+        	</thead>
+    		{%for d in keylist%}
+    		<tr style="border-bottom: solid 1px #404040;" key_id="{{d.key_id}}">
+        		<td><a color="blue" style="text-decoration: underline;">{{d.keywords}}</a></td>
+        		<td>{{d.key_showcount}}</td>
+        		<td>{{d.key_clickcount}}</td>
+        		<td>￥{{d.key_pricecount}}</td>
+        		<td>{{d.checktext|safe}}</td>
+        	</tr>
+        	{%endfor%}
+        </table>
+    </div>
+
+<script type="text/javascript">
+	$(function(){
+		$(".keylist tbody").on("click","tr", function() {
+			var key_id=$(this).attr("key_id");
+			window.location='/qianbao/jingjia_keywords_info.html?key_id='+key_id
+		});
+	})
+	
+</script>
+{%include 'aui/bottom.html'%}
+</body>
+</html>

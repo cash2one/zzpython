@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+		<script type="text/javascript" src="/assets/layer/layer.js"></script>
+		<style>
+			body{
+				padding: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<form id="search" class="form-panel">
+			<div class="panel-title">
+				<span>
+					<select class="" name="user_category_code" id="user_category_code">
+						<option value="">请选择部门--</option>
+						{%for bm in allsalesman%}
+						<option value="{{bm.code}}">┆&nbsp;&nbsp;┿{{bm.cate_label}}</option>
+						{%endfor%}
+					</select>
+					<script>selectOption("user_category_code","{{user_category_code}}")</script>
+					<select class="" name="douser_id" id="douser_id">
+						<option value="">请选择人员--</option>
+						{%for salesman in allsalesman%}
+						<option value="0">┆&nbsp;&nbsp;┿{{salesman.cate_label}}</option>
+						{%for man in salesman.thiscateman%}
+						<option value="{{man.id}}">┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿{{man.realname}}</option>
+						{%endfor%} {%endfor%}
+					</select>
+					<script>selectOption("douser_id","{{douser_id}}")</script>
+					<label>时间：</label>
+					<input type="text" class="calendar" name="fromdate" {%if fromdate%}value="{{fromdate}}" {%endif%}>
+					<label>至</label>
+					<input type="text" class="calendar" name="todate" {%if todate%}value="{{todate}}" {%endif%}>
+					账号<input type="text" name="account" value="{%if account%}{{account}}{%endif%}" />
+					手机<input type="text" name="mobile" value="{%if mobile%}{{mobile}}{%endif%}" />
+					<input name="service_type1" id="service_type1" value="" type="text" readonly=""/>
+					<input type="button" name="service_type" class="button button-warning" value="产品分类" onclick="opencp2()">
+			        <select name='customType' id='customType' ><option value=''>签单类型</option>
+			          <option value="新签">新签</option>
+			          <option value="续费">续费</option>
+			        </select>
+			        <script>selectOption("customType","{{customType}}")</script>
+			        <select name='sales_priceflag' id='sales_priceflag' ><option value=''>业绩</option>
+			          <option value="0">=0</option>
+			          <option value="1">>0</option>
+			        </select>
+			        <script>selectOption("sales_priceflag","{{sales_priceflag}}")</script>
+
+				</span>
+				<button type="submit" class="button button-primary">查询>></button>
+			</div>
+		</form>
+		
+
+		<table width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#666666" class="table table-bordered">
+			<tr>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">id</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">客户手机</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">客户姓名</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">归属月份</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">周节奏</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">星期</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">销售人员</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">归属部门</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">到单日期</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">产品分类</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">到帐金额</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">来电宝余额</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">续费前到期时间</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">账号/邮箱</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">到单来源</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">增值类型</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">到单周期</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">产品量级</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">付款方式</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">促销形式</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">客户地区</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">客户经营产品</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">操作</td>
+			</tr>
+			<form id="form1" name="form1" method="post" action="" class="formlist">
+				{%for list in listall%}
+				<tr bgcolor="#ffffff">
+					<td nowrap="nowrap">{{list.id}}</td>
+					<td nowrap="nowrap">{{list.mobile}}</td>
+					<td nowrap="nowrap"><a href="/icd/crm_cominfoedit.html?company_id={{list.company_id}}&dotype={{list.dotype}}" target="_blank">客户:{{list.companyname}}</a></td>
+					<td nowrap="nowrap">
+						{{list.mkdate}}
+					</td>
+					<td align="center" nowrap="nowrap">第{{list.nkdate}}周</td>
+					<td nowrap="nowrap">周{{list.wkdate}}</td>
+					<td nowrap="nowrap">{{list.realname}}</td>
+					<td nowrap="nowrap">{{list.user_category_name}}</td>
+					<td nowrap="nowrap">{{list.sales_date}} <img src="/assets/img/gtk-edit.png" oid="{{list.id}}" fild='sales_date'></td>
+					<td nowrap="nowrap">{{list.service_type}} <img src="/assets/img/gtk-edit.png" oid="{{list.id}}" fild='service_type'></td>
+					<td nowrap="nowrap">{{list.sales_price}} <img src="/assets/img/gtk-edit.png" oid="{{list.id}}" fild='sales_price'></td>
+					<td nowrap="nowrap">{{list.ldbblance}} <img src="/assets/img/gtk-edit.png" oid="{{list.id}}" fild='ldbblance'></td>
+					<td nowrap="nowrap">{{list.end_time}} <img src="/assets/img/gtk-edit.png" oid="{{list.id}}" fild='end_time'></td>
+					<td nowrap="nowrap">{{list.account}}/{{list.email}} </td>
+					<td nowrap="nowrap">{{list.com_ly1}} <img src="/assets/img/gtk-edit.png" oid="{{list.id}}" fild='com_ly1'></td>
+					<td nowrap="nowrap">{{list.sales_type}} <img src="/assets/img/gtk-edit.png" oid="{{list.id}}" fild='sales_type'></td>
+					<td nowrap="nowrap">{{list.com_zq}} <img src="/assets/img/gtk-edit.png" oid="{{list.id}}" fild='com_zq'></td>
+					<td nowrap="nowrap">{{list.com_cpjb}} <img src="/assets/img/gtk-edit.png" oid="{{list.id}}" fild='com_cpjb'></td>
+					<td nowrap="nowrap">{{list.com_hkfs}} <img src="/assets/img/gtk-edit.png" oid="{{list.id}}" fild='com_hkfs'></td>
+					<td nowrap="nowrap">{{list.com_cxfs}} <img src="/assets/img/gtk-edit.png" oid="{{list.id}}" fild='com_cxfs'></td>
+					<td nowrap="nowrap">{{list.com_khdq}} <img src="/assets/img/gtk-edit.png" oid="{{list.id}}" fild='com_khdq'></td>
+					<td nowrap="nowrap">{{list.com_hy}} <img src="/assets/img/gtk-edit.png" oid="{{list.id}}" fild='com_pro'></td>
+					<td nowrap="nowrap">
+						{%if isadmin%}
+						<a href="order_del.html?id={{list.id}}" onClick="return confirm('确实要删除吗？')">删除</a>
+						{%endif%}
+					</td>
+				</tr>
+				{%endfor%}
+			</form>
+		</table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td nowrap="nowrap">页次:<strong><font color="#FF0000">{{page}}</font></strong>/<font color="#FF0000">{{page_listcount}}</font> 每页:<font color="#FF0000"></font> 共计:<font color="#FF0000">{{listcount}}</font></td>
+				<td> <font color="#666666"> 页数 &nbsp;第
+										{%for p in page_range%}
+											{%if p.nowpage%}
+											[&nbsp;<span class='current'>{{p.number}}</span>&nbsp;]
+											{%else%}
+											<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+											{%endif%}
+										{%endfor%}
+										页
+										</font> </td>
+				<td align="right">
+					<a href='?page=1&{{searchurl}}'>首页</a>&nbsp;&nbsp;
+					{% if firstpage %} <a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%} &nbsp;&nbsp;
+					{% if lastpage%} <a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%} &nbsp;&nbsp;
+					<a href='?page={{page_listcount}}&{{searchurl}}'>尾页</a>
+				</td>
+				<td align="right">
+				</td>
+			</tr>
+		</table>
+	</body>
+	<script type="text/javascript" src="../../assets/layer/layer.js"></script>
+	<script type="text/javascript" src="/assets/js/bui-min.js"></script>
+	<script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
+	<script type="text/javascript" src="/assets/js/config-min.js"></script>
+	<script type="text/javascript">
+		BUI.use('bui/calendar', function(Calendar) {
+			var datepicker = new Calendar.DatePicker({
+				trigger: '.calendar',
+				autoRender: true
+			});
+		});
+		$(document).ready(function() {
+			$(".table img").click(function() {
+				var id=$(this).attr("oid");
+				var fild=$(this).attr("fild");
+				layer.open({
+					type: 2,
+					title: '修改',
+					shadeClose: true,
+					shade: 0,
+					fixed:false,
+					maxmin: false, //开启最大化最小化按钮
+					area: ['500px', '500px'],
+					content: '/icd/order_value.html?fild='+fild+'&id='+id,
+					scrollbar: true,
+				});
+			})
+		})
+		function opencp2(){
+			layer.open({
+				type: 2,
+				title: '请选择实际到账产品',
+				shadeClose: true,
+				shade: 0,
+				fixed:false,
+				moveType:1,
+				offset: [0,0],
+				//btn: ['保存','取消'],
+				yes: function(index){
+					var body = layer.getChildFrame('body', index);
+					var form=body.find('form')
+					form && form.submit(); 
+				},
+				style:'',
+				maxmin: false, //开启最大化最小化按钮
+				area: ['400px', '500px'],
+				content: '/icd/ordercp2.html?company_id={{company_id}}&dotype={{dotype}}',
+				scrollbar: true,
+				success: function(layero, index){
+					
+				}
+			});
+		}
+	</script>
+
+</html>

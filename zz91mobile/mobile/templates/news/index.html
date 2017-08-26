@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>看资讯_ZZ91再生网</title>
+        <link rel="stylesheet" type="text/css" href="../css/second/index.css"/>
+        <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+		<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+		<script src="http://img0.zz91.com/zz91/mobile/js/style.js"></script>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="canonical" href="http://news.zz91.com/" >
+	</head>
+	<body>{%include 'top.html'%}
+     <div class="content">
+      <table class="nav_tab" cellpadding="1" cellspacing="0" >
+      	<tr class="nav_tab_tle">
+        	<td>看资讯</td>
+        </tr>
+        {%for i in newscolumn%}
+        <tr>
+        	<td><a href="/news/{{i.url}}/">{{i.typename}}</a></td>
+        </tr>
+		{%endfor%}
+		
+		<!--
+        <tr>
+        	<td><a href="" target="_blank">评论预测 </a></td>
+        </tr>
+        <tr>
+        	<td><a href="" target="_blank">技术文库</a></td>
+        </tr>
+        <tr>
+        	<td><a href="" target="_blank">国内财经</a></td>
+        </tr>
+        <tr>
+        	<td><a href="" target="_blank">国际财经</a></td>
+        </tr>
+        <tr>
+        	<td><a href="" target="_blank">政府法规</a></td>
+        </tr>
+        <tr>
+        	<td><a href="" target="_blank">企业新闻</a></td>
+        </tr>
+        <tr>
+        	<td><a href="" target="_blank">图片新闻</a></td>
+        </tr>-->
+      </table>
+      </div>
+      <script type="text/javascript">
+/*手机站：首页 20:3，创建于2014-7-22*/
+var cpro_id = "u1629209";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+      <!--end content-->{%include 'bottom2.html'%}
+	</body>
+</html>

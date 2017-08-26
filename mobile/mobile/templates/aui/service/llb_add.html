@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>开通流量宝-zz91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<style>
+			body {
+				background-color: #f4f4f4
+			}
+			.aui-content-padded{
+				background-color: #fff;
+				margin:0px;
+				margin-bottom: 10px;
+			}
+			.title {
+				font-size: 14px;
+				text-align: left;
+				height: 30px;
+				line-height: 40px;
+				
+				padding-left:10px;
+			}
+			.price {
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			.price span {
+				color: #ff0000
+			}
+			.main {
+				line-height: 30px;
+				font-size: 14px;
+				margin-bottom: 20px;
+				padding: 10px
+			}
+			.buybutton {
+				position: fixed;
+				bottom: 0px;
+				left: 0px;
+				border-radius: 0px;
+				width: 100%;
+			}
+			.showradio50{
+				display:block;
+				background-color: #fff;
+				padding-bottom:10px;
+			}
+			.showradio50 li {
+				width: 50%;
+				display: block;
+				float: left;
+			}
+			.aui-line-x{
+				margin-top: 10px;margin-bottom: 10px;
+			}
+			.price-info {
+				width: 100%;
+				background: #EBECED;
+				height: 55px;
+			}
+			.price {
+				margin-left: 15px;
+				color: #F76249;
+				font-size: 16px;
+				line-height: 55px;
+			}
+			.price strong {
+				font-size: 26px;
+				margin: 0 5px;
+				font-weight: 400;
+			}
+			.price-info .aui-pull-right {
+				height: 55px;
+				width: 35%;
+				background: #FF6600;
+				padding-top: 10px;
+				text-align: center;
+			}
+			.price-info .aui-pull-right p {
+				color: #ff6600;
+				font-size: 12px;
+				margin-bottom: 0px;
+			}
+			.buy{
+				color:#FFFFFF;
+				line-height:38px;
+			}
+			.daijq {
+				clear: both;
+			}
+			.shili{
+				font-size:14px;
+				color:#0062CC;
+				line-height:40px;
+				margin-left:20px;
+			}
+			.maintitle{
+				background-color: #A1D4CF;
+				line-height:40px;
+				padding-left: 10px;
+			}
+			.protitle{
+				background-color:#E7E7E7;
+				line-height: 40px;
+				padding-left:20px;
+			}
+			.aui-input-addon{
+				width:100px;
+				display:block;
+				color:#008000;
+			}
+			
+			.get-xinx {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				padding:10px
+				
+			}
+			.get-xinx span {
+				display: block;
+				text-align: center;
+				border: 1px solid #e1e1e1;
+				border-radius: 3px;
+				line-height: 30px;
+				margin-bottom: 10px;
+				position: relative;
+				padding-right:10px;
+				padding-left:10px;
+				margin-right:10px;
+				background-color: #F2F2F2;
+				width:100%;
+			}
+			.get-xinx span font{
+				width:100%;
+				display:block;
+				overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+			}
+			.get-xinx span:last-child {
+				margin-bottom: 0;
+			}
+			.get-xinx {
+				margin-bottom: 15px;
+				min-height: 37px;
+				width:100%;
+			}
+			.get-xinx span i {
+				display: block;
+				height: 30px;
+				width: 30px;
+				position: absolute;
+				right: 2px;
+				top: 2px;
+				font-size:20px;
+				color:#ff0000;
+			}
+			.nokeywords{
+				width:96%;
+				line-height:70px;
+				color:#999;
+				text-align:center;
+				border:dotted 1px #ebebeb;
+				padding:20px;
+				font-size:12px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">流量宝</div>
+		    <a class="aui-pull-right" href="/myrc_index/">
+		        <span class="aui-iconfont aui-icon-my"></span>
+		    </a>
+		</header>
+		<!--<div style="line-height: 30px;background-color: #FEE900;text-align: center;color: #ff000;">现在开通流量宝，送<font color="#FF0000">88</font>元流量钱包。 </div>-->
+		<input type="hidden" id="showcontactvalue" value="">
+		<div class="aui-content-padded">
+			<p style="line-height: 30px;padding-left: 5px;">关键词（6个字内，一条供求最多5个关键词）</p>
+	 		<div class="buy-box aui-form">
+		 		<div class="aui-input-row">
+		 			<label class="aui-input-addon"></label>
+		 			<div class="get-xinx keywords_list">
+		 				<div class="nokeywords"><i class="aui-iconfont aui-icon-warn"></i> 请添加关键词或选择已经有的类别关键词</div>
+						<!--<span><font>废铜</font><i class="remove aui-iconfont aui-icon-roundclosefill"></i></span>
+						<span><font>废铜</font><i class="remove aui-iconfont aui-icon-roundclosefill"></i></span>-->
+					</div>
+		 		</div>
+		 		<div class="aui-input-row" style="text-align: center;margin-left: auto;margin-right: auto;width:100%">
+		 			<button style="margin-right: 20px" class="addkeywords"><i class="aui-iconfont aui-icon-add"></i>添加关键词</button>
+		 			<button class="selectkeywords"><i class="aui-iconfont aui-icon-searchlist"></i>选择已有关键词</button>
+		 		</div>
+		 	</div>
+		</div>
+		<div class="aui-content-padded">
+		 	<div class="buy-box aui-form">
+		 		<div class="aui-input-row">
+		 			<label class="aui-input-addon">点击费用（元/次）</label>
+		 			<input type="text" class="aui-input price" id="price" maxlength="4" value="5" placeholder="最低出价不低于5元" />
+		 		</div>
+		 		<div class="aui-input-row">
+		 			<label class="aui-input-addon">推广供求</label>
+		 			<input type="hidden" name="product_id" id="product_id" value="0">
+		 			<input type="text" class="aui-input" id="productname" value="" readonly="" placeholder="请选择供求" />
+		 		</div>
+		 		<div class="aui-input-row" style="text-align: center;margin-left: auto;margin-right: auto;width:100%">
+		 			<button class="selectproduct">选择供求</button>
+		 		</div>
+		 		<input type="hidden" name="yuerflag" id="yuerflag" value="1">
+		 		<div class="aui-input-row qianbaobalace" style="display: none;">
+					<label class="aui-input-addon">您的钱包余额：￥</label> <span class="balancenum">0.00</span>
+				</div>
+				<div class="aui-input-row nomeny" style="width: 100%;display: none;">
+					<span class="aui-input-addon" style="color:red" class="chongzhitext">钱包余额大于300元才能开通此服务。</span>
+					<span class="aui-btn aui-btn-danger chongzhi" style="margin-left: 10px">立即充值</span>
+				</div>
+		 	</div>
+		 	
+		</div>
+		
+		
+		<div class="aui-content-padded" style="margin-bottom: 60px;">
+			
+			<div class="aui-content" style="line-height: 30px;padding: 20px;font-size: 12px;color:#999">
+			注：<br />
+			1、建议添加多个关键词，让你的推广效果更卓越。<br>
+			2、再生钱包金额不足会自动下线，请确保再生钱包是否充值，点此立即充值<br>
+			3、一条供求最多添加5个关键词<br>
+			</div>
+			
+		</div>
+		
+		<section class="buybutton">
+			<div class="price-info">
+				<div class="aui-btn aui-btn-danger aui-btn-block">确定提交</div>
+			</div>
+		</section>
+	<script type="text/javascript">
+		var paymoney=0;
+		var datevalue=0;
+		var djqlist ="0";//代金券ID
+		var proid=0;
+		var blance=0;
+		var maxprice={{res.maxprice}};
+		var minblance={{res.minblance}};
+
+		$(function(){
+			$(".buybutton").on("click",function() {
+				event.stopPropagation();
+				savesubmit();
+			})
+			//选择供求
+			$(".selectproduct").on("click",function() {
+				event.stopPropagation();
+				layer.open({
+					type: 2,
+					title: '选择供求',
+					shadeClose: true,
+					shade: 0.8,
+					scrollbar: false,
+					area: ['85%', '70%'],
+					content: '/qianbao/llb_selectpro.html' //iframe的url
+				}); 
+			})
+			
+			//选择已有关键词
+			$(".selectkeywords").on("click", function() {
+				layer.open({
+					type: 2,
+					title: '选择供求类别',
+					shadeClose: true,
+					shade: 0.8,
+					scrollbar: false,
+					area: ['85%', '70%'],
+					content: '/qianbao/llb_category.html' //iframe的url
+				}); 
+			});
+			//添加关键词
+			$(".addkeywords").on("click", function() {
+				layer.prompt({
+					title: '请输入关键词，字符数小于6个', 
+					formType: 0
+				}, function(text, index){
+		    		if (text.length>6 || text.length<=0){
+		    			layer.msg("字符数必须小于6个！");
+		    			return;
+		    		}else{
+		    			xztradecode(text,'')
+		    		}
+					layer.close(index);
+				});
+			});
+			//出价
+			$(".price").on("click", function() {
+				layer.prompt({
+					title:"最低出价不低于"+maxprice.toString()+"元,每次加价大于1元",
+					value:$("#price").val(),
+					type:'number',
+					
+				}, function(text, index){
+		    		if(!isNaN(text)){
+		    			if (parseInt(text)>=parseInt(maxprice)){
+							$("#price").val(text);
+							layer.close(index);
+							return;
+					    }else{
+					    	layer.msg("必须输入大于"+maxprice+"的金额！")
+					    }
+		    		}else{
+					   layer.msg("请输入数字");
+					}
+				})
+				
+			});
+			//删除关键词
+			$(".get-xinx").on("click", ".remove", function() {
+				var spanFt = $(this).parent()
+				spanFt.hide(300, function() {
+					spanFt.remove()
+				})
+				var num=0
+				$(".keywords_list span font").each(function() {
+					num+=1;
+				});
+				if (num==1){
+					$(".nokeywords").show();
+				}
+			});
+			//充值
+			$(".chongzhi").on("click", function() {
+				confirmzhifu();
+				layer.open({
+					type: 2,
+					title: '充值',
+					shadeClose: true,
+					shade: 0.8,
+					scrollbar: false,
+					area: ['90%', '90%'],
+					content: '/qianbao/chongzhi.html' //iframe的url
+				}); 
+			})
+			ajaxInfo();
+		});
+		//添加供求类别
+		function xztradecode(label,code){
+			var flag=false;
+			var num=1
+			$(".keywords_list span font").each(function() {
+				if ($(this).text()==label){
+					layer.msg('已经添加')
+					flag=true;
+					return false;
+				}
+				if (num>=5){
+					layer.msg('关键字最多5个！')
+					flag=true;
+					return false;
+				}
+				num+=1;
+			});
+			if (flag==false){
+				label=label.replace(","," ")
+				var trade_span = '<span><font>' + label + '</font><i class="remove aui-iconfont aui-icon-roundclosefill"></i></span>';
+				$(".keywords_list").append(trade_span);
+				$(".nokeywords").hide();
+			}
+		}
+		//选择供求
+		function selectproducts(product_id,productname){
+			$("#productname").val(unescape(productname));
+			$("#product_id").val(product_id);
+		}
+		function ajaxInfo(){
+			getbalance();
+		}
+		//获取余额
+		function getbalance(){
+			//获得余额
+			zzajax("get","/qianbao/qianbaobaoblance.html","",function(ret){
+				if (ret){
+					var blance=ret.blance;
+					var showphpne=ret.showphone;
+					$(".balancenum").html(blance);
+					//余额少于500元提醒充值
+					if (blance>=minblance){
+						$(".nomeny").hide();
+						$(".qianbaobalace").hide();
+						$("#yuerflag").val(1)
+					}else{
+						$(".nomeny").show();
+						$(".chongzhitext").html("钱包余额大于"+minblance.toString()+"元才能开通此服务。")
+						$(".qianbaobalace").show();
+						$("#yuerflag").val(0)
+					}
+				}
+			},function(){
+				layer.msg("读取余额错误！")
+			})
+		}
+		//确认支付完成
+		function confirmzhifu(){
+			layer.confirm('你是否已经完成支付？', {
+			  btn: ['确定'] //按钮
+			}, function(index){
+				layer.close(index);
+			  getbalance();
+			});
+		}
+		//开通服务
+		function savesubmit() {
+			var keywordslist="";
+			getbalance();
+			$(".keywords_list span font").each(function() {
+				keywordslist = keywordslist + $(this).text() + ",";
+			});
+			if (keywordslist==""){
+				layer.msg("请添加或选择关键词！");
+				return false;
+			}
+			var price=$("#price").val();
+			if (price.length<=0){
+				layer.msg("请填写出价！");
+				return false;
+			}
+			var product_id=$("#product_id").val();
+			if (product_id==0){
+				layer.msg("请选择供求！");
+				return false;
+			}
+			var yuerflag=$("#yuerflag").val();
+			if (yuerflag==0){
+				layer.msg("你的余额不足"+minblance.toString()+"元，不能开通服务，请充值后再开通！");
+				return false;
+			}
+			var data = {
+				keywords:keywordslist,
+				price:price,
+				product_id:product_id,
+			}
+			zzajax("post","/qianbao/jingjia_keywords_save.html",data,function(ret){
+				if (ret.err == "false") {
+					layer.msg(ret.errkey);
+					window.location='/myrc_index/';
+				} else {
+					layer.msg(ret.errkey);
+				}
+			},function(){
+				layer.msg("系统错误！")
+			})
+		}
+
+		function showcontactcheck(valu) {
+			$("#showcontactvalue").val(valu);
+		}
+	</script>
+	{%include 'aui/bottom.html'%}
+	</body>
+</html>

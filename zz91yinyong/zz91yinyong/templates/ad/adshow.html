@@ -1,0 +1,16 @@
+var strlist='<a href="http://zhanhui.zz91.com/exhibitchannel/taizhou/index.htm" target="_blank"><div style="height: 100px;position: relative;">'+
+	'<img src="http://img1.zz91.com/ads/1438358400000/24725647-570f-46ac-8b5e-fe0117540584.gif">'+
+	'<div style="position: absolute;right:100px ;top: 45px;text-align: center;color:#fff;font-size: 35px;font-weight: bold;" id="havenum">0</div>'+
+'</div></a>';
+document.write(strlist);
+	//var endtime = new Date("2015-9-22 0:0:0"); //结束时间
+	var endtime=Date.parse("2015/09/22 0:0");
+	var nowtime = new Date(); //当前时间
+	var lefttime = parseInt((endtime.valueOf() - nowtime.valueOf()) / 1000);
+	var havenum=document.getElementById("havenum");
+	
+	d = parseInt(lefttime / 3600 / 24);
+	//alert(d);
+	if (lefttime >= 0) {
+		havenum.innerHTML=d;
+	}

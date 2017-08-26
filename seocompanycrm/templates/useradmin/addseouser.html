@@ -1,0 +1,47 @@
+{%extends 'index.html'%}
+{%block content%}
+<br /><br /><br />
+<form action="/addseouserok/">
+姓名: <input type="text" name="seouser_name" value="{{seouser_name}}" class="w80px"> {%if error%}<font color="red">{{error1}}</font>{%endif%} <br />
+帐号: <input type="text" name="seo_username" value="{{seo_username}}" class="w80px"> {%if error%}<font color="red">{{error2}}</font>{%endif%} <br />
+密码: <input type="text" name="seo_password" value="{{seo_password}}" class="w80px"> {%if error%}<font color="red">{{error3}}</font>{%endif%} <br />
+<br />
+<input type="submit" value="添加seo人员">
+</form>
+<br /><br />
+
+<form action="/updateseouserok/">
+<table border="1" cellpadding="3" cellspacing="0">
+	<tr align="center"><td>
+	seo人员列表
+	</td>
+	<td>&nbsp;&nbsp;帐号&nbsp;&nbsp;</td>
+	<td>&nbsp;&nbsp;密码&nbsp;&nbsp;</td>
+	<td></td><td></td></tr>
+	{%for seo in seouser%}
+	<tr align="center">
+	
+	
+	<td height="40px" width="120px">
+	
+	{%ifequal seo_name seo.name%}
+	{{seo_name}}
+	</td>
+	<td>{{seo_uname}}</td>
+	<td><input type="text" class="w60px h50px s15px tcenter" name="seo_password" value="{{seo_pword}}"></td>
+	<td><input type="submit" value="√"></td><td><input type="button" onclick="window.location='/seouser/'" value="X"></td></tr>
+	{%else%}
+	
+	<a href="/keywords/?seo_id={{seo.id}}">{{seo.name}}</a>
+	</td>
+	<td>{{seo.username}}</td>
+	<td>{{seo.password}}</td>
+	<td><a href="/updateseouser/?seouser_id={{seo.id}}">修改</a></td><td><a href="/delseouser/?seouser_id={{seo.id}}" onclick="return confirm('是否将此信息删除?')">删除</a></td></tr>
+	{%endifequal%}
+	{%endfor%}
+</table>
+<input type="hidden" name="seo_id" value="{{seo_id}}">
+</form>
+<br />
+
+{%endblock%}

@@ -1,0 +1,751 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>{{seo_keywords}}_供求列表_ZZ91废料移动商务</title>
+	<meta name="keywords" content="废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备">
+	<meta name="description" content="ZZ91再生网是中国最大最旺的网上废料贸易市场,这里为您精选了废金属,废塑料,废纸,废橡胶,纺织废料,废旧设备,废电子电器,废玻璃,废皮革,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备等各类废料供求信息.公司黄页.行业资讯.价格行情.展会信息等。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="icon" type="image/png" href="../../assets/i/favicon.png">
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="http://img0.zz91.com/front/favicon.ico">
+  <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/front/favicon.ico">
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="http://img0.zz91.com/front/favicon.ico">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <link rel="stylesheet" href="../../assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="../../assets/css/app.css">
+  <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+  <style type="text/css">
+    .am-type-nav{
+        position: fixed;
+        top: 49px;
+        z-index: 2;
+        background-color: #fff;
+        font-size: 12px;
+        border-bottom: 1px solid #e6e6e6;
+    }
+    .am-type-list-indo{
+        padding-top: 31px;
+        background-color: #fff
+    }
+    .am-nav-get .am-u-sm-3{
+        border-right: 1px solid #e6e6e6;
+        position: relative;
+    }
+    .am-nav-get .am-u-sm-4:last-child{
+        border-right: 0
+    }
+    .am-icon-sanjiao{
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-width: 0px 0px 10px 10px;
+        border-style: solid dashed dashed dashed;
+        border-color:  transparent transparent #333 transparent;
+        position: absolute;
+        right: 8px;
+        bottom:3px;
+    }
+    .am-list-news-default .am-list .am-list-item-text{
+        -webkit-line-clamp:1;
+    }
+
+    .pop{
+        position: fixed;
+        height: 100%;
+        background-color: rgba(0,0,0,.5);
+        top: 0;
+        width: 100%;
+        -moz-opacity: 0;
+        -webkit-opacity: 0;
+        -o-opacity: 0;
+        z-index: -1
+    }
+    .pop-main{
+        position: absolute;
+        width: 100%;
+        top:77px;
+        background-color: #fff;
+        -moz-transform:    translate(0px,-240px);
+        -webkit-transform: translate(0px,-240px);
+        -o-transform:      translate(0px,-240px);
+    }
+    .popshow{
+        z-index: 1;
+        display: block;
+        -moz-opacity: 1;
+        -webkit-opacity: 1;
+        -o-opacity: 1;
+        -moz-transition:     -moz-opacity 0.5s; /* Firefox 4 */
+        -webkit-transition:  -webkit-opacity 0.5s; /* Safari and Chrome */
+        -o-transition:       -o-opacity 0.5s; /* Opera */
+    }
+    .popshow .pop-main{
+        -moz-transform:    translate(0px,0px);
+        -webkit-transform: translate(0px,0px);
+        -o-transform:      translate(0px,0px);
+        -moz-transition:     -moz-transform    0.5s; /* Firefox 4 */
+        -webkit-transition:  -webkit-transform 0.5s; /* Safari and Chrome */
+        -o-transition:       -o-transform      0.5s; /* Opera */ 
+    }
+    .am-type-left{
+        background-color: #f2f2f2
+    }
+    .am-type-left li{
+        border-bottom: 1px solid #e6e6e6
+    }
+    .am-type-title{
+        display: inline-block;
+        width: 80px;
+        height: 24px;
+        line-height: 24px;
+        padding-left: 8px;
+        border:1px solid #e6e6e6;
+        margin-bottom: 8px;
+        margin-right: 8px;
+    }
+    .am-type-mo{
+        border-bottom:1px solid #e6e6e6;
+    }
+    .this_select{
+        color: red
+    }
+    .am-list-news .am-list li:first-child{
+        border: 0
+    }
+    /**page**/
+    
+    .page {
+    	height: 35px;
+    	line-height: 35px;
+    	text-align: center;
+    	background: #fff;
+    	border-top: 1px solid #c0c0c0;
+    	border-bottom: 1px solid #c0c0c0;
+    	margin-bottom: 40px;
+    	font-size: 12px;
+    }
+    
+    .page_next {
+    	width: 30%;
+    	float: left
+    }
+    
+    .page_prev {
+    	border-right: 1px solid #c0c0c0;
+    	cursor: pointer;
+    	width: 30%;
+    	float: left
+    }
+    
+    .page_no {
+    	border-right: 1px solid #c0c0c0;
+    	width: 39%;
+    	float: left
+    }
+    .am-scrollable-vertical{
+    	height: 100%;
+    }
+    .areaon{
+    	background-color: #006600;
+    	color: #fff;
+    }
+    .areaoff{
+    	color: #000;
+    }
+    *+address,*+blockquote,*+dl,*+fieldset,*+figure,*+hr,*+ol,*+p,*+pre,*+ul{margin-top:0rem}
+    .box{}
+    .box-div{border:0px solid #006600;}
+		.box-item{text-align:left;margin:10px;clear: both;} 
+		.box-item-title{margin-bottom:5px}
+		.box-item-title a{color:#093;font-size:16px}
+		.box-item-content ul{padding:0px}
+		.box-item-content ul li{margin-right:10px;margin-bottom:5px;line-height:24px;float:left;display:inline}
+		.box-item-content ul li a{padding:2px 4px;font-size:14px}
+		.box-item-click{background:#666666;color:#fff}
+		.ptop{
+	    		background-color: #009900;
+	    		text-align:center;
+	    		width:100%;
+	    		clear:both;
+	    		line-height:33px;
+	    		overflow: hidden;
+	    		padding-left:5px;
+	    		position: fixed;
+	    		bottom: 0px;
+	    		left: 0px;
+	    		z-index: 999;
+	    	}
+	    	.zdbotton{
+	    		background-color:#C0392B;
+	    		color:#fff;
+	    		width:60px;
+	    		font-size:12px;
+	    		margin-top:8px;
+	    		display:block;
+	    		line-height:20px;
+	    		border-radius:2px;
+	    		position: absolute;
+	    		right:10px;
+	    		top:0px;
+	    		padding-left:4px;
+	    		padding-right:4px;
+	    		text-align:center;
+	    	}
+  </style>
+</head>
+<body ng-app="myApp" ng-controller="userCtrl">
+    <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <a href="/trade/" class="">
+                <i class="am-header-icon am-icon-chevron-left"></i>
+            </a>
+        </div>
+
+        <h1 class="am-header-title">
+            产品列表
+        </h1>
+
+        <div class="am-header-right am-header-nav">
+        		<a href="javascript:void(0)" class="" data-am-modal="{target: '#search-modal'}">
+                <i class="am-header-icon am-icon-search"></i>
+            </a>
+            <a href="javascript:void(0)" class="">
+                <i class="am-header-icon am-icon-location-arrow"></i>
+                <a href="/products_publish/" style="margin-left: 0px;min-width:10px"><span class="am-maegiin-left-xs">发布</span></a>
+            </a>
+        </div>
+    </header>
+		<div class="aui-tips-danger ptop">
+			<div class="aui-ellipsis-1" style="text-align: left">
+				<i class="aui-iconfont aui-icon-creative"></i>
+				<font style="font-size:14px" color="#fff">下载APP，获取<font color="#FEE900">20</font>元红包</font>
+				<a class="zdbotton" href="http://m.zz91.com/app.html">免费下载</a>
+			</div>
+		</div>
+    <div class="am-type-nav am-g j_type_nav am-nav-get j_select">
+        <div class="am-u-sm-3 am-padding-xs am-text-center">{{showkeywords}}<i class="am-icon-sanjiao"></i></div>
+        <div class="am-u-sm-3 am-padding-xs am-text-center">{{gqtext}}<i class="am-icon-sanjiao"></i></div>
+        <div class="am-u-sm-3 am-padding-xs am-text-center">{{ordtext}} <i class="am-icon-sanjiao"></i></div>
+        <div class="am-u-sm-3 am-padding-xs am-text-center">筛选 <i class="am-icon-sanjiao"></i></div>
+    </div>
+    
+    <section>
+        <div class="am-type-list-indo am-list-news-default am-list-news" style="margin: 0px;">
+        	<center>
+						<script type="text/javascript">
+						    /*kangxianyue 20:5 创建于 2017/4/19*/
+						    //var cpro_id = "u2958427";
+						    /*20:6 创建于 2017/4/27*/
+						    var cpro_id = "u2965257";
+						</script>
+						<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/cm.js"></script>
+					</center>
+            <div class="am-list-news-bd">
+		            
+            		{%if adlist%}
+            		{%for list in adlist%}
+            		<div><a href="{{list.url}}" target="_blank"><img src="{{list.picaddress}}" style="width: 100%;"></a></div>
+            		{%endfor%}
+            		{%endif%}
+                <ul class="am-list" style="padding-top: 0px;margin: 10px;">
+                		{%if isding%}
+                    {% for list in productListtop %}
+                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" style="background-color: #E2F1F3;">
+                        <div class="am-u-sm-3 am-list-thumb">
+                            <a href="/trade/detail{{list.pdt_id}}.html">
+                                <img src="{{list.pdt_images}}" />
+                            </a>
+                        </div>
+                        <a href="/trade/detail{{list.pdt_id}}.html">
+                        <div class="am-u-sm-9">
+                            <h3 class="am-list-item-hd am-margin-bottom-xs am-list-item-text am-margin-top-0">
+                                <b>{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</b>
+                                
+                            </h3>
+                            <div class="am-list-item-text am-margin-bottom-xs">
+                            	{{list.com_province}}  {{list.pdt_price}}
+                            	{%if list.isbuycontact%}&nbsp;<img src="/images/pindao/eye.jpg" />{%endif%}
+                            	<img src="/images/pindao/d.png" />
+                            </div>
+                            <div class="am-list-item-bar am-cf am-text-xs">
+                                <span class="am-list-item-time am-fl">{{list.pdt_time_en}}</span>
+                                <span class="am-list-icon am-fr">{%if list.ldbtel%}
+                            tel:<font style="color:#F00">{{list.ldbtel.front_tel}}</font> {%if list.phone_rate%}{{list.phone_rate}}% 接听率{%endif%}
+                            {%endif%}</span>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+                    {%endfor%}
+                		{%endif%}
+                		{% for list in jingjialist %}
+                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left jiangjialist" style="background-color: #FFF3D7;" hiturl="{{list.hiturl}}">
+                        <div class="am-u-sm-3 am-list-thumb">
+                                <img src="{{list.pdt_images}}" />
+                        </div>
+                        <div class="am-u-sm-9">
+                            <h3 class="am-list-item-hd am-margin-bottom-xs am-list-item-text am-margin-top-0">
+                                <b>{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</b>
+                                
+                            </h3>
+                            <div class="am-list-item-text am-margin-bottom-xs">
+                            	{{list.com_province}}  {{list.pdt_price}}
+                            	{%if list.isbuycontact%}&nbsp;<img src="/images/pindao/eye.jpg" />{%endif%}
+                            	<img src="/images/you.png" />
+                            </div>
+                            <div class="am-list-item-bar am-cf am-text-xs">
+                                <span class="am-list-item-time am-fl">{{list.pdt_time_en}}</span>
+                                <span class="am-list-icon am-fr">{%if list.ldbtel%}
+                            tel:<font style="color:#F00">{{list.ldbtel.front_tel}}</font> {%if list.phone_rate%}{{list.phone_rate}}% 接听率{%endif%}
+                            {%endif%}</span>
+                            </div>
+                        </div>
+                    </li>
+                    {%endfor%}
+                		{%if productList%}
+                    {% for list in productList %}
+                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                        <div class="am-u-sm-3 am-list-thumb">
+                            <a href="/trade/detail{{list.pdt_id}}.html">
+                                <img src="{{list.pdt_images}}" />
+                            </a>
+                        </div>
+                        <a href="/trade/detail{{list.pdt_id}}.html">
+                        <div class="am-u-sm-9">
+                            <h3 class="am-list-item-hd am-margin-bottom-xs am-list-item-text am-margin-top-0">
+                                <b>{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</b>
+                            </h3>
+                            <div class="am-list-item-text am-margin-bottom-xs">
+                            	{{list.com_province}}  {{list.pdt_price}}
+                            	{%if list.isbuycontact%}&nbsp;<img src="/images/pindao/eye.jpg" />{%endif%}
+                            </div>
+                            <div class="am-list-item-bar am-cf am-text-xs">
+                                <span class="am-list-item-time am-fl">{{list.pdt_time_en}}</span>
+                                <span class="am-list-icon am-fr">{%if list.ldbtel%}
+                            tel:<font style="color:#F00">{{list.ldbtel.front_tel}}</font> {%if list.phone_rate%}{{list.phone_rate}}% 接听率{%endif%}
+                            {%endif%}</span>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+                    {%endfor%}
+                    {%else%}
+                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+                       	 没有找到合适{{keywords}}的相关信息。<a href="/products_publish/">点此发布供求</a>
+                    </li>
+                    {%endif%}
+                    
+                </ul>
+            </div>
+        </div>
+        
+        <div class="page">
+					<ul>
+						{% if firstpage %}
+						<li class="page_prev">
+							<a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{%if gyurl%}{{gyurl}}_{%endif%}p{{prvpage}}.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}{%if province%}province={{province}}&{%endif%}{%if timearg%}timearg={{timearg}}{%endif%}{%if haveprice%}&haveprice={{haveprice}}{%endif%}{%if havepic%}&havepic={{havepic}}{%endif%}&sorttype={{sorttype}}">上一页</a>
+						</li>
+						{%else%}
+						<li class="page_prev" style="color:gray">上一页</li>
+						{% endif %}
+						<li class="page_no">
+							<select onChange="window.location='/trade/{%if pinyin%}{{pinyin}}/{%endif%}{%if gyurl%}{{gyurl}}_{%endif%}p'+this.value+'.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}{%if province%}province={{province}}&{%endif%}{%if timearg%}timearg={{timearg}}{%endif%}{%if haveprice%}&haveprice={{haveprice}}{%endif%}{%if havepic%}&havepic={{havepic}}{%endif%}&sorttype={{sorttype}}'">
+								<option>第{{page}}页</option>
+								{%for p in page_range%}
+								<option value="{{p.number}}">第{{p.number}}页</option>
+								{%endfor%}
+							</select> /{{page_listcount}}页
+						</li>
+						{% if lastpage%}
+						<li class="page_next">
+							<a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{%if gyurl%}{{gyurl}}_{%endif%}p{{nextpage}}.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}{%if province%}province={{province}}&{%endif%}{%if timearg%}timearg={{timearg}}{%endif%}{%if haveprice%}&haveprice={{haveprice}}{%endif%}{%if havepic%}&havepic={{havepic}}{%endif%}&sorttype={{sorttype}}">下一页</a>
+						</li>
+						{%else%}
+						<li class="page_prev" style="color:gray">下一页</li>
+						{% endif %}
+					</ul>
+				</div>
+				{%if showgooglead%}
+				{%else%}
+				<center>
+				<script type="text/javascript">
+				/*kangxianyue 20:5 创建于 2017/4/19*/
+				var cpro_id = "u2958427";
+				</script>
+				<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/cm.js"></script>
+				</center>
+				<center>
+					<div style="margin-top:3px;">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- 微门户 -->
+					<ins class="adsbygoogle"
+					     style="display:block"
+					     data-ad-client="ca-pub-5512236620584335"
+					     data-ad-slot="8274972003"
+					     data-ad-format="auto"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+					</div>
+				</center>
+				{%endif%}
+				
+				<div style="height: 50px;"></div>
+    </section>
+
+    <div class="pop">
+        <div class="pop-main am-g" style="height: 350px;">
+            <div class="am-u-sm-3  am-scrollable-vertical am-padding-0 am-type-left">
+                <ul class="am-avg-sm-1 am-text-center am-type-left-ul tradecategorycode">
+                    <li class="am-padding-sm" code="1000">
+                        <a href="javascript:void(0)">
+                            <p class="am-text-xs am-margin-0">废金属</p>
+                        </a>
+                    </li>
+                    <li class="am-padding-sm" code="1001">
+                        <a href="javascript:void(0)">
+                            <p class="am-text-xs am-margin-0">废塑料</p>
+                        </a>
+                    </li>
+                    <li class="am-padding-sm" code="1003">
+                        <a href="javascript:void(0)">
+                            <p class="am-text-xs am-margin-0">废纺织品</p>
+                        </a>
+                    </li>
+                    <li class="am-padding-sm" code="1004">
+                        <a href="javascript:void(0)">
+                            <p class="am-text-xs am-margin-0">废纸</p>
+                        </a>
+                    </li>
+                    <li class="am-padding-sm" code="1007">
+                        <a href="javascript:void(0)">
+                            <p class="am-text-xs am-margin-0">二手设备</p>
+                        </a>
+                    </li>
+                    <li class="am-padding-sm" code="1005">
+                        <a href="javascript:void(0)">
+                            <p class="am-text-xs am-margin-0">电子电器</p>
+                        </a>
+                    </li>
+                    <li class="am-padding-sm" code="1002">
+                        <a href="javascript:void(0)">
+                            <p class="am-text-xs am-margin-0">橡胶轮胎</p>
+                        </a>
+                    </li>
+                    <li class="am-padding-sm" code="1006">
+                        <a href="javascript:void(0)">
+                            <p class="am-text-xs am-margin-0">废玻璃</p>
+                        </a>
+                    </li>
+                    <li class="am-padding-sm" code="1009">
+                        <a href="javascript:void(0)">
+                            <p class="am-text-xs am-margin-0">服务</p>
+                        </a>
+                    </li>
+                    <li class="am-padding-sm" code="1008">
+                        <a href="javascript:void(0)">
+                            <p class="am-text-xs am-margin-0">其他废料</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="am-u-sm-9 am-scrollable-vertical am-padding-0 box-div">
+                <!--<dl class="am-margin-sm am-type-mo">
+                    <dt class="am-text-xs">废电子</dt>
+                    <dd class="am-cf am-text-xs am-margin-top-xs">
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                    </dd>
+                </dl>
+                <dl class="am-margin-sm am-type-mo">
+                    <dt class="am-text-xs">废电子</dt>
+                    <dd class="am-cf am-text-xs am-margin-top-xs">
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                    </dd>
+                </dl>
+                <dl class="am-margin-sm am-type-mo">
+                    <dt class="am-text-xs">废电子</dt>
+                    <dd class="am-cf am-text-xs am-margin-top-xs">
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                    </dd>
+                </dl>
+                <dl class="am-margin-sm am-type-mo">
+                    <dt class="am-text-xs">废电子</dt>
+                    <dd class="am-cf am-text-xs am-margin-top-xs">
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                        <a href="#" class="am-type-title">电路板</a>
+                    </dd>
+                </dl>-->
+            </div>
+        </div>
+    </div>
+    <div class="pop">
+        <div class="pop-main am-scrollable-vertical" style="height: 150px;">
+            <ul class="am-list am-padding-left-sm am-text-sm">
+              <li><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}?{%if nopinyin%}keywords={{keywords}}&{%endif%}{%if haveprice%}&haveprice=1{%endif%}{%if havepic%}&havepic=1{%endif%}">全部</a></li>
+              <li><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}gy.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}{%if haveprice%}&haveprice=1{%endif%}{%if havepic%}&havepic=1{%endif%}">供应</a></li>
+              <li><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}qg.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}{%if haveprice%}&haveprice=1{%endif%}{%if havepic%}&havepic=1{%endif%}">求购</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pop">
+        <div class="pop-main am-scrollable-vertical" style="height: 235px;">
+            <ul class="am-list am-padding-left-sm am-text-sm">
+              <li><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{{gqtype}}.html?{%if nopinyin%}keywords={{keywords}}{%endif%}&sorttype=">综合</a></li>
+              <li><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{{gqtype}}.html?{%if nopinyin%}keywords={{keywords}}{%endif%}&sorttype=member">会员等级</a></li>
+              <li><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{{gqtype}}.html?{%if nopinyin%}keywords={{keywords}}{%endif%}&sorttype=pro">信息质量</a></li>
+              <li><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{{gqtype}}.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}haveprice=1">有价格</a></li>
+              <li><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{{gqtype}}.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}havepic=1">有图片</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pop" >
+        <div class="pop-main am-scrollable-vertical" style="height: 250px;">
+            <table class="am-table am-table-bordered am-text-center am-text-sm am-margin-bottom-0 timelist">
+                <tr>
+                    <th  colspan="3"><i class="am-icon-clock-o am-margin-right-xs"></i>时间</th>
+                </tr>
+                <tr>
+                    <td timearg="1">一天内</td>
+                    <td timearg="2">三天内</td>
+                    <td timearg="3">一周内</td>
+                </tr>
+                <tr>
+                    <td timearg="4">一月内</td>
+                    <td timearg="5">两月内</td>
+                    <td timearg="">全部</td>
+                </tr>
+            </table>
+            <table class="am-table am-table-bordered am-text-center am-text-sm am-margin-bottom-0 arealist">
+                <tr>
+                    <th  colspan="4"><i class="am-icon-map-marker am-margin-right-xs"></i>所在地</th>
+                </tr>
+                <tr>
+                {%for alst in arealist%}
+	            	<td area="{{alst}}" class="areaoff" style="float: left;width: 25%;" {%ifequal province alst%}style="background-color: rgb(219, 219, 219);"{%endifequal%}>{{alst}}</td>
+	            	{%endfor%}
+	            	<td style="float: left;width: 25%;">全国</td>
+	            	<td style="float: left;width: 25%;"></td>
+	            	</tr>
+            </table>
+        </div>
+        <input type="hidden" id="area1" value="{{province}}">
+				<input type="hidden" id="timearg1" value="{{timearg}}">
+				<input type="hidden" id="keywords" value="{{keywords}}">
+				<input type="hidden" id="ptype" value="{{ptype}}">
+				<input type="hidden" id="haveprice" value="{%if haveprice%}{{haveprice}}{%endif%}">
+				<input type="hidden" id="havepic" value="{%if havepic%}{{havepic}}{%endif%}">
+        <div class="am-u-sm-12 am-padding-sm" style="position: absolute;top: 327px;padding: 0px;">
+            <input type="button" value="确定" class="am-btn-block am-btn am-btn-success am-btn-sm am-radius btn_confirm">
+        </div>
+    </div>
+<div class="am-popup" id="search-modal">
+    <div class="am-popup-inner">
+        <div class="am-popup-hd">
+            <h4 class="am-popup-title">搜索</h4>
+            <span data-am-modal-close="" class="am-close" style="font-size: 30px;color: #BD1B00;">×</span>
+        </div>
+        <div class="am-popup-bd">
+            <form action="/trade/" method="GET">
+                <div class="am-input-group am-input-group-success">
+                    <input type="text" name="keywords" class="am-form-field" placeholder="输入关键词进行搜索" x-webkit-speech="" lang="zh-CN">
+                    <span class="am-input-group-btn">
+                        <button class="am-btn am-btn-success" type="submit">
+                            <span class="am-icon-search"></span>
+                        </button>
+                    </span>
+                </div>
+                <div class="am-margin-top-sm am-text-left">
+                    <strong>热门搜索:</strong>
+                    {%for list in hotsearchlist%}
+                    <a href="/trade/?keywords={{list.kname}}" target="_blank">{{list.kname}}</a>&nbsp;
+                    {%endfor%}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--在这里编写你的代码-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="../../assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="../../assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+    angular.module('myApp', []).controller('userCtrl', function($scope) {
+       
+        
+    })
+		var myarea='';
+
+    $(function(){
+        $(".j_select").children().on("click",function(){
+            if($(this).hasClass("this_select")){
+                closePop();
+                return;
+            }
+            $(".this_select").removeClass("this_select");
+            $(this).addClass("this_select")
+            var indexNum = $(this).index();
+            $(".popshow").removeClass("popshow")
+            $(".pop").eq(indexNum).addClass("popshow")
+        })
+        $(".arealist td").on("click",function(){
+        		//$(".arealist td").attr("class","areaoff");
+        		//$(this).attr("class","areaon");
+        		if ($(this).attr("class")=="areaoff"){
+        			$(this).attr("class","areaon");
+        		}else{
+        			$(this).attr("class","areaoff");
+        		}
+        });
+        $(".timelist td").on("click",function(){
+        		$(".timelist td").attr("class","areaoff");
+        		$(this).attr("class","areaon");
+        });
+        
+        $('.btn_confirm').click(function(){
+        	var timeselect="";
+					var provincelist = "";
+					$(".arealist .areaon").each(function() {
+							if ($(this).text() != "全部") {
+								provincelist = provincelist + $(this).text() + "|";
+							}
+					});
+					timeselect=$(".timelist .areaon").attr("timearg");
+					if (!timeselect){
+						timeselect=""
+					}
+					if (provincelist!=""){
+						provincelist=provincelist.substr(0,provincelist.length-1)
+					}
+					//var timearg=$("#timearg1").val();
+					var keywords=$("#keywords").val();
+					var ptype=$("#ptype").val();
+					var haveprice=$("#haveprice").val();
+					var havepic=$("#havepic").val();
+					window.location.href='/trade/{%if pinyin%}{{pinyin}}/{%endif%}{{gqtype}}.html?keywords='+keywords+'&province='+provincelist+'&timearg='+timeselect+'&ptype='+ptype+'&haveprice='+haveprice+'&havepic='+havepic;
+				});
+				$('.tradecategorycode li').click(function(){
+					$('.tradecategorycode li').css("background-color","");
+					$('.tradecategorycode li').find("p").css("color","");
+					$(this).css("background-color","#006600");
+					$(this).find("p").css("color","#fff")
+					var categorycode=$(this).attr("code");
+					var ajaxurl="http://m.zz91.com/categoryinfo.html?categorycode="+categorycode;
+					$.getScript(ajaxurl, function() {
+							var result = categorylist;
+							$(".box-div").html(result);
+							return false;
+					});
+				});
+        var clientid="";
+				$.getScript("http://pv.sohu.com/cityjson?ie=utf-8", function() {
+					myarea = returnCitySN.cname;
+					clientid=returnCitySN.cip;
+				})
+				
+	      $(".jiangjialist").click(function(){
+					var hiturl=$(this).attr("hiturl");
+					if (hiturl){
+						window.location='/trade/hiturl.html?rd='+hiturl.toString()+'&area='+myarea+"&clientid="+clientid
+					}
+				});
+				
+    })
+
+    //关闭弹窗
+    function closePop(){
+        $(".this_select").removeClass("this_select");
+        $(".popshow").removeClass("popshow");
+    }
+
+    //点击遮罩
+    $(document).on("click",function(e){ 
+        e = window.event || e; // 兼容IE7
+        obj = $(e.srcElement || e.target);
+        if ($(obj).is(".pop")) { 
+        //要执行的函数b
+            closePop()
+        } 
+    }); 
+    //点击遮罩
+    $(".pop").on("click",function(){
+    })
+</script>
+<div style="display:none">
+	<script>
+//百度站长 链接自动提交
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	<!--baidu analysis-->
+	<script>
+		var _hmt = _hmt || [];
+		
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+</div>
+</body>
+</html>

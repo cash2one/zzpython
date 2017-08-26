@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-touch-fullscreen" content="YES">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="css/base-min.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+<title>再生钱包开春送好礼</title>
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+<link rel="stylesheet" type="text/css" href="../../../css/aui.css"/>
+<style>
+	html, body {
+		background: transparent;
+		height: 100%;
+		background: rgba(50,50,50,0.1);
+		overflow: hidden;
+		line-height:1.3;
+	}
+	.main{
+		position: relative;
+		top:50%;
+		left:50%;
+		margin-left:-40%;
+		margin-top:-60%;
+	}
+	.closebotton{
+		position: absolute;
+		top: 1%;
+		left: 50%;
+		width:30px;
+		margin-left:-20px;
+		height: 30px;
+		color: #fff;
+		z-index: 9999;
+	}
+</style>
+</head>
+<body>
+<script type="text/javascript" src="js/viewport.js"></script>
+	<div class="closebotton" onclick="closeselect()"><i class="aui-iconfont aui-icon-roundclose" style="font-size: 50px;"></i></div>
+	<div class="tan">
+		<div class="tan-con">
+			<div class="tan-con-close">
+			</div>
+			<p class="price">68<span>元</span></p>
+			<p class="tan-con-name">再生钱包</p>
+			<p class="lingqu">最低充值300即可马上领取</p>
+		</div>
+		<div class="tan-btn">马上充值领取</div>
+	</div>
+	<div class="content main">
+		<div class="content-top">
+			<img src="img/logo.png" />
+			<p>发了一个红包，金额随机</p>
+			<h2>神秘红包 开春行大运</h2>
+		</div>
+		<div class="content-can">
+			<div class="content-can-dr kai">
+				開
+			</div>
+		</div>
+	</div>
+	
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script type="text/javascript" src="/app/script/api.js"></script>
+<script type="text/javascript" src="/app/script/common.js"></script>
+<script type="text/javascript">
+	function openhongbao(mid){
+		api.showProgress({
+			title : '正在打开红包',
+			modal : false
+		});
+		var data={
+			'company_id':mid,
+			'datatype':'json',
+		}
+		zzappajax("get","http://pyapp.zz91.com/subject/hongbao.html?"+(new Date()).getTime().toString(),data,function(ret){
+			if (ret.checked==0){
+				$(".price").html(ret.hongbao+"<span>元</span>");
+				ssy($(".tan"));
+				api.hideProgress();
+				$(".main").hide();
+			}else{
+				zzalert("您已经领取了"+ret.hongbao+"元红包，立即充值即可马上获取");
+				api.execScript({
+					name : "root",
+					script : "if (havelogin()) {openblankwin('开春送红包','chongzhi','../myrc/call-moery.html');}"
+				});
+				closeselect()
+				api.hideProgress();
+			}
+		},function(err){
+		})
+	}
+	apiready = function() {
+		memberID=api.pageParam.mid;
+		token=api.pageParam.usertoken;
+		if (memberID){
+			UserInfo.memberID(memberID);
+		}
+		if (token){
+			UserInfo.token(token);
+		}
+		
+		$(".kai").on("click",function(){
+			if (!memberID || memberID==0 || memberID=='0'){
+				api.execScript({
+					name : "root",
+					script : "hongbaoopen()"
+				});
+				return;
+			}
+			openhongbao(memberID)
+	    })
+		$(".tan-btn").on("click",function(){
+			api.execScript({
+				name : "root",
+				script : "if (havelogin()) {openblankwin('开春送红包','chongzhi','../myrc/call-moery.html');}"
+			});
+		})
+	}
+	
+	function closeselect() {
+		api.execScript({
+			name : api.winName,
+			script : "keybackFun('1')"
+		});
+		
+		api.execScript({
+			name : "root",
+			frameName:'index-frame',
+			script : "closetosmallad()"
+		});
+		api.closeFrame();
+	}
+    function ssy(obj){
+        var win_height = $(window).height();
+        var pop_height = obj.height();
+        var pop_top =  ( win_height - pop_height)/2;
+        obj.css("top",pop_top+"px").show();
+        $(".tan-bg").show();
+    }
+    
+    $(".tan-con-close img").click(function(){
+    	closeselect()
+        $(".tan").hide();
+        $(".tan-bg").hide();
+    });
+</script>
+	</body>
+</html>

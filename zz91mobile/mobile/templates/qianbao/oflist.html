@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<html>
+<head>
+<script type="text/javascript" src="/js/shop/jquery.min.js"></script>
+{%include 'head.html'%}
+<script>
+			$(window).scroll(function(){
+				if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+					loadMore(document.getElementById("loadMore"));
+				}
+			});
+
+		function loadMore(objdiv){
+				self=objdiv
+				var pageobj=document.getElementById("pageindex");
+				var page=pageobj.value;
+				pageobj.value=parseInt(page)+1
+				
+				self.innerHTML="加载中...";
+				$.get("/qianbao/offmore.html",
+				{
+					page:pageobj.value,
+					//timearg:"{{timearg}}"
+				},
+				function(data,status){
+					if (status=="success" && data!="err\n" && data.length>5){
+						self.style.display="block";
+						
+						$("#tab1").append(data);
+						//self.innerHTML="点击后加载更多内容";
+					}else{
+						self.style.display="none";
+						//self.innerHTML="完";
+					}
+				});
+			};
+			
+			
+$(function(){
+	$('.cproduct').click(function(){
+		var pro_id=$(this).attr("pro_id")
+		//alert(pro_id)
+		$('.cproduct').css("background","none")
+		$(this).css("background","#BEBEBE")
+		parent.$('#proid').val(pro_id)
+	 });
+});
+</script>
+</head>
+<body>
+	{%if offerlist%}
+<table style="width:100%" cellspacing=0 id="tab1">
+{%for of in offerlist%}
+<tr class="cproduct" pro_id="{{of.proid}}" {%ifequal of.num 1%}style="background:#BEBEBE"{%endifequal%}>
+<td>{{of.protitle}} </td><td style="text-align:right">{{of.gmt_created}}</td>
+</tr>
+{%endfor%}
+</table>
+{%else%}
+您没有发布供求信息，<a href="/products_publish/" target="_blank">点此发布</a>
+{%endif%}
+{%if count > limitNum%}
+<table style="width:100%" cellspacing=0>
+<tr><td>
+<input type="hidden" id="pageindex" value="1">
+<div class="page" id="loadMore" onclick="loadMore(this)">
+查看更多
+</div>
+</td></tr>
+</table>
+{%endif%}
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="arg.css" />
+
+<body>
+{%include "head.html"%}
+
+
+{{art.title}}
+{{art.content|safe}}
+
+
+
+<br />
+
+
+废钢企业报价<br />
+{%for companyprice in companypricelist%}
+<a href="{{companyprice.url}}">{{companyprice.fulltitle}} {{companyprice.min_price}}-{{companyprice.max_price}} {{companyprice.price_unit}}</a> {{companyprice.gmt_time}}<br />
+{%endfor%}
+
+
+
+</body>
+</html>

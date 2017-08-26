@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/style.css" />
+</head>
+<body>
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a type="button" class="btn btn-success" href="addfrinedlink.html?freshtime={{freshtime}}">添加友链</a>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>名称</th>
+        <th>链接</th>
+        <th>权重</th>
+        <th>图标</th>
+        <th>备注</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {%for list in friendlinklist%}
+	     <tr>
+	        <td>{{list.id}}</td>
+	        <td>{{list.name}}</td>
+	        <td>{{list.url}}</td>
+	        <td>{{list.sortrank}}</td>
+	        <td>{{list.logo}}</td>
+	        <td>{{list.remark}}</td>
+	        <td>
+			<a href="updatefriendlink.html?flinkid={{list.id}}&freshtime={{freshtime}}" title="编辑"><img src="/123/imgs/gtk-edit.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="delfromdb.html?artid={{list.id}}&db=py_friendlink&freshtime={{freshtime}}" onClick="return confirm('请谨慎操作! 是否将此栏目删除?')" title="删除"><img src="/123/imgs/b_drop.png"></a>
+			</td>
+        </tr>
+     {%endfor%}
+</table>
+
+<br /><br />
+</body>
+</html>

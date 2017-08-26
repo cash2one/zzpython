@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>{{typename}}-服务中心-zz91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/help/css/index.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-title">{{typename}}-服务中心</div>
+		    <a class="aui-pull-right" href="/myrc_index/">
+		        <span class="aui-iconfont aui-icon-my"></span>
+		    </a>
+		</header>
+		<div style="height: 45px;"></div>
+		{%if listall%}
+		<div class="bgcolor-ff">
+		    <div class="aui-list-view aui-border-t-0 aui-padded-b-15 aui-padded-l-15 aui-padded-r-15">
+		        {%for list in listall%}
+		        <div class="aui-list-view-cell aui-img aui-padded-l-0 aui-padded-r-0">
+		        	<a href="detail.html?id={{list.aid}}" class="aui-margin-l-0">
+			            <div class="aui-arrow-right">{{list.subject}}</div>
+		        	</a>
+		        </div>
+		        {%endfor%}
+		    </div>
+		</div>
+		{%else%}
+	    <div class="nodata" style="display: block">
+			暂无相关数据
+		</div>
+		{%endif%}
+		<div style="height: 50px;"></div>
+		<div class="aui-btn aui-btn-block aui-btn-info bottomhelp" style="border-radius: 0;">如有其他问题，请点击反馈给我们</div>
+		{%include 'aui/bottom.html'%}
+	</body>
+</html>

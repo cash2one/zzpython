@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZZ91再生网携广大商友向您拜年了！</title>
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+<link rel="stylesheet" type="text/css" href="css/NewYearVisit2.css" />
+<script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script>
+		$(document).ready(function() {
+			$(".fbox-img img").mouseover(function(){
+				$(this).stop().animate({left:"-184px"});
+			});
+			$(".fbox-img img").mouseout(function(){
+				$(this).stop().animate({left:"0px"});
+			});
+			$(".pw_in").mouseout(function(){
+				$(this).stop().animate({left:"0px"});
+			});
+			$(".pw_in").mouseover(function(){
+				$(this).stop().animate({left:"-220px"});
+			});
+			
+//			var strarea = $('.text');
+//			var newstr = strarea .text().substr(0,25) + '...';
+//			strarea.text( newstr );
+			
+		})
+		
+		$(function(){
+        	$("#return").click(function(){
+            	$('body,html').animate({scrollTop:0},1000);
+        	});
+			$("#f1").click(function(){
+            	$('html,body').animate({scrollTop:$('#1F').offset().top},1000);
+        	});
+			$("#f2").click(function(){
+            	$('html,body').animate({scrollTop:$('#2F').offset().top},1000);
+        	});
+			$("#f3").click(function(){
+            	$('html,body').animate({scrollTop:$('#3F').offset().top},1000);
+        	});
+			$("#f4").click(function(){
+            	$('html,body').animate({scrollTop:$('#4F').offset().top},1000);
+        	});
+    	});
+</script>
+</head>
+<body>
+<div style="width:100%; background-color:#F9F7EC">
+  <div style="width:933px;margin:0 auto"> {%include 'html/comm/top.html'%} </div>
+</div>
+	<div class="top2"></div>
+    <!--end top2-->
+    <div class="budding">
+    	<div class="roof"></div>
+        <!--end roof-1-->
+        <div class="floor">
+        	<div class="fo">
+        		<div class="lantern-lt" style="position:absolute;left:0;top:0"></div>
+            	<!--end lantern-lt-->
+            	<div class="content">
+            		<div class="tle_f1" id="1F"></div>
+                	<!--end tle_f1-->
+                	<div class="con_box1">
+                		<div class="block">
+                			{%for list in adlist1%}
+                			{%if list%}
+                        	<div class="fbox">
+			                	<div class="fbox-img"><a href="{{list.picurl}}" target="_blank"><img src="{{list.picaddress}}" class="img"/></a></div>
+			                    <!--end fbox-img-->
+			                    <div class="fbox-info">
+			                    	<p class="company"><a href="{{list.picurl}}" target="_blank">{{list.ad_description.company}}</a></p>
+			                        <p class="text">{{list.ad_description.price}}</p>
+			                    </div>
+			                    <!--end fbox-info-->
+			                </div>
+			                {%else%}
+			                <div class="fbox">
+			                	<div class="fbox-img"><a href="" target="_blank"><img src="images/default.jpg" /></a></div>
+			                    <!--end fbox-img-->
+			                    <div class="fbox-info">
+			                    	<p class="company"><a href="" target="_blank" title=""></a></p>
+			                        <p class="text"></p>
+			                    </div>
+			                    <!--end fbox-info-->
+			                </div>
+			                {%endif%}
+			                {%endfor%}
+                
+                <!--end fbox-->
+                        </div>
+                	</div>	
+                	<!--end con_box1-->
+            	</div>
+            	<!--end content-->
+            	<div class="lantern-gt" style="position:absolute;right:0;top:0"></div>
+            	<!--end lantern-gt-->
+            	<div class="cb"></div>
+           	</div>
+           	<!--end fo-->
+        </div>
+        <!--end floor-->
+        <div class="ground_f1"></div>
+        <!--end ground_f1-->
+        <div class="floor">
+        	<div class="fo">
+        		<div class="lantern-lt" style="position:absolute;left:0;top:0"></div>
+            	<!--end lantern-lt-->
+            	<div class="content">
+            		<div class="tle_f2" id="2F"></div>
+                	<!--end tle_f2-->
+                	<div class="con_box2">
+                		<div class="block">
+                        	{%for list in adlist2%}
+                			{%if list%}
+                        	<div class="fbox">
+			                	<div class="fbox-img"><a href="{{list.picurl}}" target="_blank"><img src="{{list.picaddress}}" class="img"/></a></div>
+			                    <!--end fbox-img-->
+			                    <div class="fbox-info">
+			                    	<p class="company"><a href="{{list.picurl}}" target="_blank">{{list.ad_description.company}}</a></p>
+			                        <p class="text">{{list.ad_description.price}}</p>
+			                    </div>
+			                    <!--end fbox-info-->
+			                </div>
+			                {%else%}
+			                <div class="fbox">
+			                	<div class="fbox-img"><a href="" target="_blank"><img src="images/default.jpg" /></a></div>
+			                    <!--end fbox-img-->
+			                    <div class="fbox-info">
+			                    	<p class="company"><a href="" target="_blank" title=""></a></p>
+			                        <p class="text"></p>
+			                    </div>
+			                    <!--end fbox-info-->
+			                </div>
+			                {%endif%}
+			                {%endfor%}
+                <!--end fbox-->
+                        </div>
+                	</div>	
+                	<!--end con_box2-->
+            	</div>
+            	<!--end content-->
+            	<div class="lantern-gt" style="position:absolute;right:0;top:0"></div>
+            	<!--end lantern-gt-->
+            	<div class="cb"></div>
+           	</div>
+           	<!--end fo-->
+        </div>
+        <!--end floor-->
+        <div class="ground_f2"></div>
+        <!--end ground_f2-->
+        <div class="floor">
+        	<div class="fo">
+        		<div class="lantern-lt" style="position:absolute;left:0;top:0"></div>
+            	<!--end lantern-lt-->
+            	<div class="content">
+            		<div class="tle_f3" id="3F"></div>
+                	<!--end tle_f3-->
+                	<div class="con_box3">
+                		<div class="block">
+                        	{%for list in adlist3%}
+                			{%if list%}
+                        	<div class="fbox">
+			                	<div class="fbox-img"><a href="{{list.picurl}}" target="_blank"><img src="{{list.picaddress}}" class="img"/></a></div>
+			                    <!--end fbox-img-->
+			                    <div class="fbox-info">
+			                    	<p class="company"><a href="{{list.picurl}}" target="_blank">{{list.ad_description.company}}</a></p>
+			                        <p class="text">{{list.ad_description.price}}</p>
+			                    </div>
+			                    <!--end fbox-info-->
+			                </div>
+			                {%else%}
+			                <div class="fbox">
+			                	<div class="fbox-img"><a href="" target="_blank"><img src="images/default.jpg" /></a></div>
+			                    <!--end fbox-img-->
+			                    <div class="fbox-info">
+			                    	<p class="company"><a href="" target="_blank" title=""></a></p>
+			                        <p class="text"></p>
+			                    </div>
+			                    <!--end fbox-info-->
+			                </div>
+			                {%endif%}
+			                {%endfor%}
+                <!--end fbox-->
+                        </div>
+                	</div>	
+                	<!--end con_box1-->
+            	</div>
+            	<!--end content-->
+            	<div class="lantern-gt" style="position:absolute;right:0;top:0"></div>
+            	<!--end lantern-gt-->
+            	<div class="cb"></div>
+           	</div>
+           	<!--end fo-->
+        </div>
+        <!--end floor-->
+        <div class="ground_f3"></div>
+        <!--end ground_f3-->
+        <div class="floor">
+        	<div class="fo">
+        		<div class="lantern-lt" style="position:absolute;left:0;top:0"></div>
+            	<!--end lantern-lt-->
+            	<div class="content">
+            		<div class="tle_f4" id="4F"></div>
+                	<!--end tle_f4-->
+                	<div class="con_box4">
+                		<div class="block">
+                        	<div class="photo_wall" id="4F" style="padding-top:10px;_padding-top:0px;">
+            	<div class="pic_w">
+                	<div class="pw_in">
+                    	<img src="images/刘宁.jpg" />
+                    </div>
+                    <!--end pw_in-->
+                    <div class="pi_text">事业部总监 刘宁</div>
+                </div>
+                <!--end pic_w-->
+                <div class="pic_w">
+                	<div class="pw_in">
+                    	<img src="images/符青青.jpg" />
+                    </div>
+                    <!--end pw_in-->
+                    <div class="pi_text">业务部助理总监 符青青</div>
+                </div>
+                <!--end pic_w-->
+                <div class="pic_w">
+                	<div class="pw_in">
+                    	<img src="images/胥文娟.jpg" />
+                    </div>
+                    <!--end pw_in-->
+                    <div class="pi_text">大客户部高级经理 胥文娟</div>
+                </div>
+                <!--end pic_w-->
+                <div class="pic_w">
+                	<div class="pw_in">
+                        <img src="images/黄琴.jpg" /> 
+                    </div>
+                    <!--end pw_in-->
+                    <div class="pi_text">客服部经理 黄琴</div>
+                </div>
+                <!--end pic_w-->
+                <div class="pic_w">
+                	<div class="pw_in">
+                        <img src="images/陈芳.jpg" />
+                    </div>
+                    <!--end pw_in-->
+                    <div class="pi_text">运营部经理 雷陈芳</div>
+                </div>
+                <!--end pic_w-->
+                <div class="pic_w">
+                	<div class="pw_in">
+                        <img src="images/李春燕.jpg" />
+                    </div>
+                    <!--end pw_in-->
+                    <div class="pi_text">来电宝客服部经理 李春燕</div>
+                </div>
+                <!--end pic_w-->
+            </div>
+            <!--end photo_wall-->
+                        </div>
+                	</div>	
+                	<!--end con_box4-->
+            	</div>
+            	<!--end content-->
+            	<div class="lantern-gt" style="position:absolute;right:0;top:0"></div>
+            	<!--end lantern-gt-->
+            	<div class="cb"></div>
+           	</div>
+           	<!--end fo-->
+        </div>
+        <!--end floor-->
+        <div class="ground_f4">
+        	<div style="width:100%;padding-top:120px;line-height:25px;color:#fff">
+      			<div style="width:950px;margin:0 auto;text-align:center;"> {% include 'html/comm/buttom.html' %} </div>
+    		</div>
+        </div>
+        <!--end ground_f4-->
+    </div>
+    <!--end budding-->
+    <div class="nav" id="nav">
+        	<div class="nbox">
+            	<ul>
+                	<li id="f1"><a href="#1F">废塑料</a></li>
+                    <li id="f2"><a href="#2F">废金属</a></li>
+                    <li id="f3"><a href="#3F">综合废料</a></li>
+                    <li id="f4"><a href="#4F">ZZ91再生网</a></li>
+                </ul>
+            </div>
+            <div id="return"><a href="javascript:;">回到顶部</a></div>
+        </div>
+        <!--end nav-->
+</body>
+</html>

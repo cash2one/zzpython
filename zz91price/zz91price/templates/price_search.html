@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{seotitle}}_{{keywords}}价格_最新{{keywords}}报价_列表第{{page}}页-zz91再生网</title>
+<meta name="keywords" content="{{keywords}},{{keywords}}价格,最新{{keywords}}报价,{{keywords}}商家报价" />
+<meta name="description" content="我们为您提供{{keywords}}价格,{{keywords}}最新行情报价，最新{{keywords}}商家报价,等相关信息,{{keywords}}商家联系方式,zz91再生网{{keywords}}行情报价中心,中国最大的网上贸易市场-列表第{{page}}页。" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css"/>
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/pricesearch/style.css"/>
+<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+<script src="http://img0.zz91.com/zz91/pricesearch/style.js"></script> 
+<script>
+function turnpage() {
+	var page1=document.getElementById("page1").value;
+	if (page1<1)
+	{
+	page1=1;
+	}
+	window.location.href='/s/{{keywords_hex}}-{{type}}/'+page1+'.html';
+}
+$(document).ready(function(){
+	$(".l-main li").mouseover(function(){
+										  
+		var self=$(this);
+		self.css("background","#f2f2f2")							
+	});
+	$(".l-main li").mouseout(function(){
+		var self=$(this);
+		self.css("background","#fff")							
+	});
+});
+</script>
+</head>
+
+<body>
+{% include 'comm/top.html' %}{% include 'comm/mid.html'%}
+<script>searchnow(3)</script>
+
+<div class="main_box">
+  <div class="zz91leader"> 您所在的位置：<a href="http://www.zz91.com" target="_blank">ZZ91再生网</a> > <a href="http://jiage.zz91.com/" target="_blank">报价中心</a> >  {{keywords}}价格</div>
+</div>
+{%if xgcategorylist%}
+<div class="main_box">
+您是不是还想找：<br />
+<ul class="xgli">
+{%for list in xgcategorylist%}
+<li><a href="/s/{{list.label_hex}}-{{type}}/">{{list.label}}</a></li>
+{%endfor%}
+</ul><div class="cb"></div>
+</div>
+{%endif%}
+<div class="cb"></div>
+<!--end main_box-->
+<div class="main_box">
+  <div class="m-left">
+    <div class="l-title" id="menu">
+      <!--<div class="l-txt_" onclick="change('1')" id="mt1">市场价格</div>-->
+      <div class="{%if pcompany%}l-txt{%else%}l-txt_{%endif%}" id="mt1"><a href="/s/{{keywords_hex}}-0/">{{keywords}}市场价格</a></div>
+      <!--end l-txt-->
+      <!--<div class="l-txt" onclick="change('0')" id="mt0">供应商报价</div>-->
+      <div class="{%if pcompany%}l-txt_{%else%}l-txt{%endif%}" id="mt0"><a href="/s/{{keywords_hex}}-1/">{{keywords}}供应商报价</a></div>
+      <!--end l-txt_-->
+      <div class="cb"></div>
+    </div>
+    <!--end l-title-->
+    <div class="m-box" style="display:block" id="JKDiv_0">
+    {%if listall%}
+    <div class="l-main">
+      <ul>
+{%for list in listall%}
+        <li>
+          <div class="m-item"> <a href="{{list.url}}" target="_blank">{{list.fulltitle|safe}}</a> {%if list.price%}价格：<span class="red">{{list.price}}</span>{%endif%}</div>
+          <!--end m-item-->
+          <div class="m-item_">{{list.pcontent|safe}}</div>
+          <!--end m-item_-->
+          {%if list.companyname%}
+          <div class="m-item_2">公司：<a href="http://company.zz91.com/compinfo{{list.company_id}}.htm" target="_blank">{{list.companyname}}</a></div>
+          {%endif%}
+          <div class="m-item_1">
+          {%if list.province%}
+          <div class="i1-txt">地区：{{list.province}}{{list.city}}</div>
+          {%endif%}
+            <div class="i1-txt">所在分类：（{{list.pricecategory}}）</div>
+            <!--end i1-txt-->
+            <div class="i1-txt"> {{list.td_time}}</div>
+            <!--end i1-txt-->
+            <div class="cb"></div>
+          </div>
+          <!--end m-item_1--> 
+        </li>
+{%endfor%}
+      </ul>
+    </div>
+    <!--end l-main-->
+    <div class="page">
+      {% if firstpage %}
+      <div class="page-style"> <a href="/s/{{keywords_hex}}-{{type}}/">首页</a> </div>
+      <div class="page-style"> <a href="/s/{{keywords_hex}}-{{type}}/{{prvpage}}.html">上一页</a> </div>
+      {% endif %}
+      <ul>
+      {%for pg in page_range%}
+        {%if pg.nowpage%}
+        <li><a style="background:gray;color:white">{{pg.number}}</a></li>
+        {%else%}
+        <li> <a href="/s/{{keywords_hex}}-{{type}}/{{pg.number}}.html">{{pg.number}}</a> </li>
+        {%endif%}
+      {%endfor%}
+        <li> <a>......</a> </li>
+        <li> <a href="/s/{{keywords_hex}}-{{type}}/{{page_listcount}}.html">{{page_listcount}}</a> </li>
+        <div class="cb"></div>
+      </ul>
+      {% if lastpage%}
+      <div class="page-style"> <a href="/s/{{keywords_hex}}-{{type}}/{{nextpage}}.html">下一页</a> </div>
+      {% endif %}
+      <div class="page-txt">共{{page_listcount}}页</div>
+      <div class="page-confirm" onClick=turnpage()>确定</div>
+      <div class="page-style_">到<input type="text" id="page1" value="{{page}}">页</div>
+    </div>
+    <!--end page--> 
+    {%else%}
+    <div class="nolistpic">
+    	
+    </div>
+    <div class="nolist">
+    	很抱歉，没有找到与 “{{keywords}}” 相关的信息<br />
+
+        建议您：<br />
+        1.去掉不必要的字句，扩大搜索范围，如“浙江废塑料报价”、“废铜报价”等。重新搜索<br />
+        2.马上发布一条与“{{keywords}}”相关的信息。<a href="http://myrc.zz91.com/mycompanyprice/createPrice.htm" target="_blank">马上发布一条</a> >>
+    </div>
+    {%endif%}
+    </div>
+    <!--end m-box-->
+
+</div>
+  <!--end m-left-->
+  <div class="m-right">
+    <div class="mr-hot">
+      <div class="h-title">
+        <div class="ht-txt">热门地区产品</div>
+        <!--end ht-txt-->
+        <div class="ht-txt_"> <a href="http://jiage.zz91.com/jinshu/" target="_blank">更多</a> </div>
+        <!--end ht-txt_-->
+        <div class="cb"></div>
+      </div>
+      <!--end h-title-->
+      <div class="h-content"> <span class="hc">类别：</span>
+        <ul class="category">
+        	{%for tl in typecodelist%}
+        	<li><a href="/s/{{tl.title_hex}}-0/" target="_blank">{{tl.title}}</a></li>
+        	{%endfor%}
+        </ul>
+        <span class="hc">地区：</span>
+        <ul class="category">
+        	{%for tl in areacodelist%}
+        	<li><a href="/s/{{tl.title_hex}}-0/" target="_blank">{{tl.title}}</a></li>
+        	{%endfor%}
+        </ul>
+      </div>
+      <!--end h-content--> 
+    </div>
+    <!--mr-hot-->
+    
+    <div class="mr-hot">
+      <div class="h-title">
+        <div class="ht-txt">相关最新资讯</div>
+        <!--end ht-txt-->
+        <div class="ht-txt_"> <a href="http://news.zz91.com/" target="_blank">更多</a> </div>
+        <!--end ht-txt_-->
+        <div class="cb"></div>
+      </div>
+      <!--end h-title-->
+      <div class="h-content_1" id="announcement">
+       <div class="" id="announcementbody">
+        <ul class="hc_ul" >
+{%for nl in newslist%}
+        	<li>
+            	<div class="i-img">
+                	<a href="{{nl.weburl}}" target="_blank"><img src="{{nl.litpic}}" alt="{{nl.title}}" style="width:74px;height:74px"/></a>
+                </div>
+                <!--end i-img-->
+                <div class="i-txt">
+                	<b style="font-size:14px;"><a href="{{nl.weburl}}" target="_blank" title="{{nl.title}}">{{nl.title}}</a></b>
+            		<a href="{{nl.weburl}}" target="_blank"> {{nl.subcontent|safe}}...... >>详细</a>
+                 </div>
+                 <!--end i-txt-->
+                 <div class="cb"></div>
+            </li>
+{%endfor%}
+        </ul>
+        </div>
+		<div class="" id="announcementbody2"></div>
+      </div>
+      <!--end h-content_--> 
+    </div>
+    <!--mr-hot-->
+    
+    <div class="mr-hot">
+      <div class="h-title">
+        <div class="ht-txt">本周热点讨论</div>
+        <!--end ht-txt-->
+        <div class="ht-txt_"> <a href="http://huzhu.zz91.com/" target="_blank">更多</a> </div>
+        <!--end ht-txt_-->
+        <div class="cb"></div>
+      </div>
+      <!--end h-title-->
+      <div class="h-content_">
+        <ul class="h_ul">
+        {%for bbs in bbslist%}
+          <li> <a href="http://huzhu.zz91.com/viewReply{{bbs.id}}.htm" target="_blank">{{bbs.title}}</a> </li>
+        {%endfor%}
+        </ul>
+      </div>
+      <!--end h-content_--> 
+    </div>
+    <!--mr-hot-->
+    <div class="mr-hot_"> <script type="text/javascript">
+/*标签首页标签云，创建于2013-9-16*/
+var cpro_id = "u1369529";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script></div>
+    <!--mr-hot--> 
+  </div>
+  <!--end m-right-->
+  <div class="cb"></div>
+</div>
+<!--end main_box-->
+<div class="main_box_">
+  <div class="b-title">
+  	<span>热门产品推荐</span>
+    <a href="http://trade.zz91.com/trade/s-{{keywords_hex}}.html" target="_blank">更多</a>
+  </div>
+  <!--end b-title--> 
+  <div class="b-content">
+  	<ul>
+  	{%for ol in indexofferlist%}
+    	<li>
+        	<div class="c-img">
+            	<a href="http://trade.zz91.com/productdetails{{ol.id}}.htm" target="_blank"><img src="{{ol.pdt_images}}" alt="{{ol.title}}" /></a>
+            </div>
+            <!--end c-img-->
+            <div class="c-txt">
+            	<div class="ct"><a href="http://trade.zz91.com/productdetails{{ol.id}}.htm" target="_blank" class="ch">{{ol.title}}</a></div>
+                <div class="ct"><span>{{ol.price}}</span></div>
+                <div class="ct"><a href="http://china.zz91.com/inquiry/inquiryApi.htm?productId={{list.id}}#messeges" target=_blank>在线询价</a></div>
+            </div>
+            <!--end c-txt-->
+        </li>
+     {%endfor%}
+    </ul>
+    <div style="clear:both"></div>
+  </div>
+  <!--end b-content-->
+</div>
+<div class="main_box_">
+	<div class="b-title">关键字导航</div>
+    <ul class="cplist">
+    {%for list in cplist%}
+	<li><a href="http://www.zz91.com/cp/{{list.pingyin}}/" target=_blank title="{{list.label}}">{{list.label}}</a></li>
+	{%endfor%}
+    <div class="cb"></div>
+    </ul>
+</div>
+<!--end main_box-->
+<div style="clear:both"></div>
+<div style="width:100%;">
+	<div style="width:960px;margin:0 auto;text-align:center;">
+		{% include 'comm/buttom.html' %}
+    </div>
+</div>
+</body>
+</html>

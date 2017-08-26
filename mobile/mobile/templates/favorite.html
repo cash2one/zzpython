@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+<link rel="stylesheet" href="/css/comm-bread.css" />
+<link rel="stylesheet" href="/css/comm-detail.css" />
+{%if sucflag%}
+<div class="resultTip mt10 mb10 ac"><span>收藏成功！</span></div>
+{%else%}
+<div class="resultTip mt10 mb10 ac"><span>你已经收藏了该信息</span></div>
+{%endif%}
+
+
+<div class="sch-btn">
+
+<div class="pl10 pr10">
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+    <form action="/huzhu/" method="get" id="wikiSearchFrm">
+    	<div style="position:relative;">
+        	<div class="sch-input">
+        		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+        	</div>
+        	<div class="sch-button" onClick="AliMobile.WikiSearch.submitFrm()">搜答案</div>
+    		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+    	</div>
+    </form>
+</div>
+
+</div>
+	</div>
+{%include 'bottom.html'%}
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<script type="text/javascript" src="/js/huzhu/jquery.lightbox_me.js"></script>
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+<link rel="stylesheet" href="/css/comm-bread.css" />
+
+<link rel="stylesheet" href="/css/comm-detail.css" />
+<div class="dt-title">
+	<div class="lh28">{{title}}</div>
+	<div class="h43">			
+		<div class="lh28 c9 fl">时间：{{gmt_created}}<br></div>    		
+	</div>
+	<div class="arrow-outer">
+		<div class="arrow"></div>
+	</div>
+</div>
+<div class="dt-append-title">
+{{content|safe}}
+</div>
+<script type="text/javascript">
+/*手机站：首页 20:3，创建于2014-7-22*/
+var cpro_id = "u1629209";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+<div class="sch-btn">
+<div class="pl10 pr10">
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+    <form action="/price/" method="get" id="wikiSearchFrm">
+    	<div style="position:relative;">
+        	<div class="sch-input">
+        		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+        	</div>
+        	<div class="sch-button" onClick="AliMobile.WikiSearch.submitFrm()">搜行情</div>
+    		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+    	</div>
+    </form>
+</div>
+</div>
+</div>
+<div class="m-btn" style="background: #ebebeb; border-top: solid #ccc 1px;">
+	<input type="button" name="favOffer" onClick="window.location='/openfavorite/?pdtid={{id}}&favorite_type_code=10091004&title={{content.title}}';" value="&nbsp;&nbsp;收藏&nbsp;&nbsp;" class="fav_btn">&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" name="sharebutton" id="sharebutton" value="&nbsp;&nbsp;分享&nbsp;&nbsp;" class="fav_btn">
+</div>
+{%include 'bottom2.html'%}
+</div>
+</body>
+</html>

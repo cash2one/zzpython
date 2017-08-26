@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title>废料产业带_ZZ91废料移动商务</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link href="../../css/ye/industrial.m.css" rel="stylesheet" type="text/css" />
+		<style>
+			dl.list dd{
+				border-bottom:none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="deal">
+			<dl id="deal-details" class="list">
+				<dd class="detail-title">
+					<span class="set"></span>
+					<h6>废金属</h6>
+				</dd>
+				<dd>
+					<div>
+						<p class="detail-group">
+							<a url="/ye/1000/10001010.html" class="cell dg-item">稀贵金属</a>
+							<a url="/ye/1000/10001011.html" class="cell dg-item">混合金属</a>
+							<a url="/ye/1000/10001101.html" class="cell dg-item">废金属处理设备</a>
+						</p>
+						<p class="detail-group">
+							<a url="/ye/1000/10001100.html" class="cell dg-item">再生金属</a>
+							<a url="/ye/1000/10001000.html" class="cell dg-item">废钢铁</a>
+							<a url="/ye/1000/10001001.html" class="cell dg-item">有色金属</a>
+						</p>
+					</div>
+				</dd>
+				<dd class="detail-title">
+					<span class="bubble"></span>
+					<h6>废塑料</h6>
+				</dd>
+				<dd>
+					<div>
+						<p class="detail-group">
+							<a url="/ye/1001/10011000.html" class="cell dg-item">再生颗粒</a>
+							<a url="/ye/1001/10011001.html" class="cell dg-item">塑料助剂</a>
+							<a url="/ye/1001/10011010.html" class="cell dg-item">塑料加工设备</a>
+						</p>
+					</div>
+				</dd>
+				<dd class="detail-title">
+					<span class="crane"></span>
+					<h6>二手设备</h6>
+				</dd>
+				<dd>
+					<div>
+						<p class="detail-group">
+							<a url="/ye/1002/100211101.html" class="cell dg-item">塑料设备</a>
+							<a url="/ye/1002/100211100.html" class="cell dg-item">矿业设备</a>
+							<a url="/ye/1002/100210010.html" class="cell dg-item">工程设备</a>
+						</p>
+						<p class="detail-group">
+							<a url="/ye/1002/100210011.html" class="cell dg-item">化工设备</a>
+							<a url="/ye/1002/100211011.html" class="cell dg-item">电力设备</a>
+							<a url="/ye/1002/100211010.html" class="cell dg-item">电子设备</a>
+						</p>
+						<p class="detail-group">
+							<a url="/ye/1002/100211110.html" class="cell dg-item">印刷设备</a>
+							<a url="/ye/1002/100210001.html" class="cell dg-item">机床设备</a>
+							<a url="/ye/1002/100210000.html" class="cell dg-item">交通工具</a>
+						</p>
+						<p class="detail-group">
+							<a url="/ye/1002/100211000.html" class="cell dg-item">制冷设备</a>
+							<a url="/ye/1002/100211001.html" class="cell dg-item">纺织设备</a>
+							<a class="cell"></a>
+						</p>
+					</div>
+				</dd>
+			</dl>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script>
+	apiready = function() {
+		$(".detail-group").on("click","a",function() {
+			var tourl=$(this).attr("url");
+			var pageParam = {
+				wintitle : $(this).text(),
+				type : "ye-list",
+				tourl : tourl
+			};
+			openWin("ye-list", "../ye/list.html", pageParam);
+		})
+	}
+	</script>
+</html>

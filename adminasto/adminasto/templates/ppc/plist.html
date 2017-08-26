@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+body
+{
+	font-size:12px;
+}
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#ebebeb">供求标题</td>
+    <td bgcolor="#ebebeb">刷新时间</td>
+    <td bgcolor="#ebebeb"><a href="?company_id={{company_id}}&amp;refresh=1">一键刷新</a></td>
+    <td bgcolor="#ebebeb">&nbsp;</td>
+  </tr>
+  {%for list in listall%}
+  <tr>
+    <td bgcolor="#FFFFFF">{{list.products_type}}{{list.title}}</td>
+    <td bgcolor="#FFFFFF">{{list.refresh_time}}</td>
+    <td bgcolor="#FFFFFF"><a href="?company_id={{company_id}}&amp;refresh=1&id={{list.id}}">刷新</a></td>
+    <td bgcolor="#FFFFFF"></td>
+  </tr>
+  {%endfor%}
+</table>
+<div class='pageBar'>
+		{% if firstpage %}
+		<a href="?page=1{{sear}}" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+		<a href="?page={{prvpage}}{{sear}}" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+		{% endif %}
+		{% for p in page_range %}
+		{% if p.nowpage %}
+		<span class="cpb" style="margin-right:5px;">{{p.number}}</span>
+		{% else %}
+		<a href="?page={{p.number}}{{sear}}" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+		{% endif %}
+		{% endfor %}
+		&nbsp;
+		{% if lastpage%}
+		<a href="?page={{nextpage}}{{sear}}" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+		<a href="?page={{page_listcount}}{{sear}}" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+		{% endif %}
+</div>
+</body>
+</html>

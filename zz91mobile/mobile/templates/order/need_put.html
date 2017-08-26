@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>发布需求</title>
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link rel="stylesheet" type="text/css" href="http://m.zz91.com/css/floatlay.css" />
+		<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+		<script src="http://m.zz91.com/js/floatlay.js"></script>
+		<style>
+			.box {
+				padding: 20px 8px 0;
+			}
+			.into {
+				display: block;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-orient: horizontal;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+			}
+			.xiala {
+				display: block;
+				position: absolute;
+				height: 31px;
+				width: 15px;
+				background-color: #85cafe;
+				top: 2px;
+				right: 4px;
+				border-radius: 3px;
+			}
+			.xiala i {
+				display: block;
+				position: absolute;
+				height: 8px;
+				width: 15px;
+				background-image: url(../../image/imageslist.png);
+				background-position: -123px -55px;
+				background-size: 250px;
+				top: 50%;
+				margin-top: -6px;
+			}
+			.tle {
+				line-height: 35px;
+			}
+			.into-set {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				height: 35px;
+				margin-bottom: 15px;
+				border: 1px solid #e1e1e1;
+				border-radius: 3px;
+				background-color: transparent;
+				display: block;
+				-webkit-appearance: listbox;
+				padding-left: 5px;
+			}
+			.get-xinx {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.get-xinx span {
+				display: block;
+				text-align: center;
+				border: 1px solid #e1e1e1;
+				border-radius: 3px;
+				line-height: 35px;
+				margin-bottom: 15px;
+				position: relative;
+			}
+			.get-xinx span:last-child {
+				margin-bottom: 0;
+			}
+			.get-xinx {
+				margin-bottom: 15px;
+				min-height: 37px;
+			}
+			.get-xinx span i {
+				display: block;
+				height: 15px;
+				width: 15px;
+				position: absolute;
+				background-image: url(../../image/imageslist.png);
+				background-position: -87px -267px;
+				background-size: 320px;
+				right: 5px;
+				top: 50%;
+				margin-top: -7px;
+			}
+			.btn-xz {
+				text-align: center;
+				line-height: 30px;
+				background-color: #01ba2e;
+				color: #fff;
+				width: 90px;
+				border-radius: 3px;
+				margin-left: 8px;
+				margin-top: 3px;
+				height: 30px;
+			}
+			.btn {
+				text-align: center;
+				line-height: 35px;
+				background-color: #01ba2e;
+				color: #fff;
+				border-radius: 3px;
+				margin: 10px 8px 0;
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="into">
+				<span class="tle">供 求：</span>
+				<select class="into-set">
+					<option>全部</option>
+					<option>供应</option>
+					<option>求购</option>
+					<option>商家</option>
+				</select>
+				<span class="xiala"><i></i></span>
+			</div>
+			<div class="into">
+				<span class="tle">类 别：</span>
+				<div class="get-xinx">
+					<span>废铜<i class="remove"></i></span>
+					<span>废铜<i class="remove"></i></span>
+				</div>
+				<span class="btn-xz j_type" onclick="openoverlay('/need/category.html','选择供求类别','','100%')">选择</span>
+			</div>
+			<div class="into">
+				<span class="tle">地 区：</span>
+				<div class="get-xinx city-list">
+					<span>杭州<i class="remove"></i></span>
+					<span>上海<i class="remove"></i></span>
+				</div>
+				<span class="btn-xz j_city" onclick="openoverlay('/need/province.html','选择供求地区','','100%')">选择</span>
+			</div>
+			<div class="into">
+				<span class="tle">时 间：</span>
+				<select class="into-set">
+					<option>三天内</option>
+					<option>一周内</option>
+					<option>一月内</option>
+				</select>
+				<span class="xiala"><i></i></span>
+			</div>
+			<span class="btn">确定</span>
+		</div>
+	</body>
+
+</html>

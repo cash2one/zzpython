@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<style>
+.qcontent img{
+	width:100%;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+<ul class="bread Fix">
+    <li><a href="/">首页</a></li>
+	<li class="li-bread"><a href="/myrc_index/">生意管家</a></li>
+    <li class="li-bread c9"><span>询盘留言</span></li>
+</ul>
+<nav class="t-nav-tab t-nav-tab-3">
+	<ul>
+		<li {%ifequal sendtype "0"%}class="chk"{%endifequal%}><a href="?sendtype=0">收到留言</a></li>
+		<li {%ifequal sendtype "1"%}class="chk"{%endifequal%}><a href="?sendtype=1">发送的留言</a></li>
+	</ul>
+</nav>
+<div class="result-tip">共有<span class="c-hl">{{qlistcount}}</span>询盘留言</div>
+{%for list in qlist%}
+<div class="list">
+	<div class="item" style="border-top:1px solid #FFF;">
+			<p class="c-link lh28">
+            {%ifequal list.is_viewed "0"%}
+            <b><a href="/myrc_backquestion/?company_id={{list.companyarray.company_id}}&inquired_id={{list.id}}">{{list.title}}</a></b>
+            {%else%}
+            <a href="/myrc_backquestion/?company_id={{list.companyarray.company_id}}&inquired_id={{list.id}}">{{list.title}}</a>
+            {%endifequal%}
+            </p>
+			<div class="lh28 qcontent">{{list.content|safe}}</div>
+			<div class="c9 lh28">留言者：<a href="/companyinfo/?company_id={{list.companyarray.company_id}}">{{list.companyarray.companyname}}</a> <br>留言时间：{{list.stime}}</div>	
+            <div class=""><a href="/myrc_backquestion/?company_id={{list.companyarray.company_id}}&inquired_id={{list.id}}">我要回复</a></div>		 
+	</div>
+	<div id="moreDiv"></div>
+</div>
+{%endfor%}
+<div>
+<nav class="page Fix">
+	<span class="left">
+    {% if firstpage %}
+    <a class="pageBtnEnable" href="/myrc_leavewords/?page={{prvpage}}&sendtype={{sendtype}}"><span>上一页</span></a>
+    {% endif %}
+    </span>
+	<i class="ac f14">{{page}}/{{page_listcount}}</i>
+	<span class="right">
+    {% if lastpage%}
+    <a class="pageBtnEnable" href="/myrc_leavewords/?page={{nextpage}}&sendtype={{sendtype}}"><span>下一页</span></a>
+    {% endif %}
+    </span>
+</nav>
+</div>
+<div class="h20"></div>
+</div>
+{%include 'bottom_myrc.html'%}
+</div>
+</body>
+</html>

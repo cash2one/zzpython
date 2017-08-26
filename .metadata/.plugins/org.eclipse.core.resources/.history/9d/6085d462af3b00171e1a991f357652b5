@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>发布企业报价</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<style>
+			body {
+			background: #f4f4f4;
+			width: 100%;
+		}
+		.name_use {
+			height: 41px;
+			line-height: 41px;
+			padding-left: 14px;
+		}
+		.row-text {
+			letter-spacing: 8px
+		}
+		.row-text2 {
+			letter-spacing: 31px
+		}
+		.aui-input-row {
+			width: 100%
+		}
+		.aui-input-row .div-qq {
+			width: 83px;
+			text-align: right;
+		}
+		.jianjie {
+			border: 0;
+			height:200px;
+			overflow: auto
+		}
+		.aui-btn-success {
+			background-color: #01ba2e;
+			border: #01ba2e;
+		}
+		input,textarea {
+			color:#0062cc;
+			font-size:14px;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content">
+			<div class="aui-form">
+				<div class="aui-input-row">
+					<span class="aui-input-addon"><em class="row-text2">类</em>别：</span>
+					<a class="aui-arrow-right" >
+					<input type="text" value="" style="padding-left:10px" placeholder="请选择类别" class="aui-input categoryselect" readonly="">
+					<input type="hidden" name="category_company_price_code" id="category_company_price_code" value="">
+					</a>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon" style="line-height:22px ">产品名称：</span>
+					<textarea type="text" value="" id="title" placeholder="请输入产品名称" class="aui-input"></textarea>
+				</div>
+				
+				<div class="aui-input-row">
+					<span class="aui-input-addon"><em class="row-text2">地</em>区：</span>
+					<a class="aui-arrow-right" >
+					<input type="text" value="" style="padding-left:10px" placeholder="请选择地区" class="aui-input provinceselect" readonly="">
+					<input type="hidden" name="area_code" id="area_code" value="">
+					</a>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon"><em class="row-text2">价</em>格：</span>
+					<div class="aui-pull-left" style="width: 60%">
+						<input type="number" value="" placeholder="请输入最低价格"  class="aui-input minprice" >
+						<input type="number" value="" placeholder="请输入最高价格"  class="aui-input maxprice" style='display:none'>
+					</div>
+					<div class="aui-pull-right" style="width: 40%">
+	                    <input class="aui-checkbox aui-checkbox-success pricehf" type="checkbox" name="checkbox" value="0"><div class="aui-checkbox-name">范围</div>
+	                </div>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">价格单位：</span>
+					<a class="aui-arrow-right">
+					<select name="industryCode" id="industryCode" class="aui-input" style="padding-left:15px">
+						<option value=''>请选择单位</option>
+						<option value='元/吨'>元/吨</option>
+						<option value='元/千克'>元/千克</option>
+						<option value='美元/吨'>美元/吨</option>
+						<option value='日元/吨'>日元/吨</option>
+						<option value='美元/千克'>美元/千克</option>
+						<option value='日元/千克'>日元/千克</option>
+						<option value='元/台'>元/台</option>
+						<option value='元/辆'>元/辆</option>
+						<option value='-1'>其他</option>
+					</select>
+					</a>
+				</div>
+				
+				<div class="aui-input-row">
+					<span class="aui-input-addon">产品描述：</span>
+					<textarea class="jianjie" id="business" placeholder="请输入产品描述"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="aui-content-padded">
+			<div class="aui-btn aui-btn-block aui-btn-success savebutton">
+				确认
+			</div>
+		</div>
+		<div style="height:20px"></div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			$(".categoryselect").on("click", function() {
+				openwindows("categoryselect", '../price/category_companyprice.html')
+			})
+			$(".provinceselect").on("click", function() {
+				openwindows("provinceselect", '../comm/province.html')
+			})
+			$(".pricehf").on("click",function(){
+				var pricehf = $('.pricehf').is(':checked');
+				if (pricehf==true){
+					$(".maxprice").show();
+				}else{
+					$(".maxprice").val("");
+					$(".maxprice").hide();
+				}
+			});
+			var area_code=$api.getStorage("area_code");
+			var area_text=$api.getStorage("area_text");
+		};
+		function selectcompanypricetype(label,code){
+			$("#category_company_price_code").val(code);
+			$(".categoryselect").val(label);
+		}
+		function getprovincecode(label,code){
+			$("#area_code").val(code);
+			$(".provinceselect").val(label);
+			$api.setStorage("area_code",code);
+			$api.setStorage("area_text",label);
+		}
+	</script>
+</html>

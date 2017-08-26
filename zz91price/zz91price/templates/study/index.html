@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="Cache-Control" content="no-transform " />
+    <title>ZZ91行情研究院 -ZZ91再生网</title>
+    <meta name="keywords" content="ZZ91行情研究院" />
+    <meta name="description" content="ZZ91再生网行情研究院，提供行业内权威的再生资源行情研究报告，覆盖废塑料、废金属等行情以及国家政策独家解读，了解更多独家观点，请关注ZZ91再生网。" />
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/comm.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/foot.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/top.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/market/css/index.css" />
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <script src="http://b.zz91.com/comm/js/comm.js"></script>
+    <script src="http://b.zz91.com/layer/layer.js"></script>
+    <script src="http://b.zz91.com/comm/js/laytpl.js"></script>
+</head>
+<body>
+    {% include 'comm/new/header.html' %}
+    <div class="navbox">
+        <div class="navmain">
+            <div class="fl logo"><a href="http://www.zz91.com/"><img src="http://b.zz91.com/force/images/logo.jpg"></a></div>
+            <div class="fl page-name"><a href="http://jiage.zz91.com/study/"><img src="http://b.zz91.com/market/images/pagename.png"></a></div>
+            <ul class="fl page-handy">
+                <li class="fl"><i class="icon2 icon2-handy1"></i>市场分析</li>
+                <li class="fl"><i class="icon2 icon2-handy2"></i>行业解读</li>
+                <li class="fl"><i class="icon2 icon2-handy3"></i>专业报告</li>
+            </ul>
+            <div class="fr navmain-list">
+                <ul class="clearfix navmain-ul">
+                    <li class="fl {%ifequal type ''%}thisnav{%endifequal%}"><a href="/study/index.html">首页</a></li>
+                    <li class="fl {%ifequal type 'djgd'%}thisnav{%endifequal%}"><a href="/study/djgd/">独家观点</a></li>
+                    <li class="fl {%ifequal type 'hybg'%}thisnav{%endifequal%}"><a href="/study/hybg/">行业报告</a></li>
+                    <li class="fl {%ifequal type 'zjjd'%}thisnav{%endifequal%}"><a href="/study/zjjd/">专家解读</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="bandbox">
+        <div class="bandmain clearfix">
+
+            <div class="fl day-groom">
+                <div class="day-groom-bg"></div>
+                <div class="fl day-groom-imgbox">
+                    <a href="/study/{{price1.urlpath}}/detail{{price1.td_id}}.html" target="_blank"><img src="{{price1.pic}}" width="470" height="314"></a>
+                    <div class="daygroom-ts-bg"></div>
+                    <div class="daygroom-ts-wen">每日推荐</div>
+                </div>
+                <div class="fl day-groom-news">
+                    <div class="day-groom-title"><a href="/study/{{price1.urlpath}}/detail{{price1.td_id}}.html" target="_blank">{{price1.td_title}}</a></div>
+                    <div class="day-groom-wen">{{price1.content}}</div>
+                </div>
+            </div>
+            <div class="fr band-right-info">
+                <div class="bright-info-box">
+                    <div class="bright-info-img"><a href="/study/{{price1.urlpath}}/detail{{price2.td_id}}.html" target="_blank"><img src="{{price2.pic}}" width="243" height="153"></a></div>
+                    <div class="bright-info-bg"></div>
+                    <div class="bright-info-wen text-overhidden"><a href="/study/{{price1.urlpath}}/detail{{price2.td_id}}.html" target="_blank">{{price2.td_title}}</a></div>
+                </div>
+                <div class="bright-info-box">
+                    <div class="bright-info-img"><a href="/study/{{price1.urlpath}}/detail{{price3.td_id}}.html" target="_blank"><img src="{{price3.pic}}" width="243" height="153"></a></div>
+                    <div class="bright-info-bg"></div>
+                    <div class="bright-info-wen text-overhidden"><a href="/study/{{price1.urlpath}}/detail{{price3.td_id}}.html" target="_blank">{{price3.td_title}}</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="center clearfix">
+
+        <div class="fl void-tell-us">
+            <div class="void-tell-tt">
+                <img src="http://b.zz91.com/market/images/titleimg1.png" class="fl">
+                <ul class="hq-type-ul fr">
+                	<li class="fl this-hq-type"><a href="/study/djgd/" target="_blank">全部</a></li>
+                    <li class="fl"><a href="/study/djgd/fjs/" target="_blank">废金属</a></li>
+                    <li class="fl"><a href="/study/djgd/fsl/" target="_blank">废塑料</a></li>
+                </ul>
+            </div>
+            <ul class="void-tell-list">
+				{%for list in pricelist.list%}
+                <li class="void-tell-li clearfix">
+                    <div class="void-tell-imgbox fl">
+                        <a href="/study/{{list.urlpath}}/detail{{list.td_id}}.html" target="_blank">
+                            <img src="{{list.pic}}" width="186" height="178">
+                            <i class="icon1-void"></i>
+                        </a>
+                    </div>
+                    <div class="void-tell-info fl">
+                        <div class="void-tell-itit"><a href="/study/{{list.urlpath}}/detail{{list.td_id}}.html" target="_blank">{{list.td_title}}</a></div>
+                        <div class="void-tell-iview">
+                            {{list.content}}
+                        </div>
+                        <div class="hq-view-gomore">
+                        	<div class="fl">{{list.gmt_order}}</div>
+                            <a href="/study/{{list.urlpath}}/detail{{list.td_id}}.html" target="_blank" class="hq-view-a">查看全文</a>
+                        </div>
+                    </div>
+                </li>
+				{%endfor%}
+            </ul>
+            <script id="info-list" type="text/html">
+            	<li class="void-tell-li clearfix">
+                    <div class="void-tell-imgbox fl">
+                        <a href="/study/<%d.urlpath%>/detail<%d.td_id%>.html" target="_blank">
+                            <img src="<%d.pic%>" width="186" height="178">
+                            <i class="icon1-void"></i>
+                        </a>
+                    </div>
+                    <div class="void-tell-info fl">
+                        <div class="void-tell-itit"><a href="/study/<%d.urlpath%>/detail<%d.td_id%>.html" target="_blank"><%d.td_title%></a></div>
+                        <div class="void-tell-iview">
+                            <%d.content%>
+                        </div>
+                        <div class="hq-view-gomore">
+                        	<div class="fl"><%d.gmt_order%></div>
+                            <a href="/study/<%d.urlpath%>/detail<%d.td_id%>.html" target="_blank" class="hq-view-a">查看全文</a>
+                        </div>
+                    </div>
+                </li>
+            </script>
+            <div class="morebtn">
+                阅读更多 <span class="sj-xs">▼</span>
+            </div>
+        </div>
+        {% include 'study/right.html' %}
+    </div>
+	{% include 'comm/new/footer.html' %}
+</body>
+<script src="http://b.zz91.com/market/js/hq-comm.js"></script>
+<script type="text/javascript">
+	var nload=true;
+	var page=2;
+	$(function(){
+		$(".morebtn").click(function() {
+			if (nload==false){
+				return;
+			}
+			layer.load(2)
+			nload=false;
+			var infoUrl="/study/indexlistjson.html?page="+page.toString();
+			zzajax("get",infoUrl,'',function(ret){
+				if (ret) {
+					if (ret.toString()=="[]" || ret.toString()==''){
+						window.location='/study/djgd/';
+						return;
+					}
+					var newslist = "";
+					$.each(ret, function(i, item) {
+						var getTpl = document.getElementById('info-list').innerHTML;
+						laytpl(getTpl).render(item, function(html) {
+							newslist = newslist + html;
+						});
+					})
+					$(".void-tell-list").append(newslist)
+				}else{
+					window.location='/study/djgd/';
+				}
+				layer.closeAll("loading");
+				page=page+1
+				nload=true;
+			},function(){
+				nload=true;
+				layer.closeAll("loading");
+			});
+		})
+	})
+</script>
+</html>

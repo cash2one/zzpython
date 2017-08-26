@@ -1,0 +1,344 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>资讯中心</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		
+		<style>
+	body{
+		background-color: #f4f4f4;
+	}
+	.aui-ask-header {
+		padding: 15px;
+		width: 100%;
+		background: #eee;
+		overflow: hidden;
+		line-height: 32px;
+	}
+
+	.ask-avatar {
+		float: left;
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+	}
+	.ask-nickname {
+		float: left;
+		font-size: 14px;
+		margin-left: 10px;
+	}
+	.ask-time {
+		font-size: 12px;
+		color: #666;
+	}
+	.aui-content {
+		padding: 15px;
+		background: #ffffff;
+		margin-bottom: 0;
+	}
+	.ask-title {
+		font-size: 18px;
+		margin-bottom: 5px;
+		font-weight:700;
+	}
+	.ask-body {
+		width: 100%;
+		display: table;
+		font-size: 16px;
+		color: #000;
+		line-height: 30px;
+	}
+	.ask-body p{
+		color: #000;
+		font-size:16px;
+	}
+	.ask-status {
+		width: 100%;
+		display: table;
+		color: #999;
+		line-height: 20px;
+		margin: 10px 0;
+	}
+	.ask-price {
+		color: #666;
+		font-size: 12px;
+		margin-right: 10px;
+	}
+	.ask-price strong {
+		font-size: 14px;
+		padding: 0 2px;
+		font-weight: 400;
+	}
+	.aui-nav {
+		border-top:1px solid #eee;
+
+	}
+	.ask-input {
+		height: 32px;
+		line-height: 32px;
+		margin: 10px;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		font-size: 14px;
+		color: #999;
+		padding-left: 5px;
+	}
+	.ask-text {
+		height: 120px;
+		line-height: 30px;
+		margin-bottom: 10px;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+		font-size: 14px;
+		color: #666;
+		overflow: hidden;
+	}
+	.ask-text textarea {
+		height: 100%;
+		padding: 5px;
+		margin: 0;
+
+		border:none;
+	}
+	.mark {
+		background: rgba(0,0,0,0.5);
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		display: none;
+		z-index: 1;
+	}
+	.ask-reply-btn {
+		padding: 8px 0;
+	}
+	#ask-reply-box {
+		padding: 10px;
+	}
+	#aui-footer {
+		background: rgba(255,255,255,1);
+	}
+	#aui-footer.show {
+		-webkit-animation: showIn .5s ease both;
+		animation: showIn .5s ease both;
+	}
+	@-webkit-keyframes showIn {
+		form { height: 55px;background: rgba(255,255,255,0.5);}
+		to { height: 200px; background: rgba(255,255,255,1);}
+	}
+	@-webkit-keyframes hideIn {
+		from { opacity: 1;top: 8px;}
+		to { opacity: 0;top: -20px;}
+	}
+	</style>
+	</head>
+
+	<body>
+		<div class="mark" id="mark"></div>
+		<div class="aui-line-x"></div>
+		<div class="aui-content">
+		<script id="infomation" type="text/html">
+			
+				<div class="ask-title">
+					{{ d.title }}
+				</div>
+				<div class="ask-body ask-status">
+					<span class="aui-pull-left ask-price">
+						<i class="aui-iconfont aui-icon-attention"></i>
+						{{ d.click }}  
+					</span>
+					<span class="aui-pull-right ask-time">{{ d.pubdate }}</span>
+				</div>
+				<div class="ask-body">
+					{{ d.content }}
+				</div>
+			
+		</script>
+		</div>
+		<div id="othercon" style="display: none;">
+			<!-- <div class="handle clear">
+				<span class="share weixin"></span>
+				<span class="share weikon"></span>
+				<span class="share xinlang"></span>
+				<span class="share qq"></span>
+				<span class="house"><i class="house-img"></i>收藏</span>
+			</div> -->
+			<h3 class="interfix">相关阅读</h3>
+			<div class="aui-card aui-noborder cantop-mation">
+		        <ul class="aui-list-view">
+		        <script id="info-list" type="text/html">
+		            <li class="aui-list-view-cell" infoid="{{ d.id }}">
+		                <a class="aui-arrow-right">
+		                <div class="aui-img-body">
+				          <b>{{ d.title }}</b>
+				          <p class='aui-ellipsis-2 '>{{ d.subcontent }} </p>
+				        </div>
+				        <span class="aui-badge aui-badge-info">{{ d.click }}</span>
+				        </a>
+		            </li>
+		        </script>
+		         
+		        </ul>
+		    </div>
+			
+		</div>
+		<div class="aui-line-x"></div>
+		<footer class="aui-nav" id="aui-footer">
+			<div class="ask-input" tapmode onclick="showReply()" id="ask-input">我要评论</div>
+			<div id="ask-reply-box">
+				<div class="ask-text" id="ask-text">
+					<textarea placeholder="请输入你的回复，提问者确认后可获得奖励"></textarea>
+				</div>
+				<div class="aui-btn aui-btn-block aui-btn-info ask-reply-btn">提交</div>
+			</div>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript">
+		var loadflag = false;
+		var shouchangdata;
+		apiready = function() {
+			//获取信息
+			if (loadflag == false) {
+				ajaxInfo();
+			}
+			$api.addEvt($api.byId('mark'), 'click', function(){
+				$api.css($api.dom(".mark"),"display:none");
+				$api.css($api.byId("ask-input"),"display:block");
+				$api.css($api.byId("ask-reply-box"),"display:none");
+				$api.removeCls($api.byId("aui-footer"),"show");
+			});
+		}
+		//收藏
+		function shoucFun(favoriteflag) {
+			//未登录
+			if (!havelogin()){
+				return false;
+			};
+			loadingshow();
+			if (shouchangdata) {
+				shouchangdata['favoriteflag']=favoriteflag;
+				shoucInfo(shouchangdata);
+			}
+		}
+		function showReply(){
+			$api.css($api.dom(".mark"),"display:block");
+			$api.css($api.byId("ask-input"),"display:none");
+			$api.css($api.byId("ask-reply-box"),"display:block");
+			$api.addCls($api.byId("aui-footer"),"show");
+		}
+		function ajaxInfo() {
+			var infoid = api.pageParam.infoid;
+			//zzalert(infoid)
+			loadflag = true;
+			api.showProgress({
+				title: '加载中',
+				modal: false
+			});
+			api.ajax({
+				url: hosturl + '/news/newsdetail' + infoid + '.html?datatype=json&company_id='+UserInfo.memberID()+'&appsystem='+api.systemType+"&t=" + (new Date()).getTime().toString(),
+				method: 'get',
+				timeout: 30,
+				dataType: 'json',
+				returnAll: false
+			}, function(ret, err) {
+				if (err){
+					//zzalert(JSON.stringify( err ));
+					zzalert(err.statusCode.toString()+"错误！")
+					api.hideProgress();
+					if(err){
+						saveerrlog(err.body);
+					}
+				}
+				if (ret) {
+					api.hideProgress();
+					var getTpl = $api.html($api.byId("infomation"));
+					laytpl(getTpl).render(ret, function(html) {
+						$(".aui-content").html(html);
+					});
+					//文字大小变化
+					$(".small-size").on("click", function() {
+						$(".info-content").animate({
+							fontSize: "12px",
+							lineHeight: "24px"
+						});
+					})
+					$(".big-size").on("click", function() {
+						$(".info-content").animate({
+							fontSize: "18px",
+							lineHeight: "32px"
+						});
+					})
+					
+					var pageHtml = "";
+					if (ret.othernewslist){
+						$.each(ret.othernewslist, function(index, item) {
+							if (item.litpic == null) {
+								item.displayDiv = "none"
+							} else {
+								item.displayDiv = ""
+							}
+							var getTpl = $api.html($api.byId("info-list"));
+							laytpl(getTpl).render(item, function(html) {
+								pageHtml = pageHtml + html;
+							});
+						});
+						$("#othercon").css("display", "block");
+					}
+					//保存分享数据到本地
+					var title=ret.title;
+					localStorage.setItem("share_title",""+title);
+					localStorage.setItem("share_description","我正在查看"+title+"，赶紧跟我一起来体验！http://m.zz91.com/news/newsdetail"+infoid.toString()+".htm 点击链接查看");
+					localStorage.setItem("share_url","http://m.zz91.com/news/newsdetail"+infoid.toString()+".htm");
+					localStorage.setItem("share_pic","http://img0.zz91.com/zz91/images/indexLogo.png");
+					
+					
+					$(".cantop-mation").html(pageHtml);
+					$(".cantop-mation li").on("click", function() {
+						var infoid = $(this).attr("infoid")
+						var pageParam = {
+							wintitle: "资讯详情",
+							type: "detail",
+							infoid: infoid
+						};
+						openWin("detail" + infoid, "../news/detail.html", pageParam);
+					})
+					//收藏数据
+					var favorite_type_code = 10091012;
+					var data = {
+						company_id: UserInfo.memberID(),
+						usertoken: UserInfo.token(),
+						appsystem: api.systemType,
+						datatype: "json",
+						favorite_type_code: favorite_type_code,
+						forcompany_id: 0,
+						content_id: infoid,
+						title: ret.title,
+						pdtid: 0,
+						products_type_code: 0
+					};
+					shouchangdata=data;
+					//显示是否已经收藏
+					api.execScript({
+						name : 'detail'+infoid.toString(),
+						script : "isfavor("+ret.favoriteflag+")"
+					});
+					//shoucInfo(data);
+				} else {
+					api.hideProgress();
+				};
+			});
+		}
+	</script>
+
+</html>

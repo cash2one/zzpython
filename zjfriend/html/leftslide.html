@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/leftslide.css"/>
+</head>
+<body>
+
+<div class="mui-content" style="width:86%">
+	
+</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/zepto.min.js"></script>
+<script>
+apiready = function() {
+	api.ajax({
+		url : 'http://apptest.zz91.com/sex/navlist.html',
+		method : 'get',
+		timeout : 30,
+		pageParam : {
+			t : (new Date()).getTime().toString()
+		},
+		dataType : 'text',
+		returnAll : false
+	}, function(ret, err) {
+		if (ret) {
+			//alert(ret)
+			$(".mui-content").html(ret);
+			//api.hideProgress();
+		} else {
+			api.alert({
+				//msg : ('错误码：' + err.code + '；错误信息：' + err.msg + '网络状态码：' + err.statusCode)
+			});
+		};
+	});
+};
+</script>
+</html>

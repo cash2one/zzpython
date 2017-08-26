@@ -1,0 +1,303 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>{{webtitle}}—生意管家_ZZ91废料移动商务</title>
+<link rel="stylesheet" type="text/css" href="/css/myrc/index_myrc.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+<script type="text/javascript" src="/js/myrc/jquery.lightbox_me.js"></script>
+<script type="text/javascript" src="/js/myrc/style.js"></script>
+<script>
+$(window).scroll(function(){
+	if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+		loadMore(document.getElementById("loadMore"));
+	}
+});
+function loadMore(objdiv){
+	self=objdiv
+	var pageobj=document.getElementById("pageindex");
+	var page=pageobj.value;
+	pageobj.value=parseInt(page)+1
+	
+	self.innerHTML="加载中...";
+	
+	$.get("/myrc_mycommunitymore/",
+	{
+		page:pageobj.value
+	},
+	function(data,status){
+		if (status=="success" && data!="err" && data!=""){
+			self.style.display="block";
+			$("#tab1").append(data);
+			self.innerHTML="点击后加载更多内容";
+		}else{
+			self.style.display="none";
+		}
+	});
+}
+var tr;
+$(function(){
+	$('.hf').click(function(e){
+		tr = $(this).parents('tr');
+		var self=$(this);
+		$("#pid").val(self.attr("pid"));
+		$("#ptype").val(self.attr("ptype"));
+		$("#post_id").val(self.attr("post_id"));
+		$("#tocompany_id").val(self.attr("tocompany_id"));
+		
+		$('#reply_div').lightbox_me({
+				overlaySpeed:0,
+				lightboxSpeed:0,
+				//centered: true,
+				modalCSS:{top: '20px'},
+				onLoad: function() {
+					var placeholder = "回复:"+self.attr("nickname");
+					var textobj=document.getElementById('t1');
+					textobj.placeholder=placeholder;
+						//textobj.innerHTML=placeholder;
+				}
+		});
+		e.preventDefault();
+	});
+});
+//删除行;(obj代表连接对象)  
+function deleteRow(){
+	$.get("/myrc_mycommunitydel/",
+	{
+		pid:$("#pid").val(),
+		ptype:$("#ptype").val(),
+		post_id:$("#post_id").val()
+	},
+	function(data,status){
+		if (status=="success" && data!="err" && data!=""){
+			tr.remove();
+			$('#reply_div_').trigger('close');
+		}else{
+			
+		}
+	});
+	 
+} 
+function postsave(){
+	$.get("/myrc_myreplysave/",
+	{
+		pid:$("#pid").val(),
+		ptype:$("#ptype").val(),
+		post_id:$("#post_id").val(),
+		replycontent:$("#t1").val(),
+		tocompany_id:$("#tocompany_id").val()
+	},
+	function(data,status){
+		if (status=="success" && data!="err" && data!=""){
+			$('#reply_div').trigger('close');
+			window.location="/myrc_myreply/";
+		}else{
+			
+		}
+	});
+}
+function savenick(){
+	window.location="/myrc_mycommunity/?nickname="+$("#nickname").val();
+}
+
+$(function(){
+	$('.del').click(this,function(e){
+		tr = $(this).parents('tr');
+		var self=$(this);
+		$("#pid").val(self.attr("pid"));
+		$("#ptype").val(self.attr("ptype"));
+		$("#post_id").val(self.attr("post_id"));
+		$('#reply_div_').lightbox_me({
+			overlaySpeed:0,
+			lightboxSpeed:0,
+			//centered: true,
+			modalCSS:{top: '20px'},
+        });
+		e.preventDefault();
+	});
+});
+
+</script>
+</head>
+<body>
+    {%include 'top2.html'%}
+    <div class="mt48"></div>
+      <div class="m-content">
+        <div class="m-tle">
+        	<a href="/">首页</a> > <a href="/myrc_index/">生意管家</a>  > 我的社区
+        </div>
+      	<table width="100%" border=0 cellpadding=0>
+				<tr>
+					<td>
+						<ul class="m-ul m-item_1" id="tabUL" style="margin-left:10px;margin-right:10px;">
+							<li class="m-li_"><a href="/myrc_mycommunity/">消息中心</a></li>
+						    <li class="m-li"><a href="/myrc_mypost/">我的提问</a></li>
+						    <li class="m-li"><a href="/myrc_myreply/">我的回复</a></li>
+					    </ul>
+				   </td>
+				</tr>
+				<tr>
+					<table cellspacing="10" id="tab1">
+                        <tr>
+							<td>
+								收到的消息总数：<font class="nav_no">{{replycount}}</font>&nbsp;&nbsp;
+                                <!--<a href="/order/business.html" target="_blank" class="nav_hr">点击设置我关心的行业</a>-->
+							</td>
+						</tr>
+                        {%for list in invitelist%}
+                        <tr>
+							<td class="m-item">
+                               <div class="i-block">
+                                	<div class="i-box">
+                                    	<font>{{list.nickname}}</font>
+                                        <font class="i-txt">邀请</font>我回答
+                                        <font class="it">&nbsp;&nbsp;&nbsp;{{list.gmt_created}}</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box">
+                                    	<font class="i_txt_1">{%if list.is_viewed%}<font color="#FF0000">[未读]</font>{%endif%}<a href="/huzhuview/{{list.post_id}}.htm" target="_blank">{{list.title}}</a></font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box_">
+                                    	<a href="" class="hf" pid="{{list.id}}" ptype="invitereply" post_id="{{list.post_id}}" nickname="{{list.nickname}}" tocompany_id="{{list.company_id}}">回复</a>
+                                        <a href="" class="del" pid="{{list.id}}" ptype="invitedel" post_id="{{list.post_id}}">删除</a>
+                                    </div>
+                                    <!--end i-box-->
+                                </div>
+                                <!--end i-block-->
+							</td>
+						</tr>
+                        {%endfor%}
+{%for list in listall%}
+						<tr>
+							<td class="m-item">
+                               <div class="i-block">
+                                	<div class="i-box">
+                                    	<font class="i_txt">{{list.nickname}}</font>  
+                                        <font>回复了我的提问</font>
+                                        <font class="it">&nbsp;&nbsp;&nbsp;{{list.gmt_created}}</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box">
+                                    	<font class="i_txt_1">{%if list.postviewed%}<font color="#FF0000">[未读]</font>{%endif%}<a href="/huzhuview/{{list.post_id}}.htm" target="_blank">{{list.post_title|safe}}</a></font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box">
+                                        <font class="i_txt_">回复:</font>
+                                    	<font>{{list.title|safe}}</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box_">
+                                    	<a href="" class="hf"  pid="{{list.id}}" ptype="postreply" post_id="{{list.post_id}}" nickname="{{list.nickname}}" tocompany_id="{{list.company_id}}">回复</a>
+                                        <!--<a href="" class="del" pid="{{list.id}}" ptype="postdel" post_id="{{list.post_id}}">删除</a>-->
+                                    </div>
+                                    <!--end i-box-->
+                                </div>
+                                <!--end i-block-->
+							</td>
+						</tr>
+{%endfor%}
+					</table>
+
+					<div id="loadMore" onClick="loadMore(this)"  pageindex=1 style="text-align:center;margin-left:10px;margin-right:10px;background: #fff;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius: 4px;">加载更多……</div>
+                    <input type="hidden" id="pageindex" value="1" />
+				</td></tr>
+        </table>
+      </div>
+      <!--end m-content-->
+    <!-- 回复弹出框 -->
+    <div id="reply_div" align="center">
+		<textarea name="" id="t1"></textarea>
+		<div align="center" style="margin-top:10px;">
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+			<div class="btn btn_confirm" onClick="postsave();">回复</div>
+		</div>
+     </div>
+     <!-- 删除弹出框 -->
+    <div id="reply_div_" align="center">
+         删除后不可恢复，是否删除？
+		<div align="center">
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+			<div class="btn btn_confirm" onClick="deleteRow()">确认</div>
+            <input type="hidden" id="pid" value="0">
+            <input type="hidden" id="ptype" value="0">
+            <input type="hidden" id="post_id" value="0">
+            <input type="hidden" id="tocompany_id" value="0">
+		</div>
+     </div>
+     
+      <!-- 邀请弹出框 -->
+    <div id="reply_div_req" align="center">
+         <div class="">您有<span>1</span>个新的问题邀请,是否回答?</div>
+         <div class="re_txt">取消后还可在生意管家→我的社区→消息中心查看</div>
+		<div align="center">
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+			<div class="btn btn_confirm">确认</div>
+		</div>
+     </div>
+{%if username%}
+{%if not mynickname%}
+	<script>
+    $(function(){
+        $('#reply_div_nick').lightbox_me({
+                    overlaySpeed:0,
+                    lightboxSpeed:0,
+                    centered: true, 
+                    onLoad: function() { 
+                        var target = $.event.fix(e).currentTarget;
+                    }
+            }).click();
+        e.preventDefault();
+    });
+	function savenick(){
+		window.location="?nickname="+$("#nickname").val();
+	}
+    </script>
+    <!-- 回复弹出框 -->
+	<div id="reply_div_nick" align="center">
+    <form name="form">
+    	<font color="#CC0000">您还没有填写您的昵称，请填写！</font><br />
+      <input type="text" name="nickname" id="nickname" onKeyUp="check();" style="width:80%; line-height:30px;" placeholder="请输入您的昵称！">
+      <div align="center" style="margin-top:15px;">
+        <div class="btn btn_confirm" onClick=savenick()>确定</div>
+        </div>
+    </form>
+    </div>
+{%endif%}
+{%if not myguanzhu%}
+	<script>
+    $(function(){
+        $('#reply_div_guanzhu').lightbox_me({
+                    overlaySpeed:0,
+                    lightboxSpeed:0,
+                    centered: true, 
+                    onLoad: function() { 
+                        var target = $.event.fix(e).currentTarget;
+                    }
+            }).click();
+        e.preventDefault();
+    });
+	function saveguanzhu(){
+		document.getElementById("formguanzhu").submit();
+	}
+    </script>
+    <!-- 回复弹出框 -->
+	<div id="reply_div_guanzhu" align="center" style="line-height:30px;">
+    <form name="formguanzhu" id="formguanzhu" action="?" method="get">
+    <font color="#CC0000">点击设置我关心的行业</font> <br />
+      <input type="checkbox" name="myguanzhu" id="myguanzhu" value="1" /> <label for="myguanzhu">废塑料</label>
+      <input type="checkbox" name="myguanzhu" id="myguanzhu1" value="2" /> <label for="myguanzhu1">废金属</label>
+      <input type="checkbox" name="myguanzhu" id="myguanzhu2" value="3" /> <label for="myguanzhu2">综合废料</label>
+      <div align="center" style="margin-top:15px;">
+        <div class="btn btn_confirm" onClick=saveguanzhu()>确定</div>
+        </div>
+    </form>
+    </div>
+{%endif%}
+{%endif%}
+{%include 'bottom2.html'%}  
+	</body>
+</html>

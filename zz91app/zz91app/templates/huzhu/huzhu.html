@@ -1,0 +1,40 @@
+<ul class="mui-table-view">
+<form method="post">
+	<span class="mui-table-view-cell" style="margin-top: 0px;display:block;padding-top: 0px;padding-bottom: 0px;border: 0px;background-image: none;">
+        <button class="mui-btn mui-btn-danger mui-icon mui-icon-search" style="" onclick="zz91search(this.form,'/huzhu/?keywords=','price')" type="button">搜索</button>
+        <input type="search" id="searchtext" placeholder="请输入关键字搜索" style="float: left;width: 75%; margin-top:15px ;" {%if keywords%}value="{{keywords}}"{%endif%}/>
+    </span>
+</form>
+</ul>
+<div id="slider" class="mui-slider">
+<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+	<a class="mui-control-item" href="javascript:gotourl('/huzhu/?category_id=106&keywords={{keywords}}','huzhu');">商圈</a>
+<a class="mui-control-item" href="javascript:gotourl('/huzhu/?category_id=1&keywords={{keywords}}','huzhu');">问答</a>
+<a class="mui-control-item" href="javascript:gotourl('/huzhu/?category_id=2&keywords={{keywords}}','huzhu');">社区</a>
+<a class="mui-control-item" href="javascript:gotourl('/huzhu/?category_id=3&keywords={{keywords}}','huzhu');">学院</a>
+<a class="mui-control-item" href="javascript:gotourl('/huzhu/?htype=hot&keywords={{keywords}}','huzhu');">热门</a>
+<a class="mui-control-item" href="javascript:gotourl('/huzhu/?htype=new&keywords={{keywords}}','huzhu');">最新</a>
+</div>
+<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-2" style="{%ifequal category_id '1'%}margin-left: 1.5%;{%endifequal%}{%ifequal category_id '2'%}margin-left: 21.5%;{%endifequal%}{%ifequal category_id '3'%}margin-left: 41.5%;{%endifequal%}{%ifequal htype 'hot'%}margin-left: 61.5%;{%endifequal%}{%ifequal htype 'new'%}margin-left: 81.5%;{%endifequal%}"></div>
+
+<ul class="mui-table-view">
+{%for list in bbslist%}
+<li class="mui-table-view-cell">
+	<a class="mui-navigate-right" href="/huzhuview/{{list.id}}.htm">
+	<span class="mui-ellipsis-2" style="width: 80%;">{{list.title}}</span>
+	<p class='mui-ellipsis'>
+		{{list.nickname}}&nbsp;&nbsp;&nbsp;{{list.reply_time}}
+	</p>
+	<span class="mui-badge mui-badge-success">{{list.replycount}}</span>
+	</a>
+</li>
+{%endfor%}
+<div class='pulldiv' id="pulldiv" onclick=loadmorep(this,'/huzhumore/?keywords={{keywords}}&datetype={{datetype}}&category_id={{category_id}}&htype={{htype}}&bbs_post_assist_id={{bbs_post_assist_id}}') title="/huzhumore/?keywords={{keywords}}&datetype={{datetype}}&category_id={{category_id}}&htype={{htype}}&bbs_post_assist_id={{bbs_post_assist_id}}"><span class='mui-icon mui-icon-down'></span><span>点此加载更多</span></div>
+</ul>
+</div>
+<nav class="mui-bar mui-bar-tab" id="appbottom">
+<center style="padding-top: 10px;">
+	<button onclick="gotourl('/huzhupost/','blank')" class=mui-btn-success style="width: 90%;">  我要提问    </button>
+</center>
+</nav>
+<input type="hidden" id="appnavname" value="再生互助" />

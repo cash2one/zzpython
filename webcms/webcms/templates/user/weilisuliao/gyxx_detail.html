@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{title}}_山东伟力塑料有限公司</title>
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/newcompany/css/forceplastics.css" />
+</head>
+<body>
+{%include "user/weilisuliao/head.html"%}
+  <div class="layout mod-spm">
+    <div class="mod-ind">
+    	<div class="header">
+            <h1 class="title ms-yh">
+            	<span class="index"><a href="" title=""><img src="http://img0.zz91.com/zz91/newcompany/images/nav_img.jpg" /></a></span>
+            	<a href="">{{title|safe}}</a>
+             </h1>
+        </div>
+        <!--end header-->
+        <span class="text-pro"><h3>{{title|safe}}</h3></span>
+        <div class="content">
+        	<div class="con-detail-img fl"><img src="{{litpic}}" width="398px" height="398px" /></div>
+            <div class="con-detail-box fr">
+            	<div class="main">
+                <p>{{content|safe}}</p>
+                </div>
+                {%if upartical%}<br />上一篇：<a href="{{upartical.url}}" target="_blank" title="{{upartical.title}}" class="next">{{upartical.title}}</a>{%endif%}
+                {%if nextartical%}<br />下一篇：<a href="{{nextartical.url}}" target="_blank" title="{{nextartical.title}}" class="next">{{nextartical.title}}</a>{%endif%}
+            </div>
+        </div>
+        <!--end content-->
+    </div>
+    <!--end mod-ind-->
+{%include "user/weilisuliao/button.html"%}
+  </div>
+  <!--end layout mod-spm-->
+</body>
+</html>

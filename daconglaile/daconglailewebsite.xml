@@ -1,0 +1,18 @@
+<uwsgi>
+ <socket>:8034</socket>
+ <workers>4</workers>
+ <master>true</master>
+ <processes>4</processes>
+ <pythonpath>.</pythonpath>
+ <module>daconglaile.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>daconglaile/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>2000</limit-as>
+ <reload-on-as>500</reload-on-as>
+ <reload-on-rss>500</reload-on-rss>
+ <max-requests>500</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/daconglaile.log</daemonize>
+</uwsgi>

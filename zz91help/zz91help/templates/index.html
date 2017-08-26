@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>帮助中心-首页-ZZ91再生网</title>
+<link href="../css/css.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<!--top-->
+<div class="main_box top_box">
+<div class="logo"><a href="#" title="ZZ91再生网帮助中心"><img src="../images/logo.jpg" width="280" height="54" border="0" /></a></div>
+<div class="lmmain">
+<div class="contacttel">咨询热线：0571-56612345</div>
+<ul>
+  <li class="lm_on">首 页</li>
+  <li><a href="/question/">常见问题</a></li><li><a href="/list-9/">再生通客服</a></li><li><a href="/contact/">联系客服</a></li><li><a href="/beginner/">新手上路</a></li></ul>
+</div>
+</div>
+<div class="clearboth"></div>
+<div class="topline"></div>
+<!--top-->
+<!--search-->
+{%include 'search.html'%}
+<!--search-->
+
+<!--main-->
+<div class="main_box kuaishu">
+	<div class="kleft">
+    	<div class="ktitle"><div class="text">{{jj}}快速通道</div><div class="more"><a href="/question/">常见问题</a></div></div>
+        <div class="kcontent">
+        	<ul>
+            	<li ><a href="http://help.zz91.com/list-2/" target=_blank><img src="../images/k1.jpg" width="48" height="48" /><p>会员注册</p></a></li>
+                <li><a href="http://help.zz91.com/detail-26/"><img src="../images/k.jpg" width="48" height="48" /><p>找回登录密码</p></a></li>
+                <li ><a href="http://help.zz91.com/detail-49/"><img src="../images/k3.jpg" width="48" height="48" /><p>发布供求</p></a></li>
+                <li ><a href="http://help.zz91.com/detail-45/"><img src="../images/k4.jpg" width="48" height="48" /><p>询盘管理</p></a></li>
+                <li ><a href="http://help.zz91.com/contact/"><img src="../images/k5.jpg" width="48" height="48" /><p>加入再生通</p></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="kright">
+      <div class="title">问题没有解决？在线提问—ZZ91客服</div>
+        <div class="tel"><img src="../images/tel.png" width="185" height="62" /></div>
+        <div class="button"><a href="/contact/"><img src="../images/button.png" width="115" height="35" /></a></div>
+    </div>
+    
+</div>
+
+<!--main-->
+<!--list-->
+<div class="clearboth"></div>
+<div class="main_box">
+	<div class="listbox">
+    	<div class="ltitlemain"><div class="ltitle">常见问题</div><div class="more"><a href='/question/'>更多 >></a> </div></div>
+        <div class="lcontent">
+        	<ul>
+				{%for list in cjwtlist%}
+            	<li>· <a href="/detail-{{list.aid}}/" target=_blank>{{list.subject}}</a></li>
+                {%endfor%}
+            </ul>
+            <div class="clearboth"></div>
+        </div>
+    </div>
+</div>
+<!--list-->
+<!--list-->
+<div class="clearboth"></div>
+<div class="main_box">
+	<div class="listbox">
+    	<div class="ltitlemain"><div class="ltitle">分类导航</div></div>
+        <div class="lcontent">
+			{%for list in indexcategory%}
+        	<div class="dbox">
+            	<div class="dtitle"><a href="/list-{{list.cid}}/">{{list.cat_name}}</a></div>
+                <div class="dcontent">
+                	<ul>
+						{%for list1 in list.catelist%}
+                    	<li><a href="/list-{{list1.cid}}/">{{list1.cat_name}}</a></li>
+                        {%endfor%}
+                    </ul>
+                </div>
+            </div>
+			{%endfor%}
+            
+            <div class="clearboth"></div>
+        </div>
+    </div>
+</div>
+<!--list-->
+{%include 'bottom.html'%}
+</body>
+</html>

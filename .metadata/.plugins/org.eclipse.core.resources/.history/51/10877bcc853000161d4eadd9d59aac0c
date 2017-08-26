@@ -1,0 +1,413 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>互助社区发布</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<style>
+			body {
+				background: #f4f4f4;
+				width: 100%;
+				height: 100%;
+				font-size: 14px;
+				padding-top: 15px;
+			}
+			/*.buy-box{
+			 padding: 10px 8px;
+			 background-color: #f2f2f2;
+			 }
+			 .buy-box:after{
+			 border-top: none;
+			 }
+			 .aui-input-row:before{
+			 border-top: none !important;
+			 }*/
+			.buy-show-box {
+				display: block;
+				background-color: #f2f2f2;
+			}
+			p.title {
+				text-align:left;
+				padding-left:10px;
+				padding-top:10px;
+			}
+			textarea.buy-show {
+				width: 100%;
+				border: none;
+				height: 150px;
+				font-size: 14px;
+				margin-bottom: 0;
+			}
+			.handle {
+				padding: 30px 8px 0px;
+			}
+			.handle-add {
+				border: 1px dashed #e1e1e1;
+				width: 23px;
+				height: 23px;
+				background: url(../../image/imageslist.png);
+				background-size: 320px;
+				background-position: -110px -234px;
+			}
+			.handle-add {
+				border: 1px dashed #e1e1e1;
+				width: 80px;
+				height: 80px;
+				text-align: center;
+				line-height: 80px;
+				background: #f2f2f2;
+				float: left;
+				margin: 0 20px 20px 0;
+			}
+			.img-kuang {
+				position: relative;
+				margin: 0 20px 20px 0;
+				float: left;
+				border: 1px dashed #e1e1e1;
+				width: 80px;
+				height: 80px;
+			}
+			.aui-icon-move {
+				text-align: center;
+				line-height: 20px;
+				color: #fff
+			}
+			.delt-img {
+				position: absolute;
+				height: 20px;
+				width: 20px;
+				left: -10px;
+				top: -10px;
+				background: red;
+				border-radius: 12px;
+				box-shadow: 0px 0px 2px red;
+			}
+			.handle-add .aui-icon-add {
+				font-size: 23px;
+			}
+		</style>
+	</head>
+	<body>
+		<section class="aui-card">
+			<div class="handle">
+				<span class="handle-add"> <i class="aui-iconfont aui-icon-add"></i>加图片 </span>
+			</div>
+			<div style="clear:both"></div>
+			<!--<p class="aui-text-center title">
+				详细描述
+			</p>-->
+			<div class="aui-line-x"></div>
+			<div class="aui-form text-area">
+				<textarea placeholder="在这里输入您想说的话题！" class="buy-show"></textarea>
+			</div>
+			<div class="aui-line-x"></div>
+			<p class="title">
+				选择你要发布到哪个版块
+			</p>
+			<div class="aui-input-row" style="font-size:14px">
+				<span class="aui-input-addon"></span>
+				<div class="aui-pull-left type-into">
+					<label>
+						<input class="aui-radio aui-radio-warning" type="radio" name="Fruit" value="106">
+						<span class="aui-radio-name">商圈</span></label>
+					<label>
+						<input class="aui-radio aui-radio-warning" type="radio" name="Fruit" value="1">
+						<span class="aui-radio-name">问答</span></label>
+					<label>
+						<input class="aui-radio aui-radio-warning" type="radio" name="Fruit" value="2">
+						<span class="aui-radio-name">社区</span></label>
+				</div>
+			</div>
+			<!--<div class="buy-box aui-form">
+				<div class="aui-input-row title-input">
+					<label class="aui-input-addon">标题</label>
+					<input type="text" class="aui-input" placeholder="请输入标题！" />
+				</div>
+			</div>
+			-->
+			
+			
+		</section>
+		<div style="color:#ff0000;padding:10px">发帖审核通过后即可获得 0.5元再生钱包</div>
+		<section class="aui-content-padded">
+			<div class="aui-btn aui-btn-block aui-btn-info handle-into" style="background-color:#01ba2e;border:none">
+				提交问题
+			</div>
+		</section>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript">
+		var photoBrowser;
+		var postflag=true;
+		apiready = function() {
+			photoBrowser = api.require('photoBrowser');
+			//删除添加的图片
+			$(".handle").on("click", ".aui-icon-move", function() {
+				$(this).parent().fadeOut(function() {
+					$(this).remove();
+				})
+			})
+			var typeId = api.pageParam.typeId;
+			selectCheckBox("Fruit",typeId.toString());
+			//浏览图片
+			var imagesList = [];
+			$(".handle").on("click", "img", function() {
+				api.execScript({
+					name : api.winName,
+					script : "keybackFun('0')"
+				});
+				imagesList = []
+				//获取图片地址
+				$.each($('.img-kuang img'), function(i, item) {
+					imagesList.push(item.src)
+				});
+				// imagesList =["widget://image/demo1.png","widget://image/demo1.png"];
+				photoBrowser.open({
+					images : imagesList,
+					activeIndex : 0,
+					bgColor : '#000'
+				}, function(ret) {
+					if (ret.eventType == 'click') {
+						closepicture();
+					}
+					//zzalert(JSON.stringify(ret));
+				});
+			});
+			//弹出上传图片
+			$(".handle-add").on("click", function() {
+				api.actionSheet({
+					cancelTitle : '取消',
+					buttons : ['拍照', '从手机相册选择'],
+				}, function(ret, err) {
+					if (ret.buttonIndex == 1) {
+						var photobj = {
+							sourceType : 'camera'
+						}
+						api.pageDown({
+							'bottom' : true //是否滚动，为false时说明当前页面已经到达底部了
+						});
+						getphoto(photobj);
+					}
+					if (ret.buttonIndex == 2) {
+						var photobj = {
+							sourceType : 'album'
+						}
+						getphoto(photobj);
+						//getphotolist(photobj);
+					}
+				});
+			});
+			//拍照
+			function getphoto(obj) {
+				var thisBtn = $(".handle-add");
+				api.getPicture({
+					sourceType : obj.sourceType,
+					allowEdit : false,
+					quality : 100,
+					targetWidth : 600,
+					targetHeight : 600,
+					saveToPhotoAlbum : false
+				}, function(ret, err) {
+					//zzalert(JSON.stringify(ret))
+					if (ret) {
+						//api.showProgress({title:"图片上传中",modal:false});
+						var file = [];
+						file[0] = ret.data;
+						if (ret.data != "") {
+							var imginfo = "";
+							$.each(file, function(i, item) {
+								imginfo += '<span class="img-kuang">' + '<img src="' + item + '" width="100%" height="100%">' + '<i class="delt-img aui-iconfont aui-icon-move"></i>' + '</span>'
+							});
+							thisBtn.before(imginfo)
+						}
+					} else {
+						api.toast({
+							msg : '系统错误,请重试2',
+							duration : 2000,
+							location : 'bottom'
+						});
+					}
+				});
+			}
+
+			//相册选择
+			function getphotolist() {
+				var thisBtn = $(".handle-add");
+				var UIMediaScanner = api.require('UIMediaScanner');
+				UIMediaScanner.open({
+					type : 'picture',
+					max : 5,
+					texts : {
+						stateText : '图片选择', //（可选项）字符串类型；状态文字内容；*号会被替换为已选择个数；默认：'已选择*项'
+						cancelText : '取消', //（可选项）字符串类型；取消按钮文字内容；默认：'取消'
+						finishText : '完成'
+					},
+					styles : {
+						bg : '#000',
+						mark : {
+							icon : '',
+							position : 'bottom_left',
+							size : 30
+						},
+						nav : {
+							bg : '#eee',
+							stateColor : '#000',
+							stateSize : 18,
+							cancelBg : 'rgba(0,0,0,0)',
+							cancelColor : '#000',
+							cancelSize : 18,
+							finishBg : 'rgba(0,0,0,0)',
+							finishColor : '#000',
+							finishSize : 18
+						}
+					},
+					scrollToBottom : {
+						intervalTime : -1,
+						anim : true
+					},
+					exchange : true
+				}, function(ret, err) {
+					if (ret) {
+						var imginfo = "";
+						$.each(ret.list, function(i, item) {
+							imginfo += '<span class="img-kuang">' + '<img src="' + item.path + '" width="100%" height="100%">' + '<i class="delt-img aui-iconfont aui-icon-move"></i>' + '</span>'
+						});
+						thisBtn.before(imginfo)
+					} else {
+						//zzalert(JSON.stringify(err));
+					}
+				})
+			}
+			
+			//提交表单
+			$(".handle-into").on("click", function() {
+				huzhupostsave();
+			})
+		}
+		
+		function huzhupostsave(){
+			var title = $(".title-input input").val();
+			var content = $(".text-area textarea").val()
+			var category_id=$(".type-into input:radio").val();
+			if (category_id == "" || !category_id) {
+				hint("选择你要发布到哪个版块！");
+				return;
+			}
+			//if (title == "") {
+			//	hint("您的标题还没填写！");
+			//	return;
+			//}//
+			
+			if (content == "") {
+				hint("您的回复内容还没填写！");
+				return;
+			}
+			api.showProgress({
+				title : "发布中...",
+				modal : true
+			});
+			
+			if (!category_id){
+				category_id="106"
+			}
+			var data = {
+				company_id : UserInfo.memberID(),
+				usertoken : UserInfo.token(),
+				appsystem : api.systemType,
+				datatype : "json",
+				title : title,
+				category_id : category_id,
+				content : content,
+				source : 'bbs_post'
+			};
+			//获取图片地址
+			$.each($('.img-kuang img'), function(i, item) {
+				imagesList.push(item.src)
+			});
+			//zzalert(JSON.stringify(imagesList));
+			//api.hideProgress();
+			//return;
+			if (postflag==true){
+				postflag=false;
+				api.ajax({
+					url : hosturl + 'huzhupostsave/',
+					method : 'post',
+					timeout : 30,
+					dataType : 'json',
+					returnAll : false,
+					data : {
+						values : data,
+						files : {
+							"file" : imagesList
+						}
+					}
+				}, function(ret, err) {
+					//zzalert(JSON.stringify(ret))
+					if (ret) {
+						if (ret.err == "false") {
+							api.alert({
+								title : '互助发布',
+								msg : "发布成功",
+								buttons : ['确定']
+							}, function(ret, err) {
+								//更新生意管家数据
+								api.execScript({
+									name : 'root',
+									script : 'changemyrcindex()'
+								});
+								api.closeWin();
+							})
+							
+						} else {
+							api.alert({
+								title : '互助发布',
+								msg : ret.errkey,
+								buttons : ['确定']
+							}, function(ret, err) {
+							})
+						}
+					} else {
+						if(err){
+							saveerrlog(err.body);
+						}
+						api.toast({
+						    msg: '系统错误，请重试',
+						    duration: 2000,
+						    location: 'bottom'
+						});
+					};
+					postflag=true;
+					api.hideProgress();
+				});
+			}
+		}
+		//关闭图片
+		function closepicture() {
+			photoBrowser.close();
+			api.execScript({
+				name : api.winName,
+				script : "keybackFun('1')"
+			});
+		}
+
+		function hint(ts) {
+			$(".hint").remove()
+			var hintHtml = '<div class="hint" style="position:fixed;color:#fff;line-height:18px;font-size:14px;width:100%">' + '<span style="display:block;margin:0 8px;background:#000;opacity:0.8;border-radius:5px;padding:10px 10px;text-align:center">' + ts + '<span>' + '</div>';
+			$("body").append(hintHtml);
+			var hint_height = $(".hint").height();
+			var wd_height = $(window).height();
+			var top_height = (wd_height - hint_height) / 2
+			$(".hint").css("top", top_height + "px");
+			setTimeout(function() {
+				$(".hint").fadeOut("slow", function() {
+					$(".hint").remove()
+				})
+			}, 2000)
+		}
+	</script>
+</html>

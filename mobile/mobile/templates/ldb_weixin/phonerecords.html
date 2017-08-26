@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<html>
+	<head>
+		<title>电话清单_ZZ91再生网来电宝</title>
+        <link rel="stylesheet" type="text/css" href="../css/ldb_weixin/index.css"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+		<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://m.zz91.com/css/floatlay.css"/>
+<script src="http://m.zz91.com/js/floatlay.js"></script>
+		<script>
+		$(window).scroll(function(){
+			if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+				loadMore(document.getElementById("pagemore"));
+			}
+		});
+        
+		function loadMore(objdiv){
+				self=objdiv
+				var pageobj=document.getElementById("pageindex");
+				var page=pageobj.value;
+				pageobj.value=parseInt(page)+1
+				
+				self.innerHTML="加载中...";
+				$.get("/ldb_weixin/phonerecordsmore.html",
+				{
+					page:pageobj.value,
+					datearg:"{{datearg}}"
+				},
+				function(data,status){
+					if (status=="success" && data!="err\n" && data!=""){
+						self.style.display="block";
+						
+						$("#tab").append(data);
+						self.innerHTML="点击后加载更多内容";
+					}else{
+						self.style.display="none";
+					}
+				});
+			};
+			function lookfirst(id){
+				openoverlay('','查看未接来电','提醒：查看该未接来电将扣除10元费用.<br />确定要查看吗？<br /><input type=button value=\'确定查看\' id=\'mobilebutton\' class=\'button_gree\' onclick=\'lookcontact('+id.toString()+')\' /></form></div>',100);
+			}
+			function lookcontact(id){
+				$.get("/ldb_weixin/lookcontact.html",
+				{
+					id:id,
+					company_id:"{{company_id}}"
+				},
+				function(data,status){
+					if (status=="success" && data!="err\n" && data!="" && data!="err"){
+						$("#lst-phone"+id.toString()).html(data);
+						closeoverlay();
+					}else{
+						$(".mainlist").html("您的帐户余额不足10元，请充值后查看！<a href='/ldb_weixin/balance.html'>点此立即充值！</a>")
+						
+					}
+				});
+			}
+		</script>
+	</head>
+	<body style="background:#e0f0fa">
+       <div class="list">电话清单</div>
+       <!--end list-->
+        <div class="record"><center>
+        	<a href="phonerecords-1.html" {%ifequal datearg "1"%}class="on"{%endifequal%}>1个月</a>
+        	<a href="phonerecords-2.html" {%ifequal datearg "2"%}class="on"{%endifequal%}>3个月</a>
+        	<a href="phonerecords-3.html" {%ifequal datearg "3"%}class="on"{%endifequal%}>1年</a>
+        	<a href="phonerecords-4.html" {%ifequal datearg "4"%}class="on"{%endifequal%}>1年以前</a>
+        	<a href="phonerecords.html" {%ifequal datearg ""%}class="on"{%endifequal%}>全部</a></center>
+        </div>
+        <!--end record-->
+         <div class="box" id="box_1">
+          <center>
+        	<div class="tab" id="tab">
+                    	<div class="tab-name">电话量：{{phonerecords.count}}通</div>
+                        <!--end tab-name-->
+                        <div class="tab-name">消费金额：{{phonerecords.sum_call_fee}}元</div>
+                        <div style="clear:both"></div>
+{%for list in listall%}
+
+                      <div class="td_lst">
+                    	<div class="tab-lst">
+                        	<div class="lst-phone" id="lst-phone{{list.id}}">{%ifequal list.state "1"%}<a href="tel:{{list.caller_id}}">{{list.caller_id|safe}}{{list.statetxt|safe}}</a>{%else%}<a href="javascript:lookfirst({{list.id}});">{{list.caller_id_}}<font color=red>未接</font>查看</a>{%endifequal%}</div>
+                            <!--end lst--phone-->
+                            <div class="lst-price">{{list.call_fee}}元</div>
+                            <!--end lst-price-->
+                        </div>
+                        <!--end tab-lst-->
+                        <div class="tab-lst">
+                        	<div class="lst-date">{{list.start_time}}</div>
+                            <!--end lst-date-->
+                            <div class="lst-date_">{{list.province}}</div>
+                            <!--end lst-price_-->
+                        </div>
+                        <!--end tab-lst-->
+                      </div>
+
+{%endfor%}
+</div>
+
+    {%if count > 10%}
+        <input type="hidden" id="pageindex" value="1">
+        <a href="javascrpt:;">
+        <div class="page" id="pagemore" onclick="loadMore(this)">
+            查看更多
+        </div>
+        </a>
+    {%endif%}
+        
+        
+          </center>
+         </div>
+         <!--end box-->
+{%include 'ldb_weixin/bottom_ldb.html'%}
+	</body>
+</html>

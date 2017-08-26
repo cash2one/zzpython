@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>留言速配服务-zz91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<style>
+			body {
+				background-color: #f4f4f4
+			}
+			.aui-content-padded{
+				background-color: #fff;
+				margin:0px;
+				margin-bottom: 10px;
+			}
+			.title {
+				font-size: 14px;
+				text-align: left;
+				height: 30px;
+				line-height: 40px;
+				
+				padding-left:10px;
+			}
+			.price {
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			.price span {
+				color: #ff0000
+			}
+			.main {
+				line-height: 30px;
+				font-size: 14px;
+				margin-bottom: 20px;
+				padding: 10px
+			}
+			.buybutton {
+				position: fixed;
+				bottom: 0px;
+				left: 0px;
+				border-radius: 0px;
+				width: 100%;
+			}
+			.showradio50{
+				display:block;
+				background-color: #fff
+			}
+			.showradio50 li {
+				width: 50%;
+				display: block;
+				float: left;
+			}
+			.aui-line-x{
+				margin-top: 10px;margin-bottom: 10px;
+			}
+			.price-info {
+				width: 100%;
+				background: #EBECED;
+				height: 55px;
+			}
+			.price {
+				margin-left: 15px;
+				color: #F76249;
+				font-size: 16px;
+				line-height: 55px;
+			}
+			.price strong {
+				font-size: 26px;
+				margin: 0 5px;
+				font-weight: 400;
+			}
+			.price-info .aui-pull-right {
+				height: 55px;
+				width: 35%;
+				background: #FF6600;
+				padding-top: 10px;
+				text-align: center;
+			}
+			.price-info .aui-pull-right p {
+				color: #ff6600;
+				font-size: 12px;
+				margin-bottom: 0px;
+			}
+			.buy{
+				color:#FFFFFF;
+				line-height:38px;
+			}
+			.daijq {
+				clear: both;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">留言速配服务</div>
+		    <a class="aui-pull-right" href="/myrc_index/">
+		        <span class="aui-iconfont aui-icon-my"></span>
+		    </a>
+		</header>
+		<input type="hidden" id="showcontactvalue" value="">
+		<div class="aui-content-padded">
+			
+			<div class="price">
+				价格：<span>￥ 300元  / 100个客户</span>
+			</div>
+			<div class="aui-line-x"></div>
+			
+			<div class="main">
+			<b>简介：</b><br>
+				<b style="color:#DB4646"> 获取更高交易率，达成更多订单 </b><br>
+				根据您的供求关系，为你推送所运营行业、经营产品和采购/供应信息相匹配商家，在规定时间内给对应商家留言，无需您手动操作，系统自动完成，精准性高，助力商家达成更多商机
+				<br />
+				
+			</div>
+		</div>	
+		<div class="aui-content-padded">
+		
+			<div class="showradio50">
+				<p class="title">
+					留言内容 <span class="aui-pull-right">500字内</span>
+				</p>
+				<div class="aui-line-x"></div>
+				<div class="describe aui-list-view-cell">
+					<textarea  placeholder="留言描述：建议您从产品性能、用途、包装、售后服务等方面来描述" id="details" style="height: 200px;"></textarea>
+				</div>
+				<div style="clear: both"></div>
+			</div>
+			<div style="clear: both"></div>
+		</div>
+		
+		<div style="height:50px"></div>
+		<section class="buybutton">
+			<div class="price-info">
+				<span class="price paymoney">¥<strong>300</strong>元</span>
+				<div class="aui-pull-right buyconfirm">
+						<div class="buy">立即购买</div>
+				</div>
+			</div>
+		</section>
+	</body>
+	<script type="text/javascript">
+		var paymoney=300;
+		var datevalue=0;
+		var djqlist ="0";//代金券ID
+		$(function(){
+			$(".buybutton").on("click",function() {
+				var details=$("#details").val()
+				if (details.length<=0){
+					layer.msg("请输入留言内容！");
+					return;
+				}
+				if (details.length>500){
+					layer.msg("留言内容不能大于500个字符！");
+					return;
+				}
+				paysubmit();
+			})
+		});
+		//留言速配服务
+		function paysubmit() {
+			var data = {
+				paytype : '60',
+				datatype : 'json',
+				content:$("#details").val()
+			}
+			layer.load(2);
+			zzajax("get","/qianbao/qianbaopay.html",data,function(ret){
+				if (ret) {
+					if (ret.err == 'false') {
+						layer.confirm(ret.errtext,{
+								btn : ['查看我的服务','关闭']
+							}, function() {
+								window.location='/qianbao/myservice.html';
+							},function(){
+								window.location='/service/index.html';
+							}
+						)
+					}
+					if (ret.err == 'true' && ret.blanceflag == '0') {
+						yuebuzuFun();
+					}
+					if (ret.err == 'true' && ret.blanceflag == '1') {
+						layer.msg(ret.errtext);
+					}
+				};
+				layer.closeAll('loading');
+			},function(){})
+		}
+
+	</script>
+	
+	{%include 'aui/bottom.html'%}
+</html>

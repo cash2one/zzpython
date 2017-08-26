@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport"  content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+	<meta name="format-detection"  content="telephone=no">
+    <title>生意管家-厂家直购</title>
+    <link href="http://www.zz91.com/zt/0629/css/caigou.m.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header>
+    	<div class="header"><h2>厂家直购</h2></div>
+    </header>
+    <div class="supply-nav">
+    	<h4>委托采购热线：0571-56600066&nbsp;&nbsp;&nbsp;&nbsp;<img src="http://www.zz91.com/zt/0629/images/icon_phone.png" /></h4>
+    	<ul>
+        	<li class="nav-item"><a href="supplyPub.html">免费发布</a></li>
+            <li class="nav-item">采购单　0</li>
+            <li class="nav-item">供货单　0</li>
+        </ul>
+    </div>
+    <!--end supply-nav-->
+    <div class="wrap">
+    	<section class="supply-con">
+    	{%for list in listall%}
+        	<div class="mt15">
+        		<ul class="supply-sub current">
+                	<li>
+                		<a class="sub-item react"><strong class="title">{{list.title}}</strong></a>
+                	</li>
+                	<li>
+                		<a class="sub-item react"><strong class="title">{{list.useful}}</strong></a>
+                	</li>
+                	<li>
+                		<a class="sub-item react"><strong class="title">{{list.quantity}}吨/月</strong></a>
+                	</li>
+                	<li><a class="sub-item react"><span class="grey">价   格：</span>{{list.price}}元/吨</a></li>
+                	<li><a class="sub-item react"><span class="grey">所在地：</span>{{list.area_code}}</a></li>
+                	<li><a class="sub-item react"><span class="grey">No.{{list.buy_no}}</span></a></li>
+                	<li><a class="sub-item react"><span class="grey">颜   色：</span>{{list.color}}</a></li>
+                	<li><a class="sub-item react"><span class="grey">级&nbsp;&nbsp;&nbsp;&nbsp;别：</span>{{list.level}}</a></li>
+                	<li><a class="sub-item react"><span class="grey">{{list.differ_time}}前</span></a></li>
+                	<li class="pb"><a class="sub-item react">{{list.status}}</a></li>
+                	<li class="pb"><a class="sub-item react"><img src="http://www.zz91.com/zt/0629/images/icon_phone.png" />&nbsp;拨打</a></li>
+                	<li class="pb"><a class="supply-btn sub-item react" href="supplyForm.html?buy_no={{list.buy_no}}&id={{list.id}}">我要供货</a></li>
+            	</ul>
+            </div>
+        {%endfor%}
+        
+        
+        <div class="page">
+           		<ul>
+           			{% if firstpage %}
+					<a href="?page={{prvpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}"><li class="page_prev">上一页</li></a>{%else%}<font color="gray"><li class="page_prev">上一页</li></font>{%endif%}
+
+					<li class="page_no">
+					
+
+                        
+                        {%for p in page_range%}
+							{%if p.nowpage%}
+								<span class='current'>{{p.number}}</span>&nbsp;
+							{%else%}
+								<a href="?page={{p.number}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">{{p.number}}&nbsp;</a>
+							{%endif%}
+						{%endfor%} /共{{page_listcount}}页
+					</li>
+					
+					{% if lastpage%}
+					<a href="?page={{nextpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}"><li class="page_next">下一页</li></a>{%else%}<font color="gray"><li class="page_next">下一页</li></font>{%endif%}&nbsp;&nbsp;&nbsp;
+                    
+					
+                </ul>
+            </div>
+            <!--end page-->
+        
+        
+        
+        
+        
+        </section>  
+    </div>
+</body>
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>在线留言</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/m-message-mobile.css" />
+		<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+	<script>
+		function readydo(){
+			$(".tip-layer-error").css("display","none")
+		}
+	</script>
+	</head>
+	<body onclick="readydo()">
+		<div id="head">
+			<h3>ZZ91再生网</h3>
+			<a href='tel:057156612345'>
+				<img src="http://img0.zz91.com/zz91/mobile/images/icon-tel.png" />057156612345
+			</a>
+		</div>
+		<hr class="head-hr" />
+		<form id="msgForm" method="post" action="messages_save.html">
+			<div id="content">
+				<p>欢迎您的留言</p>
+				<textarea placeholder="留言内容（必填）" name="messText" maxlength="500">{{messText}}</textarea>
+				<div id="base-items">
+					<div class="base-item">
+						<span class="icon-icon-name"></span>
+						<div>
+							<input type="text" placeholder="姓名（必填）" name="messName" maxlength="50" value="{{messName}}" />
+						</div>
+					</div>
+					<hr />
+					<div class="base-item">
+						<span class="icon-icon-tel"></span>
+						<div>
+							<input type="text" name="messPhone" maxlength="100" placeholder="手机（必填）" value="{{messPhone}}" />
+						</div>
+					</div>
+					<hr />
+					<div class="base-item">
+						<span class="icon-icon-mail"></span>
+						<div>
+							<input type="text" name="messEmail" maxlength="100" placeholder="邮箱" value="{{messEmail}}" />
+						</div>
+					</div>
+					<hr />
+					<div class="base-item">
+						<span class="icon-icon-arrow"></span>
+						<div>
+							<input type="text" name="messQQ" maxlength="100" placeholder="QQ" value="{{messQQ}}" />
+						</div>
+					</div>
+					<hr />
+					<div class="base-item">
+						<span class="icon-icon-add"></span>
+						<div>
+							<input type="text" name="messAddress" maxlength="100" placeholder="地址" value="{{messAddress}}" />
+						</div>
+					</div>
+				</div>
+				<div id="extra-items">
+				</div>
+			</div>
+			<div id="opt">
+				<input type="hidden" name="merchant_url" value="{{merchant_url}}">
+				<input type="submit" id="subBtn" class="button" value="发送" />
+			</div>
+		</form>
+		<div id="foot">
+		</div>
+		{%if errflag%}
+		<div class="tip-layer tip-layer-error" style="width: 300px; margin-left: -150px;">{{errtext}}</div>
+		{%endif%}
+	</body>
+</html>

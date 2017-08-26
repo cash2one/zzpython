@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/base.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/style.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/salesroom.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico" />
+<title>{%if list.sale_details%}{{list.sale_details}}-{%endif%}{{list.name}}</title>
+<meta content="{{list.business}}" name="description"/>
+<meta content="{{list.ctags}}" name="keywords"/></head>
+<body>
+
+<!--商铺头部及导航-->
+<div id="header">
+  <!-- 图片AD-->
+  <div class="mod mod-theme">
+    <div class="hotdoing-img">
+      <span class="company" style="font-size:30px;left:100px">{{list.name}}</span>
+      <p class="major" style="width:550px;left:100px">主营：{{list.business}}</p>
+    </div>
+  </div>
+  <!--图片AD结束-->  
+  <!-- 导航-->
+  <div class="mod-topnav">
+    <ul class="shop-nav">
+      <li {{lmselected.n1}}><a href="index{{company_id}}.htm" title="首页">首页</a></li>
+      <li {{lmselected.n2}}><a href="zxgq{{company_id}}.htm" title="产品信息">供求信息</a></li>
+      <li {{lmselected.n3}}><a href="gsxc{{company_id}}.htm" title="公司相册">公司相册</a></li>
+      <li {{lmselected.n4}}><a href="gsjj{{company_id}}.htm" title="公司介绍">公司介绍</a></li>
+      <li {{lmselected.n5}}><a href="contact{{company_id}}.htm" title="联系方式" rel="nofollow">联系方式</a></li>
+    </ul>    </ul>
+  </div>
+  <!--导航结束--> 
+</div>
+<!--商铺头部及导航结束-->
+
+<div class="upd">
+
+{%include htmlincludes.leftinclude%}
+
+  </div>
+  <!-- 右面主题板块-->
+  <div class="main-wrap fr"> 
+    <!--明星产品-->
+    <div class="mod mod-starpro">
+      <div class="m-body">
+        <div class="m-header">
+          <h3>最新供求<span style="padding-right:15px;float:right"><a href="zxgq{{company_id}}.htm">>> 查看更多</a></span></h3>
+        </div>
+        <div class="m-content">
+          <div class="star-region">
+            <ul class="offer-pro">
+{%for list in prolist.list%}
+              <li>
+                <div class="pro-img1"> <a href="productdetail{{list.pdt_id}}.htm" target="_blank" title="{{list.pdt_name}}"><img src="{{list.pdt_images}}" alt="{{list.pdt_name}}" /></a> </div>
+                <div class="pro-titles1"> <a href="productdetail{{list.pdt_id}}.htm" target="_blank" title="{{list.pdt_name}}">{{list.pdt_name}}</a> </div>
+              </li>
+{%endfor%}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--明星产品结束--> 
+    <div class="clear"></div>
+    <!--公司介绍-->
+    <div class="mod mod-starpro">
+      <div class="m-body">
+        <div class="m-header">
+          <h3>公司介绍</h3>
+        </div>
+        <!--end m-header-->
+        <div class="m-content" style="height:213px">
+          <div class="com-intro clf">
+{%if companypic%}
+          	 <div class="info-pic fl" style="width:195px;height:195px">
+<img src="{{companypic.filepath}}" width="195px" height="195px">
+          	 </div>
+             <!--end info-pic-->
+             <div class="info-word fr" style="width:530px">
+               <p class="para-one">
+&nbsp;&nbsp;{{list.introduction_s|safe}}
+               	 <span><a href="gsjj{{company_id}}.htm" title="">[查看详情]</a></span>
+               </p>
+             </div>
+{%else%}
+               <p class="para-one">
+&nbsp;&nbsp;{{list.introduction_s|safe}}
+               	 <span><a href="gsjj{{company_id}}.htm" title="">[查看详情]</a></span>
+               </p>
+	
+{%endif%}
+             
+             <!--end info-word-->
+             <div style="clear:both"></div>
+          </div>
+          <!--end com-intro clf-->
+        </div>
+        <!--end m-content-->
+      </div>
+      <!--end m-body-->
+    </div>
+    <!--公司介绍结束-->
+  </div>
+  <!-- 右面主题板块结束--> 
+  <div style="clear:both"></div>
+</div>
+<div style="clear:both"></div>
+{%include htmlincludes.buttominclude%}
+</body>
+</html>

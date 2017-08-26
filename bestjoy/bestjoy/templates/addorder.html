@@ -1,0 +1,311 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>layui</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="layui/css/layui.css" media="all">
+		<style>
+			body{
+				padding: 10px;
+			}
+			::-webkit-scrollbar{width:20px;height: 20px;}
+			::-webkit-scrollbar-corner,::-webkit-scrollbar-track{background-color: #5fb878;}
+			/*城市联动*/
+			#school{color: #666;}
+			#school-box{
+				width:600px;
+				border:1px solid #CCC;
+				box-shadow:2px 3px 0 rgba(190,190,190,0.3);
+				background-color: #fff;
+				z-index: 9000;
+				position: absolute;
+				display: none;
+				top:35px;
+				left:0px;
+			}
+			#school-box a{    
+			    color:#3777bc;
+			    text-decoration: none;
+			    padding-left: 10px;
+			    text-align: left;
+			    display: block;
+			    width: 100%;
+			    overflow: hidden;
+			}
+			#school-box a:hover{    
+			    background-color:#ccc;
+			    color: #fff;
+			    cursor: pointer;
+			}
+			#school-box a.active{    
+			    background-color:#666;
+			    color:#fff;
+			}
+			#school-box a:hover{    
+			    background-color:#ccc;
+			    color: #fff;
+			    cursor: pointer;
+			}
+			#school-box h1{
+				color: #333;
+				line-height: 2;
+				padding-left: 10px;
+				background-color: #ebebeb;
+			}
+			#school-box #school {
+			    overflow-x: hidden;
+			    overflow-y: auto;
+			    height: 200px;
+			}
+			#school-box #school a{
+			    display: block;
+			    border-bottom: 1px solid #ccc;
+			    width: 100%;
+			    text-align: left;
+				line-height: 30px;
+				padding: 4px;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<form class="layui-form" action="">
+			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+				<legend>订单信息</legend>
+			</fieldset>
+			<div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red;">*</span> 产品名称</label>
+				<div class="layui-input-block">
+					<input type="text" name="proname" lay-verify="required" autocomplete="off" placeholder="请输入产品名称" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span style="color: red;">*</span> 款式/型号</label>
+				<div class="layui-input-block">
+					<input type="text" name="protype" lay-verify="required" autocomplete="off" placeholder="请输入款式/型号" class="layui-input">
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label"><span style="color: red;">*</span> 尺码</label>
+					<div class="layui-input-inline">
+						<input type="number" name="prosize" lay-verify="required|float" placeholder="0.00" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">单价</label>
+					<div class="layui-input-inline">
+						<input type="number" name="proprice" id="proprice" lay-verify="float" placeholder="￥" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label"><span style="color: red;">*</span> 数量</label>
+					<div class="layui-input-inline">
+						<input type="number" name="pronumber" lay-verify="number" autocomplete="off" placeholder="0" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label class="layui-form-label">备注</label>
+				<div class="layui-input-block">
+					<textarea placeholder="请输入备注" name="prodesc" class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+				<legend>地址</legend>
+			</fieldset>
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span style="color: red;">*</span> 所在地</label>
+				<div class="layui-input-inline" style="width: 500px;position: relative;">
+					<input type="text" name="areatext"  id="areatext" placeholder="点击输入地区" autocomplete="off" class="layui-input" lay-verify="required">
+					<input type="hidden" name="area" id="area" value="">
+					<div id="school-box">
+                        <h1>请选择地区</h1>
+                        <div id="school">
+                        	
+                        </div>
+                    </div>
+				</div>
+				<button type="button" class="layui-btn layui-btn-normal selectarea">选择地区</button>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label class="layui-form-label"><span style="color: red;">*</span> 街道地址</label>
+				<div class="layui-input-block">
+					<input type="text" name="address" lay-verify="required" placeholder="请输入街道地址" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item" style="display: none;">
+				<label class="layui-form-label">邮编</label>
+				<div class="layui-input-inline">
+					<input type="number" name="postcode" placeholder="请输入邮编" autocomplete="off" class="layui-input">
+				</div>
+				<div class="layui-form-mid layui-word-aux"></div>
+			</div>
+
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span style="color: red;">*</span> 收货人</label>
+				<div class="layui-input-inline">
+					<input type="text" name="contactname" lay-verify="required" placeholder="请输入收货人" autocomplete="off" class="layui-input">
+				</div>
+				<div class="layui-form-mid layui-word-aux"></div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">电话</label>
+					<div class="layui-input-inline" style="width: 60px;">
+						<input type="number" name="phone1" placeholder="区号" autocomplete="off" class="layui-input">
+					</div>
+					<div class="layui-form-mid">-</div>
+					<div class="layui-input-inline" style="width: 150px;">
+						<input type="number" name="phone2" placeholder="电话号码" autocomplete="off" class="layui-input">
+					</div>
+					<div class="layui-form-mid">-</div>
+					<div class="layui-input-inline" style="width: 60px;">
+						<input type="number" name="phone3" placeholder="分机号" autocomplete="off" class="layui-input">
+					</div>
+					<div class="layui-form-mid layui-word-aux">区号-电话号码-分机号</div>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span style="color: red;">*</span> 手机</label>
+				<div class="layui-input-inline">
+					<input type="number" name="mobile" lay-verify="phone" placeholder="请输入手机" autocomplete="off" class="layui-input">
+				</div>
+				<div class="layui-form-mid layui-word-aux">电话和手机请至少填写一个</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">预约时间</label>
+				<div class="layui-input-inline">
+					<input type="text" name="yuyue_time" id="yuyue_time" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
+				</div>
+				<div class="layui-form-mid layui-word-aux"></div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit="" lay-filter="demo1">保存提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    注：打 <span style="color: red;">*</span> 号为必填项。
+				</div>
+			</div>
+		</form>
+		<script src="layui/layui.js" charset="utf-8"></script>
+		<script src="js/jquery.js" charset="utf-8"></script>
+		<script src="js/comm.js" charset="utf-8"></script>
+		<script>
+			layui.use(['form', 'layedit', 'laydate'], function() {
+				var form = layui.form(),
+					layer = layui.layer
+				//自定义验证规则
+				form.verify({
+					
+				});
+
+
+				//监听提交
+				form.on('submit(demo1)', function(data) {
+					var datalist=data.field;
+					layer.load(2)
+					crmajax("get","/addorder_save.html",datalist,function(ret){
+						//alert(JSON.stringify(ret))
+						if (ret) {
+							if (ret.err == 'false') {
+								layer.msg("添加成功！");
+								window.location='/orderlist.html?backurl={{backurl}}'
+							} else {
+								layer.msg(ret.errkey)
+							}
+						} else {
+							
+						};
+						layer.closeAll('loading');
+					},function(err){
+						//alert(JSON.stringify(err))
+						layer.closeAll('loading');
+					});
+					return false;
+				});
+			});
+			$(function(){
+				$(".selectarea").on("click", function() {
+					layer.open({
+						type: 2,
+						title: '选择地区',
+						shadeClose: true,
+						shade: 0.3,
+						scrollbar: false,
+						area: ['400px', '500px'],
+						content: '/province.html' //iframe的url
+					}); 
+				});
+				$("#areatext").keyup(function() {
+					poparea()
+				})
+				$("#areatext").click(function() {
+					poparea()
+				})
+				$("#school").on("click","a",function() {
+					var parea=$(this).text();
+					var code=$(this).attr("code");
+					xzprovincecode(parea,code);
+					closebox();
+				})
+			})
+			function xzprovincecode(parea,code){
+				$("#area").val(code);
+				$("#areatext").val(parea)
+			}
+			function closebox(){
+				var box = document.getElementById("school-box");
+				if (box.style.display=="block"){
+					box.style.display = "";
+				}else{
+					box.style.display = "block";
+				}
+			}
+			function poparea(){
+				var data={
+					label:$("#areatext").val()
+				}
+				crmajax("get","/arealist.html",data,function(ret){
+					var shtml='';
+					$.each(ret,function(index,item){
+						shtml+="<a code='"+item.code+"'>"+item.arealist+"</a>"
+					})
+					$("#school").html(shtml)
+				},function(err){
+				});
+				$("#school-box").show();
+				var box = document.getElementById("school-box")
+				box.onclick = function(e){
+				     e = e || window.event;
+				     if(window.event){    //阻止事件冒泡
+				         e.cancelBubble = true;
+				     } else {
+				         e.stopPropagation();
+				     }
+			    }
+			     
+			     //点击body隐藏box
+			     document.body.onclick = function(e){
+				     e = e || window.event;
+				     var target = e.target || e.srcElement;
+				     if(target.id === "school-box" || target.id === "areatext") {
+				         return;
+				     } else {
+				         box.style.display = "none";
+				     }
+			     }
+			}
+			
+		</script>
+
+	</body>
+
+</html>

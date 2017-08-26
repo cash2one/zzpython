@@ -1,0 +1,31 @@
+
+<div id="slider" class="mui-slider">
+<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_favorite/?checkStatus=1&company_id={{company_id}}');">供求<span class="mui-badge">{{alist1}}</span></a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_favorite/?checkStatus=2&company_id={{company_id}}');">公司<span class="mui-badge mui-badge-success">{{alist2}}</span></a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_favorite/?checkStatus=3&company_id={{company_id}}');">报价<span class="mui-badge mui-badge-success">{{alist3}}</span></a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_favorite/?checkStatus=4&company_id={{company_id}}');">互助<span class="mui-badge mui-badge-success">{{alist4}}</span></a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_favorite/?checkStatus=5&company_id={{company_id}}');">资讯<span class="mui-badge mui-badge-success">{{alist5}}</span></a>
+</div>
+<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-2" style="{%ifequal checkStatus '2'%}margin-left: 20%;{%endifequal%}{%ifequal checkStatus '3'%}margin-left: 40%;{%endifequal%}{%ifequal checkStatus '4'%}margin-left: 60%;{%endifequal%}{%ifequal checkStatus '5'%}margin-left: 80%;{%endifequal%}"></div>
+<ul class="mui-table-view">
+	{%if qlist%}
+{%for list in qlist%}
+<li class="mui-table-view-cell">
+	<a href="{{list.favorite_url}}">
+		<span style="width:50%">[{{list.favorite_type}}]{{list.content_title}}</span>
+	</a>
+	<button class="mui-btn mui-btn-danger mui-btn-outlined" onclick="myrc.favoritedel({{list.id}},this)" style="z-index: 1000;background-color: #fff;">
+            <span class="mui-icon mui-icon-trash"></span>
+            删除	
+        </button>
+</li>
+{%endfor%}
+<div id=pulldiv class='pulldiv' onclick=loadmorep(this,'/myrc_favorite/?company_id={{company_id}}') title="/myrc_favorite/?company_id={{company_id}}&checkStatus={{checkStatus}}"><span class='mui-icon mui-icon-down'></span><span>点此加载更多</span></div>
+{%else%}
+<li class="mui-table-view-cell">
+	没有任何收藏信息
+</li>
+{%endif%}
+</ul>
+<input type="hidden" id="appnavname" value="我的收藏夹" />

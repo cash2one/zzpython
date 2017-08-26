@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>关注ZZ91微信公众号送大礼-2014开春活动</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+<link rel="stylesheet" type="text/css" href="http://subject.zz91.com/weixin2014/css/year.css"/>
+<link rel="stylesheet" type="text/css" href="http://subject.zz91.com/weixin2014/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script src="http://subject.zz91.com/weixin2014/js/year.js"></script>
+<script type="text/javascript" src="http://subject.zz91.com/weixin2014/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+</head>
+<body>
+<div style="width:100%; background-color:#F9F7EC">
+	<div style="width:960px;margin:0 auto">
+		{% include 'nav.html' %}
+    </div>
+</div>
+<div class="focus" id="Top">
+    <div class="focus-top">
+    	
+    </div>
+	<div class="focus-main">
+    	<div class="focus-img1">
+        	
+        </div>
+        <div class="focus-img2">
+        	<div class="focus-img2-a1">
+            	<a class="fancybox-effects-a" href="http://subject.zz91.com/weixin2014/images/img0.jpg"></a>
+            </div>
+            <!--end focus-img2-a1-->
+            <div class="focus-img2-a2">
+            	<a href="http://trade.zz91.com/postoffer_step1.htm" target=_blank></a>
+            </div>
+            <!--end focus-img2-a1-->
+        </div>
+		
+        <div class="focus-img3"><a id="p"></a>
+        	<div class="focus-block">
+			
+			{%for list in companylist.list%}
+            	{%if list%}
+				<div class="focus-item">
+                	<div class="focus-item-img">
+                    	{%if list.ldbflag%}
+						<a href="http://www.zz91.com/ppc/index{{list.com_id}}.htm" target="_blank"><img src="{{list.pdt_images}}" title="{{list.pdt_name}}" /></a>
+						{%else%}
+						{%if list.arrviptype.vipcheck%}
+                        <a href="http://{{list.com_subname}}.zz91.com" target="_blank"><img src="{{list.pdt_images}}" title="{{list.pdt_name}}" /></a>
+						{%else%}
+						<a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target="_blank"><img src="{{list.pdt_images}}" title="{{list.pdt_name}}" /></a>
+						{%endif%}
+						{%endif%}
+                    </div>
+                    <div class="focus-item-box">
+                    	<div class="focus-item-text">
+                        	{%if list.ldbflag%}
+								<a href="http://www.zz91.com/ppc/index{{list.com_id}}.htm" target="_blank">{{list.com_name}}</a>
+							{%else%}
+							{%if list.arrviptype.vipcheck%}
+							<a href="http://{{list.com_subname}}.zz91.com" target="_blank">{{list.com_name}}</a>
+							{%else%}
+							<a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target="_blank">{{list.com_name}}</a>
+							{%endif%}
+							{%endif%}
+							
+                        </div>
+                        <div class="focus-item-info">
+						    地区：{{list.com_province}}<Br />
+                        	主营：{{list.pdt_name}}...
+                        </div>
+                        
+                        <div class="cb"></div>
+                    </div>
+                    <!--end focus-item-box-->
+                    <div class="focus-box">
+                    	{{list.business}}
+                    </div>
+                    <!--end focus-box-->
+                </div>
+				{%endif%}
+			{%endfor%}
+                
+			<div class=cb></div>
+            </div>
+            <!--end focus-block-->
+            <center>
+                <div class="page">
+                    <ul class="page_ul" id="page_ul">
+                    {% if firstpage %}
+					<li><a href="?page=1#p">首页</a></li>
+					{% endif %} 
+					{% if prvpage %}
+					<li><a href="?page={{prvpage}}#p">上一页</a></li>
+					{% endif %}
+					{% for p in page_range %}
+					{% if p.nowpage %}
+                	<li class=nowpage><a href="javascript:void(0)">{{p.number}}</a></li>
+                    {% else %}
+					<li><a href="?page={{p.number}}#p">{{p.number}}</a></li>
+					{% endif %}
+					{% endfor %}
+                    {% if lastpage%}
+                    <li><a href="?page={{nextpage}}#p">下一页</a></li>
+					{% endif %}
+                    <li style="border:0">共{{page_listcount}}页</li>
+                    </ul>
+                      
+                </div>
+                <!--end page-->
+            </center>
+        </div>
+    </div>
+    <!--end focus-main-->
+    <div style="width:100%">
+        <div style="width:960px;margin:0 auto;text-align:center">
+            
+
+<div class="clear"></div>
+<div class="footer">
+	<p>
+		<a href="http://about.zz91.com/" target="_blank" >关于我们</a> | 
+		<a href="http://www.recyclechina.com/" target="_blank">国际站</a> | 
+		<a href="http://www.zz91.com/service/baidu/yh.html" target="_blank">百度优化</a> | 
+		<a href="http://www.zz91.com/service/zst/" target="_blank">再生通服务</a> | 
+		<a href="http://help.zz91.com/" target="_blank">新手指南</a> | 
+		<a href="http://www.zz91.com/webmap.html" target="_blank">网站地图</a> | 
+		<a href="http://www.zz91.com/hkfs/" target="_blank" rel="nofollow">支付方式</a> | 
+		<a href="http://about.zz91.com/contact.html" target="_blank" rel="nofollow">意见投诉</a> | 
+		<a href="http://www.zz91.com/about/linkus.asp" target="_blank">友情链接</a> | 
+		<a href="http://about.zz91.com/contact.html" target="_blank">客服中心</a> | 
+		<a href="http://about.zz91.com/jobs.html" target="_blank">诚聘英才</a> | 
+		<a href="http://daohang.zz91.com/" target="_blank">产品导航</a>
+		<br />
+		全国统一服务热线：0571-56611111 56612345   市场合作：0571-56633145   广告服务：0571-56611111   传真：0571-56637777<br />
+		<a href="http://www.miibeian.gov.cn" target="_blank">增值电信业务经营许可证 浙B2-20080212</a> 法律顾问：京衡律师集团事务所 罗益群 律师<br />
+        版权所有 ZZ91再生网  Copyright&copy;2005-2013 ZZ91.com. All Rights Reserved <br />
+        <br>
+	  ZZ91再生网为中国物资再生协会副会长单位  中国塑协理事单位  浙江省电子商务促进会的副会长单位<br />
+		并与中国有色金属工业协会、中国塑料协会 、阿里巴巴、《资源再生》杂志等达成战略合作<br />
+        
+	</p>
+    	<p>	
+	</p>
+</div>
+<script>
+(function(d, t) {
+    var r = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    r.async = 1;
+    r.src = 'http://www.zz91.com/app/log.htm?' + Math.ceil(new Date/3600000)
+    s.parentNode.insertBefore(r, s);
+})(document, 'script');
+</script>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"right","bdTop":"100"},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+<div style="display:none">
+<!--google analysis-->
+<!--baidu analysis-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
+
+        </div>
+    </div>
+    
+</div>
+<!--end focus-->
+</body>
+</html>

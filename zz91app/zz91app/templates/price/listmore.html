@@ -1,0 +1,7 @@
+{%for list in pricelist%}  	
+	<li class="mui-table-view-cell">
+        <a class="mui-navigate-right" href="/priceviews/?id={{list.id}}{%if list.typeid%}&category_id={{list.typeid}}{%endif%}{%if list.assistid%}&assist_id={{list.assistid}}{%endif%}{%if keywords%}&keywords={{keywords_hex}}{%endif%}">
+            {{list.title}}
+        </a>
+    </li>
+{%endfor%}

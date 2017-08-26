@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> {% include 'comm/seo.html' %}
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/price/new/css/main/style.css" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/2014price/css/2014price.css" />
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+		<link rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+		<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+		<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+		<script src="http://img0.zz91.com/zz91/pricesearch/style.js"></script>
+		<link rel="alternate" media="only screen and(max-width:640px)" href="http://m.zz91.com/jiage/detail{{id}}.html">
+		<meta http-equiv="mobile-agent" content="format=html5; url=http://m.zz91.com/jiage/detail{{id}}.html" />
+		<script>
+			$(function() {
+				$('#ghuilv').click(function() {
+					var numb = $('#numb').val()
+					var miancountry = $('#miancountry').val()
+					var country = $('#country').val()
+					$.ajax({
+						type: "POST",
+						url: "/pricehuilv.html",
+						data: "numb=" + numb + "&miancountry=" + miancountry + "&country=" + country,
+						success: function(data) {
+							$('#lilv6').html(data)
+						},
+						error: function(data) {
+							alert("错误!青重试.");
+						}
+					});
+				});
+			});
+		</script>
+		{% include 'comm/mobilecontrol.html' %}
+	</head>
+
+	<body>
+		{% include 'comm/top.html' %}{% include 'comm/mid.html'%}
+		<div class="part">
+			<div class="part_left">
+				<div class="part_left_tle">您所在的位置：<a href="/" target="_blank">行情报价首页</a> > {%ifequal maintype '废金属'%}
+					<a href="http://jiage.zz91.com/jinshu/" target="_blank">废金属行情</a> {%endifequal%} {%ifequal maintype '废塑料'%}
+					<a href="http://jiage.zz91.com/suliao/" target="_blank">废塑料行情</a> {%endifequal%} {%ifequal maintype '综合废料'%}
+					<a href="http://jiage.zz91.com/other/" target="_blank">综合废料行情</a> {%endifequal%} > {{title1}}</div>
+				<!--end part_left_tle-->
+				<div class="part_left_content">
+					<div class="pl_content_caption">
+						<center>
+							<h1>{{title1}}</h1>
+						</center>
+					</div>
+					<!--end pl_content_caption-->
+					<div class="pl_content_txt">
+						<center>
+							<span>发布时间：{{gmt_modified}}　</span>
+							<br /> {%for tag in tgslist%}
+							<a href="http://daohang.zz91.com/tags-{{tag.main_code}}/{{tag.id}}/" target="_blank">{{tag.name}}</a> {%endfor%}
+						</center>
+					</div>
+					<!--end pl_content_txt-->
+					{%if histplist%}
+					<div class="pl_content_chk">
+						<ul>
+							<li><a href="" target="_blank">查看历史报价</a></li>
+							{%for hprc in histplist%}
+							<li{%ifequal hprc.td_id id%} class="pl_content_chk_li_click" {%endifequal%}><a href="{{hprc.url}}">{{hprc.td_time}}</a></li>
+								{%endfor%}
+						</ul>
+					</div>
+					{%else%}
+					<br /> {%endif%}
+
+					<!--货币汇率-->
+					&nbsp;&nbsp;&nbsp;<span id="lilv6" style="font-weight:bold">{{numb}}{{miancountry}}={{huilvlist2}}{{country}}&nbsp;&nbsp; ({{numb}}{{country}}={{huilvlist1}}{{miancountry}})</span><br />
+					<div style="height:5px"></div>
+					&nbsp;&nbsp;&nbsp;<input type="text" id="numb" value="{{numb}}" style="height:21px;">
+					<select id="miancountry" style="height:25px;">
+				{%for l1 in listcountry1%}
+				<option>{{l1}}</option>
+				{%endfor%}
+				<select> <span style="font-size:12px;font-weight:bold;">兑换为</span> 
+				<select id="country" style="height:25px;">
+				{%for l2 in listcountry2%}
+				<option>{{l2}}</option>
+				{%endfor%}
+				<select>
+                &nbsp;<button id="ghuilv" style="height:25px;width:50px">转换</button>&nbsp;
+                <br /><br />
+                <!--货币汇率-->
+                
+                <div class="aboutContent">
+                
+{%if pricelist%}
+                	<table class="zb-tab" cellpadding="0" cellspacing="0" border="0">
+                    	<tr>
+                        	<td class="zb-tab-td0">时间</td>
+                        	{%for pf in listname%}
+                            <td class="zb-tab-td1">{{pf}}</td>
+                        	{%endfor%}
+                            <td class="zb-tab-td3">历史价格</td>
+                        </tr>
+{%for pl in pricelist%}
+                        <tr>
+                        	<td class="zb-tab-td_">{{pl.postdate}}</td>
+                        	
+                        	{%for field in pl.listvalue%}
+                        	<td class="zb-tab-td_">{{field}}</td>
+                        	{%endfor%}
+                        	
+                            <td class="zb-tab-td_"><a href="{{pl.curl}}" target="_blank">趋势图</a></td>
+                        </tr>
+{%endfor%}
+                    </table>
+{%else%}
+			{%if pricedatalist%}
+				<table class="zb-tab" cellpadding="0" cellspacing="0" border="0">
+				<tr>
+                	<td class="zb-tab-td0">品名</td>
+                    <td class="zb-tab-td3">地区</td>
+                    <td class="zb-tab-td">价格（元/吨）</td>
+                    <td class="zb-tab-td">公司名称</td>
+                </tr>
+                {%for data in pricedatalist%}
+                <tr>
+                	<td class="zb-tab-td_">{{data.product_name}}</td>
+                	<td class="zb-tab-td_">{{data.area}}</td>
+                	<td class="zb-tab-td_">{{data.quote}}</td>
+                	<td class="zb-tab-td_"><a href="{{data.company_url}}" target="_blank">{{data.company_name}}</a></td>
+				</tr>
+				{%endfor%}
+				</table>
+			{%else%}
+				{{content|safe}}
+			{%endif%}
+{%endif%}
+
+<div style="width: 100%;text-align: center;line-height: 30px;">我要订阅该行情<br>扫一扫，关注 “zz91再生网”<br /><img src="http://img0.zz91.com/zz91/weixin/images/priceorder.png"><br /></div>
+                </div>
+                </div>
+                <div class="part_left_content">
+                <!--end pl_content_tab-->
+                <div class="pl_content_box">
+                	<ul>
+{%ifequal maintype '废金属'%}
+<li><a href="/feilv/" target="_blank" style="color:black;font-size:12px" title="今日废铝">今日废铝</a></li>
+<li><a href="/feitong/" target="_blank" style="color:black;font-size:12px" title="今日废铜">今日废铜</a></li>
+<li><a href="/feibuxiugang/" target="_blank" style="color:black;font-size:12px" title="废不锈钢">废不锈钢</a></li>
+<li><a href="/feiqianfeixin/" target="_blank" style="color:black;font-size:12px" title="废铅/锌">废铅/锌</a></li>
+<li><a href="/feigang1/" target="_blank" style="color:black;font-size:12px" title="今日废钢">今日废钢</a></li>
+<li><a href="/feitie/" target="_blank" style="color:black;font-size:12px" title="今日废铁">今日废铁</a></li>
+<li><a href="/feinie/" target="_blank" style="color:black;font-size:12px" title="今日废镍">今日废镍</a></li>
+<li><a href="/feimutai/" target="_blank" style="color:black;font-size:12px" title="今日废钛">今日废钛</a></li>
+<li><a href="/feimutai/" target="_blank" style="color:black;font-size:12px" title="今日废钼">今日废钼</a></li>
+<li><a href="/shengtie1/" target="_blank" style="color:black;font-size:12px" title="今日生铁">今日生铁</a></li>
+<li><a href="/feijinshupinglun/" target="_blank" style="color:black;font-size:12px" title="金属日评">金属日评</a></li>
+<li><a href="/huatongxianhuo/" target="_blank" style="color:black;font-size:12px" title="华通有色金属">华通有色金属</a></li>
+<li><a href="/feidianping/" target="_blank" style="color:black;font-size:12px" title="今日废电瓶">今日废电瓶</a></li>
+<li><a href="/guowaifeijinshu/" target="_blank" style="color:black;font-size:12px" title="国外金属">国外金属</a></li>
+<li><a href="/LMEjibenjinshu/" target="_blank" style="color:black;font-size:12px" title="LME金属期货">LME金属期货</a></li>
+<li><a href="/hutong/" target="_blank" style="color:black;font-size:12px" title="今日沪铜">今日沪铜</a></li>
+<li><a href="/hulv/" target="_blank" style="color:black;font-size:12px" title="今日沪铝">今日沪铝</a></li>
+<li><a href="/huxin/" target="_blank" style="color:black;font-size:12px" title="今日沪锌">今日沪锌</a></li>
+<li><a href="/shanghaihejin/" target="_blank" style="color:black;font-size:12px" title="上海合金">上海合金</a></li>
+<li><a href="/shanghaijibenjinshu/" target="_blank" style="color:black;font-size:12px" title="上海基本金属">上海基本金属</a></li>
+<li><a href="/shanghaixiaojinshu/" target="_blank" style="color:black;font-size:12px" title="上海小金属">上海小金属</a></li>
+<li><a href="/shanghaijinshufenmo/" target="_blank" style="color:black;font-size:12px" title="上海金属粉末">上海金属粉末</a></li>
+<li><a href="/shanghaiguijinshu/" target="_blank" style="color:black;font-size:12px" title="上海贵金属">上海贵金属</a></li>
+{%endifequal%}
+{%ifequal maintype '废塑料'%}
+<li><a href="/shichangjia/" target="_blank" style="color:black;font-size:12px" title="废塑料市场价">废塑料市场价</a></li>
+<li><a href="/pet/" target="_blank" style="color:black;font-size:12px" title="今日PET废料">今日PET废料</a></li>
+<li><a href="/pp/" target="_blank" style="color:black;font-size:12px" title="今日PP废料">今日PP废料</a></li>
+<li><a href="/ldpe/" target="_blank" style="color:black;font-size:12px" title="LDPE废料">LDPE废料</a></li>
+<li><a href="/pc/" target="_blank" style="color:black;font-size:12px" title="PC废料">PC废料</a></li>
+<li><a href="/ps/" target="_blank" style="color:black;font-size:12px" title="PS废料">PS废料</a></li>
+<li><a href="/hdpe/" target="_blank" style="color:black;font-size:12px" title="HDPE废料">HDPE废料</a></li>
+<li><a href="/abs/" target="_blank" style="color:black;font-size:12px" title="ABS废料">ABS废料</a></li>
+<li><a href="/pvc/" target="_blank" style="color:black;font-size:12px" title="PVC废料">PVC废料</a></li>
+<li><a href="/pa/" target="_blank" style="color:black;font-size:12px" title="PA废料">PA废料</a></li>
+<li><a href="/pmma/" target="_blank" style="color:black;font-size:12px" title="PMMA废料">PMMA废料</a></li>
+<li><a href="/pom/" target="_blank" style="color:black;font-size:12px" title="POM废料">POM废料</a></li>
+<li><a href="/chuchangjia/" target="_blank" style="color:black;font-size:12px" title="塑料出厂价格">塑料出厂价格</a></li>
+<li><a href="/gedifeisuliaohangqing/" target="_blank" style="color:black;font-size:12px" title="塑料市场动态">塑料市场动态</a></li>
+<li><a href="/feisuliaopinglun/" target="_blank" style="color:black;font-size:12px" title="塑料评论">塑料评论</a></li>
+{%endifequal%}
+{%ifequal maintype '综合废料'%}
+<li><a href="/s/e9bd90e9b281e58c96e5b7a5e59f8e-0/" target="_blank" style="color:black;font-size:12px" title="齐鲁化工城">齐鲁化工城</a></li>
+<li><a href="/guoneirifei/" target="_blank" style="color:black;font-size:12px" title="日废">日废</a></li>
+<li><a href="/guoneimeifei/" target="_blank" style="color:black;font-size:12px" title="美废">美废</a></li>
+<li><a href="/guoneioufei/" target="_blank" style="color:black;font-size:12px" title="欧废">欧废</a></li>
+<li><a href="/guowaifeizhi/" target="_blank" style="color:black;font-size:12px" title="国外废纸">国外废纸</a></li>
+<li><a href="/cprice-1002/" target="_blank" style="color:black;font-size:12px" title="废纸企业报价">废纸企业报价</a></li>
+<li><a href="/cprice-1003/" target="_blank" style="color:black;font-size:12px" title="综合废料企业报价">综合废料企业报价</a></li>
+<li><a href="/guoneixiangjiao/" target="_blank" style="color:black;font-size:12px" title="废橡胶价格">废橡胶价格</a></li>
+<li><a href="/zhouping1/" target="_blank" style="color:black;font-size:12px" title="废纸日评">废纸日评</a></li>
+<li><a href="/youjia/" target="_blank" style="color:black;font-size:12px" title="油价快报">油价快报</a></li>
+{%endifequal%}
+                    </ul>
+                </div>
+                
+                <!--end pl_content_box-->
+                <div class="pl_content_read">延伸阅读</div>
+                <!--end pl_content_read-->
+                <div class="pl_content_articles">
+                	<ul>
+                	{%for alist in aboutlist%}
+                    	<li><a href="/detail/{{alist.td_id}}.html" target="_blank">{{alist.td_title}}</a></li>
+					{%endfor%}
+					</ul>
+                </div>
+                <!--end pl_content_articles-->
+                <div class="pl_content_label">
+                	<span>本文标签：</span>{%for tag in tgslist%}<a href="/s/{{tag.tag_hex}}-0" target="_blank">{{tag.tag}}</a> {%endfor%}
+                </div>
+                <!--end pl_content_label-->
+                <div class="pl_content_statement">免责声明:本信息仅供参考，ZZ91再生网力求准确可靠，但不作为您投资决策的唯一因素!</div>
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<ins class="adsbygoogle"
+				     style="display:block"
+				     data-ad-client="ca-pub-5512236620584335"
+				     data-ad-slot="8274972003"
+				     data-ad-format="auto"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+                <!--
+                <script type="text/javascript">
+				    /*640*60 kangxianyue 创建于 2016-01-14*/
+				    var cpro_id = "u2491344";
+				</script>
+				<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+				-->
+                <div class="clear"></div>
+            <script src="http://pyapp.zz91.com/showppctxtadscript/?keywords=&amp;showborder=1&amp;showposition=1&amp;m=4&amp;padding=8&amp;w=670&amp;num=4&adposition=636"></script>
+	            
+            </div>
+            <!--end part_left_content-->
+        </div>
+        <!--end part_left-->
+        <div class="part_right">
+        	<div class="item-yb-box_">
+                <div class="item-yb-box-tle">{{maintype}}行情导读</div>
+                <div class="item-yb-box-info">
+                  <div class="yb-info-block_">
+                    <div class="yb-info-left">类别：</div>
+                    <!--end yb-info-left-->
+                    <div class="yb-info-right">
+        <ul class="category">
+        	{%for tl in typecodelist%}
+        	<li><a href="{{tl.link}}" target="_blank">{{tl.title}}</a></li>
+        	{%endfor%}
+        </ul>
+                    </div>
+                    <!--end yb-info-right-->
+                    <div class="cb"></div>
+                   </div>
+                   <!--end yb-info-block-->
+                   <div class="yb-info-block">
+                    <div class="yb-info-left">地区 ：</div>
+                    <!--end yb-info-left-->
+                    <div class="yb-info-right">
+        <ul class="category">
+        	{%for tl in areacodelist%}
+        	<li><a href="{{tl.link}}" target="_blank">{{tl.title}}</a></li>
+        	{%endfor%}
+        </ul>
+                    </div>
+                    <!--end yb-info-right-->
+                    <div class="cb"></div>
+                   </div>
+                   <!--end yb-info-block-->
+                </div>
+               <!--end item-yb-box-info-->
+            </div>
+            <div class="item-yb-box-info" style="margin-bottom: 10px;"><center>
+
+            <script type="text/javascript">
+			    /*新老站 资讯中部 250*250，创建于2013-12-9*/
+			    var cpro_id = "u1429359";
+			</script>
+			<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+			</center></div>
+            <!--end item-yb-box_-->
+            <div class="item-yb-box">
+                	<div class="yb-box-bg">
+                    	<div class="yb-bg-price">
+                        	<ul>
+          {%for oft in offerlist%}
+                            	<li>
+                                	<div class="yb-price-img">
+                                    	<a href="{{oft.url}}" target="_blank"><img src="{{oft.pic_address}}" /></a>
+                                    </div>
+                                    <!--end yb-price-img-->
+                                    <div class="yb-price-txt"><a href="{{oft.url}}" target="_blank">{{oft.fulltitle}}</a></div>
+                                    <!--end yb-price-txt-->
+                                    <div class="yb-price-discuss">{%if oft.products_detail.price%}{{oft.products_detail.price}}{%else%}面议或电议{%endif%}</div>
+                                    <!--end yb-price-discuss-->
+                                </li>
+          {%endfor%}
+                            </ul>
+                        </div>
+                        <!--end yb-bg-price-->
+                    </div>
+                    <!--end yb-box-bg-->
+                    <div class="yb-box-bg-tle">商家报价</div>
+                    <!--end yb-box-bg-tle-->
+                </div>
+                <!--end item-yb-box-->
+            <div class="item-yb-box_">
+               <div class="item-yb-box-tle">相关问答</div>
+                  <div class="item-yb-box-info">
+                    <ul>
+                    {%for bs in bbslist%}
+                        <li><a href="{{bs.url}}" target="_blank">{{bs.title}}</a></li>
+                    {%endfor%}
+                    </ul>
+                 </div>
+                <!--end item-yb-box-info-->
+              </div>
+           <!--end item-yb-box_-->
+           <div class="item-yb-box_">
+               <div class="item-yb-box-tle">相关最新资讯</div>
+                  <div class="item-yb-box-info">
+                    <ul>
+{%for nl in newslist.list%}
+                        	<li><a href="{{nl.weburl}}" title="{{nl.fulltitle}}" target="_blank">{{nl.title|safe}}</a></li>
+{%endfor%}                    </ul>
+                 </div>
+              </div>
+            <div class="cb"></div>
+            <style>
+            .cplist li{float:left;padding:5px;border:solid 1px #ccc;margin:3px;}
+            </style>
+            <div class="item-yb-box_">
+               <div class="item-yb-box-tle">相关产品</div>
+                  <div class="item-yb-box-info">
+                    <ul class=cplist>
+					{%for list in cplist%}
+						<li><a href="http://www.zz91.com/cp/{{list.pingyin}}/" target=_blank title="{{list.label}}">{{list.label}}</a></li>
+					{%endfor%}
+					</ul>
+					<div class="cb"></div>
+                 </div>
+              </div>
+        	</div>
+        	</div>
+        	
+        <!--end part_right-->
+        <div class="cb"></div>
+    </div>
+    <!--end part_-->
+<div style="width:100%;">
+	<div style="width:960px;margin:0 auto;text-align:center;">
+		{% include 'comm/buttom.html' %}
+    </div>
+</div>
+<script src="http://price.zz91.com/countFlow.htm?id={{id}}&{{timenow}}"></script>
+</body>
+</html>

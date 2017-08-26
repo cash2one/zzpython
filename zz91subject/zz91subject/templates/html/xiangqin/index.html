@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2012年底促销活动-ZZ91再生网-废金属｜废塑料｜废纸｜废橡胶｜纺织废料</title>
+<meta name="keywords" content="" />
+<meta name="description" content="ZZ91再生网2012年终巨献，这里有废金属、废塑料、废纸、废橡胶、纺织废料，废铜、废铁等再生资源年终促销促销活动。你只需再花1元钱，就可以参加废料年底促销活动，并且获得全网推广服务等优质服务。仅限20名额,先到先得，机不可失！
+" />
+<link href="../css/commt.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://subject.zz91.com/comm/comm.css"/>
+<link href="http://subject.zz91.com/comm/facebox.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div style="background-color:#F9F7EC">
+{%include 'html/comm/top.html'%}
+</div>
+<div class="header"> <a href="#mydiv" id="Js_join"><img src="../images/button.png" width="170" height="45"></a></div>
+<div class="box">
+  <div class="box_content">
+       <div class="tit"></div>
+       <ul class="clearfix">
+            {%for list in adlist%}
+			{%if list%}
+			<li><a href="http://gg.zz91.com/hit?a={{list.id}}" target=_blank><img src="{{list.picaddress}}"border=0></a></li>
+            {%else%}
+			<li><a href="#mydiv" rel="facebox"><img src="../images/noad.jpg" alt="" border=0/></a></li>
+			{%endif%}
+			{%endfor%}
+           
+       </ul>
+       <div class="tit1"></div>
+       <div style="height:50px;"></div>
+       <ul class="clearfix">
+            {%for list in adlist1%}
+			{%if list%}
+			<li><a href="http://gg.zz91.com/hit?a={{list.id}}" target=_blank><img src="{{list.picaddress}}"border=0></a></li>
+            {%else%}
+			<li><a href="#mydiv" rel="facebox"><img src="../images/noad.jpg" alt="" border=0/></a></li>
+			{%endif%}
+			{%endfor%}
+           
+       </ul>
+  </div>
+  <div class="box_bottom"></div>
+
+</div>{% include 'html/comm/buttom.html' %}
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script src="http://subject.zz91.com/comm/facebox.js"></script>
+<script src="http://subject.zz91.com/comm/checkForm.js"></script>
+<script>
+jQuery("#Js_join").facebox();
+document.getElementById("title").value = "相亲会";
+</script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox() 
+    })
+</script>
+</body>
+</html>

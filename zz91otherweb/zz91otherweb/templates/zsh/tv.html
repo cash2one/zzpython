@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>物料·电视签到</title>
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<link rel="stylesheet" href="http://img0.zz91.com/subject/621TV/css/index.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script src="http://static.m.zz91.com/layui/layui.js" charset="utf-8"></script>
+		<script src="http://static.m.zz91.com/aui/js/laytpl.js" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="page">
+			<div class="bg1"></div>
+			<div class="bg2"></div>
+			<div class="bg3"></div>
+			<div class="bg4"></div>
+			<div class="bg5"></div>
+			<div class="main">
+				<div class="fl main-left">
+					<div class="qdman">
+						<div class="fl qdman-name">---</div>
+						<div class="fl qdman-ts">签到成功</div>
+						<div class="fl qdman-num">NO.----</div>
+					</div>
+
+					<div class="firm">
+						<div class="firm-main j-move-box">
+							<div class="firm-name j-move-main">--------</div>
+						</div>
+						
+					</div>
+
+					<div class="jianjie" style="height: auto;">
+						<div class="jianjie-mian j-up-box" style="height: 610px;">
+							<div class="jianjie-cnt j-up-main" style="height: auto;">
+								
+							</div>
+						</div>
+							
+					</div>
+
+
+					<div class="bottom-hy">
+						<div class="bottom-lg fl"></div>
+						<div class="bottom-sm j-move-box">
+							<div class="bottom-world j-move-main">欢迎参加第二届再生塑料行业峰会！</div>
+						</div>
+					</div>
+				</div>
+				<div class="fr main-right">
+					<div class="qdbg">签到成功</div>
+					<div class="qd-all">
+						<div class="qd-all-list j-up-list">
+							<ul class="qd-all-ul j-up-ul">
+								
+							</ul>
+						</div>
+						<script id="info-list" type="text/html">
+						<li>
+							<div class="fl qd-all-name" style="font-size:38px ;"><%d.contact%></div>
+							<div class="fl qd-all-nb"><font style="font-size: 14px;">NO</font>.<%d.zheng_no%></div>
+						</li>
+						</script>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	</body>
+	<script type="text/javascript">
+		//左侧标题滚动
+		var qiandaotime={{qiandaotime}};
+		function biaoti(){
+			var moveMain  = $(".firm-name");
+			moveMain.animate({"marginLeft":""},0);
+			var moveBox_w = $(".firm-main").width();
+			var moveMain_w = moveMain.outerWidth();
+			var phase = moveMain_w - moveBox_w;
+			if(moveMain_w>moveBox_w){
+				setTimeout(function(){
+					moveStart()
+				},1000)
+			}
+			function moveStart(){
+				moveMain.animate({"marginLeft":-phase+"px"},4000,"linear",function(){
+					setTimeout(function(){
+						moveEnd();
+					},1000)
+					
+				})
+			}
+			function moveEnd(){
+				moveMain.animate({"marginLeft":""},4000,"linear",function(){
+				})
+			}
+		}
+		
+		function biaobanner(){
+			var moveMain  = $(".bottom-world");
+			moveMain.animate({"marginLeft":""},0);
+			var moveBox_w = $(".bottom-sm").width();
+			var moveMain_w = moveMain.outerWidth();
+			var phase = moveMain_w - moveBox_w;
+			if(moveMain_w>moveBox_w){
+				setTimeout(function(){
+					moveStart()
+				},1000)
+			}
+			function moveStart(){
+				moveMain.animate({"marginLeft":-phase+"px"},12000,"linear",function(){
+					setTimeout(function(){
+						moveEnd();
+					},1000)
+					
+				})
+			}
+			function moveEnd(){
+				moveMain.animate({"marginLeft":""},5000,"linear",function(){
+					setTimeout(function(){
+						moveStart();
+					},1000)
+				})
+			}
+		}
+
+		//左侧详情介绍滚动
+		function cdetail(){
+			var upBox   = $(".j-up-box");
+			
+			upBox.each(function(i,item){
+				var moveMain  = $(item).find(".j-up-main");
+				var moveBox_h = $(item).height();
+				moveMain.animate({"marginTop":""},0);
+				var moveMain_h = moveMain.outerHeight();
+				var phase = moveMain_h - moveBox_h;
+				if(moveMain_h>moveBox_h){
+					setTimeout(function(){
+						moveStart()
+					},1000)
+				}
+				function moveStart(){
+					moveMain.animate({"marginTop":-phase+"px"},8000,"linear",function(){
+						setTimeout(function(){
+							moveEnd();
+						},1000)
+					})
+				}
+				function moveEnd(){
+					moveMain.animate({"marginTop":0+"px"},0,"linear",function(){
+					})
+				}
+			})
+				
+		}
+
+		//右边的签到列表滚动
+		function qlist(){
+			var moveList = $(".j-up-list")
+			var moveul   = $(".j-up-ul");
+
+			var moveList_h = moveList.height();
+		    var moveul_h     = moveul.outerHeight();
+		    if(moveul_h<moveList_h){
+		    	return;
+		    }
+
+		    var moveHtml = moveul.html();
+		    moveul.append(moveHtml);
+		    var startNum = 0;
+		    var starttime;
+		    startMove();
+		    function startMove(){
+		        starttime = setInterval(function(){
+		            if(startNum == moveul_h){
+		                startNum = 0;
+		            }
+		            startNum += 1;
+		            moveul.css("marginTop",-startNum+"px");
+		        },20)
+		    }
+		}
+		var clist={};
+		var clistright={};
+		function qiandaolist(){
+			var data={}
+			zzajax("get","qiandaolist.html",data,function(ret){
+				var trhtml=''
+				if (ret){
+					clist=ret.list;
+					clistright=ret.list;
+					$.each(ret.list, function(index, item) {
+						var getTpl = $("#info-list").html();
+						laytpl(getTpl).render(item, function(html) {
+							trhtml = trhtml + html;
+						});
+					})
+					$(".qd-all-ul").html(trhtml);
+					qiandaotime=ret.qiandaotime;
+					qiandaoone();
+					//qlist();
+				}
+			},function(){
+				
+			})
+		}
+		function qiandaoone(){
+			if (clist.length>0){
+				$(".qdman-name").html(clist[0].contact);
+				$(".qdman-num").html("NO."+clist[0].zheng_no);
+				$(".firm-name").html(clist[0].companyname);
+				$(".jianjie-cnt").html(clist[0].business);
+				biaoti();
+				cdetail();
+				clist.push(clist[0]);
+				clist.shift();
+				setTimeout("qiandaoone()",10000);
+			}
+		}
+		function new15company(){
+			var data={
+				l:1
+			}
+			zzajax("get","qiandaolist.html",data,function(ret){
+				var trhtml=''
+				if (ret){
+					$.each(ret.list, function(index, item) {
+						var getTpl = $("#info-list").html();
+						laytpl(getTpl).render(item, function(html) {
+							trhtml = trhtml + html;
+						});
+					})
+					$(".qd-all-ul").html(trhtml);
+					qiandaotime=ret.qiandaotime;
+				}
+			},function(){
+				
+			})
+		}
+		function newqiandao(){
+			var data={
+				qiandaotime:qiandaotime
+			}
+			zzajax("get","newqiandao.html",data,function(ret){
+				if (ret.list[0]){
+					//alert(JSON.stringify(clistright))
+					clist.unshift(ret.list[0]);
+					new15company()
+					//qlist();
+					qiandaotime=ret.qiandaotime;
+				}else{
+					
+				}
+			},function(){
+				
+			})
+		}
+		$(function(){
+			qiandaolist();
+			biaobanner()
+			setInterval(newqiandao,3000);
+		})
+	</script>
+</html>

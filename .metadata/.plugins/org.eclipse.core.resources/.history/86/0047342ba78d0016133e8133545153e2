@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+	</head>
+	<style>
+		
+		.my-header {
+			background-color: #fff;
+			position: relative;
+			margin-bottom: 20;
+			margin-top: 20px;
+		}
+		.my-info {
+			
+			padding: 10px 0px;
+			width: 100%;
+			
+			text-align: center;
+			
+			clear:both;
+			
+		}
+		.my-info img {
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
+			vertical-align: center;
+			float: left;
+		}
+		.my-info p.nickname {
+			margin-top: 35px;
+			color: #000;
+			font-size: 18px;
+			float: left;
+		}
+		.aui-list-view-cell {
+			line-height: 26px;
+		}
+		.amount-info {
+			background-color: #ffffff;
+			overflow: hidden;
+		}
+		.amount-info p {
+			font-size: 0.75em;
+		}
+		.amount-info p strong {
+			font-size: 18px;
+		}
+		.amount-info .aui-col-xs-4 {
+			padding: 8px 0;
+			position: relative;
+			height: 60px;
+		}
+		.amount-info .aui-col-xs-4:after {
+			border-left: 1px solid #ddd;
+			display: block;
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			-webkit-transform-origin: 0 0;
+			-webkit-transform: scale(1);
+			pointer-events: none;
+		}
+		.amount-info .aui-col-xs-4:first-child:after {
+			border: none;
+		}
+		@media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+			.amount-info .aui-col-xs-4:after {
+				right: -100%;
+				bottom: -100%;
+				-webkit-transform: scale(0.5);
+			}
+		}
+	</style>
+	<body>
+		<div>
+			<div class="aui-content my-header">
+				<div class="my-info">
+					<img src="../../image/noavatar.gif" />
+					<p class="nickname">
+						流浪男sdaf大师傅士大夫
+					</p>
+					<div style="clear:both"></div>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+			<!--<div class="aui-content aui-text-center amount-info">
+			<div class="aui-col-xs-4">
+			<i class="aui-iconfont aui-icon-notification"></i>
+			<p>我的消息</p>
+			</div>
+			<div class="aui-col-xs-4">
+			<p class="aui-text-warning"><strong>999</strong>个</p>
+			<p>我的积分</p>
+			</div>
+			<div class="aui-col-xs-4">
+			<strong class="aui-iconfont aui-icon-write aui-text-info"></strong>
+			<p>每日签到</p>
+			</div>
+			</div>-->
+			<div class="aui-content">
+				<ul class="aui-list-view">
+					<li class="aui-list-view-cell messages">
+						<i class="aui-iconfont aui-icon-notification aui-bg-success"></i>我的消息
+					</li>
+					<li class="aui-list-view-cell myinfo">
+						<i class="aui-iconfont aui-icon-profile aui-bg-success"></i>个人资料
+					</li>
+					<li class="aui-list-view-cell">
+						<i class="aui-iconfont aui-icon-favor aui-bg-success"></i>我的收藏
+					</li>
+					<li class="aui-list-view-cell">
+						<i class="aui-iconfont aui-icon-form aui-bg-success"></i>积分任务
+					</li>
+					<li class="aui-list-view-cell">
+						<i class="aui-iconfont aui-icon-focus aui-bg-success"></i>我的关注
+					</li>
+					
+				</ul>
+			</div>
+			<div class="aui-content">
+				<ul class="aui-list-view">
+					<li class="aui-list-view-cell">
+						<i class="aui-iconfont aui-icon-attention aui-bg-success"></i>最近浏览
+					</li>
+					<li class="aui-list-view-cell">
+						<i class="aui-iconfont aui-icon-write aui-bg-success"></i>已经反馈
+					</li>
+					<li class="aui-list-view-cell">
+						<i class="aui-iconfont aui-icon-refresh aui-bg-success"></i>检查更新
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js" ></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			api.parseTapmode();
+			$("body").on("click",".messages",function(){
+	        	var pageParam = {
+		          wintitle:"我的消息",
+		          type:"messages",
+		          bounces:false,
+		          infoid:1,
+		        };
+				openWin("messages","../my/messages.html",pageParam);
+				return;
+	        })
+	        $("body").on("click",".myinfo",function(){
+	        	var pageParam = {
+		          wintitle:"我的资料",
+		          type:"myinfo",
+		          bounces:false,
+		          infoid:1,
+		        };
+				openWin("myinfo","../my/my-info.html",pageParam);
+	        })
+		}
+	</script>
+</html>

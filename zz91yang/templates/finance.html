@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>样品会员中心_ZZ91再生网</title>
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/index.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/finace.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/jquery.alert.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/calendar.css">
+    <script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/index.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/jquery.alert.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/jquery.easydrag.js"></script>
+</head>
+<body class="gbody1000">
+{%include "include/nav.html"%}
+{%include "include/head.html"%}
+{%include "include/lm.html"%}
+<div class="gm1-5 gw-bcrumb">
+    <span><a href="index.html">会员中心</a></span>
+            <strong>
+        <a href="#">全部订单</a>
+    </strong>
+</div>
+<div class="gMain clearfix">
+        
+        {%include "include/leftmenu.html"%}
+        <div class="gContainer">
+        <div class="gwTopic gwTopic2 clearfix">
+            <h2>财务概况</h2>
+        </div>
+        <div class="basicForm">
+           <form>
+                             <div class="finaceTips">
+                                  <p>
+                      您尚未完成实名认证,请<a href="checkname.html" target="_blank">点此</a> 前去上传身份证复印件,再进行相关操作，更多咨询请联系专属客服！
+
+                                <br>
+                                      您尚未设置交易密码，去<a href="passwd.html" target="_blank">设置交易密码</a>
+                  </p>
+                               </div>
+                             <div class="fianceBox">
+                   <div class="bFRow">
+                       <div class="label">可用余额：</div>
+                       <div class="cell">
+                           <strong class="amount"><span class="co"> 0.00</span> 元</strong>
+                         <span class="n-cont">
+                            <a href="withdraw.html">提现</a>
+
+                            <!--<a href="#">充值</a>-->
+                         </span>
+                       </div>
+                   </div>
+                   <div class="bFRow">
+                       <div class="label"><strong class="">提现账号：</strong></div>
+                   </div>
+                   <div class="bFRow">
+                       <div class="label tar">支付宝：</div>
+                       <div class="cell">
+						   <span class="mr10 co  n-money">kangxianyue@163.com</span>
+						   <a id="openalipay" href="javascript:jIframe('addalipay.html', '添加支付宝帐号','400','200');">添加</a>
+                           <a id="openalipay" href="javascript:jIframe('addalipay.html', '添加支付宝帐号','400','200');">修改</a>
+                       </div>
+                   </div>
+                   
+
+               </div>
+           </form>
+        </div>
+		</div>
+	</div>
+	</div>
+{%include "include/bottom.html"%}
+</body>
+</html>

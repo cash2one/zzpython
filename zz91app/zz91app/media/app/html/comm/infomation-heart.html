@@ -1,0 +1,318 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>导航</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/comm/infomation-heart.css"/>
+	</head>
+	<body>
+		<div class="nav-heart" id="header">
+			<ul class="nav-heart-ul clear" id="wrapper"></ul>
+			<span class="current-nav-bottom" id="navmark"></span>
+		</div>
+		<footer class="aui-nav" id="aui-footer" style="display:none">
+			<div class="aui-col-xs-6 buy" tapmode style='text-align:center' onclick="phonedata()">
+				
+			</div>
+				<div class="aui-col-xs-2 blue" onclick="phonedata()">
+					<span class="aui-iconfont aui-icon-phone"></span>
+					<p id="collection-title">电话</p>
+				</div>
+				<div class="aui-col-xs-2 blue" tapmode onclick="leaveworddata()">
+					<span class="aui-iconfont aui-icon-comment"></span>
+					<p>留言</p>
+				</div>
+				<div class="aui-col-xs-2 blue" tapmode onclick="shoucdata()">
+					<span class="aui-iconfont aui-icon-favor" id="scicon" ></span>
+					<p>收藏</p>
+				</div>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/iscroll.js"></script>
+	<script type="text/javascript">
+		var myScroll;
+		var navwidth = 0, navliwidth = 0;
+		var typelist = [];
+		var favoriteflag;
+		apiready = function() {
+			try {
+				//api.showProgress({title : '加载中',modal : false});
+				getNavlist();
+				//openFirst()
+				//fixIos7Bar($("#header"));
+			} catch (e) {
+				//zzalert("err")
+			}
+			$api.setStorage("auditlist", []);
+			//打开第一个
+		}
+		var nav_list;
+		//添加滚动条的信息条数
+		function getInfoNumber(obj) {
+			nav_list = api.pageParam.nav_list;
+			$(".nav-heart-ul li").eq(0).text(nav_list[0].typename + "(" + obj.c1 + ")");
+			$(".nav-heart-ul li").eq(1).text(nav_list[1].typename + "(" + obj.c0 + ")");
+			$(".nav-heart-ul li").eq(2).text(nav_list[2].typename + "(" + obj.c2 + ")")
+			$(".nav-heart-ul li").eq(3).text(nav_list[3].typename + "(" + obj.c3 + ")")
+			// $(".nav-heart-ul li").each(function(i,item){
+			// 	var index = "c"+i
+			// 	var liText = nav_list[i].typename +"(" + obj[index] +")";
+			// 	$(this).text(liText)
+			// })
+		}
+
+		//添加询盘模块滚动条的信息条数
+		function getXp(obj) {
+			nav_list = api.pageParam.nav_list;
+			$(".nav-heart-ul li").eq(obj.step).text(nav_list[obj.step].typename + "(" + obj.number + ")")
+		}
+
+		function getNavlist() {
+			nav_list = api.pageParam.nav_list;
+			var frame_url = api.pageParam.frame_url;
+			var mtype = api.pageParam.mtype;
+			var topnumber = api.pageParam.topnumber;
+			var bounces = api.pageParam.bounces;
+			var nav_html = "";
+			frames = [];
+			$.each(nav_list, function(index, item) {
+				var frame = {}, active = index == 0 ? 'current-nav' : '';
+				nav_html += "<li data-index='" + index + "' id='" + index + "' class='" + active + "' onclick='openFrame(" + index + "," + index + ")'>" + item.typename + "</li>";
+				frame.name = 'frame_' + index;
+				frame.url = frame_url[index];
+				if (frame_url.length == 1) {
+					frame.url = frame_url[0];
+				}
+				//frame.url='../html/sexmain.html?typeid=' + ret[i].id.toString();
+				frame.pageParam = {
+					typeid : item.id,
+					index : index,
+					id : api.pageParam.id
+				};
+				if (mtype != null) {
+					frame.pageParam.mtype = mtype
+				}
+				frame.bounces = true;
+				if (bounces == false) {
+					frame.bounces = false;
+				}
+				
+				// frame.name = "name" + index
+				//添加打开openFrameGroup对象
+				frames.push(frame);
+				typelist.push(index);
+			})
+			$(".nav-heart-ul").html(nav_html);
+			//给nav-heart li重新赋值宽度
+			navliwidth = $("body").width() / topnumber;
+			//给current-nav-bottom重新赋值宽度
+			$(".current-nav-bottom").width(navliwidth);
+			$(".nav-heart li").width(navliwidth);
+			var nav_width = navliwidth * nav_list.length;
+			//给nav-heart重新赋值宽度
+			$(".nav-heart-ul").width(nav_width);
+			api.hideProgress();
+			loaded();
+			openGroup(frames);
+		}
+		//tab 滚动
+		function loaded() {
+			try {
+				myScroll = new IScroll('#header', {
+					eventPassthrough : true,
+					scrollX : true,
+					scrollY : false,
+					preventDefault : false
+				});
+			} catch (e) {
+				//zzalert(e)
+			}
+		}
+		//加载供求详细页联系方式
+		function loadpostcontact(contactperson,contact){
+			if (contact==""){
+				$(".buy").html('<button class="aui-btn aui-btn-danger" style="margin-top:11px;">仅需10元查看</button>')
+			}else{
+				$(".buy").html("<font color='#fff'>"+contactperson+"<br />"+contact+"</font>")
+			}
+		}
+		//是否收藏
+		function isfavor(flag){
+			if (flag.toString()=="1"){
+				$("#scicon").css("color","#ff0000");
+				$("#scicon").removeClass("aui-icon-favor");
+				$("#scicon").addClass("aui-icon-favorfill");
+			}else{
+				$("#scicon").css("color","#999");
+				$("#scicon").removeClass("aui-icon-favorfill");
+				$("#scicon").addClass("aui-icon-favor");
+			}
+			favoriteflag=flag
+		}
+		//供求信息收藏
+		function shoucdata(){
+			api.execScript({
+				frameName : 'frame_0',
+				script : "shoucFun("+favoriteflag.toString()+")"
+			});
+			if (favoriteflag==1){
+				isfavor(0);
+				favoriteflag=0;
+			}else{
+				isfavor(1);
+				favoriteflag=1;
+			}
+		}
+		//供求留言
+		function leaveworddata(){
+			api.execScript({
+				frameName : 'frame_0',
+				script : "leavewordFun()"
+			});
+		}
+		//供求拨打电话
+		function phonedata(){
+			api.execScript({
+				frameName : 'frame_0',
+				script : "phoneFun()"
+			});
+		}
+
+		//加载栏目内容
+		function openFrame(tid, m) {
+			try {
+				api.setFrameGroupIndex({
+					name : 'sexgroup',
+					index : m,
+					scroll : true,
+					showProgress : true
+				});
+				if (m >= 3) {
+					//myScroll.scrollTo(-navliwidth * (m - 4), 0, 1000);
+				} else {
+					myScroll.scrollTo(0, 0, 1000)
+				}
+				if (tid >= 3) {
+					var num = $(".nav-heart-ul li").width() * 2
+					$api.css($api.byId('navmark'), "-webkit-transform:translate(" + num + "px,0)");
+				}
+				$(".nav-heart-ul").find('li').removeClass('current-nav');
+				$(".nav-heart-ul").find('li').removeClass('current-nav').eq(m).addClass('current-nav');
+			} catch (e) {
+				//zzalert(e)
+			}
+		}
+		
+		var scrollflag = true;
+		//顶部滑动栏目
+		function openGroup(frames) {
+			scrollflag = false;
+			var $header = $api.dom('header');
+			var $body = $api.dom('body');
+			var $footer = $api.byId('footer');
+			var header_h = $("#header").height();
+			var body_h = $api.offset($body).h;
+			var footer_h = $("footer").height();
+			
+			
+        	
+			var rect_h = body_h - header_h - footer_h;
+			var main_h = 'auto';
+			if (api.pageParam.frame_url[0] == "../trade/firm-detail.html" || api.pageParam.pagename=="tradedetail") {
+				main_h = rect_h;
+				$('footer').show();
+			}
+			
+        	var sysType = api.systemType;
+        	if(sysType == 'ios'){
+        		header_h=header_h+48+20;
+        	}else if(sysType == 'android'){
+	            var ver = api.systemVersion;
+	            ver = parseFloat(ver);
+	            if(ver >= 4.4){
+	                header_h=header_h+48+25;
+	            }else{
+	            	header_h=header_h+48;
+	            }
+	        }
+			api.openFrameGroup({
+				name : 'sexgroup',
+				scrollEnabled : true,
+				rect : {
+					x : 0,
+					y : header_h,
+					w : 'auto',
+					h : main_h
+				},
+				index : 0,
+				preload:0,
+				frames : frames
+			}, function(ret, err) {
+				//判断供求页面的底部显示
+				var winName = api.winName
+				if (winName == "buyinout" && (ret.index == 1 || ret.index == 2)) {
+					api.closeFrame({
+						name : 'audit-foot'
+					});
+					api.closeFrame({
+						name : 'audit-foot1'
+					});
+				} else if (winName == "buyinout" && ret.index == 0) {
+					api.execScript({
+						frameName : 'frame_0',
+						script : "openfoot()"
+					});
+				} else if (winName == "buyinout" && ret.index == 3) {
+					api.execScript({
+						frameName : 'frame_3',
+						script : "openfoot1()"
+					});
+				}
+				var num = $(".nav-heart-ul li").width() * ret.index;
+				//获取头部的导航的个数
+				var topnumber = api.pageParam.topnumber;
+				//导航条滚动判断
+				if (ret.index >= topnumber - 1 && ret.index != $(".nav-heart-ul li").length - 1) {
+					//yScroll.scrollTo(-$("li").width() * (ret.index - 4), 0, 1000);
+					myScroll.scrollTo(-navliwidth * (ret.index - (topnumber - 2)), 0, 1000);
+				} else if (ret.index == $(".nav-heart-ul li").length - 1) {
+					myScroll.scrollTo(-navliwidth * (ret.index - (topnumber - 1)), 0, 1000);
+				} else {
+					myScroll.scrollTo(0, 0, 1000);
+				}
+				//导航条底部滚动条滚动判断
+				if (ret.index <= topnumber - 2) {
+					$api.css($api.byId('navmark'), "-webkit-transform:translate(" + num + "px,0)");
+				} else if ($(".nav-heart-ul li").length - 1 == ret.index) {
+					num = $(".nav-heart-ul li").width() * (topnumber - 1)
+					$api.css($api.byId('navmark'), "-webkit-transform:translate(" + num + "px,0)");
+				} else if ($(".nav-heart-ul li").length - ret.index == 2 && topnumber >= 4) {
+					num = $(".nav-heart-ul li").width() * 2
+					$api.css($api.byId('navmark'), "-webkit-transform:translate(" + num + "px,0)");
+				} else if ($(".nav-heart-ul li").length - ret.index == 2 && topnumber < 4) {
+					num = $(".nav-heart-ul li").width() * 1
+					$api.css($api.byId('navmark'), "-webkit-transform:translate(" + num + "px,0)");
+				}
+				//openFrame(typelist[ret.index], ret.index)
+				$(".nav-heart-ul").find('li').removeClass('current-nav').eq(ret.index).addClass('current-nav');
+			});
+		}
+		//返回标志重置
+		function keybackFun(flag){
+			keybackflag=flag;
+		}
+		//
+		function jubaocheck(v){
+		}
+		
+	</script>
+</html>

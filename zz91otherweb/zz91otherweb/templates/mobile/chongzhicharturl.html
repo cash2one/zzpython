@@ -1,0 +1,17 @@
+<chart>
+    <data>
+        <indexAxis name="日期">
+            <labels>
+                {%for chart in chartinfeelist%}{{chart.gmt_date}},{%endfor%}
+            </labels>
+        </indexAxis>
+        <valueAxis name="价格" unit="元"></valueAxis>
+        <dataSets>
+            <set name="{{ftypename}}">
+                <values>
+                {%for chart in chartinfeelist%}{{chart.fee}},{%endfor%}
+                </values>
+            </set>
+        </dataSets>
+    </data>
+</chart>

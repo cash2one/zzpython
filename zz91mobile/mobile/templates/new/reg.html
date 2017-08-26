@@ -1,0 +1,37 @@
+{%include 'new/head.html'%}
+<body>
+<div class="mobile">
+	{%include 'new/top.html'%}
+    <div class="cb"></div>
+    <div style="margin-top:60px;"></div>
+    <div class="m-main">
+    	<form name="form1" method="post" action="regsave.html">
+    	<div class="regtitle">绑定注册</div>
+        <ul class="regbox">
+        <li><input id="userName" class="text" type="text" name="userName" value="{{userName}}" placeholder="手机号码即您的登录用户名" autocomplete="off" maxlength="20">
+            {%if errtext1%}<div class="c-red">{{errtext1|safe}}<br/></div>{%endif%}
+        </li>
+        <li><input id="passwd" class="text" type="password" name="passwd" value="{{passwd}}" placeholder="请设置6-8位密码" autocomplete="off" maxlength="20">
+            {%if errtext2%}<div class="c-red">{{errtext2}}<br/></div>{%endif%}
+        </li>
+        <li><input id="email" class="text" type="text" name="email" value="{{email}}" placeholder="请输入您的邮箱" autocomplete="off" maxlength="20">
+            {%if errtext5%}<div class="c-red">{{errtext5}}<br/></div>{%endif%}
+        </li>
+        <li><input id="qq" class="text" type="text" name="qq" value="{{qq}}" placeholder="请输入您的QQ号码" autocomplete="off" maxlength="20">
+            {%if errtext3%}<div class="c-red">{{errtext3}}<br/></div>{%endif%}
+        </li>
+        <li><input id="contact" class="text" type="text" name="contact" value="{{contact}}" placeholder="请输入您的真实姓名" autocomplete="off" maxlength="20">
+            {%if errtext4%}<div class="c-red">{{errtext4}}<br/></div>{%endif%}
+        </li>
+            <li>
+              <input type="hidden" name="weixinid" id="weixinid" value={{weixinid}}>
+            <input type="submit" name="button" id="button" value="立即开通帐号" class="button"></li>
+            <div class="cb"></div>
+        </ul> 
+        </form>
+        <div class="cb"></div>
+    </div>
+</div>
+{%include 'new/bottom.html'%}
+</body>
+</html>

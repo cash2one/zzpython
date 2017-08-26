@@ -1,0 +1,63 @@
+<style>
+	.mui-left label img {width: 100%;}
+</style>
+<div id="slider" class="mui-slider">
+<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_mycommunity/?company_id={{company_id}}');">消息中心<span class="mui-badge mui-badge-success">{{replycount}}</span></a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_mypost/?company_id={{company_id}}');">我的提问</a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_myreply/?company_id={{company_id}}');">我的回复</a>
+</div>
+<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4" style="margin-left: 33%;"></div>
+<ul class="mui-table-view">
+
+<div>
+	{%for list in listall%}
+	<div class="mui-left" style="border-bottom:solid 1px #ccc;padding: 10px;">
+		<label>
+			<font><a href="/huzhuview/{{list.id}}.htm" target="_blank">{{list.title|safe}}</a></font>
+            
+            <p>
+            	时间：<font style="color: #ccc;">{{list.post_time}}</font>&nbsp;&nbsp;&nbsp;<font style="color: #006600;">回复数：</font>{{list.reply_count}}
+            </p>
+            <a href="/huzhuview/{{list.id}}.htm" class="mui-btn mui-btn-success">查看</a>
+		</label>
+	</div>
+	{%endfor%}
+</div>
+
+</ul>
+{%ifequal listcount 0%}
+<div class="mui-content-padded" style="margin-top: 10px;"><ul class="mui-pager"><li>没有信息</li></ul></div>
+{%else%}
+<nav class="mui-bar mui-bar-tab" style="border-top: solid 1px #006600;text-align: center;">
+
+<div class="mui-content-padded" style="margin-top: 10px;">
+	<ul class="mui-pager">
+		{% if firstpage %}
+		<li>
+			<a href="javascript:loaddata('http://app.zz91.com/myrc_mypost/?page={{prvpage}}&company_id={{company_id}}','myrc_mypost')">
+				上一页
+			</a>
+		</li>
+		{%else%}
+		<li class="mui-disabled">
+			<span>上一页 </span>
+		</li>
+		{%endif%}
+		{% if lastpage%}
+		<li>
+			<a href="javascript:loaddata('http://app.zz91.com/myrc_mypost/?page={{nextpage}}&company_id={{company_id}}','myrc_mypost')">
+				下一页
+			</a>
+		</li>
+		{%else%}
+		<li class="mui-disabled">
+			<span>下一页</span>
+		</li>
+		{%endif%}
+	</ul>
+</div>
+</nav>
+{%endifequal%}
+</div>
+<input type="hidden" id="appnavname" value="我的提问" />

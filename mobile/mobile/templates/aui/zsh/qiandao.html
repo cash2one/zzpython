@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>签到-ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<style>
+			body{
+				background: #fff
+			}
+			.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+			.clearfix{height:1%}
+			.clearfix{display:block}
+			a{
+				color:#333
+			}
+			.aui-bar{
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			.ctext{
+				-webkit-box-shadow: #ccc 0px 0px 10px;
+				-moz-box-shadow: #ccc 0px 0px 10px;
+				/*box-shadow: #ccc 0px 0px 10px;*/
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="http://m.zz91.com/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-title">签到</div>
+		</header>
+		<div  style="height:65px;"></div>
+		<div class="aui-text-center aui-margin-t-15">请输入您的手机号码</div>
+		<div class="aui-padded-15"><input type="number" id="mobile" class="aui-text-center ctext"></div>
+		<div class="aui-text-center" style="margin-left: 15px;margin-right: 15px;">
+			<button class="aui-btn aui-btn-success qiandaobtn aui-btn-block">&nbsp;&nbsp;确定签到&nbsp;&nbsp;</button>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#mobile").focus();
+			document.getElementById("mobile").focus();
+			$(".qiandaobtn").on("click", function() {
+				var mobile=$("#mobile").val();
+				var mobilelenght=mobile.length;
+				if (mobile==""){
+					layer.msg("请输入手机号码！");
+					return false;
+				}
+				if (mobilelenght<11 || mobilelenght>12){
+					layer.msg("你输入的手机号码位数不正确！");
+					return false;
+				}
+				var data={
+					"mobile":mobile
+				}
+				zzajax("get","qiandao_save.html",data,function(ret){
+					if (ret.err=='false'){
+						window.location='qiandao_suc.html?id='+ret.id;
+					}else{
+						if (ret.type=="noreg"){
+							window.location='qiandao_noreg.html?mobile='+mobile;
+						}
+						if (ret.type=="havereg"){
+							layer.msg(ret.errkey)
+						}
+						if (ret.type=="nostart"){
+							layer.msg("请于2017年6月21日当天签到。")
+						}
+						if (ret.type==""){
+							layer.msg(ret.errkey)
+						}
+					}
+				},function(){
+					layer.msg("错误！请重试！");
+				})
+			})
+		})
+	</script>
+</html>

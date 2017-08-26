@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+        <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+        <meta content="telephone=no" name="format-detection" />
+        <meta content="address=no" name="format-detection" />
+        <meta name="apple-mobile-web-app-capable" content="no" />
+        <link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+        <meta name="apple-touch-fullscreen" content="YES">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+        <title>再生钱包_ZZ91再生网</title>
+        <link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+        <link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+        <link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+        <script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+        <script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+        <script type="text/javascript" src="http://static.m.zz91.com/aui/js/laytpl.js" ></script>
+        <script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+        <script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-tab.js" ></script>
+    <style type="text/css">
+    body{
+        background: #fff
+    }
+    .aui-bar{
+        position: fixed;
+        z-index: 999;
+        top: 0px;
+    }
+    a{
+        color: #333
+    }
+    .czfoot {
+        position: fixed;
+        bottom: 0px;
+        border-top: solid 1px #EBEBEB;
+        width: 100%;
+        background-color: #F6F6F6;
+        line-height: 45px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        z-index: 2
+    }
+    .czfoot li {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        text-align: center;
+        border-right: 1px solid #e7e7e7;
+        font-size: 16px;
+    }
+    .czfoot li:last-child {
+        border-right: none;
+    }
+    .qb-text-warning{
+        color:#ff7800
+    }
+    .qb-warning{
+        background:#ff7800;
+        color: #fff
+    }
+    .aui-tab-item.aui-active{
+        color: #009900;
+        border-bottom: 2px solid #009900;
+    }
+    </style>
+</head>
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-primary">
+        <a class="aui-pull-left" href="/myrc/">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">再生钱包</div>
+    </header>
+    <div style="height: 45px;"></div>
+    
+    <div class="aui-text-center aui-padded-t-15 aui-padded-b-15 qb-text-warning">
+        <div class="aui-font-size-14">当前余额</div>
+        <div class="aui-font-size-18">{{blance}}元</div>
+    </div>
+    <div class="aui-hr"></div>
+    <div class="aui-text-center aui-margin-t-10">
+        <a class="aui-btn qb-warning" href="/qianbao/chongzhi.html">&nbsp;&nbsp;&nbsp;&nbsp;充值&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    </div>
+    
+
+    <div class="aui-tab" id="tab">
+        <div class="aui-tab-item aui-active">我的服务</div>
+        <div class="aui-tab-item">代金券管理</div>
+    </div>
+    
+    <div class="j_infolist">
+        <div class="">
+        	{%if serverlist%}
+        	{%for d in serverlist%}
+            <div class="aui-row aui-padded-10 aui-border-b">
+                <div class="aui-col-xs-8 aui-font-size-12">
+                    <div><b>{{d.servername|safe}}</b> <span>{{d.status|safe}}</span></div>
+                    <div class="aui-margin-t-10 aui-text-default">{%if d.gmt_begin%}开始时间：{{d.gmt_begin}}{%endif%}</div>
+                    <div class="aui-margin-t-10 aui-text-default">{%if d.gmt_end%}结束时间：{{d.gmt_end}}{%endif%}</div>
+                </div>
+                <div class="aui-col-xs-4 aui-padded-t-10">
+                    <a class="aui-btn aui-btn aui-margin-t-15" href="{{d.surl}}">继续购买</a>
+                </div>
+            </div>
+            {%endfor%}
+            <div class="aui-text-center">
+                <a class="aui-btn aui-btn-success aui-margin-t-15" href="myservice.html">查看更多</a>
+            </div>
+            {%else%}
+            <div class="aui-text-center">
+            	<center style="line-height: 50px;">
+            		您还未开通任何服务！
+            	</center>
+                <a class="aui-btn aui-btn-success aui-margin-t-15" href="/service/index.html">开通服务</a>
+            </div>
+            {%endif%}
+        </div>
+
+        <div class="aui-hide">
+        	{%if mydjqlist%}
+        	{%for list in mydjqlist%}
+            <div class="aui-row aui-padded-10 aui-border-b">
+                <div class="aui-col-xs-8 aui-font-size-12">
+                    <div>{{list.title}}</div>
+                    <div class="aui-margin-t-10 aui-text-default aui-text-danger">编号：{{list.qcode}}</div>
+                    <div class="aui-margin-t-10 aui-text-default">开始时间：{{list.begin_time}}</div>
+                    <div class="aui-margin-t-10 aui-text-default">结束时间：{{list.end_time}}</div>
+                </div>
+                <div class="aui-col-xs-4 aui-padded-t-10">
+                    <a class="aui-btn {%ifequal list.user_id 0%}aui-btn-success{%endifequal%} aui-margin-t-15 djquse" used="{{list.used_id}}" paytype="{{list.qtype_id}}">{{list.usedtext}}</a>
+                </div>
+            </div>
+            {%endfor%}
+            {%else%}
+            <div class="aui-text-center">
+            	<center style="line-height: 50px;">
+            		没有可使用的代金券
+            	</center>
+                <a class="aui-btn aui-btn-success aui-margin-t-15" href="/service/index.html">开通服务</a>
+            </div>
+            {%endif%}
+        </div>
+    </div>
+    
+    <div style="height:50px;"></div>
+    <footer class="czfoot">
+        <li class="chongzhi">
+            <a href="zhangdan.html"><span class="aui-iconfont2 aui-icon-calendar"></span> 收支明细</a>
+        </li>
+        <li class="myservice">
+            <a href="/service/index.html"><span class="aui-iconfont2 aui-icon-service"></span> 产品服务</a>
+        </li>
+    </footer>
+</body>
+<script type="text/javascript">
+     var tab = new auiTab({
+        element:document.getElementById("tab"),
+        index:1,
+        repeatClick:false
+    },function(ret){
+        $(".j_infolist").children().addClass("aui-hide");
+        $(".j_infolist").children().eq(ret.index-1).removeClass("aui-hide");
+    });
+    $("body").on("click",".djquse", function() {
+		var paytype=$(this).attr("paytype");
+		var used=$(this).attr("used");
+		if (used=="0"){
+			var index="0";
+			if (paytype=="9"){
+				window.location='/service/cp_producttop_buy.html'
+			}
+			if (paytype=="11"){
+				window.location='/service/cp_showcontact.html'
+			}
+			if (paytype=="39"){
+				window.location='/service/cp_qyx.html'
+			}
+			if (paytype=="42"){
+				window.location='/service/cp_autoreflush.html'
+			}
+		}
+	})
+</script>
+{%include 'aui/bottom.html'%}
+</html>

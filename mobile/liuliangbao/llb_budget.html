@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>设置预算</title>
+        <script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_104910_504rkz99kx7ds4i.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/myrc/css/llb.css"/>	
+	</head>
+	<body>
+		<div style="height:45px;">
+			<header class="aui-bar aui-bar-nav zz-header aui-border-b aui-bg-success">
+		    	<a class="aui-pull-left" href="/">
+			        <span class="aui-iconfont aui-icon-left"></span>
+			    </a>
+			    <div class="aui-title">
+			    	设置预算
+			    </div>
+			</header>
+		</div>
+		
+		<div class="aui-content">
+		    <div class="aui-form aui-padded-l-15 aui-padded-r-15">
+		        <div class="aui-input-row xzbox xzthis">
+		            <label class="aui-input-addon">日预算</label>
+		            <div class="aui-flex-col aui-flex-middle">
+		            	<span class="aui-flex-item-2 aui-text-right">￥</span>
+		            	<div class="aui-flex-item-10 xzipt">
+			            	<input type="text" class="aui-input aui-padded-l-0" value="200" placeholder=""/>
+		            	</div>
+		            </div>
+		            <i class="aui-input-addon iconfont icon-gou1"></i>
+		        </div>
+		        <div class="aui-input-row aui-padded-t-15 aui-padded-b-15 xzbox">
+		            <label class="aui-input-addon aui-flex-item-10">不限定预算</label>
+		            <i class="aui-input-addon iconfont icon-gou1"></i>
+		        </div>
+		    </div>
+		    <div class="aui-padded-15 aui-font-size-18">
+		    	设置日预算后，每天到达您设置的预算额度后，系统将会暂停今日推广，
+		    </div>
+		</div>
+	</body>
+	<script>
+		$(".xzbox").click(function(){
+			$(this).addClass("xzthis").siblings(".xzbox").removeClass("xzthis");
+			$(this).find(".aui-input").focus();
+		})
+	</script>
+</html>

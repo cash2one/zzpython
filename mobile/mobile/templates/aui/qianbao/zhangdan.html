@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+        <meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+        <meta content="telephone=no" name="format-detection" />
+        <meta content="address=no" name="format-detection" />
+        <meta name="apple-mobile-web-app-capable" content="no" />
+        <link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+        <meta name="apple-touch-fullscreen" content="YES">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+        <title>我的账单-手机站</title>
+        <link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+        <link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+        <link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+        <script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+        <script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+        <script type="text/javascript" src="http://static.m.zz91.com/aui/js/laytpl.js" ></script>
+        <script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+        <script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js" ></script>
+    <style type="text/css">
+    body{
+        background: #fff
+    }
+    .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+    .clearfix{height:1%}
+    .clearfix{display:block}
+    .aui-bar{
+        position: fixed;
+        z-index: 999;
+        top: 0px;
+    }
+    a{
+        color: #333
+    }
+    .czfoot {
+        position: fixed;
+        bottom: 0px;
+        border-top: solid 1px #EBEBEB;
+        width: 100%;
+        background-color: #F6F6F6;
+        line-height: 45px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: flex;
+        z-index: 2
+    }
+    .czfoot li {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        flex: 1;
+        text-align: center;
+        border-right: 1px solid #e7e7e7;
+        font-size: 16px;
+    }
+    .czfoot li:last-child {
+        border-right: none;
+    }
+    .sm-text{
+        font-size: 10px;
+    }
+    .floatpage{
+		position: fixed;
+		bottom:45px;
+		width:100%;
+		height:54px;
+		z-index: 999;
+	}
+    </style>
+</head>
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-primary">
+        <a class="aui-pull-left" href="/qianbao/">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">我的账单</div>
+    </header>
+    <div style="height: 45px;"></div>
+
+    <div class="aui-row aui-font-size-12 aui-text-center aui-border-b">
+        <div class="aui-col-xs-4 aui-border-r aui-padded-5"><span class="sm-text aui-text-default">进账</span> {{infeegmtnowmonth}}</div>
+        <div class="aui-col-xs-4 aui-border-r aui-padded-5"><span class="sm-text aui-text-default">消费</span> {{outfeegmtnowmonth}}</div>
+        <div class="aui-col-xs-4 aui-padded-5"><span class="sm-text aui-text-default">充值</span> {{outfee5gmtnowmonth}}</div>
+    </div>
+    {%if listall%}
+    <ul class="aui-font-size-12">
+    	{%for pay in listall%}
+        <li class="aui-padded-10 aui-border-b">
+            <div class="clearfix">
+                <div class="aui-pull-left">
+                	{%if pay.product_id%}
+                	<p><a  href="/detail/?id={{pay.product_id}}">查看该供求</a></p>
+                	{%else%}
+                	{{pay.ftypename}}
+                	{%endif%}
+                </div>
+                <div class="aui-pull-right aui-text-success">{{pay.fee}}</div>
+            </div>
+            <div class="clearfix aui-padded-t-5">
+                {%ifequal pay.ftype 1%}<div class="aui-pull-left aui-text-info">公司名称：<a href="/company/detail{{pay.forcompany_id}}.html">{{pay.forcompanyname}}</a></div>{%endifequal%}
+                <div class="aui-pull-right aui-text-default">{{pay.gmt_date}}</div>
+            </div>
+        </li>
+        {%endfor%}
+    </ul>
+    <div class="floatpage">
+		<div class="page">
+			<ul>
+				{% if firstpage %}
+				<li class="page_prev">
+					<a href="?{{searchurl}}&page={{prvpage}}">上一页</a>
+				</li>
+				{%else%}
+				<li class="page_prev" style="color:gray">上一页</li>
+				{% endif %}
+				<li class="page_no">
+					<select onChange="window.location='?{{searchurl}}&page='+this.value">
+						<option>第{{page}}页</option>
+						<option value="1">首页</option>
+						{%for p in page_range%}
+						<option value="{{p.number}}">第{{p.number}}页</option>
+						{%endfor%}
+						<option value="{{lastpage}}">末页</option>
+					</select> /{{page_listcount}}页
+				</li>
+				{% if lastpage%}
+				<li class="page_next">
+					<a href="?{{searchurl}}&page={{nextpage}}">下一页</a>
+				</li>
+				{%else%}
+				<li class="page_prev" style="color:gray">下一页</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+	{%else%}
+    <div class="nodata" style="display: block">
+		暂无相关数据
+	</div>
+	{%endif%}
+    <div style="height:50px;"></div>
+    <footer class="czfoot">
+        <li class="chongzhi">
+            <a href="/qianbao/chongzhi.html"><span class="aui-iconfont2 aui-icon-refund"></span> 在线充值</a>
+        </li>
+        <li class="myservice">
+            <a href="/qianbao/"><span class="aui-iconfont2 aui-icon-pay"></span> 再生钱包</a>
+        </li>
+    </footer>
+{%include 'aui/bottom.html'%}
+</body>
+
+</html>

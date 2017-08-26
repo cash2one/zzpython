@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="zh-CN"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="zh-CN"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="zh-CN"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title>企业自主报价</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/price/new/css/main/style.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/price/css/priceMyrc.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/nav/css/nav.css">
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+<script type="text/javascript" src="http://img0.zz91.com/zz91/price/js/priceMyrc.js"></script>
+<script type="text/javascript" src="http://img0.zz91.com/zz91/js/openoverlay.js"></script>
+<script type="text/javascript" src="http://img0.zz91.com/lib/asto/asto-all-1.0.0.js"></script>
+<style>
+.page_a02{clear:left;padding:20px 0px;text-align: center;}
+.page_a02 a{display:inline-block;margin:0px 2px;padding:3px 8px;min-width:20px;height:30px;line-height:30px;border:solid 1px #cccccc;text-decoration:none;text-align:center;background:#fff;color:#303030;}
+.page_a02 a:hover{border:solid 1px #099444;}
+.page_a02 .on{display:inline-block;margin:0px 2px;padding:3px 8px;min-width:20px;height:30px;line-height:30px;border:solid 1px #099444;text-align:center;background:#099444;color:#FFFFFF;}
+.page_a02 .total{display:inline-block;margin: 0px 5px;}
+.page_a02 .to{display:inline-block;}
+.page_a02 .n{border:solid 1px #CCCCCC;padding:5px;width:29px;height:23px;line-height: 18px;text-align:center;}
+.page_a02 .go{display:inline-block;margin-left:10px;padding:3px 8px;width:30px;height:30px;line-height:30px;border:solid 1px #cccccc;text-align:center;background:#fff;cursor:pointer;}
+.page_a02 .go:hover{background:#099444;color:#fff;}
+</style>
+</head>
+<body>
+	{% include 'comm/top.html' %}{% include 'comm/mid.html'%}
+	
+	<div class="content2 clearfix">
+    	<div class="form2 mt12">
+    	<form action="" method="get" id="form1">
+            <div class="fm-tle f14 fl">
+            	<span class="bold">类别筛选</span>
+                <div class="fm-layer fm-tab">
+                	<table cellspacing="0" cellpadding="0">
+                    	<tr>
+                        	<td width="36" class="ft">废<br>金<br>属</td>
+                            <td class="fm-bd">
+                            	<div class="layBox">
+                                	<ul class="lay-ul">
+                                    	<li><a href="javascript:;"  class="choice" name="20081000">废金属</a></li>
+                                    	<li><a href="javascript:;"  class="choice" name="200810001000">废铜</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810001001">废铝</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810001002">废铅</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810001003">废锌</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810001004">废锡</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810001005">废铁</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810001006">生铁</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810001007">废钢</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810001008">废钛钼</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810001009">废不锈钢</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810001010">其他</a></li>
+                                     </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td width="36" class="ft">废<br />塑<br />料</td>
+                            <td class="fm-bd pd12">
+                               <div class="layBox">
+                               		<ul class="lay-ul">
+                                    	<li><a href="javascript:;"  class="choice" name="20081001">废塑料</a></li>
+                                      	<li><a href="javascript:;"  class="choice" name="200810011000">PPT</a></li>
+                                      	<li><a href="javascript:;"  class="choice" name="200810011001">PP</a></li>
+                                      	<li><a href="javascript:;"  class="choice" name="200810011002">PVC</a></li>
+                                      	<li><a href="javascript:;"  class="choice" name="200810011003">PC</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810011004">ABS</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810011005">PS</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810011006">PA</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810011007">PE</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810011008">EVA</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810011009">TPU</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810011010">LDPE</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810011011">PTA</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810011012">其他</a></li>
+                                    </ul>
+                               </div>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td width="36" class="ft">橡<br />胶</td>
+                            <td class="fm-bd">
+                            	<div class="layBox">
+                                	<ul class="lay-ul">
+                                    	<li><a href="javascript:;"  class="choice"  name="20081003">橡胶</a></li>
+                                       	<li><a href="javascript:;"  class="choice" name="200810031000">国内橡胶</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810031001">其他</a></li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                        	<td width="36" class="ft">废<br />纸</td>
+                            <td>
+                                <div class="layBox">
+                                    <ul class="lay-ul">
+                                    	<li><a href="javascript:;"  class="choice" name="20081002">废纸</a></li>
+                                    	<li><a href="javascript:;"  class="choice" name="200810021000">国内欧废</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810021001">国内美废</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810021002">国内日废</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810021003">各地废纸</a></li>
+                                        <li><a href="javascript:;"  class="choice" name="200810021004">其他</a></li>
+                                    </ul>
+                                </div>
+                           </td>
+                        </tr>
+                        <tr>
+                        	<td colspan="2">
+                            	<div class="fm-btn">
+                                	<center>
+                                    	<input type="button" flag="0" id="fm-btn" class="lay_btn" />
+                                    	<input type="button" id="reset" value="重新筛选" />
+                                    </center>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!--fm-layer fm-tab-->
+            </div>
+        	<div class="fm-item fr">
+  					<input type="text" class="fm-input" name="searchKey" value="{{searchKey}}">
+  					<input type="hidden" name="category" value="{{category}}" id="category">
+    				<button type="submit" id="submit1">搜索</button>
+                    <a href="http://myrc.zz91.com/mycompanyprice/upload.htm" target="_blank" class="fm-upload">上传我的报价</a>
+            </div>
+            </form>
+            <div class="cb"></div>
+		</div>
+		<input type="hidden" id='companyId' value=''/>
+
+        <!--end form2 mt-->
+        <div class="cb"></div>
+        <div class="mod_list2 mt12">
+        	<div class="ml-tle f14"><a name="price">所有企业报价</a></div>
+            <div class="mod_tab">
+            	<table>
+                	<tr>
+                    	<th style="text-align:left;padding-left:12px;"><input type="checkbox" name="chk" />&nbsp;<label for="chk">标题</label></th>
+                        <th>类别</th>
+                        <th>公司名</th>
+                        <th width="18%">报价说明</th>
+                        <th>下载数</th>
+                        <th>上传时间</th>
+                        <th>操作</th>
+                    </tr>
+                    {%for obj in clist%}
+                    <tr>
+                    	<td style="text-align:left;padding-left:12px;"><input type="checkbox" name="chk" />&nbsp;<label for="chk">{{obj.title}}</label></td>
+                        <td>{{obj.category}}</td>
+                        <td>{{obj.name}}<br /><a href="" data="0" class="follows" id="{{obj.id}}">关注</a></td>
+                        <td>{{obj.instruction}}</td>
+                        <td><span id="down_{{obj.id}}">{{obj.downloadNum}}</span></td>
+                        <td>{{obj.gmtCreated}},{{obj.isNotice}}</td>
+                        <td><a href="/preview/{{obj.id}}.html" target="_blank">快速预览</a><br /><a href="" name="{{obj.id}}" class="download"><i></i>下载</a></td>
+                    </tr>
+                    {%endfor%}
+                </table>
+				<div class="page_a02">
+                	<div class="page_box">
+                    	<a href="/selfprice/{%if searchKey%}k{{searchKey}}/{%endif%}{%if category%}c{{category}}/{%endif%}s1.html">首页</a>
+                        <a href="/selfprice/{%if searchKey%}k{{searchKey}}/{%endif%}{%if category%}c{{category}}/{%endif%}s{{prvpage}}.html">上一页</a>
+                        {%for p in page_range %}
+                        	{% if p.number == owpage %}
+                        		<span class="on">{{p.number}}</span>
+                        	{% else %}
+                        		<a href="/selfprice/{%if searchKey%}k{{searchKey}}/{%endif%}{%if category%}c{{category}}/{%endif%}s{{p.number}}.html">{{p.number}}</a>
+                        	{% endif %}
+                        {%endfor%}
+						<a href="/selfprice/{%if searchKey%}k{{searchKey}}/{%endif%}{%if category%}c{{category}}/{%endif%}s{{nextpage}}.html">下一页</a>
+						<a href="/selfprice/{%if searchKey%}k{{searchKey}}/{%endif%}{%if category%}c{{category}}/{%endif%}s{{page_listcount}}.html">尾页</a>
+						<span class="total">共 {{page_listcount}} 页</span>
+						<span class="to">转到第 <input type="text" value="" class="n jump_page" /> 页</span>
+						<span class="go">确定</span>
+					</div>
+             	</div>
+            </div>
+            <!--end mod_tab-->
+        </div>
+        <!--end mod_list2 mt12-->
+    </div>
+<script type="text/javascript">
+$(document).ready(function() {
+    $(".layBox a").click(function (){
+		$(this).toggleClass("on");
+	});
+	$("#reset").click(function (){
+		$(".layBox a").removeClass("on");
+	});
+	var ajaxurl="http://www.zz91.com/getLoginStatus.htm";
+	$.getScript(ajaxurl, function() {
+		if (success == "true")
+		{
+			cid=companyId;
+		}else{	
+			cid=0;
+		}
+		s=jQuery("#companyId").attr('value',cid);
+		var list=$(".follows");
+		for (var i=0;i<list.length;i++){
+			var lid=list[i].id.toString();
+			$.getScript("/notice.html?id="+lid+"&company_id="+cid.toString(),function(){
+				if (content > 0){
+					$("#"+xid).html("取消关注");
+				}else{
+					$("#"+xid).html("关注");
+				}
+				if(downnum > 0){
+					$("#down_"+xid).html(downnum);
+				}
+			});
+		}
+	});
+});
+    var ll='';
+    $('.choice').click(function(){
+    	ll=$(this).attr('name');
+    });
+    $('#fm-btn').click(function(){
+    	$("#category").attr('value',ll);
+    });
+	$(".cate li").bind("click", function () {
+		var index = $(this).index()
+		$("#0").hide();
+		$("#1").hide();
+		$("#2").hide();
+		$("#3").hide();
+		$("#"+index).show();
+	});
+	
+	jQuery(".download").click(function(){
+		var id=jQuery(this).attr("name").toString();
+		var url="/download/"+id+".html?_"+(new Date()).getTime().toString()
+		jQuery(this).attr("href",url);
+		var s = Number(jQuery(this).parent().parent().find("span").html())+1;
+		jQuery(this).parent().parent().find("span").html(s);
+    });
+	jQuery(".go").click(function(){
+		//页数
+		var page = jQuery(".jump_page").attr("value");
+		if(page < 0){
+			page = 1;
+		}
+		if(page > {{page_listcount}}){
+			page = {{page_listcount}};
+		}
+		//关键字
+		var keyword = jQuery(".fm-input").val();
+		//类别
+		var cate = jQuery("#category").val();
+		if(!isNaN(page)){
+			var urll='/selfprice/';
+			if(keyword){
+				urll+= 'k'+ keyword +'/';
+			}
+			if(cate){
+				urll+= 'c' + cate + '/';
+			}
+			if(page)
+				urll+= 's' + page + '.html';
+			}
+			window.location.href = urll;
+		}
+	});
+	jQuery(".follows").click(function(){
+		companyId=jQuery("#companyId").attr('value');
+		id=jQuery(this).attr('id');
+		if(companyId!=0){ 
+			jQuery(this).attr("href","javascript:openoverlay('/follow.html?id="+id.toString()+"&companyId="+companyId.toString()+"&_'+"+(new Date()).getTime().toString()+",'',470,237,0);")
+		}else{
+			Asto.util.Callback.setSubmitCallback(function(companyId,id){
+				
+				var list=$(".follows");
+				for (var i=0;i<list.length;i++){
+					var lld=list[i].id.toString();
+					$.getScript("/notice.html?id="+lld+"&company_id="+companyId.toString(),function(){
+						if (content > 0){
+							$("#"+xid).html("取消关注");
+						}else{
+							$("#"+xid).html("关注");
+						}
+						if(downnum > 0){
+							$("#down_"+xid).html(downnum);
+						}
+					});
+				}
+				jQuery("#companyId").attr('value',companyId);
+				openoverlay('/follow.html?id='+id+'&companyId='+companyId.toString()+'&_'+(new Date()).getTime().toString(),'',470,237,0);
+			});
+			jQuery(this).attr("href","javascript:openoverlay('http://www.zz91.com/mini/login.htm?destUrl=http://jiage.zz91.com/submitCallback.html?id="+id.toString()+"&regfrom=10031037&_"+(new Date()).getTime().toString()+"','',750,450,0);");
+		}
+	});
+	jQuery("#submit1").click(function(){
+		var keywords = jQuery(".fm-input").val();
+		var cate = jQuery("#category").val();
+		var searurl="";
+		if (keywords!=""){searurl+="k"+keywords+"/"}
+		if (cate!=""){searurl+="c"+cate+"/"}
+		var actionUrl = '/selfprice/' + searurl;
+		if (searurl!=""){
+			window.location=actionUrl;
+		}
+		return false;
+		//jQuery("#form1").attr('action',actionUrl);
+	});
+</script>
+{% include 'comm/buttom.html' %}
+</body>
+</html>

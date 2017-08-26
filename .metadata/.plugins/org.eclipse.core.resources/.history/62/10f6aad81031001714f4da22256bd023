@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/aui-flex.css" />
+    <style>
+    	body{
+    		background-color: #f2f2f2;
+    	}
+    	.linegrad{
+			height:10px;background-color:#f2f2f2;
+			clear: both;
+		}
+		.bg-white { background: #ffffff; }
+    	.boxhearder .aui-iconfont,.boxhearder .aui-iconfont2 {
+			color: #ffffff;
+			line-height: 60px;
+			font-size: 35px;
+			
+		}
+		.aui-grid-nine:after {
+			border:none;
+		}
+		.aui-grid-nine li:after {
+			border:none;
+		}
+		.aui-grid-nine li .aui-iconfont,.aui-grid-nine li .aui-iconfont2 {
+			width: 45px;
+			height: 45px;
+			line-height: 45px;
+			border-radius: 50%;
+			font-size: 27px;
+		}
+		.boxhearder{
+			padding-bottom:20px;
+			padding-top:10px;
+			background-color: #01ba2e;
+		}
+		.boxhearder p{
+			color:#fff;
+			
+		}
+		.salecount{
+			padding-top:15px;
+			padding-bottom:15px;
+			line-height: 30px;
+		}
+		
+    </style>
+</head>
+<body>
+	<section class="aui-flex-col aui-text-center boxhearder">
+        <div class="aui-flex-item-3 aui-text-center">
+            <span class="aui-iconfont aui-icon-roundaddfill"></span>
+            <p>发布货物</p>
+        </div>
+        <div class="aui-flex-item-3 aui-text-center">
+            <span class="aui-iconfont aui-icon-focus"></span>
+            <p>微宝推广</p>
+        </div>
+        <div class="aui-flex-item-3 aui-text-center">
+            <span class="aui-iconfont aui-icon-shopfill"></span>
+            <p>采购大厅</p>
+        </div>
+        <div class="aui-flex-item-3 aui-text-center">
+            <span class="aui-iconfont aui-icon-friendfill"></span>
+            <p>生意圈</p>
+        </div>
+    </section>
+    <section class="aui-flex-col aui-text-center bg-white salecount">
+        <div class="aui-flex-item-4 aui-text-center">
+            <span>2131</span>
+            <p>访问量</p>
+        </div>
+        <div class="aui-flex-item-4 aui-text-center">
+            <span>3424</span>
+            <p>询盘量</p>
+        </div>
+        <div class="aui-flex-item-4 aui-text-center">
+            <span>34234</span>
+            <p>收藏数</p>
+        </div>
+    </section>
+    <div class="aui-line-x"></div>
+    <div class="linegrad"></div>
+    <section class="aui-content">
+    	<div class="title aui-border-b aui-padded-10 bg-white">
+			<b>推广服务</b>
+			<span class="aui-pull-right">服务中心 <i class="aui-iconfont aui-icon-right"></i></span>
+		</div>
+		<div class="aui-line-x"></div>
+        <ul class="aui-grid-nine">
+            <li class="aui-col-xs-4 aui-text-center">
+                <span class="aui-iconfont2 aui-zzicon-llb aui-text-warning"></span>
+                <p>流量宝</p>
+            </li>
+            <li class="aui-col-xs-4 aui-text-center">
+                <span class="aui-iconfont2 aui-zzicon-showcontact aui-text-danger"></span>
+                <p>显示联系方式</p>
+            </li>
+            <li class="aui-col-xs-4 aui-text-center">
+                <span class="aui-iconfont2 aui-zzicon-lookcontact aui-text-primary"></span>
+                <p>查看联系方式</p>
+            </li>
+            
+            <li class="aui-col-xs-4 aui-text-center">
+                <span class="aui-iconfont2 aui-zzicon-refrush aui-text-primary"></span>
+                <p>供求自动刷新</p>
+            </li>
+            <li class="aui-col-xs-4 aui-text-center">
+                <span class="aui-iconfont2 aui-zzicon-totop aui-text-danger"></span>
+                <p>供求置顶</p>
+            </li>
+            <li class="aui-col-xs-4 aui-text-center">
+                <span class="aui-iconfont2 aui-zzicon-xiu aui-text-warning"></span>
+                <p>企业秀</p>
+            </li>
+        </ul>
+    </section>
+    <div class="topdiv" onclick="pagetotop();"><span class="aui-iconfont aui-icon-top"></span></div>
+	<div class="aui-toast"  id="loading">
+        <div class="aui-toast-loading"></div>
+        <div class="aui-toast-content">加载中</div>
+    </div>
+    <div class="aui-content bg-white">
+    	<div class="title aui-border-b aui-padded-10">
+			<b>最新采购信息</b>
+			<span class="aui-pull-right">订阅 <i class="aui-iconfont aui-icon-right"></i></span>
+		</div>
+		<div class="nodata">暂无相关数据<br /><br />
+			<p><div class="aui-btn aui-btn-success orderbutton"><span class="aui-iconfont aui-icon-activity"></span>立即订阅</div></p>
+		</div>
+		<ul class="hq-list aui-list-view">
+			
+		</ul>
+		<script id="info-list" type="text/html">
+			<li class="aui-list-view-cell aui-img" id="{{ d.pdt_id }}">
+				<a class="aui-arrow-right">
+				<div class="topimg" style="display:{{ d.vdisplay }};background-color: {{d.vbgcolor}}">
+					{{d.vipflag.vipname}}
+				</div> <img src="{{ d.pdt_images }}" class="aui-img-object aui-pull-left" style="width: 100px;">
+				<div class="aui-img-body" style="margin-right:18px">
+					<p class="aui-ellipsis-2"  style="color:#000">
+						<b>{{d.pdt_kind.kindtxt}}{{d.pdt_name}}</b>
+					</p>
+					<p class="aui-ellipsis-2">
+						{{d.pdt_detail}}
+					</p>
+					<p>
+						{{d.com_province}}<span class="aui-pull-right">{{d.pdt_price}}</span>
+					</p>
+					<p>
+						{{d.pdt_time_en}}<span class="aui-pull-right" style="display:{{ d.phone_display }}">{{ d.phone_rate }}%接听率</span>
+					</p>
+				</div></a>
+			</li>
+		</script>
+	</div>
+    	
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		
+	};
+</script>
+</html>

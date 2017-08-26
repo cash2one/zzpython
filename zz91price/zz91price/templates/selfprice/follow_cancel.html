@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script type="text/javascript">
+	jQuery(document).ready(function(){
+		jQuery("#yes").click(function(){
+			$.ajax({
+				  url: '/follow.html?id='+{{id}}+'&companyId='+{{companyId}}+'&mark=1&_'+(new Date()).getTime().toString(),
+				  async:false
+			});
+			parent.jQuery("#"+{{id}}).html("关注");
+			parent.closeoverlay();
+			
+        });
+		jQuery("#no").click(function(){
+			parent.closeoverlay();
+		});
+	});
+</script>
+<style type="text/css">
+img,input {border:0;}
+.content {width:461px;height:192px;}
+.contop {width:270px;margin:45px auto 50px;height:36px;background:url(http://img0.zz91.com/zz91/price/images/icon_suc.jpg) no-repeat;line-height:36px;color:#ff8a42;font-weight:bold;font-size:18px;padding-left:60px;}
+.condown {text-align:center;}
+.icon_r {width:112px;height:36px;line-height:36px;background:#EB7B2F;text-align:center;color:#fff;font-weight:bold;font-size:14px;border:0;border-radius:3px;}
+.icon_b {width:112px;height:36px;line-height:36px;background:#69BDEB;text-align:center;color:#fff;font-weight:bold;font-size:14px;border:0;border-radius:3px;}
+input:focus {outline:none;}
+</style>
+</head>
+<body style="background:#fff;font-family:'微软雅黑';">
+<div class="content">
+	<div class="contop">是否取消关注该企业自主报价？</div>
+    <div class="condown">
+    	<input type="button" class="icon_r" id="yes" value="是" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" class="icon_b" id="no" value="否" />
+    </div>
+</div>
+<!--end content-->
+</body>
+</html>

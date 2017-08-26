@@ -1,0 +1,90 @@
+<style>
+	.bill_tle_tab {
+		width: 100%;
+		border-bottom: 1px solid #bbbbbb;
+		background: #ebebeb
+	}
+	.bill_tle_tab tr td {
+		height: 52px;
+		line-height: 53px;
+		font-weight: 900;
+		font-size: 12px;
+		text-align: center
+	}
+	.bill_tle_tab2 {
+		width: 100%;
+		border-bottom: 1px solid #bbbbbb;
+		background: #ebebeb
+	}
+	.bill_tle_tab2 tr td {
+		width: 10%;
+		height: 32px;
+		line-height: 33px;
+		font-weight: 900;
+		font-size: 14px;
+		text-align: center
+	}
+	.bill_lst_tab {
+		width: 100%;
+		background: #fff
+	}
+	.bill_lst_tab tr td {
+		border-top: 1px solid #ebebeb;
+		font-size: 14px;
+		padding: 0 10px
+	}
+	.lst_tab_right {
+		text-align: right
+	}
+	.bill_lst_tab tr td p {
+		margin: 10px 0
+	}
+	.td_p_name {
+		font-size: 16px;
+		color: #303030
+	}
+	.td_p_suc {
+		color: #909090
+	}
+	.td_p_drop {
+		color: #f60000;
+		font-weight: 700
+	}
+</style>
+<div class="part">
+	<table class="bill_tle_tab" cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td style="width:33%"><font color="gray" style="font-weight: normal">进账</font> {{infeegmtnowmonth}}</td>
+			<td style="width:33%"><font color="gray" style="font-weight: normal">消费</font> {{outfeegmtnowmonth}}</td>
+			<td style="width:33%"><font color="gray" style="font-weight: normal">充值</font> {{outfee5gmtnowmonth}}</td>
+		</tr>
+	</table>
+	<!--<table class="bill_tle_tab2" cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td {%ifequal timarg '1'%}style="background:gray;" {%endifequal%} onClick="window.location.href='?timarg=1'">1个月</td>
+			<td {%ifequal timarg '2'%}style="background:gray;" {%endifequal%} onClick="window.location.href='?timarg=2'">3个月</td>
+			<td {%ifequal timarg '3'%}style="background:gray;" {%endifequal%} onClick="window.location.href='?timarg=3'">1年</td>
+			<td {%ifequal timarg '4'%}style="background:gray;" {%endifequal%} onClick="window.location.href='?timarg=4'">1年前</td>
+			<td {%ifequal timarg '5'%}style="background:gray;" {%endifequal%} onClick="window.location.href='?timarg=5'">全部</td>
+		</tr>
+	</table>-->
+	<table class="bill_lst_tab" cellpadding="0" cellspacing="0" border="0" id="tab1">
+		{%for pay in listall%}
+		<tr>
+			<td>
+				<p class="td_p_name">{{pay.ftypename}}</p>
+				<p class="td_p_suc">{{pay.gmt_date}}</p>
+			</td>
+			<td class="lst_tab_right">
+				<p class="td_p_drop">{{pay.fee}}</p>
+				<p class="td_p_suc">{%if pay.product_id%}&nbsp;&nbsp;<a class="td_p_suc" href="/detail/?id={{pay.product_id}}">查看该供求</a>{%endif%}</p>
+			</td>
+		</tr>
+		{%endfor%}
+	</table>
+	<div>
+		<div id=pulldiv class='pulldiv' onclick=loadmorep(this, '/qianbao/zhangdannore.html') title="/qianbao/zhangdannore.html"><span class='mui-icon mui-icon-down'></span><span>点此加载更多</span>
+		</div>
+	</div>
+</div>
+<input type="hidden" id="appnavname" value="我的账单" />

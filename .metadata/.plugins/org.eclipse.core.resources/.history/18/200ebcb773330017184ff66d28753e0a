@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<style>
+			.selectmain {
+				height: 250px;
+				overflow: auto;
+				position:relative;
+			}
+			#topbar{
+			}
+			.topbar{
+				text-align: center;
+				color: #fff;
+				font-size: 16px;
+				line-height: 45px;
+			}
+			.selectadd,.selectmy {
+				text-align: left;
+				line-height: 20px;
+				background-color: #EBEBEB;
+				padding: 5px;
+				font-size: 14px;
+				border-bottom: solid 1px #999;
+				font-weight:bold;
+			}
+			.selectadd{}
+			.get-xinx {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				padding:10px
+			}
+			.get-xinx span {
+				display: block;
+				text-align: center;
+				border: 1px solid #e1e1e1;
+				border-radius: 3px;
+				line-height: 30px;
+				margin-bottom: 10px;
+				position: relative;
+				float:left;
+				padding-right:10px;
+				padding-left:10px;
+				margin-right:10px;
+				background-color: #F2F2F2;
+				width:30%;
+				
+			}
+			.get-xinx span font{
+				width:100%;
+				display:block;
+				overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+			}
+			.get-xinx span:last-child {
+				margin-bottom: 0;
+			}
+			.get-xinx {
+				margin-bottom: 15px;
+				min-height: 37px;
+			}
+			.get-xinx span i {
+				display: block;
+				height: 30px;
+				width: 30px;
+				position: absolute;
+				right: -15px;
+				top: -15px;
+				font-size:20px;
+				color:#ff0000;
+			}
+			.category i{
+			    display: block;
+			    background-image: url(../../image/imageslist.png);
+			    background-position-y: center;
+			    background-size:250px;
+			    width: 20px;
+			    height: 20px;
+			    margin: 0px auto;
+			    background-position: -114px -101px;
+			}
+		</style>
+	</head>
+	<body>
+		<header id="topbar">
+			<div class="topbar activebar" style="display:block;position: relative">
+				<div tapmode="hover-category" class="category" style="position:absolute;bottom:10px;left:10px;z-index:20000" onclick="api.closeWin();">
+					<i></i>
+				</div>
+				订阅行情
+			</div>
+			
+		</header>
+		<div class="selectmy">
+			<i class="aui-iconfont aui-icon-friendfavor"></i> 我的订阅
+		</div>
+		<div class="selectmain" id="selectmain">
+			<div class="get-xinx">
+			</div>
+			<div style="height:10px"></div>
+		</div>
+		<div class="selectadd">
+			<i class="aui-iconfont aui-icon-activity"></i> 添加订阅
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			changeserverurl();
+			//var header = $api.byId('topbar');
+    		//$api.fixStatusBar(header);
+			var topHeight = $("#topbar").height();
+			
+	        
+			var oHeight = $(".selectmain").height();
+			var aHeight = $(".selectadd").height();
+			var selectmy = $(".selectmy").height();
+			selectmy=selectmy+25
+			var pageParam = {
+				type : 'price',
+			};
+			api.openFrame({
+				name : 'order_price',
+				url : '../price/order-priceselect.html',
+				rect : {
+					x : 0,
+					y : topHeight + oHeight + aHeight + selectmy,
+					w : 'auto',
+					h : 'auto'
+				},
+				pageParam : pageParam,
+				bounces : false,
+				bgColor : 'rgb(255,255,255,255)',
+				vScrollBarEnabled : true,
+				hScrollBarEnabled : true,
+				showProgress : true
+			});
+			//获取我的定制
+			getmyorder();
+			//删除定制
+			$(".get-xinx").on("click",".remove", function() {
+				api.showProgress({
+					title : '删除中',
+					modal : true,
+				});
+				var spanFt = $(this).parent();
+				var orderid=$(this).attr("orderid");
+				var data={
+					company_id : UserInfo.memberID(),
+					usertoken : UserInfo.token(),
+					clientid : api.deviceId,
+					appsystem : api.systemType,
+					datatype : "json",
+					orderid : orderid,
+				}
+				api.ajax({
+					url : hosturl+'order/myorderprice_del.html',
+					method : 'get',
+					timeout : 30,
+					dataType : 'json',
+					returnAll : false,
+					data : {
+						values : data
+					}
+				}, function(ret, err) {
+					//zzalert(JSON.stringify(ret))
+					if (ret){
+						if (ret.err=="false"){
+							
+							//切换到行情
+							api.execScript({
+								name : 'root',
+								frameName : 'help',
+								script : "closegroup();myorder()"
+							});
+							//价格主页是否打开
+				
+							$api.setStorage("priceindexopenflag", 0);
+				
+							api.hideProgress();
+							loadinghide();
+							spanFt.hide(300, function() {
+								spanFt.remove()
+							});
+						}
+					}else{
+						if(err){
+							saveerrlog(err.body);
+						}
+					}
+				});
+				
+			});
+		}
+		//我的定制
+		function getmyorder(){
+			var lists={};
+			api.showProgress({
+				title : '加载中',
+				modal : true
+			});
+			lists['company_id'] = UserInfo.memberID();
+			lists['usertoken'] = UserInfo.token();
+			lists['appsystem'] = api.systemType;
+			lists['datatype'] = 'json';
+			api.ajax({
+				url : hosturl + 'order/myorderprice.html',
+				method : 'post',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : lists
+				}
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(ret))
+				if (ret) {
+					if (ret.err == "true") {
+						
+					} else {
+						if (ret.listall){
+							$.each(ret.listall, function(index, item) {
+								var order_span = '<span><font>' + item.label + '</font><i class="remove aui-iconfont aui-icon-roundclosefill" orderid="'+item.id+'"></i></span>';
+								$(".get-xinx").append(order_span);
+							})
+						}
+					}
+				} else {
+					api.toast({
+					    msg: '系统错误',
+					    duration: 2000,
+					    location: 'bottom'
+					});
+				};
+				api.hideProgress();
+				//loadinghide();
+			});
+		}
+		//添加定制
+		function intoOrder(lists) {
+			//zzalert(JSON.stringify(lists))
+			//lists=JSON.parse(lists);
+			lists['company_id'] = UserInfo.memberID();
+			lists['usertoken'] = UserInfo.token();
+			lists['appsystem'] = api.systemType;
+			lists['datatype'] = 'json';
+			api.showProgress({
+				title : '定制中',
+				modal : true
+			});
+			//保存定制信息
+			saveorder(lists);
+		}
+		function saveorder(data){
+			api.ajax({
+				url : hosturl + 'order/myorderprice_save.html',
+				method : 'post',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(ret))
+				if (ret) {
+					if (ret.err == "true") {
+						api.toast({
+						    msg: ret.errkey,
+						    duration: 2000,
+						    location: 'bottom'
+						});
+					} else {
+						var order_span = '<span><font>' + data['label'] + '</font><i class="remove aui-iconfont aui-icon-roundclosefill" orderid="'+ret.orderid+'"></i></span>';
+						$(".get-xinx").append(order_span);
+						var div = document.getElementById('selectmain');
+						div.scrollTop = div.scrollHeight;
+						
+						//切换到行情
+						api.execScript({
+							name : 'root',
+							frameName : 'help',
+							script : "closegroup();myorder()"
+						});
+						api.hideProgress();
+					}
+				} else {
+					api.toast({
+					    msg: '系统错误',
+					    duration: 2000,
+					    location: 'bottom'
+					});
+				};
+				api.hideProgress();
+				//loadinghide();
+			});
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

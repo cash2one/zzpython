@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <style type="text/css">
+    body {
+        height: auto;
+    }
+    .aui-card {
+        margin-top: 15px;
+    }
+    .aui-input-addon.aui-iconfont {
+        font-size: 20px;
+    }
+    </style>
+</head>
+<body>
+    <div class="aui-content aui-card aui-noborder">       
+        <div class="aui-form">
+            <div class="aui-input-row">
+                <i class="aui-input-addon aui-iconfont aui-icon-mobilefill aui-text-warning"></i>
+                <input type="text" id="mobile" class="aui-input" placeholder="手机号" style="color:#999" value="" />
+            </div>
+            <div class="aui-input-row">
+                <input type="number" class="aui-input" id="code" placeholder="请输入收到的验证码"/>
+                <span class="aui-input-addon">
+                    <div class="aui-btn" id="sendVerify" status="1" tapmode>获取验证码</div>
+                </span>
+            </div>
+           
+            <div class="aui-input-row">
+                <i class="aui-input-addon aui-iconfont aui-icon-lock aui-text-warning"></i>
+                <input type="password" id="password" class="aui-input" placeholder="密码"/>
+                <i class="aui-input-addon aui-iconfont aui-icon-attention aui-text-default" tapmode onclick="showPassword();" id="showpass-btn"></i>
+            </div>
+            <div class="aui-input-row">
+                <i class="aui-input-addon aui-iconfont aui-icon-lock aui-text-warning"></i>
+                <input type="password" id="password2" class="aui-input" placeholder="确认密码"/>
+            </div>
+            <div class="aui-btn-row">
+                <div class="aui-btn aui-btn-warning modifiedbutton" >下一步</div>
+                <input type="hidden" id="company_id" value="0">
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js" ></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+    
+    var isinerval,times;
+    apiready = function () {
+    	var mobile=api.pageParam.mobile;
+    	$("#mobile").val(mobile);
+        api.parseTapmode();
+        $("#sendVerify").on("click", function() {
+        	
+			getVerify();
+		});
+		//确定重置
+		$(".modifiedbutton").on("click", function() {
+			var code=$("#code").val();
+			var company_id=$("#company_id").val();
+			
+			if (code.length==0){
+				hint("请输入验证码！");
+				return false;
+			}
+			if (company_id.toString()=="0"){
+				hint("验证码错误！");
+				return false;
+			}
+			var data={
+	        	company_id : company_id,
+				usertoken : UserInfo.token(),
+				appsystem : api.systemType,
+				datatype : "json",
+				yzcode : code,
+				newcold : $("#password").val(),
+				sedcold : $("#password2").val(),
+				forgettype : "forgetpasswd",
+	        }
+	        api.ajax({
+				url : hosturl+"user/resetpasswd.html",
+				method : "post",
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				
+				if (ret){
+					hint(ret.errkey)
+					if (ret.err=="false"){
+						api.closeWin();
+					}
+				}else{
+					hint("系统错误！");
+					if(err){
+						saveerrlog(err.body);
+					}
+				}
+				
+			});
+		});
+    }
+    function showPassword(){
+        $api.attr($api.byId('password'),'type','text');
+        $api.removeCls($api.byId('showpass-btn'),'aui-icon-attention');
+        $api.addCls($api.byId('showpass-btn'),'aui-icon-attentionfill');
+        $api.attr($api.byId('showpass-btn'),'onclick','hidePassword();');
+        api.parseTapmode();
+    }
+    function hidePassword(){
+        $api.attr($api.byId('password'),'type','password');
+        $api.removeCls($api.byId('showpass-btn'),'aui-icon-attentionfill');
+        $api.addCls($api.byId('showpass-btn'),'aui-icon-attention');
+        $api.attr($api.byId('showpass-btn'),'onclick','showPassword();');
+        api.parseTapmode();
+    }
+    function getVerify() {
+    	var mobile= $("#mobile").val();
+    	if (mobile.length<=0){
+    		hint("请输入手机号码");
+    		//document.getElementById("mobile").focus();
+    		return;
+    	}
+        var sendVerify = $api.byId('sendVerify');
+        var status = $api.attr(sendVerify,'status');
+        if(status!=1){
+            return;
+        }
+        //$('#sendVerify').html("获取中");
+        $api.attr(sendVerify,'status','0');
+        var data={
+        	company_id : UserInfo.memberID(),
+			usertoken : UserInfo.token(),
+			appsystem : api.systemType,
+			datatype : "json",
+			forgettype : "forgetpasswd",
+			mobile : mobile,
+        }
+        api.ajax({
+			url : hosturl+"user/auth_yzmcode.html",
+			method : "post",
+			timeout : 30,
+			dataType : 'json',
+			returnAll : false,
+			data : {
+				values : data
+			}
+		}, function(ret, err) {
+			//zzalert( JSON.stringify( ret ) );
+			if (ret){
+				if (ret.err=="true"){
+					hint(ret.errkey)
+					return;
+				}else{
+					hint(ret.errkey);
+					$("#company_id").val(ret.company_id);
+					
+			        //$api.removeAttr(sendVerify,'onclick');
+			        api.parseTapmode();
+			        $api.html(sendVerify,'<span id="GetVerify">120</span>');
+			        times = 119;
+			        isinerval = setInterval("CountDown()", 1000);
+			        setTimeout(function(){
+			            //$api.val($api.byId("code"),'888888');
+			        },500)
+				}
+			}else{
+				hint("系统错误！");
+			}
+		});
+		
+        
+    }
+    function CountDown() {
+        if (times < 1) {
+            var sendVerify = $api.byId('sendVerify');
+            //$api.attr(sendVerify,'onclick','get_verify()');
+            $api.attr(sendVerify,'status','1');
+            api.parseTapmode();
+            $api.html(sendVerify,'重新获取');
+            clearInterval(isinerval);
+            return;
+        }
+        var getVerify = $api.byId('GetVerify');
+        $api.html(getVerify,''+times+'');
+        times--;
+    }
+    function hint(ts) {
+		$(".hint").remove()
+		var hintHtml = '<div class="hint" style="position:fixed;color:#fff;line-height:18px;font-size:14px;width:100%">' + '<span style="display:block;margin:0 8px;background:#000;opacity:0.8;border-radius:5px;padding:10px 10px;text-align:center">' + ts + '<span>' + '</div>';
+		$("body").append(hintHtml);
+		var hint_height = $(".hint").height();
+		var wd_height = $(window).height();
+		var top_height = (wd_height - hint_height) / 2
+		$(".hint").css("top", top_height + "px");
+		setTimeout(function() {
+			$(".hint").fadeOut("slow", function() {
+				$(".hint").remove()
+			})
+		}, 2000)
+	}
+</script>
+<script type="text/javascript">
+    function setGroupIndex(){
+        api.setFrameGroupIndex({
+            name: 'register_frm',
+            index:1,
+            scroll:true
+        });
+    }
+    
+</script>
+</html>

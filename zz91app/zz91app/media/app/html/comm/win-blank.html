@@ -1,0 +1,1004 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" href="../../css/comm/win_blank.css" type="text/css">
+		<style>
+			.trade_type {
+				width: 25%;
+				padding-left: 0px;
+			}
+			.fenxian{
+				position: absolute;
+				font-size: 22px;
+				right: 0px;
+				padding: 10px;
+				min-width: 40px;
+			}
+			.collect{
+				position: absolute;
+				right: 30px;
+				padding: 10px;
+				min-width: 40px;
+			}
+			.yearea,.addressbookedit{
+				position: absolute;
+				right: 0px;
+				padding: 13px;
+				min-width: 40px;
+			}
+			.detail-nav{
+	            border-bottom: 1px solid #e7e7e7;
+	        }
+	        .detail-nav ul{
+	            display: -webkit-box;
+	            display: -webkit-flex;
+	            display: flex;
+	        }
+	        .detail-nav li{
+	            height: 40px;
+	            line-height: 30px;
+	            -webkit-box-flex: 1; 
+	            -webkit-flex: 1;
+	            flex: 1;
+	            text-align: center;
+	            font-size: 14px;
+	            padding: 5px 0;
+	            background-color: #fff;
+	        }
+	        .detail-nav li div{
+	            padding: 0 10px;
+	            border-right: 1px solid #e7e7e7;
+	            background: url(../../image/ic_routelist_dropdown_arrow.png) no-repeat bottom right;
+	            -webkit-background-size: 9px;
+	            background-size: 9px;
+	            -webkit-background-origin: content;
+	            -webkit-background-origin: content-box;
+	            background-origin: content-box;
+	        }
+	        .detail-nav li:last-child div{
+	            border-right: none;
+	        }
+	        .tap-active{
+			    background-color: #e6e6e6;
+			}
+			.trade_tab li{
+				width:25%;
+				
+			}
+			.trade_tab li div{
+				width:100%;
+				padding-left:3px;
+				padding-right:3px;
+				overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+			}
+			.czfoot{
+				
+			}
+		</style>
+	</head>
+	<body>
+		<header id="topbar">
+			<div id="cloud" class="topbar  activebar">
+				<div tapmode="hover-category" class="category" onclick="closewindows();">
+					<i></i>
+				</div>
+				<div class="select">
+					<span class="select-ipt" onclick="openSearch()">点此输入搜索关键字</span>
+					<i></i>
+				</div>
+				<div tapmode="hover-category" class="infonumber font-wen"></div>
+				<div tapmode="hover-category" class="infonumber my-gout">
+					<i class="gout-img"></i>
+					<p>发布</p>
+				</div>
+				<div tapmode="hover-category" class="infonumber shaxuan">
+					<i class="shaxuan-mig"></i>
+					<p>筛选</p>
+				</div>
+				<div tapmode="hover-category" class="infonumber yearea">
+					<i class="aui-iconfont aui-icon-search" style="font-size: 16px;"></i> 筛选地区
+				</div>
+				<div tapmode="hover-category" class="infonumber fenxian">
+					<i class="aui-iconfont aui-icon-share" style="font-size: 22px;"></i>
+				</div>
+				<div tapmode="hover-category" class="infonumber collect">
+					<i class="aui-iconfont aui-icon-favor" style="font-size: 22px;"></i>
+				</div>
+				<div tapmode="hover-category" class="infonumber addressbookedit">
+					<i class="aui-iconfont aui-icon-edit" style="font-size: 16px;"></i> 编辑
+				</div>
+				
+
+			</div>
+			<div class="detail-nav trade_tab" style="display:none">
+		        <ul>
+		            <li class="tap trade_leimu" tapmode="tap-active">
+		                <div>类别</div>
+		            </li>
+		            <li class="tap trade_gq" tapmode="tap-active">
+		                <div>供求</div>
+		            </li>
+		            <li class="tap trade_order" tapmode="tap-active">
+		                <div>排序</div>
+		            </li>
+		            <li class="tap trade_select" tapmode="tap-active">
+		                <div>筛选</div>
+		            </li>
+		        </ul>
+		    </div>
+			
+			<div class="detail-nav company_tab" style="display:none">
+		        <ul>
+		            <li class="tap comp_leimu" tapmode="tap-active" style="width: 32%;">
+		                <div>类目</div>
+		            </li>
+		            <li class="tap comp_area" tapmode="tap-active" style="width: 32%;">
+		                <div>地区</div>
+		            </li>
+		            <li class="tap comp_jsd" tapmode="tap-active" style="width: 32%;">
+		                <div>集散地</div>
+		            </li>
+		        </ul>
+		    </div>
+		</header>
+		<div class="main"></div>
+		<footer style="display:none">
+			<ul class="czfoot zhigou" style="display:none">
+				<li class="j_fabu">
+					<font color="#ff0000">免费发布</font>
+				</li>
+				<li class="j_caigou">
+					我的采购单
+				</li>
+				<li class="j_supply">
+					我的供货单
+				</li>
+			</ul>
+			<ul class="czfoot companyshop" style="display:none;">
+				<li class="c_insto">
+					商家介绍
+				</li>
+				<li class="c_contact" onclick="phonedata()" style="font-size:16px;color:#ff0000">
+					<span class="aui-iconfont aui-icon-phone"></span> 联系商家
+				</li>
+				<li class="c_chat">
+					留言
+				</li>
+			</ul>
+			<ul class="czfoot ldbphone" style="display:none">
+				<li class="j_clickphone">
+					查看点击清单
+				</li>
+			</ul>
+		</footer>
+		<script type="text/javascript" src="../../script/api.js"></script>
+		<script type="text/javascript" src="../../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../../script/common.js"></script>
+		<script type="text/javascript" src="../../script/laytpl.js"></script>
+		<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+		<script>
+			var type;
+			var tocompany_id;
+			//设备back键
+			var keybackflag="1";
+			//是否收藏
+			var favoriteflag;
+			//公司库选择类别标志
+			var company_select_leimu=false;
+			//返回标志重置
+			function keybackFun(flag){
+				keybackflag=flag;
+				if (flag=="0"){
+					company_select_leimu=true;
+				}else{
+					company_select_leimu=false;
+					$(".detail-nav li").css("color","#111111");
+					$(".detail-nav li").attr("title","0");
+				}
+			}
+			//公司门市部拨打电话
+			function phonedata(){
+				api.execScript({
+					frameName : api.winName+"_",
+					script : "phoneFun()"
+				});
+			}
+			function classselectall(obj){
+				var ncss=obj.attr("title");
+				keybackFun("1");
+				obj.css("color","#ff0000");
+				obj.attr("title","1");
+				if (ncss.toString()=="1"){
+					api.execScript({
+						frameName : 'company-select-leimu',
+						script : "closeselect()"
+					});
+					company_select_leimu=true;
+				}
+			}
+			//分享
+			function shareopen(){
+				var html = "";
+					html += '<div class="sharebox"><ul><li class="share_qq"><img src="../image/share/share_to_icon_qq.png"><br />QQ好友</li><li class="share_wx"><img src="../image/share/share_to_icon_wx.png"><br />微信好友</li><li class="share_wxq"><img src="../image/share/share_to_icon_wxq.png"><br />朋友圈</li><li class="share_weibo"><img src="../image/share/share_to_icon_weibo.png"><br />新浪微博</li></div>'
+					$aui.alert({
+						title : '',
+						content : html,
+						buttons : ['取消'],
+						radius : 10,
+						titleColor : '#333',
+						contColor : '#333',
+						btnColor : ''
+					}, function(ret) {
+						//处理回调函数
+						if (ret) {
+							if (ret == 0) {
+								return;
+							}
+						}
+					});
+			}
+			//打开搜索
+			function openSearch() {
+				api.openWin({
+					name : 'search',
+					pageParam : api.pageParam,
+					url : 'widget://html/comm/search.html',
+					bounces : false,
+					delay : 200
+				});
+			}
+			//是否收藏
+			function isfavor(flag){
+				if (flag==1){
+					//$(".collect i").css("color","#34495E");
+					$(".collect i").removeClass("aui-icon-favor");
+					$(".collect i").addClass("aui-icon-favorfill");
+				}else{
+					$(".collect i").removeClass("aui-icon-favorfill");
+					$(".collect i").addClass("aui-icon-favor");
+				}
+				favoriteflag=flag
+			}
+			//公司库选中类别
+			function xzleimu(k){
+				$(".comp_leimu div").html(k)
+			}
+			//公司库选中地区
+			function xzarea(k){
+				$(".comp_area div").html(k)
+			}
+			//公司库选中集散地
+			function xzjsd(k){
+				$(".comp_jsd div").html(k)
+			}
+			
+			//供求选中类别
+			function pro_xzleimu(k){
+				$(".trade_leimu div").html(k)
+			}
+			function pro_gq(k){
+				$(".trade_gq div").html(k)
+			}
+			//保存供求筛选参数
+			var choicepageParam;
+			function choicechick(province,timearg){
+				//zzalert(JSON.stringify(p))
+				choicepageParam = {
+					province : province,
+					timearg : timearg
+				}
+			}
+			apiready = function() {
+				//var systemType = api.systemType;
+				//if (systemType != "ios") {
+					//$("header").css("padding-top", "0px")
+				//}
+				var header = $api.byId('topbar');
+    			$api.fixStatusBar(header);
+				type = api.pageParam.type;
+				//公司库
+				if (type == "company-list") {
+					$(".my-gout").hide();
+					$(".company_tab").show();
+				}
+				//供求列表
+				if (type == "trade-list") {
+					$(".my-gout").show();
+					$(".trade_tab").show();
+				}
+				/////底部显示
+				//公司门市部
+				if (type == 'companyshop'){
+					$(".companyshop").show();
+				}
+				//来电宝电话清单
+				if (type=="my-ldbphone"){
+					$(".ldbphone").show();
+				}
+				//厂家直购
+				if (type == 'vender'){
+					$(".zhigou").show();
+				}
+				var url = api.pageParam.url;
+				if (url) {
+					loadcommonurl(url, api.pageParam);
+				}
+				//判断是否需要分享
+				if (type == "infomation-heart" && api.pageParam.frame_url[0]=='../trade/firm-detail.html') {
+					$(".fenxian").show();
+					//$(".font-wen").hide();
+				}
+				//判断是互助社区发布页
+				if (type == "community" || type=="huzhu-list" || type=="issue-info" || type=="vender") {
+					$(".my-gout").hide();
+				}
+
+				//判断是否需要分享和收藏
+				if (type == "double-heart"||type == "price-detail"||type == "detail"||type == "companyshop") {
+					$(".fenxian").show();
+					$(".collect").show();
+					//$(".font-wen").hide();
+				}
+				//
+				if (type=="ye-detail"){
+					$(".fenxian").show();
+				}
+				
+				//判断是否产业带
+				if (type == "ye-list"){
+					$(".yearea").show();
+				}
+				
+				//我的通讯录编辑
+				if (type=="my-addressbook"){
+					$(".addressbookedit").show();
+				}
+				
+				//判断中间字体位子(当右边文字过多时)
+				var wenWight = $(".font-wen").width()
+				if (wenWight > 50) {
+					//$(".select").css("padding-left", wenWight - 50 + "px")
+				}
+				//筛选
+				$("#choice").on("click", function() {
+					api.execScript({
+						frameName : 'trade-list_',
+						script : "choicechick()"
+					});
+				})
+				//通讯录编辑
+				$(".addressbookedit").on("click", function() {
+					api.execScript({
+						frameName : api.winName+'_',
+						script : "editaddressbook('1')"
+					});
+				})
+				//门市部留言
+				
+				$(".c_chat").on("click", function() {
+					api.execScript({
+						frameName : api.winName+'_',
+						script : "leavewordFun()"
+					});
+				})
+				//分享
+				$(".fenxian").on("click", function() {
+					shareopen();
+				});
+				//收藏
+				$(".collect").on("click", function() {
+					//报价、资讯信息收藏
+					if (type == "price-detail" || type == "detail" || type=="companyshop") {
+						api.execScript({
+							frameName : api.pageParam.wname,
+							script : "shoucFun("+favoriteflag+")"
+						});
+						if (favoriteflag==1){
+							isfavor(0);
+							favoriteflag=0;
+						}else{
+							isfavor(1);
+							favoriteflag=1;
+						}
+					}
+				});
+				//产业带地区选择
+				$(".yearea").on("click", function() {
+					//classselectall($(this));
+					if (company_select_leimu==false){
+						var $body = $api.dom('body');
+						var topHeight = $("header").height();
+						var body_h = $api.offset($body).h;
+						var rect_h = body_h-topHeight-60;
+						api.openFrame({
+			                name:'company-select-leimu',
+			                url:'../ye/area.html',
+			                rect:{
+			                    x:0,
+			                    y:0,
+			                    w:'auto',
+			                    h:'auto',
+			                    marginTop:topHeight
+			                },
+			                animation:{
+			                	type:"fade",                //动画类型（详见动画类型常量）
+							    //subType:"from_top",       //动画子类型（详见动画子类型常量）
+							    duration:300 
+			                },
+			                bounces: false,
+			                bgColor: 'rgba(51,51,51,0.6)',
+			                vScrollBarEnabled:false,
+			                hScrollBarEnabled:true,
+			            });
+			            keybackflag="0";
+			            company_select_leimu=true;
+			        }else{
+			        	api.execScript({
+							frameName : 'company-select-leimu',
+							script : "closeselect()"
+						});
+						company_select_leimu=false;
+			        	keybackflag="1";
+			        }
+	            });
+				//供应、求购筛选
+				$(".trade_type").on("click", function() {
+					tradetype = $(this).attr("tradetype");
+					$(".trade_type").css("background-color", "#fff");
+					$(this).css("background-color", "#ebebeb");
+					api.execScript({
+						frameName : 'trade-list_',
+						script : "changsearche('" + tradetype + "')"
+					});
+				});
+				//公司库选择类别
+				$(".comp_leimu").on("click", function() {
+					classselectall($(this));
+					if (company_select_leimu==false){
+						var $body = $api.dom('body');
+						var topHeight = $("header").height();
+						var body_h = $api.offset($body).h;
+						var rect_h = body_h-topHeight-20;
+						api.openFrame({
+			                name:'company-select-leimu',
+			                url:'../company/category.html',
+			                rect:{
+			                    x:0,
+			                    y:0,
+			                    w:'auto',
+			                    h:'auto',
+			                    marginTop:topHeight
+			                },
+			                animation:{
+			                	type:"fade",                //动画类型（详见动画类型常量）
+							    //subType:"from_top",       //动画子类型（详见动画子类型常量）
+							    duration:600 
+			                },
+			                bounces: false,
+			                bgColor: 'rgba(51,51,51,0.6)',
+			                vScrollBarEnabled:false,
+			                hScrollBarEnabled:true,
+			            });
+			            keybackflag="0";
+			            company_select_leimu=true;
+			        }else{
+			        	api.execScript({
+							frameName : 'company-select-leimu',
+							script : "closeselect()"
+						});
+						company_select_leimu=false;
+			        	keybackflag="1";
+			        }
+	            });
+	            //供求选择类别
+				$(".trade_leimu").on("click", function() {
+					classselectall($(this));
+					if (company_select_leimu==false){
+						var $body = $api.dom('body');
+						var topHeight = $("header").height();
+						var body_h = $api.offset($body).h;
+						var rect_h = body_h-topHeight-20;
+						api.openFrame({
+			                name:'company-select-leimu',
+			                url:'../trade/select-category.html',
+			                rect:{
+			                    x:0,
+			                    y:0,
+			                    w:'auto',
+			                    h:'auto',
+			                    marginTop:topHeight
+			                },
+			                animation:{
+			                	type:"fade",                //动画类型（详见动画类型常量）
+							    //subType:"from_top",       //动画子类型（详见动画子类型常量）
+							    duration:600 
+			                },
+			                bounces: false,
+			                bgColor: 'rgba(51,51,51,0.6)',
+			                vScrollBarEnabled:false,
+			                hScrollBarEnabled:true,
+			            });
+			            keybackflag="0";
+			            //company_select_leimu=true;
+			        }else{
+			        	api.execScript({
+							frameName : 'company-select-leimu',
+							script : "closeselect()"
+						});
+						company_select_leimu=false;
+			        	keybackflag="1";
+			        }
+	            });
+	            //供求选择供求
+				$(".trade_gq").on("click", function() {
+					classselectall($(this));
+					if (company_select_leimu==false){
+						var $body = $api.dom('body');
+						var topHeight = $("header").height();
+						var body_h = $api.offset($body).h;
+						var rect_h = body_h-topHeight-20;
+						api.openFrame({
+			                name:'company-select-leimu',
+			                url:'../trade/select-type.html',
+			                rect:{
+			                    x:0,
+			                    y:0,
+			                    w:'auto',
+			                    h:'auto',
+			                    marginTop:topHeight
+			                },
+			                animation:{
+			                	type:"fade",                //动画类型（详见动画类型常量）
+							    //subType:"from_top",       //动画子类型（详见动画子类型常量）
+							    duration:600 
+			                },
+			                bounces: false,
+			                bgColor: 'rgba(51,51,51,0.6)',
+			                vScrollBarEnabled:false,
+			                hScrollBarEnabled:true,
+			            });
+			            keybackflag="0";
+			            //company_select_leimu=true;
+			        }else{
+			        	api.execScript({
+							frameName : 'company-select-leimu',
+							script : "closeselect()"
+						});
+						company_select_leimu=false;
+			        	keybackflag="1";
+			        }
+	            });
+	            //供求选择供求
+				$(".trade_order").on("click", function() {
+					classselectall($(this));
+					if (company_select_leimu==false){
+						var $body = $api.dom('body');
+						var topHeight = $("header").height();
+						var body_h = $api.offset($body).h;
+						var rect_h = body_h-topHeight-20;
+						api.openFrame({
+			                name:'company-select-leimu',
+			                url:'../trade/select-order.html',
+			                rect:{
+			                    x:0,
+			                    y:0,
+			                    w:'auto',
+			                    h:'auto',
+			                    marginTop:topHeight
+			                },
+			                animation:{
+			                	type:"fade",                //动画类型（详见动画类型常量）
+							    //subType:"from_top",       //动画子类型（详见动画子类型常量）
+							    duration:600 
+			                },
+			                bounces: false,
+			                bgColor: 'rgba(51,51,51,0.6)',
+			                vScrollBarEnabled:false,
+			                hScrollBarEnabled:true,
+			            });
+			            keybackflag="0";
+			            //company_select_leimu=true;
+			        }else{
+			        	api.execScript({
+							frameName : 'company-select-leimu',
+							script : "closeselect()"
+						});
+						company_select_leimu=false;
+			        	keybackflag="1";
+			        }
+	            });
+	            //供求选择筛选
+				$(".trade_select").on("click", function() {
+					classselectall($(this));
+					if (company_select_leimu==false){
+						
+						var $body = $api.dom('body');
+						var topHeight = $("header").height();
+						var body_h = $api.offset($body).h;
+						var rect_h = body_h-topHeight-20;
+						api.openFrame({
+			                name:'company-select-leimu',
+			                url:'../trade/choice.html',
+			                rect:{
+			                    x:0,
+			                    y:0,
+			                    w:'auto',
+			                    h:'auto',
+			                    marginTop:topHeight
+			                },
+			                pageParam : choicepageParam,
+			                animation:{
+			                	type:"fade",                //动画类型（详见动画类型常量）
+							    //subType:"from_top",       //动画子类型（详见动画子类型常量）
+							    duration:600 
+			                },
+			                bounces: false,
+			                bgColor: 'rgba(51,51,51,0.6)',
+			                vScrollBarEnabled:false,
+			                hScrollBarEnabled:true,
+			            });
+			            keybackflag="0";
+			            //company_select_leimu=true;
+			            
+			        }else{
+			        	api.execScript({
+							frameName : 'company-select-leimu',
+							script : "closeselect()"
+						});
+						company_select_leimu=false;
+			        	keybackflag="1";
+			        }
+	            });
+	            //公司库选择地区
+				$(".comp_area").on("click", function() {
+					classselectall($(this));
+					if (company_select_leimu==false){
+						var $body = $api.dom('body');
+						var topHeight = $("header").height();
+						var body_h = $api.offset($body).h;
+						var rect_h = body_h-topHeight-60;
+						api.openFrame({
+			                name:'company-select-leimu',
+			                url:'../company/area.html',
+			                rect:{
+			                    x:0,
+			                    y:0,
+			                    w:'auto',
+			                    h:'auto',
+			                    marginTop:topHeight
+			                },
+			                animation:{
+			                	type:"fade",                //动画类型（详见动画类型常量）
+							    //subType:"from_top",       //动画子类型（详见动画子类型常量）
+							    duration:300 
+			                },
+			                bounces: false,
+			                bgColor: 'rgba(51,51,51,0.6)',
+			                vScrollBarEnabled:false,
+			                hScrollBarEnabled:true,
+			            });
+			            keybackflag="0";
+			            company_select_leimu=true;
+			        }else{
+			        	api.execScript({
+							frameName : 'company-select-leimu',
+							script : "closeselect()"
+						});
+						company_select_leimu=false;
+			        	keybackflag="1";
+			        }
+	            });
+	            //公司库产业带选择
+				$(".comp_jsd").on("click", function() {
+					classselectall($(this));
+					if (company_select_leimu==false){
+						var $body = $api.dom('body');
+						var topHeight = $("header").height();
+						var body_h = $api.offset($body).h;
+						var rect_h = body_h-topHeight-60;
+						api.openFrame({
+			                name:'company-select-leimu',
+			                url:'../company/jsd.html',
+			                rect:{
+			                    x:0,
+			                    y:0,
+			                    w:'auto',
+			                    h:'auto',
+			                    marginTop:topHeight
+			                },
+			                animation:{
+			                	type:"fade",                //动画类型（详见动画类型常量）
+							    //subType:"from_top",       //动画子类型（详见动画子类型常量）
+							    duration:300 
+			                },
+			                bounces: false,
+			                bgColor: 'rgba(51,51,51,0.6)',
+			                vScrollBarEnabled:false,
+			                hScrollBarEnabled:true,
+			            });
+			            keybackflag="0";
+			            company_select_leimu=true;
+			        }else{
+			        	api.execScript({
+							frameName : 'company-select-leimu',
+							script : "closeselect()"
+						});
+						company_select_leimu=false;
+			        	keybackflag="1";
+			        }
+	            });
+	            
+				//互助社区发布信息
+				$(".my-gout").on("click", function() {
+					if (UserInfo.has_login()) {
+						if (type == "community" || type=="huzhu-list") {
+							var pageParam = {
+								wintitle : "互助社区发布",
+								type : "issue"
+							};
+							openWin("issue", "../huzhu/issue.html", pageParam);
+						}
+						if (type=="trade-list") {
+							var pageParam = {
+				              wintitle:"发布供求",
+				              type:"issue-info",
+				            };
+				            openWin("issue-info","../myrc/issue-info.html",pageParam);
+						}
+					} else {
+						if (type == "community" || type=="huzhu-list") {
+							var pageParam = {
+								wintitle : "互助社区发布",
+								type : "issue",
+								nextUrl : "widget://html/huzhu/issue.html",
+								winName : "issue"
+							};
+							openWin("frm-login", "../myrc/frm-login.html", pageParam);
+						}
+						if (type=="trade-list") {
+							var pageParam = {
+								wintitle : "互助社区发布",
+								type : "trade-post",
+								nextUrl : "widget://html/myrc/issue-info.html",
+								winName : "trade-post"
+							};
+							openWin("frm-login", "../myrc/frm-login.html", pageParam);
+						}
+					}
+				})
+				//发布需求
+				$("#cloud").on("click", ".font-wen", function() {
+					//供求筛选
+					if (type == "choice") {
+						api.execScript({
+							frameName : 'choice_',
+							script : "selectbutton()"
+						});
+					}
+				});
+				//厂家直购  我的采购单
+				$(".j_caigou").on("click",function(){
+					if (UserInfo.has_login()) {
+				        var pageParam = {
+				            wintitle:"我的采购单",
+				            type:"purchase",
+				        };
+				        openWin("purchase","../zhigou/vender-purchase.html",pageParam);
+			        }else{
+			        	var pageParam = {
+							wintitle : "我的采购单",
+							type : "purchase",
+							nextUrl : "../zhigou/vender-purchase.html",
+							winName : "purchase"
+						};
+						openWin("frm-login", "../myrc/frm-login.html", pageParam);
+			        }
+			    })
+			    //厂家直购  我的供货单
+			    $(".j_supply").on("click",function(){
+			        if (UserInfo.has_login()) {
+				        var pageParam = {
+				            wintitle:"我的供货单",
+				            type:"supply-list",   
+				        };
+				        openWin("supply-list","../zhigou/supply-list.html",pageParam);
+			        }else{
+			        	var pageParam = {
+							wintitle : "我的供货单",
+							type : "supply-list",
+							nextUrl : "../zhigou/supply-list.html",
+							winName : "supply-list"
+						};
+						openWin("frm-login", "../myrc/frm-login.html", pageParam);
+					}
+			    })
+			    //厂家直购  发布采购信息
+			    $(".j_fabu").on("click",function(){
+			        if (!UserInfo.has_login()) {
+			        	var pageParam = {
+							wintitle : "发布采购信息",
+							type : "supply-list",
+							nextUrl : "../zhigou/purchase-issue.html",
+							winName : "purchase-issue"
+						};
+						openWin("frm-login", "../myrc/frm-login.html", pageParam);
+						return false;
+			        }
+			        var pageParam = {
+			            wintitle:"发布采购信息",
+			            type:"purchase-issue",
+			        };
+			        openWin("purchase-issue","../zhigou/purchase-issue.html",pageParam);
+			    });
+			    //打开商家介绍
+			    $(".c_insto").on("click",function(){
+				    var pageParam = {
+		                wintitle:"公司详情",
+		                type:"firm",
+						id : api.pageParam.forcompany_id,
+		                bounces:false
+		            };
+		            //zzalert(JSON.stringify(pageParam))
+		            openWin("firm","../trade/firm.html",pageParam);
+	            })
+	            //打开来电宝点击清单
+			    $(".j_clickphone").on("click",function(){
+				    var pageParam = {
+		                wintitle:"点击清单",
+		                type:"ldbclickphone",
+		                bounces:false
+		            };
+		            //zzalert(JSON.stringify(pageParam))
+		            openWin("ldbclickphone","../ldb/phoneclick.html",pageParam);
+	            })
+	            
+				api.addEventListener({
+				    name:'keyback'
+				},function(ret,err){
+				    return closewindows();
+				});
+			}
+			//关闭窗口
+			function closewindows(){
+				//operation
+				api.execScript({
+					frameName : 'aui_alert_frm',
+					script : "closeselect()"
+				});
+				if (api.pageParam.nextUrl && !UserInfo.has_login()){
+					api.closeWin();
+					return;
+				}
+			    if (type == "huifu" || type=="hf-form") {
+					api.execScript({
+						frameName : api.winName+'_',
+						script : "closepicture()"
+					});
+					if (keybackflag=="0"){
+						return false;
+					}else{
+						api.confirm({
+							title:'提示',
+							msg: '确实要退出编辑吗？',
+		    				buttons: ['确定','取消']
+                        },function(ret,err){
+                        	if (ret.buttonIndex==1){
+                        		api.closeWin();
+                        	}else{
+                        		return false;
+                        	}
+                        });
+                        return false;
+					}
+				}
+				//发布互助提问
+				if (type == "issue") {
+					api.execScript({
+						frameName : 'issue_',
+						script : "closepicture()"
+					});
+					if (keybackflag=="0"){
+						return false;
+					}else{
+						api.confirm({
+							title:'提示',
+							msg: '确实要退出编辑吗？',
+		    				buttons: ['确定','取消']
+                        },function(ret,err){
+                        	if (ret.buttonIndex==1){
+                        		api.closeWin();
+                        	}else{
+                        		return false;
+                        	}
+                        });
+                        return false;
+					}
+				}
+				//公司库列表选择类别
+				if (type == "company-list" || type == "trade-list" || type == "ye-list") {
+					api.execScript({
+						frameName : 'company-select-leimu',
+						script : "closeselect()"
+					});
+					api.execScript({
+						frameName : 'company-select-area',
+						script : "closeselect()"
+					});
+					
+					company_select_leimu=false;
+					if (keybackflag=="0"){
+						return false;
+					}else{
+						
+					}
+				}
+				//发布供求选择供求
+				if (type == "issue-info") {
+					api.execScript({
+						frameName : 'trade-code',
+						script : "closeselect()"
+					});
+					company_select_leimu=false;
+					if (keybackflag=="0"){
+						return false;
+					}else{
+						api.confirm({
+							title:'提示',
+							msg: '确实要退出编辑吗？',
+		    				buttons: ['确定','取消']
+                        },function(ret,err){
+                        	if (ret.buttonIndex==1){
+                        		api.closeWin();
+                        	}else{
+                        		return false;
+                        	}
+                        });
+                        return false;
+					}
+				}
+				
+				if (keybackflag=="0"){
+					return false;
+				}
+				api.closeWin();
+			}
+			
+			function cityList(cityAll) {
+				if (cityAll.length == 0) {
+					$(".shaxuan").css("display", "none");
+				}
+				$(".shaxuan").on("click", function() {
+					api.openFrame({
+						name : 'city-list',
+						opaque : false,
+						bounces : false,
+						bgColor : 'rgba(0,0,0,0.6)',
+						url : '../price/city-list.html',
+						pageParam : {
+							citi_list : cityAll
+						},
+						rect : {
+							x : 0,
+							y : 0,
+							w : 'auto',
+							h : 'auto'
+						}
+					});
+				})
+			}
+
+			function hidrightbutton() {
+				$(".my-gout").css("display", "none");
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/main.min.css" type="text/css">
+		<link rel="stylesheet" href="../css/pinlun.css" type="text/css">
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav" id="apptop">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="api.closeWin();"></a>
+			<h1 class="mui-title">评论</h1>
+		</header>
+		<div class="box">
+			<!--分享-->
+			
+
+			<div id="MyComments" class="pinlun">
+				<div class="plunxx">
+					<div class="plunxx_top">
+						<div class="plunxx_top1"> 游客
+							<span>台湾省</span>
+						</div>
+						<div class="plunxx_top3">
+							<div title="这条评论有问题，小编快来和谐它" onclick="userReport(20289022,416687)" style="padding-right:0px;" class="plunxx_bottom_fdui"><span id="span_jubao_20289022" style="color:red;">举报</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="plunxx_center">
+						类DOTA的游戏都是人性游戏，在其中可以放大人的各种劣根性，不团结，推卸责任，不愿意为团队无私贡献，总之平时虚伪的人全都会显出原形
+						<div style="clear: both"></div>
+					</div>
+					<div class="plunxx_bottom">
+						<div class="plunxx_bottom_time"> 2015-4-19 12:48:32</div>
+						<div onclick="ShowReply(20289022)" class="plunxx_bottom_fyan">回复</div>
+						<div id="o_20289022" onclick="sndReq(416687,20289022,&#39;oppose&#39;,2)" class="plunxx_bottom_fdui">反对[2]</div>
+						<div id="s_20289022" onclick="sndReq(416687,20289022,&#39;support&#39;,35)" class="plunxx_bottom_ztong">支持[35]</div>
+					</div>
+					<div id="div_reply_20289022"></div>
+				</div>
+				<div class="plunxx">
+					<div class="plunxx_top">
+						<div class="plunxx_top1"> 游客
+							<span>海南省海口市</span>
+						</div>
+						<div class="plunxx_top3">
+							<div title="这条评论有问题，小编快来和谐它" onclick="userReport(20289002,416687)" style="padding-right:0px;" class="plunxx_bottom_fdui"><span id="span_jubao_20289002" style="color:red;">举报</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="plunxx_center">
+						中国科技网的小编NC就算了，快科技的小编转过来是几个意思？故意转来找喷赚流量？
+						<div style="clear: both"></div>
+					</div>
+					<div class="plunxx_bottom">
+						<div class="plunxx_bottom_time"> 2015-4-19 12:42:20</div>
+						<div onclick="ShowReply(20289002)" class="plunxx_bottom_fyan">回复</div>
+						<div id="o_20289002" onclick="sndReq(416687,20289002,&#39;oppose&#39;,1)" class="plunxx_bottom_fdui">反对[1]</div>
+						<div id="s_20289002" onclick="sndReq(416687,20289002,&#39;support&#39;,19)" class="plunxx_bottom_ztong">支持[19]</div>
+					</div>
+					<div id="div_reply_20289002"></div>
+				</div>
+				<div class="plunxx">
+					<div class="plunxx_top">
+						<div class="plunxx_top1"> 游客
+							<span>陕西省西安市</span>
+						</div>
+						<div class="plunxx_top3">
+							<div title="这条评论有问题，小编快来和谐它" onclick="userReport(20289031,416687)" style="padding-right:0px;" class="plunxx_bottom_fdui"><span id="span_jubao_20289031" style="color:red;">举报</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="plunxx_center">
+						我宁愿去球场增强注意力和增强感觉运动控制，那是全身协调运动，动用的神经比打游戏多多了
+						<div style="clear: both"></div>
+					</div>
+					<div class="plunxx_bottom">
+						<div class="plunxx_bottom_time"> 2015-4-19 12:50:06</div>
+						<div onclick="ShowReply(20289031)" class="plunxx_bottom_fyan">回复</div>
+						<div id="o_20289031" onclick="sndReq(416687,20289031,&#39;oppose&#39;,1)" class="plunxx_bottom_fdui">反对[1]</div>
+						<div id="s_20289031" onclick="sndReq(416687,20289031,&#39;support&#39;,14)" class="plunxx_bottom_ztong">支持[14]</div>
+					</div>
+					<div id="div_reply_20289031"></div>
+				</div>
+				<div class="plunxx">
+					<div class="plunxx_top">
+						<div class="plunxx_top1"><span name="regUserColor_UserName"> kidsmall</span>
+							<span>马来西亚</span>
+						</div>
+						<div class="plunxx_top3">
+							<div title="这条评论有问题，小编快来和谐它" onclick="userReport(20289039,416687)" style="padding-right:0px;" class="plunxx_bottom_fdui"><span id="span_jubao_20289039" style="color:red;">举报</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="plunxx_center">
+						LOL 不好玩!!!
+						<div style="clear: both"></div>
+					</div>
+					<div class="plunxx_bottom">
+						<div class="plunxx_bottom_time"> 2015-4-19 12:52:23</div>
+						<div onclick="ShowReply(20289039)" class="plunxx_bottom_fyan">回复</div>
+						<div id="o_20289039" onclick="sndReq(416687,20289039,&#39;oppose&#39;,1)" class="plunxx_bottom_fdui">反对[1]</div>
+						<div id="s_20289039" onclick="sndReq(416687,20289039,&#39;support&#39;,13)" class="plunxx_bottom_ztong">支持[13]</div>
+					</div>
+					<div id="div_reply_20289039"></div>
+				</div>
+				<div class="plunxx">
+					<div class="plunxx_top">
+						<div class="plunxx_top1"><span name="regUserColor_UserName"> pingher</span>
+							<span>四川省</span>
+						</div>
+						<div class="plunxx_top3">
+							<div title="这条评论有问题，小编快来和谐它" onclick="userReport(20289050,416687)" style="padding-right:0px;" class="plunxx_bottom_fdui"><span id="span_jubao_20289050" style="color:red;">举报</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="plunxx_center">
+						看一楼就知道玩游戏大脑进化成啥逼样了
+						<div style="clear: both"></div>
+					</div>
+					<div class="plunxx_bottom">
+						<div class="plunxx_bottom_time"> 2015-4-19 12:55:48</div>
+						<div onclick="ShowReply(20289050)" class="plunxx_bottom_fyan">回复</div>
+						<div id="o_20289050" onclick="sndReq(416687,20289050,&#39;oppose&#39;,1)" class="plunxx_bottom_fdui">反对[1]</div>
+						<div id="s_20289050" onclick="sndReq(416687,20289050,&#39;support&#39;,11)" class="plunxx_bottom_ztong">支持[11]</div>
+					</div>
+					<div id="div_reply_20289050"></div>
+				</div>
+				<div class="plunxx">
+					<div class="plunxx_top">
+						<div class="plunxx_top1"> 游客
+							<span>天津市</span>
+						</div>
+						<div class="plunxx_top3">
+							<div title="这条评论有问题，小编快来和谐它" onclick="userReport(20288977,416687)" style="padding-right:0px;" class="plunxx_bottom_fdui"><span id="span_jubao_20288977" style="color:red;">举报</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="plunxx_center">
+						生物文明的进化必然产生人工智能机器人！
+						<br>歧视机器人必然导致机器人灭绝所有生物！
+						<br>通过收割高等文明，防止生物彻底灭绝！
+						<br>收割者是生物的守护神！
+						<br>收割者是进化的顶点！
+						<br>永恒！
+						<br>永生！
+						<br>伟大的循环！
+						<br>收割者亿岁！
+						<div style="clear: both"></div>
+					</div>
+					<div class="plunxx_bottom">
+						<div class="plunxx_bottom_time"> 2015-4-19 12:35:26</div>
+						<div onclick="ShowReply(20288977)" class="plunxx_bottom_fyan">回复</div>
+						<div id="o_20288977" onclick="sndReq(416687,20288977,&#39;oppose&#39;,8)" class="plunxx_bottom_fdui">反对[8]</div>
+						<div id="s_20288977" onclick="sndReq(416687,20288977,&#39;support&#39;,2)" class="plunxx_bottom_ztong">支持[2]</div>
+					</div>
+					<div id="div_reply_20288977"></div>
+				</div>
+				<div class="plunxx">
+					<div class="plunxx_top">
+						<div class="plunxx_top1"><span name="regUserColor_UserName"> 独酌drinkalone</span>
+							<span class="dev android">Coolpad 酷派8297-C00 江西省</span>
+						</div>
+						<div class="plunxx_top3">
+							<div title="这条评论有问题，小编快来和谐它" onclick="userReport(20289132,416687)" style="padding-right:0px;" class="plunxx_bottom_fdui"><span id="span_jubao_20289132" style="color:red;">举报</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="plunxx_center">
+						动作类游戏和英雄联盟什么关系
+						<br>
+						<div style="clear: both"></div>
+					</div>
+					<div class="plunxx_bottom">
+						<div class="plunxx_bottom_time"> 2015-4-19 13:26:56</div>
+						<div onclick="ShowReply(20289132)" class="plunxx_bottom_fyan">回复</div>
+						<div id="o_20289132" onclick="sndReq(416687,20289132,&#39;oppose&#39;,1)" class="plunxx_bottom_fdui">反对[1]</div>
+						<div id="s_20289132" onclick="sndReq(416687,20289132,&#39;support&#39;,9)" class="plunxx_bottom_ztong">支持[9]</div>
+					</div>
+					<div id="div_reply_20289132"></div>
+				</div>
+				<div class="plunxx">
+					<div class="plunxx_top">
+						<div class="plunxx_top1"> 游客
+							<span class="dev android">samsung SM-N9109W 广东省广州市</span>
+						</div>
+						<div class="plunxx_top3">
+							<div title="这条评论有问题，小编快来和谐它" onclick="userReport(20289036,416687)" style="padding-right:0px;" class="plunxx_bottom_fdui"><span id="span_jubao_20289036" style="color:red;">举报</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="plunxx_center">
+						杨叫兽：小编该被抓去电击了。
+						<br>
+						<div style="clear: both"></div>
+					</div>
+					<div class="plunxx_bottom">
+						<div class="plunxx_bottom_time"> 2015-4-19 12:51:17</div>
+						<div onclick="ShowReply(20289036)" class="plunxx_bottom_fyan">回复</div>
+						<div id="o_20289036" onclick="sndReq(416687,20289036,&#39;oppose&#39;,1)" class="plunxx_bottom_fdui">反对[1]</div>
+						<div id="s_20289036" onclick="sndReq(416687,20289036,&#39;support&#39;,8)" class="plunxx_bottom_ztong">支持[8]</div>
+					</div>
+					<div id="div_reply_20289036"></div>
+				</div>
+				<div class="plunxx">
+					<div class="plunxx_top">
+						<div class="plunxx_top1"><span name="regUserColor_UserName"> 独酌drinkalone</span>
+							<span class="dev android">Coolpad 酷派8297-C00 江西省</span>
+						</div>
+						<div class="plunxx_top3">
+							<div title="这条评论有问题，小编快来和谐它" onclick="userReport(20289129,416687)" style="padding-right:0px;" class="plunxx_bottom_fdui"><span id="span_jubao_20289129" style="color:red;">举报</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="plunxx_center">
+						英雄联盟、刀塔和动作类游戏有什么关系？
+						<br>
+						<div style="clear: both"></div>
+					</div>
+					<div class="plunxx_bottom">
+						<div class="plunxx_bottom_time"> 2015-4-19 13:25:59</div>
+						<div onclick="ShowReply(20289129)" class="plunxx_bottom_fyan">回复</div>
+						<div id="o_20289129" onclick="sndReq(416687,20289129,&#39;oppose&#39;,0)" class="plunxx_bottom_fdui">反对[0]</div>
+						<div id="s_20289129" onclick="sndReq(416687,20289129,&#39;support&#39;,8)" class="plunxx_bottom_ztong">支持[8]</div>
+					</div>
+					<div id="div_reply_20289129"></div>
+				</div>
+				<div class="plunxx">
+					<div class="plunxx_top">
+						<div class="plunxx_top1"> 游客
+							<span>湖北省宜昌市</span>
+						</div>
+						<div class="plunxx_top3">
+							<div title="这条评论有问题，小编快来和谐它" onclick="userReport(20288982,416687)" style="padding-right:0px;" class="plunxx_bottom_fdui"><span id="span_jubao_20288982" style="color:red;">举报</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="plunxx_center">
+						LOL 算动作类？
+						<div style="clear: both"></div>
+					</div>
+					<div class="plunxx_bottom">
+						<div class="plunxx_bottom_time"> 2015-4-19 12:37:52</div>
+						<div onclick="ShowReply(20288982)" class="plunxx_bottom_fyan">回复</div>
+						<div id="o_20288982" onclick="sndReq(416687,20288982,&#39;oppose&#39;,2)" class="plunxx_bottom_fdui">反对[2]</div>
+						<div id="s_20288982" onclick="sndReq(416687,20288982,&#39;support&#39;,5)" class="plunxx_bottom_ztong">支持[5]</div>
+					</div>
+					<div id="div_reply_20288982"></div>
+				</div>
+			</div>
+
+			<div onclick="seeallreviews(416687)" class="pinlun_more bt1 bb1">查看全部<span id="span_reviewcount">31</span>条评论</div>
+
+			
+			<div class="share">
+				<ul>
+					<li>相关阅读</li>
+				</ul>
+			</div>
+			<div class="newslist">
+				<ul id="ul_relatednews">
+					<li>
+						<div class="newsimg">
+							<a href="http://m.mydrivers.com/newsview/416679.html">
+								<img src="../image/53d04d57b0574b3aadb37855cdcf6834.jpg" width="90" height="67">
+							</a>
+						</div><span class="newst"><a href="http://m.mydrivers.com/newsview/416679.html">8位版《泰坦尼克号》游戏：被画面萌化</a></span><span class="newsTips"><ul><li class="tname">万南 ｜</li><li></li><li class="ttime">19小时前</li><li style="float:right;"><div class="tpinglun"><a href="http://m.mydrivers.com/comment/review.aspx?tid=416679">26</a></div></li></ul></span>
+					</li>
+					<li><span class="newstnopic"><a href="http://m.mydrivers.com/newsview/416131.html">OS X 10.10.3隐藏福利：游戏党感动哭了</a></span><span class="newsTips"><ul><li class="tname">鲲鹏 ｜</li><li></li><li class="ttime">2015-4-17 17:52:15</li><li style="float:right;"><div class="tpinglun"><a href="http://m.mydrivers.com/comment/review.aspx?tid=416131">5</a></div></li></ul></span>
+					</li>
+					<li>
+						<div class="newsimg">
+							<a href="http://m.mydrivers.com/newsview/415984.html">
+								<img src="../image/4c26fd83e6994b6a9cd7dccc369900b5.jpg" width="90" height="67">
+							</a>
+						</div><span class="newst"><a href="http://m.mydrivers.com/newsview/415984.html">游戏女主播晒名包高调炫富：曾拒绝包养</a></span><span class="newsTips"><ul><li class="tname">小路 ｜</li><li></li><li class="ttime">2015-4-17 14:38:20</li><li style="float:right;"><div class="tpinglun"><a href="http://m.mydrivers.com/comment/review.aspx?tid=415984">64</a></div></li></ul></span>
+					</li>
+					<li><span class="newstnopic"><a href="http://m.mydrivers.com/newsview/415974.html">男子打游戏致肌腱撕裂却浑然不知</a></span><span class="newsTips"><ul><li class="tname">小路 ｜</li><li></li><li class="ttime">2015-4-17 14:17:58</li><li style="float:right;"><div class="tpinglun"><a href="http://m.mydrivers.com/comment/review.aspx?tid=415974">11</a></div></li></ul></span>
+					</li>
+					<li>
+						<div class="newsimg">
+							<a href="http://m.mydrivers.com/newsview/415959.html">
+								<img src="../image/d41afb949d494f18945ea0dd413320ef.jpg" width="90" height="67">
+							</a>
+						</div><span class="newst"><a href="http://m.mydrivers.com/newsview/415959.html">双核依然流畅！《GTA5》可堪最良心重制游戏</a></span><span class="newsTips"><ul><li class="tname">万南 ｜</li><li></li><li class="ttime">2015-4-17 13:36:08</li><li style="float:right;"><div class="tpinglun"><a href="http://m.mydrivers.com/comment/review.aspx?tid=415959">59</a></div></li></ul></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<nav class="mui-bar mui-bar-tab" id="newsnav">
+			<div class="plunxx_in" onclick="pinlun(this)">
+				<div id="div_contentbg" class="write1">
+					<p>我来说两句...</p>
+				</div>
+				<textarea name="txtContent0" id="txtContent0"  cols="45" rows="5" class="plun_login_textarea"></textarea>
+			</div>
+			<div class="plun_bt_tj_button" style="padding-left: 10px;padding-right: 10px;display: none;">
+				<div style="float:left;width:150px;">
+					<div id="CommentsTip0" class="AjaxTipWarning">dd</div>
+				</div>
+				<input type="button" name="btnlogin" id="btnlogin" value="发表评论" onclick="PostComment(0)" class="button_style1"> 
+			</div>
+		</nav>
+		<script>
+			function pinlun(obj){
+				$("#div_contentbg").css("display","none");
+				obj.style.height="60px";
+				$(".plun_bt_tj_button").css("display","block");
+				document.getElementById("txtContent0").focus();
+			}
+		</script>
+	</body>
+
+</html>

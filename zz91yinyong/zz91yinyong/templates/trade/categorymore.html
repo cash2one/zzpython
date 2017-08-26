@@ -1,0 +1,10 @@
+<div class="midcate">{%for ct in categorylist%}
+  <div class="m_ul_span"><a style="color:#009944" href="/offerlist/?keywords={{ct.label}}" style="font-size:16px">{{ct.label}}</a></div>
+  {%if ct.catelist%}
+	{%for ct1 in ct.catelist%}
+     <a href="/offerlist/?keywords={{ct1.label}}" class="m_cate" style="font-size:16px">{{ct1.label}}</a>
+	{%endfor%}
+  {%endif%}
+  <div style="clear:both"></div>
+{%endfor%}
+</div>

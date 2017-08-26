@@ -1,0 +1,24 @@
+<style>
+	.posttitle{
+		text-align: center;
+		color: #CF2D28;
+		border-bottom: solid 1px #C4C4C4;
+		position: fixed;
+		width: 100%;
+		line-height: 35px;
+		background-color: #f2f2f2;
+		z-index: 20;
+	}
+</style>
+<ul class="mui-table-view ">
+	<div class="posttitle">请选择您要发布信息的类别</div>
+	<br /><br />
+	{%for list in categorylist%}
+	<li class="mui-table-view-cell">
+		<a href="javascript:loaddata('http://app.zz91.com/post.html?sep=3&code={{list.code}}&ptype={{ptype}}')" class="mui-navigate-right">
+			{{list.label}}
+		</a>
+	</li>
+	{%endfor%}
+</ul>
+<input type="hidden" id="appnavname" value="发布供求" />

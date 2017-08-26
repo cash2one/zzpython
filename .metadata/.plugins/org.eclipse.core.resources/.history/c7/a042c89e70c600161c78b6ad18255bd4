@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>选择供求</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<style>
+			html, body {
+				background: transparent;
+				height: 100%;
+				background: rgba(0,0,0,0.1);
+				overflow: hidden;
+			}
+			#aui-header {
+				position: absolute;
+				top: 40px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				padding-top: 0px;
+			}
+			.type-small {
+				background-color: #fff;
+				border-top: none;
+				overflow: auto;
+				position: absolute;
+				bottom: 40px;
+				top: 85px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				color: #666
+			}
+			.aui-img-body {
+				width: 130px;
+				float: left
+			}
+			.buybutton {
+				margin-top: 15px;
+				margin-right: 20px
+			}
+			.howzq {
+				text-align: right;
+				font-size: 12px;
+				color: #666;
+				float: right;
+				margin: 10px 0
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-success" id="aui-header">
+			<a class="aui-btn aui-btn-success aui-pull-left"> <span class="aui-iconfont aui-icon-info"></span> </a>
+			<a class="aui-btn aui-btn-success aui-pull-right" tapmode onclick="closeselect()"> <span class="aui-iconfont aui-icon-roundclosefill"></span> </a>
+			<div class="aui-title">
+				请选择推广供求
+			</div>
+		</header>
+		<div class="nodata">您还没有发布任何供求信息<br /><br />
+			<p><div class="aui-btn aui-btn-success postbutton"><span class="aui-iconfont aui-icon-post"></span>立即发布</div></p>
+		</div>
+		<script id="info-list" type="text/html">
+			<li class="aui-list-view-cell aui-img" id="{{d.pdt_id}}">
+				<a class="aui-arrow-right"> <img class="aui-img-object aui-pull-left" src="{{d.pdt_images}}">
+				<div class="aui-img-body">
+					<p class="aui-ellipsis-1"  style="color:#000"><b>{{d.pdt_kind.kindtxt}}{{d.pdt_name}}</b></p>
+					<p>
+						{{d.com_province}}<span class="aui-pull-right">{{d.pdt_price}}</span>
+					</p>
+					<p>
+						{{d.pdt_time_en}}
+					</p>
+				</div>
+				<div class="aui-btn aui-btn-danger aui-pull-right buybutton" title="{{d.pdt_kind.kindtxt}}{{d.pdt_name}}" proid="{{d.pdt_id}}" style="display:{{d.displayzt}}">
+					置顶
+				</div>
+				{{d.zttext}}
+				 </a>
+			</li>
+		</script>
+		<div class="aui-content type-small">
+			<ul class="aui-list-view prolist">
+				<div class="aui-toast"  id="loading">
+			        <div class="aui-toast-loading"></div>
+			        <div class="aui-toast-content">加载中</div>
+			    </div>
+			</ul>
+			<div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;display:none'>上拉获取更多信息</div>
+		</div>
+		<input type="hidden" id="topproductsvalue" value="">
+		
+		<div style="position: absolute;bottom:0px;height:80px;width:100%" onclick="closeselect()"></div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+	<script type="text/javascript">
+		var currPage = 1;
+		function closeselect() {
+			api.execScript({
+				name : api.winName,
+				script : "keybackFun('1')"
+			});
+			//api.closeFrame();
+			api.setFrameAttr({
+				name : api.frameName,
+				hidden : true
+			});
+		}
+		apiready = function() {
+			//供求置顶
+			$(".prolist").on("click", ".buybutton",function() {
+				var proid=$(this).attr("proid");
+				if (havelogin()){
+					var pageParam = {
+						wintitle : "确认信息",
+						type : "show3_1",
+						paytype:9,
+						proid:proid,
+						title:"供求标题："+$(this).attr("title"),
+					};
+					openWin("confirmpay", "../service/show3_1.html", pageParam);
+				}
+				//topproducts(proid)
+			})
+			//底部加载更多
+			api.addEventListener({
+				name : 'scrolltobottom'
+			}, function(ret, err) {
+				//如果底部没有加载更多提示，添加加载更多提示
+				$(".la_more").html("加载更多中...");
+				setTimeout(function() {
+					ajaxInfo();
+				}, 1000)
+			});
+			//页面刷新
+			api.setRefreshHeaderInfo({
+				visible : true,
+				// bgColor: '#F2F2F2',
+				bgColor : '#E6E6E6',
+				textColor : '#000000',
+				textDown : '下拉刷新',
+				textUp : '释放刷新',
+			}, function(ret, err) {
+				currPage = 1;
+				ajaxInfo();
+				api.toast({
+					msg : '数据已是最新！',
+					duration : 3000,
+					location : 'bottom'
+				});
+			});
+			//api.showProgress({
+			//	title : '加载中',
+			//	modal : false
+			//});
+			ajaxInfo();
+			//发布供求
+			$(".postbutton").on("click", function() {
+				var pageParam = {
+					wintitle : "发布信息",
+					type : "issue-info",
+					module : "发布",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {
+					openWin("issue-info", "../myrc/issue-info.html", pageParam);
+				} else {
+					pageParam.nextUrl = "../myrc/issue-info.html";
+					pageParam.winName = "issue-info";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+				//openWin("issue-info", "../myrc/issue-info.html", pageParam);
+			})
+		}
+		function topproducts(proid) {
+			var html = "";
+			html += '<p style="color: #000000;">您想购买的置顶时间为：</p>'
+			html += '<div class="showradio50">'
+			html += '<ul>'
+			html += '<li><input class="aui-radio" type="radio" name="topproducts" id="report1" value="500" checked /><label class="aui-radio-name" for=report1>500元/月</label></li>'
+			html += '<li><input class="aui-radio" type="radio" name="topproducts" id="report2" value="900"  /><label class="aui-radio-name" for=report2>900元/2个月</label></li>'
+			//html += '<li><input class="aui-radio" type="radio" name="topproducts" id="report3" value="1800" /><label class="aui-radio-name" for=report3>1800元/半年</label></li>'
+			//html += '<li><input class="aui-radio" type="radio" name="topproducts" id="report4" value="3500" /><label class="aui-radio-name" for=report4>3500元/年</label></li>'
+			html += '</li>'
+			html += '</div>'
+			$aui.alert({
+				title : '',
+				content : html,
+				buttons : ['取消', '确定'],
+				radius : 10,
+				titleColor : '#333',
+				contColor : '#333',
+				btnColor : '',
+				wintype : 'topproducts'
+			}, function(ret) {
+				if (ret == 1) {
+					api.showProgress({
+						title : '扣款中...',
+						modal : false
+					});
+					var company_id = UserInfo.memberID();
+					var usertoken = UserInfo.token();
+					var chk_value = $("#topproductsvalue").val();
+					
+					var data = {
+						paytype : '9',
+						money : chk_value,
+						company_id : company_id,
+						usertoken : usertoken,
+						appsystem : api.systemType,
+						datatype : 'json',
+						proid : proid,
+						t : (new Date()).getTime().toString()
+					}
+					
+					api.ajax({
+						url : hosturl + 'qianbao/qianbaopay.html',
+						method : 'get',
+						timeout : 30,
+						dataType : 'json',
+						returnAll : false,
+						data : {
+							values : data
+						}
+					}, function(ret, err) {
+						//zzalert(JSON.stringify(data))
+						if (ret) {
+							if (ret.err == 'false') {
+								zzalert(ret.errtext);
+								ajaxInfo();
+								zzalert("我们会在两个工作日内（节假日自动顺延）工作人员会致电商谈置顶信息。或电话：0571-56612345")
+							}
+							if (ret.err == 'true' && ret.blanceflag == '0') {
+								yuebuzuFun();
+							}
+							if (ret.err == 'true' && ret.blanceflag == '1') {
+								zzalert(ret.errtext);
+							}
+							api.hideProgress();
+						} else {
+							api.hideProgress();
+							if(err){
+								saveerrlog(err.body);
+							}
+						};
+					});
+				}
+			})
+		}
+		
+		function topproductscheck(valu) {
+			$("#topproductsvalue").val(valu);
+		}
+		var dataload = true;
+		function ajaxInfo() {
+			if (dataload == false) {
+				return false;
+			}
+			dataload = false;
+			var company_id = UserInfo.memberID();
+			var usertoken = UserInfo.token();
+			var data = {
+				company_id : company_id,
+				usertoken : usertoken,
+				appsystem : api.systemType,
+				datatype : 'json',
+				page : currPage
+			}
+			api.ajax({
+				url : hosturl + 'company/companyproductslist.html',
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				if (ret) {
+					//zzalert(JSON.stringify(ret))
+					var pageHtml = "";
+					$.each(ret, function(index, item) {
+						var getTpl = $api.html($api.byId("info-list"));
+						//已置顶不显示按钮
+						if (item.havetop==1){
+							item.displayzt="none";
+							item.zttext="已置顶"
+						}else{
+							item.displayzt="block";
+							item.zttext=""
+						}
+						laytpl(getTpl).render(item, function(html) {
+							pageHtml = pageHtml + html;
+						});
+					});
+					
+					if (currPage == 1) {
+						if (pageHtml==""){
+		            		$(".nodata").show();
+		            		$(".la_more").hide();
+		            	}else{
+		            		$(".nodata").hide();
+		            		$(".la_more").show();
+		                }
+		                $(".prolist").html(pageHtml);
+		                api.pageUp({
+							'top' : true
+						});
+		            }else{
+						$(".prolist").append(pageHtml);
+		            }
+					
+					if (pageHtml!=""){
+						currPage += 1;
+						$(".la_more").html("上拉获取更多信息");
+					}else{
+						$(".la_more").html("全部加载完毕");
+					}
+					
+					
+				} else {
+					api.hideProgress();
+				};
+				api.refreshHeaderLoadDone();
+				api.hideProgress();
+				dataload = true;
+			});
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

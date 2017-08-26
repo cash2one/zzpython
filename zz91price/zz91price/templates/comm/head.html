@@ -1,0 +1,27 @@
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script><script type="text/javascript" >
+    var Context = new function(){
+    this.ROOT = "";
+    this.BBS_SERVER= "http://huzhu.zz91.com"
+    }
+    function timestamp(){
+    var timestamp = Date.parse(new Date());
+    return timestamp;
+    }
+</script>
+<script>
+    (function(doc){
+    function hidenbigtoppic() {
+    var objbig = doc.getElementById("topadpic_big"),
+    objmini = doc.getElementById("topadpic_mini");
+    if (objbig)	{
+    objbig.style.display = "none";
+    if (objmini) {
+    objmini.style.display = "";
+    }		
+    } else {
+    objmini.style.display = "";
+    }
+    }
+    setTimeout(hidenbigtoppic, 6000);
+    })(document);
+</script>

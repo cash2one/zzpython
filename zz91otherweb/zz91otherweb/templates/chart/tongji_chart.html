@@ -1,0 +1,53 @@
+<chart>
+    <data>
+        <indexAxis name="月份">
+            <labels>
+                Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec
+            </labels>
+        </indexAxis>
+        <valueAxis name="IP数" unit="个"></valueAxis>
+        <dataSets>
+            <set name="out">
+                <values>
+                {{out_numb}}
+                </values>
+            </set>
+        {%for l2 in list2%}
+        	{%ifnotequal l2.typeid '100'%}
+            <set name="{{l2.typename}}">
+                <values>
+                {{l2.numb}}
+                </values>
+            </set>
+            {%endifnotequal%}
+        {%endfor%}
+        <!--
+            <set name="www">
+                <values>
+                100
+                </values>
+            </set>
+            <set name="trade">
+                <values>
+                200
+                </values>
+            </set>
+            <set name="price">
+                <values>
+                200
+                </values>
+            </set>
+            <set name="myrc">
+                <values>
+                200
+                </values>
+            </set>
+            <set name="shop">
+                <values>
+                300
+                </values>
+            </set>
+        -->
+        </dataSets>
+    </data>
+</chart>

@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<html>
+	<head>
+		<title>账单-再生钱包_ZZ91再生网</title>
+        <link rel="stylesheet" type="text/css" href="/css/qianbao/index.css"/>
+        <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+<script>
+			$(window).scroll(function(){
+				if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+					loadMore(document.getElementById("loadMore"));
+				}
+			});
+
+		function loadMore(objdiv){
+				self=objdiv
+				var pageobj=document.getElementById("pageindex");
+				var page=pageobj.value;
+				pageobj.value=parseInt(page)+1
+				
+				self.innerHTML="加载中...";
+				$.get("/qianbao/zhangdannore.html",
+				{
+					page:pageobj.value,
+					timearg:"{{timearg}}"
+				},
+				function(data,status){
+					//alert(data);
+					if (status=="success" && data!="err\n" && data.length>5){
+						self.style.display="block";
+						
+						$("#tab1").append(data);
+						self.innerHTML="点击后加载更多内容";
+					}else{
+						self.style.display="none";
+						self.innerHTML="完";
+					}
+				});
+			};
+</script>
+	</head>
+	<body style="background:#ebebeb">
+    	<div class="top">
+        	<div class="top_item">
+            	<div class="top-left">
+                	<a href="/"><img src="/images/qianbao/logo.png"></a>
+                </div>
+                <!--end top-left-->
+                <div class="top-right" onClick="window.location.href='{{backurl}}'">返回</div>
+                <!--end top-right-->
+                <div class="cb"></div>
+            </div>
+            <!--end top_item-->
+        </div>
+        <!--end top-->
+    	<div class="part">
+        	<table class="bill_tle_tab" cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td style="width:20%">本月  <font color="red"> &nbsp;| <font></td>
+                    <td style="width:25%"><font color="gray" style="font-weight: normal">进账</font> {{infeegmtnowmonth}}</td>
+                    <td style="width:25%"><font color="gray" style="font-weight: normal">消费</font> {{outfeegmtnowmonth}}</td>
+                    <td style="width:25%"><font color="gray" style="font-weight: normal">充值</font> {{outfee5gmtnowmonth}}</td>
+                    <td style="width:5%">&nbsp;</td>
+                </tr>
+            </table>
+        	<!--<table class="bill_tle_tab2" cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td {%ifequal timarg '1'%}style="background:gray;"{%endifequal%} onClick="window.location.href='?timarg=1'">1个月</td>
+                	<td {%ifequal timarg '2'%}style="background:gray;"{%endifequal%} onClick="window.location.href='?timarg=2'">3个月</td>
+                	<td {%ifequal timarg '3'%}style="background:gray;"{%endifequal%} onClick="window.location.href='?timarg=3'">1年</td>
+                	<td {%ifequal timarg '4'%}style="background:gray;"{%endifequal%} onClick="window.location.href='?timarg=4'">1年前</td>
+                	<td {%ifequal timarg '5'%}style="background:gray;"{%endifequal%} onClick="window.location.href='?timarg=5'">全部</td>
+                </tr>
+            </table>-->
+            <table class="bill_lst_tab" cellpadding="0" cellspacing="0" border="0" id="tab1">
+            {%for pay in listall%}
+            	<tr>
+                	<td>
+                    	<p class="td_p_name">{{pay.ftypename}}</p>
+                        <p class="td_p_suc">{{pay.gmt_date}}</p>
+                    </td>
+                    <td class="lst_tab_right">
+                    	<p class="td_p_drop">{{pay.fee}}</p>
+                        <p class="td_p_suc">{%if pay.product_id%}&nbsp;&nbsp;<a class="td_p_suc" href="/detail/?id={{pay.product_id}}">查看该供求</a>{%endif%}</p>
+                    </td>
+                </tr>
+            {%endfor%}
+            </table>
+            {%if count > 10%}
+            <table class="bill_lst_tab" cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td align="center"><p class="td_p_name">
+			        <input type="hidden" id="pageindex" value="1">
+			        <div class="page" id="loadMore" onclick="loadMore(this)">
+			            查看更多
+			        </div>
+                    </p></td>
+                </tr>
+            </table>
+            {%endif%}
+            
+        </div>
+        <!--end part-->
+	
+<!--钱包底部-->
+<br />
+<div class="cb"></div>
+<div class="t-footer ac t-quick-hidden" style="width:100%"> 	 	
+    <div class="bar bt-c">
+        <div class="fl">
+        {%if username%}
+            <span class="c-text">当前帐号：</span>{{username}} <a href="/loginout/">退出</a>
+        {%else%}
+        	<a href="/login/?done={{host}}">登录</a> <span class="c9">|</span> <a href="/register/">免费注册</a>
+        {%endif%}
+                </div>
+        <a href="#top"><div class="fr">
+            <div class="fl top-txt c-link">回顶部</div><div class="fl top-pic">&nbsp;</div>
+        </div></a>
+    </div>
+    <center>
+    <div class="link"><br />
+        <div class="mb8"><a href="/standard/">标准版</a>　|　<span class="c9">触屏版</span>　|　<a href="http://china.zz91.com">电脑版</a></div>
+	<!--<div class="mb8"><a href="/">首页</a>&nbsp;&nbsp;<a href="/feedback/">意见反馈</a></div>-->
+        <div class="copyright">ZZ91再生网版权所有 2013-2014</div>
+    </div>
+    </center>
+</div>
+		<style>
+.t-footer {clear:both; color:#666; margin-bottom:80px;}
+.t-footer a{color:#666}
+.t-footer .bar{height:32px;line-height:32px;padding:0 10px;border-bottom:solid 1px #ccc;box-shadow:0px -1px 0px #fff inset;background-color:#f7f7f7;background: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#eee) );}	
+.t-footer .link{}
+.t-footer .top-pic{width:12px;background-image: url('http://m.zz91.com/images/info.png');background-repeat: no-repeat;background-position: -60px -92px;}
+.t-footer .top-txt{padding-right:8px;}
+.t-footer .mb8{margin-bottom:8px;}
+.t-footer .copyright{color:#999}
+.fl{float:left}
+.fr{float:right}
+.bt-c{border-top:1px solid #ccc;}
+.br-c{border-right:1px solid #ccc;}
+.bb-c{border-bottom:1px solid #ccc;}
+.bl-c{border-left:1px solid #ccc;}
+.bt-dotted-c{border-top: dotted 1px #cccccc;}
+.bb-dotted-c{border-bottom: dotted 1px #cccccc;}
+	</style>
+<!--钱包底部完-->
+<script type="text/javascript" src="../js/recordeddata.js"></script>
+	</body>
+</html>

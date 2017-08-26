@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>抽奖-621砸金蛋赢大奖</title>
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<link rel="stylesheet" href="css/index.css" />
+		<script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+		<script src="http://b.zz91.com/comm/js/comm.js"></script>
+	    <script src="http://b.zz91.com/layer/layer.js"></script>
+	</head>
+	<body>
+		<div class="pylogo"></div>
+		<div class="bg1"></div>
+		<div class="bg2"></div>
+		<div class="bg3"></div>
+		<div class="bg4"></div>
+		<div class="bg5"></div>
+
+		
+			
+		<div class="main">
+			<script type="text/javascript" src="js/comm.js"></script>
+			<div class="bfu"></div>
+			<div class="jd-box">
+				<ul class="jd-list clearfix">
+					<li class="fl" index=1> <!-- dsucc -->
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan1"></div>
+						<div class="bhao bhao1">	
+						</div>
+					</li>
+					<li class="fl" index=2>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan2"></div>
+						<div class="bhao bhao2">	
+						</div>
+					</li>
+					<li class="fl" index=3>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan3"></div>
+						<div class="bhao bhao3">	
+						</div>
+					</li>
+					<li class="fl" index=4>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan4"></div>
+						<div class="bhao bhao4">	
+						</div>
+					</li>
+					<li class="fl" index=5>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan5"></div>
+						<div class="bhao bhao5">	
+						</div>
+					</li>
+
+					<li class="fl" index=6>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan6"></div>
+						<div class="bhao bhao6">	
+						</div>
+					</li>
+					<li class="fl" index=7>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan7"></div>
+						<div class="bhao bhao7">	
+						</div>
+					</li>
+					<li class="fl" index=8>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan8"></div>
+						<div class="bhao bhao8">	
+						</div>
+					</li>
+					<li class="fl" index=9>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan9"></div>
+						<div class="bhao bhao9">	
+						</div>
+					</li>
+					<li class="fl" index=10>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan10"></div>
+						<div class="bhao bhao10">	
+						</div>
+					</li>
+
+					<li class="fl" index=11>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan11"></div>
+						<div class="bhao bhao11">	
+						</div>
+					</li>
+					<li class="fl" index=12>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan12"></div>
+						<div class="bhao bhao12">	
+						</div>
+					</li>
+					<li class="fl" index=13>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan13"></div>
+						<div class="bhao bhao13">	
+						</div>
+					</li>
+					<li class="fl" index=14>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan14"></div>
+						<div class="bhao bhao14">	
+						</div>
+					</li>
+					<li class="fl" index=15>
+						<div class="cuizi"></div>
+						<div class="dsucc-jp">
+						</div>
+						<div class="downdan downdan15"></div>
+						<div class="bhao bhao15">	
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div style="position: absolute;bottom: 30px;right: 30px;width: 30px;height: 30px;line-height: 30px;color: #fff;font-size: 14px;text-align: center;z-index: 99999;" class="qingkong">清空</div>
+	</body>
+	
+</html>
+<script>
+	$(function(){
+		ajaxinfo();
+    });
+	function ajaxinfo(){
+		zzajax("get","/zt/fh621_zajindanlist.html",'',function(ret){
+			$.each(ret, function(n, item) {
+				var num=item['num']
+				var jiangpin=item['jiangpin']
+				$this=$(".jd-list li").eq(parseInt(num)-1);
+				$this.find(".dsucc-jp").html(jiangpin);
+				$this.addClass("stpy2")
+				$this.removeClass("stpy2");
+				$this.addClass("dsucc")
+			})
+		})
+	}
+	var jiangpin=["商务大全一本","移动端置顶广告3个月","PC端黄金展位广告6个月","再生钱包500元","百度微门户广告3个月","台州展会易拉宝1个"
+	,"企业秀","首页广告3个月","商务大全整版广告一个","PC端关键字排名广告6个月","10万粉丝级微信推送1次","朋友圈广告1次"
+	,"商务大全页眉广告一个","移动端排名广告3个月","PC端独家广告6个月"]
+	$(".jd-list li").on("mouseenter",function(){
+		if($(this).hasClass("dsucc")){
+			return
+		}else{
+			$(this).addClass("stpy")
+		}
+	})
+	$(".jd-list li").on("mouseleave",function(){
+		$(this).removeClass("stpy")
+	})
+	$(".qingkong").on("click",function(){
+		var data={
+			clear:1
+		}
+		zzajax("get","/zt/fh621_zajindanlist.html",data,function(ret){
+			window.location.reload()
+		})
+	})
+	$(".jd-list").on("click",".stpy",function(){
+		var $this = $(this);
+		$this.addClass("stpy2");
+		var i = parseInt(Math.random() * jiangpin.length);
+		var playSucc = jiangpin[i];
+		$this.find(".dsucc-jp").html(playSucc);
+		jiangpin.splice(i,1)
+		var data={
+			num:$(this).attr("index"),
+			jiangpin:playSucc
+		}
+		zzajax("get","/zt/fh621_zajindan.html",data,function(ret){
+		})
+		setTimeout(function(){
+			$this.removeClass("stpy2");
+			$this.addClass("dsucc")
+		},300)
+	})
+</script>

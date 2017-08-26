@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{{seotitle}}</title>
+		<meta name="keywords" content="{{seokeywords}}" />
+		<meta name="description" content="{{seodescription}}" />
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico">
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/price/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.price.css">
+		<script src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+		<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+	<style>
+	.part{
+		margin-left: auto;
+		margin-right: auto;
+		width: 960px;
+	}
+	.item-info{width:958px;height:auto;padding-bottom:10px;border-bottom:1px solid #cecece;overflow:hidden;zoom:1s}
+.item-info ul li{width:127px;height:27px;line-height:27px;text-align:center;margin-bottom:12px;display:inline;float:left; margin-right:8px;}
+.item-info ul li a{width:125px;height:27px;border:1px solid #e2e2e2;display:block}
+.item-info-li{margin-right:11px}
+	</style>
+	</head>
+
+	<body>
+		{% include 'comm/top.html' %}{% include 'comm/mid.html'%}
+		<div class="main_box">
+			<div class="zz91leader">
+				当前位置：
+				<a href="http://www.zz91.com" target="_blank">ZZ91再生网</a> &gt;
+				<a href="/">报价资讯中心</a> &gt;
+				<a href="/{{pinyin}}/" id="htmlA1">{{labelname}}频道</a>
+			</div>
+		</div>
+		<div class="main_box">
+			<script src="http://gg.zz91.com/show?p=39&pricecode=metal"></script>
+		</div>
+		<!--今天最新评论，本周最新评判论，行情综述，市场动态开始-->
+		<div class="main_box clearfix">
+			<div id="news_body">
+				<div class="news_leftbox">
+					<div class="news_box2">
+						<div class="news_box2_1">
+							<!--页面上部周评日评左开始-->
+							<div class="fen_newsleft">
+								<div class="fen_newsleft_news">
+									<div class="zsnews_title">
+										<h3>{{labelname1}}</h3>
+									</div>
+									<div class="fen_newsleft_news_list">
+										<ul>
+											{%for list in pinglun%}
+											<li>
+												<a target="_blank" href="{{list.url}}" title="{{list.td_title}}" class="a1">{{list.td_title}}</a>
+											</li>
+											{%endfor%}
+										</ul>
+									</div>
+								</div>
+								{%if zhoubao%}
+								<div class="fen_newsleft_news" style="margin-top:5px;">
+									<div class="zsnews_title">
+										<h3>废金属周评 </h3>
+									</div>
+									<div class="fen_newsleft_news_list">
+										<ul>
+											{%for list in zhoubao%}
+											<li>
+												<a target="_blank" href="{{list.url}}" title="{{list.td_title}}" class="a1">{{list.td_title}}</a>
+											</li>
+											{%endfor%}
+										</ul>
+									</div>
+								</div>
+								{%endif%}
+							</div>
+							<!--页面上部周评日评结束-->
+							<!--页面上部行情综述撒开始-->
+							<div class="news_rightbox">
+								<div id="htmlDivCss" class="news_bright_box_new">
+									<div class="news_bright_box_new1">
+										<h3>{{labelname}}行情综述</h3>
+									</div>
+								</div>
+
+								<div id="htmlDiv2" class="news_box_right_content">
+									<ul>
+										{%for list in zongshu%}
+										<li>
+											<a target="_blank" href="{{list.url}}" title="{{list.td_title}}" class="a1">{{list.td_title}}</a>
+										</li>
+										{%endfor%}
+									</ul>
+								</div>
+							</div>
+							<!--页面上部行情综述中结束-->
+						</div>
+					</div>
+				</div>
+				<!--页面上市场动态右开始-->
+				<div class="news_rightbox">
+					<div id="htmlDivCss" class="news_bright_box_new">
+						<div class="news_bright_box_new1">
+							<h3>{{labelname}}市场动态</h3>
+						</div>
+					</div>
+					<div id="htmlDiv2" class="news_box_right_content">
+						<ul>
+							{%for list in shichang%}
+							<li>
+								<a target="_blank" href="{{list.url}}" title="{{list.td_title}}" class="a1">{{list.td_title}}</a>
+							</li>
+							{%endfor%}
+						</ul>
+					</div>
+				</div>
+				<!--页面上市场动态右结束-->
+			</div>
+			<!--今天最新评论，本周最新评判论，行情综述，市场动态结束-->
+		</div>
+		<div class="main_box clearfix">
+			<!--广告位a开始-->
+			<div class="ads">
+				<script src="http://gg.zz91.com/show?p=84&pricecode=metal"></script>
+			</div>
+			<!--广告位a 结束-->
+			<!--求购信息，供应信息开始-->
+
+			<!--求购信息，供应信息结束-->
+			<script src="http://pyapp.zz91.com/showppctxtadscript/?keywords=废金属&showborder=1&showposition=1&m=6&padding=8&w=970&num=6&adposition=687"></script>
+		</div>
+		<!--企业报价-->
+		<div style="clear:both"></div>
+		<div class="main_box">
+			<div id="news_body">
+				<div class="nTab">
+					<!-- 标题开始 -->
+					<div class="TabTitle">
+						<ul id="myTab0">
+							<li class="active">{{labelname}}企业报价</li>
+						</ul>
+					</div>
+					<!-- 内容开始 -->
+					<div class="TabContent">
+						<div id="myTab0_Content0">
+							<div class="TabContentListT">
+								<div class="TabContentList1">产品名称</div>
+								<div class="TabContentList2">价格</div>
+								<div class="TabContentList3">地区</div>
+								<div class="TabContentList4">日期</div>
+								<div class="TabContentList5">企业名称</div>
+							</div>
+							<div class="TabContentListT">
+								{%for jp in companyprice%}
+								<div class="TabContentList1"><a href="{{jp.url}}" target="_blank">{{jp.td_title}}</a></div>
+								<div class="TabContentList2">{{jp.price}}</div>
+								<div class="TabContentList3">{{jp.province}} {{jp.city}}</div>
+								<div class="TabContentList4">{{jp.td_time}}</div>
+								<div class="TabContentList5"><a href="{{jp.companyurl}}" target="_blank">{{jp.companyname}}</a></div>
+								{%endfor%}
+							</div>
+							
+						</div>
+						
+					</div>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+		</div>
+		</div>
+		<!--企业报价结束-->
+		<!--行情报价开始-->
+		<div style="clear:both"></div>
+		<div class="main_box" id="news_body">
+			<div class="left">
+				<div class="nav3">
+					<div class="nav3_l"> </div>
+					<h3><a href="#" id="htmlA2" target="_blank">{{labelname}}行情报价</a></h3>
+					<div class="nav3_r"> </div>
+				</div>
+				<div style="clear:both"></div>
+				<div class="leftContentChannel">
+					{%ifequal pinyin "jinshu"%}
+					<div id="htmlDivCurveCate" class="htmlDivCurveCate">
+						<div class="chartBox">
+							<div class="chartBoxImg">
+								<a href="/hotchart-7.html" target="_blank" title="伦敦LME期货价格">
+									<img alt="" src="http://img0.zz91.com/front/images/channel/01_1158724837755.gif" alt="伦敦LME期货价格">
+								</a>
+							</div>
+							<h4 class="chartBoxTit"> 	
+								<a href="/hotchart-7.html" target="_blank"  title="伦敦LME期货价格">伦敦LME期货价	</a>
+    						</h4>
+						</div>
+						<div class="chartBox">
+							<div class="chartBoxImg">
+								<a href="/hotchart-19.html" target="_blank" title="江浙沪废锌/铅价格">
+									<img alt="" src="http://img0.zz91.com/front/images/channel/01_1158724837755.gif" alt="江浙沪废锌/铅价格">
+								</a>
+							</div>
+							<h4 class="chartBoxTit"> 	
+							<a href="/hotchart-19.html" target="_blank"  title="江浙沪废锌/铅价格">江浙沪废锌/铅价</a>
+							</h4>
+						</div>
+						<div class="chartBox">
+							<div class="chartBoxImg">
+								<a href="/hotchart-13.html" target="_blank" title="废铜价格">
+									<img alt="" src="http://img0.zz91.com/front/images/channel/01_1158724837755.gif" alt="废铜价格">
+								</a>
+							</div>
+							<h4 class="chartBoxTit"> 	
+						<a href="/hotchart-13.html" target="_blank"  title="废铜价格">
+							废铜价格						</a>
+    				</h4>
+						</div>
+						<div class="chartBox">
+							<div class="chartBoxImg">
+								<a href="/hotchart-17.html" target="_blank" title="废不锈钢价格">
+									<img alt="" src="http://img0.zz91.com/front/images/channel/01_1158724837755.gif" alt="废不锈钢价格">
+								</a>
+							</div>
+							<h4 class="chartBoxTit"> 	
+						<a href="/hotchart-17.html" target="_blank"  title="废不锈钢价格">
+							废不锈钢价格						</a>
+    				</h4>
+						</div>
+						<div class="chartBox">
+							<div class="chartBoxImg">
+								<a href="/qihuo/" target="_blank" title="期货价格">
+									<img alt="" src="http://img0.zz91.com/front/images/channel/01_1158724837755.gif" alt="期货价格">
+								</a>
+							</div>
+							<h4 class="chartBoxTit"> 	
+						<a href="/qihuo/" target="_blank"  title="期货价格">
+							期货价格						</a>
+    				</h4>
+						</div>
+						
+						<div style="clear:both"></div>
+					</div>
+					{%endifequal%}
+
+					<div style="clear:both"></div>
+					<div id="htmldivsubshow" class="htmldivsubshow">
+						<div class="metalKeyword">
+							<ul>{%ifequal pinyin "suliao"%}
+								<li><a href="/pet/" target="_blank">PET</a></li>
+            					<li><a href="/pp/" target="_blank">PP</a></li>
+            					<li><a href="/pvc/" target="_blank">PVC</a></li>
+            					<li><a href="/pc/" target="_blank">PC</a></li>
+            					<li><a href="/abs/" target="_blank">ABS</a></li>
+            					<li><a href="/ps/" target="_blank">PS</a></li>
+            					<li><a href="/pa/" target="_blank">PA</a></li>
+            					<li><a href="/pe/" target="_blank">PE</a></li>
+            					<li><a href="/pmma/" target="_blank">PMMA</a></li>
+            					<li><a href="/eva/" target="_blank">EVA</a></li>
+            					<li><a href="/ldpe/" target="_blank">LDPE</a></li>
+            					<li><a href="/hdpe/" target="_blank">HDPE</a></li>
+            					<li><a href="/lldpe/" target="_blank">LLDPE</a></li>
+            					<li><a href="/abs_ps/" target="_blank">ABS/PS</a></li>
+            					<li><a href="/tpu/" target="_blank">TPU</a></li>
+            					<li><a href="/hips/" target="_blank">HIPS</a></li>
+            					<li><a href="/gpps/" target="_blank">GPPS</a></li>
+            					<li><a href="/pta1/" target="_blank">PTA</a></li>
+            					<li><a href="/quanguofeisuliaojiagehangqing/" target="_blank" title="国内废塑料">国内废塑料</a></li>
+	        					<li><a href="/suliaozaishengliaojiagehangqing/" target="_blank" title="塑料再生料">塑料再生料</a></li>
+	            				<li><a href="/meiguofeisuliaojiagehangqing/" target="_blank" title="美国废塑料价格">美国废塑料价格</a></li>
+	            				<li><a href="/suliaoqihuo/" target="_blank" title="塑料期货">塑料期货</a></li>
+	            				<li><a href="/ouzhoufeisuliaojiagehangqing/" target="_blank" title="欧洲废塑料价格">欧洲废塑料价格</a></li>
+	            				<li><a href="/wangshangbaojia/" target="_blank" title="废塑料网上报价">废塑料网上报价</a></li>
+								<li><a href="/yuyao/" target="_blank" title="余姚">余姚</a></li>
+								<li><a href="/shanghai1/" target="_blank" title="上海">上海</a></li>
+								<li><a href="/zhejiang1/" target="_blank" title="浙江">浙江</a></li>
+								<li><a href="/guangdong1/" target="_blank" title="广东">广东</a></li>
+								<li><a href="/qilu1/" target="_blank" title="齐鲁">齐鲁</a></li>
+								<li><a href="/dongguan1/" target="_blank" title="东莞">东莞</a></li>
+								<li><a href="/shunde1/" target="_blank" title="顺德">顺德</a></li>
+								<li><a href="/chuchangjia/" target="_blank" title="新料出厂价">新料出厂价</a></li>
+                        		<li><a href="/shichangjia/" target="_blank" title="新料市场价">新料市场价</a></li>
+                        		<li><a href="/youjia/" target="_blank" title="原油期货价格">原油期货价格</a></li>
+								{%endifequal%}
+								{%ifequal pinyin "jinshu"%}
+								<li><a href="/feitong/" target="_blank" title="废铜">废铜</a></li>
+                    			<li><a href="/feilv/" target="_blank" title="废铝">废铝</a></li>
+                    			<li><a href="/feitie/" target="_blank" title="废铁">废铁</a></li>
+                    			<li><a href="/shengtie1/" target="_blank" title="生铁">生铁</a></li>
+                    			<li><a href="/feigang1/" target="_blank" title="废钢">废钢</a></li>
+                    			<li><a href="/feinie/" target="_blank" title="废镍">废镍</a></li>
+                    			<li><a href="/feimutai/" target="_blank" title="废钼钛">废钼钛</a></li>
+                    			<li><a href="/feixi/" target="_blank" title="废锡">废锡</a></li>
+                    			<li><a href="/feiqianfeixin/" target="_blank" title="废铅废锌">废铅废锌</a></li>
+                    			<li><a href="/feibuxiugang/" target="_blank" title="废不锈钢">废不锈钢</a></li>
+                    			<li><a href="/feigangcaigoujia/" target="_blank" title="废钢采购">废钢采购</a></li>
+                    			<li><a href="/guowaifeijinshu/" target="_blank" title="国外废金属">国外废金属</a></li>
+                    			<li><a href="/wangshangbaojia1/" target="_blank" title="废金属网上报价">废金属网上报价</a></li>
+                    			<li><a href="/qihuo/" target="_blank" title="LME/期货">LME/期货</a></li>
+								<li><a href="/shanghaijibenjinshu/" target="_blank" title="上海基本金属">上海基本金属</a></li>
+                                <li><a href="/gediyouse/" target="_blank" title="各地有色">各地有色</a></li>
+                                <li><a href="/shanghaixiaojinshu/" target="_blank" title="上海小金属">上海小金属</a></li>
+                            	<li><a href="/shanghaijinshufenmo/" target="_blank" title="上海金属粉末">上海金属粉末</a></li>
+                                <li><a href="/changjiangyouse/" target="_blank" title="长江有色">长江有色</a></li>
+                                <li><a href="/huatongxianhuo/" target="_blank" title="华通现货">华通现货</a></li>
+                                <li><a href="/shanghaihejin/" target="_blank" title="上海合金">上海合金</a></li>
+                                <li><a href="/shanghaiguijinshu/" target="_blank" title="上海贵金属">上海贵金属</a></li>
+                                <li><a href="/huatongguijinshu/" target="_blank" title="华通贵金属">华通贵金属</a></li>
+								{%endifequal%}
+								{%ifequal pinyin "other"%}
+								<li><a href="/feizhihangqingdongtai/" target="_blank" title="废纸市场动态">废纸市场动态</a></li>
+                				<li><a href="/feizhiwangshangbaojia/" target="_blank" title="废纸网上报价">废纸网上报价</a></li>
+            					<li><a href="/feizhigedijiage/" target="_blank" title="各地废纸">各地废纸</a></li>
+            					<li><a href="/guoneioufei/" target="_blank" title="国内欧废">国内欧废</a></li>
+            					<li><a href="/guoneimeifei/" target="_blank" title="国内美废">国内美废</a></li>
+            					<li><a href="/guoneirifei/" target="_blank" title="国内日废">国内日废</a></li>
+            					<li><a href="/guowaifeizhi/" target="_blank" title="国外废纸">国外废纸</a></li>
+            					<li><a href="/guoneixiangjiao/" target="_blank" title="国内橡胶">国内橡胶</a></li>
+								<li><a href="/feixiangjiaohangqingzongshu/" target="_blank" title="废橡胶行情综述">废橡胶行情综述</a></li>
+								{%endifequal%}
+								<div style="clear:both"></div>
+							</ul>
+						</div>
+						<div style="clear:both"></div>
+
+						<div class="articlesList">
+							<div class="title">
+								<h4>{{labelname}}价格行情 </h4>
+							</div>
+							<ul>
+							{%for list in hangqing%}
+							<li>
+								<a target="_blank" href="{{list.url}}" title="{{list.td_title}}" class="a1">{{list.td_title}}</a>
+							</li>
+							{%endfor%}
+							</ul>
+						</div>
+						<div class="articlesList">
+							<div class="title">
+								<h4> {{labelname}}期货价格行情 </h4>
+							</div>
+							<ul>
+							{%for list in qihuo%}
+							<li>
+								<a target="_blank" href="{{list.url}}" title="{{list.td_title}}" class="a1">{{list.td_title}}</a>
+							</li>
+							{%endfor%}
+							</ul>
+						</div>
+						<div id="notQYBJ" class="articlesList">
+							
+							<div class="title">
+								<h4>{{labelname}}网上报价 </h4>
+							</div>
+							<ul>
+							{%for list in wangshang%}
+							<li>
+								<a target="_blank" href="{{list.url}}" title="{{list.td_title}}" class="a1">{{list.td_title}}</a>
+							</li>
+							{%endfor%}
+							</ul>
+						</div>
+						<div style="clear:both"></div>
+					</div>
+					<div style="clear:both"></div>
+				</div>
+
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<!--行情报价结束-->
+		<div style="clear:both"></div>
+		<div class="main_box">
+			<div class="ads">
+				<script src="http://gg.zz91.com/show?p=40"></script>
+			</div>
+		</div>
+		<!--商务互动开始-->
+		<div style="clear:both"></div>
+		<!--原来注释
+			<div class="main_box" id="news_body">
+				<div class="nav">
+					<div class="nav_l"></div>
+					<h3><a href="http://daohang.zz91.com" target="_blank">产品导航</a></h3>
+					<div class="nav_r"></div>
+				</div>
+				<div class="leftContentChannel">
+				<div class="item-info">
+					<ul>
+				  {%for daoh in suliao_daohang%}
+	            	<li {%if daoh.numb not in "[7,14,21,28,35,42,49]"%}class="item-info-li"{%endif%}><a href="{{daoh.link}}" target="_blank">{{daoh.title}}</a></li>
+	              {%endfor%}
+	              {%for list in cplist%}
+					<li><a href="http://www.zz91.com/cp/{{list.pingyin}}/" target=_blank title="{{list.label}}">{{list.label}}</a></li>
+				  {%endfor%}
+				 </ul>
+				</div>
+				</div>
+			</div>
+		-->
+		
+		
+		
+<script>
+	function friendClick(){
+		jQuery("#u11").show();
+		jQuery("#u12").hide();
+	}
+	function friendClick1(){
+		jQuery("#u12").show();
+		jQuery("#u11").hide();
+	}
+</script>
+        <div class="main_box" style="text-align:left;">
+        	<div class="item-title"><a href="javascript:return false;" onclick="return friendClick()">友情连接</a>| <a href="javascript:;" onclick="return friendClick1()" target="_blank">产品导航</a> </div>
+            <!--end item-title-->
+            <div class="item-info" id="u12" style="display: none;">
+              <ul>
+              {%for daoh in suliao_daohang%}
+            	<li {%if daoh.numb not in "[7,14,21,28,35,42,49]"%}class="item-info-li"{%endif%}><a href="{{daoh.link}}" target="_blank">{{daoh.title}}</a></li>
+              {%endfor%}
+              {%for list in cplist%}
+				<li><a href="http://www.zz91.com/cp/{{list.pingyin}}/" target=_blank title="{{list.label}}">{{list.label}}</a></li>
+			  {%endfor%}
+              </ul>
+            </div>
+            
+            <div class="item-info" id="u11">
+              <ul>
+              <!--价格链接修改时注释掉，需要增加后台功能
+              {%for daoh in price_link%}
+            	<li><a href="{{daoh.link}}" target="_blank">{{daoh.title}}</a></li>
+              {%endfor%}-->
+              </ul>
+            </div>
+            <!--end item-info-->
+        </div>
+		
+		
+		
+
+		<!--商务互动结束-->
+		{% include 'comm/buttom.html' %}
+	</body>
+</html>

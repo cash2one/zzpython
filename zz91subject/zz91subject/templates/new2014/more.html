@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{typename}}-废料专题-ZZ91再生网</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+<link rel="stylesheet" type="text/css" href="new2014/css/style.css"/>
+</head>
+<body>
+{%include 'html/comm/top.html'%}
+{%include 'html/comm/mid.html'%}
+  <div class="content">
+     <div class="link">
+        您所在的位置：<a href="http://www.zz91.com/" target="_blank">zz91再生网</a> > <a href="/zt/">废料专题</a>  > {{typename}}
+     </div>
+     <!--end link-->
+     <div class="main">
+     <div class="c-item-left">
+        <div class="ci-title">
+           <div class="ci-title-txt">
+             <img src="new2014/images/{{typeid}}.png"/>
+           </div>
+           <!--end ci-title-txt-->
+           <div class="ci-title-txt1">
+             共找到{{listcount}}条记录
+           </div>
+           <!--end ci-title-txt1-->
+        </div>
+        <!--end ci-title-->
+        <div class="list">
+           <div class="l-item">
+           
+           <div class="l-item-box">
+           {%for list in listall1%}
+              <div class="i-box">
+                <div class="ib-block">
+                   <a href="{{list.url}}" target="_blank"><img src="{{list.pic}}" /></a>
+                </div>
+                <!--end ib-block-->
+                 <div class="ib-txt">
+                 <a href="{{list.url}}" target="_blank">{{list.name}}</a>
+                 </div>
+                <!--end ib-txt-->
+              </div>
+           {%endfor%}
+              <div class="cb"></div>
+              </div>
+              <!--end l-item-box--> 
+              <div class="line"></div>
+              <!--end line-->
+              
+              
+           <div class="l-item-box">
+           {%for list in listall2%}
+              <div class="i-box">
+                <div class="ib-block">
+                   <a href="{{list.url}}" target="_blank"><img src="{{list.pic}}" /></a>
+                </div>
+                <!--end ib-block-->
+                 <div class="ib-txt">
+                 <a href="{{list.url}}" target="_blank">{{list.name}}</a>
+                 </div>
+                <!--end ib-txt-->
+              </div>
+           {%endfor%}
+              <div class="cb"></div>
+              </div>
+              <!--end l-item-box--> 
+              <div class="line"></div>
+              <!--end line-->
+              
+           <div class="l-item-box">
+           {%for list in listall3%}
+              <div class="i-box">
+                <div class="ib-block">
+                   <a href="{{list.url}}" target="_blank"><img src="{{list.pic}}" /></a>
+                </div>
+                <!--end ib-block-->
+                 <div class="ib-txt">
+                 <a href="{{list.url}}" target="_blank">{{list.name}}</a>
+                 </div>
+                <!--end ib-txt-->
+              </div>
+           {%endfor%}
+              <div class="cb"></div>
+              </div>
+              <!--end l-item-box--> 
+              
+           </div>
+           <!--end l-item-->
+           <center>
+           <div class="page">
+            <a href="zhuantimore{{typeid}}-1.html" class="page-f">首 页</a>
+            {% if firstpage %}
+            <a href="zhuantimore{{typeid}}-{{prvpage}}.html" class="page-one">上一页</a>
+            {%endif%}
+			{%for p in page_range%}
+			{%if p.nowpage%}
+			<a href="zhuantimore{{typeid}}-{{p.number}}.html" class="page-list page-list-click">{{p.number}}</a>
+			{%else%}
+			<a href="zhuantimore{{typeid}}-{{p.number}}.html">{{p.number}}</a>
+			{%endif%}
+			{%endfor%}
+			{% if lastpage%}
+			<a href="zhuantimore{{typeid}}-{{nextpage}}.html" class="page-one">下一页</a>
+            {%endif%}
+            <a href="zhuantimore{{typeid}}-{{page_listcount}}.html" class="page-f">末页</a>
+            </div>
+        <!--end page-->
+        </div>
+        <!--end list-->
+     </div>
+     <!--end c-item-left-->
+      <div class="c-item-right">
+        <div class="cir-t">
+           <div class="cirt-s">
+             <div class="s-txt">热门地区产品</div>
+             <!--end s-txt-->
+             <div class="s-txt1">报价</div>
+             <!--end s-txt-->
+             <div class="s-txt2">
+              <a href="#">更多</a>
+             </div>
+             <!--end s-txt-->
+             <div class="cb"></div>
+           </div>
+           <!--end cirt-s-->
+           <div class="cirt-x">
+             <div class="x-left">
+               <div class="xl-box">类别：</div>
+               <!--end xl-box-->
+               <div class="xl-box2">地区： </div>
+               <!--end xl-box2-->
+             </div>
+             <!--end l-left-->
+             <div class="x-right">
+               <div class="xl-box1">
+               <div class="xlb-txt">
+            <a href="http://price.zz91.com/priceSearch.htm?title=废锌" style="color:black;font-size:14px" target="_blank">废锌</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=废铁" style="color:black;font-size:14px" target="_blank">废铁</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=废铜" style="color:red;font-size:14px" target="_blank">废铜</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=废镍" style="color:black;font-size:14px" target="_blank">废镍</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=废铝" style="color:black;font-size:14px" target="_blank">废铝</a>
+               </div>
+               <div class="cb"></div>
+               <!--end xlb-txt-->
+               <div class="xlb-txt">
+            <a href="http://price.zz91.com/priceSearch.htm?title=废铅" style="color:black;font-size:14px" target="_blank">废铅</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=废钢" style="color:red;font-size:14px" target="_blank">废钢</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=废电瓶" style="color:red;font-size:14px" target="_blank">废电瓶</a>
+               </div>
+               <!--end xlb-txt-->
+               <div class="cb"></div>
+               </div>
+               <div class="cb"></div>
+               <!--end xl-box1-->
+               <div class="xl-box1">
+               <div class="xlb-txt">
+			<a href="http://price.zz91.com/priceSearch.htm?title=江浙沪" style="color:red;font-size:14px" target="_blank">江浙沪</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=广东" style="color:black;font-size:14px" target="_blank">广东</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=天津" style="color:black;font-size:14px" target="_blank">天津</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=南海" style="color:black;font-size:14px" target="_blank">南海</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=佛山" style="color:black;font-size:14px" target="_blank">佛山</a>
+               </div>
+               <div class="cb"></div>
+               <!--end xlb-txt-->
+               <div class="xlb-txt">
+            <a href="http://price.zz91.com/priceSearch.htm?title=山东" style="color:black;font-size:14px" target="_blank">山东</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=北京" style="color:black;font-size:14px" target="_blank">北京</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=长葛" style="color:black;font-size:14px" target="_blank">长葛</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=临沂" style="color:black;font-size:14px" target="_blank">临沂</a>
+			<a href="http://price.zz91.com/priceSearch.htm?title=汨罗" style="color:black;font-size:14px" target="_blank">汨罗</a>
+               </div>
+               <!--end xlb-txt-->
+               <div class="cb"></div>
+               </div>
+               <!--end xl-box1-->
+             </div>
+             <!--end x-right-->
+             <div class="cb"></div>
+           </div>
+           <!--end cirt-x-->
+        </div>
+        <!--end cir-t--->
+        
+        <div class="cir-b">
+           <div class="b-title">
+              <div class="cirt-s">
+             <div class="s-txt">废料卖家</div>
+             <!--end s-txt-->
+             <div class="s-txt1">热门供应</div>
+             <!--end s-txt1-->
+             <div class="cb"></div>
+           </div>
+           <!--end cirt-s-->
+           </div>
+           <!--end b-title-->
+           <div class="b-item">
+            <div class="b-box">
+{%for sl in offerSalesinfo%}
+              <div class="b-block">
+                 <div class="b-txt1">
+                 <a href="http://www.zz91.com/inquiry/inquiryApi.htm?productId={{sl.id}}#messeges" target="_blank">在线询价</a>
+                 </div>
+                 <!--end b-txt1-->
+                 <div class="b-txt">
+                 <a href="http://trade.zz91.com/productDetails{{sl.id}}.htm" target="_blank">{{sl.title}}</a>
+                 </div>
+                 <!--end b-txt-->
+                 <div class="cb"></div>
+              </div>
+              <!--end b-block-->
+{%endfor%}
+              </div>
+              <!--end b-box-->
+           </div>
+           <!--end b-item-->
+        </div>
+        <!--end cir-b-->
+        <div class="cir-b">
+           <div class="b-title">
+              <div class="cirt-s">
+             <div class="s-txt">废料买家</div>
+             <!--end s-txt-->
+             <div class="s-txt1">热门求购</div>
+             <!--end s-txt1-->
+             <div class="cb"></div>
+           </div>
+           <!--end cirt-s-->
+           </div>
+           <!--end b-title-->
+           <div class="b-item">
+            <div class="b-box">
+{%for sl in offerBuyinfo%}
+              <div class="b-block">
+                 <div class="b-txt1">
+                 <a href="http://www.zz91.com/inquiry/inquiryApi.htm?productId={{sl.id}}#messeges" target="_blank">在线询价</a>
+                 </div>
+                 <!--end b-txt1-->
+                 <div class="b-txt">
+                 <a href="http://trade.zz91.com/productDetails{{sl.id}}.htm" target="_blank">{{sl.title}}</a>
+                 </div>
+                 <!--end b-txt-->
+                 <div class="cb"></div>
+              </div>
+              <!--end b-block-->
+{%endfor%}
+              </div>
+              <!--end b-box-->
+           </div>
+           <!--end b-item-->
+        </div>
+        <!--end cir-b-->
+     </div>
+     <!--end c-item-right-->
+     <div class="cb"></div>
+     </div>
+     <!--end main-->
+  </div>
+  <!--end content-->
+  <div style="clear:both"></div>
+<div style="width:100%;">
+	<div style="width:960px;margin:0 auto;text-align:center;">
+		{% include 'html/comm/buttom.html' %}
+    </div>
+</div>
+</body>
+</html>

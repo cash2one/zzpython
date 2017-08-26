@@ -1,0 +1,17 @@
+{%for of in offerlist%}
+<tr class="cproduct" pro_id="{{of.proid}}">
+<td>{{of.protitle}} </td><td style="text-align:right">{{of.refresh_time}}</td>
+</tr>
+{%endfor%}
+<script>
+$(function(){
+	$('.cproduct').click(function(){
+		var pro_id=$(this).attr("pro_id")
+		//alert(pro_id)
+		$('.cproduct').css("background","none")
+		$(this).css("background","#BEBEBE")
+		parent.$('#proid').val(pro_id)
+	 });
+	 $('#loadMore').html('');
+});
+</script>

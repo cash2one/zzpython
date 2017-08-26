@@ -1,0 +1,54 @@
+  <!--左边主题板块-->
+  <div class="grid-sub fl"> 
+    <!--企业信息-->
+    <div class="mod mod-proinfo">
+      <div class="m-body">
+        <div class="m-header red">
+          <h3>来电宝会员 品质保证</h3>
+        </div>
+        <div class="m-content">
+          <div class="info-detail">
+             <div class="info-detail-item">
+             	<dl>
+                	<dt><h3>{{list.name}}</h3></dt>
+                    <dd><a id="pass">已通过再生网身份信息审核</a></dd>
+                    <dd><span class="gray">经营范围：</span>{{list.business}}</dd>
+                    <dd><span class="gray">经营模式：</span>{{list.industry}}</dd>
+                    <dd><span class="gray">所在地区：</span>{{list.province}}</dd>
+                </dl>
+             </div>
+             <div class="info-detail-item dash-line">
+             	<p class="zxdh">咨询电话：</p>
+                <p class="tel plt">{{list.ppcphone}}</p>
+                {%if list.ppcphone_zhuan%}
+                <p class="tel pgt">{{list.ppcphone_zhuan}}</p>
+                {%endif%}
+             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--企业信息结束--> 
+    <!--产品推荐开始-->
+    <div class="mod mod-proinfo">
+      <div class="m-body">
+        <div class="m-header">
+          <h3>产品推荐</h3>
+        </div>
+        <div class="m-content">
+          <div class="info-detail">
+            <ul class="recommend-pro">
+{%for list in prolist2.list%}
+              <li>
+                <div class="pro-pic"> <a href="productdetail{{list.pdt_id}}.htm" target="_blank" title="{{list.pdt_name}}"><img src="{{list.pdt_images}}" alt="{{list.pdt_name}}" /></a> </div>
+                <div class="pro-label"> <a href="productdetail{{list.pdt_id}}.htm" target="_blank" title="{{list.pdt_name}}">{{list.pdt_name}}</a> </div>
+              </li>
+{%endfor%}
+            </ul>
+          </div>
+        </div>
+      </div>
+    <!--产品推荐结束-->
+    <img src="http://img0.zz91.com/zz91/ppc/images/ldb_logo.jpg" id="logo" /> 
+  </div>
+  <!--左边主题板块结束--> 

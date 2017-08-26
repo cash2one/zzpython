@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>邀请码</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+</head>
+<style type="text/css">
+	.box{
+		margin: 0 8px;
+	}
+	.top-tishi{
+		margin-bottom:15px;
+		margin-top:30px;
+	}
+	.btn{
+		display: block;
+		height: 35px;
+		line-height: 35px;
+		background-color: #01ba2e;
+		color: #fff;
+		text-align: center;
+		border-radius: 5px;
+		font-size: 14px;
+		margin-bottom: 15px;
+	}
+	
+	.btn-two{
+		background-color: #5ab3ff
+	}
+</style>
+<body>
+	<div class="box">
+		<p class="top-tishi">输入邀请码即可获取20元再生钱包</p>
+		<input type="text" placeholder="请输入邀请码" class="into-code">
+		<span class="btn btn-one">确 定</span>
+		<span class="btn btn-two">生成我的邀请码</span>
+		<p class="foot-tishi">或咨询电话：0571-56612345</p>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript">
+apiready = function(){
+	var getMoery = true
+	$(".btn-one").on("click",function(){
+		if(getMoery){
+			if ($(".into-code").val()==""){hint("请输入邀请码");return false;}
+			var data={
+				company_id : UserInfo.memberID(),
+				usertoken : UserInfo.token(),
+				clientid : api.deviceId,
+				appsystem : api.systemType,
+				datatype : "json",
+				code : $(".into-code").val()
+			}
+			api.ajax({
+				url : hosturl +"invite/invite_save.html",
+				method : "post",
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				//zzalert( JSON.stringify( ret ) );
+				if (ret){
+					hint(ret.errkey)
+					if (ret.err=="false"){
+						$(".top-tishi").css({"line-height":"70px","text-align":"center","font-size":"15px","font-weight":"bold"})
+						.text("您获得再生钱包 “20元”");
+						$(this).text("查看钱包余额");
+						$(".into-code").hide()
+						$(".foot-tishi").css("text-align","center");
+						$(".btn-two").hide();
+						getMoery = false
+					}
+				}else{
+					if(err){
+						saveerrlog(err.msg);
+					}
+					hint("系统错误！");
+				}
+			})
+		}else{
+			var pageParam = {
+		      wintitle:"再生钱包",
+		      type:"burse"
+		    };
+		    openWin("burse","../myrc/burse.html",pageParam);
+		}
+	})
+	$(".btn-two").on("click",function(){
+		var pageParam = {
+            wintitle:"我的邀请码",
+            type:"invite-my",
+        };
+        openWin("invite-my","../myrc/invite-my.html",pageParam);
+	})
+}
+</script>
+</html>

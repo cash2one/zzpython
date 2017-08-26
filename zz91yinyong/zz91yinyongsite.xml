@@ -1,0 +1,14 @@
+<uwsgi>
+ <socket>:8020</socket>
+ <master>true</master>
+ <processes>4</processes>
+ <pythonpath>.</pythonpath>
+ <module>zz91yinyong.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>zz91yinyong/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>6048</limit-as>
+ <daemonize>/mnt/var/log/uwsgi/zz91yinyong.log</daemonize>
+</uwsgi>

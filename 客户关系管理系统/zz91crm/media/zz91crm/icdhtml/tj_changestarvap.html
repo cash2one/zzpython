@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+        <style>
+        	body{
+				padding:20px;	
+			}
+        </style>
+	</head>
+
+	<body>
+		<form id="search" class="form-panel">
+			<div class="panel-title">
+				<span> <label>时间：</label>
+					<input type="text" class="calendar" name="fromdate" {%if fromdate%}value="{{fromdate}}" {%endif%}>
+					<label>至</label>
+					<input type="text" class="calendar" name="todate" {%if todate%}value="{{todate}}" {%endif%}>
+				</span>
+				<button type="submit" class="button button-primary">查询>></button>
+			</div>
+		</form>
+		<table cellpadding="5" cellspacing="0" class="table table-bordered" >
+			<thead>
+			
+			<tr>
+				<td align="center" bgcolor="#FFFFFF">Sales</td>
+				<td align="center" bgcolor="#FFFFFF">转5星</td>
+			  <td align="center" bgcolor="#FFFFFF">转4星</td>
+				<td align="center" bgcolor="#FFFFFF">4、5星到单情况</td>
+			</tr>
+			</thead>
+			<tbody>
+			
+			{%for salesman in allsalesman%}
+			<tr>
+				<td colspan="5" bgcolor="#f2f2f2">{{salesman.cate_label}}</td>
+			</tr>
+			{%for man in salesman.thiscateman%}
+			<tr class="contactvalue">
+				<td nowrap bgcolor="#FFFFFF" nolook=1>{{man.realname}}</td>
+				<td user_id="{{man.id}}" rank=4><span>查看</span></td>
+				<td user_id="{{man.id}}" rank=5><span>查看</span></td>
+				<td user_id="{{man.id}}" income=1><span>查看</span></td>
+			</tr>
+			{%endfor%}
+			{%endfor%}
+			<tbody>
+		</table>
+
+	</body>
+	<script type="text/javascript" src="../../assets/layer/layer.js"></script>
+	<script type="text/javascript" src="/assets/js/bui-min.js"></script>
+	<script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
+	<script type="text/javascript" src="/assets/js/config-min.js"></script>
+	<script type="text/javascript">
+		BUI.use('bui/calendar', function(Calendar) {
+			var datepicker = new Calendar.DatePicker({
+				trigger: '.calendar',
+				autoRender: true
+			});
+		});
+		BUI.use('bui/overlay', function(Overlay) {
+			var dialog = new Overlay.Dialog({
+				title: '非模态窗口',
+				width: 500,
+				height: 300,
+				mask: false,
+				buttons: [],
+				bodyContent: '<p>这是一个非模态窗口,并且不带按钮</p>'
+			});
+			//dialog.show();
+			$('#btnShow').on('click', function() {
+				dialog.show();
+			});
+		});
+		$(document).ready(function() {
+			
+			//$('.contactvalue td span').on('click', function() {
+				$('.contactvalue').find("td span").each(function() {
+					layer.load(1);
+					var self=$(this).parent();
+					var user_id=self.attr("user_id");
+					var rank=self.attr("rank");
+					var income=self.attr("income");
+					var gendiu=self.attr("gendiu");
+					var nolook=self.attr("nolook");
+					if (nolook=="1"){
+						return;
+					}
+					var data={
+						fromdate:"{{fromdate}}",
+						todate:"{{todate}}",
+						user_id:user_id,
+						rank:rank,
+						income:income,
+						telflag:4,
+						vapflag:1,
+					}
+					crmajax("get","/icd/tj_changestarvalue.html",data,function(ret){
+						if (ret){
+							self.html("<a href='/icd/tj_changestarlist.html?"+$.param(data)+"' target=_blank>"+ret.count+"</a>")
+							setTimeout(function(){
+							  layer.closeAll('loading');
+							}, 2);
+						}
+					},function(err){
+						layer.open({
+							type: 1,
+							title: 'err',
+							shadeClose: true,
+							shade: 0.3,
+							area: ['70%', '70%'],
+							content: err.responseText
+						});
+					})
+				//});
+			});
+		})
+	</script>
+</html>

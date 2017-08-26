@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<title>商机榜单_商机排行榜-zz91再生网</title>
+		<meta name="keywords" content="商机榜单,精品商机榜单,潜力商机榜单,新入商机榜单,商机">
+		<meta name="description" content="ZZ91再生网商机榜单为广大客户提供最新最全废料商机、商机榜单信息，让客户更直接地了解优质商机。">
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/header.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/opportunity.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/banner.css" />
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		<meta http-equiv="Cache-Control" content="no-transform"/>
+		<meta http-equiv="Cache-Control" content="no-siteapp"/>
+	</head>
+	<body>
+		{% include 'nav.html' %}
+		<div style="clear: both;"></div>
+		<div class="warp">
+			<div class="logosearch fl">
+				<div class="logo fl">
+					<img src="http://b.zz91.com/cp/paihang/img/img-01.png" class="fl"/>
+					<p class="fl logo-title">商机排行榜</p>
+				</div>
+				<div class="search fl">
+					<form action="http://trade.zz91.com/trade/searchfirst/" method="get" id="searchForm1" target="_blank">
+					<input class="searchInput fl" name="keywords" placeholder="输入产品关键词,获取对应产品信息" style="font-size: 14px;" /> 
+					<a class="searchButtom fl">搜索关键词</a>
+					</form>
+				</div>
+			</div>
+			<div class="nav fl">
+				<a href="/cp/" class="nav-oth">微门户首页</a>
+				<a href="sj-index.html" class="nav-oth" >商机排行榜</a>
+				<a href="sj-hotcp.html" class="nav-oth">热门产品词</a>
+				<a href="sj-sjbd.html" class="nav-idx">商机榜单</a>
+				<a href="sj-spbd.html" class="nav-oth">商铺榜单</a>
+			</div>
+			<div class="Main fl">
+				<div class="main-top">
+					<div class="main-topL fl">
+						<p class="main-topL1">{{ now_month }}月商机榜单</p>
+						<p class="main-topL2">ZZ91再生网商机排行榜每月对数千万商机进行统计分析，凸显精品商机榜、人气商机榜、潜力商机榜、新入商机榜等，让您的采购变轻松。</p>
+					</div>
+					<div class="main-topR fr">
+						<a class="fr main-topRb" href="http://www.zz91.com/register/register_stp1.htm" target="_blank">我也要出现在这里</a>
+					</div>
+				</div>
+				<div class="main-left fl">
+					<div  class="sellerOpportunity fl">
+						<div class="sellerOpportunity-top">
+							<img src="../cp/paihang/img/img-05.png" class="fl"/>
+							<p class="seller-c fl">信誉商机</p>
+							<a class="more" href="sj-sjbd-more.html">更多</a>
+						</div>
+						<div class="opportunity-main fl">
+							{% for each_pro in pro_list %}
+							<div class="opportunity-content fl">
+								<a href="http://trade.zz91.com/productdetails{{ each_pro.pro_id }}.htm" target="_blank">
+									<img src="{{ each_pro.pdt_img_info }}" class="fl" style="width: 103px;height: 99px;" />
+								</a>
+								<span class="fl opportunity-content-c">
+									<p><a href="http://trade.zz91.com/productdetails{{ each_pro.pro_id }}.htm" target="_blank">{{ each_pro.pro_title }}</p></a></p>
+									<p class="opportunity-contentB">地区：{{ each_pro.comp_info.comp_p_area }} {{ each_pro.comp_info.comp_area }}</p>
+								</span>
+								<a href="http://www.zz91.com/inquiry/inquiryApi.htm?productId={{ each_pro.pro_id }}#messeges" class="fl opportunity-buttom" target="_blank">立即询价</a>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<div class="main-right fl">
+					<div  class="sellerOpportunity fl">
+						<div class="sellerOpportunity-top">
+							<img src="http://b.zz91.com/cp/paihang/img/img-05.png" class="fl"/>
+							<p class="seller-c fl">人气商机</p>
+							<a class="more" href="sj-sjbd-more.html">更多</a>
+						</div>
+						<div class="opportunity-main fl">
+							{% for each_pro in pro_list_2 %}
+							<div class="opportunity-content fl">
+								<a href="http://trade.zz91.com/productdetails{{ each_pro.pro_id }}.htm" target="_blank">
+									<img src="{{ each_pro.pdt_img_info }}" class="fl" style="width: 103px;height: 99px;" />
+								</a>
+								<span class="fl opportunity-content-c">
+									<p><a href="http://trade.zz91.com/productdetails{{ each_pro.pro_id }}.htm" target="_blank">{{ each_pro.pro_title }}</p></a></p>
+									<p class="opportunity-contentB">地区：{{ each_pro.comp_info.comp_p_area }} {{ each_pro.comp_info.comp_area }}</p>
+								</span>
+								<a href="http://www.zz91.com/inquiry/inquiryApi.htm?productId={{ each_pro.pro_id }}#messeges" class="fl opportunity-buttom" target="_blank">立即询价</a>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% include 'bottom.html' %}
+	</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>样品会员中心_ZZ91再生网</title>
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/account.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/index.css">
+    <script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/index.js"></script>
+</head>
+<body class="gbody1000">
+{%include "include/nav.html"%}
+{%include "include/head.html"%}
+{%include "include/lm.html"%}
+<div class="gm1-5 gw-bcrumb">
+    <span><a href="index.html">会员中心</a></span>
+            <strong>
+        <a href="#">全部订单</a>
+    </strong>
+</div>
+<div class="gMain clearfix">
+        
+        {%include "include/leftmenu.html"%}
+        <div class="gContainer">
+            <div class="gwTopic clearfix">
+                <h2>手机绑定</h2>
+                <span class="gwBack"><em><a href="safe.html">返回安全中心</a></em></span>
+            </div>
+            <div class="basicForm telBox">
+                <div class="valideTips">
+
+                        <p>手机认证用户在交易时可以随时获得工厂店的客服为您提供的服务</p>
+
+                </div>
+                <form id="fs-bindmobi" name="fs-bindmobi" method="post" action="#" class="ajax">
+                    <div class="bFRow">
+                        <div class="label">请输入您要绑定的手机号码：</div>
+                        <div class="cell">
+                        	<span class="prevtelNum">
+                        	<input type="text" class="text" name="mobile" id="mobile" value="13564342423">
+                        	</span>
+                        </div>
+                    </div>
+                    <div class="bFRow">
+                        <div class="label">请输入您收到的验证码：</div>
+                        <div class="cell">
+	                        <input type="text" class="text" name="code">
+	                        <a id="" href="#" fs-sendmobicode="mobile" fs-nextenable="60" class=" sendCodeBtn">点击发送验证码</a>
+					       <span id="fs-mobicodemsg" class="sendCodeBtn gcbtn" style="display: none;"> (<span class="fs-sec"></span>)秒后点击重发验证码
+						   </span>
+                        </div>
+                    </div>
+                    <div class="bFRow">
+                        <input class="sCSumbitBtn" type="submit" value="确认提交">
+                    </div>
+                </form>
+            </div>
+        </div>
+	</div>
+	</div>
+{%include "include/bottom.html"%}
+</body>
+</html>

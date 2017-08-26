@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>{{newsdetail.title}}-{{list.name}}</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+<script src="{{htmlincludes.img}}js/jquery.js"></script>
+<script src="{{htmlincludes.img}}js/index.js"></script>
+</head>
+<body>
+{%include "html/mobile/01/top.html"%}
+
+<!--end phoneInfo-->
+
+<div class="contact" style="line-height:25px;">
+	<center><div class="newdeta-title">
+		<h1><b>{{newsdetail.title}}</b></h1>
+		<p>发布时间：{{newsdetail.post_time}}</p>
+	</div></center>
+	<div class="newsdeta-con">
+    {{newsdetail.content|safe}}
+    </div>
+</div>
+<!--end contact-->
+<div class="phoneRuturntop">
+	<img src="{{htmlincludes.img}}images/ruturn_top.jpg" class="fr" onclick="bookmarks();" />
+    <div class="cb"></div>
+</div>
+<!--phoneRuturntop-->
+{%include "html/mobile/01/foot.html"%}
+<!--end phoneFooter-->
+</body>
+</html>

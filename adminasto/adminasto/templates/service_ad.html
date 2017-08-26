@@ -1,0 +1,31 @@
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style>
+<table  width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#666666">
+      <tr>
+        <td bgcolor="#EBEBEB">广告类型</td>
+        <td bgcolor="#EBEBEB">开始时间</td>
+        <td bgcolor="#EBEBEB">结束时间</td>
+        <td bgcolor="#EBEBEB">关键字</td>
+        <td bgcolor="#EBEBEB">状态</td>
+  </tr>
+	  {%for list in listall_ads%}
+      <tr>
+        <td bgcolor="#FFFFFF">{{list.position_name}}</td>
+        <td bgcolor="#FFFFFF">{{list.gmt_start}}</td>
+        <td bgcolor="#FFFFFF">{{list.gmt_plan_end}}</td>
+        <td bgcolor="#FFFFFF">{{list.search_exact}}</td>
+        <td bgcolor="#FFFFFF">{{list.review_status}}</td>
+      </tr>
+	  {%endfor%}
+</table>

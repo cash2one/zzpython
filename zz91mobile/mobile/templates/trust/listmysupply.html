@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport"  content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+	<meta name="format-detection"  content="telephone=no">
+    <title>我的供货-zz91再生网</title>
+    <link href="/trust/css/caigou.m.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header>
+    	<div class="header"><h2>我的供货</h2></div>
+    </header>
+    <div class="sel-search">
+        <form id="search-form"  method="get" style="display: block;">
+            <div class="box-search" style="display: block!important;">
+                <select title="" class="srch-sel" name=ptype>
+                	<option value="">全部</option>
+                    <option value="00">已报价</option>
+                    <option value="01">报价被采纳</option>
+                    <option value="99">报价被否决</option>
+                </select>
+            </div>
+            <button type="submit" class="btn" gaevent="imt/search/submit"  id="search-submit">搜索</button>
+        </form>
+    </div>
+    <!--end sel-search-->
+    <h3 class="grey f12 ml12">共： <span class="black">{{listcount}}</span>　条</h3>
+    <div class="wrap">
+    	<section class="supply-con">
+        	<ul class="supply-list">
+        	{%for list in listall%}
+        	<li>
+                	<div class="supply-box">
+                    	<div class="supply-item">
+                        	<p>
+                            	<label>供货内容：</label>{{list.content}}
+                            </p>
+                            <p>
+                            	<label>采购内容：</label>{{list.detail}}
+                            </p>
+                            <p class="supply-info">
+                            	No.{{list.buy_no}}
+                                <span class="fr">状态：<font class="red">{{list.status}}</font></span>
+                            </p>
+                            <p class="supply-info">
+                            	跟进交易员：{{list.dealername}}&nbsp;<img src="http://www.zz91.com/zt/0629/images/icon_phone.png" />
+                                <span class="fr">时间：{{list.gmt_modified}}</span>
+                            </p>
+                        </div>
+                        <!--end supply-item-->
+                    </div>
+                </li>
+        	{%endfor%}
+            </ul> 
+        </section>
+    </div>
+</body>
+
+<div class="inline pull-right page">
+{% if firstpage %}
+<a href="?page={{prvpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+&nbsp;&nbsp;&nbsp;{% if lastpage%}
+<a href="?page={{nextpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}
+</div>
+</body>
+</html>

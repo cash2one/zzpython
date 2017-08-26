@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>淘再生-再生商客</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://b.zz91.com/comm/js/comm.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/recyclecrm/css/chapman.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/recyclecrm/css/chapman-t.css"/>
+	</head>
+	<body>
+		<div style="height:48px;">
+			<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+		    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+			        <span class="aui-iconfont aui-icon-left"></span>
+			    </a>
+			    <div class="aui-title">
+			    	客户留言
+			    </div>
+			</header>
+		</div>
+		
+		<div class="aui-content">
+		    <ul class="aui-user-view">
+		    	{% for list in listall%}
+		        <li class="aui-user-view-cell aui-img">
+		        	<a href="leave_list.html?user_id={{list.user_id}}" class="clear">
+			        	<div class="liuyan aui-pull-left aui-margin-r-15">
+				            <img class="aui-img-object" src="images/indextop.jpg">
+				            <span class="aui-badge aui-badge-danger">2</span>
+			        	</div>
+			            <div class="aui-img-body">
+			                <span>{{list.contact}}{%ifequal list.sex '男'%}先生{%else%}女士{%endifequal%}<em>{{list.recently_contact_time}}</em></span>
+			                <p class='aui-ellipsis-1'>{{list.content}}</p>
+			            </div>
+		        	</a>
+		        </li>
+		   		{%endfor%}
+		    </ul>
+		</div>
+	</body>
+</html>

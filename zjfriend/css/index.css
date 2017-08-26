@@ -1,0 +1,82 @@
+/*
+			 iscroll
+			 */
+	        .nav_active{
+	        	border-bottom: solid 2px #CF2D28;
+	        }
+	        .nav_active a {
+	            color: #DC282E;
+	        }
+			#wrapper {
+				position: relative;
+				z-index: 1;
+				height: 37px;
+				width: 90%;
+				overflow: hidden;
+			}
+			#scroller {
+				position: absolute;
+				z-index: 1;
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+				height:35px;
+				width:700%;
+				/*-webkit-transform: translateZ(0);
+				 transform: translateZ(0);*/
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-webkit-text-size-adjust: none;
+			}
+			#scroller ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+				display: -webkit-box
+			}
+			#scroller li {
+				width:80px;
+				line-height: 35px;
+				font-size: 14px;
+				overflow: hidden;
+				text-align: center;
+				padding-left:5px;
+				padding-right:5px; 
+			}
+			/*
+			 iscroll
+			 */
+			
+			#navlist {
+				width: 100%;
+				display: -webkit-box;
+				background-color: #F6F6F6;
+			}
+			.arrow_down {
+				display: block;
+				background-size: 15px;
+				background-repeat: no-repeat;
+				background-position: center;
+				padding: 15px;
+				background-image: url('image/channel_nav_arrow@2x.png');
+				-webkit-box-flex: 1;
+				-webkit-transform: rotate(180deg);
+				-webkit-transition: All .5s ease;
+			}
+			.arrow_up {
+				-webkit-transform: rotate(0deg);
+				-webkit-transition: All .5s ease;
+			}
+			.switchNav {
+				position: relative;
+				width: 90%;
+				line-height: 35px;
+				text-indent: 10px;
+			}
+			
+			.cover {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				z-index: 999;
+			}

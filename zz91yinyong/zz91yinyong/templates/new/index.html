@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>zz91再生网-手机端</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta content="yes" name="apple-mobile-web-app-capable" /> 
+<meta content="black" name="apple-mobile-web-app-status-bar-style" /> 
+<meta content="telephone=no" name="format-detection" /> 
+<meta property="qc:admins" content="10301304622116375" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico">
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="http://m.zz91.com/new/css/index.css"/>
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script src="http://m.zz91.com/new/js/shouji.js"></script>
+</head>
+
+<body>
+<div class="mobile">
+	<div class="header">
+    	<div class="m-h-logo">
+    		<img src="http://m.zz91.com/images/logo.png" />
+        </div>
+        <ul class="m-h-nav">
+        	<li><a href="/">首页</a></li>
+            {%if username%}
+		<li><a href="/myrc_index/">生意管家</a></li>
+		{%else%}
+		<li><a href="/login/">登录</a></li>
+		{%endif%}
+            <li><a href="/category/">行业类别</a></li>
+            <li><a href="/service/">服务</a></li>
+        </ul>
+        <!--end nav-->  
+    </div>
+    <div class="cb"></div>
+    <!--end header-->
+    <div class="m-main">
+    <div class="title">
+    	<h1>快速搜索商机</h1>
+    </div>
+    <!--end title-->
+    <div class="title-text">
+		<span>目前共有商机数<b>{{ccountall}}</b><a href="#">m.zz91.com</a></span>
+	</div>
+    <!--end title-text-->
+    <form action="/offerlist/" method="get">
+		<section class="s_publicwarp">
+			<div class="s_publicsearch">
+				<input type="text" name="keywords" value="" autocomplete="off" autocorrect="off" placeholder="请输入您要搜索的产品..." class="s-kw_box"></div>
+			<span class="clear_txt" style="display: none;"></span>
+			<input type="submit" value="搜索">
+		</section>
+	</form>
+    <!--end 搜索-->
+    <div class="box_css" style="height: 100px;">	 
+        <div id="slider1" class="swipe" style="overflow: hidden; visibility: visible; list-style: none; position: relative;">
+            <ul class="box01_list" style="position: relative; -webkit-transition: left 0ms ease-out; transition: left 0ms ease-out; left: 0px;">     
+                <li class="s_messagewrap" style="height: 100px; display: table-cell; padding: 0px; margin: 0px; float: left; vertical-align: top;">     
+                    <div class="s_messageindex">
+                        <a href="/priceindex/"><span class="s_span1"></span><b>废料行情</b></a>
+                        <a href="/category/"><span class="s_span2"></span><b>废料交易</b></a>
+                        <a href="/company/"><span class="s_span3"></span><b>公司黄页</b></a>
+                        <a href="/huzhu/?category_id=11"><span class="s_span4"></span><b>再生互助</b></a>
+                    </div>
+                </li>
+            </ul>
+        </div>   
+     </div>
+	 <div class="cb"></div>
+     <div class="m-mainblock1">
+     	<div class="m1-title">
+        	<div class="m1-title-left fl" id="item1">
+            	行情报价
+            </div>
+            <div class="m1-title-right fl" id="item2">
+            	废料资讯
+            </div>
+        </div>
+        <!--end m1-title-->
+        <div class="m1-content" id="content1">
+            <ul class="m1-content-text">
+			{%for list in pricelist%}
+            	<li><a href="/priceviews/?id={{list.id}}">{{list.title}}</a></li>
+			{%endfor%}
+            </ul>
+            <!--end m1-content-text-->
+        </div>
+        <!--end m1-content-->
+        <div class="m1-content none" id="content2">
+            <ul class="m1-content-text">
+            	{%for list in bbslist%}
+					<li><a href="/huzhuview/{{list.id}}.htm">{{list.title}}</a></li>
+				{%endfor%}
+            </ul>
+            <!--end m1-content-text-->
+        </div>
+        <!--end m1-content-->
+     </div>
+     <!--end m-mainblock1-->
+     <div class="cb"></div>
+     <div class="m-mainblock2">
+     	<div class="m2-title">
+        	<a href="#">商机类目</a>
+        </div>
+        <!--end m2-title-->
+        <div class="m2-content" style="background:#6dc3ae">
+        	<div class="m2-content-left fl">
+            	<div class="m2-left-title">
+                	<a href="#">废金属</a>
+                </div>
+                <!--end m2-left-title-->
+                <div class="m2-left-content"><a>共有商机{{ccount1}}条</a></div>
+                <!--end m2-left-content-->
+            </div>
+            <!--end m2-content-left-->
+            <div class="m2-content-right fl">
+            	<img src="http://m.zz91.com/new/images/im2.jpg" />
+            </div>
+            <!--end m2-content-right-->
+            <div class="cb"></div>
+        </div>
+        <!--end m2-content-->
+     </div>
+     <!--end mainblock2-->
+     <div class="cb"></div>
+     <div class="m-mainblock3 mt8">
+     	<div class="m3-title">
+                <a id="m3-item3" href="/offerlist/?keywords=废钢铁">废钢铁</a>
+                <a id="m3-item4" href="/offerlist/?keywords=有色金属">有色金属</a>
+                <a id="m3-item5" href="/offerlist/?keywords=再生金属">再生金属</a>
+				<a id="m3-item5" href="/offerlist/?keywords=金属混合/复合料">金属混合/复合料</a>
+				
+        </div>
+		<div class="m3-title">
+                <a id="m3-item5" href="/offerlist/?keywords=金属助剂">金属助剂</a>
+                <a id="m3-item4" href="/offerlist/?keywords=硅">硅</a>
+                <a id="m3-item5" href="/offerlist/?keywords=稀有金属">稀有金属</a>
+				<a id="m3-item5" href="/offerlist/?keywords=贵金属">贵金属</a>
+				<a id="m3-item5" href="/offerlist/?keywords=金属处理设备">金属处理设备</a>
+        </div>
+        <!--end m3-title-->
+        <div class="cb"></div>
+        <div class="m3-content">
+            <div class="m3-content-left fl">
+                <img src="http://m.zz91.com/new/images/p2.jpg" />
+            </div>
+            <!--end m3-content-left-->
+            <div class="m3-content-right fl">
+                <div class="m3-right-title">
+                    <a href="#">废塑料</a>
+                </div>
+                <!--end m3-left-title-->
+                <div class="m3-right-content"><a>共有商机{{ccount2}}条</a>
+              </div>
+                <!--end m3-left-content-->
+            </div>
+            <!--end m3-content-right-->
+            <div class="cb"></div>
+         </div>
+         <!--end m3-content-->
+     </div>
+     <!--end m-mainblock3-->
+     <div class="cb"></div>
+     <div class="m-mainblock3 mt8">
+     	<div class="m3-title">
+                <a id="m3-item12" href="/offerlist/?keywords=PP">PP</a>
+                <a id="m3-item13" href="/offerlist/?keywords=PE">PE</a>
+                <a id="m3-item14" href="/offerlist/?keywords=HDPE">HDPE</a>
+                <a id="m3-item15" href="/offerlist/?keywords=PVC">PVC</a>
+				<a id="m3-item15" href="/offerlist/?keywords=PS">PS</a>
+				<a id="m3-item15" href="/offerlist/?keywords=ABS">ABS</a>
+				<a id="m3-item15" href="/offerlist/?keywords=EVA">EVA</a>
+				<a id="m3-item15" href="/offerlist/?keywords=LDPE">LDPE</a>
+        </div>
+		<div class="m3-title">
+                <a id="m3-item12" href="/offerlist/?keywords=PP再生颗粒">PP再生颗粒</a>
+                <a id="m3-item13" href="/offerlist/?keywords=PE再生颗粒">PE再生颗粒</a>
+                <a id="m3-item14" href="/offerlist/?keywords=PVC再生颗粒">PVC再生颗粒</a>
+                <a id="m3-item15" href="/offerlist/?keywords=ABS再生颗粒">ABS再生颗粒</a>
+        </div>
+		<div class="m3-title">
+                <a id="m3-item12" href="/offerlist/?keywords=PS再生颗粒">PS再生颗粒</a>
+                <a id="m3-item13" href="/offerlist/?keywords=PE再生颗粒">PE再生颗粒</a>
+                <a id="m3-item14" href="/offerlist/?keywords=EVA再生颗粒">EVA再生颗粒</a>
+                <a id="m3-item15" href="/offerlist/?keywords=PA再生颗粒">PA再生颗粒</a>
+        </div>
+		<div class="m3-title">
+                <a id="m3-item12" href="/offerlist/?keywords=工程废塑料">工程废塑料</a>
+                <a id="m3-item13" href="/offerlist/?keywords=特种废塑料">特种废塑料</a>
+                <a id="m3-item14" href="/offerlist/?keywords=塑料混合/复合料">塑料混合/复合料</a>
+        </div>
+        <div class="cb"></div>
+        <div class="m4-content">
+        	<div class="m2-content-left fl">
+            	<div class="m2-left-title">
+                	<a href="#">综合废料</a>
+                </div>
+                <!--end m2-left-title-->
+                <div class="m2-left-content"><a href="#">共有商机{{ccount3}}条</a>
+              </div>
+                <!--end m2-left-content-->
+            </div>
+            <!--end m2-content-left-->
+            <div class="m2-content-right fl">
+            	<img src="http://m.zz91.com/new/images/p3.jpg" />
+            </div>
+            <!--end m2-content-right-->
+            <div class="cb"></div>
+        </div>
+        <!--end m2-content-->
+     </div>
+     <!--end m-mainblock3-->
+     <div class="cb"></div>
+     <div class="m-mainblock3 mt8">
+     	<div class="m3-title">
+                <a id="m3-item22" href="/offerlist/?keywords=纺织废料">纺织废料</a>
+                <a id="m3-item23" href="/offerlist/?keywords=废纸">废纸</a>
+                <a id="m3-item24" href="/offerlist/?keywords=二手设备">二手设备</a>
+                <a id="m3-item25" href="/offerlist/?keywords=废电子电器">废电子电器</a>
+        </div>
+		<div class="m3-title">
+                <a id="m3-item22" href="/offerlist/?keywords=废橡胶旧轮胎">废橡胶旧轮胎</a>
+                <a id="m3-item23" href="/offerlist/?keywords=废玻璃">废玻璃</a>
+                <a id="m3-item24" href="/offerlist/?keywords=废木">废木</a>
+                <a id="m3-item25" href="/offerlist/?keywords=化工废料">化工废料</a>
+        </div>
+		<div class="m3-title">
+                <a id="m3-item22" href="/offerlist/?keywords=服务">服务综合废料</a>
+                <a id="m3-item23" href="/offerlist/?keywords=报关清关">报关清关</a>
+                <a id="m3-item24" href="/offerlist/?keywords=AQSIQ">AQSIQ</a>
+        </div>
+		   
+        <div class="cb"></div>
+        <div class="m2-login">
+        	<a href="/about/">关于我们</a>
+            <a href="/login/">登录</a>
+            <a href="/register/">注册</a>
+        </div>
+        <!--end m2-content-->
+     </div>
+     <!--end m-mainblock3-->
+     </div>
+     <!--end m-main-->
+</div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!--end mobile-->
+</body>
+</html>

@@ -1,0 +1,180 @@
+body{
+	background-color: #fa4a1b
+}
+header img{
+	width: 100%
+}
+.guizhe-title{
+	height: 72px;
+	background: url(../images/guibt.png) no-repeat center bottom;
+	background-size: 143px 52px;
+}
+.guizhe-info{
+	margin: 0 10px;
+	position: relative;
+}
+.guizhe-info img{
+	width: 100%;
+	vertical-align: top;
+}
+.downapp{
+	width: 33.333%;
+	position: absolute;
+	padding: 0 5px;
+	bottom: 15px;
+	right: 0
+}
+.fengx{
+	position: absolute;
+	width: 33.33%;
+	left: 33.33%;
+	bottom: 15px;
+           margin-top: 5px;
+           padding: 0 11px;
+           float: left;
+           	display: block;
+    /*display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-flow: row;
+           flex-flow: row;*/
+}
+.fengx-img img{
+	-webkit-box-flex: 1; 
+    -webkit-flex: 1;
+    flex: 1;
+    width: 100%
+}
+.fengx-img{
+	width: 30%;
+	display: inline-block;
+}
+.fengx span img{
+	width: 100%
+}
+.fengx .kbai{
+	width:11px;
+}
+.cjplay{
+	margin: 0 10px;
+	position: relative;
+	padding: 10px 0
+}
+.zzhao{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	z-index: 1;
+	top: -2px;
+	display: none;
+}
+.zzhao img{
+	width: 100%
+}
+.cjplay-zs{
+	color: #fff;
+	font-size: 9px;
+	height: 34px;
+	line-height: 34px;
+}
+.jiangpk{
+	position: relative;
+}
+.jiangpk-ul{
+	/*margin: 0 10px;*/
+	padding: 5px;
+	background: url(../images/cjiangbg.jpg);
+	background-size: 100% 100%;
+	position: relative;
+}
+.jianx-ts{
+	position: absolute;
+	z-index: 2;
+	width: 160px;
+	height: 160px;
+	text-align: center;
+	top: 50%;
+	margin-top: -80px;
+	left: 50%;
+	margin-left: -80px;
+	display: none;
+}
+.jianx-img{
+	width: 100%;
+	height: 100%;
+}
+.j_close{
+	top: 10px;
+	right: 4px;
+	position: absolute;
+}
+.jiangpk-ul li{
+	width: 33.33%;
+	float: left;
+	padding: 5px;
+}
+.jiangpk-ul li img{
+	width: 100%;
+	vertical-align: top;
+}
+.jiangpk-ul .nowplay{
+	background: url(../images/kuang.png);
+	background-size: 100% 100%;
+}
+.cjst{
+	position: relative;
+}
+.cjst-play{
+	position: absolute;
+	width: 100%;
+	padding: 0 8px;
+	top: 10px;
+	left: 0px;
+}
+.cjst-play img{
+	width: 100%
+}
+.canplay{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 10px;
+	color: #000;
+	line-height: 1.2;
+	font-family: "微软雅黑";
+	font-weight: bold;
+	left: 0;
+
+}
+.number-play{
+	display: block;
+	color: #ff0000;
+	font-size: 18px;
+}
+.zjpeople{
+	margin: 15px 10px;
+}
+.zjtbg img{
+	width: 100%;
+	vertical-align: top;
+}
+.gund-div{
+	overflow: hidden;
+	height: 125px;
+	background: #fff;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	padding: 5px;
+	text-align: center;
+	line-height: 24px;
+	color: red
+}
+.gund-div span{
+	padding: 0 5px;
+}
+.gund-div span:last-child{
+	width: 100px;
+	display: inline-block;
+}

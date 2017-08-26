@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>我的供求-已审核</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/myrc/audit.css"/>
+    <style>
+    	.ptop{
+    		border: solid 1px #FA6604;
+    		background-color: #FFCC00;
+    		text-align:center;
+    		width:100%
+    	}
+    </style>
+</head>
+<body>
+<div class="nodata">暂无相关供求 <br /><br />
+<p><div class="aui-btn aui-btn-success postbutton"><span class="aui-iconfont aui-icon-activity"></span>立即发布供求</div></p>
+</div>
+<div class="aui-content">
+	<div class="ptop">供求置顶服务</div>
+	<ul class="look-list aui-list-view">
+		<div class="aui-toast"  id="loading">
+	        <div class="aui-toast-loading"></div>
+	        <div class="aui-toast-content">加载中</div>
+	    </div>
+	</ul>
+</div>
+<div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;display:none'>上拉获取更多信息</div>
+<div style="height:80px"></div>
+</body>
+<script id="info-list" type="text/html">
+	<li class="aui-list-view-cell aui-img aui-counter-list">
+		<input class="aui-pull-left aui-checkbox" style="{{d.checkpost}}" type="checkbox" proid = "{{ d.proid }}">
+		<div class="look-title">{{ d.protitle }}</div>
+		<div class="look-time">刷新时间：{{ d.refresh_time }}
+			<div class="aui-counter aui-danger aui-pull-right">
+                <div class="aui-btn aui-btn-success editpost" proid = "{{ d.proid }}" style="{{d.modpost}}">修改</div>
+            </div>
+			<div class="look-reason" style="{{d.nopost}}">退回原因 : {{ d.unpass_reason }}</div>
+		</div>
+	</li>
+</script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript">
+	var currPage = 1;
+	var checkStatus=1;
+	apiready= function() {
+		ajaxInfo();
+		//底部加载更多
+		api.addEventListener({
+			name : 'scrolltobottom'
+		}, function(ret, err) {
+			//如果底部没有加载更多提示，添加加载更多提示
+			if (currPage>pagecount){
+				$(".la_more").html("全部加载完毕");
+				return false;
+			}
+			$(".la_more").html("加载更多中...");
+			ajaxInfo();
+			
+		});
+		//页面刷新
+		api.setRefreshHeaderInfo({
+			visible : true,
+			// bgColor: '#F2F2F2',
+			bgColor : '#E6E6E6',
+			textColor : '#000000',
+			textDown : '下拉刷新',
+			textUp : '释放刷新',
+		}, function(ret, err) {
+			currPage = 1;
+			ajaxInfo();
+			api.toast({
+				msg : '数据已是最新！',
+				duration : 3000,
+				location : 'bottom'
+			});
+		});
+		//选择供求
+		$(".look-list").on("click",".aui-checkbox",function(){
+			if($(this).hasClass("look-title-gou")){
+				$(this).removeClass("look-title-gou")
+			}else{
+				$(this).addClass("look-title-gou")
+			}
+		})
+		//点击刷新单条数据
+		$(".look-list").on("click",".reflush",function(){
+			var proid = $(this).attr("proid");
+			bitInfo(proid)
+		})
+		//发布信息
+		$(".postbutton").on("click", function() {
+			var pageParam = {
+				wintitle : "发布信息",
+				type : "issue-info",
+				module : "发布",
+				bounces : false
+			};
+			if (UserInfo.has_login()) {
+				openWin("issue-info", "../myrc/issue-info.html", pageParam);
+			} else {
+				pageParam.nextUrl = "widget://html/myrc/issue-info.html";
+				pageParam.winName = "issue-info";
+				openWin("frm-login", "../myrc/frm-login.html", pageParam);
+			}
+		});
+		//发布信息
+		$(".look-list").on("click",".editpost", function() {
+			var pageParam = {
+				wintitle : "编辑信息",
+				type : "edit_post",
+				bounces : false,
+				proid : $(this).attr("proid"),
+			};
+			if (UserInfo.has_login()) {
+				openWin("edit_post", "../myrc/edit_post.html", pageParam);
+			} else {
+				pageParam.nextUrl = "widget://html/myrc/edit_post.html";
+				pageParam.winName = "edit_post";
+				openWin("frm-login", "../myrc/frm-login.html", pageParam);
+			}
+		});
+		//打开底部按钮栏
+		openfoot();
+	}
+	var dataload = true;
+	
+	////看窗口是否已经打开
+	var auditlist=[];
+	function ajaxInfo(){
+		var auditlist=$api.getStorage("auditlist");
+		if (!auditlist){
+			var auditlist=[];
+		}
+		
+		if (arguments[0]){
+			currPage = 1;
+			
+		}
+		if (dataload == false) {
+			return false;
+		}
+		dataload = false;
+		checkStatus=api.pageParam.typeid;
+		//看窗口是否已经打开
+		if (auditlist.indexOf(checkStatus) < 0){
+			auditlist.push(checkStatus);
+			$api.setStorage("auditlist", auditlist);
+		}
+		//zzalert(JSON.stringify(auditlist))
+		
+		var statusid=1;
+		//zzalert(arguments[0])
+		if (checkStatus==1 && arguments[0]!=2){
+			statusid=1
+			openfoot()
+		}
+		if (checkStatus==2){
+			statusid=0
+			api.closeFrame({
+	            name: 'audit-foot1'
+            });
+            api.closeFrame({
+	            name: 'audit-foot'
+            });
+		}
+		if (checkStatus==3){
+			statusid=2
+			
+            api.closeFrame({
+	            name: 'audit-foot'
+            });
+            api.closeFrame({
+	            name: 'audit-foot1'
+            });
+		}
+		if (checkStatus==4){
+			statusid=3
+			api.closeFrame({
+	            name: 'audit-foot'
+            });
+			openfoot1();
+		}
+		var data={
+			company_id : UserInfo.memberID(),
+			usertoken : UserInfo.token(),
+			appsystem : api.systemType,
+			datatype : "json",
+			page : currPage,
+			checkStatus : statusid,
+		}
+		api.ajax({
+		    url : hosturl + 'myrc_products/',
+		    method : 'get',
+		    timeout : 30,
+		    dataType : 'json',
+		    returnAll : false,
+		    data : {
+				values : data
+			}
+		}, function(ret, err) {
+		    if (ret) {
+		    	// zzalert(JSON.stringify(ret))
+		        var pageHtml = "";
+		        $.each(ret.qlistall.list, function(index, item) {
+			        var getTpl = $api.html($api.byId("info-list"));
+			        //审核未通过显示原因
+			        if (statusid==2){
+			        	item.nopost="display:block";
+			        	item.checkpost="display:none";
+			        }else{
+			        	item.nopost="display:none"
+			        	item.checkpost="display:block";
+			        }
+			        //审核未通过显示原因
+			        if (statusid==0){
+			        	item.modpost="display:none"
+			        }else{
+			        	item.modpost="display:block"
+			        }
+			        //审核通过对才能显示刷新
+			        if (statusid==1){
+			        	item.shuaxin="display:block"
+			        }else{
+			        	item.shuaxin="display:none"
+			        }
+			        //暂不发布显示重新发布
+			        if (statusid==3){
+			        	item.repost="display:block"
+			        }else{
+			        	item.repost="display:none"
+			        }
+			        laytpl(getTpl).render(item, function(html) {
+			            pageHtml = pageHtml + html;
+			        });
+		        })
+		        pagecount=ret.pagecount;
+		        if(currPage == 1){
+		        	if (pageHtml==""){
+	            		$(".nodata").show();
+	            		$(".la_more").hide();
+	            		$(".aui-content").hide();
+	            	}else{
+	            		$(".nodata").hide();
+	            		$(".la_more").show();
+	            		$(".aui-content").show();
+	                }
+		        	$(".look-list").html(pageHtml);
+		        	
+		        	api.pageUp({
+						'top' : true
+					});
+					var numberList = JSON.stringify(ret.count)
+		        	api.execScript({
+					    name: 'buyinout',
+					    frameName:'buyinout_',
+					    script: "getInfoNumber("+ numberList +")"
+					});
+		        }else{
+		        	$(".look-list").append(pageHtml)
+		        }
+		        if (pageHtml!=""){
+					$(".la_more").html("上拉获取更多信息");
+				}else{
+					$(".la_more").html("全部加载完毕");
+				}
+				if (currPage>=pagecount){
+					$(".la_more").html("全部加载完毕");
+				}
+				currPage += 1;
+		    } else {
+		    	if(err){
+					saveerrlog(err.body);
+				}
+		    };
+		    api.refreshHeaderLoadDone();
+			api.hideProgress();
+			dataload = true;
+		});
+	}
+	function openfoot(){
+		var $body = $api.dom('body');
+		var oHeight = $api.offset($body).h+30;
+		//var oHeight = $(window).height();
+		/*
+		var sysType = api.systemType;
+    	if(sysType == 'ios'){
+    		oHeight=oHeight+20;
+    	}else if(sysType == 'android'){
+            var ver = api.systemVersion;
+            ver = parseFloat(ver);
+            if(ver >= 4.4){
+                oHeight=oHeight+25;
+            }
+        }
+        */
+		api.openFrame({
+		    name: 'audit-foot',
+		    url: './audit-foot.html',
+		    rect:{
+		        x:0,
+		        y:oHeight,
+		        w:"auto"
+		    },
+		    pageParam: {name:'audit-foot'},
+		    bounces: false,
+		 });
+	}
+	function openfoot1(){
+		var $body = $api.dom('body');
+		var oHeight = $api.offset($body).h+30;
+		//var oHeight = $(window).height();
+		/*
+		var sysType = api.systemType;
+    	if(sysType == 'ios'){
+    		oHeight=oHeight+20;
+    	}else if(sysType == 'android'){
+            var ver = api.systemVersion;
+            ver = parseFloat(ver);
+            if(ver >= 4.4){
+                oHeight=oHeight+25;
+            }
+        }
+        */
+		api.openFrame({
+		    name: 'audit-foot1',
+		    url: './audit-foot1.html',
+		    rect:{
+		        x:0,
+		        y:oHeight,
+		        w:"auto"
+		    },
+		    pageParam: {name:'audit-foot1'},
+		    bounces: false,
+		 });
+	}
+	//一键刷新
+	function allinfo(){
+		var data = {
+			company_id:UserInfo.memberID(),
+			usertoken:UserInfo.token()
+		}
+		if ($(".nodata").css("display")=="block"){
+			zzalert("没有可刷新的供求！请立即发布您的供求！");
+			return false;
+		}
+		api.ajax({
+		    url : hosturl + 'products_refreshall/',
+		    method : 'post',
+		    timeout : 30,
+		    dataType : 'json',
+		    returnAll : false,
+		    data:{
+		    	values:data
+		    }
+		}, function(ret, err) {
+		    if (ret) {
+		    	if(ret.err =="true"){
+		    		api.alert({
+					    title: '发布失败',
+					    msg: ret.errkey,
+					    buttons:['确定']
+					},function(ret,err){
+					})
+		    	}else{
+		    		zzalert("刷新成功！");
+		    		currPage = 1;
+					ajaxInfo();
+		    	}
+		    } else {
+		    	if(err){
+					saveerrlog(err.body);
+				}
+		    };
+		});
+	}
+	//选择刷新
+	function moreInfo(){
+		var proid=[];
+		$(".look-title-gou").each(function(i,item){
+			proid[i] = $(this).attr("proid")
+		})
+		if(proid.length == 0){
+			api.alert({
+			    title: '刷新操作',
+			    msg: "请选择一条供求刷新",
+			    buttons:['确定']
+			},function(ret,err){
+			})
+			return;
+		}
+		proid = proid.join(",");
+		bitInfo(proid);
+	}
+	//刷新操作
+	function bitInfo(proid){
+		var data = {
+			proid:proid,
+			company_id:UserInfo.memberID(),
+			usertoken:UserInfo.token()
+		}
+		api.ajax({
+		    url : hosturl + 'products_refresh/',
+		    method : 'post',
+		    timeout : 30,
+		    dataType : 'json',
+		    returnAll : false,
+		    data:{
+		    	values:data
+		    }
+		}, function(ret, err) {
+		    if (ret) {
+		    	if(ret.err =="true"){
+		    		api.alert({
+					    title: '发布失败',
+					    msg: ret.errkey,
+					    buttons:['确定']
+					},function(ret,err){
+					})
+		    	}else{
+		    		zzalert("刷新成功！");
+		    		currPage = 1;
+					ajaxInfo();
+		    	}
+		    } else {
+		   		if(err){
+					saveerrlog(err.body);
+				}
+		    };
+		});
+	}
+	//重新发布
+	function repost(){
+		var proid=[];
+		$(".look-title-gou").each(function(i,item){
+			proid[i] = $(this).attr("proid")
+		})
+		if(proid.length == 0){
+			api.alert({
+			    title: '刷新操作',
+			    msg: "请选择一条供求",
+			    buttons:['确定']
+			},function(ret,err){
+			})
+			return;
+		}
+		proid = proid.join(",")
+		var data = {
+			proid:proid,
+			company_id:UserInfo.memberID(),
+			usertoken:UserInfo.token()
+		}
+		api.ajax({
+		    url : hosturl + 'products_start/',
+		    method : 'post',
+		    timeout : 30,
+		    dataType : 'json',
+		    returnAll : false,
+		    data:{
+		    	values:data
+		    }
+		}, function(ret, err) {
+		    if (ret) {
+		    	if(ret.err =="true"){
+		    		api.alert({
+					    title: '发布失败',
+					    msg: ret.errkey,
+					    buttons:['确定']
+					},function(ret,err){
+					})
+		    	}else{
+		    		api.execScript({
+			            name: 'buyinout',
+			            frameName: 'frame_0',
+			            script: "ajaxInfo(2)"
+			        });
+		    		currPage = 1;
+					ajaxInfo();
+		    	}
+		    } else {
+		    	if(err){
+					saveerrlog(err.body);
+				}
+		    };
+		});
+	}
+	
+	//暂不发布
+	function notOut(){
+		var proid=[];
+		$(".look-title-gou").each(function(i,item){
+			proid[i] = $(this).attr("proid")
+		})
+		if(proid.length == 0){
+			api.alert({
+			    title: '刷新操作',
+			    msg: "请选择一条供求",
+			    buttons:['确定']
+			},function(ret,err){
+			})
+			return;
+		}
+		proid = proid.join(",")
+		var data = {
+			proid:proid,
+			company_id:UserInfo.memberID(),
+			usertoken:UserInfo.token()
+		}
+		api.ajax({
+		    url : hosturl + 'products_stop/',
+		    method : 'post',
+		    timeout : 30,
+		    dataType : 'json',
+		    returnAll : false,
+		    data:{
+		    	values:data
+		    }
+		}, function(ret, err) {
+		    if (ret) {
+		    	if(ret.err =="true"){
+		    		api.alert({
+					    title: '暂不发布',
+					    msg: ret.errkey,
+					    buttons:['确定']
+					},function(ret,err){
+					})
+		    	}else{
+		    		
+		    		currPage = 1;
+					ajaxInfo(1);
+					if (auditlist.indexOf(3) >= 0){
+			    		api.execScript({
+				            name: 'buyinout',
+				            frameName: 'frame_3',
+				            script: "ajaxInfo()"
+				        });
+			        }
+		    	}
+		    } else {
+		    	if(err){
+					saveerrlog(err.body);
+				}
+		    };
+		});
+	}
+</script>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>{{webtitle}}_ZZ91废料移动商务</title>
+<meta name="keywords" content="废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备">
+<meta name="description" content="ZZ91再生网是中国最大最旺的网上废料贸易市场,这里为您精选了废金属,废塑料,废纸,废橡胶,纺织废料,废旧设备,废电子电器,废玻璃,废皮革,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备等各类废料供求信息.公司黄页.行业资讯.价格行情.展会信息等。">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width">
+<link rel="stylesheet"  href="/css/comm-base.css" />
+<link rel="stylesheet"  href="/css/comm-touch.css" />
+<link rel="stylesheet"  href="/css/common.css" />
+<link rel="stylesheet"  href="/css/offer.css" />
+<link rel="stylesheet" type="text/css" href="/css/qianbao/index.css"/>
+<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+<script type="text/javascript" src="/js/qianbao/style.js"></script>
+<script type="text/javascript" src="/js/qianbao/jquery.lightbox_me.js"></script>
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+<ul class="bread Fix">
+    <li><a href="/">首页</a></li>
+    <li class="li-bread"><a href="{{backurl}}">搜索结果</a></li>
+    <li class="li-bread c9"><span>公司信息</span></li>
+</ul>
+<div style="margin:10px;">	
+<div class="of_title b f16">{{list.name}}</div>
+<div class="of_line"></div>
+<div class="pd2"><span class="c6">会员类型：{{list.viptype.vipname}}{%if list.viptype.vipcheck%}<img src="{{list.viptype.vippic}}">{%endif%}</span></div>
+{%if list.business%}
+<div class="pd2 lh22"><span class="c6">经营范围：</span><span class="c9">{{list.business}}</span></div>
+{%endif%}
+<div class="of_line"></div>
+
+<table>
+	<tbody>
+		<tr>
+			<td colspan="2" class="of_td5">{{list.name}}</td>
+		</tr>
+		<tr>
+			<td class="c6">联 系 人：</td>
+			<td class="c9">{{list.contact}}{{list.position}}</td>
+		</tr>
+		<tr>
+			<td class="of_td7">联系方式：</td>
+			<td class="of_td8">
+            <div class="contactbox">
+			{%if list.viptype.ldb%}
+				<a href="tel:{{list.viptype.ldb.ldbtel}}">{{list.viptype.ldb.ldbphone}}</a>
+			{%else%}
+				{%if isseecompany%}
+					{%if list.mobile%}
+                        {%if list.mobilelist%}
+                            {%for mob1 in list.mobilelist%}
+                            <a href="tel:{{mob1}}"><img src="/images/qianbao/m.jpg"/> {{mob1}}</a>
+                            {%endfor%}
+                        {%else%}
+                            <a href="tel:{{list.mobile1}}"><img src="/images/qianbao/m.jpg" /> {{list.mobile1}}</a>
+                        {%endif%} 
+                    {%endif%}
+                    {%if list.tel%}
+                            <a href="tel:{{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}" id="tel"><img src="/images/qianbao/tel.jpg"/>{{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}</a>
+                    {%endif%}
+				{%else%}
+			        <div class="block_info_item_a">
+                	{%if company_id%}
+						<a href="javascript:;"  id="{%if qianbaoblance >= 5%}chk_link{%else%}chk1_link{%endif%}">仅需5元查看</a> {%if isjubao%}<img src="/images/qianbao/jb.jpg" /> 曾被举报{%endif%}
+					{%else%}
+		            	<a href="/login/?done={{host}}&keywords={{keywords}}">登录</a> <a href="/register/" target="_blank">立即注册</a>
+					{%endif%}
+                    </div>
+				{%endif%}
+			{%endif%}
+            </div>
+			</td>
+			{%if isseecompany%}
+			<td class="of_td8" valign="top">
+				<div style="padding: 5px 5px 5px 10px;margin:3px;">
+{%ifnotequal isseecompany 2%}<img src="/images/qianbao/jb.jpg" />&nbsp;&nbsp;{%if idcheck%}{{idchecktxt}}{%else%}<font id="jb3"><span id="jb2">举报</span></font>{%endif%}{%endifnotequal%}
+				</div>
+			</td>
+			{%endif%}
+		</tr>
+		{%if list.address%}
+		<tr>
+			<td class="c6">地  址：</td>
+			<td class="c9">{{list.address}}</td>
+		</tr>
+		{%endif%}
+	</tbody>
+</table>
+
+<div class="wp100 mt7">
+	<div class="bt-c bb-c pd10" style="background-color:#f7F7F7">公司简介</div>
+	<div class="lh22">{{list.introduction|safe}}</div>
+	<table class="ofb wp100">
+		<tbody>
+			<tr>
+			<td colspan="2" class="ac of_td6"> 
+				<input type="button" name="favOffer" onClick="window.location='/favorite/?company_id={{forcompany_id}}&title={{list.name}}';" value="收藏该公司" class="fav_btn">
+				<input type="button" name="favCompany" onClick="window.location='/leavewords/?backurl={{backurl}}';" value="给我留言" class="fav_btn">
+				<input type="button" name="favCompany" onClick="window.location='/offerlist/?company_id={{forcompany_id}}&keywords={{keywords}}';" value="查看所有供求" class="fav_btn">
+			</td>
+			</tr>
+		</tbody>
+	</table>
+</div>    
+
+<div id="fadelayer" class="overlayDiv"></div>
+<div id="disFilter" class="picDialogDiv" style="width:100%;">
+	<div id="dialogClose" class="dialogCloseBtn" style="top:0;right:0;" onClick="AliMobile.Util.closeOfferBigPicDialog();"></div>
+	<div class="picDialogContent">
+		<div style="padding:5px;background-color:white;text-align:center;"><img id="showImg" src="" style="width:100%;"></div>
+	</div>
+</div>
+
+	
+</div>	
+<script type="text/javascript">
+/*手机站：首页 20:3，创建于2014-7-22*/
+var cpro_id = "u1629209";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+<div class="t-index-search2">
+	<div class="t-search-bar pd10">
+		<form action="/offerlist/" method="post" onSubmit="return AliMobile.SearchBar.chkSearchInput('.t-index-search2');">
+		<div style="position:relative;">
+	    	<div class="input">
+	    		<div class="selected" onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','2');">
+	    			<span class="type">产品</span>
+	    			<span class="arrow"></span>
+	    		</div>
+				<div style="margin-right:55px;">
+    	    		<input class="searchKey" type="text" name="keywords" value="" autocomplete="off" placeholder="请填写搜索关键词" onFocus="AliMobile.SearchBar.input('.t-index-search2','2');" onKeyUp="AliMobile.SearchBar.input('.t-index-search2','2');">
+				</div>
+	    		<input class="searchType" type="hidden" value="selloffer" name="searchtype">
+				<input id="version" type="hidden" value="t" name="v">
+				<input id="en" type="hidden" value="utf8" name="en">
+	    	</div>
+	    	<div class="submit" onClick="AliMobile.SearchBar.submit('.t-index-search2');">搜索</div>
+			<div class="clear"><a href="javascript:AliMobile.SearchBar.cleanSearchInput('.t-index-search2');"><img src="/files/touch/images/close2.png"></a></div>
+		</div>
+		</form>
+		<div class="ac selection" style="display:none;">
+			<ul>
+				<li onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','2','产品','selloffer','请输入产品名称');">产品</li>
+				<li onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','2','公司','company','请输入公司名、地区、产品等');">公司</li>
+				<li onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','2','价格','price','请输入价格行情关键字');">价格</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+
+        <div id="tippOff_" align="center" class="tipp">
+        	<table>
+            	<tr>
+                	<td>您将举报该信息：</td>
+                    <td></td>
+                </tr>
+                <tr>
+                	<td><input type="checkbox" name="report" value="违法违规" />&nbsp;违法违规</td>
+                    <td><input type="checkbox" name="report" value="虚假信息" />&nbsp;虚假信息</td>
+                </tr>
+                <tr>
+                	<td><input type="checkbox" name="report" value="过期信息" />&nbsp;过期信息</td>
+                    <td><input type="checkbox" name="report" value="虚假号码" />&nbsp;虚假号码 </td>
+                </tr>
+            </table>
+		  <div align="center" style="margin-top:10px;">
+			<div class="btn btn_confirm" id="tipp_link" company_id="{{company_id}}" forcompany_id="{{forcompany_id}}" product_id="{{id}}" onClick="dismiss();">确定</div>
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 举报弹框 part1-->
+          <div id="tippOff" align="center" class="tipp">
+  			<p>您已举报成功，我们会在三个工作日内核查（节假日自动顺延），如核查如实，将会返还您的金额。</p>
+			<div align="center" style="margin-top:15px;">
+				<div class="btn btn_confirm" onClick="dismiss()">关闭</div>
+		   </div>
+		</div>
+		<!--end 举报弹框 part1-->
+          <div id="tippOff2" align="center" class="tipp">
+  			<p>您还没有选择举报项，请重新选择。</p>
+  			<div align="center" style="margin-top:15px;">
+			<div class="btn btn_confirm" id="tipp_link2" company_id="{{company_id}}" forcompany_id="{{forcompany_id}}" product_id="{{id}}" onClick="dismiss();">确定</div>
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+			</div>
+		</div>
+		<!--end 举报弹框 part2-->
+        <div id="chk" class="tipp">
+  			<p>您已经查看过此信息，是否继续查看？</p>
+            <p style="color:#909090;font-size:13px;margin-top:10px">如虚假信息、虚假号码等可举报申请退款</p>
+			 <div align="center" style="margin-top:10px;">
+			<div class="btn btn_confirm" id="block_info_item_chk" onClick="dismiss();">确定</div>
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 查看弹框 part1-->
+        <div id="chk1" class="tipp">
+        	<center>
+  			<p>查看此联系方式需5元，确定付款？</p>
+            <p style="color:#909090;font-size:13px;margin-top:10px">如虚假信息、虚假号码等可举报申请退款</p>
+        	</center>
+            
+			 <div align="center" style="margin-top:10px;">
+			<!--<div class="btn btn_confirm" id="chk1_link" onclick="dismiss();">确定</div>-->
+			<div class="btn btn_confirm" onClick="window.location.href='?id={{id}}&paytype=1&company_id={{forcompany_id}}&keywords={{keywords}}'">确定</div>
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 查看弹框 part2-->
+        <div id="bal" class="tipp" align="center">
+  			<p>您的余额不足，是否在线充值？</p>
+            {%if not isldb%}<p style="color:#909090;font-size:13px;margin-top:10px">10月1日前，充值就送钱</p>{%endif%}
+			 <div align="center" style="margin-top:10px;">
+			<div class="btn btn_confirm" onClick="window.location.href='{%if isldb%}/ldb_weixin/balance.html?backurl={{host}}{%else%}/qianbao/chongzhi.html{%endif%}'">确定</div>
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 查看弹框 part3-->
+        <div id="inline_chk_Div" class="tipp" align="center">
+  			<p>查看此联系方式需5元，确定付款？</p>
+            <p style="color:#909090;font-size:13px;margin-top:10px">如虚假信息、虚假号码等可举报申请退款</p>
+			 <div align="center" style="margin-top:10px;">
+			<!--<div class="btn btn_confirm" onclick="dismiss();" id="inlineChk">确定</div>-->
+			<div class="btn btn_confirm" onClick="window.location.href='?id={{id}}&paytype=1&keywords={{keywords}}'">确定</div>
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 查看弹框 供求-->
+
+{%include 'bottom.html'%}
+</div>
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+{% include 'comm/seo.html' %}
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css"/>
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/price/css/hq.css" />
+<script src="http://img0.zz91.com/lib/jquery-ui/1.8.24/js/jquery-1.8.2.min.js"></script>
+<script src="http://img0.zz91.com/lib/jquery/jquery.canvasjs.min.js"></script>
+<!--<base href="http://jiage.zz91.com" />-->
+<style>
+#chart_container {
+	display: inline-block;
+	font-family: Arial, Helvetica, sans-serif;
+	position:relative;
+	margin-top:50px;
+}
+#chart {
+  position: relative;
+  left: 40px;
+  width: 540px;
+  height: 300px;
+}
+
+#y_axis {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+}
+#x_axis {
+	position: absolute;
+	left: 40px;
+	height: 40px;
+	bottom:20px;
+}
+#preview{
+	position: absolute;
+	left: 40px;
+	bottom:0px;
+}
+.pricetitle{
+	width: 100%;
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 30px;
+	margin-bottom: 30px;
+}
+.hq-view-other p{
+	float: left;
+	margin: 10px;
+}
+.searchlabel span{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	cursor: pointer;
+	color: #000;
+	background: #ebebeb;
+	vertical-align: middle;
+	margin-left: 15px;
+}
+.searchlabel .on{
+	background: #54b854;
+	color: #fff;
+}
+.hq-list-ul li{
+	width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.footer{
+	width:1200px;
+}
+#topBarInfo{
+	width:1200px;
+}
+</style>
+</head>
+<body>
+	{% include 'comm/top.html' %}
+    <div class="hqtop">
+        <div class="clearfix">
+            <div class="hqlogo fl">
+                <div class="fl"><img src="http://img0.zz91.com/zz91/images/indexLogo.png"></div>
+                <div class="fl"><img src="http://img0.zz91.com/zz91/price/images/biaojimg.jpg"></div>
+            </div>
+            
+            <div class="fr appimg-box">
+                <img src="http://img0.zz91.com/zz91/price/images/appimg.jpg">
+                <div class="">APP随时查看行情</div>
+            </div>
+
+
+            <div class="fr top-input-box">
+            	<form action="http://jiage.zz91.com/s/searchfirst.html" target="_blank" method="get" onsubmit="return searchprice()">
+                <span class="fl top-input-wen">品名</span>
+                <div class="fl top-input-sr">
+                    <input class="topseach fl" name="keywords"/>
+                    <botton type="submit" class="top-input-btn fl">搜 索</botton>
+                </div>
+               </form>
+            </div>
+        </div>
+        <div class="hq-nav clearfix">
+            <a class="fl nav-first" href="#">废金属行情</a>
+            <div class="fl nav-list">
+            	<a href="/feitong/" target="_blank" title="废铜">废铜</a>
+    			<a href="/feitie/" target="_blank" title="废铁">废铁</a>
+    			<a href="/feilv/" target="_blank" title="废铝">废铝</a>
+    			<a href="/feigang1/" target="_blank" title="废钢">废钢</a>
+    			<a href="/feibuxiugang/" target="_blank" title="废不锈钢">废不锈钢</a>
+    			<a href="/feinie/" target="_blank" title="废镍">废镍</a>
+    			<a href="/feiqianfeixin/" target="_blank" title="废铅废锌">废铅废锌</a>
+    			<a href="/qihuo/" target="_blank" title="LME/期货">LME/期货</a>
+    			<a href="/wangshangbaojia1/" target="_blank" title="废金属网上报价">废金属网上报价</a>
+    			<a href="/feixi/" target="_blank" title="废锡">废锡</a>
+    			<a href="/shengtie1/" target="_blank" title="生铁">生铁</a>
+    			<a href="/feimutai/" target="_blank" title="废钼钛">废钼钛</a>
+    			<a href="/feigangcaigoujia/" target="_blank" title="废钢采购">废钢采购</a>
+    			<a href="/guowaifeijinshu/" target="_blank" title="国外废金属">国外废金属</a>
+                
+                <!--<a href="#" class="thisnav">废铜 </a>-->
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="hq-content">
+    	<div class="pricetitle">{{title1}}</div>
+        <div class="clearfix hq-ifmation">
+			
+            <div class="fl hq-timebox">
+                <div class="hq-ifmation-seach clearfix">
+                    <select class="fl hq-seach-type" id="hq-seach-type">
+                        {%if area%}<option value="{{area}}">{{area}}</option>{%endif%}
+						<option value="">--地区</option>
+						{%for ar in arealist%}
+						<option value="{{ar.label}}" {%if ar.selectlabel%}selected{%endif%}>{{ar.label}}</option>
+						{%endfor%}
+                    </select>
+                    <div class="fl hq-seach-time">
+                    	{%for list in histplist%}
+                        <a href="{{list.id}}.html"><span {%if list.selecttime%}class="thistime"{%endif%}>{{list.gmt_time}}</span></a>
+                        {%endfor%}
+                    </div>
+                </div>
+                <div class="hq-ifmation-table">
+                	{%if pricelist%}
+                    <table cellpadding="0" cellspacing="0" class="infotable">
+                        <tr>
+                        	{%for pf in listname%}
+                            <th>{{pf}}</th>
+                            {%endfor%}
+                        </tr>
+                        {%for pl in pricelist%}
+                        <tr title="{{pl.id}}" id="pricetr{{pl.id}}" proname="{{pl.proname}}">{%for field in pl.listvalue%}
+                            <td>{{field}}</td>
+                            {%endfor%}
+                        </tr>
+                        {%endfor%}
+                    </table>
+                    {%endif%}
+                </div>
+            </div>
+
+            <div class="fr hq-viewinfo">
+                <div class="hq-view-title clearfix">
+                    <div class="fl hq-view-name"></div>
+                    <div class="fl hq-view-other">
+                        <p>最高：<span class="maxprice"></span></p>
+                        <p>最低：<span class="minprice"></span></p>
+                        <p>均值：<span class="midprice"></span></p>
+                    </div>
+                    <input id="pid" value="0" type="hidden">
+                </div>
+
+                <div class="hq-view-box">
+                    <div class="hq-view-tjian">
+                        日期范围
+                        <input class="timeipt" id="J-xl"/>
+                        至
+                        <input class="timeipt" id="J-xl2"/>
+                        <span class="seachbtn">搜索</span>
+                        <span class="searchlabel">
+	                        <span>周</span>
+	                        <span>月</span>
+	                        <span>季</span>
+	                        <span>年</span>
+                        </span>
+                    </div>
+					<div id="chartContainer">
+						
+					</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="hq-xguan">
+        	<div style="width: 200px;text-align: center;line-height: 30px;float: left;">我要订阅该行情<br>扫一扫，关注 “zz91再生网”<br /><img src="http://img0.zz91.com/zz91/weixin/images/priceorder.png"><br /></div>
+        	<div style="float: left;width: 1000px;">
+        	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<ins class="adsbygoogle"
+			     style="display:block"
+			     data-ad-client="ca-pub-5512236620584335"
+			     data-ad-slot="8274972003"
+			     data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+			</div>
+        </div>
+        <div style="clear: both;"></div>
+        <div class="clearfix hq-zhix-box">
+            <div class="fl hq-timebox">
+
+                <div class="fl hq-listbox">
+                    <div class="hq-listbox-title">
+                        <span class="fl">相关问答</span>
+                        <a href="http://huzhu.zz91.com" target="_blank" class="fr">更多</a>
+                    </div>
+                    <ul class="hq-list-ul">
+                    	{%for bs in bbslist%}
+                        <li><i></i><a href="{{bs.url}}" title="{{bs.title}}" target="_blank">{{bs.title}}</a></li>
+                        {%endfor%}
+                    </ul>
+                </div>
+
+                <div class="fr hq-listbox">
+                    <div class="hq-listbox-title">
+                        <span class="fl">相关资讯</span>
+                        <a href="http://news.zz91.com" target="_blank" class="fr">更多</a>
+                    </div>
+                    <ul class="hq-list-ul">
+                        {%for nl in newslist.list%}
+                        <li><i></i><a href="{{nl.weburl}}" title="{{nl.fulltitle}}" target="_blank">{{nl.title|safe}}</a></li>
+                        {%endfor%}
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="fr hq-viewinfo">
+                <div class="hq-baojia">
+                    <div class="hq-listbox-title">
+                        <span class="fl">相关企业报价</span>
+                        <a href="http://jiage.zz91.com/cpriceindex/" target="_blank" class="fr">更多</a>
+                    </div>
+                    <div class="bjia-table-box">
+                        <table cellpadding="0" cellspacing="0" class="hq-bjia-table">
+                            <tr>
+                                <th width="135">产品</th>
+                                <th width="115">地区</th>
+                                <th width="140">报价</th>
+                                <th>商家</th>
+                            </tr>
+                            {%for abl in comppricelist%}
+                            <tr>
+                                <td><a href="/cdetail/{{abl.td_id}}.html" target="_blank">{{abl.td_title}}</a></td>
+                                <td><a href="/cdetail/{{abl.td_id}}.html" target="_blank">{{abl.province}} {{abl.city}}</a></td>
+                                <td><a href="/cdetail/{{abl.td_id}}.html" target="_blank">{{abl.price}}</a></td>
+                                <td><a href="{{abl.url}}" target="_blank">{{abl.companyname}}</a></td>
+                            </tr>
+                            {%endfor%}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hq-xguan">
+            <div class="hq-xguan-title">相关标签</div>
+            <div class="hq-xguan-all clearfix">
+                <div class="xguan-all-a">
+                	{%for list in cplist%}
+							<a href="http://www.zz91.com/cp/{{list.pingyin}}/" target=_blank title="{{list.label}}">{{list.label}}</a>
+					{%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="http://img0.zz91.com/zz91/price/laydate.dev.js"></script>
+<script type="text/javascript">
+    $(function(){
+        init();
+
+        laydate({
+            elem: '#J-xl'
+        });
+        laydate({
+            elem: '#J-xl2'
+        });
+    });
+    //搜索
+	function searchprice(){
+		if ($(".topseach").val()=="" || $(".topseach").val().length<=0){
+			alert('请输入关键字搜索！');
+			return false;
+		}
+	}
+    function init(){
+    	//选择时间
+        $(".hq-seach-time span").bind("click",function(){
+            $(".thistime").removeClass("thistime");
+            $(this).addClass("thistime")
+        });
+        $(".top-input-btn").bind("click",function(){
+            if ($(".topseach").val()=="" || $(".topseach").val().length<=0){
+				alert('请输入关键字搜索！');
+				return false;
+			}
+            document.location='http://jiage.zz91.com/s/searchfirst.html?keywords='+$(".topseach").val()
+        });
+        
+		//选中一条数据
+        $(".infotable td").bind("click",function(){
+        	var id=$(this).parent().attr("title");
+            $(".thistr").removeClass("thistr");
+            $(this).parent().addClass("thistr");
+            var fromdate=$("#J-xl").val();
+            var todate=$("#J-xl2").val();
+            saveorder(id,fromdate,todate)
+        });
+        $(".hq-seach-type").bind("change",function(){
+        	var area=$(this).val();
+            document.location='../chart/selectarealabel.html?type_id={{type_id}}&area='+area+'&gmt_begin={{gmt_modified}}';
+        });
+        
+        //年 季 月 周
+        $(".searchlabel span").bind("click",function(){
+            $(".searchlabel span").removeClass("on");
+            $(this).addClass("on");
+            var todate=getnowDate();
+            if ($(this).text()=="周"){
+            	var fromdate=getdiffdate(7)
+            }
+            if ($(this).text()=="月"){
+            	var fromdate=getdiffdate(30)
+            }
+            if ($(this).text()=="季"){
+            	var fromdate=getdiffdate(90)
+            }
+            if ($(this).text()=="年"){
+            	var fromdate=getdiffdate(365)
+            }
+            $("#J-xl").val(fromdate);
+            $("#J-xl2").val(todate)
+            saveorder($("#pid").val(),fromdate,todate)
+        });
+        
+        $(".seachbtn").bind("click",function(){
+        	var fromdate=$("#J-xl").val();
+        	if (fromdate=="" || fromdate.length<=0){
+            	alert('请选择开始时间！');
+            	return;	
+            }
+            var formatfromdate=transdate(fromdate);
+            
+            var todate=$("#J-xl2").val();
+            if (todate=="" || todate.length<=0){
+            	alert('请选择结束时间！');
+            	return;	
+            }
+            var formattodate=transdate(todate);
+            
+            saveorder($("#pid").val(),fromdate,todate)
+        });
+        saveorder({{firstid}},'','');
+    }
+    function trselecton(id){
+    	$(".thistr").removeClass("thistr");
+    	$(".hq-view-name").html($("#pricetr"+id.toString()).attr("proname"));
+    	$("#pricetr"+id.toString()).addClass("thistr");
+    	$("#pid").val(id);
+    }
+	//标题提交提示
+	function loading() {
+		$(".hint").remove();
+		var ts="加载中...";
+		var hintHtml = '<div class="hint" style="position:fixed;color:#fff;line-height:18px;font-size:14px;width:100px;left:50%;margin-left:-50px;">' + '<span style="display:block;margin:0 8px;background:#000;opacity:0.3;border-radius:5px;padding:10px 10px;text-align:center">' + ts + '<span>' + '</div>';
+		$("body").append(hintHtml);
+		var hint_height = $(".hint").height();
+		var wd_height = $(window).height();
+		var top_height = (wd_height - hint_height) / 2
+		$(".hint").css("top", top_height + "px");
+	}
+	function hideloading(){
+		$(".hint").remove()
+	}
+	
+</script>
+<script>
+var oneDay = 1000 * 60 * 60 * 24;
+function getdiffdate(num){
+   var myDate = new Date();//当前时间
+   var lastDate = new Date(myDate - oneDay * num);
+   var lastYear = lastDate.getFullYear();
+   var lastMonth = lastDate.getMonth() + 1;
+   var lastDay = lastDate.getDate();
+   return lastYear+"-"+lastMonth+"-"+lastDay
+}
+function getnowDate(){ 
+	var myDate = new Date();//当前时间
+	var year = myDate.getFullYear();//当前年份
+	var month = myDate.getMonth() + 1;//当前月份
+	var day = myDate.getDate();//当前日
+	return year+"-"+month+"-"+day
+} 
+function transdate(endTime){ 
+	var date=new Date(); 
+	date.setFullYear(endTime.substring(0,4)); 
+	date.setMonth(endTime.substring(5,7)-1); 
+	date.setDate(endTime.substring(8,10)); 
+	date.setHours(endTime.substring(11,13)); 
+	date.setMinutes(endTime.substring(14,16)); 
+	date.setSeconds(endTime.substring(17,19)); 
+	return Date.parse(date)/1000; 
+} 
+function selectOption(menuname, value) {
+	var menu = document.getElementById(menuname);
+	if (menu) {
+		for (var i = 0; i <= menu.options.length; i++) {
+			if (value) {
+				if (menu.options[i].value == value) {
+					menu.options[i].selected = true;
+					break;
+				}
+			}
+		}
+	}
+}
+function saveorder(id,gmt_begin,gmt_end){
+	var data={
+		id:id
+	}
+	if (gmt_begin){
+		data['gmt_begin']=gmt_begin;
+	}
+	if (gmt_end){
+		data['gmt_end']=gmt_end;
+	}
+	//alert(JSON.stringify(data))
+	loading();
+	$.ajax({
+		url : '/pricechartdata.html?'+ (new Date()).getTime().toString(),
+		type : 'get',
+		dataType : 'json',
+		cache : false,
+		data : data,
+	    success:function(ret) {
+	    	var gdata=[]
+			if (ret) {
+				var maxprice=0;
+				var minprice=0;
+				i=0;
+				//alert(JSON.stringify(gdata))
+				$.each(ret, function(i, item) {
+					var l={x:new Date(item.posttime*1000),y:item.aveprice};
+					if (item.aveprice>maxprice){
+						maxprice=item.aveprice;
+					}
+					gdata.push(l);
+					if (i==0){
+						minprice=item.aveprice;
+					}
+					if (minprice>item.aveprice){
+						minprice=item.aveprice
+					}
+				})
+				$(".maxprice").html(maxprice);
+				$(".minprice").html(minprice);
+				$(".midprice").html((maxprice+minprice)/2);
+				showgraph(id,gdata,maxprice,minprice);
+				//选中
+				trselecton(id);
+			} else {
+				
+			};
+		},
+		error : function() {
+			alert("异常！");
+		}
+	});
+}
+
+function showgraph(id,data,maxprice,minprice){
+	var chart = new CanvasJS.Chart("chartContainer", {
+		width:590,
+		height:370,
+		animationEnabled: true,
+		title: {
+			text: $("#pricetr"+id.toString()).attr("proname"),
+			fontSize: 25
+		},
+		animationEnabled: true,
+		axisX: {
+			gridColor: "Silver",
+			tickColor: "silver",
+			valueFormatString: "YYYY-MM-DD"
+		},
+		toolTip: {
+			shared: true
+		},
+		axisY: {
+			title: "元/吨",
+			includeZero: false,
+			minimum: minprice-minprice*0.1,
+			maximum: maxprice*1.1
+		},
+		legend: {
+			verticalAlign: "center",
+			horizontalAlign: "right"
+		},
+		data: [
+		{
+			type: "spline",
+			//showInLegend: true,
+			xValueFormatString:"时间：YYYY-MM-DD",
+			yValueFormatString:"￥#######.00",
+			lineThickness: 1,
+			name: "价格",
+			//markerType: "square",
+			color: "#F08080",
+			dataPoints: data
+		}
+		],
+		legend: {
+			cursor: "pointer",
+			itemclick: function (e) {
+				if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+					e.dataSeries.visible = false;
+				}
+				else {
+					e.dataSeries.visible = true;
+				}
+				chart.render();
+			}
+		}
+	});
+
+	chart.render();
+	hideloading()
+
+}
+</script>
+<div style="width:100%;">
+	<div style="width:1200px;margin:0 auto;text-align:center;">
+		{% include 'comm/buttom.html' %}
+    </div>
+</div>
+</html>

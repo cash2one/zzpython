@@ -1,0 +1,39 @@
+<style>
+	.title{padding: 10px;background-color: #333;color:#fff;}
+</style>
+<nav class="mui-bar mui-bar-tab" style="top: 0px;height: 40px;line-height: 40px;">
+<a style="display: block;float: left;width: 50%;text-align: center;color: #0033CC;" href="javascript:loaddata('http://app.zz91.com/offerlistside.html?keywords={{keywords}}&tflag={{tflag}}');">筛选</a>
+<a style="display: block;float: left;width: 50%;text-align: center;" href="javascript:loaddata('http://app.zz91.com/offerlistside_cate.html?keywords={{keywords}}&tflag={{tflag}}');">分类浏览</a>
+</nav>
+<form class="mui-input-group" {%if tflag%}{%else%}style="margin-top: 40px;"{%endif%}>
+<div class="title">供求</div>
+<div class="mui-input-row mui-radio">
+	<label>不限</label>
+	<input name="ptype" type="radio" value="" checked>
+</div>
+<div class="mui-input-row mui-radio">
+	<label>供应</label>
+	<input name="ptype" type="radio" value="1">
+</div>
+<div class="mui-input-row mui-radio">
+	<label>求购</label>
+	<input name="ptype" type="radio" value="2">
+</div>
+<div  class="title">地区</div>
+<div style="margin-bottom: 40px;">
+{%for list in arealistnew%}
+<div class="mui-input-row mui-checkbox">
+	<label>{{list.area}}</label>
+	<input name="province" id="province" type="checkbox" value="{{list.area}}">
+</div>
+{%endfor%}
+</div>
+<nav class="mui-bar mui-bar-tab" style="height: 45px;line-height: 45px;">
+<center>
+<button class="mui-btn mui-btn-danger" onclick="sidetradeloaddata(this.form)">&nbsp;确定&nbsp;</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;<button class="mui-btn mui-btn-green" onclick="back();">&nbsp;取消&nbsp;</button>
+</center>
+</nav>
+<input type="hidden" name="keywords" id="keywords" value="{{keywords}}" />
+</form>
+<input type="hidden" id="appnavname" value="交易中心" />

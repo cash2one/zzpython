@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>东方钢铁最新交易预告</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css"/>
+<script type="text/javascript" charset="utf-8" src="arg.js"></script>
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script src="http://img0.zz91.com/zz91/js/openoverlay.js"></script>
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/css/openoverlay.css">
+</head>
+<body>
+{%include "top.html"%}
+<div class="content">
+<div class="main">
+   <div class="top"></div>
+   <!--end top-->
+   <div class="top_">
+     <div class="top-txt">
+        当前位置：<a href="/">首页</a> >> 交易预告
+     </div>
+     <!--end top-txt-->
+   </div>
+   <!--end top_--> 
+   
+   <div class="middle">
+      <div class="m-left">
+         <div class="ml-title">东方钢铁最新交易预告</div>
+         <!--end ml-title-->
+         <div class="ml-search">
+         	<form name="form">
+            <div class="ms-input">公告日期：<input type="text" name="begintime" value="{{begintime}}" class="w80px" style="border:1px solid #999;" onclick="fPopCalendar(event,this,this)" onfocus="this.select()" readonly="readonly" />
+            -<input type="text" name="endtime" value="{{endtime}}" class="w80px" style="border:1px solid #999;" onclick="fPopCalendar(event,this,this)" onfocus="this.select()" readonly="readonly" /></div>
+            <!--end ms-input-->
+			<div class="ms-btn">关键字<input type="text" name="stitle" {%if stitle%}value={{stitle}}{%endif%}></div>
+            <!--end ms-btn-->
+            <div class="ms-btn1" onclick="send4()"></div>
+			</form>
+         </div>
+         <!--end ml-search-->         
+         <div class="l-left">
+                <div class="l-left-content">
+                	<div class="l-item">
+                    	<ul>
+                    	{%for srt in listall%}
+	                         <li>
+                            	<div class="l-item-text"><a href="articaldetail{{srt.id}}.htm" target="_blank">
+                                {{srt.title}}</a></div>
+                                <div class="l-item-company"></div>
+                                <div class="l-item-date">{{srt.gmt_created}}</div>
+                                <div class="cb"></div>
+                            </li>
+                        {%endfor%}
+                        </ul>
+                        <br />
+                        <center>
+{% if firstpage %}
+<a href="p{{prvpage}}.htm?endtime={{endtime}}&begintime={{begintime}}{%if stitle%}&stitle={{stitle}}{%endif%}">上一页</a>
+{%else%}
+<font color="gray">上一页</font>
+{%endif%}
+&nbsp;
+{%for p in page_range%}
+{%if p.nowpage%}
+<font color="blue">{{p.number}}</font>&nbsp;
+{%else%}
+<a href="p{{p.number}}.htm?endtime={{endtime}}&begintime={{begintime}}{%if stitle%}&stitle{{stitle}}{%endif%}">{{p.number}}&nbsp;</a>
+{%endif%}
+{%endfor%}
+&nbsp;
+{% if lastpage%}
+<a href="p{{nextpage}}.htm?endtime={{endtime}}&begintime={{begintime}}{%if stitle%}&stitle={{stitle}}{%endif%}">下一页</a>
+{%else%}
+<font color="gray">下一页</font>
+{%endif%}&nbsp;&nbsp;&nbsp;
+<font color="gray">第</font>{{page}}<font color="gray">页</font>
+                        </center>
+                    </div>
+                    <!--end l-item-->                   
+                </div>
+                <!--end l-left-content-->
+                <div class="cb"></div>
+            </div>       
+      </div>
+      <!--end m-left-->
+      <div class="m-right">
+         <div class="mr-top">
+            <div class="mrt-txt">东方钢铁简介</div>
+            <!--end mrt-txt-->
+            <div class="mrt-txt1">东方钢铁电子商务有限公司（简称“东方钢铁”）是宝钢下属专业提供电子商务服务的公司，成立于2000年8月，注册资金8000万人民币。循环宝是东方钢铁旗下专业循环物资网上处置平台，致力于为工业企业的闲废物资处置业务提供网上解决方案。</div>
+            <!--end mrt-txt1-->
+         </div>
+         <div class="mr-top">
+            <div class="mrt-txt">服务热线</div>
+            <!--end mrt-txt-->
+            <div class="mrt-txt1" style="font-size:14px; font-weight:bold">咨询热线：95025转3<br />021-36638570</div>
+            <!--end mrt-txt1-->
+         </div>
+         <div class="mr-top">
+            <div class="mrt-txt">绑定宝钢微信公众号</div>
+            <!--end mrt-txt-->
+            <div class="mrt-txt1" style="text-align:center"><img src="images/bgweixin.jpg"></div>
+            <!--end mrt-txt1-->
+         </div>
+         <!--end mr-top-->
+         <div class="mr-middle">
+           <div class="mrt-txt3">绑定ZZ91微信公众号</div>
+            <!--end mrt-txt1-->
+            <div class="mrt-txt1">随时掌握废钢行情动态</div>
+            <!--end mrt-txt1-->
+            <div class="mrt-scode">
+               <div class="mrts-left">
+                 <img src="images/i_code.jpg"/>
+               </div>
+               <!--end mrts-left-->
+               <div class="mrts-right">
+               <div class="mrt-txt2">搜索微信号：zz91weixin </div>
+               <div class="mrt-txt2">或扫描二维码即可关注</div>
+               <div class="mrt-txt2">
+               <a href="javascript:openoverlay('http://pyapp.zz91.com/weixin/zz91weixin_yz.html?account=mytest01@zz91.com&destUrl=http://myrc.zz91.com/submitCallback.htm','微信验证',550,300,0);">点此绑定微信</a>
+               </div>
+            <!--end mrt-txt-->
+               </div>
+               <!--end mrts-right-->
+            </div>
+            <!--end mrt-scode-->
+         </div>
+         <!--end mr-middle-->
+         <div class="mr-bottom">
+            <div class="ml-title1">相关废钢报价</div>
+         <!--end ml-title-->
+            <div class="mrb-list">
+                <div class="mrbl-content">
+                     <div class="mrblc-item">
+                         <ul>
+                         {%for companyprice in companypricelist%}
+                            <li>
+                                <div class="mrblc-item-text">
+<a href="{{companyprice.url}}" target="_blank">{{companyprice.title}} {{companyprice.min_price}}-{{companyprice.max_price}} {{companyprice.price_unit}}</a>
+                                </div>
+                                <div class="mrblc-item-date">{{companyprice.gmt_time}}</div>
+                            </li>
+						{%endfor%}
+                         </ul>
+                     </div>
+                     <!--end mrblc-item-->
+                </div>
+                <!--end mrbl-content-->
+                <div class="cb"></div>
+            </div>
+            <!--end mrb-list-->
+         </div>
+         <!--end mr-bottom-->
+      </div>
+      <!--end m-right-->
+   </div>
+   <!--end middle-->
+</div>
+<!--end main-->
+</div>
+<div style="clear:both"></div>
+{%include "bottom.html"%}
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>导航</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/comm/infomation-heart.css"/>
+		<style>
+			.topbar {
+				background: #01ba2e;
+				height: 50px;
+				text-align: center;
+				color: #fff;
+				font-size: 16px;
+				line-height: 45px;
+			}
+			.fabugq {
+				width: 70px;
+				height: 28px;
+				line-height: 28px;
+				text-align: center;
+				border: solid 1px #FFFFFF;
+				position: absolute;
+				bottom: 10px;
+				right: 10px;
+				font-size: 12px;
+				border-radius: 5px;
+				background-color: #006600
+			}
+			.fabuhq {
+				width: 70px;
+				height: 28px;
+				line-height: 28px;
+				text-align: center;
+				border: solid 1px #FFFFFF;
+				position: absolute;
+				bottom: 10px;
+				left: 10px;
+				font-size: 12px;
+				border-radius: 5px;
+				background-color: #006600
+			}
+		</style>
+	</head>
+	<body>
+		<header id="topbar">
+			<div class="topbar">
+				帮你找
+				<div class="fabuhq">
+					订阅行情
+				</div>
+				<div class="fabugq">
+					订阅供求
+				</div>
+			</div>
+		</header>
+		<div class="nav-heart" id="header">
+			<ul class="nav-heart-ul clear" id="wrapper"></ul>
+			<span class="current-nav-bottom" id="navmark"></span>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/iscroll.js"></script>
+	<script type="text/javascript">
+		var myScroll;
+		var navwidth = 0, navliwidth = 0;
+		var typelist = [];
+		function pro_xzleimu(k) {
+		}
+
+		apiready = function() {
+			//zzalert(api.winName+api.frameName)
+			//打开第一个
+			//var systemType = api.systemType;
+			//if (systemType != "ios") {
+			//	$("header").css("padding-top", "0px")
+			//}
+			var header = $api.byId('topbar');
+    		$api.fixStatusBar(header);
+			//订阅供求
+			$(".fabugq").on("click", function() {
+				var pageParam = {
+					wintitle : "订阅供求",
+					type : "order_trade",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {
+					openWin("order_trade", "../trade/need-out.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://trade/need-out.html";
+					pageParam.winName = "order_trade";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			//订阅行情
+			$(".fabuhq").on("click", function() {
+				var pageParam = {
+					wintitle : "订阅行情",
+					type : "order_price",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {
+					openWinNormal("order_price", "../price/order-main.html", pageParam);
+				} else {
+					pageParam.nextUrl = "../price/order-main.html";
+					pageParam.winName = "order_price";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+		}
+		var nav_list;
+		//添加滚动条的信息条数
+		function getInfoNumber(obj) {
+			nav_list = api.pageParam.nav_list;
+			$(".nav-heart-ul li").eq(0).text(nav_list[0].typename + "(" + obj.c1 + ")");
+			$(".nav-heart-ul li").eq(1).text(nav_list[1].typename + "(" + obj.c0 + ")");
+			$(".nav-heart-ul li").eq(2).text(nav_list[2].typename + "(" + obj.c2 + ")")
+			$(".nav-heart-ul li").eq(3).text(nav_list[3].typename + "(" + obj.c3 + ")")
+			// $(".nav-heart-ul li").each(function(i,item){
+			// 	var index = "c"+i
+			// 	var liText = nav_list[i].typename +"(" + obj[index] +")";
+			// 	$(this).text(liText)
+			// })
+		}
+
+		//添加询盘模块滚动条的信息条数
+		function getXp(obj) {
+			nav_list = api.pageParam.nav_list;
+			$(".nav-heart-ul li").eq(obj.step).text(nav_list[obj.step].typename + "(" + obj.number + ")")
+		}
+
+		//关闭frame
+		function closehelp() {
+			if (api){
+				api.closeFrameGroup({
+					name : 'help-group'
+				});
+			}
+		}
+
+		//获取我的定制
+		//我的定制
+		var myorderlist;
+		var navload = true;
+		function myorder() {
+			var lists = {};
+			api.showProgress({
+				title : '加载中',
+				modal : true
+			});
+			lists['company_id'] = UserInfo.memberID();
+			lists['usertoken'] = UserInfo.token();
+			lists['appsystem'] = api.systemType;
+			lists['datatype'] = 'json';
+			api.ajax({
+				url : hosturl + 'order/myorderprice.html?' + (new Date()).getTime().toString(),
+				method : 'post',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : lists
+				}
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(ret))
+				if (ret) {
+					if (ret.err == "true") {
+					} else {
+						if (ret.listall) {
+							myorderlist = ret.listall
+							//getNavlist();
+						} else {
+							//未定制，提示
+							//openwindows("noorder","../trade/help_noorder.html")
+						}
+					}
+				} else {
+					api.toast({
+						msg : '系统错误',
+						duration : 2000,
+						location : 'bottom'
+					});
+				};
+				//api.hideProgress();
+				loadinghide();
+			});
+		}
+
+		function getNavlist() {
+			
+			if (navload == false) {
+				return;
+			}
+			navload = false;
+			nav_list = api.pageParam.nav_list;
+			var frame_url = api.pageParam.frame_url;
+			var mtype = api.pageParam.mtype;
+			var topnumber = api.pageParam.topnumber;
+			var bounces = api.pageParam.bounces;
+			var nav_html = "";
+			frames = [];
+			var $header = $api.dom('header');
+			$.each(nav_list, function(index, item) {
+				var frame = {}, active = index == 0 ? 'current-nav' : '';
+				nav_html += "<li data-index='" + index + "' id='" + index + "' class='" + active + "' onclick='openFrame(" + index + "," + index + ")'>" + item.typename + "</li>";
+				frame.name = 'frame_' + index;
+				frame.url = frame_url[index];
+				if (frame_url.length == 1) {
+					frame.url = frame_url[0];
+				}
+				frame.pageParam = {
+					typeid : item.id,
+					index : index,
+					id : api.pageParam.id,
+					orderflag : 1,
+					header : $api.offset($header).h
+				};
+				if (mtype != null) {
+					frame.pageParam.mtype = mtype
+				}
+				frame.bounces = true;
+				if (bounces == false) {
+					frame.bounces = false;
+				}
+				// frame.name = "name" + index
+				//添加打开openFrameGroup对象
+				frames.push(frame);
+				typelist.push(index);
+			})
+			$(".nav-heart-ul").html(nav_html);
+			//给nav-heart li重新赋值宽度
+			navliwidth = $("body").width() / topnumber;
+			//给current-nav-bottom重新赋值宽度
+			$(".current-nav-bottom").width(navliwidth);
+			$(".nav-heart li").width(navliwidth);
+			var nav_width = navliwidth * nav_list.length;
+			//给nav-heart重新赋值宽度
+			$(".nav-heart-ul").width(nav_width);
+			//api.hideProgress();
+			loaded();
+			openGroup(frames);
+			navload = true;
+		}
+
+		//tab 滚动
+		function loaded() {
+			try {
+				myScroll = new IScroll('#header', {
+					eventPassthrough : true,
+					scrollX : true,
+					scrollY : false,
+					preventDefault : false
+				});
+			} catch (e) {
+				//zzalert(e)
+			}
+		}
+
+		//加载栏目内容
+		function openFrame(tid, m) {
+			try {
+				api.setFrameGroupIndex({
+					name : 'help-group',
+					index : m,
+					scroll : true,
+					showProgress : true
+				});
+				if (m >= 3) {
+					//myScroll.scrollTo(-navliwidth * (m - 4), 0, 1000);
+				} else {
+					myScroll.scrollTo(0, 0, 1000)
+				}
+				if (tid >= 3) {
+					var num = $(".nav-heart-ul li").width() * 2
+					$api.css($api.byId('navmark'), "-webkit-transform:translate(" + num + "px,0)");
+				}
+				$(".nav-heart-ul").find('li').removeClass('current-nav');
+				$(".nav-heart-ul").find('li').removeClass('current-nav').eq(m).addClass('current-nav');
+			} catch (e) {
+				//zzalert(e)
+			}
+		}
+
+		var scrollflag = true;
+		//顶部滑动栏目
+		var loadgroup = true;
+		function openGroup(frames) {
+			if (loadgroup == false) {
+				return;
+			}
+			loadgroup = false;
+			scrollflag = false;
+			var $header = $api.dom('header');
+			var $body = $api.dom('body');
+			var $footer = $api.byId('footer');
+			var header_h = $(".nav-heart").height() + $api.offset($header).h;
+			var body_h = $api.offset($body).h;
+			//var footer_h = $("footer").height();
+			var footer_h = api.pageParam.guandu['bottom'];
+			var rect_h = body_h - header_h;
+			var main_h = 'auto';
+			//判断是不是苹果手机
+			var systemType = api.systemType;
+			//zzalert(JSON.stringify(frames))
+			api.openFrameGroup({
+				name : 'help-group',
+				scrollEnabled : true,
+				rect : {
+					x : 0,
+					y : header_h,
+					w : 'auto',
+					h : rect_h
+				},
+				index : 0,
+				frames : frames
+			}, function(ret, err) {
+				var num = $(".nav-heart-ul li").width() * ret.index;
+				//获取头部的导航的个数
+				var topnumber = api.pageParam.topnumber;
+				//导航条滚动判断
+				if (ret.index >= topnumber - 1 && ret.index != $(".nav-heart-ul li").length - 1) {
+					//yScroll.scrollTo(-$("li").width() * (ret.index - 4), 0, 1000);
+					myScroll.scrollTo(-navliwidth * (ret.index - (topnumber - 2)), 0, 1000);
+				} else if (ret.index == $(".nav-heart-ul li").length - 1) {
+					myScroll.scrollTo(-navliwidth * (ret.index - (topnumber - 1)), 0, 1000);
+				} else {
+					myScroll.scrollTo(0, 0, 1000);
+				}
+				//导航条底部滚动条滚动判断
+				if (ret.index <= topnumber - 2) {
+					$api.css($api.byId('navmark'), "-webkit-transform:translate(" + num + "px,0)");
+				} else if ($(".nav-heart-ul li").length - 1 == ret.index) {
+					num = $(".nav-heart-ul li").width() * (topnumber - 1)
+					$api.css($api.byId('navmark'), "-webkit-transform:translate(" + num + "px,0)");
+				} else if ($(".nav-heart-ul li").length - ret.index == 2 && topnumber >= 4) {
+					num = $(".nav-heart-ul li").width() * 2
+					$api.css($api.byId('navmark'), "-webkit-transform:translate(" + num + "px,0)");
+				} else if ($(".nav-heart-ul li").length - ret.index == 2 && topnumber < 4) {
+					num = $(".nav-heart-ul li").width() * 1
+					$api.css($api.byId('navmark'), "-webkit-transform:translate(" + num + "px,0)");
+				}
+				//openFrame(typelist[ret.index], ret.index)
+				$(".nav-heart-ul").find('li').removeClass('current-nav').eq(ret.index).addClass('current-nav');
+				loadgroup = true;
+			});
+		}
+
+		//返回标志重置
+		function keybackFun(flag) {
+			keybackflag = flag;
+		}
+
+		//打开未定制行情遮罩
+		function openorderprice_mark() {
+			return;
+			var $header = $api.dom('header');
+			var header_h = $api.offset($header).h;
+			var $body = $api.dom('body');
+			var body_h = $api.offset($body).h;
+			api.openFrame({
+				name : "noorder",
+				url : "../trade/help_noorder.html",
+				rect : {
+					x : 0,
+					y : header_h,
+					w : 'auto',
+					h : 'auto'
+				},
+				animation : {
+					type : "fade", //动画类型（详见动画类型常量）
+					//subType:"from_top",       //动画子类型（详见动画子类型常量）
+					duration : 300
+				},
+				bounces : false,
+				bgColor : 'rgba(51,51,51,0.6)',
+				vScrollBarEnabled : false,
+				hScrollBarEnabled : true,
+			});
+		}
+
+		function closeorderprice_mark() {
+			return;
+			api.closeFrame({
+				name : 'noorder'
+			});
+		}
+	</script>
+</html>

@@ -1,0 +1,319 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<title>我要回复-ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-slider-full.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/trade/css/issue-info.css"/>
+		<style type="text/css">
+			body {
+				height: auto;
+				background-color: #f4f4f4;
+			}
+			.aui-list-view-cell {
+				padding-top: 3px;
+				padding-bottom: 3px
+			}
+			.aui-card {
+				margin-top: 15px;
+			}
+			.cp-name2 {
+				padding-top: 20px;
+			}
+			.handle-add{
+				font-size: 33px;
+				color: #ccc;
+			}
+			.camediv{
+				position: absolute; top: 50%; left: 50%; margin: -40px 0 0 -40px;
+				width: 80px;
+			}
+			.aui-bar{
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			#postpic{
+				width: 100%;
+			}
+			.showbigpic{
+				width: 100%;
+				background-color: #000;
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				z-index: 9999;
+				height: 100%;
+				display: table;
+				opacity: 1;
+			}
+			.showbigpic img{
+				width: 100%;
+			}
+			.bigpic{
+				display:table-cell;vertical-align: middle;*display: inline;*writing-mode: tb-rl;*text-align: center;*height: 100%;
+			}
+			.bigpic img{
+				vertical-align: middle;*display: block;
+			}
+			.ptop{
+	    		background-color: #E20000;
+	    		text-align:center;
+	    		width:100%;
+	    		clear:both;
+	    		line-height:33px;
+	    		overflow: hidden;
+	    		padding-left:5px;
+	    		position: fixed;
+	    		top: 45px;
+	    		left: 0px;
+	    		z-index: 999;
+	    	}
+	    	.zdbotton{
+	    		background-color:#C0392B;
+	    		color:#fff;
+	    		width:60px;
+	    		font-size:12px;
+	    		margin-top:8px;
+	    		display:block;
+	    		line-height:20px;
+	    		border-radius:2px;
+	    		position: absolute;
+	    		right:10px;
+	    		top:0px;
+	    		padding-left:4px;
+	    		padding-right:4px;
+	    		text-align:center;
+	    	}
+	    	p.title {
+				background: #f4f4f4;
+				padding: 10px 0;
+			}
+			.questioncontent{
+				line-height: 30px;
+			}
+			.questioncontent img{
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">我要回复</div>
+		    <a class="aui-pull-right" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		</header>
+		<div style="height:80px"></div>
+		<div class="aui-tips-danger ptop">
+			<div class="aui-ellipsis-1" style="text-align: left">
+				<i class="aui-iconfont aui-icon-creative"></i>
+				<font style="font-size:14px" color="#fff">下载APP，获取<font color="#FEE900">20</font>元红包</font>
+				<a class="zdbotton" href="http://m.zz91.com/app.html">免费下载</a>
+			</div>
+		</div>
+		<div class="aui-content aui-card">
+			<div class="aui-list-view-cell questioncontent">
+				{{qlist.content|safe}}
+			</div>
+			{%if sendflag%}
+			<p class="aui-text-center title">回复内容</p>
+	 		<div class="aui-line-x"></div>
+			<div class="describe aui-list-view-cell">
+				<textarea  placeholder="请输入回复内容" id="details"></textarea>
+			</div>
+			<div class="cp-name  cp-name2" style="margin-left:12px;margin-right:12px;background-color: #fff;">
+				<div class="handle">
+					<span class="handle-add aui-iconfont aui-icon-cameraadd">
+						<div class="camediv"></div>
+					</span>
+				</div>
+				<div style="clear:both"></div>
+			</div>
+			<div style="clear:both"></div>
+			<form action="#" id="picForm" style="display: none;">
+				<input type="file" id="cameraInput" name="uploadfile" style="opacity:0" accept="image/*">
+			</form>
+			<input type="hidden" name="piclist" id="piclist" value="">
+			{%endif%}
+		</div>
+		
+		<div class="bigpicbox" style="display: none;">
+			<div class="showbigpic">
+				<div class="aui-slider-close" tapmode onclick="closeopenpic()">关闭</div>
+				<div class="bigpic"></div>
+			</div>
+		</div>
+		{%if sendflag%}
+		<div class="aui-content-padded">
+			<div class="aui-btn aui-btn-block aui-btn-info handle-into" onclick="return false;">
+				确认回复
+			</div>
+		</div>
+		{%endif%}
+		<div style="height:30px"></div>
+	</body>
+	<script type="text/javascript">
+		var tradetype="";
+		
+		function formDataUpLoad(file){
+			//创建FormData对象
+	        var data = new FormData();
+	        //为FormData对象添加数据
+	        $.each($('#cameraInput')[0].files, function(i, file) {
+	            data.append('file', file);
+	        });
+			var thisBtn = $(".handle-add");
+			layer.load(2);
+			$.ajax({
+				url : "/huzhu_upload/?source=liuyuan",
+				type : 'POST',
+				contentType: false, //必须
+				processData: false, //必须
+				traditional: true,
+				data: data,
+				success: function(res) {
+					res=JSON.parse(res)
+					var imginfo = "";
+					if (res.err=="login"){
+						layer.msg('登录超时，请重新登录再发布信息！');
+						window.location='/login/?done='+window.href;
+						return;
+					}
+					if (res.err=="true"){
+						layer.msg(res.errkey)
+						return;
+					}
+					$.each(res.piclist, function(i, item) {
+						var videopath=item.databasepath;
+						var pic=item.path;
+						if (item.mediatype=="video"){
+							pic="http://static.m.zz91.com/image/video.png";
+						}
+						imginfo += '<span class="img-kuang"><img src="' + pic + '" width="100%" height="100%" type="'+item.mediatype+'" path="'+pic+'" pid="'+item.id+'"><i class="delt-img aui-iconfont aui-icon-move"></i></span>'
+						layer.closeAll("loading")
+					});
+					thisBtn.before(imginfo);
+					layer.closeAll("loading")
+				},
+				error:function(err){
+					layer.closeAll("loading")
+				}
+			});
+		}
+		var photoBrowser;
+		var postflag = true;
+		var imagesList = [];
+		$(function(){
+			$(".handle-add").on("click",function(){
+	            $("#cameraInput").click();
+	        });
+	        $("#cameraInput").on("change",function(event){
+	            var files = event.target.files, file;
+	            if (files && files.length > 0) {
+	                // 获取目前上传的文件
+	                file = files[0];
+					formDataUpLoad(file);
+	            }
+	        });
+			//删除添加的图片
+			$(".handle").on("click", ".aui-icon-move", function() {
+				$(this).parent().fadeOut(function() {
+					$(this).remove();
+				})
+			})
+			//浏览图片
+			$(".handle").on("click", "img", function() {
+				var picpath=$(this).attr("path");
+				var vtype=$(this).attr("type");
+				if (vtype=='video'){
+					vadioPlay(picpath)
+					return;
+				}
+				$(".bigpicbox").show()
+				var bigpiclist='<img src="'+picpath+'" alt=""/>'
+				$(".bigpic").html(bigpiclist)
+			});
+			//点击发布
+			$(".handle-into").on("click", function() {
+				postsave();
+			})
+		})
+		//关闭大图
+		function closeopenpic(){
+			$(".bigpicbox").hide()
+		}
+		
+		//发布留言
+		function postsave() {
+			var be_inquired_id = {{inquired_id}};
+			var be_inquired_type = 0;
+			var forcompany_id = {{company_id}};
+			var pdtid = 0;
+			var details = $("#details").val();
+			if (details == "") {
+				hint("请填写留言内容！");
+				return;
+			}
+			layer.load(2)
+			//获取图片地址
+			var piclist=''
+			$.each($('.img-kuang img'), function(i, item) {
+				var pic=$(this).attr("src");
+				piclist+="<img src='"+pic+"' />"
+			});
+			details+=piclist
+			var data = {
+				datatype : "json",
+				be_inquired_id : be_inquired_id,
+				be_inquired_type : be_inquired_type,
+				forcompany_id : forcompany_id,
+				pdtid : pdtid,
+				content : details,
+				source : 'liuyuan',
+				piclist:piclist,
+			}
+			if (postflag == true) {
+				postflag = false;
+				zzajax("post","/myrc/xunpan_save.html",data,function(ret){
+					if (ret) {
+						if (ret.err == "false") {
+							window.location='/trade/question_success.html?forcompany_id='+forcompany_id
+							layer.closeAll('loading');
+						} else {
+							layer.msg(ret.errkey)
+						}
+					} else {
+						layer.msg("系统错误！");
+					};
+					postflag = true;
+					layer.closeAll('loading');
+				},function(){
+					postflag = true;
+					layer.msg('系统错误，请重试');
+					layer.closeAll('loading');
+				});
+			}
+		}
+
+
+		function hint(ts) {
+			layer.msg(ts)
+		}
+	</script>
+	{%include 'aui/bottom.html'%}
+</html>

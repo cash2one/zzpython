@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-touch-fullscreen" content="YES">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="css/base-min.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+
+<title>再生金属行业2016金牌采购商评选活动!</title>
+<link rel="stylesheet" type="text/css" href="jsvote/css/index.css" />
+</head>
+<body>
+<script type="text/javascript" src="jsvote/js/viewport.js"></script>
+	<div class="bgbk">
+		<div class="dk"></div>
+		<div class="liucheng">
+			<div class="liucheng-tt">活动流程：</div>
+			<div class="lic-list clear">
+				<div class="lic-modle lic-modle1 fl">
+					<p>2016.12.3</p>
+				</div>
+				<div class="lic-modle lic-modle2 fr">
+					<p>2016.12.16</p>
+				</div>
+				<div class="lic-modle lic-modle3 fl">
+					<p>2016.12.21</p>
+				</div>
+				<div class="lic-modle lic-modle4 fr">
+					<p>2016.12.18</p>
+				</div>
+			</div>
+		</div>
+		<div class="guizhe">
+			<div class="liucheng-tt">活动流程：</div>
+			<p class="guizhe-nl">1. 每一个微信号每天最多拥有<span class="color-yel">3次投票</span>机会</p>
+			<p class="guizhe-nl">2. 每天投票超过三次者，当天不能再进行投票可以<span class="color-yel">分享</span>给其他朋友进行投票<p>
+		</div>
+		<div class="tbbox">
+			<a id="s"></a>
+			<div class="tbbox-seareh">
+				<div class="tbbox-title clear">
+					<div class="fl seareh-name">{{count}}家入围企业</div>
+					<a href="jsvoteranking.html?vtype=1" class="fr seareh-more">查看排名>></a>
+				</div>
+				<div class="seareh-box">
+					<input class="seareh-ipt secipt" placeholder="搜索名字或编号">
+					<div class="seareh-btn fsearch"></div>
+				</div>
+			</div>
+			<ul class="firmlist">
+				{%if not listall%}没有找到相关公司{%endif%}
+				{%for list in listall%}
+				<li>
+					<div class="firm-mane"><span>{{list.orderid}}</span><a href="javascript:;">{{list.company_name}}</a></div>
+					<div class="firm-jj">{{list.business}}</div>
+					<div class="clear firm-do">
+						<div class="fl firm-num">（ <span id="ps{{list.company_id}}"> {{list.votecount}}</span>票 ）</div>
+						<span class="fr firm-btn toubtn" company_id="{{list.company_id}}"></span>
+					</div>
+				</li>
+				{%endfor%}
+			</ul>
+			<div class="seeph">
+				<a href="jsvoteranking.html?vtype=1">查看排名>></a>
+			</div>
+		</div>
+		<div class="daoyu">
+			<div class="daoyu-tt">活动背景：</div>
+			<p class="daoyu-p">在再生资源市场，再生金属产业无疑属于重要组成部分。而再生金属交易中，非标产品的不规范性、信息的不对称性、供应商和采购商不能及时沟通等，都成为行业发展的不健康因素。</p>
+			<p class="daoyu-p">ZZ91再生网本着“推动行业快速、有序发展”的愿景，于2016年12月21日在杭州浙商开元名都酒店召开“2016再生金属供需交流大会”。同时也本着“客观、公开、公平、公正”的原则，聚焦于企业诚信和业绩，我们将评选出再生金属行业ZZ91再生网2016年度“金牌采购商”。ZZ91再生网希望借此树立行业典范和标兵，推动金属采购行业交易方式的变革。</p>
+		</div>
+		<a id="gz"></a>
+		<div class="fangshi">
+			<div class="liucheng-tt">投票方式：</div>
+			<div class="fangshi-ts">关注ZZ91再生网公众号<span class="color-yel">（zz91weixin）</span>，点击底部菜单栏“<span class="color-yel">我要投票</span>”进入投票列表页，选择您心仪的客户，点击“投他一票”即可， 或在公众号中输入 T + 对应公司序号：如:T1</div>
+			<div class="erweiimg"><img src="jsvote/images/erweri.png"></div>
+		</div>
+		<div class="jiangse">
+			<div class="daoyu-tt">奖项设置：</div>
+			<p class="jiangse-p">1. 投票数量最多的前10名企业，将获得“<span class="color-yel">ZZ91再生网2016年度金牌采购商</span>”的称号以及牌匾（ZZ91再生网将于12月21日举办的2016年再生金属供需交流大会上授予该荣誉称号以及牌匾）</p>
+			<p class="jiangse-p">2.  荣获“ZZ91再生网2016年度金牌采购商”的企业，将享受ZZ91再生网微信公众号的<span class="color-yel">重点推荐</span>。</p>
+		</div>
+	</div>
+	<style>
+		footer li{float: left;}
+	</style>
+	<footer style="background-color:#000000;position: fixed;bottom: 0px;left:0px;width: 100%;height: 35px;line-height: 35px;text-align: center;font-size: 16px;font-weight: bold;">
+    	<ul>
+    	<li style="width: 30%;"><a href="jsvoteranking.html?vtype=1" style="color: #fff;">查看排名</a></li>
+    	<li style="color: #F9FF8A;font-size: 10px;text-align: left;"><a href="http://m.taozaisheng.com" style="color: #F9FF8A;" target="_blank">塑料交易就上淘再生  www.taozaisheng.com</a></li>
+    	</ul>
+    </footer>
+	
+<div class="footbt" style="height: 83px;line-height: 22px;font-size: 12px;text-align: center;">浏览量：{{vcount}} 　<br />本次活动最终解释权归ZZ91再生网所有<br /><br /></div>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script type="text/javascript">
+	var tp=false;
+	$(".toubtn").on("click",function(){
+		var forcompany_id=$(this).attr("company_id");
+		var openid="{{openid}}";
+		voteclick($(this),openid,forcompany_id)
+	})
+	function voteclick(self,openid,forcompany_id){
+		var ajaxurl1="http://m.zz91.com/vote/vote.html?company_id="+forcompany_id+"&vtype=1"
+		$.getScript(ajaxurl1, function() {
+			var err=_suggest_result_.err;
+			if (err=="false"){
+				var vcount=_suggest_result_.vcount;
+				
+				//alert(vcount)
+				$("#ps"+forcompany_id.toString()).html(vcount)
+				hint("投票成功！");
+				//self.html("您已投票");
+				
+			}else{
+				var errtext=_suggest_result_.errtext;
+				var gz=_suggest_result_.gz;
+				hint(errtext);
+				if (gz==1){
+					window.location='#gz'
+				}
+			}
+			tp=false;
+		});
+	}
+	$(".fsearch").on("click",function(){
+		var keywords=$(".secipt").val();
+	    window.location='?clientid={{clientid_dy}}&keywords='+keywords+'#s';
+	})
+	//标题提交提示
+	function hint(ts) {
+		$(".hint").remove()
+		var hintHtml = '<div class="hint" style="position:fixed;color:#fff;line-height:18px;font-size:14px;width:100%">' + '<span style="display:block;margin:0 8px;background:#000;opacity:0.8;border-radius:5px;padding:10px 10px;text-align:center">' + ts + '<span>' + '</div>';
+		$("body").append(hintHtml);
+		var hint_height = $(".hint").height();
+		var wd_height = $(window).height();
+		var top_height = (wd_height - hint_height) / 2
+		$(".hint").css("top", top_height + "px");
+		setTimeout(function() {
+			$(".hint").fadeOut("slow", function() {
+				$(".hint").remove()
+			})
+		}, 3000)
+	}
+</script>
+	<div style="display:none">
+	    <script>
+	         var _hmt = _hmt || [];
+	         (function() {
+	             var hm = document.createElement("script");
+	             hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+	             var s = document.getElementsByTagName("script")[0];
+	             s.parentNode.insertBefore(hm, s);
+	         })();
+	    </script>
+	    <!--baidu analysis-->
+	    <script>
+	         var _hmt = _hmt || [];
+	        
+	         (function() {
+	             var hm = document.createElement("script");
+	             hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+	             var s = document.getElementsByTagName("script")[0];
+	             s.parentNode.insertBefore(hm, s);
+	         })();
+	    </script>
+	</div>
+	</body>
+</html>

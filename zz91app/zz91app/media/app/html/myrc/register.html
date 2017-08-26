@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>注册帐号</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<style type="text/css">
+			body {
+				background: #f4f4f4;
+				width: 100%;
+				height: 100%;
+			}
+			.logo-pic {
+				background: url(../../image/logo.png) no-repeat;
+				height: 80px;
+				background-size: 140px 54px;
+				background-position: center bottom;
+			}
+			.aui-card {
+				margin-top: 15px;
+			}
+			.aui-input-row {
+				width: 100%
+			}
+			.issue-type {
+				padding: 7px 10px;
+			}
+			.zhushi {
+				text-align: center;
+				font-size: 14px;
+			}
+			.aui-btn-success {
+				background-color: #01ba2e;
+				border: #01ba2e;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-card">
+			<div class="aui-form">
+				<div class="aui-input-row">
+					<input type="text" placeholder="手机号码即您的登录用户名" class="userName aui-input" maxlength="11">
+				</div>
+				<div class="aui-input-row">
+					<input type="password" placeholder="请设置6-8位密码" class="passwd aui-input" maxlength="8">
+				</div>
+				<div class="aui-input-row">
+					<input type="text" placeholder="请输入您的邮箱" class="email aui-input">
+				</div>
+				<div class="aui-input-row">
+					<input type="text" placeholder="请输入您的QQ号码" class="qq aui-input">
+				</div>
+				<div class="aui-input-row">
+					<input type="text" placeholder="请输入您的姓名" class="contact aui-input">
+				</div>
+				<div class="issue-type aui-input-row">
+					<label>
+						<input name="Fruit" type="radio" value="男" checked="" class="aui-radio aui-radio-info"/>
+						<span class="aui-radio-name">男士</span></label>
+					<label>
+						<input name="Fruit" type="radio" value="女" class="aui-radio aui-radio-info"/>
+						<span class="aui-radio-name">女士</span></label>
+				</div>
+				<div class="reg-into aui-input-row">
+					<input type="text" placeholder="请输入您的公司名称" class="companyname aui-input">
+				</div>
+			</div>
+		</div>
+		<div class="zhushi">
+			注：个体经营输入个体经营（姓名）
+		</div>
+		<div class="aui-btn-row btn-post">
+			<div class="aui-btn aui-btn-block aui-btn-success">
+				立即开通账号
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/jQuery.md5.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			$(".btn-post").on("click", function() {
+				var userName = $(".userName").val();
+				var passwd = $(".passwd").val();
+				var qq = $(".qq").val();
+				var email = $(".email").val();
+				var contact = $(".contact").val();
+				var sex = $(".issue-type input:checked").val();
+				var companyname = $(".companyname").val();
+				var clientid = api.deviceId;
+				var telReg = !!userName.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/);
+				//手机号不正确
+				if (telReg == false) {
+					var ts = "您输入的用户名（手机号）有误!"
+					hint(ts);
+					return;
+				}
+				//密码不足6位
+				if (passwd.length < 6) {
+					var ts = "密码必须为是6-8位!"
+					hint(ts);
+					return;
+				}
+				var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+				//邮箱不正确
+				if (!filter.test(email)) {
+					var ts = "您输入邮箱有误!"
+					hint(ts);
+					return;
+				}
+				//qq判断
+				//if (isNaN(qq) || qq.length == 0) {
+				//	var ts = "您输入qq号不正确!"
+				//	hint(ts);
+				//	return;
+				//}
+				//qq姓名
+				if (contact.length == 0) {
+					var ts = "姓名不能为空!"
+					hint(ts);
+					return;
+				}
+				//qq公司
+				if (companyname.length == 0) {
+					var ts = "公司称不能为空!"
+					hint(ts);
+					return;
+				}
+				
+				var data = {
+					userName : userName,
+					passwd : passwd,
+					qq : qq,
+					email : email,
+					contact : contact,
+					sex : sex,
+					companyname : companyname,
+					clientid : clientid,
+					qqopenid : api.pageParam.qqopenid,
+					open_type : api.pageParam.open_type,
+					datatype : 'json'
+				}
+				postAjax(data);
+			})
+		}
+		function postAjax(data) {
+			$(".btn-post").removeClass("btn-post");
+			api.ajax({
+				url : hosturl + 'regsave.html',
+				method : 'post',
+				timeout : 30,
+				dataType : 'json',
+				data : {
+					values : data
+				},
+				returnAll : false
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(ret))
+				if (ret) {
+					$(".btn").addClass("btn-post")
+					if (ret.err == 'false') {
+						//密码加密
+						var pwd_hash = UserInfo.get_pwd_hash(ret.passwd);
+						//登入获取的token
+						var token = ret.token;
+						//登录获取的mid
+						var memberID = ret.result.company_id;
+						//登录获取的mid
+						var contact = ret.result.contact;
+						var username = ret.username
+						//保存信息到本地
+						UserInfo.onSuccess(token, username, pwd_hash, memberID, contact);
+						api.alert({
+							title : '注册帐号',
+							msg : '注册成功！',
+							buttons : ['确定']
+						}, function(ret, err) {
+							api.execScript({
+								name : 'root',
+								script : 'changemyrcindex()'
+							});
+							api.closeWin({
+								'name':'frm-login'
+                            });
+							api.closeWin();
+							
+						});
+					} else {
+						$(".btn").addClass("btn-post")
+						hint(ret.errkey)
+					}
+				} else {
+				};
+			});
+		}
+
+		function hint(ts) {
+			$(".hint").remove()
+			var hintHtml = '<div class="hint" style="position:fixed;color:#fff;line-height:18px;font-size:14px;width:100%">' + '<span style="display:block;margin:0 8px;background:#000;opacity:0.8;border-radius:5px;padding:10px 10px;text-align:center">' + ts + '<span>' + '</div>';
+			$("body").append(hintHtml);
+			var hint_height = $(".hint").height();
+			var wd_height = $(window).height();
+			var top_height = (wd_height - hint_height) / 2
+			$(".hint").css("top", top_height + "px");
+			setTimeout(function() {
+				$(".hint").fadeOut("slow", function() {
+					$(".hint").remove()
+				})
+			}, 2000)
+		}
+	</script>
+</html>

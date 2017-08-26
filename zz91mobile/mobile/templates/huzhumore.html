@@ -1,0 +1,7 @@
+﻿{%if bbslist%}{%for list in bbslist%}<div class="item" style="border-top:1px solid #FFF;">    
+		<a href="/huzhuview/{{list.id}}.htm" target=_blank>	
+			<p class="c-link lh28 f16">{{list.title}}{%if list.havepic%}<font class=c-red>[图]</font>{%endif%}</p>
+			<div class="lh28">{{list.content}}</div>
+			<div class="c9 lh28">提问者：{{list.nickname}}&nbsp;&nbsp;&nbsp;{{list.replycount}}回答</div>			 
+		</a>
+</div>{%endfor%}{%else%}err{%endif%}

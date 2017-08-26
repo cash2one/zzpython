@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>筛选</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/trade/choice.css"/>
+		<style>
+			html, body {
+				background: transparent;
+				height: 100%;
+				background: rgba(0,0,0,0.3);
+				overflow: hidden;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div style="height:80%;overflow:auto;background-color:#fff;position:relative;">
+			<div class="price-type">
+				<i class="type-img1"></i>时间
+			</div>
+			<ul class="type-small small-time">
+				<li>
+					<span timearg=1><i></i>一天内</span>
+					<span timearg=2><i></i>三天内</span>
+					<span timearg=3><i></i>一周内</span>
+				</li>
+				<li>
+					<span timearg=4><i></i>一月内</span>
+					<span timearg=5><i></i>两月内</span>
+					<span timearg="" id="defaulttime"><i></i>全部</span>
+				</li>
+			</ul>
+			<div class="price-type">
+				<i class="type-img2"></i>所在地
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span><i></i>浙江</span>
+					<span><i></i>广东</span>
+					<span><i></i>江苏</span>
+				</li>
+				<li>
+					<span><i></i>福建</span>
+					<span><i></i>安徽</span>
+					<span><i></i>河南</span>
+				</li>
+				<li>
+					<span><i></i>河北</span>
+					<span><i></i>湖北</span>
+					<span><i></i>湖南</span>
+				</li>
+				<li>
+					<span><i></i>四川</span>
+					<span><i></i>江西</span>
+					<span><i></i>山东</span>
+				</li>
+				<li>
+					<span><i></i>海南</span>
+					<span><i></i>黑龙江</span>
+					<span><i></i>北京</span>
+				</li>
+				<li>
+					<span><i></i>上海</span>
+					<span><i></i>天津</span>
+					<span><i></i>青海</span>
+				</li>
+				<li>
+					<span><i></i>陕西</span>
+					<span><i></i>山西</span>
+					<span><i></i>贵州</span>
+				</li>
+				<li>
+					<span><i></i>辽宁</span>
+					<span><i></i>宁夏</span>
+					<span><i></i>吉林</span>
+				</li>
+				<li>
+					<span><i></i>内蒙古</span>
+					<span><i></i>广西</span>
+					<span><i></i>云南</span>
+				</li>
+				<li>
+					<span><i></i>西藏</span>
+					<span><i></i>重庆</span>
+					<span><i></i>甘肃</span>
+				</li>
+				<li>
+					<span><i></i>新疆</span>
+					<span><i></i>台湾</span>
+					<span><i></i>香港</span>
+				</li>
+				<li>
+					<span><i></i>澳门</span>
+					<span></span>
+					<span></span>
+				</li>
+			</ul>
+			<div style="height:60px"></div>
+			<div class="aui-content-padded" style="position:fixed;bottom:20%;width:100%;padding:10px;margin:0px;background-color:#fff;">
+				<div class="aui-btn aui-btn-success shaixuan" style="width:75%;margin-left:10%;margin-right:10%" onclick="selectbutton();">
+					确认
+				</div>
+			</div>
+		</div>
+		<div style="position: absolute;bottom:0px;height:20%;width:100%;z-index:3000" onclick="closeselect()"></div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/iscroll.js"></script>
+	<script type="text/javascript">
+		function closeselect() {
+			api.execScript({
+				name : api.winName,
+				script : "keybackFun('1')"
+			});
+			api.closeFrame();
+		}
+
+		apiready = function() {
+			//选择日期
+			saveselect()
+			var nowSpan = $(".small-time .take-now-span");
+			$(".small-time span").on("click", function() {
+				nowSpan.removeClass("take-now-span");
+				$(this).addClass("take-now-span");
+				nowSpan = $(this);
+			})
+			//选择地区
+			$(".small-area span").on("click", function() {
+				$(this).toggleClass("take-now-span");
+			});
+			var $body = $api.dom('body');
+			$api.addEvt($body, 'click', function(e) {
+				if (e.target == $body) {
+					closeselect();
+				} else {
+					e.stopPropagation();
+				}
+			});
+		}
+		//显示前面选择的内容
+		function saveselect() {
+			var timearg = api.pageParam.timearg;
+			var province = api.pageParam.province;
+			$(".small-area span").each(function() {
+				if (province) {
+					if (province.indexOf($(this).text()) >= 0) {
+						$(this).addClass("take-now-span");
+					}
+				}
+			});
+			$(".small-time span").each(function() {
+				var ntimearg = $(this).attr("timearg");
+				if (ntimearg == timearg) {
+					$(".small-time span").removeClass("take-now-span");
+					$(this).addClass("take-now-span");
+				}
+				if (timearg == "") {
+					$("#defaulttime").addClass("take-now-span");
+				}
+			});
+			
+		}
+
+		function selectbutton() {
+			var timeselect = "";
+			var provincelist = "";
+			$(".take-now-span").each(function() {
+				var timearg = $(this).attr("timearg");
+				if (timearg) {
+					if (timearg.length > 0) {
+						timeselect = timearg
+					}
+				} else {
+					if ($(this).text() != "全部") {
+						provincelist = provincelist + $(this).text() + "|";
+					}
+				}
+			});
+			api.execScript({
+				name : 'trade-list',
+				frameName : 'trade-list_',
+				script : "choicesearch('" + timeselect.toString() + "','" + provincelist + "')"
+			});
+			closeselect()
+		}
+	</script>
+</html>

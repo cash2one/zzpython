@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>修改资料</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+	</head>
+	<style>
+		body {
+			background: #f4f4f4;
+			width: 100%;
+		}
+		.name_use {
+			height: 41px;
+			line-height: 41px;
+			padding-left: 14px;
+		}
+		.row-text {
+			letter-spacing: 8px
+		}
+		.row-text2 {
+			letter-spacing: 31px
+		}
+		.aui-input-row {
+			width: 100%
+		}
+		.aui-input-row .div-qq {
+			width: 83px;
+			text-align: right;
+		}
+		.jianjie {
+			border: 0;
+			height:200px;
+			overflow: auto
+		}
+		.aui-btn-success {
+			background-color: #01ba2e;
+			border: #01ba2e;
+		}
+		input,textarea {
+			color:#0062cc;
+			font-size:14px;
+		}
+	</style>
+	<body>
+		<div style="height:20px"></div>
+		<div class="aui-content aui-card">
+			<div class="aui-form">
+				<div class="aui-input-row my-face" style="height:80px">
+					<span class="aui-input-addon">更改头像</span>
+					<a class="aui-arrow-right">
+					<div class="aui-input facepic">
+						<img class="aui-pull-right" src="../../image/noavatar.gif" style="width:60px;margin-right:50px">
+					</div> </a>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon"><em class="row-text">联系</em>人：</span>
+					<input type="text" value="" placeholder="请输入联系人" id="contact" class="aui-input">
+				</div>
+				<div class="aui-input-row">
+	                <label class="aui-input-addon"><em class="row-text2">性</em>别</label>
+	                <div class="aui-pull-right sex">
+	                    <input class="aui-radio aui-radio-info" type="radio" name="sex" value="0"><div class="aui-radio-name">男</div>
+	                    <input class="aui-radio aui-radio-warning" type="radio" name="sex" value="1"><div class="aui-radio-name">女</div>
+	                </div>
+	            </div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon"><em class="row-text2">手</em>机：</span>
+					<span id="mobile" style="padding:10px;line-height:30px;color:#999;overflow:hidden;text-overflow:ellipsis;width:180px;display:block;height:45px;float:left">请绑定手机</span>
+					<div class="aui-pull-right aui-btn aui-btn-success mobilebangding" style="margin-right:10px;float:right;margin-top:10px" bind="0">解绑</div>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon div-qq">QQ：</span>
+					<input type="text" placeholder="请输入QQ" id="qq" class="aui-input">
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon div-email"><em class="row-text2">邮</em>箱：</span>
+					<input type="text" placeholder="请输入邮箱" id="email" class="aui-input">
+				</div>
+			</div>
+			
+		</div>
+		<div class="aui-content aui-card">
+			<div class="aui-form">
+				<div class="aui-input-row">
+					<span class="aui-input-addon">公司名称：<br /><span style="color: #666">（不能修改）</span></span>
+					<textarea type="text" value="" id="comname" placeholder="请输入公司名称" class="aui-input" readonly>
+				</div>
+				
+				<div class="aui-input-row">
+					<span class="aui-input-addon">主营行业：</span>
+					<a class="aui-arrow-right">
+					<select name="industryCode" id="industryCode" class="aui-input" style="padding-left:15px">
+						<option value="">请选择</option>
+						<option value="10001003">废旧轮胎与废橡胶</option>
+						<option value="10001004">废纺织品与废皮革</option>
+						<option value="10001005">废电子电器</option>
+						<option value="10001006">废玻璃</option>
+						<option value="10001007">废旧二手设备</option>
+						<option value="10001008">其他废料</option>
+						<option value="10001009">服务</option>
+						<option value="10001000">废塑料</option>
+						<option value="10001001">废金属</option>
+						<option value="10001002">废纸</option>
+						<option value="10001010">塑料原料</option>
+					</select>
+					</a>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">公司类型：</span>
+					<a class="aui-arrow-right">
+					<select name="serviceCode" id="serviceCode" class="aui-input" style="padding-left:15px">
+						<option value="">请选择</option>
+						<option value="10201001">国外供货商</option>
+						<option value="10201002">国外回收贸易商</option>
+						<option value="10201003">码头，仓库储存商</option>
+						<option value="10201004">国内供应商</option>
+						<option value="10201005">国内回收贸易商</option>
+						<option value="10201006">国内加工，拆解商</option>
+						<option value="10201007">利废企业</option>
+						<option value="10201008">设备，技术，服务提供商</option>
+						<option value="10201009">冶炼厂</option>
+						<option value="10201010">电子厂</option>
+						<option value="10201011">造粒厂</option>
+					</select></a>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">国家/地区：</span>
+					<a class="aui-arrow-right" >
+					<input type="text" value="" style="padding-left:10px" placeholder="请选择地区" class="aui-input provinceselect" readonly="">
+					<input type="hidden" name="provincecode" id="provincecode" value="">
+					</a>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon"><em class="row-text2">地</em>址：</span>
+					<textarea type="text" value="" placeholder="请输入地址" id="address" class="aui-input"></textarea>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon"><em class="row-text2">邮</em>编：</span>
+					<input type="text" value="" placeholder="请输入邮编" id="address_zip" class="aui-input">
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">主营业务：</span>
+					<textarea class="jianjie" id="business" placeholder="请输入主营业务"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="aui-content-padded">
+			<div class="aui-btn aui-btn-block aui-btn-success savebutton">
+				确认
+			</div>
+		</div>
+		<div style="height:20px"></div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/reborn.js"></script>
+	<script type="text/javascript">
+		var imagesList = [];
+		apiready = function() {
+			ajaxInfo();
+			
+			$(".mobilebangding").on("click", function() {
+				if ($(this).attr("bind")=="0"){
+					var pageParam = {
+						wintitle : "手机绑定",
+						type : "mobile_binding",
+						bounces : false,
+					};
+					if (UserInfo.has_login()) {
+						openWin("mobile_binding", "../myrc/mobile_bindingmobile.html", pageParam);
+					} else {
+						pageParam.nextUrl = "../myrc/mobile_bindingmobile.html";
+						pageParam.winName = "mobile_binding";
+						openWin("frm-login", "../myrc/frm-login.html", pageParam);
+					}
+					return false;
+				}
+				api.confirm({
+				    title: '提示',
+				    msg: '该操作将使本机号收不到任何消息，同时客户也将无法联系您，是否确定要解绑！',
+				    buttons: ['取消','确定']
+				},function( ret, err ){
+					//zzalert(JSON.stringify(ret))
+				    if( ret ){
+				         if (ret.buttonIndex == 2) {
+				         	var pageParam = {
+								wintitle : "手机解绑",
+								type : "mobile_unbundling",
+								bounces : false,
+								mobile : $("#mobile").html(),
+							};
+							if (UserInfo.has_login()) {
+								openWin("mobile_unbundling", "../myrc/mobile_unbundling.html", pageParam);
+							} else {
+								pageParam.nextUrl = "../myrc/mobile_unbundling.html";
+								pageParam.winName = "mobile_unbundling";
+								openWin("frm-login", "../myrc/frm-login.html", pageParam);
+							}
+				         }
+				    }else{
+				    	return false;
+				         //zzalert( JSON.stringify( err ) );
+				    }
+				});
+				
+			})
+			$(".my-face").on("click", function() {
+				api.actionSheet({
+					cancelTitle : '取消',
+					buttons : ['拍照', '从手机相册选择'],
+				}, function(ret, err) {
+					if (ret.buttonIndex == 1) {
+						var photobj = {
+							sourceType : 'camera'
+						}
+						api.pageDown({
+							'bottom' : true //是否滚动，为false时说明当前页面已经到达底部了
+						});
+						getphoto(photobj);
+					}
+					if (ret.buttonIndex == 2) {
+						var photobj = {
+							sourceType : 'album'
+						}
+						getphoto(photobj);
+						//getphotolist(photobj);
+					}
+				});
+			});
+			$(".provinceselect").on("click", function() {
+				openwindows("provinceselect", '../comm/province.html')
+			});
+			$(".savebutton").on("click", function() {
+				infoeditsave();
+			})
+		}
+		function closepicture(){
+		
+		}
+		//保存信息
+		function infoeditsave() {
+			var sex=$(".sex input:checked").val();
+			var contact=$("#contact").val();
+			var qq=$("#qq").val();
+			var email=$("#email").val();
+			var industryCode=$("#industryCode").val();
+			var serviceCode=$("#serviceCode").val();
+			var areaCode=$("#provincecode").val();
+			var address=$("#address").val();
+			var addresszip=$("#address_zip").val();
+			var business=$("#business").val();
+			var comname=$("#comname").val();
+			
+			if (contact == "") {
+				hint("请输入联系人！");
+				return;
+			}
+			if (email == "") {
+				hint("请输入邮箱！");
+				return;
+			}
+			if (comname == "") {
+				hint("请输入公司名称！");
+				return;
+			}
+			if (industryCode == "") {
+				hint("请选择主营行业！");
+				return;
+			}
+			if (serviceCode == "") {
+				hint("请选择公司类型！");
+				return;
+			}
+			if (areaCode == "") {
+				hint("请选择地区！");
+				return;
+			}
+			if (business == "") {
+				hint("请输入主营业务！");
+				return;
+			}
+			api.showProgress({title:'保存中...',modal:false});
+			var data = {
+				company_id : UserInfo.memberID(),
+				usertoken : UserInfo.token(),
+				appsystem : api.systemType,
+				datatype : "json",
+				source : "modinfo",
+				contact : contact,
+				sex : sex,
+				qq : qq,
+				email : email,
+				industryCode : industryCode,
+				serviceCode : serviceCode,
+				areaCode : areaCode,
+				address : address,
+				addresszip : addresszip,
+				business : business,
+				comname : comname,
+			}
+			api.ajax({
+				url : hosturl+"user/myinfosave.html",
+				method : "post",
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data,
+					files : {
+						"file" : imagesList
+					}
+				}
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(err))
+				//zzalert(JSON.stringify(ret))
+				if (ret){
+					if (ret.err=="false"){
+						api.toast({
+						    msg: '保存成功',
+						    duration: 2000,
+						    location: 'bottom'
+						});
+						api.execScript({
+							name : 'root',
+							frameName : 'my-home',
+							script : 'ajaxInfo()'
+						});
+						api.closeWin();
+					}else{
+						api.toast({
+						    msg: '系统出错，请重试',
+						    duration: 2000,
+						    location: 'bottom'
+						});
+					}
+				}else{
+					saveerrlog(err.body);
+					api.toast({
+					    msg: '系统出错，请重试',
+					    duration: 2000,
+					    location: 'bottom'
+					});
+				}
+				api.hideProgress();
+			});
+		}
+		//加载数据
+		function ajaxInfo(){
+			api.showProgress({title:'加载中',modal:false});
+			var data = {
+				company_id : UserInfo.memberID(),
+				usertoken : UserInfo.token(),
+				appsystem : api.systemType,
+				datatype : "json",
+			}
+			api.ajax({
+				url : hosturl+"user/myinfo.html",
+				method : "get",
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				if (ret){
+					$("#comname").val(ret.companyinfolist.name);
+					selectOption("serviceCode",ret.companyinfolist.service_code);
+					selectOption("industryCode",ret.companyinfolist.industry_code);
+					selectCheckBox("sex",ret.contactinfolist.sex);
+					$("#provincecode").val(ret.companyinfolist.area_code);
+					//显示地区
+					var area_code=ret.companyinfolist.area_code;
+					var areatext="";
+					if (area_code.length==8){
+						var areamain1=area_code.substr(0,12);
+						var areatext1=rebornall[areamain1];
+						areatext="国外"+"->"+areatext1;
+					}
+					if (area_code.length>=12){
+						var areamain1=area_code.substr(0,12);
+						var areatext1=rebornall[areamain1];
+						areatext=areatext+areatext1;
+					}
+					if (area_code.length>=16){
+						var areamain1=area_code.substr(0,16);
+						var areatext2=rebornall[areamain1];
+						areatext=areatext+"->"+areatext2;
+					}
+					if (area_code.length>=20){
+						var areamain1=area_code.substr(0,20);
+						var areatext3=rebornall[areamain1];
+						areatext=areatext+"->"+areatext3;
+					}
+					$(".provinceselect").val(areatext);
+					
+					$("#address").val(ret.companyinfolist.address);
+					$("#address_zip").val(ret.companyinfolist.address_zip);
+					//document.getElementById("introduction").value=ret.companyinfolist.introduction
+					$("#business").val(ret.companyinfolist.business);
+					
+					//#联系方式
+					$("#contact").val(ret.contactinfolist.contact);
+					$("#email").val(ret.contactinfolist.email);
+					$("#qq").val(ret.contactinfolist.qq);
+					$("#mobile").html(ret.contactinfolist.mobile);
+					if (ret.contactinfolist.mobile=="" || !ret.contactinfolist.mobile){
+						showbinding()
+					}else{
+						showunbinding(ret.contactinfolist.mobile)
+					}
+					
+					//头像
+					if (ret.faceurl){
+						var facehtml = '<img class="aui-pull-right" src="'+ret.faceurl+'" style="width:60px;height:60px;margin-right:50px">';
+						$(".facepic").html(facehtml)
+					}
+					
+				}
+				api.hideProgress();
+			});
+		}
+		//选择地区
+		function getprovincecode(label,code){
+			//zzalert(JSON.stringify(label))
+			$(".provinceselect").val(label);
+			$("#provincecode").val(code);
+		}
+		
+		//拍照
+		function getphoto(obj) {
+			var thisBtn = $(".facepic");
+			api.getPicture({
+				sourceType : obj.sourceType,
+				allowEdit : false,
+				quality : 70,
+				targetWidth : 200,
+				targetHeight : 200,
+				saveToPhotoAlbum : false
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(ret))
+				if (ret) {
+					var file = [];
+					file[0] = ret.data;
+					if (ret.data != "") {
+						var imginfo = "";
+						$.each(file, function(i, item) {
+							imagesList.push(item);
+							imginfo += '<img class="aui-pull-right" src="'+item+'" style="width:60px;height:60px;margin-right:50px">'
+						});
+						thisBtn.html(imginfo)
+					}
+				} else {
+					api.toast({
+						msg : '系统错误,请重试2',
+						duration : 2000,
+						location : 'bottom'
+					});
+				}
+			});
+		}
+		//解绑
+		function showbinding(){
+			$(".mobilebangding").html("绑定");
+			$(".mobilebangding").attr("bind","0");
+			$("#mobile").html("未绑定手机");
+		}
+		//绑定
+		function showunbinding(mobile){
+			$(".mobilebangding").html("解绑");
+			$(".mobilebangding").attr("bind","1");
+			$("#mobile").html(mobile);
+		}
+		function hint(ts) {
+			$(".hint").remove()
+			var hintHtml = '<div class="hint" style="position:fixed;color:#fff;line-height:18px;font-size:14px;width:100%">' + '<span style="display:block;margin:0 8px;background:#000;opacity:0.8;border-radius:5px;padding:10px 10px;text-align:center">' + ts + '<span>' + '</div>';
+			$("body").append(hintHtml);
+			var hint_height = $(".hint").height();
+			var wd_height = $(window).height();
+			var top_height = (wd_height - hint_height) / 2
+			$(".hint").css("top", top_height + "px");
+			setTimeout(function() {
+				$(".hint").fadeOut("slow", function() {
+					$(".hint").remove()
+				})
+			}, 2000)
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

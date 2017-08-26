@@ -1,0 +1,467 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>ZZ91再生网-手机站</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-slide.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-slide.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<script src="http://img0.zz91.com/lib/jquery/jquery.cookie.js"></script>
+		<style>
+			.aui-grid-sixteen:after {
+				border: none;
+			}
+			.aui-grid-sixteen li:after {
+				border: none;
+			}
+			.aui-grid-sixteen li .aui-iconfont {
+				color: #ffffff;
+				width: 45px;
+				height: 45px;
+				line-height: 45px;
+				border-radius: 50%;
+				font-size: 27px;
+			}
+			.aui-grid-sixteen p {
+				color: #000
+			}
+			.aui-content .box {
+			}
+			.floatdiv {
+				position: fixed;
+				height: 60px;
+				width: 60px;
+				background: #01ba2e;
+				border-radius: 60px;
+				bottom: 45px;
+				left: 10px;
+				text-align: center;
+				line-height: 20px;
+				padding-top: 10px;
+				box-shadow: 0px 0px 5px #888888;
+				color: #ffffff;
+				z-index: 9999;
+			}
+			.box {
+				padding-top: 1px;
+				clear: both;
+			}
+			.box-title {
+				margin: 15px 10px 5px 10px;
+				/*margin-bottom: 5px;*/
+				height: 20px;
+				line-height: 20px;
+				border-left: 5px solid #ff9900;
+				color: #666;
+				font-weight: 700;
+				padding-left: 10px;
+				margin-bottom: 10px
+			}
+			.box .aui-list-view {
+				margin-bottom: 0;
+			}
+			.aui-list-view i.aui-iconfont {
+				margin-right: 0;
+			}
+			.aui-content {
+				margin-bottom: 0px;
+			}
+			.mark {
+				background: rgba(0,0,0,0.5);
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				display: none;
+				z-index: 5;
+			}
+			.ptop{
+	    		border: solid 0px #F1C40F;
+	    		background-color: #FF0000;
+	    		text-align:center;
+	    		width:100%;
+	    		clear:both;
+	    		line-height:33px;
+	    		overflow: hidden;
+	    		padding-left:5px;
+	    		position: fixed;
+	    		top: 45px;
+	    		left: 0px;
+	    		z-index: 999;
+	    	}
+	    	.zdbotton{
+	    		background-color:#C0392B;
+	    		color:#fff;
+	    		width:60px;
+	    		font-size:12px;
+	    		margin-top:8px;
+	    		display:block;
+	    		line-height:20px;
+	    		border-radius:2px;
+	    		position: absolute;
+	    		right:10px;
+	    		top:0px;
+	    		padding-left:4px;
+	    		padding-right:4px;
+	    		text-align:center;
+	    	}
+			.aui-mask{
+		    	opacity:0.2;
+		    }
+		    .popsearch{
+		    	padding: 10px;
+		    	height: 100%;
+		    	position: fixed;
+		    	width: 100%;
+		    	top: 0px;
+		    	background-color: #F4F5F7;
+		    	z-index: 9999;
+		    	display: none;
+		    }
+		    .nearseach{
+		    	display: block;
+		    	padding: 10px;
+		    	margin-top: 10px;
+		    	background-color: #f9f9f9;
+		    }
+		    .nearseach a{
+		    	margin-right: 10px;
+		    	text-align: center;
+		    	padding: 10px;
+		    }
+		    header{
+				position: fixed;
+				width:100%;
+				top:0px;
+			}
+			.downloadIntro {
+		        position: fixed;
+		        top: 0;
+		        left: 0;
+		        width: 100%;
+		        height: 100%;
+		        background: rgba(0,0,0,.5);
+		        z-index: 9990099;
+		    }
+		    .downloadIntro .downloadIntro-inner {
+		        display: block;
+		        width: 80%;
+		        position: absolute;
+		        top: 50%;
+		        left: 50%;
+		        transform: translateX(-50%) translateY(-50%);
+		        -webkit-transform: translateX(-50%) translateY(-50%);
+		    }
+		    .downloadIntro a {
+		        display: block;
+		        position: absolute;
+		        top: 0;
+		        width: 80%;
+		        height: 80%;
+		        top: 50%;
+		        left: 50%;
+		        transform: translateX(-50%) translateY(-50%);
+		        -webkit-transform: translateX(-50%) translateY(-50%);
+		    }
+		    .downloadIntro img {
+		        display: block;
+		        width: 100%;
+		    }
+		    
+		</style>
+	</head>
+	<body>
+		<section class="downloadIntro J_downloadIntro" onclick="closedownloadJ(this)" style="display: none;">
+		<div class="downloadIntro-inner">
+		    <img src="http://img0.zz91.com/zz91/mobile/images/icon_app_load.png"/>
+		    <a class="J_app" href="/app.html" target="_blank"></a>
+		</div>
+		</section>
+		<script>
+		function closedownloadJ(obj){
+			obj.style.display="none";
+			$.cookie('closedownloadJ', '1', { expires: 7, path: '/' });
+		}
+		var downloadJ=$.cookie('closedownloadJ');
+		if (!downloadJ){
+			$(".downloadIntro").css("display","")
+		}
+		</script>
+		<header class="aui-bar aui-bar-nav aui-bar-primary" style="position: fixed;z-index: 9999;">
+	    	<a class="aui-pull-left">
+		        <img src="http://static.m.zz91.com/image/indexlogo.png" style="height: 30px;margin-top: 8px;">
+		    </a>
+		    <div class="aui-searchbar aui-border-radius searchcenter" onclick="opensearch()" style="left: 120px;background: #017501;">
+	            <i class="aui-iconfont aui-icon-search"></i>
+	            <div class="aui-searchbar-text">搜索</div>
+	        </div>
+	        
+	        <a class="aui-pull-right" href="/myrc/">
+		        <span class="aui-iconfont aui-icon-my"></span>
+		    </a>
+		</header>
+		<div style="height:45px"></div>
+		<div class="floatdiv" style="bottom: 10px;right: 10px;">
+			<a href="/products_publish/" style="color: #fff;"><span style="margin-top:10px" class="addhuzhu">发布<br>供求</span></a>
+		</div>
+		<div class="floatdiv" style="bottom: 10px;right: 10px;left: auto;background: #F06D13">
+			<a href="/register/" style="color: #fff;"><span style="margin-top:10px" class="addhuzhu">免费<br>注册</span></a>
+		</div>
+		<div class="popsearch">
+			<div class="aui-searchbar" id="search" style="margin: 0px;">
+		        <div class="aui-searchbar-input aui-border-radius" style="padding-left: 0px;">
+		            <i class="aui-iconfont aui-icon-search"></i>
+		            <input type="search" placeholder="请输入搜索内容" id="search-input">
+		            <div class="aui-searchbar-clear-btn">
+		                <i class="aui-iconfont aui-icon-close"></i>
+		            </div>
+		        </div>
+		    </div>
+		    <div style="width: 300px;margin: 0 auto;padding: 20px;">
+			    <div class="aui-btn aui-pull-left" onclick="closesearch()">取消</div>
+			    <div class="aui-btn aui-btn-success aui-pull-right searchbtn">搜索</div>
+		    </div>
+		    <div style="clear: both;"></div>
+		    <section class="nearseach">
+		        最近搜索：
+		        {%for l in mysearchkeylist%}
+		        <a href="/trade/?keywords={{l.key_hex}}">{{l.keywords}}</a>
+		        {%endfor%}
+		    </section>
+		    <section class="nearseach">
+		        热门搜索：
+		        {%for l in abountkeywords%}
+		        <a href="/trade/?keywords={{l.keywords}}">{{l.keywords}}</a>
+		        {%endfor%}
+		    </section>
+		</div>
+		<div class="aui-tips-danger ptop">
+			<div class="aui-ellipsis-1" style="text-align: left">
+				<i class="aui-iconfont aui-icon-creative"></i>
+				<font style="font-size:14px" color="#fff">下载APP，获取<font color="#FEE900">20</font>元红包</font>
+				<a class="zdbotton" href="http://m.zz91.com/app.html">免费下载</a>
+			</div>
+		</div>
+		<div style="height: 30px;"></div>
+		<div class="aui-content mainitem" style="margin-bottom:0px">
+			<ul class="aui-grid-sixteen">
+				<a href="/trade/"><li class="aui-col-xs-3 aui-text-center jy-heart">
+					<span class="aui-iconfont aui-icon-cartfill aui-bg-warning"></span>
+					<p>
+						交易中心
+					</p>
+				</li></a>
+				<a href="/jiage/">
+				<li class="aui-col-xs-3 aui-text-center offer-list">
+					<span class="aui-iconfont aui-icon-rankfill aui-bg-success"></span>
+					<p>
+						行情报价
+					</p>
+				</li>
+				</a>
+				<a href="/news/">
+				<li class="aui-col-xs-3 aui-text-center infomation-heart">
+					<span class="aui-iconfont aui-icon-form aui-bg-info"></span>
+					<p>
+						资讯中心
+					</p>
+				</li>
+				</a>
+				<a href="/company/">
+				<li class="aui-col-xs-3 aui-text-center firm-page">
+					<span class="aui-iconfont aui-icon-apps aui-bg-danger"></span>
+					<p>
+						公司黄页
+					</p>
+				</li>
+				</a>
+				<a href="/huzhu/">
+				<li class="aui-col-xs-3 aui-text-center community">
+					<span class="aui-iconfont aui-icon-creativefill aui-bg-success"></span>
+					<p>
+						互助社区
+					</p>
+				</li>
+				</a>
+				<a href="/ye/">
+				<li class="aui-col-xs-3 aui-text-center changyedai">
+					<span class="aui-iconfont aui-icon-locationfill aui-bg-warning"></span>
+					<p>
+						产业带
+					</p>
+				</li>
+				</a>
+				<a href="http://m.taozaisheng.com/" target="_blank">
+				<li class="aui-col-xs-3 aui-text-center vender">
+					<span class="aui-iconfont aui-icon-similar aui-bg-danger"></span>
+					<p>
+						淘再生
+					</p>
+				</li>
+				</a>
+				<a href="/service/index.html">
+				<li class="aui-col-xs-3 aui-text-center service">
+					<span class="aui-iconfont aui-icon-servicefill aui-bg-info"></span>
+					<p>
+						产品服务
+					</p>
+				</li>
+				</a>
+			</ul>
+		</div>
+		<div class="aui-line-x"></div>
+		<div style="height:45px;background-color:#fff" class="midadlist">
+			<div id="aui-slide3">
+		        <div class="aui-slide-wrap" >
+		        	{%for list in adlist%}
+		            <a href="{{list.url}}"><div class="aui-slide-node bg-dark">
+		                <img src="{{list.picaddress}}" />
+		            </div></a>
+		            {%endfor%}
+		        </div>
+		        <div class="aui-slide-page-wrap" style="display: none;"><!--分页容器--></div>
+		    </div>
+			<div style="height:10px;background-color:#f2f2f2"></div>
+		</div>
+		
+		<div style="height:10px;background-color:#f2f2f2"></div>
+		<a href="/trade/"><div style="height:50px;line-height:50px;background-color:#fff;text-align:center;font-size:16px" class="pcountmain"> 这里有  <span style="font-size:24px;color:#ff0000" class="procount">{{pcount}}</span> 条商机，供您选择</div></a>
+		<div style="height:10px;background-color:#f2f2f2"></div>
+		<div class="aui-content box" style="background-color:#fff">
+			<div class="box-title">
+				商家工具
+			</div>
+			<div class="aui-line-x"></div>
+			<ul class="aui-grid-sixteen">
+				<a href="/myrc/products.html">
+				<li class="aui-col-xs-3 aui-text-center my-buyin" tapmode>
+					<span class="aui-iconfont aui-icon-list aui-text-info"></span>
+					<p>
+						我的供求
+					</p>
+				</li>
+				</a>
+				<a href="/myrc/xunpan.html">
+				<li class="aui-col-xs-3 aui-text-center my-xp" tapmode>
+					<span class="aui-iconfont aui-icon-notification aui-text-success"></span>
+					<p>
+						我的询盘
+					</p>
+				</li>
+				</a>
+				<a href="/order/">
+				<li class="aui-col-xs-3 aui-text-center my-tradeorder" tapmode>
+					<span class="aui-iconfont aui-icon-explore aui-text-warning"></span>
+					<p>
+						商机订阅
+					</p>
+				</li>
+				</a>
+				<a href="/qianbao/jingjia_index.html">
+				<li class="aui-col-xs-3 aui-text-center my-companyshop" tapmode>
+					<span class="aui-iconfont aui-icon-refund aui-text-info"></span>
+					<p>
+						流量宝
+					</p>
+				</li>
+				</a>
+				<a href="/qianbao/">
+				<li class="aui-col-xs-3 aui-text-center my-pay" tapmode>
+					<span class="aui-iconfont aui-icon-pay aui-text-danger"></span>
+					<p>
+						我的钱包
+					</p>
+				</li>
+				</a>
+				<a href="/myrc/addressbook.html">
+				<li class="aui-col-xs-3 aui-text-center my-addressbook" tapmode>
+					<span class="aui-iconfont aui-icon-addressbook aui-text-info"></span>
+					<p>
+						通信录
+					</p>
+				</li>
+				</a>
+				<a href="/myrc/card.html">
+				<li class="aui-col-xs-3 aui-text-center my-vcard" tapmode>
+					<span class="aui-iconfont aui-icon-qrcode aui-text-success"></span>
+					<p>
+						我的名片
+					</p>
+				</li>
+				</a>
+				<a href="/myrc/favorite.html">
+				<li class="aui-col-xs-3 aui-text-center my-shouc" tapmode>
+					<span class="aui-iconfont aui-icon-favor aui-text-warning"></span>
+					<p>
+						我的收藏
+					</p>
+				</li>
+				</a>
+			</ul>
+		</div>
+		<div class="aui-line-x"></div>
+		<div class="aui-content box">
+			<div class="box-title">
+				今日焦点 <a href="/news/" style="display:block;float: right;width: 100px;text-align: right" class="infomation-heart">更多</div>
+			</div>
+			<ul class="aui-list-view hotnews">
+				{%for d in newslist%}
+				<li class="aui-list-view-cell" tapmode>
+		            <a class="aui-arrow-right" href="/news/newsdetail{{d.id}}.htm"><div class="aui-img-body" style="padding-right:20px">
+		                <div class="aui-ellipsis-1">{{d.title}}</div>
+		                <p class='aui-ellipsis-2'>{{d.content}}</p>
+		            </div></a>
+		        </li>
+		        {%endfor%}
+            </ul>
+        </div>
+        <div style="height:65px"></div>
+        
+        <script>
+        	$(function(){
+		        $(".searchbtn").on("click",function(){
+		        	var searchtext=$("#search-input").val()
+		        	if (searchtext!=""){
+		        		window.location='/trade/?keywords='+searchtext;
+		        	}
+		        })
+		    })
+			function opensearch(){
+				$(".popsearch").show();
+				$("#search-input").focus();
+				document.getElementById("search-input").focus();
+			}
+			function closesearch(){
+				$(".popsearch").hide();
+			}
+			var slide3 = new auiSlide({
+		        container:document.getElementById("aui-slide3"),
+		        // "width":300,
+		        "height":45,
+		        "speed":500,
+		        "autoPlay": 3000, //自动播放
+		        "loop":true,
+		        "pageShow":true,
+		        "pageStyle":'dot',
+		        'dotPosition':'center'
+		    })
+        </script>
+        {%include 'aui/bottom.html'%}
+	</body>
+</html>

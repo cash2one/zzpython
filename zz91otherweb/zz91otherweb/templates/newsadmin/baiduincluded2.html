@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <script src="chart/jquery-1.7.2.js"></script>
+    <script>
+	$(function(){
+		$("#bodyhtml").click(function(){
+			var baidusl=$("#baidusl").val();
+			baidusl=$.trim(baidusl);
+			if (baidusl.length>5){
+				//alert(baidusl)				
+				arrlist=baidusl.split('http://')
+				//alert(arrlist)
+				
+				arrlist2=new Array()
+				//urlhtml=''
+				$.each(arrlist, function(i,val){
+					if (i>0){
+						valurl2=$.trim(val);
+						//alert(valurl2)
+						//urlhtml+=valurl2+'<br />'
+						arrlist2.push(valurl2+'<br />')
+					}
+				}); 
+				//alert(urlhtml)
+				
+				//$("#fenxi").html(urlhtml);
+				
+				var lenarray=arrlist2.length;
+				//alert(lenarray)
+				
+				$("#tijiao").html('<font color="blue">分析中</font> &nbsp;<img src="123/imgs/jindutiao.gif">');
+				
+				var num=0
+				var numall=0
+				$.each(arrlist2, function(i,val){
+					valurl=val;
+					//var fenxi=$("#fenxi").html();
+					//alert(fenxi)
+					//fenxi=fenxi.replace(valurl,'<img src="123/imgs/loading.gif">');
+					//alert(fenxi);
+					//$("#fenxi").html(fenxi);
+						
+					//alert(numall)
+					$.ajax({
+					   type: "GET",
+					   url: "baiduincluded2.html",
+					   data: "baidus="+valurl,
+					   success:function(data){
+					   		//alert(data)
+							numall+=1				
+							$("#pro2").html('总数是:'+numall)
+					   		//$("#isok"+auto_id).html(data)
+					   		//alert(data);
+					   		if (data=='1'){
+					   			num+=1
+								$("#pro1").html('收录数是:'+num)
+					   			//var fenxi=$("#fenxi").html();
+								//fenxi=fenxi.replace('<img src="123/imgs/loading.gif">',' 已收录');
+								//$("#fenxi").html(fenxi);
+					   		}
+							if (lenarray==numall){
+								$("#tijiao").html('<font color="blue">分析完</font>');
+								//alert(lenarray)
+								//alert(numall)
+								var lvall=num*100/numall
+								$("#pro3").html('收录率是'+lvall+'%');
+								$("#num").val('0')
+								$("#numall").val('0')
+							}
+					   		
+					   },
+					   error:function(data){
+							//alert("错误!青重试.");
+							$('#tijiao').html('<font color="red">分析错误</font>');
+					   }
+					});
+						
+				});   
+				
+			}
+			else{
+			alert('哥们儿,不能为空!')
+			}
+			
+		})
+	});	
+	
+    </script>
+    </head>
+<body>
+
+<br />
+<div id="fenxi"><textarea id="baidusl" cols="82" rows="20">
+
+{%for i in listall%}
+{{i.baidurl}} {{i.baidudate}}
+{%endfor%}
+
+</textarea></div><br />
+<input type="button" value="提交" id="bodyhtml">
+<div id="tijiao">
+</div>
+<div id="pro1"></div><div id="pro2"></div><div id="pro3"></div>
+{{allcount}}<br />
+{{count}}<br />
+{{countj}}<br />
+{{time_all}}<br />
+<br /><br /><br /><br />
+<input type="hidden" id="bd1">
+<input type="hidden" id="bd2">
+<input type="hidden" id="num" value="0">
+<input type="hidden" id="numall" value="0">
+</body>
+</html>

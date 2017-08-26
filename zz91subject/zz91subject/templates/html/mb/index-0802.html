@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ZZ91再生网移动端</title>
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico">
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#phone").mouseover(function(){
+		$(this).parent().parent().parent().removeClass("main-intro").addClass("main-intro2");
+		$(this).parent().parent().parent().removeClass("main-intro3").addClass("main-intro2");
+	});
+	$("#phone").mouseout(function(){
+		$(this).parent().parent().parent().removeClass("main-intro").addClass("main-intro2");
+		$(this).parent().parent().parent().removeClass("main-intro3").addClass("main-intro2");
+	});
+	$("#wx").mouseover(function(){
+		$(this).parent().parent().parent().removeClass("main-intro").addClass("main-intro3");
+		$(this).parent().parent().parent().removeClass("main-intro2").addClass("main-intro3");
+	});
+	$("#app").mouseover(function(){
+		$(this).parent().parent().parent().removeClass("main-intro2").addClass("main-intro");
+		$(this).parent().parent().parent().removeClass("main-intro3").addClass("main-intro");
+		});
+	});
+</script>
+</head>
+<body class="buyer" data-spm="144370">
+<div style="width:100%; background-color:#F9F7EC">
+  <div style="width:933px;margin:0 auto"> {%include 'html/comm/top.html'%} </div>
+</div>
+
+<div class="header-wrap">
+
+<div class="page-wrap">
+  <div class="navbar" style="opacity: 1;">
+    <ul>
+      <li data-index="0" class="current"></li>
+      <li data-index="1" class=""></li>
+      <li data-index="2" class=""></li>
+      <li data-index="3" class=""></li>
+    </ul>
+    <button></button>
+  </div>
+  <!-- /.navbar -->
+  <div class="download-box-filter"></div>
+  <div class="main-intro">
+    <div class="wrap">
+    	<ul class="icon_ul">
+        	<li id="app"></li>
+            <li id="phone"></li>
+            <li id="wx"></li>
+        </ul>
+        <div class="arrow"></div>
+    </div>
+  </div>
+  <div class="feature-nav">
+    <div class="wrap">
+      <ul>
+        <li class="feature-1"><i></i>随时  随地  随身<br />
+          <span>把商机随时携带</span></li>
+        <li class="feature-3"><i></i>附近商机<br />
+          <span>瞬间查看身边的供求信息</span></li>
+        <li class="feature-2"><i></i>把商机随时携带<br />
+          <span>询盘、回复、报价更新...</span><br /><span>第一时间消息提醒</span></li>
+        <li class="feature-4"><i></i>无限刷新<br />
+          <span>供求信息时刻排名靠前</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="section-wrap">
+    <div class="section section-feature1"></div>
+    <div class="section section-feature2">
+      <div class="wrap">
+        <div class="section-feature-detail">
+          <div class="section-feature-images animated">
+            <div class="image2"></div>
+            <div class="image3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section section-feature3"></div>
+    <div class="section section-feature4"></div>
+  </div>
+  <!-- /.section-wrap --> 
+</div>
+
+<style>
+    html {
+      overflow-y: auto !important;
+    }
+  </style>
+<script type="text/javascript" src="js/saved_resource1.js"></script>
+<link rel="stylesheet" href="css/app.css" />
+<script type="text/javascript" src="js/saved_resource2.js"></script>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd1852f2b391e52cbd020e4b788713ba1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script>
+(function(d, t) {
+    var r = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    r.async = 1;
+    r.src = 'http://www.zz91.com/app/log.htm?' + Math.ceil(new Date/3600000)
+    s.parentNode.insertBefore(r, s);
+})(document, 'script');
+</script>
+<script type="text/javascript"> 
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

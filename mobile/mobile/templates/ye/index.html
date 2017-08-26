@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title>废料产业带_ZZ91废料移动商务</title>
+		<link href="/ye/css/industrial.m.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+		<script>
+			$(window).scroll(function() {
+				if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+					loadMore(document.getElementById("loadMore"));
+				}
+			});
+
+			function loadMore(objdiv) {
+				var self = objdiv
+				var pageobj = document.getElementById("pageindex");
+				var page = pageobj.value;
+				pageobj.value = parseInt(page) + 1
+				self.innerHTML = "加载中...";
+				$.get("/ye/ye_more/", {
+						page: pageobj.value,
+						industry: "{{industry}}",
+					},
+					function(data, status) {
+						if (status == "success" && data != "err\n" && data != "") {
+							self.style.display = "block";
+							$("#ok").append(data);
+							self.innerHTML = "点击后加载更多内容";
+						} else {
+							self.style.display = "none";
+						}
+					});
+			};
+		</script>
+	</head>
+
+	<body>
+		{%include 'ye/top.html'%}
+		<div id="deal">
+			<dl id="deal-details" class="list">
+				<dt>市场类目</dt>
+				<dd class="detail-title">
+					<span class="set"></span>
+					<h6><a href="1000/">废金属</a></h6>
+				</dd>
+				<dd>
+					<div>
+						<p class="detail-group">
+							<a href="/ye/1000/10001010.html" class="cell dg-item">稀贵金属</a>
+							<a href="/ye/1000/10001011.html" class="cell dg-item">混合金属</a>
+							<a href="/ye/1000/10001101.html" class="cell dg-item">废金属处理设备</a>
+						</p>
+						<p class="detail-group">
+							<a href="/ye/1000/10001100.html" class="cell dg-item">再生金属</a>
+							<a href="/ye/1000/10001000.html" class="cell dg-item">废钢铁</a>
+							<a href="/ye/1000/10001001.html" class="cell dg-item">有色金属</a>
+						</p>
+					</div>
+				</dd>
+				<dd class="detail-title">
+					<span class="bubble"></span>
+					<h6><a href="1001/">废塑料</a></h6>
+				</dd>
+				<dd>
+					<div>
+						<p class="detail-group">
+							<a href="1001/10011000.html" class="cell dg-item">再生颗粒</a>
+							<a href="1001/10011001.html" class="cell dg-item">塑料助剂</a>
+							<a href="1001/10011010.html" class="cell dg-item">塑料加工设备</a>
+						</p>
+					</div>
+				</dd>
+				<dd class="detail-title">
+					<span class="crane"></span>
+					<h6><a href="1002/">二手设备</a></h6>
+				</dd>
+				<dd>
+					<div>
+						<p class="detail-group">
+							<a href="/ye/1002/100211101.html" class="cell dg-item">塑料设备</a>
+							<a href="/ye/1002/100211100.html" class="cell dg-item">矿业设备</a>
+							<a href="/ye/1002/100210010.html" class="cell dg-item">工程设备</a>
+						</p>
+						<p class="detail-group">
+							<a href="/ye/1002/100210011.html" class="cell dg-item">化工设备</a>
+							<a href="/ye/1002/100211011.html" class="cell dg-item">电力设备</a>
+							<a href="/ye/1002/100211010.html" class="cell dg-item">电子设备</a>
+						</p>
+						<p class="detail-group">
+							<a href="/ye/1002/100211110.html" class="cell dg-item">印刷设备</a>
+							<a href="/ye/1002/100210001.html" class="cell dg-item">机床设备</a>
+							<a href="/ye/1002/100210000.html" class="cell dg-item">交通工具</a>
+						</p>
+						<p class="detail-group">
+							<a href="/ye/1002/100211000.html" class="cell dg-item">制冷设备</a>
+							<a href="/ye/1002/100211001.html" class="cell dg-item">纺织设备</a>
+							<a href="" class="cell"></a>
+						</p>
+					</div>
+				</dd>
+			</dl>
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- 微门户 -->
+			<ins class="adsbygoogle"
+			     style="display:block"
+			     data-ad-client="ca-pub-5512236620584335"
+			     data-ad-slot="8274972003"
+			     data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+			<dl class="list">
+				<dd>
+					<dl class="list" id='ok'>
+						<dt>相关产业带</dt> {% for list in aboutyelist%}
+						<dd>
+							<a href="/ye/ye_detail/{{list.words}}.html" class="react">
+								<div class="dealcard">
+									<div class="dealcard-img imgbox" data-src="">
+										<img src="{{list.pic_address}}" />
+									</div>
+									<div class="dealcard-right">
+										<div class="dealcard-brand oow">{{list.name}}</div>
+										<div class="title text-block">{{list.introduction}}</div>
+										<div class="info">
+											<span class="seller">市场商家（<font class="red">{{list.company_num}}</font>）户</span>
+											<span class="trade">市场供求（<font class="red">{{list.product_num}}</font>）条</span>
+										</div>
+									</div>
+								</div>
+							</a>
+						</dd>
+						{% endfor %}
+					</dl>
+				</dd>
+			</dl>
+		</div>
+
+		<input type="hidden" id="pageindex" value="1" />
+		<div id="loadMore" onClick="loadMore(this);" style="text-align:center;margin-left:10px;margin-right:10px;background: #fff;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;">加载更多……</div>
+	{%include 'ye/bottom.html'%}
+	</body>
+
+</html>

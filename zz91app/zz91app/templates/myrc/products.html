@@ -1,0 +1,73 @@
+<div id="slider" class="mui-slider">
+<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_products/?checkStatus=1&company_id={{company_id}}');">已审核<span class="mui-badge">{{alist1}}</span></a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_products/?checkStatus=0&company_id={{company_id}}');">审核中<span class="mui-badge mui-badge-success">{{alist0}}</span></a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_products/?checkStatus=2&company_id={{company_id}}');">未通过<span class="mui-badge mui-badge-success">{{alist2}}</span></a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_products/?checkStatus=3&company_id={{company_id}}');">暂不发布<span class="mui-badge mui-badge-success">{{alist3}}</span></a>
+</div>
+<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-3" style="{%ifequal checkStatus '0'%}margin-left: 25%;{%endifequal%}{%ifequal checkStatus '2'%}margin-left: 50%;{%endifequal%}{%ifequal checkStatus '3'%}margin-left: 75%;{%endifequal%}"></div>
+<ul class="mui-table-view">
+
+<div>
+	<form class="mui-input-group" id="myrc_productslist" name="myrc_productslist">
+		{%for list in qlist%}
+		<div class="mui-checkbox mui-left" style="border-bottom:solid 1px #ccc;">
+			<a href="/products_update/?proid={{list.proid}}"><label>
+				{{list.protitle}} 
+				<p class="mui-ellipsis">刷新时间：{{list.refresh_time}}</p>
+				{%if list.unpass_reason%}
+				<p style="color: #FF3300;">
+					{{list.unpass_reason}}
+				</p>
+				{%endif%}
+				点此修改
+			</label></a>
+			<input name="proid" type="checkbox" value="{{list.proid}}">
+		</div>
+		{%endfor%}
+	</form>
+</div>
+
+</ul>
+{%ifequal listcount 0%}
+<div class="mui-content-padded" style="margin-top: 10px;"><ul class="mui-pager"><li>您还未发布供求信息，<a href="post.html?sep=1">点此发布</a></li></ul></div>
+{%else%}
+<div class="mui-content-padded" style="margin-top: 10px;">
+	<ul class="mui-pager">
+		{% if firstpage %}
+		<li>
+			<a href="javascript:loaddata('http://app.zz91.com/myrc_products/?page={{prvpage}}&checkStatus={{checkStatus}}&company_id={{company_id}}','myrc_products')">
+				上一页
+			</a>
+		</li>
+		{%else%}
+		<li class="mui-disabled">
+			<span>上一页 </span>
+		</li>
+		{%endif%}
+		{% if lastpage%}
+		<li>
+			<a href="javascript:loaddata('http://app.zz91.com/myrc_products/?page={{nextpage}}&checkStatus={{checkStatus}}&company_id={{company_id}}','myrc_products')">
+				下一页
+			</a>
+		</li>
+		{%else%}
+		<li class="mui-disabled">
+			<span>下一页</span>
+		</li>
+		{%endif%}
+	</ul>
+</div>
+{%endifequal%}
+<br /><br />
+</div>
+<nav class="mui-bar mui-bar-tab" id="appbottom">
+<center style="padding-top: 10px;">
+	<button onclick="myrcproducts(document.getElementsByName('proid'),'http://app.zz91.com/products_refresh/')" class="mui-btn-success">刷新</button>
+	<button onclick="refreshall(document.getElementsByName('proid'),'http://app.zz91.com/products_refreshall/')">一键刷新</button>
+	<button onclick="myrcproducts(document.getElementsByName('proid'),'http://app.zz91.com/products_start/')">重新发布</button>
+	<button onclick="myrcproducts(document.getElementsByName('proid'),'http://app.zz91.com/products_stop/')">暂不发布</button>
+	<!--<button onclick="editpro(document.getElementsByName('proid'),'/products_update/')">修改</button>-->
+</center>
+</nav>
+<input type="hidden" id="appnavname" value="我的供求" />

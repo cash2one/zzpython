@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta charset="UTF-8" />
+	<title>供应{{kname}}_求购{{kname}}_{{kname}}价格_{{kname}}_ZZ91再生网(原中国再生资源交易网)</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="{{kname}}价格,{{kname}}行情,{{kname}}回收,今日{{kname}}价格,{{kname}}供应,{{kname}}求购,{{kname}}资讯" />
+	<meta name="description" content="ZZ91再生网{{kname}}标签频道为你提供最新最全的有关{{kname}}价格信息,{{kname}}行情信息,{{kname}}回收信息,{{kname}}供求信息,以及{{kname}}报价资讯信息等" />
+	<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.hack.css" />
+	<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+	<link rel="stylesheet" href="http://tags.zz91.com/tags/css/zz91.tags.css" />
+	<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+	<script src="http://img0.zz91.com/front/js/topbar/jquery.topbar.js"></script>
+	<script src="http://img0.zz91.com/front/js/zz91.common.js"></script>
+</head>
+<body>
+	{% include 'tags/nav.html' %}
+	<div class="wrapper mt2 clearfix">
+		<div class="col-main" id="J-left">
+			<dl class="tag-list clearfix">
+				<dt>标签：<span class="red">{{kname}}</span>的信息列表: </dt>
+				<dd><a href="#">供求信息{{listcount}}条</a></dd>
+				{%if listall_baojia%}<dd><a href="#price">报价{{listcount_baojia}}条</a></dd>{%endif%}
+				{%if listall_news%}<dd><a href="#news">资讯{{listcount_news}}条</a></dd>{%endif%}
+			</dl>
+			<div class="info-wrap">
+				<div class="info-hd clearfix">
+					<h2>{{kname}}供应信息{{kname}}求购信息</h2>( <a href="http://trade.zz91.com/offerlist--a--b--c--d--e--f--p1--{{adkeywords}}.htm">查看所有{{kname}}交易信息</a> | <a href="http://trade.zz91.com/offerlist--a2--b--c--d--e--f--p1--{{adkeywords}}.htm">查看所有{{kname}}求购信息</a>) <a href="http://www.kl91.com" target=_blank class="green">精确报价,买卖商机, 尽在塑料颗粒网</a>
+					<span class="total">共有<b>{{kname}}</b>信息<em class="red">{{listcount}}</em>条 | <a href="/s/{{keywords_hex}}-1/">更多>></a></span>
+				</div>
+			<div style=""><script type="text/javascript" src="http://gg.zz91.com/show?p=373&keywords={{adkeywords}}"></script></div>
+				
+				<div class="info-bd">
+				{%if listall_keycomp%}
+				{% for list in listall_keycomp %}
+					<div class="item">
+						<h4><a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target=_blank>{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}</a></h4>
+						{%if list.vipflag.vipcheck%}
+						<img src="{{list.vipflag.vippic}}" alt="{{list.vipflag.vipname}}" width="20"/> <span class="brand">{{list.vipflag.vipname}}</span> <a href="http://{{list.vipflag.vipsubname}}.zz91.com/" target=_blank class="cpy">{{list.com_name}}</a>
+						{%else%}
+						<a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target=_blank  class="cpy">{{list.com_name}}</a>
+						{%endif%}
+						<span class="t">{{list.pdt_time_en}}</span>
+						<p>{{list.pdt_detail}}....</p>
+					</div>
+				{% endfor %}
+				{%endif%}
+				{%if listall%}
+				{% for list in listall %}
+					<div class="item">
+						<h4><a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target=_blank>{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}</a></h4>
+						{%if list.vipflag.vipcheck%}
+						<img src="{{list.vipflag.vippic}}" alt="{{list.vipflag.vipname}}" width="20"/> <span class="brand">{{list.vipflag.vipname}}</span> <a href="http://{{list.vipflag.vipsubname}}.zz91.com/" target=_blank class="cpy">{{list.com_name}}</a>
+						{%else%}
+						<a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target=_blank  class="cpy">{{list.com_name}}</a>
+						{%endif%}
+						<span class="t">{{list.pdt_time_en}}</span>
+						<p>{{list.pdt_detail}}....</p>
+					</div>
+				{% endfor %}
+				{%endif%}
+					<div class="cmore"><a href="/s/{{keywords_hex}}-1/">点此查看更多>></a></div>
+				</div>
+			</div>
+			{%if listall_baojia%}
+			<a id="price"></a>
+			<div class="info-wrap mt2">
+				<div class="info-hd clearfix">
+					<h2>{{kname}}报价信息</h2>
+					<span class="total">共有此类信息<em class="red">{{listcount_baojia}}</em>条 | <a href="/a/{{keywords_hex}}-1/">更多>></a></span>
+				</div>
+				<div class="info-bd">
+					<ul class="info-list">
+						{% for list in listall_baojia %}
+						<li><a href="http://price.zz91.com/priceDetails_{{list.td_id}}.htm" target=_blank>{{list.td_title}}</a><span class="t">{{list.td_time}}</span></li>
+						{% endfor %}
+					</ul>
+					<div class="cmore"><a href="/a/{{keywords_hex}}-1/">点此查看更多>></a></div>
+				</div>
+			</div>
+			{%endif%}
+			{%if listall_news%}
+			<a id="news"></a>
+			<div class="info-wrap mt2">
+				<div class="info-hd clearfix">
+					<h2>{{kname}}资讯信息</h2>
+					<span class="total">共有此类信息<em class="red">{{listcount_news}}</em>条 | <a href="/b/{{keywords_hex}}-1/" target=_blank>更多>></a></span>
+				</div>
+				<div class="info-bd">
+					<ul class="info-list">
+						{% for list in listall_news %}
+						<li><a href='http://huzhu.zz91.com/viewReply{{list.td_id}}.htm' target='_blank'>{{list.td_title}}</a><span class="t">{{list.td_time}}</span></li>
+						{% endfor %}
+					</ul>
+					<div class="cmore"><a href="/b/{{keywords_hex}}-1/">点此查看更多>></a></div>
+				</div>
+			</div>
+			{%endif%}
+			<script type="text/javascript">/*728*90，创建于2012-8-2*/ var cpro_id = 'u1007756';</script><script src="http://cpro.baidu.com/cpro/ui/c.js" type="text/javascript"></script>
+		</div>
+		<div class="col-sub" id="J-right">
+			<div class="sub-wrap">
+				
+				<div class="sub-hd">最新产品报价</div>
+				<div class="sub-bd">
+					<ul class="list">
+						{% for list in listall_customerPrice %}
+						<li class="t"><a href="http://price.zz91.com/companyprice/priceDetails.htm?id={{list.id}}" target='_blank'>{{list.pdt_name}}</a>{{list.pdt_price}}</li>
+						{% endfor %}
+						
+					</ul>
+					<a href="http://price.zz91.com/companyprice" class="cmore">>>查看更多</a>
+				</div>
+			</div>
+			<div class="sub-wrap mt">
+				<div class="sub-hd">搜索标签</div>
+				<div class="sub-bd">
+					<form id="form1" name="form1" method="get" action="/search/a/">
+					<input name="tagName" id="tagName" type="text" style="width: 116px" />
+					<input type="submit" value="搜索" style="width:38px;"/>
+				</form>
+				</div>
+			</div>
+			<div class="sub-wrap mt">
+				<div class="sub-hd">相关标签</div>
+				<div class="sub-bd">
+					<ul class="relate">
+						{% for list in listall_tags %}
+						<li class="o{{list.classid}}"><a href='http://tags.zz91.com/s/{{list.kname_hex}}/' target='_blank'>{{list.kname}}</a></li><li>|</li>
+						{% endfor %}
+						
+					</ul>
+					<a href="" class="cmore">>>查看所有标签</a>
+				</div>
+			</div>
+			<div class="sub-wrap price mt">
+				<div class="sub-hd"><a href="http://price.zz91.com/news/">二手设备资讯中心</a></div>
+				<div class="sub-bd">
+					<ul>
+						{% include 'tags/shebeinews.html' %}
+					</ul>
+				</div>
+			</div>
+			<div class="sub-wrap daohang mt">
+				<div class="sub-hd"><a href="http://daohang.zz91.com">废料产品导航</a></div>
+				<div class="sub-bd">
+					<ul>
+						{% include 'tags/daohang.html' %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- main end -->
+{% include 'tags/bottom.html' %}
+</body>
+</html>

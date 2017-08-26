@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ZZ91再生网-{{ com_name }}{{ now_month }}月SEO月报</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style type="text/css">
+    	/*header style*/
+    	body {
+    		line-height: 30px;
+    	}
+    	.header {
+    		border-bottom: 1px solid;
+    		margin: 0 auto;
+    	}
+    	.header img {
+    		margin-top: 10px;
+    		margin-bottom: 10px;
+    	}
+    	.top-text {
+    		font-weight: bold;
+    		color: orange;
+    		font-size: 20px;
+    		margin-top: 20px;
+    	}
+    	/*main-content style*/
+    	.main-content, .main-content .container {
+    		margin: 0 auto;
+    	}
+    	.main-content .sp-dz {
+    		margin-top: 5px;
+    	}
+    	.main-content .title {
+    		color: purple;
+    		text-align: center;
+    	}
+    	.sp-dz a {
+    		color: black;
+    		text-decoration: none;
+    	}
+    	.container .mb-gjc, .xg-gjc {
+    		color: orange;
+    		font-weight: bolder;
+    	}
+    	th, tr, td {
+    		white-space: nowrap;
+    		text-align: center;
+    	}
+    	.main-content .zy-text {
+    		color: red;
+    	}
+    	.main-content .cz-jy {
+    		margin-bottom: 10px;
+    	}
+    	.main-content .cz-jy p {
+    		padding-right: 5px;
+    	}
+    	.cz-jy h4 {
+    		color: orange;
+    		font-weight: bold;
+    	}
+    	footer .container {
+    		margin: 0 auto;
+    	}
+    	footer .ft-text {
+    		font-weight: bold;
+    	}
+    	footer .now-time{
+    		margin-top: 5px;
+    	}
+    	footer .foot {
+    		margin: 0 auto;
+    	}
+    	footer .foot p {
+    		text-align: center;
+    		color: #8B8682;
+    	}
+    </style>
+</head>
+<body>
+<div class="header">
+	<div class="container">
+		<img src="http://b.zz91.com/index/images/logo.jpg" width="165">
+		<span class="pull-right top-text">&nbsp;&nbsp;SEO</span>
+	</div>
+</div>
+<div class="main-content">
+	<div class="container">
+	  	<div class="row">
+	  	<div class="col-xs-12 col-md-12">
+		  <p class="sp-dz">商铺地址：<a href="http://{{ com_msb }}/" target="_blank">http://{{ com_msb }}/</a></p>
+		  <h3 class="title">ZZ91再生网-{{ com_name }}{{ now_month }}月SEO月报</h3>
+		  <p>尊敬的ZZ91再生网高级会员：</p>
+		  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;感谢您一直以来对ZZ91再生网(<a href="http://www.zz91.com/" target="_blank"  title="zz91再生网">http://www.zz91.com/</a>)的关注和支持，我们一直都在努力为您提供更好的服务。以下是ZZ91再生网SEO部门为您整理的{{ now_month }}月SEO月报，帮您及时了解您的产品在百度推广情况！</p>
+		</div>
+		</div>
+		<h4 class="mb-gjc">【目标关键词排名】</h4>
+		<div class="table table-responsive mb-gjc-tb">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr style="background-color: #FFA54F;">
+						<th width="50">序号</th>
+						<th width="200">目标关键词</th>
+						<th width="50">排名</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% if result2 %}
+					{% for each_data in result2 %}
+					<tr>
+						<td>{{ each_data.0 | add:"1" }}</td>
+						<td>{{ each_data.1.keywords }}</td>
+						<td style="font-weight: bold;">第{{ each_data.1.baidu_ranking | stringformat:"d" }}名</td>
+					</tr>
+					{% endfor %}
+					{% endif %}
+				</tbody>
+			</table>
+		</div>
+<!-- 		<h4 class="xg-gjc">【相关关键词排名】</h4>
+		<div class="table xg-gjc-tb">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr style="background-color: #FFA54F;">
+						<th width="50">序号</th>
+						<th width="200">相关关键词</th>
+						<th width="50">排名</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>#</td>
+						<td>##</td>
+						<td style="font-weight: bold;">###</td>
+					</tr>
+				</tbody>
+			</table>
+		</div> -->
+		<p class="zy-text text-danger">注:由于搜索引擎不断在调整算法,关键字出现排名波动,上下起伏是正常现象。</p>
+		<div class="cz-jy">
+			<h4>【操作建议】</h4>
+			<p class="glyphicon glyphicon-hand-right">
+				同一种产品建议用不同的信息标题和产品描述来多次发布，避免产品信息的重复性，导致百度不收录。
+			</p><br>
+			<p class="glyphicon glyphicon-hand-right">
+				发布的信息标题和内容描述要与您在其他平台上发布的有所区别，有助于产品信息被收录和排名。
+			</p><br>
+			<p class="glyphicon glyphicon-hand-right">
+				标题和内容描述中要包含您想推广的关键字。
+			</p><br>
+			<p class="glyphicon glyphicon-hand-right">
+				多发布相关关键字的公司动态内容。
+			</p><br>
+			<p class="glyphicon glyphicon-hand-right">
+				合理设置您的产品信息标签（与产品信息相关的标签），方便搜索者更精确的搜索到你的产品信息。
+			</p>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<p class="ft-text">ZZ91再生网将全力支持您的产品推广，感谢您的支持！</p>
+		<span class="pull-right ft-text2">ZZ91再生网http://www.zz91.com/ SEO部 敬上</span><br>
+		<span class="pull-right now-time">{{ now_time }}</span>
+	</div>
+	<div class="foot">
+		<p class="ft-text3">ZZ91再生网全国服务热线：0571-56611111  传真：0571-56637777</p>
+	</div>
+</footer>
+</body>
+</html>

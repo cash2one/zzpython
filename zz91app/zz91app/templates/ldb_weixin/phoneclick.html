@@ -1,0 +1,24 @@
+<link rel="stylesheet" type="text/css" href="http://m.zz91.com/css/ldb_weixin/index.css"/>
+ <div class="box">
+  <center>
+<div class="tab" id="tab">
+    	<div class="tab-name">总点击：{{phonerecords.count}}次</div>
+        <div class="tab-name">总消费：{{phonerecords.sum_click_fee}}元</div>
+        <div style="clear:both"></div>
+{%if listall%}
+{%for list in listall%}
+      <div class="td_lst">
+    	<div class="tab-lst"><a href="/companyinfo/?company_id={{list.company_id}}" target="_blank">{{list.target_name}}</a></div>
+        <div class="tab-lst">
+        	<div class="lst-date">{{list.gmt_created}}</div>
+            <div class="lst-price">{{list.click_fee}}元</div>
+        </div>
+      </div>
+{%endfor%}
+<div id="pulldiv" class='pulldiv' onclick="loadmorep(this,'/ldb_weixin/phoneclickmore.html')" title="/ldb_weixin/phoneclickmore.html"><span class='mui-icon mui-icon-down'></span><span>点此加载更多</span></div>
+{%else%}
+<div class="td_lst" style="text-align:center">无点击消费</div>
+{%endif%}
+</div>
+
+ <input type="hidden" id="appnavname" value="点击清单" />

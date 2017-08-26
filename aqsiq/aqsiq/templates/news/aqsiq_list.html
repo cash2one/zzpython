@@ -1,0 +1,32 @@
+{%extends "index.html"%}
+{%block content%}
+<div class="aqsiq_mainbox">
+	<div class="aqsiq_more_page">
+	<div id="pageleft" style="float:left"> 共<b>&nbsp;{{pages}}</b>&nbsp;条信息&nbsp;&nbsp;<b>1</b>/<b>1</b> 页&nbsp;&nbsp;<b>20</b> /页</div>
+<div align="right" id="pagetop"><font color="#666666">
+  
+  首页&nbsp;上一页
+  
+  &nbsp;下一页&nbsp;尾页
+</div>
+</div>
+
+<br />
+<div class="aqsiq_morelist">
+<ul>
+{%for list in list%}
+<li><a href="newsdetail{{list.id}}.html" target="_blank">{{list.ntitle}}</a></li>
+{%endfor%}
+</ul>
+</div><br />
+<div class="aqsiq_more_page">
+	<div id="pageleft" style="float:left"> 共<b>&nbsp;{{pages}}</b>&nbsp;条信息&nbsp;&nbsp;<b>1</b>/<b>1</b> 页&nbsp;&nbsp;<b>20</b> /页</div>
+<div align="right" id="pagetop"><font color="#666666">
+  
+  首页&nbsp;上一页
+  
+  &nbsp;下一页&nbsp;尾页
+</div>
+</div>
+</div>
+{%endblock%}

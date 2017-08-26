@@ -1,0 +1,44 @@
+<chart>
+    <data>
+        <indexAxis name="月份">
+            <labels>
+                {%for gmt in gmtlist%}{{gmt}},{%endfor%}
+            </labels>
+        </indexAxis>
+        <valueAxis name="报价" unit=""></valueAxis>
+        <dataSets>
+        	{%if chart10list%}
+            <set name="金属价格（10：00）">
+                <values>
+				{%for c10 in chart10list%}{{c10}},{%endfor%}
+                </values>
+            </set>
+            {%endif%}
+            
+        	{%if chart11list%}
+            <set name="金属价格（11：40）">
+                <values>
+				{%for c11 in chart11list%}{{c11}},{%endfor%}
+                </values>
+            </set>
+            {%endif%}
+            
+        	{%if chart14list%}
+            <set name="金属价格（14：55）">
+                <values>
+				{%for c14 in chart14list%}{{c14}},{%endfor%}
+                </values>
+            </set>
+            {%endif%}
+            
+        	{%if feitonglist%}
+            <set name="{{kindname}}">
+                <values>
+				{%for ft in feitonglist%}{{ft}},{%endfor%}
+                </values>
+            </set>
+            {%endif%}
+            
+        </dataSets>
+    </data>
+</chart>

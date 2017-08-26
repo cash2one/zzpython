@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>供求商机定制-ZZ91再生网</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script src="http://img0.zz91.com/zz91/mobile/js/style.js"></script>
+</head>
+<body style="background:#f1f1f1">
+<div class="top">
+    <div class="top-main2">
+		点一下类别即可立即完成订制
+    </div>
+    <div class="cb"></div>
+</div>
+<!--end top-->
+<div class="mt48"></div>
+<form action="save_collect.html" method="post" id="formorder" name="formorder" target=ordertarget>
+{%for p in ordercategorylist%}
+<div class="item">
+	<div class="item-title">
+    	<div class="item-title-img" categorycode="{{p.label}}"><img src="http://img0.zz91.com/zz91/mobile/images/check_icon.jpg" {%if p.selected%}style="display:block"{%endif%}/></div>
+        <!--end item-title-img-->
+        <div class="item-title-text">
+        	<span>{{p.label}}</span>
+        	<input type="checkbox" style="display:none" name="itemparent" id="itemparent" value="{{p.code}}"  />
+        </div>
+        <div class="item-title-icon"></div>
+        <div class="cb"></div>
+    </div>
+    <!--end item-title-->
+    <div class="item-block">
+    <!--<div class="item-title2">
+    	<div class="item-title-img2"><img src="http://img0.zz91.com/zz91/mobile/images/check_icon.jpg" /></div>
+        <div class="item-title-text">
+        	<span>{{p2.title}}</span>
+        </div>
+        <div class="item-title-icon2"></div>
+        <div class="cb"></div>
+    </div>-->
+    <div class="item-div">
+	{%for p2 in p.childlist%}
+    	<div class="item-div-box {%if p2.selected%}item-div-click{%else%}item-div-style{%endif%}" >
+        	{{p2.title}}
+            <div class="item-div-icon" categorycode="{{p2.title}}" {%if p2.selected%}style="display:block"{%endif%}>
+            	<img src="http://img0.zz91.com/zz91/mobile/images/click_ok.png" />
+            </div>
+            <input type="checkbox" name="ordervalue" id="item_div_i" {%if p2.selected%}checked{%endif%} class="item_div_i" value="{{p2.id}}" />
+        </div>
+	{%endfor%}
+    </div>
+    <input type="hidden" class="all" value="0" />
+</div>
+<!--end item-->
+</div>
+{%endfor%}
+<center><div class="lookorder"><a href="/myrc_collect/" target="_blank">立即查看我定制的商机</a></div></center>
+<input type="hidden" name="collect_type" value="1" />
+</form>
+<iframe src="" frameborder="0" name="ordertarget" style="display:none" width="0" height="0"></iframe>
+{%include 'bottom2.html'%}
+
+</body>
+</html>

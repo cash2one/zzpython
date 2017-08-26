@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>再生汇客户管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="http://static.m.zz91.com/layui/css/layui.css" media="all">
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script src="http://static.m.zz91.com/layui/layui.js" charset="utf-8"></script>
+		<script src="http://static.m.zz91.com/aui/js/laytpl.js" charset="utf-8"></script>
+
+		<style>
+			body{
+				padding: 10px;
+				
+			}
+			::-webkit-scrollbar{width:20px;height: 20px;}
+			::-webkit-scrollbar-corner,::-webkit-scrollbar-track{background-color: #5fb878;}
+		</style>
+	</head>
+
+	<body>
+		<form class="layui-form" id="searchfrm" action="">
+		<fieldset class="layui-elem-field" id="searchbar">
+			<legend>搜索</legend>
+			<div class="layui-field-box">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">参展证编号</label>
+						<div class="layui-input-inline">
+							<input type="number" name="zheng_no" placeholder="" value="{{zheng_no}}" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">公司名称</label>
+						<div class="layui-input-inline">
+							<input type="text" name="companyname" autocomplete="off" value="{{companyname}}" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">联系人</label>
+						<div class="layui-input-inline">
+							<input type="text" name="contact" autocomplete="off" value="{{contact}}" class="layui-input">
+						</div>
+					</div>
+					
+					<div class="layui-inline">
+						<label class="layui-form-label">手机</label>
+						<div class="layui-input-inline">
+							<input type="number" name="mobile" autocomplete="off" value="{{mobile}}" class="layui-input">
+						</div>
+					</div>
+					
+
+					<div class="layui-inline">
+						<div class="layui-input-inline">
+							<button class="layui-btn searchbotton" lay-submit="" lay-filter="searchbutton">搜索</button>
+							<button class="layui-btn" type="button" onclick="window.open('add.html')">添加</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		</form>
+		<div class="layui-tab layui-tab-card" lay-filter="docDemoTabBrief" style="float: left;">
+			<ul class="layui-tab-title">
+				<a href="?"><li {%if not ispay and not isnowin and not getzheng%} class="layui-this"{%endif%}>全部</li></a>
+				<a href="?ispay=0"><li {%ifequal ispay '0'%} class="layui-this"{%endifequal%}>未缴费</li></a>
+				<a href="?ispay=1"><li {%ifequal ispay '1'%} class="layui-this"{%endifequal%}>已缴费</li></a>
+				<a href="?getzheng=0"><li {%ifequal getzheng '0'%} class="layui-this"{%endifequal%}>未拿证</li></a>
+				<a href="?getzheng=1"><li {%ifequal getzheng '1'%} class="layui-this"{%endifequal%}>已拿证</li></a>
+				<a href="?isnowin=1"><li {%ifequal isnowin '1'%} class="layui-this"{%endifequal%}>现场客户</li></a>
+			</ul>
+			<div>客户数：{{listcount}}</div>
+			<div class="layui-tab-content">
+				<table class="layui-table" lay-even="" lay-skin="row">
+					<colgroup>
+						<col width="150">
+						<col width="150">
+						<col width="200">
+						<col>
+					</colgroup>
+					<thead>
+						<tr>
+							<th nowrap>参展证编号</th>
+							<th nowrap>公司名称</th>
+							<th nowrap>地区</th>
+							<th nowrap>联系人</th>
+							<th nowrap>联系号码</th>
+							<th nowrap>参会费</th>
+							<th nowrap>是否支付</th>
+							<th nowrap>参展证</th>
+							<th nowrap>付款日期</th>
+							<th nowrap>会员类型</th>
+							<th nowrap>所属销售</th>
+							<th nowrap>是否签到</th>
+							<th nowrap>签到时间</th>
+							<th nowrap>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						{%for list in listall%}
+						<tr class="tr{{list.id}}">
+							<td nowrap>{{list.zheng_no}}</td>
+							<td nowrap>{{list.companyname|safe}}</td>
+							<td nowrap>{%if list.area%}{{list.area}}{%endif%}</td>
+							<td nowrap>{{list.contact}}</td>
+							<td nowrap>{{list.mobile}}</td>
+							<td nowrap>{{list.fee}}</td>
+							<td nowrap>
+								{%ifequal list.ispay 1%}
+									已支付({{list.paytype}})
+								{%else%}
+									<form action="changepay.html" id="form{{list.id}}" method="get" onsubmit="return sumitconfirm(this)">
+										<input type="number" name="fee" id="fee" value="{{d.fee}}" lay-verify="number" placeholder="请输入参会费" autocomplete="off" class="layui-input">
+										<input type="hidden" name="zid" value="{{list.id}}" />
+										<button type="submit" class="layui-btn">确认已付款</button>
+									</form>
+								{%endifequal%}
+							</td>
+							<td nowrap>
+								{%ifequal list.getzheng 1%}
+									已拿
+								{%else%}
+									<a class="layui-btn zhengbotton" zid={{list.id}}>确认已拿证</a>
+								{%endifequal%}
+							</td>
+							<td nowrap>{{list.paytime}}</td>
+							<td nowrap>{%if list.membertype%}{{list.membertype}}{%endif%}</td>
+							<td nowrap>{%if list.salesperson%}{{list.salesperson}}{%endif%}</td>
+							<td nowrap>
+								{%ifequal list.isqiandao 1%}
+									已签到
+								{%else%}
+									<span style="color: #FF0000;">未签到</span>
+								{%endifequal%}
+							</td>
+							<td nowrap>{{list.qiandaotime}}</td>
+							<td nowrap>
+								<a href="javascript:window.open('mod.html?id={{list.id}}')" class="layui-btn">修改</a>
+							</td>
+						</tr>
+						{%endfor%}
+					</tbody>
+				</table>
+				<div id="pagelist"></div>
+			</div>
+			<script id="info-list" type="text/html">
+			<tr class="tr<%d.id%>">
+				<td nowrap><%d.zheng_no%></td>
+				<td nowrap><%d.companyname%></td>
+				<td nowrap><%d.area%></td>
+				<td nowrap><%d.contact%></td>
+				<td nowrap><%d.mobile%></td>
+				<td nowrap><%d.fee%></td>
+				<td nowrap>
+					<span style="<%d.ispaytxt%>">已支付(<%d.paytype%>)</span>
+					<form action="changepay.html" method="get" id="form<%d.id%>" onsubmit="return sumitconfirm(this)" style="<%d.ispaydiv%>">
+						<input type="number" name="fee" id="fee" value="{{d.fee}}" lay-verify="number" placeholder="请输入参会费" autocomplete="off" class="layui-input">
+						<input type="hidden" name="zid" value="<%d.id%>" />
+						<button type="submit" class="layui-btn">确认已付款</button>
+					</form>
+				</td>
+				<td nowrap>
+					<span style="<%d.zhengtxt%>">已拿</span>
+					<a class="layui-btn zhengbotton" style="<%d.zhengdiv%>" zid="<%d.id%>">确认已拿证</a>
+				</td>
+				<td nowrap><%d.paytime%></td>
+				<td nowrap><%d.membertype%></td>
+				<td nowrap><%d.salesperson%></td>
+				<td nowrap>
+					<span style="<%d.qiandaotxt%>">已签到</span>
+					<span style="<%d.qiandaodiv%>"><font color="red">未签到</font></span>
+				</td>
+				<td nowrap><%d.qiandaotime%></td>
+				<td nowrap>
+					<a href="javascript:window.open('mod.html?id=<%d.id%>')" class="layui-btn">修改</a>
+				</td>
+			</tr>
+			</script>
+		</div>
+	</body>
+	
+	<script>
+		var maxid={{maxid}};
+		var maxmodtime={{maxmodtime}};
+		layui.use(['laypage', 'layer'], function() {
+			var laypage = layui.laypage,
+				layer = layui.layer;
+
+			laypage({
+				cont: 'pagelist',
+				pages: {{page_listcount}}, //总页数
+				groups: 10, //连续显示分页数
+				curr:{{page}},
+				jump: function(obj, first){
+					//得到了当前页，用于向服务端请求对应数据
+					var curr = obj.curr;
+					if (!first){
+						window.location='?{{searchurl}}&page='+curr
+					}
+					//
+				}
+			});
+		})
+		$(function(){
+			$(".orderout").on("click", function() {
+				$("#searchfrm").attr("action","orderout.html");
+				$("#searchfrm").submit()
+			})
+			$(".searchbotton").on("click", function() {
+				$("#searchfrm").attr("action","")
+			})
+			$(".zhengbotton").on("click", function() {
+				var self=$(this);
+				if (confirm('确认该客户拿到参展证了吗？')){
+					var ajaxurl="changezheng.html?id="+self.attr("zid");
+					$.getScript(ajaxurl, function() {
+						var result = _suggest_result_.err;
+						if (result){
+							self.hide();
+							self.parent().html('已拿');
+						}
+					})
+					return false
+				}
+			})
+			
+			setInterval(ajaxinfo,3000);// 注意函数名没有引号和括弧！ 
+		})
+		function sumitconfirm(frm){
+			if (confirm('确实确认该客户已经付款了吗？')){
+				if (frm.fee.value=='' || frm.fee.value==0){
+					alert("请输入付款费用！");
+					return false
+				}else{
+					var ajaxurl="changepay.html?id="+frm.zid.value+"&fee="+frm.fee.value
+					$.getScript(ajaxurl, function() {
+						var result = _suggest_result_.err;
+						if (result){
+							$("#"+frm.id).hide();
+							$("#"+frm.id).parent().html('已支付');
+						}
+					})
+					return false
+				}
+			}else{
+				return false;
+			}
+		}
+		function ajaxinfo(){
+			var data={
+				maxid:maxid
+			}
+			zzajax("get","addcompany.html",data,function(ret){
+				var trhtml=''
+				$.each(ret, function(index, item) {
+					if (item.area == null) {
+						item.area = ""
+					}
+					if (item.membertype == null) {
+						item.membertype = ""
+					}
+					if (item.salesperson == null) {
+						item.salesperson = ""
+					}
+					if (item.ispay==1){
+						item.ispaytxt='';
+						item.ispaydiv='display:none';
+					}else{
+						item.ispaytxt='display:none';
+						item.ispaydiv='';
+					}
+					if (item.getzheng==1){
+						item.zhengtxt='';
+						item.zhengdiv='display:none';
+					}else{
+						item.zhengtxt='display:none';
+						item.zhengdiv='';
+					}
+					if (item.isqiandao==1){
+						item.qiandaotxt='';
+						item.qiandaodiv='display:none';
+					}else{
+						item.qiandaotxt='display:none';
+						item.qiandaodiv='';
+					}
+					
+					var getTpl = $("#info-list").html();
+					laytpl(getTpl).render(item, function(html) {
+						trhtml = trhtml + html;
+					});
+					if (item.id>maxid){
+						maxid=item.id;
+					}
+				})
+				$(".layui-table tbody").prepend(trhtml);
+			},function(){
+				
+			})
+			modify()
+		}
+		function modify(){
+			var data={
+				maxmodtime:maxmodtime
+			}
+			zzajax("get","modify.html",data,function(ret){
+				$.each(ret, function(index, item) {
+					var tr=$(".tr"+item.id);
+					if (tr){
+						tr.find("td").eq(1).html(item.companyname);
+						tr.find("td").eq(2).html(item.area);
+						tr.find("td").eq(5).html(item.fee);
+						if (item.ispay==1){
+							tr.find("td").eq(6).html("已支付");
+						}
+						if (item.getzheng==1){
+							tr.find("td").eq(7).html("已拿");
+						}
+						if (item.isqiandao==1){
+							tr.find("td").eq(11).html("已签到");
+						}
+						tr.find("td").eq(12).html(item.qiandaotime);
+						maxmodtime=item.maxmodtime;
+					}
+				})
+			},function(){
+				
+			})
+		}
+	</script>
+
+</html>

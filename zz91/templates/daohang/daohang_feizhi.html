@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>废纸|国外废纸|日废|美废|欧废-ZZ91废纸产品频道导航</title>
+<meta content="废纸,国外废纸,日废,美废,欧废,废纸产品，废纸导航" name="keywords" />
+<meta content="ZZ91废纸产品频道导航是国内最大最旺的网上废料贸易市场,这里为您精选了废纸,国外废纸,日废,美废,欧废,废纸产品等各类废料供求信息,价格行情信息." name="description" />
+{% include 'daohang/head_jscss.html' %}  
+</head>
+<body>
+{% include 'daohang/nav_new.html' %}
+<div class="zz91ProdNavBar1">
+	<ul>
+		{%for ll in daohangtoplist%}
+        <li><a href="#{{ll.id}}">{{ll.label}}</a></li>
+		{%endfor%}
+        <li style="display:inline"><a href="http://daohang.zz91.com/feitie/" target="_blank" >废铁</a></li>
+        <li><a href="http://daohang.zz91.com/feitong/" target="_blank">废铜</a></li>
+        <li><a href="http://daohang.zz91.com/feiluntai/" target="_blank">废轮胎</a></li>
+        <li><a href="http://daohang.zz91.com/feidianping/" target="_blank">废电瓶</a></li>
+        <div style="clear:both"></div>
+    </ul>
+</div>
+<div class="zz91ProdNavBox">
+	{%for list in daohanglist_child%}
+    <div class="zz91ProdNav zz91ProdNavOut" id="zz91ProdNav">
+        <ul id="{{list.id}}">
+                <h2><a href="#" target="_blank" class="ferrous">{{list.label}}</a></h2>               
+					{% for list_child in list.childlist %}	
+                        <li><a href="/{{list_child.pingyin}}/" title="{{list_child.label}}" target="_blank">{{list_child.label}}</a>|</li>
+					{% endfor %} 
+		</ul>
+        
+        <ul class="zz91NavText">
+            <h3 style="color:#F67707">各地{{list.keywords2}}市场价格</h3>
+            {%for list_price in list.priceInfo%}
+            <li>·<a href="http://price.zz91.com/priceDetails_{{list_price.id}}.htm" title="{{list.fulltitle}}" target="_blank">{{list_price.title}}</a></li>
+			{%endfor%}
+        </ul>
+        <div style="clear:both"></div>
+    </div>
+	{%endfor%}
+    </div>
+    <div style="clear:both"></div>
+<div align="center">
+<p>
+其他相关废料频道导航：<a href="http://daohang.zz91.com/feizhi/" target="_blank">废纸产品</a> | <a href="http://daohang.zz91.com/suliao/" target="_blank">废塑料产品</a> | <a href="http://daohang.zz91.com/jinshu/" target="_blank">金属产品</a> | <a href="http://daohang.zz91.com/xiangjiao/" target="_blank">废橡胶产品</a> | <a href="http://daohang.zz91.com/dianzhi/" target="_blank">电子电器</a> | <a href="http://daohang.zz91.com/shebei/" target="_blank">二手设备</a> | <a href="http://daohang.zz91.com/feifangzhi/" target="_blank">纺织产品</a> | <a href="http://daohang.zz91.com/feiliaofuwu/" target="_blank">废料服务</a> |  
+</p>
+</div>
+{% include 'daohang/bottom.html' %}
+
+</div>
+</body>
+</html>

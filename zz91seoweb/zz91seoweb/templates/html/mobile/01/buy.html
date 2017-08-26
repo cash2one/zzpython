@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>供求信息-{{list.name}}</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+<script src="{{htmlincludes.img}}js/jquery.js"></script>
+<script src="{{htmlincludes.img}}js/index.js"></script>
+</head>
+<body>
+
+<script>
+$(window).scroll(function(){
+　　var scrollTop = $(this).scrollTop();
+　　var scrollHeight = $(document).height();
+　　var windowHeight = $(this).height();
+　　if(scrollTop + windowHeight == scrollHeight){
+　　　　htmlobj=$.ajax({
+			url:"productsmore{{company_id}}-"+$("#nextpage").val()+".htm",
+			async:false
+		});
+	var a=parseInt($("#nextpage").val());
+	$("#nextpage").val(a+1);
+	var htmlinfo=$("#item").html();
+	if (a<={{prolistcount}}){
+		$("#item").html(htmlinfo+htmlobj.responseText);
+	}else{
+		$(".phoneItem-more").html('');
+	}
+　　}
+});
+</script>
+<input type=hidden id="nextpage" value=1>
+
+
+{%include "html/mobile/01/top.html"%}
+
+
+{%if gongying%}
+<div class="phoneInfo">
+	<img src="{{htmlincludes.img}}images/sell_icon.jpg" />供应信息
+</div>
+{%else%}
+<div class="phoneInfo">
+	<img src="{{htmlincludes.img}}images/buy_icon.jpg" />求购信息
+</div>
+{%endif%}
+<!--end phoneInfo-->
+
+<div class="phoneBox">
+{%for l in prolist%}
+    <a href="/mobile/productdetail{{l.pdt_id}}.htm">
+	<div class="phoneItem">
+    	<div class="phoneItem-img">
+        	<img src="{{l.pdt_images}}" />
+        </div>
+        <div class="phoneItem-box">
+        	<div class="phoneItem-box-text">
+            	{{l.products_type}}{{l.pdt_name}}
+            </div>
+            <div class="phoneItem-box-button">
+                <div class="phoneItem-button-img2">
+                	<img src="{{htmlincludes.img}}images/icon5.jpg" />
+                </div>
+                <div class="cb"></div>
+            </div>
+            <div class="cb"></div>
+        </div>
+        <div class="cb"></div>
+    </div>
+    </a>
+{%endfor%}
+
+    <div id="item"></div>
+    <center>
+    <div class="phoneItem-more">
+    	<img src="{{htmlincludes.img}}images/load.jpg" />
+    </div>
+    <!--end phoneItem-more-->
+    </center>
+</div>
+<!--end phoneBox-->
+<div class="phoneRuturntop">
+	<img src="{{htmlincludes.img}}images/ruturn_top.jpg" class="fr" onclick="bookmarks();" />
+    <div class="cb"></div>
+</div>
+<!--phoneRuturntop-->
+<!--end phoneFooterText-->
+{%include "html/mobile/01/foot.html"%}
+<!--end phoneFooter-->
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+</head>
+<body>
+<form class="form-inline definewidth m20">
+<button type="button" class="btn btn-success" onClick="window.location.href='addwebartical.html?wtype={{wtype}}'">添加问答</button>&nbsp;&nbsp;
+帐号：<input type="text" style="width:100px" name="account" {%if account%}value={{account}}{%endif%}>&nbsp;&nbsp;  
+<input class="btn btn-success" type="submit" value="查询">
+</form>
+{{loginrecordyear}}
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>帐号</th>
+        <th>日期</th>
+        <th width="100px">主贴标题</th>
+        <th width="100px">标题</th>
+        <th width="300px">内容</th>
+        <th>审核状态</th>
+        <th>发布来源</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {%for list in listall%}
+	     <tr>
+	     <td>{{list.account}}</td>
+	     <td>{{list.gmt_created}}</td>
+	     <td>{{list.bbs_post_title}}</td>
+	     <td>{{list.title}}</td>
+	     <td>{{list.content|safe}}</td>
+	     <td>{{list.check_name}}</td>
+	     <td>{{list.postsource}}</td>
+	     <td>
+<a href="?artid={{list.id}}" title="编辑"><img src="123/imgs/gtk-edit.png"></a>&nbsp;&nbsp;
+<a href="delastdbsimp.html?id={{list.id}}&db=bbs_post_reply" onClick="return confirm('是否将此信息删除?')" title="删除"><img src="123/imgs/b_drop.png"></a>
+	     </td>
+        </tr>
+	{%endfor%}
+</table><br />
+
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<a href='?page=1&{{searchurl}}' >首页</a><a href='?page={{page_listcount}}&{{searchurl}}' >尾页</a> 
+</div>
+</body>
+</html>

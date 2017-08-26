@@ -1,0 +1,41 @@
+{%include 'new/head.html'%}
+<style>
+	.m-main .button {
+		text-align: center;
+		margin: 10px;
+		border: solid 1px #006600;
+		background-color: #006600;
+		width: 80%;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 10px;
+	}
+	
+	.m-main  a {
+		color: #fff;
+	}
+</style>
+
+<body>
+	<div class="mobile">
+		{%include 'new/top.html'%} {{aaa}}
+		<div class="cb">{{weixinid}}</div>
+		<div style="margin-top:60px;"></div>
+		<div class="m-main">
+			<div class="regtitle">绑定帐号</div>
+			<div class="regbox">
+				<div class="regsuc">绑定成功！</div>
+				<div class="cb"></div>
+			</div>
+			<a href="/products_publish/"><div class="button">发布供应和求购信息</div></a>
+			<a href="/myrc_index/"><div class="button">进入生意管家</div></a>
+			<a href="/trade/"><div class="button">交易中心</div></a>
+			<a href="/jiage/"><div class="button">行情报价</div></a>
+			<a href="/news/"><div class="button">资讯中心</div></a>
+			<div class="cb"></div>
+		</div>
+	</div>
+	{%include 'new/bottom.html'%}
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!--企业信息-->
+<div class="mod mod-proinfo">
+	<div class="m-body">
+		<div class="m-header">
+			<h3>企业信息</h3> 
+		</div>
+		<div class="m-content">
+			<div class="info-detail">
+				<div class="left_logo">
+					<img src="http://img0.zz91.com/zz91/ppc/images/ldblargelogo.jpg"/>
+					<a class="lv_icon lv{{list.ldblevel}}" target="_blank"></a>
+				</div>
+				<p class="business-name">{{list.name}}{%if list.viptype.vipcheck%}<span style="color:red;font-weight:normal;font-size:12px">[已认证]</span>{%endif%}</p>
+				<span>联系人：</span>{{list.contact}} <p>{{list.position}}</p>
+				<br />
+				{%if list.ppcphone%}
+					<span>电话：</span><p style="color:#F00">{{list.ppcphone}}</p>
+				{%endif%}
+				<br />
+				<span>所在地区：</span><p>{{list.province}}</p>
+				<br />
+				<span>经营范围：</span><p>{{list.introduction_s}}</p>
+				<br />
+				<span>经营模式：</span><p>{{list.industry}}</p>
+				<br />
+				<span>地址：</span> {{list.address}}
+				{%if list.companymarket%}
+				<br />
+				<span>入住市场：</span><p><a href="{{list.companymarket.url}}" target="_blank">{{list.companymarket.name}}</a></p>
+				{%endif%}
+				<!--<p class='online-collect'>
+            	                    <a href="leavewords.html" class="online-ask J_fsxjd" rel="nofollow">在线询价</a>
+            	                    <span><a href="#" login="false" class="collect-this js_shoucang" rel="nofollow">收藏该企业</a></span>
+           	                  </p>-->
+			</div> 
+		</div>
+	</div> 
+</div>
+<!--企业信息结束-->
+<!--联系方式-->
+<script src="http://pyapp.zz91.com/getdomainhtml{{company_id}}.html"></script>
+<!--<div class="mod mod-proinfo">
+	<div class="m-body">
+		<div class="m-header">
+			<h3>手机微站</h3> 
+		</div>
+		<div class="m-content">
+			
+			<div class="info-detail" style="margin-top:0px; text-align:center; width:100%">
+				用手机查看我的微站
+				<img src='http://pyapp.zz91.com/getdomainpic{{company_id}}.html' />
+			</div> 
+		</div>
+	</div>
+</div>-->
+<!--企业信息结束-->
+<script>
+	// 点击展示400号码
+	$(".clickToShow").click(function(){
+		$(this).hide();
+		$(this).next().show();
+		$.getScript("http://www.zz91.com/app/mongoClickPhone.htm?tel={{list.ppcphone}}");
+	});
+</script>

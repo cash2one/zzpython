@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>3-15诚信客户推荐</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" href="http://subject.zz91.com/comm/comm.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script src="js/style.js"></script>
+</head>
+<body>
+<div style="width:100%;background-color:#f9f7ec;">
+	<div style="width:980px;margin:0 auto">
+		{%include 'html/comm/top.html'%}
+    </div>
+</div>
+<div class="top"></div>
+<!--end top-->
+<div class="img1">
+<a id="step"></a>
+	<div class="block">
+    	<a href="index.html#step" class="l1"></a>
+        <a href="step1.html#step" class="l2"></a>
+        <a href="step2.html#step" class="l3"></a>
+		<a href="http://subject.zz91.com/prevent/index.html" target="_blank" class="a1"></a>
+        <a href="http://subject.zz91.com/cxda/index.html" target="_blank" class="a2"></a>
+    </div>
+</div>
+<!--end img1-->
+<div class="img2">
+	<div class="block" id="s1">
+    	<ul>
+		{%for list in companylist%}
+        	<li>
+            <div class="item">
+                <div class="item-img">
+				{%if list.domain_zz91%}
+                    <a href="http://{{list.domain_zz91}}.zz91.com/cxda.htm" target="_blank"><img src="{{list.company_pic}}" /></a>
+				{%else%}
+					<a href="http://company.zz91.com/compinfo{{list.company_id}}.htm" target="_blank"><img src="{{list.company_pic}}" /></a>
+				{%endif%}
+                </div>
+                <!--end item-img-->
+                <div class="item-text">
+				{%if list.domain_zz91%}
+                    <a href="http://{{list.domain_zz91}}.zz91.com/cxda.htm" target="_blank">{{list.company_name}}</a><br />
+                {%else%}
+					<a href="http://company.zz91.com/compinfo{{list.company_id}}.htm" target="_blank">{{list.company_name}}</a><br />
+				{%endif%}
+					诚信指数：<font style="color:#f00">{{list.integral}}</font><br />
+                    主营：{{list.company_business}}...
+                </div>
+                <!--end item-text-->
+            </div>
+            </li>
+        {%endfor%}
+            <div class="cb"></div>
+        </ul>
+        <a href="http://myrc.zz91.com/credit/creditbaseinfo/index.htm?flag=1" target=_blank><div class="float-click">&nbsp;&nbsp;&nbsp;&nbsp;</div></a>
+        
+        <!--end float-->
+    </div>
+    <div style="width:960px;margin:0 auto;text-align:center;border-top:2px solid #b02111;margin-top:70px">
+        {% include 'html/comm/buttom.html' %}
+    </div>
+</div>
+<!--end img2-->
+
+
+</body>
+</html>

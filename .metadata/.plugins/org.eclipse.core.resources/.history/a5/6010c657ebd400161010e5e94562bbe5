@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <style type="text/css">
+        .aui-list-item.wechat-top {
+            background-color: #f3f3f7;
+        }
+        .aui-list .wechat-avatar {
+            width:3rem;
+        }
+        .wechat-avatar .aui-row-padded {
+            background-color: #dddee0;
+            padding: 0.1rem;
+            border-radius: 0.2rem;
+            margin-left: -0.05rem;
+            margin-right: -0.05rem;
+        }
+        .wechat-avatar .aui-row-padded [class*=aui-col-xs-] {
+            padding: 0.05rem;
+        }
+        .wechat-avatar,
+        .wechat-avatar > img {
+            border-radius:0.2rem;
+        }
+    </style>
+</head>
+<body>
+	<div class="aui-content aui-margin-b-15">
+        <ul class="aui-list aui-media-list">
+            <!--<li class="aui-list-item wechat-top">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon1-mobile"></i>
+                    </div>
+                    <div class="aui-list-item-inner">
+                        Mac 微信已登录
+                    </div>
+                </div>
+            </li>
+           -->
+            
+            <li class="aui-list-item aui-list-item-middle hottag">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media wechat-avatar">
+                        <!--<div class="aui-badge">9</div>-->
+                        <img src="../../image/hottag.png" />
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">热门标签</div>
+                            <div class="aui-list-item-right"></div>
+                        </div>
+                        <div class="aui-list-item-text aui-font-size-12 tagstext">
+                            精彩标签，让你随时关注
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-list-item-middle hotnews">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media wechat-avatar">
+                        <img src="../../image/hot.jpg" />
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">一周热文</div>
+                            <div class="aui-list-item-right"></div>
+                        </div>
+                        <div class="aui-list-item-text aui-font-size-12">
+                            为你精选一周内热门相关文章
+                        </div>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="aui-list-item aui-list-item-middle rili">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media wechat-avatar">
+                        
+                        <img src="../../image/rili.jpg" />
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">万年历</div>
+                            <div class="aui-list-item-right"></div>
+                        </div>
+                        <div class="aui-list-item-text aui-font-size-12">
+                            
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-list-item-middle weather">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media wechat-avatar">
+                        
+                        <img src="../../image/loading_more.gif" class="weatherimg" />
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">天气</div>
+                            <div class="aui-list-item-right"></div>
+                        </div>
+                        <div class="aui-list-item-text aui-font-size-12 weathertxt">
+                            最新天气预报
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-list-item-middle kuaidi">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media wechat-avatar">
+                        <!--<div class="aui-dot"></div>>-->
+                        <img src="../../image/kuaidi.jpg" />
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">快递查询</div>
+                            <div class="aui-list-item-right"></div>
+                        </div>
+                        <div class="aui-list-item-text aui-font-size-12">
+                           各大快递公司单号随时查询
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-list-item-middle shop">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media wechat-avatar">
+                        <div class="aui-dot"></div>
+                        <img src="../../image/shop.png" />
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">商城</div>
+                            <div class="aui-list-item-right"></div>
+                        </div>
+                        <div class="aui-list-item-text aui-font-size-12">
+                            这里可能有你想要的商品
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="aui-searchbar-wrap" style="position: fixed;bottom: 0px;width: 100%;background-color: #E1E1E1">
+        <div class="aui-searchbar aui-border-radius" tapmode onclick="doSearch()">
+            <i class="aui-iconfont aui-icon-search"></i>
+            <div class="aui-searchbar-text">输入你感兴趣的关键词</div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/iscroll.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+	var X5broser = null;
+	apiready = function(){
+		X5broser = api.require('webBrowser');
+		$("body").on("click",".hottag",function(){
+			var pageParam = {
+	          wintitle:"热门标签",
+	          type:"hottag",
+	          bounces:true,
+	        };
+	        //alert(infoid)
+	        openWin("hottag","../main/tag.html",pageParam);
+	    });
+	    $("body").on("click",".shop",function(){
+	        X5broser.open({
+				url: "https://weidian.com/?userid=944174356",
+				//progress:{
+				//	color:'#F0F'
+				//},
+				//titleBar:{
+				//	visible:true,
+				//	bg:'#FF0',
+				//	textColor:'#00F'
+				//}
+			}, function(ret){
+				//console.log(JSON.stringify(ret));
+			});
+        })
+        //日历
+        
+        $("body").on("click",".rili",function(){
+	        X5broser.open({
+				url: "https://m.baidu.com/from=844b/s?word=%E5%85%AC%E5%8E%86%E5%86%9C%E5%8E%86%E8%BD%AC%E6%8D%A2",
+				//progress:{
+				//	color:'#F0F'
+				//},
+				//titleBar:{
+				//	visible:true,
+				//	bg:'#FF0',
+				//	textColor:'#00F'
+				//}
+			}, function(ret){
+				//console.log(JSON.stringify(ret));
+			});
+        })
+        $("body").on("click",".kuaidi",function(){
+	        X5broser.open({
+				url: "http://m.kuaidi100.com/",
+				//progress:{
+				//	color:'#F0F'
+				//},
+				//titleBar:{
+				//	visible:true,
+				//	bg:'#FF0',
+				//	textColor:'#00F'
+				//}
+			}, function(ret){
+				//console.log(JSON.stringify(ret));
+			});
+        })
+        
+        $("body").on("click",".hotnews",function(){
+	        var pageParam = {
+	          wintitle:"一周热文",
+	          type:"hot",
+	          bounces:false,
+	        };
+	        //alert(infoid)
+	        openWin("hotnews","../list/list1.html",pageParam);
+	        
+        })
+        $("body").on("click",".onlinefriend",function(){
+			X5broser.open({
+				url: "https://weidian.com/?userid=944174356",
+				//progress:{
+				//	color:'#F0F'
+				//},
+				//titleBar:{
+				//	visible:true,
+				//	bg:'#FF0',
+				//	textColor:'#00F'
+				//}
+			}, function(ret){
+				//console.log(JSON.stringify(ret));
+			});	        
+        })
+        //天气预报
+        $("body").on("click",".weather",function(){
+			X5broser.open({
+				url: "http://bdmap.weather.com.cn/mweather/",
+				//progress:{
+				//	color:'#F0F'
+				//},
+				//titleBar:{
+				//	visible:true,
+				//	bg:'#FF0',
+				//	textColor:'#00F'
+				//}
+			}, function(ret){
+				//console.log(JSON.stringify(ret));
+			});	        
+        })
+        
+        ajaxinfo();
+	};
+	function ajaxinfo(){
+		zzappajax("get",hosturl+"/app/find.html","",function(ret){
+			var tagscount=ret.tagscount;
+			$(".tagstext").html(tagscount+"个标签，让你随时关注");
+		},function(){})
+		
+		zzappajax("get","http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json","",function(ret){
+			//alert(ret.city)
+			var city=ret.city;
+			
+			zzappajax("get",hosturl+"/app/urlencode.html?city="+city+"&"+(new Date()).getTime().toString(),"",function(ret){
+				var cityen=ret.city;
+				var figure1='';
+				var status1='';
+				var tgd1='';
+				var nowdint=parseInt(ret.nowdint);
+				if (nowdint>=18 || nowdint<=6){
+					figure1=ret.figure2;
+					status1=ret.status2
+					tgd1=ret.tgd2
+				}else{
+					figure1=ret.figure1;
+					status1=ret.status1
+					tgd1=ret.tgd1
+				}
+				var weatherimg="http://php.weather.sina.com.cn/images/yb3/78_78/"+figure1+"_1.png"
+				$(".weatherimg").attr("src",weatherimg)
+				$(".weathertxt").html(city+" "+status1+" "+tgd1+"℃")
+				
+			},function(){})
+			
+			
+			
+			/*
+			
+			api.readFile({
+			    path: 'widget://res/province.json'
+			}, function(ret, err){
+			    if(ret.status){
+			    	//alert(ret.data)
+			        var data = JSON.parse(ret.data);
+			        //alert(data.zone)
+			        var phtml="";
+			        $.each(data.zone, function(i, item) {
+			        	//alert(item.name);
+			        	$.each(item.zone, function(i, item1) {
+				        	$.each(item1.zone, function(i, item2) {
+					        	if (item2.name==city){
+					        		//alert(item2.code);
+					        		if (item2.code && item2.code!=""){
+					        			citycode=item2.code;
+					        			if (citycode!="" && citycode){
+											var weatherurl="http://www.weather.com.cn/data/cityinfo/"+citycode.toString()+".html";
+											zzappajax("get",weatherurl,"",function(ret){
+												$(".weatherimg").attr("src","http://m.weather.com.cn/img/"+ret.weatherinfo.img2)
+												//alert(ret.weatherinfo.city)
+												$(".weathertxt").html(ret.weatherinfo.city+" "+ret.weatherinfo.weather)
+											},function(){})
+											//break;
+										}
+										
+					        		}
+					        	}
+							});
+						});
+					});
+				}
+			});
+			*/
+			//alert(citycode)
+			//获取城市天气
+									
+			
+		},function(){})
+		
+	}
+	
+</script>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="Js/jquery.js"></script>
+    <script type="text/javascript" src="123/function.js"></script>
+    <script type="text/javascript" src="Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="Js/bootstrap.js"></script>
+    <script type="text/javascript" src="Js/ckform.js"></script>
+    <script type="text/javascript" src="Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<form class="form-inline definewidth m20">
+<button type="button" class="btn btn-success" onClick="window.location.href='add_bbs_post.html'">添加问答</button>&nbsp;&nbsp;
+帐号：<input type="text" style="width:100px" name="account" {%if account%}value={{account}}{%endif%}>&nbsp;&nbsp;  
+栏目<select name="typeid" style="width:100px">
+{%if typename%}<option value="{{typeid}}">{{typename}}</option>{%endif%}
+<option value="">--选择栏目</option>
+{%for cl in categorylist%}
+<option value="{{cl.id}}">{{cl.name}}</option>
+{%endfor%}
+</select>&nbsp;&nbsp;
+审核状态<select name="check_status" style="width:85px">
+{%if check_name%}<option value="{{check_status}}">{{check_name}}</option>{%endif%}
+<option value="">--请选择</option>
+<option value="1">已审核</option>
+<option value="0">未审核</option>
+<option value="2">已读</option>
+<option value="3">已退回</option>
+</select>&nbsp;&nbsp;
+推送状态<select name="ispush" style="width:85px">
+{%if push_name%}<option value="{{ispush}}">{{push_name}}</option>{%endif%}
+<option value="">--请选择</option>
+<option value="1">已推送</option>
+<option value="0">未推送</option>
+</select>&nbsp;&nbsp;
+推送类别<select name="guanzhu_id" style="width:85px">
+{%if guanzhu_name%}<option value="{{guanzhu_id}}">{{guanzhu_name}}</option>{%endif%}
+<option value="">--请选择</option>
+<option value="1">废金属</option>
+<option value="2">废塑料</option>
+<option value="3">综合废料</option>
+</select>&nbsp;&nbsp;
+{%ifequal ispush '1'%}
+{%endifequal%}
+
+<input class="btn btn-success" type="submit" value="查询">
+</form>
+<form action="pushtype.html">
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>选择</th>
+        <th width="80px">帐号</th>
+        <th width="80px">日期</th>
+        <th width="200px">标题</th>
+        <th width="200px">内容</th>
+        <th>审核状态</th>
+        <th>被访问数</th>
+        <th width="30px">回复数</th>
+        <th width="65px">最新回复时间</th>
+        <th>发布来源</th>
+        <th>模块</th>
+        {%ifequal ispush '1'%}
+        <th>推送类型</th>
+        {%endifequal%}
+        
+        <th>操作</th>
+    </tr>
+    </thead>
+    {%for list in listall%}
+	     <tr>
+	     <td><input type="checkbox" name="checktitle" value="{{list.id}}"></td>
+	     <td><a href="http://admin1949.zz91.com/web/zz91/crm/company/detail.htm?companyId={{list.company_id}}" target="_blank">{{list.account}}</a></td>
+	     <td>{{list.gmt_created}}</td>
+	     <td><a href="{{list.weburl}}" target="_blank">{{list.title}}</a></td>
+	     <td ><div style="height:100px;overflow: auto;"><a href="{{list.weburl}}" target="_blank">{{list.content|safe}}</a></div></td>
+	     <td>{{list.check_name}}</td>
+	     <td>{{list.visited_count}}</td>
+	     <td><a href="replylist.html?postid={{list.id}}">{{list.reply_count}}</a></td>
+	     <td>{%if list.reply_time%}{{list.reply_time}}{%endif%}</td>
+	     <td>{{list.postsource}}</td>
+	     <td>{{list.bbs_post_category}}</td>
+	    {%ifequal ispush '1'%}
+        <td>{{list.guanzhu_name}}</td>
+        {%endifequal%}
+	     
+	     <td>
+{%if is_del%}
+<a href="del_bbs_post.html?postid={{list.id}}&is_del=0" onClick="return confirm('是否还原此信息?')" title="还原"><img src="123/imgs/d-revert.png"></a>
+{%else%}
+<a href="update_bbs_post.html?postid={{list.id}}" title="编辑"><img src="123/imgs/gtk-edit.png"></a>&nbsp;&nbsp;
+<a href="del_bbs_post.html?postid={{list.id}}&is_del=1" onClick="return confirm('是否将此信息删除?')" title="删除"><img src="123/imgs/b_drop.png"></a>
+{%endif%}
+	     </td>
+        </tr>
+	{%endfor%}
+</table>
+<br />
+&nbsp;&nbsp;<input type="submit" class="btn btn-success" value="推送到">&nbsp;&nbsp;
+废金属 <input type="checkbox" name="checktype" value="1">
+废塑料 <input type="checkbox" name="checktype" value="2">
+综合废料 <input type="checkbox" name="checktype" value="3">
+</form>
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<a href='?page=1&{{searchurl}}' >首页</a><a href='?page={{page_listcount}}&{{searchurl}}' >尾页</a> 
+</div>
+</body>
+</html>

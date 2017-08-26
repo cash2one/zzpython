@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+function Dsy(){
+	this.Items = {};
+}
+Dsy.prototype.add = function(id,iArray){
+	this.Items[id] = iArray;
+}
+Dsy.prototype.Exists = function(id){
+	if(typeof(this.Items[id]) == "undefined") return false;
+	return true;
+}
+var dsy = new Dsy();
+{{strvalue|safe}}
+//dsy.add("10",[["澳门特别行政区",'1000'],['kkk','1001']]);
+//dsy.add("1000",[["bb",'100001'],['cc','100002']]);
+//dsy.add("100001",[["dd",'10000101'],['ee','10000102']]);
+//dsy.add("10000102",[["ff",'1000010201'],['gg','1000010202']]);
+function change(code,v){
+	var ss=document.getElementById(s[v]);
+	if (ss)
+	{
+		with(ss){
+			if(dsy.Exists(code)){
+				length = 0;
+				options[0]=new Option(opt0[v],opt0[v]);
+				ar = dsy.Items[code];
+				for(i=0;i<ar.length;i++){
+					options[length]=new Option(ar[i][0],ar[i][1]);
+				}//end for
+				if(code){ options[0].selected = true; }
+			}else{
+				length = 0;
+				options[0]=new Option(opt0[v],opt0[v]);
+			}
+			onchange=function ()
+			{
+				change(options[options.selectedIndex].value,v+1);
+				var l=s.length;
+				for (var ii=v+2;ii<=l-1;ii++)
+				{
+					var ssa=document.getElementById(s[ii]);
+					if (ssa)
+					{
+						with(ssa){
+							length = 0;
+							options[0]=new Option(opt0[ii],opt0[ii]);
+						}
+					}
+				}
+			}
+		}	
+	}
+}
+function selectOption(menuname,value)
+{
+    var menu = document.getElementById(menuname);
+	if (menu)
+	{
+		for(var i=0;i<=menu.options.length;i++){
+			if(menu.options[i].value==value)
+			{
+				menu.options[i].selected = true;
+				break;
+			}
+		}
+	}
+}
+function getselectOption(code,v)
+{
+	var n=(code.length / v)-1;
+	if (n>=0)
+	{
+		var code1;
+		var code2;
+		
+		for (var i=0;i<=n+1;i++)
+		{
+			code1=code.substr(0,v*(i+1));
+			code2=code.substr(0,v*(i+2));
+			change(code1,i);
+			selectOption(s[i],code2)
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+<select id="s_province" name="s_province"></select>
+<select id="s_city" name="s_city"></select>
+<select id="s_county" name="s_county"></select>
+<select id="s_county1" name="s_county1"></select>
+<script>
+var s=["s_province","s_city","s_county","s_county1"];//三个select的name
+var opt0 = ["省份","地级市","市、县级市","区"];//初始值
+getselectOption("1001",4)
+</script>
+</body>
+</html>

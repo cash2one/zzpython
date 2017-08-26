@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>情况说明记录</title>
+		<link rel="stylesheet" href="/layui/css/layui.css" type="text/css">
+		<script src="http://static.m.zz91.com/layui/layui.js" type="text/javascript"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<style type="text/css">
+			.layui-table td,
+			.layui-table th {
+				font-size: 14px;
+				padding: 2px 5px;
+				text-align: center;
+			}
+			
+			body {
+				margin: auto;
+				font-size: 14px;
+			}
+			
+			.layui-input {
+				height: 28px;
+				line-height: 28px;
+			}
+			
+			.layui-form-label {
+				line-height: 10px;
+				width: 70px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+			<legend>客户详细信息</legend>
+		</fieldset>
+		<div class="layui-tab">
+			<ul class="layui-tab-title">
+				<li>
+					<a href="company.html?company_id={{company_id}}">公司信息</a>
+				</li>
+				<li>
+					<a href="picture.html?company_id={{company_id}}">公司图片</a>
+				</li>
+				<li class="layui-this">
+					<a href="user.html?company_id={{company_id}}">用户信息</a>
+				</li>
+				<li>
+					<a href="activity.html?company_id={{company_id}}">活动记录表</a>
+				</li>
+				<li>
+					<a href="user_activity.html?company_id={{company_id}}">用户活动情况表</a>
+				</li>
+				<li>
+					<a href="message.html?company_id={{company_id}}">用户留言</a>
+				</li>
+			</ul>
+		</div>
+		<div class="layui-form">
+			<table class="layui-table">
+				<thead>
+					<tr>
+						<th>登录名</th>
+						<th>安全密码</th>
+						<th>公司ID</th>
+						<th>联系人姓名</th>
+						<th>性别</th>
+						<th>职务</th>
+						<th>电话</th>
+						<th>手机</th>
+						<th>微信</th>
+						<th>QQ</th>
+						<th>邮箱</th>
+						<th>地区</th>
+						<th>详细地址</th>
+						<th>注册时间</th>
+						<th>微信ID</th>
+						<th>APPID</th>
+						<th>个人头像地址</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for list in listall %}
+					<tr>
+						<td>{{list.name}}</td>
+						<td>{{list.password}}</td>
+						<td>{{list.company_id}}</td>
+						<td>{{list.contact}}</td>
+						<td>{{list.sex}}</td>
+						<td>{{list.position}}</td>
+						<td>{{list.tel}}</td>
+						<td>{{list.mobile}}</td>
+						<td>{{list.wechat}}</td>
+						<td>{{list.qq}}</td>
+						<td>{{list.email}}</td>
+						<td>{{list.area}}</td>
+						<td>{{list.address}}</td>
+						<td>{{list.register_time}}</td>
+						<td>{{list.wechat_id}}</td>
+						<td>{{list.appid}}</td>
+						<td>{{list.header_path}}</td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+		</div>
+		<a class="layui-btn layui-btn-small" href="add_user_admin.html">添加</a>
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tbody>
+			<form action="user.html?id={{list.id}}"></form>
+				<center>
+					共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页 &nbsp;&nbsp; {% if firstpage %}
+					<font color="gray">上一页</font>
+					{% else %}
+					<a href="user.html?company_id={{company_id}}&page={{prvpage}}">上一页</a>
+					{% endif %} {%for p in page_range%} {%if p.nowpage%}
+					<span class='current'>{{p.number}}</span> {%else%}
+					<a href="?page={{p.number}}">{{p.number}}</a>
+					{%endif%} {%endfor%} {%if flag %}
+					<input type="hidden" name="flag" value="{{flag}}"> {%endif%} {%if writer%}
+					<input type="hidden" name="writer" value="{{writer}}"> {%endif%}
+					<input type="hidden" name="uid" value="{{uid}}"> 去第
+					<input type="text" name="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页 {% if lastpage %}
+					<font color="gray">下一页</font>
+					{%else%}
+					<a href="user.html?company_id={{company_id}}&page={{nextpage}}">下一页</a>
+					{%endif%}&nbsp;&nbsp;&nbsp;
+					<input type="submit" style="display:none"> &nbsp;&nbsp;
+					<a href='user.html?company_id={{company_id}}&page=1'>首页</a>&nbsp;&nbsp;
+					<a href='user.html?company_id={{company_id}}&page={{page_listcount}}'>尾页</a>
+				</center>
+			</form>
+			</tbody>
+		</table>
+		
+
+	</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta charset="UTF-8" />
+	<title>{{seo_t}}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="{{seo_k}}" />
+	<meta name="description" content="{{seo_d}}" />
+	<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.hack.css" />
+	<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+	<link rel="stylesheet" href="http://tags.zz91.com/tags/css/zz91.tags.css" />
+    <link rel="stylesheet" href="http://tags.zz91.com/tags/css/zz91.tagslist.css" />
+    <link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+    <link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" /> 
+	<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+	<script src="http://img0.zz91.com/front/js/topbar/jquery.topbar.js"></script>
+	<script src="http://img0.zz91.com/front/js/zz91.common.js"></script>
+    <script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+</head>
+<body>
+	{% include 'includes/nav.html' %}
+    {% include 'includes/lm.html' %}
+    <div class="wrapper mt2 clearfix"><a href="http://tags.zz91.com">标签首页</a> > 标签列表 > <a href="http://tags.zz91.com/s/{{keywords_hex}}/">{{kname}}</a></div>
+	<!-- main start -->
+    <div class="wrapper mt">
+   	  <div class="tags_mainleft">
+      		{%if adlist%}
+        	<div><a href="{{adlist.url}}" target=_blank><img src="{{adlist.picaddress}}" width="720px"></a></div>
+			{%endif%}
+        	<div class="tags_nav">
+            	<div class="tags_keywleft">标签：</div><h1 class="tags_keywords red">{{tags_keywords}}</h1><div class="tags_keywright">的信息列表: {{kindtext}}<span class="red">{{listcount}}</span>条</div>
+                <div class="tagsothers">
+					<a href="/s/{{keywords_hex}}-0-1/" class="{{kindclass1}}">供应信息</a>  
+					<a href="/s/{{keywords_hex}}-1-1/" class="{{kindclass2}}">求购信息</a> 
+					<a href="/a/{{keywords_hex}}-1/">行情报价</a> 
+					<a href="/c/{{keywords_hex}}-1/">企业报价</a> 
+					<a href="/d/{{keywords_hex}}-1/">资讯信息</a>
+					<a href="/b/{{keywords_hex}}-1/">互助社区</a>
+				</div>
+            </div>
+            
+            <div class="tags_tradecontent">
+			{%if listall%}
+				{% for list in listall %}
+            	<div class="clearboth">
+                <dl>
+                	<dt><a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target=_blank>{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}</a></dt>
+                    <dd>{{list.pdt_time_en}}</dd>
+                    <dd>{%if list.vipflag.vipcheck%}
+						<img src="{{list.vipflag.vippic}}" alt="{{list.vipflag.vipname}}" width="10"/> <span class="brand">{{list.vipflag.vipname}}</span> 
+						{%else%}
+						普通会员
+						{%endif%}
+                    </dd>
+                    <dd>
+                    {%if list.vipflag.vipcheck%}
+                    <a href="http://{{list.vipflag.vipsubname}}.zz91.com/" target=_blank class="cpy" title="{{list.com_name}}">{{list.com_name|truncatewords:"10"}}</a>
+                    {%else%}
+                    <a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target=_blank  class="cpy" title="{{list.com_name}}">{{list.com_name}}</a>
+					{%endif%}
+                    </dd>
+                </dl>
+                <div class="clearboth"></div>
+                <div class="tags_tradedetail">
+                	<div class="tradeimg"><a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target=_blank><img src="{{list.pdt_images}}" title="{{list.pdt_name|safe}}"></a></div>
+                    <div class="tradecontent">{{list.pdt_detail}}....</div>
+                </div>
+                </div>
+				{% endfor %}
+			{%endif%}
+				<div class="clearboth"></div>
+                <div class="cmore mt2">{% if firstpage %}
+				<a href="/s/{{keywords_hex}}-{{kind}}-1/" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+				<a href="/s/{{keywords_hex}}-{{kind}}-{{prvpage}}/" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+				{% endif %}
+				{% for p in page_range %}
+				{% if p.nowpage %}
+				<span class="red">{{p.number}}</span>
+				{% else %}
+				<a href="/s/{{keywords_hex}}-{{kind}}-{{p.number}}/" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+				{% endif %}
+				{% endfor %}
+				&nbsp;
+				{% if lastpage%}
+				<a href="/s/{{keywords_hex}}-{{kind}}-{{nextpage}}/" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+				<a href="/s/{{keywords_hex}}-{{kind}}-{{page_listcount}}/" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+				{% endif %}</div>
+                <div class="clearboth"></div>
+				
+            </div>
+        <div class="clearboth"></div>
+   	  </div>
+      
+      {% include 'tags/right.html' %}
+        
+        
+    </div>
+    <div class="clearboth"></div>
+    <div style="width:960px; margin:0 auto;">
+	<script type="text/javascript">
+/*tags 列表页 960*90，创建于2013-3-1*/
+var cpro_id = "u1223249";
+</script>
+
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</div>
+<!-- main end -->
+{% include 'tags/bottom.html' %}
+
+
+</body>
+
+</html>

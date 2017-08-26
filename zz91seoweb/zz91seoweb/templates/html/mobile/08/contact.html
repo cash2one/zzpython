@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>手机</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+<script src="{{htmlincludes.img}}js/jquery.js"></script>
+<script src="{{htmlincludes.img}}js/index.js"></script>
+</head>
+<body style="background:#e7e7e7">
+
+<div class="phoneTop">
+	个体经营（牛先生）
+</div>
+<!--end phoneTop-->
+<div class="phoneTitle">
+	<center>
+	<img src="{{list.viptype.vippic}}" />{%if list.zst_year%}第<span>{{list.zst_year}}</span>年{%endif%}
+    </center>
+</div>
+<!--end phoneTitle-->
+
+
+<div class="phoneBanner">
+	<img src="{{htmlincludes.img}}images/banner2.jpg" />
+</div>
+<!--end phoneBanner-->
+
+<div class="phone-nav">
+	<ul>
+    	<li><a href="/mobile/index{{company_id}}.htm" class="phone-nav-icon1"></a></li>
+        <li><a href="/mobile/products{{company_id}}-1.htm?pdt_type=0" class="phone-nav-icon2"></a></li>
+        <li><a href="/mobile/products{{company_id}}-1.htm?pdt_type=1" class="phone-nav-icon3"></a></li>
+        <li><a href="/mobile/contact{{company_id}}.htm" class="phone-nav-icon4"></a></li>
+        <li><a href="/mobile/credit{{company_id}}.htm" class="phone-nav-icon5"></a></li>
+        <li style="background:#d8d8d8"><a href="/mobile/contact{{company_id}}.htm" class="phone-nav-icon6"></a></li>
+    </ul>
+</div>
+<!--end phone-nav-->
+<div class="fr" style="width:75%">
+<div class="phoneBox-title">
+    联系方式
+</div>
+<!--end phoneBox-title-->
+
+<div class="contact">
+	<div class="contact-text">
+    	{{list.name}}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	联 系 人： {{list.contact}}
+    </div>
+    <!--contact-text-->
+    
+    {%if list.ppcphone%}
+    <div class="contact-text">	
+		<span class="contact-name">电    话：</span> <a href="tel:{{list.ppcphone}}">{{list.ppcphone}}</a><a href="tel:{{list.ppcphone}}"><img src="{{htmlincludes.img}}images/icon7.jpg" align="absmiddle" /></a>	
+	</div>
+	{%else%}
+	{%if list.showcontact%}
+	<div class="contact-text">
+	<span class="contact-name">电    话：</span> <a href="tel:{{list.tel_area_code}}{{list.tel}}">{{list.tel_country_code}}-{{list.tel_area_code}}-{{list.tel}}</a><a href="tel:{{list.tel_area_code}}{{list.tel}}"><img src="{{htmlincludes.img}}images/icon7.jpg" align="absmiddle" /></a>
+    </div>
+	<!--contact-text-->
+    <div class="contact-text">
+    	{%if list.mobile%}<span class="contact-name">移动电话：</span> <a href="tel:{{list.mobile}}">{{list.mobile}}</a><a href="tel:{{list.mobile}}"><img src="{{htmlincludes.img}}images/icon8.jpg" align="absmiddle" /></a>{%endif%}
+    </div>
+    {%endif%}
+	{%endif%}
+    
+    {%if list.showcontact%}
+    <div contact="contact-text">
+    	邮箱：{{list.email}}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.qq%}QQ：{{list.qq}}{%endif%}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.fax%}传    真： {{list.fax}}{%endif%}
+    </div>
+    {%endif%}
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.address%}地    址：{{list.address}}{%endif%}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.website%}公司主页： {{list.website}}{%endif%}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.domain_zz91%}企业网站： http://{{list.domain_zz91}}.zz91.com/{%endif%}
+    </div>
+    {%if list.showcontact%}
+    	<hr>
+	    {%if list.ppcphone%}
+	    {%else%}
+		    {%if list.contactmore%}
+		    	{%for listm in list.contactmore%}
+		    	{%if listm.name%}
+			    <div contact="contact-text">
+			    	{%if listm.name%}
+			    	<span class="contact-name">联系人：</span> {{listm.name}} {{listm.sex}}
+			    	{%endif%}
+			    </div>
+			    {%endif%}
+			    {%if listm.name%}
+			    <div contact="contact-text">
+			    	{%if listm.tel%}
+			    	<span class="contact-name">电话：</span> {{listm.tel}}
+			    	{%endif%}
+			    </div>
+			    {%endif%}
+			    {%if listm.mobile%}
+			    <div contact="contact-text">
+			    	{%if listm.mobile%}
+			    	<span class="contact-name">手机：</span> {{listm.mobile}}
+			    	{%endif%}
+			    </div>
+			    {%endif%}
+			    
+			    {%if listm.email%}
+			    <div contact="contact-text">
+			    	{%if listm.email%}
+			    	<span class="contact-name">邮箱：</span> {{listm.email}}
+			    	{%endif%}
+			    </div>
+			    {%endif%}
+			    
+			    {%if listm.qq%}
+			    <div contact="contact-text">
+			    	{%if listm.qq%}
+			    	<span class="contact-name">QQ：</span> {{listm.qq}}
+			    	{%endif%}
+			    </div>
+			    {%endif%}
+			    {%endfor%}
+		    {%endif%}
+	    {%endif%}
+    {%endif%}
+    <!--contact-text-->
+</div>
+<!--end contact-->
+</div>
+<div class="cb"></div>
+
+
+<div class="phoneRuturntop">
+	<img src="{{htmlincludes.img}}images/ruturn_top.jpg" class="fr" onclick="bookmarks();" />
+    <div class="cb"></div>
+</div>
+<!--phoneRuturntop-->
+
+<div class="phoneFooterText">
+	<span>个体经营(牛先生)</span><br />
+    技术支持：<a href="#">ZZ91再生网</a>
+</div>
+<!--end phoneFooterText-->
+
+
+
+</body>
+</html>

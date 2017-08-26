@@ -1,0 +1,26 @@
+<div class="m-main">
+	{%if suc%}
+	<ul class="regbox">
+		<li style="text-align: center;">
+			<br /><br /><font style="font-size: 20px;">您获得再生钱包“20元”</font></li>
+		<li style="text-align: center;"><br /><button class="mui-btn mui-btn-block" onclick="gotourl('/qianbao/','blank')">查看钱包余额</button></li>
+		<li style="text-align: center;">如有疑问：咨询电话<br><a onclick="dialtel('0571-56612345')">0571-56612345</a></li>
+	</ul>
+	{%else%}
+	<form name="invite" id="invite" method="post">
+        <ul class="regbox">
+        	<li>输入邀请码即可获取20元再生钱包</li>
+            <li><input id="code" type="text" name="username" class="mui-input-clear" value="{{username}}" placeholder="请输入邀请码" autocomplete="off" maxlength="20"></li>
+            <li><div class="c-red"></div></li>
+            <button class="mui-btn mui-btn-green" type="button" style="width: 100%;" onclick="inviteapp(this.form)" />确定</button> </li>
+            <br /><br />
+            <button class="mui-btn mui-btn-blue" type="button" style="width: 100%;" onclick="gotourl('/invite/myinvite.html','blank')" />生成我的邀请码</button> </li>
+            <li style="text-align: center;">或咨询电话<br><a onclick="dialtel('0571-56612345')">0571-56612345</a></li>
+            <div class="cb"></div>
+            <input type="hidden" id="clientid" name="clientid" value="{{clientid}}">
+            <input type="hidden" id="company_id" name="company_id" value="{{company_id}}">
+        </ul>
+    </form>
+    {%endif%}
+</div>
+<input type="hidden" id="appnavname" value="邀请码" />

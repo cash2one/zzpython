@@ -1,0 +1,143 @@
+<style>
+.radio{border: none;background: none;}
+.mui-input-row label{line-height: 28px;font-size: 17px;}
+.picupload{text-align: center;padding: 30px;}
+#imglist{padding: 20px;text-align: center;}
+#imglist img{
+	width: 80px;
+	height:80px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+table{padding:10px;margin: 0px;border: none;background-color: #fff;border:solid 1px #f2f2f2;}
+td{border-bottom: solid 1px #EBEBEB;padding: 5px;}
+.input{width: 100%;height: 95%;line-height: 25px;float: left;background: none;}
+.title{border-right:solid 1px #f2f2f2; line-height:30px;padding-right:10px;color:#009900;font-weight: 700;}
+.borderno{border: none;}
+.textselect{width: 0;height: 15;border-bottom: 10px solid #999;border-left: 10px solid transparent;}
+.textselecttd{width: 10px;}
+.textarea::-webkit-input-placeholder:after{
+  content:"";/* 这里 \A 形成回车符号  */
+  color:#666;
+};
+.textarea::-webkit-input-placeholder::before {
+    color:#666;
+    content:"Line 1\A Line 2\A Line 3\A";
+}
+/* 正确写法 */
+input::-webkit-input-placeholder{}
+input:-moz-placeholder{}
+</style>
+<div>
+	<div class="picupload" id="imglist">
+		<a href="#mark"><img src="images/camera.png" ></a>
+	</div>
+	<div class="mui-clearfix"></div>
+	<form class="mui-input-group" method="post" name="postform" id="postform">
+		<table border="0" cellpadding="10" cellspacing="0">
+			<tr>
+				<td nowrap="nowrap"><div class="title">产品名称</div></td>
+				<td><input type="text" name="title" value="{{title}}" class="input"  placeholder="请输入产品名称" required="required" title="*请输入产品名称"/></td>
+				<td><input type="hidden" name="products" value="{{ptype}}">
+					<input type="hidden" name="category" value="{{code}}">
+					<input type="hidden" name="randid" id="randid" value="{{randid}}"/>
+				</td>
+			</tr>
+			<tr>
+				<td><div class="title">产品数量</div></td>
+				<td>
+                <input type="text" class="input" name="quantity" value="{{quantity}}" style="width:70%;background: none;" placeholder="请输入产品数量" title="*请输入产品数量"/>
+				<input type="text" class="input" name="quantity_unit"  id="quantity_unit" style="width:30%; text-align: right; float: right;" readonly value="千克" onclick="openoverlay('', '质量单位', 0, 210, '.quantity_unit');"/>
+				</td>
+				<td class="textselecttd" onclick="openoverlay('', '质量单位', 0, 210, '.quantity_unit');"><span class="textselect"></span></td>
+			</tr>
+			{%ifequal ptype "10331000"%}
+			<tr>
+				<td ><div class="title">产品价格</div></td>
+				<td><input type="text" class="input" name="price" id="price" value="{{price}}" style="width:70%;background: none;"  placeholder="请输入价格" title="*请输入价格" required="required" onclick="openoverlay('', '请输入产品价格', 0, 140, '.price');"/>
+					<input type="text" class="input" name="price_unit"  id="price_unit" style="width:30%; text-align: right; float: right;" readonly value="元 " onclick="openoverlay('', '价格单位', 0, 210, '.price_unit');"/>
+				</td>
+                <td><span class="textselect"></span></td>
+			</tr>
+			{%endifequal%}
+			<tr>
+				<td><div class="title">产品详情</div></td>
+				<td colspan="2">
+					<textarea rows="6" cols="20" name="details" style="height: 100px;background: none;" placeholder="建议您从产品性能、  用途、包装、售后服务等方面来描述" class="textarea">{{details}}</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td class="borderno"><div class="title">有限期</div></td>
+				<td colspan="1">
+					<input type="text" class="input" name="validity"  id="validity" style="width:100%; text-align: center; float: right;" readonly value="长期（一年内） " onclick="openoverlay('', '有效期', 0, 210, '.validity');"/>
+				</td>
+				<td><span class="textselect"></span></td>
+			</tr>
+			
+		</table>
+
+<nav class="mui-bar mui-bar-tab">
+	<center><button type="submit" style="font-size: 16px;" class="mui-btn mui-btn-success" onclick="return submitfrm(document.getElementById('postform'),'http://app.zz91.com/products_save.html')">  立即发布    </button></center>
+</nav>
+	</form>
+</div>
+<div class="quantity_unit" style="display: none;">
+<ul class="mui-table-view" title="quantity_unit">
+<li class="mui-table-view-cell" style="height: 40px;" onclick="getselectvalue(this)" title="斤">斤</li>
+<li class="mui-table-view-cell" style="height: 40px;" onclick="getselectvalue(this)" title="吨">吨</li>
+<li class="mui-table-view-cell" style="height: 40px;" onclick="getselectvalue(this)" title="千克">千克</li>
+<li class="mui-table-view-cell" style="height: 40px;" onclick="getselectvalue(this)" title="台">台</li>
+<li class="mui-table-view-cell" style="height: 40px;" onclick="getselectvalue(this)" title="辆">辆</li>
+</ul>
+</div>
+<div class="price_unit" style="display: none;">
+<ul class="mui-table-view" title="price_unit">
+<li class="mui-table-view-cell" style="height: 40px;" onclick="getselectvalue(this)" title="元">元</li>
+<li class="mui-table-view-cell" style="height: 40px;" onclick="getselectvalue(this)" title="美元">美元</li>
+<li class="mui-table-view-cell" style="height: 40px;" onclick="getselectvalue(this)" title="欧元">欧元</li>
+<li class="mui-table-view-cell" style="height: 40px;" onclick="getselectvalue(this)" title="日元">日元</li>
+</ul>
+</div>
+<div class="validity" style="display: none;">
+<ul class="mui-table-view" title="validity">
+<li class="mui-table-view-cell" style="height: 40px;" onclick="getselectvalue(this)" title="长期（一年内）">长期（一年内）</li>
+<li class="mui-table-view-cell" style="height: 40px;" onclick="getselectvalue(this)" title="三个月">三个月</li>
+<li class="mui-table-view-cell" style="height: 40px;" onclick="getselectvalue(this)" title="二个月">二个月</li>
+<li class="mui-table-view-cell" style="height: 40px;" onclick="getselectvalue(this)" title="十天">十天</li>
+</ul>
+</div>
+<div class="price" style="display: none;padding: 20px;;">
+	<br />
+<div title="price">
+	<input type="text" placeholder="请输入价格" style="width: 80%;">
+	<button style="width: 20%;" class="mui-btn-success" onclick="getpricevalue(this)">确定</button>
+	<button class="mui-btn" onclick="getselectvalue(this)" title="电议或面议">电议或面议</button>
+</div>
+</div>
+<div class="postsuc" style="display: none;padding: 10px;">
+	<br />
+	<div style="text-align: left;font-size: 18px;width: 80%;">
+		发布成功,您可以在“生意管家-我的供求”中查看、刷新或删除信息。APP用户享有额外免费刷新特权！
+	</div>
+	<br />
+	<button onclick="closewindow()" class="mui-btn mui-btn-danger">  知道了    </button>
+	<br />
+</div>
+<div id="mark" class="mui-popover mui-popover-action mui-popover-bottom">
+    <ul class="mui-table-view">
+		<a href="javascript:appendByCamera()"><li class="mui-table-view-cell">
+			拍照
+		</li></a>
+		<a href="javascript:appendByGallery()"><li class="mui-table-view-cell">
+			从相册选择
+		</li></a>
+	</ul>
+	<ul class="mui-table-view">
+		<a href="#mark"><li class="mui-table-view-cell">
+			<b>取消</b>
+		</li></a>
+	</ul>
+</div>
+<input type="hidden" id="appnavname" value="发布供求" />
+	

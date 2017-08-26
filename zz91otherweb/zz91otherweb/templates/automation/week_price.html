@@ -1,0 +1,110 @@
+{%extends 'automation/suliao_price.html'%}
+{%block content1%}
+<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+<table class="table table-bordered table-hover definewidth m10" >
+<tr>
+<td colspan="2">废塑料</td>
+</tr>
+<tr>
+<td>
+<form>
+<a href="" style="color:black">本周行情回顾</a>&nbsp;&nbsp;
+<input class="Wdate" type="text" style="width:100px" name="gmt_created" {%if gmt_created%}value="{{gmt_created}}"{%endif%} id="datebegin" onClick="WdatePicker()">
+<select style="width:70px" name="sltype">
+{%for lcd2 in listsltdir2%}
+<option value="{{lcd2}}">{{lcd2}}</option>
+{%endfor%}
+</select>
+<select style="width:70px" name="page">
+{%for pg in listpagedir%}
+<option value="{{pg}}">第{{pg}}页</option>
+{%endfor%}
+</select>
+<input type="submit" value="抓取">
+<!--<input type="hidden" name="arg" value="1">-->
+</form>
+</td>
+<td>
+来源网站 <a target="_blank" href="http://baojia.feijiu.net/price-p1-cid-bjcid2.29-dqid-.html">http://baojia.feijiu.net/price-p1-cid-bjcid2.29-dqid-.html</a>
+</td>
+</tr>
+{%if weekprice%}
+<tr>
+<td colspan="2">
+{{weekprice|safe}}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?">↑</a> {{type}}
+</td>
+</tr>
+{%endif%}
+
+<tr>
+<td>
+<form>
+走势图 &nbsp;&nbsp; 
+<select style="width:100px" name="type2">
+{%for lcd in listchartdir%}
+<option value="{{lcd.id}}">{{lcd.name}}</option>
+{%endfor%}
+</select>
+<select style="width:70px" name="page">
+{%for pg in listpagedir%}
+<option value="{{pg}}">第{{pg}}页</option>
+{%endfor%}
+</select>
+<input type="submit" value="抓取">
+</form>
+</td>
+<td>
+来源网站 <a target="_blank" href="http://www.l-zzz.com/index.htm">http://www.l-zzz.com/index.htm</a>
+</td>
+</tr>
+{%if chart%}
+<tr>
+<td colspan="2">
+{{chart|safe}}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="?">↑</a> {{type2}}
+</td>
+</tr>
+{%endif%}
+
+
+<tr>
+<td colspan="2">&nbsp;</td>
+</tr>
+
+<tr>
+<td colspan="2">废金属</td>
+</tr>
+<tr>
+<td>
+<form>
+<select name="jinshutype" style="width:100px">
+{%if jinshutype%}<option>{{jinshutype}}</option>{%endif%}
+<option>--选择类别</option>
+<option>废铜</option>
+<option>废铝</option>
+<option>废锌和铅</option>
+<option>废不锈钢</option>
+<option>废钢</option>
+</select>
+
+<input class="Wdate" type="text" style="width:100px" name="gmt_created2" {%if gmt_created2%}value="{{gmt_created2}}"{%endif%} onClick="WdatePicker()">
+<input type="submit">
+</form>
+</td>
+<td></td>
+</tr>
+
+<tr>
+<td colspan="2">
+{{jinshuweekprice|safe}}
+</td>
+</tr>
+<tr>
+
+
+
+
+
+</table><br /><br /><br /><br />
+{%endblock%}

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>ZZ91再生网简易后台</title>
+		<link rel="stylesheet" type="text/css" href="../mobile/css/aui.css" />
+		<style>
+		body{
+			padding: 10px;
+		}
+			.aui-btn{
+				float: left;
+				margin-right: 10px;
+			}
+			.aui-input-row .aui-input-addon{
+				color: #0000FF;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-tab">
+			<ul class="aui-tab-nav">
+				<li><a href="javascript:document.location='index.html'">返回首页</a></li>
+				<li ><a href="paylist.html">支付订单</a></li>
+				<li {%ifequal paytype 1%}class="active"{%endifequal%}><a href="outfee.html?paytype=1">充值成功列表</a></li>
+				<li {%ifequal paytype 2%}class="active"{%endifequal%}><a href="outfee.html?paytype=2">消费列表</a></li>
+			</ul>
+		</div>
+		<div><div class="aui-btn aui-btn-warning" id="searmobile" style="" tapmode >手机查询</div></div>
+		<div style="clear: both;"></div>
+		{%for list in listall%}
+		<div class="aui-content basic-info">
+			<div class="aui-form">
+				<div class="aui-input-row">
+					<span class="aui-input-addon">公司名</span>
+					<span class="aui-margin-l-10">{{list.company_name}}</span>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">手机号</span>
+					<span class="aui-margin-l-10">{{list.mobile}}</span>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">金额</span>
+					<span class="aui-margin-l-10">{{list.fee}}</span>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">类型</span>
+					<span class="aui-margin-l-10">{{list.ftypename}}</span>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">时间</span>
+					<span class="aui-margin-l-10">{{list.gmt_created}}</span>
+				</div>
+				<div style="clear: both;"></div>
+			<div style="clear: both;"></div>
+		</div>
+		<br /><br />
+		{%endfor%}
+		<div style="height: 60px;"></div>
+		<footer class="aui-nav" id="aui-footer">
+			<ul class="aui-bar-tab" style="padding: 10px;">
+				<li>
+					<p><a href="?page=1&{{searchurl}}">首页</a></p>
+				</li>
+				{% if firstpage %}
+				<li>
+					<p><a href="?page={{prvpage}}&{{searchurl}}">上一页</a></p>
+				</li>
+				{%endif%}
+				<li>
+					<p>{{page}}</p>
+				</li>
+				{% if lastpage%}
+				<li>
+					<p><a href="?page={{nextpage}}&{{searchurl}}">下一页</a></p>
+				</li>
+				{%endif%}
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../mobile/js/jquery.js"></script>
+	<script type="text/javascript" src="../mobile/js/zepto.min.js"></script>
+	<script type="text/javascript" src="../mobile/js/layer/layer.js"></script>
+	<script>
+		$(function(){
+			$("body").on("click","#searmobile",function() {
+				var str = prompt("手机号码", '');
+				if (str) {
+					document.location='outfee.html?mobile='+str;
+				}
+			})
+			$(".chongzhi").on("click", function() {
+				//iframe层
+				var company_id=$(this).attr("company_id")
+				layer.open({
+					type: 2,
+					title: '充值',
+					shadeClose: true,
+					shade: 0.8,
+					area: ['80%', '70%'],
+					content: 'chongzhi.html?company_id='+company_id //iframe的url
+				});
+			})
+		})
+	</script>
+</html>

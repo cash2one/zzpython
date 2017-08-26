@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>筛选</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/trade/choice.css"/>
+		<style>
+			html, body {
+				background: transparent;
+				height: 100%;
+				background: rgba(0,0,0,0.1);
+				overflow: hidden;
+			}
+			#aui-header {
+				position: absolute;
+				top: 50px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				padding-top: 0px;
+			}
+			.type_small {
+				background-color: #FAFAFC;
+				border-top: none;
+				overflow: auto;
+				position: absolute;
+				bottom: 45px;
+				top: 95px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				color: #666
+			}
+			.price-type{
+				background-color:#f9f9f9;
+				border-bottom:solid 1px #ebebeb;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-success" id="aui-header">
+			<a class="aui-btn aui-btn-success aui-pull-right" tapmode onclick="closeselect()"> <span class="aui-iconfont aui-icon-roundclosefill"></span> </a>
+			<div class="aui-title">
+				请选择金属类别
+			</div>
+		</header>
+		<div class="type_small">
+			<div class="price-type aui-arrow-right" tapmode="index-nav-li" category-id="51">
+				<i class="aui-iconfont2 aui-zzicon-jinshu" style="background: none;top:2px"></i>ZZ91废金属网上报价
+			</div>
+			<div class="price-type aui-arrow-right" style="border-bottom:none" category-id="68">
+				<i class="aui-iconfont2 aui-zzicon-jinshu" style="background: none;top:2px"></i>废金属评论
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span category-id="86" tapmode="index-nav-li">上海贵金属</span>
+					<span category-id="208" tapmode="index-nav-li">华通贵金属</span>
+					<span></span>
+				</li>
+			</ul>
+			<div class="price-type aui-arrow-right" style="border-bottom:none" category-id="17">
+				<i class="aui-iconfont2 aui-zzicon-jinshu" style="background: none;top:2px"></i>各地废金属价格
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span category-id="40" tapmode="index-nav-li">废铜</span>
+					<span category-id="42" tapmode="index-nav-li">废铁</span>
+					<span category-id="66" tapmode="index-nav-li">生铁</span>
+					<span category-id="41" tapmode="index-nav-li">废铝</span>
+					<span category-id="45" tapmode="index-nav-li">废钢</span>
+					<span category-id="47" tapmode="index-nav-li">废镍</span>
+					<span category-id="49" tapmode="index-nav-li">废钼钛</span>
+					<span category-id="32" tapmode="index-nav-li">评论</span>
+					<span category-id="33" tapmode="index-nav-li">周报</span>
+					<span category-id="44" tapmode="index-nav-li">废不锈钢</span>
+					<span category-id="43" tapmode="index-nav-li">废铅废锌</span>
+					
+					<span category-id="216" tapmode="index-nav-li">行情综述</span>
+					<span category-id="46" tapmode="index-nav-li">国外废金属</span>
+				</li>
+			</ul>
+			<div class="price-type aui-arrow-right" tapmode="index-nav-li" category-id="96">
+				<i class="aui-iconfont2 aui-zzicon-jinshu" style="background: none;top:2px"></i>硬质合金和工具钢
+			</div>
+			<div class="price-type aui-arrow-right" style="border-bottom:none" category-id="64">
+				<i class="aui-iconfont2 aui-zzicon-jinshu" style="background: none;top:2px"></i>LME/期货
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span category-id="72" tapmode="index-nav-li">沪铜</span>
+					<span category-id="71" tapmode="index-nav-li">沪铝</span>
+					<span category-id="70" tapmode="index-nav-li">LME基本金属</span>
+					<span category-id="69" tapmode="index-nav-li">沪锌</span>
+					<span category-id="206" tapmode="index-nav-li">沪钢</span>
+					<span></span>
+				</li>
+			</ul>
+			<div class="price-type aui-arrow-right" style="border-bottom:none" category-id="67">
+				<i class="aui-iconfont2 aui-zzicon-jinshu" style="background: none;top:2px"></i>现货/有色金属
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span category-id="79" tapmode="index-nav-li">上海基本金属</span>
+					<span category-id="80" tapmode="index-nav-li">上海小金属</span>
+					<span category-id="81" tapmode="index-nav-li">上海金属粉末</span>
+					<span category-id="210" tapmode="index-nav-li">长江有色</span>
+					<span category-id="83" tapmode="index-nav-li">华通现货</span>
+					<span category-id="84" tapmode="index-nav-li">上海合金</span>
+				</li>
+			</ul>
+			<div class="price-type aui-arrow-right" style="border-bottom:none" category-id="68">
+				<i class="aui-iconfont2 aui-zzicon-jinshu" style="background: none;top:2px"></i>贵金属
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span category-id="86" tapmode="index-nav-li">上海贵金属</span>
+					<span category-id="208" tapmode="index-nav-li">华通贵金属</span>
+					<span></span>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/iscroll.js"></script>
+	<script type="text/javascript">
+		function closeselect() {
+			api.execScript({
+				name : api.winName,
+				script : "keybackFun('1')"
+			});
+			api.closeFrame();
+		}
+
+		apiready = function() {
+			changeserverurl();
+			
+			//选择类别
+			$(".small-area span").on("click", function() {
+				var categoryId = $(this).attr("category-id");
+				
+				var assist_id = $(this).attr("assist_id");
+				var keywords = $(this).attr("keywords");
+				var mSrc="";
+				if (assist_id){
+					mSrc += "&assist_id="+assist_id;
+				}
+				if (keywords){
+					mSrc += "&keywords="+keywords;
+				}
+				if (categoryId) {
+					var pageParam = {
+						type : "price",
+						categoryId : categoryId,
+						mSrc : mSrc
+					};
+					openWin("offer-list", "../price/offer-list.html", pageParam);
+				}
+			});
+			$(".price-type").on("click", function() {
+				var categoryId = $(this).attr("category-id");
+				if (categoryId==""){
+					return;
+				}
+				var assist_id = $(this).attr("assist_id");
+				var keywords = $(this).attr("keywords");
+				var mSrc="";
+				if (assist_id){
+					mSrc += "&assist_id="+assist_id;
+				}
+				if (keywords){
+					mSrc += "&keywords="+keywords;
+				}
+				if (categoryId) {
+					var pageParam = {
+						type : "price",
+						categoryId : categoryId,
+						mSrc : mSrc
+					};
+					openWin("offer-list", "../price/offer-list.html", pageParam);
+				}
+			});
+			
+			var $body = $api.dom('body');
+			$api.addEvt($body, 'click', function(e) {
+				if (e.target == $body) {
+					closeselect();
+				} else {
+					e.stopPropagation();
+				}
+			});
+		}
+		
+
+		function selectbutton() {
+			
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

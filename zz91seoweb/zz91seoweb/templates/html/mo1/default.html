@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<meta name="applicable-device" content="pc"> 
+		<meta http-equiv="Cache-Control" content="no-transform"/>
+		<meta http-equiv="Cache-Control" content="no-siteapp"/>
+		<title>{%if list.sale_details%}{{list.sale_details}}-{%endif%}{{list.name}}</title>
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		<link rel="stylesheet" href="http://b.zz91.com/esite/mo1/css/index.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/esite/mo1/css/iconfont.css" />
+		<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+		<script type="text/javascript" src="http://b.zz91.com/esite/mo1/js/jquery.effect.1.0.js" ></script>
+		<script type="text/javascript" src="http://b.zz91.com/esite/mo1/js/common.js" ></script>
+	</head>
+	
+	<body>
+		<div class="warp">
+			<div class="logosearch-warp">
+				<div class="logosearch">
+					<div class="logo-warp">
+						<a href="index.html" class="logo"><img src="{{list.logo_pic}}"></a>
+						<div class="logo-name">
+							<h1>{{list.name}}</h1>
+							<p>{{list.businesstop}}</p>
+						</div>
+						<a href="introduce.html" class="logo-certification">
+							<i class="iconfont">&#xe622;</i>
+							<span>已认证</span>
+						</a>
+					</div>
+					<div class="search-warp">
+						<div class="search">
+							<input placeholder="请输入关键词" class="ksearch">
+							<a class="shop" >搜店铺</a>
+							<a class="site" >搜全站</a>
+						</div>
+						<div class="top-vip">
+							第<b>1</b>年
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="nav-warp">
+				<div class="nav">
+					<ul>
+						<li><a href="index.html" class="a1">首页</a></li>
+						<li><a href="introduce.html">公司介绍</a></li>
+						<li><a href="supply.html">产品供应</a></li>
+						<li class="mainlist"><a href="news.html">新闻中心</a>
+							<ul class="nav-nb" style="display:none">
+								<li><a href="#">新店开张</a></li>
+								<li><a href="#">活动促销</a></li>
+								<li><a href="#">行业动态</a></li>
+								<li><a href="#">企业新闻</a></li>
+							</ul>
+						</li>
+						<li><a href="information.html">招商信息</a></li>
+						<li><a href="recruitment.html">人才招聘</a></li>
+						<li><a href="contact.html">联系我们</a></li>
+					</ul>
+					<div class="contact-tel">
+						<i class="iconfont">&#xe611;</i>
+						<b>{{list.mobile}}</b>
+					</div>
+				</div>
+			</div>
+			<div class="banner-warp">
+				<div class="banner">
+					<img src="{{list.midpic}}" alt="{{list.name}}">
+				</div>
+			</div>
+			<div class="content-warp">
+				<div class="content">
+					<div class="content-top">
+						<div class="content-top-mimgwarp">
+							{%if companyimg%}
+							<a href="#" class="content-top-mimg"><img src="{{companyimg.filepath}}"></a>
+							{%endif%}
+						</div>
+						<a class="content-top-simg"><img src="{{companyimg.filepath}}"></a>
+						<div class="content-top-main">
+							<div class="content-top-title">
+								<h3>公司简介</h3>
+								<a href="#" class="m-more"><span>详细</span><i class="iconfont">&#xe623;</i></a>
+							</div>
+							<div class="content-top-maincon">
+								{{list.introduction|safe}}
+							</div>
+						</div>
+						<div class="content-top-main2">
+							<h3>{{list.contact}} {{list.position}}</h3>
+							<a href="#" class="content-qq"><i class="iconfont">&#xe618;</i><span>在线联系</span></a>
+							<div class="content-top-main2con">手 机：{{list.mobile}}{%if list.tel%}<br/>电 话： {{list.tel_country_code}} {{list.tel_area_code}} {{list.tel}}{%endif%}<br/>地 址：{{list.address}}</div>
+						</div>
+					</div>
+					<div class="content-main">
+						<div class="content-main-left">
+							<div class="content-leftsider">
+								<div class="content-leftsider-title">
+									<h3>{{list.name}}</h3>
+									<div class="main-left-vip">
+										<p><i class="iconfont">&#xe619;</i><span>至尊会员</span></p>
+										<p class="year">第<b>1</b>年</p>
+									</div>
+									<a class="certification">
+										<i class="iconfont">&#xe622;</i>
+										<span>已认证</span>
+									</a>
+								</div>
+								<div class="content-leftsider-con">
+									<div><p>所在地区：</p><span>{{list.province}}</span></div>
+									<div><p>诚信指数：</p><span>{{integral}} </span></div>
+									<div><p>经营范围：</p><span>{{list.businesstop}} </span></div>
+									<div><p>经营模式：</p><span>{{list.industry}} </span></div>
+								</div>
+							</div>
+							<div class="content-newproduct" style="display: none;">
+								<div class="left-title">
+									最新产品
+								</div>
+								<div class="content-newproduct-con">
+									<ul>
+										<li>
+											<div class="content-newproduct-list">
+            									<a href="#" target="_blank" class="newproduct-list-box">
+            										<p><img src="img/images03.jpg" /></p>
+            										<span>供应铭星牌竹炭森呼吸全效墙面漆</span>
+            									</a>
+            									<a href="#" target="_blank" class="newproduct-list-box">
+            										<p><img src="img/images03.jpg" /></p>
+            										<span>供应铭星牌竹炭森呼吸全效墙面漆</span>
+            									</a>
+            									<a href="#" target="_blank" class="newproduct-list-box">
+            										<p><img src="img/images03.jpg" /></p>
+            										<span>供应铭星牌竹炭森呼吸全效墙面漆</span>
+            									</a>
+            								</div>
+										</li>
+										<li>
+											<div class="content-newproduct-list">
+            										<a href="#" target="_blank" class="newproduct-list-box">
+            											<p><img src="img/images03.jpg" /></p>
+            											<span>供应铭星牌竹炭森呼吸全效墙面漆</span>
+            										</a>
+            										<a href="#" target="_blank" class="newproduct-list-box">
+            											<p><img src="img/images03.jpg" /></p>
+            											<span>供应铭星牌竹炭森呼吸全效墙面漆</span>
+            										</a>
+            										<a href="#" target="_blank" class="newproduct-list-box">
+            											<p><img src="img/images03.jpg" /></p>
+            											<span>供应铭星牌竹炭森呼吸全效墙面漆</span>
+            										</a>
+            								</div>
+										</li>
+									</ul>
+								</div>
+            					<div class="m-hd">
+                					<a class="next"></a>
+                					<ul></ul>
+                					<a class="prev"></a>
+            					</div>
+							</div>
+							<script>
+    						//最新产品
+	    						$(".content-newproduct").slide({
+	    							titCell: ".m-hd ul", 
+	    							mainCell: ".content-newproduct-con ul", 
+	    							autoPage: true, 
+	    							effect: "left", 
+	    							autoPlay: true, 
+	    							vis: 1 
+	    						});
+							</script>
+							<div class="content-link">
+								<div class="left-title">
+									友情链接
+								</div>
+								<div class="content-link-con">
+									<a href="http://www.zz91.com/" target="_blank">ZZ91再生网</a>
+								</div>
+							</div>
+						</div>
+						<div class="content-main-right">
+							<div class="content-recommendation">
+								<div class="content-right-title"><h3>产品推荐</h3></div>
+								<div class="content-recommendation-con">
+									<ul>
+										{%for list in prolist.list%}
+										<li>
+											<a href="#" target="_blank" class="recommendation-con-img"><img src="{{list.pdt_images}}"></a>
+											<p>￥378</p>
+											<a href="productdetail{{list.pdt_id}}.htm" class="recommendation-con-name" target="_blank">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a>
+										</li>
+										{%endfor%}
+									</ul>
+								</div>
+							</div>
+							{%if newslist%}
+							<div class="content-information">
+								<div class="content-right-title">
+									<h3>最新资讯</h3>
+									<a href="news-1.html"><span>更多</span><i class="iconfont">&#xe623;</i></a>
+								</div>
+								{%for list in newslist.list%}
+								<div class="content-information-con">
+									<div class="information-con-nr">
+										<a href="n{{list.id}}.html"><h3>{{list.title}}</h3></a>{{list.post_time}}
+										<p>{{list.content}}</p>
+									</div>
+								</div>
+								{%endfor%}
+							</div>
+							{%endif%}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="toolbar">
+    			<a href="#" target="_blank" class="toolbar-item toolbar-item-feedback"></a>
+    			<a href="javascript:;" class="toolbar-item toolbar-item-app">
+			        <div class="toolbar-layer">
+            			<p class="weixin" id="qrcode"></p>
+        			</div>
+    			</a>
+    			<a href="javascript:;" id="top" class="toolbar-item toolbar-item-top"></a>
+			</div>
+		</div>
+	</body>
+</html>

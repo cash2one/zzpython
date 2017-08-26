@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>匹配关键词</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://www.feiliao123.com/feiliao123/Css/style.css">
+    <script type="text/javascript" src="http://www.feiliao123.com/feiliao123/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+    	// 全选/取消全选
+    	function checkAll() {
+    		var allStatus = jQuery('#cbb-all').prop('checked');
+    		jQuery('input[name=cbb]').each(function() {
+    			jQuery('input[class=had-not-added]').attr('checked',allStatus);
+    		});
+    		hadAddedNum = jQuery('input[class=had-added]').length;
+    		if (hadAddedNum == 10)
+    		{
+    			alert('本页的所有供求都已经添加过了,请翻页选择下一页的信息……');
+    			jQuery('#cbb-all').prop('checked', false);
+    		}
+    	}
+
+    	function addTask(form) {
+    		form.action="qunfa_add_task.html?qf_id={{ qf_id }}";
+    		selectCb = '0'
+    		for (var i=0;i<form.elements.length;i++)
+    		{
+    			var e=form.elements[i];
+    			// alert(e.value);
+    			if (e.checked == true) {
+    				selectCb += ","+e.value;
+    			}
+    		}
+    		if (selectCb == '0') {
+    			alert('请至少选择一条供求信息……');
+    		}
+    		else
+    		{
+    			form.submit();
+    		}
+    	}
+    	$(document).ready(function() {
+    		var checkboxNum = jQuery("input[type=checkbox]").length - 1;
+    		if (checkboxNum == 10)
+    		{
+    			$('.empty-tr').css('display','none');
+    		}
+    	});
+    </script>
+    <style type="text/css">
+    	tr td:empty {
+    		border-left:0;
+    		border-top:0;
+    	}
+    </style>
+</head>
+<body>
+<form method="post" id="add-task" name="add-task" target="add_task">
+<table class="table table-bordered" style="height: 473px;">
+		<thead>
+			<tr style="height: 35px;">
+				<td style="width: 45px;">选择</td>
+				<td>供求</td>
+				<td>标题</td>
+				<td>刷新时间</td>
+			</tr>
+		</thead>
+		<tbody>
+			{% for each_prdt in all_products.list_all %}
+			{% load myfilter %}
+			<tr style="height: 35px;">
+				<td>
+					{% if each_prdt.had_added == 0 %}
+					<input type="checkbox" name="cbb" id="cbb" value='{"pro_id": "{{ each_prdt.pro_id }}", "pdt_kind": "{{ each_prdt.pdt_kind }}", "pdt_title": "{{ each_prdt.pro_title }}", "refresh_time": "{{ each_prdt.refresh_time | timestamp_to_date}}", "company_id": "{{ each_prdt.company_id }}" }' class="had-not-added">
+					{% else %}
+					<input type="checkbox" name="cbb" id="cbb" class="had-added" disabled>
+					{% endif %}
+				</td>
+				{% if each_prdt.pdt_kind == 0 %}<td>供应</td>{% else %}<td>求购</td>{% endif %}
+				<td><a href="http://trade.zz91.com/productdetails{{ each_prdt.pro_id }}.htm" target="_blank">{% if each_prdt.pdt_kind == 0 %}供应{% else %}求购{% endif %}{{ each_prdt.pro_title | truncatechars:15 }}</a></td>
+				<td>
+					{{ each_prdt.refresh_time | timestamp_to_date }}
+				</td>
+			</tr>
+			{% endfor %}
+			<tr class="empty-tr">
+				<td colspan="4"></td>
+			</tr>
+			<tr style="height: 35px;">
+				<td colspan="5" class="page">
+					共{{ list_count }}条记录  {{ page_num }}/{{ page_list_count }}
+					{% if first_page %}
+					<a href="?page={{ prev_page }}&{{ url_params }}">上一页</a>
+					{% else %}
+					<a href="javascript:void(0)" style="color: gray;text-decoration: none;">上一页</a>
+					{% endif %}
+					{% if last_page %}
+					<a href="?page={{ next_page }}&{{ url_params }}">下一页</a>
+					{% else %}
+					<a href="javascript:void(0)" style="color: gray;text-decoration: none;">下一页</a>
+					{% endif %}
+					<a href="?page=1&{{ url_params }}">首页</a>
+					<a href="?page={{ page_list_count }}&{{ url_params }}">尾页</a>
+				</td>
+			</tr>
+			<tr style="height: 51px;">
+				<td colspan="5" style="text-align: left;">
+					<input type="checkbox" name="cbb-all" id="cbb-all" onclick="return checkAll()">
+					<label style="margin-top: 10px;">&nbsp;全选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+					{% if qf_id %}
+					<input type="button" name="submit-df" id="submit-df" value="放入待发客户" class="btn btn-info pull-right" onclick="return addTask(this.form)">
+					{% else %}
+					<input type="button" name="submit-df" id="submit-df" value="放入待发客户" class="btn btn-info pull-right" onclick="return addTask(this.form)" disabled>
+					{% endif %}
+					<input type="hidden" name="qf_id" value="{{ qf_id }}">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+</body>
+</html>

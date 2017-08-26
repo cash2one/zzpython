@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<style>
+			body {
+				background-color: #f5f5f5;
+			}
+			.regbox {
+				padding: 15px;
+				line-height: 30px;
+				padding-top:10px;
+			}
+			.iconfont_dacong{
+				font-size: 46px;
+			}
+			.selectjs {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				width: 100%;
+			}
+			.aui-pull-left {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				text-align: center;
+				padding:10px;
+			}
+			.selectjs .on{
+				background-color:#01BA2E;
+				color: #fff;
+			}
+			.cbselect b{
+				text-align:left;
+				font-size:20px;
+			}
+			.cbselect li{
+				background-color: #ebebeb;
+				float: left;
+				margin: 5px;
+				line-height:22px;
+				padding:10px;
+				border-radius:4px;
+				width:100px;
+				text-align:left;
+			}
+			.cbselect .on{
+				background-color: #01AA2A;
+				color:#fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-text-center">
+			<div class="regbox">
+				<div class="cbselect typelist1">
+					<b>健康</b>
+					<ul>
+						
+					</ul>
+				</div>
+				<div class="aui-clearfix"></div>
+				<div class="cbselect typelist2">
+					<b>家庭</b>
+					<ul>
+						
+					</ul>
+				</div>
+				<div class="aui-clearfix"></div>
+				<div class="cbselect typelist3">
+					<b>工作</b>
+					<ul>
+						
+					</ul>
+				</div>
+				<br />
+				
+				<div class="aui-clearfix"></div>
+				<br />
+				
+				
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+	<script type="text/javascript">
+		var orderlist=[];
+		apiready = function() {
+			var columnall=$api.getStorage("columnall");
+			var jklist = columnall["1"].list;
+			var navlist="";
+			$.each(jklist, function(index, item) {
+				navlist+='<li reid='+item.id+' typename="'+item.typename+'"><i class="aui-iconfont aui-icon-round"></i> '+item.typename+'</li>'
+			})
+			$(".typelist1 ul").html(navlist)
+			
+			var jklist = columnall["2"].list;
+			var navlist="";
+			$.each(jklist, function(index, item) {
+				navlist+='<li reid='+item.id+' typename="'+item.typename+'"><i class="aui-iconfont aui-icon-round"></i> '+item.typename+'</li>'
+			})
+			$(".typelist2 ul").html(navlist)
+			
+			var jklist = columnall["3"].list;
+			var navlist="";
+			$.each(jklist, function(index, item) {
+				navlist+='<li reid='+item.id+' typename="'+item.typename+'"><i class="aui-iconfont aui-icon-round"></i> '+item.typename+'</li>'
+			})
+			$(".typelist3 ul").html(navlist)
+			
+			$(".cbselect").on("click","li", function() {
+				var self=$(this)
+				if (self.attr("class")){
+					if (self.attr("class").indexOf("on")>=0){
+						self.removeClass("on");
+						self.find("i").remove();
+						self.prepend('<i class="aui-iconfont aui-icon-round"></i> ')
+						//var index=orderlist.indexOf($(this).attr("reid"));
+						//orderlist.splice(index, 1);
+						$.each(orderlist, function(index, item) {
+							if (item==self.attr("reid")){
+								if (index > -1) {
+									orderlist.splice(index, 1);
+									saveorder($(this).attr("typename"),item,1)
+								}
+							}
+						})
+					}else{
+						$(this).addClass("on");
+						$(this).find("i").remove();
+						$(this).prepend('<i class="aui-iconfont aui-icon-roundcheck"></i> ')
+						orderlist.push($(this).attr("reid"))
+						saveorder($(this).attr("typename"),$(this).attr("reid"),0)
+					}
+				}else{
+					$(this).addClass("on");
+					$(this).find("i").remove();
+					$(this).prepend('<i class="aui-iconfont aui-icon-roundcheck"></i> ')
+					orderlist.push($(this).attr("reid"))
+					saveorder($(this).attr("typename"),$(this).attr("reid"),0)
+				}
+			});
+			
+			$("#tybutton").on("click", function() {
+				
+				if (!orderlist || orderlist==""){
+					hint('请选择一个话题！');
+					return false;
+				}
+				api.execScript({
+					name : 'root',
+					script : "loaddefault(1)"
+				});
+				return false;
+				api.showProgress({title:'加载中',modal:false});
+				var data={
+		    		sex:sex,
+		    		marry:marry,
+		    	}
+				zzappajax("post",hosturl+"/app/reg.html",data,function(ret){
+		    		if (ret){
+		    			api.execScript({
+							name : 'root',
+							script : "loaddefault()"
+						});
+		    		}
+		    		loadinghide();
+		    	},function(){
+		    		api.toast({
+						msg : '网络错误，请重试！',
+						duration : 2000,
+						location : 'bottom'
+					});
+		    		loadinghide();
+		    	})
+				
+			});
+		};
+		function saveorder(typename,typeid,close){
+			var data={
+	    		tags:typename,
+	    		typeid:typeid,
+	    		close:close
+	    	}
+	    	zzappajax("post",hosturl+"/app/insert_myguanzhu.html",data,function(ret){
+	    		if (ret){
+	    			api.toast({
+						msg : '关注成功',
+						duration : 2000,
+						location : 'bottom'
+					});
+					loadinghide();
+	    		}
+	    	},function(){
+	    		api.toast({
+					msg : '网络错误，请重试！',
+					duration : 2000,
+					location : 'bottom'
+				});
+	    		loadinghide();
+	    	})
+		}
+	</script>
+</html>

@@ -1,0 +1,230 @@
+<style>
+hr{height: 5px;}
+.contactbox{float:left; margin-left:5px;}
+.contactbox a{padding-left:8px;padding-right:8px;display:block;color:#ff3300; margin-bottom:5px;border:1px solid #ff3300;color:#ff3300;}
+.contactbox img{margin-left:5px; vertical-align:middle}
+.block_info_item{line-height: 2em;}
+.block_info_item_a a{background:#ff3300;color:#fff; text-align:center; padding-left:8px; padding-right:8px; line-height:30px; display:block; float:left; margin-right:5px;}
+.block_info_msg {color: #666;}
+.block_info_company_p{color: #000;}
+.block_info_item_span{color: #ff0000;}
+.block_info_company p{color: #666;}
+.comcontact{width: 50%;float: left;padding-left: 10px;padding-top: 2px;}
+.comcontact a{color: #6C6C6C;font-size: 12px;}
+</style>
+{%if list.piclist%}
+    {%for pic in list.piclist%}
+    {%if pic.lastpic%}
+        <center style="margin-top: 10px;">
+            <a href="javascript:openbigimg({{id}});"><img src="{{pic.images_big}}" class="mui-media-object" style="width: 70%;height:25%"></a>
+            <div style="color: #999;font-size: 12px;">1/{{list.lenpiclist}} 点击查看大图</div>
+        </center>
+    {%endif%}
+    {%endfor%}
+{%endif%}
+<div style="padding: 10px;background-color: #fff;margin-top: 10px;line-height: 2em;">
+<h4>{{list.title}}</h4>
+<div class="mui-h6">发布时间：{{list.refresh_time|safe}}</div>
+<hr color="#f2f2f2" size="1">
+<div class="block_info_msg">
+<ul>
+	<li>
+    <span class="block_info_company_p">所&nbsp;&nbsp;在&nbsp;&nbsp;地：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{list.address}}</li>
+    <li>
+    <span class="block_info_company_p">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{%if list.price%}{{list.price}}{{list.price_unit}}{%else%}面议或电议{%endif%}</li>
+    <li>
+    <span class="block_info_company_p">数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{list.quantity}}{{list.quantity_unit}}</li>
+</ul>
+</div>
+<hr color="#f2f2f2" size="1">
+<div class="block_info_company">
+    <p style="padding-bottom:10px;color: #666;">{{list.details|safe}}</p>
+</div>
+
+<div class="block_info_item mui-table-view">
+                	<ul>
+                    	<li class="mui-table-view-cell"><a class="mui-navigate-right" href="javascript:gotourl('/companyinfo/?forcid={{list.company_id}}','blank');">{{list.compname}}</a></li>
+                        <li class="mui-table-view-cell"><div style="float: left;width: 70px;">联&nbsp; 系&nbsp; 人：</div>{{list.contact}}</li>
+                        <li class="block_info_item_li mui-table-view-cell">
+                        {%if list.viptype.ldb%}
+                        <span class="block_info_item_span" style="float:left; display:block; width:70px;">联系方式:</span>
+                        {%else%}
+                        <span class="block_info_item_span" style="float:left; display:block; width:70px;" id="zhifufangshi">联系方式:</span>
+                        {%endif%}
+                        <div class="contactbox">
+                        {%if list.viptype.ldb%}
+                        		{%if list.viptype.ldb.ldbphone%}
+                            	<a href="javascript:dialtel('{{list.viptype.ldb.ldbtel}}')"><img src="http://m.zz91.com/images/qianbao/tel.jpg" />{{list.viptype.ldb.ldbphone}}</a>
+                        		{%endif%}
+                        {%else%}
+                        		{%if isseecompany%}
+	                        		{%if list.mobile%}
+			                        	{%if list.mobilelist%}
+			                        		{%for mob1 in list.mobilelist%}
+				                        	<a href="javascript:dialtel('{{mob1}}')"><img src="http://m.zz91.com/images/qianbao/m.jpg"/> {{mob1}}</a>
+			                        		{%endfor%}
+			                        	{%else%}
+			                        		<a href="javascript:dialtel('{{list.mobile1}}')"><img src="http://m.zz91.com/images/qianbao/m.jpg" /> {{list.mobile1}}</a>
+		                        		{%endif%} 
+		                        	{%endif%}
+		                        	{%if list.tel%}
+                                            <a href="javascript:dialtel('{{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}')" id="tel"><img src="http://m.zz91.com/images/qianbao/tel.jpg"/>{{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}</a>
+		                            {%endif%}
+		                        {%else%}
+                                	<div class="block_info_item_a" id="zhifufangshi2">
+		                        	{%if company_id%}
+										<a class="block_info_item_a" id="{%if qianbaoblance >= 10%}inline_chk{%else%}chk2_link{%endif%}" onclick="openfloatdiv(event,'chk1')" href="#"><span >仅需{{paymoney}}元</span>查看</a> {%if foriszstflag%}{%else%}{%if isjubao%}<img src="http://m.zz91.com/images/qianbao/jb.jpg" /> 曾被举报{%endif%}{%endif%}
+	            					{%endif%}
+                                    </div>
+            					{%endif%}
+                        {%endif%}
+                        </div>
+                        {%if isseecompany%}
+                        {%if forvipflag%}
+                            <span id="jb3" style="float:left; display:block; margin-left:10px;">{%ifnotequal isseecompany 2%}{%if idcheck%}{{idchecktxt}}{%else%}<span class="jbbox" onclick="openfloatdiv(event,'tippOff_')"><img src="http://m.zz91.com/images/qianbao/jb.jpg" />&nbsp;&nbsp;<span id="jb2">举报</span></span>{%endif%}{%endifnotequal%}</span> 
+                        {%endif%}
+                        {%endif%}
+                        <div class="clearfix"></div>
+                        </li>
+                        <div class="clearfix"></div>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+     <div style="clear: both;"></div>
+     <hr color="#f2f2f2" size="1">
+     <div class="block_info_company">
+    	<p class="block_info_company_p">公司简介</p>
+        <p>{{list.introduction|safe}}</p>
+    </div>
+</div>
+<nav class="mui-bar mui-bar-tab" style="border-top: solid 1px #006600;" >
+	<span class="comcontact">{{list.contact}}<br />
+		{%if list.viptype.ldb%}
+    		{%if list.viptype.ldb.ldbphone%}
+        	<a href="javascript:dialtel('{{list.viptype.ldb.ldbtel}}')">{{list.viptype.ldb.ldbphone}}</a>
+    		{%endif%}
+    	{%else%}
+    		{%if isseecompany%}
+        		{%if list.mobile%}
+                	{%if list.mobilelist%}
+                		{%for mob1 in list.mobilelist%}
+                    	<a href="javascript:dialtel('{{mob1}}')">{{mob1}}</a>
+                		{%endfor%}
+                	{%else%}
+                		<a href="javascript:dialtel('{{list.mobile1}}')">{{list.mobile1}}</a>
+            		{%endif%} 
+            	{%endif%}
+			{%endif%}
+        {%endif%}
+	</span>
+	<span style="float: left;width: 50%;" >
+	<a class="mui-tab-item mui-active" 
+	{%if list.viptype.ldb%}
+		{%if list.viptype.ldb.ldbphone%}
+			href="javascript:dialtel('{{list.viptype.ldb.ldbtel}}')"
+		{%endif%}
+    {%else%}
+    {%if isseecompany%}
+		{%if list.mobile%}
+        	{%if list.mobilelist%}
+        		{%for mob1 in list.mobilelist%}
+            	href="javascript:dialtel('{{mob1}}')"
+        		{%endfor%}
+        	{%else%}
+        		href="javascript:dialtel('{{list.mobile1}}')"
+    		{%endif%} 
+    	{%endif%}
+    {%else%}
+         href="javascript:openfloatdiv(event,'chk1')"
+    {%endif%}
+    {%endif%}
+     >
+		<span class="mui-icon mui-icon-phone"></span>
+		<span class="mui-tab-label">电话</span>
+	</a>
+	<a class="mui-tab-item mui-active" href="javascript:tradeleavewords('{{id}}','{{company_id}}')">
+		<span class="mui-icon mui-icon-chatbubble"></span>
+		<span class="mui-tab-label">留言</span>
+	</a>
+	<a class="mui-tab-item mui-active" href="javascript:favorite('&pdtid={{id}}&products_type_code={{list.products_type_code}}&title={{list.title}}')">
+		<span class="mui-icon mui-icon-star"></span>
+		<span class="mui-tab-label">收藏</span>
+	</a>
+	</span>
+</nav>
+<div class="d-leavewords" style="display:none; padding:20px;">
+<form method="post" name="postform" id="postform" onSubmit="return submitfrm(this,'http://app.zz91.com/leavewords_save/')">
+	<input type="hidden" name="pid" id="pid" value="{{id}}">
+	<input type="hidden" name="forcompany_id" id="forcompany_id" value="{{forcompany_id}}">
+    <div class="r-txt">
+        <textarea name="content" cols="20" rows="4" placeholder="来写点什么吧..." style="border:solid 1px #CCC; padding:10px;"></textarea>
+    </div>
+    <input type="submit" value="提交" class="mui-btn mui-btn-success" name="submit"/>
+</form>
+</div>
+<div class="postsuc" style="display: none;padding: 20px;">
+	<br />
+	<div style="text-align: left;font-size: 18px;width: 80%;">
+		留言成功,您可以在“生意管家-我的留言”中查看客户给您的回复。
+	</div>
+	<br />
+	<button onclick="closewindow()" class="mui-btn mui-btn-danger">  知道了    </button>
+	<br />
+</div>
+<div class="favorite" style="display: none;padding: 20px;">
+	<br />
+	<div style="text-align: left;font-size: 18px;width: 80%;">
+		收藏成功,您可以在“生意管家-我的收藏夹”中查看。
+	</div>
+	<br />
+	<button onclick="closeoverlay()" class="mui-btn mui-btn-danger">  知道了    </button>
+	<br />
+</div>
+<div id="tippOff_" align="center" class="tipp">
+	<table>
+    	<tr>
+        	<td>您将举报该信息：</td>
+            <td></td>
+        </tr>
+        <tr>
+        	<td><input type="checkbox" name="report" value="1" />&nbsp;违法违规</td>
+            <td><input type="checkbox" name="report" value="2" />&nbsp;虚假信息</td>
+        </tr>
+        <tr>
+        	<td><input type="checkbox" name="report" value="3" />&nbsp;过期信息</td>
+            <td><input type="checkbox" name="report" value="4" />&nbsp;虚假号码 </td>
+        </tr>
+    </table>
+  <div align="center" style="margin-top:10px;">
+	<button class="mui-btn mui-btn-danger" id="tipp_link"  onclick="jubao('http://app.zz91.com/pro_report.html','&forcompany_id={{forcompany_id}}&product_id={{id}}')">确定</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;<button class="mui-btn" onclick="dismiss();">取消</button>
+   </div>
+</div>
+<!--end 举报弹框 part1-->
+<div id="tippOff" align="center" class="tipp">
+	<p>您已举报成功，我们会在三个工作日内核查（节假日自动顺延），如核查如实，将会返还您的金额。</p>
+	<div align="center" style="margin-top:15px;">
+		<button class="mui-btn" onclick="dismiss()">关闭</button>
+   </div>
+</div>
+
+
+<div id="chk1" class="tipp">
+	<p style="color: #000000;">查看此联系方式需<font color="#FF0000">{{paymoney}}</font>元，确定付款？</p>
+    <p style="color:#C4C4C4;margin-top:10px">如虚假信息、虚假号码等可举报申请退款</p>
+	 <div align="center" style="margin-top:10px;">
+	<button class="mui-btn mui-btn-danger" onclick="requestquery('http://app.zz91.com/viewcontact.html','&forcompany_id={{forcompany_id}}&paytype=1&id={{id}}')">确定</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;<button class="mui-btn" onclick="dismiss();">取消</button>
+   </div>
+</div>
+<!--end 查看弹框 part2-->
+<div id="bal" class="tipp" align="center">
+	<p style="color: #000000;">您的余额不足，是否充值？</p>
+    {%if not isldb%}<p style="color:#909090;font-size:13px;margin-top:10px">{{ggc}}</p>{%endif%}
+	<div align="center" style="margin-top:10px;">
+	<button class="mui-btn mui-btn-danger" onClick="shopfun.chongzhi('{%if isldb%}/ldb_weixin/balance.html?backurl={{host}}{%else%}/qianbao/{%endif%}')">确定</button>
+	&nbsp;&nbsp;&nbsp;&nbsp;<button class="mui-btn" onclick="dismiss();">取消</button>
+   </div>
+</div>
+
+<input type="hidden" id="appnavname" value="供求详情-交易中心" />

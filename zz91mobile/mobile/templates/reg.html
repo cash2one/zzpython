@@ -1,0 +1,119 @@
+﻿{%include 'new/head.html'%}
+<script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+<style>
+/*提示框*/
+.tip-layer {
+    position: fixed;
+    width: 100%;
+    height: 20px;
+    left: 50%;
+    top: 50%;
+    margin-top: -20px;
+    margin-left: -110px;
+    text-align: center;
+    padding: 10px;
+    color: #FFF;
+    border-radius: 5px;
+    background: #333;
+    font-weight: bold;
+    z-index: 200;
+    opacity: 0.8;
+}
+.regbox li select,
+	.regbox li textarea {
+		width: 97%;
+		font-size: 16px;
+		padding: 5px;
+		line-height: 30px;
+	}
+</style>
+
+<body onclick="readydo()">
+	<div class="mobile">
+		{%include 'new/top.html'%}
+		<div class="cb"></div>
+		<div style="margin-top:30px;"></div>
+		<div class="m-main">
+			<form name="form1" method="post" action="/registerSave/" onsubmit="return frmsub(this)">
+				<input type="hidden" name="backurl" value="{{backurl}}">
+				<input type="hidden" name="weixinid" value="{{weixinid}}">
+				<div class="regtitle">会员注册</div>
+				<ul class="regbox">
+					<li>
+						<input id="userName" class="text" type="text" name="userName" value="{{userName}}" placeholder="手机号码即您的登录用户名" autocomplete="off" maxlength="11"> {%if errtext1%}
+						<div class="c-red">{{errtext1|safe}}
+							<br/>
+						</div>{%endif%}
+					</li>
+					<li>
+						<input id="passwd" class="text" type="password" name="passwd" value="{{passwd}}" placeholder="请设置6-8位密码" autocomplete="off" maxlength="20"> {%if errtext2%}
+						<div class="c-red">{{errtext2|safe}}
+							<br/>
+						</div>{%endif%}
+					</li>
+					<!--<li>
+						<input id="email" class="text" type="text" name="email" value="{{email}}" placeholder="请输入您的邮箱" autocomplete="off" maxlength="20"> {%if errtext6%}
+						<div class="c-red">{{errtext6|safe}}
+							<br/>
+						</div>{%endif%}
+					</li>-->
+					<!--<li>
+						<input id="qq" class="text" type="text" name="qq" value="{{qq}}" placeholder="请输入您的QQ号码" autocomplete="off" maxlength="20"> {%if errtext3%}
+						<div class="c-red">{{errtext3|safe}}
+							<br/>
+						</div>{%endif%}
+					</li>-->
+					<li>
+						<input id="contact" class="text" style="width:50%" type="text" name="contact" value="{{contact}}" placeholder="请输入您的真实姓名" autocomplete="off" maxlength="20">
+						<input type="radio" style="width:5%" name="sex" value="0" checked="checked">男士
+						<input type="radio" style="width:5%" name="sex" value="1">女士 {%if errtext4%}
+						<div class="c-red">{{errtext4|safe}}
+							<br/>
+						</div>{%endif%}
+					</li>
+					<li style="margin-bottom: 15px;">
+						<select name="products_type_code" id="products_type_code">
+							<option value="">请选择供需</option>
+							<option value="供应">供应</option>
+							<option value="求购">求购</option>
+							<option value="供应/求购">供应+求购</option>
+						</select>
+					</li>
+					<li>
+						<input id="business" class="text" type="text" name="business" value="{{business}}" placeholder="请输入您的主营产品" autocomplete="off" maxlength="100">
+						{%if errtext5%}
+						<div class="c-red">{{errtext5|safe}}
+							<br/>
+						</div>{%endif%}
+					</li>
+					<li>
+						<input type="submit" name="regbut" id="regbut" value="立即开通帐号" class="button">
+					</li>
+					<div class="cb"></div>
+				</ul>
+			</form>
+			<div class="cb"></div>
+		</div>
+	</div>
+	<div class="tip-layer tip-layer-error" style="width: 300px; margin-left: -150px;display: none;">信息提交中...</div>
+<script>
+		function readydo(){
+			$(".tip-layer-error").css("display","none");
+		}
+		//readydo();
+		function frmsub(frm){
+			$(".tip-layer-error").css("display","");
+			frm.regbut.disabled=true;
+			//return false;
+		}
+	</script>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- 移动端 -->
+	<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5512236620584335" data-ad-slot="9255868807" data-ad-format="auto"></ins>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+	{%include 'new/bottom.html'%}
+</body>
+
+</html>

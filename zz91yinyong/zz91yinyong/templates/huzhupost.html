@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<link rel="stylesheet" type="text/css" href="/css/myrc/index_myrc.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+<script type="text/javascript" src="/js/myrc/jquery.lightbox_me.js"></script>
+<script>
+function picsubmit(){
+	$("#imgpic").html("正在上传图片...")
+}
+function changepic(picurl,pid){
+	var interval = setTimeout(function(){
+		$("#imgpic").html("<img src='"+picurl+"'>");
+	}, 2000); 
+	$("#picidlist").val(pid);
+}
+</script>
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+<link rel="stylesheet" href="/css/comm-detail.css" />
+{%if suc%}
+<div class="resultTip mt10 mb10 ac"><span>提问成功! 我们将会在15分钟内通过审核，请耐心等待。</span></div>
+{%endif%}
+{%if err%}
+<div class="resultTip mt10 mb10 ac"><span>来写点什么吧...</span></div>
+{%endif%}
+
+<div class="replay-div">
+{%if username%}
+{%if not suc%}
+<form method="post" name="formbbs" id="formbbs" action="/huzhupostsave/">
+    <input type="hidden" name="category_id" value="{{category_id}}">
+    <link rel="stylesheet" href="/css/comm-form.css">
+    <div class="textareaDiv">
+        <textarea name="content" class="new-input-area mb10" placeholder="来问点什么吧..."></textarea>
+    </div>
+    <input type="hidden" name="picidlist" id="picidlist" value="">
+</form>
+<div id="imgpic"></div>
+<div style="padding:10px;">
+<form name="myform" id="myform" method="post" enctype="multipart/form-data" style="overflow:hidden;display:block;width:100%;" action="/huzhu_upload/" target='upload' onSubmit="return picsubmit(this)">
+<input type="file" value="选择图片" name="file" id="file"/>
+<img style="display:none" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAjCAMAAAA3znPYAAAABGdBTUEAALGPC/xhBQAAAP9QTFRFAAAAycnJqKiourq6rKyssLCwubm5z8/Pm5ub9vb2mZmZ7+/v9PT08fHxioqK2dnZ39/f5+fnkJCQpaWl7Ozs9fX1nJycsbGxt7e38PDwra2toqKi8/Pzvb29xsbGj4+PjIyM0NDQkpKSwMDAqamptbW18vLy+vr61dXVnZ2dyMjI4ODgq6ur09PTwsLCn5+f6enp3NzcpKSk6+vr+fn53t7ei4uLqqqqjY2N6Ojo+Pj47u7u/f3919fXsrKyl5eXlpaWzs7Ou7u7jo6Opqamy8vL+/v7zMzMkZGRysrK2NjY/Pz8iYmJ1NTUv7+//v7+x8fHiIiI9/f3r6+vh4eHNjdlogAAAAF0Uk5TAEDm2GYAAAFWSURBVDjLlZTndoJAEIUnvfdeTW92E2OLiiKihmCQef9nyWGWg+6aIdn7i7vznW1zFwBJ1ZEiiNGXh4pcHRhxUQdGvB9qwIhHHxow4unnmDppfQdyJ+Bm567Qm8A7RLTWAIrvykzP9gbNUsncKJXNPCzLI2Z6vGrXVfBVkH3zVTrLoCyXZdp4UI5e9Hja2Zm6qT5Pt0OkZrv9cEvDLEc75+Jwx7T8wpvYOkeXxGyl0J5RU7pXDG0RnY78C/l5ht6m6l7kD8lnGDpH1YmW01Zshq4otEfhsxg6T/Rs5LPkXYa+pOpW5FvkOwxdEA1phDZFj2bkcL3cFxd+G4TYaYs3sMR23g87v1K3ntbF56PBZ3Awlap2TGLNnAJfx+UbE0k5r14sjd5FNWJrKfX1w9T/wJxLBlk9GPgO/k0H2jXKv44D6kiTbmrAPeVRx2sGoN7w/6dGHX4AK391nTBWia0AAAAASUVORK5CYII=">
+<input type="submit" value="上传图片" class="comm-btn-secondary">
+<iframe name='upload' style=" display:none"></iframe>
+</form>
+</div>
+<div>
+    <input type="button" id="button" class="comm-btn-auto" name="event_submit_do_reply" value="提问" onClick="formbbs.submit()">
+</div>
+{%endif%}
+{%else%}
+<div class="resultTip mt10 mb10 ac">请 <a href="/login/?done={{host}}">登录</a> 之后发贴</div>
+{%endif%}
+</div>
+</div>
+{%if username%}
+{%if not mynickname%}
+	<script>
+    $(function(){
+        $('#reply_div_nick').lightbox_me({
+                    overlaySpeed:0,
+                    lightboxSpeed:0,
+                    centered: true, 
+                    onLoad: function() { 
+                        var target = $.event.fix(e).currentTarget;
+                    }
+            }).click();
+        e.preventDefault();
+    });
+	function savenick(){
+		window.location="?nickname="+$("#nickname").val();
+	}
+    </script>
+    <!-- 回复弹出框 -->
+	<div id="reply_div_nick" align="center">
+    <form name="form">
+    	<font color="#CC0000">您还没有填写您的昵称，请填写！</font>
+      <input type="text" name="nickname" id="nickname" onKeyUp="check();" style="width:80%; line-height:30px;" placeholder="请输入您的昵称！">
+      <div align="center" style="margin-top:15px;">
+        <div class="btn btn_confirm" onClick=savenick()>确定</div>
+        </div>
+    </form>
+    </div>
+{%endif%}
+{%if not myguanzhu%}
+	<script>
+    $(function(){
+        $('#reply_div_guanzhu').lightbox_me({
+                    overlaySpeed:0,
+                    lightboxSpeed:0,
+                    centered: true, 
+                    onLoad: function() { 
+                        var target = $.event.fix(e).currentTarget;
+                    }
+            }).click();
+        e.preventDefault();
+    });
+	function saveguanzhu(){
+		document.getElementById("formguanzhu").submit();
+	}
+    </script>
+    <!-- 回复弹出框 -->
+	<div id="reply_div_guanzhu" align="center" style="line-height:30px;">
+    <form name="formguanzhu" id="formguanzhu" action="?" method="get">
+    <font color="#CC0000">点击设置我关心的行业</font> <br />
+      <input type="checkbox" name="myguanzhu" id="myguanzhu" value="1" /> <label for="myguanzhu">废塑料</label>
+      <input type="checkbox" name="myguanzhu" id="myguanzhu1" value="2" /> <label for="myguanzhu1">废金属</label>
+      <input type="checkbox" name="myguanzhu" id="myguanzhu2" value="3" /> <label for="myguanzhu2">综合废料</label>
+      <div align="center" style="margin-top:15px;">
+        <div class="btn btn_confirm" onClick=saveguanzhu()>确定</div>
+        </div>
+    </form>
+    </div>
+{%endif%}
+{%endif%}
+{%include 'bottom.html'%}
+</div>
+</body>
+</html>

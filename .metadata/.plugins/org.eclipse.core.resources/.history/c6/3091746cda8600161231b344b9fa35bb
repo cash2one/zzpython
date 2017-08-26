@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <style>
+    	body{
+    		
+    	}
+    	.title{
+    		font-size:20px;
+    		text-align:center;
+    		height:50px;
+    		line-height:50px;
+    		font-weight:bold;
+    	}
+    	.price{
+    		line-height: 40px;
+    		padding-left:10px;
+    	}
+    	.price span{
+    		color:#ff0000
+    	}
+    	
+    	.main{
+    		line-height:30px;
+    		font-size:14px;
+    		margin-bottom:20px;
+    		padding:10px
+    	}
+    	.buybutton{
+    		position: fixed;
+    		bottom:0px;
+    		left:0px;
+    		border-radius:0px;
+    	}
+    </style>
+</head>
+<body>
+	
+	<div class="aui-content-padded">
+	<!--供求独家广告-->
+		<div class="price">价格：<span>￥ 600元  / 月</span></div>
+		<div class="aui-line-x"></div>
+		<div class="main">
+		<span style="font-size: 18px;font-weight:bold">曝光率高 销货快 </span><br />
+		图片形式，巨幅版面，动态展播，曝光率高，<br />
+		让客户迅速找到，同等投入，最高回报
+		<br />
+		案例：
+		<img src="../../image/service/ad_top.png" style="width:100%">
+		<br />
+		<br /><span style="color:#999">注：购买后两个工作日内（节假日自动顺延）工作人员会联系您。<br />本服务只面向ZZ91再生网移动端用户</span>
+		</div>
+        <div class="aui-btn aui-btn-block aui-btn-success buybutton" tapmode>立即购买</div>
+    </div>
+    <input type="hidden" id="backvalue" value="">
+    <div style="height:80px"></div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+<script type="text/javascript">
+	apiready = function(){
+		var closeiosflag=$api.getStorage("closeiosflag");
+		if (!closeiosflag || closeiosflag==1){
+			$(".buybutton").hide();	
+		}
+		$(".buybutton").on("click", function() {
+			if (!havelogin()){
+				return false;
+			}
+			event.stopPropagation();
+			if (havelogin()){
+				var pageParam = {
+					wintitle : "确认信息",
+					type : "confirmpay",
+					paytype:16
+				};
+				openWin("confirmpay", "../service/show5_1.html", pageParam);
+			}
+		})
+	};
+	//购买置顶广告
+	function buyprolistad(){
+		api.showProgress({
+			title : '扣款中...',
+			modal : false
+		});
+		var company_id = UserInfo.memberID();
+		var usertoken = UserInfo.token();
+		var chk_value = $("#backvalue").val();
+		var data = {
+			paytype : '17',
+			baoming : chk_value,
+			company_id : company_id,
+			usertoken : usertoken,
+			appsystem : api.systemType,
+			datatype : 'json',
+			t : (new Date()).getTime().toString()
+		}
+		api.ajax({
+			url : hosturl + 'qianbao/qianbaopay.html',
+			method : 'get',
+			timeout : 30,
+			dataType : 'json',
+			returnAll : false,
+			data : {
+				values : data
+			}
+		}, function(ret, err) {
+			//zzalert(JSON.stringify(ret))
+			if (ret) {
+				if (ret.err == 'false') {
+					zzalert(ret.errtext);
+				}
+				if (ret.err == 'true' && ret.blanceflag == '0') {
+					yuebuzuFun();
+				}
+				if (ret.err == 'true' && ret.blanceflag == '1') {
+					zzalert(ret.errtext);
+				}
+				api.hideProgress();
+			} else {
+				api.hideProgress();
+				if(err){
+						saveerrlog(err.body);
+					}
+			};
+		});
+	}
+	function backvaluecheck(valu) {
+		$("#backvalue").val(valu);
+	}
+</script>
+<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

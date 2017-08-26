@@ -1,0 +1,10 @@
+var categorylist=""+
+{%for p in categorycodelist%}
+"<a href=\"/trade/{{p.pinyin}}/\"><dt>{{p.label}}</dt></a>"+
+"<dd class=\"clearfix\">"+
+{%for c in p.catelist%}
+"<a href=\"/trade/{{c.pinyin}}/\"><span>{{c.label}}</span></a>"+
+{%endfor%}
+"</dd>"+
+{%endfor%}
+""

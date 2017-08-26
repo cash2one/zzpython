@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <style>
+    	
+		.aui-tab-item.aui-active {
+		    color: #27ae60;
+		    border-bottom: 2px solid #27ae60;
+		    z-index: 100;
+		}
+    </style>
+</head>
+<body>
+	<div class="aui-tab" id="tab">
+        <div class="aui-tab-item aui-active"><div class="aui-dot pengyoumessagestop" style="display:none"></div>我的商圈</div>
+        <div class="aui-tab-item"><div class="aui-dot chatmessagestop" style="display:none"></div>留言消息</div>
+        <div class="aui-tab-item"><div class="aui-dot sysmessagestop" style="display:none"></div>系统消息</div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		changeserverurl();
+        api.parseTapmode();
+        var tab = new auiTab({
+	        element:document.getElementById("tab"),
+	    },function(ret){
+	    	var index=ret.index;
+	    	var m=3
+	    	if (index==1){
+	    		m=3
+	    	}
+	    	if (index==2){
+	    		m=1
+	    	}
+	    	if (index==3){
+	    		m=2
+	    	}
+	    	selectmsg(index-1)
+	    });
+	    openGroup(tab);
+    }
+    function openGroup(tab){
+        var headerPos = $("#tab").height();
+        var body_h = api.winHeight;
+        var footer_h = api.pageParam.footerheight;
+        api.openFrameGroup({
+            name: 'msggroup',
+            scrollEnabled: true,
+            rect:{x:0, y:headerPos, w:'auto', h:body_h - headerPos - footer_h},
+            index: 3,
+            frames: [{
+                name:'msg_quan',
+                url:'./quan.html',
+                vScrollBarEnabled:false,
+                hScrollBarEnabled:false,
+                bounces:false
+            },{
+                name:'msg_leavewords',
+                url:'./leavewords.html',
+                vScrollBarEnabled:false,
+                hScrollBarEnabled:false,
+                bounces:false
+            },{
+                name:'msg_sys',
+                url:'./sys.html',
+                vScrollBarEnabled:false,
+                hScrollBarEnabled:false,
+                bounces:false
+            }]
+        }, function (ret, err) {
+            tab.setActive(ret.index+1)
+        });
+    }
+    function selectmsg(index){
+    	api.setFrameGroupIndex({
+			name : "msggroup",
+			index : index,
+			scroll : true,
+			showProgress : true
+		});
+    }
+    function sys_show(){
+    	$(".sysmessagestop").show();
+    }
+    function sys_hide(){
+    	$(".sysmessagestop").hide();
+    }
+    function chat_show(){
+    	$(".chatmessages").show();
+    }
+    function chat_hide(){
+    	$(".chatmessages").hide();
+    }
+</script>
+<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

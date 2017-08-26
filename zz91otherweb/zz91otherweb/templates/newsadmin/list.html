@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="Css/style.css" />
+		<script type="text/javascript" src="Js/jquery.js"></script>
+		<script type="text/javascript" src="Js/jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="123/jquery.lightbox_me.js"></script>
+		<style>
+			body,div,h2{margin:0;padding:0;}
+			#overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:white;opacity:0.5;filter:alpha(opacity=50);display:none;}
+			.win{position:absolute;top:50%;left:50%;width:400px;height:300px;background:#fff;border:4px solid gray;margin:-102px 0 0 10px;display:none;padding: 20px;}
+			h2{font-size:15px;text-align:right;background:#F0FFF0;border-bottom:1px solid gray;padding:1px;}
+			h2 span{color:gray;cursor:pointer;background:#fff;border:1px solid gray;padding:0 2px;}
+		</style>
+		<script>
+			function editor(i)
+			{
+				var oWin = document.getElementsByName("win")[i];
+				var oLay = document.getElementById("overlay");
+				this.onclick = function ()
+				{
+					oLay.style.display = "block";
+					oWin.style.display = "block"
+				};
+				
+			}
+			function selectOption(menuname,value)
+			{
+			    var menu = document.getElementById(menuname);
+			    
+				if (menu)
+				{
+				for(var i=0;i<=menu.options.length;i++){
+					if(menu.options[i].value==value)
+					{
+						menu.options[i].selected = true;
+						break;
+					}
+				}
+				}
+			}
+		</script>
+		<script>
+			function send5()
+			{
+			document.form.action="newsout.html"
+			document.form.submit()
+			}
+			function send6()
+			{
+			document.form.action="newsadmin.html"
+			document.form.submit()
+			}
+		</script>
+
+		<script>
+			$(function(){
+				$('.cwin9').click(function(e){
+					var artid=$(this).attr('artid');
+					$('#artid').val(artid);
+					//alert(artid)
+					$.ajax({
+					   type: "GET",
+					   url: "getquickart.html",
+					   data: "artid="+artid,
+					   success:function(data){
+					   		var jsondata = jQuery.parseJSON(data);
+					   		title=jsondata['title']
+					   		shorttitle=jsondata['shorttitle']
+					   		flag=jsondata['flag']
+					   		keywords=jsondata['keywords']
+					   		typeid=jsondata['typeid']
+					   		typeid2=jsondata['typeid2']
+					   		$('#title').val(title)
+					   		$('#shorttitle').val(shorttitle)
+					   		$('#keywords').val(keywords);
+					   		selectOption("typeid_quick",typeid.toString())
+					   		//$('#typeid_quick').val(typeid)
+					   		//$('#typeid2_quick').val(typeid2)
+					   		selectOption("typeid2_quick",typeid2.toString())
+					   		
+					   		shuzu=['头条 <input type="checkbox" name="att" value="h">&nbsp;','推荐 <input type="checkbox" name="att" value="c">&nbsp;','幻灯 <input type="checkbox" name="att" value="f">&nbsp;','滚动 <input type="checkbox" name="att" value="s">&nbsp;','栏头 <input type="checkbox" name="att" value="l">&nbsp;','栏推 <input type="checkbox" name="att" value="d">&nbsp;','栏特 <input type="checkbox" name="att" value="e">&nbsp;','栏幻 <input type="checkbox" name="att" value="b">&nbsp;','类头 <input type="checkbox" name="att" value="g">&nbsp;','类推 <input type="checkbox" name="att" value="i">&nbsp;','类特 <input type="checkbox" name="att" value="k">&nbsp;','类幻 <input type="checkbox" name="att" value="a">&nbsp;','图片 <input type="checkbox" name="att" value="p">&nbsp;']
+					   		shuzu2=['头条 <input type="checkbox" name="att" value="h">&nbsp;','推荐 <input type="checkbox" name="att" value="c">&nbsp;','幻灯 <input type="checkbox" name="att" value="f">&nbsp;','滚动 <input type="checkbox" name="att" value="s">&nbsp;','栏头 <input type="checkbox" name="att" value="l">&nbsp;','栏推 <input type="checkbox" name="att" value="d">&nbsp;','栏特 <input type="checkbox" name="att" value="e">&nbsp;','栏幻 <input type="checkbox" name="att" value="b">&nbsp;','类头 <input type="checkbox" name="att" value="g">&nbsp;','类推 <input type="checkbox" name="att" value="i">&nbsp;','类特 <input type="checkbox" name="att" value="k">&nbsp;','类幻 <input type="checkbox" name="att" value="a">&nbsp;','图片 <input type="checkbox" name="att" value="p" checked="checked">&nbsp;']
+					   		attrhtmllist='头条 <input type="checkbox" name="att" value="h">&nbsp;推荐 <input type="checkbox" name="att" value="c">&nbsp;幻灯 <input type="checkbox" name="att" value="f">&nbsp;滚动 <input type="checkbox" name="att" value="s">&nbsp;栏头 <input type="checkbox" name="att" value="l">&nbsp;栏推 <input type="checkbox" name="att" value="d">&nbsp;栏特 <input type="checkbox" name="att" value="e">&nbsp;栏幻 <input type="checkbox" name="att" value="b">&nbsp;类头 <input type="checkbox" name="att" value="g">&nbsp;类推 <input type="checkbox" name="att" value="i">&nbsp;类特 <input type="checkbox" name="att" value="k">&nbsp;类幻 <input type="checkbox" name="att" value="a">&nbsp;图片 <input type="checkbox" name="att" value="p">&nbsp;'
+					   		if (flag.length>0){
+						   		if(flag.indexOf(",")>=0)
+								{
+									//alert(flag);
+							   		flaglist=flag.split(',')
+									$(flaglist).each(function(index){
+										//alert(this);
+									    attrhtmllist=attrhtmllist.replace('value="'+this+'"', 'value="'+this+'" checked="checked"');
+									});
+								    $('#attrlist').html(attrhtmllist)
+							   		
+								}else{
+									//alert(flag);
+									//attrhtml=''
+									//$(shuzu).each(function(index){
+									    //attrhtml+=this
+									//});
+								    //alert(attrhtml);
+								    attrhtml=attrhtmllist.replace('value="'+flag+'"', 'value="'+flag+'" checked="checked"');
+								    //alert(attrhtml)
+								    $('#attrlist').html(attrhtml)
+								}
+					   		}else{
+						   		attrhtml='头条 <input type="checkbox" name="att" value="h">&nbsp;推荐 <input type="checkbox" name="att" value="c">&nbsp;幻灯 <input type="checkbox" name="att" value="f">&nbsp;滚动 <input type="checkbox" name="att" value="s">&nbsp;栏头 <input type="checkbox" name="att" value="l">&nbsp;栏推 <input type="checkbox" name="att" value="d">&nbsp;栏特 <input type="checkbox" name="att" value="e">&nbsp;栏幻 <input type="checkbox" name="att" value="b">&nbsp;类头 <input type="checkbox" name="att" value="g">&nbsp;类推 <input type="checkbox" name="att" value="i">&nbsp;类特 <input type="checkbox" name="att" value="k">&nbsp;类幻 <input type="checkbox" name="att" value="a">&nbsp;图片 <input type="checkbox" name="att" value="p">&nbsp;'
+							    $('#attrlist').html(attrhtml)
+					   		}
+									   		
+					   		$('#win9').lightbox_me({
+								overlaySpeed:0,
+								lightboxSpeed:0,
+				        		centered: true, 
+				        		onLoad: function() { 
+				        		}
+				        	});
+							e.preventDefault();
+					   },
+					   error:function(data){
+							//alert("错误!青重试.");
+					   }
+					}); 
+				})
+			});
+			$(function(){
+				$('#win10').click(function(e){
+					var artid=$('#artid').val();
+					var title=$('#title').val();
+					var shorttitle=$('#shorttitle').val();
+					var keywords=$('#keywords').val();
+					var typeid_quick=$('#typeid_quick').val();
+					var typeid2_quick=$('#typeid2_quick').val();
+					var chk_value =[];    
+					$('input[name="att"]:checked').each(function(){    
+						chk_value.push($(this).val());    
+					});
+					$.ajax({
+					   type: "GET",
+					   url: "updatequickok.html?artid="+artid+"&title="+title+"&shorttitle="+shorttitle+"&keywords="+keywords+"&chk_value="+chk_value+"&typeid_quick="+typeid_quick+"&typeid2_quick="+typeid2_quick,
+					   data:'',
+					   success:function(data){
+					   		window.location.href="";
+					   },
+					   error:function(data){
+							//alert("错误!青重试.");
+					   }
+					}); 		
+				})
+			});
+			function dismiss(){
+				$('#win9').trigger('close');
+			}
+			
+			
+			//以下为一键删除js
+			function selectAll(){  
+			    if ($("#SelectAll").attr("checked")) {  
+			        $(":checkbox").attr("checked", true);  
+			    } else {  
+			        $(":checkbox").attr("checked", false);  
+			    }  
+			}  
+			//子复选框的事件  
+			function setSelectAll(){  
+			    //当没有选中某个子复选框时，SelectAll取消选中  
+			    if (!$("#subcheck").checked) {  
+			        $("#SelectAll").attr("checked", false);  
+			    }  
+			    var chsub = $("input[type='checkbox'][id='subcheck']").length; //获取subcheck的个数  
+			    var checkedsub = $("input[type='checkbox'][id='subcheck']:checked").length; //获取选中的subcheck的个数  
+			    if (checkedsub == chsub) {  
+			        $("#SelectAll").attr("checked", true);  
+			    }  
+			}  
+			
+			//一键删除
+			function deleteallAction(){
+			    document.demo.action="del_all_zz91.html";
+			    document.demo.submit();
+			}
+			//一键恢复
+			function backallAction(){
+			    document.demo.action="back_newsall.html";
+			    document.demo.submit();
+			}
+		</script>
+
+	</head>
+
+	<body>
+		<div id="overlay"></div>
+		<form name="form" class="form-inline definewidth m20">
+			<button type="button" class="btn btn-success" onClick="window.location.href='addnews.html'">添加文章</button>&nbsp;&nbsp;
+			<input class="Wdate" type="text" style="width:100px" name="pubdate" id="pubdate" onClick="WdatePicker()">&nbsp;&nbsp;
+			<input class="btn btn-success" type="button" value="导出" onClick=send5()>&nbsp;&nbsp;&nbsp;
+				<input class="btn btn-success" type="button" value="回收站" onclick="window.location='newsadmin.html?isdel=1'">
+			<br />
+			<br /> 标题
+			<input type="text" name="title" value="{%if title%}{{title}}{%endif%}" style="width:180px">&nbsp;&nbsp; 发布人
+			<input type="text" name="writer" value="{%if writer%}{{writer}}{%endif%}" style="width:90px">&nbsp;&nbsp;
+			<select name="typeid" style="width:100px">
+				{%if typename%}
+				<option value="{{typeid}}">{{typename}}</option>
+				{%endif%}
+				<option value="">--主栏目</option>
+				{%for tp in typelist.list%}
+				<option value="{{tp.id}}">{{tp.typename}}</option>
+				{%for tp1 in tp.nexttype%}
+				<option value="{{tp1.id}}">--{{tp1.typename}}</option>
+				{%endfor%} {%endfor%}
+			</select>&nbsp;&nbsp;
+			<select name="typeid2" style="width:100px">
+				{%if typename2%}
+				<option value="{{typeid2}}">{{typename2}}</option>
+				{%endif%}
+				<option value="">--辅助栏目</option>
+				{%for tp in typelist.list%}
+				<option value="{{tp.id}}">{{tp.typename}}</option>
+				{%for tp1 in tp.nexttype%}
+				<option value="{{tp1.id}}">--{{tp1.typename}}</option>
+				{%endfor%} {%endfor%}
+			</select>&nbsp;&nbsp; 属性
+			<select name="flag" style="width:70px">
+				{%if flagname%}
+				<option value="{{flag}}">{{flagname}}</option>{%endif%}
+				<option value="">属性...</option>
+				{%for att in attlist%}
+				<option value="{{att.att}}">
+					{{att.attname}}
+				</option>
+				{%endfor%}
+			</select>&nbsp;&nbsp;
+			<input class="btn btn-success" type="button" value="查询" onClick=send6()>
+		</form>
+		{%if urllist%}
+		<table class="table table-bordered table-hover definewidth m10">
+			<tr>
+				<th><a href="?">链接</a></th>
+			</tr>
+			{%for l in listall%}
+			<tr>
+				<th><a href="{{l.weburl}}" target="_blank">{{l.weburl}}</a></th>
+			</tr>
+			{%endfor%}
+		</table>
+		<br />
+		<br /> {%endif%}
+		<form name="demo">
+			<table class="table table-bordered table-hover definewidth m10">
+				<thead>
+					<tr>
+						<th>选择</th>
+						<th>ID</th>
+						<th>日期</th>
+						<th><a href="?urllist=1&{{searchurl}}">标题</a></th>
+						<th>主栏目</th>
+						<th>辅助栏目</th>
+						<th>点击数</th>
+						<th>发布人</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<input type="hidden" name="typeid" value="{{typeid}}">
+				<input type="hidden" name="request_url" value="{{request_url}}"> {%for l in listall%}
+				<tr>
+					<td>
+						<input type="checkbox" name="checkid" value="{{l.id}}" id="subcheck">
+					</td>
+					<td>{{l.id}}</td>
+					<td>{{l.pubdate}}</td>
+					<td><a href="{{l.weburl}}" target="_blank">{{l.title|safe}}</a> &nbsp;{%if l.flagnamestr%}[ <font color="red">{{l.flagnamestr}}</font> ]{%endif%}</td>
+					<td>{{l.typename}}</td>
+					<td>{{l.typename2}}</td>
+					<td>{{l.click}}</td>
+					<td>{{l.writer}}</td>
+					<td>
+						<a class="cwin9" artid="{{l.id}}" title="编辑属性"><img src="123/imgs/trun.gif"></a>
+						<a href="updateartical.html?artid={{l.id}}" title="编辑"><img src="123/imgs/gtk-edit.png"></a>
+						&nbsp;
+						<a href="delnews.html?artid={{l.id}}" title="删除" onClick="return confirm('是否将此信息删除?')"><img src="123/imgs/b_drop.png"></a>
+					</td>
+				</tr>
+				{%endfor%}
+			</table>
+			<br/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			{%if isdel%}
+			<input type="button" class="btn btn-success" value="一键恢复" onclick="backallAction()">
+			{%else%}
+			<input type="button" class="btn btn-success" value="一键删除" onclick="deleteallAction()">
+			{%endif%}
+			&nbsp;&nbsp;&nbsp;&nbsp;全选&nbsp;&nbsp;
+			<input type="checkbox" id="SelectAll" value="全选" onclick="selectAll();" />
+		</form>
+		<div class="inline pull-right page">
+			<form>
+				共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页 &nbsp;&nbsp; {% if firstpage %}
+				<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%} {%for p in page_range%} {%if p.nowpage%}
+				<span class='current'>{{p.number}}</span>&nbsp; {%else%}
+				<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a> {%endif%} {%endfor%} {% if lastpage%}
+				<a href="?page={{nextpage}}&{{searchurl}}"><!--<a href="javascript:void(0)" class="nextpage" value="{{nextpage}}">-->下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp; {%if flag%}
+				<input type="hidden" name="flag" value="{{flag}}">{%endif%} {%if writer%}
+				<input type="hidden" name="writer" value="{{writer}}">{%endif%}
+				<input type="hidden" name="page_listcount" value="{{page_listcount}}">&nbsp;&nbsp; 去第
+				<input type="text" name="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页
+				<input type="submit" style="display:none"> &nbsp;&nbsp;
+				<a href='?page=1&{{searchurl}}'>首页</a><a href='?page={{page_listcount}}&{{searchurl}}'>尾页</a>
+			</form>
+
+		</div>
+
+		<div class="win" id="win9" name="win">
+			<input type="hidden" id="artid">
+			<h2><div style="width:200px;height:1px;text-align:left"> &nbsp;快速属性编辑</div> &nbsp;</h2>
+			<br />
+			<table>
+				<tr>
+					<td style="width:60px">&nbsp;标题:</td>
+					<td>
+						<input type="text" id="title" name="title" value="{{l.title}}" style="width:300px">
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;简略标题:</td>
+					<td>
+						<input type="text" id="shorttitle" name="shorttitle" value="{{l.shorttitle}}" style="width:180px">
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;关键词:</td>
+					<td>
+						<input type="text" id="keywords" name="keywords" value="{{l.keywords}}" style="width:300px">
+					</td>
+
+					<tr>
+						<td>&nbsp;主栏目: </td>
+						<td>
+							<select id="typeid_quick" name="typeid_quick" style="width:120px">
+								{%if newsdetail.typeid_exist%}
+								<option value="{{typeid_exist}}">{{typename_exist}}</option>{%endif%}
+								<option value="">请选择...</option>
+								{%for tp in typelist.list%}
+								<option value="{{tp.id}}">{{tp.typename}}</option>
+								{%for tp1 in tp.nexttype%}
+								<option value="{{tp1.id}}">--{{tp1.typename}}</option>
+								{%endfor%} {%endfor%}
+							</select>
+
+							&nbsp;辅助类别:
+							<select id="typeid2_quick" name="typeid2_quick" style="width:120px">
+								{%if newsdetail.typeid2_exist%}
+								<option value="{{typeid2_exist}}">{{typename2_exist}}</option>{%endif%}
+								<option value="">请选择...</option>
+								{%for tp in typelist.list%}
+								<option value="{{tp.id}}">{{tp.typename}}</option>
+								{%for tp1 in tp.nexttype%}
+								<option value="{{tp1.id}}">--{{tp1.typename}}</option>
+								{%endfor%} {%endfor%}
+							</select>&nbsp;&nbsp;
+						</td>
+						<td>
+
+							<tr>
+								<td>&nbsp;属性: </td>
+								<td>
+									<div id="attrlist">
+										头条
+										<input type="checkbox" name="att" value="h">&nbsp; 推荐
+										<input type="checkbox" name="att" value="c">&nbsp; 幻灯
+										<input type="checkbox" name="att" value="f">&nbsp; 滚动
+										<input type="checkbox" name="att" value="s">&nbsp; 栏头
+										<input type="checkbox" name="att" value="l">&nbsp; 栏推
+										<input type="checkbox" name="att" value="d">&nbsp; 栏特
+										<input type="checkbox" name="att" value="e">&nbsp; 栏幻
+										<input type="checkbox" name="att" value="b">&nbsp; 类头
+										<input type="checkbox" name="att" value="g">&nbsp; 类推
+										<input type="checkbox" name="att" value="i">&nbsp; 类特
+										<input type="checkbox" name="att" value="k">&nbsp; 类幻
+										<input type="checkbox" name="att" value="a">&nbsp; 图片
+										<input type="checkbox" name="att" value="p">&nbsp;
+									</div>
+								</td>
+								<tr>
+									<td>&nbsp;</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>
+										<input type="button" value="确认" id="win10" onclick="dismiss()">
+										<input type="button" onclick="dismiss()" value="返回">
+									</td>
+								</tr>
+			</table>
+		</div>
+
+	</body>
+
+</html>

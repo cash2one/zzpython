@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	    <title>{{webtitle}}</title>
+		<meta name="keywords" content="{{webkeywords}}" />
+		<meta name="description" content="{{webdescription}}" />
+	    <meta http-equiv="Cache-Control" content="no-transform " />
+	    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+	    <link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+	    <link rel="stylesheet" href="http://b.zz91.com/comm/css/comm.css" />
+	    <link rel="stylesheet" href="http://b.zz91.com/comm/css/foot.css" />
+	    <link rel="stylesheet" href="http://b.zz91.com/comm/css/top.css" />
+	    <link rel="stylesheet" href="http://b.zz91.com/infomation/css/index.css" />
+	    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+	    <script src="http://b.zz91.com/comm/js/bandMove.js"></script>
+	    <script src="http://b.zz91.com/comm/js/comm.js"></script>
+	    <script type="text/javascript" src="http://b.zz91.com/infomation/js/zx-comm.js" ></script>
+	    <meta http-equiv="mobile-agent" content="format=html5; url=http://m.zz91.com/news/zh/list10371009.html?index=1"/>
+		<link rel="alternate" id="mobilecontrol" media="only screen and(max-width:640px)" href="http://m.zz91.com/news/zh/list10371009.html?index=1" >
+	    {% include 'new/mobilecontrol.html' %}
+	</head>
+	<body>
+		{% include 'new/header.html' %}
+	    <div class="zx-searchnav">
+	    	<div class="zx-searchnav-con">
+	    		<div class="fl logo">
+	    			<a href="http://www.zz91.com">
+	    				<img src="http://b.zz91.com/infomation/images/zx-logo.png">
+	    			</a>
+	    		</div>
+            	<div class="fl page-name">
+            		<a href="http://news.zz91.com">
+            			<img src="http://b.zz91.com/infomation/images/zx-pagename.png">
+            		</a>
+            	</div>
+            	<div class="fl zx-search">
+            		<div class="zx-search-con">
+            			<form action="/search/" method="get" onsubmit="if(this.keywords.value==''){alert('请输入关键字');this.keywords.focus();return false;}">
+            			<input class="fl j_searchipt" name="keywords" id="keywords" placeholder="搜索您感兴趣的资讯" />
+            			<button class="fl zx-search-main" type="submit" style="border: none;"><i class="icon2 zx-search-icon"></i></button>
+            			</form>
+            		</div>
+            	</div>
+            	<div class="fr navmain-list">
+	                <ul class="clearfix navmain-ul">
+	                	<li class="fl zx-firstli"><a href="/">首页</a></li>
+	                    <li class="fl thisnav"><a href="/zh/">展会聚集</a></li>
+	                    <li class="fl"><a href="/hydt/">行业动态</a></li>
+	                    <li class="fl"><a href="/cjxw/">财经新闻</a></li>
+	                    <li class="fl"><a href="/law/">政策法规</a></li>
+	                    <li class="fl"><a href="/tech/">技术文库</a></li>
+	                </ul>
+	            </div>
+	    	</div>
+	    </div>
+	    <div class="bandbox-zh-warp movebox j_movebox">
+		    <div class="bandbox-zh movemian j_movemian clearfix">
+		    	{%for list in topadlist%}
+		    	<div class="movemod j_movemod"><a href="{{list.url}}" target="_blank"><img src="{{list.picaddress}}"/></a></div>
+		    	{%endfor%}
+		    	<div class="movemod j_movemod"><img src="http://b.zz91.com/infomation/images/zx-zh-band.png"/></div>
+		    </div>
+		    <div class="pagespan j_page zx-zh-page"></div>
+	    </div>
+	    <div class="zx-center">
+	    	<div class="zx-zh-conbox clearfix">
+	    		<div class="zx-content-title">
+	    			<font style="font-size: 16px;font-weight: bold;">{{typename}}</font>
+	    			<!--<img src="http://b.zz91.com/infomation/images/zx-zh-title_05.png" class="fl"/>-->
+	    			<!--<a href="" target="_blank" class="fr zx-xsall">
+	    				显示全部<i class="icon2 zx-xsicon"></i>
+	    			</a>-->
+	   			</div>
+	   			<ul class="clearfix">
+	   				{%for list in listall%}
+	   				<li class="{%ifequal list.hnum 1%}fl{%else%}fr{%endifequal%} zx-zh-ztbaodao" style="width: 580px;">
+	   					<a href="/zh/detail{{list.id}}.html" target="_blank" class="zx-zt-title">{{list.name}}</a>
+	   					<a href="/zh/detail{{list.id}}.html" target="_blank">
+	    					<img src="{{list.photo_cover}}"  class="zx-zh-conpic3"/>
+	    				</a>
+	    				<div class="clearfix zx-zt-conbox zx-zh-mgt">
+	    					<p class="zx-zt-con fl">
+	    						地点：{{list.area_name}}<br /> 开始时间：{{list.start_time}}<br />结束时间：{{list.end_time}}
+	    					</p>
+	    					<a href="/zh/detail{{list.id}}.html" target="_blank" class="fr zx-zh-zhuanti zx-zh-mgt">查看专题</a>
+	    				</div>
+	   				</li>
+	   				{%endfor%}
+	   			</ul>
+	   			<div class="zx-page">
+	                <span class="zx-page-span">共{{page_listcount}}页/{{listcount}}条数据</span>
+	                <a href="list{{type}}.html?page=1{{searchurl}}" class="zx-page-a"><<</a>
+	                <a href="list{{type}}.html?page={{prvpage}}{{searchurl}}" class="zx-page-a"><</a>
+	               	{%for pg in page_range%}
+	                <a href="list{{type}}.html?page={{pg.number}}{{searchurl}}" class="zx-page-a {% if pg.nowpage %}thispage{%endif%}">{{pg.number}}</a>
+	                {%endfor%}
+	                <a href="list{{type}}.html?page={{nextpage}}{{searchurl}}" class="zx-page-a">></a>
+	                <a href="list{{type}}.html?page={{page_listcount}}{{searchurl}}" class="zx-page-a">>></a>
+	            </div>
+	    	</div>
+	    </div>
+	    
+	    <script>
+	    	$(".j_movebox").myPlugin({	
+	 							"pageidx":"j_page",
+	 							"Carousel":true,	
+								'lagtime':3000,		
+								'speed':300		
+							})
+	    </script>  
+	    {% include 'new/footer.html' %}
+	</body>
+</html>

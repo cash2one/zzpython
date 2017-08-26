@@ -1,0 +1,593 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZZ91再生网-慈溪站</title>
+<style type="text/css">
+body,td,th {font-size:12px;color:#000; font-family:"宋体";}
+body {background-color:#fef90e;margin:0px;}
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,pre,code,p,th,td,form,img{margin:0; padding:0; border:0px;}
+input,select{margin:0; padding:0;}
+ol,ul,li{list-style:none;}
+.ca {font-size:14px;color:#000;}
+.ca:link {text-decoration:none;}
+.ca:visited{text-decoration:none;color:#000;}
+.ca:hover{text-decoration:underline;color:#F00;}
+.ca:active {text-decoration:none;color:#000;}
+.coma {font-size:12px;color:#000; font-weight:bold;}
+.coma:link {text-decoration:none;}
+.coma:visited{text-decoration:none;color:#000;}
+.coma:hover{text-decoration:underline;color:#F00;}
+.coma:active {text-decoration:none;color:#000;}
+.companytit{font-size:14px; border-bottom:dashed 1px #999;}
+</style>
+<link rel="stylesheet" type="text/css" href="http://subject.zz91.com/comm/facebox.css"/>
+<link rel="stylesheet" type="text/css" href="http://subject.zz91.com/comm/comm.css"/>
+<script src="http://subject.zz91.com/comm/jquery-1.2.2.pack.js" type="text/javascript"></script>
+<script src="http://subject.zz91.com/comm/facebox.js" type="text/javascript"></script>
+<script src="http://subject.zz91.com/comm/checkForm.js" type="text/javascript"></script>
+</head>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox() 
+    })
+</script>
+<script>
+function Marquee()
+{
+this.ID = document.getElementById(arguments[0]);
+if(!this.ID)
+{
+alert("您要设置的\"" + arguments[0] + "\"初始化错误\r\n请检查标签ID设置是否正确!");
+this.ID = -1;
+return;
+}
+this.Direction = this.Width = this.Height = this.DelayTime = this.WaitTime = this.CTL = this.StartID = this.Stop = this.MouseOver = 0;
+this.Step = 1;
+this.Timer = 30;
+this.DirectionArray = {"top":0 , "up":0 , "bottom":1 , "down":1 , "left":2 , "right":3};
+if(typeof arguments[1] == "number" || typeof arguments[1] == "string")this.Direction = arguments[1];
+if(typeof arguments[2] == "number")this.Step = arguments[2];
+if(typeof arguments[3] == "number")this.Width = arguments[3];
+if(typeof arguments[4] == "number")this.Height = arguments[4];
+if(typeof arguments[5] == "number")this.Timer = arguments[5];
+if(typeof arguments[6] == "number")this.DelayTime = arguments[6];
+if(typeof arguments[7] == "number")this.WaitTime = arguments[7];
+if(typeof arguments[8] == "number")this.ScrollStep = arguments[8];
+this.ID.style.overflow = this.ID.style.overflowX = this.ID.style.overflowY = "hidden";
+this.ID.noWrap = true;
+this.IsNotOpera = (navigator.userAgent.toLowerCase().indexOf("opera") == -1);
+if(arguments.length >= 7)this.Start();
+}
+
+Marquee.prototype.Start = function()
+{
+if(this.ID == -1)return;
+if(this.WaitTime < 800)this.WaitTime = 800;
+if(this.Timer < 20)this.Timer = 20;
+if(this.Width == 0)this.Width = parseInt(this.ID.style.width);
+if(this.Height == 0)this.Height = parseInt(this.ID.style.height);
+if(typeof this.Direction == "string")this.Direction = this.DirectionArray[this.Direction.toString().toLowerCase()];
+this.HalfWidth = Math.round(this.Width / 2);
+this.HalfHeight = Math.round(this.Height / 2);
+this.BakStep = this.Step;
+this.ID.style.width = this.Width + "px";
+this.ID.style.height = this.Height + "px";
+if(typeof this.ScrollStep != "number")this.ScrollStep = this.Direction > 1 ? this.Width : this.Height;
+var templateLeft = "<table cellspacing='0' cellpadding='0' style='border-collapse:collapse;display:inline;'><tr><td noWrap=true style='white-space: nowrap;word-break:keep-all;'>MSCLASS_TEMP_HTML</td><td noWrap=true style='white-space: nowrap;word-break:keep-all;'>MSCLASS_TEMP_HTML</td></tr></table>";
+var templateTop = "<table cellspacing='0' cellpadding='0' style='border-collapse:collapse;'><tr><td>MSCLASS_TEMP_HTML</td></tr><tr><td>MSCLASS_TEMP_HTML</td></tr></table>";
+var msobj = this;
+msobj.tempHTML = msobj.ID.innerHTML;
+if(msobj.Direction <= 1)
+{
+msobj.ID.innerHTML = templateTop.replace(/MSCLASS_TEMP_HTML/g,msobj.ID.innerHTML);
+}
+else
+{
+if(msobj.ScrollStep == 0 && msobj.DelayTime == 0)
+{
+msobj.ID.innerHTML += msobj.ID.innerHTML;
+}
+else
+{
+msobj.ID.innerHTML = templateLeft.replace(/MSCLASS_TEMP_HTML/g,msobj.ID.innerHTML);
+}
+}
+var timer = this.Timer;
+var delaytime = this.DelayTime;
+var waittime = this.WaitTime;
+msobj.StartID = function(){msobj.Scroll()}
+msobj.Continue = function()
+{
+if(msobj.MouseOver == 1)
+{
+setTimeout(msobj.Continue,delaytime);
+}
+else
+{	clearInterval(msobj.TimerID);
+msobj.CTL = msobj.Stop = 0;
+msobj.TimerID = setInterval(msobj.StartID,timer);
+}
+}
+
+msobj.Pause = function()
+{
+msobj.Stop = 1;
+clearInterval(msobj.TimerID);
+setTimeout(msobj.Continue,delaytime);
+}
+
+msobj.Begin = function()
+{
+msobj.ClientScroll = msobj.Direction > 1 ? msobj.ID.scrollWidth / 2 : msobj.ID.scrollHeight / 2;
+if((msobj.Direction <= 1 && msobj.ClientScroll <= msobj.Height + msobj.Step) || (msobj.Direction > 1 && msobj.ClientScroll <= msobj.Width + msobj.Step))			{
+msobj.ID.innerHTML = msobj.tempHTML;
+delete(msobj.tempHTML);
+return;
+}
+delete(msobj.tempHTML);
+msobj.TimerID = setInterval(msobj.StartID,timer);
+if(msobj.ScrollStep < 0)return;
+msobj.ID.onmousemove = function(event)
+{
+if(msobj.ScrollStep == 0 && msobj.Direction > 1)
+{
+var event = event || window.event;
+if(window.event)
+{
+if(msobj.IsNotOpera)
+{
+msobj.EventLeft = event.srcElement.id == msobj.ID.id ? event.offsetX - msobj.ID.scrollLeft : event.srcElement.offsetLeft - msobj.ID.scrollLeft + event.offsetX;
+}
+else
+{
+msobj.ScrollStep = null;
+return;
+}
+}
+else
+{
+msobj.EventLeft = event.layerX - msobj.ID.scrollLeft;
+}
+msobj.Direction = msobj.EventLeft > msobj.HalfWidth ? 3 : 2;
+msobj.AbsCenter = Math.abs(msobj.HalfWidth - msobj.EventLeft);
+msobj.Step = Math.round(msobj.AbsCenter * (msobj.BakStep*2) / msobj.HalfWidth);
+}
+}
+msobj.ID.onmouseover = function()
+{
+if(msobj.ScrollStep == 0)return;
+msobj.MouseOver = 1;
+clearInterval(msobj.TimerID);
+}
+msobj.ID.onmouseout = function()
+{
+if(msobj.ScrollStep == 0)
+{
+if(msobj.Step == 0)msobj.Step = 1;
+return;
+}
+msobj.MouseOver = 0;
+if(msobj.Stop == 0)
+{
+clearInterval(msobj.TimerID);
+msobj.TimerID = setInterval(msobj.StartID,timer);
+}
+}
+}
+setTimeout(msobj.Begin,waittime);
+}
+
+Marquee.prototype.Scroll = function()
+{
+switch(this.Direction)
+{
+case 0:
+this.CTL += this.Step;
+if(this.CTL >= this.ScrollStep && this.DelayTime > 0)
+{
+this.ID.scrollTop += this.ScrollStep + this.Step - this.CTL;
+this.Pause();
+return;
+}
+else
+{
+if(this.ID.scrollTop >= this.ClientScroll)
+{
+this.ID.scrollTop -= this.ClientScroll;
+}
+this.ID.scrollTop += this.Step;
+}
+break;
+
+case 1:
+this.CTL += this.Step;
+if(this.CTL >= this.ScrollStep && this.DelayTime > 0)
+{
+this.ID.scrollTop -= this.ScrollStep + this.Step - this.CTL;
+this.Pause();
+return;
+}
+else
+{
+if(this.ID.scrollTop <= 0)
+{
+this.ID.scrollTop += this.ClientScroll;
+}
+this.ID.scrollTop -= this.Step;
+}
+break;
+
+case 2:
+this.CTL += this.Step;
+if(this.CTL >= this.ScrollStep && this.DelayTime > 0)
+{
+this.ID.scrollLeft += this.ScrollStep + this.Step - this.CTL;
+this.Pause();
+return;
+}
+else
+{
+if(this.ID.scrollLeft >= this.ClientScroll)
+{
+this.ID.scrollLeft -= this.ClientScroll;
+}
+this.ID.scrollLeft += this.Step;
+}
+break;
+
+case 3:
+this.CTL += this.Step;
+if(this.CTL >= this.ScrollStep && this.DelayTime > 0)
+{
+this.ID.scrollLeft -= this.ScrollStep + this.Step - this.CTL;
+this.Pause();
+return;
+}
+else
+{
+if(this.ID.scrollLeft <= 0)
+{
+this.ID.scrollLeft += this.ClientScroll;
+}
+this.ID.scrollLeft -= this.Step;
+}
+break;
+}
+}
+</script>
+<body>
+{%include 'html/comm/top.html'%}
+<table width="954" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><a href="#mydiv" rel="facebox"><img src="../images/cixi_03.jpg" width="954" height="220" /></a></td>
+  </tr>
+</table>
+<table width="954" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="../images/cixi_05.jpg" width="954" height="214" /></td>
+  </tr>
+</table>
+<table width="954" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="726" valign="top" bgcolor="#ebebeb"><table width="100%" border="0" cellspacing="0" cellpadding="0" background="../images/cixi_07.jpg">
+      <tr>
+        <td width="188"><img src="../images/cixi_06.jpg" width="188" height="42" /></td>
+        <td>&nbsp;</td>
+        <td width="9"><img src="../images/cixi_09.jpg" width="9" height="42" /></td>
+      </tr>
+    </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="15" background="../images/cixi_11.jpg"><img src="../images/cixi_11.jpg" width="15" height="10" /></td>
+          <td bgcolor="#FFFFFF" style="line-height:22px; font-size:14px; padding:20px;">&nbsp;&nbsp;&nbsp;&nbsp;继ZZ91再生网独创品牌—再生汇2008年启动以来，已经为废料商人区域性交易对接50多场再生汇。2012年正值龙腾虎跃之年，ZZ91再生汇开启了与产业园区合作新纪元，再生汇不仅为废料商人搭建一个良好的交流平台，而且可以参观货场，到园区及园区企业考察货场。本届再生汇是由浙江再生塑料产业基地&amp;ZZ91联合举办。旨在更好为江浙沪周边的废塑料商贸易提供专业线下服务。</td>
+          <td width="9" background="../images/cixi_13.jpg"><img src="../images/cixi_13.jpg" width="9" height="6" /></td>
+        </tr>
+    </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" background="../images/cixi_16.jpg">
+        <tr>
+          <td width="15"><img src="../images/cixi_15.jpg" width="15" height="15" /></td>
+          <td>&nbsp;</td>
+          <td width="9"><img src="../images/cixi_18.jpg" width="9" height="15" /></td>
+        </tr>
+    </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" background="../images/cixi_20.jpg">
+        <tr>
+          <td width="196"><img src="../images/cixi_17-19.jpg" width="196" height="52" /></td>
+          <td>&nbsp;</td>
+          <td width="9" align="right"><img src="../images/cixi_20-22.jpg" width="4" height="52" /></td>
+        </tr>
+    </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td width="15" background="../images/cixi_11.jpg"><img src="../images/cixi_11.jpg" width="15" height="10" /></td>
+          <td height="280" valign="top" bgcolor="#FFFFFF"><table border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td><img src="../images/cixi_25.jpg" width="573" height="70" /></td>
+            </tr>
+            <tr>
+              <td><img src="../images/cixi_28.jpg" width="573" height="67" /></td>
+            </tr>
+            <tr>
+              <td><img src="../images/cixi_29.jpg" width="573" height="68" /></td>
+            </tr>
+            <tr>
+              <td><img src="../images/cixi_30.jpg" width="573" height="67" /></td>
+            </tr>
+          </table></td>
+          <td width="9" background="../images/cixi_13.jpg"><img src="../images/cixi_13.jpg" width="9" height="6" /></td>
+        </tr>
+    </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0" background="../images/cixi_16.jpg">
+        <tr>
+          <td width="15"><img src="../images/cixi_15.jpg" width="15" height="15" /></td>
+          <td>&nbsp;</td>
+          <td width="9"><img src="../images/cixi_18.jpg" width="9" height="15" /></td>
+        </tr>
+    </table></td>
+    <td bgcolor="#ebebeb">&nbsp;</td>
+    <td width="220" valign="top" bgcolor="#ebebeb" style="background-image:url(../images/cixi_02.jpg); background-repeat:repeat-y; background-position:right;"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:solid 1px #b1b1b1;">
+      <tr>
+        <td bgcolor="#fba72a" style="color:#FFF; font-size:14px; font-weight:bold; padding-left:5px; border-bottom:solid 1px #b1b1b1;" height="30">再生汇信息</td>
+      </tr>
+      <tr>
+        <td style="line-height:20px; padding:5px;">
+        <ul>
+        <li style="border-bottom:dashed 1px #bebebe;"><strong>主办单位：</strong>ZZ91再生网</li>
+        <li style="border-bottom:dashed 1px #bebebe;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;浙江再生塑料产业基地</li>
+        <li style="border-bottom:dashed 1px #bebebe;"><strong>活动范围：</strong>废塑料及相关技术服务</li>
+        <li style="border-bottom:dashed 1px #bebebe;"><strong>时&nbsp;&nbsp;&nbsp;&nbsp;间：</strong>2012.03.24</li>
+        <li style="border-bottom:dashed 1px #bebebe;"><strong>地&nbsp;&nbsp;&nbsp;&nbsp;点：</strong>浙江·慈溪·浙江再生</li>
+        <li style="border-bottom:dashed 1px #bebebe;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;塑料产业基地</li>
+        <li style="height:16px;"></li>
+        </ul>
+        </td>
+      </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:solid 1px #b1b1b1; margin-top:10px;">
+      <tr>
+        <td bgcolor="#fba72a" style="color:#FFF; font-size:14px; font-weight:bold; padding-left:5px; border-bottom:solid 1px #b1b1b1;" height="30">ZZ91再生汇报名联系方式</td>
+      </tr>
+      <tr>
+        <td style="line-height:20px; padding:5px;">
+        <ul>
+        <li style="border-bottom:dashed 1px #bebebe;"><strong>电&nbsp;&nbsp;&nbsp;&nbsp;话：</strong>0571-56611688</li>
+        <li style="border-bottom:dashed 1px #bebebe;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0571-56637906</li>
+        <li style="border-bottom:dashed 1px #bebebe;"><strong>传&nbsp;&nbsp;&nbsp;&nbsp;真：</strong>0571-56637777</li>
+        <li style="border-bottom:dashed 1px #bebebe;"><strong>邮&nbsp;&nbsp;&nbsp;&nbsp;箱：</strong>market@zz91.com</li>
+        <li style="border-bottom:dashed 1px #bebebe;"><strong>网&nbsp;&nbsp;&nbsp;&nbsp;址：</strong>www.zz91.com</li>
+        <li style="height:16px;"></li>
+        </ul>
+        </td>
+      </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:solid 1px #b1b1b1; margin-top:10px;">
+      <tr>
+        <td bgcolor="#fba72a" style="color:#FFF; font-size:14px; font-weight:bold; padding-left:5px; border-bottom:solid 1px #b1b1b1;" height="30">往期再生汇</td>
+      </tr>
+      <tr>
+        <td style="line-height:20px; padding:5px;">
+        <ul>
+        <li style="border-bottom:dashed 1px #bebebe;"><a href="http://huzhu.zz91.com/viewReply621192.htm" target="_blank" class="coma">ZZ91再生汇——苏州站</a></li>
+        <li style="border-bottom:dashed 1px #bebebe;"><a href="http://huzhu.zz91.com/viewReply616345.htm" target="_blank" class="coma">2011再生汇——慈溪站</a></li>
+        <li style="border-bottom:dashed 1px #bebebe;"><a href="http://www.zz91.com/cn/trade40840.html" target="_blank" class="coma">再生汇青岛站活动成功举办</a></li>
+        <li style="height:50px;"></li>
+        </ul>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="954" border="0" align="center" cellpadding="0" cellspacing="0" style="border-left:solid 1px #7f7c07; border-right:solid 1px #7f7c07;">
+  <tr>
+    <td bgcolor="#EBEBEB" height="5"></td>
+  </tr>
+</table>
+<table width="954" border="0" align="center" cellpadding="0" cellspacing="0" background="../images/cixi_33.jpg">
+  <tr>
+    <td><img src="../images/cixi_32.jpg" width="304" height="50" /></td>
+    <td width="12"><img src="../images/cixi_36.jpg" width="12" height="50" /></td>
+  </tr>
+</table>
+<table width="954" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="7" background="../images/cixi_04.jpg"><img src="../images/cixi_04.jpg" width="7" height="8" /></td>
+    <td height="200" bgcolor="#FFFFFF" style="border-right:solid 1px #7e7b06;"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="border-top:solid 1px #aaaaaa;border-bottom:solid 1px #aaaaaa;">
+      <tr>
+        <td width="50" align="center"><img src="../images/cixi_40.jpg" width="31" height="34" onclick="MoveLeft()" style="CURSOR: pointer;" /></td>
+        <td height="133"><div id=marqueediv1 style="width:846px; overflow:hidden;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr align="center">
+        <td><img src="../images/029.png" height="133" hspace="5" /></td>
+        <td><img src="../images/DSC_0126.jpg" height="133" hspace="5" /></td>
+        <td><img src="../images/IMG_9163.jpg" height="133" hspace="5" /></td>
+        <td><img src="../images/IMG_9164.jpg" height="133" hspace="5" /></td>
+        <td><img src="../images/IMG_9220.jpg" height="133" hspace="5" /></td>
+        <td><img src="../images/IMG_9241.jpg" height="133" hspace="5" /></td>
+        <td><img src="../images/IMG_9252.jpg" height="133" hspace="5" /></td>
+      </tr>
+    </table></div></td>
+        <td width="50" align="center"><img src="../images/cixi_43.jpg" width="31" height="34" onclick="MoveRight()" style="CURSOR: pointer;" /></td>
+        </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="954" border="0" align="center" cellpadding="0" cellspacing="0" background="../images/cixi_12.jpg">
+  <tr>
+    <td width="13"><img src="../images/cixi_10.jpg" width="13" height="11" /></td>
+    <td><img src="../images/cixi_12.jpg" width="3" height="11" /></td>
+    <td width="7"><img src="../images/cixi_14.jpg" width="7" height="11" /></td>
+  </tr>
+</table>
+<table width="954" border="0" align="center" cellpadding="0" cellspacing="0" background="../images/cixi_48.jpg">
+  <tr>
+    <td width="280"><img src="../images/cixi_47.jpg" width="260" height="71" /></td>
+    <td><a href="#mydiv" rel="facebox"><img src="../images/cixi_50.jpg" width="373" height="71" /></a></td>
+    <td width="8"><img src="../images/cixi_52.jpg" width="8" height="71" /></td>
+  </tr>
+</table>
+<table width="954" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="7" background="../images/cixi_04.jpg"><img src="../images/cixi_04.jpg" width="7" height="8" /></td>
+    <td bgcolor="#FFFFFF" style="border-right:solid 1px #7e7b06;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="70" align="center"><img src="../images/cixi_57.jpg" width="583" height="54" /></td>
+      </tr>
+    </table>
+      <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0" style="border:solid 1px #848484;">
+        <tr>
+          <td height="300"><div style="height:300px; overflow:auto; line-height:24px;">
+            <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td class="companytit" width="350"><strong>公司名称</strong></td>
+                <td class="companytit"><strong>主营业务</strong></td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://mingweigj.zz91.com/" class="ca" target="_blank">香港名威国际贸易有限公司</a></td>
+                <td class="companytit">供应各类废塑料</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://zhjy.zz91.com/" class="ca" target="_blank">慈溪市宗汉锦源塑料粉碎厂</a></td>
+                <td class="companytit">采购pa废丝，供应pa颗粒</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://certificateofregistrationofacompany.zz91.com/index.htm" class="ca" target="_blank">朗屹国际贸易有限公司（澳大利亚）</a></td>
+                <td class="companytit">供应pp,pe，复合膜等</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://sidiweile.zz91.com/" class="ca" target="_blank">宁波海曙思迪蔚乐贸易有限公司</a></td>
+                <td class="companytit">供应pp,pe,pvc,ps,pa等</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://shily.zz91.com/" class="ca" target="_blank">慈溪再生塑料厂</a></td>
+                <td class="companytit">求购pc废料：pc薄片，pc边角料，pc板</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://sufeng.zz91.com/index.htm" class="ca" target="_blank">象山县泗洲头塑丰塑料粒子加工厂</a></td>
+                <td class="companytit">采购pp,pe膜等</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://mingxusuliao.zz91.com/" class="ca" target="_blank">慈溪市天元铭旭塑料经营部</a></td>
+                <td class="companytit">求购pa.pc.pp.abs.pbt等</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://lincf.zz91.com/index.htm" class="ca" target="_blank">个体经营（林常发）</a></td>
+                <td class="companytit">供应pp颗粒eva料子</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://jiejie.51pla.com/" class="ca" target="_blank">余姚市杰杰工贸公司</a></td>
+                <td class="companytit">求购pp编织袋</td>
+              </tr>
+              <tr>
+                <td class="companytit">个体经营（童建伟）</td>
+                <td class="companytit">供应各种pa6、pa66进口丝料粒子</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://meiliang.zz91.com/" class="ca" target="_blank">个体经营（梅良）</a></td>
+                <td class="companytit">供应PET膜</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://yanqian.zz91.com/" class="ca" target="_blank">个体经营（严迁）  </a></td>
+                <td class="companytit">求购PET瓶片</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://weiyi.zz91.com/cxda.htm" class="ca" target="_blank">慈溪市观海卫伟易电子厂</a></td>
+                <td class="companytit">收购pbt阻燃，黑色、白色</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://zlsl.zz91.com/" class="ca" target="_blank">平湖市钟埭街道美仙塑料厂</a></td>
+                <td class="companytit">供应ABS，求购PP</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://cixiboyi.zz91.com/" class="ca" target="_blank">慈溪经济开发区博易塑料有限公司</a></td>
+                <td class="companytit">供应PA颗粒，PA6,PA66颗粒</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://xugf.zz91.com/" class="ca" target="_blank">个体经营(许国峰）</a></td>
+                <td class="companytit">供应pvc边角料</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://dabieyou.zz91.com/" class="ca" target="_blank">慈溪市达别有塑胶制品有限公司</a></td>
+                <td class="companytit">求购pps,psu,pei,ppo,peek,fep,pfa,pvdf</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://www.zz91.com/customerprice/priceDetails.asp?id=154148" class="ca" target="_blank">宁波合顺塑料有限公司</a></td>
+                <td class="companytit">长期供应进口PC、ABS、PET</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://sunjianw.zz91.com/" class="ca" target="_blank">东阳市白云起点塑料厂</a></td>
+                <td class="companytit">采购销售pp破碎料，PP料</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://huqf.zz91.com/" class="ca" target="_blank">个体经营（胡先生）</a></td>
+                <td class="companytit">供应各种废塑料PP、PVC、APP、EVA、TPU等产品</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://eps.zz91.com/" class="ca" target="_blank">上海元芬泡沫塑料制品有限公司</a></td>
+                <td class="companytit">求购：EPS冷压块,EPS热熔块</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://wangwei.zz91.com/" class="ca" target="_blank">个体经营（王伟）</a></td>
+                <td class="companytit">购销各种国产、进口PE复合卷筒膜、PET复合卷筒膜、镀铝复合卷筒、PA卷筒膜，PET转移膜</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://sysy.zz91.com/" class="ca" target="_blank">三友控股集团废旧物资有限公司</a></td>
+                <td class="companytit">购PC一级,ABS一级回料</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://chinaqiyang.zz91.com/" class="ca" target="_blank">慈溪市奇阳塑业有限公司</a></td>
+                <td class="companytit">求购：PVC杂色料，杂色PP，PE复合料，块料，粒料</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://good-luck.zz91.com/" class="ca" target="_blank">Good luck industry Co Ltd&S.R.L</a></td>
+                <td class="companytit">供应进口废塑料</td>
+              </tr>
+              <tr>
+                <td class="companytit"><a href="http://huanghd.zz91.com/" class="ca" target="_blank">余姚市宝丽塑料商行</a></td>
+                <td class="companytit">销售各种日本，韩国，德国等各种回料</td>
+              </tr>
+            </table>
+          </div>
+          </td>
+        </tr>
+    </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td height="30">&nbsp;</td>
+        </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="954" border="0" align="center" cellpadding="0" cellspacing="0" background="../images/cixi_12.jpg">
+  <tr>
+    <td width="13"><img src="../images/cixi_10.jpg" width="13" height="11" /></td>
+    <td><img src="../images/cixi_12.jpg" width="3" height="11" /></td>
+    <td width="7"><img src="../images/cixi_14.jpg" width="7" height="11" /></td>
+  </tr>
+</table>
+<table width="954" border="0" align="center" cellpadding="0" cellspacing="0" style="border:solid 1px #7e7b06; border-top:0px;">
+  <tr>
+    <td bgcolor="#EBEBEB">&nbsp;</td>
+  </tr>
+</table>
+{% include 'html/comm/buttom.html' %}
+</body>
+</html>
+<script>
+document.getElementById("title").value="2012再生汇"
+</script>
+<script> 
+var marquee1=new Marquee("marqueediv1");
+marquee1.Direction=2;
+marquee1.Step=1;
+marquee1.Width=846;
+marquee1.Height=133;
+marquee1.Timer=50;
+marquee1.ScrollStep=1;
+marquee1.Start();
+function MoveLeft(){
+marquee1.Direction=2;
+}
+function MoveRight(){
+marquee1.Direction=3;
+}
+</script>

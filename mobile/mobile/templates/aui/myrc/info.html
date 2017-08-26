@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>ZZ91再生网-修改资料</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<style>
+			.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+			.clearfix{height:1%}
+			.clearfix{display:block}
+			.aui-bar{
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			a{
+				color:#333
+			}
+			.floatpage{
+				position: fixed;
+				bottom:0px;
+				width:100%;
+				height:54px;
+			}
+			.user-img{
+				width: 3rem;
+				position: relative;
+			    padding-right: 0.75rem;
+			    display: inherit;
+			    -webkit-flex-shrink: 0;
+			    flex-shrink: 0;
+			    -webkit-flex-wrap: nowrap;
+			    flex-wrap: nowrap;
+			    -webkit-box-align: center;
+			    -webkit-align-items: flex-start;
+			    align-items: flex-start;
+			}
+			.user-img img{
+				width: 100%;
+				height: 100%;
+			}
+			.aui-input{
+				color: #0062CC !important;
+			}
+			.aui-radio:checked:before, .aui-radio.aui-checked:before, .aui-checkbox:checked:before, .aui-checkbox.aui-checked:before, .aui-radio:checked:after, .aui-radio.aui-checked:after, .aui-checkbox:checked:after, .aui-checkbox.aui-checked:after{
+				margin-left: 0;
+				margin-top: 0;
+				border: 0;
+				-webkit-transform: none;
+    			transform: none;
+			}
+			.jb-btn{
+				color: #fff !important;
+				background: #009900;
+			}
+			select{
+				border: none;
+			    background-color: transparent;
+			    border-radius: 0;
+			    box-shadow: none;
+			    display: block;
+			    padding: 0;
+			    margin: 0;
+			    width: 100%;
+			    height: 2.2rem;
+			    line-height: normal;
+			    color: #424242;
+			    font-size: 0.8rem;
+			    font-family: inherit;
+			    box-sizing: border-box;
+			    -webkit-user-select: text;
+			    user-select: text;
+			    -webkit-appearance: none;
+			    appearance: none;
+			}
+			.aui-btn-block{
+				padding: 8px 0;
+				background: #009900;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">修改资料</div>
+		    <a class="aui-pull-right aui-btn aui-btn-outlined">
+		        <span class="aui-iconfont aui-icon-check aui-font-size-14 aui-margin-r-5"></span>
+		        <span class="aui-font-size-14">保存</span>
+		    </a>
+		</header>
+		<div style="height: 45px;"></div>
+		
+		<div class="aui-card aui-margin-t-10">       
+		    <div class="aui-form">
+		        <a href="" class="aui-input-row aui-list-item-arrow">
+		            <span class="aui-input-addon">更换头像</span>
+		            <div class="user-img aui-pull-right aui-margin-r-15 aui-margin-t-0">
+                    	<img src="http://img3.zz91.com/300x15000/other/2017/02/27/1488177813361.JPEG" />
+                    </div>
+		        </a>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">联 系 人：</span>
+            		<input type="text" class="aui-input" placeholder=""/>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</span>
+            		<div class="aui-pull-right aui-font-size-14">
+            			<label>
+            				<input class="aui-radio aui-radio-info" type="radio" name="demo" checked><div class="aui-radio-name">男</div>
+            			</label>
+            			<label>
+            				<input class="aui-radio aui-radio-info" type="radio" name="demo"><div class="aui-radio-name">女</div>
+            			</label>
+		            </div>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">联 系 人：</span>
+            		<input type="text" class="aui-input" placeholder=""/>
+            		<div class="aui-input-addon">
+            			<a href="" class="aui-btn aui-padded-l-10 aui-padded-r-10 jb-btn">解绑</a>
+            		</div>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">微 信 号：</span>
+            		<input type="text" class="aui-input" placeholder=""/>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QQ：</span>
+            		<input type="text" class="aui-input" placeholder=""/>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</span>
+            		<input type="text" class="aui-input" placeholder=""/>
+		        </div>
+		    </div>
+		</div>
+		
+		<div class="aui-card aui-margin-t-10">       
+		    <div class="aui-form">
+		        <div href="" class="aui-input-row">
+		            <div class="aui-input-addon">
+		            	<p style="color: #333;">公司名称：</p>
+		            	<p class="aui-padded-t-5" style="color: #EA6E0C;">(不能修改)</p>
+		            </div>
+		            <input type="text" class="aui-input" disabled placeholder=""/>
+		        </div>
+		        <div class="aui-input-row aui-list-item-arrow">
+		            <span class="aui-input-addon">主营行业：</span>
+            		<select class="aui-font-size-14">
+                        <option value="">请选择</option>
+                        <option value="">废塑料</option>
+                        <option value="">废金属</option>
+                        <option value="">废纸</option>
+                        <option value="">废旧轮胎与废橡胶</option>
+                        <option value="">废纺织品与废皮革</option>
+                        <option value="">废电子电器</option>
+                        <option value="">废玻璃</option>
+                        <option value="">废旧二手设备</option>
+                        <option value="">其他废料</option>
+                        <option value="">服务</option>
+                        <option value="">塑料原料</option>
+                    </select>
+		        </div>
+		        <div class="aui-input-row aui-list-item-arrow">
+		            <span class="aui-input-addon">公司类型：</span>
+            		<select class="aui-font-size-14">
+                        <option value="">请选择</option>
+                        <option value="">国外供货商</option>
+                        <option value="">国外回收贸易商</option>
+                        <option value="">码头，仓库储存商</option>
+                        <option value="">国内供应商</option>
+                        <option value="">国内回收贸易商</option>
+                        <option value="">国内加工，拆解商</option>
+                        <option value="">利废企业</option>
+                        <option value="">设备，技术，服务提供商</option>
+                        <option value="">冶炼厂</option>
+                        <option value="">电子厂</option>
+                        <option value="">造粒厂</option>
+                    </select>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">国家/地区：</span>
+            		<input type="text" class="aui-input" placeholder=""/>
+            	</div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</span>
+            		<input type="text" class="aui-input" placeholder=""/>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编：</span>
+            		<input type="text" class="aui-input" placeholder=""/>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">主营业务：</span>
+            		<textarea  class="aui-input" rows="8"/></textarea>
+		        </div>
+		    </div>
+		</div>
+		
+		<div class="aui-card aui-margin-t-10 aui-noborder">    
+			<div class="aui-btn aui-btn-block aui-font-size-16">
+				确认
+			</div>
+		</div>
+		
+		<div class="city">
+			<
+		</div>
+	</body>
+</html>

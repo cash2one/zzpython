@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="zh-CN"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="zh-CN"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="zh-CN"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title>企业自主报价-zz91再生网</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/price/css/priceMyrc.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<style type="text/css">
+	.excelDefaults {
+		width:100%;
+		text-align:center;
+	}
+	
+	.excelDefaults tr td {
+		line-height:25px;
+		font-size:12px;
+		}
+</style>
+</head>
+<body>
+	{% include 'comm/top.html' %}
+	<div class="container">
+    	<div class="banner">
+        	<div class="bannerBg">
+            	<div class="logo">
+       		        <a href="http://www.zz91.com" target="_blank">
+                    	<img src="http://img0.zz91.com/zz91/images/logo.jpg" alt="ZZ91再生网" width="115" height="45" />
+               		</a>
+                	<a href="http://price.zz91.com" target="_blank">
+                    	<img src="http://img0.zz91.com/zz91/price/images/logo.jpg" width="150" alt="价格行情" />
+                	</a>
+                </div>
+                <div class="banCompany"><a href="http://myrc.zz91.com/mycompanyprice/upload.htm" target="_blank">企业报价上传</a>{{cname}}</div>
+            </div>
+            <!--end bannerBg-->
+        </div>
+        <!--end banner-->
+        <div class="content" >
+        	{{content|safe}}
+        </div>
+        <!--end content-->
+    </div>
+    {% include 'comm/buttom.html' %}
+</body>
+</html>

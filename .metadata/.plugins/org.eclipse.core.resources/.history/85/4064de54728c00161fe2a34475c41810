@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>APP</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <style>
+    	.aui-list-view:after {
+  			border-top: 0px solid #c8c7cc;
+		}
+    </style>
+</head>
+<body>
+	<div class="aui-searchbar-wrap focus" style="background-color: #01BA2E;color: fff">
+        <a class="aui-pull-left backicon" onclick="api.closeWin();" style="margin-right: 10px;margin-left: 10px;color: #fff">
+	        <span class="aui-iconfont aui-icon-left"></span>
+	    </a>
+        <div class="aui-searchbar aui-border-radius" tapmode >
+            <i class="aui-iconfont aui-icon-search"></i>
+            <div class="aui-searchbar-text">输入你感兴趣的关键词</div>
+            <div class="aui-searchbar-input">
+            	<form action="javascript:search();">
+            	<input type="text" placeholder="" id="search-input">
+            	</form>
+            </div>
+            <i class="aui-iconfont aui-icon-roundclosefill clearinputcontent" style="display: block;margin-right: 10px" tapmode ></i>
+        </div>
+        <div class="aui-searchbar-cancel searchbotton" tapmode style="color: #fff">搜索</div>
+    </div>
+    <div class="aui-content" style="font-size:14px">
+    	<div style="color: #666;padding: 10px">最近搜索历史</div>
+        <ul class="aui-list-view" style="background-color: #f4f4f4;margin-left: 10px;">
+            <li class="aui-list-view-cell">
+                <div class="aui-arrow-right aui-ellipsis-1">儿童健康</div>
+            </li>
+            <li class="aui-list-view-cell">
+                <div class="aui-arrow-right aui-ellipsis-1">生活</div>
+            </li>
+            <li class="aui-list-view-cell">
+                <div class="aui-text-center" style="color: #666">清楚搜索历史</div>
+            </li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js" ></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+	var UIInputid=1;
+	apiready = function(){
+		api.parseTapmode();
+		var UIInput = api.require('UIInput');
+		UIInput.open({
+		    rect: {
+		        x: $(".backicon").width()+50,
+		        y: 15,
+		        w: $("#search-input").width(),
+		        h: 20
+		    },
+		    styles: {
+		        bgColor: '#fff',
+		        size: 14,
+		        color: '#000',
+		        placeholder: {
+		            color: '#ccc'
+		        }
+		    },
+		    autoFocus: true,
+		    maxRows: 1,
+		    placeholder: '输入你感兴趣的关键词',
+		    keyboardType: 'default',
+		    fixedOn: api.frameName
+		}, function(ret, err) {
+		    if (ret) {
+		    	UIInputid=ret.id;
+		        //alert(JSON.stringify(ret));
+		    } else {
+		        //alert(JSON.stringify(err));
+		    }
+		});
+		$(".clearinputcontent").on("click",function(){
+			UIInput.value({
+				id:UIInputid,
+			    msg: ''
+			});
+		});
+		$(".searchbotton").on("click",function(){
+			UIInput.value({id:UIInputid},function(ret, err) {
+			    if (ret) {
+			    	if (ret.msg==""){
+			    		zzalert("请输入搜索内容！")
+			    		return;
+			    	}else{
+			    		var wintitle=ret.msg;
+						var pageParam = {
+				          wintitle:wintitle,
+				          type:"searchlist",
+				          bounces:false,
+				          footerheight:0,
+				          searchflag:1,
+				        };
+				        openWinNormal("searchlist","../main/mainlist.html",pageParam);
+			    	}
+			    	
+			    } else {
+			        //alert(JSON.stringify(err));
+			    }
+			});
+			
+		})
+
+	}
+	
+	
+	
+</script>
+</html>

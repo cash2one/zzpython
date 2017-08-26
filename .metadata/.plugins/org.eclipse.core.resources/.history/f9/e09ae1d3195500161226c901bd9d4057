@@ -1,0 +1,633 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>供求详情</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/trade/firm-detail.css" />
+	</head>
+	<body>
+		<div class="box">
+			<div class="aui-toast" id="loading">
+		        <div class="aui-toast-loading"></div>
+		        <div class="aui-toast-content">加载中</div>
+		    </div>
+			<script id="info-list" type="text/html">
+				<div class="firm-img" style="display:{{ d.display }}">
+					<!--<img src="{{ d.piclist[0].images }}">
+					<div class="firm-imgtext">
+						{{ d.lenpiclist }}张
+					</div>-->
+				</div>
+				
+				<ul style="background-color: #fff;margin-bottom: 10px;" class="contactcom">
+					<!--<div style="display:{{ d.display }};color: #666;font-size: 12px;text-align: center;">共{{ d.lenpiclist }}张，点击查看大图</div>-->
+					<h2 class="firm-name">{{ d.title }}</h2>
+					<li class="aui-list-view-cell" tapmode>
+						<span class="color-green">所&nbsp;&nbsp;在&nbsp;&nbsp;地：</span>{{ d.address }}
+					</li>
+					<li class="aui-list-view-cell" tapmode>
+						<span class="color-green">发布日期：</span>{{ d.refresh_time }}
+					</li>
+					<li class="aui-list-view-cell" tapmode>
+						<span class="color-green">有&nbsp;&nbsp;效&nbsp;&nbsp;期：</span>{{ d.expire_time }}
+					</li>
+					<li class="aui-list-view-cell pricevalue1" tapmode>
+						<span class="color-green">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</span>{{ d.price }}
+					</li>
+					<li class="aui-list-view-cell pricevalue2" style="display:none">
+						<span class="color-green">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</span>电议或面议
+					</li>
+					<li class="aui-list-view-cell quantity">
+						<span class="color-green">数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：</span>{{ d.quantity }}{{ d.quantity_unit }}
+					</li>
+				</ul>
+				<div style="background-color: #fff;margin-bottom: 10px;">
+					<div class="member-type">
+						{{ d.details }}
+					</div>
+					<div style="clear: both;"></div>
+				</div>
+				<div style="clear: both;"></div>
+				<ul style="background-color: #fff;" class="contactcom">
+					<li class="aui-list-view-cell cxinfo" style="display: none" tapmode><a href="javascript:;" class="aui-arrow-right" style="color:red;"><i class="aui-iconfont aui-icon-safe"></i>诚信认证已审核</a></li>
+				
+					<li class="aui-list-view-cell companydetail" tapmode><a href="javascript:;" class="aui-arrow-right"><span class="color-green">公司名称：</span>{{ d.compname }}</a></li>
+					<li class="aui-list-view-cell" tapmode><span class="color-green">联&nbsp;&nbsp;系&nbsp;&nbsp;人：</span>{{ d.contact }}</li>
+					<li class="aui-list-view-cell" tapmode><span class="color-green">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</span>{{ d.address }}</li>
+					<div style="clear: both;"></div>
+				</ul>
+				<!--<div class="firm-do clear">
+				<span class="shouc"><i></i>收藏信息</span><span class="liuy"><i></i>给我留言</span>
+				</div>-->
+				</script>
+		</div>
+		<input type="hidden" id="jubaovalue" value="">
+		<div class="aui-toast" id="default" style="padding-top:25px;display:none">
+	        <i class="aui-iconfont aui-icon-check"></i>
+	        <div class="aui-toast-content" style="margin-top:10px">举报成功</div>
+	    </div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+	<script type="text/javascript">
+		var imgList = [];
+		var shouchangdata;
+		var leaveworddata;
+		var phonedata;
+		//所有数据列
+		var detailsdata;
+		var joinflag=true;
+		var videoPlayer;
+		apiready = function() {
+			videoPlayer = api.require('videoPlayer');
+			/*
+			$(".box").on("click", ".firm-img", function() {
+				api.openWin({
+					name : 'imglist',
+					url : '../trade/imglist.html',
+					pageParam : {
+						name : 'imglist',
+						imglist : imgList
+					}
+				});
+			});
+			*/
+			api.parseTapmode();
+			ajaxInfo();
+			
+		}
+		
+		//举报成功
+		function showsuc(){
+	        $api.css($api.byId("default"),"display:block");
+	        setTimeout(function(){
+	            $api.css($api.byId("default"),"display:none");
+	        },2000)
+	    }
+		//收藏
+		function shoucFun(favoriteflag) {
+			//未登录
+			if (!havelogin()){
+				return false;
+			};
+			loadingshow();
+			if (shouchangdata) {
+				shouchangdata['favoriteflag']=favoriteflag;
+				shoucInfo(shouchangdata);
+			}
+		}
+
+		//留言
+		function leavewordFun() {
+			//未登录
+			if (!havelogin()){
+				return false;
+			};
+			if (leaveworddata) {
+				openWin("huifu", "../trade/huifu.html", leaveworddata);
+			}
+		}
+
+		//打电话
+		function phoneFun() {
+			if(!detailsdata){
+				return false;
+			}
+			if (phonedata == "") {
+				//未登录
+				if (!havelogin()){
+					return false;
+				};
+				//是否来电宝客户
+				var ldbvalue=$api.getStorage("ldbvalue");
+				if (ldbvalue==1){
+					paymoney=5
+				}else{
+					paymoney=10
+				}
+				var html = "";
+				html += '<p style="color: #000000;">查看此联系方式需<font color="#FF0000">'+paymoney.toString()+'</font>元，确定付款？</p>'
+				html += '<p style="color:#C4C4C4;margin-top:10px">如虚假信息、虚假号码等可举报申请退款</p>'
+				$aui.alert({
+					title : '提示',
+					content : html,
+					buttons : ['取消','确定'],
+					radius : 10,
+					titleColor : '#333',
+					contColor : '#333',
+					btnColor : ''
+				}, function(ret) {
+					//处理回调函数
+					if (ret) {
+						if (ret == 1) {
+							//loadingshow();
+							api.showProgress({title:'扣款中...',modal:false});
+							//判断余额是否够
+							api.ajax({
+								url : hosturl + 'viewcontact.html',
+								method : 'post',
+								timeout : 30,
+								dataType : 'json',
+								data : {
+									values : {company_id:UserInfo.memberID(),usertoken : UserInfo.token(),forcompany_id:detailsdata.list.company_id,paytype:1,id:detailsdata.list.pdtid}
+								},
+								returnAll : false,
+							}, function(ret, err) {
+								if(err){
+									saveerrlog(err.body);
+								}
+								//zzalert(JSON.stringify(ret))
+								if (ret.err=="true" && ret.errkey=='余额不足'){
+									yuebuzuFun();
+								}else{
+									if (ret.err=="false"){
+										//zzalert(JSON.stringify(detailsdata))
+										phonedata=ret.list.mobile1;
+										api.execScript({
+											name : api.winName,
+											frameName : api.winName+"_",
+											script : "loadpostcontact('" + detailsdata.list.contact + "','" + ret.list.mobile1 + "')"
+										});
+										
+										api.toast({
+										    msg: '该客户已经加入我的通讯录',
+										    duration: 2000,
+										    location: 'bottom'
+										});
+										//更新生意管家数据
+										api.execScript({
+											name : 'root',
+											script : 'changemyrcindex()'
+										});
+									}else{
+										api.toast({
+										    msg: '系统错误，请重试',
+										    duration: 2000,
+										    location: 'bottom'
+										});
+									}
+								}
+								//loadinghide();
+								api.hideProgress();
+							});
+						}
+					}
+				});
+			} else {
+				var html='';
+				html+='<p style="color: #000000;">选择拨打电话</p><div style="font-size:18px;">'
+				//zzalert(JSON.stringify(detailsdata.list.tel))
+        		html+='<ul class="tellist">'
+        		if (JSON.stringify(detailsdata.list.mobilelist)!='[]'){
+	        		for (i=0;i<=detailsdata.list.mobilelist.length-1;i++){
+	        			if (detailsdata.list.mobilelist[i]){
+			            	html+='<a href="tel:'+detailsdata.list.mobilelist[i].toString()+'"><li class="aui-list-view-cell" style="font-size:18px;" tel="'+detailsdata.list.mobilelist[i].toString()+'">';
+			                html+='<span class="aui-iconfont aui-icon-mobile" style="font-size:24px"></span>  '+detailsdata.list.mobilelist[i].toString()+' ';
+			            	html+='</li></a>';
+		            	}
+	            	}
+            	}else{
+            		html+='<a href="tel:'+phonedata+'"><li class="aui-list-view-cell" style="font-size:18px;" tel="'+phonedata+'">';
+	                html+='<span class="aui-iconfont aui-icon-mobile" style="font-size:24px"></span>  '+phonedata+' ';
+	            	html+='</li></a>';
+            	}
+            	if (detailsdata.list.tel && detailsdata.list.tel.toString()!=''){
+	            	html+='<a href="tel:'+detailsdata.list.tel_area_code.toString()+detailsdata.list.tel.toString()+'"><li class="aui-list-view-cell" style="font-size:18px;" tel="'+detailsdata.list.tel_area_code.toString()+detailsdata.list.tel.toString()+'">';
+	                html+='<span class="aui-iconfont aui-icon-phone" style="font-size:24px"></span>  '
+	                if (detailsdata.list.tel_country_code && detailsdata.list.tel_country_code!=''){
+	                	//html+=detailsdata.list.tel_country_code.toString()+'-'
+	                }
+	                if (detailsdata.list.tel_area_code && detailsdata.list.tel_area_code!=''){
+	                	html+=detailsdata.list.tel_area_code.toString()+'-'
+	                }
+	                if (detailsdata.list.tel && detailsdata.list.tel!=''){
+	                	html+=detailsdata.list.tel.toString();
+	                }
+	            	html+='</li></a>';
+            	}
+        		html+='</ul>';
+        		buttons=['关闭','加入通信录']
+        		if (detailsdata.forvipflag){
+        			buttons=[ '取消','加入通信录','举报']
+        		}
+    			if (detailsdata.list.viptype.ldb){
+    				html='<p style="color: #000000;">是否拨打电话</p><div style="font-size:18px;"><span class="aui-iconfont aui-icon-phone" style="font-size:24px"></span>  <a href="tel:'+phonedata+'">'+phonedata+'</a> </div>';
+    				buttons=[ '取消','加入通信录','<a href="tel:'+phonedata+'">拨打</a>']
+    			}
+				$aui.alert({
+					title : '',
+					content : html,
+					buttons : buttons,
+					radius : 10,
+					titleColor : '#333',
+					contColor : '#333',
+					btnColor : ''
+				}, function(ret) {
+					//处理回调函数
+					if (ret) {
+						if (ret==1){
+							if (!havelogin()){
+								return false;
+							}
+							//加入通信录
+							if (joinflag==false){return false;}
+							joinflag=false;
+							var data={
+								company_id : UserInfo.memberID(),
+								forcompany_id : detailsdata.forcompany_id,
+								usertoken : UserInfo.token(),
+								appsystem : api.systemType,
+								datatype : "json",
+							}
+							api.ajax({
+								url : hosturl +"myrc/join_addressbook.html",
+								method : "post",
+								timeout : 30,
+								dataType : 'json',
+								returnAll : false,
+								data : {
+									values : data
+								}
+							}, function(ret, err) {
+								//zzalert( JSON.stringify( ret ) );
+								if(err){
+									saveerrlog(err.body);
+								}
+								if (ret){
+									api.toast({
+										msg : ret.errkey,
+										duration : 3000,
+										location : 'bottom'
+									});
+									//$(".jointxl").hide();
+									joinflag=true;
+								}
+							})
+						}
+						if (ret == 2) {
+							if (detailsdata.list.viptype.ldb){
+								//api.call({
+								//	type : 'tel',
+								//	number : phonedata
+								//});
+								//保存电话记录
+								savedata_noback("http://m.zz91.com/trade/telclicklog.html?tel=" + phonedata + "&pagefrom=apptrade&company_id=" + UserInfo.memberID(),"get")
+							}else{
+								//举报
+								if (!havelogin()){
+									return false;
+								};
+								if (detailsdata.forvipflag){
+									$("#jubaovalue").val('');
+									jubaoFun();
+								}
+							}
+						}
+					}
+				});
+			}
+		}
+		
+		//举报
+		function jubaoFun(){
+			var html = "";
+				html += '<p style="color: #000000;">您将举报该信息</p>'
+				html += '<table width=100% id="jubaocheck">'
+			    html += '<tr>'
+			    html += '    	<td><input class="aui-checkbox" type="checkbox" name="report" id="report1" value="1" /><label class="aui-checkbox-name" for=report1>违法违规</label></td>'
+			    html += '        <td><input class="aui-checkbox" type="checkbox" name="report" id="report2" value="2" /><label class="aui-checkbox-name" for=report2>虚假信息</label></td>'
+			    html += '    </tr>'
+			    html += '    <tr>'
+			    html += '    	<td><input class="aui-checkbox" type="checkbox" name="report" id="report3" value="3" /><label class="aui-checkbox-name" for=report3>过期信息</label></td>'
+			    html += '        <td><input class="aui-checkbox" type="checkbox" name="report" id="report4" value="4" /><label class="aui-checkbox-name" for=report4>虚假号码</label></td>'
+			    html += '    </tr>'
+			    html += '</table>'
+				$aui.alert({
+					title : '提示',
+					content : html,
+					buttons : ['取消','确定'],
+					radius : 10,
+					titleColor : '#333',
+					contColor : '#333',
+					btnColor : '',
+					wintype : 'jubao'
+				}, function(ret) {
+					//处理回调函数
+					if (ret) {
+						if (ret == 1) {
+							var chk_value=$("#jubaovalue").val();
+							if (chk_value!=""){
+								savedata_noback(hosturl+"pro_report.html?forcompany_id=" + detailsdata.forcompany_id.toString() + "&product_id="+detailsdata.list.pdtid.toString()+"&company_id=" + UserInfo.memberID() +"&chk_value="+chk_value,"post")
+								//显示成功
+								showsuc();
+							}
+						}
+					}
+				});
+		}
+		//余额不足
+		function yuebuzuFun(){
+			var html = "";
+				html += '<p style="color: #000000;">您的余额不足，是否充值？</p>'
+				$aui.alert({
+					title : '提示',
+					content : html,
+					buttons : ['取消','充值'],
+					radius : 10,
+					titleColor : '#333',
+					contColor : '#333',
+					btnColor : ''
+				}, function(ret) {
+					//处理回调函数
+					if (ret) {
+						if (ret == 1) {
+							var pageParam = {
+					            wintitle:"我的再生钱包",
+					            type:"call-moery",
+					        };
+					        openWin("call-moery","../myrc/call-moery.html",pageParam);
+						}
+					}
+				});
+		}
+		function ajaxInfo() {
+			var id = api.pageParam.id;
+			var topheight = api.pageParam.topheight;
+			var data={
+				company_id : UserInfo.memberID(),
+				forcompany_id : api.pageParam.forcompany_id,
+				usertoken : UserInfo.token(),
+				appsystem : api.systemType,
+				datatype : "json",
+				id:id,
+			}
+			api.ajax({
+				url : hosturl + 'detail/',
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(ret))
+				if(err){
+					saveerrlog(err.body);
+				}
+				
+				detailsdata=ret
+				if (ret.list) {
+					//判断是否有图片，没有图片对象中添加隐藏属性
+					if (ret.list.piclist.length == 0) {
+						ret.list.piclist[0] = "";
+						ret.list.display = "none";
+					} else {
+						ret.list.display = "";
+					}
+					//把图片数组对象的大图单独提取出来拿来做参数提取
+					var picpath=[],piccaptions=[],picurl=[];
+					$.each(ret.list.piclist, function(index, item) {
+						picpath.push(item.images_big);
+						piccaptions.push("");
+						picurl.push(item.images_big)
+						//打开视频
+						if (item.images_big){
+							var ldot = item.images_big.lastIndexOf(".");
+       						var vodiotype = item.images_big.substring(ldot + 1).toLowerCase( );
+							if (vodiotypelist.indexOf(vodiotype)>=0){
+							//if (item.images_big.indexOf(".mp4")>=0){
+								//videoOpen(item.images_big,200);
+								//alert(item.images_big)
+								
+								
+								var images_big=item.images_big;
+								item.images="../../image/video.png";
+								if (images_big){
+									images_big=images_big.replace("http://img3.zz91.com/300x300/","http://img1.zz91.com/");
+									//alert(images_big)
+									item.images_big=images_big;
+									ret.list.vpath = images_big;
+								}else{
+									
+								}
+								vadioPlay(item.images_big)
+							}
+						}else{
+							
+						}
+						imgList[index] = item.images_big;
+						if (item.images==""){
+							ret.list.display = "none";
+						}
+					})
+					showscrollpic(topheight,picpath,piccaptions);
+					//zzalert(JSON.stringify(imgList))
+					//展示获取的信息
+					var getTpl = $api.html($api.byId("info-list"));
+					laytpl(getTpl).render(ret.list, function(html) {
+						$(".box").html(html)
+					});
+					$(".firm-img img").css("max-width",api.winWidth);
+					var Pid = ret.id, forcompany_id = ret.forcompany_id;
+					//诚信认证
+					if (ret.hasOwnProperty("zxinfo")) {
+						if (ret.zxinfo==1){
+							$(".cxinfo").show();
+						}
+					}
+					//价格电议或面议
+					if (ret.list.min_price=="0" && ret.list.max_price=="0"){
+						$(".pricevalue1").hide();
+						$(".pricevalue2").show();
+					}else{
+						$(".pricevalue1").show();
+						$(".pricevalue2").hide();
+					}
+					if (ret.list.quantity==""){
+						$(".quantity").hide();
+					}else{
+						$(".quantity").show();
+					}
+					var lvdata = {
+						wintitle : "给我留言",
+						type : "huifu",
+						Pid : Pid,
+						forcompany_id : forcompany_id,
+						be_inquired_type : 0
+					};
+					leaveworddata = lvdata;
+					var favorite_type_code = ret.list.products_type_code == 10331000 ? 10091000 : 10091001;
+					var data = {
+						company_id : UserInfo.memberID(),
+						usertoken : UserInfo.token(),
+						appsystem : api.systemType,
+						datatype : "json",
+						favorite_type_code : favorite_type_code,
+						forcompany_id : ret.forcompany_id,
+						content_id : ret.id,
+						title : ret.list.title,
+						pdtid : ret.list.pdtid,
+						products_type_code : ret.list.products_type_code
+					};
+					shouchangdata = data;
+					//保存分享数据到本地
+					var title=ret.list.title;
+					localStorage.setItem("share_title",""+title);
+					localStorage.setItem("share_description","我正在查看"+title+"，赶紧跟我一起来体验！http://m.zz91.com/detail/?id="+Pid.toString()+" 点击链接查看");
+					localStorage.setItem("share_url","http://m.zz91.com/detail/?id="+Pid.toString()+"");
+					localStorage.setItem("share_pic","http://img0.zz91.com/zz91/images/indexLogo.png");
+					//判断是否来电宝
+					//zzalert(JSON.stringify(ret.list.viptype.ldb))
+					if (ret.list.viptype.ldb) {
+						if (ret.list.viptype.ldb.ldbphone) {
+							phonedata = ret.list.viptype.ldb.ldbphone
+						}
+					} else {
+						phonedata = ret.list.mobile1.toString();
+						if (phonedata==""){
+							phonedata = "无号码";
+							ret['isseecompany']=1;
+						}
+						//zzalert(JSON.stringify(ret))
+						if (ret.isseecompany) {
+							phonedata = ret.list.mobile1.toString();
+							//用户错误
+							if (phonedata==""){
+								phonedata = "无号码"
+							}
+						} else {
+							phonedata = "";
+						}
+					}
+					api.execScript({
+						name : api.winName,
+						frameName : api.winName+"_",
+						script : "loadpostcontact('" + ret.list.contact + "','" + phonedata + "');isfavor("+ret.list.favoriteflag+")"
+					});
+					$("body").on("click", ".companydetail", function() {
+						var id = ret.forcompany_id
+			            var pageParam = {
+			                wintitle:"公司详情",
+			                type:"companyshop",
+			                showbottom : 1,
+							forcompany_id : id,
+			                bounces:false
+			            };
+			            openWin("companyshop"+id, "../company/shop.html", pageParam);
+					});
+					api.hideProgress();
+				} else {
+					$(".box").html("该供求未通过审核！");
+					api.hideProgress();
+				};
+			});
+		}
+		function jubaocheck(valu){
+			$("#jubaovalue").val(valu);
+		}
+		//图片轮播
+		//顶部滚动图片
+		function showscrollpic(topheight,picpath,piccaptions) {
+			
+			var UIScrollPicture = api.require('UIScrollPicture');
+			var sysType = api.systemType;
+			//var pic_top=$(".mainitem").height()+$("#topbar").height()+20;
+			var pic_top=0;
+			//alert(topheight)
+			UIScrollPicture.open({
+				rect : {
+					x : 0,
+					y : pic_top,
+					w : api.winWidth,
+					h : 200
+				},
+				data : {
+					paths : picpath
+				},
+				styles : {
+					caption : {//（可选项）JSON对象；说明文字区域样式
+						height : 25.0, //（可选项）数字类型；说明文字区域高度；默认：35.0
+						color : 'rgba(255,255,255,0.5)', //（可选项）字符串类型；说明文字字体颜色；默认：'#E0FFFF'
+						size : 16.0, //（可选项）数字类型；说明文字字体大小；默认：13.0
+						bgColor : 'rgba(0,0,0,0.5)', //（可选项）说明文字区域的背景色，支持rgb、rgba、#；默认'#696969'
+						position : 'overlay' //（可选项）字符串类型；说明文字区域的显示位置，取值范围：overlay（悬浮在图片上方，底部与图片底部对齐），bottom（紧跟在图片下方，顶部与图片底部对齐）；默认：'bottom'
+					},
+					indicator : {//（可选项）JSON对象；指示器样式；不传则不显示指示器
+						align : 'center', //(可选项)字符串类型；指示器位置，center（居中），left（靠左），right（靠右）；默认：center
+						//color : 'rgba(0,200,0,0.9)', //(可选项)指示器颜色 ，支持rgb、rgba、#；默认：'#FFFFFF'
+						activeColor : 'rgba(0,0,0,0.7)' //(可选项)当前指示器颜色，支持rgb、rgba、#；默认：'#DA70D6'
+					}
+				},
+				placeholderImg : "widget://res/key1.png",
+				contentMode : "scaleAspectFit",
+				interval : 6,
+				auto : true,
+				loop : true,
+				fixedOn : api.frameName,
+				fixed : false
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(ret));
+				if (ret.eventType=="click"){
+					var pageParam = {
+						wintitle : "广告",
+						type : "adlist",
+						bounces : false
+					};
+					var tourl = picurl[ret.index];
+					openWin("adlist", tourl, pageParam);
+				}
+			});
+		}
+
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

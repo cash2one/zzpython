@@ -1,0 +1,67 @@
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+body {
+	margin-left: 5px;
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+-->
+</style><form id="form1" name="form1" method="get" action="">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="30"><table border="0" cellspacing="0" cellpadding="5">
+      <tr>
+        <td><a href="http://adminasto.zz91.com/subjectbaoming9090/?title=手机问题反馈">手机问题反馈</a></td>
+        <td><a href="http://adminasto.zz91.com/subjectbaoming9090/?title=申请再生通">申请再生通</a></td>
+        <td><a href="http://adminasto.zz91.com/subjectbaoming9090/?title=在线支付">在线支付</a></td>
+        <td><a href="http://adminasto.zz91.com/subjectbaoming_ldb/">400来电宝报名</a></td>
+        <td>&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="30">专题名称
+        <input type="text" name="title" id="title" value="{{title}}"/>
+      <input type="submit" name="button" id="button" value="搜索" /></td>
+  </tr>
+</table> 
+</form>
+<table width="100%" border="0" cellspacing="1" cellpadding="4" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#FFFFFF">标题</td>
+    <td bgcolor="#FFFFFF">内容</td>
+    <td bgcolor="#FFFFFF">申请时间</td>
+  </tr>
+  {%for list in listall%}
+  <tr>
+    <td bgcolor="#FFFFFF">{{list.title}}</td>
+    <td bgcolor="#FFFFFF"><pre>{{list.contents|safe}}</pre></td>
+    <td bgcolor="#FFFFFF">{{list.gmt_created}}</td>
+  </tr>
+  {%endfor%}
+</table>
+<div class='pageBar'>
+		{% if firstpage %}
+		<a href="?page=1&title={{title}}&pt={{pt}}" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+		<a href="?page={{prvpage}}&title={{title}}&pt={{pt}}" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+		{% endif %}
+		{% for p in page_range %}
+		{% if p.nowpage %}
+		<span class="cpb" style="margin-right:5px;">{{p.number}}</span>
+		{% else %}
+		<a href="?page={{p.number}}&title={{title}}&pt={{pt}}" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+		{% endif %}
+		{% endfor %}
+		&nbsp;
+		{% if lastpage%}
+		<a href="?page={{nextpage}}&title={{title}}&pt={{pt}}" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+		<a href="?page={{page_listcount}}&title={{title}}&pt={{pt}}" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+		{% endif %}
+	</div>

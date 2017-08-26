@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>筛选</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/trade/choice.css"/>
+		<style>
+			html, body {
+				background: transparent;
+				height: 100%;
+				background: rgba(0,0,0,0.1);
+				overflow: hidden;
+			}
+			#aui-header {
+				position: absolute;
+				top: 50px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				padding-top: 0px;
+			}
+			.type_small {
+				background-color: #FAFAFC;
+				border-top: none;
+				overflow: auto;
+				position: absolute;
+				bottom: 45px;
+				top: 95px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				color: #666
+			}
+			.price-type{
+				background-color:#f9f9f9;
+				border-bottom:solid 1px #ebebeb;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-success" id="aui-header">
+			<a class="aui-btn aui-btn-success aui-pull-right" tapmode onclick="closeselect()"> <span class="aui-iconfont aui-icon-roundclosefill"></span> </a>
+			<div class="aui-title">
+				请选择废纸类别
+			</div>
+		</header>
+		<div class="type_small">
+			<div class="price-type aui-arrow-right" tapmode="index-nav-li" category-id="219">
+				<i class="aui-iconfont2 aui-zzicon-jinshu" style="background: none;top:2px"></i>废橡胶行情综述
+			</div>
+			<div class="price-type aui-arrow-right" style="border-bottom:none" category-id="14">
+				<i class="aui-iconfont2 aui-zzicon-jinshu" style="background: none;top:2px"></i>废纸评论
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span category-id="37" tapmode="index-nav-li">周评</span>
+					<span category-id="36" tapmode="index-nav-li">日评</span>
+					<span></span>
+				</li>
+			</ul>
+			
+			<div class="price-type aui-arrow-right" style="border-bottom:none" category-id="13">
+				<i class="aui-iconfont2 aui-zzicon-jinshu" style="background: none;top:2px"></i>废纸市场价格
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span category-id="231" tapmode="index-nav-li">各地价格</span>
+					<span category-id="26" tapmode="index-nav-li">国内欧废</span>
+					<span category-id="27" tapmode="index-nav-li">国内日废</span>
+					<span category-id="28" tapmode="index-nav-li">国内美废</span>
+					<span category-id="29" tapmode="index-nav-li">国外废纸</span>
+					
+					<span></span>
+				</li>
+			</ul>
+			<div class="price-type aui-arrow-right" tapmode="index-nav-li" category-id="23">
+				<i class="aui-iconfont2 aui-zzicon-jinshu" style="background: none;top:2px"></i>废纸行情动态
+			</div>
+			
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/iscroll.js"></script>
+	<script type="text/javascript">
+		function closeselect() {
+			api.execScript({
+				name : api.winName,
+				script : "keybackFun('1')"
+			});
+			api.closeFrame();
+		}
+
+		apiready = function() {
+			changeserverurl();
+			
+			//选择类别
+			$(".small-area span").on("click", function() {
+				var categoryId = $(this).attr("category-id");
+				
+				var assist_id = $(this).attr("assist_id");
+				var keywords = $(this).attr("keywords");
+				var mSrc="";
+				if (assist_id){
+					mSrc += "&assist_id="+assist_id;
+				}
+				if (keywords){
+					mSrc += "&keywords="+keywords;
+				}
+				if (categoryId) {
+					var pageParam = {
+						type : "price",
+						categoryId : categoryId,
+						mSrc : mSrc
+					};
+					openWin("offer-list", "../price/offer-list.html", pageParam);
+				}
+			});
+			$(".price-type").on("click", function() {
+				var categoryId = $(this).attr("category-id");
+				if (categoryId==""){
+					return;
+				}
+				var assist_id = $(this).attr("assist_id");
+				var keywords = $(this).attr("keywords");
+				var mSrc="";
+				if (assist_id){
+					mSrc += "&assist_id="+assist_id;
+				}
+				if (keywords){
+					mSrc += "&keywords="+keywords;
+				}
+				if (categoryId) {
+					var pageParam = {
+						type : "price",
+						categoryId : categoryId,
+						mSrc : mSrc
+					};
+					openWin("offer-list", "../price/offer-list.html", pageParam);
+				}
+			});
+			
+			var $body = $api.dom('body');
+			$api.addEvt($body, 'click', function(e) {
+				if (e.target == $body) {
+					closeselect();
+				} else {
+					e.stopPropagation();
+				}
+			});
+		}
+		
+
+		function selectbutton() {
+			
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

@@ -1,0 +1,11 @@
+<html>
+<body>
+<h1>请先选择您的主营行业类别</h1>
+<form action="app_choice_industryok.html" method="post">
+	{% for tp in listall.list %}
+		<input type="radio" name="category" value="{{tp.code}}">{{tp.label}}<br>
+	{% endfor %}
+	<input type="submit" value="确定">
+</form>
+</body>
+</html>

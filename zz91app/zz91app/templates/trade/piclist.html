@@ -1,0 +1,29 @@
+{%if list.piclist%}
+	{%for pic in list.piclist%}{%if pic.lastpic%}
+    <div class="mui-slider-item mui-slider-item-duplicate">
+        <center>
+            <img src="{{pic.lastpic}}" class="mui-media-object">
+            <div style="color: #fff;font-size: 12px;">{{pic.picnum}}/{{list.lenpiclist}}</div>
+        </center>
+    </div>{%endif%}
+    {%endfor%}
+    {%for pic in list.piclist%}
+    <div class="mui-slider-item">
+        <center>
+            <img src="{{pic.images_big}}" class="mui-media-object">
+            <div style="color: #fff;font-size: 12px;">{{pic.picnum}}/{{list.lenpiclist}}</div>
+        </center>
+    </div>
+    {%endfor%}
+    {%for pic in list.piclist%}
+    {%if pic.firstpic%}
+    <div class="mui-slider-item mui-slider-item-duplicate">
+        <center>
+            <img src="{{pic.firstpic}}" class="mui-media-object">
+            <div style="color: #fff;font-size: 12px;">{{pic.picnum}}/{{list.lenpiclist}}</div>
+        </center>
+    </div>
+    {%endif%}
+    {%endfor%}
+{%endif%}
+<input type="hidden" id="appnavname" value="产品图片" />

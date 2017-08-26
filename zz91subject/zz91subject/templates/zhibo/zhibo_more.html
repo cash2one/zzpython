@@ -1,0 +1,6 @@
+{%for list in zhibolist%}
+<li>
+    <div class="infotime"><span class="dtime">{{list.gmthoure}}</span><br><span class="dday">{{list.gmtdate}}</span></div>
+    <div class="infoimg"><div class="imgsbox">{{list.content|safe}}</div></div>
+</li>
+{%endfor%}

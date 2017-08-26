@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+<link rel="stylesheet" href="/css/comm-detail.css" />
+<div class="dt-title">
+	<div class="lh28 f18">{{title}}</div>
+	<div class="h43">			
+		<div class="lh28 c9 fl">发表者：{{nickname}} 时间：{{gmt_created}}<br></div>    		
+		<div class="fr">
+		<a href="#hh">回复</a>
+		</div>
+	</div>
+	<div class="arrow-outer">
+		<div class="arrow"></div>
+	</div>
+</div>
+<div class="dt-append-title f18 lh28">
+{{content|safe}}
+</div>
+<div class="asw-other">有<span class="c-hl">{{replycount}}</span>条回复</div>
+{%for list in listall_reply%}
+<div class="asw-item">
+	<div class="title">{{list.nickname}}的答复：</div>
+	<div class="content">
+		<div class="f18 lh28">{{list.content|safe}}</div>
+	</div>
+	<div class="operation">
+		<span class="c9">回复时间：{{list.posttime}}</span>		
+	</div>
+</div>
+{%endfor%}		
+{%if moreflag%}
+<div id="moreDiv"></div>
+<div>
+	<link rel="stylesheet" href="/css/comm-more.css">
+    <table class="moreTable" id="moreTable">
+    	<tbody><tr>
+    		<td>
+    			<div class="moreLeft" id="moreLeft"></div>
+    		</td>
+    		<td style="width:100px;">
+    			<div id="moreButton" onClick="AliMobile.GetMore.getMore();" class="moreButton" pagename="pagecontent" url="/touch/wiki/ajaxAnswer/?docId=21186885&amp;" pageindex="1">
+    			更多...
+    			</div>
+    		</td>
+    		<td>
+    			<div class="moreRight" id="moreRight"></div>
+    		</td>
+    	</tr>
+    </tbody></table>
+</div>
+{%endif%}
+{%if suc%}
+<div class="resultTip mt10 mb10 ac"><span>回复成功!</span></div>
+{%endif%}
+{%if err%}
+<div class="resultTip mt10 mb10 ac"><span>来写点什么吧...</span></div>
+{%endif%}
+<div class="replay-div">
+	{%if username%}
+        <form method="post" name="form" action="/huzhu_replay/">
+			<div>
+				<input type="submit" id="submit" class="comm-btn-auto" name="event_submit_do_reply" value="回复">
+			</div>
+			<a name="hh"></a>
+        	<input type="hidden" name="action" value="club/ClubHandler">
+        	<input type="hidden" name="bbs_post_id" value="{{id}}">
+        	<input type="hidden" name="title" value="回复：{{title}}">
+        	<link rel="stylesheet" href="/css/comm-form.css">
+        	<div class="textareaDiv">
+        		<textarea name="content" class="new-input-area mb10" placeholder="来写点什么吧..."></textarea>
+        	</div>
+        	
+        </form>
+	{%else%}
+<div class="ac lh18">请 <a href="/login/?done={{done}}">登录</a> 之后回复该贴</div>
+	{%endif%}
+</div>
+
+<div class="sch-btn">
+
+<div class="pl10 pr10">
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+    <form action="/huzhu/" method="get" id="wikiSearchFrm">
+    	<div style="position:relative;">
+        	<div class="sch-input">
+        		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+        	</div>
+        	<div class="sch-button" onClick="AliMobile.WikiSearch.submitFrm()">搜答案</div>
+    		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+    	</div>
+    </form>
+</div>
+
+</div>
+	</div>
+{%include 'bottom.html'%}
+</div>
+</body>
+</html>

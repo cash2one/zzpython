@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title>{{ye_detaillist.name}}-废料产业带</title>
+		<link href="/ye/css/industrial.m.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+		<script type="text/javascript">
+			function join_ajax(industry,area,market_id){
+				$.ajax({
+					type:'GET',
+					data:{'industry':industry,'area':area,'id':market_id},
+					url:'/ye/join_ye.html?t='+(new Date()).getTime().toString(),
+					dataType:'html',
+					success:function(data){
+						
+						if (data=="nologin"){
+							window.location="/login/?done={{host}}";
+						}else{
+							alert(data)
+							//$('#ok').append(data);
+						}
+					}
+				});
+			}
+			
+		</script>
+	</head>
+
+	<body>
+	{%include 'ye/top.html'%}
+		<div id="deal">
+			<div class="list">
+				<div class="album fix">
+					<div class="bum01">
+						<div class="bum01-box" id="slider1">
+							<ul class="fix">
+								{%for img in ye_imglist.pic_address%}
+								<li>
+									<a href="">
+										<div class="roll">
+											<div class="pr"> <img src="{{img.pic_address}}" width="100%" height="194"> <span>{{ye_detaillist.name}}</span> </div>
+										</div>
+									</a>
+								</li>
+								{%endfor%}
+							</ul>
+						</div>
+					</div>
+					<ul id="pagenavi1" class="page">
+						<!--  
+						<li>
+							<a href="javascript:void(0)" class="active"></a>
+						</li>-->
+						{% for n in p_list %}
+						<li>
+							<a href="javascript:void(0)"></a>
+						</li>
+						{%endfor%}
+					</ul>
+				</div>
+				
+				<dl class="list" id="deal-terms">
+					<dd style="border: 0;">
+						<dl class="first" style="/*margin-top: 160px;*/border-bottom:none">
+							<dt >市场简介</dt>
+							<dd class="dd-padding">
+								<p class="lh">{{ye_detaillist.introduction}}</p>
+							</dd>
+						</dl>
+					</dd>
+					<dd>
+						<dl>
+							<dt>市场概况</dt>
+							<dd class="dd-padding">
+								<ul>
+									<li id="ok"></li>
+									<li>
+										<p class="lh">所属行业：{{ye_detaillist.industry}}&nbsp;{%if ye_detaillist.industry_code%}<a href="/ye/{{ye_detaillist.industry_code}}/" target="_blank" class="current">[查看其他{{ye_detaillist.industry}}市场]</a>{%endif%}</p>
+									</li>
+									<li>
+										<p class="lh">所在地区：{{ye_detaillist.area}}<!--&nbsp;&nbsp;[查看市场地图]--></p>
+									</li>
+									<li>
+										<p class="lh">主营范围：{{ye_detaillist.business}}</p>
+									</li>
+									<li>
+										<p class="lh">市场商户：<font class="red">{{ye_detaillist.company_num}}</font>家</p>
+									</li>
+									<li>
+										<p class="lh">市场供求：<font class="red">{{ye_detaillist.product_num}}</font>条</p>
+									</li>
+									
+									{% ifequal is_quit 0 %}
+									<li>
+										<div class="btn-wrapper">
+											<a onclick="join_ajax('{{ye_detaillist.industry}}','{{ye_detaillist.area}}','{{ye_detaillist.id}}')" class="btn buy-btn btn-block btn-larger btn-strong" href="javascript:void(0);" rel="nofollow">我是该市场商户,我要加入</a>
+										</div>
+									</li>
+									{% else %}
+									<li>
+										<div class="btn-wrapper">
+											<a class="btn buy-btn btn-block btn-larger btn-strong" href="#" rel="nofollow" >您已经加入了该市场</a>
+										</div>
+										<div class="btn-wrapper">
+											<a class="btn buy-btn btn-block btn-larger btn-strong" href="http://m.zz90.com/ye/quit_ye.html?id={{ye_detaillist.id}}" rel="nofollow">我要退出该市场</a>
+										</div>
+									</li>
+									{%endifequal%}
+								</ul>
+							</dd>
+						</dl>
+					</dd>
+				</dl>
+				<div style="width: 100%;text-align: center;line-height: 30px;">我要订阅商机<br>长按识别二维码，关注 “zz91再生网”<br /><img src="http://img0.zz91.com/zz91/weixin/images/priceorder.png"><br /></div>
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- 微门户 -->
+		<ins class="adsbygoogle"
+		     style="display:block"
+		     data-ad-client="ca-pub-5512236620584335"
+		     data-ad-slot="8274972003"
+		     data-ad-format="auto"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+				<dl class="list">
+					<div class="title-in">
+						<ul class="taba taban" id="nav">
+							<li name="n1" class="on">
+								<a class="react" href="javascript:;">市场供求</a>
+							</li>
+							<li name="n2">
+								<a class="react" href="javascript:;">市场商户</a>
+							</li>
+						</ul>
+					</div>
+					<div class="container-in">
+						<div id="deals">
+							<dd>
+								<dl class="list" id="n1">
+									{% for list in productList %}
+									<dd>
+										<a href="/trade/detail{{list.pdt_id}}.html" target="_blank" class="react">
+											<div class="dealcard">
+												<div class="dealcard-img imgbox" data-src="">
+													<img src="{{list.pdt_images}}" />
+												</div>
+												<div class="dealcard-right">
+													<div class="dealcard-brand oow">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}<font class="time">{{list.pdt_time_en}}</font></div>
+													<div class="title text-block">{{list.com_province}}</div>
+													<div>{{list.pdt_price}}</div>
+													{%if ldbtel%}
+													<div class="info">
+														<span class="seller">电话拨打:<font class="red">{{list.ldbtel.tel}}</font></span>
+														<span class="trade">接听率:{{list.phone_rate}}%</span>
+													</div>
+													{%endif%}
+												</div>
+											</div>
+										</a>
+									</dd>
+									{%endfor%}
+									<dd style="line-height: 30px;margin-bottom: 20px;">
+										<a href="/ye/pro{{ye_detaillist.id}}.html">查看更多>></a>
+									</dd>
+								</dl>
+								<dl class="list" id="n2" style="display:none;">
+									{%for list in companylist%}
+									<dd>
+										<a href="/company/detail{{list.company_id}}.html" target="_blank" class="">
+											<div class="dealcard">
+												<div class="dealcard-left" style="height: auto;margin-top: 10px;">
+													<div class="dealcard-brand oow">{{list.name}}</div>
+													<div class="title text-block">{{list.business}}</div>
+													<!--<div class="info">
+														<span class="phone"><font class="red">{{list.ldbphone.front_tel}}</font></span>
+													</div>-->
+												</div>
+											</div>
+										</a>
+									</dd>
+									{% endfor %}
+									<dd style="line-height: 30px;margin-bottom: 20px;">
+										<a href="/ye/comp{{ye_detaillist.id}}.html">查看更多>></a>
+									</dd>
+								</dl>
+							</dd>
+						</div>
+					</div>
+				</dl>
+			</div>
+		</div>
+		<script src="/ye/js/industrial.m.js"></script>
+		<script src="/ye/js/touchslider_min.js"></script>
+		<script type="text/javascript">
+			$('a[name=index]').attr('href', '').attr('class', 'aactive');
+			for(n=1;n<2;n++){
+				var page='pagenavi'+n;
+				var mslide='slider'+n;
+				var mtitle='emtitle'+n;
+				arrdiv = 'arrdiv' + n;
+				var as=document.getElementById(page).getElementsByTagName('a');
+				var tt=new TouchSlider({id:mslide,'auto':'-1',fx:'ease-out',direction:'left',speed:300,timeout:2000,'before':function(index){
+					var as=document.getElementById(this.page).getElementsByTagName('a');
+					as[this.p].className='';
+					as[index].className='active';
+					this.p=index;
+				}});
+				tt.page = page;
+				tt.p = 0;
+				for(var i=0;i<as.length;i++){
+					(function(){
+						var j=i;
+						as[j].tt = tt;
+						as[j].onclick=function(){
+							this.tt.slide(j);
+							return false;
+						}
+					})();
+				}
+			}
+		</script>
+		{%include 'ye/bottom.html'%}
+	</body>
+
+</html>

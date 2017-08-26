@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
+    <script type="text/javascript" src="../Js/jquery.js"></script>
+    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="../Js/bootstrap.js"></script>
+    <script type="text/javascript" src="../Js/ckform.js"></script>
+    <script type="text/javascript" src="../Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+	<script type="text/javascript">
+	window.onload = function(){ 
+	$("#price2").hide();
+	} 
+	$(document).ready(function(){
+	  $("#pricetype").change(function(){
+	    $("#price2").toggle();
+	    $("#price1").toggle();
+	  });
+	});
+	</script>
+</head>
+<body>
+<form action="/addkeywordsok/" class="definewidth m20">
+<input type="hidden" name="keywords_id" value="{{keywords_id}}">
+<input type="hidden" name="isstandard" value="{{isstandard}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+<input type="hidden" name="shopsaddress" value="{{shopsaddress}}">
+<table class="table table-bordered table-hover m10">
+    <tr>
+        <td width="10%" class="tableleft">关键字</td>
+        <td><input type="text" name="keywords" value="{%if keywords%}{{keywords}}{%endif%}"/><font color="red">{{error1}}</font></td>
+    </tr>
+    <tr>
+        <td class="tableleft">开始优化时间</td>
+        <td><input type="text" name="begintime" value="{{begintime}}"/><font color="red">{{error2}}</font></td>
+    </tr>
+    <tr>
+        <td class="tableleft">达标时间</td>
+        <td><input type="text" name="standardtime" value="{{standardtime}}"/><font color="red">{{error11}}</font></td>
+    </tr>
+    <tr>
+        <td class="tableleft">到期时间</td>
+        <td><input type="text" name="expire_time" value="{{expire_time}}"/><font color="red">{{error10}}</font></td>
+    </tr>
+    <tr>
+        <td class="tableleft">达标要求 第</td>
+        <td><input type="text" name="standarddemand" value="{%if standarddemand%}{{standarddemand}}{%endif%}"/><font color="red">{{error8}}</font></td>
+    </tr>
+    <tr>
+        <td class="tableleft">商铺地址</td>
+        <td><input type="text" name="shopsaddress" value="{%if shopsaddress%}{{shopsaddress}}{%endif%}"/><font color="red">{{error4}}</font></td>
+    </tr>
+    <tr>
+        <td class="tableleft">计费类型</td>
+        <td><select id="pricetype" name="chargetype">{%ifequal chargetype 2%}<option value="2">按天计费</option><option value="1">包年计费</option>{%else%}<option value="1">包年计费</option><option value="2">按天计费</option>{%endifequal%}</select></td>
+    </tr>
+    <tr>
+        <td class="tableleft">购买金额</td>
+        <td><input type="text" name="price" value="{%if price%}{{price}}{%endif%}"/><font color="red">{{error5}}</font></td>
+    </tr>
+    <tr id="{%ifequal chargetype 2%}price2{%else%}price1{%endifequal%}">
+        <td class="tableleft">年数</td>
+        <td><input type="text" name="years" value="{%if years%}{{years}}{%endif%}"/><font color="red">{{error6}}</font></td>
+    </tr>
+    <tr id="{%ifequal chargetype 2%}price1{%else%}price2{%endifequal%}">
+        <td class="tableleft">单价</td>
+        <td><input type="text" name="unit_price" value="{%if unit_price%}{{unit_price}}{%endif%}" >元/天<font color="red">{{error16}}</font><font color="red">{{error9}}</font></td>
+    </tr>
+    <tr>
+        <td class="tableleft">优化人</td>
+        <td>
+        {%ifequal usertype "seouser"%}
+ 		{{seouser_name}}<input type="hidden" name="seouser_id" value="{{seouser_id}}">
+		{%else%}
+        <select name="seouser_id">{%if seouser_id%}<option value="{{seouser_id}}">{{seouser_name}}</option>{%endif%}{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}</select>
+        {%endifequal%}
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" onClick="window.location.href='/returnpage/?request_url={{request_url}}'">返回</button>
+        </td>
+    </tr>
+</table>
+</form>
+</body>
+</html>

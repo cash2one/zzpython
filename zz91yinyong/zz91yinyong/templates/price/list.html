@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+<link rel="stylesheet" href="/css/comm-more.css" />
+<link rel="stylesheet" type="text/css" href="/css/pindao/style.css"/>
+
+</head>
+<body>
+<div class="wrapper" style="background-color: #ebebeb;">
+{%include 'top.html'%}
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script type="text/javascript" src="/js/pindao/jquery.lightbox_me.js"></script>
+<div>
+    <form action="/price/" method="get" id="wikiSearchFrm">
+    	<div style="position:relative;">
+        	<div class="sch-input">
+        		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+        	</div>
+        	<div class="sch-button" onClick="AliMobile.WikiSearch.submitFrm()">搜行情</div>
+    		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+    	</div>
+    </form>
+</div>
+<div class="cm-tle" >
+	{%if showarea%}<a href="javascript:;" class="choice fr" id="areaselect">地区</a>{%endif%}
+	{{mulu1|safe}} {{mulu2|safe}} {{mulu3|safe}}
+</div>
+<div class="list" style="padding: 0px;margin: 0px;background-color: #fff;">
+{%for list in pricelist%}  	
+	<div class="item" style="border-top:1px solid #FFF;">    
+		<a href="/priceviews/?id={{list.id}}{%if list.typeid%}&category_id={{list.typeid}}{%endif%}{%if list.assistid%}&assist_id={{list.assistid}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}">	
+			<p class="c-link lh28">{{list.title}}</p>
+				 
+		</a>
+	</div>
+{%endfor%}
+	<div id="moreDiv"></div>
+</div>
+<div style="background-color: #fff;">
+    <div class="page">
+  	<ul>
+  	{% if firstpage %}
+    	<li class="page_prev"><a href="/price/?page={{prvpage}}&category_id={{category_id}}&keywords={{keywords}}">上一页</a></li>
+	{%else%}
+    	<li class="page_prev" style="color:gray">上一页</li>
+	{% endif %}
+        <li class="page_no">
+        <select onChange="window.location='?page='+this.value+'&category_id={{category_id}}&keywords={{keywords}}'">
+            <option>第{{page}}页</option>
+            {%for p in page_range%}
+            <option value="{{p.number}}">第{{p.number}}页</option>
+            {%endfor%}
+        </select> /{{page_listcount}}页
+			</li>
+    {% if lastpage%}
+        <li class="page_next"><a href="?page={{nextpage}}&category_id={{category_id}}&keywords={{keywords}}">下一页</a></li>
+	{%else%}
+    	<li class="page_prev" style="color:gray">下一页</li>
+	{% endif %}
+    </ul>
+  </div>
+</div>
+<div id="reply_div" align="center">
+	<div class="sx-box" style="overflow: auto;height:auto;border: none;">
+    	<div class="b1-item">
+        	<div class="b1-item-tle">地区</div>
+            <ul class="b1-item-ul">
+            	<li>
+                	<ul class="b1-item-ul-ul" id="b1_ul">
+                		{%for alst in arealist%}
+                    	<li><a href="/price/?category_id={{category_id}}&keywords={{alst}}">{{alst}}</li>
+                    	{%endfor%}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+	$(function(){
+		$('#areaselect').click(function(e){
+			$('#reply_div').lightbox_me({
+						overlaySpeed:0,
+						lightboxSpeed:0,
+	            		centered: true, 
+	            		onLoad: function() { 
+							var target = $.event.fix(e).currentTarget;
+	            		}
+	        	});
+			e.preventDefault();
+		});
+	});
+	
+	
+	function dismiss(){
+		$('#reply_div').trigger('close');
+	}
+</script>
+<script type="text/javascript">
+/*手机站：首页 20:3，创建于2014-7-22*/
+var cpro_id = "u1629209";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+<div class="h20"></div>
+	</div>
+{%include 'bottom.html'%}
+</div>
+</body>
+</html>

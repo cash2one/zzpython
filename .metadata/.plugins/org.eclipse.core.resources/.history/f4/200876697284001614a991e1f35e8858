@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<style>
+			body {
+				background-color: #f4f4f4
+			}
+			.aui-content-padded{
+				background-color: #fff;
+				margin:0px;
+				margin-bottom: 10px;
+			}
+			.title {
+				font-size: 14px;
+				text-align: left;
+				height: 30px;
+				line-height: 40px;
+				
+				padding-left:10px;
+			}
+			.pricetitle {
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			.pricetitle span {
+				color: #ff0000
+			}
+			.main {
+				line-height: 30px;
+				font-size: 14px;
+				
+				padding: 10px
+			}
+			.buybutton {
+				position: fixed;
+				bottom: 0px;
+				left: 0px;
+				border-radius: 0px;
+				width: 100%;
+			}
+			.serverdate {
+			}
+			.serverdate li {
+				float: left;
+				width: 50%;
+			}
+			.aui-line-x {
+				margin-top: 10px;
+				margin-bottom: 10px;
+			}
+			.price-info {
+				width: 100%;
+				background: #EBECED;
+				height: 55px;
+			}
+			.price {
+				margin-left: 15px;
+				color: #F76249;
+				font-size: 16px;
+				line-height: 55px;
+			}
+			.price strong {
+				font-size: 26px;
+				margin: 0 5px;
+				font-weight: 400;
+			}
+			.price-info .aui-pull-right {
+				height: 55px;
+				width: 35%;
+				background: #FF6600;
+				padding-top: 10px;
+				text-align: center;
+			}
+			.price-info .aui-pull-right p {
+				color: #ff6600;
+				font-size: 12px;
+				margin-bottom: 0px;
+			}
+			.buy{
+				color:#FFFFFF;
+				line-height:38px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content-padded">
+			<div class="pricetitle">
+				价格：<span>￥ 100 / 月</span>
+			</div>
+			<div class="aui-line-x"></div>
+			<div class="main">
+				“供求自动刷新”是本网精心打造的最新移动端产品，你的供求信息再也不用每天人工来刷新了，系统会隔30分钟自动为你刷新，让您的商机随时排名靠前。
+			</div>
+		</div>
+		<div class="aui-content-padded">
+			<div class="serverdate">
+				<p class="title">
+					选择服务时间
+				</p>
+				<div class="aui-line-x"></div>
+				<ul>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="report1" value="1" money="100" checked/>
+						<label class="aui-radio-name" for=report1>1个月</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="report2" value="2" money="200" />
+						<label class="aui-radio-name" for=report2>2个月</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="report3" value="6" money="550" />
+						<label class="aui-radio-name" for=report3>6个月</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="report4" value="8" money="700"/>
+						<label class="aui-radio-name" for=report4>8个月</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="report5" value="12" money="1000" />
+						<label class="aui-radio-name" for=report5>一年</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="report6" value="24" money="2000"/>
+						<label class="aui-radio-name" for=report6>二年</label>
+					</li>
+				</ul>
+			</div>
+		
+			<div style="clear: both"></div>
+		</div>
+		<div class="aui-content-padded">
+			<p class="title">
+				可用代金券
+			</p>
+			<div class="aui-line-x"></div>
+			<div class="daijq">
+				<input class="aui-checkbox" type="checkbox" name="daijqcheck" id="check1" money="-20" value="1" />
+				<label class="aui-radio-name" for=check1>10元供求自动刷新代金券</label>
+			</div>
+			<div class="daijq">
+				<input class="aui-checkbox" type="checkbox" name="daijqcheck" id="check1" money="-20" value="1" />
+				<label class="aui-radio-name" for=check1>10元供求自动刷新代金券</label>
+			</div>
+			<div style="clear: both"></div>
+		</div>
+		<div class="aui-content-padded">
+			<p class="title">
+				推荐优惠服务
+			</p>
+			<div class="aui-line-x"></div>
+			<div class="aui-content">
+				<ul class="aui-list-view allservice">
+					<li class="aui-list-view-cell aui-img" index=13>
+						<a class="aui-arrow-right">
+						<img class="aui-img-object aui-pull-left" src="../../image/youhui.png">
+						<div class="aui-img-body">
+							<span>显示联系方式+供求自动刷新</span>
+							<p style="text-decoration:line-through；color:red"><del>原价：¥ :400元/月</del></p>
+							<p style="color: #FF2600;font-size: 18px">现价：¥ :350元/月</p>
+							<p style="color: #F1C40F">活动截止：20天后结束</p>
+						</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+			
+		</div>
+		<section class="buybutton">
+			<div class="price-info">
+				<span class="price paymoney">¥<strong></strong>元</span>
+				<div class="aui-pull-right">
+						<div class="buy">立即购买</div>
+				</div>
+			</div>
+		</section>
+		<input type="hidden" id="backvalue" value="">
+		<div style="height:50px"></div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+	<script type="text/javascript">
+		var paymoney=0;
+		var djqlist =[];//代金券ID
+		apiready = function() {
+			var closeiosflag = $api.getStorage("closeiosflag");
+			if (!closeiosflag || closeiosflag == 1) {
+				$(".buybutton").hide();
+			}
+			$(".buybutton").on("click", function() {
+				event.stopPropagation();
+				if (havelogin()) {
+					paysubmit();
+				}
+			})
+			$(".aui-radio").on("click", function() {
+				event.stopPropagation();
+				getmoneyall();
+			})
+			$(".aui-checkbox").on("click", function() {
+				event.stopPropagation();
+				getmoneyall();
+			})
+			getmoneyall()
+		};
+		function getmoneyall(){
+			var shuaxinselect=0;
+			
+			$('input[name="showcontact"]:checked').each(function(){
+				shuaxinselect+=parseInt($(this).attr("money"));
+				//chk_value.push($(this).val());
+			});
+			$('input[name="daijqcheck"]:checked').each(function(){
+				shuaxinselect+=parseInt($(this).attr("money"));
+				djqlist.push($(this).val());
+			});
+			$(".paymoney").html("¥<strong>"+shuaxinselect+"</strong>元");
+			paymoney=shuaxinselect;
+		}
+		
+		function paysubmit(){
+			api.showProgress({
+				title : '扣款中...',
+				modal : false
+			});
+			
+			if (paymoney==0){
+				return;
+			}
+			alert(djqlist[0])
+			var company_id = UserInfo.memberID();
+			//alert(company_id)
+			var usertoken = UserInfo.token();
+			var data = {
+				paytype : '42',
+				money : paymoney,
+				company_id : company_id,
+				usertoken : usertoken,
+				appsystem : api.systemType,
+				datatype : 'json',
+				t : (new Date()).getTime().toString(),
+				voucher_id:voucher_id,
+			}
+			api.ajax({
+				url : hosturl + 'qianbao/qianbaopay.html',
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				if (ret) {
+					if (ret.err == 'false') {
+						zzalert(ret.errtext);
+						api.confirm({
+							title : '提示',
+							msg : ret.errtext,
+							buttons : ['关闭', '查看我的服务']
+						}, function(ret, err) {
+							if (ret) {
+								if (ret.buttonIndex == 2) {
+									var pageParam = {
+										wintitle : "我的服务",
+										type : "myservice",
+									};
+									openWin("myservice", "../service/myservice.html", pageParam);
+								} else {
+									api.closeWin();
+								}
+							} else {
+							}
+						});
+					}
+					if (ret.err == 'true' && ret.blanceflag == '0') {
+						yuebuzuFun();
+					}
+					if (ret.err == 'true' && ret.blanceflag == '1') {
+						zzalert(ret.errtext);
+					}
+					api.hideProgress();
+				} else {
+					api.hideProgress();
+					if (err) {
+						saveerrlog(err.body);
+					}
+				};
+			});
+		}
+
+		function backvaluecheck(valu) {
+			$("#backvalue").val(valu);
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

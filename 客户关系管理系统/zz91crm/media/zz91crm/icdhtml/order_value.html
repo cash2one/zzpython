@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+		<script type="text/javascript" src="/assets/layer/layer.js"></script>
+		<script type="text/javascript" src="/assets/js/bui-min.js"></script>
+		<script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
+		<script type="text/javascript" src="/assets/js/config-min.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<div style="margin: 30px;text-align: center;">
+			{%ifequal fild 'sales_date'%}
+			<input type="text" name="fildvalue" id="fildvalue" value="{{fildvalue}}" class="calendar"/>
+			{%endifequal%}
+			{%ifequal fild 'end_time'%}
+			<input type="text" name="fildvalue" id="fildvalue" value="{{fildvalue}}" class="calendar"/>
+			{%endifequal%}
+			{%ifequal fild 'service_type'%}
+			<input type="text" name="fildvalue" id="fildvalue" value="{{fildvalue}}"/>
+			{%endifequal%}
+			{%ifequal fild 'sales_price'%}
+			<input type="text" name="fildvalue" id="fildvalue" value="{{fildvalue}}"/>
+			{%endifequal%}
+			{%ifequal fild 'ldbblance'%}
+			<input type="text" name="fildvalue" id="fildvalue" value="{{fildvalue}}"/>
+			{%endifequal%}
+			{%ifequal fild 'com_ly1'%}
+			<input type="text" name="fildvalue" id="fildvalue" value="{{fildvalue}}"/>
+			{%endifequal%}
+			{%ifequal fild 'sales_type'%}
+			<input type="text" name="fildvalue" id="fildvalue" value="{{fildvalue}}"/>
+			{%endifequal%}
+			{%ifequal fild 'com_zq'%}
+			<input type="text" name="fildvalue" id="fildvalue" value="{{fildvalue}}"/>
+			{%endifequal%}
+			{%ifequal fild 'com_cpjb'%}
+			<input type="text" name="fildvalue" id="fildvalue" value="{{fildvalue}}"/>
+			{%endifequal%}
+			{%ifequal fild 'com_hkfs'%}
+			<input type="text" name="fildvalue" id="fildvalue" value="{{fildvalue}}"/>
+			{%endifequal%}
+			{%ifequal fild 'com_cxfs'%}
+			<input type="text" name="fildvalue" id="fildvalue" value="{{fildvalue}}"/>
+			{%endifequal%}
+			{%ifequal fild 'com_khdq'%}
+				<select name="fildvalue" id="fildvalue" class="inputselect">
+					<option value=''>请选择...</option>
+					<option value="江浙沪">江浙沪</option>
+					<option value="广东福建">广东福建</option>
+					<option value="河北河南">河北河南</option>
+					<option value="湖南湖北">湖南湖北</option>
+					<option value="安徽">安徽</option>
+					<option value="江西">江西</option>
+					<option value="云贵川渝">云贵川渝</option>
+					<option value="天津北京辽宁">天津北京辽宁</option>
+					<option value="国外">国外</option>
+					<option value="其他地区">其他地区</option>
+				</select>
+				<script>selectOption("fildvalue","{{fildvalue}}")</script>
+			{%endifequal%}
+			{%ifequal fild 'com_pro'%}
+				<select name="fildvalue" id="fildvalue" class="inputselect">
+					<option value=''>请选择...</option>
+					<option value="1">废金属</option>
+					<option value="2">废塑料</option>
+					<option value="16">汽车拆解</option>
+					<option value="3">废旧轮胎与废橡胶</option>
+					<option value="4">废纺织品与废皮革</option>
+					<option value="5">废纸</option>
+					<option value="6">废电子电器</option>
+					<option value="10">废玻璃</option>
+					<option value="12">机械设备</option>
+					<option value="14">其他废料</option>
+					<option value="15">服务</option>
+				</select>
+				<script>selectOption("fildvalue","{{fildvalue}}")</script>
+			{%endifequal%}
+			<input type="hidden" name="fild" id="fild" value="{{fild}}"/>
+			<input type="submit" class="savefild" value="保存" />
+		</div>
+	</body>
+	<script>
+	BUI.use('bui/calendar', function(Calendar) {
+		var datepicker = new Calendar.DatePicker({
+			trigger: '.calendar',
+			autoRender: true
+		});
+	});
+	$(document).ready(function() {
+		$('.savefild').on('click', function() {
+			var self=$(this);
+			var data={
+				fild:$("#fild").val(),
+				fildvalue:$("#fildvalue").val(),
+				id:{{id}}
+			}
+			crmajax("get","/icd/order_value_save.html",data,function(ret){
+				if (ret){
+					layer.msg(ret.res);
+					parent.location.reload();
+					closeorder()
+				}
+			},function(err){
+				layer.open({
+					type: 1,
+					title: 'err',
+					shadeClose: true,
+					shade: 0.3,
+					area: ['70%', '70%'],
+					content: err.responseText
+				});
+			})
+		});	
+	})
+	function closeorder(self){
+		var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+		parent.layer.close(index);
+	}
+</script>
+</html>

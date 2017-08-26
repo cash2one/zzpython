@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>特价优惠活动-zz91再生网</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+    	body{
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        img{
+            vertical-align: middle;
+        }
+        .btnbox{
+            background: url(../../image/youhui/imgbg3.jpg);
+            background-size: 100%;
+            text-align: center;
+        }
+        .btnimg{
+            cursor: pointer;
+            width: 65%;
+        }
+        .imgmo img{
+            width: 100%
+        }
+    </style>
+</head>
+<body>
+	<img src="http://img1.zz91.com/pyuploadimages/2016/09/23/1474594503329.PNG" style="display: none;" />
+	<div class="imgmo"><img src="../../image/youhui/imgbg1.jpg"></div>
+    <div class="imgmo"><img src="../../image/youhui/imgbg2.jpg"></div>
+    <div class="btnbox"><img src="../../image/youhui/btnby.png" class="btnimg"></div>
+    <div class="imgmo"><img src="../../image/youhui/imgbg4.jpg"></div>
+</body>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+<script type="text/javascript" src="/app/script/api.js"></script>
+<script type="text/javascript" src="/app/script/common.js"></script>
+<script type="text/javascript">
+	var appflag=0;
+	$(function(){
+		$(".btnimg").on("click",function(){
+			if (appflag==0){
+				layer.load(2)
+				var ajaxurl="http://m.zz91.com/ad/hongbao/hongbao.html?p="+(new Date()).getTime().toString();
+				$.getScript(ajaxurl, function() {
+					if (_suggest_result_.err=="true"){
+						window.location='http://m.zz91.com/login/?done=http://app.zz91.com/app/html/ad/hongbao/index.html'
+						return;
+					}else{
+						paysubmit();
+					}
+					
+					layer.closeAll();
+				})
+				layer.closeAll();
+			}
+	    })
+		$(".tan-btn").on("click",function(){
+			if (appflag==0){
+				window.location='http://m.zz91.com/qianbao/chongzhi.html';
+			}
+		})
+		//购买显示联系方式
+		function paysubmit() {
+			layer.load(2);
+			$.getScript("http://m.zz91.com/qianbao/qianbaopay.html?paytype=48&money=500&js=1",function(){
+				if (ret) {
+					if (ret.err == 'false') {
+						layer.confirm(ret.errtext,{
+								btn : ['查看我的服务','关闭']
+							}, function() {
+								window.location='myservice.html';
+							},function(){
+								window.location='/service/index.html';
+							}
+						)
+					}
+					if (ret.err == 'true' && ret.blanceflag == '0') {
+						layer.confirm('您的再生钱包余额不足，是否要充值后再开通服务', {
+							btn: ['我要充值','取消'] //按钮
+						}, function(){
+							layer.open({
+								type: 2,
+								title: '在线充值',
+								shadeClose: true,
+								shade: 0.4,
+								area: ['80%', '70%'],
+								content: 'http://m.zz91.com/qianbao/minichongzhi.html' //iframe的url
+							}); 
+						}, function(){
+							layer.closeAll();
+						});
+					}
+					if (ret.err == 'true' && ret.blanceflag == '1') {
+						layer.msg(ret.errtext);
+					}
+				};
+				layer.closeAll('loading');
+			})
+		}
+	})
+	
+	apiready = function(){
+		appflag=1;
+		$(".btnimg").on("click",function() {
+			api.execScript({
+				name : "root",
+				script : "openshowcontactandreflush()"
+			});
+		});
+	};
+</script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+	(function(d, t) {
+		var r = d.createElement(t),
+			s = d.getElementsByTagName(t)[0];
+		r.async = 1;
+		r.src = 'http://m.zz91.com/wechat/weixinshare.js?wurl='+location.href;
+		s.parentNode.insertBefore(r, s);
+	})(document, "script");
+</script>
+</html>

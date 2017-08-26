@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>我的订阅</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/comm.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/foot.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/top.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/infomation/css/index.css" />
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <script src="http://b.zz91.com/comm/js/comm.js"></script>
+    <script type="text/javascript" src="http://b.zz91.com/infomation/js/zx-comm.js" ></script>
+    <style>
+    	.zx-hsou-box{
+    		width:auto;padding-left: 10px;padding-right: 10px;margin-bottom: 3px;
+    	}
+    	.zx-listright-box{
+    		margin-bottom: 20px;
+    	}
+    	.zx-listright-name{
+    		font-weight: bold;
+    		font-size: 16px;
+    	}
+    </style>
+</head>
+	<body>
+		{% include 'new/header.html' %}
+	    <div class="zx-searchnav">
+	    	<div class="zx-searchnav-con">
+	    		<div class="fl logo">
+	    			<a href="http://www.zz91.com">
+	    				<img src="http://b.zz91.com/infomation/images/zx-logo.png">
+	    			</a>
+	    		</div>
+            	<div class="fl page-name">
+            		<a href="http://news.zz91.com">
+            			<img src="http://b.zz91.com/infomation/images/zx-pagename.png">
+            		</a>
+            	</div>
+            	<div class="fl zx-search">
+            		<div class="zx-search-con">
+            			<form action="" method="get" onsubmit="if(this.keywords.value==''){alert('请输入关键字');this.keywords.focus();return false;}">
+            			<input class="fl j_searchipt" name="keywords" id="keywords" placeholder="搜索您感兴趣的资讯" />
+            			<button class="fl zx-search-main" type="submit" style="border: none;"><i class="icon2 zx-search-icon"></i></button>
+            			</form>
+            		</div>
+            	</div>
+            	<div class="fr navmain-list">
+	                <ul class="clearfix navmain-ul">
+	                    <li class="fl zx-firstli"><a href="/index.html">首页</a></li>
+	                    <li class="fl"><a href="/zh/">展会聚集</a></li>
+	                    <li class="fl"><a href="/hydt/">行业动态</a></li>
+	                    <li class="fl"><a href="/cjxw/">财经新闻</a></li>
+	                    <li class="fl"><a href="/law/">政策法规</a></li>
+	                    <li class="fl"><a href="/tech/">技术文库</a></li>
+	                    <li class="fl"><a href="/myorder.html"><img src="http://b.zz91.com/infomation/images/zx-btn_01.png"></a></li>
+	                </ul>
+	            </div>
+	    	</div>
+	    </div>
+	    <div class="bandbox-dy">
+	    	<div class="zx-hy-top">
+	    		<div class="zx-hy-top-con">
+	    			<img src="http://b.zz91.com/infomation/images/zx-title_19.png" />
+	    			<p>最新最全的行业信息</p>
+	    		</div>
+	    		<div class="zx-hy-topbor"></div>
+	    	</div>
+	    </div>
+	    <div class="zx-center clearfix">
+	    	<div class="fl zx-content">
+	    		<div class="zx-content-box">
+	    			<div class="zx-content-title zx-hy-title clearfix">
+	    				<ul class="hq-type-ul dy-type-ul fr">
+		                    <li class="fl this-hq-type"><a>我的订阅</a></li>
+		                    <li class="fl"><a>我的收藏</a></li>
+		                </ul>
+	    			</div>
+	    			<div class="zx-hy-con zx-on">
+	    				<ul class="clearfix zx-mydy">
+		    				<li class="fl">
+		    					<a href="" target="_blank" class="zx-mydy-img">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_01.png" />
+		    					</a>
+		    					<div class="zx-mydy-name">废钢铁</div>
+		    					<a href="" class="zx-mydy-btn clearfix">
+		    						<i class="fl icon2 zx-mydy-icon"></i>
+		    						<span class="fl zx-mydy-fx">分享</span>
+		    					</a>
+		    					<a href="" class="zx-mydy-btn">
+		    						<span class="zx-mydy-qx">取消订阅</span>
+		    					</a>
+		    				</li>
+		    				<li class="fl">
+		    					<a href="" target="_blank" class="zx-mydy-img">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_01.png" />
+		    					</a>
+		    					<div class="zx-mydy-name">废钢铁</div>
+		    					<a href="" class="zx-mydy-btn clearfix">
+		    						<i class="fl icon2 zx-mydy-icon"></i>
+		    						<span class="fl zx-mydy-fx">分享</span>
+		    					</a>
+		    					<a href="" class="zx-mydy-btn">
+		    						<i class="fl icon2 zx-mydy-icon2"></i>
+		    						<span class="fl zx-mydy-dy">订阅</span>
+		    					</a>
+		    				</li>
+		    				<li class="fl">
+		    					<a href="" target="_blank" class="zx-mydy-img">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_01.png" />
+		    					</a>
+		    					<div class="zx-mydy-name">废钢铁</div>
+		    					<a href="" class="zx-mydy-btn clearfix">
+		    						<i class="fl icon2 zx-mydy-icon"></i>
+		    						<span class="fl zx-mydy-fx">分享</span>
+		    					</a>
+		    					<a href="" class="zx-mydy-btn">
+		    						<span class="zx-mydy-qx">取消订阅</span>
+		    					</a>
+		    				</li>
+		    				<li class="fl">
+		    					<a href="" target="_blank" class="zx-mydy-img">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_01.png" />
+		    					</a>
+		    					<div class="zx-mydy-name">废钢铁</div>
+		    					<a href="" class="zx-mydy-btn clearfix">
+		    						<i class="fl icon2 zx-mydy-icon"></i>
+		    						<span class="fl zx-mydy-fx">分享</span>
+		    					</a>
+		    					<a href="" class="zx-mydy-btn">
+		    						<span class="zx-mydy-qx">取消订阅</span>
+		    					</a>
+		    				</li>
+		    				<li class="fl">
+		    					<a href="" target="_blank" class="zx-mydy-img">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_01.png" />
+		    					</a>
+		    					<div class="zx-mydy-name">废钢铁</div>
+		    					<a href="" class="zx-mydy-btn clearfix">
+		    						<i class="fl icon2 zx-mydy-icon"></i>
+		    						<span class="fl zx-mydy-fx">分享</span>
+		    					</a>
+		    					<a href="" class="zx-mydy-btn">
+		    						<span class="zx-mydy-qx">取消订阅</span>
+		    					</a>
+		    				</li>
+		    				<li class="fl">
+		    					<a href="" target="_blank" class="zx-mydy-img">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_01.png" />
+		    					</a>
+		    					<div class="zx-mydy-name">废钢铁</div>
+		    					<a href="" class="zx-mydy-btn clearfix">
+		    						<i class="fl icon2 zx-mydy-icon"></i>
+		    						<span class="fl zx-mydy-fx">分享</span>
+		    					</a>
+		    					<a href="" class="zx-mydy-btn">
+		    						<i class="fl icon2 zx-mydy-icon2"></i>
+		    						<span class="fl zx-mydy-dy">订阅</span>
+		    					</a>
+		    				</li>
+		    				<li class="fl">
+		    					<a href="" target="_blank" class="zx-mydy-img">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_01.png" />
+		    					</a>
+		    					<div class="zx-mydy-name">废钢铁</div>
+		    					<a href="" class="zx-mydy-btn clearfix">
+		    						<i class="fl icon2 zx-mydy-icon"></i>
+		    						<span class="fl zx-mydy-fx">分享</span>
+		    					</a>
+		    					<a href="" class="zx-mydy-btn">
+		    						<span class="zx-mydy-qx">取消订阅</span>
+		    					</a>
+		    				</li>
+		    				<li class="fl">
+		    					<a href="" target="_blank" class="zx-mydy-img">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_01.png" />
+		    					</a>
+		    					<div class="zx-mydy-name">废钢铁</div>
+		    					<a href="" class="zx-mydy-btn clearfix">
+		    						<i class="fl icon2 zx-mydy-icon"></i>
+		    						<span class="fl zx-mydy-fx">分享</span>
+		    					</a>
+		    					<a href="" class="zx-mydy-btn">
+		    						<span class="zx-mydy-qx">取消订阅</span>
+		    					</a>
+		    				</li>
+		    			</ul>
+		    			
+		    		</div>
+		    		<div class="zx-hy-con">
+		    			<ul class="clearfix">
+		    				<li class="clearfix">
+		    					<a href="" target="_blank" class="fl zx-content-pic">
+		    						<img src="http://b.zz91.com/infomation/images/zx-images_03.png">
+		    					</a>
+		    					<div class="fl zx-content-main">
+		    						<a href="" target="_blank" class="zx-content-main-name">液态食品行业：不可或缺的塑料包装</a>
+		    						<p class="zx-content-main-con">提起塑料包装，不难想到食品行业，其中液态食品在塑料包装方面的需求占据非常大的比重……</p>
+		    						<div class="zx-content-main-time clearfix">
+		    							<span class="fl">2016-08-28  08:25</span>
+		    							<div class="fr zx-iconlist">
+		    								<i class="fl icon2 zx-iconlist1"></i>
+		    								<i class="fl icon2 zx-iconlist2"></i>
+		    								<i class="fl icon2 zx-iconlist3"></i>
+		    							</div>
+		    						</div>
+		    					</div>
+		    				</li>
+		    				<li class="clearfix">
+		    					<div class="fl zx-content-main zx-content-main3">
+		    						<a href="" target="_blank" class="zx-content-main-name">瞄准移动端二手交易市场， OfferUp 获 1.19亿美元融资，加…</a>
+		    						<p class="zx-content-main-con">提起塑料包装，不难想到食品行业，其中液态食品在塑料包装重中液态食食品行业，其中液态食……</p>
+		    						<div class="zx-content-main-time clearfix">
+		    							<span class="fl">2016-08-28  08:25</span>
+		    							<div class="fr zx-iconlist">
+		    								<i class="fl icon2 zx-iconlist1"></i>
+		    								<i class="fl icon2 zx-iconlist2"></i>
+		    								<i class="fl icon2 zx-iconlist3"></i>
+		    							</div>
+		    						</div>
+		    					</div>
+		    				</li>
+		    				<li class="clearfix">
+		    					<a href="" target="_blank" class="zx-content-main-title">液态食品行业：不可或缺的塑料包装 拷贝</a>
+		    					<a href="" target="_blank" class="fl zx-content-pic3 zx-content-pic-mr">
+			    					<img src="http://b.zz91.com/infomation/images/zx-images_08.png">
+			    				</a>
+			    				<a href="" target="_blank" class="fl zx-content-pic3 zx-content-pic-mr">
+			    					<img src="http://b.zz91.com/infomation/images/zx-images_03.png">
+			    				</a>
+			    				<a href="" target="_blank" class="fl zx-content-pic3">
+			    					<img src="http://b.zz91.com/infomation/images/zx-images_09.png">
+			    				</a>
+		    					<div class="fl zx-content-main zx-content-main4">
+		    						<a href="" target="_blank" class="zx-content-main-name">　</a>
+		    						<p class="zx-content-main-con">　</p>
+		    						<div class="zx-content-main-time clearfix">
+		    							<span class="fl">2016-08-28  08:25</span>
+		    							<div class="fr zx-iconlist">
+		    								<i class="fl icon2 zx-iconlist1"></i>
+		    								<i class="fl icon2 zx-iconlist2"></i>
+		    								<i class="fl icon2 zx-iconlist3"></i>
+		    							</div>
+		    						</div>
+		    					</div>
+		    				</li>
+		    				<li class="clearfix">
+		    					<a href="" target="_blank" class="fl zx-content-pic">
+		    						<img src="http://b.zz91.com/infomation/images/zx-images_09.png">
+		    					</a>
+		    					<div class="fl zx-content-main">
+		    						<a href="" target="_blank" class="zx-content-main-name">瞄准移动端二手交易市场， OfferUp 获 1.19亿美元融资，加…</a>
+		    						<p class="zx-content-main-con">提起塑料包装，不难想到食品行业，其中液态食品在塑料包装重中液态食食品行业，其中液态食……</p>
+		    						<div class="zx-content-main-time clearfix">
+		    							<span class="fl">2016-08-28  08:25</span>
+		    							<div class="fr zx-iconlist">
+		    								<i class="fl icon2 zx-iconlist1"></i>
+		    								<i class="fl icon2 zx-iconlist2"></i>
+		    								<i class="fl icon2 zx-iconlist3"></i>
+		    							</div>
+		    						</div>
+		    					</div>
+		    				</li>
+		    				<li class="clearfix">
+		    					<a href="" target="_blank" class="fl zx-content-pic">
+		    						<img src="http://b.zz91.com/infomation/images/zx-images_10.png">
+		    					</a>
+		    					<div class="fl zx-content-main">
+		    						<a href="" target="_blank" class="zx-content-main-name">液态食品行业：不可或缺的塑料包装</a>
+		    						<p class="zx-content-main-con">提起塑料包装，不难想到食品行业，其中液态食品在塑料包装方面的需求占据非常大的比重……</p>
+		    						<div class="zx-content-main-time clearfix">
+		    							<span class="fl">2016-08-28  08:25</span>
+		    							<div class="fr zx-iconlist">
+		    								<i class="fl icon2 zx-iconlist1"></i>
+		    								<i class="fl icon2 zx-iconlist2"></i>
+		    								<i class="fl icon2 zx-iconlist3"></i>
+		    							</div>
+		    						</div>
+		    					</div>
+		    				</li>
+		    			</ul>
+		    			<div class="morebtn">阅读更多 <span class="icon2 sj-xs"></span></div>
+		    		</div>
+	    		</div>
+	    		<div class="zx-content-box">
+	    			<div class="zx-content-title zx-hy-title clearfix">
+	    				<img src="http://b.zz91.com/infomation/images/zx-title_20.png" class="fl"/>
+	    			</div>
+	    			<ul class="clearfix zx-hpd">
+	    				<li class="clearfix zx-dingyue fl">
+	    					<div class="zx-dingyue-box fl">
+	    						<div class="zx-listright-img fl">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_01.png" />
+		    					</div>
+		    					<div class="zx-dingyue-con fl">
+		    						<p>废钢铁</p>
+		    						<div class="zx-listright-btn">
+		    							+订阅
+		    						</div>
+		    					</div>
+	    					</div>
+	    					<div class="zx-dingyue-box fl">
+	    						<div class="zx-listright-img fl">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_02.png" />
+		    					</div>
+		    					<div class="zx-dingyue-con fl">
+		    						<p>废塑料</p>
+		    						<div class="zx-listright-btn zx-listright-btn2">
+		    							取消
+		    						</div>
+		    					</div>
+	    					</div>
+	    					<div class="zx-dingyue-box fl">
+	    						<div class="zx-listright-img fl">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_03.png" />
+		    					</div>
+		    					<div class="zx-dingyue-con fl">
+		    						<p>P P</p>
+		    						<div class="zx-listright-btn">
+		    							+订阅
+		    						</div>
+		    					</div>
+	    					</div>
+	    				</li>
+	    				<li class="clearfix zx-dingyue fl">
+	    					<div class="zx-dingyue-box fl">
+	    						<div class="zx-listright-img fl">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_04.png" />
+		    					</div>
+		    					<div class="zx-dingyue-con fl">
+		    						<p>废有色</p>
+		    						<div class="zx-listright-btn">
+		    							+订阅
+		    						</div>
+		    					</div>
+	    					</div>
+	    					<div class="zx-dingyue-box fl">
+	    						<div class="zx-listright-img fl">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_05.png" />
+		    					</div>
+		    					<div class="zx-dingyue-con fl">
+		    						<p>综合塑料</p>
+		    						<div class="zx-listright-btn">
+		    							+订阅
+		    						</div>
+		    					</div>
+	    					</div>
+	    					<div class="zx-dingyue-box fl">
+	    						<div class="zx-listright-img fl">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_01.png" />
+		    					</div>
+		    					<div class="zx-dingyue-con fl">
+		    						<p>废钢铁</p>
+		    						<div class="zx-listright-btn">
+		    							+订阅
+		    						</div>
+		    					</div>
+	    					</div>
+	    				</li>
+	    				<li class="clearfix zx-dingyue fl">
+	    					<div class="zx-dingyue-box fl">
+	    						<div class="zx-listright-img fl">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_01.png" />
+		    					</div>
+		    					<div class="zx-dingyue-con fl">
+		    						<p>废钢铁</p>
+		    						<div class="zx-listright-btn">
+		    							+订阅
+		    						</div>
+		    					</div>
+	    					</div>
+	    					<div class="zx-dingyue-box fl">
+	    						<div class="zx-listright-img fl">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_02.png" />
+		    					</div>
+		    					<div class="zx-dingyue-con fl">
+		    						<p>废塑料</p>
+		    						<div class="zx-listright-btn zx-listright-btn2">
+		    							取消
+		    						</div>
+		    					</div>
+	    					</div>
+	    					<div class="zx-dingyue-box fl">
+	    						<div class="zx-listright-img fl">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_03.png" />
+		    					</div>
+		    					<div class="zx-dingyue-con fl">
+		    						<p>P P</p>
+		    						<div class="zx-listright-btn">
+		    							+订阅
+		    						</div>
+		    					</div>
+	    					</div>
+	    				</li>
+	    				<li class="clearfix zx-dingyue fl">
+	    					<div class="zx-dingyue-box fl">
+	    						<div class="zx-listright-img fl">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_04.png" />
+		    					</div>
+		    					<div class="zx-dingyue-con fl">
+		    						<p>废有色</p>
+		    						<div class="zx-listright-btn">
+		    							+订阅
+		    						</div>
+		    					</div>
+	    					</div>
+	    					<div class="zx-dingyue-box fl">
+	    						<div class="zx-listright-img fl">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_05.png" />
+		    					</div>
+		    					<div class="zx-dingyue-con fl">
+		    						<p>综合塑料</p>
+		    						<div class="zx-listright-btn">
+		    							+订阅
+		    						</div>
+		    					</div>
+	    					</div>
+	    					<div class="zx-dingyue-box fl">
+	    						<div class="zx-listright-img fl">
+		    						<img src="http://b.zz91.com/infomation/images/zx-titlert_01.png" />
+		    					</div>
+		    					<div class="zx-dingyue-con fl">
+		    						<p>废钢铁</p>
+		    						<div class="zx-listright-btn">
+		    							+订阅
+		    						</div>
+		    					</div>
+	    					</div>
+	    				</li>
+	    			</ul>
+	    		</div>
+	    	</div>
+	    	
+	    	<div class="fr zx-listright">
+	    		<div class="zx-listright-main">
+	    			<div class="zx-listright-box">
+	    				<div class="zx-listright-title clearfix">
+		    				<div class="fl zx-listright-name">
+		    					热门产品搜索
+		    				</div>
+		    				<a href="http://www.zz91.com/cp/" target="_blank" class="fr zx-xsall">
+	    						全部<i class="icon2 zx-all"></i>
+	    					</a>
+		    			</div>
+		    			<ul class="zx-hsou clearfix">
+		    				<li class="clearfix">
+		    					{%for list in cplist%}
+		    					<a href="http://www.zz91.com/cp/{{list.pingyin}}/" target="_blank" class="fl zx-hsou-box zx-hsou-box{{list.i}} zx-hsou-color{{list.i}}">{{list.label}}</a>
+		    					{%endfor%}
+		    				</li>
+		    			</ul>
+	    			</div>
+	    		</div>
+	    	</div>
+	    </div>
+	    
+	    {% include 'new/footer.html' %}
+	    <script>
+			function getOther(n){
+				$(".zx-bt-con").html($(".j_movemian a").eq(n).attr('title')); 
+			}
+			
+			$(".zx-iconlist3").click(function(){
+				popShow("zx-tan-fenxiang");
+				
+		    })
+			
+			function popShow(obj){
+				var popH = $("."+obj);
+				 //设定窗口的位置 	
+				var windowHeight=$(window).height(); 
+				var popHeight=popH.height(); 
+				var scrolltop = $(window).scrollTop();
+		    	var popY=(windowHeight-popHeight)/2 + scrolltop; 
+		    	popH.css("top",popY).show();
+				$(".zx-tan").show();
+		    	
+			}
+			$(".zx-tanbox-close").click(function(){
+				$(".zx-tanbox").hide();
+				$(".zx-tan").hide();
+			})
+			
+			$(".hq-type-ul li").click(function(){
+		        $(".hq-type-ul li").eq($(this).index()).addClass("this-hq-type").siblings().removeClass('this-hq-type');
+		        $(".zx-hy-con").eq($(this).index()).addClass("zx-on").siblings().removeClass('zx-on');
+		    });
+		</script>	
+	</body>
+</html>
+

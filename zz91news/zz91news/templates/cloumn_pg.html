@@ -1,0 +1,445 @@
+{%extends "index.html"%}
+
+{%block body%}
+    <div class="index">
+    	<div class="index-mainblock1">
+        	<div class="i1-left">
+            	<div class="i1-slider">
+                	<div class="i1-slider-img">
+                        <div class="i1-slider-block">
+                            <ul id="i1_slider">
+{%for t in deputy_topic_img%}
+                                <li><a href="{{t.weburl}}" title="{{t.title}}" target="_blank"><img src="{{t.litpic}}" alt="{{t.title|safe}}"/></a></li>
+{%endfor%}
+                                <div class="cb"></div>
+                            </ul>
+                            <div class="i1-slider-bg"></div>
+                            <div class="i1-slider-button">
+                                 <div class="i1-slider-text" id="i1_slider_text">
+                                    <ul>
+{%for t in deputy_topic_img%}
+                                        <li>{{t.title|safe}}</li>
+{%endfor%}
+                                    </ul>
+                                </div>
+                                <div class="i1-stext-ul" id="i1_slider_button">
+                                    <ul>
+                                        <li style="background:#000;color:#fff" data-aaa="1">1</li>
+                                        <li data-aaa="2">2</li>
+                                        <li data-aaa="3">3</li>
+                                        <li style="margin-right:0px" data-aaa="4">4</li>
+                                        <div class="cb"></div>
+                                    </ul>
+                                </div>
+                                <!--end i1-slider-button-->
+                            </div>
+                            <!--end i1-slider-button-->
+                        </div>
+                        <!--end i1-slider-block-->
+                    </div>
+                    <!--end i1-slider-img-->
+                </div>
+                <!--end i1-slider-->
+                <div class="i1-topic">
+                	<div class="i1-topic-title">
+                        <div class="i1-topic-caption">
+                            <h3><a href="http://subject.zz91.com/prevent/index.html" target="_blank">热门专题</a></h3>
+                        </div>
+                        <!--end i1-topic-caption-->
+                        <div class="i1-topic-more">
+                            <a href="/zhuanti/" target="_blank">更多</a>
+                        </div>
+                        <!--end i1-topic-more-->
+                        <div class="cb"></div>
+                    </div>
+                    <!--end i1-topic-title-->
+                    <div class="i1-topic-content">
+{%for st in special_te%}
+                    	<div class="i1-topic-item">
+                            <div class="i1-titem-img">
+                                <a href="{{st.filename}}.html" target="_blank"><img src="{{st.litpic}}"  alt="防骗专题"/></a>
+                            </div>
+                            <div class="i1-titem-box">
+                                <div class="i1-titem-title">
+                                    <a href="{{st.filename}}.html" target="_blank">{{st.title|safe}}</a>
+                                </div>
+                                <!--end i1-titem-title-->
+                                <div class="i1-titem-text">
+                                    {{st.description|safe}}...<a href="{{st.filename}}.html" target="_blank">详情</a>
+                                </div>
+                                <!--end i1-titem-text-->
+                            </div>
+                            
+                            <!--end i1-titem-box-->
+                            <div class="cb"></div>
+                        </div>
+{%endfor%}
+                        
+                        
+                        <!--end i1-titem-item-->
+                    </div>
+                    <!--end i1-topic-content-->
+                </div>
+                <!--end i1-topic-->
+            </div>
+            
+            <div class="i1-center">
+            
+            <div class="i1-news">
+                	<div class="i1-news-title">
+<a href="{{deputy_focus1.weburl}}" title="{{deputy_focus1.title|safe}}" target="_blank">{{deputy_focus1.title|safe}}</a>
+                    </div>
+                    <!--end i1-news-title-->
+                    <div class="i1-news-text">
+{%if special1%}
+<a href="{{special1.weburl}}" title="{{special1.title|safe}}" target="_blank">{{special1.title|safe}}</a>
+<span class="i1-dividing">
+|</span>{%endif%}
+{%if special2%}
+<a href="{{special2.weburl}}" title="{{special2.title|safe}}" target="_blank">{{special2.title|safe}}</a>
+{%endif%}
+                    </div>
+                    <!--end i1-news-text-->
+                </div>
+                <!--end i1-news-->
+                <div class="i1-news">
+                	<div class="i1-news-title">
+<a href="{{deputy_focus2.weburl}}" title="{{deputy_focus2.title|safe}}" target="_blank">{{deputy_focus2.title|safe}}</a>
+                    </div>
+                    <!--end i1-news-title-->
+                    <div class="i1-news-text">
+{%if special3%}
+<a href="{{special3.weburl}}" title="{{special3.title|safe}}" target="_blank">{{special3.title|safe}}</a>
+<span class="i1-dividing">
+|</span>{%endif%}
+{%if special4%}
+<a href="{{special4.weburl}}" title="{{special4.title|safe}}" target="_blank">{{special4.title|safe}}</a>
+{%endif%}
+                    </div>
+                    <!--end i1-news-text-->
+                </div>
+                <!--end i1-news-->
+                <div class="i1-news">
+                	<div class="i1-news-title">
+<a href="{{deputy_focus3.weburl}}" title="{{deputy_focus3.title|safe}}" target="_blank">{{deputy_focus3.title|safe}}</a>
+                    </div>
+                    <!--end i1-news-title-->
+                    <div class="i1-news-text">
+{%if special5%}
+<a href="{{special5.weburl}}" title="{{special5.title|safe}}" target="_blank">{{special5.title|safe}}</a>
+<span class="i1-dividing">
+|</span>{%endif%}
+{%if special6%}
+<a href="{{special6.weburl}}" title="{{special6.title|safe}}" target="_blank">{{special6.title|safe}}</a>
+{%endif%}
+                    </div>
+                    <!--end i1-news-text-->
+                </div>
+                <!--end i1-news-->
+                
+                <div class="i1-news-line"></div>
+                <div class="i1-item">
+                	<ul>
+{%for c6 in choose6%}
+                    	<li>
+                        	<div class="i1-item-title"><a href="/column_list/tags-{{c6.kwds_hex}}.html" target="_blank">{{c6.kwds|safe}}</a></div>
+                            <div class="i1-item-line">|</div>
+                            <div class="i1-item-content"><a href="{{c6.weburl}}" title="{{c6.title|safe}}" target="_blank" title="{{c6.title|safe}}">{{c6.title|safe}}</a></div>
+                            <div class="i1-item-text">{{c6.shorttitle|safe}}</div>
+                            <div class="cb"></div>
+                        </li>
+{%endfor%}
+                    </ul>
+                </div>
+                <!--end i1-item-->
+            </div>
+            
+            <div class="i1-right">
+            	<div class="i1-rnews">
+                	<div class="i1-rnews-title">
+                    	<a href="#">最新资讯</a>
+                    </div>
+                    <!--end i1-rnews-title-->
+                    <div class="i1-rnews-content">
+                    	<ul>
+{%for htl in hot_thisweek%}
+                        	<li><a href="{{htl.weburl}}" title="{{htl.title|safe}}" target="_blank">{{htl.title|safe}}</a></li>
+{%endfor%}
+                        </ul>
+                    </div>
+                    <!--end i1-rnews-content-->
+                </div>
+                <!--end i1-rnews-->
+                <div class="i1-banner">
+                	<script type="text/javascript">
+/*资讯列表页238*120，创建于2014-2-25*/
+var cpro_id = "u1476035";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+                </div>
+                <!--end i1-banner-->
+            </div>
+            <div class="cb"></div>
+        </div>
+        <!--end index-mainblock1-->
+        <div class="index-mainblock2">
+        	<div class="i2-left">
+            	<div class="i2-left-block">
+            	<div class="i2-item i2-bb1 i2-br1">
+                        <div class="i2-item-title">
+                            <div class="i2-item-caption">
+                                <a href="{{kinds4h_1.keywords|safe}}/" target="_blank">{{kinds4h_1.typename|safe}}</a>
+                            </div>
+                            <!--end i2-item-caption-->
+                            <div class="i2-item-more">
+                                <a href="{{kinds4h_1.keywords|safe}}/" target="_blank">更多</a>
+                            </div>
+                            <!--end i2-item-more-->
+                            <div class="cb"></div>
+                        </div>
+                        <!--end i2-item-title-->
+                        <div class="i2-item-content">
+                        
+                        
+                            <div class="i2-box">
+                                <div class="i2-box-img">
+{%if kinds4h_1.newslist.has_pic%}
+                                    <a href="{{kinds4h_1.newslist.weburl}}" target="_blank"><img src="{{kinds4h_1.titles_h.img_url}}" alt="{{kinds4h_1.newslist.title|safe}}"/></a>
+{%else%}
+                                    <a href="{{kinds4h_1.newslist.weburl}}" target="_blank"><img src="http://img0.zz91.com/zz91/news/images/img1.jpg" alt="{{kinds4h_1.newslist.title|safe}}"/></a>
+{%endif%}
+                                </div>
+                                <div class="i2-box-div">
+                                    <div class="i2-box-title" style='overflow:hidden;width:200px;text-overflow: ellipsis; white-space: nowrap;'>
+                                        <a href="{{kinds4h_1.newslist.weburl}}" target="_blank">{{kinds4h_1.newslist.title|safe}}</a>
+                                    </div>
+                                    <!--end i2-box-title-->
+                                    <div class="i2-box-text">
+                                        {{kinds4h_1.newslist.content|safe}}.... 
+                                        <a href="{{kinds4h_1.newslist.weburl}}" target="_blank">>>详细</a>
+                                    </div>
+                                    <!--end i2-box-text-->
+                                </div>
+                                <div class="cb"></div>
+                            </div>
+                            <!--end i2-box-->
+                            <div class="i2-item-ul">
+                                <ul>
+{%for t_1 in kinds4_1.newslist%}
+                                    <li>
+                                        <div class="i2-ul-text"><a href="{{t_1.weburl}}" title="{{t_1.title|safe}}" target="_blank">{{t_1.title|safe}}</a></div>
+                                        <div class="i2-ul-date">{{t_1.pubdate1}}</div>
+                                        <div class="cb"></div>
+                                    </li>
+{%endfor%}
+                                </ul>
+                            </div>
+                            <!--end i2-item-ul-->
+                        </div>
+                        <!--end i2-item-content-->
+                    </div>
+                    
+                    <div class="i2-item i2-bb1 i2-pl15">
+                        <div class="i2-item-title">
+                            <div class="i2-item-caption">
+                                <a href="{{kinds4h_2.keywords|safe}}/" target="_blank">{{kinds4h_2.typename|safe}}</a>
+                            </div>
+                            <!--end i2-item-caption-->
+                            <div class="i2-item-more">
+                                <a href="{{kinds4h_2.keywords|safe}}/" target="_blank">更多</a>
+                            </div>
+                            <!--end i2-item-more-->
+                            <div class="cb"></div>
+                        </div>
+                        <!--end i2-item-title-->
+                        <div class="i2-item-content">
+                            <div class="i2-box">
+                                <div class="i2-box-img">
+{%if kinds4h_2.newslist.has_pic%}
+                                    <a href="{{kinds4h_2.newslist.weburl}}" target="_blank"><img src="{{kinds4h_2.titles_h.img_url}}" alt="{{kinds4h_2.newslist.title|safe}}"/></a>
+{%else%}
+                                    <a href="{{kinds4h_2.newslist.weburl}}" target="_blank"><img src="http://img0.zz91.com/zz91/news/images/img2.jpg" alt="{{kinds4h_2.newslist.title|safe}}"/></a>
+{%endif%}
+                                </div>
+                                <div class="i2-box-div">
+                                    <div class="i2-box-title" style='overflow:hidden;width:200px;text-overflow: ellipsis; white-space: nowrap;'>
+                                        <a href="{{kinds4h_2.newslist.weburl}}" target="_blank">{{kinds4h_2.newslist.title|safe}}</a>
+                                    </div>
+                                    <!--end i2-box-title-->
+                                    <div class="i2-box-text">
+                                        {{kinds4h_2.newslist.content|safe}}.... 
+                                        <a href="{{kinds4h_2.newslist.weburl}}" target="_blank">>>详细</a>
+                                    </div>
+                                    <!--end i2-box-text-->
+                                </div>
+                                <div class="cb"></div>
+                            </div>
+                            <!--end i2-box-->
+                            <div class="i2-item-ul">
+                                <ul>
+{%for t_1 in kinds4_2.newslist%}
+                                    <li>
+                                        <div class="i2-ul-text"><a href="{{t_1.weburl}}" title="{{t_1.title|safe}}" target="_blank">{{t_1.title|safe}}</a></div>
+                                        <div class="i2-ul-date">{{t_1.pubdate1}}</div>
+                                        <div class="cb"></div>
+                                    </li>
+{%endfor%}
+                                </ul>
+                            </div>
+                            <!--end i2-item-ul-->
+                        </div>
+                        <!--end i2-item-content-->
+                    </div>
+                    <div class="i2-item i2-br1 i2-pt15">
+                        <div class="i2-item-title">
+                            <div class="i2-item-caption">
+                                <a href="{{kinds4h_3.keywords|safe}}/" target="_blank">{{kinds4h_3.typename|safe}}</a>
+                            </div>
+                            <!--end i2-item-caption-->
+                            <div class="i2-item-more">
+                                <a href="{{kinds4h_3.keywords|safe}}/" target="_blank">更多</a>
+                            </div>
+                            <!--end i2-item-more-->
+                            <div class="cb"></div>
+                        </div>
+                        <!--end i2-item-title-->
+                        <div class="i2-item-content">
+                            <div class="i2-box">
+                                <div class="i2-box-img">
+{%if kinds4h_3.newslist.has_pic%}
+                                    <a href="{{kinds4h_3.newslist.weburl}}" target="_blank"><img src="{{kinds4h_3.titles_h.img_url}}" alt="{{kinds4h_3.newslist.title|safe}}"/></a>
+{%else%}
+                                    <a href="{{kinds4h_3.newslist.weburl}}" target="_blank"><img src="http://img0.zz91.com/zz91/news/images/img3.jpg" alt="{{kinds4h_3.newslist.title|safe}}"/></a>
+{%endif%}
+                                </div>
+                                <div class="i2-box-div">
+                                    <div class="i2-box-title" style='overflow:hidden;width:200px;text-overflow: ellipsis; white-space: nowrap;'>
+                                        <a href="{{kinds4h_3.newslist.weburl}}" target="_blank">{{kinds4h_3.newslist.title|safe}}</a>
+                                    </div>
+                                    <!--end i2-box-title-->
+                                    <div class="i2-box-text">
+                                        {{kinds4h_3.newslist.content|safe}}.... 
+                                        <a href="{{kinds4h_3.newslist.weburl}}" target="_blank">>>详细</a>
+                                    </div>
+                                    <!--end i2-box-text-->
+                                </div>
+                                <div class="cb"></div>
+                            </div>
+                            <!--end i2-box-->
+                            <div class="i2-item-ul">
+                                <ul>
+{%for t_1 in kinds4_3.newslist%}
+                                    <li>
+                                        <div class="i2-ul-text"><a href="{{t_1.weburl}}" title="{{t_1.title|safe}}" target="_blank">{{t_1.title|safe}}</a></div>
+                                        <div class="i2-ul-date">{{t_1.pubdate1}}</div>
+                                        <div class="cb"></div>
+                                    </li>
+{%endfor%}
+                                </ul>
+                            </div>
+                            <!--end i2-item-ul-->
+                        </div>
+                        <!--end i2-item-content-->
+                    </div>
+                    
+                    <div class="i2-item i2-pt15 i2-pl15">
+                        <div class="i2-item-title">
+                            <div class="i2-item-caption">
+                                <a href="{{kinds4h_4.keywords|safe}}/" target="_blank">{{kinds4h_4.typename}}</a>
+                            </div>
+                            <!--end i2-item-caption-->
+                            <div class="i2-item-more">
+                                <a href="{{kinds4h_4.keywords|safe}}/" target="_blank">更多</a>
+                            </div>
+                            <!--end i2-item-more-->
+                            <div class="cb"></div>
+                        </div>
+                        <!--end i2-item-title-->
+                        <div class="i2-item-content">
+                            <div class="i2-box">
+                                <div class="i2-box-img">
+{%if kinds4h_4.newslist.has_pic%}
+                                    <a href="{{kinds4h_4.newslist.weburl}}" target="_blank"><img src="{{kinds4h_4.titles_h.img_url}}" alt="{{kinds4h_4.newslist.title|safe}}"/></a>
+{%else%}
+                                    <a href="{{kinds4h_4.newslist.weburl}}" target="_blank"><img src="http://img0.zz91.com/zz91/news/images/img4.jpg" alt="{{kinds4h_4.newslist.title|safe}}"/></a>
+{%endif%}
+                                </div>
+                                <div class="i2-box-div">
+                                    <div class="i2-box-title" style='overflow:hidden;width:200px;text-overflow: ellipsis; white-space: nowrap;'>
+                                        <a href="{{kinds4h_4.newslist.weburl}}" target="_blank">{{kinds4h_4.newslist.title|safe}}</a>
+                                    </div>
+                                    <!--end i2-box-title-->
+                                    <div class="i2-box-text">
+                                        {{kinds4h_4.newslist.content|safe}}.... 
+                                        <a href="{{kinds4h_4.newslist.weburl}}" target="_blank">>>详细</a>
+                                    </div>
+                                    <!--end i2-box-text-->
+                                </div>
+                                <div class="cb"></div>
+                            </div>
+                            <!--end i2-box-->
+                            <div class="i2-item-ul">
+                                <ul>
+{%for t_1 in kinds4_4.newslist%}
+                                    <li>
+                                        <div class="i2-ul-text"><a href="{{t_1.weburl}}" title="{{t_1.title|safe}}" target="_blank">{{t_1.title|safe}}</a></div>
+                                        <div class="i2-ul-date">{{t_1.pubdate1}}</div>
+                                        <div class="cb"></div>
+                                    </li>
+{%endfor%}
+                                </ul>
+                            </div>
+                            <!--end i2-item-ul-->
+                        </div>
+                        <!--end i2-item-content-->
+                    </div>
+                    <!--end i2-item-->
+                    <div class="cb"></div>
+                </div>
+                <!--end i2-left-block-->
+            </div>
+            <div class="i2-right">
+            	<div class="i1-newspic">
+                	<div class="i1-newspic-title">
+                        <div class="i1-newspic-caption">
+                            图片新闻推荐
+                        </div>
+                        <!--end i1-newspic-caption-->
+                        <div class="cb"></div>
+                    </div>
+                    <!--end i1-newspic-title-->
+                    <div class="i1-newspic-content">
+                    
+{%for hi in hot_img%}
+                    	<div class="i1-newspic-item">
+                        	<div class="i1-newspic-img">
+                            	<a href="{{hi.weburl}}" title="{{hi.title|safe}}" target="_blank"><img src="{{hi.litpic}}"  alt="{{hi.title|safe}}"/></a>
+                            </div>
+                            <!--end i1-newspic-img-->
+                            <div class="i1-newspic-text">
+                            	<a href="{{hi.weburl}}" title="{{hi.title|safe}}" target="_blank">{{hi.title|safe}}</a>
+                            </div>
+                            <!--end i1-newspic-text-->
+                        </div>
+{%endfor%}
+                        
+                        <!--end i1-newspic-item-->
+                    </div>
+                    <!--end i1-newspic-content-->
+                </div>
+                <!--end i1-newspic-->
+            </div>
+            <div class="cb"></div>
+        </div>
+<script src="http://pyapp.zz91.com/showppctxtadscript/?keywords=&amp;showborder=1&amp;showposition=1&amp;m=6&amp;padding=8&amp;w=970&amp;num=6"></script>
+        <!--end index-mainblock2-->
+    </div>
+    <!--end index-->
+    
+</div>
+<!--end zixun-->
+<input type="hidden" id="ishow_hidden" value="1" />
+
+</body>
+</html>
+{%endblock%}

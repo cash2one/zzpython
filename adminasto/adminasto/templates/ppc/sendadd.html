@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>添加关键词</title>
+<style>
+body
+{
+	font-size:12px;
+}
+</style>
+</head>
+
+<body>
+<table width="500" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#666666">
+  <form id="form1" name="form1" method="post" action="/ppc/sendsave/"><tr>
+    <td width="100" bgcolor="#FFFFFF">供求类型</td>
+    <td bgcolor="#FFFFFF">
+      <input type="radio" name="type" id="radio" value="1" />
+      供求
+      <input type="radio" name="type" id="radio2" value="2" />
+      求购
+      <input type="hidden" name="company_id" id="company_id" value="{{company_id}}" /></td>
+  </tr>
+    <tr>
+      <td bgcolor="#FFFFFF">关键字</td>
+      <td bgcolor="#FFFFFF"><input type="text" name="keywords" id="keywords" /></td>
+    </tr>
+    <tr>
+      <td bgcolor="#FFFFFF">推广标题</td>
+      <td bgcolor="#FFFFFF"><input name="sendtitle" type="text" id="sendtitle" size="50" /></td>
+    </tr>
+    <tr>
+      <td bgcolor="#FFFFFF">推广内容</td>
+      <td bgcolor="#FFFFFF"><textarea name="sendcontent" id="sendcontent" cols="45" rows="5"></textarea></td>
+    </tr>
+    <tr>
+      <td bgcolor="#FFFFFF">&nbsp;</td>
+      <td bgcolor="#FFFFFF"><input type="submit" name="button" id="button" value="提交" /></td>
+    </tr>
+  </form>
+</table>
+</body>
+</html>

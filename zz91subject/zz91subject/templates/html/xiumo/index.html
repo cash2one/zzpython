@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+        <title>开工秀起来</title>
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+        <link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+        <link rel="stylesheet" type="text/css" href="http://www.zz91.com/zt/comm/facebox.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <!-- <script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script> -->
+        <script src="http://www.zz91.com/zt/comm/facebox.js"></script>
+        <script src="http://www.zz91.com/zt/comm/checkForm.js"></script>
+
+
+        <link type="text/css" rel="stylesheet" href="css/carousel.css">
+       <!--  <script type="text/javascript" src="js/jquery.js"></script> -->
+        <script type="text/javascript" src="js/carousel.js"></script>
+    </head>
+    <body>
+        <div class="band"><div class="band_main"></div></div>
+        <div class="xiu_bm">
+            <div class="xiu_title">
+                <img src="images/xiubiao.jpg">
+            </div>
+            <div class="xiu_ts">
+                <a href="#mydiv" rel="facebox" class="bmbtn"><img src="images/bmbtn.jpg"></a>
+            </div>
+        </div>
+        <div class="moban_list">
+            <div class="moban">
+                <img src="images/gxxiub.jpg">
+            </div>
+            <div class="moban_main">
+                <div class="clearfix">
+                    <div class="fl werimg"><img src="images/erwei.jpg"></div>
+                    <div class="fr">
+                        <div class="J_Poster poster-main" data-setting='{
+                                                                                    "width":760,
+                                                                                    "height":500,
+                                                                                    "posterWidth":320,
+                                                                                    "posterHeight":480,
+                                                                                    "scale":0.8,
+                                                                                    "autoPlay":true,
+                                                                                    "delay":4000,
+                                                                                    "speed":300
+                                                                                    }'>
+                                <div class="poster-btn poster-prev-btn"></div>
+                                <ul class="poster-list">
+                                    <li class="poster-item"><img src="images/mo1.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo2.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo3.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo4.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo5.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo6.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo7.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo8.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo9.jpg" width="100%" height="100%"></li>
+                                </ul>
+                            <div class="poster-btn poster-next-btn"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix tomo">
+                    <div class="fr werimg"><img src="images/erwei2.png" width="160"></div>
+                    <div class="fl">
+                        <div class="J_Poster poster-main" data-setting='{
+                                                                                    "width":760,
+                                                                                    "height":500,
+                                                                                    "posterWidth":320,
+                                                                                    "posterHeight":480,
+                                                                                    "scale":0.8,
+                                                                                    "autoPlay":true,
+                                                                                    "delay":4000,
+                                                                                    "speed":300
+                                                                                    }'>
+                                <div class="poster-btn poster-prev-btn"></div>
+                                <ul class="poster-list">
+                                    <li class="poster-item"><img src="images/mo2_1.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo2_2.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo2_3.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo2_4.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo2_5.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo2_6.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo2_7.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo2_8.jpg" width="100%" height="100%"></li>
+                                    <li class="poster-item"><img src="images/mo2_9.jpg" width="100%" height="100%"></li>
+                                </ul>
+                            <div class="poster-btn poster-next-btn"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="moban">
+                <img src="images/mogeduo.jpg">
+            </div>
+        </div>
+        {% include 'html/comm/buttom.html' %}
+    </body>
+    <script>
+
+    $(function(){
+         $('a[rel*=facebox]').facebox(); 
+        Carousel.init($(".J_Poster"));
+    });
+    </script>
+</html>

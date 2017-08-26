@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<title>发布成功-ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-slider-full.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<style>
+			.topmain {
+				position: relative;
+				background-color: #01AA2A;
+				color: #fff;
+				padding-bottom: 10px;
+			}
+			.compname{
+				padding: 10px;
+				text-align:center;
+				padding-top:20px;
+				color:#FFCC00;
+				
+			}
+			.compname p {
+				padding: 5px;
+				font-size: 18px;
+				line-height: 32px;
+				color:#fff
+			}
+			
+			.gongqiunav {
+				background-color: #ebebeb;
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			.compinstro {
+				padding: 5px;
+				color: #fff
+			}
+			.jointxl {
+				position: absolute;
+				right: 10px;
+				top: 40px
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">发布成功</div>
+		    <a class="aui-pull-right" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		</header>
+		<div class="topmain">
+			
+			<div class="compname">
+				<i class="aui-iconfont aui-icon-check" style="font-size: 46px;"></i>
+				<p class="aui-ellipsis-1" style="font-size: 16px;color: #F2FC5D;">恭喜您，你的供求信息已经发布成功!</p>
+				<p class="aui-ellipsis-2">我们将尽快为您审核!<br>供求通过审核后才能上线</p>
+				<div class="aui-btn aui-btn-warning my-buyin">
+					管理我的供求
+				</div>
+				<div style="clear: both;"></div>
+				{%if llbchecked%}
+				<p>同时我们为你成功开通了流量宝服务</p>
+				<a class="aui-btn aui-btn-danger" href="/qianbao/jingjia_index.html">
+					我的流量宝
+				</a>
+				{%endif%}
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="gongqiunav">
+			为您推荐以下货源
+			<div style="float: right;padding-right: 10px;" class="morepro"><a href="javascript:;" style="text-align: left">查看更多</a></div></div>
+		</div>
+		
+		<div class="aui-content">
+			<ul class="aui-list-view prolist">
+				{%for d in listall.list%}
+				<li class="aui-list-view-cell aui-img" id="{{d.pdt_id}}">
+					<a class="aui-arrow-right">
+					<img class="aui-img-object aui-pull-left" src="{{d.pdt_images}}" style="width:100px">
+					<div class="aui-img-body" style="margin-right:18px">
+						<p class="aui-ellipsis-1"  style="color:#000"><b>{{d.pdt_kind.kindtxt}}{{d.pdt_name}}</b></p>
+						<p>{{d.com_province}}<span class="aui-pull-right">{{d.pdt_price}}</span></p>
+						<p>{{d.pdt_time_en}}</p>
+					</div>
+					</a>
+				</li>
+				{%endfor%}
+			</ul>
+		</div>
+		<div class='morepro' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;'>点此查看更多信息</div>
+	</body>
+	<script type="text/javascript">
+		$(function(){
+			//更多
+			$(".morepro").on("click", function() {
+				window.location='/trade/?keywords={{keywords}}&ptype={{ptype}}'
+			})
+			//我的供求
+			$(".my-buyin").on("click", function() {
+				window.location='/myrc/products.html'
+			})
+		});
+		
+	</script>
+	{%include 'aui/bottom.html'%}
+</html>

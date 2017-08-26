@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+		<table cellspacing="0" class="table table-bordered">
+			<thead>
+				<tr>
+					<th nowrap>公司名称</th>
+					<th nowrap>联系时间</th>
+					<th nowrap>联系情况</th>
+					<th nowrap>下次联系</th>
+					<th nowrap>联系人</th>
+					<th nowrap>客户等级</th>
+					<th nowrap>联系内容</th>
+				</tr>
+			</thead>
+			<tbody>
+				{%for telsale in listall%}
+				<tr>
+					<td bgcolor="#FFFFFF"><a href="/icd/crm_cominfoedit.html?company_id={{telsale.company_id}}&dotype={{telsale.dotype}}" target="_blank">公司：{{telsale.companyname}}</a></td>
+					<td bgcolor="#FFFFFF">{{telsale.teltime}}</td>
+					<td bgcolor="#FFFFFF">
+						{{telsale.contacttypetxt}}  {{telsale.nocontacttypetxt}}</td>
+					<td bgcolor="#FFFFFF">{{telsale.contactnexttime}}</td>
+					<td bgcolor="#FFFFFF">
+						{{telsale.realname}}</td>
+					<td bgcolor="#FFFFFF">
+						{{telsale.rank}}星 </td>
+					<td bgcolor="#FFFFFF">{{telsale.detail|safe}}</td>
+				</tr>
+				{%endfor%}
+				<tr>
+					<td colspan="14" align="right" bgcolor="#FFFFFF">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td nowrap="nowrap">页次:<strong><font color="#FF0000">{{page}}</font></strong>/<font color="#FF0000">{{page_listcount}}</font> 每页:<font color="#FF0000"></font> 共计:<font color="#FF0000">{{listcount}}</font></td>
+								<td> <font color="#666666"> 页数 &nbsp;第
+														{%for p in page_range%}
+															{%if p.nowpage%}
+															[&nbsp;<span class='current'>{{p.number}}</span>&nbsp;]
+															{%else%}
+															<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+															{%endif%}
+														{%endfor%}
+														页
+														</font> </td>
+								<td align="right">
+									<a href='?page=1&{{searchurl}}'>首页</a>&nbsp;&nbsp;
+									{% if firstpage %} <a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%} &nbsp;&nbsp;
+									{% if lastpage%} <a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%} &nbsp;&nbsp;
+									<a href='?page={{page_listcount}}&{{searchurl}}'>尾页</a>
+								</td>
+								<td align="right">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+
+</html>

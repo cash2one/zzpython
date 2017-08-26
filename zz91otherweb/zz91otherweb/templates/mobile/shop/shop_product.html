@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+	<script src="chart/jquery-1.7.2.js"></script>
+	<script type="text/javascript" src="123/redeldb.js"></script>
+    <script type="text/javascript" src="123/jquery.lightbox_me.js"></script>
+<script>
+$(function(){
+	$('.upisok').click(function(){
+		var auto_id=$(this).attr("auto_id")
+		var is_ok=$(this).attr("is_ok")
+		if(is_ok==1){
+		$("#img"+auto_id).attr('src','123/imgs/weizhua.png')
+		$("#isok"+auto_id).attr('is_ok',0)
+		}
+		if(is_ok==0){
+		$("#img"+auto_id).attr('src','123/imgs/yizhua.png')
+		$("#isok"+auto_id).attr('is_ok',1)
+		}
+		$.ajax({
+		   type: "GET",
+		   url: "upshop_product2.html",
+		   data: "auto_id="+auto_id+"&is_ok="+is_ok,
+		   //dataType: "json",
+		   //cache:false,
+		   //contentType: "application/json; charset=utf-8", 
+		   success:function(data){
+		   		//$("#isok"+auto_id).html(data)
+		   		//alert(data);
+		   },
+		   error:function(data){
+				//alert("错误!青重试.");
+		   }
+		}); 
+	 });
+});
+</script>
+</head>
+<body>
+<input type="hidden" id="deldbname" value="shop_product_wxtg">
+<input type="hidden" id="deldataid">
+<form class="form-inline definewidth m20">
+<button type="button" class="btn btn-success" onClick="window.location.href='addshop_product.html'">添加客户</button>&nbsp;&nbsp;
+<input class="btn btn-success" type="submit" value="查询">
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>公司名称</th>
+        <th>手机号</th>
+        <th>审核状态</th>
+        <th>时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {%for list in listall%}
+	     <tr>
+	        <td>{{list.id}}</td>
+	        <td><a href="http://admin1949.zz91.com/web/zz91/crm/company/detail.htm?companyId={{list.company_id}}" target="_blank">{{list.company_name}}</a></td>
+	        <td>{{list.mobile}}</td>
+	        <td><a href="javascript:void(0)" title="点击改变抓取状态" id="isok{{list.id}}" auto_id="{{list.id}}" is_ok="{{list.is_check}}" class="upisok">{%ifequal list.is_check 1%}<img id="img{{list.id}}" src="123/imgs/yizhua.png">{%else%}<img id="img{{list.id}}" src="123/imgs/weizhua.png">{%endifequal%}</a></td>
+	        <td>{{list.gmt_created}}</td>
+	        <td>
+			<a href="updateshop_product.html?sid={{list.id}}" title="编辑"><img src="123/imgs/gtk-edit.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a class="delectdata" deldataid="{{list.id}}" title="删除"><img src="123/imgs/b_drop.png"></a>
+			</td>
+        </tr>
+     {%endfor%}
+</table>
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<input type="button" value="跳到" onClick=turnpage()> <span style="font-size:15px">第 <input type="text" id="page1" style="width:28px" value="{{page}}"> /{{page_listcount}} 页  </span><input type="submit" style="display:none"> &nbsp;&nbsp;
+<a href='?page=1{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}' >首页</a><a href='?page={{page_listcount}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}' >尾页</a> 
+</div>
+</body>
+<script>
+function turnpage(){
+	var page1=document.getElementById("page1").value;
+	if (page1<1)
+	{
+	page1=1;
+	}
+	window.location.href='?page='+page1+'{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}';
+}
+</script>
+</html>

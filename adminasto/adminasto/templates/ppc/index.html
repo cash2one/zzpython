@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>来电宝后台管理</title>
+<style>
+body
+{
+	font-size:12px;
+}
+</style>
+</head>
+
+<body>
+	
+	<form id="form1" name="form1" method="get" action="/ppcindex/">
+<table width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#FFFFFF">邮箱：
+      
+        <input type="text" name="email" id="email" />
+        400号码
+      <input type="text" name="tel" id="tel" />
+      手机
+      <input type="text" name="mobile" id="mobile" />
+      <input type="submit" name="button" id="button" value="提交" /></td>
+    <td bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+</table> </form>
+<br />
+<div>目前总共消费了 {{allfee}}元；销售金额{{allincome}}</div>
+<table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor="#666666">
+  <tr>
+    <td nowrap="nowrap" bgcolor="#ebebeb">登录</td>
+    <td nowrap="nowrap" bgcolor="#ebebeb">客户邮箱</td>
+    <td nowrap="nowrap" bgcolor="#ebebeb">公司名称</td>
+    <td nowrap="nowrap" bgcolor="#ebebeb">联系人</td>
+    <td nowrap="nowrap" bgcolor="#ebebeb">400电话号码</td>
+    <td nowrap="nowrap" bgcolor="#ebebeb">手机</td>
+    <td nowrap="nowrap" bgcolor="#ebebeb">服务类型</td>
+    <td nowrap="nowrap" bgcolor="#ebebeb">购买时间</td>
+    <td nowrap="nowrap" bgcolor="#ebebeb">充值金额</td>
+    <td nowrap="nowrap" bgcolor="#ebebeb">消费金额</td>
+    <td nowrap="nowrap" bgcolor="#ebebeb">关键字</td>
+	<td nowrap="nowrap" bgcolor="#ebebeb">门市部流量</td>
+    <td nowrap="nowrap" bgcolor="#ebebeb">刷新供求</td>
+    <td nowrap="nowrap" bgcolor="#ebebeb">操作</td>
+  </tr>
+  {%for list in listall%}
+  <tr>
+    <td nowrap="nowrap" bgcolor="#FFFFFF"><a href="http://admin1949.zz91.com/web/zz91/crm/company/adminmyrc.htm?account={{list.account}}" target=_blank>登录</a></td>
+  
+    <td nowrap="nowrap" bgcolor="#FFFFFF"><a href="http://192.168.2.2/admin1/crmlocal/crm_cominfoedit.asp?idprod={{list.company_id}}" target="_blank">{{list.account}}</td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF"><a href="http://www.zz91.com/ppc/index{{list.company_id}}.htm" target="_blank">{{list.companyinfo.name}}</a></td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF">{{list.companyinfo.contact}}</td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF">{{list.tel}}</td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF">{{list.mobile}}</td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF">{{list.servicelist.servername}}</td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF">{{list.servicelist.gmt_start}}</td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF">{{list.amount}}</td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF">{{list.balance}}</td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF">{{list.keywords}}</td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF"></td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/ppc/plist/?company_id={{list.company_id}}">供求列表</a></td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/ppc/sendlist/?company_id={{list.company_id}}">群发邮件</a> | 群发短信 | 群发询盘 </td>
+  </tr>
+  {%endfor%}
+</table>
+<div class='pageBar'>
+		{% if firstpage %}
+		<a href="?page=1{{sear}}" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+		<a href="?page={{prvpage}}{{sear}}" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+		{% endif %}
+		{% for p in page_range %}
+		{% if p.nowpage %}
+		<span class="cpb" style="margin-right:5px;">{{p.number}}</span>
+		{% else %}
+		<a href="?page={{p.number}}{{sear}}" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+		{% endif %}
+		{% endfor %}
+		&nbsp;
+		{% if lastpage%}
+		<a href="?page={{nextpage}}{{sear}}" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+		<a href="?page={{page_listcount}}{{sear}}" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+		{% endif %}
+</div>
+</body>
+</html>

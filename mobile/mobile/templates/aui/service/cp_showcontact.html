@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>显示联系方式-zz91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<style>
+			body {
+				background-color: #f4f4f4
+			}
+			.aui-content-padded{
+				background-color: #fff;
+				margin:0px;
+				margin-bottom: 10px;
+			}
+			.title {
+				font-size: 14px;
+				text-align: left;
+				height: 30px;
+				line-height: 40px;
+				
+				padding-left:10px;
+			}
+			.price {
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			.price span {
+				color: #ff0000
+			}
+			.main {
+				line-height: 30px;
+				font-size: 14px;
+				margin-bottom: 20px;
+				padding: 10px
+			}
+			.buybutton {
+				position: fixed;
+				bottom: 0px;
+				left: 0px;
+				border-radius: 0px;
+				width: 100%;
+			}
+			.showradio50{
+				display:block;
+				background-color: #fff
+			}
+			.showradio50 li {
+				width: 50%;
+				display: block;
+				float: left;
+			}
+			.aui-line-x{
+				margin-top: 10px;margin-bottom: 10px;
+			}
+			.price-info {
+				width: 100%;
+				background: #EBECED;
+				height: 55px;
+			}
+			.price {
+				margin-left: 15px;
+				color: #F76249;
+				font-size: 16px;
+				line-height: 55px;
+			}
+			.price strong {
+				font-size: 26px;
+				margin: 0 5px;
+				font-weight: 400;
+			}
+			.price-info .aui-pull-right {
+				height: 55px;
+				width: 35%;
+				background: #FF6600;
+				padding-top: 10px;
+				text-align: center;
+			}
+			.price-info .aui-pull-right p {
+				color: #ff6600;
+				font-size: 12px;
+				margin-bottom: 0px;
+			}
+			.buy{
+				color:#FFFFFF;
+				line-height:38px;
+			}
+			.daijq {
+				clear: both;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">显示联系方式</div>
+		    <a class="aui-pull-right" href="/myrc_index/">
+		        <span class="aui-iconfont aui-icon-my"></span>
+		    </a>
+		</header>
+		<input type="hidden" id="showcontactvalue" value="">
+		<div class="aui-content-padded">
+			
+			<div class="price">
+				价格：<span>￥ 300元  / 月</span>
+			</div>
+			<div class="aui-line-x"></div>
+			
+			<div class="main">
+			<b>简介：</b><br>
+				现在不必担心客户联系不到你了，仅需300元即可全网商家即刻联系到您，电话量瞬间翻倍。
+				<br />
+				服务内容：
+				<br />
+				<b style="color:#DB4646"> 1、您的联系方式在移动端向全网客户公开。
+				<br />
+				2、您的供求排名将等同再生通会员排名。 </b>
+			</div>
+		</div>	
+		<div class="aui-content-padded">
+		
+			<div class="showradio50">
+				<p class="title">
+					选择服务时间
+				</p>
+				<div class="aui-line-x"></div>
+				<ul>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="showcontact1" value="300" money="300" />
+						<label class="aui-radio-name" for=showcontact1>300元/1个月</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="showcontact2" value="600" money="600" checked />
+						<label class="aui-radio-name" for=showcontact2>600元/2个月</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="showcontact3" value="1800" money="1800" />
+						<label class="aui-radio-name" for=showcontact3>1800元/半年</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="showcontact4" value="3600" money="3600" />
+						<label class="aui-radio-name" for=showcontact4>3600元/一年</label>
+					</li>
+				</ul>
+				<div style="clear: both"></div>
+			</div>
+			<div style="clear: both"></div>
+		</div>
+		{%if mydjq%}
+		<div class="aui-content-padded">
+			<p class="title">
+				可用代金券
+			</p>
+			<div class="aui-line-x"></div>
+			<div class="daijqmain">
+				{%for d in mydjq%}
+				<div class="daijq">
+					<input class="aui-checkbox" type="checkbox" name="daijqcheck" id="check{{d.id}}" money="-{{d.fee}}" value="{{d.id}}" />
+					<label class="aui-radio-name" for=check{{d.id}}>{{d.fee}}元{{d.title}}</label>
+				</div>
+				{%endfor%}
+			</div>
+			<div style="clear: both"></div>
+		</div>
+		{%endif%}
+		{%if youhuilist%}
+		<div class="aui-content-padded">
+			<p class="title">
+				推荐优惠服务
+			</p>
+			<div class="aui-line-x"></div>
+			<div class="aui-content">
+				<ul class="aui-list-view youhuiservice">
+					{%for d in youhuilist%}
+					<li class="aui-list-view-cell aui-img">
+						<a class="aui-arrow-right" href="{{d.tourl}}">
+						<img class="aui-img-object aui-pull-left" src="{{d.pic}}">
+						<div class="aui-img-body">
+							<span class="goodsname">{{d.goodsName|safe}}</span>
+							{{d.goodsname_fu|safe}}
+							{{d.original_Price|safe}}
+							{{d.present_Price|safe}}
+							{{d.sales_Num|safe}}
+							{{d.left_Num|safe}}
+							{{d.difftime|safe}}
+						</div>
+						</a>
+					</li>
+					{%endfor%}
+				</ul>
+			</div>
+		</div>
+		{%endif%}
+		<div style="height:50px"></div>
+		<section class="buybutton">
+			<div class="price-info">
+				<span class="price paymoney">¥<strong></strong>元</span>
+				<div class="aui-pull-right buyconfirm">
+						<div class="buy">立即购买</div>
+				</div>
+			</div>
+		</section>
+	</body>
+	<script type="text/javascript">
+		var paymoney=0;
+		var datevalue=0;
+		var djqlist ="0";//代金券ID
+		$(function(){
+			$(".buybutton").on("click",function() {
+				paysubmit();
+			})
+			$("body").on("click",".aui-radio",function() {
+				event.stopPropagation();
+				getmoneyall();
+			})
+			$("body").on("click",".aui-checkbox", function() {
+				event.stopPropagation();
+				getmoneyall();
+			})
+			getmoneyall();
+		});
+		function getmoneyall(){
+			var showselect=0;
+			$('input[name="showcontact"]:checked').each(function(){
+				showselect+=parseInt($(this).attr("money"));
+				datevalue=$(this).val();
+			});
+			djqlist="0";
+			$('input[name="daijqcheck"]:checked').each(function(){
+				showselect+=parseInt($(this).attr("money"));
+				djqlist+=","+$(this).val();
+			});
+			$(".paymoney").html("¥<strong>"+showselect+"</strong>元");
+			paymoney=showselect;
+		}
+		//购买显示联系方式
+		function paysubmit() {
+			var data = {
+				paytype : '11',
+				money : paymoney,
+				datatype : 'json',
+				t : (new Date()).getTime().toString(),
+				voucher_id:djqlist,
+				datevalue:datevalue,
+			}
+			layer.load(2);
+			zzajax("get","/qianbao/qianbaopay.html",data,function(ret){
+				//zzalert(JSON.stringify(ret))
+				if (ret) {
+					if (ret.err == 'false') {
+						layer.confirm(ret.errtext,{
+								btn : ['查看我的服务','关闭']
+							}, function() {
+								window.location='myservice.html';
+							},function(){
+								window.location='/service/index.html';
+							}
+						)
+					}
+					if (ret.err == 'true' && ret.blanceflag == '0') {
+						yuebuzuFun();
+					}
+					if (ret.err == 'true' && ret.blanceflag == '1') {
+						layer.msg(ret.errtext);
+					}
+				};
+				layer.closeAll('loading');
+			},function(){})
+		}
+
+	</script>
+	
+	{%include 'aui/bottom.html'%}
+</html>

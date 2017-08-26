@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>废料资讯</title>
+<link href="/new/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="/new/css/zhixun.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div class="header">
+		<div class="top">
+			<div class="top-mo clear">
+				<a class="top-link" href="#">
+					<img src="/new/images/fei123.jpg" height="31">
+				</a>
+				<div class="fr top-handle">
+					<a href="#">首页推荐</a> |
+					<a href="#">加入收藏</a> |
+					<a href="#">留言反馈</a>
+				</div>
+			</div>
+		</div>
+		<div class="search">
+			<ul class="search-ul clear">
+				<li><img src="/new/images/logo.jpg" height="35"></li>
+				<li><input type="text" class="input-text"></li>
+				<li><input type="submit" class="btn" value="搜索"></li>
+			</ul>
+		</div>
+		<div class="advert-top">
+			广告
+		</div>
+		<div class="nav clear">
+			<div class="nav-td"><a href="">首页</a></div>
+			<div class="nav-td"><a href="">废料交易</a></div>
+			<div class="nav-td"><a href="">废料行情</a></div>
+			<div class="nav-td nav-now"><a href="">废料资讯</a></div>
+			<div class="nav-td"><a href="">废料企业</a></div>
+			<div class="nav-td last-nav"><a href="">废料社区</a></div>
+		</div>
+	</div>
+	<div class="content clear">
+		<div class="info-list fl">
+			<div class="tpye-table">
+			{%for tk4 in kinds4%}
+				<div class="type-title">{{tk4.kind_name|safe}}</div>
+				<div class="type-lb">
+						{%for kd in tk4.keywords10%}
+							<a href="http://news.zz91.com/{{tk4.kind_url2}}tags-{{kd.typename_hex}}.html" target="_black">{{kd.typename|safe}}</a>
+						{%endfor%}
+				</div>
+			{%endfor%}
+			</div>
+			<ul class="xinxi-ul">
+				<!--  
+				{%for h in hotnewslist%}
+				<li class="clear">
+					<img src="{{h.litpic}}" width="230" height="130">
+					<h3 class="xinxi-th"><a href="{{h.weburl}}">{{h.title|safe}}</a></h3>
+					<p class="dectil">{{h.content|safe}}车市起暖回升 新政利好或为"银十"增温车市起暖回升 新政利好或为"银十"增温车市起暖回升 新政利好暖回升 新政利好暖回升 新政利好或为"银十"增温车市起暖回升 新政利好或为...<a href="{{h.weburl}}" class="more">[更多详情]</a></p>
+				</li>
+				{%endfor%}
+				-->
+				{%for l in latesdnews%}
+				<li class="clear">
+					<img src="{{l.litpic}}" width="230" height="130">
+					<h3 class="xinxi-th"><a href="{{l.weburl}}">{{l.title|safe}}</a></h3>
+					<p class="dectil">{{l.description|safe}}<a href="{{l.weburl}}" class="more">[更多详情]</a></p>
+				</li>
+				{%endfor%}
+				
+				
+				
+			</ul>
+		</div>
+		<div class="advert-list fr">
+			<div class="advert-one advert">广告</div>
+			<div class="baojia">
+				<div class="baojia-title">相关报价</div>
+				<div class="baojia-list">
+					<a href="#">废铜</a>
+					<a href="#">废铜</a>
+					<a href="#">废铜</a>
+					<a href="#">废铜</a>
+					<a href="#">废铜</a>
+					<a href="#">废铜</a>
+					<a href="#">废铜</a>
+					<a href="#">废铜</a>
+				</div>
+			</div>
+			<div class="advert-two advert">广告</div>
+			<div class="advert-three advert">广告</div>
+		</div>
+	</div>
+	<div class="footer">欢迎使用 2014 废料网站导航，最全，最多的废料网址导航 - 浙ICP备10030021号-3</div>
+</body>
+</html>

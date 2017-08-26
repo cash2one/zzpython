@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>你拿样，我就送</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="css/integral.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/newsample/css/style.css">
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico">
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+</head>
+<body>
+  <div style="width:100%; background-color:#F9F7EC">
+	<div style="width:933px;margin:0 auto">
+		{%include 'html/comm/top.html'%}
+    </div>
+</div>
+   <div class="integral_top">
+   		<div class="logosearch" id="logosearch">
+    <div class="logo_">
+        <a href="http://www.zz91.com/" target="_blank">
+            <img src="images/logo.jpg" alt="ZZ91再生网" width="178" height="64" />
+        </a>
+        <a href="http://yang.zz91.com/" target="_blank">
+            <img src="images/ypzx.jpg" width="138" alt="" />
+        </a>
+    </div>
+    <div class="top_search">
+		<form id="searchForm" method="post">
+			<div class="search">
+				<div class="search_bar">
+					<div class="nav1">
+						<ul>
+							<li s-data="输入拿样产品关键字，拿样搜索产品供应信息！" value="7" id="ny" class="searchnav_on">拿样</li>
+							<li s-data="输入关键字，搜索定制产品信息！ " id="dz"  value="8">定制</li> 
+						</ul>
+					</div>
+					<div class="box_">
+						<div class="left" style="width:420px;padding-left:10px;margin-top:10px;position:relative;z-index:9000;clear:both">
+							<input name="keywords" id="TopKeywords" type="text" value="输入拿样产品关键字，拿样搜索产品供应信息！" class="searchtext" autocomplete="off" style="width:420px" />
+							<div id="searchresult" style="display:none"></div>
+							<input type="hidden" value="1" name="TopSeaType"  id="TopSeaType" />
+						</div>
+						<div class="right" style="height:44px">
+							<a href="javascript:this.submit()" data="1" class="search_a" id="search_a2" style="height:44px"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" id="sType" value="0" />
+		</form>
+		<script type="text/javascript">
+
+
+	jQuery("#ny").click(function(){
+		jQuery("#sType").val(0);
+	});
+	
+	jQuery("#dz").click(function(){
+		jQuery("#sType").val(1);
+	});
+
+	jQuery("#search_a2").click(function(){
+		var searchvalue = jQuery("#TopKeywords").val();
+		if (searchvalue != ""){
+			if(jQuery("#sType").val()==0){
+    			searchvalue = encodeURI(searchvalue)
+    			jQuery("#searchForm").attr("action","http://yang.zz91.com/k-" + searchvalue);
+    			jQuery("#searchForm").attr("target","_blank");
+    			jQuery("#searchForm").submit();
+			}
+			if(jQuery("#sType").val()==1){
+    			searchvalue = encodeURI(searchvalue)
+    			jQuery("#searchForm").attr("action","http://yang.zz91.com/buy/k-" + searchvalue);
+    			jQuery("#searchForm").attr("target","_blank");
+    			jQuery("#searchForm").submit();
+			}
+			return false;
+		}
+	});
+
+	jQuery("#searchForm").submit(function(){
+		var searchvalue = jQuery("#TopKeywords").val();
+		if (searchvalue != ""){
+			if(jQuery("#sType").val()==0){
+				searchvalue = encodeURI(searchvalue)
+				jQuery("#searchForm").attr("action","http://yang.zz91.com/k-" + searchvalue);
+				jQuery("#searchForm").attr("target","_blank");
+				return true;
+			}
+			if(jQuery("#sType").val()==1){
+				searchvalue = encodeURI(searchvalue)
+				jQuery("#searchForm").attr("action","http://yang.zz91.com/buy/k-" + searchvalue);
+				jQuery("#searchForm").attr("target","_blank");
+				return true;		
+			}
+		}
+		return false;		
+	});
+
+
+</script>	
+        <!--搜索--> 
+    </div>
+    <div class="cb"></div>
+  </div>
+  <!--end logosearch-->
+   </div>
+   <!--end integral_top-->
+   <div class="integral_box">
+   	  <div class="integral_rev">
+      	 <ul>
+         	<li><img src="images/1.jpg" /></li>
+            <li><img src="images/2.jpg" /></li>
+            <li><img src="images/3.jpg" /></li>
+            <li><img src="images/4.jpg" /></li>
+            <li><img src="images/5.jpg" /></li>
+            <li><img src="images/6.jpg" /></li>
+            <li><img src="images/7.jpg" /></li>
+            <li><img src="images/8.jpg" /></li>
+         </ul>
+      </div>
+      <!--end integral_rev-->
+   </div>
+   <!--end integral_box-->
+   <div class="integral_content">
+   		<div class="integral_box">
+          <div class="integral_Ad"><img src="images/tle.jpg" /></div>
+        	<div class="integral_chk">
+            	<ul>
+                	<li>
+                    	<div class="integChk-pic"><img src="images/a.jpg" /></div>
+                        <div class="integChk-pro">iPhone5s超值兑</div>
+                        <a href="http://yang.zz91.com/score.htm" target="_blank"><div class="integChk-btn">查看详情>></div></a>
+                    </li>
+                    <li>
+                    	<div class="integChk-pic"><img src="images/b.jpg" /></div>
+                        <div class="integChk-pro">黄金广告轻松有</div> 
+                        <a href="http://yang.zz91.com/score.htm" target="_blank"><div class="integChk-btn">查看详情>></div></a>
+                    </li>
+                    <li>
+                    	<div class="integChk-pic"><img src="images/c.jpg" /></div>
+                        <div class="integChk-pro">万元话费送不停</div> 
+                        <a href="http://yang.zz91.com/score.htm" target="_blank"><div class="integChk-btn">查看详情>></div></a>
+                    </li>
+                    <li>
+                    	<div class="integChk-pic"><img src="images/d.jpg" /></div>
+                        <div class="integChk-pro">联系方式免费看</div> 
+                        <a href="http://yang.zz91.com/score.htm" target="_blank"><div class="integChk-btn">查看详情>></div></a>
+                    </li>
+                    <li>
+                    	<div class="integChk-pic"><img src="images/e.jpg" /></div>
+                        <div class="integChk-pro">缤纷好礼享不尽</div> 
+                        <a href="http://yang.zz91.com/score.htm" target="_blank"><div class="integChk-btn">查看详情>></div></a>
+                    </li>
+                    <li>
+                    	<div class="integChk-pic"><img src="images/f.jpg" /></div>
+                        <div class="integChk-pro">无数商机抢先看</div> 
+                        <a href="http://yang.zz91.com/score.htm" target="_blank"><div class="integChk-btn">查看详情>></div></a>
+                    </li>
+                    <li>
+                    	<div class="integChk-pic"><img src="images/g.jpg" /></div>
+                        <div class="integChk-pro">再生会员超值兑</div> 
+                        <a href="http://yang.zz91.com/score.htm" target="_blank"><div class="integChk-btn">查看详情>></div></a>
+                    </li>
+                    <li>
+                    	<div class="integChk-pic"><img src="images/h.jpg" /></div>
+                        <div class="integChk-pro">千元广告免费得</div> 
+                        <a href="http://yang.zz91.com/score.htm" target="_blank"><div class="integChk-btn">查看详情>></div></a>
+                    </li>
+                </ul>
+            </div>
+            <!--end integral_chk-->
+        </div>
+        <!--end integral_box-->
+   </div>
+   <!--end integral_content-->
+   <div class="integral_box">
+   		<div class="integral_step">
+        	<div class="integral_step-block">
+            	<ul>
+                	<li><a href="http://yang.zz91.com/nyzx.htm" target="_blank" class="integralStep-btn">我要拿样</a></li>
+                    <li><a href="http://help.zz91.com/detail-105/" target="_blank" class="integralStep-btn">还不会拿样，跟我学</a></li>
+                    <li><a href="http://yang.zz91.com/score.htm" target="_blank" class="integralStep-btn">我要兑换好礼</a></li>
+                </ul>
+            </div>
+            <!--end integral_step-block-->
+            <div class="integral_step-pic"><img src="images/step_bg.jpg" /></div>
+        </div>
+        <!--end integral_step-->
+   </div>
+   <!--end integral_box--> 
+   <div style="width:100%;">
+	<div style="width:950px;margin:0 auto;text-align:center;">
+		{% include 'html/comm/buttom.html' %}
+    </div>
+</div>               
+</body>
+</html>

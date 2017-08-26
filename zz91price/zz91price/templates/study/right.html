@@ -1,0 +1,66 @@
+<div class="fr void-listright">
+    <div class="void-listright-main">
+        <div class="void-list-module">
+            <div class="clearfix void-list-vtt">
+                <div class="fl void-list-vname"><img src="http://b.zz91.com/market/images/vwen1.png"></div>
+                <a class="fr void-list-more" href="/study/hybg/">更多<i class="icon2 icon2-more"></i></a>
+            </div>
+            {%for list in price_hy_top.list%}
+            <div class="void-list-imgbox">
+                <a href="/study/{{list.urlpath}}/detail{{list.td_id}}.html" target="_blank"><img src="{{list.pic}}" class="void-list-img"></a>
+                <div class="void-list-bg"></div>
+                <div class="void-list-ifname">
+                    <a href="/study/{{list.urlpath}}/detail{{list.td_id}}.html" target="_blank">{{list.td_title}}</a>
+                </div>
+            </div>
+            {%endfor%}
+            <ul class="void-list-vinfo">
+            	{%for list in price_hy.list%}
+                <li><i class="little"></i><a href="/study/{{list.urlpath}}/detail{{list.td_id}}.html" target="_blank">{{list.td_title}}</a></li>
+                {%endfor%}
+            </ul>
+        </div>
+        <div class="void-list-module">
+            <div class="clearfix void-list-vtt">
+                <div class="fl void-list-vname"><img src="http://b.zz91.com/market/images/vwen2.png"></div>
+                <a class="fr void-list-more" href="/study/zjjd/">更多<i class="icon2 icon2-more"></i></a>
+            </div>
+            {%for list in price_zj_top.list%}
+            <div class="void-list-imgbox">
+                <a href="/study/{{list.urlpath}}/detail{{list.td_id}}.html" target="_blank"><img src="{{list.pic}}" class="void-list-img"></a>
+                <div class="void-list-bg"></div>
+                <div class="void-list-ifname">
+                    <a href="/study/{{list.urlpath}}/detail{{list.td_id}}.html" target="_blank">{{list.td_title}}</a>
+                </div>
+            </div>
+            {%endfor%}
+            <ul class="void-list-vinfo">
+                {%for list in price_zj.list%}
+                <li><i class="little"></i><a href="/study/{{list.urlpath}}/detail{{list.td_id}}.html" target="_blank">{{list.td_title}}</a></li>
+                {%endfor%}
+            </ul>
+        </div>
+        <div class="void-list-module">
+            <div class="clearfix void-list-vtt">
+                <div class="fl void-list-vname"><img src="http://b.zz91.com/market/images/vwen3.png"></div>
+                <a class="fr void-list-more" href="http://jiage.zz91.com/suliao/" target="_blank">更多<i class="icon2 icon2-more"></i></a>
+            </div>
+            <ul class="void-list-vinfo">
+                {%for list in price_sl.list%}
+                <li><i class="little"></i><a href="/detail/{{list.td_id}}.html" target="_blank">{{list.td_title}}</a></li>
+                {%endfor%}
+            </ul>
+        </div>
+        <div class="void-list-module">
+            <div class="clearfix void-list-vtt">
+                <div class="fl void-list-vname"><img src="http://b.zz91.com/market/images/vwen4.png"></div>
+                <a class="fr void-list-more" href="http://jiage.zz91.com/jinshu/" target="_blank">更多<i class="icon2 icon2-more"></i></a>
+            </div>
+            <ul class="void-list-vinfo">
+                {%for list in price_js.list%}
+                <li><i class="little"></i><a href="/detail/{{list.td_id}}.html" target="_blank">{{list.td_title}}</a></li>
+                {%endfor%}
+            </ul>
+        </div>
+    </div>
+</div>

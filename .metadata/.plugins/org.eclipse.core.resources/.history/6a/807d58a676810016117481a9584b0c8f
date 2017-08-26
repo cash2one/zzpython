@@ -1,0 +1,635 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>留言</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<style>
+			.text-area{
+				padding: 10px 8px 0;
+				font-size: 12px;
+			}
+			.text-area textarea{
+				border-top: 1px solid #e1e1e1;
+				border-bottom: 1px solid #e1e1e1;
+				width: 100%;
+				height: 130px;
+				font-size: 12px;
+			}
+			.handle{
+				padding: 30px 8px 0px;
+			}
+			.btn{
+				background-color: #e1e1e1;
+				margin: 0 8px;
+				line-height: 35px;
+				color: #fff;
+				text-align: center;
+				display: block;
+				margin-top:20px;
+				border-radius: 3px;
+			}
+			.fb-btn{
+				background-color: #01ba2e;	
+			}
+			.aui-chat-receiver .aui-chat-receiver-cont{
+				background-color: #ebebeb;	
+			}
+			.aui-chat-sender-cont img,.aui-chat-receiver-cont img{
+				width:100%;
+			}
+			.aui-chat-left-triangle{
+				position: absolute;
+				top:6px;
+				
+				border-color:transparent #ebebeb transparent transparent;
+			}
+			.aui-chat-receiver-avatar{
+				font-size:12px;
+				color:#999;
+				text-align:center;
+			}
+			
+			#message-content{
+				margin-bottom: 100px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="aui-tips aui-tips-warning" style="position: fixed;top: 0px;left: 0px;">
+	        <div class="aui-tips-content aui-ellipsis-1">
+	            <i class="aui-iconfont aui-icon-warnfill"></i>
+	            绑定ZZ91微信服务号，随时接收客户留言！点此查看
+	        </div>
+	    </div>
+	    <div style="height:50px"></div>
+		<div class="nodata">
+			暂无相关数据
+		</div>
+		<div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;display:none'>上拉获取更多信息</div>
+		<div class="aui-content aui-content-padded" id="message-content">
+			<!--<p class="aui-text-center history-date">7-16 20:00</p>-->
+			<div style="clear:both;height:20px;"></div>
+			<div class="aui-chat-receiver">
+	            <div class="aui-chat-receiver-avatar"><img src="../../image/kefu.png"></div>
+	            <div class="aui-chat-receiver-cont">
+	                <div class="aui-chat-left-triangle"></div>
+	                <span>您好,欢迎光临，请问有什么可以帮到您的？</span>
+	            </div>
+	        </div>
+			<script id="leavewords-list" type="text/html">
+				<div class="{{d.class}}">
+					<div class="{{d.class}}-avatar" company_id="{{d.company_id}}" style="width:60px;overflow: hidden;">{{d.contact}}</div>
+					<div class="{{d.class}}-cont">
+						<div class="{{d.classbg}}"></div>
+						<span><font color="#ccc">{{d.stime}}</font><br>{{d.content}}</span>
+					</div>
+				</div>
+			</script>
+			<div class="chatlist"></div>
+        </div>
+        <div style="display: none">
+        <div class="aui-chat-receiver">
+            <div class="aui-chat-receiver-avatar"><img src="../../image/demo2.png"></div>
+            <div class="aui-chat-receiver-cont">
+                <div class="aui-chat-left-triangle"></div>
+                <span>很高兴见到你！</span>
+            </div>
+        </div>
+        <div class="aui-chat-sender">
+            <div class="aui-chat-sender-avatar"><img src="../../image/demo1.png"></div>
+            <div class="aui-chat-sender-cont">
+                <div class="aui-chat-right-triangle"></div>
+                <span>如果文字太长了会是什么效果，再多一点再多一点</span>
+            </div>
+        </div>
+        <div class="aui-chat-receiver">
+            <div class="aui-chat-receiver-avatar"><img src="../../image/demo2.png"></div>
+            <div class="aui-chat-receiver-cont">
+                <div class="aui-chat-left-triangle"></div>
+                <div class="aui-chat-status"><i class="aui-iconfont aui-icon-loading aui-chat-progress"></i></div>
+                <span>如果想自定义气泡颜色，修改aui-chat-receiver-cont背景和aui-chat-left-triangle的border-color</span>
+            </div>
+        </div>
+        </div>
+        <div style="clear:both;height:50px;"></div>
+		
+		
+		<div style="clear:both;margin-bottom:50px;display:none">
+			<button tapmode onclick="fnOpen( this )" data-name="open">打开聊天</button>
+			<button tapmode onclick="fnClose( this )" data-name="close">关闭</button>
+			<button tapmode onclick="fnShow( this )" data-name="show">显示</button>
+			<button tapmode onclick="fnHide( this )" data-name="hide">隐藏</button>
+			<button tapmode onclick="fnPopupKeyboard( this )" data-name="popupKeyboard">弹出键盘</button>
+			<button tapmode onclick="fnCloseKeyboard( this )" data-name="closeKeyboard">收起键盘</button>
+			<button tapmode onclick="fnPopupBoard( this )" data-name="popupBoard">弹出表情</button>
+			<button tapmode onclick="fnCloseBoard( this )" data-name="closeBoard">收起表情</button>
+			<button tapmode onclick="fnValue( this )" data-name="value">设置</button>
+			<button tapmode onclick="fnValue( this )" data-name="value">获取</button>
+			<button tapmode onclick="fnInsertValue( this )" data-name="insertValue">向聊天输入框的指定位置插入内容</button>
+			<button tapmode onclick="fnAddEventListener( this )" data-name="addEventListener">监听 recordBtn 按钮</button>
+			<button tapmode onclick="fnAddEventListener( this )" data-name="addEventListener">监听 inputBar</button>
+			<button tapmode onclick="fnSetPlaceholder( this )" data-name="setPlaceholder">重设聊天输入框</button>
+			<button tapmode onclick="fnReloadExtraBoard( this )" data-name="reloadExtraBoard">重新加载（刷新）附加功能面板</button>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript">
+		var UIChatBox;
+		var photoBrowser;
+		var currPage = 1;
+		function ajaxInfo(){
+			var forcompany_id = api.pageParam.forcompany_id;
+			var company_id = UserInfo.memberID();
+			api.showProgress({
+				title : '加载中',
+				modal : true
+			});
+			api.ajax({
+				url : hosturl + 'msg/list.html?datatype=json&company_id='+UserInfo.memberID()+'&forcompany_id='+forcompany_id.toString()+'&appsystem='+api.systemType+"&t=" + (new Date()).getTime().toString()+"&page=" + currPage,
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false
+			}, function(ret, err) {
+				if(err){
+					saveerrlog(err.body);
+				}
+				var pageHtml = "";
+				$.each(ret, function(index, item) {
+					if (item.company_id.toString()!=company_id.toString()){
+						item['class']='aui-chat-receiver';
+						item['classbg']='aui-chat-left-triangle';
+						item['chatimg']='../../image/demo2.png';
+					}else{
+						item['class']='aui-chat-sender';
+						item['classbg']='aui-chat-right-triangle';
+						item['chatimg']='../../image/demo1.png';
+						item['contact']='我'
+					}
+					var getTpl = $api.html($api.byId("leavewords-list"));
+					laytpl(getTpl).render(item, function(html) {
+						pageHtml = html+pageHtml;
+					});
+				});
+				//zzalert(JSON.stringify(ret.list))
+				if (currPage == 1) {
+					$(".chatlist").html(pageHtml);
+					api.pageDown({
+						'bottom':true        //是否滚动，为false时说明当前页面已经到达底部了
+					});
+				}else{
+					$(".chatlist").prepend(pageHtml)
+				}
+				if (pageHtml != "") {
+					currPage += 1;
+				}else{
+				}
+				
+				api.refreshHeaderLoadDone();
+				api.hideProgress();
+				api.execScript({
+					name : 'root',
+					script : 'chatrefrush()'
+				});
+				
+			});
+			
+		}
+		//弹出上传图片
+		function selectpic(){
+			
+			api.actionSheet({
+			    cancelTitle: '取消',
+			    buttons: ['拍照','从手机相册选择'],
+			},function(ret,err){
+		        if(ret.buttonIndex ==1){
+					var photobj ={
+						sourceType:'camera'
+					}
+					api.pageDown({
+						'bottom':true        //是否滚动，为false时说明当前页面已经到达底部了
+					});
+					getphoto(photobj);
+		        }
+		        if(ret.buttonIndex ==2){
+		        	var photobj ={
+						sourceType:'album'
+					}
+					
+					getphoto(photobj);
+		        }
+			});
+		}
+		//图片浏览
+		function showpicture(picurl){
+			api.execScript({
+				name : 'huifu',
+				script : "keybackFun('0')"
+			});
+			photoBrowser.open({
+			    images: [ 
+			        picurl 
+			    ],
+			    activeIndex: 0,
+			    //placeholderImg: 'widget://image/loading.gif',
+			    bgColor: '#000'
+			}, function(ret){
+				if (ret.eventType=='click'){
+					photoBrowser.close();
+				}
+			    //zzalert(JSON.stringify(ret));
+			});
+		}
+		//关闭图片
+		function closepicture(){
+			photoBrowser.close();
+			api.execScript({
+				name : 'huifu',
+				script : "keybackFun('1')"
+			});
+		}
+		var imgloadnum=0;
+		function reloadimg(picurl){
+			api.ajax({
+			    url: picurl,
+			    method: 'get',
+			    timeout: 100,
+			    dataType: 'HEAD',
+			    returnAll:true
+			},function(oret,err){
+				if (oret.statusCode==200){
+					var rcontent="<img src='"+picurl+"' onclick='showpicture(this.src)' class='uppic'/>";
+					leavewords(rcontent);
+					api.hideProgress();
+				}else{
+					if (imgloadnum<=10){
+						reloadimg(picurl)
+					}
+				}
+				imgloadnum+=1;
+				//zzalert(JSON.stringify(oret))
+			    //
+			});
+			//$(".uppic").attr("src",function(){return this.src+'?'});
+		}
+		function loatlocalimg(pid,url){
+			$("#"+pid).attr("src",url)
+		}
+		function getphoto(obj){
+			api.getPicture({
+	    		sourceType: obj.sourceType,
+	    		allowEdit: false,
+	    		quality: 90,
+	    		targetWidth:500,
+		    	targetHeight:500,
+	    		saveToPhotoAlbum: false
+				}, function(ret, err){ 
+	    			if (ret) {
+	        			api.showProgress({title:"图片上传中",modal:false});
+	        			var file =[];
+	        			file[0] = ret.data;
+	        			//zzalert(ret.data)
+	        			api.ajax({
+						    url: hosturl+'msg/leavewordsuploadimg.html',
+						    method: 'post',
+						    timeout: 100,
+						    dataType: 'json',
+						    returnAll:false,
+						    data:{
+						    	values:{mid:UserInfo.memberID()},
+						        files: {"file":file}
+						    }
+						},function(oret,err){
+							//zzalert(JSON.stringify(oret))
+						    if (oret) {
+					         	var t=(new Date()).getTime().toString();
+					         	var rcontent="<img src='"+oret[0].path+"' onclick='showpicture(this.src)' class='uppic' id='t"+t+"'/>";
+								//leavewords(rcontent);
+								//alert(oret[0].path)
+								reloadimg(oret[0].path);
+								//loatlocalimg('t'+t,ret.data)
+						         	
+						    }else {
+						        api.toast({
+								    msg: '系统错误,请重试1',
+								    duration: 2000,
+								    location: 'bottom'
+								});
+								
+						    }
+						    if(err){
+								//saveerrlog(err.body);
+								var pageParam = {
+						          wintitle:"Error",
+						          type:"err",
+						          bounces:false,
+						          infoid:1,
+						          content:err.body,
+						        };
+								openWin("err","../comm/err.html",pageParam);
+								//zzalert(JSON.stringify(err.body))
+							}
+						    api.hideProgress();
+						});
+	   	 			} else{
+	        			api.toast({
+						    msg: '系统错误,请重试2',
+						    duration: 2000,
+						    location: 'bottom'
+						});
+	    			}
+				});
+		}
+	    function fnClose( el ){
+	        UIChatBox.close();
+	    }
+	    
+	    function fnShow( el ){
+	        UIChatBox.show();
+	    }
+	    
+	    function fnHide( el ){
+	        UIChatBox.hide();
+	    }   
+	    
+	    function fnPopupBoard( el){
+	    	selectpic()
+	    	return;
+	        UIChatBox.popupBoard({
+	            target:'extras'
+	        });
+	    }
+	    
+	    function fnPopupKeyboard( el){
+	        UIChatBox.popupKeyboard();
+	    }
+	    
+	    function fnCloseKeyboard( el){
+	        UIChatBox.closeKeyboard();
+	    }
+	    
+	    function fnCloseBoard( el){
+	        UIChatBox.closeBoard();
+	    }
+	    
+	    function fnValue( el){
+	        if( el.innerHTML === '设置' ){
+	            UIChatBox.value({
+	                msg: '使用 value 设置新值'
+	            });
+	        }else{
+	            UIChatBox.value(function(ret, err){
+	                if( ret ){
+	                    zzalert( JSON.stringify( ret ) );
+	                }else{
+	                    zzalert( JSON.stringify( err ) );
+	                }
+	            });
+	        }
+	    }
+	    
+	    function fnInsertValue( el){
+	        UIChatBox.insertValue({
+	            msg: '使用 insertValue 插入的新值'
+	        });
+	    }
+	    
+	    
+	    function fnAddEventListener( el){
+	        if( el.innerHTML === '监听 recordBtn 按钮' ){
+	            UIChatBox.addEventListener({
+	                target: 'recordBtn',
+	                name: 'press'
+	            }, function( ret, err ){
+	                if( ret ){
+	                    zzalert( JSON.stringify( ret ) );
+	                }else{
+	                    zzalert( JSON.stringify( err ) );
+	                }
+	            });
+	        }else{
+	           UIChatBox.addEventListener({
+	                target: 'inputBar',
+	                name: 'move'
+	            }, function( ret, err ){
+	                if( ret ){
+	                    zzalert( JSON.stringify( ret ) );
+	                }else{
+	                    zzalert( JSON.stringify( err ) );
+	                }
+	            });
+	        }
+	    }
+	    
+	    function fnSetPlaceholder( el){
+	        UIChatBox.setPlaceholder({
+	            placeholder: '修改了占位提示内容'
+	        });
+	    }
+	    
+	    function fnReloadExtraBoard( el){
+	        UIChatBox.reloadExtraBoard({
+	            extras: {
+	                btns: [{
+	                    title: '发送地址',
+	                    normalImg: 'widget://image/loc1.png',
+	                    activeImg: 'widget://image/loc2.png'
+	                },{
+	                    title: '发送地址',
+	                    normalImg: 'widget://image/loc1.png',
+	                    activeImg: 'widget://image/loc2.png'
+	                },]
+	            }
+	        });
+	    }
+	    
+	    function fnOpen( el ){
+	        UIChatBox.open({
+	            placeholder: '输入发送内容',
+	            autoFocus: false,
+	            emotionPath: 'widget://image/emotion',
+	            styles: {
+	                extrasBtn: {
+	                    normalImg: 'widget://image/add1.png'
+	                },
+	                //speechBtn: {
+	                //    normalImg: 'widget://image/cam1.png'
+	                //},
+	                indicator: {
+	                    target: 'extrasPanel',
+	                    color: '#c4c4c4',
+	                    activeColor: '#9e9e9e'
+	                },
+	                sendBtn: {
+	                    titleColor: '#fff',
+	                    bg: '#01ba2e' ,
+	                    activeBg: '#46a91e',
+	                    titleSize: 14
+	                }
+	            },
+	            extras: {
+	                titleSize: 10,
+	                titleColor: '#a3a3a3',
+	                btns: [{
+	                    title: '图片',
+	                    normalImg: 'widget://image/album1.png',
+	                    activeImg: 'widget://image/album2.png'
+	                }]
+	            }
+	        }, function( ret, err ){
+	            if( ret ){
+	                //zzalert( JSON.stringify( ret ) );
+	                if (ret.index==0 && ret.eventType=='clickExtras'){
+	                	selectpic();
+	                }else{
+	                	if (ret.eventType=='send'){
+	                		leavewords(ret.msg);
+	                		api.pageDown({
+								'bottom':true        //是否滚动，为false时说明当前页面已经到达底部了
+							});
+	                	}
+	                }
+	                
+	            }else{
+	                //zzalert( JSON.stringify( err ) );
+	                api.toast({
+					    msg: '系统错误,请重试',
+					    duration: 2000,
+					    location: 'bottom'
+					});
+	            }
+	        });
+	     }   
+	        //留言
+	        function leavewords(data){
+	        	reademotion(data);
+	        	fnCloseBoard();
+	        }
+	        //表情替换为img
+	        function reademotion(rContent){
+	        	api.readFile({
+				    path: 'widget://image/emotion/emotion.json'
+				}, function( ret, err ){
+				    if( ret ){
+					    var regx=/(\[[\u4e00-\u9fa5](.*?)])(.*?)/g;//正则查找“[]”格式
+			            var rs=rContent.match(regx);
+			            if (rs){
+				            var em=JSON.parse(ret.data);
+				            for( i = 0; i < rs.length; i++) {
+				                for( n=0; n< em.length; n++ ){
+				                    if(em[n].text == rs[i]){ 
+				                        var t = "<img src='"+hosturl+"images/emotion/"+em[n].name+".png' style='width:20px;vertical-align:middle;' />";
+				                        rContent = rContent.replace(rs[i],t);
+				                        break;
+				                    }
+				                }
+				            }
+			            }
+			            saveleavewords(rContent)
+				    }else{
+				         //zzalert( JSON.stringify( err ) );
+				    }
+				    var html='<div class="aui-chat-sender">'
+			            html+='<div class="aui-chat-sender-avatar" style="width:60px;overflow: hidden;">我</div>'
+			            html+='<div class="aui-chat-sender-cont">'
+			            html+=    '<div class="aui-chat-right-triangle"></div>'
+			            html+=    '<span>'+rContent+'</span>'
+			            html+='</div>'
+			        	html+='</div>';
+			        $(".chatlist").append(html);
+			        api.pageDown({
+						'bottom':true        //是否滚动，为false时说明当前页面已经到达底部了
+					});
+				});
+	        }
+	        //保存留言道数据库
+	        function saveleavewords(Content){
+	        	var Pid = api.pageParam.Pid;
+				var forcompany_id = api.pageParam.forcompany_id;
+				var be_inquired_type = api.pageParam.be_inquired_type;
+				var company_id = UserInfo.memberID();
+				var usertoken = UserInfo.token();
+				var appsystem = api.systemType;
+				var data = {
+					company_id:company_id,
+					usertoken:usertoken,
+					appsystem:appsystem,
+					datatype:"json",
+					be_inquired_type:be_inquired_type,
+					forcompany_id:forcompany_id,
+					content:Content,
+					pid:Pid
+				}
+				api.ajax({
+			        url : hosturl + 'leavewords_save/',
+			        method : 'post',
+			        timeout : 30,
+			        dataType : 'json',
+			        returnAll : false,
+			        data:{
+	        			values: data
+	    			}
+			    }, function(ret, err) {
+			    	//zzalert( JSON.stringify( data ) )
+			        if (ret) {
+			        	api.execScript({
+							name : 'root',
+							script : 'chatrefrush()'
+						});
+			        } else {
+			        };
+			    });
+	        }
+	        
+	    apiready = function(){
+			UIChatBox = api.require('UIChatBox');
+			photoBrowser = api.require('photoBrowser');
+	        api.setStatusBarStyle({
+	            color: '#2390ce'
+	        });
+			var Pid = api.pageParam.Pid;
+			var forcompany_id = api.pageParam.forcompany_id;
+			var be_inquired_type = api.pageParam.be_inquired_type;
+			var company_id = UserInfo.memberID();
+			var usertoken = UserInfo.token();
+			var appsystem = api.systemType;
+	        ajaxInfo();
+	        
+	        fnOpen();
+	        
+	        //页面刷新
+			api.setRefreshHeaderInfo({
+				visible : true,
+				// bgColor: '#F2F2F2',
+				bgColor : '#ffffff',
+				textColor : '#000000',
+				textDown : '下拉加载更多',
+				textUp : '下拉加载更多',
+			}, function(ret, err) {
+				ajaxInfo();
+			});
+			$("body").on("click",".aui-chat-receiver-avatar",function() {
+				var company_id = $(this).attr("company_id");
+				var pageParam = {
+	                wintitle:"公司详情",
+	                type:"companyshop",
+	                showbottom : 1,
+					forcompany_id : company_id,
+	                bounces:false
+	            };
+	            openWin("companyshop", "../company/shop.html", pageParam);
+			})
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+
+</html>

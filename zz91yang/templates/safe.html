@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>样品会员中心_ZZ91再生网</title>
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/account.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/index.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/finace.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/jquery.alert.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/calendar.css">
+    <script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/index.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/jquery.alert.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/jquery.easydrag.js"></script>
+</head>
+<body class="gbody1000">
+{%include "include/nav.html"%}
+{%include "include/head.html"%}
+{%include "include/lm.html"%}
+<div class="gm1-5 gw-bcrumb">
+    <span><a href="index.html">会员中心</a></span>
+            <strong>
+        <a href="#">全部订单</a>
+    </strong>
+</div>
+<div class="gMain clearfix">
+        
+        {%include "include/leftmenu.html"%}
+        <div class="gContainer">
+        <div class="gwTopic clearfix">
+         <h2>安全中心</h2>
+        </div>
+        <div class="safeLeTip clearfix">
+            <p>你好，kangxianyue（kang），您的账户安全等级为：</p>
+            <div class="safeLevel ">
+                <div class="sLBox"></div>
+                <strong>
+            低        </strong>
+            </div>
+        </div>
+        <div class="safeTBox">
+            <ul class="sAvailable">
+                <li class="sAvaiBox clearfix">
+                    <dl class="">
+                        <dt>登录密码</dt>
+                        <dd>
+                            <p>建议您定期更改密码以保护账户安全。</p>
+                            <span class="pass">已设置</span>
+                            <div class="sAvaiReset">
+                                <a href="#">修改</a>
+                            </div>
+                        </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>手机验证</dt>
+                        <dd>
+                            <p>验证后，第一时间接收询盘信息。</p>
+                                                        <span class="pass noPass">未验证</span>
+                            <div class="sAvaiReset"> <a href="#" class="availBtn">立即验证</a></div>
+                                                    </dd>
+                    </dl>
+                </li>
+                <li class="sAvaiBox">
+                    <dl>
+                        <dt>邮箱验证</dt>
+                        <dd>
+                            <p>验证后，可用于快速找回登录密码及交易密码。</p>
+                                                            <span class="pass noPass">未验证</span>
+                                <div class="sAvaiReset"> 
+                                    <a href="#" class="availBtn">立即验证</a>
+                                </div>
+                                                    </dd>
+                    </dl>
+                </li>
+                <li>
+                    <dl>
+                        <dt>交易密码</dt>
+                        <dd>
+                            <p>启用交易密码后，在订单完成提现时，需输入交易密码。</p>
+                                                            <span class="pass noPass">未设置</span>
+                                <div class="sAvaiReset"><a href="#">去设置</a></div>
+                                                    </dd>
+                    </dl>
+                </li>
+                <li class="sAvaiBox">
+                    <dl>
+                        <dt>实名认证</dt>
+                        <dd>
+                            <p>验证后，可进行积分兑换和提现操作</p>
+                                                            <span class="pass noPass">未认证</span>
+                                <div class="sAvaiReset">
+                                    <a href="#" class="availBtn">立即认证</a>
+                                </div>
+                                                    </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+		</div>
+	</div>
+	</div>
+{%include "include/bottom.html"%}
+</body>
+</html>

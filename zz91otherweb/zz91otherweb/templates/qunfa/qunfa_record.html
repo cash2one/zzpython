@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>群发-留言速配服务</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://www.feiliao123.com/feiliao123/Css/style.css"> 
+    <script type="text/javascript" src="http://www.feiliao123.com/feiliao123/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="http://www.feiliao123.com/feiliao123/My97DatePicker/WdatePicker.js"></script>
+    <style type="text/css">
+    	textarea {
+    		resize: vertical;
+    	}
+    	input,textarea,select {
+    		border-radius: 4px;
+    		border: 1px solid #999;
+    	}
+    </style>
+    <script type="text/javascript">
+    	//更新群发内容
+    	function updateContent() {
+    		var qfContent = $('#qf-content').val();
+    		if (qfContent == ''){
+    			alert('群发内容不能为空……');
+    			$('#qf-content').focus();
+    			return false;
+    		}
+    		method="post";
+    		submit();
+    	}
+    	//搜索关键词
+    	function searchPrdt() {
+    		var refreshStart = $('#refresh-start-time').val();
+    		var refreshEnd = $('#refresh-end-time').val();
+    		if (refreshStart != '' && refreshEnd != '')
+    		{
+    			var startTime = new Date(refreshStart.replace('/\-/g', '\/'));
+    			var endTime = new Date(refreshEnd.replace('/\-/g', '\/'));
+    			// alert(startTime, endTime);
+    			if (startTime > endTime) 
+    			{
+    				alert('刷新结束时间不能大于开始时间……');
+    				return false;
+    			}
+    		}
+    		var sKword = $('#serach-keyword').val();
+    		if (sKword == '')
+    		{
+    			alert('请输入需要搜索的关键词……');
+    			$('#serach-keyword').focus();
+    			return false;
+    		}
+    		with (document.getElementById("search-account")) {
+    			// doc = window.frames['form_iframe'].document;
+    			// doc.getElementById('submit-df').removeAttribute('disabled');
+    			action="qunfa_match_keywords.html";
+    			method="get";
+    			submit();
+    		}
+    	}
+
+    </script>
+</head>
+<body>
+<div class="container">
+<div style="margin-top: 16px; width: 50%;height: 980px;" class="pull-left">
+	<table class="table table-bordered" style="margin-bottom: 0px;">
+		<tbody>
+			<tr>
+				<td>群发内容</td>
+			</tr>
+			<tr>
+				<td>
+					<form method="post">
+							<textarea rows="5" name="qf-content" id="qf-content" style="width: 100%;" placeholder="请输入群发内容">{{ qf_content | default:'' }}</textarea>
+							<input type="submit" class="btn btn-default pull-right" value="保存群发内容" onclick="return updateContent()" style="margin-top: 8px;">
+					</form>
+				</td>
+				
+			</tr>
+			<form name="search-account" id="search-account" action="" role="form" method="get" target="form_iframe">
+			<tr>
+				<td>
+					<span>产品类型选择：</span>
+					<input type="radio" name="prod-style" checked="checked" value="0">供应
+					<input type="radio" name="prod-style" value="1" style="margin-left: 20px;">求购
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>地区选择：</span>&nbsp;&nbsp;&nbsp;
+					<select name="province">
+						<option value="">请选择...</option>
+						<option value="北京">北京</option>
+						<option value="上海">上海</option>
+						<option value="天津">天津</option>
+						<option value="重庆">重庆</option>
+						<option value="河北">河北</option>
+						<option value="浙江">浙江</option>
+						<option value="山西">山西</option>
+						<option value="内蒙古">内蒙古</option>
+						<option value="辽宁">辽宁</option>
+						<option value="吉林">吉林</option>
+						<option value="黑龙江">黑龙江</option>
+						<option value="江苏">江苏</option>
+						<option value="安徽">安徽</option>
+						<option value="福建">福建</option>
+						<option value="甘肃">甘肃</option>
+						<option value="新疆">新疆</option>
+						<option value="江西">江西</option>
+						<option value="山东">山东</option>
+						<option value="河南">河南</option>
+						<option value="湖北">湖北</option>
+						<option value="湖南">湖南</option>
+						<option value="广东">广东</option>
+						<option value="广西">广西</option>
+						<option value="海南">海南</option>
+						<option value="四川">四川</option>
+						<option value="贵州">贵州</option>
+						<option value="云南">云南</option>
+						<option value="陕西">陕西</option>
+						<option value="西藏">西藏</option>
+						<option value="青海">青海</option>
+						<option value="宁夏">宁夏</option>
+						<option value="香港">香港</option>
+						<option value="台湾">台湾</option>
+						<option value="国外">国外</option>
+						<option value="澳门">澳门</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>刷新时间：</span>&nbsp;&nbsp;&nbsp;
+					<input type="text" name="refresh-start-time" id="refresh-start-time" size="10" class="Wdate" onclick="WdatePicker()" style="height: 24px;">&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;
+					<input type="text" name="refresh-end-time" id="refresh-end-time" size="10" class="Wdate" onclick="WdatePicker()" style="height: 24px;">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span>搜索关键词：</span>
+					<input type="text" name="search-keyword" id="serach-keyword">
+					<input type="hidden" name="qf-id" value="{{ qf_id }}">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" name="filter-account" checked="checked" value="1">&nbsp;
+					<label style="margin-top: 10px;color: #333;font-weight: normal;">过滤已发送客户(不能选中的为已添加到待发送客户里的)</label>
+					<input type="button" value="搜索" class="btn btn-primary pull-right" onclick="return searchPrdt()">
+				</td>
+			</tr>
+			</form>
+		</tbody>
+	</table>
+	<iframe src="qunfa_match_keywords.html" style="width: 570px;height: 100%;" scrolling="no" frameborder="0" name="form_iframe"></iframe>
+</div>
+<div class="pull-left" style="width: 50%;height: 980px;margin-top: 16px;">
+	<iframe src="qunfa_add_task.html" scrolling="no" frameborder="0" style="width: 570px;height: 980px;" name="add_task"></iframe>
+</div>
+</div>
+</body>
+</html>

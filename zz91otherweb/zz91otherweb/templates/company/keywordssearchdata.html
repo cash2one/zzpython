@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+<form class="form-inline definewidth m20">
+&nbsp;高会 <input type="radio" name="is_senior" value="1" {%ifequal is_senior "1"%}checked="checked"{%endifequal%}> 普会 <input type="radio" name="is_senior" value="0" {%ifequal is_senior "0"%}checked="checked"{%endifequal%}>&nbsp;&nbsp;
+ &nbsp;<select name="islog" style="width:100px">
+{%if islog_name%}<option value="{{islog}}">{{islog_name}}</option>{%endif%}
+<option value="">--是否注册</option>
+<option value="1">已注册</option>
+<option value="0">未注册</option>
+</select>&nbsp;&nbsp;
+ &nbsp;<select name="industry_code" style="width:100px">
+{%if industry_name%}<option value="{{industry_code}}">{{industry_name}}</option>{%endif%}
+<option value="">--主营行业</option>
+{%for il in industrylist%}
+<option value="{{il.code}}">{{il.label}}</option>
+{%endfor%}
+</select>&nbsp;&nbsp;
+公司名 <input type="text" name="company_name" {%if company_name%}value="{{company_name}}"{%endif%} style="width:120px">&nbsp;&nbsp;
+帐号 <input type="text" name="account" {%if account%}value="{{account}}"{%endif%} style="width:100px">&nbsp;&nbsp;
+IP <input type="text" name="ip" {%if ip%}value="{{ip}}"{%endif%} style="width:80px">&nbsp;&nbsp;<br /><br />
+关键字 <input type="text" name="keyword" {%if keyword%}value="{{keyword}}"{%endif%} style="width:100px">&nbsp;&nbsp;
+
+日期 <input class="Wdate" type="text" style="width:100px" name="gmt_begin" {%if gmt_begin%}value="{{gmt_begin}}"{%endif%} id="datebegin" onClick="WdatePicker()"> 
+ 到 <input class="Wdate" type="text" style="width:100px" name="gmt_end" {%if gmt_end%}value="{{gmt_end}}"{%endif%} id="datebegin" onClick="WdatePicker()">
+
+&nbsp;&nbsp;<input class="btn btn-success" type="submit" value="查询">
+{%if gmt_begin%}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="delkwdsearch.html?gmt_begin={{gmt_begin}}&gmt_end={{gmt_end}}" onClick="return confirm('是否将此信息删除?')">删除</a>&nbsp;&nbsp;
+{%endif%}
+{%if compdetail%}
+&nbsp;&nbsp;<a onClick="alert('1,搜索次数：在某个时间段，该公司搜该关键词1次数 \n 2,总搜索次数：在某个时间段，该公司搜该关键词次数 \n 3,百分比：该公司，该关键词搜次数/总搜次数\n 4,关键字百分比：该公司，同一关键词的总搜次数/总搜次数的和')">说明文档</a>
+{%else%}
+&nbsp;&nbsp;<a onClick="alert('1,搜索次数：在某个时间段，该公司搜该关键词次数 \n 2,总搜索次数：在某个时间段，全部公司搜该关键词次数 \n 3,百分比：搜次数/总搜次数（例如搜PP，哪个客户搜PP越多，百分比越高）\n 4,同一关键词的总搜次数/总搜次数的和（搜这个关键字次数越多，百分比越高）')">说明文档</a>
+{%endif%}
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th width="100px">搜索源</th>
+        <th width="100px">关键字 
+        {%ifequal order 'keyword'%}
+        <a href="?order=keyword{%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=keyword desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'keyword desc'%}
+        <a href="?order=keyword{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=keyword desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=keyword{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=keyword desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        </th>
+        <th width="80px">帐号</th>
+        <th>搜索次数
+        {%ifequal order 'sum(keyword_count)'%}
+        <a href="?order=sum(keyword_count){%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=sum(keyword_count) desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'sum(keyword_count) desc'%}
+        <a href="?order=sum(keyword_count){%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=sum(keyword_count) desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=sum(keyword_count){%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=sum(keyword_count) desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        </th>
+        <th>总搜索次数
+        {%ifequal order 'sum(keyword_allcount)'%}
+        <a href="?order=sum(keyword_allcount){%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=sum(keyword_allcount) desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'sum(keyword_allcount) desc'%}
+        <a href="?order=sum(keyword_allcount){%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=sum(keyword_allcount) desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=sum(keyword_allcount){%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=sum(keyword_allcount) desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        </th>
+        <th>百分比
+        {%ifequal order 'score'%}
+        <a href="?order=score{%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=score desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'score desc'%}
+        <a href="?order=score{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=score desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=score{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=score desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        </th>
+        <th>关键字百分比</th>
+        <th style="width:120px">最新搜索时间
+        {%ifequal order 'gmt_date'%}
+        <a href="?order=gmt_date{%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=gmt_date desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'gmt_date desc'%}
+        <a href="?order=gmt_date{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=gmt_date desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=gmt_date{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=gmt_date desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        </th>
+        <th width="70px">该公司搜索记录
+        {%ifequal order 'sum(search_count)'%}
+        <a href="?order=sum(search_count){%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=sum(search_count) desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'sum(search_count) desc'%}
+        <a href="?order=sum(search_count){%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=sum(search_count) desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=sum(search_count){%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=sum(search_count) desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        
+        </th>
+    </tr>
+    </thead>
+<form action="updatetypeok.html">
+<input type="hidden" name="typeid" value="{{typeid}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+    {%for list in listall%}
+	     <tr>
+	     {%if list.company_name%}
+	        <td><a href="http://admin1949.zz91.com/web/zz91/crm/company/detail.htm?companyId={{list.company_id}}" target="_blank">{{list.company_name}}</a> {%ifequal list.issenior 1%}&nbsp;&nbsp;<img src="123/imgs/compvip.gif" width="24px" height="24px">{%endifequal%}</td>
+	     {%else%}
+	        <td>{{list.ip}}</td>
+	     {%endif%}
+	        <td>{{list.keyword}}</td>
+	        <td>{%if list.account%}{{list.account}}{%endif%}</td>
+	     
+	     {%if compdetail%}
+	        <td>1</td>
+	        <td>{{list.keyword_count}}</td>
+	     {%else%}
+	        <td>{{list.keyword_count}}</td>
+	        <td>{{list.keyword_allcount}}</td>
+	     {%endif%}
+	        <td>{{list.score}}</td>
+	        <td>{{list.keyword_score}}</td>
+	        <td>{{list.gmt_date}}</td>
+	        
+	     {%if list.company_name%}
+	        <td><a href="?company_id={{list.company_id}}&compdetail=1">{{list.search_count}}</a></td>
+	     {%else%}
+	        <td><a href="?ip={{list.ip}}&compdetail=1">{{list.search_count}}</a></td>
+	     {%endif%}
+        </tr>
+     {%endfor%}
+</form>
+        </table>
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<input type="button" value="跳到" onClick=turnpage()> <span style="font-size:15px">第 <input type="text" id="page1" style="width:28px" value="{{page}}"> /{{page_listcount}} 页  </span><input type="submit" style="display:none"> &nbsp;&nbsp;
+<a href='?page=1{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}' >首页</a><a href='?page={{page_listcount}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}' >尾页</a> 
+</div>
+</body>
+<script>
+function turnpage(){
+	var page1=document.getElementById("page1").value;
+	if (page1<1)
+	{
+	page1=1;
+	}
+	window.location.href='?page='+page1+'{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}';
+}
+</script>
+</html>

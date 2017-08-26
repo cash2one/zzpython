@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>两性秘密</title>
+		<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+		<link rel="stylesheet" href="../css/mui.min.css" type="text/css">
+		<link rel="stylesheet" href="../css/index.css" type="text/css">
+		<script>
+			var myScroll;
+			var navwidth=0,navliwidth=0;
+			var typelist=[];
+		</script>
+	</head>
+	<body>
+		<header>
+			<div class=" header index-header">
+				<div class="title">
+					<div style="padding-left: 20px;color: #fff;">两性秘密</div>
+				</div>
+			</div>
+		</header>
+		<div id="navlist">
+			<div id="wrapper">
+				<div id="scroller">
+					<ul><li></li></ul>
+				</div>
+			</div>
+			<div class="mui-icon mui-active mui-icon-plus" style="margin-top:5px;" onclick="openOrder()" tapmode=""></div>
+		</div>
+		<div class="cover hidden" tapmode=""></div>
+		
+		<footer id="footer" class="mui-bar mui-bar-tab">
+			<a tapmode="mui-active" id="defaultTab" class="mui-tab-item mui-active" href="javascript:openFirst()">
+				<span class="mui-icon mui-icon-list"></span>
+				<span class="mui-tab-label">推荐</span>
+			</a>
+			<a tapmode="mui-active" class="mui-tab-item" href="javascript:openOrder()">
+				<span class="mui-icon mui-icon-flag"></span>
+				<span class="mui-tab-label">订阅</span>
+			</a>
+			<a tapmode="mui-active" class="mui-tab-item" href="javascript:openUser()">
+				<span class="mui-icon mui-icon-person"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</footer>
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../script/iscroll.js"></script>
+		<script type="text/javascript" src="../script/DBapi.js"></script>
+		<script type="text/javascript" src="../script/common.js"></script>
+		<script>
+			
+			//顶部滑动栏目
+			function loaded() {
+				try {
+					myScroll = new IScroll('#wrapper', {
+						eventPassthrough : true,
+						scrollX : true,
+						scrollY : false,
+						preventDefault : false
+					});
+				} catch (e) {
+					//alert(e)
+				}
+			}
+
+			apiready = function() {
+				try {
+					deviceId = api.deviceId;
+					localStorage.setItem('deviceId', deviceId);
+					api.showProgress({title:'加载中',modal:false});
+					getNavlist();
+					openFirst()
+					fixIos7Bar($(".header"));
+				} catch (e) {
+				}
+			}
+			function reorder(){
+				//api.closeFrameGroup({name:'sexgroup'});
+				getNavlist();
+				openFirst();
+			}
+			//打开推荐页
+			function openFirst(){
+				var m=0,tid=0;
+				openFrame(tid,m);
+			}
+			//加载栏目内容
+			function openFrame(tid,m) {
+				try {
+					api.setFrameGroupIndex({
+		                name: 'sexgroup',
+		                index: m,
+		                scroll: true,
+		                showProgress:true
+		            });
+					
+					if (m>=3){
+						//myScroll.scrollTo(-navliwidth * (m - 4), 0, 1000);
+					}else{
+						myScroll.scrollTo(0,0,1000)
+					}
+					$("#scroller").find('li').removeClass('nav_active');
+					$("#scroller").find('li').removeClass('nav_active').eq(m).addClass('nav_active');
+					
+				} catch (e) {
+					//alert(e)
+				}
+			}
+			
+
+			function openfooter(frames) {
+				var $header = $api.dom('header');
+		        //$api.fixIos7Bar($header);
+				var $body = $api.dom('body');
+				var $footer = $api.byId('footer');
+				var header_h = $("header").height() + $("#navlist").height();
+				var body_h = $api.offset($body).h;
+				var footer_h = $api.offset($footer).h;
+				var rect_h = body_h - header_h - footer_h;
+				api.openFrameGroup({
+					name : 'sexgroup',
+					scrollEnabled : true,
+					rect : {
+						x : 0,
+						y : header_h,
+						w : 'auto',
+						h : rect_h-1
+					},
+					index : 0,
+					preload:0,
+					frames : frames
+				}, function(ret, err) {
+					if (ret.index<$("#scroller").find('li').length){
+						var nowli=$("#scroller").find('li').eq(ret.index);
+						var tid=nowli.attr("id");
+						if (ret.index >= 2) {
+			                //yScroll.scrollTo(-$("li").width() * (ret.index - 4), 0, 1000);
+			                myScroll.scrollTo(-navliwidth * (ret.index - 2), 0, 1000);
+			            }else{
+			            	myScroll.scrollTo(0, 0, 1000);
+			            }
+			            var havehtml=localStorage.getItem('havehtml'+tid.toString());
+			            if (!havehtml){
+				            api.execScript({
+								frameName : 'frame_'+ret.index.toString(),
+								script : 'changesexmain(' + tid + ')'
+							});
+						}
+			            $("#scroller").find('li').removeClass('nav_active').eq(ret.index).addClass('nav_active');
+		            }else{
+		            	api.setFrameGroupIndex({
+			                name: 'sexgroup',
+			                index: $("#scroller").find('li').length-1,
+			                scroll: true,
+			                showProgress:true
+			            });
+			            return false;
+		            }
+				});
+			}
+
+			function openUser() {
+				var pageParam = {};
+	        	openWin("user","win_user.html",pageParam);
+			}
+			
+			function openOrder() {
+				var pageParam = {'wintitle':'订阅'};
+	        	openWin("order","my_order.html",pageParam);
+			}
+
+		</script>
+	</body>
+</html>

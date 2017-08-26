@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/base.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/style.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/salesroom.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico" />
+<title>{{list.name}}</title>
+<meta content="{{list.business}}" name="description"/>
+<meta content="" name="keywords"/></head></head>
+<style>
+.m-content{padding: 10px 15px;}
+.contact-detail{ margin:20px 0 0 5px;}
+.contact-detailt{ width:535px; height:290px; border:1px solid #f1f1f1; border-top:2px solid #dd3c48;}
+.contact-detailb{ width:535px; height:10px; background:url(../images/con-way.jpg) no-repeat;}
+.contact-detailt h4{ height:36px; line-height:36px;font-size:18px; padding:0 0 0 20px; margin:15px 0 0 0;font-family:微软雅黑,  Microsoft YaHei, 黑体, Helvetica, 宋体, sans-serif;background:#ededed;font-weight: normal;}
+.card-imgdetail{ margin:20px 0 0 25px; height:77px;}
+.card-imgdetail img{width:77px; height:77px; float:left;}
+.card-imgdetail p{ height:27px; line-height:27px; margin:0 0 6px 0;}
+.card-imgdetail  strong{ font-size:14px; margin:0 15px 0 0;}
+.card-imgdetail small{ font-size:18px; font-family:Arial; font-weight:bold;}
+.card-person{ float:left; margin:10px 0 0 23px;}
+.card-info{ margin:22px 0 0 0; padding:0 0 0 35px;}
+.card-info p{ line-height:25px;}
+</style>
+<body>
+{%include htmlincludes.topinclude%}
+<div class="upd"> 
+{%include htmlincludes.leftinclude%}
+  </div>
+	<!-- 右面主题板块-->
+<div class="main-wrap fr">
+	<!--明星产品-->
+	<div class="mod mod-starpro">
+		<div class="m-body">
+			<div class="m-header"><h3>联系我们</h3></div>
+			<div class="m-content">
+				<div class="pro-contactway">
+					<!--联系人资料显示-->
+					<div class="contact-detail">
+						<div class="contact-detailt">
+							<div class="card-imgdetail">
+							    <img onerror="this.onerror=null;this.src='images/ldblogo.jpg'" src="images/ldblogo.jpg"  alt="{{list.contact}}" />
+								<div class="card-person">
+									<p>
+										<strong>{{list.contact}} </strong>{{list.position}}
+									</p>
+									<p>免费服务电话：<small>{{list.ppcphone}}{%if list.ppcphone_zhuan%} {{list.ppcphone_zhuan}}{%endif%}</small></p>
+									<div></div>
+								</div>
+							</div>
+							<h4>{{list.name}}</h4>
+							<div class="card-info">
+                            {%if list.ppcphone%}
+                                <p class="text-in222">免费服务电话：<span>{{list.ppcphone}}</span></p>
+                            {%endif%}
+                                
+                                <p class="text-in222">地址： <span>{{list.address}}</span></p>
+                                {%if list.address_zip%}
+                                <p class="text-in222">邮编：<span>{{list.address_zip}}</span></p>
+                                {%endif%}	
+							</div>
+						</div>
+						<div class="contact-detailb"></div>
+					</div>
+					<!--联系人资料显结束示-->
+					<!-- 地图显示-->
+					<!--<div class="contactway-map">
+						
+					</div>-->
+					<!-- 地图显示-->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--明星产品结束-->
+</div>
+<!-- 右面主题板块结束-->
+  <div style="clear:both"></div>
+</div>
+<div style="clear:both"></div>
+{%include htmlincludes.buttominclude%}
+</body>
+</html>

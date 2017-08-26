@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<title>免费发布采购-zz91再生网</title>
+		<script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css" />
+		<link href="/trust/css/caigou.m.css" rel="stylesheet" type="text/css" /> {%include 'head.html'%}
+	<script>
+		function readydo(){
+			$(".tip-layer-error").css("display","none")
+		}
+	</script>
+	</head>
+
+	<body onclick="readydo()">
+		{%include 'top.html'%}
+		<div class="supply" style="background: #ededed;">
+			<div class="supply-publish" id="form_pub_01">
+				<form action="supplyPubok.html" method="get" id="">
+					<div class="mc">
+						<div class="block">
+							<ul class="form_lst">
+								<li class="form_lstw">
+									<span class="tit">产&nbsp;&nbsp;&nbsp;品：</span>
+									<span>
+                                	<span class="form_input common-input">
+                                		<input type="text" name="title" class="htl-input common-input" notblank="notBlank" autocomplete="off" placeholder="请输入产品" />
+                                	</span>
+									</span>
+								</li>
+								<li class="form_lstw">
+									<span class="tit">采购量：</span>
+									<span>
+                                	<span class="form_input common-input">
+                                		<input type="text" name="quantity" class="htl-input common-input" notblank="notBlank" autocomplete="off" placeholder="请输入采购量"/>
+                                	</span>
+									</span>
+								</li>
+								<li class="form_lstw">
+									<span class="tit">价&nbsp;&nbsp;&nbsp;格：</span>
+									<span>
+                                	<span class="form_input common-input">
+                                		<input type="text" name="price" class="htl-input common-input" notblank="notBlank" autocomplete="off" placeholder="请输入价格"/>
+                                	</span>
+									</span>
+								</li>
+								<li class="form_lstw">
+									<span class="tit">颜&nbsp;&nbsp;&nbsp;色：</span>
+									<span>
+                                	<span class="form_input common-input">
+                                		<input type="text" name="color" class="htl-input common-input" notblank="notBlank" autocomplete="off" placeholder="请输入产品颜色"/>
+                                	</span>
+									</span>
+								</li>
+								<li class="form_lstw">
+									<span class="tit">用&nbsp;&nbsp;&nbsp;途：</span>
+									<span>
+                                	<span class="form_input common-input">
+                                		<input type="text" name="useful" class="htl-input common-input" notblank="notBlank" autocomplete="off" placeholder="请输入产品用途"/>
+                                	</span>
+									</span>
+								</li>
+								<li class="form_lstw">
+									<span class="tit">级&nbsp;&nbsp;&nbsp;别：</span>
+									<span>
+                                	<span class="form_input common-input">
+                                		<input type="text" name="level" class="htl-input common-input" notblank="notBlank" autocomplete="off" placeholder="请输入产品级别"/>
+                                	</span>
+									</span>
+								</li>
+								<li class="form_lstw">
+									<span class="tit">所在地：</span>
+									<span>
+                                	<span class="form_input common-input">
+                                		<input type="text"  name="area_code" class="htl-input common-input" notblank="notBlank" autocomplete="off" placeholder="请输入所在地"/>
+                                	</span>
+									</span>
+								</li>
+								<li class="form_lstw">
+									<p class="tit" style="margin-bottom: 10px;">求购详情：</p>
+									<p>
+										<textarea class="common-textarea" rows="4" name="detail" placeholder="请输入求购详情"></textarea>
+									</p>
+									<p class="mt15">注：目前免费委托采购只限<font class="red bold">塑料再生颗粒</font></p>
+									<p class="step"><em>1</em>采购清单&nbsp;&nbsp;>&nbsp;&nbsp;<em>2</em>买家报价&nbsp;&nbsp;>&nbsp;&nbsp;<em>3</em>下单成交</p>
+								</li>
+								
+							</ul>
+							<div style="width: 100%;">
+						<input type="submit" class="sub_btn" id="" style="width: 100%;font-size: 16px;" name="" value="点此免费发布" />
+					</div>
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+							<br />
+						</div>
+					</div>
+					
+				</form>
+			</div>
+		</div>
+		{%if errflag%}
+		<div class="tip-layer tip-layer-error" style="width: 300px; margin-left: -150px;">{{errtext}}</div>
+		{%endif%}
+		{%include 'bottom.html'%}
+	</body>
+
+</html>

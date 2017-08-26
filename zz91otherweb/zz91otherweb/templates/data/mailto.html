@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ 
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="Csss/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Csss/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Csss/style.css" />
+    <script type="text/javascript" charset="utf-8" src="ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="editor_api.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lang/zh-cn/zh-cn.js"></script>
+    <style type="text/css">
+        body{
+            font-size:14px;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+    <table class="table table-bordered table-hover m10">
+<tr><td class="tableleft">邮箱类型</td><td><select><option>××× @163.com</option></select></td></tr>
+<tr><td class="tableleft">帐号</td><td><input style="width:200px" type="text" name="username" value="{{username}}"> <font color="red">{{error1}}{{errorok1}}</font></td></tr>
+<tr><td class="tableleft">密码</td><td><input style="width:200px" type="password" name="password" value="{{password}}"> <font color="red">{{error2}}</font></td></tr>
+<tr><td class="tableleft">收件方</td><td><input style="width:200px" type="text" name="mailto" value="{{mailto}}"> <font color="red">{{error3}} {{errorok2}}</font></td></tr>
+<tr><td class="tableleft">邮件标题</td><td><input style="width:400px" type="text" name="subject" value="{{subject}}"> <font color="red">{{error4}}</font></td></tr>
+<tr><td class="tableleft">邮件内容</td><td>
+    <font color="red">{{error5}}</font>
+    <script type="text/plain" id="myEditor" name="myEditor">
+    {{body|safe}}
+    </script>
+    </td>
+    </tr>
+    
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+            <button type="submit" class="btn btn-primary" type="button">发送</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" onClick="window.location.href='returnpage.html'">返回列表</button>
+        </td>
+    </tr>
+</table>
+</form>
+    
+	<script>
+		var ue=new UE.ui.Editor();
+		ue.render('content');
+	</script>
+    <script type="text/javascript">
+        var editor_a = UE.getEditor('myEditor',{initialFrameHeight:300,initialFrameWidth:1000});
+    </script>
+</body>
+</html>
+

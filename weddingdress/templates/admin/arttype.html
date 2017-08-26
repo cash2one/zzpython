@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+</head>
+<body>
+<form class="form-inline definewidth m20">
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>栏目名</th>
+        <th>权重</th>
+        <th>管理操作</th>
+    </tr>
+    </thead>
+<input type="hidden" name="typeid" value="{{typeid}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+    {%for list in typelist%}
+	     <tr>
+	        <td>{{list.id}}</td>
+	        <td>{{list.name}}</td>
+	        <td>{{list.sortrank}}</td>
+	        <td>修改 / 删除</td>
+        </tr>
+     {%endfor%}
+</table>
+
+<div class="inline pull-right page">
+</div>
+<br /><br />
+</body>
+</html>

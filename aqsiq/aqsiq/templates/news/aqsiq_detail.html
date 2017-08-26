@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{title}}-AQSIQ-ZZ91再生网</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link href="css/style.css" rel="stylesheet" />
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css"/>
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<script src="js/style.js"></script> 
+
+</head>
+  <body>{% include 'comm/top.html' %}{% include 'comm/mid.html'%}
+     <div class="content">
+      <div class="dh">
+      	当前位置：<a href="http://www.zz91.com/" target="_blank">ZZ91再生网</a> > <a href="/">AQSIQ</a> > <a href="list{{typeid}}.html">{{typename}}</a>
+      </div>
+      <!--end dh-->
+     	<div class="c-left">
+        	<div class="cl-box">
+            	<ul class="cb-ul">
+                	<li class="li-title">{{title}}</li>
+                    <li class="li-date">发布时间：{{pubdate}}</li>
+                    <li class="li-txt">{{content|safe}}</li>
+                    <li class="li-page">
+{%if allnumb > 1%}
+{%for rl in rangelist%}
+{%ifequal rl page%}
+	                	<div class="li-no"><a href="aqsiq_detail{{newsid}}-{{rl}}.html">{{rl}}</a></div>
+{%else%}
+	                	<div class="li-no_"><a href="aqsiq_detail{{newsid}}-{{rl}}.html">{{rl}}</a></div>
+{%endifequal%}
+{%endfor%}
+{%endif%}
+                        <div class="cb"></div>
+                    </li>
+                    <li class="li-pl">
+                    	{%if articalup%}<div class="li-pre"><a href="{{articalup.weburl}}">上一篇：{{articalup.title}}</a></div>{%endif%}
+                        {%if articalnx%}<div class="li-last"><a href="{{articalnx.weburl}}">下一篇：{{articalnx.title}}</a></div>{%endif%}
+                        <div class="cb"></div>
+                    </li>
+                </ul>
+            </div>
+            <!--end cl-box-->
+        </div>
+        <!--end c-left-->
+        <div class="c-right">
+        	<div class="block">
+            	<div class="cb-tle">
+                	<div class="t1">热门文章</div>
+                    <div class="t2"><a href="" target="_blank">更多</a></div>
+                    <div class="cb"></div>
+                </div>
+                <!--end b-tle-->
+                <div class="cb-item">
+                	<ul>
+{%for aqsiq in aqsiqnews.list%}
+                        <li>
+                        	<a href="{{aqsiq.weburl}}" target="_blank">{{aqsiq.numb}}.{{aqsiq.ntitle}}</a>
+                        </li>
+{%endfor%}
+                    </ul>
+                </div>
+                <!--end cb-item-->
+            </div>
+            <!--end block-->
+            <div class="block">
+            	<div class="cb-tle">
+                	<div class="t1">相关产品推荐</div>
+                    <div class="t2"><a href="http://trade.zz91.com/trade/s-6171736971.html" target="_blank">更多</a></div>
+                    <div class="cb"></div>
+                </div>
+                <!--end b-tle-->
+                <div class="cb-item_" id="announcement" style="overflow-y:hidden;">
+                <div class="cb-box" id="announcementbody">
+                	<ul>
+{%for of in offerlist%}
+                    	<li class="ci-li">
+                        	<div class="ci-box">
+                            	<div class="b-txt">{{of.title}}</div>
+                                <!--end b-txt-->
+                                <div class="b-img">
+                                	<a href="http://trade.zz91.com/productdetails{{of.id}}.htm" target="_blank"><img src="{{of.pic_address}}" /></a>
+                                </div>
+                                <!--end b-img-->
+                            </div>
+                            <!--end ci-box-->
+                            <div class="ci-box_">
+                            	<ul>
+                                	<li>
+                                    	<a href="{{of.viptype.domain_zz91}}" target="_blank">{{of.companyname}}</a>
+                                    </li>
+                                    <li>
+                                    	<span class="addr">[{{of.parea}}]</span> {%if of.viptype.isweixin%}<span class="yrz">已认证  微信已认证</span>{%endif%}
+                                    </li>
+                                    <li>
+                                    	<a  rel="nofollow" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{of.viptype.qq}}&site=www.zz91.com&menu=yes" title="请注明您是在ZZ91与我洽谈！"><img border="0" src="http://wpa.qq.com/pa?p=2:1768380510:4" alt="请注明您是在ZZ91与我洽谈！" onerror="this.src='http://img0.zz91.com/zz91/china/images/qq.gif'" ></a>
+                                    </li>
+                                    <li>
+                                    	{%if of.viptype.vippic%}<a href="http://www.zz91.com/zst/" target="_blank"><img src="{{of.viptype.vippic}}" />{{of.viptype.vipname}}</a>  第 <span class="year">{{of.viptype.zstNum}}</span> 年{%endif%}
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--end ci-box-->
+                            <div class="cb"></div>
+                        </li>
+{%endfor%}
+                    </ul>
+                </div>
+                <!--end cb-box-->
+                <div class="cb-box" id="announcementbody2"></div>
+                </div>
+                <!--end cb-item-->
+            </div>
+            <!--end block-->
+        </div>
+        <!--end c-right-->
+        <div class="cb"></div>
+     </div>
+     <!--end content-->
+     <div style="width:100%;">
+	<div style="width:960px;margin:0 auto;text-align:center;">
+		{% include 'comm/buttom.html' %}
+    </div>
+</div>        
+  </body>
+</html>

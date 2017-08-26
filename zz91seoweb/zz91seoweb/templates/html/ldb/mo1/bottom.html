@@ -1,0 +1,138 @@
+<div class="toolbar">
+	<!--<a href="#" target="_blank" class="toolbar-item toolbar-item-feedback"></a>-->
+	<a href="javascript:;" class="toolbar-item toolbar-item-app">
+		<div class="toolbar-layer">
+			<p class="weixin" id="qrcode"><img src='http://pyapp.zz91.com/getdomainpic{{company_id}}.html' /></p>
+		</div>
+	</a>
+	<a href="javascript:;" id="top" class="toolbar-item toolbar-item-top"></a>
+</div>
+<div style="clear:both"></div>
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script>
+$(window).scroll(function(){	
+	var obj = $("#top"); //获取店招的高度
+	var height = obj.height();
+	var innerHeight=window.innerHeight  //获取显示窗口高度
+	|| document.documentElement.clientHeight
+	|| document.body.clientHeight;
+	//判断滚动显示窗口高度	
+	if ($(document).scrollTop() > (innerHeight-200))
+		$(".bottom_bar").css("display","block");
+	else
+	    $(".bottom_bar").css("display","none");
+});
+</script>
+<div class="bottom_bar" style="position: fixed; bottom: 0px; left: 0px;display:none">
+	<span>联系电话：</span><p class="tel">{{list.ppcphone}}</p>
+	<span>联系人：</span>{{list.contact}} <p>{{list.position}}</p>
+	<span>所在地区：</span><p>{{list.province}}</p>
+</div>
+{%if friendlist%}
+<div class="esite_friend_link">
+	友情链接：
+    {%for list in friendlist%}
+    <a href="{{list.link_address}}" target="_blank">{{list.link_name}}</a>&nbsp;&nbsp;
+    {%endfor%}
+</div>
+{%endif%}
+<div class="item" id=showgooglead style="background:none;width:980px; margin:0 auto; clear:both;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5512236620584335"
+     data-ad-slot="8274972003"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<script>
+$.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js', function(_result) {
+    if (remote_ip_info.ret == '1') {
+    	cityname=remote_ip_info.city;
+    	if (cityname!="杭州"){
+    		document.getElementById("showgooglead").style.display=""
+    	}else{
+    		document.getElementById("showgooglead").style.display="none"
+    	}
+    } else {
+    	document.getElementById("showgooglead").style.display="none"
+    }
+});
+
+</script>
+</div>
+<!--商铺底部-->
+<div id="footer">
+	<div class="shop-footerb">
+		<div class="shop-footer">
+		<!--关于我们-->
+			<div class="foot-aboutus fl">
+				<h4 class="footer-contact1">关于我们</h4>
+				<div class="ft-abus">
+					<ul>
+					<li><a href="gsjj{{company_id}}.htm"  target="_blank">企业简介</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- 主营产品-->
+			<div class="foot-product fl">
+				<h4 class="footer-contact2">主营产品</h4>
+				<div class="ft-product">
+					<p>{{list.business}}</p>
+				</div>
+			</div>
+			<!--联系我们-->
+			<div class="foot-contact fl">
+				<h4 class="footer-contact3">联系我们</h4>
+				<div class="ft-contactus">
+					<p>{{list.name}}</p>
+					<p>地址：{{list.province}} {{list.address}}</p>
+					<p>电话：{{list.ppcphone}}</p>
+					
+				</div>
+			</div>
+			<!--技术支持-->
+			<div class="foot-support fl">
+				<div class="ft-techsupport">
+					<div>
+						<img src="{{csscode}}images/blogo.jpg" alt="ZZ91再生网"/>
+						<span>技术支持：<a href="http://www.zz91.com/" target="_blank">ZZ91再生网</a></span>
+						<span class="sup-buttom">Powered by zz91.com</span>
+					</div>
+					<div style="clear: both;"></div>
+					<div class="record">备案/许可证编号： 浙B2-20080212</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div style="display:none">
+	<script>
+//百度站长 链接自动提交
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
+<script>
+(function(d, t) {
+    var r = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    r.async = 1;
+    r.src = 'http://www.zz91.com/app/log.htm?companyId={{company_id}}&' + Math.ceil(new Date/3600000)
+    s.parentNode.insertBefore(r, s);
+})(document, 'script');
+</script>

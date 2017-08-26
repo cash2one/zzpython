@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<style>
+			body {
+			}
+			.title {
+				font-size: 20px;
+				text-align: center;
+				height: 50px;
+				line-height: 50px;
+				font-weight: bold;
+			}
+			.price {
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			.price span {
+				color: #ff0000
+			}
+			.main {
+				line-height: 30px;
+				font-size: 14px;
+				margin-bottom: 20px;
+				padding: 10px
+			}
+			.buybutton {
+				position: fixed;
+				bottom: 0px;
+				left: 0px;
+				border-radius: 0px;
+			}
+			.showradio50 li {
+				width: 100%;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="hidden" id="showcontactvalue" value="">
+		<div class="aui-content-padded">
+			
+			<div class="price">
+				价格：<span>￥ 300元  / 月</span>
+			</div>
+			<div class="aui-line-x"></div>
+			简介：
+			<div class="main">
+				现在不必担心客户联系不到你了，仅需300元即可全网商家即刻联系到您，电话量瞬间翻倍。
+				<br />
+				服务内容：
+				<br />
+				<b style="color:#DB4646"> 1、您的联系方式在移动端向全网客户公开。
+				<br />
+				2、您的供求排名将等同再生通会员排名。 </b>
+			</div>
+			<div class="aui-line-x"></div>
+			<p style="color: #000000;">
+				您想购买显示联系方式时间为
+			</p>
+			<div class="showradio50">
+				<ul>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="report1" value="300" />
+						<label class="aui-radio-name" for=report1>300元/月</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="report2" value="500" checked />
+						<label class="aui-radio-name" for=report2>500元/2个月</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="report3" value="1500" />
+						<label class="aui-radio-name" for=report3>1500元/半年</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="showcontact" id="report4" value="3000" />
+						<label class="aui-radio-name" for=report4>3000元/年</label>
+					</li>
+				</ul>
+			</div>
+			<div class="aui-btn aui-btn-block aui-btn-success buybutton" tapmode>
+				立即购买
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+	<script type="text/javascript" src="../../script/layer/layer.js" ></script>
+	<script type="text/javascript">
+		apiready = function() {
+			var closeiosflag = $api.getStorage("closeiosflag");
+			if (!closeiosflag || closeiosflag == 1) {
+				$(".buybutton").hide();
+			}
+			$(".buybutton").on("click", function() {
+				event.stopPropagation();
+				if (havelogin()) {
+					var html = "";
+					html += '<p style="color: #000000;">仅需300元即可全网商家即刻联系到您，电话量瞬间翻倍。</p>'
+					$aui.alert({
+						title : '提示',
+						content : html,
+						buttons : ['取消', '显示'],
+						radius : 10,
+						titleColor : '#333',
+						contColor : '#333',
+						btnColor : ''
+					}, function(ret) {
+						if (ret == 1) {
+							showcontact();
+						}
+					})
+				}
+			})
+		};
+		//购买显示联系方式
+		function showcontact() {
+			var html = "";
+			html += '<p style="color: #000000;">您想购买显示联系方式时间为</p>'
+			html += '<div class="showradio50">'
+			html += '<ul>'
+			html += '<li><input class="aui-radio" type="radio" name="showcontact" id="report1" value="300" /><label class="aui-radio-name" for=report1>300元/月</label></li>'
+			html += '<li><input class="aui-radio" type="radio" name="showcontact" id="report2" value="500" checked /><label class="aui-radio-name" for=report2>500元/2个月</label></li>'
+			html += '<li><input class="aui-radio" type="radio" name="showcontact" id="report3" value="1500" /><label class="aui-radio-name" for=report3>1500元/半年</label></li>'
+			html += '<li><input class="aui-radio" type="radio" name="showcontact" id="report4" value="3000" /><label class="aui-radio-name" for=report4>3000元/年</label></li>'
+			html += '</ul>'
+			html += '</div>'
+			$aui.alert({
+				title : '',
+				content : html,
+				buttons : ['取消', '确定'],
+				radius : 10,
+				titleColor : '#333',
+				contColor : '#333',
+				btnColor : '',
+				wintype : 'showcontact'
+			}, function(ret) {
+				if (ret == 1) {
+					api.showProgress({
+						title : '扣款中...',
+						modal : false
+					});
+					var company_id = UserInfo.memberID();
+					var usertoken = UserInfo.token();
+					var chk_value = $("#showcontactvalue").val();
+					var data = {
+						paytype : '11',
+						money : chk_value,
+						company_id : company_id,
+						usertoken : usertoken,
+						appsystem : api.systemType,
+						datatype : 'json',
+						t : (new Date()).getTime().toString()
+					}
+					api.ajax({
+						url : hosturl + 'qianbao/qianbaopay.html',
+						method : 'get',
+						timeout : 30,
+						dataType : 'json',
+						returnAll : false,
+						data : {
+							values : data
+						}
+					}, function(ret, err) {
+						//zzalert(JSON.stringify(ret))
+						if (ret) {
+							if (ret.err == 'false') {
+								//zzalert(ret.errtext);
+								api.confirm({
+									title : '提示',
+									msg : ret.errtext,
+									buttons : ['关闭', '查看我的服务']
+								}, function(ret, err) {
+									if (ret) {
+										if (ret.buttonIndex == 2) {
+											var pageParam = {
+												wintitle : "我的服务",
+												type : "myservice",
+											};
+											openWin("myservice", "../service/myservice.html", pageParam);
+										} else {
+											api.closeWin();
+										}
+									} else {
+									}
+								});
+							}
+							if (ret.err == 'true' && ret.blanceflag == '0') {
+								yuebuzuFun();
+							}
+							if (ret.err == 'true' && ret.blanceflag == '1') {
+								zzalert(ret.errtext);
+							}
+							api.hideProgress();
+						} else {
+							api.hideProgress();
+							if (err) {
+								saveerrlog(err.body);
+							}
+						};
+					});
+				}
+			})
+		}
+
+		function showcontactcheck(valu) {
+			$("#showcontactvalue").val(valu);
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

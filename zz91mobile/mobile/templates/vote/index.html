@@ -1,0 +1,174 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <title>ZZ91再生网金牌供应商评选活动</title>
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <meta content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <link rel="stylesheet" href="css/base-min.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+</head>
+<body>
+
+    <div class="band">
+        <img src="images/band.jpg">
+        <img src="images/topimg.jpg">
+    </div>
+    <div class="tp-gzhe">
+    	<center><span style="font-size: 20px;color: #FFEA00;">投票已经结束</span><br />截至时间：2016-6-12 23:59:59</center>
+        <div class="motitle">投票规则：</div>
+        <p class="gz-p">1. 每一个微信号每天最多拥有<span class="color-yew">3次投票</span>机会</p>
+        <p class="gz-p">2. 每天投票超过三次者，当天不能再进行投票</p>
+        <p class="gz-p">可以<span class="color-yew">分享</span>给其他朋友进行投票</p>
+    </div>
+    <div class="tp-all">
+    	<a id="s"></a>
+        <div class="tp-search">
+            <div class="clear">
+                <div class="fl motitle">{{count}}家入围企业</div>
+                <a href="/vote/voteranking.html" target="_blank" class="fr see-paim">查看排名>></a>
+            </div>
+            <input class="secipt" placeholder="搜索名字或编号" style="width: 70%;"></input>
+            <span class="fr fsearch" style="margin-top: 18px;">搜索</span>
+        </div>
+        <ul class="tp-list">
+        	{%if not listall%}没有找到相关公司{%endif%}
+        	{%for list in listall%}
+            <li>
+                <div class="firmname"><span class="numpx">{{list.orderid}}</span>{{list.company_name}}</div>
+                <p class="firm-jj">{{list.business}}</p>
+                <div class="tou-info clear">
+                    <span class="fl infonum">（ <span id="ps{{list.company_id}}">{{list.votecount}}</span>票 ）</span>
+                    <span class="fr toubtn" company_id="{{list.company_id}}">投他一票</span>
+                </div>
+            </li>
+            {%endfor%}
+            
+        </ul>
+    </div>
+    <input type="hidden" name="forcompany_id" id="forcompany_id" value="0">
+    <div class="daoyu">
+        <div class="dao-title">导语：</div>
+        <p class="dao-p">近几年来，虽然外部环境严峻，但随着政策的不断完善，废塑料行业秩序逐步规范化，市场不断趋于环保、有序化，废塑料企业进入升级转型期。期间很多优秀企业不断涌现，活跃在整个废塑料行业市场，推动着中国经济的发展。ZZ91再生网从5月开始多维度考察并筛选出{{count}}家优秀的废塑料企业，现全网正式开展微信投票阶段。</p>
+    </div>
+    <a id="gz"></a>
+    <div class="fshi">
+        <div class="dao-title">投票方式：</div>
+        <div class="gzhu-nr">关注ZZ91再生网公众号<span class="color-yew">（zz91weixin）</span>，点击底部菜单栏<span class="color-yew">“我要投票”</span>进入投票列表页，选择您心仪的客户，点击“投他一票”即可，或在公众号中输入 T + 对于公司序号：如:T1</div>
+        <div class="imglist clear">
+            <div class="fl imgmain">
+                <img src="images/erweiimg.jpg" width="80%">
+                <p>ZZ91再生网公众号</p>
+            </div>
+            <div class="fr imgmain">
+                <img src="images/zhiwenimg.jpg" width="80%">
+                <p>长按指纹识别二维码</p>
+            </div>
+        </div>
+    </div>
+    <style>
+    	footer ul{
+    		padding: 0px;
+    		margin: 0px;
+    		list-style:none;
+    	}
+    	footer li{
+    		float: left;
+    		list-style:none;
+    		text-align: center;
+    	}
+    	
+    </style>
+    <footer style="background-color:#000000;position: fixed;bottom: 0px;left:0px;width: 100%;height: 35px;line-height: 35px;text-align: center;font-size: 16px;font-weight: bold;">
+    	<ul>
+    	<li style="width: 30%;"><a href="/vote/voteranking.html" style="color: #fff;">查看排名</a></li>
+    	<li style="color: #F9FF8A;font-size: 10px;text-align: left;"><a href="http://www.taozaisheng.com" style="color: #F9FF8A;" target="_blank">塑料交易就上淘再生  www.taozaisheng.com</a></li>
+    	</ul>
+    </footer>
+    <div class="jiali">
+        <p class="dao-title">奖项设置：</p>
+        <p class="jiali-p">1. 投票数量最多的前10名企业，将获得<span class="color-yew">“ZZ91再生网2015-2016年年度金牌供应商”</span>的称号以及牌匾（ZZ91再生网将于6月16日举办的2016年再生塑料订货峰会上授予该荣誉称号以及牌匾）</p>
+        <p class="jiali-p">2. 荣获“ZZ91再生网2015-2016年年度金牌供应商”的企业，将享受ZZ91再生网微信公众号的<span class="color-yew">重点推荐</span></p>
+    </div>
+	<div class="footbt" style="height: 83px;line-height: 22px;">浏览量：{{vcount}} 　<br />本次活动最终解释权归ZZ91再生网所有<br /><br /></div>
+    <div style="display:none">
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <!--baidu analysis-->
+    <script>
+        var _hmt = _hmt || [];
+        
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    </div>
+</body>
+<script>
+var tp=false;
+$(".toubtn").on("click",function(){
+	var forcompany_id=$(this).attr("company_id");
+	var openid="{{openid}}";
+	voteclick($(this),openid,forcompany_id)
+})
+function voteclick(self,openid,forcompany_id){
+	var ajaxurl1="http://m.zz91.com/vote/vote.html?company_id="+forcompany_id
+	$.getScript(ajaxurl1, function() {
+		var err=_suggest_result_.err;
+		if (err=="false"){
+			var vcount=_suggest_result_.vcount;
+			hint("投票成功！");
+			$("#ps"+forcompany_id.toString()).html(vcount)
+			self.html("您已投票");
+			
+		}else{
+			var errtext=_suggest_result_.errtext;
+			var gz=_suggest_result_.gz;
+			hint(errtext);
+			if (gz==1){
+				window.location='#gz'
+			}
+		}
+		tp=false;
+	});
+}
+$(".fsearch").on("click",function(){
+	var keywords=$(".secipt").val();
+    window.location='?clientid={{clientid}}&keywords='+keywords+'#s';
+})
+//标题提交提示
+function hint(ts) {
+	$(".hint").remove()
+	var hintHtml = '<div class="hint" style="position:fixed;color:#fff;line-height:18px;font-size:14px;width:100%">' + '<span style="display:block;margin:0 8px;background:#000;opacity:0.8;border-radius:5px;padding:10px 10px;text-align:center">' + ts + '<span>' + '</div>';
+	$("body").append(hintHtml);
+	var hint_height = $(".hint").height();
+	var wd_height = $(window).height();
+	var top_height = (wd_height - hint_height) / 2
+	$(".hint").css("top", top_height + "px");
+	setTimeout(function() {
+		$(".hint").fadeOut("slow", function() {
+			$(".hint").remove()
+		})
+	}, 3000)
+}
+</script>
+
+</html>

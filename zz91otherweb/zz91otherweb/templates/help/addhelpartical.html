@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ 
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="Csss/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Csss/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Csss/style.css" />
+    <script type="text/javascript" charset="utf-8" src="ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="editor_api.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lang/zh-cn/zh-cn.js"></script>
+    <link rel="stylesheet" href="kindeditor/themes/default/default.css" />
+	<script charset="utf-8" type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+	<script charset="utf-8" type="text/javascript" src="kindeditor/kindeditor-min.js"></script>
+	<script charset="utf-8" type="text/javascript" src="kindeditor/lang/zh_CN.js"></script>
+    <style type="text/css">
+        body{
+            font-size:14px;
+        }
+    </style>
+</head>
+<body style="padding: 10px;">
+    <form method="post" action="addhelparticalok.html" style="display: block;width: 80%;">
+    <input type="hidden" name="request_url" value="{{request_url}}">
+    {%if aid%}<input type="hidden" name="aid" value="{{u_aid}}">{%endif%}
+    <table class="table table-bordered table-hover m10">
+    <tr>
+        <td class="tableleft" style="width:80px">标题</td>
+        <td style="width:300px"><input type="text" name="subject" value="{{subject}}" style="width:250px"></td>
+        <td class="tableleft" style="width:80px">栏目</td>
+        <td>
+            <select name="cat_id" style="width:150px">
+            {%if typename%}<option value="{{cat_id}}">{{typename}}</option>{%endif%}
+                <option value="">请选择栏目...</option>
+                {%for tp in columnlist%}
+                <option disabled="disabled" style="background-color:#CCFFFF" value="{{tp.cid}}">{{tp.cat_name}}</option>
+                {%for tp1 in tp.nextcolumn%}
+                <option value="{{tp1.cid}}">--{{tp1.cat_name}}</option>
+                {%endfor%} {%endfor%}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="tableleft" style="width:80px">缩略图</td>
+        <td style="width:300px"><input type="text" id="litpic6" name="litpic" value="{{litpic}}"></td>
+        <td class="tableleft">发布时间</td>
+        <td><input type="text" name="gmt_created" {%if gmt_created%}value="{{gmt_created}}"{%endif%} readonly="readonly"></td>
+    </tr>
+    <tr>
+		<td class="tableleft" style="width: 100px;">图片上传</td>
+		<td colspan="3">
+			<iframe name='upload' width="100%" height="50px" src="/feiliao123/imgload.html?type=editor"></iframe>
+		</td>
+	</tr>
+    
+    
+    <tr>
+        <td class="tableleft"></td>
+        <td colspan="3">
+            <button type="submit" class="btn btn-primary" type="button">保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" onClick="window.location.href='help_returnpage.html?request_url={{request_url}}'">返回列表</button>
+        </td>
+    </tr>
+</table>
+<textarea id="myEditor" name="myEditor" style="width:100%;height:400px;visibility:hidden;">  
+	 {{content|safe}}
+	</textarea>
+	
+    </form>
+    <script>
+        //var ue=new UE.ui.Editor();
+        //ue.render('content');
+        var editor;
+		KindEditor.ready(function(K) {
+			editor = K.create('textarea[name="myEditor"]', {
+				//uploadJson : '/feiliao123/zh-upload.html?'+(new Date()).getTime().toString(),
+				//fileManagerJson : '../asp/file_manager_json.asp',
+				//allowFileManager : true
+			});
+
+			K('input[name=getHtml]').click(function(e) {
+				alert(editor.html());
+			});
+			K('input[name=isEmpty]').click(function(e) {
+				alert(editor.isEmpty());
+			});
+			K('input[name=getText]').click(function(e) {
+				alert(editor.text());
+			});
+			K('input[name=selectedHtml]').click(function(e) {
+				alert(editor.selectedHtml());
+			});
+			K('input[name=setHtml]').click(function(e) {
+				editor.html('<h3>Hello KindEditor</h3>');
+			});
+			K('input[name=setText]').click(function(e) {
+				editor.text('<h3>Hello KindEditor</h3>');
+			});
+			K('input[name=insertHtml]').click(function(e) {
+				editor.insertHtml('<strong>插入HTML</strong>');
+			});
+			K('input[name=appendHtml]').click(function(e) {
+				editor.appendHtml('<strong>添加HTML</strong>');
+			});
+			K('input[name=clear]').click(function(e) {
+				editor.html('');
+			});
+		});
+		function seteditor(pic){
+			editor.insertHtml('<img src='+pic+' />');
+		}
+    </script>
+    <script type="text/javascript">
+        //var editor_a = UE.getEditor('myEditor',{initialFrameHeight:500,initialFrameWidth:1000});
+    </script>
+</body>
+</html>
+
+

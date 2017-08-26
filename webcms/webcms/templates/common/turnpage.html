@@ -1,0 +1,26 @@
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}&freshtime={{freshtime}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}&freshtime={{freshtime}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}&freshtime={{freshtime}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<input type="button" value="跳到" onClick=turnpage()> <span style="font-size:15px">第 <input type="text" id="page1" style="width:28px" value="{{page}}"> /{{page_listcount}} 页  </span><input type="submit" style="display:none"> &nbsp;&nbsp;
+<a href='?page=1{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}&freshtime={{freshtime}}' >首页</a><a href='?page={{page_listcount}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}&freshtime={{freshtime}}' >尾页</a> 
+</div>
+<script>
+function turnpage(){
+	var page1=document.getElementById("page1").value;
+	if (page1<1)
+	{
+	page1=1;
+	}
+	window.location.href='?page='+page1+'{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}&freshtime={{freshtime}}';
+}
+</script>

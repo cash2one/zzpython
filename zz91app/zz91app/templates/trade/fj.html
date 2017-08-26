@@ -1,0 +1,18 @@
+<style>
+	.nowaddress{padding: 10px;background-color: #f2f2f2;}
+</style>
+<div class="nowaddress">当前定位城市</div>
+<ul class="mui-table-view" style="padding:10px;">
+    <li class="mui-table-view-cell">
+    	<a href="javascript:fjsearch()" style="float: left;width: 80%;"><span id="mylocation_status">{{myaddress}}</span> </a><a style="float: right;width: 20%;" href="javascript:redingwei()"><span class="mui-icon mui-icon-reload" id="redingweispan"></span></a>
+    </li>
+</ul>
+<div class="nowaddress">热门城市</div>
+<ul class="mui-table-view" style="padding:10px;">
+    {%for list in arealist%}
+	    <li class="mui-table-view-cell">
+        	<a href="javascript:gotourl('/offerlist/?province={{list}}&keywords={{keywords}}','blank')">{{list}}</a>
+        </li>
+    {%endfor%}	
+</ul>
+<input type="hidden" id="appnavname" value="系统定位" />

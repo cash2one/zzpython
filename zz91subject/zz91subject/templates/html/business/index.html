@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>2014中国再生资源商务大全火热预订中</title>
+		<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css"/>
+        <script type="text/javascript">
+	$(document).ready(function(){
+		var view;
+		var page = 1;
+		//窗口大小变化事件
+		$(window).resize(function(){
+			setSize();
+			moveTo(page);
+		});
+		//增加菜单点击事件
+		$(".menu").click(function(){
+			page = $(this).attr("id").substring(2);
+			moveTo(page)
+		});
+		setSize();
+		$('#a').css({position: "absolute"});
+		//滚轮滚动事件
+		$(document).mousewheel(function(event, delta){
+			//首先取消所有事件
+			$('#a').finish();
+			var height = $('#d').css("height");
+			if(delta == 1){	
+				if(page >1){
+					$("#a").animate({top: '+='+height}, "slow")
+//					$('#a').css("top",'+='+height);
+					page--
+					moveTo(page);
+				}
+			}else{
+				if(page<3){
+					$("#a").animate({top: '-='+height}, "slow");
+//					$('#a').css("top",'-='+height);
+					page++	
+					moveTo(page);
+				}	
+				
+			}
+		});
+		
+		//根据浏览器大小设置页面元素大小
+		function setSize(){
+			view = fnGetWidthHeight();
+			$('#d').width(view.width);
+			$('#d').height(view.height);
+//			$('.ca').width(view.width);
+//			$('.ca').height(view.height);
+			$('.dh').height(view.height);
+			$('.dh1').height(view.height);
+			$('.dh2').height(view.height);
+			$('.prd').height(view.height-50);
+			$('.prd').width(view.width);
+			
+		}
+		
+		//页面元素滚动显示某个元素
+		function moveTo(page){
+			var height = $('#d').css("height");
+			var top;
+			for(var i=0;i<page;i++){
+				top = -(page-1)*view.height
+			}
+			$("#a").animate({top: top+'px'}, "slow")
+			$(".menu").attr("src","images/point1.png");
+			$("#no"+page).attr("src","images/point.png");
+		}
+	});
+	
+</script>
+<script type="text/javascript" language="javascript">
+		//װȡС
+        function fnGetWidthHeight() {
+        	var view;
+            var viewportwidth;
+            var viewportheight;
+            // ֧(mozilla/netscape/opera/chrome/IE7) 
+            if (typeof window.innerWidth != 'undefined') {
+                viewportwidth = window.innerWidth;
+                viewportheight = window.innerHeight;
+            }
+            // ֧֣IE6           
+			else if (typeof document.documentElement != 'undefined' && typeof document.documentElement.clientWidth != 'undefined' && document.documentElement.clientWidth != 0) {
+                viewportwidth = document.documentElement.clientWidth;
+                viewportheight = document.documentElement.clientHeight;
+            }
+            // ֧
+
+            else {
+                viewportwidth = document.getElementsByTagName('body')[0].clientWidth;
+                viewportheight = document.getElementsByTagName('body')[0].clientHeight;
+            }
+            view = {
+            	width:viewportwidth,
+            	height:viewportheight
+            }
+            return view;
+        }
+    </script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	</head>
+<!--style="overflow-y: hidden;"-->
+	<body  style="overflow-y: hidden;">
+	<div id="navFix" class="floatfly">
+		<img class="menu" src="images/point.png" id="no1"/></br>
+		<img class="menu" src="images/point1.png" id="no2"/></br>
+		<img class="menu" src="images/point1.png" id="no3"/></br>
+	</div>
+	<div id='d'>
+		<div id ='a'>
+			<div id='aa' class='ca'>
+               <div class="dh">
+                  <div width="100%"  class="btn">
+                  <div class="btn-txt">全国统一订购热线：0571-56611111 56612345</div>
+                  <!--end btn-txt-->
+                    <div class="btn-item1">
+                     <a href="http://item.taobao.com/item.htm?spm=a1z10.1.w4004-8228976149.8.M2wYH7&id=40503640323&qq-pf-to=pcqq.c2c" target="_blank">
+                     <img src="images/btn.jpg"/></a>
+                    </div>
+                    <!--end btn-item1-->
+                  <div class="btn-item">
+                     <font>￥：300</font>
+                    </div>
+                    <!--end btn-item-->
+                  </div>
+                  <img class="prd" src="images/1.jpg"/>
+                  <!--end btn-->
+               </div>
+               <!--end dh-->
+			</div>
+            <!--end ca-->
+			<div id='bb' class='ca'>
+               <div  class="dh1">
+                  <div width="100%"  class="btn">
+                  <div class="btn-txt">全国统一订购热线：0571-56611111 56612345</div>
+                  <!--end btn-txt-->
+                    <div class="btn-item1">
+                     <a href="http://item.taobao.com/item.htm?spm=a1z10.1.w4004-8228976149.8.M2wYH7&id=40503640323&qq-pf-to=pcqq.c2c" target="_blank">
+                     <img src="images/btn.jpg"/></a>
+                    </div>
+                    <!--end btn-item1-->
+                  <div class="btn-item">
+                     <font>￥：300</font>
+                    </div>
+                    <!--end btn-item-->
+                  </div>
+                  <img class="prd" src="images/2.jpg"/>
+                  <!--end btn-->
+               </div>
+               <!--end dh1-->
+			</div>
+            <!--end ca-->
+			<div id='cc' class='ca'>
+               <div class="dh2">
+                  <div width="100%"  class="btn">
+                  <div class="btn-txt">全国统一订购热线：0571-56611111 56612345</div>
+                  <!--end btn-txt-->
+                    <div class="btn-item1">
+                     <a href="http://item.taobao.com/item.htm?spm=a1z10.1.w4004-8228976149.8.M2wYH7&id=40503640323&qq-pf-to=pcqq.c2c" target="_blank">
+                     <img src="images/btn.jpg"/></a>
+                    </div>
+                    <!--end btn-item1-->
+                  <div class="btn-item">
+                     <font>￥：300</font>
+                    </div>
+                    <!--end btn-item-->
+                  </div>
+                  <img class="prd" src="images/3.jpg"/>
+                  <!--end btn-->
+               </div>
+               <!--end dh2-->
+			</div>
+            <!--end ca-->
+		</div>
+        <!--end a-->
+	</div>	
+    <!--end d-->	
+	</body>
+<div style="display:none;"> 
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc40a6047c1f62931a5383fb59eec9e52' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript"> 
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
+</html>

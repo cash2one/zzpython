@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="layui/css/layui.css" media="all">
+		<script src="layui/layui.js" charset="utf-8"></script>
+		<script src="js/jquery.js" charset="utf-8"></script>
+		<script src="js/comm.js" charset="utf-8"></script>
+		<script>
+			layui.use(['layer'], function() {
+				var layer = layui.layer; 
+				{% if result %}
+				layer.alert('分配成功！', {
+					skin: 'layui-layer-molv' //样式类名
+					,
+					closeBtn: 0
+				}, function() {
+					parent.window.location.reload()
+					var index = parent.layer.getFrameIndex(window.name);
+					parent.layer.close(index);
+				}); 
+				{% endif %}
+			})
+		</script>
+	</head>
+
+	<body>
+	</body>
+
+</html>

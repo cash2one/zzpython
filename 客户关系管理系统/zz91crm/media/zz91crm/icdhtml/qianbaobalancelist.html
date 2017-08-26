@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>再生钱包账单</title>
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+		<table cellspacing="0" class="table table-bordered">
+			<thead>
+				<tr>
+					<th nowrap>类型</th>
+					<th nowrap>金额</th>
+					<th nowrap>被查看公司</th>
+					<th nowrap>被查看供求</th>
+					<th nowrap>时间</th>
+					<th nowrap>备注</th>
+				</tr>
+			</thead>
+			<tbody>
+				{%for list in listall%}
+				<tr>
+					<td bgcolor="#FFFFFF">{{list.ftypename}}</td>
+					<td bgcolor="#FFFFFF">
+						{{list.fee}}</td>
+					<td bgcolor="#FFFFFF"><a href="/icd/crm_cominfoedit.html?company_id={{list.forcompany_id}}&dotype=allall" target="_blank">{{list.forcompanyname}}</a></td>
+					<td bgcolor="#FFFFFF">{%if list.product_id%}<a href="http://trade.zz91.com/productdetails{{list.product_id}}.htm" target="_blank">查看</a>{%endif%}</td>
+					<td bgcolor="#FFFFFF">{{list.gmt_date}}</td>
+					<td bgcolor="#FFFFFF">{{list.bz|safe}}</td>
+				</tr>
+				{%endfor%}
+				<tr>
+					<td colspan="14" align="right" bgcolor="#FFFFFF">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td nowrap="nowrap">页次:<strong><font color="#FF0000">{{page}}</font></strong>/<font color="#FF0000">{{page_listcount}}</font> 每页:<font color="#FF0000"></font> 共计:<font color="#FF0000">{{listcount}}</font></td>
+								<td> <font color="#666666"> 页数 &nbsp;第
+														{%for p in page_range%}
+															{%if p.nowpage%}
+															[&nbsp;<span class='current'>{{p.number}}</span>&nbsp;]
+															{%else%}
+															<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+															{%endif%}
+														{%endfor%}
+														页
+														</font> </td>
+								<td align="right">
+									<a href='?page=1&{{searchurl}}'>首页</a>&nbsp;&nbsp;
+									{% if firstpage %} <a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%} &nbsp;&nbsp;
+									{% if lastpage%} <a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%} &nbsp;&nbsp;
+									<a href='?page={{page_listcount}}&{{searchurl}}'>尾页</a>
+								</td>
+								<td align="right">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

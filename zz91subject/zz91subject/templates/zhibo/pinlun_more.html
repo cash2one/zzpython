@@ -1,0 +1,22 @@
+{%for list in pinlunlist.list%}
+<li class="clearfix">
+    <div class="pllist-hf fr">
+        <div class="clearfix pllist-zb">
+            <span class="fl">{{list.nickname}}</span>
+            <span class="fr">{{list.posttime}}</span>
+        </div>
+        <div class="pllist-wzi">
+            {{list.content|safe}}
+        </div>
+        <div class="pllist-czuo">
+            <a href="javascript:void(0)" class="hfu" onclick="backhf('{{list.reply_id}}')">回复</a>
+        </div>
+        <div class="pllist-text hfbox{{list.reply_id}}">
+            <textarea class="pllist-tt hf{{list.reply_id}}"></textarea>
+            <div class="pllist-box">
+                <a href="javascript:void(0)" class="pllist-btn" onclick="backhfsave('{{list.reply_id}}','{{list.company_id}}')" replyid="{{list.reply_id}}" tocompany_id="{{list.company_id}}">马上发表</a>
+            </div>
+        </div>
+    </div>
+</li>
+{%endfor%}

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2017黄页数据</title>
+<script>
+function selectOption(menuname,value){
+    var menu = document.getElementById(menuname);
+	if (menu){
+		for(var i=0;i<=menu.options.length;i++){
+			if(menu.options[i].value==value)
+			{
+				menu.options[i].selected = true;
+				break;
+			}
+		}
+	}
+}
+
+</script>
+</head>
+<body>
+<form id="form1" name="form1" method="get" action="?">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+
+<td>
+<select name="huangye_qukan" id="huangye_qukan">
+<option value="">--请选择期刊--</option>
+{%for list in huangyeqklist%}
+<option value="{{list.code}}">{{list.label}}</option>
+{%endfor%}
+</select>
+<script>selectOption("huangye_qukan","{{huangye_qukan}}")</script>
+</td>
+<td>&nbsp;</td>
+<td><input type="submit" name="button" id="button" value="提交" /></td>
+</tr>
+</table></form>
+
+<div>结果：{{listcount}}</div>
+<br>
+{%for list in listall%}
+<font style="font-size:16px; font-family:'Adobe 黑体 Std R'"><b>公司名称：{{list.cname}}</b></font><br>
+<font style="font:12px; line-height:22px; font-family:'黑体'">主营：{{list.cproductslist}}<br>
+联系人：{{list.ccontactp}}<br>
+{%if list.ctel%}
+电话：{{list.ctel}}<br>
+{%endif%}
+手机：{{list.cmobile}}<br>
+{%if list.weixin%}
+微信：{{list.weixin}}<br>
+{%endif%}
+地址：{{list.cadd}}<br>
+<br>
+<br></font>
+{%endfor%}
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>生成栏目</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/style.css" />
+<script src="/bootstrap/Js/jquery-1.7.2.js"></script>
+<style type="text/css"> 
+body{ 
+text-align:center; 
+} 
+.graph{ 
+width:450px; 
+border:1px solid #F8B3D0; 
+height:25px; 
+} 
+#bar{ 
+display:block; 
+background:#FFE7F4; 
+float:left; 
+height:100%; 
+text-align:center; 
+} 
+#barNum{ 
+position:absolute; 
+} 
+</style> 
+<script type="text/javascript">
+function $(obj){ 
+return document.getElementById(obj); 
+}
+function jindu(num){
+document.getElementById("infod").innerHTML='&nbsp;&nbsp;&nbsp;正在生成 ...';
+if($("bar").style.width == "100%"){
+	$("bar").style.width="1%"
+}
+var bar = window.setInterval("go()",num);
+}
+function go(){ 
+	if($("bar").style.width == "100%"){
+		window.clearInterval(bar); 
+	}
+	else{
+	$("bar").style.width = parseInt($("bar").style.width) + 1 + "%"; 
+	$("bar").innerHTML = $("bar").style.width; 
+	}
+}
+</script>
+
+</head>
+<body>
+
+<form class="form-inline definewidth m20" action="buildhtmlok.html">
+<div style="float:left"><b>选择栏目:</b>&nbsp;<br />
+
+<table>
+{%for list1 in alltypelist%}
+<tr><td><input type="checkbox" name="buildarttype" value="{{list1.id}}"></td><td>{{list1.typename}}: &nbsp;&nbsp;</td><td style="text-align:left"> {%for lt1 in list1.nexttplist%}<input type="checkbox" name="buildarttype" value="{{lt1.id}}">&nbsp;{{lt1.typename}} {%endfor%}</td></tr>
+{%endfor%}&nbsp;&nbsp;
+<table>
+<br /><br /><a style="float:left"  href="#" onclick="SelectAll()">全选/反选</a>
+<div style="float:left;width:10px">&nbsp;</div>
+<button type="submit" style="float:left" class="btn btn-success" onClick="jindu(150)">生成栏目</button> <div style="float:left;width:10px">&nbsp;</div><button class="btn btn-success" style="float:left;height:30px" id="infod">→</button><br /><br />
+<div class="graph">
+{%if getjindu%}<strong id="bar" style="width:100%;">100%</strong>
+{%else%}
+<strong id="bar" style="width:1%;"></strong>
+{%endif%}
+</div>
+<input type="hidden" name="type" value="2">
+<input type="hidden" name="jindutiao" value="1">
+<input type="hidden" name="freshtime" {%if freshtime%}value="{{freshtime}}"{%endif%}>
+
+</div>
+</form><br />
+<script>
+function SelectAll() {
+ var checkboxs=document.getElementsByName("buildarttype");
+ for (var i=0;i<checkboxs.length;i++) {
+  var e=checkboxs[i];
+  e.checked=!e.checked;
+ }
+}
+</script>
+</body>
+</html>

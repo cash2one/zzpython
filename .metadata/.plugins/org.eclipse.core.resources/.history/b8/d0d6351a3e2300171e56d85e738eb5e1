@@ -1,0 +1,516 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>报价最终页</title>
+		<link rel="stylesheet" type="text/css" href="../../css/price/price-detail.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/price/price-detail.css" />
+		
+		<style>
+			.info-table{
+				overflow:auto;
+			}
+			.info-table img{
+				width:100%
+			}
+		</style>
+		<style>
+			html{
+				background-color: #f4f4f4;
+			}
+			.aui-ask-header {
+				
+				width: 100%;
+				margin-bottom:10px;
+				line-height: 32px;
+			}
+		
+			.ask-avatar {
+				float: left;
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+			}
+			.ask-nickname {
+				float: left;
+				font-size: 14px;
+				margin-left: 10px;
+			}
+			.ask-time {
+				font-size: 12px;
+				color: #666;
+			}
+			.aui-content {
+				
+				margin-bottom: 0;
+			}
+			.ask-title {
+				font-size: 18px;
+				margin-bottom: 5px;
+				font-weight:700;
+			}
+			.ask-body {
+				width: 100%;
+				display: table;
+				font-size: 16px;
+				color: #000;
+				line-height: 30px;
+			}
+			.ask-body p{
+				color: #000;
+				font-size:16px;
+			}
+			.ask-body img{
+				width:100%;
+			}
+			.ask-status {
+				width: 100%;
+				display: table;
+				color: #999;
+				line-height: 20px;
+				margin: 10px 0;
+			}
+			.ask-price {
+				color: #666;
+				font-size: 12px;
+				margin-right: 10px;
+			}
+			.ask-price strong {
+				font-size: 14px;
+				padding: 0 2px;
+				font-weight: 400;
+			}
+			.aui-nav {
+				border-top:1px solid #eee;
+		
+			}
+			.ask-input {
+				height: 32px;
+				line-height: 32px;
+				margin: 10px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				font-size: 14px;
+				color: #999;
+				padding-left: 5px;
+			}
+			.ask-text {
+				height: 120px;
+				line-height: 30px;
+				margin-bottom: 10px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				font-size: 14px;
+				color: #666;
+				overflow: hidden;
+			}
+			.ask-text textarea {
+				height: 100%;
+				padding: 5px;
+				margin: 0;
+		
+				border:none;
+			}
+			.mark {
+				background: rgba(0,0,0,0.5);
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				display: none;
+				z-index: 1;
+			}
+			.ask-reply-btn {
+				padding: 8px 0;
+			}
+			#ask-reply-box {
+				padding: 10px;
+			}
+			#aui-footer {
+				background: rgba(255,255,255,1);
+			}
+			#aui-footer.show {
+				-webkit-animation: showIn .5s ease both;
+				animation: showIn .5s ease both;
+			}
+			.interfix{
+				border-left:solid 3px #01ba2e;padding-left:10px;margin-left:10px;
+				background-color:#f4f4f4;
+				margin-bottom:10px;
+			}
+			@-webkit-keyframes showIn {
+				form { height: 55px;background: rgba(255,255,255,0.5);}
+				to { height: 200px; background: rgba(255,255,255,1);}
+			}
+			@-webkit-keyframes hideIn {
+				from { opacity: 1;top: 8px;}
+				to { opacity: 0;top: -20px;}
+			}
+			.qushi img{width: 25px;margin: 3px;}
+		</style>
+	</head>
+	<body>
+		<div class="mark" id="mark"></div>
+		<div class="essay" style="display:none">
+			<h1 class="essay-title"><!-- 亚洲PPPPPPPPPPPPPPPPPPPPP --></h1>
+			<div class="essay-info-list clear">
+				<span class="essay-time"><!-- 2015年09月14日 08:35 --></span>
+				<span class="take">订阅</span>
+				<!--<span class="essay-fsize"><t class="small-size">A</t>|<t class="big-size">A</t></span>-->
+			</div>
+			<div style="text-align: center;color: #999;">
+				<宽表格可左右滑动>
+			</div>
+		</div>
+		<div class="info-table" style="display:none"></div>
+		<div style="clear: both"></div>
+		
+	    <div class="aui-content" id="priceother" style="display: none">
+	    	<h3 class="interfix">相关报价</h3>
+	        <ul class="aui-list-view price-list">
+	            
+	        </ul>
+	    </div>
+		
+		<div class="pinlunmain" style="display: none;margin-top: 10px">
+			<h3 class="interfix">评论</h3>
+			<div class="aui-line-x"></div>
+			<div class="aui-content pinlunlist" tapmode>
+				<center>没有任何评论</center>
+		    </div>
+		    <div style="text-align: center;line-height: 30px" class="pinlunmore" style="display: none">点此查看更多</div>
+		    <div style="height: 60px"></div>
+		</div>
+		
+	    <script id="pinluninfo-list" type="text/html">
+			<div style="clear: both"></div>
+	        <div class="aui-ask-header" style="margin-bottom: 10px;margin-top: 10px">
+	    		<img src="{{d.facepic}}" class="ask-avatar"/>
+	        	<div class="aui-text-info ask-nickname" company_id={{d.company_id}}>{{ d.nickname }}</div>
+	        	<span class="aui-pull-right ask-time">{{ d.posttime }}</span>
+	    	</div>
+	    	<div style="clear: both"></div>
+	    	
+	        <div class="aui-ask-body" infoid="{{d.id}}" style="padding: 10px">
+	            <p class='aui-ellipsis-2'>{{ d.content }}</p>
+	            <div style="clear: both"></div>
+	        </div>
+	        <div class="aui-line-x"></div>
+	    </script>
+	    
+		<div class="aui-line-x"></div>
+		<footer class="aui-nav" id="aui-footer">
+			<div class="ask-input" tapmode onclick="showReply()" id="ask-input">我要评论</div>
+			<div id="ask-reply-box">
+				<div class="ask-text" id="ask-text">
+					<textarea id="pinluncontent" placeholder="请输入你的评论，审核后获 0.5再生钱包"></textarea>
+				</div>
+				<div class="aui-btn aui-btn-block aui-btn-info ask-reply-btn">提交</div>
+			</div>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script id="info-list" type="text/html">
+		<li id="{{ d.id }}" class="change-bgcolor aui-list-view-cell"><div class="aui-arrow-right aui-ellipsis-1">{{ d.title }}</div></li>
+	</script>
+	<script id="info-list-gq" type="text/html">
+		<li class="supply-li change-bgcolor" id={ { d.id }}>
+		<img src="{{ d.proimg }}" heigth="45" width="54" class="supply-img" style="display:{{ d.display }}">
+		<div><span class="supply-title">{{ d.title }}</span><span class="supply-time fr">{{ d.gmt_time }}</span></div>
+		<div><span class="supply-where">{{ d.province }}</span><span class="supply-price fr">{{ d.price }}元</span></div>
+		</li>
+	</script>
+	<script type="text/javascript">
+		var shouchangdata;
+		apiready = function() {
+			//改变字体大小
+			$(".small-size").on("click", function() {
+				$(".info-table").animate({
+					fontSize : "12px",
+					lineHeight : "24px"
+				});
+			})
+			$(".big-size").on("click", function() {
+				$(".info-table").animate({
+					fontSize : "18px",
+					lineHeight : "32px"
+				});
+			})
+			$(".take").on("click", function() {
+				var pageParam = {
+					wintitle : "订阅行情",
+					type : "order_price",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {
+					openWinNormal("order_price", "../price/order-main.html", pageParam);
+				} else {
+					pageParam.nextUrl = "../price/order-main.html";
+					pageParam.winName = "order_price";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			$(".supply").on("click", "li", function() {
+				var id = $(this).attr("id")
+				var pageParam = {
+					wintitle : "供求详情",
+					type : "infomation-heart",
+					id : id,
+					nav_list : [{
+						"typename" : "供求详情",
+						"id" : 1
+					}, {
+						"typename" : "公司简介",
+						"id" : 2
+					}], //头部划动标题
+					frame_url : ["../trade/firm-detail.html", "../trade/firm.html"], //打开frame组的页面集合
+					topnumber : 2,
+					bounces : false
+				};
+				openWin("infomation-heart"+id, "infomation-heart.html", pageParam);
+			})
+			//获取信息
+			ajaxInfo();
+			$(".price-list").on("click", "li", function() {
+				var id = $(this).attr("id");
+				var pageParam = {
+					wintitle : "报价详情",
+					type : "price-detail",
+					id : id
+				};
+				openWin("price-detail" + id, "../price/price-detail.html", pageParam);
+			})
+			$(".info-table .qushi").on("click", "img", function() {
+				var id = $(this).attr("pid");
+				var pageParam = {
+					wintitle : "报价详情",
+					type : "price-chart",
+					id : id
+				};
+				openWin("price-chart" + id, "../price/chart.html", pageParam);
+			})
+			$api.addEvt($api.byId('mark'), 'click', function(){
+				closepinlun();
+			});
+			
+			$(".ask-reply-btn").on("click", function() {
+				var recontent=$("#pinluncontent").val();
+				if (recontent==""){
+					//zzalert("您需要写点哦！");
+					return false
+				}
+				var title=$(".ask-title").text();
+				var content="";
+				var data={
+					title:title,
+					content:content,
+					recontent:recontent,
+					price_id:api.pageParam.id,
+				}
+				zzappajax("post",hosturl+"huzhu/newspinlunsave.html",data,function(ret){
+					if (ret){
+						if (ret.err=="false"){
+							zzalert("感谢您的评论！");
+							loadpinlun();
+							closepinlun();
+							$("#pinluncontent").val("");
+						}
+					}
+				},function(){
+					
+				})
+			})
+			//打开互助详情
+			$(".pinlunmain").on("click",".pinlunmore", function() {
+				var infoid = $(this).attr("bbs_post_id");
+				var pageParam = {
+					wintitle : "互助详情",
+					type : "double-heart",
+					bounces : false, //窗口弹动
+					infoid : infoid
+					// module:"回复"
+				};
+				openWin("cunity-detail", "../huzhu/cunity-detail.html", pageParam);
+			})
+			//打开评论者商铺
+			$(".pinlunmain").on("click",".ask-nickname",function() {
+				var company_id = $(this).attr("company_id");
+				var pageParam = {
+	                wintitle:"公司详情",
+	                type:"companyshop",
+	                showbottom : 1,
+					forcompany_id : company_id,
+	                bounces:false
+	            };
+	            openWin("companyshop", "../company/shop.html", pageParam);
+			})
+		}
+		//关闭评论
+		function closepinlun(){
+			$api.css($api.dom(".mark"),"display:none");
+			$api.css($api.byId("ask-input"),"display:block");
+			$api.css($api.byId("ask-reply-box"),"display:none");
+			$api.removeCls($api.byId("aui-footer"),"show");
+		}
+		//报价收藏
+		//收藏
+		function shoucFun(favoriteflag) {
+			//未登录
+			if (!havelogin()){
+				return false;
+			};
+			loadingshow();
+			
+			if (shouchangdata) {
+				shouchangdata['favoriteflag']=favoriteflag;
+				shoucInfo(shouchangdata);
+			}
+		}
+		//弹出评论
+		function showReply(){
+			$api.css($api.dom(".mark"),"display:block");
+			$api.css($api.byId("ask-input"),"display:none");
+			$api.css($api.byId("ask-reply-box"),"display:block");
+			$api.addCls($api.byId("aui-footer"),"show");
+		}
+		//加载评论
+		function loadpinlun(){
+			var data={
+				price_id:api.pageParam.id,
+			}
+			zzappajax("get",hosturl+"huzhu/newspinlun.html",data,function(ret){
+				//zzalert(JSON.stringify( ret ));
+				if (ret){
+					var pageHtml = "";
+					if (ret.list){
+						$.each(ret.list, function(index, item) {
+							var getTpl = $api.html($api.byId("pinluninfo-list"));
+							laytpl(getTpl).render(item, function(html) {
+								pageHtml = pageHtml + html;
+							});
+						});
+					}
+					if (pageHtml==""){
+						$(".pinlunlist").html("<center>没有任何评论</center>");
+						$(".pinlunmore").hide();
+					}else{
+						$(".pinlunlist").html(pageHtml);
+						$(".pinlunmore").show();
+						$(".pinlunmore").attr("bbs_post_id",ret.bbs_post_id)
+					}
+				}
+			},function(){
+				
+			})
+			
+		}
+		function ajaxInfo() {
+			api.showProgress({
+				title : '加载中',
+				modal : false
+			});
+			var id = api.pageParam.id;
+			api.ajax({
+				url : hosturl + 'priceviews/?id=' + id + '&datatype=json&company_id='+UserInfo.memberID()+'&appsystem='+api.systemType+"&t=" + (new Date()).getTime().toString(),
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false
+			}, function(ret, err) {
+				if (err) {
+					zzalert(err.statusCode + "错误！")
+					if(err){
+						saveerrlog(err.body);
+					}
+					api.hideProgress();
+				}
+				if (ret) {
+					$(".essay-title").html(ret.listall[0].title);
+					$(".essay-time").html(ret.listall[0].gmt_created);
+					if (ret.pricedetaillist){
+						$(".info-table").html(ret.pricedetaillist);
+					}else{
+						$(".info-table").html(ret.listall[0].content);
+					}
+					var pageHtml = "";
+					if (ret.priceabout.length == 0) {
+						$(".interfix_1").hide();
+					}
+					//加载评论
+					loadpinlun();
+					$.each(ret.priceabout, function(index, item) {
+						var getTpl = $api.html($api.byId("info-list"));
+						laytpl(getTpl).render(item, function(html) {
+							pageHtml = pageHtml + html;
+						});
+					})
+					var gqHtml = "";
+					if (ret.offerlist) {
+						if (ret.offerlist.length == 0) {
+							$(".interfix_2").hide();
+						}
+						$.each(ret.offerlist, function(index, item) {
+							if (item.proimg == null) {
+								item.proimg = "";
+								item.display = "none"
+							}
+							var getTpl = $api.html($api.byId("info-list-gq"));
+							laytpl(getTpl).render(item, function(html) {
+								gqHtml = gqHtml + html;
+							});
+						})
+					}
+					//保存分享数据到本地
+					var title=ret.listall[0].title;
+					localStorage.setItem("share_title",""+title);
+					localStorage.setItem("share_description","我正在查看"+title+"，赶紧跟我一起来体验！http://m.zz91.com/jiage/detail"+id.toString()+".html 点击链接查看");
+					localStorage.setItem("share_url","http://m.zz91.com/jiage/detail"+id.toString()+".html");
+					localStorage.setItem("share_pic","http://img0.zz91.com/zz91/images/indexLogo.png");
+					
+					
+					
+					$(".price-list").html(pageHtml);
+					$(".supply").html(gqHtml)
+					$("#priceother").css("display", "block");
+					$(".essay").css("display", "block");
+					$(".info-table").css("display", "block");
+					$(".pinlunmain").show();
+					api.hideProgress();
+					//收藏数据
+					var favorite_type_code = 10091004;
+					var data = {
+						company_id : UserInfo.memberID(),
+						usertoken : UserInfo.token(),
+						appsystem : api.systemType,
+						datatype : "json",
+						favorite_type_code : favorite_type_code,
+						forcompany_id : 0,
+						content_id : id,
+						title : ret.listall[0].title,
+						pdtid : 0,
+						products_type_code : 0
+					};
+					shouchangdata=data;
+					//显示是否已经收藏
+					api.execScript({
+						name : 'price-detail'+id.toString(),
+						script : "isfavor("+ret.listall[0].favoriteflag+")"
+					});
+				} else {
+					api.hideProgress();
+				};
+			});
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

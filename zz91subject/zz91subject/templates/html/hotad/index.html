@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+        <title>热门推荐广告</title>
+        <meta name="keywords" content="" />
+        <meta name="description" content="" />
+        <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+        <link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+        <link rel="stylesheet" type="text/css" href="http://www.zz91.com/zt/comm/facebox.css" />
+        <link rel="stylesheet" href="css/index.css" />
+        <script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+        <script src="http://www.zz91.com/zt/comm/facebox.js"></script>
+        <script src="http://www.zz91.com/zt/comm/checkForm.js"></script>
+    </head>
+    <body>
+    <div class="page">
+        <div class="band_main">
+            <div class="band">
+                <a href="#mydiv" rel="facebox" class="baoming"></a>
+            </div>
+        </div>
+        <div class="content-main">
+            <div class="liqi-see"></div>
+            <div class="liqi-gz"></div>
+        </div>
+        {% include 'html/comm/buttom.html' %}
+    </div>
+    </body>
+    <script>
+
+    $(function(){
+         $('a[rel*=facebox]').facebox(); 
+    });
+    </script>
+</html>

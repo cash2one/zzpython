@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{% include 'comm/seo.html' %}
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/price/new/css/main/style.css"/>
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css"/>
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+<script src="http://img0.zz91.com/zz91/pricesearch/style.js"></script></head>
+<meta http-equiv="mobile-agent" content="format=html5; url=http://m.zz91.com/jiage/{{pinyin}}/" />
+<link rel="alternate" media="only screen and(max-width:640px)" href="http://m.zz91.com/jiage/{{pinyin}}/" >
+</head>
+<body>
+{% include 'comm/top.html' %}{% include 'comm/mid.html'%}
+	<div class="part">
+    	<div class="part_left">
+        	<div class="part_left_tle">您所在的位置：<a href="/" target="_blank">行情报价首页</a> > 
+{%ifequal maintype '废金属'%}
+<a href="http://jiage.zz91.com/jinshu/" target="_blank">废金属行情</a>
+{%endifequal%}
+{%ifequal maintype '废塑料'%}
+<a href="http://jiage.zz91.com/suliao/" target="_blank">废塑料行情</a>
+{%endifequal%}
+{%ifequal maintype '综合废料'%}
+<a href="http://jiage.zz91.com/other/" target="_blank">综合废料行情</a>
+{%endifequal%}
+> {{categoryname}}</div>
+            <!--end part_left_tle-->
+            <div class="part_left_content">
+            	
+            	{%for ar in area_list%}
+				<div class="licontcomm">
+					<div class=title><h3><a href="/{{pinyin}}/{%if areactg%}a{%else%}a{%endif%}-{{ar.pinyin}}{%ifequal ar.page_type 1%}-1{%endifequal%}/" target='_blank'>{%if areactg%}{{ar.label}}{%else%}{{ar.label}}{%endif%}</a></h3><div class="more"><a href="/{{pinyin}}/{%if areactg%}a{%else%}a{%endif%}-{{ar.pinyin}}{%ifequal ar.page_type 1%}-1{%endifequal%}/" target='_blank'>更多</a></div></div>
+					<ul>
+					{%for pl in ar.list%}
+						<li><a href="/{{pinyin}}/{%if areactg%}a{%else%}a{%endif%}-{{ar.pinyin}}{%ifequal ar.page_type 1%}-1{%endifequal%}/" target="_blank" >[{{ar.label}}]</a>
+						<a href="{{pl.url}}" target='_blank' title="{{pl.fulltitle}}">{{pl.td_title}}</a>
+						<span>{{pl.postdate}}</span></li>
+					{%endfor%}
+					</ul>
+				</div>
+				{%endfor%}
+				
+				
+            </div>
+            <style>
+            .cplist li{float:left;padding:10px;border:solid 1px #ccc;margin:10px;}
+            </style>
+            <div class="clear"></div>
+            <ul class="cplist">
+            {%for list in cplist%}
+			<li><a href="http://www.zz91.com/cp/{{list.pingyin}}/" target=_blank title="{{list.label}}">{{list.label}}</a></li>
+			{%endfor%}
+			</ul>
+            <!--end part_left_content-->
+            <div class="clear"></div>
+            <script src="http://pyapp.zz91.com/showppctxtadscript/?keywords=&amp;showborder=1&amp;showposition=1&amp;m=4&amp;padding=8&amp;w=678&amp;num=4&adposition=636"></script>
+        </div>
+        
+        
+        <!--end part_left-->
+        <div class="part_right">
+        	<div class="item-yb-box_">
+                <div class="item-yb-box-tle">{{maintype}}行情导读</div>
+                <div class="item-yb-box-info">
+                  <div class="yb-info-block_">
+                    <div class="yb-info-left">类别：</div>
+                    <!--end yb-info-left-->
+                    <div class="yb-info-right">
+						<ul class="category">
+							{%for tl in typecodelist%}
+							<li><a href="{{tl.link}}" target="_blank">{{tl.title}}</a></li>
+							{%endfor%}
+						</ul>
+                    </div>
+                    <!--end yb-info-right-->
+                    <div class="cb"></div>
+                   </div>
+                   <!--end yb-info-block-->
+                   <div class="yb-info-block">
+                    <div class="yb-info-left">地区 ：</div>
+                    <!--end yb-info-left-->
+                    <div class="yb-info-right">
+					<ul class="category">
+						{%for tl in areacodelist%}
+						<li><a href="{{tl.link}}" target="_blank">{{tl.title}}</a></li>
+						{%endfor%}
+					</ul>
+                    </div>
+                    <div class="cb"></div>
+                   </div>
+                </div>
+            </div>
+            <div class="item-yb-box-info" style="margin-bottom: 10px;"><center>
+            <script type="text/javascript">
+			    /*新老站 资讯中部 250*250，创建于2013-12-9*/
+			    var cpro_id = "u1429359";
+			</script>
+			<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+			</center></div>
+            <div class="item-yb-box">
+                	<div class="yb-box-bg">
+                    	<div class="yb-bg-price">
+                        	<ul>
+          {%for oft in offerlist%}
+                            	<li>
+                                	<div class="yb-price-img">
+                                    	<a href="{{oft.url}}" target="_blank"><img src="{{oft.pic_address}}" /></a>
+                                    </div>
+                                    <!--end yb-price-img-->
+                                    <div class="yb-price-txt"><a href="{{oft.url}}" target="_blank">{{oft.fulltitle}}</a></div>
+                                    <!--end yb-price-txt-->
+                                    <div class="yb-price-discuss">{%if oft.products_detail.price%}{%ifequal oft.products_detail.price "0"%}面议或电议{%else%}{{oft.products_detail.price}}{%endifequal%}{%else%}面议或电议{%endif%}</div>
+                                    <!--end yb-price-discuss-->
+                                </li>
+          {%endfor%}
+                            </ul>
+                        </div>
+                        <!--end yb-bg-price-->
+                    </div>
+                    <!--end yb-box-bg-->
+                    <div class="yb-box-bg-tle">商家报价</div>
+                    <!--end yb-box-bg-tle-->
+            </div>
+                <!--end item-yb-box-->
+            <div class="item-yb-box_">
+               <div class="item-yb-box-tle">相关问答</div>
+                  <div class="item-yb-box-info">
+                    <ul>
+                    {%for bs in bbslist%}
+                        <li><a href="{{bs.url}}" target="_blank">{{bs.title}}</a></li>
+                    {%endfor%}
+                    </ul>
+                 </div>
+                <!--end item-yb-box-info-->
+              </div>
+           <!--end item-yb-box_-->
+           {%if marketlist%}
+           <div class="item-yb-box_">
+               <div class="item-yb-box-tle">产业带</div>
+                  <div class="item-yb-box-info">
+                    <ul>
+					{%for l in marketlist%}
+                        <li><a href="http://y.zz91.com/{{l.words}}/" title="{{l.name}}" target="_blank">{{l.name}}{%if list.company_num%}({{list.company_num}}){%endif%}</a></li>
+					{%endfor%}
+                    </ul>
+                 </div>
+           </div>
+           {%endif%}
+           <div class="item-yb-box_">
+               <div class="item-yb-box-tle">相关最新资讯</div>
+                  <div class="item-yb-box-info">
+                    <ul>
+{%for nl in newslist.list%}
+                        	<li><a href="{{nl.weburl}}" title="{{nl.fulltitle}}" target="_blank">{{nl.title|safe}}</a></li>
+{%endfor%}                    </ul>
+                 </div>
+                <!--end item-yb-box-info-->
+              </div>
+           
+        </div>
+        <!--end part_right-->
+        <div class="cb"></div>
+    </div>
+    <!--end part_-->
+<div style="width:100%;">
+	<div style="width:960px;margin:0 auto;text-align:center;">
+		{% include 'comm/buttom.html' %}
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+@charset "utf-8";
+
+
+
+/*首页*/
+.jiuhe{width:auto;height:auto}
+.mr90{margin-right:90px}
+.mr16{margin-right:16px}
+
+/*头部*/
+.header{width:100%;height:175px;background:#385de5}
+.header-content{width:1064px;margin:0 auto;padding-top:50px}
+.header-logo{width:330px;height:78px}
+.header-box{width:260px}
+.header-box ul li{float:left;color:#fff;margin:0 2px}
+.header-box ul li a{color:#fff}
+/*头部搜索*/
+.header-search{width:192px;height:22px;background:url(../images/search_bg.jpg) no-repeat;margin-top:8px}
+.header-search-text{width:130px;height:10px;padding:4px;border:none;margin:3px 0 0 26px}
+.header-search a{width:21px;height:21px;display:block;float:left}
+
+/*第一部分*/
+.mainblock1{width:100%;height:100%;background:#1a1a1a;padding-bottom:10px}
+/*导航*/
+.nav{width:1064px;height:50px;margin:0 auto;padding-top:40px;background:url(../images/nav_icon_bg.jpg) repeat-x 0px 76px;position:relative}
+.nav ul{float:right}
+.nav ul li{float:left;margin:0 4px;color:#686868;font-size:14px;font-family:"微软雅黑";font-weight:bold;line-hegiht:24px}
+.nav ul li a{color:#686868;font-size:14px;font-family:"微软雅黑";font-weight:bold}
+.nav ul li a:hover{color:#9f3d16;text-decoration:none}
+.nav_icon{width:61px;height:14px;display:none;position:absolute;left:450px;margin-top:32px;_margin-top:32px}
+
+
+/*第二部分*/
+.mainblock2{height:275px;background:#e6e6e6}
+.m2-content{width:960px;margin:0 auto;padding-top:8px}
+.m2-title{color:#969696;font-family:"微软雅黑";font-size:14px;background:url(../images/item_icon.jpg) no-repeat 0px 2px;padding-left:12px}
+.m2-item{width:233px;height:185px;background:url(../images/img5.jpg) no-repeat;margin-top:30px;margin-left:20px;position:relative}
+.m2-item2{width:233px;height:185px;background:url(../images/img6.jpg) no-repeat;margin-top:30px;margin-left:20px;position:relative}
+.m2-item3{width:233px;height:185px;background:url(../images/img7.jpg) no-repeat;margin-top:30px;margin-left:20px;position:relative}
+.m2-info{width:130px;height:130px;position:absolute;left:20px;top:16px}
+.m2-more{width:75px;height:25px;position:absolute;left:155px;top:160px}
+
+/*第三部分*/
+.mainblock3{height:480px;background:#f2f2f2}
+.m3-content{width:960px;margin:0 auto;padding-top:8px}
+.m3-title{margin-top:20px;color:#969696;font-family:"微软雅黑";font-size:14px;background:url(../images/item_icon2.jpg) no-repeat 0px 2px;padding-left:12px}
+.m3-item{width:224px;margin-top:8px}
+.m3-item-img{width:224px;height:152px}
+.m3-item-text{color:#bcbcbc;margin-top:35px}
+
+/*底部*/
+.footer{height:300px;padding-top:16px;background:#2d2d2d}
+.footer-content{width:960px;margin:0 auto;color:#bcbcbc}
+.footer-center{margin-left:36px}
+.footer-center li{float:left;margin:0 4px}
+.footer-center li a{color:#bcbcbc}
+.footer-right{width:260px}
+
+
+
+
+
+#slider { margin:0; list-style:none;}
+#slider ul,
+#slider li { margin:0; padding:0; list-style:none; }
+/* 
+    define width and height of list item (slide)
+    entire slider area will adjust according to the parameters provided here
+*/
+#slider li { width:1064px; height:383px; overflow:hidden; }
+p#controls { margin:0; position:relative; }
+#prevBtn,
+#nextBtn { display:block; margin:0; overflow:hidden; width:41px; height:41px; position:absolute; left: -50px; top:-228px; }
+#nextBtn { left:1075px; }
+#prevBtn a { display:block; width:41px; height:41px; background:url(../images/play_left.jpg) no-repeat 0 0; }
+#nextBtn a { display:block; width:41px; height:41px; background:url(../images/play_right.jpg) no-repeat 0 0; }
+
+
+/********** slider **********/
+.slider { background: url(../images/java_bg.gif) top repeat-x;  margin:0 auto;  height:383px;}
+.slider div.slice1 { margin:0 auto; width:1064px;}
+.slider div div div { margin:0; width:1064px; height:383px; border:0;}
+.slider div div div p.img { float:none; margin:0;}
+.slider div div div h2 {  font:bold 40px Arial, Helvetica, sans-serif; color:#4b4b4b; margin:0; margin:0; padding:15px 0 10px 0; line-height:1.2em;}
+.slider div div div p {font:normal 12px Arial, Helvetica, sans-serif; color:#858585; margin:0; margin:0; line-height:1.8em;}

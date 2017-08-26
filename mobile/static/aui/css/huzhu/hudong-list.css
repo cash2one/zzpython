@@ -1,0 +1,192 @@
+body,html {
+	background: #f4f4f4;
+}
+.huzu_out {
+	position: fixed;
+	height: 60px;
+	width: 60px;
+	background: #01ba2e;
+	border-radius: 60px;
+	bottom: 45px;
+	left: 10px;
+	text-align: center;
+	line-height: 20px;
+	padding-top: 10px;
+	box-shadow: 0px 0px 5px #888888;
+	color: #ffffff;
+	z-index: 9999;
+}
+.huzu_out .aui-icon-add {
+	font-size: 40px;
+	color: #fff
+}
+
+.cantop-mation li {
+	padding: 10px 8px;
+	border-bottom: 1px solid #e9e8e9;
+	background: #f4f4f4;
+}
+.mation-title {
+	font-size: 16px;
+	color: #404040;
+	line-height: 26px;
+}
+.summary {
+	color: #959595;
+	font-size: 12px;
+}
+.mation-pic {
+	float: left;
+	margin-right: 9px;
+}
+.go-top {
+	color: #fff;
+	width: 30px;
+	height: 15px;
+	text-align: center;
+	line-height: 15px;
+	background-color: #ff0000;
+	float: right;
+	font-size: 10px;
+	margin-top: 2px;
+	position: absolute;
+	right:20px;
+	top:10px;
+}
+.click-number {
+	float: right;
+	font-size: 10px;
+	color: #b4b4b4;
+	padding-left: 14px;
+	position: relative;
+}
+.see-img {
+	height: 13px;
+	width: 13px;
+	position: absolute;
+	display: block;
+	background-image: url(../../image/imageslist.png);
+	background-size: 220px;
+	background-position: -95px -74px;
+	left: -3px;
+	top: 5px;
+}
+#navmark {
+	-webkit-transition: 300ms;
+}
+
+#wrap {
+	height: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-flex-flow: column;
+	flex-flow: column;
+}
+#main {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	flex: 1;
+}
+.footer span {
+	width: 50%;
+	float: left;
+	text-align: center;
+	height: 50px;
+	border-top: 1px solid #e1e1e1;
+	position: relative;
+	line-height: 50px;
+	padding-top: 10px;
+	background-color: #f2f2f2;
+	color: #959595
+}
+.footer span i {
+	display: block;
+	height: 15px;
+	width: 15px;
+	background-image: url(../../image/imageslist.png);
+	background-size: 250px;
+	position: absolute;
+	left: 50%;
+	margin-left: -7px;
+	top: 7px;
+}
+.gonew {
+	border-right: 1px solid #e1e1e1;
+}
+.footer .gonew i {
+	background-position: -135px -0px;
+}
+.footer .notinto i {
+	background-position: -135px -17px;
+}
+
+.aui-content {
+	background: #ffffff;
+	overflow: hidden;
+}
+.aui-ask-header {
+	width: 100%;
+	padding: 10px 15px;
+	color: #999;
+	font-size: 14px;
+	overflow: hidden;
+	line-height: 32px;
+}
+.ask-avatar {
+	float: left;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+}
+.ask-nickname {
+	float: left;
+	font-size: 14px;
+	line-height: 32px;
+	margin-left: 10px;
+}
+.ask-time {
+	font-size: 12px;
+}
+.aui-ask-body {
+	width: 100%;
+	padding: 10px 15px;
+	position:relative;
+}
+.aui-ask-body .pic img{
+	float: left;
+	width:80px;
+	height:80px;
+	margin-right:7px;
+	margin-bottom: 5px
+}
+.aui-ask-title {
+	font-size: 16px;
+	color: #333;
+	margin-bottom: 5px;
+}
+.aui-ask-footer {
+	padding: 0 15px 15px 15px;
+	overflow: hidden;
+	line-height: 20px;
+}
+.aui-ask-footer, .comment {
+	font-size: 12px;
+	color: #999;
+}
+
+.huzhunav span{
+	width:25%;
+	border-bottom:solid 1px #ebebeb;
+	border-right: solid 1px #ebebeb;
+	padding: 0px;
+	display: block;
+	float: left;
+	text-align: center;
+	line-height: 30px;
+}
+.huzhunav .on{
+	color: #FF6B1A;
+	background-color: #ebebeb;
+}

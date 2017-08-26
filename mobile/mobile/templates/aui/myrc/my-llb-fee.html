@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="address=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+	<title>流量宝关键词展示明细-zz91再生网</title>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+    <style>
+    	body{
+    		line-height:30px;
+    		background-color:#fff
+    	}
+    	.aui-bar{
+    		position: fixed;
+    		z-index: 9999;
+    		width: 100%;
+    		top: 0;
+    		left: 0;
+    	}
+    	.aui-content{
+    		margin-top: 90px;
+    	}
+    	.czfoot {
+			position: fixed;
+			bottom: 0px;
+			border-top: solid 1px #EBEBEB;
+			width: 100%;
+			background-color: #F6F6F6;
+			line-height: 40px;
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			z-index:6;
+		}
+		.czfoot li {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+			text-align: center;
+			border-right: 1px solid #e7e7e7;
+			font-size: 14px;
+		}
+		.czfoot li:last-child {
+			border-right: none;
+		}
+		.mark {
+			background: rgba(0,0,0,0.2);
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			display: none;
+			z-index: 5;
+		}
+		.keywordslist,.datelist{
+			height:200px;width: 100%;position: fixed;bottom: 41px;text-align: center;
+			background-color:#fff;
+			z-index: 100;
+			padding-top:10px;
+			display:none;
+			overflow:auto;
+		}
+		.keywordslist span,.datelist span{
+			display:table-cell;
+			text-align: center;
+			float:left;
+			color:#666;
+			width:50%;
+			line-height:30px;
+			border-right: 1px solid #e1e1e1;
+			border-bottom: 1px solid #e1e1e1;
+			border-radius:10px;
+			margin-bottom:7px;
+			overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+		}
+    </style>
+</head>
+<body>
+	<header class="aui-bar aui-bar-nav aui-bar-primary">
+    	<a class="aui-pull-left" href="/qianbao/jingjia_index.html">
+	        <span class="aui-iconfont aui-icon-left"></span>
+	    </a>
+	    <div class="aui-title">展现量明细</div>
+	    <a class="aui-pull-right settings" href="/myrc_index/">
+	        <span class="aui-iconfont aui-icon-myfill"></span>
+	    </a>
+	    <div class="aui-tab">
+	        <ul class="aui-tab-nav" id="demo1">
+	            <li  onclick="window.location='/qianbao/jingjia_keywords_clicklist.html'">用户点击明细</li>
+	            <li class="active">展现量明细</li>
+	        </ul>
+	    </div>
+	</header>
+	<div class="mark" id="mark"></div>
+	<div class="keywordslist">
+		{%for list in keylist%}
+		<span onclick="window.location='jingjia_keywords_paylist.html?key_id={{list.id}}'" style='color:#000'>{{list.keywords}}</span>
+		{%endfor%}
+	</div>
+	<div class="datelist">
+		<span datekey=0>今日</span>
+		<span datekey=1>昨日</span>
+		<span datekey=7>最近7天</span>
+		<span datekey=30>最近30天</span>
+	</div>
+	
+	{%if listall%}
+	<div class="aui-content">
+		{%for d in listall%}
+		    <li class="aui-list-view-cell">
+				<div class="aui-img-body">
+					<span>用户搜索关键字：<font color="blue">{{d.searchkeywords}}</font></span>
+					<br /><span>推广关键词：<font style="color:#FC9A30">{{d.keywords}}</font></span>
+					<br />搜索日期：{{d.gmt_modified}}
+					<div style="clear: both"></div>
+					<p style="width: 33%;float: left">
+						展现：{{d.showcount}}
+					</p>
+					<p style="width: 33%;float: left">
+						点击：{{d.clickcount}}
+					</p>
+					<p style="width: 33%;float: right">
+						消费：￥{{d.feenumber}}  
+					</p>
+				</div>
+			</li>
+		{%endfor%}
+	</div>
+	<div class="page">
+		<ul>
+			{% if firstpage %}
+			<li class="page_prev">
+				<a href="?{{searchurl}}&page={{prvpage}}">上一页</a>
+			</li>
+			{%else%}
+			<li class="page_prev" style="color:gray">上一页</li>
+			{% endif %}
+			<li class="page_no">
+				<select onChange="window.location='?{{searchurl}}&page='+this.value">
+					<option>第{{page}}页</option>
+					<option value="1">首页</option>
+					{%for p in page_range%}
+					<option value="{{p.number}}">第{{p.number}}页</option>
+					{%endfor%}
+					<option value="{{lastpage}}">末页</option>
+				</select> /{{page_listcount}}页
+			</li>
+			{% if lastpage%}
+			<li class="page_next">
+				<a href="?{{searchurl}}&page={{nextpage}}">下一页</a>
+			</li>
+			{%else%}
+			<li class="page_prev" style="color:gray">下一页</li>
+			{% endif %}
+		</ul>
+	</div>
+	{%else%}
+	<div class="nodata" style="display: block;">暂无数据！</div>
+	{%endif%}
+	<div style="height: 40px"></div>
+	<footer class="czfoot">
+		<li class="searchkey">
+			关键词 <span class="aui-iconfont aui-icon-fold"></span>
+		</li>
+		<li class="searchdate">
+			日期 <span class="aui-iconfont aui-icon-fold"></span>
+		</li>
+	</footer>
+<script type="text/javascript">
+	$(function(){
+		//打开搜索关键词
+	    $(".searchkey").on("click",function(){
+	    	if ($(".keywordslist").css("display")=="none"){
+				$("#mark").fadeIn();
+	        	$(".keywordslist").slideDown();
+	        	$(".datelist").slideUp();
+	        	$("body").css("overflow","hidden");
+	        	$(this).css("color","blue");
+	        	$(this).find("span").removeClass("aui-icon-fold");
+	        	$(this).find("span").addClass("aui-icon-unfold");
+	        	$(".searchdate").css("color","");
+	        }else{
+	        	closesearch();
+	        }
+        })
+        //打开日期
+	    $(".searchdate").on("click",function(){
+	    	if ($(".datelist").css("display")=="none"){
+				$("#mark").fadeIn();
+	        	$(".datelist").slideDown();
+	        	$(".keywordslist").slideUp();
+	        	$("body").css("overflow","hidden");
+	        	$(this).css("color","blue");
+	        	$(this).find("span").removeClass("aui-icon-fold");
+	        	$(this).find("span").addClass("aui-icon-unfold");
+	        	$(".searchkey").css("color","");
+	        }else{
+	        	closesearch();
+	        }
+        })
+        $(".keywordslist").on("click","span",function(){
+        	closesearch();
+        })
+        $(".datelist").on("click","span",function(){
+        	var datekey=$(this).attr("datekey");
+        	closesearch();
+        	window.location='jingjia_keywords_paylist.html?key_id={{key_id}}&datekey='+datekey;
+        })
+        //点击遮盖层
+        $(".mark").on("click",function(){
+			closesearch();
+		});
+	});
+	function closesearch(){
+    	$("#mark").fadeOut();
+        $(".keywordslist").slideUp();
+        $(".datelist").slideUp();
+        $("body").css("overflow","auto");
+        $(".searchkey span").removeClass("aui-icon-unfold");
+	    $(".searchkey span").addClass("aui-icon-fold");
+	    $(".searchdate span").removeClass("aui-icon-unfold");
+	    $(".searchdate span").addClass("aui-icon-fold");
+	    
+	    $(".searchkey").css("color","");
+	    $(".searchdate").css("color","");
+    }
+</script>
+{%include 'aui/bottom.html'%}
+</body>
+</html>

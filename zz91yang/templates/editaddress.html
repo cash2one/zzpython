@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>样品会员中心_ZZ91再生网</title>
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/account.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/index.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/finace.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/jquery.alert.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/calendar.css">
+    <script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/index.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/jquery.alert.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/jquery.easydrag.js"></script>
+</head>
+<body class="gbody1000">
+{%include "include/nav.html"%}
+{%include "include/head.html"%}
+{%include "include/lm.html"%}
+<div class="gm1-5 gw-bcrumb">
+    <span><a href="index.html">会员中心</a></span>
+            <strong>
+        <a href="#">全部订单</a>
+    </strong>
+</div>
+<div class="gMain clearfix">
+        
+        {%include "include/leftmenu.html"%}
+        <div class="gContainer">
+			<div class="gwTopic clearfix">
+                <h2>收货地址</h2>
+            </div>
+            <div class="basicForm addresBox">
+                <form id="cominfo" name="cominfo" action="#" method="post">
+                    <div class="comInfoBox">
+                        <div class="comInfoTit2">
+                            <h3>修改收获地址</h3>
+                        </div>
+                        <div class="bFRow">
+                            <div class="label"><em>*</em>收货人：</div>
+                            <div class="cell">
+                            	<input type="hidden" class="git gw-gw" name="aid" value="364">
+                                <input type="text" class="text" name="a[name]" value="test">
+                            </div>
+                        </div>
+                        <div class="bFRow">
+                            <div class="label"><em>*</em>所在地区：</div>
+                            <div class="cell">
+                                <select class="select" name="a[province]" id="province" data-default=""><option value="1">北京市</option><option value="2">上海市</option><option value="3" selected="selected">天津市</option><option value="4">重庆市</option><option value="5">香港特别行政区</option><option value="6">澳门特别行政区</option><option value="7">安徽省</option><option value="8">福建省</option><option value="9">甘肃省</option><option value="10">广东省</option><option value="11">贵州省</option><option value="12">河北省</option><option value="13">黑龙江省</option><option value="14">河南省</option><option value="15">湖北省</option><option value="16">湖南省</option><option value="17">吉林省</option><option value="18">江西省</option><option value="19">江苏省</option><option value="20">辽宁省</option><option value="21">山东省</option><option value="22">陕西省</option><option value="23">山西省</option><option value="24">四川省</option><option value="25">云南省</option><option value="26">浙江省</option><option value="27">青海省</option><option value="28">广西壮族自治区</option><option value="29">内蒙古自治区</option><option value="30">宁夏回族自治区</option><option value="31">西藏自治区</option><option value="32">新疆维吾尔自治区</option><option value="33">台湾省</option><option value="34">海南省</option></select>
+                                <select class="select" name="a[city]" id="city" data-default=""><option value="3" selected="selected">天津市</option></select>
+                                <select class="select" name="a[area]" id="area" data-default="" style="display: inline-block;"><option value="38" selected="selected">和平区</option><option value="39">河东区</option><option value="40">河西区</option><option value="41">南开区</option><option value="42">河北区</option><option value="43">红桥区</option><option value="44">塘沽区</option><option value="45">汉沽区</option><option value="46">大港区</option><option value="47">东丽区</option><option value="48">西青区</option><option value="49">津南区</option><option value="50">北辰区</option><option value="51">武清区</option><option value="52">宝坻区</option><option value="53">宁河县</option><option value="54">静海县</option><option value="55">蓟县</option></select>
+                            </div>
+                        </div>
+                        <div class="bFRow">
+                            <div class="label"><em>*</em>街道地址：</div>
+                            <div class="textareaBox">
+                                <textarea class="text textarea" name="a[address]">test</textarea>
+                            </div>
+                        </div>
+                        <div class="bFRow">
+                            <div class="label"><em>*</em>邮政编码：</div>
+                            <div class="cell">
+                                <input type="text" class="text" name="a[zip]" value="312209">
+                            </div>
+                        </div>
+                        <div class="bFRow">
+                            <div class="label">电话号码：</div>
+                            <div class="cell">
+                                <input type="text" class="text" name="a[tel]" value="">
+                                <span class="note">区号-电话号码-分机如：0371-60968689-101</span>
+                            </div>
+                        </div>
+                        <div class="bFRow">
+                            <div class="label"><em>*</em>手机号码：</div>
+                            <div class="cell">
+                                <input type="text" class="text" name="a[mobile]" value="13445436456">
+                            </div>
+                        </div>
+                        <div class="bFRow">
+                            <div class="label">设为默认：</div>
+                            <div class="cell">
+                            	<input type="radio" name="isauto" value="1" checked="checked"> 
+                            </div>
+                        </div>
+                        <div class="bFRow">
+                            <input class="sCSumbitBtn" type="submit" value="确认修改">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+		</div>
+	</div>
+	</div>
+{%include "include/bottom.html"%}
+</body>
+</html>

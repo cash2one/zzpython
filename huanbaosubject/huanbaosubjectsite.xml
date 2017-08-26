@@ -1,0 +1,18 @@
+<uwsgi>
+ <socket>:8004</socket>
+ <workers>2</workers>
+ <master>true</master>
+ <processes>2</processes>
+ <pythonpath>.</pythonpath>
+ <module>huanbaosubject.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>huanbaosubject/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>2048</limit-as>
+ <reload-on-as>400</reload-on-as>
+ <reload-on-rss>400</reload-on-rss>
+ <max-requests>400</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/huanbaosubject.log</daemonize>
+</uwsgi>

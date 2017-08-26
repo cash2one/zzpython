@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/my_fangkui.css" />
+	</head>
+
+	<body>
+		<!--<div id="smark" style="height: 100%; position: absolute; width: 100%; top: 0px; left: 0px; right: 0px; bottom: 0px; z-index: 1001; opacity: 0.3; background: black;"></div>-->
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="api.closeWin();"></a>
+			<h1 class="mui-title">设置</h1>
+		</header>
+
+		<center style="padding: 20px;margin-top:50px;">
+			<form id="fkform">
+				<div style="text-align: left;">
+					<font color="#929292">请留下您的宝贵意见和联系方式，我们会及时和你联系！</font>
+					<br />
+				</div>
+				<textarea rows="6" cols="20" name="content" id="content" style="height: 100px;" placeholder="请留下您的建议" class="textarea"></textarea>
+				<input type="text" name="contact" id="contact" placeholder="手机或QQ" />
+				<input type="button" class="mui-btn mui-btn-blue" style="background: #B63798;color: #fff;width: 100%"  id="fkbutton" value="提交" />
+			</form>
+		</center>
+		<div class="postsuc" style="display: none;padding: 20px;">
+			<br />
+			<div style="text-align: left;font-size: 18px;width: 80%;">
+				感谢您提出宝贵的意见，欢迎您继续关注ZZ91再生网！
+			</div>
+			<br />
+			<button onclick="closewindow()" class="mui-btn mui-btn-danger">
+				继续浏览其他信息
+			</button>
+			<br />
+		</div>
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/jquery.js"></script>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../script/jQuery.md5.js"></script>
+		<script type="text/javascript" src="../script/common.js"></script>
+		<script>
+			apiready = function() {
+				var mid=UserInfo.memberID();
+				//$("#smark").css("display","none");
+				
+				$("#fkbutton").click(function(){
+					//alert(1)
+					//var frm=this.form;
+					var frm=document.getElementById("fkform");
+					var title="客户留言";
+					var qq=frm.contact.value;
+					var msg=frm.content.value;
+					api.ajax({
+					    url: hosturl + '/sex/insert_member_guestbook.html',
+					    method: 'post',
+					    timeout: 30,
+					    dataType: 'json',
+					    returnAll:false,
+					    data:{
+					        values: {'mid':mid,'title':title,'qq':qq,'msg':msg}
+					    }
+					},function(ret,err){
+					    if (ret) {
+					    	alert("感谢您的宝贵建议，我们会尽快给您回复！")
+					    	api.closeWin()
+					    }else {
+					        api.alert({
+					            msg:('错误码：'+err.code+'；错误信息：'+err.msg+'网络状态码：'+err.statusCode)
+					        });
+					    }
+					});
+				});
+//				$("#smark").click(function(){
+//					api.closeFrame({
+//					    name: 'page2'
+//					});
+//					this.style.display="none";
+//				})
+			}
+			function submitfrm(frm){
+					var mid=UserInfo.memberID();
+					var title="客户留言";
+					var qq=frm.contact.value;
+					var msg=frm.content.value;
+					//document.getElementById("smark").style.display="";
+					//alert(document.getElementById("smark").style.display)
+					$("#smark").css("display","block");
+					$("#smark").css("height",api.winHeight);
+					api.openFrame({
+					    name: 'page2',
+					    url: './page2.html',
+					    rect:{
+					        x:0,
+					        y:api.winHeight/3*2,
+					        w:api.winWidth,
+					        h:api.winHeight/3
+					    },
+					    pageParam: {name: 'test'},
+					    bounces: false,
+					    bgColor: 'rgb(0,0,0,0)',
+					    vScrollBarEnabled:false,
+					    hScrollBarEnabled:false,
+					    animation : {
+							type : "movein", //动画类型（详见动画类型常量）
+							subType : "from_bottom", //动画子类型（详见动画子类型常量）
+							duration : 300,                //动画过渡时间，默认300毫秒
+						}
+					});
+					
+				}
+		</script>
+	</body>
+
+</html>

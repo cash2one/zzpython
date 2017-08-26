@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>WEBCMS管理系统</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <link href="/bootstrap/assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+  <link href="/bootstrap/assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+   <link href="/bootstrap/assets/css/main-min.css" rel="stylesheet" type="text/css" />
+ </head>
+ <body>
+
+  <div class="header">
+    
+      <div class="dl-title">
+      </div>
+
+    <div class="dl-log">欢迎您，<span class="dl-log-user">{{username}}</span><a href="updatekwd.html?freshtime={{freshtime}}" title="修改密码" class="dl-log-quit">[修改密码]</a><a href="../logout.html" title="退出系统" class="dl-log-quit">[退出]</a>
+    </div>
+  </div>
+   <div class="content">
+    <div class="dl-main-nav">
+      <div class="dl-inform"><div class="dl-inform-title"><s class="dl-inform-icon dl-up"></s></div></div>
+      <ul id="J_Nav"  class="nav-list ks-clear">
+        		<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">栏目</div></li>
+        		<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">内容</div></li>       
+        		<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">扩展</div></li>       
+        		{%ifequal sortrank "1"%}<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">界面</div></li>{%endifequal%}
+        		<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">生成</div></li>       
+        		{%ifequal sortrank "1"%}<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">用户</div></li>{%endifequal%}
+        		
+        		{%for atype in admintypelist%}
+        		<li class="nav-item dl-selected"><div class="nav-item-inner nav-order">{{atype.typename}}</div></li>       
+				{%endfor%}
+      </ul>
+    </div>
+    <ul id="J_NavContent" class="dl-tab-conten">
+    </ul>
+   </div>
+  <script type="text/javascript" src="/bootstrap/assets/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="/bootstrap/assets/js/bui-min.js"></script>
+  <script type="text/javascript" src="/bootstrap/assets/js/common/main-min.js"></script>
+  <script type="text/javascript" src="/bootstrap/assets/js/config-min.js"></script>
+  <script>
+    BUI.use('common/main',function(){
+      var config = [
+      {id:'1',menu:[{text:'栏目管理',items:[{id:'1',text:'网站栏目',href:'arttype.html?freshtime={{freshtime}}'},]},{text:'',}]},
+      {id:'2',menu:[{text:'内容管理',items:[{id:'1',text:'网站内容',href:'artical.html?is_del=0&freshtime={{freshtime}}'},{id:'2',text:'内容回收站',href:'artical.html?is_del=1&freshtime={{freshtime}}'},]}],},
+      {id:'3',menu:[{text:'扩展管理',items:[{id:'1',text:'用户留言',href:'usermessage.html?freshtime={{freshtime}}'},{id:'2',text:'友情链接',href:'friendlink.html?freshtime={{freshtime}}'},]}],},
+      {%ifequal sortrank "1"%}{id:'4',menu:[{text:'界面管理',items:[{id:'1',text:'模版管理',href:'template.html?freshtime={{freshtime}}'},]}],},{%endifequal%}
+      {id:'5',menu:[{text:'生成管理',items:[{id:'1',text:'生成首页',href:'buildindexhtml.html?freshtime={{freshtime}}'},{id:'2',text:'生成栏目',href:'buildarttypehtml.html?freshtime={{freshtime}}'},{id:'3',text:'生成内容',href:'buildarticalhtml.html?freshtime={{freshtime}}'},]}],},
+      {%ifequal sortrank "1"%}{id:'6',menu:[{text:'用户管理',items:[{id:'1',text:'用户管理',href:'userlist.html?freshtime={{freshtime}}'},]}],},{%endifequal%}
+      
+      {%for atype in admintypelist%}
+      {id:'{{atype.typeid}}',menu:[
+      {%for atype2 in atype.nextype%}
+      {text:'{{atype2.typename}}',items:[
+      {%for atype3 in atype2.website%}
+      {id:'{{atype3.id}}',text:'{{atype3.name}}',href:'{{atype3.url}}'},
+      {%endfor%}
+      ]},
+      {%endfor%}
+      ]},
+      {%endfor%}
+      ];
+      new PageUtil.MainPage({
+        modulesConfig : config
+      });
+    });
+  </script>
+ </body>
+</html>

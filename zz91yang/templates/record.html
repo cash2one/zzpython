@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>样品会员中心_ZZ91再生网</title>
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/index.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/finace.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/jquery.alert.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/calendar.css">
+    <script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/index.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/jquery.alert.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/jquery.easydrag.js"></script>
+</head>
+<body class="gbody1000">
+{%include "include/nav.html"%}
+{%include "include/head.html"%}
+{%include "include/lm.html"%}
+<div class="gm1-5 gw-bcrumb">
+    <span><a href="index.html">会员中心</a></span>
+            <strong>
+        <a href="#">全部订单</a>
+    </strong>
+</div>
+<div class="gMain clearfix">
+        
+        {%include "include/leftmenu.html"%}
+        <div class="gContainer">
+		<div class="gwTopic clearfix">
+            <h2>收支记录</h2>
+        </div>
+        <div class="basicForm recordLog">
+            <div class="ct">
+                <div class="ctc">
+                    <div class="ctcdate">
+                        <p class="giwtext22">
+                            <a href="#" class="select">今日</a>
+                            |
+                            <a href="#">最近7天</a>
+                            |
+                            <a href="#">1个月</a>
+                            |
+                            <a href="#">3个月</a>
+                        </p>
+                        <!-- <a class="sBtn printBtn" href="http://www.gongchang.cn/user/finance/record/printp/">打印</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="fCopy" style="float:right; line-height:23px;">历史收入总和：100
+历史支出总和：100
+可提取金额：0</div>
+            <table class="gtb recordprint">
+
+                <tbody>
+                <tr class="gtbTh">
+                    <th width="15%"><div>流水号</div></th><th width="15%">类型</th>
+                    <th width="20%"><div>操作时间</div></th>
+                    <th width="15%"><div>交易商品</div></th>
+                    <th width="15%"><div>金额</div></th>
+                    <th width="20%"><div>交易方</div></th>
+                    
+                </tr>
+				<tr>
+                    <td width="15%"><div>234235453453</div></th><td width="15%">售出
+                    <td width="20%"><div>2014-03-08</div></th>
+                    <td width="15%"><div><a href="#">PP再生颗粒</a></div></th>
+                    <td width="15%"><div><span class="co"> 0.00</span> 元</div></th>
+                    <td width="20%"><div>个体经营（王先生）</div></th>
+                    
+                </tr>
+                <tr>
+                    <td colspan="6">暂无收支记录！</td>
+                </tr>
+                            </tbody></table>
+            <div class="gPageBar clearfix">
+                <div class="gPage">
+		<span class="ppa">上一页</span>
+		<span class="pnum">1/1</span>
+		<span class="npa">下一页</span>
+		<input type="hidden" name="url" class="git" value="1">
+	<span class="gp">
+		<span>转到</span>
+		<input type="hidden" name="totalpage" class="git" value="1">
+		<input type="text" name="page" class="git" value="1">
+		<span>页</span>
+	</span>
+	<button type="submit" class="pagbtn">确定</button>
+</div>            </div>
+        </div>
+		</div>
+	</div>
+	</div>
+{%include "include/bottom.html"%}
+</body>
+</html>

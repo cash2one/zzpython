@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>交易首页</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../css/trade.css"/>
+</head>
+<body>
+	<header>
+      <div id="cloud" class="topbar  activebar">
+        <div tapmode="hover-category" class="category">
+          <i></i>
+          <p>类目</p>
+        </div>
+        <div class="select">
+          <span class="select-ipt">点此输入搜索产品</span>
+          <i></i>
+        </div>
+        <div class="my-gja">
+              生意管家
+        </div>
+        <div tapmode="hover-category" class="infonumber my-info">
+          <i class="info-img"></i>
+          <p>消息</p>
+          <s></s>
+        </div>
+        <div tapmode="hover-category" class="infonumber my-gout">
+          <i class="gout-img"></i>
+          <p>发布</p>
+        </div>
+      </div>
+  </header>
+   <div class="hot-title clear border-bottom">
+      <h4>热门求购</h4>
+      <span class="freshen">刷新<i class="freshen-img"></i></span>
+    </div>
+    <ul class="buy-in clear">
+    	<li><img src="../image/infoimage.png"><p class="buy-name">求购TPU颗</p></li>
+    	<li><img src="../image/infoimage.png"><p class="buy-name">求购TPU颗</p></li>
+    	<li><img src="../image/infoimage.png"><p class="buy-name">求购TPU颗</p></li>
+    </ul>
+    <div class="hot-title clear border-bottom">
+      <h4>热门供应</h4>
+      <span class="freshen">刷新<i class="freshen-img"></i></span>
+    </div>
+    <ul class="buy-in clear">
+    	<li><img src="../image/infoimage.png"><p class="buy-name">求购TPU颗</p></li>
+    	<li><img src="../image/infoimage.png"><p class="buy-name">求购TPU颗</p></li>
+    	<li><img src="../image/infoimage.png"><p class="buy-name">求购TPU颗</p></li>
+    </ul>
+    <div class="hot-title clear border-bottom">
+      <h4>产业带</h4>
+      <span class="freshen">更多<i class="freshen-img mome-img"></i></span>
+    </div>
+    <ul class="belt-list clear">
+    	<li>浙江慈溪废塑料集散地</li>
+    	<li>宁波余姚塑料城</li>
+    	<li>广东南海废金属集散地</li>
+    	<li>佛山欧浦国际物流钢铁...</li>
+    </ul>
+    <div class="btn-div"><span class="btn">入驻产业带</span></div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/zepto.min.js"></script>
+<script type="text/javascript" src="../script/common.js"></script>
+<script type="text/javascript">
+  apiready = function() {
+    $(".buy-in li").on("click",function(){
+      var pageParam = {
+            wintitle:"柳州科技公司",
+            type:"infomation-heart",
+            nav_list:["供求详情", "公司简介"],
+            frame_url:["../html/firm-detail.html","../html/firm.html"],
+            topnumber:2
+          };
+          openWin("infomation-heart","infomation-heart.html",pageParam);
+      })
+  }
+</script>
+</html>

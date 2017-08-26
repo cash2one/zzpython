@@ -1,0 +1,43 @@
+<br /><br /><br />
+<form action="/updateremarksok/">
+
+<input type="hidden" name="remarks_id" value="{{remarks_id}}">
+<input type="hidden" name="keywords_id" value="{{keywords_id}}">
+
+<table border="1" cellpadding="3" cellspacing="0">
+<tr align="center">
+<td>
+关键字:
+</td> <td>
+{{remarksdir.keywords_name}}
+</td>
+</tr>
+<tr align="center">
+<td>
+公司名: 
+</td> <td>
+{{remarksdir.company_name}}
+</td>
+</tr>
+<tr align="center">
+<td>
+SEO人员: 
+</td> <td>
+{{remarksdir.seouser_name}}
+</td>
+</tr>
+<tr align="center">
+<td>
+日期: 
+</td> <td>
+{{remarksdir.gmt_created}}
+</td>
+</tr>
+</table><br />
+
+备注信息: <br />
+<textarea name="remarks" cols="40" rows="4">{%if remarks%}{{remarks}}{%endif%}</textarea>
+<br />
+<!--<input type="submit">-->
+<input type="submit" value="√"></td><td><input type="button" onclick="window.close()" value="X">
+</form>

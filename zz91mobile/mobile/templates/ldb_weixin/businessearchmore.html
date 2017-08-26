@@ -1,0 +1,18 @@
+{%for ldb in listall%}
+    	<div class="tab_box">
+        	<a href="http://m.zz91.com/companyinfo/?company_id={{ldb.company_id}}">
+                	<div class="box-company">
+                    	<div class="com-name">{{ldb.companyname}}<span style="font-weight:normal; color:#999">[{{ldb.area}}]</span></div>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="box-addr">{{ldb.ppckeywords}}</div>
+            </a>
+                <a href="tel:{{ldb.ftel}}">
+                	<div class="box-tel">
+                    	<div class="tel-logo"><img src="../images/ldb_weixin/phone.png" /></div>
+                        <div class="tel-phone">{{ldb.ppctel}}</div>
+                        <div class="cb"></div>
+                    </div>
+                </a>
+        </div>
+{%endfor%}

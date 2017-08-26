@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/subject/621fenghuiH5/css/base-min.css" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/subject/621fenghuiH5/css/index.css" />
+		<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<title>{{detail.company_name}}-2017再生塑料行业峰会评选活动</title>
+		<style>
+			#mcover{ position: fixed;top:0;left:0;width:100%;	height:100%;background:rgba(0, 0, 0, 0.7);	display:none;z-index:20000;}
+			#mcover img {position: fixed;right: 18px;top:5px;width: 260px;height: 180px;z-index:20001;}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript" src="http://img0.zz91.com/subject/621fenghuiH5/js/viewport.js"></script>
+		<div id="mcover" onclick="$('#mcover').hide();">
+			<img src="http://img0.zz91.com/zz91/mobile/images/guide.png" />
+		</div>
+		<div class="nav-box">
+			<div class="nav clear">
+				<div class="nav-name">
+					{{detail.company_name}}
+				</div>
+				<a href="gys.html" class="nav-fh fl">
+					<i class="icon icon-fh"></i>返回
+				</a>
+			</div>
+		</div>
+		<div class="top"></div>
+		
+		<div class="logo">
+			<div class="logo-img">
+				<img src="http://img0.zz91.com/subject/621fenghuiH5/images/logo.png" />
+			</div>
+		</div>
+		
+		<div class="band">
+			<img src="http://img0.zz91.com/subject/621fenghuiH5/images/tle2.png" />
+		</div>
+		
+		{%if votecontent.haveday%}
+		{%ifequal votecontent.haveday 1%}
+		<div class="time">
+			投票今天即将结束，加油投票哦！
+		</div>
+		{%else%}
+		<div class="time">
+			距离活动结束还有：<span class="djs">{{votecontent.haveday}}</span>天
+		</div>
+		{%endifequal%}
+		{%else%}
+		<div class="time">
+			<font color="#FF0000">活动已经结束,感谢所有人的常与。</font>
+		</div>
+		{%endif%}
+		<div class="paih">
+			<div class="tpjg-con">
+				<div class="tpjg-con-tle">
+					{{detail.orderid}}号  &nbsp;&nbsp;&nbsp;&nbsp; 票数：<span style="font-size: 18px;color: #FF0000;" id="ps{{detail.company_id}}">{{pcount}}</span><br /><b style="font-weight: bold;">{{detail.company_name}}</b>
+				</div>
+				<div class="tpjg-con-js" style="text-align: left;">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{detail.business}}
+				</div>
+				<div class="tpjs-tp toubtn" company_id="{{detail.company_id}}">
+					投他一票
+				</div>
+				<a href="javascript:$('#mcover').show();" class="tpjg-fx">
+					分享给朋友拉票
+				</a>
+				<a href="gys.html" class="tpjg-more">
+					点击查看更多信息
+				</a>
+			</div>
+		</div>
+		<div class="rule clear">
+			<div class="rule-dashed"></div>
+			<div class="fl rule-main">
+				<div class="rule-tle">
+					投票规则 :
+				</div>
+				<p>“金牌采购商”评选活动：</p>
+				<p>1.每一个微信号每天最多拥有3次投票机会</p>
+				<p>
+					2.每天投票超过三次者，当天不能再进行投票，可以分享给其他朋友进行投票
+				</p>
+			</div>
+			<div class="fr ewm">
+				<img src="http://img0.zz91.com/subject/621fenghuiH5/images/ewm.png" />
+			</div>
+		</div>
+		<div><a href="http://www.zz91.com/zt/2017swbookh5/index.html"><img src="http://img1.zz91.com/ads/1493568000000/3dc47ae0-a932-4596-bd16-de97c5388331.jpg" style="width: 100%;"></a></div>
+		<div class="baom clear">
+			<div class="fl baom-img">
+				<img src="http://img0.zz91.com/subject/621fenghuiH5/images/images1.png" />
+			</div>
+			<a href="http://m.zz91.com/subject/621/index.html" class="fr baom-btn">
+				马上报<br />名参展
+			</a>
+		</div>
+		<div style="height: 2.5rem;"></div>
+		<div class="footbot clear">
+			<a href="index.html" class="fl footbot-btn">
+				<i class="icon icon-index"></i>首 页
+			</a>
+			<a href="gys.html" class="fl footbot-btn footbot-this">
+				<i class="icon icon-medal"></i>金牌供应商
+			</a>
+			<a href="cgs.html" class="fl footbot-btn">
+				<i class="icon icon-gwc"></i>金牌采购商
+			</a>
+		</div>
+		<div class="saom">
+			<div class="saom-img">
+				<img src="http://img0.zz91.com/subject/621fenghuiH5/images/ewm2.png" />
+			</div>
+			<p>
+				请长按识别二维码，<br /> 关注ZZ91公众号后<br />点击菜单“我要投票”进行投票！
+			</p>
+		</div>
+	</body>
+</html>
+<script src="http://b.zz91.com/comm/js/comm.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+	var wxload=false;
+	function sharefunction() {
+		wx.onMenuShareAppMessage({
+			title: '{{detail.orderid}}号：{{detail.company_name}}-2017再生塑料金牌供应商评选活动',
+			desc: '树立行业典范和标兵，推动再生塑料行业交易方式的变革。',
+			link: 'http://m.zz91.com/vote/621/gys-view{{id}}.html',
+			imgUrl: 'http://img0.zz91.com/subject/621fenghuiH5/images/vote621.png',
+			trigger: function(res) {
+				wxload = true;
+			},
+			success: function(res) {
+				//alert('已分享');
+				wxload = true;
+				$('#mcover').hide();
+			},
+			cancel: function(res) {
+				//alert('已取消');
+			},
+			fail: function(res) {
+				//alert(JSON.stringify(res));
+			}
+		});
+		wx.onMenuShareTimeline({
+			title: '{{detail.orderid}}号：{{detail.company_name}}-2017再生塑料金牌供应商评选活动',
+			desc: '树立行业典范和标兵，推动再生塑料行业交易方式的变革。',
+			link: 'http://m.zz91.com/vote/621/gys-view{{id}}.html',
+			imgUrl: 'http://img0.zz91.com/subject/621fenghuiH5/images/vote621.png',
+			trigger: function(res) {
+				//$('#mcover').show();
+				wxload = true;
+			},
+			success: function(res) {
+				//alert('已分享');
+				$('#mcover').hide();
+			},
+			cancel: function(res) {
+				//alert('已取消');
+			},
+			fail: function(res) {
+				//alert(JSON.stringify(res));
+			}
+		});
+		if(wxload == false) {
+			setTimeout("sharefunction()", 2000)
+		}
+	}
+	wx.config({
+		debug: false,
+		appId: '{{appid}}',
+		timestamp: {{timestamp}},
+		nonceStr: '{{nonceStr}}',
+		signature: '{{signature}}',
+		jsApiList: [
+			'checkJsApi',
+			'onMenuShareTimeline',
+			'onMenuShareAppMessage',
+			'hideMenuItems',
+		]
+	});
+	sharefunction();
+	window.onload = sharefunction()
+	if(wxload == false) {
+		setTimeout("sharefunction()", 1000)
+	}
+	var tp=false;
+	$(".toubtn").on("click",function(){
+		var forcompany_id=$(this).attr("company_id");
+		var openid="{{openid}}";
+		voteclick($(this),openid,forcompany_id)
+	})
+	
+	function voteclick(self,openid,forcompany_id){
+		layer.load(2)
+		var ajaxurl1="/vote/vote.html?company_id="+forcompany_id+"&vtype={{vtype}}"
+		$.getScript(ajaxurl1, function() {
+			var err=_suggest_result_.err;
+			layer.closeAll();
+			if (err=="false"){
+				var vcount=_suggest_result_.vcount;
+				$("#ps"+forcompany_id.toString()).html(vcount)
+				hint("投票成功！");
+			}else{
+				var errtext=_suggest_result_.errtext;
+				var gz=_suggest_result_.gz;
+				if (gz==2){
+					layer.confirm('请关注ZZ91再生网微信公众号后，点击“我要投票”，我们会发送投票验证码。确定后输入投票即可', {
+					 	btn: ['确定','取消'] //按钮
+					}, function(){
+					  	layer.prompt({
+						  formType: 0,
+						  value: '',
+						  title: '输入投票验证码'
+						}, function(v, index, elem){
+							var data={
+								randomnum:v,
+								weixinid:"{{clientid_dy}}"
+							}
+							zzajax("get","/vote/vote_check.html",data,function(ret){
+								if (ret.err=="false"){
+									hint("验证成功！");
+									voteclick(self,openid,forcompany_id);
+									layer.close(index);
+								}else{
+									hint(ret.errkey);
+									layer.close(index);
+								}
+							},function(){
+								layer.close(index);
+							})
+						});
+						
+					}, function(){
+					  
+					});
+				}else{
+					hint(errtext);
+					if (gz==1){
+						popShow($(".saom"));
+					}
+				}
+			}
+			tp=false;
+		});
+	}
+	//标题提交提示
+	function hint(ts) {
+		layer.msg(ts)
+//		$(".hint").remove()
+//		var hintHtml = '<div class="hint" style="position:fixed;color:#fff;line-height:18px;font-size:14px;width:100%">' + '<span style="display:block;margin:0 8px;background:#000;opacity:0.8;border-radius:5px;padding:10px 10px;text-align:center">' + ts + '<span>' + '</div>';
+//		$("body").append(hintHtml);
+//		var hint_height = $(".hint").height();
+//		var wd_height = $(window).height();
+//		var top_height = (wd_height - hint_height) / 2
+//		$(".hint").css("top", top_height + "px");
+//		setTimeout(function() {
+//			$(".hint").fadeOut("slow", function() {
+//				$(".hint").remove()
+//			})
+//		}, 3000)
+	}	
+   	$(document).on("click",function(e){
+   		if($(e.target).attr("class")=="wdpop"){
+   			$(".wdpop").hide();
+   			$(".saom").hide();
+   		}
+   	})
+</script>
+<div style="display:none">
+    <script>
+         var _hmt = _hmt || [];
+         (function() {
+             var hm = document.createElement("script");
+             hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+             var s = document.getElementsByTagName("script")[0];
+             s.parentNode.insertBefore(hm, s);
+         })();
+    </script>
+    <script>
+         var _hmt = _hmt || [];
+        
+         (function() {
+             var hm = document.createElement("script");
+             hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+             var s = document.getElementsByTagName("script")[0];
+             s.parentNode.insertBefore(hm, s);
+         })();
+    </script>
+</div>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>分享-zz91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<script src="http://static.m.zz91.com/aui/js/nativeShare.js?p"></script>
+    	<link rel="stylesheet" href="http://static.m.zz91.com/aui/css/nativeShare.css"/>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	</head>
+
+	<body>
+
+		<style>
+			#mcover {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.7);
+				display: none;
+				z-index: 20000;
+			}
+			
+			#mcover img {
+				position: fixed;
+				right: 18px;
+				top: 5px;
+				width: 260px;
+				height: 180px;
+				z-index: 20001;
+			}
+			.nativeShare{
+				width: 400px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.box {
+				text-align: center;
+			}
+		</style>
+		<div id="nativeShare"></div>
+		<div class="box">
+			<!--分享-->
+			<div id="mcover" onclick="$('#mcover').hide();"><img src="http://img0.zz91.com/zz91/mobile/images/guide.png" /></div>
+			<div class="bdsharebuttonbox tipp" id="bdsharebuttonbox">
+				<a id="a_wx_wxin" href="javascript:weixinshare();sharefunction();" class="mbds_wxin1"></a>
+				<a id="a_wx_friend" href="javascript:weixinshare();sharefunction();" class="mbds_friend1"></a>
+				<a id="a_sougou_wxin" href="javascript:sogushare()" class="mbds_wxin1"></a>
+				<a id="a_sougou_friend" href="javascript:sogushare();" class="mbds_friend1"></a>
+				<a id="a_uc_wxin" href="javascript:ucshare('j_ishare_pic','WechatTimeline');" data-platform="WechatTimeline" class="mbds_wxin1"></a>
+				<a id="a_uc_friend" href="javascript:ucshare('j_ishare_pic','WechatFriends');" data-platform="WechatFriends" class="mbds_friend1"></a>
+				<a id="a_qq_wxin" href="javascript:void(mqqShare('timeline'));" data-share-type="wechat_qq:timeline" class="mbds_wxin1"></a>
+				<a id="a_qq_friend" href="javascript:void(mqqShare('friend'));" data-share-type="wechat_qq:friend" class="mbds_friend1"></a>
+				<a href="#" class="bds_qzone1" data-cmd="qzone" title="分享到QQ空间"></a>
+				<a href="#" class="bds_tsina1" data-cmd="tsina" title="分享到新浪微博"></a>
+				<style>
+					.bdsharebuttonbox {
+						padding: 10px;
+					}
+					
+					.bdsharebuttonbox .mbds_wxin1 {
+						background: url(http://img0.zz91.com/zz91/mobile/images/friend.png)!important;
+						width: 50px!important;
+						height: 50px!important;
+						background-size: 50px!important;
+						margin-right: 20px!important;
+						display: none;
+						padding-left: 0px;
+					}
+					
+					.bdsharebuttonbox .mbds_friend1 {
+						background: url(http://img0.zz91.com/zz91/mobile/images/wxin.png)!important;
+						width: 50px!important;
+						height: 50px!important;
+						background-size: 50px!important;
+						margin-right: 20px!important;
+						display: none;
+						padding-left: 0px;
+					}
+					
+					.bdsharebuttonbox .bds_qzone1 {
+						background: url(http://img0.zz91.com/zz91/mobile/images/kjian.png)!important;
+						width: 50px!important;
+						height: 50px!important;
+						background-size: 50px!important;
+						margin-right: 20px!important;
+						padding-left: 0px;
+					}
+					
+					.bdsharebuttonbox .bds_tsina1 {
+						background: url(http://img0.zz91.com/zz91/mobile/images/sina.png)!important;
+						width: 50px!important;
+						height: 50px!important;
+						background-size: 50px!important;
+						margin-right: 10px!important;
+						padding-left: 0px;
+					}
+				</style>
+				
+			</div>
+		</div>
+	<script type="text/javascript">
+		//分享
+		var share_url=localStorage.getItem('share_url');
+		var share_pic=localStorage.getItem('share_pic');
+		var share_title=localStorage.getItem('share_title');
+		var share_description=localStorage.getItem('share_description');
+		window.article_config = {
+			stitle: share_title,
+			surl: share_url,
+			simg: share_pic,
+			scontent: share_description
+		};
+//		$(function() {
+//			var weixinParams,
+//				ua = navigator.userAgent,
+//				isAndroid = /Android/i.test(window.navigator.userAgent),
+//				newQQbrowerWeixinApi = 'http://jsapi.qq.com/get?api=app.isInstallApk,app.share',
+//				getQQbrowerVersion = function() {
+//					try {
+//						var reg = /MQQBrowser\/(\d{2})/;
+//						var regRemoveDot = /\./g;
+//						ua = ua.replace(regRemoveDot, '');
+//						var res = reg.exec(ua);
+//						if(res && res.length > 1) {
+//							return parseInt(res[1], 10);
+//						}
+//						return 0;
+//					} catch(e) {
+//						return 0;
+//					}
+//				},
+//				loadQqPushJs = function(url, callback) {
+//					var head = document.getElementsByTagName('head')[0];
+//					var js = document.createElement('script');
+//					js.setAttribute('type', 'text/javascript');
+//					js.setAttribute('src', url);
+//					head.appendChild(js);
+//					js.onload = callback;
+//				},
+//				newWxShareLoad = function(type) {
+//					if(getQQbrowerVersion() >= 54) {
+//						loadQqPushJs(newQQbrowerWeixinApi, noInstallDeleteWeixin);
+//					}
+//				},
+//				deleteWeixinShare = function() {
+//					$('[data-share-type="wechat_qq:timeline"]').remove();
+//					$('[data-share-type="wechat_qq:friend"]').remove();
+//				},
+//				noInstallDeleteWeixin = function() {
+//					browser.app.isInstallApk(function(data) {
+//						if(!data) {
+//							deleteWeixinShare();
+//						}
+//					}, isAndroid ? { 'packagename': 'com.tencent.mm' } : { 'apkKey': 'weixin' });
+//				},
+//				handleShareWeixinNewQQbrower = function() {
+//					browser.app.share(weixinParams);
+//				},
+//				mqqShare = function(type) {
+//					var title, url, imgUrl, to_app, qqbrowerVersion,
+//						config = window.article_config;
+//					if(type === 'friend') {
+//						//Statistics.addStatistics('000022_weixin_QQMB_sharefriend');
+//						to_app = 1;
+//					} else {
+//						//Statistics.addStatistics('000022_weixin_QQMB_sharefriends'); 
+//						to_app = 8;
+//					}
+//					title = config.stitle;
+//					imgUrl = config.simg;
+//					url = config.surl;
+//					if(url.indexOf('?') > 0) {
+//						url += '&_once_=000022_weixin_QQMB_back';
+//					} else {
+//						url += '?_once_=000022_weixin_QQMB_back';
+//					}
+//					weixinParams = { title: title, url: url, img_url: imgUrl, to_app: to_app };
+//					if(!isAndroid) {
+//						handleShareWeixinNewQQbrower();
+//					} else {
+//						if(getQQbrowerVersion() >= 54) {
+//							handleShareWeixinNewQQbrower();
+//						} else {
+//							wxShare().init({ title: title, url: url, imgUrl: imgUrl, to_app: to_app });
+//						}
+//					}
+//				};
+//
+//			window.mqqShare = mqqShare;
+//			window.newWxShareLoad = newWxShareLoad;
+//		}());
+
+//		// 微信分享数据
+//		window.weixinShareData = {
+//			"img_url": window.article_config.simg,
+//			"link": window.article_config.surl,
+//			"title": window.article_config.stitle,
+//			"desc": window.article_config.scontent
+//		};
+		function weixinshare(){
+			$("#mcover", parent.document).remove()
+			var html='<div id="mcover" onclick="$(\'#mcover\').hide();"><img src="http://img0.zz91.com/zz91/mobile/images/guide.png" /></div>'
+			$("body", parent.document).append(html);
+			$("#mcover", parent.document).show();
+			parent.layer.closeAll();
+		}
+		var config = window.article_config;
+		function sharefunction() {
+			wx.onMenuShareAppMessage({
+				title: window.article_config.stitle,
+				desc: window.article_config.scontent,
+				link: window.article_config.surl,
+				imgUrl: window.article_config.simg,
+				trigger: function(res) {
+					//$('#mcover').show();
+				},
+				success: function(res) {
+					layer.msg("分享成功。");
+					$('#mcover').hide();
+				},
+				cancel: function(res) {
+					//alert('已取消');
+				},
+				fail: function(res) {
+					//alert(JSON.stringify(res));
+				}
+			});
+			wx.onMenuShareTimeline({
+				title: window.article_config.stitle,
+				desc: window.article_config.scontent,
+				link: window.article_config.surl,
+				imgUrl: window.article_config.simg,
+				trigger: function(res) {
+					//$('#mcover').show();
+				},
+				success: function(res) {
+					layer.msg("分享成功。");
+					$('#mcover').hide();
+				},
+				cancel: function(res) {
+					//alert('已取消');
+				},
+				fail: function(res) {
+					//alert(JSON.stringify(res));
+				}
+			});
+		}
+//		function ucshare(obj, platform) {
+//			var title = config.stitle;
+//			var content = config.scontent;
+//			var url = config.surl;
+//			var getPos = {
+//				getTop: function(e) {
+//					var offset = e.offsetTop;
+//					if(e.offsetParent != null) offset += getPos.getTop(e.offsetParent);
+//					return offset;
+//				},
+//				getLeft: function(e) {
+//					var offset = e.offsetLeft;
+//					if(e.offsetParent != null) offset += getPos.getLeft(e.offsetParent);
+//					return offset;
+//				},
+//				getCss3offsetTop: function(e) {
+//					var css3offset = getComputedStyle(e, null).webkitTransform;
+//					if(css3offset == "none") {
+//						var css3offsetTop = 0;
+//					} else { //存在CSS3属性
+//						var css3offsetTop = parseInt(css3offset.split(",")[5].replace(")", ""))
+//					}
+//					if(e.parentNode.tagName != "BODY") css3offsetTop += getPos.getCss3offsetTop(e.parentNode);
+//					return css3offsetTop;
+//				},
+//				getCss3offsetLeft: function(e) {
+//					var css3offset = getComputedStyle(e, null).webkitTransform;
+//					if(css3offset == "none") {
+//						var css3offsetLeft = 0;
+//					} else { //存在CSS3属性
+//						var css3offsetLeft = parseInt(css3offset.split(",")[4])
+//					}
+//					if(e.parentNode.tagName != "BODY") css3offsetLeft += getPos.getCss3offsetLeft(e.parentNode);
+//					return css3offsetLeft;
+//				},
+//				getNodeInfoById: function(e) {
+//					var myNode = document.getElementById(e);
+//					if(myNode) {
+//						var pos = [getPos.getLeft(myNode) + getPos.getCss3offsetLeft(myNode), getPos.getTop(myNode) + getPos.getCss3offsetTop(myNode), myNode.offsetWidth, myNode.offsetHeight]
+//						return(pos)
+//					} else {
+//						return ""
+//					}
+//				}
+//			}
+//
+//			if(typeof(ucweb) != "undefined") {
+//				var UCBrowserText = ucweb.startRequest("shell.page_share", [title, content, url, platform, '', title, getPos.getNodeInfoById(obj)]);
+//				//var UCBrowserText = ucweb.startRequest("shell.page_share", ['', '使用UC浏览器分享js API', 'http://wap.uc.cn', '', 'invisible:QQ,Qzone', 'UC浏览器','']);
+//			} else if(typeof(ucbrowser) != "undefined") {
+//
+//				if(platform == _platforms.sweibo[0]) {
+//					platform = _ucPlatName.iweibo;
+//				} else if(platform == _platforms.friend[0]) {
+//					platform = _ucPlatName.ifriend;
+//					url += _frompre + "from=" + _fromPlat.ucfriend;
+//				} else if(platform == _platforms.fsircle[0]) {
+//					platform = _ucPlatName.ifcircle;
+//					url += _frompre + "from=" + _fromPlat.ucweichat;
+//				}
+//
+//				ucbrowser.web_share(title, content, url, platform, '', '@ZZ91再生网', obj); //title 指html的title
+//				//ucbrowser.web_share('title', 'content', 'url', 'platform', 'disablePlatform', 'source', 'htmlID');
+//			} else {
+//				//alert("sorry,your browser version not support!");
+//			}
+//		}
+
+		function sogushare() {
+			void(SogouMse.Utility.shareWithInfo({
+				shareTitle: config.stitle,
+				shareContent: config.scontent,
+				shareUrl: config.surl,
+				shareImageUrl: config.simg,
+				shareType: '4'
+			}));
+		}
+		$(function() {
+			//newWxShareLoad();
+			var ua = navigator.userAgent.toLowerCase();
+			//微信浏览器分享
+			if(ua.match(/MicroMessenger/i)=="micromessenger") {
+				wx.config({
+					debug: false,
+					appId: '{{appid}}',
+					timestamp: {{timestamp}},
+					nonceStr: '{{nonceStr}}',
+					signature: '{{signature}}',
+					jsApiList: [
+						'checkJsApi',
+						'onMenuShareTimeline',
+						'onMenuShareAppMessage',
+						'startRecord',
+						'stopRecord',
+						'onVoiceRecordEnd',
+						'playVoice',
+						'uploadVoice',
+						'downloadVoice',
+					]
+				});
+				sharefunction();
+			}
+			//百度分享设置
+			window._bd_share_config = { 
+				"common": {
+					"bdSnsKey": {}, 
+					"bdText": window.article_config.stitle,
+					"bdDesc":window.article_config.scontent,
+					"bdUrl":window.article_config.surl,
+					"bdPic": window.article_config.simg, 
+					"bdMini": "1", 
+					"bdMiniList": false, 
+					"bdStyle": "1", 
+					"bdSize": "32" 
+				}, "share": {} };
+			with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+
+			if(ua.indexOf("sogoumobilebrowser") > -1) {
+				$("#a_sougou_wxin,#a_sougou_friend").show();
+			} else if(ua.indexOf("micromessenger") > -1) {
+				$("#a_wx_wxin,#a_wx_friend").show();
+			} else if(ua.indexOf("ucbrowser") > -1) {
+				$("#a_uc_wxin,#a_uc_friend").show();
+			} else if(ua.indexOf("mqqbrowser") > -1) {
+				$("#a_qq_wxin,#a_qq_friend").show();
+			}
+			//$("#a_wx_wxin,#a_wx_friend").show();
+			if(ua.match(/MicroMessenger/i)=="micromessenger") {
+				sharefunction();
+			}else{
+				var sconfig = {
+		            url:window.article_config.surl,
+		            title:window.article_config.stitle,
+		            desc:window.article_config.scontent,
+		            img:window.article_config.simg,
+		            img_title:window.article_config.stitle,
+		            from:'ZZ91再生网'
+		        };
+		        var share_obj = new nativeShare('nativeShare',sconfig);
+		        var bLevel = {
+			        qq: {forbid: 0, lower: 1, higher: 2},
+			        uc: {forbid: 0, allow: 1}
+			    };
+			    var UA = navigator.appVersion;
+			    var isqqBrowser = (UA.split("MQQBrowser/").length > 1) ? bLevel.qq.higher : bLevel.qq.forbid;
+			    var isucBrowser = (UA.split("UCBrowser/").length > 1) ? bLevel.uc.allow : bLevel.uc.forbid;
+			    if (isqqBrowser || isucBrowser){
+			    	$(".box").hide();
+			    }
+			}
+		});
+	</script>
+	{%include 'aui/bottom.html'%}
+	</body>
+</html>

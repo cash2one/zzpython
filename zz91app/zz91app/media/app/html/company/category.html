@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>产品类目</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/trade/product-category.css"/>
+		<style>
+		html, body {
+            background: transparent;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+    		overflow: hidden;
+        }
+        .product-list-class span{
+        	background-color:#fff;
+        }
+        .category li{
+        	height:auto;
+        	line-height:35px;
+        	padding-top: 0px;
+        	border-top: 0px solid #fff;
+        	padding:5px;
+        	border-bottom: 1px solid #c5c5c5;
+        }
+		</style>
+	</head>
+	<body>
+		<ul class="category" style="overflow: auto;position: absolute;width:32%;height:auto;bottom:80px;top:0px;left:0px;z-index:2000">
+			<li code="1000">
+				<p>
+					废金属
+				</p>
+			</li>
+			<li code="1001">
+				<p>
+					废塑料
+				</p>
+			</li>
+			<li code="1003">
+				<p>
+					废纺织品
+				</p>
+			</li>
+			<li code="1004">
+				<p>
+					废纸
+				</p>
+			</li>
+			<li code="1007">
+				<p>
+					二手设备
+				</p>
+			</li>
+			<li code="1005">
+				<p>
+					电子电器
+				</p>
+			</li>
+			<li code="1002">
+				<p>
+					橡胶轮胎
+				</p>
+			</li>
+			<li code="1006">
+				<p>
+					废玻璃
+				</p>
+			</li>
+			<li code="1009">
+				<p>
+					服务
+				</p>
+			</li>
+			<li code="1008">
+				<p>
+					其他废料
+				</p>
+			</li>
+		</ul>
+		<div style="padding-left: 32%;overflow: auto;position: absolute;bottom:80px;width:100%;top:0px;">
+			<div class="product-list" style="background-color: #f2f2f2;margin-left:0px;margin-right:0px;padding-left:10px">
+				<!-- <div class="product-list-class">
+					<h5>废钢铁</h5>
+					<span>废钢</span>
+					<span>废铁</span>
+					<span>废钢铁</span>
+				</div>	 -->
+			</div>
+		</div>
+		<div style="position: absolute;bottom:0px;height:80px;width:100%;z-index:3000" onclick="closeselect()"></div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script>
+		function closeselect(){
+			api.execScript({
+				name : 'company-list',
+				script : "keybackFun('1')"
+			});
+			api.closeFrame();
+		}
+		apiready = function() {
+			//$(".product-list").css("height",api.frameHeight);
+			$(".category li").on("click", function() {
+				var code = $(this).attr("code");
+				ajaxInfo(code);
+				$(".product-list").show();
+				$(".click-li").removeClass("click-li");
+				$(this).addClass("click-li");
+			})
+			$(".product-list").on("click","span",function() {
+				
+				//zzalert($(this).text())
+				closeselect();
+				api.execScript({
+					name : 'company-list',
+					frameName : 'company-list_',
+					script : "searchkeywords('"+$(this).text()+"')"
+				});
+				api.execScript({
+					name : 'company-list',
+					script : "xzleimu('"+$(this).text()+"')"
+				});
+				
+				//var label_hex = $(this).attr("label_hex")
+				//var pageParam = {
+				//	type : "trade-list",
+				//	label_hex:label_hex
+				//};
+				//openWin("trade-list", "../trade/trade-list.html", pageParam);
+			})
+			$(".product-list").on("click","h5",function() {
+				closeselect();
+				api.execScript({
+					name : 'company-list',
+					frameName : 'company-list_',
+					script : "searchkeywords('"+$(this).text()+"')"
+				});
+				
+				//var label_hex = $(this).attr("label_hex")
+				//var pageParam = {
+				//	type : "trade-list",
+				//	label_hex:label_hex
+				//};
+				//openWin("trade-list", "../trade/trade-list.html", pageParam);
+			})
+			//ajaxInfo(1000);
+			var $body = $api.dom('body');
+			$api.addEvt($body, 'click', function(e){
+		        if(e.target == $body){
+		            closeselect();
+		        }else{
+		            e.stopPropagation();
+		        }
+		    });
+		};
+		function ajaxInfo(code){
+			api.showProgress({title:'加载中',modal:false});
+			api.ajax({
+		        url : hosturl + 'category/?code='+ code +'&type=1&datatype=json',
+		        method : 'get',
+		        timeout : 30,
+		        dataType : 'json',
+		        returnAll : false
+		    }, function(ret, err) {
+		        if (ret) {
+		        	var listHtml = "";
+		        	var allHtml = "";
+		            $.each(ret,function(index,item){
+		            	listHtml = "<h5 label_hex='"+ item.label_hex +"'>"+ item.label +"</h5>";
+		            	$.each(item.catelist,function(i,catelist){
+		            		listHtml =listHtml +"<span label_hex='"+ catelist.label_hex +"'>"+ catelist.label +"</span>";
+		            	})
+		            	listHtml = "<div class='product-list-class'>" + listHtml + "</div>";
+		            	allHtml +=listHtml;
+		            })
+		            $(".product-list").html(allHtml)
+		            api.hideProgress();
+		        } else {
+		        	if(err){
+						saveerrlog(err.msg);
+					}
+		        };
+		    });
+		}
+	</script>
+</html>

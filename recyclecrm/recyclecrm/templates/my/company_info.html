@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>淘再生-再生商客</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://b.zz91.com/comm/js/comm.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_104910_mwwdphx18v5kx1or.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/recyclecrm/css/chapman.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/recyclecrm/css/chapman-t.css"/>
+	</head>
+	<body>
+		<div style="height:48px;">
+			<header class="aui-bar aui-bar-nav zz-header aui-bg-success">
+				<a class="aui-pull-left" href="javascript:history.back(-1)">
+			        <span class="aui-iconfont aui-icon-left"></span>
+			    </a>
+			    <div class="aui-title">
+			    	公司资料
+			    </div>
+			</header>
+		</div>
+		<form action="/crm/my/compinfo_save.html" method="post" id="form">
+		<div class="aui-content aui-card aui-margin-t-15 aui-margin-b-0">       
+		    <div class="aui-form">
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">公司名称：</span>
+		            <input type="text" class="aui-input" name="name" value="{{result.name}}"/>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">主营行业：</span>
+		            <div class="aui-arrow-right">
+			            <input type="text" class="aui-input" disabled />
+		            </div>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区：</span>
+		            <div class="aui-arrow-right">
+			            <input type="text" class="aui-input" disabled />
+		            </div>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</span>
+		            <input type="text" class="aui-input" name="address" value="{{result.address}}"/>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">公司电话：</span>
+		            <input type="text" class="aui-input" name="tel" value="{{result.tel}}"/>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">公司传真：</span>
+		            <input type="text" class="aui-input" name="fax" value="{{result.fax}}"/>
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;编：</span>
+		            <input type="text" class="aui-input" name="zip" value="{{result.zip}}"/>
+		        </div>
+		        <div class="aui-input-row aui-padded-10">
+		            <p class="aui-text-center main-color aui-margin-b-10">主营业务</p>
+		            <textarea class="aui-font-size-18 aui-margin-b-0" name="business" rows="5">{{result.business}}</textarea>
+		        </div>
+		    </div>
+		    <input type="hidden" name="company_id" value="{{company_id}}" />
+		</div>
+		</form>
+		
+		<div class="aui-padded-15">
+		    <div class="aui-btn aui-btn-block aui-btn-success aui-padded-10" onclick="Submit()">确认</div>
+		</div>
+	    <script>
+	    	function Submit(){
+	    		$('#form').submit();
+	    	}
+	    </script>
+	</body>
+</html>

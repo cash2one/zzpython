@@ -1,0 +1,384 @@
+em,em strong {
+	font-style:italic;
+}
+strong,strong em {
+	font-weight:700;
+}
+.progress-bar,.percent-bar {
+	background:url(http://a.tbcdn.cn/app/tss/img/progressbar.png) no-repeat;
+}
+.question-item {
+	background:url(http://a.tbcdn.cn/app/tss/img/line.png) top repeat-x;
+}
+#logo .sub-logo {
+	background:url(http://a.tbcdn.cn/app/tss/img/logo.png);
+	margin-left:0;
+}
+.cal-icon {
+	background:url(http://a.tbcdn.cn/app/tss/img/calender.gif) 0 3px no-repeat;
+}
+.msg .tips {
+	background:url(http://a.tbcdn.cn/app/tss/img/tips.png) 5px 0 no-repeat;
+}
+.survey-hd h1 {
+	line-height:100%;
+	padding:20px 0 10px;
+	font-size:24px;
+	font-family:"simhei",Arial,Helvetica,sans-serif;
+}
+.survey-hd {
+	position:relative;
+	overflow:hidden;
+}
+.survey-hd .describe {
+	padding:5px 190px 10px 0;
+	text-indent:2em;
+}
+.pagenav {
+	position:absolute;
+	right:0;
+	bottom:41px;
+	color:#9D9D9D;
+}
+a:focus {
+	outline:0;
+}
+.ac {
+	background-color:#FCF8BC;
+}
+.progress-bar {
+	height:21px;
+	padding-left:4px;
+	margin:0 0 10px;
+	line-height:20px;
+	color:#fff;
+}
+.percent-bar {
+	height:21px;
+	text-align:right;
+	overflow:hidden;
+	background-position:right -25px;
+	background-color:#f60;
+}
+.survey-hd,.box,.question-wrap,.question-item,.question-item .question-content {
+	overflow:hidden;
+	zoom:1;
+}
+.question-item .question-content div {
+	zoom:1;
+}
+.box {
+	margin-bottom:10px;
+}
+.box .bd {
+	background-color:#F2F2F2;
+	padding:10px 10px 30px;
+}
+.box .bd input {
+	margin-right:5px;
+}
+.box .bd sup {
+	color:red;
+}
+.question-wrap {
+	padding:0 10px;
+	background-color:#F2F2F2;
+}
+.question-item {
+	padding:10px 0;
+	margin-top:-2px;
+	overflow:visible;
+	zoom:1;
+}
+.question-item .msg .tips {
+	color:#aaa;
+}
+.question-item textarea,.question-item .text-input {
+	width:400px;
+	margin-bottom:3px;
+}
+.question-item-first {
+	border-top-width:0;
+}
+.question-item-last {
+	border-bottom-width:0;
+}
+.question-item .question-content {
+	padding:10px 20px 0;
+}
+.col-1 div {
+	min-height:36px;
+}
+.col-2 div,.col-3 div,.col-4 div {
+	float:left;
+}
+.col-1 div {
+	clear:both;
+}
+.col-2 div {
+	width:50%;
+}
+.col-3 div {
+	width:33%;
+}
+.col-4 div {
+	width:25%;
+}
+.question-content label {
+	display:block;
+	padding:8px 0;
+	float:left;
+	width:100%;
+}
+.col-2 label,.col-3 label,.col-4 label {
+	height:20px;
+	line-height:28px;
+	overflow:hidden;
+}
+.question-item a img {
+	border:2px solid #fff;
+}
+.question-item a:hover img {
+	border:2px solid #f60;
+}
+.type-1 .img-option,.type-2 .img-option,.type-3 .img-option,.type-4 .img-option {
+	height:auto;
+	overflow:hidden;
+	padding-left:26px;
+	padding-bottom:20px;
+	float:left;
+}
+.img-question {
+	margin-left:-26px;
+}
+.col-1 .img-option {
+	width:858px;
+	clear:both;
+}
+.col-2 .img-option {
+	width:414px;
+}
+.col-3 .img-option {
+	width:274px;
+}
+.col-4 .img-option {
+	width:194px;
+}
+.type-2 .img-option {
+	height:287px;
+}
+.type-3 .img-option {
+	height:197px;
+}
+.type-4 .img-option {
+	height:147px;
+}
+.type-1 img {
+	width:850px;
+	height:540px;
+}
+.type-2 img {
+	width:410px;
+	height:260px;
+}
+.type-3 img {
+	width:270px;
+	height:170px;
+}
+.type-4 img {
+	width:190px;
+	height:120px;
+}
+.col-3 .img-option {
+	padding-left:21px;
+}
+.question-item a img.selected-img {
+	border:2px solid #f00;
+}
+.question-item .img-question .other {
+	width:168px;
+}
+.question-item div.img-question label {
+	display:block;
+	width:168px;
+	height:auto;
+	float:none;
+	padding:0;
+}
+.img-question input {
+	margin-bottom:5px;
+	display:block;
+	clear:both;
+}
+.img-question .other {
+	width:auto;
+	padding-left:25px;
+	padding-bottom:8px;
+	float:left;
+}
+.img-question .other label {
+	float:left;
+}
+.img-question div.msg {
+	padding-top:15px;
+	min-height:25px;
+	height:25px;
+	overflow:hidden;
+	margin-left:20px;
+}
+.question-content .other label {
+	display:inline;
+	width:auto;
+}
+.question-content .other .text {
+	margin-top:8px;
+	margin-bottom:0;
+}
+.other .text {
+	margin-left:20px;
+}
+.col-1 .other .text {
+	width:400px;
+}
+.img-question .other .text {
+	margin-top:-18px;
+	margin-left:40px;
+	clear:left;
+}
+.table-question {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+.table-question td {
+	height:36px;
+}
+.table-question label {
+	display:inline;
+}
+.table-question .other .text {
+	margin-left:0;
+}
+.remark {
+	width:400px;
+}
+.order {
+	width:400px;
+}
+.time,.cal-icon {
+	float:left;
+}
+.time {
+	width:100px;
+}
+.cal-icon {
+	height:18px;
+	padding-left:20px;
+	cursor:pointer;
+	text-indent:-23556px;
+}
+.table-square {
+	border:1px solid #D8D8D8;
+	border-collapse:collapse;
+	border-spacing:0;
+}
+.table-square .odd {
+	background:#F8F8F8;
+}
+.table-square th,.table-square td {
+	border-bottom:1px solid #D8D8D8;
+	font-size:12px;
+	line-height:18px;
+	padding:7px;
+	text-align:center;
+	vertical-align:middle;
+}
+.table-square td {
+	width:70px;
+}
+.table-square td {
+	padding:0;
+	vertical-align:middle;
+}
+.table-square thead th,.table-square thead td {
+	background:#6C6C6C;
+	color:#fff;
+}
+.survey-ft,.survey-ft .pagenav-bottom {
+	position:relative;
+	overflow:hidden;
+	zoom:1;
+	margin:10px 0 18px;
+}
+.survey-ft .pagenav-bottom {
+	padding-right:120px;
+}
+.survey-ft input {
+	float:right;
+}
+.survey-ft .pagenav {
+	bottom:50px;
+}
+.unable {
+	color:#ccc;
+}
+input.input-disable {
+	background:#EBEBE4;
+	display:none;
+}
+.disable {
+	background:#EBEBE4;
+}
+#nextPageInfo {
+	padding-right:30px;
+	float:right;
+}
+.msg {
+	width:auto!important;
+}
+.submit {
+	width:140px;
+}
+.long-btn {
+	margin-right:320px;
+}
+#submitForm {
+	float:right;
+}
+.success {
+	border:1px solid #eee;
+	padding:50px;
+}
+.content-welcome {
+	padding:20px 0 0;
+}
+.content-welcome .box .bd {
+	padding:20px 50px 50px;
+}
+h1#head {
+	text-align:center;
+	font:bold 24px/100% "simhei",Arial,Helvetica,sans-serif;
+	padding:20px 0 10px;
+}
+.content-welcome .question-des {
+	font-size:14px;
+	line-height:170%;
+	padding:15px;
+	text-indent:2em;
+}
+.pagenav-bottom {
+	margin:20px 0;
+	text-align:center;
+}
+.start {
+	margin-right:20px;
+}
+.img-question .other .text {
+	*margin-left:40px;
+}
+.img-question div.msg {
+	*padding-top:23px;
+	*width:190px!important;
+}
+.col-1 div,.col-2 div,.col-3 div,.col-4 div {
+	_height:36px;
+}

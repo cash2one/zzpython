@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>公司简介</title>
+	<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/trade/firm.css"/>
+</head>
+<body>
+<div class="box">
+	<div class="aui-toast" id="loading">
+        <div class="aui-toast-loading"></div>
+        <div class="aui-toast-content">加载中</div>
+    </div>
+</div>
+<script id="info-list" type="text/html">
+	<div style="background-color: #fff;margin-bottom: 10px;">
+		<h2 class="firm-name">{{ d.compname }}</h2>
+		<div class="member-type">
+			<span class="color-green">会员类型：</span>{{ d.viptype.vipname }}
+		</div>
+	
+		<div class="member-type">
+			<span class="color-green">经营范围：</span>{{ d.business }}
+		</div>
+	</div>
+	<div style="background-color: #fff;margin-bottom: 10px;">
+		<div class="member-type">
+			<span class="color-green">公司简介：</span>{{ d.introduction }}
+		</div>
+	</div>
+	<div style="background-color: #fff;margin-bottom: 10px;">
+		<div class="member-type"><span class="color-green">联&nbsp;&nbsp;系&nbsp;&nbsp;人：</span>{{ d.contact }}</div>
+		<div class="member-type"><span class="color-green">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</span>{{ d.address }}</div>
+	</div>
+	</div>
+	</script>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript">
+apiready = function(){
+	ajaxInfo();
+}
+var dataload=true;
+function ajaxInfo(){
+	if (dataload==false){
+		return false;
+	}
+	dataload=false;
+	var id = api.pageParam.id;
+	var type = api.pageParam.type;
+	var url = hosturl + 'detail/?id='+ id +'&datatype=json'
+	if(type == "firm"){
+		url = hosturl + 'company/compinfo.html?forcid='+ id +'&datatype=json'
+	}
+	//api.showProgress({title:'加载中',modal:false});
+	api.ajax({
+        url : url,
+        method : 'get',
+        timeout : 30,
+        dataType : 'json',
+        returnAll : false
+    }, function(ret, err) {
+        if (ret) {
+        	var item = ret.list;
+        	if(type == "firm"){
+        		 item = ret;
+        	}
+        	var getTpl = $api.html($api.byId("info-list"));
+        	laytpl(getTpl).render(item, function(html){
+    			$(".box").html(html)
+			});
+         	api.hideProgress();
+         	var Pid = ret.id,forcompany_id = ret.forcompany_id;
+         	$(".liuy").on("click",function(){
+         		var pageParam = {
+		      		wintitle:"给我留言",
+		      		type:"huifu",
+		      		Pid:Pid,
+		      		forcompany_id:forcompany_id,
+		      		be_inquired_type:1
+		    	};
+		    	openWin("huifu","../trade/huifu.html",pageParam);
+         	})
+         	$(".shouc").on("click",function(){
+         		if(type == "firm"){
+         			ret.forcompany_id = id;
+         		}
+		    	var favorite_type_code = 10091002;
+		    	var data ={
+		    		company_id:UserInfo.memberID(),
+		    		usertoken:UserInfo.token(),
+		    		appsystem:api.systemType,
+		    		datatype:"json",
+		    		favorite_type_code:favorite_type_code,
+		    		forcompany_id: ret.forcompany_id,
+		    		content_id:id,
+		    		title:ret.compname,
+		    		pdtid:0,
+		    		products_type_code:0
+		    	};
+		    	shoucInfo(data);
+		    })
+		    
+        } else {
+        };
+        dataload=true;
+    });
+}
+
+function shoucInfo(data){
+	if (dataload==false){
+		return false;
+	}
+	dataload=false;
+	api.ajax({
+        url : hosturl + 'favorite/',
+        method : 'post',
+        timeout : 30,
+        dataType : 'json',
+        returnAll : false,
+        data:{
+			values: data
+		}
+    }, function(ret, err) {
+    	// zzalert(JSON.stringify(ret))
+        if (ret) {
+        	 if (ret.err == "true"){
+        	 	api.alert({
+				    title: '收藏失败',
+				    msg: ret.errkey,
+				    buttons:['确定']
+				},function(ret,err){
+				})
+        	 }else{
+        	 	api.alert({
+				    title: '收藏成功',
+				    msg: "收藏成功",
+				    buttons:['确定']
+				},function(ret,err){
+				})
+        	 }
+        } else {
+        };
+        dataload=true;
+    });
+}
+</script>
+</html>

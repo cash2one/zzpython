@@ -1,0 +1,19 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="arg.css" />
+</head>
+<body>
+{%include "head.html"%}
+
+<br />
+<table cellpadding="3">
+{%for srt in listall%}
+<tr align="center"><td>{{srt.id}}</td><td><a href="articaldetail{{srt.id}}.htm" target="_blank">{{srt.title}}</a></td><td>{{srt.gmt_created}}</td></tr>
+{%endfor%}
+</table>
+<br />
+
+
+
+</body>
+</html>

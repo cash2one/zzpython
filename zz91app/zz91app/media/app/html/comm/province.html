@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/trade/product-category.css"/>
+		<style>
+			html, body {
+				background: transparent;
+				height: 100%;
+				background: rgba(0,0,0,0.1);
+				overflow: hidden;
+			}
+			#aui-header {
+				position: absolute;
+				top: 40px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				padding-top: 0px;
+			}
+			.type-small {
+				background-color: #fff;
+				border-top: none;
+				overflow: auto;
+				position: absolute;
+				bottom: 40px;
+				top: 85px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				color: #666
+			}
+			.product-list-class span {
+				background-color: #fff;
+			}
+			.category li {
+				height: auto;
+				line-height: 35px;
+				padding-top: 0px;
+				border-top: 0px solid #fff;
+				padding: 5px;
+				border-bottom: 1px solid #c5c5c5;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-success" id="aui-header">
+			<a class="aui-btn aui-btn-success aui-pull-left"> <span class="aui-iconfont aui-icon-info"></span> </a>
+			<a class="aui-btn aui-btn-success aui-pull-right" tapmode onclick="closeselect()"> <span class="aui-iconfont aui-icon-roundclosefill"></span> </a>
+			<div class="aui-title">
+				请选择城市
+			</div>
+		</header>
+		<div class="type-small">
+			<ul class="category" style="overflow: auto;position: absolute;width:25%;height:100%;top:0px;left:0px;z-index:2000">
+				
+			</ul>
+			<div style="padding-left: 25%;overflow: auto;position: absolute;bottom:80px;width:100%;top:0px;height:100%">
+				<div class="product-list" style="background-color: #f2f2f2;margin-left:0px;margin-right:0px;padding-left:10px">
+				</div>
+			</div>
+		</div>
+		<div style="position: absolute;bottom:0px;height:80px;width:100%" onclick="closeselect()"></div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/reborn.js"></script>
+	
+	<script>
+		function closeselect(){
+			api.execScript({
+				name : api.winName,
+				script : "keybackFun('1')"
+			});
+			api.closeFrame();
+		}
+		var citylist;
+		apiready = function() {
+			provinceinfo();
+			var $body = $api.dom('body');
+			$api.addEvt($body, 'click', function(e){
+		        if(e.target == $body){
+		            closeselect();
+		        }else{
+		            e.stopPropagation();
+		        }
+		    });
+		};
+		//省份城市
+		function provinceinfo(){
+			api.readFile({
+			    path: 'widget://res/province.json'
+			}, function(ret, err){
+			    if(ret.status){
+			        var data = JSON.parse(ret.data);
+			        citylist=data;
+			        var plist=data.child;
+			        var phtml="";
+			        $.each(plist, function(i, item) {
+			        	phtml=phtml+'<li code="'+item.code+'" index='+i.toString()+'><p>'+item.label+'</p></li>'
+					});
+					phtml=phtml+'<li code=99999 index=99999><p>国外</p></li>'
+					$(".category").html(phtml)
+					
+					$(".category li").on("click", function() {
+						var code = $(this).attr("index");
+						if (code==99999){
+							ajaxInfo(code,1);
+						}else{
+							ajaxInfo(code,0);
+						}
+						$(".product-list").show();
+						$(".click-li").removeClass("click-li");
+						$(this).addClass("click-li");
+					})
+					$(".product-list").on("click","span",function() {
+						api.execScript({
+							name : api.winName,
+							frameName : api.winName+'_',
+							script : "getprovincecode('"+$(this).attr("title")+"','"+$(this).attr("code")+"')"
+						});
+						closeselect();
+					})
+					$(".product-list").on("click","h5",function() {
+						api.execScript({
+							name : api.winName,
+							frameName : api.winName+'_',
+							script : "getprovincecode('"+$(this).attr("title")+"','"+$(this).attr("code")+"')"
+						});
+						closeselect();
+					})
+			    }
+			});
+		}
+		//
+		function ajaxInfo(code,reborn){
+			api.showProgress({title:'加载中',modal:false});
+        	var listHtml = "";
+        	var allHtml = "";
+        	if (reborn==1){
+        		mycitylist=rebornlist;
+        		var provincetext1="国外";
+        	}else{
+        		mycitylist=citylist.child[parseInt(code)].child;
+        		var provincetext1=citylist.child[parseInt(code)].label;
+        	}
+            $.each(mycitylist,function(index,item){
+            	var provincetext2=provincetext1+" -> "+item.label;
+            	
+            	listHtml = "<h5 index='"+ index.toString() +"' code='"+item.code.toString()+"' title='"+provincetext2+"'>"+ item.label +"</h5>";
+            	
+            	if (item.child){
+	            	$.each(item.child,function(i,catelist){
+	            		var provincetext3=provincetext2+" -> "+catelist.label;
+	            		listHtml =listHtml +"<span index='"+ i.toString() +"' code='"+catelist.code.toString()+"' title='"+provincetext3+"'>"+ catelist.label +"</span>";
+	            	})
+            	}
+            	listHtml = "<div class='product-list-class'>" + listHtml + "</div>";
+            	allHtml +=listHtml;
+            })
+            $(".product-list").html(allHtml)
+            api.hideProgress();
+		}
+	</script>
+</html>

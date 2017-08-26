@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+<title>ALIPAY</title>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center"><img src="http://www.zz91.com/hkfs/images/z_logo.png"></td>
+    <td align="center">
+    <form action="https://shenghuo.alipay.com/send/payment/fill.htm" method="post" target="_blank" accept-charset="GBK">
+    <input name="optEmail" type="hidden" value="zhifu@asto-inc.com" />
+    <input name="payAmount" type="hidden" value="{{total_fee}}" />
+    <input name="title" type="hidden" value="{{mobile}}" placeholder="{{mobile}}" />
+    <input name="memo" type="hidden" value="{{subject}}" placeholder="{{subject}}" />
+    <input name="pay" type="image" value="给我付款" src="http://www.zz91.com/hkfs/images/pay.jpg" />
+    </form>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><img src="http://img0.zz91.com/zz91/images/zhifu.jpg"></td>
+    <td align="center"><a href="javascript:document.getElementById('ybpay').submit()" target="_blank"><img src="http://img0.zz91.com/zz91/images/pay.jpg" border="0"></a>
+    
+    </td>
+  </tr>
+</table>
+<center><br /><br /><div id="paysuc">支付成功后拨打客服电话：0571-56612345</div></center>
+<form method="post" action="http://webpay.zz91.com/req.php" id="ybpay" target="_blank" accept-charset="GBK">
+<table width="100%" border="0" align="center" cellpadding="5" cellspacing="1" style="display:none">
+
+			
+		  <tr>
+		  	<td align="left" width="30%">&nbsp;&nbsp;商户订单号</td>
+		  	<td align="left">&nbsp;&nbsp;<input size="50" type="text" name="p2_Order" id="p2_Order" value="{{out_trade_no}}" /></td>
+      </tr>
+		  <tr>
+		  	<td align="left">&nbsp;&nbsp;支付金额</td>
+		  	<td align="left">&nbsp;&nbsp;<input size="50" type="text" name="p3_Amt" id="p3_Amt" value="{{total_fee}}" />&nbsp;<span style="color:#FF0000;font-weight:100;">*</span></td>
+      </tr>
+		  <tr>
+		  	<td align="left">&nbsp;&nbsp;商品名称</td>
+		  	<td align="left">&nbsp;&nbsp;<input size="50" type="text" name="p5_Pid" id="p5_Pid"  value="{{subject}}"/></td>
+      </tr>
+		  <tr>
+		  	<td align="left">&nbsp;&nbsp;商品种类</td>
+		  	<td align="left">&nbsp;&nbsp;<input size="50" type="text" name="p6_Pcat" id="p6_Pcat"  value="producttype"/></td>
+      </tr>
+		  <tr>
+		  	<td align="left">&nbsp;&nbsp;商品描述</td>
+		  	<td align="left">&nbsp;&nbsp;<input size="50" type="text" name="p7_Pdesc" id="p7_Pdesc"  value="{{content}}"/></td>
+      </tr>
+		  <tr>
+		  	<td align="left">&nbsp;&nbsp;接收支付成功数据的地址</td>
+		  	<td align="left">&nbsp;&nbsp;<input size="50" type="text" name="p8_Url" id="p8_Url" value="http://about.zz91.com/zz91payreturn_url.html" />&nbsp;<span style="color:#FF0000;font-weight:100;">*</span></td>
+      </tr>
+		  <tr>
+		  	<td align="left">&nbsp;&nbsp;商户扩展信息</td>
+		  	<td align="left">&nbsp;&nbsp;<input size="50" type="text" name="pa_MP" id="pa_MP"  value="{{mobile}}{{contact}}"/></td>
+      </tr>
+		 
+		  <tr>
+		  	<td align="left">&nbsp;&nbsp;支付通道编码</td>
+		  	<td align="left">&nbsp;&nbsp;<input type="text" name="pd_FrpId" /><!--支付通道编码在易宝支付产品(HTML版)通用接口使用说明中-->
+      </tr>
+		  <tr>
+		  	<td align="left">&nbsp;</td>
+		  	<td align="left">&nbsp;&nbsp;<input type="submit" value="马上支付" /></td>
+      </tr>
+      </table></td>
+        </tr>
+      </table></form>
+</body>
+</html>

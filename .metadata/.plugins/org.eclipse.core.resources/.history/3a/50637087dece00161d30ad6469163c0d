@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <style>
+    	body{
+    		
+    	}
+    </style>
+</head>
+<body>
+	<div class="topdiv" onclick="pagetotop();"><span class="aui-iconfont aui-icon-top"></span></div>
+	<div class="nodata"><span class="aui-iconfont aui-icon-info" style="font-size:25px"></span>暂无相关数据</div>
+	<div class="nocontact">点击屏幕，重新加载</div>
+    <div class="aui-content">
+        <ul class="aui-list-view aui-in">
+            <li class="aui-list-view-cell aui-img">
+                <button class="aui-pull-right aui-btn-green">士大夫地方</button>
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>34人关注</p>
+                </div>
+            </li>
+            <li class="aui-list-view-cell aui-img">
+                <button class="aui-pull-right">士大夫地方</button>
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>34人关注</p>
+                </div>
+            </li>
+            <li class="aui-list-view-cell aui-img">
+                <button class="aui-pull-right">士大夫地方</button>
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>34人关注</p>
+                </div>
+            </li>
+            <li class="aui-list-view-cell aui-img">
+                <button class="aui-pull-right">士大夫地方</button>
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>34人关注</p>
+                </div>
+            </li>
+        </ul>
+        <script id="tags-list" type="text/html">
+        	<li class="aui-list-view-cell aui-img">
+                <button class="aui-pull-right aui-btn-green">士大夫地方</button>
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>34人关注</p>
+                </div>
+            </li>
+       	</script>
+    </div>
+    <div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;display:none'>上拉获取更多信息</div>
+    <div class="aui-searchbar-wrap" style="position: fixed;bottom: 0px;width: 100%;background-color: #E1E1E1">
+        <div class="aui-searchbar aui-border-radius" tapmode onclick="doSearch()">
+            <i class="aui-iconfont aui-icon-search"></i>
+            <div class="aui-searchbar-text">输入你感兴趣的关键词</div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/iscroll.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		
+	};
+	var dataload = true;
+	function ajaxinfo(){
+		if (dataload == false) {
+			return false;
+		}
+		dataload = false;
+		var typeid=api.pageParam.typeid;
+		loadingshow();
+		var url="/app/hot_tagslist.html?"+ (new Date()).getTime().toString();
+		var data={
+			
+		}
+		$(".nocontact").hide();
+		zzappajax("get",hosturl+url,data,function(ret){
+			var pageHtml = "";
+			pagecount=ret.pagecount;
+			$.each(ret.result, function(index, item) {
+				var getTpl = $api.html($api.byId("info-list-xiao"));
+				
+				laytpl(getTpl).render(item, function(html) {
+					pageHtml = pageHtml + html;
+				});
+			})
+			if (currPage == 1) {
+				if (pageHtml==""){
+            		$(".nodata").show();
+            		$(".la_more").hide();
+            	}else{
+            		$(".nodata").hide();
+            		$(".la_more").show();
+                }
+                $(".xiaonewslist").html(pageHtml);
+                api.pageUp({
+					'top' : true
+				});
+            }else{
+				$(".xiaonewslist").append(pageHtml);
+            }
+            if (pageHtml!=""){
+				currPage += 1;
+				$(".la_more").html("上拉获取更多信息");
+			}else{
+				$(".la_more").html("全部加载完毕");
+			}
+			api.refreshHeaderLoadDone();
+			dataload = true;
+			loadinghide()
+		},function(){
+			api.toast({
+				msg : '网络错误，请重试！',
+				duration : 2000,
+				location : 'bottom'
+			});
+			$(".nocontact").show();
+			dataload = true;
+			loadinghide()
+		})
+	}
+</script>
+</html>

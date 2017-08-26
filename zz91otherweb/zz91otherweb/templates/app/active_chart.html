@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+    <script src="chart/jquery-1.7.2.js"></script>
+    <script src="chart/flash.js"></script>
+<script>
+   	
+
+function getdata(datebegin,dateend){
+	datall=document.getElementById("ftype").value+','+datebegin+','+dateend+',{{t}}';
+   	jQuery(function($){
+	    $('#chart-container').flash({ 
+	       swf        : 'chart/beechart-line.swf?w=800&h=300',
+	       width      : 1000, 
+	       height     : 500, 
+	       flashvars  : { 
+	       		dataUrl : 'activecharturl.html?datall='+datall
+	       } 
+	    });
+	});
+}
+
+$(function(){
+       //run();
+     var interval;  
+	   function run() {  
+	      //interval = setInterval(chat, "1000");  
+	   }
+     
+     $("#closeChat").click(function(){  
+         clearTimeout(interval);  //关闭定时器  
+     })
+});
+function chat() {
+	var datebegin=document.getElementById("datebegin").value;
+	var dateend=document.getElementById("dateend").value;
+	
+	if (datebegin.length>0&dateend.length>0){
+   		getdata(datebegin,dateend);
+    }else{
+		datall=document.getElementById("ftype").value+','+datebegin+','+dateend+',{{t}}';
+		$('#chart-container').flash({ 
+	       swf        : 'chart/beechart-line.swf?w=800&h=300',
+	       width      : 1000, 
+	       height     : 500, 
+	       flashvars  : { 
+	       		dataUrl : 'activecharturl.html?datall='+datall
+	       } 
+    });
+   }
+ }
+</script>
+
+
+</head>
+<body>
+
+<table class="table table-bordered table-hover definewidth m10" >
+    <tr>
+    <th>
+    	<select name="ftype" id="ftype" style="width:170px">
+        {%if ftypename%}<option value="{{ftype}}">{{ftypename}}</option>{%endif%}
+        <option value="">--请选择</option>
+        <option value="1">活跃用户</option>
+        <option value="2">PV</option>
+        </select>&nbsp;&nbsp;
+        
+		<input class="Wdate" type="text" style="width:100px" name="gmt_begin" {%if gmt_begin%}value={{gmt_begin}}{%endif%} id="datebegin" onClick="WdatePicker()">
+		<input class="Wdate" type="text" style="width:100px" name="gmt_end" {%if gmt_end%}value={{gmt_end}}{%endif%} id="dateend" onClick="WdatePicker()">&nbsp;&nbsp;
+		<input class="btn btn-success" type="button" onclick="chat()" value="查询">
+    </th>
+    </tr>
+</table>
+
+<div id="chart-container"></div>
+<script>
+	chat()
+</script>
+</body>
+</html>

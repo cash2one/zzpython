@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>发布需求</title>
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link rel="stylesheet" type="text/css" href="http://m.zz91.com/css/floatlay.css" />
+		<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+		<title></title>
+		<style>
+			.clist h2{
+				text-align: center;
+				font-size: 14px;
+				line-height: 30px;
+				background-color: #E1E1E1;
+			}
+			.clist ul{
+				margin-bottom: 50px;
+			}
+			.clist ul li{
+				line-height: 30px;
+				border-bottom: solid 1px #EBDDCF;
+				padding: 10px;
+				font-size: 14px;
+				width: 35%;
+				float: left;
+				margin-left: 10px;
+				overflow: hidden;text-overflow: ellipsis; white-space: nowrap;
+			}
+			.clist ul li span{
+				width: 100%;
+			}
+			.button{
+				width: 100%;
+				text-align: center;
+				line-height: 30px;
+				background-color: #006600;
+				color: #fff;
+				position: fixed;
+				bottom: 0px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="clist">
+			{%for p in ordercategorylist%}
+			<h2>{{p.label}}</h2>
+			<ul>
+				{%for p2 in p.childlist%}
+				<li>
+					<input type="checkbox" id="check1" value="123" name="name"> <label for="check1">{{p2.title}}</label>
+				</li>
+				{%endfor%}
+			</ul>
+			<div class="cb"></div>
+			{%endfor%}
+			<br />
+		<br />
+		<br />
+		<br />
+		<div class="cb"></div>
+			<div class="button">确定选择</div>
+		</div>
+	</body>
+
+</html>

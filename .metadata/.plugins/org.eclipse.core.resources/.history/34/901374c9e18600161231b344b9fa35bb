@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <style>
+    	body{
+    		
+    	}
+    	.title{
+    		font-size:20px;
+    		text-align:center;
+    		height:50px;
+    		line-height:50px;
+    		font-weight:bold;
+    	}
+    	.price{
+    		line-height: 40px;
+    		padding-left:10px;
+    	}
+    	.price span{
+    		color:#ff0000
+    	}
+    	
+    	.main{
+    		line-height:30px;
+    		font-size:14px;
+    		margin-bottom:20px;
+    		padding:10px
+    	}
+    	.buybutton{
+    		position: fixed;
+    		bottom:0px;
+    		left:0px;
+    		border-radius:0px;
+    	}
+    </style>
+</head>
+<body>
+	
+	<div class="aui-content-padded">
+		<!--<div class="title">再生通服务</div>-->
+		<div class="price">价格：<span>￥ 3500元  / 年</span></div>
+		<div class="aui-line-x"></div>
+		<div class="main">
+		
+
+"再生通"会员服务是基于再生行业中小企业的原材料采购和产品推广需求而推出的一款网络营销服务。<br />
+
+六大核心服务：<br />
+
+全网信息任意查看<br />
+
+1500000优质再生行业商人信息一网打尽，直接联系达成合作<br />
+
+信息优先展示<br />
+
+排序靠前，搜索关键字，优先全面展示您的供求信息、联系方式<br />
+
+独立企业商铺<br />
+
+轻松打造精美商铺，集中展示公司好产品，全网专业推广，彰显企业实力<br />
+
+纸媒杂志推广<br />
+
+集中针对线下推广，覆盖全国主要废料市场，面向所有废料商人群体<br />
+
+移动端无“限”推广<br />
+
+手机和PC端同步，全新渠道，无线推广，无限商机<br />
+
+商务助理团队<br />
+
+私人商务助理，细心专业的服务，营销效果更明显，废料生意更轻松
+
+		<br />
+		<br /><span style="color:#999">注：购买后两个工作日内（节假日自动顺延）工作人员会联系您。</span>
+		</div>
+        <div class="aui-btn aui-btn-block aui-btn-success buybutton" tapmode>立即购买</div>
+    </div>
+    <input type="hidden" id="backvalue" value="">
+    <div style="height:80px"></div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+<script type="text/javascript">
+	apiready = function(){
+		var closeiosflag=$api.getStorage("closeiosflag");
+		if (!closeiosflag || closeiosflag==1){
+			$(".buybutton").hide();	
+		}
+		$(".buybutton").on("click", function() {
+			if (!havelogin()){
+				return false;
+			}
+			event.stopPropagation();
+			$aui.alert({
+				title : '',
+				msg : "确实要购买一年再生通吗？",
+				buttons : ['取消', '确定'],
+			}, function(ret) {
+				if (ret == 1) {
+					buyservice();
+				}
+			})
+		})
+	};
+	//购买再生通
+	function buyservice(){
+		api.showProgress({
+			title : '扣款中...',
+			modal : false
+		});
+		var company_id = UserInfo.memberID();
+		var usertoken = UserInfo.token();
+		var chk_value = $("#backvalue").val();
+		var data = {
+			paytype : '40',
+			baoming : chk_value,
+			company_id : company_id,
+			usertoken : usertoken,
+			appsystem : api.systemType,
+			datatype : 'json',
+			t : (new Date()).getTime().toString()
+		}
+		api.ajax({
+			url : hosturl + 'qianbao/qianbaopay.html',
+			method : 'get',
+			timeout : 30,
+			dataType : 'json',
+			returnAll : false,
+			data : {
+				values : data
+			}
+		}, function(ret, err) {
+			//zzalert(JSON.stringify(ret))
+			if (ret) {
+				if (ret.err == 'false') {
+					zzalert(ret.errtext);
+				}
+				if (ret.err == 'true' && ret.blanceflag == '0') {
+					yuebuzuFun();
+				}
+				if (ret.err == 'true' && ret.blanceflag == '1') {
+					zzalert(ret.errtext);
+				}
+				api.hideProgress();
+			} else {
+				api.hideProgress();
+				if(err){
+					saveerrlog(err.body);
+				}
+			};
+		});
+	}
+	function backvaluecheck(valu) {
+		$("#backvalue").val(valu);
+	}
+</script>
+<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

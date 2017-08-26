@@ -1,0 +1,68 @@
+<style>
+	.mui-left label img {width: 100%;}
+</style>
+<div id="slider" class="mui-slider">
+<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_leavewords/?sendtype=0&company_id={{company_id}}');">收到留言<span class="mui-badge mui-badge-success">{{alist1}}</span></a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_leavewords/?sendtype=1&company_id={{company_id}}');">发送的留言</a>
+</div>
+<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6" style="{%ifequal sendtype '1'%}margin-left: 50%;{%endifequal%}"></div>
+<ul class="mui-table-view">
+
+<div>
+		{%for list in qlist%}
+		<div class="mui-left" style="border-bottom:solid 1px #ccc;padding: 10px;">
+			<label>
+				{%ifequal list.is_viewed "0"%}
+	            <b><a href="/myrc_backquestion/?sendcom_id={{list.companyarray.company_id}}&inquired_id={{list.id}}">{{list.title}}</a></b>
+	            {%else%}
+	            <a href="/myrc_backquestion/?sendcom_id={{list.companyarray.company_id}}&inquired_id={{list.id}}">{{list.title}}</a>
+	            {%endifequal%}
+	            <p>
+	            	{{list.content|safe}}
+	            </p>
+	            {%ifequal sendtype '0'%}
+	            <p>留言者：<a href="/companyinfo/?forcid={{list.companyarray.company_id}}">{{list.companyarray.companyname}}</a> <br>留言时间：{{list.stime}}</p>
+	            <a href="/myrc_backquestion/?sendcom_id={{list.companyarray.company_id}}&inquired_id={{list.id}}" class="mui-btn-success mui-btn">我要回复</a>
+	            {%endifequal%}
+			</label>
+		</div>
+		{%endfor%}
+</div>
+
+</ul>
+{%ifequal listcount 0%}
+<div class="mui-content-padded" style="margin-top: 10px;"><ul class="mui-pager"><li>没有留言信息</li></ul></div>
+{%else%}
+<nav class="mui-bar mui-bar-tab" style="border-top: solid 1px #006600;text-align: center;">
+
+<div class="mui-content-padded" style="margin-top: 10px;">
+	<ul class="mui-pager">
+		{% if firstpage %}
+		<li>
+			<a href="javascript:loaddata('http://app.zz91.com/myrc_leavewords/?page={{prvpage}}&sendtype={{sendtype}}&company_id={{company_id}}','myrc_question')">
+				上一页
+			</a>
+		</li>
+		{%else%}
+		<li class="mui-disabled">
+			<span>上一页 </span>
+		</li>
+		{%endif%}
+		{% if lastpage%}
+		<li>
+			<a href="javascript:loaddata('http://app.zz91.com/myrc_leavewords/?page={{nextpage}}&sendtype={{sendtype}}&company_id={{company_id}}','myrc_question')">
+				下一页
+			</a>
+		</li>
+		{%else%}
+		<li class="mui-disabled">
+			<span>下一页</span>
+		</li>
+		{%endif%}
+	</ul>
+</div>
+</nav>
+{%endifequal%}
+</div>
+<input type="hidden" id="appnavname" value="我的询盘" />

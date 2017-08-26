@@ -1,0 +1,104 @@
+{%if listall%}
+var adstr="";
+adstr="<style>"+
+".ppcmain .ppcadbox img{padding:0;margin:0}"+
+".ppcmain{width:{{w}}px;}"+
+
+".ppcmain .ppcbox{padding:0px;margin-bottom:5px;position:relative;}"+
+".ppcmain .ppcadbox .ptitle{background-color:#371718; padding:5px;overflow:hidden; text-align:left; font-weight:bold;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; color:#FFF}"+
+".ppcmain .ppcadbox .ptitle a{color:#fff;text-decoration:none;}"+
+".ppcmain .ppcadbox .ptitle a:hover{color:#FF0}"+
+".ppcmain .ppcadbox{width:{{pw}}px; border:solid 1px #ccc; font-size:12px;margin-bottom:5px;padding-bottom:5px;{%if boxright%}margin-right:5px;{%endif%};line-height:20px;float:left;background-color:#fff}"+
+".ppcmain .ppcadbox .ppctxt{color:#000; padding:5px;}"+
+".ppcmain .ppcadbox .img{width:{{pw}}px;*width:100%;height:108px;padding-top:2px;padding-bottom:2px;display:table-cell;text-align:center;vertical-align:middle; *display: block; *font-size: 100px;/*约为高度的0.873，200*0.873 约为175*/ *font-family:Arial;/*防止非utf-8引起的hack失效问题，如gbk编码*/;background-color:#ebebeb}"+
+".ppcmain .ppcadbox .comp {overflow:hidden; 	text-overflow:ellipsis;	white-space:nowrap; width:{{pw}}px;}"+
+".ppcmain .ppcadbox .comp a{color:#666;text-decoration:none;}"+
+".ppcmain .ppcadbox .txt{ height:40px;}"+
+".ppcmain .ppcadbox .txt a{color:#000;text-decoration:none;}"+
+".ppcmain .ppcadbox span{ color:#C00; font-weight:bold}"+
+".ppcmain .ppcbox .ppcpage{ position:absolute; right:4px; bottom:4px; z-index:3; }"+
+".ppcmain .ppcbox .ppcpage span{ background:#DFDFDF; margin:0 1px; padding:4px 6px; border:1px solid #DFDFDF; font:normal bold 14px/18px; color:#262425; text-decoration:none; display:block; float:left; opacity:0.8; -moz-opacity:0.8; filter:alpha(opacity:80);cursor:pointer;}"+
+".ppcmain .ppcbox .ppcpage a.selected{ background:#F60; border:1px solid #F60; color:#FFF;text-decoration:underline;}"+
+".ppcmain .ppcadbox .comp a:hover{color:#F30;}"+
+"</style>"+
+"<div class=\"ppcmain\"><div class=\"ppcbox\">"+
+	"<div id=\"ppccomplist\">"+
+{%for list in listall%}
+"<div class=\"ppcadbox\">"+
+
+"<div class=\"ppctxt\">"+
+    {%if list.pdt_images%}
+    "<div class=\"img\"><a href=\"{{list.purl}}\" target=_blank><img src=\"{{list.pdt_images}}\" /></a></div>"+
+    {%endif%}
+    "<div class=\"txt\"><a href=\"{{list.curl}}\" target=\"_blank\">{{list.ppckeywords}}</a></div>"+
+    "<div style=\"clear:both\"></div>"+
+    "<div><span>{{list.ppctel}}</span></div>"+
+    {%if list.contact%}
+    "<div class=\"comp\">联系人：<a href=\"{{list.curl}}\" target=\"_blank\">{{list.contact}}</a></div>"+
+    {%endif%}
+"</div>"+
+"</div>"+
+{%endfor%}
+
+	"</div><div style=\"clear:both\"></div>"+
+"<div class=\"ppcpage\">"+
+	"<span onclick=\"javascript:ppcpagep('{{keywords}}',1,{{m}},this)\" id=pageup style='display:none'>上一页</span><input type=hidden id=lastpage value={{lastpage}} />"+
+	"<span onclick=\"javascript:ppcpagen('{{keywords}}',1,{{m}},this)\" id=pagedown >下一页</span><input type=hidden id=pagenext value=1 />"+
+"</div>"+
+"</div></div><div style=\"clear:both\"></div>";
+document.write(adstr);
+function ppcpagen(keywords,page,m,th)
+{
+    var npage=$(".ppcmain #pagenext").val();
+	var lastpage=$(".ppcmain #lastpage").val();
+	var npage=$(".ppcmain #pagenext").val();
+	if (parseInt(npage)<parseInt(lastpage))
+	{
+		th.style.display="";
+		$(".ppcmain #pageup").css("display","");
+		$(".ppcmain #pagenext").val(parseInt(npage)+1);
+		npage=$(".ppcmain #pagenext").val();
+		if (npage==lastpage)
+		{th.style.display="none";}
+	}else{
+		$(".ppcmain #pageup").css("display","");
+		th.style.display="none";
+	}
+	
+	if (parseInt(npage)>=parseInt(lastpage))
+	{
+		npage=lastpage;
+	}
+	var ajaxurl="http://pyapp.zz91.com/showppccomplist_pic/?keywords="+keywords+"&mm="+m+"&page="+npage+"";
+	$.getScript(ajaxurl, function() {
+			var result = _suggest_result_;
+			$(".ppcmain #ppccomplist").html(result);
+	})
+}
+function ppcpagep(keywords,page,m)
+{ 
+	var npage=$(".ppcmain #pagenext").val();
+	$(".ppcmain #pagenext").val(parseInt(npage)-1);
+	var npage=$(".ppcmain #pagenext").val();
+	$(".ppcmain #pagedown").css("display","");
+	if (parseInt(npage)<=1){$(".ppcmain #pageup").css("display","none");}
+	if (parseInt(npage)<=0){npage=1;$(".ppcmain #pagenext").val(1)};
+	var ajaxurl="http://pyapp.zz91.com/showppccomplist_pic/?keywords="+keywords+"&mm="+m+"&page="+npage+"";
+	$.getScript(ajaxurl, function() {
+			var result = _suggest_result_;
+			$(".ppcmain #ppccomplist").html(result);
+	})
+}
+function firstpage()
+{
+	var lastpage=$(".ppcmain #lastpage").val();
+	if (lastpage=='1')
+	{
+		$(".ppcmain #pagedown").css("display","none");
+		$(".ppcmain #pageup").css("display","none");
+	}
+}
+$(document).ready(function(e) {
+	firstpage();
+});
+{%endif%}

@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>priceDetail</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script language="javascript" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+<script src="js/style.js"></script>
+<script src="chart/jquery-1.7.2.js"></script>
+<script src="chart/flash.js"></script>
+<script>
+var areavalue="";
+var areavalueall="";
+$(function(){
+	$('.arealist').click(function(){
+	
+			var chk_value =[];    
+			$('input[name="arealist"]:checked').each(function(){    
+				chk_value.push($(this).val());    
+			});
+			getdata(chk_value);
+	 });
+});
+function getdata(area_list){
+	var datebegin=$("#datebegin").val();
+	var dateend=$("#dateend").val();
+   	jQuery(function($){
+	    $('#chart-container').flash({ 
+	       swf        : 'chart/beechart-line.swf?w=600&h=280',
+	       width      : 700, 
+	       height     : 360, 
+	       flashvars  : { 
+	       		dataUrl : 'tongji_chart.html?area_list='+area_list
+	       } 
+	    });
+	});
+}
+$(function(){
+       run();
+       var interval;  
+           function run() {  
+              interval = setInterval(chat, "1500");  
+           }
+           function chat() {
+           		var datebegin=document.getElementById("datebegin").value;
+           		var dateend=document.getElementById("dateend").value;
+           		var datebegin1=document.getElementById("datebegin1").value;
+           		var dateend1=document.getElementById("dateend1").value;
+           		if (datebegin.length>0&dateend.length>0){
+	           		var argument1=document.getElementById("argument1").value;
+       			    var argument2='结束日期必须大于开始日期'
+           			if (dateend<datebegin){
+           				if (argument1.length==0){
+		           			document.getElementById("argument1").value=argument2;
+	           				alert(argument2);
+	           			}
+           			}
+	           		else if (datebegin1.length==0&dateend1.length==0){
+	           			document.getElementById("datebegin1").value=datebegin;
+	           			document.getElementById("dateend1").value=dateend;
+	           			var chk_value =[];    
+						$('input[name="arealist"]:checked').each(function(){    
+							chk_value.push($(this).val());    
+						});
+						if (chk_value.length>0){
+						dataall=datebegin+','+dateend+','+chk_value
+						}
+						else{
+						dataall=datebegin+','+dateend
+						}
+						getdata(dataall);
+	           			//alert(dataall);
+	           		}
+	           		else if (datebegin1.length>0&dateend1.length>0){
+	           			if (datebegin!=datebegin1||dateend!=dateend1){
+		           			document.getElementById("datebegin1").value=datebegin;
+		           			document.getElementById("dateend1").value=dateend;
+		           			var chk_value =[];    
+							$('input[name="arealist"]:checked').each(function(){    
+								chk_value.push($(this).val());    
+							});
+							if (chk_value.length>0){
+							dataall=datebegin+','+dateend+','+chk_value
+							}
+							else{
+							dataall=datebegin+','+dateend
+							}
+							getdata(dataall);
+		           			//alert(dataall);
+		           		}
+	           		}
+	           	}
+           }
+     $("#closeChat").click(function(){  
+         clearTimeout(interval);  //关闭定时器  
+     })
+   });
+</script>
+</head>
+<body>
+<div class="main_box">
+  <div class="b-left">
+  	<div class="l-item">
+    	<div class="li-title">光亮铜</div>
+        <!--end li-title-->
+        <div class="li-content">
+      <form>
+        	<div class="c-top">
+            	<div class="t-addr">地区：</div>
+                <!--end t-addr-->
+                <div class="t-sel">
+                <ul>
+                {%for al in arealist%}
+                	<li>
+                    	<input type="checkbox" name="arealist" id="arealist" class="arealist" value="{{al.numb}}"/>
+                        <font>{{al.area}}</font>
+                    </li>
+                {%endfor%}
+                </ul>
+            </div>
+            <!--end t-sel-->
+            </div>
+            <!--end c-top-->
+            <div class="c-bottom">
+            	<div class="t-addr">时间：</div>
+                <!--end t-addr-->
+                <div class="b-time">
+                	<input class="Wdate" type="text" name="datebegin" id="datebegin" onClick="WdatePicker()"> - <input class="Wdate" type="text" name="dateend" id="dateend" onClick="WdatePicker()">
+               		<input type="hidden" id="datebegin1">
+               		<input type="hidden" id="dateend1">
+               		<input type="hidden" id="argument1">
+                </div>
+                <!--end b-time-->
+                <div class="b-box" id="menu">
+                	<div class="b-btn_" onclick="change('1')" id="mt1"> 按周显示 </div>
+                    <!--end b-btn_-->
+                    <div class="b-btn" onclick="change('0')" id="mt0"> 按月显示 </div>
+                    <!--end b-btn-->
+                </div>
+                <!--end b-box-->
+            </div>
+            <!--end c-bottom-->
+			</form>
+        </div>
+        <!--end li-content-->
+    </div>
+    <!--end l-item-->
+    <div class="l-box" style="display:block" id="JKDiv_0">
+    	<div class="lb-item">
+        <center>
+        	<div class="i-img">
+        		
+<div id="chart-container"></div>
+
+            	<!--<img src="images/qs.jpg" />-->
+            	
+            </div>
+            <!--end i-img-->
+            </center>
+        </div>
+        <!--end lb-item-->
+    </div>
+    <!--end l-box-->
+    <div class="l-box" style="display:none" id="JKDiv_1">
+    	<div class="lb-item">
+        <center>
+        	<div class="i-img">
+            	<!--<img src="images/qs.jpg" />-->	
+            </div>
+            <!--end i-img-->
+            </center>
+            <center>
+            <div class="i-txt">
+            	<div class="it">
+                	<img src="images/chk.png"/>
+                    余姚市
+                </div>
+                <!--end it-->
+                <div class="it_">
+                	<img src="images/chk.png"/>
+                    东莞
+                </div>
+                <!--end it_-->
+            </div>
+            <!--end i-txt-->
+            </center>
+        </div>
+        <!--end lb-item-->
+    </div>
+    <!--end l-box-->
+    <div class="l-table">
+    	<table  cellpadding="1">
+        	<tr>
+            	<th>品名</th>
+                <th>地区</th>
+                <th>价格</th>
+                <th>涨跌</th>
+                <th>日期</th>
+                <th>供应商报价</th>
+            </tr>
+            
+            {%for p in listall%}
+            <tr {%ifequal p.evennumber 1%}class="t-tr"{%endifequal%}>
+            	<td>{{p.label}}</td>
+                <td>{{p.area}}</td>
+                <td>{{p.price}}</td>
+                <td>
+                	<div class="t-zd">
+                    	<img src="images/b.png"/>
+                        {{p.othertext}}
+                    </div>
+                </td>
+                <td>{{p.postdate}}</td>
+                <td>
+                <center>
+                	<div class="t-item">
+                    	<div class="t-txt">{{p.company_numb}}家</div>
+                        <!--end t-txt-->
+                        <div class="t-txt_">
+                        	<a href="http://price.zz91.com/priceSearch.htm?title={{p.label}}" target="_blank">查看报价</a>
+                        </div>
+                        <!--end t-txt_-->
+                    </div>
+                    <!--end t-item-->
+                    </center>
+                </td>
+            </tr>
+            {%endfor%}
+            
+        </table>
+    </div>
+    <!--end l-table-->
+    <div class="page">
+      <div class="page-style"> <a href="p{{prvpage}}.html">上一页</a> </div>
+      <ul>
+      {%for pg in page_range%}
+        {%if pg.nowpage%}
+        <li><a style="background:gray;color:white">{{pg.number}}</a></li>
+        {%else%}
+        <li> <a href="p{{pg.number}}.html">{{pg.number}}</a> </li>
+        {%endif%}
+      {%endfor%}
+        <li> <a>.......</a> </li>
+        <li> <a href="p{{page_listcount}}.html">{{page_listcount}}</a> </li>
+        <div class="cb"></div>
+      </ul>
+      <div class="page-style"> <a href="p{{nextpage}}.html">下一页</a> </div>
+      <div class="page-txt">共{{page_listcount}}页</div>
+      <div class="page-confirm" id="backid">确定</div>
+<script>
+    $(function () {
+		$('#backid').click(function(){
+				var page1=document.getElementById("page1").value;
+				if (page1<1)
+				{
+				page1=1;
+				}
+				window.location.href='p'+page1+'.html';
+		 });
+    });
+</script>
+      <div class="page-style_">到<input id="page1" value="{{page}}" type="text">页</div>
+    </div>
+    <!--end page--> 
+  </div>
+  <!--end b-left-->
+  <div class="b-right">
+  	<div class="r-item">
+    	<div class="i-title">
+        	<img src="images/zj.png"/>
+        	<font>我看过的报价{{pricelist_company}}</font>
+        </div>
+        <!--end i-title-->
+        <div class="i-content">
+        	<ul>
+            	<li>
+                	江浙沪废铜江浙沪废铜江浙沪废铜
+                </li>
+                <li>
+                	江浙沪废铜江浙沪废铜江浙沪废铜
+                </li>
+                <li>
+                	江浙沪废铜江浙沪废铜江浙沪废铜
+                </li>
+                <li>
+                	江浙沪废铜江浙沪废铜江浙沪废铜
+                </li>
+                <li>
+                	江浙沪废铜江浙沪废铜江浙沪废铜
+                </li>
+                <li>
+                	江浙沪废铜江浙沪废铜江浙沪废铜
+                </li>
+                <li>
+                	江浙沪废铜江浙沪废铜江浙沪废铜
+                </li>
+                <li>
+                	江浙沪废铜江浙沪废铜江浙沪废铜
+                </li>
+                <li>
+                	江浙沪废铜江浙沪废铜江浙沪废铜
+                </li>
+                <li>
+                	江浙沪废铜江浙沪废铜江浙沪废铜
+                </li>
+                <li>
+                	江浙沪废铜江浙沪废铜江浙沪废铜
+                </li>
+                <li>
+                	江浙沪废铜江浙沪废铜江浙沪废铜
+                </li>
+                <li>
+                	江浙沪废铜江浙沪废铜江浙沪废铜
+                </li>
+            </ul>
+        </div>
+        <!--end i-content-->
+    </div>
+    <!--end r-item-->
+  </div>
+  <!--end b-right-->
+</div>
+<script>
+jQuery(function($){
+    $('#chart-container').flash({ 
+       swf        : 'chart/beechart-line.swf?w=600&h=280',
+       width      : 700, 
+       height     : 360, 
+       flashvars  : { 
+       		dataUrl : 'tongji_chart.html?area_list='
+       } 
+    });
+});
+</script>
+<!--end main_box-->
+</body>
+</html>

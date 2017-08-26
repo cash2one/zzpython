@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>ZZ91再生网简易后台</title>
+		<link rel="stylesheet" type="text/css" href="../mobile/css/aui.css" />
+	</head>
+	<body>
+		<form action="update_prorankok.html">
+			<input type="hidden" name="request_url" value="{{request_url}}">
+{%if prorankid%}<input type="hidden" name="prorankid" value="{{prorankid}}">{%endif%}
+		<div class="aui-content basic-info">
+			<div class="aui-form">
+				<div class="aui-input-row">
+					<span class="aui-input-addon">供求名称</span>
+					{{pro_title}}
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">审核状态</span>
+					<select name="is_checked" class="aui-input selectlist">{%for ck in checklist2%}<option value="{{ck.num}}">{{ck.ckm}}</option>{%endfor%}</select>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">关键词</span>
+					<input type="text" name="name" class="aui-input" placeholder="关键词" id="address" value="{{name}}" />
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">开始时间</span>
+					<input type="text" class="aui-input" placeholder="开始时间" name="start_time" value="{{start_time}}"/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">结束时间</span>
+					<input type="text" class="aui-input" placeholder="开始时间" name="end_time" value="{{end_time}}"/>
+				</div>
+			</div>
+			<input type="submit" class="aui-btn aui-btn-info" value="保存">
+		</div>
+
+</form>
+	</body>
+</html>

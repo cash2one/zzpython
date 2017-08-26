@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/trade/choice.css"/>
+    <style>
+    	html, body {
+            background: transparent;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+    		overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div>
+	<ul class="type-small small-area" style="background-color:#fff;border-top:none;overflow: auto;position: absolute;bottom:80px;width:100%;top:0px;">
+		<li>
+			<span style="width:100%">不限</span>
+		</li>
+		<li>
+			<span>浙江</span>
+			<span>广东</span>
+			<span>江苏</span>
+		</li>
+		<li>
+			<span>福建</span>
+			<span>安徽</span>
+			<span>河南</span>
+		</li>
+		<li>
+			<span>河北</span>
+			<span>湖北</span>
+			<span>湖南</span>
+		</li>
+		<li>
+			<span>四川</span>
+			<span>江西</span>
+			<span>山东</span>
+		</li>
+		<li>
+			<span>海南</span>
+			<span>黑龙江</span>
+			<span>北京</span>
+		</li>
+		<li>
+			<span>上海</span>
+			<span>天津</span>
+			<span>青海</span>
+		</li>
+		<li>
+			<span>陕西</span>
+			<span>山西</span>
+			<span>贵州</span>
+		</li>
+		<li>
+			<span>辽宁</span>
+			<span>宁夏</span>
+			<span>吉林</span>
+		</li>
+		<li>
+			<span>内蒙古</span>
+			<span>广西</span>
+			<span>云南</span>
+		</li>
+		<li>
+			<span>西藏</span>
+			<span>重庆</span>
+			<span>甘肃</span>
+		</li>
+		<li>
+			<span>新疆</span>
+			<span>台湾</span>
+			<span>香港</span>
+		</li>
+		<li>
+			<span>澳门</span>
+			<span></span>
+			<span></span>
+		</li>
+	</ul>
+	<div style="position: absolute;bottom:0px;height:80px;width:100%" onclick="closeselect()"></div>
+</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+	function closeselect(){
+		api.execScript({
+			name : api.winName,
+			script : "keybackFun('1')"
+		});
+		api.closeFrame();
+	}
+	apiready = function(){
+		var $body = $api.dom('body');
+		$api.addEvt($body, 'click', function(e){
+	        if(e.target == $body){
+	            closeselect();
+	        }else{
+	            e.stopPropagation();
+	        }
+	    });
+	    $(".small-area span").on("click",function(){
+	    	closeselect();
+			api.execScript({
+				name : api.winName,
+				frameName : api.winName+'_',
+				script : "searcharea('"+$(this).text()+"')"
+			});
+		})
+	};
+</script>
+</html>

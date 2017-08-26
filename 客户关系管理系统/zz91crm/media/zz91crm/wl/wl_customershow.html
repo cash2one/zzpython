@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>{{result.company_name}}-商铺信息</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="/layui/css/layui.css" type="text/css">
+		<style>
+			.layui-btn {
+				height: 28px;
+				line-height: 28px;
+			}
+			
+			.layui-table {
+				width: 60%;
+				margin: auto;
+			}
+		</style>
+		<script src="/layui/layui.js" type="text/javascript"></script>
+
+		<script>
+			layui.use(['form', 'layedit', 'laydate'], function() {
+				var form = layui.form(),
+					layer = layui.layer,
+					layedit = layui.layedit,
+					laydate = layui.laydate;
+			})
+		</script>
+		<script>
+			function subchk(frm) {
+				var objstar = GetValueChoose(document.getElementsByName("contactstate"))
+				if(objstar == "") {
+					alert("请选择联系状态!");
+					return false;
+				}
+
+				var objstar = GetValueChoose(document.getElementsByName("star"))
+				if(objstar == "") {
+					alert("请选择一个星级!");
+					return false;
+				}
+
+			}
+
+			function GetValueChoose(elementname) {
+				var sValue = "";
+				var tmpels = elementname;
+				for(var i = 0; i < tmpels.length; i++) {
+					if(tmpels[i].checked) {
+						sValue = tmpels[i].value;
+					}
+				}
+				return sValue;
+			}
+		</script>
+	</head>
+
+	<body>
+
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+			<legend>商铺信息</legend>
+		</fieldset>
+
+		<div class="layui-form">
+			<form action="customershow.html?uid={{result.id}}" method="post" name="company_sec" onsubmit="return subchk(this)">
+				<table class="layui-table">
+					<colgroup>
+						<col width="50">
+						<col width="150">
+					</colgroup>
+					<tbody>
+						<tr>
+							<td>订单编号</td>
+							<td>{{result.order_number}}</td>
+						</tr>
+						<tr>
+							<td>公司名称</td>
+							<td>{{result.company_name}}</td>
+						</tr>
+						<tr>
+							<td>微信名</td>
+							<td>{{result.wechat}}</td>
+						</tr>
+						<tr>
+							<td>联系人</td>
+							<td>{{result.username}}</td>
+						</tr>
+						<tr>
+							<td>需要车型</td>
+							<td>{{result.car_for}}</td>
+						</tr>
+						<tr>
+							<td>吨位</td>
+							<td>{{result.weight}}</td>
+						</tr>
+						<tr>
+							<td>用车时间</td>
+							<td>{{result.time}}</td>
+						</tr>
+						<tr>
+							<td>主营业务</td>
+							<td>{{result.main_business}}</td>
+						</tr>
+						<tr>
+							<td>联系电话</td>
+							<td>{{result.mobile}}</td>
+						</tr>
+						<tr>
+							<td>注册时间</td>
+							<td>{{result.register_time}}</td>
+						</tr>
+						<tr>
+							<td>联系状态</td>
+							<td><input type="radio" name="contactstate" id="contactstate" value="1" title="有效联系">
+								<input type="radio" name="contactstate" id="contactstate" value="0" title="无效联系">
+							</td>
+						</tr>
+
+						<tr>
+							<td>星级</td>
+							<td bgcolor="#FFFFFF"><input type="radio" name="star" id="radio" value="5" title="5">
+								<input type="image" name="imageField" id="imageField" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="image" name="imageField2" id="imageField2" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="image" name="imageField3" id="imageField3" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="image" name="imageField4" id="imageField4" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="image" name="imageField5" id="imageField5" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="radio" name="star" id="star" value="4" title="4">
+								<input type="image" name="imageField6" id="imageField6" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="image" name="imageField6" id="imageField7" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="image" name="imageField6" id="imageField8" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="image" name="imageField6" id="imageField9" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="radio" name="star" id="star" value="3" title="3">
+								<input type="image" name="imageField7" id="imageField10" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="image" name="imageField7" id="imageField11" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="image" name="imageField7" id="imageField12" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="radio" name="star" id="star" value="2" title="2">
+								<input type="image" name="imageField8" id="imageField13" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="image" name="imageField8" id="imageField14" src="http://192.168.2.2/admin1/newimages/art1.gif">
+								<input type="radio" name="star" id="star" value="1" title="1">
+								<input type="image" name="imageField9" id="imageField15" src="http://192.168.2.2/admin1/newimages/art1.gif"></td>
+						</tr>
+						<tr>
+							<td>下次联系时间</td>
+							<td bgcolor="#FFFFFF">
+								<div class="layui-inline">
+									<div class="layui-input-inline">
+										<input type="text" name="nextcontact_time" id="date" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
+									</div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>联系小计</td>
+							<td align="left" bgcolor="#FFFFFF"><textarea name="contact_bz" id="bz" cols="45" rows="5"></textarea></td>
+						</tr>
+						<tr align="center">
+							<td colspan="2" bgcolor="#FFFFFF">
+								<button class="layui-btn" type="submit">提交</button>
+
+								<button class="layui-btn" type="reset">重置</button>
+							</td>
+						</tr>
+
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td>
+									<iframe id=topt name=topt style="HEIGHT: 200px; VISIBILITY: inherit; WIDTH: 100%; Z-INDEX: 2" frameborder="0" src="customershow_history.html?uid={{result.id}}"></iframe>
+								</td>
+							</tr>
+						</table>
+					</tbody>
+				</table>
+			</form>
+		</div>
+
+	</body>
+
+</html>

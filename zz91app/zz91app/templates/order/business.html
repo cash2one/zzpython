@@ -1,0 +1,53 @@
+<style>
+.item{margin:5px;font-size: 12px;}
+.item-title{border:2px solid #009944;border-radius:2px;height:35px;line-height:35px;background:#fff; font-weight:bold;}
+.item-title2{border:1px solid #c0c0c0;border-radius:2px;height:35px;line-height:35px;background:#fff;margin:10px 0}
+.item-title-img{width:32px;height:35px;background:url(http://img0.zz91.com/zz91/mobile/images/item_icon.jpg) no-repeat 0px 3px;margin-left:5px;margin-right:5px;float:left}
+.item-title-img img{display:none;margin-top:9px;margin-left:5px}
+.item-title-img2{width:32px;height:35px;background:url(http://img0.zz91.com/zz91/mobile/images/item_icon.jpg) no-repeat 0px 3px;margin-left:5px;margin-right:5px;float:left}
+.item-title-img2 img{display:none;margin-top:9px;margin-left:5px}
+.item-title-text{font-size:14px;color:#444;float:left}
+.item-title-text span{margin-right:5px}
+.item-title-icon{width:15px;height:35px;background:url(http://img0.zz91.com/zz91/mobile/images/icon0.jpg) no-repeat 0px 15px;margin-right:10px;float:right}
+.item-title-icon2{width:15px;height:35px;background:url(http://img0.zz91.com/zz91/mobile/images/icon0.jpg) no-repeat 0px 15px;margin-right:10px;float:right}
+.item-div{border:1px solid #c0c0c0;background:#fff;padding:10px;}
+.item-div-box{display:inline-block;text-align:center;margin:1%;position:relative;z-index:10;width: 30%;}
+.item-div-icon{position:absolute;top:0px;right:0px;z-index:555;display:none}
+.item-div-style{background:#f1f1f1;border:1px solid #c0c0c0;color:#444}
+.item-div-click{background:#009944;border:1px solid #009944;color:#fff}
+.item_div_i{display:none}
+.item-block{}
+</style>
+<form action="save_collect.html" method="post" id="formorder" name="formorder" target="ordertarget">
+{%for p in ordercategorylist%}
+<div class="item">
+	<div class="item-title">
+        <div class="item-title-text">
+        	<span style="padding-left: 10px;">{{p.label}}</span>
+        </div>
+        <div class="cb"></div>
+    </div>
+    <div class="item-block">
+    <div class="item-div">
+	{%for p2 in p.childlist%}
+    	<div class="item-div-box {%if p2.selected%}item-div-click{%else%}item-div-style{%endif%}" id="orderm{{p2.id}}" onclick="orderclick('{{p2.id}}')" style="z-index: 1;">
+        	{{p2.title}}
+            <div class="item-div-icon" categorycode="{{p2.title}}" {%if p2.selected%}style="display:block"{%endif%}>
+            	<img src="http://img0.zz91.com/zz91/mobile/images/click_ok.png" />
+            </div>
+            <input type="checkbox" name="ordervalue" id="item_div_i" {%if p2.selected%}checked{%endif%} class="item_div_i" value="{{p2.id}}" />
+        </div>
+	{%endfor%}
+    </div>
+    <input type="hidden" class="all" value="0" />
+</div>
+</div>
+{%endfor%}
+<input type="hidden" name="collect_type" value="1" />
+</form>
+<nav class="mui-bar mui-bar-tab" style="height: 45px;line-height: 45px;">
+<center>
+<button class="mui-btn mui-btn-blue" onclick="closewindow()" style="width: 95%;">&nbsp;确定&nbsp;</button>
+</center>
+</nav>
+<input type="hidden" id="appnavname" value="商机定制" />

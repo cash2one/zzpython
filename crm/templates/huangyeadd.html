@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>商务大全公司信息提交</title>
+<SCRIPT language=javascript src="http://{{localIP}}/cn/sources/pop.js"></SCRIPT>
+<SCRIPT language=JavaScript src="http://{{localIP}}/admin1/main.js"></SCRIPT>
+<SCRIPT language=javascript src="http://{{localIP}}/admin1/crmlocal/DatePicker.js"></SCRIPT>
+<SCRIPT language=javascript src="http://{{localIP}}/admin1/crmlocal/js/province_utf8.js"></SCRIPT>
+<SCRIPT language=javascript src="http://{{localIP}}/admin1/crmlocal/js/compkind.js"></SCRIPT>
+<SCRIPT language=javascript src="http://{{localIP}}/admin1/crmlocal/js/list.js"></SCRIPT>
+<style>
+.input
+{
+	width:100%
+}
+.red
+{
+	color:#F00
+}
+</style>
+
+</head>
+<body>
+<table width="600" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#000000" style="font-size:12px">
+  <form id="form1" name="form1" method="post" action=""><tr>
+    <td width="80" align="right" bgcolor="#FFFFFF"><span class="red">*</span> 公司名称</td>
+    <td bgcolor="#FFFFFF">
+      <input type="text" name="com_name" id="com_name" class="input"/>
+    </td>
+  </tr>
+    <tr>
+      <td align="right" bgcolor="#FFFFFF"> <span class="red">*</span> 行业</td>
+      <td bgcolor="#FFFFFF"><select name="clscb" id="clscb">
+                <option value="">--请选择--</option>
+                <option value="1">废金属</option>
+                <option value="2">废塑料</option>
+                <option value="3">废旧轮胎与废橡胶</option>
+                <option value="4">废纺织品与废皮革</option>
+                <option value="5">废纸</option>
+                <option value="6">废电子电器与废电脑设备</option>
+                <option value="10">废玻璃与废木制品</option>
+                <option value="12">废旧设备与旧交通工具</option>
+                </select>
+              <script>selectOption("clscb","")</script> </td>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="#FFFFFF"><span class="red">*</span> 地区</td>
+      <td bgcolor="#FFFFFF"><font id="mainprovince1"></font><font id="maincity1"></font><font id="mainGarden">无园区</font>
+              <input type="hidden" name="province" id="province">
+              <input type="hidden" name="city" id="city">
+              <input type="hidden" name="cprovince" id="cprovince" value="0">
+              <script>
+                            //地区及园区
+                            var Fstyle="";
+                            var selectname1="province1";
+                            var selectname2="city1";
+                            var selectname3="Garden";
+                            var Fvalue1="{{province2}}";
+                            var Fvalue2="{{city2}}";
+                            var Fvalue3="";
+                            var hyID="clscb";//行业ID号
+                            getprovincevalue();
+                        </script>
+              <script>
+                        function getprovincename()
+                        {
+							
+                            document.getElementById("province").value=document.getElementById("province1").options[document.getElementById("province1").selectedIndex].text
+							//alert(document.getElementById("province1").options[document.getElementById("province1").selectedIndex].text)
+                            document.getElementById("city").value=document.getElementById("city1").options[document.getElementById("city1").selectedIndex].text
+                        }
+                        </script></td>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="#FFFFFF"><span class="red">*</span> 主营业务</td>
+      <td bgcolor="#FFFFFF"><textarea name="textarea" id="textarea" cols="45" rows="3" class="input"></textarea></td>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="#FFFFFF"><span class="red">*</span> 联系人</td>
+      <td bgcolor="#FFFFFF"><input type="text" name="com_name2" id="com_name2" class="input"/></td>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="#FFFFFF">电话</td>
+      <td bgcolor="#FFFFFF"><input type="text" name="com_name3" id="com_name3" class="input"/></td>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="#FFFFFF"><span class="red">*</span> 手机</td>
+      <td bgcolor="#FFFFFF"><input type="text" name="com_name4" id="com_name4" class="input"/></td>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="#FFFFFF"><span class="red">*</span> 地址</td>
+      <td bgcolor="#FFFFFF"><textarea name="textarea2" id="textarea2" cols="45" rows="2" class="input"></textarea></td>
+    </tr>
+    <tr>
+      <td align="right" bgcolor="#FFFFFF"><span class="red">*</span> 添加人</td>
+      <td bgcolor="#FFFFFF"><input type="text" name="com_name5" id="com_name5"/>
+      提交人真实姓名</td>
+    </tr>
+    
+    <tr>
+      <td align="right" bgcolor="#FFFFFF">&nbsp;</td>
+      <td bgcolor="#FFFFFF"><input type="submit" name="button" id="button" value="提交" />
+        <label>
+          <input type="reset" name="button2" id="button2" value="重置" />
+      </label></td>
+    </tr>
+  </form>
+</table>
+
+</body>
+</html>
+

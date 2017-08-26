@@ -1,0 +1,107 @@
+﻿{%if listall%}
+var adstr="";
+adstr="<style>"+
+".ppcadbox img{padding:0;margin:0}"+
+".ppcmain{width:{{w}}px;}"+
+{%if showborder%}
+".ppcmain .ppcbox{padding:5px;border:solid 1px #ccc; margin-bottom:5px;position:relative;}"+
+{%else%}
+".ppcmain .ppcbox{padding:5px;margin-bottom:5px;position:relative;}"+
+{%endif%}
+
+".ppcadbox .ptitle a{color:#03F;text-decoration:underline;}"+
+".ppcadbox .ptitle a:hover{color:#F30;}"+
+".ppcadbox{width:{{pw}}px; font-size:12px;margin-bottom:10px;padding-bottom:10px;padding:{{padding}}px;;line-height:20px;float:left;}"+
+".ppcadbox .img{float:left;margin-right:3px;}"+
+".ppcadbox .comp {overflow:hidden; 	text-overflow:ellipsis;	white-space:nowrap; width:{{pw}}px;}"+
+".ppcadbox .comp a{color:#666;}"+
+".ppcadbox .txt a{color:#0000FF;}"+
+".ppcadbox span{ color:#C00; font-weight:bold}"+
+".ppcmain .ppcbox .ppcpage{ position:absolute; right:4px; bottom:4px; z-index:3; }"+
+".ppcmain .ppcbox .ppcpage span{ background:#DFDFDF; margin:0 1px; padding:4px 6px; border:1px solid #DFDFDF; font:normal bold 14px/18px; color:#262425; text-decoration:none; display:block; float:left; opacity:0.8; -moz-opacity:0.8; filter:alpha(opacity:80);cursor:pointer;}"+
+".ppcmain .ppcbox .ppcpage a.selected{ background:#F60; border:1px solid #F60; color:#FFF;text-decoration:underline;}"+
+".ppcadbox .comp a:hover{color:#F30;}"+
+"</style>"+
+"<div class=\"ppcmain\"><div class=\"ppcbox\">"+
+	"<div id=\"ppccomplist\">"+
+{%for list in listall%}
+"<div class=\"ppcadbox\">"+
+{%if list.ptitle%}
+"<div class=\"ptitle\"><b><a href=\"http://www.zz91.com/ppc/productdetail{{list.id}}.htm\" target=_blank>{{list.pdttxt}}{{list.ptitle}}</a></b></div>"+
+{%endif%}
+"<div class=\"ppctxt\">"+
+    {%if list.pdt_images%}
+    "<div class=\"img\"><a href=\"http://www.zz91.com/ppc/productdetail{{list.id}}.htm\" target=_blank><img src=\"{{list.pdt_images}}\" /></a></div>"+
+    {%endif%}
+    "<div class=\"txt\"><a href=\"http://www.zz91.com/ppc/index{{list.company_id}}.htm\" target=\"_blank\">{{list.ppckeywords}}</a></div>"+
+    "<div style=\"clear:both\"></div>"+
+    "<div><span>{{list.ppctel}}</span></div>"+
+    {%if list.companyname%}
+    "<div class=\"comp\"><a href=\"http://www.zz91.com/ppc/index{{list.company_id}}.htm\" target=\"_blank\">{{list.companyname}}</a></div>"+
+    {%endif%}
+"</div>"+
+"</div>"+
+{%endfor%}
+
+	"</div><div style=\"clear:both\"></div>"+
+"<div class=\"ppcpage\">"+
+	"<span onclick=\"javascript:ppcpagep('{{keywords}}',1,{{m}},this)\" id=pageup style='display:none'>上一页</span><input type=hidden id=lastpage value={{lastpage}} />"+
+	"<span onclick=\"javascript:ppcpagen('{{keywords}}',1,{{m}},this)\" id=pagedown >下一页</span><input type=hidden id=pagenext value=1 />"+
+"</div>"+
+"</div></div><div style=\"clear:both\"></div>";
+document.write(adstr);
+function ppcpagen(keywords,page,m,th)
+{
+    var npage=$("#pagenext").val();
+	var lastpage=$("#lastpage").val();
+	var npage=$("#pagenext").val();
+	if (parseInt(npage)<parseInt(lastpage))
+	{
+		th.style.display="";
+		$("#pageup").css("display","");
+		$("#pagenext").val(parseInt(npage)+1);
+		npage=$("#pagenext").val();
+		if (npage==lastpage)
+		{th.style.display="none";}
+	}else{
+		$("#pageup").css("display","");
+		th.style.display="none";
+	}
+	
+	if (parseInt(npage)>=parseInt(lastpage))
+	{
+		npage=lastpage;
+	}
+	var ajaxurl="http://pyapp.zz91.com/showppccomplist/?keywords="+keywords+"&mm="+m+"&page="+npage+"";
+	$.getScript(ajaxurl, function() {
+			var result = _suggest_result_;
+			$("#ppccomplist").html(result);
+	})
+}
+function ppcpagep(keywords,page,m)
+{ 
+	var npage=$("#pagenext").val();
+	$("#pagenext").val(parseInt(npage)-1);
+	var npage=$("#pagenext").val();
+	$("#pagedown").css("display","");
+	if (parseInt(npage)<=1){$("#pageup").css("display","none");}
+	if (parseInt(npage)<=0){npage=1;$("#pagenext").val(1)};
+	var ajaxurl="http://pyapp.zz91.com/showppccomplist/?keywords="+keywords+"&mm="+m+"&page="+npage+"";
+	$.getScript(ajaxurl, function() {
+			var result = _suggest_result_;
+			$("#ppccomplist").html(result);
+	})
+}
+function firstpage()
+{
+	var lastpage=$("#lastpage").val();
+	if (lastpage=='1')
+	{
+		$("#pagedown").css("display","none");
+		$("#pageup").css("display","none");
+	}
+}
+$(document).ready(function(e) {
+	firstpage();
+});
+{%endif%}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title>{{ye_detaillist.name}}-废料产业带</title>
+		<link href="/ye/css/industrial.m.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+		<script>
+			$(window).scroll(function() {
+				if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+					loadMore(document.getElementById("loadMore"));
+				}
+			});
+
+			function loadMore(objdiv) {
+				self = objdiv
+				var pageobj = document.getElementById("pageindex");
+				var page = pageobj.value;
+				pageobj.value = parseInt(page) + 1
+				self.innerHTML = "加载中...";
+				$.get("/ye/pro{{id}}.html", {
+						page: pageobj.value,
+					},
+					function(data, status) {
+						if (status == "success" && data != "err\n" && data != "") {
+							self.style.display = "block";
+							$("#ok").append(data);
+							self.innerHTML = "点击后加载更多内容";
+						} else {
+							self.style.display = "none";
+							alert('no');
+						}
+					});
+			};
+		</script>
+	</head>
+
+	<body>
+		{%include 'ye/top.html'%}
+		<div id="deal">
+			<div class="list">
+				<dl class="list">
+					<div class="container-in">
+						<div id="deals">
+							<dd>
+								<h3 class="deal-title">
+			            	<span>产业带&nbsp;&gt;&nbsp;<a href="/ye/{{detail.list.industry_code}}/">{{detail.list.industry}}</a>&nbsp;&gt;&nbsp;{{detail.list.name}}-供求</span>
+			            	</h3>
+							</dd>
+							<dd>
+								<dl class="list" id='ok'>
+									{% for list in productList %}
+									<dd>
+										<a href="/trade/detail{{list.pdt_id}}.html" target="_blank" class="react">
+											<div class="dealcard">
+												<div class="dealcard-img imgbox" data-src="">
+													<img src="{{list.pdt_images}}" />
+												</div>
+												<div class="dealcard-right">
+													<div class="dealcard-brand oow">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}
+														<font class="time">{{list.pdt_time_en}}</font>
+													</div>
+													<div class="title text-block">{{list.com_province}}</div>
+													<div>{{list.pdt_price}}</div>
+													{%if ldbtel%}
+													<div class="info">
+														<span class="seller">电话拨打:<font class="red">{{list.ldbtel.tel}}</font></span>
+														<span class="trade">接听率:{{list.phone_rate}}%</span>
+													</div>
+													{%endif%}
+												</div>
+											</div>
+										</a>
+									</dd>
+									{%endfor%}
+									<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- 微门户 -->
+		<ins class="adsbygoogle"
+		     style="display:block"
+		     data-ad-client="ca-pub-5512236620584335"
+		     data-ad-slot="8274972003"
+		     data-ad-format="auto"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+								</dl>
+								<input type="hidden" id="pageindex" value="1" />
+								<div style="line-height: 30px;margin-bottom: 20px;" id="loadMore">
+									查看更多>>
+								</div>
+							</dd>
+						</div>
+					</div>
+				</dl>
+			</div>
+		</div>
+		{%include 'ye/bottom.html'%}
+	</body>
+
+</html>

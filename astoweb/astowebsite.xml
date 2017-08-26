@@ -1,0 +1,18 @@
+<uwsgi>
+ <socket>:8002</socket>
+ <workers>2</workers>
+ <master>true</master>
+ <processes>2</processes>
+ <pythonpath>.</pythonpath>
+ <module>astoweb.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>astoweb/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>2048</limit-as>
+ <reload-on-as>200</reload-on-as>
+ <reload-on-rss>200</reload-on-rss>
+ <max-requests>200</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/astoweb.log</daemonize>
+</uwsgi>

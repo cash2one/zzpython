@@ -1,0 +1,94 @@
+<div id="topmain">
+	<div class="top-content">
+		<div class="top-contentleft">
+			<div class="top-user">
+				<p class="top-login">
+					<a href="http://www.zz91.com/" target="_blank"><img src="http://img0.zz91.com/zz91/ppc/images/logo.jpg" alt="ZZ91再生网" style="width:95px;height:24px;margin-top:3px;" /></a>
+					<strong class="hello"> 您好，</strong>
+					<strong><a href="http://china.zz91.com/login.htm" target="_blank" rel="nofollow">请登录</a></strong>
+					<strong>
+					<a href="http://china.zz91.com/register/register_stp1.htm" target="_blank" rel="nofollow">免费注册</a>
+					</strong>
+				</p>
+			</div>
+		</div>
+		<div class="top-contentright">
+			<ul>
+				<li class="bgxian">
+					<a href="http://www.zz91.com/zt/mobileweb/index/" target="_blank" rel="nofollow">手机网</a>
+				</li>
+				<li class="bgxian">
+					<a href="http://www.zz91.com/ppc/" target="_blank" rel="nofollow">来电宝</a>
+				</li>
+				<li class="bgxian">
+					<a href="http://help.zz91.com/" target="_blank" rel="nofollow">帮助中心</a>
+				</li>
+				<li class="bgxian">
+					<a href="http://about.zz91.com/contact.html" target="_blank" rel="nofollow">意见反馈</a>
+				</li>
+				<li class="bgxian">
+					<a href="http://myrc.zz91.com/" target="_blank" rel="nofollow">生意管家</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="logosearch-warp">
+	<div class="logosearch">
+		<div class="logo-warp">
+			<a href="index{{company_id}}.htm" class="logo"><img src="http://b.zz91.com/ppc/img/logo.png"></a>
+			<div class="logo-name">
+				<h1>{{list.name}}</h1>
+				<p>{{list.businesstop}}</p>
+			</div>
+			<a href="renzheng{{company_id}}.htm" class="logo-certification">
+				<i class="iconfont">&#xe622;</i>
+				<span>已认证</span>
+			</a>
+		</div>
+		<div class="search-warp">
+			<div class="search">
+				<input placeholder="请输入关键词" class="ksearch" name="keywords" id="keywords">
+				<a class="shop">搜店铺</a>
+				<a class="site">搜全站</a>
+			</div>
+			<script>
+				var company_id = {{company_id}};
+				$(".shop").click(function() {
+					var keywords = $("#keywords").val();
+					window.location = '/ppc/zxgq' + company_id + '.htm?keywords=' + keywords;
+				})
+				$(".site").click(function() {
+					var keywords = $("#keywords").val();
+					window.location = 'http://trade.zz91.com/trade/searchfirst/?keywords=' + keywords;
+				})
+			</script>
+		</div>
+	</div>
+</div>
+<div class="nav-warp">
+	<div class="nav">
+		<ul>
+			<li>
+				<a href="index{{company_id}}.htm" {{lmselected.n1}}>首页</a>
+			</li>
+			<li>
+				<a href="gsjj{{company_id}}.htm" {{lmselected.n2}}>公司介绍</a>
+			</li>
+			<li>
+				<a href="zxgq{{company_id}}.htm" {{lmselected.n3}}>供求信息</a>
+			</li>
+			<li>
+				<a href="gsdt{{company_id}}.htm" {{lmselected.n4}}>公司动态</a>
+			</li>
+			<li>
+				<a href="contact{{company_id}}.htm" {{lmselected.n5}}>联系我们</a>
+			</li>
+		</ul>
+		<div class="contact-tel">
+			<i class="iconfont">&#xe611;</i>
+			<b>{{list.ppcphone}}</b>
+		</div>
+	</div>
+</div>

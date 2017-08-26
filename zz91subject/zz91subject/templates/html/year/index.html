@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>zz91年底推荐专场</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="css/year.css"/>
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script src="js/year.js"></script>
+<script src="js/jquery.Sonline.js"></script>
+<script src="http://subject.zz91.com/comm/facebox.js"></script>
+<script src="http://subject.zz91.com/comm/checkForm.js"></script>
+<link rel="stylesheet" href="http://subject.zz91.com/comm/comm.css"/>
+<link href="http://subject.zz91.com/comm/facebox.css" rel="stylesheet" type="text/css">
+<style>
+	.subject_foofer,.subject_foofer a
+	{
+		color:#fff;
+		line-height:25px;
+	}
+</style>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox() 
+    })
+</script>
+</head>
+<body>
+
+<div style="width:100%; background-color:#F9F7EC">
+	<div style="width:960px;margin:0 auto">
+		{%include 'html/comm/top.html'%}
+    </div>
+</div>
+<div class="year" id="Top">
+    <div class="year-main">
+        <div class="m2" id="1F">
+        	<div class="m2-title">
+            	<img src="images/1L.jpg" />
+            </div>
+            <!--end m2-title-->
+			<div class="w980">
+			{%for list in adlist2%}
+            <div class="m2-item fl mr20">
+				{%if list%}
+            	<div class="m2-item-img">
+                	<a href="{{list.picurl}}" target=_blank><img src="{{list.picaddress}}" /></a>
+                </div>
+                <!--end m2-item-img-->
+                <div class="m2-item-box">
+                	<div class="m2-box-left fl">
+                    	<div class="m2-box-title">
+                        	<a href="{{list.picurl}}" target="_blank">{{list.ad_description.company}}</a>
+                        </div>
+                        <div class="m2-box-text">
+                        	<span class="red">{{list.ad_description.price}}</span>
+                        </div>
+                        <!--end m2-box-text-->
+                    </div>
+                    <div class="m2-box-right fr">
+                    	<a href="{{list.picurl}}" target=_blank>企业商铺</a>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+				{%else%}
+				<div class="m2-item-img">
+                	<a href="#mydiv" rel="facebox"><img src="images/img1.jpg" /></a>
+                </div>
+                <!--end m2-item-img-->
+                <div class="m2-item-box">
+                	<div class="m2-box-left fl">
+                    	<div>
+                        	
+                        </div>
+                        <div class="m2-box-text">
+                        	<span class="red"></span>
+                        </div>
+                        <!--end m2-box-text-->
+                    </div>
+                    <div class="m2-box-right fr">
+                    	<a href="#mydiv" rel="facebox">在线订购</a>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+				{%endif%}
+                <!--end m2-item-box-->
+            </div>
+            {%endfor%}
+            <div class="cb"></div>
+			</div>
+        </div>
+        <!--end m2-->
+        
+        
+        
+        <div class="m2" id="2F">
+        	<div class="m2-title">
+            	<img src="images/2L.jpg" />
+            </div>
+            <!--end m2-title-->
+			<div class="w980">
+			{%for list in adlist1%}
+            <div class="m2-item fl mr20">
+				{%if list%}
+            	<div class="m2-item-img">
+                	<a href="{{list.picurl}}" target=_blank><img src="{{list.picaddress}}" /></a>
+                </div>
+                <!--end m2-item-img-->
+                <div class="m2-item-box">
+                	<div class="m2-box-left fl">
+                    	<div class="m2-box-title">
+                        	<a href="{{list.picurl}}" target="_blank">{{list.ad_description.company}}</a>
+                        </div>
+                        <div class="m2-box-text">
+                        	<span class="red">{{list.ad_description.price}}</span>
+                        </div>
+                        <!--end m2-box-text-->
+                    </div>
+                    <div class="m2-box-right fr">
+                    	<a href="{{list.picurl}}" target=_blank>企业商铺</a>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+				{%else%}
+				<div class="m2-item-img">
+                	<a href="#mydiv" rel="facebox"><img src="images/img1.jpg" /></a>
+                </div>
+                <!--end m2-item-img-->
+                <div class="m2-item-box">
+                	<div class="m2-box-left fl">
+                    	<div>
+                        	
+                        </div>
+                        <div class="m2-box-text">
+                        	<span class="red"></span>
+                        </div>
+                        <!--end m2-box-text-->
+                    </div>
+                    <div class="m2-box-right fr">
+                    	<a href="#mydiv" rel="facebox">在线订购</a>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+				{%endif%}
+                <!--end m2-item-box-->
+            </div>
+            {%endfor%}
+            <div class="cb"></div>
+			</div>
+        </div>
+        <!--end m2-->
+        
+        
+        
+        
+        
+        
+        <div class="m2" id="3F">
+        	<div class="m2-title">
+            	<img src="images/3L.jpg" />
+            </div>
+            <!--end m2-title-->
+			<div class="w980">
+			{%for list in adlist3%}
+            <div class="m2-item fl mr20">
+				{%if list%}
+            	<div class="m2-item-img">
+                	<a href="{{list.picurl}}" target=_blank><img src="{{list.picaddress}}" /></a>
+                </div>
+                <!--end m2-item-img-->
+                <div class="m2-item-box">
+                	<div class="m2-box-left fl">
+                    	<div class="m2-box-title">
+                        	<a href="{{list.picurl}}" target="_blank">{{list.ad_description.company}}</a>
+                        </div>
+                        <div class="m2-box-text">
+                        	<span class="red">{{list.ad_description.price}}</span>
+                        </div>
+                        <!--end m2-box-text-->
+                    </div>
+                    <div class="m2-box-right fr">
+                    	<a href="{{list.picurl}}" target=_blank>企业商铺</a>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+				{%else%}
+				<div class="m2-item-img">
+                	<a href="#mydiv" rel="facebox"><img src="images/img1.jpg" /></a>
+                </div>
+                <!--end m2-item-img-->
+                <div class="m2-item-box">
+                	<div class="m2-box-left fl">
+                    	<div>
+                        	
+                        </div>
+                        <div class="m2-box-text">
+                        	<span class="red"></span>
+                        </div>
+                        <!--end m2-box-text-->
+                    </div>
+                    <div class="m2-box-right fr">
+                    	<a href="#mydiv" rel="facebox">在线订购</a>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+				{%endif%}
+                <!--end m2-item-box-->
+            </div>
+            {%endfor%}
+            <div class="cb"></div>
+			</div>
+        </div>
+        <!--end m2-->
+	
+    </div>
+    <!--end year-main-->
+    <div style="width:100%">
+        <div style="width:960px;margin:0 auto;text-align:center">
+            {% include 'html/comm/buttom.html' %}
+        </div>
+    </div>
+    
+</div>
+<!--end year-->
+<script>
+document.getElementById("title").value = "2013年底促销";
+</script>
+</body>
+</html>

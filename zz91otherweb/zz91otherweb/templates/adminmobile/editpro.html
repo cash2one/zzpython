@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>ZZ91再生网简易后台</title>
+		<link rel="stylesheet" type="text/css" href="../mobile/css/aui.css" />
+		<style>
+			body {
+				height: auto;
+			}
+			
+			.aui-card {
+				margin-top: 15px;
+			}
+			
+			.aui-content {
+				margin-bottom: 0;
+			}
+			
+			p {
+				padding: 0 10px;
+			}
+			
+			p.padded {
+				padding: 10px;
+			}
+			
+			.year-list {
+				background: none;
+				text-align: center;
+				overflow: hidden;
+				padding: 10px 5px;
+			}
+			
+			.year {
+				text-align: center;
+				font-size: 12px;
+				margin: 0 5px;
+				background: #fff;
+				height: 32px;
+				line-height: 32px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				color: #333;
+				overflow: hidden;
+			}
+			
+			.year.active {
+				background: #ff9900;
+				border: 1px solid #ff9900;
+				color: #ffffff;
+				-webkit-animation: fadeIn .5s ease both;
+				animation: fadeIn .5s ease both;
+			}
+			
+			.year.disabled {
+				background: #eeeeee;
+				border-color: #eeeeee;
+				color: #666;
+			}
+			
+			.price-list .amount strong {
+				font-size: 18px;
+				font-weight: 400;
+			}
+			
+			.basic-info {
+				margin-bottom: 15px;
+			}
+			
+			@-webkit-keyframes fadeIn {
+				from {
+					background: #ffffff;
+					border: 1px solid #ddd;
+				}
+				to {
+					background: #ff9900;
+					border: 1px solid #ff9900;
+				}
+			}
+			
+			.aui-content-padded {
+				margin-top: 15px;
+			}
+			.aui-input-row .aui-input-addon{
+				color: #0000FF;
+			}
+
+			.full {
+				width: 100%;
+			}
+			.aui-bar-tab{
+				padding-top: 10px;
+			}
+			.aui-nav .aui-bar-tab{
+			background-color: #ebebeb;
+		}
+		</style>
+		<script type="text/javascript" src="../mobile/js/jquery.js"></script>
+		<script type="text/javascript" src="../mobile/js/zepto.min.js"></script>
+		<script type="text/javascript" src="../mobile/js/layer/layer.js"></script>
+		<script type="text/javascript" src="../mobile/js/comm.js"></script>
+	</head>
+
+	<body>
+		<div class="aui-tab">
+			<ul class="aui-tab-nav">
+				<li><a href="javascript:window.history.back(-1)">返回列表</a></li>
+				<li class="active"><a href="editpro.html?proid={{proid}}">供求详情</a></li>
+				<li><a href="editpic.html?proid={{proid}}">图片{%if ispic%}<span style="color: red;">(有)</span>{%endif%}</a></li>
+				<li><a href="editcompany.html?proid={{proid}}">公司详情</a></li>
+			</ul>
+		</div>
+		<p class="padded">基本信息</p>
+		<div class="aui-content basic-info">
+			<div class="aui-form">
+				<div class="aui-input-row">
+					<span class="aui-input-addon">标题</span>
+					<input type="text" class="aui-input" placeholder="标题" id="title" value="{{details.title}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">供求类型</span>
+					<div class="aui-pull-right">
+						<input class="aui-radio" type="radio" value="10331000" id="products_type_code" name="products_type_code" {%ifequal details.products_type_code '10331000'%}checked{%endifequal%}>
+						<div class="aui-radio-name">供应</div>
+						<input class="aui-radio" type="radio" value="10331001" id="products_type_code" name="products_type_code" {%ifequal details.products_type_code '10331001'%}checked{%endifequal%}>
+						<div class="aui-radio-name">求购</div>
+					</div>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">类别</span>
+					<input type="text" class="aui-input" placeholder="类别" id="category_products_main_code" value="{{details.category_products_main}}" readonly="true" />
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">客户标签</span>
+					<input type="text" class="aui-input" placeholder="客户标签" id="tags" value="{{details.tags}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">后台标签</span>
+					<input type="text" class="aui-input" placeholder="后台标签" id="tags_admin" value="{{details.tags_admin}}" readonly />
+				</div>
+			</div>
+		</div>
+		<p class="padded">交易条件</p>
+		<div class="aui-content basic-info">
+			<div class="aui-form">
+				<div class="aui-input-row">
+					<span class="aui-input-addon">价格</span>
+					<input type="text" class="aui-input" placeholder="价格" id="price" value="{{details.price}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">价格单位</span>
+					<input type="text" class="aui-input" placeholder="价格单位" id="price_unit" value="{{details.price_unit}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">价格下限</span>
+					<input type="text" class="aui-input" placeholder="价格下限" id="min_price" value="{{details.min_price}}" readonly  />
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">价格上限</span>
+					<input type="text" class="aui-input" placeholder="外观" id="max_price" value="{{details.max_price}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">供货总量</span>
+					<input type="text" class="aui-input" placeholder="供货总量" id="total_quantity" value="{{details.total_quantity}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">数量</span>
+					<input type="text" class="aui-input" placeholder="数量" id="quantity" value="{{details.quantity}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">计量单位</span>
+					<input type="text" class="aui-input" placeholder="计量单位" id="quantity_unit" value="{{details.quantity_unit}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">产品规格</span>
+					<input type="text" class="aui-input" placeholder="产品规格" id="specification" value="{{details.specification}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">杂质含量</span>
+					<input type="text" class="aui-input" placeholder="杂质含量" id="impurity" value="{{details.impurity}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">用途</span>
+					<input type="text" class="aui-input" placeholder="用途" id="useful" value="{{details.useful}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">颜色</span>
+					<input type="text" class="aui-input" placeholder="颜色" id="color" value="{{details.color}}" readonly/>
+				</div>
+				
+				<div class="aui-input-row">
+					<span class="aui-input-addon">现在货物所在</span>
+					<input type="text" class="aui-input" placeholder="现在货物所在" id="location" value="{{details.location}}" readonly  />
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">外观</span>
+					<input type="text" class="aui-input" placeholder="外观" id="appearance" value="{{details.appearance}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">加工说明</span>
+					<select name="manufacture" type="select" class="aui-input selectlist" id="manufacture">
+						<option value="">请选择</option>
+						{%for list in manufacturelist%}
+						<option value="{{list.code}}">{{list.label}}</option>
+						{%endfor%}
+					</select>
+					<script>selectOption("manufacture","{{details.manufacture}}")</script>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">审核情况</span>
+					<span id="statustext">
+					{%ifequal details.check_status "0"%}未审核{%endifequal%}
+					{%ifequal details.check_status "1"%}已审核{%endifequal%}
+					{%ifequal details.check_status "2"%}审核未通过退回{%endifequal%}
+					{%ifequal details.check_status "3"%}暂不发布{%endifequal%}
+					</span>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">审核人</span>
+					<input type="text" class="aui-input" placeholder="审核人" id="check_person" value="{{details.check_person}}" readonly />
+				</div>
+				
+				<div class="aui-input-row">
+					<span class="aui-input-addon">未通过原因</span>
+					<select name="unpass_reason" type="select" class="aui-input selectlist" id="unpass_reason">
+						<option value="">请选择</option>
+						{%for list in unpass_reasonlist%}
+						<option value="{{list.content}}">{{list.content}}</option>
+						{%endfor%}
+					</select>
+					<script>selectOption("unpass_reason","{{details.unpass_reason}}")</script>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">信息有效期</span>
+					<input type="text" class="aui-input" placeholder="信息有效期" id="expire_time" value="{{details.expire_time}}" readonly />
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">内容</span>
+					<div class="aui-btn aui-btn-info" id="procontent" tapmode >编辑内容</div>
+				</div>
+				
+			</div>
+		</div>
+		<div style="height: 60px;"></div>
+		<footer class="aui-nav" id="aui-footer">
+			<ul class="aui-bar-tab">
+				<li>
+					<div class="aui-btn aui-btn-info" id="shpro" tapmode >审核</div>
+				</li>
+				<li>
+					<div class="aui-btn aui-btn-warning" id="noshpro" tapmode >审核不通过，退回</div>
+				</li>
+			</ul>
+		</footer>
+		
+	</body>
+	
+	<script type="text/javascript">
+		;
+		! function() {
+			//页面一打开就执行，放入ready是为了layer所需配件（css、扩展模块）加载完毕
+			layer.ready(function() {
+				$("#category_products_main_code").on("click", function() {
+					//iframe层
+					layer.open({
+						type: 2,
+						title: '供求类别',
+						shadeClose: true,
+						shade: 0.8,
+						area: ['70%', '80%'],
+						content: 'category.html?proid={{proid}}' //iframe的url
+					});
+				})
+				$("#procontent").on("click", function() {
+					//iframe层
+					layer.open({
+						type: 2,
+						title: '供求详细内容',
+						shadeClose: true,
+						shade: 0.8,
+						area: ['90%', '90%'],
+						content: 'procontent.html?proid={{proid}}' //iframe的url
+					});
+				})
+				$(".selectlist").on("change", function() {
+					//iframe层
+					var fildvalue=$(this).val();
+					var fild=$(this).attr("id");
+					savecontent(fild,fildvalue,'products','{{proid}}')
+				})
+				
+				$("body").on("click",".aui-radio",function() {
+					var fild=$(this).attr("id");
+					var fildvalue=$(this).attr("value");
+					savecontent(fild,fildvalue,'products','{{proid}}')
+				})
+				
+				$("body").on("click",".aui-input",function() {
+					if ($(this).attr("type")=="text" && $(this).attr("id")!="category_products_main_code"){
+						var oldstr=$(this).val();
+						var fild=$(this).attr("id");
+						var placeholder=$(this).attr("placeholder");
+						var str = prompt(placeholder, oldstr);
+						var fildvalue=str;
+						if (str){
+							savecontent(fild,fildvalue,'products','{{proid}}')
+							$(this).val(str);
+						}
+					}
+				})
+				//审核
+				$("body").on("click","#shpro",function() {
+					var fild="check_status";
+					var fildvalue="1";
+					savecontent(fild,fildvalue,'products','{{proid}}');
+					$("#statustext").html("已审核");
+					window.close()
+				})
+				//审核未通过
+				$("body").on("click","#noshpro",function() {
+					var fild="check_status";
+					var fildvalue="2";
+					if ($("#unpass_reason").val()==""){
+						layer.msg('请选择未通过原因！');
+						$("#unpass_reason").focus();
+						$("#statustext").html("审核未通过");
+						return
+					}
+					savecontent(fild,fildvalue,'products','{{proid}}');
+					window.close()
+				})
+				function savecontent(fild,fildvalue,tablevalue,id){
+					var data={
+						fild : fild,
+						fildvalue : fildvalue,
+						tablevalue : tablevalue,
+						id : id
+					}
+					$.ajax({
+						url : 'savecontent.html',
+						type : 'post',
+						dataType : 'json',
+						cache : false,
+						data : data,
+					    success:function(ret) {
+							if (ret) {
+								if (ret.err == "true") {
+									alert(ret.errkey)
+								} else {
+									layer.msg('保存成功');
+								}
+							} else {
+								alert('异常！1')
+							};
+						},
+						error : function(e) {
+							alert(alert(JSON.stringify(e)));
+						}
+					});
+				}
+				
+			});
+		}();
+		
+	</script>
+
+</html>

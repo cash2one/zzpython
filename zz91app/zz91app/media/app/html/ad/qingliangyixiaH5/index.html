@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/base-min.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_pxwg2gxpsu8wu3di.css" />
+	</head>
+	<body>
+		<script src="js/viewport.js"></script>
+		
+		<div class="bandbox">
+			<div class="band"></div>
+		</div>
+		
+		<div class="mainbox">
+			<div class="maintle">
+				<p class="maintle-main">
+					企业建站
+				</p>
+				<!--<p class="maintle-tt">买就送<span> 300 </span>元显示联系方式一个月</p>-->
+			</div>
+			<div class="maincon">
+				<div class="main-bj">
+					<span class="main-bjfh">￥</span>
+					<span class="main-newp">1500</span>
+					<span class="main-price">（原价2000）</span>
+				</div>
+				<div class="main-lximg">
+					<img src="images/images1.png" />
+				</div>
+			</div>
+		</div>
+		
+		<div class="mianys">
+			<p>* 无需备案 ，域名网站同样归属您。</p>
+			<p>* 独立后台管理，随时更新的网站，顶级域名配置。</p>
+		</div>
+		
+		<div class="mainbox">
+			<div class="maintle">
+				<p class="maintle-main">
+					成功案例
+				</p>
+			</div>
+			<div class="maincon">
+				<div class="main-anli">
+					<div class="main-anliimg">
+						<img src="images/mo1.jpg"/>
+					</div>
+					<p>案例1</p>
+				</div>
+				<div class="main-anli">
+					<div class="main-anliimg">
+						<img src="images/mo2.jpg"/>
+					</div>
+					<p>案例2</p>
+				</div>
+				<div class="main-anli">
+					<div class="main-anliimg">
+						<img src="images/mo3.jpg"/>
+					</div>
+					<p>案例3</p>
+				</div>
+				<div class="main-anli">
+					<div class="main-anliimg">
+						<img src="images/mo4.jpg"/>
+					</div>
+					<p>案例4</p>
+				</div>
+			</div>
+		</div>
+		<div style="height: 100px;"></div>
+		<div class="main-btnbox">
+			<a href="#" class="main-btn">
+				立即购买
+			</a>
+		</div>
+		<script type="text/javascript" src="../../../script/api.js"></script>
+		<script type="text/javascript" src="../../../script/jquery.js"></script>
+		<script type="text/javascript">
+			var appflag=0;
+			$(function(){
+				$(".main-btn").click(function(){
+					if (appflag==0){
+						window.location='http://m.zz91.com/qianbao/chongzhi.html?money=1500&paytype=qianbao'
+					}
+				})
+			})
+			apiready = function(){
+				appflag=1;
+				$(".main-btn").on("click",function() {
+					api.execScript({
+						name : "root",
+						script : "opencreatewebsite()"
+					});
+				});
+			};
+		</script>
+		<div style="display:none">
+		    <script>
+		        var _hmt = _hmt || [];
+		        (function() {
+		            var hm = document.createElement("script");
+		            hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+		            var s = document.getElementsByTagName("script")[0];
+		            s.parentNode.insertBefore(hm, s);
+		        })();
+		    </script>
+		    <!--baidu analysis-->
+		    <script>
+		        var _hmt = _hmt || [];
+		        
+		        (function() {
+		            var hm = document.createElement("script");
+		            hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+		            var s = document.getElementsByTagName("script")[0];
+		            s.parentNode.insertBefore(hm, s);
+		        })();
+		    </script>
+		</div>
+	</body>
+	
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="Js/jquery.js"></script>
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="123/jquery.lightbox_me.js"></script>
+<style>
+body,div,h2{margin:0;padding:0;}
+#overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:white;opacity:0.5;filter:alpha(opacity=50);display:none;}
+.win{position:absolute;top:50%;left:50%;width:400px;height:300px;background:#fff;border:4px solid gray;margin:-102px 0 0 10px;display:none;}
+h2{font-size:15px;text-align:right;background:#F0FFF0;border-bottom:1px solid gray;padding:1px;}
+h2 span{color:gray;cursor:pointer;background:#fff;border:1px solid gray;padding:0 2px;}
+</style>
+
+
+</head>
+<body>
+<div id="overlay"></div>
+<form name="form" class="form-inline definewidth m20">  
+<button type="button" class="btn btn-success" onClick="window.location.href='add_push.html'">添加推送</button>&nbsp;&nbsp;&nbsp;&nbsp;
+<input class="Wdate" type="text" style="width:100px" name="gmt_begin" {%if gmt_begin%}value="{{gmt_begin}}" {%endif%} id="datebegin" onClick="WdatePicker()"> 到
+<input class="Wdate" type="text" style="width:100px" name="gmt_end" {%if gmt_end%}value="{{gmt_end}}" {%endif%} id="datebegin" onClick="WdatePicker()"> &nbsp;&nbsp;&nbsp;
+<input class="btn btn-success" type="submit" value="查询">&nbsp;&nbsp;&nbsp;
+</form>
+
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>标题</th>
+        <th>所属类别</th>
+        <th>时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+
+    {%for l in listall%}
+	     <tr>
+	     <td>{{l.id}}</td>
+	     <td><a href="{{l.weburl}}" target="_blank">{{l.title|safe}}</a> </td>
+		 <td>{{l.category_txt}}</td>	
+	     <td>{{l.gmt_created}}</td>
+	     <td>
+<a href="update_app_push.html?artid={{l.id}}" title="编辑"><img src="123/imgs/gtk-edit.png"></a>
+&nbsp;<a href="delthispush.html?artid={{l.id}}" title="删除" onClick="return confirm('是否将此信息删除?')"><img src="123/imgs/b_drop.png"></a>
+	     </td>
+        </tr>
+     {%endfor%}
+        </table>
+<div class="inline pull-right page">
+<form>
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}&{{searchurl}}"><!--<a href="javascript:void(0)" class="nextpage" value="{{nextpage}}">-->下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+
+{%if flag%}<input type="hidden" name="flag" value="{{flag}}">{%endif%}
+{%if writer%}<input type="hidden" name="writer" value="{{writer}}">{%endif%}
+<input type="hidden" name="page_listcount" value="{{page_listcount}}">&nbsp;&nbsp;
+去第<input type="text" name="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页  <input type="submit" style="display:none"> &nbsp;&nbsp;
+<a href='?page=1&{{searchurl}}' >首页</a><a href='?page={{page_listcount}}&{{searchurl}}' >尾页</a> 
+</form>
+</div>
+
+</body>
+</html>

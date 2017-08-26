@@ -1,0 +1,24 @@
+{%ifequal type "question"%}<span class="mui-icon mui-icon-plus zz91-question-addpic"></span>
+<textarea rows="1" placeholder="多行文本框" class="zz91-question-addtext"></textarea>
+<a class="mui-btn mui-btn-success zz91-question-addsend">发送</a>
+{%endifequal%}
+{%ifequal type "myrc_products"%}
+<center style="padding-top: 10px;">
+	<button onclick="gotourl('/myrc_index/','myrc')">首页</button>
+	<button>刷新</button>
+	<button>暂不发布</button>
+	<button>修改</button>
+</center>
+{%else%}
+<div style="position: fixed;bottom: 0;left: 0;">
+	<a class="mui-tab-item" href="javascript:gotourl('{{appurl}}/index.html','index');">
+		<span class="mui-tab-label">动态</span>
+	</a>
+	<a class="mui-tab-item" href="javascript:gotourl('{{appurl}}/trade.html','trade');">
+		<span class="mui-tab-label">商机</span>
+	</a>
+	<a class="mui-tab-item" href="#">
+		<span class="mui-tab-label">附近</span>
+	</a>
+</div>
+{%endifequal%}

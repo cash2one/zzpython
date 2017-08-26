@@ -1,0 +1,50 @@
+<div class="content-leftsider">
+								<div class="content-leftsider-title">
+									<h3>{{list.name}}</h3>
+									<div class="main-left-vip">
+										<p><i class="iconfont">&#xe619;</i><span>{{list.viptype.vipname}}</span></p>
+										{%if zst_year%}
+										<p class="year">第<b>{{list.zst_year}}</b>年</p>
+										{%endif%}
+									</div>
+									<a class="certification">
+										<i class="iconfont">&#xe622;</i> {%if list.viptype.vipcheck%}
+										<span>已认证</span> {%endif%}
+									</a>
+								</div>
+								<div class="content-leftsider-con">
+									<div>
+										<p>所在地区：</p><span>{{list.province}} </span></div>
+									<div>
+										<p>主营业务：</p><span>{{list.businesstop}} </span></div>
+									<div>
+										<p>经营模式：</p><span>{{list.servicename}} </span></div>
+									<div>
+										<p>主　　营：</p><span>{{list.industry}}</span></div>
+									<div>
+										<p>地　　址：</p><span>{{list.address}} </span></div>
+									{%if list.companymarket%}
+									<div>
+										<p>入住市场：</p><span><a href="{{list.companymarket.url}}" target="_blank">{{list.companymarket.name}}</a> </span></div>
+									{%endif%}
+								</div>
+							</div>
+							<div class="contact">
+								<div class="left-title">
+									<span>联系方式</span>
+								</div>
+								<div class="content-top-main2">
+									<h3>{{list.contact}} {{list.sex}}<span> {{list.position}}</span></h3>
+									<div class="content-top-main2con">电 话：
+										<font size="3" color="red">{{list.ppcphone}}</font><br/>地 址：{{list.address}}</div>
+								</div>
+							</div>
+							<div class="contact">
+								<div class="left-title">
+									<span>我的微站</span>
+								</div>
+								<div class="content-top-main2">
+									<center>用手机查看我的微站</center>
+									<center><img src="http://pyapp.zz91.com/getdomainpic{{company_id}}.html"></center>
+								</div>
+							</div>

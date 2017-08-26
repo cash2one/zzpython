@@ -1,0 +1,19 @@
+<uwsgi>
+ <socket>:8027</socket>
+ <workers>2</workers>
+ <master>true</master>
+ <listen>100</listen>
+ <processes>3</processes>
+ <pythonpath>.</pythonpath>
+ <module>zz91seoweb.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>zz91seoweb/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>500</limit-as>
+ <reload-on-as>100</reload-on-as>
+ <reload-on-rss>100</reload-on-rss>
+ <max-requests>500</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/zz91seoweb.log</daemonize>
+</uwsgi>

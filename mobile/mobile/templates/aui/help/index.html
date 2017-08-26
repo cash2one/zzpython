@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>服务中心-zz91再生网</title>
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_o2rb2o4hwpgsc3di.css"/>
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_104910_504rkz99kx7ds4i.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/help/css/index.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<style>
+			.iconfont{
+				line-height: 1
+			}
+			.kecheng-box{
+				background: #ffffcd
+			}
+			.kecheng{
+				background: #ffffcc;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-title">服务中心</div>
+		    <a class="aui-pull-right" href="/myrc_index/">
+		        <span class="aui-iconfont aui-icon-my"></span>
+		    </a>
+		</header>
+		<div style="height: 45px;"></div>
+		<div class="aui-flex-col aui-flex-middle aui-text-center aui-margin-b-15">
+			<a href="/gd/list.html" class="aui-flex-item-6 bgcolor-ff aui-border-r aui-padded-10">
+				{%if gdshow%}<span class="aui-badge aui-badge-danger" style="left:auto;left:50%;">{{noviewanwer}}</span>{%endif%}
+				<span class="iconfont icon-wode-fankui tab-icon" style="color: #de6471;"></span>
+				<p class="main-color aui-margin-t-0">意见反馈</p>
+			</a>
+			<a href="tel:0571-56612345" class="aui-flex-item-6 bgcolor-ff aui-padded-10">
+				<span class="iconfont icon-kefu-9 tab-icon aui-text-info"></span>
+				<p class="main-color">服务热线</p>
+			</a>
+		</div>
+		
+		<div class="aui-margin-b-15 bgcolor-ff">
+			<div class="aui-flex-col aui-flex-center aui-padded-t-10 aui-padded-b-15">
+				<div class="tleimg">
+					<img src="http://static.m.zz91.com/help/images/tlt1.png" class="" />
+				</div>
+			</div>
+			<div class="aui-flex-col aui-flex-center aui-flex-middle">
+				<a href="list.html?typeid=64" class="aui-flex-item-3 aui-text-center aui-padded-b-15">
+					<div class="pro-list">
+						<img src="http://static.m.zz91.com/help/images/images1.png" />
+					</div>
+					<div class="aui-margin-t-5 main-color">供求信息</div>
+				</a>
+				<a href="list.html?typeid=65" class="aui-flex-item-3 aui-text-center aui-padded-b-15">
+					<div class="pro-list">
+						<img src="http://static.m.zz91.com/help/images/images2.png" />
+					</div>
+					<div class="aui-margin-t-5 main-color">行情报价</div>
+				</a>
+				<a href="list.html?typeid=66" class="aui-flex-item-3 aui-text-center aui-padded-b-15">
+					<div class="pro-list">
+						<img src="http://static.m.zz91.com/help/images/images3.png" />
+					</div>
+					<div class="aui-margin-t-5 main-color">再生钱包</div>
+				</a>
+				<a href="list.html?typeid=67" class="aui-flex-item-3 aui-text-center aui-padded-b-15">
+					<div class="pro-list">
+						<img src="http://static.m.zz91.com/help/images/images4.png" />
+					</div>
+					<div class="aui-margin-t-5 main-color">产品服务</div>
+				</a>
+				<a href="list.html?typeid=68" class="aui-flex-item-3 aui-text-center aui-padded-b-15">
+					<div class="pro-list">
+						<img src="http://static.m.zz91.com/help/images/images5.png" />
+					</div>
+					<div class="aui-margin-t-5 main-color">会员帐号</div>
+				</a>
+				<a href="list.html?typeid=69" class="aui-flex-item-3 aui-text-center aui-padded-b-15">
+					<div class="pro-list">
+						<img src="http://static.m.zz91.com/help/images/images6.png" />
+					</div>
+					<div class="aui-margin-t-5 main-color">诚信档案</div>
+				</a>
+				<a href="list.html?typeid=70" class="aui-flex-item-3 aui-text-center aui-padded-b-15">
+					<div class="pro-list">
+						<img src="http://static.m.zz91.com/help/images/images7.png" />
+					</div>
+					<div class="aui-margin-t-5 main-color">维权举报</div>
+				</a>
+				<a href="list.html?typeid=71" class="aui-flex-item-3 aui-text-center aui-padded-b-15">
+					<div class="pro-list">
+						<img src="http://static.m.zz91.com/help/images/images8.png" />
+					</div>
+					<div class="aui-margin-t-5 main-color">其他问题</div>
+				</a>
+			</div>
+		</div>
+		<div class="aui-tab aui-tab-success">
+		    <ul class="aui-tab-nav">
+		        <li class="active">课程中心</li>
+		        <li>常见问题</li>
+		    </ul>
+		</div>
+		
+		<div class="maincon">
+			<div class="mainbox">
+				<div class="aui-padded-15 kecheng-box">
+					<div>课程已学{{kclist.haveread}}节 余{{kclist.noread}}节</div>
+					<div class="aui-flex-col aui-text-center">
+						<div class="aui-flex-item-1"></div>
+						{%for list in kclist.list%}
+						{%if list.isread%}
+						<div class="aui-flex-item-1">
+							<i class="iconfont icon-mao aui-text-success"></i>
+							<div class="aui-bg-success aui-padded-t-10"></div>
+						</div>
+						{%else%}
+						<div class="aui-flex-item-1">
+							<i class="iconfont icon-mao"></i>
+							<div class="aui-padded-t-10 bgcolor-ff"></div>
+						</div>
+						{%endif%}
+						{%endfor%}
+					</div>
+				</div>
+		
+				<div class="bgcolor-ff">
+					{%for list in kclist.list%}
+					<div class="aui-border-b aui-padded-15">
+						<div class="zz-div-box">
+							<div class="aui-margin-r-10 color-66"><i class="iconfont icon-kecheng aui-font-size-24"></i></div>
+							<a href="detail.html?id={{list.aid}}"><div class="zz-div-td1 aui-text-success aui-ellipsis-2">{{list.subject}}</div></a>
+						</div>
+						<div class="aui-text-center aui-margin-t-10">
+							<a href="detail.html?id={{list.aid}}">{%if list.isread%}
+							<span class="aui-btn aui-btn aui-btn-outlined">看图片学习</span>
+							{%else%}
+							<span class="aui-btn aui-btn-danger aui-btn-outlined">看图片学习</span>
+							{%endif%}</a>
+						</div>
+					</div>
+					{%endfor%}
+				</div>
+			</div>
+			
+			<div class="mainbox" style="display: none;">
+				<div class="aui-content">
+				    <ul class="aui-list-view aui-in">
+				    	{%for list in hlist.list%}
+				        <li class="aui-list-view-cell">
+				            <a href="detail.html?id={{list.aid}}" class="aui-arrow-right aui-ellipsis-1">
+				           		{{list.subject}}
+				            </a>
+				        </li>
+				        {%endfor%}
+				    </ul>
+				</div>
+			</div>
+		</div>
+		<div style="height: 50px;"></div>
+		<a href="/gd/add.html" class="aui-btn aui-btn-block aui-btn-info aui-padded-t-10 aui-padded-b-10 bottomhelp" style="border-radius: 0;">如有其他问题，请点击反馈给我们</a>
+		<script>
+			$(".aui-tab-nav li").click(function(){
+				index = $(this).index();
+				$(this).addClass("active").siblings().removeClass("active");
+				$(this).parents(".aui-tab").siblings(".maincon").find(".mainbox").eq(index).show().siblings(".mainbox").hide();
+			})
+		</script>
+		{%include 'aui/bottom.html'%}
+	</body>
+</html>

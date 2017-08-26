@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>zz91年底推荐专场</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+<!--组件依赖css begin-->
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/widget/slider/slider.css" />
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/widget/slider/slider.default.css" /> <!--皮肤文件，若不使用该皮肤，可以不加载-->
+<!--组件依赖css end-->
+<!--组件依赖js begin-->
+<script type="text/javascript" src="{{htmlincludes.img}}js/zepto.js"></script>
+<script type="text/javascript" src="{{htmlincludes.img}}js/touch.js"></script>      <!--新版zepto合并版中不包括touch.js-->
+<script type="text/javascript" src="{{htmlincludes.img}}js/zepto.extend.js"></script>
+<script type="text/javascript" src="{{htmlincludes.img}}js/zepto.ui.js"></script>
+<script type="text/javascript" src="{{htmlincludes.img}}js/widget/slider.js"></script>
+<!--组件依赖js end-->
+<script src="{{htmlincludes.img}}js/index.js"></script>
+
+</head>
+<body style="background:#f6f6f6">
+<div class="phoneTop">
+	{{list.name}}
+</div>
+<!--end phoneTop-->
+<div class="phoneTitle">
+	<center>
+	<img src="{{list.viptype.vippic}}" />{%if list.zst_year%}第<span>{{list.zst_year}}</span>年{%endif%}
+    </center>
+</div>
+<!--end phoneTitle-->
+<div class="phoneBanner">
+	<img src="{{htmlincludes.img}}images/banner2.jpg" />
+</div>
+<!--end phoneBanner-->
+<div class="phone-nav">
+	<ul>
+    	<li style="background:#d8d8d8"><a href="/mobile/index{{company_id}}.htm" class="phone-nav-icon1"></a></li>
+        <li><a href="/mobile/products{{company_id}}-1.htm?pdt_type=0" class="phone-nav-icon2"></a></li>
+        <li><a href="/mobile/products{{company_id}}-1.htm?pdt_type=1" class="phone-nav-icon3"></a></li>
+        <li><a href="/mobile/contact{{company_id}}.htm" class="phone-nav-icon4"></a></li>
+        <li><a href="/mobile/credit{{company_id}}.htm" class="phone-nav-icon5"></a></li>
+        <li><a href="/mobile/contact{{company_id}}.htm" class="phone-nav-icon6"></a></li>
+    </ul>
+</div>
+<!--end phone-nav-->
+<div class="fr" style="width:75%">
+<div class="phoneBox-title">
+    公司简介
+</div>
+<!--end phoneBox-title-->
+<div class="phoneBox">
+	
+	<div class="phoneBox-divImg">
+    	<div id="slider" style="height:75px"></div>
+        <script>
+		
+			//创建slider组件
+			var slider = $.ui.slider('#slider', {
+				autoPlay:false,
+				showArr:false,
+				viewNum:3,
+				content:[
+					{%for i in prolist.list%}{
+						href: "#",
+						pic: "{{i.pdt_images}}",
+						title:''
+					},{%endfor%}
+				]
+			});
+		</script>
+		<!-- 图片高度自适应 -->
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript">
+		$(window).load(function(){
+			$('#slider').css('height','75px');
+		})
+		</script>
+		<!-- 代码 结束 -->
+    </div>
+    <!--end phoneBox-divImg-->
+    <div class="phoneBox-divText" id="phoneText" style="height:auto;margin-bottom:20px">
+    	{{list.introduction|safe}}
+    </div>
+    <!--end phoneBox-divText-->
+    <div class="contact-text">
+    	联 系 人：{{list.contact}}
+    </div>
+    
+    
+    {%if list.ppcphone%}
+    <div class="contact-text">
+    	电    话：{{list.ppcphone}}
+    </div>
+    {%else%}
+    {%if list.showcontact%}
+    <div class="contact-text">
+    	电    话：{{list.tel_country_code}}-{{list.tel_area_code}}-{{list.tel}}
+    </div>
+    <div class="contact-text">
+    	移动电话：{{list.mobile}}
+    </div>
+    {%endif%}
+    {%endif%}
+    
+    
+    <div class="contact-text">
+    	诚信指数：{%if integral%}{{integral}}{%endif%}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	经营范围：{{list.business}}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	所在地区：{{list.address}}
+    </div>
+    <!--contact-text-->
+    
+</div>
+<!--end phoneBox-->
+</div>
+<div class="cb"></div>
+<div class="phoneRuturntop">
+	<img src="{{htmlincludes.img}}images/ruturn_top.jpg" class="fr" onclick="bookmarks();" />
+    <div class="cb"></div>
+</div>
+<!--phoneRuturntop-->
+
+<div class="phoneFooterText">
+	<span>{{list.name}}</span><br />
+    技术支持：<a href="http://m.zz91.com">ZZ91再生网</a>
+</div>
+<!--end phoneFooterText-->
+
+</body>
+</html>

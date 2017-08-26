@@ -1,0 +1,345 @@
+{%extends 'index.html'%}
+{%block content%}
+<script type="text/javascript">
+var gMonths=new Array("一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月");
+var WeekDay=new Array("日","一","二","三","四","五","六");
+var strToday="今天";
+var strYear="年";
+var strMonth="月";
+var strDay="日";
+var splitChar="-";
+var startYear=2000;
+var endYear=2050;
+var dayTdHeight=12;
+var dayTdTextSize=12;
+var gcNotCurMonth="#E0E0E0";
+var gcRestDay="#FF0000";
+var gcWorkDay="#444444";
+var gcMouseOver="#79D0FF";
+var gcMouseOut="#F4F4F4";
+var gcToday="#444444";
+var gcTodayMouseOver="#6699FF";
+var gcTodayMouseOut="#79D0FF";
+var gdCtrl=new Object();
+var goSelectTag=new Array();
+var gdCurDate=new Date();
+var giYear=gdCurDate.getFullYear();
+var giMonth=gdCurDate.getMonth()+1;
+var giDay=gdCurDate.getDate();
+function $(){var elements=new Array();for(var i=0;i<arguments.length;i++) {var element=arguments[i];if(typeof(arguments[i])=='string'){element=document.getElementById(arguments[i]);}if(arguments.length==1){return element;}elements.Push(element);}return elements;}
+Array.prototype.Push=function(){var startLength=this.length;for(var i=0;i<arguments.length;i++){this[startLength+i]=arguments[i];}return this.length;}
+String.prototype.HexToDec=function(){return parseInt(this,16);}
+String.prototype.cleanBlank=function(){return this.isEmpty()?"":this.replace(/\s/g,"");}
+function checkColor(){var color_tmp=(arguments[0]+"").replace(/\s/g,"").toUpperCase();var model_tmp1=arguments[1].toUpperCase();var model_tmp2="rgb("+arguments[1].substring(1,3).HexToDec()+","+arguments[1].substring(1,3).HexToDec()+","+arguments[1].substring(5).HexToDec()+")";model_tmp2=model_tmp2.toUpperCase();if(color_tmp==model_tmp1 ||color_tmp==model_tmp2){return true;}return false;}
+function $V(){return $(arguments[0]).value;}
+function fPopCalendar(evt,popCtrl,dateCtrl){evt.cancelBubble=true;gdCtrl=dateCtrl;fSetYearMon(giYear,giMonth);var point=fGetXY(popCtrl);with($("calendardiv").style){left=point.x+"px";top=(point.y+popCtrl.offsetHeight+1)+"px";visibility='visible';zindex='99';position='absolute';}$("calendardiv").focus();}
+function fSetDate(iYear,iMonth,iDay){var iMonthNew=new String(iMonth);var iDayNew=new String(iDay);if(iMonthNew.length<2){iMonthNew="0"+iMonthNew;}if(iDayNew.length<2){iDayNew="0"+iDayNew;}gdCtrl.value=iYear+splitChar+iMonthNew+splitChar+iDayNew;fHideCalendar();}
+function fHideCalendar(){$("calendardiv").style.visibility="hidden";for(var i=0;i<goSelectTag.length;i++){goSelectTag[i].style.visibility="visible";}goSelectTag.length=0;}
+function fSetSelected(){var iOffset=0;var iYear=parseInt($("tbSelYear").value);var iMonth=parseInt($("tbSelMonth").value);var aCell=$("cellText"+arguments[0]);aCell.bgColor=gcMouseOut;with(aCell){var iDay=parseInt(innerHTML);if(checkColor(style.color,gcNotCurMonth)){iOffset=(innerHTML>10)?-1:1;}iMonth+=iOffset;if(iMonth<1){iYear--;iMonth=12;}else if(iMonth>12){iYear++;iMonth=1;}}fSetDate(iYear,iMonth,iDay);}
+function Point(iX,iY){this.x=iX;this.y=iY;}
+function fBuildCal(iYear,iMonth){var aMonth=new Array();for(var i=1;i<7;i++){aMonth[i]=new Array(i);}var dCalDate=new Date(iYear,iMonth-1,1);var iDayOfFirst=dCalDate.getDay();var iDaysInMonth=new Date(iYear,iMonth,0).getDate();var iOffsetLast=new Date(iYear,iMonth-1,0).getDate()-iDayOfFirst+1;var iDate=1;var iNext=1;for(var d=0;d<7;d++){aMonth[1][d]=(d<iDayOfFirst)?(iOffsetLast+d)*(-1):iDate++;}for(var w=2;w<7;w++){for(var d=0;d<7;d++){aMonth[w][d]=(iDate<=iDaysInMonth)?iDate++:(iNext++)*(-1);}}return aMonth;}
+function fDrawCal(iYear,iMonth,iCellHeight,iDateTextSize){var colorTD=" bgcolor='"+gcMouseOut+"' bordercolor='"+gcMouseOut+"'";var styleTD=" valign='middle' align='center' style='height:"+iCellHeight+"px;font-weight:bolder;font-size:"+iDateTextSize+"px;";var dateCal="";dateCal+="<tr>";for(var i=0;i<7;i++){dateCal+="<td"+colorTD+styleTD+"color:#990099'>"+WeekDay[i]+"</td>";}dateCal+="</tr>";for(var w=1;w<7;w++){dateCal+="<tr>";for(var d=0;d<7;d++){var tmpid=w+""+d;dateCal+="<td"+styleTD+"cursor:pointer;' onclick='fSetSelected("+tmpid+")'>";dateCal+="<span id='cellText"+tmpid+"'></span>";dateCal+="</td>";}dateCal+="</tr>";}return dateCal;}
+function fUpdateCal(iYear,iMonth){var myMonth=fBuildCal(iYear,iMonth);var i=0;for(var w=1;w<7;w++){for(var d=0;d<7;d++){with($("cellText"+w+""+d)){parentNode.bgColor=gcMouseOut;parentNode.borderColor=gcMouseOut;parentNode.onmouseover=function(){this.bgColor=gcMouseOver;};parentNode.onmouseout=function(){this.bgColor=gcMouseOut;};if(myMonth[w][d]<0){style.color=gcNotCurMonth;innerHTML=Math.abs(myMonth[w][d]);}else{style.color=((d==0)||(d==6))?gcRestDay:gcWorkDay;innerHTML=myMonth[w][d];if(iYear==giYear && iMonth==giMonth && myMonth[w][d]==giDay){style.color=gcToday;parentNode.bgColor=gcTodayMouseOut;parentNode.onmouseover=function(){this.bgColor=gcTodayMouseOver;};parentNode.onmouseout=function(){this.bgColor=gcTodayMouseOut;};}}}}}}
+function fSetYearMon(iYear,iMon){$("tbSelMonth").options[iMon-1].selected=true;for(var i=0;i<$("tbSelYear").length;i++){if($("tbSelYear").options[i].value==iYear){$("tbSelYear").options[i].selected=true;}}fUpdateCal(iYear,iMon);}
+function fPrevMonth(){var iMon=$("tbSelMonth").value;var iYear=$("tbSelYear").value;if(--iMon<1){iMon=12;iYear--;}fSetYearMon(iYear,iMon);}
+function fNextMonth(){var iMon=$("tbSelMonth").value;var iYear=$("tbSelYear").value;if(++iMon>12){iMon=1;iYear++;}fSetYearMon(iYear,iMon);}
+function fGetXY(aTag){var oTmp=aTag;var pt=new Point(0,0);do{pt.x+=oTmp.offsetLeft;pt.y+=oTmp.offsetTop;oTmp=oTmp.offsetParent;}while(oTmp.tagName.toUpperCase()!="BODY");return pt;}
+function getDateDiv(){var noSelectForIE="";var noSelectForFireFox="";if(document.all){noSelectForIE="onselectstart='return false;'";}else{noSelectForFireFox="-moz-user-select:none;";}var dateDiv="";dateDiv+="<div id='calendardiv' onclick='event.cancelBubble=true' "+noSelectForIE+" style='"+noSelectForFireFox+"position:absolute;z-index:99;visibility:hidden;border:1px solid #999999;'>";dateDiv+="<table border='0' bgcolor='#E0E0E0' cellpadding='1' cellspacing='1' >";dateDiv+="<tr>";dateDiv+="<td><input type='button' id='PrevMonth' value='<' style='height:20px;width:20px;font-weight:bolder;' onclick='fPrevMonth()'>";dateDiv+="</td><td><select id='tbSelYear' style='border:1px solid;' onchange='fUpdateCal($V(\"tbSelYear\"),$V(\"tbSelMonth\"))'>";for(var i=startYear;i<endYear;i++){dateDiv+="<option value='"+i+"'>"+i+strYear+"</option>";}dateDiv+="</select></td><td>";dateDiv+="<select id='tbSelMonth' style='border:1px solid;' onchange='fUpdateCal($V(\"tbSelYear\"),$V(\"tbSelMonth\"))'>";for(var i=0;i<12;i++){dateDiv+="<option value='"+(i+1)+"'>"+gMonths[i]+"</option>";}dateDiv+="</select></td><td>";dateDiv+="<input type='button' id='NextMonth' value='>' style='height:20px;width:20px;font-weight:bolder;' onclick='fNextMonth()'>";dateDiv+="</td>";dateDiv+="</tr><tr>";dateDiv+="<td align='center' colspan='4'>";dateDiv+="<div style='background-color:#cccccc'><table width='100%' border='0' cellpadding='3' cellspacing='1'>";dateDiv+=fDrawCal(giYear,giMonth,dayTdHeight,dayTdTextSize);dateDiv+="</table></div>";dateDiv+="</td>";dateDiv+="</tr><tr><td align='center' colspan='4' nowrap>";dateDiv+="<span style='cursor:pointer;font-weight:bolder;' onclick='fSetDate(giYear,giMonth,giDay)' onmouseover='this.style.color=\""+gcMouseOver+"\"' onmouseout='this.style.color=\"#000000\"'>"+strToday+":"+giYear+strYear+giMonth+strMonth+giDay+strDay+"</span>";dateDiv+="</tr></tr>";dateDiv+="</table></div>";return dateDiv;}
+with(document){onclick=fHideCalendar;write(getDateDiv());}
+</script>
+
+<div class="baonian {%ifequal chargetype "1"%}baonianon{%endifequal%}"><a href="?chargetype=1{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}">{%ifequal chargetype "1"%}<font color="blue">包年</font>{%else%}包年{%endifequal%}</a></div>
+<div class="baonian {%ifequal chargetype "2"%}baonianon{%endifequal%}"><a href="?chargetype=2{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}">{%ifequal chargetype "2"%}<font color="blue">包天</font>{%else%}包天{%endifequal%}</a></div><br />
+<br /><br />
+
+{%block content2%}
+{%if savecompany%}
+<font color="blue">添加成功!</font> <br /><br /><a href="/addcompany/?type=k"><div class="borderb1 w35px">继续添加</div></a>
+{%else%}
+<div class="listsearch">
+
+总数:<font color="green">{{listcount}}</font>
+
+<a href="?keywords_type=1{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}">{%ifequal keywords_type "1"%}<font color="blue">所有关键词</font>{%else%}所有关键词{%endifequal%}</a>
+<a href="?keywords_type=2{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}">{%ifequal keywords_type "2"%}<font color="blue">达标关键词</font>{%else%}达标关键词{%endifequal%}</a>
+<a href="?keywords_type=3{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}">{%ifequal keywords_type "3"%}<font color="blue">未达关键词</font>{%else%}未达关键词{%endifequal%}</a>
+<a href="?keywords_type=4{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}">{%ifequal keywords_type "4"%}<font color="blue">包年到期关键词</font>{%else%}包年到期关键词{%endifequal%}</a>
+<a href="?keywords_type=6{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}">{%ifequal keywords_type "6"%}<font color="blue">欠费关键词</font>{%else%}欠费关键词{%endifequal%}</a>
+<a href="?keywords_type=7{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}">{%ifequal keywords_type "7"%}<font color="blue">丢单关键词</font>{%else%}丢单关键词{%endifequal%}</a>&nbsp;&nbsp;&nbsp;
+{%ifequal username "yunying"%}
+<a href="?keywords_type=5{%if chargetype%}&chargetype={{chargetype}}{%endif%}">{%ifequal keywords_type "5"%}<font color="blue">已删除关键词</font>{%else%}已删除关键词{%endifequal%}</a>
+{%endifequal%}
+</div>
+{%endif%}
+<br />
+<div style="clear:both"></div>
+
+<form action="">
+{%if chargetype%}<input type="hidden" name="chargetype" value="{{chargetype}}">{%endif%}
+{%if keywords_type%}<input type="hidden" name="keywords_type" value="{{keywords_type}}">{%endif%}
+<div class="h50px">
+邮箱: <input type="text" name="mail" value="{%if mail%}{{mail}}{%endif%}">
+商铺地址: <input type="text" name="shopsaddress" value="{%if shopsaddress%}{{shopsaddress}}{%endif%}">
+关键词: <input type="text" name="keywords" value="{%if keywords%}{{keywords}}{%endif%}">
+公司名称: <input type="text" name="company_name" value="{%if company_name%}{{company_name}}{%endif%}">
+手机: <input type="text" name="mobile" value="{%if mobile%}{{mobile}}{%endif%}">
+</div>
+<div class="h50px">
+
+开始优化时间: <input type="text" name="begintime" value="{{begintime}}" class="w80px" style="border:1px solid #999;" onclick="fPopCalendar(event,this,this)" onfocus="this.select()" readonly="readonly" />
+
+到  <input type="text" name="begintime2" value="{{begintime2}}" class="w80px" style="border:1px solid #999;" onclick="fPopCalendar(event,this,this)" onfocus="this.select()" readonly="readonly">
+
+{%ifequal username "yunying"%}
+优化人员:  
+<select name="seo_id"><!--onchange="window.location='/keywords/?seouser_id='+this.value"-->
+{%if seouser_id%}<option value="{{seouser_id}}">{{seouser_name}}</option>{%endif%}<option value=""><font class="s8px">--选择SEO人员--</font></option>
+{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+{%ifequal username "seo"%}
+优化人员:  
+<select name="seo_id">
+{%if seouser_id%}<option value="{{seouser_id}}">{{seouser_name}}</option>{%endif%}<option value=""><font class="s8px">--选择SEO人员--</font></option>
+{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+
+{%ifequal usertype "salesman"%}
+优化人员:  
+<select name="seo_id"><!--onchange="window.location='/keywords/?seouser_id='+this.value"-->
+{%if seouser_id%}<option value="{{seouser_id}}">{{seouser_name}}</option>{%endif%}<option value=""><font class="s8px">--选择SEO人员--</font></option>
+{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+{%ifequal username "sales"%}
+优化人员:  
+<select name="seo_id"><!--onchange="window.location='/keywords/?seouser_id='+this.value"-->
+{%if seouser_id%}<option value="{{seouser_id}}">{{seouser_name}}</option>{%endif%}<option value=""><font class="s8px">--选择SEO人员--</font></option>
+{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+
+{%ifequal username "yunying"%}&nbsp;&nbsp;&nbsp;
+销售人员:
+<select name="sales_id">
+{%if sales_id%}<option value="{{sales_id}}">{{sales_name}}</option>{%endif%}<option value=""><font class="s8px">--选择销售人员--</font></option>
+{%for seo in salesuser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+{%ifequal username "seo"%}&nbsp;&nbsp;&nbsp;
+销售人员:
+<select name="sales_id">
+{%if sales_id%}<option value="{{sales_id}}">{{sales_name}}</option>{%endif%}<option value=""><font class="s8px">--选择销售人员--</font></option>
+{%for seo in salesuser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+{%ifequal username "sales"%}&nbsp;&nbsp;&nbsp;
+销售人员:
+<select name="sales_id">
+{%if sales_id%}<option value="{{sales_id}}">{{sales_name}}</option>{%endif%}<option value=""><font class="s8px">--选择销售人员--</font></option>
+{%for seo in salesuser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+{%ifequal usertype "seouser"%}&nbsp;&nbsp;&nbsp;
+销售人员:
+<select name="sales_id">
+{%if sales_id%}<option value="{{sales_id}}">{{sales_name}}</option>{%endif%}<option value=""><font class="s8px">--选择销售人员--</font></option>
+{%for seo in salesuser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+{%ifequal usertype "company"%}&nbsp;&nbsp;&nbsp;
+销售人员:
+<select name="sales_id">
+{%if sales_id%}<option value="{{sales_id}}">{{sales_name}}</option>{%endif%}<option value=""><font class="s8px">--选择销售人员--</font></option>
+{%for seo in salesuser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+
+<input type="submit" value="查询">
+
+<input type="button" value="添加客户" onclick="window.open('/addcompany/')">
+</div>
+</form>
+{%endblock%}
+
+<form name="form">
+<table border="0" cellpadding="5" cellspacing="1" bgcolor="#333333">
+	<tr  align="center">
+	<td bgcolor="#FFFFFF">&nbsp;</td>
+	<td nowrap="nowrap" bgcolor="#CCCCCC">商铺地址</td>
+	<td nowrap="nowrap" bgcolor="#CCCCCC">公司名</td>
+	{%ifnotequal usertype "company"%}
+	<td nowrap="nowrap" bgcolor="#CCCCCC">SEO备注</td>
+	{%endifnotequal%}
+	<td nowrap="nowrap" bgcolor="#CCCCCC">关键词</td>
+	<td nowrap="nowrap" bgcolor="#CCCCCC">百度排名</td>
+	<td nowrap="nowrap" bgcolor="#CCCCCC">达标要求</td>
+	<td nowrap="nowrap" bgcolor="#CCCCCC">历史排名</td>
+	<td nowrap="nowrap" bgcolor="#CCCCCC">计费方式</td>
+	<td nowrap="nowrap" bgcolor="#CCCCCC">付款数 <a href="?sortrank={%ifequal sortrank "10"%}11{%else%}10{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↑</a></td>
+	{%if chargetype%}
+	{%ifequal chargetype "2"%}
+	<td nowrap="nowrap" bgcolor="#CCCCCC">余额 <a href="?sortrank={%ifequal sortrank "3"%}6{%else%}3{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↑</a></td>
+	{%endifequal%}
+	{%else%}
+	<td nowrap="nowrap" bgcolor="#CCCCCC">余额 <a href="?sortrank={%ifequal sortrank "3"%}6{%else%}3{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↑</a></td>
+	{%endif%}
+	<td nowrap="nowrap" bgcolor="#CCCCCC">开始优化时间 <a href="?sortrank={%ifequal sortrank "1"%}7{%else%}1{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↑</a></td>
+	<td nowrap="nowrap" bgcolor="#CCCCCC">达标时间 <a href="?sortrank={%ifequal sortrank "4"%}8{%else%}4{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↑</a></td>
+	
+	{%if chargetype%}
+	{%ifequal chargetype "1"%}
+	<td nowrap="nowrap" bgcolor="#CCCCCC">到期时间<a href="?sortrank={%ifequal sortrank "2"%}9{%else%}2{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↓</a></td>
+	{%endifequal%}
+	{%else%}
+	<td nowrap="nowrap" bgcolor="#CCCCCC">到期时间<a href="?sortrank={%ifequal sortrank "2"%}9{%else%}2{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↓</a></td>
+	{%endif%}
+	{%ifnotequal usertype "company"%}
+	<td nowrap="nowrap" bgcolor="#CCCCCC">优化人</td>
+	{%endifnotequal%}
+	<td nowrap="nowrap" bgcolor="#CCCCCC">销售人员</td>
+	{%ifequal username "seo"%}
+	<td nowrap="nowrap" bgcolor="#CCCCCC">操作</td>
+	{%endifequal%}
+	{%ifequal username "sales"%}
+	<td nowrap="nowrap" bgcolor="#CCCCCC">操作</td>
+	{%endifequal%}
+	{%ifequal username "yunying"%}
+	<td nowrap="nowrap" bgcolor="#CCCCCC">操作</td>
+	{%endifequal%}
+	</tr>
+	{%for list in list_keywords.list%}
+	<tr align="center">
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><input type="checkbox" name="checkAll" value="{{list.id}}" id="checkAll" onclick="setSelectAll();"></td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="http://{{list.shopsaddress}}" target="_blank">{{list.shopsaddress}}</a></td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="http://192.168.2.2/admin1/crmlocal/crm_cominfoedit.asp?mail={{list.mail}}" target="_blank">{{list.company_name}}</a></td>
+	{%ifnotequal usertype "company"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/keywordsremarks/?keywords_id={{list.id}}" target="_blank">备注</a></td>
+	{%endifnotequal%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="http://www.baidu.com/s?wd={{list.keywords}}&ie=utf-8" target="_blank">{{list.keywords}}</a></td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.baidu_ranking}}</td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF">第{{list.standarddemand}}页</td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/updateranking/?keywords_id={{list.id}}">更新</a> <a href="/rankinghistory/?keywords_id={{list.id}}" target="_blank">查看</a></td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{%ifequal list.chargetype 1%}包年{%else%}按天{%endifequal%}</td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.price}}元</td>
+	{%if chargetype%}
+	{%ifequal chargetype "2"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.balance}}</td>
+	{%endifequal%}
+	{%else%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.balance}}</td>
+	{%endif%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.begintime}}</td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.standardtime}}</td>
+	{%if chargetype%}
+	{%ifequal chargetype "1"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.expire_time}}</td>
+	{%endifequal%}
+	{%else%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.expire_time}}</td>
+	{%endif%}
+	{%ifnotequal usertype "company"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.seouser_name}}</td>
+	{%endifnotequal%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.salesman_name}}</td>
+	{%ifequal username "seo"%}
+	{%ifequal keywords_type "5"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/reductionkeywords/?keywords_id={{list.id}}" onclick="return confirm('是否还原信息?')">还原</a></td>
+	{%else%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/delkeywords/?keywords_id={{list.id}}" onclick="return confirm('是否将此信息删除?')">删除</a>/<a href="/updatekeywords/?keywords_id={{list.id}}">修改</a></td>
+	{%endifequal%}
+	{%endifequal%}
+	{%ifequal username "sales"%}
+	{%ifequal keywords_type "5"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/reductionkeywords/?keywords_id={{list.id}}" onclick="return confirm('是否还原信息?')">还原</a></td>
+	{%else%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/delkeywords/?keywords_id={{list.id}}" onclick="return confirm('是否将此信息删除?')">删除</a>/<a href="/updatekeywords/?keywords_id={{list.id}}">修改</a></td>
+	{%endifequal%}
+	{%endifequal%}
+	{%ifequal username "yunying"%}
+	{%ifequal keywords_type "5"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/reductionkeywords/?keywords_id={{list.id}}" onclick="return confirm('是否还原信息?')">还原</a></td>
+	{%else%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/delkeywords/?keywords_id={{list.id}}" onclick="return confirm('是否将此信息删除?')">删除</a>/<a href="/updatekeywords/?keywords_id={{list.id}}">修改</a></td>
+	{%endifequal%}
+	{%endifequal%}
+	</tr>
+	{%endfor%}
+</table>
+</form>
+<div style="float:left; line-height:30px;">
+<input type="checkbox" id="selAll" onclick="selectAll();"> 全选
+{%ifequal username "seo"%}
+<input type="button" value="分配给" onClick=send1()><select name="seo_id">
+{%if seo_id%}<option value="{{seo_id}}">{{seo_name}}</option>{%endif%}
+<option value="">请选择...</option>
+{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>&nbsp;&nbsp;
+	{%ifequal keywords_type "7"%}
+<input type="button" value="取消丢单" onClick=send8()>
+	{%else%}
+<input type="button" value="丢单" onClick=send7()>
+	{%endifequal%}
+	<!--
+	{%ifequal keywords_type "5"%}
+<input type="button" value="还原" onClick=send3()>
+	{%else%}
+<input type="button" value="删除" onClick=send2()>
+	{%endifequal%}
+	-->
+{%endifequal%}
+
+{%ifequal username "sales"%}
+<input type="button" value="分配给" onClick=send9()><select name="seo_id">
+<!--{%if seo_id%}<option value="{{seo_id}}">{{seo_name}}</option>{%endif%}-->
+<option value="">请选择...</option>
+{%for sale in salesuser%}<option value="{{sale.id}}">{{sale.name}}</option>{%endfor%}
+</select>&nbsp;&nbsp;
+	{%ifequal keywords_type "7"%}
+<input type="button" value="取消丢单" onClick=send8()>
+	{%else%}
+<input type="button" value="丢单" onClick=send7()>
+	{%endifequal%}
+{%endifequal%}
+{%ifequal username "yunying"%}
+	{%ifequal keywords_type "7"%}
+<input type="button" value="取消丢单" onClick=send8()>
+	{%else%}
+<input type="button" value="丢单" onClick=send7()>
+	{%endifequal%}
+{%endifequal%}
+</div>
+<form>
+<div style="float:left; line-height:30px;">
+
+{% if firstpage %}
+<a href="?page={{prvpage}}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if sortrank%}&sortrank={{sortrank}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}">上一页</a>
+{%else%}
+<font color="gray">上一页</font>
+{%endif%}
+&nbsp;
+{%for p in page_range%}
+{%if p.nowpage%}
+<font color="blue">{{p.number}}</font>&nbsp;
+{%else%}
+<a href="?page={{p.number}}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if sortrank%}&sortrank={{sortrank}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}">{{p.number}}&nbsp;</a>
+{%endif%}
+{%endfor%}
+&nbsp;
+{% if lastpage%}
+<a href="?page={{nextpage}}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if sortrank%}&sortrank={{sortrank}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}">下一页</a>
+{%else%}
+<font color="gray">下一页</font>
+{%endif%}
+<font color="gray">第</font>{{page}}<font color="gray">页</font>
+{%if keywords_type%}<input type="hidden" name="keywords_type" value="{{keywords_type}}">{%endif%}
+{%if seouser_id%}<input type="hidden" name="seo_id" value="{{seouser_id}}">{%endif%}
+{%if sortrank%}<input type="hidden" name="sortrank" value="{{sortrank}}">{%endif%}
+{%if chargetype%}<input type="hidden" name="chargetype" value="{{chargetype}}">{%endif%}
+<input type="hidden" name="page_listcount" value="{{page_listcount}}">
+去第<input type="text" name="page" class="w25px tcenter" value="{{page}}"> /{{page_listcount}} 页  <input type="submit" value="go"> 
+</form>
+
+</div>
+{%endblock%}

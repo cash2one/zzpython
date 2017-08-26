@@ -1,0 +1,145 @@
+body{
+	background-color: #f5f5f5
+}
+.right-nav-dd{
+	position: fixed;
+	right: 20px;
+	top: 240px;
+	width: 183px;
+	text-align: center;
+	_position:absolute;
+	_right:expression(eval(document.documentElement.scrollRight+20));
+	_top:expression(eval(document.documentElement.scrollTop+240))
+}
+.right-nav-dd h3{
+	line-height: 56px;
+	height: 56px;
+	color: #fff;
+	font-size: 18px;
+	background-color: #dd5200
+}
+.right-nav-dd div{
+	width: 139px;
+	margin: 1px auto 0;
+	height: 45px;
+	line-height: 45px;
+	background-color: #fff;
+	font-size: 16px;
+	cursor: pointer;
+}
+.right-nav-dd .now_ht{
+	background-color: #fff001
+}
+.right-nav-dd .gotop{
+	color: #fff;
+	background-color: #dd5200;
+}
+.bandbg{
+	background: url(../images/bandbg.jpg);
+}
+.band{
+	height: 400px;
+	background:url(../images/bandimg.jpg) no-repeat center top ;
+}
+.content{
+	margin: 0 auto;
+	width: 1000px
+}
+.mo-info{
+	margin-top: 20px;
+}
+.title{
+	height:50px;
+	line-height: 50px;
+	color: #fff;
+	background-color: #dd5200;
+	font-size: 20px;
+	padding: 0 25px; 
+}
+.title a{
+	color: #fff;
+	font-size: 12px;
+}
+.title .fl{
+	padding-left: 27px;
+	background: url(../images/dizbg.jpg) no-repeat 0 center;
+}
+.info-list{
+	background-color: #fff
+}
+.info-list-bottom{
+	border-bottom: 1px solid #cccccc
+}
+.info-list li{
+	float: left;
+	width: 217px;
+	padding: 16px;
+	border-right: 1px solid #cccccc
+}
+.info-list li a:hover{
+	color: #000
+}
+.info-list li .gslj:hover{
+	color: #0075c0
+}
+.info-list .noborder{
+	border-right: 0
+}
+.cp-xinx{
+	width: 215px;
+	border:1px solid #cacaca;
+	margin-bottom: 8px;
+
+}
+.cp-xinx a{
+	display: block;
+}
+.info-img{
+	height: 166px;
+	width: 215px;
+}
+.cp-gy{
+	line-height: 34px;
+	height: 34px;
+	padding:0 15px;
+	color: #000;
+	font-size: 12px;
+	text-overflow:ellipsis; 
+	white-space:nowrap; 
+	overflow:hidden;
+	width: 185px;
+	cursor: pointer;
+}
+.minute{
+	font-size: 12px;
+	line-height: 24px;
+	color: #333333;
+	height: 24px;
+	text-overflow:ellipsis; 
+	white-space:nowrap; 
+	overflow:hidden;
+	width: 100%;
+}
+.red{
+	color: red
+}
+.gslj{
+	color: #0075c0
+}
+.bottom-br{
+	border-bottom: 1px solid #cacaca
+}
+
+.foot{
+	text-align: center;
+	color: #333333;
+	font-size: 12px;
+	line-height: 31px;
+	padding: 15px 0;
+	border-top: 1px solid #cccccc;
+	width: 1000px;
+	margin:80px auto 0;
+}
+.foot a{
+	color: #333333;
+}

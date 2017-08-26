@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>资讯中心</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/huzhu/hudong-list.css"/>
+	</head>
+	<body>
+		<div class="nodata">
+			暂无相关数据
+		</div>
+		<ul class="cantop-mation j_top">
+			<!-- <li>
+			<img src="../../image/infoimage.png" width="56" height="48" class="mation-pic">
+			<div class="mation-title">
+			亚洲PPPPPPPPPPPPPPPPPPPPPP
+			</div>
+			<div class="summary">
+			徐亚菲 | 一小时前 <span class="go-top">置顶</span>
+			</div>
+			</li> -->
+			
+		</ul>
+		<ul class="cantop-mation j_huzhu">
+			<div class="aui-toast"  id="loading">
+		        <div class="aui-toast-loading"></div>
+		        <div class="aui-toast-content">加载中</div>
+		    </div>
+		</ul>
+		<div class="huzu_out j-out">
+			<i class="aui-iconfont aui-icon-add"></i>
+		</div>
+		<div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;display:none'>上拉获取更多信息</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/iscroll.js"></script>
+	<script id="info-list-top" type="text/html">
+		<li infoid="{{ d.id }}">
+		<img src="{{ d.litpic }}" width="56" height="48" class="mation-pic" style="display:{{ d.displayDiv }}">
+		<div class="mation-title">
+		{{ d.title }}
+		</div>
+		<div class="summary">
+		{{ d.nickname }} | {{ d.reply_time }} <span class="go-top">置顶</span>
+		</div>
+		</li>
+	</script>
+	<script id="info-list" type="text/html">
+		<li class="change-bgcolor" infoid = "{{ d.id }}">
+		<img src="{{ d.litpic }}" width="56" height="48" class="mation-pic" style="display:{{ d.displayDiv }}">
+		<div class="mation-title">
+		{{ d.title }}
+		</div>
+		<div class="summary">
+		{{ d.nickname }} | {{ d.reply_time }} <span class="click-number"><i class="see-img"></i>{{ d.replycount }}</span>
+		</div>
+		</li>
+	</script>
+	<script>
+		var currPage = 1;
+		var keywords;
+		//关键字搜索
+		function keywordssearch(keywordstext) {
+			currPage = 1;
+			keywords = keywordstext;
+			api.showProgress({
+				title : '加载中',
+				modal : false
+			});
+			ajaxInfo();
+		}
+
+		apiready = function() {
+			keywords = api.pageParam.keywords;
+			if (!keywords) {
+				keywords = ''
+			}
+			ajaxInfo();
+			$(".j-out").on("click", function() {
+				var pageParam = {
+					wintitle : "互助社区发布",
+					type : "issue",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {
+					openWin("issue", "../huzhu/issue.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/huzhu/issue.html";
+					pageParam.winName = "issue";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			
+			//api.showProgress({title : '加载中',modal : false});
+			
+			//加载更多
+			api.addEventListener({
+				name : 'scrolltobottom'
+			}, function(ret, err) {
+				$(".la_more").html("加载更多中...");
+				setTimeout(function() {
+					ajaxInfo();
+				}, 1000)
+			});
+			//页面刷新
+			api.setRefreshHeaderInfo({
+				visible : true,
+				// bgColor: '#F2F2F2',
+				bgColor : '#E6E6E6',
+				textColor : '#000000',
+				textDown : '下拉刷新',
+				textUp : '释放刷新',
+			}, function(ret, err) {
+				currPage = 1;
+				ajaxInfo();
+				api.toast({
+					msg : '数据已是最新！',
+					duration : 3000,
+					location : 'bottom'
+				});
+			});
+			$(".cantop-mation").on("click","li",function() {
+				var infoid = $(this).attr("infoid");
+				var pageParam = {
+					wintitle : "互助详情",
+					type : "double-heart",
+					bounces : false, //窗口弹动
+					infoid : infoid
+					// module:"回复"
+				};
+				openWin("cunity-detail", "../huzhu/cunity-detail.html", pageParam);
+			})
+		}
+		var dataload = true;
+		function ajaxInfo() {
+			if (dataload == true) {
+				dataload = false;
+				var typeId = api.pageParam.typeid;
+				if (!typeId) {
+					typeId = ""
+				}
+				var infoUrl = hosturl + '/huzhu/?datatype=json&category_id=' + typeId + '&page=' + currPage;
+				if (typeId == 4) {
+					infoUrl = infoUrl = hosturl + '/huzhu/?datatype=json&htype=hot&page=' + currPage;
+				}
+				if (keywords) {
+					infoUrl = infoUrl + "&keywords=" + keywords
+				}
+				api.ajax({
+					url : infoUrl,
+					method : 'get',
+					timeout : 30,
+					dataType : 'json',
+					returnAll : false
+				}, function(ret, err) {
+					if (ret) {
+						var pageHtml = "";
+						$.each(ret.list, function(index, item) {
+							if (item.litpic == null) {
+								item.displayDiv = "none"
+							} else {
+								item.displayDiv = ""
+							}
+							//重新设置时间样式
+							item.reply_time = show_time(item.reply_time);
+							var getTpl = $api.html($api.byId("info-list"));
+							laytpl(getTpl).render(item, function(html) {
+								pageHtml = pageHtml + html;
+							});
+						})
+						if (currPage == 1) {
+							$(".j_huzhu").html(pageHtml);
+							if (ret.bbstop != null) {
+								var topHtml = "";
+								$.each(ret.bbstop, function(index, item) {
+									if (item.litpic == null) {
+										item.displayDiv = "none"
+									} else {
+										item.displayDiv = ""
+									}
+									//重新设置时间样式
+									item.reply_time = show_time(item.reply_time);
+									var getTpl = $api.html($api.byId("info-list-top"));
+									laytpl(getTpl).render(item, function(html) {
+										topHtml = topHtml + html;
+									});
+								})
+								$(".j_top").html(topHtml);
+							} 
+							if (pageHtml == "") {
+								$(".nodata").show();
+								$(".la_more").hide();
+							} else {
+								$(".nodata").hide();
+								$(".la_more").show();
+							}
+							api.pageUp({
+								'top' : true
+							});
+						} else {
+							$(".j_huzhu").append(pageHtml);
+							$(".mui-spinner").remove();
+							if (pageHtml == "") {
+								$(".la_more").hide();
+							} else {
+								$(".la_more").show();
+							}
+						}
+						api.refreshHeaderLoadDone();
+						api.hideProgress();
+						if (pageHtml != "") {
+							currPage += 1;
+							$(".la_more").html("上拉获取更多信息");
+						}else{
+							$(".la_more").html("全部加载完毕");
+						} 
+						
+					} else {
+						if(err){
+							saveerrlog(err.msg);
+						}
+					};
+					dataload = true;
+				});
+			}
+		}
+
+		function show_time(endtime) {
+			var endtime = endtime.replace(/-/gm, '/');
+			var time_end = new Date().getTime();
+			//设定当前时间
+			var time_start = new Date(endtime).getTime();
+			//设定目标时间
+			// 计算时间差
+			var time_distance = time_end - time_start;
+			// 天
+			var int_day = Math.floor(time_distance / 86400000)
+			time_distance -= int_day * 86400000;
+			// 时
+			var int_hour = Math.floor(time_distance / 3600000)
+			if (int_day > 0) {
+				str = endtime.split(' ');
+				return str[0]
+			} else {
+				return int_hour + "小时前"
+			}
+		}
+	</script>
+</html>

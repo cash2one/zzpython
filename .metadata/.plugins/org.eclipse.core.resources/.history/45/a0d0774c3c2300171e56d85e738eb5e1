@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <style>
+    	body{
+    		
+    	}
+    </style>
+</head>
+<body>
+	<div class="aui-content">
+			<h2 class="aui-text-center aui-margin-t-15">{{label}}趋势图</h2>
+			<div class="fr hq-viewinfo">
+                <div class="hq-view-title clearfix">
+                    <div class="fl hq-view-name"></div>
+                    <div class="fl hq-view-other">
+                        <p>最高：<span class="maxprice"></span></p>
+                        <p>最低：<span class="minprice"></span></p>
+                        <p>均值：<span class="midprice"></span></p>
+                    </div>
+                    <input id="pid" value="{{id}}" type="hidden">
+                </div>
+                <div style="clear: both;"></div>
+
+                <div class="hq-view-box">
+                    <div class="hq-view-tjian">
+                        <span class="searchlabel">
+	                        <span>周</span>
+	                        <span>月</span>
+	                        <span>季</span>
+	                        <span>年</span>
+                        </span>
+                    </div>
+					<div id="chartContainer">
+						
+					</div>
+                </div>
+            </div>
+			
+			<div style="width: 100%;text-align: center;line-height: 30px;clear: both;">我要订阅该行情<br>长按识别二维码，关注 “zz91再生网”<br /><img src="http://img0.zz91.com/zz91/weixin/images/priceorder.png"><br /></div>
+            <div style="text-align: center;font-weight: bold;color: #ff0000;margin-bottom: 20px; border: solid 1px #006600;background-color: #fff; padding: 10px;"><a href="http://m.zz91.com/register/" style="color: #ff0000;">点此留下您的联系方式，查看更多相关行情报价</a></div>
+            
+		</div>
+</body>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+
+</html>

@@ -1,0 +1,22 @@
+<center style="padding: 20px;;">
+<form id="fkform">
+	<div style="text-align: left;"><font color="#929292">请留下您的宝贵意见和联系方式，我们会及时和你联系！</font><br /></div>
+	<textarea rows="6" cols="20" name="content" id="content" style="height: 100px;" placeholder="请留下您的建议" class="textarea"></textarea>
+	<input type="text" name="contact" id="contact" placeholder="手机或QQ" />
+	<button class="mui-btn mui-btn-blue" onclick="submitfrm(document.getElementById('fkform'),'http://app.zz91.com/feedbacksave.html')" type="button" style="width: 100%;">&nbsp;&nbsp;&nbsp;&nbsp;提交&nbsp;&nbsp;&nbsp;&nbsp;</button>
+</form>
+<br />
+咨询服务电话<br />
+<a onclick="dialtel('0571-56612345')" class="mui-btn-link">0571-56612345</a>
+</center>
+
+<input type="hidden" id="appnavname" value="意见反馈" />
+<div class="postsuc" style="display: none;padding: 20px;">
+	<br />
+	<div style="text-align: left;font-size: 18px;width: 80%;">
+		感谢您提出宝贵的意见，欢迎您继续关注ZZ91再生网！
+	</div>
+	<br />
+	<button onclick="closewindow()" class="mui-btn mui-btn-danger">  继续浏览其他信息    </button>
+	<br />
+</div>

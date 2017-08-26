@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>问题反馈列表-ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<style>
+			.aui-bar{
+				position: fixed;
+				z-index: 5;
+				top: 0px;
+			}
+			.aui-tab{
+				position: fixed;
+				z-index: 5;
+				top: 45px;
+			}
+			.aui-tab-item.aui-active{
+				color: #009900;
+    			border-bottom: 2px solid #009900;
+			}
+			.aui-ellipsis-2 b{
+				color: #000;
+				font-size: 16px;
+			}
+			.aui-img-body{
+				margin-right:18px;line-height: 30px;
+			}
+			.foot-btn{
+				position: fixed;
+				bottom: 0;
+				border-radius: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-title">问题反馈</div>
+		    <a class="aui-pull-right" href="/myrc_index/">
+		        <span class="aui-iconfont aui-icon-my"></span>
+		    </a>
+		</header>
+		
+		<div class="aui-tab" id="tab">
+		    <div class="aui-tab-item {%if not compelete%}aui-active{%endif%}"><a href="list.html">全部</a></div>
+		    <div class="aui-tab-item {%ifequal compelete '0'%}aui-active{%endifequal%}"><a href="list.html?compelete=0">进行中</a></div>
+		    <div class="aui-tab-item {%ifequal compelete '1'%}aui-active{%endifequal%}"><a href="list.html?compelete=1">已完成</a></div>
+		</div>
+		<div style="height: 88px;"></div>
+		{%if listall%}
+		<div class="aui-content">
+		    <ul class="aui-list-view news-list">
+		    	{% for list in listall %}
+		        <li class="aui-list-view-cell aui-img">
+		            <a href="/gd/details.html?id={{list.id}}" class="aui-arrow-right">
+			            <div class="aui-img-body">
+			                <p class="aui-ellipsis-2"><b>{{list.title|safe}}</b></p>
+			                <p class="aui-pull-left">
+			                	{%ifequal list.compelete 0%}
+			                	<span class="aui-text-blue">待你回复</span>
+			                	{%endifequal%}
+			                	{%ifequal list.compelete 1%}
+			                	<span class="aui-text-success">已解决</span>
+			                	{%endifequal%}
+			                	 | 提问时间：{{list.question_time}}</p>
+			            </div>
+		            </a>
+		        </li>
+		        {% endfor %}
+		    </ul>
+		</div>
+    	<div class="floatpage">
+			<div class="page">
+				<ul>
+					{% if firstpage %}
+					<li class="page_prev">
+						<a href="?{{searchurl}}&page={{prvpage}}">上一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+					<li class="page_no">
+						<select onChange="window.location='?{{searchurl}}&page='+this.value">
+							<option>第{{page}}页</option>
+							<option value="1">首页</option>
+							{%for p in page_range%}
+							<option value="{{p.number}}">第{{p.number}}页</option>
+							{%endfor%}
+							<option value="{{lastpage}}">末页</option>
+						</select> /{{page_listcount}}页
+					</li>
+					{% if lastpage%}
+					<li class="page_next">
+						<a href="?{{searchurl}}&page={{nextpage}}">下一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+		{%else%}
+	    <div class="nodata" style="display: block">
+			暂无相关数据
+		</div>
+		{%endif%}
+		<div style="height: 50px;"></div>
+		<a href="add.html" class="foot-btn aui-btn aui-btn-success aui-btn-block">
+			我要反馈问题
+		</a>
+		{%include 'aui/bottom.html'%}
+	</body>
+</html>

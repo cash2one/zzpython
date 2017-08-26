@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-touch-fullscreen" content="YES">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="css/base-min.css" />
+<script src="http://img0.zz91.com/lib/asto/asto-all-1.0.0.js"></script>
+<title>端午大抽奖-安装客户端，关注ZZ91微信，分享朋友圈，即可获得抽大奖机会</title>
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+</head>
+<body>
+	<header><img src="images/bandimg.png"></header>
+	<div class="guizhe">
+		<h3 class="guizhe-title"></h3>
+		<div class="guizhe-info">
+			<img src="images/guizheimg.png">
+			<div class="downapp"><a href="http://m.zz91.com/app.html" target="_blank"><img src="images/downapp.png" border="0"></a></div>
+			<div class="fengx">
+				<span class="fengx-img"><img src="images/fengx1.png"></span>
+				<span class="fengx-img"><img src="images/fengx2.png"></span>
+				<span class="fengx-img"><img src="images/fengx3.png"></span>
+			</div>
+		</div>
+		<div class="cjplay">
+			<div class="zzhao"><img src="images/jiantou.png"></div>
+			<div class="cjplay-zs">注：抽中的奖品会在两个工作日内发放</div>
+			<div class="jiangpk">
+				<div class="jianx-ts">
+                    <img src="images/jx3.png" class="jianx-img">
+                    <span class="j_close"><img src="images/closeimg.png"></span>
+                </div>
+				<ul class="jiangpk-ul clear">
+					<li class="nowplay" index="0"><img src="images/jiangp1.jpg"></li>
+					<li index="1"><img src="images/jiangp2.jpg"></li>
+					<li index="2"><img src="images/jiangp3.jpg"></li>
+					<li index="7"><img src="images/jiangp4.jpg"></li>
+					<li class="cjst">
+						<img src="images/shoubg.jpg">
+						<div class="cjst-play j_play"><img src="images/startplay.jpg"></div>
+						<div class="canplay">
+							您当前还有<span class="number-play">0</span>次抽奖机会
+						</div>
+					</li>
+					<li index="3"><img src="images/jiangp5.jpg"></li>
+					<li index="6"><img src="images/jiangp7.png"></li>
+					<li index="5"><img src="images/jiangp8.png"></li>
+					<li index="4"><img src="images/jiangp4.png"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="zjpeople">
+		<div class="zjtbg"><img src="images/zjtopbg.png"></div>
+		<div class="gund-div">
+			<ul class="gund-info">
+				<li>
+					<span>恭喜用户</span>   
+					<span>159******37</span>  
+					<span>抽中</span>  
+					<span>10元再生钱包</span>
+				</li>
+				<li>
+					<span>恭喜用户</span>   
+					<span>136******61</span>  
+					<span>抽中</span>  
+					<span>30元话费</span>
+				</li>
+				<li>
+					<span>恭喜用户</span>   
+					<span>152******17</span>  
+					<span>抽中</span>  
+					<span>30元话费</span>
+				</li>
+				<li>
+					<span>恭喜用户</span>   
+					<span>139******41</span>  
+					<span>抽中</span>  
+					<span>2016年商务大全</span>
+				</li>
+				<li>
+					<span>恭喜用户</span>   
+					<span>133******55</span>  
+					<span>抽中</span>  
+					<span>粽子礼包</span>
+				</li>
+				<li>
+					<span>恭喜用户</span>   
+					<span>158******38</span>  
+					<span>抽中</span>  
+					<span>10元再生钱包</span>
+				</li>
+				<li>
+					<span>恭喜用户</span>   
+					<span>136******48</span>  
+					<span>抽中</span>  
+					<span>来电宝会员</span>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="playsm">
+		<p>抽奖说明：</p>
+		<p>1、完成“轻松抽奖”相应任务可以赚取抽奖机会，完成的任务越多赚取的抽奖机会越多。</p>
+		<p>2、会员所获抽奖次数仅限自己在此次活动中使用，活动结束后未使用的抽奖次数将清零。</p>
+		<p>抽奖说明：</p>
+		<p>1、每次抽奖花费1次抽奖机会，抽中奖品累计发放。</p>
+		<p>2、抽中的再生钱包金额实时发放至中奖的会员帐号之中。</p>
+		<p>3、抽中的话费将在活动结束后两个工作日内直接充值至中奖帐号对应的手机号。</p>
+		<p>4、抽中的实物奖品将在活动结束后两个工作日内统一邮寄，请务必保持电话畅通且及时提供收货地址。</p>
+	</div>
+</body>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script type="text/javascript">
+	
+	var time,marginTop,gdHeight,succIndex = 0,playtime,playsu=520,spinNum=0,canNum;
+	var company_id={{company_id}};
+	try {
+		apiready = function() {
+			company_id = api.pageParam.mid;
+			getchoujiangcount();
+		}
+	} catch(t) {
+	}
+	$(function(){
+        gdHeight = $(".gund-info").height();
+        var ulHtml = $(".gund-info").html();
+        $(".gund-info").live("mouseover",function(){
+            clearInterval(time)
+        })
+        $(".gund-info").live("mouseout",function(){
+            startmov(ulHtml);
+        })
+        if(gdHeight>$(".gund-info").parent().height()){
+            $(".gund-info").append(ulHtml);
+            marginTop = parseInt($(".gund-info").css("margin-top"));
+            startmov(ulHtml)
+        }
+        getchoujiangcount();
+    });
+    //登录状态
+        function loginstatus(){
+			if (company_id!=0){
+				$(".canplay").css("display","block");
+				getchoujiangstaus()
+			}else{
+				window.location="http://m.zz91.com/login/?done=/choujiang/index.html"
+			}
+			return false;
+        }
+        function getchoujiangcount(){
+			if (company_id!=0){
+				$(".canplay").css("display","block");
+				getchoujiangnum();
+			}else{
+				$(".canplay").css("display","none");
+			}
+        }
+        function getchoujiangnum(){
+        	var ajaxurl="http://pyapp.zz91.com/choujiangcount.html?company_id="+company_id.toString()+"&p"+(new Date()).getTime().toString();
+			$.getScript(ajaxurl, function() {
+				//alert(_suggest_result_.count)
+				$(".number-play").html(_suggest_result_.count)
+			});
+        }
+        //抽奖情况
+        function getchoujiangstaus(){
+        	var ajaxurl="http://pyapp.zz91.com/choujiangstaus.html?company_id="+company_id.toString()+"&p="+(new Date()).getTime().toString();
+			$.getScript(ajaxurl, function() {
+				
+				//没有做3项操作
+				if (_suggest_result_.firstchoujiang=="0"){
+	    			var canplay = -1  //判断弹出提示框
+			        if(canplay == -1){
+			            $(".zzhao").show()
+			            $(".jianx-ts").show().children("img").attr("src","images/canplay.png"); 
+			            return;
+			        }
+		        }
+		        $(this).removeClass("j_play")
+		        //中奖号码
+	            win_prize = _suggest_result_.xuanzhong;
+		        $(".jianx-ts").children("img").attr("src",succImg[win_prize]);
+		        canNum = parseInt($(".number-play").text()); //可抽奖次数
+		        if(canNum <=0){
+		           $(".jianx-ts").show().children("img").attr("src","images/jx0.png"); 
+		           $(".cjst-play").addClass("j_play");
+		           return;
+		        }
+		        $(".number-play").html(_suggest_result_.choujiangcount);
+		        piayCj(endPlay);
+			});
+        }
+    function startmov(ulHtml){
+        time = setInterval(function(){
+            if(marginTop == gdHeight){
+                $(".gund-info").append(ulHtml);
+                $(".gund-info").children("ul").eq(0).remove()
+                marginTop = 0;
+            }
+            marginTop +=1;
+            $(".gund-info").css("margin-top",-marginTop+"px") 
+        },50)
+    }
+    var win_prize;//中奖号码
+    $(".j_play").on("click",function(){
+        //判断登录状态
+        loginstatus();
+    });
+    $(".j_close").on("click",function(){
+        $(".jianx-ts").hide();
+        $(".zzhao").hide()
+    })
+    function piayCj(endPlay){
+       playtime = setInterval(function(){
+            if(spinNum<4){
+                playsu = playsu-20;
+            }else if(spinNum == 4){
+                playsu = playsu+40;
+            }else if(spinNum > 4){
+                playsu = playsu+40;
+                if(win_prize == succIndex){
+                    clearInterval(playtime);
+                    playsu=520,
+                    spinNum=0;
+                    endPlay&&endPlay();
+                    return;
+                }
+                playsu = playsu+40;
+            }
+            succIndex +=1;
+            if(succIndex==8){
+                succIndex =0;
+                spinNum +=1;
+            }
+            $(".jiangpk-ul li[index="+succIndex+"]").addClass("nowplay").siblings().removeClass("nowplay");
+            if(playsu<80){
+                playsu=80
+            }
+            clearInterval(playtime);
+            piayCj(endPlay);
+        },playsu)
+    }
+    var succImg =["images/jx1.png","","images/jx2.png","images/jx3.png","images/jx9.png","images/jx5.png","images/jx8.png","images/jx7.png"]
+    function endPlay(){
+        //canNum -=1;
+        //$(".number-play").text(canNum);
+        $(".jianx-ts").show();
+        $(".cjst-play").addClass("j_play");
+    }
+</script>
+</html>

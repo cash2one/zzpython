@@ -1,0 +1,15 @@
+﻿var categorylist=""+
+{%for list in categorylist%}
+"<div class='catetitle'>{{list.label}}</div>"+
+"<ul>"+
+	{%for list1 in list.catelist%}
+{%if list1.yl%}
+"<li><a style='display:block' href='http://www.yousuyuan.com/{{list1.pinyin}}/gy/' target='_blank'>{{list1.label}}</a></li>"+
+{%else%}
+"<li><a style='display:block' href='/trade/s-{{list1.label_hex}}.html'>{{list1.label}}</a></li>"+
+{%endif%}
+	{%endfor%}
+"</ul>"+
+"<div style='clear:both'></div>"+
+{%endfor%}
+""

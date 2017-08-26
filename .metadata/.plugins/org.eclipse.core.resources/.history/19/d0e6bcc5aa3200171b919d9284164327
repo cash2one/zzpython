@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<style>
+			html, body {
+				background: transparent;
+				height: 100%;
+				background: rgba(0,0,0,0.1);
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="overflow: auto;position: absolute;width:100%;top:0px;">
+			<div class="aui-content">
+				<ul class="aui-list-view aui-in">
+					<li class="aui-list-view-cell" title="3">综合</li>
+					<li class="aui-list-view-cell" title="4">会员等级</li>
+					<li class="aui-list-view-cell" title="5">信息质量</li>
+					<li class="aui-list-view-cell" title="0">发布时间</li>
+					<li class="aui-list-view-cell" title="1">有价格</li>
+					<li class="aui-list-view-cell" title="2">有图片</li>
+				</ul>
+			</div>
+		</div>
+		<div style="position: absolute;bottom:0px;height:80px;width:100%;z-index:3000" onclick="closeselect()"></div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript">
+		function closeselect() {
+			api.execScript({
+				name : api.winName,
+				script : "keybackFun('1')"
+			});
+			//api.closeFrame();
+			api.setFrameAttr({
+				name : api.frameName,
+				hidden : true
+			});
+		}
+
+		apiready = function() {
+			changeserverurl();
+			var $body = $api.dom('body');
+			$api.addEvt($body, 'click', function(e) {
+				if (e.target == $body) {
+					closeselect();
+				} else {
+					e.stopPropagation();
+				}
+			});
+			$(".aui-in li").on("click", function() {
+				var t=$(this).attr("title");
+				api.execScript({
+					frameName : api.winName+"_",
+					script : "changsearch_order('"+t+"')"
+				});
+				closeselect()
+			});
+		};
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

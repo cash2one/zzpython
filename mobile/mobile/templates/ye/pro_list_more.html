@@ -1,0 +1,24 @@
+ {% for list in productList %}
+<dd>
+	<a href="/trade/detail{{list.pdt_id}}.html" target="_blank" class="react">
+		<div class="dealcard">
+			<div class="dealcard-img imgbox" data-src="">
+				<img src="{{list.pdt_images}}" />
+			</div>
+			<div class="dealcard-right">
+				<div class="dealcard-brand oow">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}
+					<font class="time">{{list.pdt_time_en}}</font>
+				</div>
+				<div class="title text-block">{{list.com_province}}</div>
+				<div>{{list.pdt_price}}</div>
+				{%if ldbtel%}
+				<div class="info">
+					<span class="seller">电话拨打:<font class="red">{{list.ldbtel.tel}}</font></span>
+					<span class="trade">接听率:{{list.phone_rate}}%</span>
+				</div>
+				{%endif%}
+			</div>
+		</div>
+	</a>
+</dd>
+{%endfor%}

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>物流客户管理</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="/layui/css/layui.css" type="text/css">
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<script src="/layui/layui.js" type="text/javascript"></script>
+		<style>
+			table {
+				white-space: nowrap;
+			}
+			body{
+				margin: 20px;
+			}
+			.layui-table .button {
+				border: solid 1px #ccc;
+				background-color: #EBEBE4;
+				line-height: 25px;
+				padding: 5px;
+			}
+			
+			.layui-table td {
+				padding: 2px 5px;
+				font-size: 12px;
+				text-align: center;
+				width: 100%;
+				word-wrap: break-word;
+				overflow: hidden;
+			}
+			
+			.layui-btn {
+				height: 28px;
+				line-height: 28px;
+				padding: 0 8;
+			}
+			
+			.layui-textarea {
+				height: 28px;
+				line-height: 28px;
+			}
+			
+			.layui-form-label {
+				padding: 2px 5px;
+			}
+			
+			.layui-form-item {
+				margin-bottom: 5px;
+			}
+			
+			a {
+				cursor: pointer;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+			<legend>物流客户列表</legend>
+		</fieldset>
+		<form class="layui-form" action="">
+			<div class="layui-form-item" style="min-width: 800px;">
+				<label class="layui-form-label">订单编号</label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input type="text" name="order_number" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="{{order_number}}">
+				</div>
+
+				<label class="layui-form-label">公司名称</label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input type="text" name="company_name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="{{company_name}}">
+				</div>
+
+				<label class="layui-form-label">微信名</label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input type="text" name="wechat" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="{{wechat}}">
+				</div>
+
+				<label class="layui-form-label">联系人</label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="{{username}}">
+				</div>
+
+				<label class="layui-form-label">联系电话</label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input type="text" name="mobile" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="{{mobile}}">
+				</div>
+				
+				<label class="layui-form-label">选择排序</label>
+				<div class="layui-input-inline" style="width: 120px;">
+					<select name="orderstr" id="orderstr">
+						<option value="">选择排序</option>
+						<option value="1">下次联系时间</option>
+						<option value="2">注册时间</option>
+						<option value="3">最后联系时间</option>
+					</select>
+					<script>selectOption("orderstr","{{orderstr}}")</script>
+				</div>
+
+				
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">需要车型</label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input type="text" name="car_for" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="{{car_for}}">
+				</div>
+
+				<label class="layui-form-label">吨位</label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input type="text" name="weight" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input" value="{{weight}}">
+				</div>
+
+				<label class="layui-form-label">所有者</label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<select class="" name="personid" id="personid" style="width: auto;">
+						<option value="">所有者</option>
+						{%for salesman in allsalesman%}
+						<option value="">┆&nbsp;&nbsp;┿{{salesman.cate_label}}</option>
+						{%for man in salesman.thiscateman%}
+						<option value="{{man.id}}">┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿{{man.realname}}</option>
+						{%endfor%} {%endfor%}
+					</select>
+					<script>selectOption("personid","{{personid}}")</script>
+				</div>
+				
+				<label class="layui-form-label">星级</label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<select name="star" id="star">
+						<option value="">请选择</option>
+						<option value="5">5星</option>
+						<option value="4">4星</option>
+						<option value="3">3星</option>
+						<option value="2">2星</option>
+						<option value="1">1星</option>
+					</select>
+					<script>selectOption("star","{{star}}")</script>
+				</div>
+
+				<div class="layui-inline">
+					<label class="layui-form-label">用车时间从</label>
+					<div class="layui-inline">
+						<div class="layui-input-inline" style="width: 100px;">
+							<input type="text" name="time1" id="date" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})" value="{{time1}}">
+						</div>
+					</div>
+					到&nbsp;&nbsp;&nbsp;&nbsp;
+					<div class="layui-inline">
+						<div class="layui-input-inline" style="width: 100px;">
+							<input type="text" name="time2" id="date" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})" value="{{time2}}">
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+			<tr>
+				<td height="30">
+					<button class="layui-btn" name="Submit2" type="submit">搜索</button>
+					<a class="layui-btn" href="add.html">添加</a>
+				</td>
+			</tr>
+			</div>
+		</form>
+		<div class="layui-form">
+			<form action="all.html" method="post">
+
+				<table class="layui-table">
+					<colgroup>
+						<col width="50">
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+					</colgroup>
+					<thead>
+						<tr>
+							<th><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></th>
+							<th nowrap="">星级</th>
+							<th nowrap="">订单编号</th>
+							<th nowrap="">公司名称</th>
+							<th nowrap="">微信名</th>
+							<th nowrap="">联系人</th>
+							<th nowrap="">主营业务</th>
+							<th nowrap="">联系方式</th>
+							<th nowrap="">需要车型</th>
+							<th nowrap="">吨位</th>
+							<th nowrap="">用车时间</th>
+							<th nowrap="">注册时间</th>
+							<th nowrap="">下次联系时间</th>
+							<th nowrap="">最后联系时间</th>
+							<th nowrap="">最后跟进人员</th>
+							<th nowrap="">跟进人</th>
+							<th nowrap="">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						{%for list in listall%}
+						<tr>
+							<td><input type="checkbox" name="check_box_list" id="check_box_list{{list.id}}" lay-skin="primary" value="{{list.id}}"></td>
+							<td nowrap="">{{list.star}}</td>
+							<td nowrap="">{{list.order_number}}</td>
+							<td nowrap="">
+								<a href="customershow.html?uid={{list.id}}" target="_blank">{{list.company_name}}</a>
+							</td>
+
+							<td nowrap="">{{list.wechat}}</td>
+							<td nowrap="">{{list.username}}</td>
+							<td nowrap="">{{list.main_business}}</td>
+							<td nowrap="">{{list.mobile}}</td>
+							<td nowrap="">{{list.car_for}}</td>
+							<td nowrap="">{{list.weight}}</td>
+							<td nowrap="">{{list.time}}</td>
+							<td nowrap="">{{list.register_time}}</td>
+							<td nowrap="">{{list.nextcontact_time}}</td>
+							<td nowrap="">{{list.lastcontact_time}}</td>
+							<td nowrap="">{{list.last_realname}}</td>
+							<td nowrap="">{{list.realname}}</td>
+							<td nowrap="">
+								<a href="customershow_history.html?uid={{list.id}}" target="_blank">过程记录</a> |
+								<a href="mod.html?uid={{list.id}}" target="_blank">修改</a>
+							</td>
+							<input type="hidden" name="id" value="{{list.id}}">
+						</tr>
+						{%endfor%}
+					</tbody>
+				</table>
+				<table>
+					<button class="layui-btn" type="submit" onclick="return confirm('确定要删除吗？')">删除</button>
+					<button class="layui-btn" type="submit" name="button4" id="button4" onclick="postAll(this.form,'确实要分配吗?','assignto')">分配给</button>
+					<div class="layui-input-inline">
+						<select class="" name="topersonid" id="topersonid" style="width: auto;">
+							<option value="">人员</option>
+							{%for salesman in allsalesman%}
+							<option value="">┆&nbsp;&nbsp;┿{{salesman.cate_label}}</option>
+							{%for man in salesman.thiscateman%}
+							<option value="{{man.id}}">┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿{{man.realname}}</option>
+							{%endfor%} {%endfor%}
+						</select>
+					</div>
+					<button class="layui-btn" type="submit" name="button2" id="button2" onclick="postAll(this.form,'确实要放到我的库吗?','tomy')">放入我的库</button>
+					<button class="layui-btn" type="submit" name="button3" id="button3" onclick="postAll(this.form,'确实要放入公海吗?','gonghai')">放入公海</button>
+					<td align="right">
+						<input type="hidden" name="dostay">
+						<input type="hidden" name="selectcb">
+					</td>
+				</table>
+
+			</form>
+
+		</div>
+		<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin: 20px;">
+			<tr>
+				页次:
+				<font color="black">{{page}}</font>/
+				<font color="black">{{page_listcount}}</font>&nbsp; 每页:
+				<font color="black">{{limitNum}}</font>&nbsp; 共计:
+				<font color="black">{{listcount}}</font>&nbsp; {% if firstpage %}
+				<font color="gray">上一页</font>
+				{%else%}
+				<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>
+				{%endif%}&nbsp;{%for p in page_range%} {%if p.nowpage%}
+				<span class='current'>{{p.number}}</span>&nbsp; {%else%}
+				<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a> {%endif%} {%endfor%} &nbsp;{% if lastpage%}
+				<font color="gray">下一页</font>
+				{%else%}
+				<a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%endif%}&nbsp;&nbsp;&nbsp; {%if flag%}
+				<input type="hidden" name="flag" value="{{flag}}">{%endif%} {%if writer%}
+				<input type="hidden" name="writer" value="{{writer}}">{%endif%}
+				<input type="hidden" name="page_listcount" value="{{page_listcount}}">&nbsp;&nbsp; 去第
+				<input type="text" name="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页
+				<input type="submit" style="display:none"> &nbsp;&nbsp;
+				<a href='?page=1&{{searchurl}}'>首页</a>&nbsp;
+				<a href='?page={{page_listcount}}&{{searchurl}}'>尾页</a>
+			</tr>
+		</table>
+		<script>
+			layui.use(['form', 'layedit', 'laydate'], function() {
+				var form = layui.form(),
+					layer = layui.layer,
+					layedit = layui.layedit,
+					laydate = layui.laydate;
+
+				//监听提交
+				form.on('submit(demo1)', function(data) {
+					layer.alert(JSON.stringify(data.field), {
+						title: '最终的提交信息'
+					})
+					return false;
+				});
+				//全选
+				form.on('checkbox(allChoose)', function(data) {
+					var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+					child.each(function(index, item) {
+						item.checked = data.elem.checked;
+					});
+					form.render('checkbox');
+				});
+			});
+
+			function postAll(form, promptText, value) {
+				selectcb = "0"
+				for(var i = 0; i < form.elements.length; i++) {
+					var e = form.elements[i];
+
+					if(e.name.substr(0, 14) == 'check_box_list')
+						if(e.checked == true) {
+							var selectcb = selectcb + "," + e.value
+						}
+
+				}
+
+				form.selectcb.value = selectcb.substr(2)
+				if(selectcb == "0") {
+					alert("选择你要的信息！")
+					return false
+				} else {
+					if(confirm(promptText)) {
+						form.dostay.value = value
+						form.submit()
+					}
+				}
+
+			}
+		</script>
+	</body>
+
+</html>

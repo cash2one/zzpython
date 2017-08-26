@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>流量宝</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <style>
+    	body{
+    		
+    	}
+    	.title{
+    		font-size:20px;
+    		text-align:center;
+    		height:50px;
+    		line-height:50px;
+    		font-weight:bold;
+    	}
+    	.price{
+    		line-height: 40px;
+    		padding-left:10px;
+    	}
+    	.price span{
+    		color:#ff0000
+    	}
+    	
+    	.main{
+    		line-height:30px;
+    		font-size:14px;
+    		margin-bottom:20px;
+    		padding:10px
+    	}
+    	.buybutton{
+    		position: fixed;
+    		bottom:0px;
+    		left:0px;
+    		border-radius:0px;
+    	}
+    </style>
+</head>
+<body>
+	
+	<div class="aui-content-padded">
+		<!--供求置顶-->
+		<div class="price">价格：<span>按效果付费</span></div>
+		<div class="aui-line-x"></div>
+		<div class="main">
+		
+
+		<b style="color:#DB4646">覆盖面广</b><br />
+		竞价排名推广覆盖整个ZZ91再生网各个流量入口，推广力度更全面。<br />
+		
+		<b style="color:#DB4646">按效果付费，获得新客户平均成本低</b><br />
+		ZZ91的竞价排名完全按照给企业带来的潜在用户点击数量计费，没有客户点击不计费，企业可以灵活控制推广力和资金投入，使投资回报率最高。
+		<br />
+		<b style="color:#DB4646">针对性强</b><br />
+		企业的推广信息只出现在真正感兴趣的潜在客户面前，针对性强，更容易实现销售。<br />
+		
+		<b style="color:#DB4646">推广关键词不限</b><br />
+		企业可以同时免费注册多个关键词，数量没有限制，使得企业的每一种产品都有机会被潜在客户找到，支持企业全线产品推广。<br />
+		
+		<b style="color:#DB4646">全程贴心服务</b><br />
+		ZZ91拥有业界最大的网络营销服务中心，覆盖全国，为企业全程提供增值服务，全面保证网络营销的使用效果。 <br />
+		<br />
+		案例：<br />
+		<img src="../../image/service/jingjia_img.jpg" style="width:100%">
+		<br /><span style="color:#999">注：购买后自动开通。</span>
+		</div>
+		<br />
+		<br />
+		<br />
+        <div class="aui-btn aui-btn-block aui-btn-success buybutton" tapmode>立即开通服务</div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+<script type="text/javascript">
+	apiready = function(){
+		var closeiosflag=$api.getStorage("closeiosflag");
+		if (!closeiosflag || closeiosflag==1){
+			$(".buybutton").hide();	
+		}
+		$(".buybutton").on("click", function() {
+			//供求置顶
+			event.stopPropagation();
+			var pageParam = {
+                wintitle:"开通流量宝",
+                type:"servicejingjia",
+                bounces:false
+            };
+            openWin("servicejingjia", "../service/show14_1.html", pageParam);
+		})
+	};
+</script>
+<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

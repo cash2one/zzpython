@@ -1,0 +1,21 @@
+<chart>
+    <data>
+        <indexAxis name="月份">
+            <labels>
+                {%for t in timelist2%}{{t}},{%endfor%}
+            </labels>
+        </indexAxis>
+        <valueAxis name="报价" unit="元"></valueAxis>
+        <dataSets>
+        {%for pl in pricelist%}
+            <set name="{{pl.area}}">
+                <values>
+                {%for p in pl.list%}
+                {{p.price}},
+                {%endfor%}
+                </values>
+            </set>
+        {%endfor%}
+        </dataSets>
+    </data>
+</chart>

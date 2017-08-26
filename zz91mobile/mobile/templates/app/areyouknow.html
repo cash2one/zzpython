@@ -1,0 +1,55 @@
+var css="<style>.rightfloat{position:fixed;_position:absolute;width:250px;right:10px;bottom:0px;font-size:12px;font-family:微软雅黑;z-index:900000;-webkit-transition:bottom 0.5s ease-in-out;-moz-transition:bottom 0.5s ease-in-out;-o-transition:bottom 0.5s ease-in-out;transition:bottom 0.5s ease-in-out;}.rightfloat .ftitle{height:25px;background-color:#090;line-height:25px;color:#FFF;padding-left:10px;position:relative;}.rightfloat .fcontent{height:200px;padding:10px;overflow:hidden;background-color:#F5F5F5;}.buble-hide{position:absolute;width:11px;height:11px;right:5px;top:8px;background-color:#fff;cursor:pointer;}.buble-line{border-top:solid 1px #5B5B5B;position:absolute;width:7px;height:0px;left:2px;top:5px;}.buble-bottom{height:127px;border:solid 1px #c8c8c8;border-top:none;background-color:#EAF2FB;position:relative;}.buble-title{height:30px;line-height:30px;font-size:14px;font-weight:bold;margin-left:14px;width:210px;overflow:hidden;}.buble-title a{color:#000;}.buble-text{line-height:18px;font-size:12px;margin-left:14px;margin-right:14px;color:#5E6165;}.buble-more{white-space:nowrap;color:#090;float:right;}.buble-options{position:absolute;left:0px;right:0px;bottom:0px;height:26px;}.buble-del{line-height:26px;color:#090;margin-left:14px;cursor:pointer;float:left;}.buble-arr{width:23px;height:20px;margin-top:3px;margin-right:3px;float:right;background-color:#090;cursor:pointer;color:#fff;text-align:center;font-size:18px;line-height:18px;}.buble-pre{}.buble-next{}</style>"
+var html="<div class=\"rightfloat\"style=\"display:none\"><div class=\"ftitle\">你知道吗？<div class=\"buble-hide\"><div class=\"buble-line\"></div></div></div><div class=\"buble-bottom\"><div class=\"buble-content-anchor\">{%for i in newslist.list%}<div class=\"buble-title\"><a href=\"{{i.weburl}}\"target=_blank title=\"{{i.title}}\">{{i.title}}</a></div><div class=\"buble-content\"><div class=\"buble-text\">{{i.littlecontent}}<a href=\"{{i.weburl}}\"target=\"_blank\"class=\"buble-more\">查看详情</a></div></div>{%endfor%}</div><div class=\"buble-options\"style=\"display: block;\"><div class=\"buble-del\">我知道了</div><div class=\"buble-arr buble-next\"id=\"buble-next\"page=\"{{randnum}}\">&gt;</div><div class=\"buble-arr buble-pre\"id=\"buble-pre\"page=\"{{randnum}}\">&lt;</div></div></div></div>"
+document.write(css)
+document.write(html)
+var hideflag=0;
+function floatblock(){
+	$(document).ready(function() {
+		$(".rightfloat").slideDown("fast");
+		$(".rightfloat").css("display","");
+	});
+}
+function autoshow(){
+	if (hideflag==0){
+		$(".rightfloat").slideDown("fast");
+		$(".rightfloat").css("bottom","-130px");
+		hideflag=1
+	}else{
+		$(".rightfloat").slideDown("fast");
+		$(".rightfloat").css("bottom","0px");
+		hideflag=0
+	}
+}
+setTimeout(floatblock,1000);	
+$(document).ready(function() {
+	$(".buble-hide").click(function(){
+		autoshow()
+	});
+	$(".buble-del").click(function(){
+		autoshow()
+	});
+	$("#buble-next").click(function(){
+		var page=$(this).attr("page");
+		var self=$(this);
+		var ajaxurl="http://m.zz91.com/app/areyouknowmore.html?page="+(parseInt(page)+1).toString()+"";
+		$.getScript(ajaxurl, function() {				  
+				var result = _suggest_result_;
+				if (result!="" && result){
+					$(".buble-content-anchor").html(result);	
+					self.attr({"page":parseInt(page)+1});
+				}
+		});
+	});
+	$("#buble-pre").click(function(){
+		var page=$(this).attr("page");
+		var self=$(this);
+		var ajaxurl="http://m.zz91.com/app/areyouknowmore.html?page="+(parseInt(page)-1).toString()+"";
+		$.getScript(ajaxurl, function() {				  
+				var result = _suggest_result_;
+				if (result!="" && result){
+					$(".buble-content-anchor").html(result);	
+					self.attr({"page":parseInt(page)-1});
+				}
+		});
+	});	
+});

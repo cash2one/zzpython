@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>微信绑定</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+	</head>
+	<body>
+		<div style="padding: 30px;">
+		{%ifequal havebind '1'%}
+		<div class="aui-content">您的微信已经绑定过，请不要重复绑定！</div>
+		<div class="aui-btn-row">
+            <a class="aui-btn aui-btn-block aui-btn-warning modifiedbutton" href="/agent/agent_orderlist.html">返回我的订单</a>
+        </div>
+		{%else%}
+		<div class="aui-content">
+	        恭喜您，你的微信已经绑定成功，新的订单将会及时发送到你的微信上，请及时查阅。
+	    </div>
+		<div class="aui-btn-row">
+            <a class="aui-btn aui-btn-block aui-btn-warning modifiedbutton" href="/agent/agent_orderlist.html">返回我的订单</a>
+        </div>
+		{%endifequal%}
+		</div>
+	</body>
+</html>

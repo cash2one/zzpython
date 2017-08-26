@@ -1,0 +1,82 @@
+@charset "utf-8";
+/* CSS Document */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:100%;
+	font:inherit;
+	vertical-align:baseline;
+}
+a {
+	text-decoration:none;
+	outline: none;
+}
+a, div, header, span {
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+body {
+    line-height: 1;
+    font-family: "Microsoft YaHei",Arial,Helvetica,sans-serif;
+    background: #c3e5fd;
+}
+
+/* mhome */
+.mhome {
+	padding: 0;
+  	min-width: 300px;
+  	max-width: 640px;
+  	margin: 0 auto;
+}
+.viewport {
+	padding:0 5px;
+}
+.viewport {  
+	min-width: 300px;
+  	max-width: 640px;
+  	margin: 0 auto;
+}
+
+
+/* ----- Content ----- */
+.floor {
+  	background: #c3e5fd;
+	padding: 40px 0;
+  	box-shadow: 0 1px 1px #dcdcdc;
+}
+.public-swipe {
+    overflow: hidden;
+	margin: 30px 0;
+}
+.public-swipe img {
+	width: 100%;
+	height: 100%;	
+}
+.public-text {
+	width: 70%;
+    color: #0964a7;
+	font-family: 'Microsoft YaHei';
+	line-height: 2.0rem;
+	font-weight: 400;
+	margin: 0 auto;
+}
+.seckill-list {
+    overflow: hidden;
+    content: '\20';
+    display: block;
+    clear: both;
+}
+.download {
+	margin: 30px 10px 0;	
+}
+.download img {
+	width: 100%;	
+}
+.android {
+	width: 40%;
+	float: left;	
+}
+.apple {
+	width: 40%;
+	float: right;	
+}

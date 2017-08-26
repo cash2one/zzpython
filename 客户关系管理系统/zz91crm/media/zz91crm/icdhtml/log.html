@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>客户操作日志</title>
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+		<table cellspacing="0" class="table table-bordered">
+			<thead>
+				<tr>
+					<th nowrap>操作者</th>
+					<th nowrap>原所属者</th>
+					<th nowrap>ICD现所有者</th>
+					<th nowrap>VAP现所属者</th>
+					<th nowrap>被操作公司</th>
+					<th nowrap>操作时间</th>
+					<th nowrap>日志</th>
+				</tr>
+			</thead>
+			<tbody>
+				{%for list in loglist%}
+				<tr>
+					<td bgcolor="#FFFFFF">{{list.admin_realname}}</td>
+					<td bgcolor="#FFFFFF">{{list.old_realname}}</td>
+					<td bgcolor="#FFFFFF">{{list.icdsalesman.salesman}}</td>
+					<td bgcolor="#FFFFFF">{{list.vapsalesman.salesman}}</td>
+					<td bgcolor="#FFFFFF"><a href="/icd/crm_cominfoedit.html?company_id={{list.company_id}}&dotype={{list.dotype}}" target="_blank">公司：{{list.companyname}}</a></td>
+					<td bgcolor="#FFFFFF">{{list.gmt_created}}</td>
+					<td bgcolor="#FFFFFF">{{list.details}}</td>
+				</tr>
+				{%endfor%}
+				<tr>
+					<td colspan="14" align="right" bgcolor="#FFFFFF">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td nowrap="nowrap">页次:<strong><font color="#FF0000">{{page}}</font></strong>/<font color="#FF0000">{{page_listcount}}</font> 每页:<font color="#FF0000"></font> 共计:<font color="#FF0000">{{listcount}}</font></td>
+								<td> <font color="#666666"> 页数 &nbsp;第
+														{%for p in page_range%}
+															{%if p.nowpage%}
+															[&nbsp;<span class='current'>{{p.number}}</span>&nbsp;]
+															{%else%}
+															<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+															{%endif%}
+														{%endfor%}
+														页
+														</font> </td>
+								<td align="right">
+									<a href='?page=1&{{searchurl}}'>首页</a>&nbsp;&nbsp;
+									{% if firstpage %} <a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%} &nbsp;&nbsp;
+									{% if lastpage%} <a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%} &nbsp;&nbsp;
+									<a href='?page={{page_listcount}}&{{searchurl}}'>尾页</a>
+								</td>
+								<td align="right">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

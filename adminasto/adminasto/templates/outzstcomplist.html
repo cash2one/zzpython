@@ -1,0 +1,18 @@
+<table width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#999999">
+  <tr>
+    <td bgcolor="#FFFFFF">高会类型</td>
+    <td bgcolor="#FFFFFF">年限</td>
+    <td bgcolor="#FFFFFF">公司名称</td>
+    <td bgcolor="#FFFFFF">经营类型</td>
+    <td bgcolor="#FFFFFF">主营业务</td>
+  </tr>
+  {%for list in listall_comp%}
+  <tr>
+    <td bgcolor="#FFFFFF">{{list.membership}}</td>
+    <td bgcolor="#FFFFFF">{{list.zst_year}}</td>
+    <td bgcolor="#FFFFFF">{{list.compname}}</td>
+    <td bgcolor="#FFFFFF">{{list.industry_code}}</td>
+    <td bgcolor="#FFFFFF">{{list.business}}</td>
+  </tr>
+  {%endfor%}
+</table>

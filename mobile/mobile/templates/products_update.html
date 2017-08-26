@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+<link rel="stylesheet" href="/css/comm-more.css" />
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+<nav class="t-nav-tab-ylw t-nav-tab-4">
+	<ul>
+		<li><a href="/">首页</a></li>
+		<li><a href="/category/">类目</a></li>
+		<li><a href="/priceindex/">行情报价</a></li>
+		<li class="chk"><a href="/myrc_index/">生意管家</a></li>
+	</ul>
+</nav>
+<ul class="bread Fix">
+    <li><a href="/">首页</a></li>
+	<li class="li-bread"><a href="/myrc_index/">生意管家</a></li>
+    <li class="li-bread c9"><span>供求管理</span></li>
+</ul>
+<div class="comm-btn-auto">发布供求</div>
+
+<form action="/products_updatesave/" method="post">
+信息类型: 
+<input type="radio" name="products" value="10331000" {%ifequal products "10331000"%}checked="checked"{%endifequal%}/>
+供求信息 
+<input type="radio" name="products" value="10331001" {%ifequal products "10331001"%}checked="checked"{%endifequal%}/>
+求购信息
+<br />
+*信息类别:
+<select id="category" name="category">
+{%if category_products%}
+<option value="{{category_products.code}}">{{category_products.label}}</option>
+{%endif%}
+<option value="">--请选择</option>
+<option value="1000">废金属</option>
+<option value="1001">废塑料</option>
+<option value="1002">废橡胶</option>
+<option value="1003">废纺织品</option>
+<option value="1004">废纸</option>
+<option value="1005">废电子电器</option>
+<option value="1006">废玻璃</option>
+<option value="1007">废旧二手设备</option>
+<option value="1008">其他废料</option>
+<option value="1009">服务</option>
+</select>
+<font style="color:red">{{error1}}</font>
+
+<br />
+*产品名称:
+<input type="text" name="title" value="{{title}}" />
+<font style="color:red">{{error2}}</font>
+
+<br />
+*数量:
+<input type="text" name="quantity" value="{{quantity}}" />
+<select name="quantity_unit">
+{%if quantity_unit%}<option>{{quantity_unit}}</option>{%endif%}
+<option value="斤">斤</option>
+<option value="吨">吨</option>
+<option value="千克">千克</option>
+<option value="台">台</option>
+<option>辆</option>
+</select>
+<font style="color:red">{{error3}}</font>
+
+<br />
+*报价: 
+<input type="radio" name="pricetype" value="1" {%ifequal pricetype "1"%}checked="checked"{%endifequal%} checked="checked"/>
+公开价格
+<input type="radio" name="pricetype" value="0" {%ifequal pricetype "0"%}checked="checked"{%endifequal%}/>
+电议或面议
+<br />
+
+	建议您选择公开报价，真实的价格有助于买/卖家找到您 <br />
+
+价格:
+<input type="text" name="price" value="{{price}}" />
+<select name="price_unit">
+{%if price_unit %}<option>{{price_unit}}</option>{%endif%}
+<option value="元">元</option>
+<option value="美元">美元</option>
+<option value="欧元">欧元</option>
+<option value="日元">日元</option>
+</select>
+<font style="color:red">{{error4}}</font>
+
+<br />
+*信息描述: 建议您从产品性能、用途、包装、售后服务等方面来描述<br />
+<textarea rows="3" cols="20" name="details">{{details}}</textarea>
+<font style="color:red">{{error5}}</font>
+
+<br />
+*信息有效期：
+<input type="radio" name="validity" value="-1" checked="checked" {%ifequal validity "-1"%}checked="checked"{%endifequal%}/>
+长期有效
+<input type="radio" name="validity" value="90" {%ifequal validity "90"%}checked="checked"{%endifequal%}/>
+三个月
+<input type="radio" name="validity" value="30" {%ifequal validity "30"%}checked="checked"{%endifequal%}/>
+一个月
+<input type="radio" name="validity" value="20" {%ifequal validity "20"%}checked="checked"{%endifequal%}/>
+二十天
+<input type="radio" name="validity" value="10" {%ifequal validity "10"%}checked="checked"{%endifequal%}/>
+十天
+
+<br />
+<input type="hidden" name="proid" value="{{proid}}">
+<input type="submit" value="提交修改信息">
+
+</form>
+
+<form name="myform" id="myform" method="post" enctype="multipart/form-data" style="overflow:hidden;display:block;width:100%;" action="/upload/" target='upload'>
+<input type="file" value="上传图片" name="file" id="file"/>
+<input type="submit" value="上传图片">
+<iframe name='upload' style='height:100px;width:200px;'></iframe>
+</form>
+
+</div>
+
+
+
+
+
+
+
+
+
+<div>
+</div>
+<div class="h20"></div>
+</div>
+{%include 'bottom_myrc.html'%}
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+	</head>
+	<body>
+		<table width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#666666" class="table table-bordered">
+			<tr>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">归属月份</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">周节奏</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">星期</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">销售人员</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">归属部门</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">到单日期</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">产品分类</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">客户分类</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">到帐金额</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">账号/邮箱</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">到单来源</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">增值类型</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">到单周期</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">产品量级</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">付款方式</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">促销形式</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">客户地区</td>
+				<td nowrap="nowrap" bgcolor="#f2f2f2">客户经营产品</td>
+			</tr>
+			{%for list in listall%}
+			<tr bgcolor="#ffffff">
+				<td nowrap="nowrap">{{list.mkdate}}</td>
+				<td align="center" nowrap="nowrap">第{{list.nkdate}}周</td>
+				<td nowrap="nowrap">周{{list.wkdate}}</td>
+				<td nowrap="nowrap">{{list.realname}}</td>
+				<td nowrap="nowrap">{{list.user_category_name}}</td>
+				<td nowrap="nowrap">{{list.sales_date}}</td>
+				<td nowrap="nowrap">{{list.sales_type}}</td>
+				<td nowrap="nowrap">{{list.service_type}}</td>
+				<td nowrap="nowrap">{{list.sales_price}}</td>
+				<td nowrap="nowrap">{{list.account}}/{{list.email}}</td>
+				<td nowrap="nowrap">{{list.com_ly1}}</td>
+				<td nowrap="nowrap">{{list.sales_type}}</td>
+				<td nowrap="nowrap">{{list.com_zq}}</td>
+				<td nowrap="nowrap">{{list.com_cpjb}}</td>
+				<td nowrap="nowrap">{{list.com_hkfs}}</td>
+				<td nowrap="nowrap">{{list.com_cxfs}}</td>
+				<td nowrap="nowrap">{{list.com_khdq}}</td>
+				<td nowrap="nowrap">{{list.com_hy}}</td>
+			</tr>
+			{%endfor%}
+		</table>
+	</body>
+	<script type="text/javascript" src="../../assets/layer/layer.js"></script>
+	<script type="text/javascript" src="/assets/js/bui-min.js"></script>
+	<script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
+	<script type="text/javascript" src="/assets/js/config-min.js"></script>
+	<script type="text/javascript">
+		BUI.use('bui/calendar', function(Calendar) {
+			var datepicker = new Calendar.DatePicker({
+				trigger: '.calendar',
+				autoRender: true
+			});
+		});
+		$(document).ready(function() {
+			
+		})
+		parent.closeloading()
+	</script>
+</html>

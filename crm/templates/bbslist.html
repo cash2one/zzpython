@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+td
+{
+	font-size:12px;
+	line-height:18px;
+}
+a
+{
+	color:#060;
+}
+a:hover
+{
+	color:#090;
+}
+.line
+{
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #093;	
+}
+-->
+</style></head>
+
+<body>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" >
+{%for list in listall%}
+  <tr>
+    <td class="line">
+    <a href="http://forum.asto.com.cn/read.php?tid={{list.tid}}" target="_blank">{{list.subject}}<span class="gray">（{{list.replies}}）</span></a></td>
+    <td nowrap="nowrap" class="line">
+	<a href="http://forum.asto.com.cn/u.php?uid={{list.uid}}" target="_blank">
+	{{list.replyname}}</a>
+    </td>
+    <td class="line">{{list.lastpost}}</td> 
+  </tr>
+{%endfor%}
+</table>
+<input name="contactflag" type="hidden" id="contactflag" value="1" />
+</body>
+</html>
+<script>setTimeout("window.location='/bbslist/'",9000*5)</script>

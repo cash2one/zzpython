@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{{csscode}}/css/base.css" />
+<link rel="stylesheet" href="{{csscode}}/css/modules.css" />
+<link rel="stylesheet" href="{{csscode}}/css/style.css" />
+<title>{{list.name}}</title>
+<meta content="{{list.business}}" name="description"/>
+<meta content="" name="keywords"/></head>
+<body>
+{%include htmlincludes.topinclude%}
+<div id="content">
+	<!--左边主题板块-->
+           <div class="grid-sub fl">
+                    {%include htmlincludes.leftinclude%}
+                    
+                    {%if serieslist%}
+                    <!--产品分类-->
+                    <div class="mod mod-proclass">
+                      <div class="m-body">
+                        <div class="m-header">
+                            <h3>供求分类</h3> 
+                        </div>
+                        <div class="m-content">
+                            <div class="proclass-list">
+                            <ul>
+                            {%for list in serieslist%}
+                                <li><a href="products-{{list.id}}-1.html" title="{{list.name}}">{{list.name}}</a></li>
+                            {%endfor%}
+                            </ul>
+                            </div>
+                        </div>
+                      </div> 
+                    </div>
+                    <!--产品分类结束-->
+                    {%endif%}
+                    
+                    
+                               </div>
+<!--左边主题板块结束-->
+
+	<!-- 右面主题板块-->
+<div class="main-wrap fr">
+	<!--明星产品-->
+	<div class="mod mod-starpro">
+		<div class="m-body">
+			<div class="m-header"><h3>联系我们</h3></div>
+			<div class="m-content">
+				<div class="pro-contactway">
+					<!--联系人资料显示-->
+					<div class="contact-detail">
+						<div class="contact-detailt">
+							<div class="card-imgdetail">
+							    <img onerror="this.onerror=null;this.src='http://img0.zz91.com/front/images/esite/logo.gif'" src="http://img0.zz91.com/front/images/esite/logo.gif" width="65" height="65" alt="义京辉先生" />
+								<div class="card-person">
+									<p>
+										<strong>{{list.contact}} </strong>{{list.position}}
+									</p>
+									<p>手机：<small>{{list.mobile}}</small></p>
+									<div></div>
+								</div>
+							</div>
+							<h4>{{list.name}}</h4>
+							<div class="card-info">
+                            {%if list.tel%}
+                                <p class="text-in222">电话：<span>{{list.tel_country_code}} {{list.tel_area_code}} {{list.tel}}</span></p>
+                            {%endif%}
+                                <p class="text-in222">手机：<span>{{list.mobile}}</span></p>
+								{%if list.qq%}
+                                <p class="text-in222">QQ：<span>{{list.qq}}</span></p>
+                                {%endif%}	
+                                <p class="text-in222">地址： <span>{{list.address}}</span></p>
+                                {%if list.address_zip%}
+                                <p class="text-in222">邮编：<span>{{list.address_zip}}</span></p>
+                                {%endif%}	
+							</div>
+						</div>
+						<div class="contact-detailb"></div>
+					</div>
+					<!--联系人资料显结束示-->
+					<!-- 地图显示-->
+					<!--<div class="contactway-map">
+						
+					</div>-->
+					<!-- 地图显示-->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--明星产品结束-->
+</div>
+<!-- 右面主题板块结束-->
+
+</div>
+{%include htmlincludes.buttominclude%}
+</body>
+</html>

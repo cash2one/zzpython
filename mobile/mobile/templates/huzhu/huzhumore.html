@@ -1,0 +1,23 @@
+{%if bbslist%}{%for list in bbslist%}<tr><td class="m-item">
+        <div class="c-item">
+            <a href="/huzhuview/{{list.id}}.htm" target=_blank>{{list.title}}</a>
+        </div>
+        <!--end c-item-->
+        <div class="c-item_">
+            <div class="i-box">
+                {{list.nickname}}&nbsp;&nbsp;&nbsp;{%if list.replycount%}回复：{{list.replycount}}&nbsp;&nbsp;&nbsp;{%endif%}{{list.reply_time}}
+            </div>
+            <!--end i-box-->
+            <div class="i-box_">
+            <div class="i-sc" postid="{{list.id}}" id="sc{{list.id}}" onClick="openfavorite({{list.id}})" title="{{list.title}}">
+             <img src="/images/myrc/star.png"/>&nbsp;<span>收藏</span>
+            </div>
+             <!--end i-sc-->
+                 <div class="cb"></div>
+            </div>
+            <!--end i-box_-->
+            <div class="cb"></div>
+        </div>
+        <!--end c-item_-->
+    </td>
+</tr>{%endfor%}{%else%}err{%endif%}

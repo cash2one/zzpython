@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Csss/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Csss/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Csss/style.css" />
+    <script type="text/javascript" src="Jss/jquery.js"></script>
+    <script type="text/javascript" src="arg.js"></script>
+    <script type="text/javascript" src="Jss/jquery.sorted.js"></script>
+    <script type="text/javascript" src="Jss/bootstrap.js"></script>
+    <script type="text/javascript" src="Jss/ckform.js"></script>
+    <script type="text/javascript" src="Jss/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;<button type="checkbox" class="btn btn-success" id="selAll" onClick="selectAll();">全选</button>
+&nbsp;&nbsp;<button type="checkbox" class="btn btn-success" id="selAll" onClick="inverse();">取消</button>
+&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" onClick="send2()">还原</button>
+&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" class="btn btn-success" onClick="del()">清空回收站</button>
+<form name="form">
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>文章id</th>
+        <th>选择</th>
+        <th>标题</th>
+        <th>发布时间</th>
+        <th>更新时间</th>
+        <th>类别</th>
+        <th>点击</th>
+        <th>发布人</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {%for srt in listall%}
+	     <tr>
+            <td>{{srt.id}}</td>
+			<td><input type="checkbox" name="checkAll" value="{{srt.id}}"></td>
+			<td><a href="articaldetail{{srt.id}}.htm" target="_blank">{{srt.title}}</a></td>
+			<td>{{srt.gmt_created}}</td><td>{{srt.sortrank}}</td>
+			<td><a href="?typeid={{srt.typeid}}">{{srt.typename}}</a></td>
+			<td>{{srt.click}}</td><td>{{srt.editor}}</td>
+			<td><a href="updateartical.html?id={{srt.id}}">编辑</a></td>
+        </tr>
+     {%endfor%}
+</form>
+        </table>
+<div class="inline pull-right page">
+         <!--10122 条记录 1/507 页  <a href='#'>下一页</a>     <span class='current'>1</span><a href='#'>2</a><a href='/chinapost/index.php?m=Label&a=index&p=3'>3</a><a href='#'>4</a><a href='#'>5</a>  <a href='#' >下5页</a> <a href='#' >最后一页</a>    --></div>
+
+<script>
+	function del()
+	{
+		if(confirm("确定要删除吗？"))
+		{
+		
+			var url = "index.html";
+			
+			window.location.href="redelartical.html";		
+		}
+	}
+</script>
+
+</body>
+</html>
+

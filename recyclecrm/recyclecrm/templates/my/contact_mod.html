@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>淘再生-再生商客</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://b.zz91.com/comm/js/comm.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_104910_mwwdphx18v5kx1or.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/recyclecrm/css/chapman.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/recyclecrm/css/chapman-t.css"/>
+	</head>
+	<body>
+		<div style="height:48px;">
+			<header class="aui-bar aui-bar-nav zz-header aui-bg-success">
+				<a class="aui-pull-left" href="javascript:history.back(-1)">
+			        <span class="aui-iconfont aui-icon-left"></span>
+			    </a>
+			    <div class="aui-title">
+			    	修改我的联系人
+			    </div>
+			</header>
+		</div>
+		<form action="contact_save.html" method="post" id="form">
+		<div class="aui-content aui-card aui-margin-t-15 aui-margin-b-0">
+		    <div class="aui-form">
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">姓名：</span>
+		            <input type="text" class="aui-input" name="contact" value="{{result.contact}}" />
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">职务：</span>
+		            <input type="text" class="aui-input" name="position" value="{{result.position}}" />
+		        </div>
+		        <div class="aui-input-row">
+	                <span class="aui-input-addon">性别</span>
+	                <div class="aui-pull-right">
+	                	{%ifequal result.sex '男'%}
+	                    <input class="aui-radio aui-radio-info" type="radio" name="sex" id="man" value="男" checked="checked"> <span class="aui-radio-name">男</span>
+	                    {%else%}
+	                    <input class="aui-radio aui-radio-info" type="radio" name="sex" id="man" value="男">
+	                    {%endifequal%}
+	                    {%ifequal result.sex '女'%}
+	                    <input class="aui-radio aui-radio-warning" type="radio" name="sex" id="woman" value="女" checked="checked"> <span class="aui-radio-name">女</span>
+	                    {%else%}
+	                    <input class="aui-radio aui-radio-warning" type="radio" name="sex" id="woman" value="女"> <span class="aui-radio-name">女</span>
+	                    {%endifequal%}
+	                </div>
+	                
+	            </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">微信：</span>
+		            <input type="text" class="aui-input" name="wechat" value="{{result.wechat}}" />
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">手机：</span>
+		            <input type="text" class="aui-input" name="mobile" value="{{result.mobile}}" />
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">电话：</span>
+		            <input type="text" class="aui-input" name="tel" value="{{result.mobile}}" />
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">QQ：</span>
+		            <input type="text" class="aui-input" name="qq" value="{{result.qq}}" />
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">邮箱：</span>
+		            <input type="text" class="aui-input" name="email" value="{{result.email}}" />
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">地区：</span>
+		            <input type="text" class="aui-input" name="area" value="{{result.area}}" />
+		        </div>
+		        <div class="aui-input-row">
+		            <span class="aui-input-addon">地址：</span>
+		            <input type="text" class="aui-input" name="address" value="{{result.address}}" />
+		        </div>
+		    </div>
+		</div>
+		<input type="hidden" name="user_id" value="{{user_id}}" />
+		</form>
+		<div class="aui-padded-15">
+		    <div class="aui-btn aui-btn-block aui-btn-success aui-padded-10" onclick="Submit()">确认</div>
+		</div>
+	    <script>
+	    	function Submit(){
+	    		$("#form").submit()
+	    	}
+	    </script>
+	</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title>{{ye_detaillist.name}}商家-废料产业带</title>
+		<link href="/ye/css/industrial.m.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+		<script>
+			$(window).scroll(function() {
+				if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+					loadMore(document.getElementById("loadMore"));
+				}
+			});
+
+			function loadMore(objdiv) {
+				self = objdiv
+				var pageobj = document.getElementById("pageindex");
+				var page = pageobj.value;
+				pageobj.value = parseInt(page) + 1
+				self.innerHTML = "加载中...";
+				$.get("/ye/comp{{id}}.html", {
+						page: pageobj.value,
+					},
+					function(data, status) {
+						if (status == "success" && data != "err\n" && data != "") {
+							self.style.display = "block";
+							$("#ok").append(data);
+							self.innerHTML = "点击后加载更多内容";
+						} else {
+							self.style.display = "none";
+							alert('no');
+						}
+					});
+			};
+		</script>
+	</head>
+
+	<body>
+		{%include 'ye/top.html'%}
+		<div id="deal">
+			<div class="list">
+				<dl class="list">
+					<div class="container-in">
+						<div id="deals">
+							<dd>
+								<h3 class="deal-title">
+			            	<span>产业带&nbsp;&gt;&nbsp;<a href="/ye/{{detail.list.industry_code}}/">{{detail.list.industry}}</a>&nbsp;&gt;&nbsp;{{detail.list.name}}-商家</span>
+			            	</h3>
+							</dd>
+							<dd>
+								<dl class="list" id='ok'>
+									{%for list in companylist%}
+									<dd>
+										<a href="/company/detail{{list.company_id}}.html" target="_blank" class="">
+											<div class="dealcard">
+												<div class="dealcard-left" style="height: auto;margin-top: 10px;">
+													<div class="dealcard-brand oow">{{list.name}}</div>
+													<div class="title text-block">{{list.business}}</div>
+												</div>
+											</div>
+										</a>
+									</dd>
+									{% endfor %}
+								</dl>
+								
+								<input type="hidden" id="pageindex" value="1" />
+								<div style="line-height: 30px;margin-bottom: 20px;" id="loadMore">
+									查看更多>>
+								</div>
+							</dd>
+						</div>
+					</div>
+				</dl>
+			</div>
+		</div>
+		{%include 'ye/bottom.html'%}
+	</body>
+
+</html>

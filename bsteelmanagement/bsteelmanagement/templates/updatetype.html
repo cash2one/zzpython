@@ -1,0 +1,28 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="arg.css" />
+
+<body>
+{%include "head.html"%}
+
+<a href="addarttype.html">添加类别</a><br /><br />
+<form action="updatetypeok.html">
+<input type="hidden" name="type_id" value="{{type_id}}">
+<table><tr><td width="w100px">栏目名称</td><td>权重</td><td></td><td></td></tr>
+{%for type in typelist%}
+{%ifequal type_id type.id%}
+<tr><td><input type="text" class="w80px" name="type_name" value="{{type_name}}"></td>
+<td><input type="text" class="w25px" name="type_sortrank" value="{{type_sortrank}}"></td>
+<td><input type="submit" value="√"></td>
+<td><input type="button" onClick="window.location.href='returnpage.html'" value="X"></td></tr>
+{%else%}
+<tr><td width="120px">{{type.name}}</td><td>{{type.sortrank}}</td>
+<td><a href="updatetype.html?type_id={{type.id}}">修改</a></td>
+<td><a href="deletetype.html?type_id={{type.id}}" onClick="return confirm('是否将此信息删除?')">删除</a></td></tr>
+{%endifequal%}
+{%endfor%}
+</table>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta charset="UTF-8" />
+	<title>{{kname}}_{{kname}}资讯_{{kname}}新闻动态_第{{page}}页</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="{{kname}}资讯,{{kname}}新闻,{{kname}}动态" />
+	<meta name="description" content="{{kname}}资讯标签频道为你提供最新最全的{{kname}}资讯，新闻,及{{kname}}最新动态以及{{kname}}相关行情信息，让你及时掌握最新{{kname}}行情需求资讯，让你生意翻倍。" />
+	<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.hack.css" />
+	<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+	<link rel="stylesheet" href="http://tags.zz91.com/tags/css/zz91.tags.css" />
+    <link rel="stylesheet" href="http://tags.zz91.com/tags/css/zz91.tagslist.css" />
+	<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+	<script src="http://img0.zz91.com/front/js/topbar/jquery.topbar.js"></script>
+	<script src="http://img0.zz91.com/front/js/zz91.common.js"></script>
+</head>
+<body>
+	{% include 'tags/nav.html' %}
+	<!-- main start -->
+    <div class="wrapper mt">
+   	  <div class="tags_mainleft">
+      		{%if adlist%}
+        	<div><a href="{{adlist.url}}" target=_blank><img src="{{adlist.picaddress}}" width="720px"></a></div>
+			{%endif%}
+        	<div class="tags_nav">
+            	<div class="tags_keywleft">标签：</div><h1 class="tags_keywords red">{{tags_keywords}}</h1><div class="tags_keywright">的信息列表: 资讯信息<span class="red">{{listcount}}</span>条</div>
+                <div class="tagsothers">
+					<a href="/s/{{keywords_hex}}-0-1/" class="{{kindclass1}}">供应信息</a>  
+					<a href="/s/{{keywords_hex}}-1-1/" class="{{kindclass2}}">求购信息</a> 
+					<a href="/a/{{keywords_hex}}-1/">行情报价</a> 
+					<a href="/c/{{keywords_hex}}-1/">企业报价</a> 
+					<a href="/d/{{keywords_hex}}-1/" class="on">资讯信息</a>
+					<a href="/b/{{keywords_hex}}-1/">互助社区</a>
+				</div>
+            </div>
+            
+            <div class="tags_tradecontent">
+			{%if listall%}
+				{% for list in listall %}
+            	<div class="clearboth dotline">
+                <dl>
+                	<dt class="pricetitle"><a href="{{list.weburl}}" target=_blank>{{list.title}}</a></dt>
+                    <dd class="timeright">{{list.pubdate}}</dd>
+                </dl>
+                </div>
+				{% endfor %}
+			{%endif%}
+				<div class="clearboth"></div>
+                <div class="cmore mt2">{% if firstpage %}
+				<a href="/d/{{keywords_hex}}-1/" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+				<a href="/d/{{keywords_hex}}-{{prvpage}}/" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+				{% endif %}
+				{% for p in page_range %}
+				{% if p.nowpage %}
+				<span class="red">{{p.number}}</span>
+				{% else %}
+				<a href="/d/{{keywords_hex}}-{{p.number}}/" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+				{% endif %}
+				{% endfor %}
+				&nbsp;
+				{% if lastpage%}
+				<a href="/d/{{keywords_hex}}-{{nextpage}}/" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+				<a href="/d/{{keywords_hex}}-{{page_listcount}}/" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+				{% endif %}</div>
+                <div class="clearboth"></div>
+				
+            </div>
+        <div class="clearboth"></div>
+   	  </div>
+	  <div class="tags_mainright">
+      {% include 'tags/right.html' %}
+	  </div>
+        
+        
+    </div>
+    <script type="text/javascript">
+/*tags 列表页 960*90，创建于2013-3-1*/
+var cpro_id = "u1223249";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+    <div class="clearboth"></div>
+<!-- main end -->
+{% include 'tags/bottom.html' %}
+</body>
+</html>

@@ -1,0 +1,34 @@
+<style>
+	.m-main{
+		padding: 10px;;
+	}
+	.m-main .box{
+		border: solid 1px #ccc;
+		background-color:#fff ;
+		margin-bottom: 10px;
+		padding: 10px;
+		line-height: 30px;
+		
+	}
+	.m-main .box .title{
+		font-weight: bolder;
+		color: #0033CC;
+	}
+	.m-main .time{
+		width: 150px;
+		line-height: 20px;
+		background-color: #666;
+		color: #fff;
+		margin: auto;
+		margin-bottom: 10px;
+		text-align: center;
+	}
+</style>
+<div class="m-main">
+<div class="box">
+	<div class="title">{{list.title}}</div>
+	<div class="content">{{list.content|safe}}</div>
+</div>
+<div class="time">{{list.gmt_created|safe}}</div>
+</div>
+<input type="hidden" id="appnavname" value="消息" />

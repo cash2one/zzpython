@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" href="css/base.css" rel="stylesheet" />
+<link type="text/css" href="css/about.css" rel="stylesheet" />
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+<script src="js/about.js"></script>
+<title>关于我们-ZZ91再生网</title>
+</head>
+
+<body>
+{%include 'top.html'%}
+<div class="mainlong banner">
+	<div class="main"><img src="images/banner.jpg" width="957" height="320" /></div>
+</div>
+<div class="main">
+  <div class="indexlm">
+   	  <div class="title"><h2>公司简介</h2></div>
+        <div class="content">杭州阿思拓信息科技有限公司【简称ASTO】成立于2005年，一直致力于成为我国资源再生、新能源、节能减排等低碳环保经济领域的具有影响力的信息服务供应商。经过八年的不懈努力，现旗下拥有ZZ91再生网（中文站和英文站）、淘再生、优塑源等一系列再生环保低碳品牌网站,成为再生行业内的知名BtoB电子商务品牌。<br />
+          <strong>ZZ91企业运营使命：</strong><br />
+          致力于推动中国乃至全球再生资源行业中小企业的成长与发展。<br />
+          <strong>ZZ91人才发展使命:</strong><br />
+          致力于成为生产优秀人才的基地。<br />
+          <strong>ASTO价值观：</strong><br />
+          简单、勤奋、开放、担当、主动、快速、严谨<br />
+          <a href="about.html" class="more" style="color:#090">查看更多简介&gt;&gt;</a><br />
+      </div>
+  </div>
+  <div class="indexlm">
+   	  <div class="title"><h2>公司动态</h2></div>
+        <div class="content">
+        <ul>
+   		{%for list in listall%}
+          <li>·<a href="news{{list.aid}}.html" target="_blank" title="{{list.subject}}">{{list.subject}}</a></li>
+        {%endfor%}
+        </ul>
+          
+        </div>
+  </div>
+  <div class="indexlm_r">
+   	  <div class="title"><h2>产品中心</h2></div>
+        <div class="content" style="line-height:30px;">
+        	<div><strong>ZZ91旗下产品</strong></div>
+            <div>会员：<a href="http://www.zz91.com/zst/" target="_blank">再生通 </a><a href="http://www.zz91.com/service/ppt/index.asp" target="_blank">品牌通 </a></div>
+            <div><a href="http://www.zz91.com/zst/" target="_blank"><img src="images/zst.jpg"  /></a>&nbsp;&nbsp;<a href="http://www.zz91.com/service/ppt/index.asp" target="_blank"><img src="images/ppt.jpg"  /></a></div>
+            <div>推广：<a href="http://www.zz91.com/service/baidu/yh.html" target="_blank">百度优化</a><a href="http://www.zz91.com/specialsubject/hjzw/" target="_blank"> 黄金展位</a> 标王 标签广告</div>
+          <div style="border-top:dashed 1px #ccc; margin-top:10px;; margin-bottom:10px;"></div>
+<div><strong>环保旗下产品</strong></div>
+            <div><a href="http://www.huanbao.com/fudus/vpindex.htm" target="_blank"><img src="images/zft.jpg"  /></a></div>
+          <div><a href="http://www.huanbao.com/fudus/vpindex.htm" target="_blank">中环通  黄金广告 精准营销</a></div>
+            <div style="border-top:dashed 1px #ccc; margin-top:10px;; margin-bottom:10px;"></div>
+<div><strong><a href="http://www.kl91.com" target="_blank">再生塑料网</a></strong></div>
+            <div><a href="http://www.kl91.com/zstfw/index.html" target="_blank">再塑通</a></div>
+            <div style="border-top:dashed 1px #ccc; margin-top:10px;; margin-bottom:10px;"></div>
+            <div><strong>客服热线：</strong>0571-56612345<br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0571-56611111</div>
+            
+        
+    </div>
+  </div>
+<div style="clear:both"></div>
+</div>
+
+{%include 'bottom.html'%}
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>联系我们-{{list.name}}</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+<script src="{{htmlincludes.img}}js/jquery.js"></script>
+<script src="{{htmlincludes.img}}js/index.js"></script>
+</head>
+<body>
+{%include "html/mobile/01/top.html"%}
+<div class="phoneInfo">
+	<img src="{{htmlincludes.img}}images/contact_icon.jpg" />联系方式
+</div>
+<!--end phoneInfo-->
+
+<div class="contact">
+	<div class="contact-text">
+    	<b>{{list.name}}</b>
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	<span class="contact-name">联 系 人：</span>{{list.contact}}
+    </div>
+    <!--contact-text-->
+	{%if list.ppcphone%}
+    <div class="contact-text">	
+		<span class="contact-name">电    话：</span> <a href="tel:{{list.ppcphone}}">{{list.ppcphone}}</a><a href="tel:{{list.ppcphone}}"><img src="{{htmlincludes.img}}images/icon7.jpg" align="absmiddle" /></a>	
+	</div>
+	{%else%}
+	{%if list.showcontact%}
+	<div class="contact-text">
+	<span class="contact-name">电    话：</span> <a href="tel:{{list.tel_area_code}}{{list.tel}}">{{list.tel_country_code}}-{{list.tel_area_code}}-{{list.tel}}</a><a href="tel:{{list.tel_area_code}}{{list.tel}}"><img src="{{htmlincludes.img}}images/icon7.jpg" align="absmiddle" /></a>
+    </div>
+	<!--contact-text-->
+    <div class="contact-text">
+    	{%if list.mobile%}<span class="contact-name">移动电话：</span> <a href="tel:{{list.mobile}}">{{list.mobile}}</a><a href="tel:{{list.mobile}}"><img src="{{htmlincludes.img}}images/icon8.jpg" align="absmiddle" /></a>{%endif%}
+    </div>
+    {%endif%}
+	{%endif%}
+	{%if list.showcontact%}
+    <!--contact-text-->
+    <div contact="contact-text">
+    	{%if list.email%}<span class="contact-name">邮箱：</span> {{list.email}}{%endif%}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.qq%}<span class="contact-name">QQ：</span>{{list.qq}}{%endif%}
+    </div>
+    {%endif%}
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.fax%}<span class="contact-name">传    真：</span> {{list.fax}}{%endif%}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.address%}<span class="contact-name">地    址：</span>{{list.address}}{%endif%}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.website%}<span class="contact-name">公司主页：</span> {{list.website}}{%endif%}
+    </div>
+    
+    {%if list.showcontact%}
+    	<hr>
+	    {%if list.ppcphone%}
+	    {%else%}
+		    {%if list.contactmore%}
+		    	{%for listm in list.contactmore%}
+		    	{%if listm.name%}
+			    <div contact="contact-text">
+			    	<span class="contact-name">联系人：</span> {{listm.name}} {{listm.sex}}
+			    </div>
+			    {%endif%}
+			    {%if listm.tel%}
+			    <div contact="contact-text">
+			    	<span class="contact-name">电话：</span> <a href="tel:{{listm.tel}}">{{listm.tel}}<img src="{{htmlincludes.img}}images/icon8.jpg" align="absmiddle" /></a>
+			    </div>
+			    {%endif%}
+			    {%if listm.mobile%}
+			    <div contact="contact-text">
+			    	<span class="contact-name">手机：</span> <a href="tel:{{listm.mobile}}">{{listm.mobile}}<img src="{{htmlincludes.img}}images/icon8.jpg" align="absmiddle" /></a>
+			    </div>
+			    {%endif%}
+			    
+			    {%if listm.email%}
+			    <div contact="contact-text">
+			    	<span class="contact-name">邮箱：</span> {{listm.email}}
+			    </div>
+			    {%endif%}
+			    {%if listm.qq%}
+			    <div contact="contact-text">
+			    	<span class="contact-name">QQ：</span> {{listm.qq}}
+			    </div>
+			    {%endif%}
+			    {%endfor%}
+		    {%endif%}
+	    {%endif%}
+    {%endif%}
+    
+    <!--contact-text-->
+</div>
+<!--end contact-->
+<div class="phoneRuturntop">
+	<img src="{{htmlincludes.img}}images/ruturn_top.jpg" class="fr" onclick="bookmarks();" />
+    <div class="cb"></div>
+</div>
+<!--phoneRuturntop-->
+{%include "html/mobile/01/foot.html"%}
+<!--end phoneFooter-->
+</body>
+</html>

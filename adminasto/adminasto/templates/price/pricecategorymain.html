@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body>
+<iframe name="toclb" src="" scrolling="yes" frameborder="0" width="500" height="50"></iframe>
+<div style="clear:both"></div>
+<table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor="#333333">
+  <tr>
+    <td bgcolor="#FFFFFF">id</td>
+    <td bgcolor="#FFFFFF">parent_id</td>
+    <td bgcolor="#FFFFFF">name</td>
+    <td bgcolor="#FFFFFF">showflag</td>
+    <td bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+  {%for list in listall%}
+  <form id="form1" name="form1" method="post" action="/pricecategorysave/" target="toclb"><tr>
+    <td bgcolor="#FFFFFF">{{list.id}}</td>
+    <td bgcolor="#FFFFFF">{{list.parent_id}}</td>
+    <td bgcolor="#FFFFFF"><a href="/pricecategorymain/?parent_id={{list.id}}">
+      查看
+    </a><input name="pname" type="text" id="pname" value="{{list.name}}" size="50" /> 
+    <a href="http://m.zz91.com/price/?category_id={{list.id}}" target="_blank">look
+    <input type="hidden" name="id" id="id" value="{{list.id}}" />
+    </a></td>
+    <td bgcolor="#FFFFFF">{{list.showflag}}
+      
+        <input type="radio" name="showflag" id="showflag" value="1" />
+        是
+        <input type="radio" name="showflag" id="showflag" value="0" />
+        否
+    </td>
+    <td bgcolor="#FFFFFF"><input type="submit" name="button" id="button" value="修改" /></td>
+  </tr></form>
+  {%endfor%}
+</table>
+</body>
+</html>

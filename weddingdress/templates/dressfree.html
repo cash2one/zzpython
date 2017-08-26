@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>免费试纱-杭州婚之集旗舰店</title>
+<meta name="keywords" content="免费试纱，杭州婚之集旗舰店" />
+<meta name="description" content="婚之集是婚纱礼服线上销售冠军阿斯拓公司创立的零售品牌，入住了包括罗艾薇，忆红妆，婚美优品，烟雨集等品牌，给顾客提供超凡体验、省心省力、个性定制、免费试纱的服务。" />
+<link rel="stylesheet" type="text/css" href="tuiguang/css/style.css"/>
+<script src="tuiguang/js/jquery.min.js"></script>
+<script src="tuiguang/js/index.js"></script>
+<script src="tuiguang/js/base.js"></script>
+<script src="weddingdress/js/jquery-1.7.2.js"></script>
+<script>
+$(function(){
+	$('.bottonsubmit').click(function(){
+		//var keywords_id=$(this).attr("keywords_id")
+		var name=$("#name").val();
+		var telphone=$("#telphone").val();
+		var email=$("#email").val();
+		var remark=$("#remark").val();
+		var friend =[];    
+		$('input[name="friend"]:checked').each(function(){    
+			friend.push($(this).val());    
+		});
+		//alert(friend);
+		if (name.length<1){
+			alert('请填写您的姓名');
+		}
+		else if(telphone.length<5){
+			alert('请填写联系号码');
+		}
+		else{
+			//alert(name);
+	   		//$("#baidu"+keywords_id).html('<img src="../loading.gif" />')
+			//alert(keywords_id);
+			$.ajax({
+			   type: "GET",
+			   url: "sendyuyue.html",
+			   data: 'name='+name+'&telphone='+telphone+'&email='+email+'&friend='+friend+'&remark='+remark,
+			   //dataType: "json",
+			   //cache:false,
+			   //contentType: "application/json; charset=utf-8", 
+			   success:function(data){
+			   		//$("#secontflowdownlogo1").html(data)
+					alert('您的信息已经成功提交,我们会尽快与您联系!');					$("#name").val('');
+					$("#telphone").val('');
+					$("#email").val('');
+					$("#remark").val('');
+					$("input[name='friend']").each( function() {     
+			            $(this).attr("checked", false);     
+			        });
+			   		//alert(data);
+			   },
+			   error:function(data){
+					alert("错误!青重试.");
+			   }
+			}); 
+		}
+	 });
+});
+</script>
+</head>
+<body>
+<div class="header">
+  <div class="logo"> <img src="tuiguang/images/logo.jpg"/> </div>
+  <div class="ruler"> </div>
+  
+  {%include 'common/mid.html'%}
+  
+  <div class="clear"></div>
+  <div class="dressfreebanner"></div>
+</div>
+<div class="clear"></div>
+<div class="dressfreecontenter">
+  <div class="dressfreecontenter_headr"><a href="#"><img src="tuiguang/images/dressfree/dressfree_05_02.jpg"/></a></div>
+  <div class="styles">
+    <a id="goup"><img src="tuiguang/images/dressfree/dressfree_05_05.jpg"/></a>
+    <a><img src="tuiguang/images/dressfree/dressfree_05_07.jpg"/></a>
+    <a><img src="tuiguang/images/dressfree/dressfree_05_09.jpg"/></a>
+  </div>
+  <div class="dressfreecotent_body">
+    <p class="styleone"><a><img src="tuiguang/images/dressfree/dressfree_09.jpg"/></a></p>
+  <!--<a name="stryle1"></a>-->
+    <div class="secontflowdownlogo">
+     <form name="form" method="post">
+     <input class="name" type="text" name="name" id="name" value=""/>
+     <input class="tephone" type="text" name="telphone" id="telphone" value=""/>
+     <input class="email" type="text" name="email" id="email" value=""/>
+      <input class="checkboxer1" type="checkbox" name="friend" value="老公"/>
+     <input class="checkboxer2" type="checkbox" name="friend" value="闺蜜"/>
+      <input class="checkboxer3" type="checkbox" name="friend" value="亲人"/>
+      <input class="checkboxer4" type="checkbox" name="friend" value="同学 "/>
+      <input class="checkboxer5" type="checkbox" name="friend" value="其它"/>
+     <textarea class="textarea" id="remark" name="remark">如果你有其他需求，请一并告诉我，方便给你安排:</textarea>
+     <input class="bottonsubmit" type="button" value="确认提交>>"/>
+     </form>
+      <a class="question" href="javascript:imTalk('2875992531','','ce','ce')" uin="2875992531" tag="imTalker" wpatype="17" >点击咨询>></a> 
+      </div>
+      <a name="style2"></a>
+      <div class="mouseoverout">
+       <a class="telephone" href="#" title="<div>电话联系:</div><div>座机：0571-56633111</div><div>手机：186 7310 9116</div>"></a>
+       <a class="weixin" href="#"  title="<div><img src='tuiguang/images/weixincode.jpg'/><div cla></div><div>"></a>
+       <a class="qq" href="javascript:imTalk('2875992531','','ce','ce')" uin="2875992531" tag="imTalker" wpatype="17"  title="<div>我是婚之集小蜜蜂</div><div>点我为您服务</div></div>"></a>
+    </div>
+    <div class="styletwo"><a name="style3"><img src="tuiguang/images/dressfree/dressfree_15.jpg" /></a></div>
+    <div class="threepictrusline"> <img src="tuiguang/images/dressfree/dressfree_19.jpg" /> <img class="centerline" src="tuiguang/images/dressfree/dressfree_22.jpg" /> <img src="tuiguang/images/dressfree/dressfree_25.jpg" /> </div>
+    <img src="tuiguang/images/dressfree/dressfree_31.jpg" /> </div>
+</div>
+<div class="ruler clear"></div>
+{%include 'common/foot.html'%}
+</html>

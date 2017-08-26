@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>淘再生-再生商客</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_5gcs4i72zjx7p66r.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<link href="http://static.m.zz91.com/recyclecrm/mobiscroll/mobiscroll.custom-2.6.2.min.css" rel="stylesheet" type="text/css" />
+		<script src="http://static.m.zz91.com/recyclecrm/mobiscroll/mobiscroll.custom-2.6.2.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/recyclecrm/css/chapman.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/recyclecrm/css/chapman-t.css"/>
+	</head>
+	<body>
+		<div style="height:48px;">
+			<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+		    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+			        <span class="aui-iconfont aui-icon-left"></span>
+			    </a>
+			    <div class="aui-title">
+			    	我的客户
+			    </div>
+			    <a class="aui-pull-right" href="javascript:void(0)">
+			        <i class="iconfont icon-tianjia1 aui-font-size-20"></i>
+			    </a>
+			    <a class="aui-pull-right" href="javascript:void(0)">
+			        <i class="iconfont icon-sousuo1 aui-font-size-20"></i>
+			    </a>
+			</header>
+		</div>
+		<div style="height:34px">
+			<div class="aui-border-b am-type-nav">
+				<div class="aui-row j_type_nav am-nav-get j_select aui-padded-t-10 aui-padded-b-10 bgcolor-ff clear">
+			        <div class="aui-col-xs-4 aui-text-center aui-border-r">客户类型<i class="am-icon-sanjiao"></i></div>
+			        <div class="aui-col-xs-4 aui-text-center aui-border-r">今日待联系<i class="am-icon-sanjiao"></i></div>
+			        <div class="aui-col-xs-4 aui-text-center this_select" onclick="losecontact()">跟丢客户</div>
+			    </div>
+		    </div>
+		</div>
+		
+		<div class="pop ">
+	        <div class="pop-main aui-row">
+			    <ul class="aui-list-view aui-in aui-margin-b-0 leixing">
+			        <li class="aui-list-view-cell lx-this" onclick="kehusearch(1)">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>无意向客户
+			            <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+			        </li>
+			        <li class="aui-list-view-cell" onclick="kehusearch(2)">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>潜在客户
+			            <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+			        </li>
+			        <li class="aui-list-view-cell" onclick="kehusearch(3)">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>有意向客户
+			            <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+			        </li>
+			        <li class="aui-list-view-cell" onclick="kehusearch(4)">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>确认合作客户
+			            <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+			        </li>
+			        <li class="aui-list-view-cell" onclick="kehusearch(5)">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>重点客户
+			            <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+					    <span class="aui-pull-right">
+					        <i class="iconfont icon-pingfen aui-font-size-20"></i>
+					    </span>
+			        </li>
+			    </ul>
+	        </div>
+	    </div>
+	    <div class="pop ">
+	        <div class="pop-main aui-row">
+			    <ul class="aui-list-view aui-in aui-margin-b-0 leixing">
+			        <li class="aui-list-view-cell lx-this" onclick="lianxi_search(2)">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>今日打电话
+			        </li>
+			        <li class="aui-list-view-cell" onclick="lianxi_search(1)">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>今日发短信
+			        </li>
+			        <li class="aui-list-view-cell" onclick="lianxi_search(3)">
+			            <i class="iconfont icon-gou1 aui-font-size-20 aui-margin-r-10"></i>今日约见面
+			        </li>
+			    </ul>
+	        </div>
+	    </div>
+	    
+	    <div class="aui-content">
+	    	{%for list in listall%}
+		    <div class="aui-list-view aui-border-t-0">
+		        <div class="aui-list-view-cell">
+		       	  	<div class="aui-padded-b-5">
+		       	  		{%if list.name%}{{list.name}}{%endif%}
+		       	  		<span class="aui-text-default aui-font-size-18">{%if list.area%}{{list.area}}{%endif%}</span>
+		       	  	</div>
+		       	  	<p class="aui-text-default aui-font-size-18">联系人：{%if list.contact%}{{list.contact}}{%endif%}</p>
+		       	  	<div class="aui-padded-b-10 aui-padded-t-10 aui-font-size-16">
+		       	  		{%if list.star%}
+		       	  		<span class="lx-bj aui-btn-warning aui-btn-outlined">{{list.star}}
+		       	  		</span>
+		       	  		{%endif%}
+		       	  		<span class="lx-bj aui-btn-info aui-btn-outlined" onclick="javascript:location.href='contact.html?dotype=call&mobile={{list.mobile}}&user_id={{list.user_id}}'">打电话</span>
+		       	  		<span class="lx-bj aui-btn-danger aui-btn-outlined" onclick="javascript:location.href='contact.html?dotype=text&mobile={{list.mobile}}&user_id={{list.user_id}}'">发短信</span>
+		       	  		<span class="lx-bj aui-btn-primary aui-btn-outlined" onclick="javascript:location.href='contact.html?dotype=date&mobile={{list.mobile}}&user_id={{list.user_id}}'">约见面</span>
+		       	  	</div>
+		       	  	<p class="aui-padded-b-5">最近联系时间：{{list.recently_contact_time}}</p>
+		       	  	<p>下次联系时间：{{list.next_contact_time}}</p>
+		        </div>
+		        <ul class="aui-grid-nine aui-border-t-0">
+			        <li class="aui-col-xs-4 aui-text-center aui-padded-15" onclick="javascript:location.href='contact.html?mobile={{list.mobile}}&user_id={{list.user_id}}'">
+			        	<p class="aui-text-primary" >立即联系</p>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center aui-padded-15" onclick="javascript:location.href='action.html?user_id={{list.user_id}}'">
+			            <p class="aui-text-primary">+行动</p>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center aui-padded-15 diandiu{{list.id}}">
+			           	<p class="aui-text-danger">丢公海</p>
+			        </li>
+			    </ul>
+		    </div>
+		    {%endfor%}
+		</div>
+		
+		<div style="display:none" class="j_lxian">
+			<!-- 立即联系 -->
+			<p class="aui-padded-15 aui-border-b">立即联系</p>
+			<div class="aui-content aui-padded-15 bgcolor-ff">
+				<div class="aui-btn aui-block aui-origin-info j_telphone_btn">打电话</div>
+				<div class="aui-btn aui-block aui-btn-warning aui-margin-t-15 j_xinxi_btn">发短信</div>
+				<div class="aui-btn aui-block aui-btn-success aui-margin-t-15 j_seeman_btn">约见面</div>
+			</div>
+			<div class="aui-btn aui-block notradius">取消</div>
+		</div>
+	</body>
+
+</html>
+<script>
+	$(".j_select").children().on("click",function(){
+        if($(this).hasClass("this_select")){
+            closePop();
+            return;
+        }
+        $(".this_select").removeClass("this_select");
+        $(this).addClass("this_select")
+        var indexNum = $(this).index();
+        $(".popshow").removeClass("popshow")
+        $(".pop").eq(indexNum).addClass("popshow")
+    })
+    $(".j_hylist li").on("click",function(){	//行业类别选择
+		$(this).addClass("thishye").siblings().removeClass("thishye");
+	})
+
+     //关闭弹窗
+    function closePop(){
+        $(".this_select").removeClass("this_select");
+        $(".popshow").removeClass("popshow");
+    }
+    
+    $(".leixing li").click(function(){
+    	$(this).addClass("lx-this").siblings().removeClass("lx-this");
+    	$(this).children("i:first-child").css("visibility","visible");
+    	$(this).siblings().children("i:first-child").css("visibility","hidden");
+    })
+    
+    {%for list in listall%}
+    $(".diandiu{{list.id}}").on("click",function(){
+		    	layer.open({
+    content: '您确定要刷新一下本页面吗？'
+    ,btn: ['刷新', '不要']
+    ,yes: function(index){
+    location.href='throw.html?user_id={{list.user_id}}'
+    layer.close(index);
+    }
+  });
+    })
+    {%endfor%}
+    
+	$(document).on("click",function(e){ 
+        e = window.event || e; // 兼容IE7
+        obj = $(e.srcElement || e.target);
+        if ($(obj).is(".pop")) { 
+        //要执行的函数b
+            closePop()
+        } 
+    }); 
+    $(".pop").on("click",function(){
+    })
+    
+    function kehusearch(num){
+    	location.href='list.html?star='+num
+    }
+    
+    function lianxi_search(num){
+    	location.href='list.html?today='+num
+    }
+    
+    function losecontact(){
+    	location.href='list.html?losecontact=losecontact'
+    }
+</script>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>诚信档案</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <style>
+    	body{
+    		
+    	}
+    	.imgkuan{
+    		border: 1px dashed #c8c7cc;
+    		height:200px;
+    		text-align:center;
+    		font-size:14px;
+    		vertical-align: middle;
+    		display:table-cell;
+    		color:#666;
+    		position:relative;
+    	}
+    	.imgkuan .sfz{
+    		width: 100px;position: absolute;left: 2px;top:2px;
+    	}
+    </style>
+</head>
+<body>
+	<div><img src="../../image/cxtop.png" style="width: 100%"></div>
+	<div class="aui-tab">
+        <ul class="aui-tab-nav">
+            <li class="active" type=1>企业</li>
+            <li type=2>个人</li>
+        </ul>
+    </div>
+    <div class="aui-content personrz" style="display:none">
+        <div class="aui-form">
+
+            <div class="aui-input-row">
+                <span class="aui-input-addon">身份证号码</span>
+                <input type="text" class="aui-input" placeholder="请输入身份证号码！"/>
+            </div>
+            <div class="aui-input-row" style="width: 100%;padding:20px;">
+            	<div class="imgkuan">
+            		<img src="../../image/sfz_yt1.png" class="sfz">
+            		<i class="aui-iconfont aui-icon-camera" style="font-size: 56px;"></i>
+            		<br />上传身份证正面
+            	</div>
+            </div>
+            <div class="aui-input-row" style="width: 100%;padding:20px;">
+            	<div class="imgkuan">
+            		<img src="../../image/sfz_yt2.png" class="sfz">
+            		<i class="aui-iconfont aui-icon-camera" style="font-size: 56px;"></i>
+            		<br />上传身份证反面
+            	</div>
+            </div>
+            <div class="aui-btn-row">
+                <div class="aui-btn aui-btn-success" onclick="return false;">确认</div>&nbsp;&nbsp;
+            </div>
+
+        </div>
+    </div>
+    <div class="aui-content companyrz">
+        <div class="aui-form">
+
+            
+            <div class="aui-input-row" style="width: 100%;padding:20px;">
+            	<div class="imgkuan">
+            		<img src="../../image/sfz_yt1.png" class="sfz">
+            		<i class="aui-iconfont aui-icon-camera" style="font-size: 56px;"></i>
+            		<br />上传营业执照
+            	</div>
+            </div>
+            
+            <div class="aui-btn-row">
+                <div class="aui-btn aui-btn-success" onclick="return false;">确认</div>&nbsp;&nbsp;
+            </div>
+
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+<script type="text/javascript">
+	apiready = function(){
+		$(".aui-tab-nav").on("click","li", function() {
+			$(".aui-tab-nav li").removeClass("active");
+			$(this).addClass("active");
+			var flag=$(this).attr("type");
+			if (type==1){
+				$(".personrz").hide();
+				$(".companyrz").show();
+			}
+			if (type==2){
+				$(".personrz").show();
+				$(".companyrz").hide();
+			}
+		})
+	};
+</script>
+<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

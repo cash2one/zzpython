@@ -1,0 +1,28 @@
+﻿<chart>
+    <data>
+        <indexAxis name="月份">
+            <labels>
+                {%for list in listall%}{{list.date}},{%endfor%}
+            </labels>
+        </indexAxis>
+        <valueAxis name="" unit=""></valueAxis>
+        <dataSets>
+		
+            <set name="发布量">
+                <values>
+                {%for list in listall%}{{list.postnum}},{%endfor%}
+                </values>
+            </set>
+            <set name="留言量">
+                <values>
+                {%for list in listall%}{{list.leavewordsnum}},{%endfor%}
+                </values>
+            </set>
+			<set name="注册量">
+                <values>
+                {%for list in listall%}{{list.regnum}},{%endfor%}
+                </values>
+            </set>
+        </dataSets>
+    </data>
+</chart>

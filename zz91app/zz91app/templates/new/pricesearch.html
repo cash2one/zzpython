@@ -1,0 +1,46 @@
+{%include 'new/head.html'%}
+<body>
+<div class="mobile">
+	{%include 'new/top.html'%}
+    <div class="cb"></div>
+    <div style="margin-top:60px;"></div>
+    <div class="m-main">
+    	<div class="title">
+            <h1>快速搜索行情报价</h1>
+        </div>
+        <div style="margin-top:60px;"></div>
+        <!--end title-->
+        <div class="title-text">
+            <span>目前共有行情数<b>{{ccountall}}</b><a href="#">m.zz91.com</a></span>
+        </div>
+        <!--end title-text-->
+        <form action="/price/" method="get">
+            <section class="s_publicwarp">
+                <div class="s_publicsearch">
+                    <input type="text" name="keywords" value="" autocomplete="off" autocorrect="off" placeholder="请输入您要搜索的产品..." class="s-kw_box"></div>
+                <span class="clear_txt" style="display: none;"></span>
+                <input type="submit" value="搜索">
+            </section>
+        </form>
+        <!--end 搜索-->
+        <div style="margin-top:60px;"></div>
+        <div class="box_css" style="height: 100px;">	 
+            <div id="slider1" class="swipe" style="overflow: hidden; visibility: visible; list-style: none; position: relative;">
+                <ul class="box01_list" style="position: relative; -webkit-transition: left 0ms ease-out; transition: left 0ms ease-out; left: 0px;">     
+                    <li class="s_messagewrap" style="height: 100px; display: table-cell; padding: 0px; margin: 0px; float: left; vertical-align: top;">     
+                        <div class="s_messageindex">
+                            <a href="/priceindex/"><span class="s_span1"></span><b>废料行情</b></a>
+                            <a href="/category/"><span class="s_span2"></span><b>废料交易</b></a>
+                            <a href="/company/"><span class="s_span3"></span><b>公司黄页</b></a>
+                            <a href="/huzhu/?category_id=1"><span class="s_span4"></span><b>再生互助</b></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>   
+         </div>
+         <div class="cb"></div>
+    </div>
+</div>
+{%include 'new/bottom.html'%}
+</body>
+</html>

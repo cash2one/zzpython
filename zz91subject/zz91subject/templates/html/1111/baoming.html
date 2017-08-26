@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>无标题文档</title>
+<script>
+// JavaScript Document
+function checkForm(frm){
+	varlulfs="";
+	for(var i=0;i<frm.length;i++)
+	{
+		var objinput=frm[i];
+		if (objinput.title!="")
+		{
+			if (objinput.type=="radio")
+			{
+				if(objinput.checked==true)
+				{
+					varlulfs=varlulfs+objinput.title+"\n";
+				}
+			}else{
+				varlulfs=varlulfs+objinput.title+":"+objinput.value+"\n";
+			}
+			if (objinput.title.substring(0,1)=="*")
+			{
+				if (objinput.value=="")
+				{
+					alert(objinput.title.substring(1)+"不能为空！");
+					objinput.focus();
+					return false
+				}
+				
+			}
+		}
+	}
+	frm.contents.value = varlulfs;
+}
+</script>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+	color:#333;
+	line-height:28px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style>
+
+</head>
+
+<body><form id="form1" name="form1" method="post" action="/baoming_save/" onsubmit="return checkForm(this)">
+<div  style="margin-left:90px; margin-right:90px; margin-top:10px;">
+  
+	<div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="25">
+        </td>
+      </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="5"  id="contright_sub" >
+	  <tr>
+	    <td height="30" colspan="2" align="left"><span style="color:#F00; padding-left:60px;">亲：您需先报名填写完整资料，才能享受双十一当天活动价！</span></td>
+	    </tr>
+	  <tr>
+	    <td height="30" align="right">公司名称（或个人姓名） <span style="color:#F00">*</span> ：</td>
+	    <td>
+	      <input name="textfield" type="text" id="textfield" title="*公司名称" value="" size="30" />
+        </td>
+      </tr>
+	  <tr>
+    <td height="30" align="right">联系人 <span style="color:#F00">*</span> ：</td>
+    <td><input name="textfield2" type="text" id="textfield2" value="" title="*联系人"/></td>
+  </tr>
+  <tr>
+        <td height="30" align="right">会员类型 <span style="color:#F00">*</span> ：</td>
+        <td><input type="radio" name="radio" id="radio" value="radio" title="会员类型：再生通" checked />
+          再生通
+            <input type="radio" name="radio" id="radio" value="radio" title="会员类型：品牌通" />
+            品牌通</td>
+      </tr>
+  <tr>
+    <td height="30" align="right">手机/电话 <span style="color:#F00">*</span> ：</td>
+    <td><input name="mobile" type="text" id="mobile" value="" title="*手机或电话"/>
+      <input type="hidden" name="bh" id="bh" title="*报名编号" value="{{t}}"/>{{tt}}</td>
+  </tr>
+  </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td height="20">
+        </td>
+      </tr>
+    </table>
+	</div>
+    <input type="hidden" name="contents" id="contents" value="dfsf" />
+    <input type="hidden" name="title" id="title" value="双11再生通会员报名" />
+	
+  
+  
+
+</div>
+<div style="background-color:#F5F5F5; text-align:center">
+  <input type="image" name="imageField" id="imageField" src="../images/bm1.jpg" />
+</div></form>
+</body>
+</html>

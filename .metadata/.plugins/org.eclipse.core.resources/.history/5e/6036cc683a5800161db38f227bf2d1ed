@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <style>
+    	body{
+    		background-color:#f5f5f5;
+    	}
+    	.regbox{
+    		padding:50px;
+    		line-height:40px;
+    	}
+    	@font-face {font-family: "iconfont";
+  src: url('../../css/reg/iconfont.eot?t=1470090998'); /* IE9*/
+  src: url('../../css/reg/iconfont.eot?t=1470090998#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../../css/reg/iconfont.woff?t=1470090998') format('woff'), /* chrome, firefox */
+  url('../../css/reg/iconfont.ttf?t=1470090998') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../../css/reg/iconfont.svg?t=1470090998#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:46px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-hunsha:before { content: "\e6c7"; }
+.icon-weihun01:before { content: "\e603"; }
+.icon-nanhai-copy:before { content: "\e601"; }
+.icon-nv:before { content: "\e604"; }
+    </style>
+</head>
+<body>
+	<div class="aui-text-center regbox">
+		<h1>请选择您的角色</h1>
+		<h5>根据您的角色推荐合适您的内容</h5>
+		<div>性别</div>
+		<div><div class=" aui-padded-l-15 aui-padded-r-15 aui-pull-left"><i class="icon-nanhai-copy iconfont"></i><br />男</div><div class="aui-margin-l-15 aui-padded-l-15 aui-padded-r-15"><i class="icon-nv iconfont"></i><br />女</div></div>
+		<br />
+		
+		<div>婚姻</div>
+		<div><div class="aui-padded-l-15 aui-padded-r-15"><i class="icon-hunsha iconfont"></i><br />已婚</div><div class="aui-margin-l-15 aui-padded-l-15 aui-padded-r-15"><i class="icon-weihun01 iconfont"></i><br />未婚</div></div>
+		<br />
+		<div style="padding: 30px"><div class="aui-btn aui-btn-success aui-btn-block aui-btn-outlined aui-btn-sm" >立即体验</div></div>
+	</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/zepto.min.js"></script>
+<script type="text/javascript" src="../script/jquery.js"></script>
+<script type="text/javascript" src="../script/common.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		
+	};
+</script>
+</html>

@@ -1,0 +1,444 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>淘再生-再生商客</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_x1o9vpvsf819vn29.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/recyclecrm/css/chapman.css" />
+	</head>
+
+	<body class="zz-column-box">
+		<form action="company.html" method="POST" id="form">
+			<div style="height:48px;">
+				<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+					<a class="aui-pull-left" href="/">
+						<span class="aui-iconfont aui-icon-left"></span>
+					</a>
+					<div class="aui-title">
+						云线索
+					</div>
+				</header>
+			</div>
+			<div class="yun-search-box">
+				<div class="aui-text-center color-ff aui-padded-15">千万废料商人随时查</div>
+				<div class="aui-flex-col">
+					<div class="aui-flex-auto"></div>
+					<div class="aui-flex-item-11 aui-bg-primary aui-flex-col">
+						<div class="aui-flex-item-10"><input type="text" class="aui-margin-b-0 notradius aui-border-0 notradius" placeholder="搜索商品/公司名" name="keywords"></div>
+						<div class="aui-flex-item-2 row-column-cnt aui-bg-warning color-ff aui-font-size-18">
+							<a onclick="$('form').submit()">搜索</a>
+						</div>
+					</div>
+					<div class="aui-flex-auto"></div>
+				</div>
+			</div>
+			<div class="aui-tab aui-tab-success">
+				<ul class="aui-tab-nav search-tab">
+					<li class="active">地区</li>
+					<li>行业</li>
+					<li>产业带</li>
+				</ul>
+			</div>
+			<div class="zz-div-td1 yun-search-ads searchbox">
+				<div class="aui-flex-col aui-padded-5 aui-text-center">
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a href="?province=">不限</a>
+						</div>
+					</div>
+					{%for area in arealist%}
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a onclick="javascript:location.href='/crm/main/company.html?area={{area}}'">{{area}}
+								<a>
+						</div>
+					</div>
+					{%endfor%}
+				</div>
+			</div>
+			<div class="zz-div-td1 yu-search-ads aui-hide searchbox">
+				<div class="yu-hye-box aui-flex-col">
+
+					<div class="yu-title-left aui-flex-item-4 bgcolor-ff">
+						<ul class="aui-list-view yu-title-big">
+							<li class="aui-list-view-cell this-title" code="1000">
+								废金属
+							</li>
+							<li class="aui-list-view-cell" code="1001">
+								废塑料
+							</li>
+							<li class="aui-list-view-cell" code="1003">
+								废纺织品
+							</li>
+							<li class="aui-list-view-cell" code="1004">
+								废纸
+							</li>
+							<li class="aui-list-view-cell" code="1007">
+								二手设备
+							</li>
+							<li class="aui-list-view-cell" code="1005">
+								电子电器
+							</li>
+							<li class="aui-list-view-cell" code="1002">
+								橡胶轮胎
+							</li>
+							<li class="aui-list-view-cell" code="1006">
+								废玻璃
+							</li>
+							<li class="aui-list-view-cell" code="1009">
+								服务
+							</li>
+							<li class="aui-list-view-cell" code="1008">
+								其他废料
+							</li>
+						</ul>
+					</div>
+
+					<div class="yu-title-right aui-flex-item-8 box-div">
+						<!--<div class="aui-padded-10 aui-padded-b-0">
+							废钢铁
+						</div>
+						<div class="aui-flex-col aui-padded-5 aui-text-center">
+							<div class="aui-flex-item-6 aui-padded-5">
+								<div class="aui-btn  bgcolor-ff aui-block">废铁</div>
+							</div>
+							<div class="aui-flex-item-6 aui-padded-5">
+								<div class="aui-btn  bgcolor-ff aui-block">废铁</div>
+							</div>
+							<div class="aui-flex-item-6 aui-padded-5">
+								<div class="aui-btn  bgcolor-ff aui-block">废铁</div>
+							</div>
+							<div class="aui-flex-item-6 aui-padded-5">
+								<div class="aui-btn  bgcolor-ff aui-block">废铁</div>
+							</div>
+						</div>
+						<div class="aui-padded-10 aui-padded-b-0">
+							废钢铁
+						</div>
+						<div class="aui-flex-col aui-padded-5 aui-text-center">
+							<div class="aui-flex-item-6 aui-padded-5">
+								<div class="aui-btn  bgcolor-ff aui-block">废铁</div>
+							</div>
+							<div class="aui-flex-item-6 aui-padded-5">
+								<div class="aui-btn  bgcolor-ff aui-block">废铁</div>
+							</div>
+							<div class="aui-flex-item-6 aui-padded-5">
+								<div class="aui-btn  bgcolor-ff aui-block">废铁</div>
+							</div>
+							<div class="aui-flex-item-6 aui-padded-5">
+								<div class="aui-btn  bgcolor-ff aui-block">废铁</div>
+							</div>
+						</div>
+						<div class="aui-padded-10 aui-padded-b-0">
+							废钢铁
+						</div>
+						<div class="aui-flex-col aui-padded-5 aui-text-center">
+							<div class="aui-flex-item-6 aui-padded-5">
+								<div class="aui-btn  bgcolor-ff aui-block">废铁</div>
+							</div>
+							<div class="aui-flex-item-6 aui-padded-5">
+								<div class="aui-btn  bgcolor-ff aui-block">废铁</div>
+							</div>
+							<div class="aui-flex-item-6 aui-padded-5">
+								<div class="aui-btn  bgcolor-ff aui-block">废铁</div>
+							</div>
+							<div class="aui-flex-item-6 aui-padded-5">
+								<div class="aui-btn  bgcolor-ff aui-block">废铁</div>
+							</div>
+						</div>-->
+					</div>
+				</div>
+
+			</div>
+			<div class="zz-div-td1 yun-search-ads aui-hide searchbox jisd">
+				<div class="aui-padded-10 aui-padded-b-0">
+					废金属
+				</div>
+				<div class="aui-flex-col aui-padded-5 aui-text-center">
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">广东南海</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">浙江永康</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">河南长葛</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">湖南汨罗</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">宁波镇海</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">浙江台州</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">天津子牙</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">山东临沂</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">山东聊城</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">江苏太仓</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">天津静海</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">辽宁大石桥</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">河北邢台</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">安徽界首</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">四川新津</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">福建全通</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">湖南郴州</a>
+						</div>
+					</div>
+
+				</div>
+				<div class="aui-padded-10 aui-padded-b-0">
+					废塑料
+				</div>
+				<div class="aui-flex-col aui-padded-5 aui-text-center">
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">广东南海</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">广东顺德</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">汕头贵屿</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">山东临沂</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">山东莱州</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">浙江温州</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">烟台龙口</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">浙江慈溪</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">余姚塑料城</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">浙江台州</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">金华东阳</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">江苏徐州</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">江苏兴化</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">江苏太仓</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">江苏宿迁</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">河北文安</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">河北定州</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">湖南汨罗</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">安徽五河</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">河南安阳</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">河南长葛</a>
+						</div>
+					</div>
+
+				</div>
+				<div class="aui-padded-10 aui-padded-b-0">
+					二手设备
+				</div>
+				<div class="aui-flex-col aui-padded-5 aui-text-center">
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">广东深圳</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">江苏徐州</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">浙江台州</a>
+						</div>
+					</div>
+
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">广西南宁</a>
+						</div>
+					</div>
+					<div class="aui-flex-item-4 aui-padded-5">
+						<div class="aui-btn  bgcolor-ff aui-block">
+							<a class="cell dg-item">河北廊坊</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</body>
+
+</html>
+<script>
+	$(function() {
+		main();
+	})
+
+	function main() {
+		$(".search-tab li").on("click", function() { //选择搜索类别
+			var index = $(this).index();
+			$(this).addClass("active").siblings().removeClass("active");
+			$(".searchbox").addClass("aui-hide");
+			$(".searchbox").eq(index).removeClass("aui-hide")
+		})
+		$(".yu-title-big li").on("click", function() { //行业类别选择
+			var index = $(this).index();
+			$(this).addClass("this-title").siblings().removeClass("this-title");
+			var categorycode = $(this).attr("code");
+			var ajaxurl = "/crm/main/categoryinfo.html?categorycode=" + categorycode + "&ctype=company";
+			layer.load(1)
+			$.getScript(ajaxurl, function() {
+					var result = categorylist;
+					$(".box-div").html(result);
+					layer.closeAll("loading")
+					return false;
+				}
+
+			);
+
+	});
+	$(".jisd div div").on("click", "div", function() {
+		var searchtext = $(this).find("a").text();
+		if(searchtext != "") {
+			window.location = '/crm/main/company.html?jisd=' + searchtext;
+		}
+	})
+
+	}
+</script>

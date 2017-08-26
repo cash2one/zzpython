@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/main.min.css" type="text/css">
+		<link rel="stylesheet" href="../css/my_pinlun.css" type="text/css">
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+	</head>
+
+	<body>
+		<nav class="mui-bar mui-bar-tab" id="newsnav">
+			<div class="plunxx_in" onclick="pinlun(this)">
+				<div id="div_contentbg" class="write1">
+					<p>我来说两句...</p>
+				</div>
+				<textarea name="txtContent0" id="txtContent0"  cols="45" rows="5" class="plun_login_textarea"></textarea>
+			</div>
+			<div class="plun_bt_tj_button" style="padding-left: 10px;padding-right: 10px;display: none;">
+				<div style="float:left;width:150px;">
+					<div id="CommentsTip0" class="AjaxTipWarning">dd</div>
+				</div>
+				<input type="button" name="btnlogin" id="btnlogin" value="发表评论" onclick="PostComment(0)" class="button_style1"> 
+			</div>
+		</nav>
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../script/common.js"></script>
+		<script type="text/javascript" src="../script/laytpl.js"></script>
+		<script>
+			function pinlun(obj){
+				$("#div_contentbg").css("display","none");
+				obj.style.height="60px";
+				$(".plun_bt_tj_button").css("display","block");
+				document.getElementById("txtContent0").focus();
+			}
+		</script>
+	</body>
+
+</html>

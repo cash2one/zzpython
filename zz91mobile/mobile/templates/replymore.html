@@ -1,0 +1,11 @@
+﻿{%for list in listall_reply%}
+<div class="asw-item">
+	<div class="title">{{list.nickname}}的答复：</div>
+	<div class="content">
+		{{list.content|safe}}
+	</div>
+	<div class="operation">
+		<span class="c9">回复时间：{{list.posttime}}</span>		
+	</div>
+</div>
+{%endfor%}

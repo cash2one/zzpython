@@ -1,0 +1,86 @@
+{%include 'new/head.html'%}
+<body>
+<div class="mobile">
+	{%include 'new/top.html'%}
+    <div class="cb"></div>
+    <div style="margin-top:60px;"></div>
+    <div class="m-main">
+    	{%if step0%}
+    	<form name="form1" method="post" action="forgetpasswd.html?step=1">
+    	<div class="regtitle">忘记网站密码</div>
+        <ul class="regbox">
+        	<li>填写账户名，获取短信验证码</li>
+            <li><input id="username" class="text" type="text" name="username" value="{{username}}" placeholder="请输入手机 或 用户名 或 邮箱" autocomplete="off" maxlength="20"></li>
+            <li>{%if error%}<div class="c-red">{{error|safe}}<br/></div>{%endif%}</li>
+            <li> <input type="hidden" name="weixinid" id="weixinid" value="{{weixinid}}">
+            <input type="submit" name="button" id="button" value="获取验证码" class="button"></li>
+            <li>或咨询电话<br>0571-56612345</li>
+            <div class="cb"></div>
+        </ul> 
+        </form>
+        {%endif%}
+        {%if step1%}
+        <form name="form1" method="post" action="forgetpasswd.html?step=2">
+    	<div class="regtitle">忘记网站密码</div>
+        <ul class="regbox">
+        	<li>手机号：{{mobile}}</li>
+			<li>登录帐号：{{account}}</li>
+            <li><input id="yzcode" class="text" type="text" name="yzcode" value="{{yzcode}}" placeholder="请输入验证码" autocomplete="off" maxlength="20"></li>
+            <li>{%if error%}<div class="c-red">{{error|safe}}<br/></div>{%endif%}</li>
+			<li>验证码短信已经发送到您的手机！</li>
+            <li> <input type="hidden" name="weixinid" id="weixinid" value="{{weixinid}}">
+			<input type="hidden" name="account" id="account" value="{{account}}">
+			<input type="hidden" name="mobile" id="mobile" value="{{mobile}}">
+            <input type="button" name="button" id="button" value="重发短信" class="button" style="width:40%" onclick='window.location.reload();'>&nbsp;<input type="submit" name="button" id="button" value="确认" class="button" style="width:40%; float:right"></li>
+            <li>每天限发送5条验证码短信<br>或咨询电话<br>0571-56612345</li>
+            <div class="cb"></div>
+        </ul> 
+        </form>
+        {%endif%}
+        {%if step2%}
+        <form name="form1" method="post" action="forgetpasswd.html?step=4">
+    	<div class="regtitle">密码重置</div>
+        <ul class="regbox">
+        	<li>手机号：{{mobile}}</li>
+			<li>登录帐号：{{account}}</li>
+            <li><input id="passwd1" class="text" type="password" name="passwd1" value="" placeholder="请输入密码" autocomplete="off" maxlength="20"></li>
+            <li><input id="passwd2" class="text" type="password" name="passwd2" value="" placeholder="再次确认输入密码" autocomplete="off" maxlength="20"></li>
+            <li>{%if error%}<div class="c-red">{{error|safe}}<br/></div>{%endif%}</li>
+            <li><input type="hidden" name="weixinid" id="weixinid" value="{{weixinid}}">
+			<input type="hidden" name="account" id="account" value="{{account}}">
+			<input type="hidden" name="mobile" id="mobile" value="{{mobile}}">
+            <input type="submit" name="button" id="button" value="确认" class="button"></li>
+            <li>每天限发送3条验证码短信<br>或咨询电话<br>0571-56612345</li>
+            <div class="cb"></div>
+        </ul> 
+        </form>
+        {%endif%}
+		{%if step3%}
+        <form name="form1" method="post" action="forgetpasswd.html?step=5">
+    	<div class="regtitle">密码重置</div>
+        <ul class="regbox">
+			
+            <li><input id="passwd1" class="text" type="password" name="passwd1" value="" placeholder="请输入密码" autocomplete="off" maxlength="20"></li>
+            <li><input id="passwd2" class="text" type="password" name="passwd2" value="" placeholder="再次确认输入密码" autocomplete="off" maxlength="20"></li>
+            <li>{%if error%}<div class="c-red">{{error|safe}}<br/></div>{%endif%}</li>
+            <li> <input type="hidden" name="weixinid" id="weixinid" value="{{weixinid}}">
+            <input type="submit" name="button" id="button" value="确认" class="button"></li>
+            <li>或咨询电话<br>0571-56612345</li>
+            <div class="cb"></div>
+        </ul> 
+        </form>
+        {%endif%}
+		{%if step4%}
+    	<div class="regtitle">密码重置</div>
+        <ul class="regbox">
+            <li>{%if error%}<div class="c-red">{{error|safe}}<br/></div>{%endif%}</li>
+            <li>密码重置成功！</li>
+            <div class="cb"></div>
+        </ul> 
+        {%endif%}
+        <div class="cb"></div>
+    </div>
+</div>
+{%include 'new/bottom.html'%}
+</body>
+</html>

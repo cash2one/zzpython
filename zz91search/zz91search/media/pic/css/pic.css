@@ -1,0 +1,72 @@
+@charset "utf-8";
+*{margin:0;padding:0;}
+img, a img{border:none;}
+.more{text-decoration:none;color:#0066cc}
+
+/* fcnt */
+.fcnt{display:block;width:789px;position:relative;overflow:hidden;border:1px solid #ccc}
+.fcnt .mimg{float:left;width:625px;overflow:hidden;border:1px solid #ccc; text-align:center; padding:5px;}
+.fcnt .mimg div{display:none;}
+.fcnt ul{float:right;width:152px;}
+*html .fcnt ul{position:absolute;right:0;top:0;width:152px;}
+.fcnt li{display:block;height:82px;width:150px;margin-bottom:5px;cursor:pointer;overflow:hidden;}
+.fcnt li img{width:150px;height:82px;filter:alpha(opacity=70);-moz-opacity:0.7;opacity:0.7;}
+.fcnt li.cur img{width:142px;height:75px;margin:4px 0 0 4px;filter:alpha(opacity=100);-moz-opacity:1;opacity:1;}
+#tri{position:absolute;top:0;right:2px;z-index:1000;width:155px;height:82px;background:url(../images/point.png) no-repeat;cursor:pointer;}
+*html #tri{filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=image, src="../images/point.png");background:none}
+
+.content{width:958px;margin:15px auto}
+.c-left{float:left}
+.c-right{float:right}
+
+.detail{width:789px}
+.d-tle{line-height:30px;color:#0066cc;font-size:16px;font-weight:bold;text-align:center;border-bottom:2px solid #009944;padding-bottom:7px;margin:20px 0}
+.d-item table{width:789px;border:1px solid #dddddd;color:#303030}
+.d-tr{line-height:38px;border-bottom:1px solid #dddddd}
+.ds{color:#ff0000}
+.ds_{color:#0066cc}
+.dn{font-size:13px;font-weight:bold}
+.d-tr font{color:#fd0000}
+.ppt{margin-top:7px;float:left}
+.ppt_{float:left}
+#content1{display:none}
+
+.cr-item{width:125px;background:#f5f5f5;border:1px solid #dddddd;padding:10px 10px 0 10px}
+.i-tle{line-height:22px;font-weight:bold;text-align:center}
+.i-box{margin:0 auto}
+.i-box li{text-align:center;margin:8px 0}
+.i-box img{padding:1px;border:1px solid #dddddd}
+.txt{margin-top:4px}
+.txt a{color:#303030}
+
+.page{}
+.prev{width:52px;height:20px;line-height:20px;background:#e0e0e0;float:left}
+.last{width:52px;height:20px;line-height:20px;background:#e0e0e0;float:right}
+
+.picShowProName{overflow: hidden;margin: 0 0 21px;height: 59px;background: #f8f8f8;width: 100%; font-size:16px; font-weight:bold}
+.picShowProName h1{line-height: 59px;height: 59px;margin: 0 30px;}
+.pcBreadNav{
+	line-height:30px;
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	color:#666;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!-- 
+<link rel="stylesheet" href="{{csscode}}css/base.css" />
+<link rel="stylesheet" href="{{csscode}}css/modules.css" />
+<link rel="stylesheet" href="{{csscode}}css/style.css" />
+-->
+		<link rel="stylesheet" href="base.css" />
+		<link rel="stylesheet" href="modules.css" />
+		<link rel="stylesheet" href="style.css" />
+
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico" />
+		<script type="text/javascript" src="{{csscode}}js/ppc.js"></script>
+		<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+		<title>供求列表-{{list.name}}</title>
+		<meta content="{{list.business}}" name="description" />
+		<meta content="{{list.ctags}}" name="keywords" />
+	</head>
+
+	<body>
+		{%include htmlincludes.topinclude%}
+		<div id="content">
+			<!--左边主题板块-->
+			<div class="grid-sub fl">
+				{%include htmlincludes.leftinclude%} {%if serieslist%}
+				<!--产品分类-->
+				<div class="mod mod-proclass">
+					<div class="m-body">
+						<div class="m-header">
+							<h3>供求分类</h3>
+						</div>
+						<div class="m-content">
+							<div class="proclass-list">
+								<ul>
+									{%for list in serieslist%}
+									<li><a href="products{{company_id}}-{{list.id}}-1.htm" title="{{list.name}}">{{list.name}}</a></li>
+									{%endfor%}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--产品分类结束-->
+				{%endif%}
+			</div>
+			<!--左边主题板块结束-->
+
+			<!-- 右面主题板块-->
+			<div class="main-wrap fr">
+				<!--明星产品-->
+				<div class="mod mod-starpro">
+					<div class="m-body">
+						<div class="m-header">
+							<h3>供求信息</h3></div>
+						<div class="m-content">
+							{%if serieslist%}
+							<h3 class="title-h3">产品分类</h3>
+							<!--产品分类-->
+							<div class="pro-class">
+								<ul>
+									{%for list in serieslist%}
+									<li><a href="products{{company_id}}-{{list.id}}-1.htm" title="{{list.name}}">{{list.name}}</a></li>
+									{%endfor%}
+								</ul>
+							</div>
+							<!--产品分类结束-->
+							{%endif%}
+							<div class="pro-class">
+								<div>
+									<form id="form1" name="form1" method="get">
+										<input type="text" name="keywords" id="keywords" style="line-height:25px; width:200px; margin-left:5px;" placeholder="请输入您要搜索的产品名称..." />
+										<input type="submit" name="button" id="button" value="  搜 索  " style="line-height:25px; height:25px;" />
+									</form>
+								</div>
+							</div>
+							<!--
+				<p class="look-way">
+					<a href="/product.html" class="look-way1 current" title="列表查看" ></a>
+					<a href="/product.html?t=1" class="look-way2"  title="大图查看" rel="nofollow"></a>
+				</p>-->
+							
+							{%if yuanliaolist%}
+							<div class="title-qh">
+								<span {%if not checkStatus %}class="title-qh-now" {%endif%}index="0" id="fl">废料供求信息</span>
+								<span {%ifequal checkStatus '1' %}class="title-qh-now" {%endifequal%} index="1" id="yl">原料供求信息</span>
+							</div>
+							{%endif%}
+							<div class="image-ment">
+								<!--产品横排图文-->
+								<div class="image-text" id="feiliao" {%if checkStatus%}style="display:none;" {%else%}style="display:block;" {%endif%}>
+									<ul>
+										{%for list in prolist%}
+										<li>
+											<div class='pic'>
+												<a href="productdetail{{list.pdt_id}}.htm" class="left-image" target="_blank">
+													<img src="{{list.pdt_images}}" alt="{{list.pdt_name}}" />
+												</a>
+												{%if list.yangflag%}
+												<div class=yang></div>{%endif%}
+											</div>
+											<div class="right-info fl">
+												<a href="productdetail{{list.pdt_id}}.htm" class="right-word" target="_blank">{{list.pdt_kind.kindtxt|safe}}{{list.pdt_name|safe}}</a>
+												<p>{{list.pdt_detaillclear|safe}}...</p>
+												{%if list.yangflag%}<a href="http://yang.zz91.com/sale/{{list.pdt_id}}.htm" class="bt-ask J_fsxjd ny" target="_blank">申请拿样</a>{%endif%}
+											</div>
+										</li>
+										{%endfor%}
+
+									</ul>
+									<!--产品横排图文结束-->
+									<!--  翻页开始-->
+									<div class="apartpageBox">
+										{% if firstpage %}
+										<span class='prev-page'><a href="products{{company_id}}-{{seriesid}}-{{prvpage}}.htm">上一页</a></span> {% endif %} {% for p in page_range %} {% if p.nowpage %}
+										<strong class="current">{{p.number}}</strong> {% else %}
+										<a href='products{{company_id}}-{{seriesid}}-{{p.number}}.htm'>{{p.number}}</a> {% endif %} {% endfor %} {% if lastpage%}
+										<a class="next-page" href='products{{company_id}}-{{seriesid}}-{{nextpage}}.htm'>下一页</a></div>
+									{% endif %}
+									<!--  翻页结束-->
+								</div>
+
+								<div class="image-text" id="yuanliao" {%if checkStatus%}style="display:block;" {%else%}style="display:none;" {%endif%}>
+									<ul>
+
+										{%for yuanliao in yuanliaolist%}
+										<li>
+											<div class=pic>
+												<a class="left-image" href="yuanliaodetail{{yuanliao.id}}.htm" target=_blank>
+													<img alt={{yuanliao.title}} src="{{yuanliao.defaultimages}}">
+												</a>
+											</div>
+											<div class="right-info fl">
+												<a class="right-word" href="yuanliaodetail{{yuanliao.id}}.htm" target="_blank">{{yuanliao.title}}</a>
+												<p>
+													<span>厂家（产地）:<span class="corb">韩国LG</span></span> <span class="sx">|</span>
+													<span>牌号：<span class="corb">{{yuanliao.trade_mark}}</span></span> <span class="sx">|</span>
+													<span>类型：<span class="corb">{{yuanliao.typetxt}}</span></span>
+												</p>
+												<p>
+													<span>产品价格：<span class="cor-rd">{{yuanliao.jiagetxt}}{{yuanliao.price_unit}}</span></span> <span class="sx">|</span>
+													<span>供应量：<span class="cor-rd">{{yuanliao.quantity}}{{yuanliao.unit}}</span></span>
+												</p>
+												<p>
+													{{yuanliao.description|safe}}
+
+												</p>
+											</div>
+										</li>
+										{%endfor%}
+									</ul>
+									<div class="apartpageBox">
+										{% if firstpage1 %}
+										<span class='prev-page'><a href="products{{company_id}}-{{seriesid}}-{{prvpage1}}.htm?checkStatus=1">上一页</a></span> {% endif %} {% for p in page_range1 %} {% if p.number == nowpage1 %} {{p.nowpage1}}
+										<strong class="current">{{p.number}}</strong> {% else %}
+										<a href='products{{company_id}}-{{seriesid}}-{{p.number}}.htm?checkStatus=1'>{{p.number}}</a> {% endif %} {% endfor %} {% if lastpage1%}
+										<a class="next-page" href='products{{company_id}}-{{seriesid}}-{{nextpage1}}.htm?checkStatus=1'>下一页</a> {% endif %}
+									</div>
+								</div>
+								<!--产品横排图文结束-->
+
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="image-text" id="yuanliao" {%if checkStatus%}style="display:block;"{%else%}style="display:none;"{%endif%}>
+                    <ul>
+                      
+                      {%for yuanliao in yuanliaolist%}
+                      	<li>
+                        <div class=pic>
+                          <a class="left-image" href="yuanliaodetail{{yuanliao.id}}.htm" target=_blank>
+                            <img
+                            alt={{yuanliao.title}} src="{{yuanliao.defaultimages}}"> 
+                          </a>
+                        </div>
+                        <div class="right-info fl">
+                          <a class="right-word" href="yuanliaodetail{{yuanliao.id}}.htm" target="_blank">{{yuanliao.title}}</a>
+                          <p>
+                            <span>厂家（产地）:<span class="corb">{{yuanliao.factory}}</span></span> <span class="sx">|</span>
+                            <span>牌号：<span class="corb">{{yuanliao.trade_mark}}</span></span> <span class="sx">|</span>
+                            <span>类型：<span class="corb">{{yuanliao.typetxt}}</span></span> 
+                          </p>
+                          <p>
+                            <span>产品价格：<span class="cor-rd">{{yuanliao.jiagetxt}}{{yuanliao.price_unit}}</span></span> <span class="sx">|</span> 
+                            <span>供应量：<span class="cor-rd">{{yuanliao.quantity}}{{yuanliao.unit}}</span></span>
+                          </p>
+                          <p>
+                          	{{yuanliao.description|safe}}
+                            
+                          </p>
+                        </div>
+                      </li>
+                      {%endfor%}
+                    </ul>
+                    		<div class="apartpageBox">
+			                    {% if firstpage1 %}
+			                    <span class='prev-page'><a href="products{{company_id}}-{{seriesid}}-{{prvpage1}}.htm?checkStatus=1">上一页</a></span>
+			                    {% endif %}
+			                    {% for p in page_range1 %}
+				                    {% if p.number == nowpage1 %}
+				                    {{p.nowpage1}}
+				                    <strong class="current">{{p.number}}</strong>
+				                    {% else %}
+				                    <a href='products{{company_id}}-{{seriesid}}-{{p.number}}.htm?checkStatus=1' >{{p.number}}</a>
+				                    {% endif %}
+								{% endfor %}
+			                    {% if lastpage1%}
+			                    <a class="next-page" href='products{{company_id}}-{{seriesid}}-{{nextpage1}}.htm?checkStatus=1' >下一页</a></div>
+			                    {% endif %}
+                  </div><!--产品横排图文结束-->
+
+				</div>
+				<!--明星产品结束-->
+			</div>
+			<!-- 右面主题板块结束-->
+		</div>
+		{%include htmlincludes.buttominclude%}
+
+		<SCRIPT type=text/javascript>
+			$(document).ready(function() {
+				$(".title-qh span").live("click", function() {
+					var index = $(this).attr("index")
+					$(".title-qh-now").removeClass("title-qh-now")
+					$(this).addClass("title-qh-now");
+					$(".image-text").hide().eq(index).show()
+					if (index == 1) {
+						//alert("原料");
+					} else {
+						//alert("废料");
+					}
+				})
+			});
+			var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+			document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+		</SCRIPT>
+		<script type="text/javascript">
+			//根据标签提交搜索
+			var checkStatus = {
+				{
+					checkStatus
+				}
+			}
+			$('#button').click(function(e) {
+				var fl = $("#fl").attr("class");
+				var yl = $("#yl").attr("class");
+				if (fl) {
+					//alert('选中废料标签');
+					form1.action = "productstest{{company_id}}-0-1.htm";
+					form1.submit();
+				}
+				if (yl) {
+					//alert('选中原料标签');
+					form1.action = "productstest{{company_id}}-0-1.htm";
+					$("#keywords").after("<input type='hidden' name='checkStatus' value='1' />")
+					form1.submit();
+				}
+			});
+		</script>
+
+	</body>
+
+</html>

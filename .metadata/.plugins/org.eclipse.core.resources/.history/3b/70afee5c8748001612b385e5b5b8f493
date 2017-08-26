@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>端API</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<meta name="format-detection" content="telephone=no"/>
+		<style>
+			#header {
+				text-align: center;
+				color: #fff;
+				width: 100%;
+				height:30px;
+			}
+			.nav-heart {
+				position: relative;
+				overflow: hidden;
+			}
+			.nav-heart-ul li {
+				float: left;
+				text-align: center;
+				font-size: 14px;
+				height: 29px;
+				line-height: 29px;
+				border-bottom: 1px solid #e9e8e9;
+				color: #333333;
+				line-height: 29px;
+			}
+			.nav-heart-ul .current-nav {
+				color: #01ba2e
+			}
+			.current-nav-bottom {
+				height: 2px;
+				background-color: #01ba2e;
+				position: absolute;
+				bottom: 1px;
+				left: 0;
+			}
+			#wrap {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-orient: vertical;
+				-webkit-flex-flow: column;
+				flex-flow: column;
+			}
+			.clear:after {
+				display: block;
+				clear: both;
+				content: "";
+				visibility: hidden;
+				height: 0
+			}
+			#navmark { -webkit-transition: 300ms;}
+			.aui-title{
+				width:100%;
+			}
+			.aui-title .line{
+				width:10px;
+				border-left:solid 1px #ebebeb;
+				height: 20px;
+				margin-left:10px;
+				margin-top:12px;
+			}
+			.aui-title ul{
+				width:100px;
+				margin-left:auto;
+				margin-right:auto;
+			}
+			.aui-title li{
+				float:left;
+				width:100%;
+				text-align:center;
+			}
+			.aui-bar-success{
+				background-color:#01ba2e;
+			}
+		</style>
+	</head>
+	<body>
+	
+		<header class="aui-bar aui-bar-nav aui-bar-success" id="aui-header">
+		    <div class="aui-iconfont aui-icon-sort aui-pull-left" tapmode onclick="openSlid()" style="font-size:25px"></div>
+		    <div class="aui-title">
+				<ul><li>健康<li></ul>
+			</div>
+		    <div class="aui-iconfont aui-icon-search aui-pull-right"></div>
+		    <div class="aui-iconfont aui-icon-comment aui-pull-right"></div>
+		</header>
+		<div class="mainbody"></div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/iscroll.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript">
+		var footerheight = $("body").height();
+		var myScroll;
+		var topnumber=4;//获取头部的导航的个数
+		apiready = function() {
+			footerheight = api.pageParam.footerheight;
+			var nav_list = [{
+				"typename" : "热门2",
+				"url":"../list/list2.html",
+				"pageParam":""
+			}, {
+				"typename" : "喜欢2",
+				"url":"../list/list2.html",
+				"pageParam":""
+			}, {
+				"typename" : "推荐2",
+				"url":"../list/list2.html",
+				"pageParam":""
+			}, {
+				"typename" : "最新2",
+				"url":"../list/list2.html",
+				"pageParam":""
+			}] //头部划动标题
+			getNavlist(nav_list,"list3");
+		}
+		
+	</script>
+</html>

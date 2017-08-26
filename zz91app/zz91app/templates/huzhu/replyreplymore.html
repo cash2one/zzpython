@@ -1,0 +1,10 @@
+{%for list1 in listall_reply.list%}
+<div class="zz91-question-right">
+	<font class="lt"><a href="javascript:gotourl('/companyinfo/?forcid={{list1.company_id}}','blank');">{{list1.nickname}}</a></font> 回复 <a href="javascript:gotourl('/companyinfo/?forcid={{list1.tocompany_id}}','blank');">{{list1.tonickname}} </a>:
+	<div class="zz91-question-time">{{list1.posttime}}</div>
+	<div class="zz91-question-anwser-greed">
+	    <span class="zz91-question-arrow-greed" ></span>
+	    {{list1.content|safe}}
+	</div>
+</div>
+{%endfor%}

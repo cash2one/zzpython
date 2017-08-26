@@ -1,0 +1,572 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>手机版互助社区</title>
+        <link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <script type="text/javascript" src="js/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="js/jquery.lightbox_me.js"></script>
+        <script type="text/javascript" src="js/style.js"></script>
+		<script>
+			$(window).scroll(function(){
+				//alert($(window).scrollBottom());
+				//alert($(window).scrollTop() +"\n"+ $(window).height() + "\n" +$(document).height());
+				if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+					loadMore(document.getElementById("loadMore"));
+				}
+			});
+			function tabView(tblId)
+			{
+				var children = document.getElementById("tabUL").getElementsByTagName("li");
+				for(var i = 0; i < children.length; i++)
+				{
+					children[i].setAttribute("class","m-li");
+					document.getElementById("tab" + (i+1)).style.display="none";
+				}
+				children[parseInt(tblId.replace("tab",""))-1].setAttribute("class","m-li_");
+				document.getElementById(tblId).style.display = "table";
+			}
+			function loadMore(div)
+			{
+				div.innerHTML = '&nbsp;<image src="images/wait.gif"/>&nbsp;';
+				var table;
+				for(var i = 0; i < 3; i++)
+				{
+					
+					if(document.getElementById("tab" + (i+1)).style.display != "none")
+					{
+						table = document.getElementById("tab" + (i+1));
+						break;
+					}
+				}
+				<!-- 此处内容动态根据后台取出的数据生成 -->
+				var str = '';
+				//迭代获取的后台数据，也可以在后台直接生成html传到前台，但不推荐第二种做法，不方便维护
+				for(var i = 0; i < 10; i++){
+				 str += '<tr>'+
+							'<td class="m-item">'+
+							    '<div class="i-block">'+
+                                	'<div class="i-box">'+
+                                    	'<font class="i-txt1">系统消息：</font>'+
+                                        '<font class="i_txt">手机站互助社区规则</font>'+
+                                    '</div>'+
+                                    <!--end i-box-->
+                                    '<div class="i-box">'+
+                                    	 '<font class="i_txt">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司</font>'+
+                                    '</div>'+
+                                    <!--end i-box-->
+                                    '<div class="i-box_">'+
+                                        '<a href="" class="del">删除</a>'+
+                                    '</div>'+
+                                    <!--end i-box-->
+                                '</div>'+
+                                <!--end i-block-->
+							'</td>'+
+						'</tr>';
+				}
+				table.getElementsByTagName("tbody")[0].innerHTML += str;
+				div.innerHTML = '加载更多……';
+			}
+		</script>
+	</head>
+	<body>
+      <div class="m-content">
+        <div class="m-tle">
+        	<a href="" target="">首页</a> > <a href="" target="">生意管家</a>  > 我的社区
+        </div>
+      	<table width="100%" border=0 cellpadding=0>
+				<tr>
+					<td>
+						<ul class="m-ul m-item_1" id="tabUL" style="margin-left:10px;margin-right:10px;">
+							<li class="m-li_" onclick="tabView('tab1');">消息中心</li>
+						   <li class="m-li" onclick="tabView('tab2');">我的提问</li>
+						   <li class="m-li" onclick="tabView('tab3');">我的回复</li>
+					  </ul>
+				   </td>
+				</tr>
+				<tr>
+					<table cellspacing="10" id="tab1">
+                    <tr>
+							<td>
+								收到的消息总数：<font class="nav_no">13</font>&nbsp;&nbsp;
+                                <a href="" target="" class="nav_hr">点击设置我关心的行业</a>
+							</td>
+						</tr>
+                        <tr>
+							<td class="m-item">
+                               <div class="i-block">
+                                	<div class="i-box">
+                                    	<font>林琳琳</font>
+                                        <font class="i-txt">邀请</font>我回答
+                                        <font class="it">&nbsp;&nbsp;&nbsp;2014-05-10</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box">
+                                    	<font class="i_txt_1">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box_">
+                                        <a href="" class="del">删除</a>
+                                    </div>
+                                    <!--end i-box-->
+                                </div>
+                                <!--end i-block-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+                               <div class="i-block">
+                                	<div class="i-box">
+                                    	<font class="i_txt">林琳琳</font>  
+                                        <font>评论了我的回答</font>
+                                        <font class="it">&nbsp;&nbsp;&nbsp;2014-05-10</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box">
+                                    	<font class="i_txt_1">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box">
+                                        <font class="i_txt_">评论:</font>
+                                    	<font>阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box_">
+                                    	<a href="" class="hf">回复</a>
+                                        <a href="" class="del">删除</a>
+                                    </div>
+                                    <!--end i-box-->
+                                </div>
+                                <!--end i-block-->
+							</td>
+						</tr>
+                        <tr>
+							<td class="m-item">
+                               <div class="i-block">
+                                	<div class="i-box">
+                                    	<font class="i_txt">林琳琳</font>  
+                                        <font>评论了我的回答</font>
+                                        <font class="it">&nbsp;&nbsp;&nbsp;2014-05-10</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box">
+                                    	<font class="i_txt_1">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box">
+                                        <font class="i_txt_2">回复:</font>
+                                    	<font>阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box_">
+                                    	<a href="" class="hf">回复</a>
+                                        <a href="" class="del">删除</a>
+                                    </div>
+                                    <!--end i-box-->
+                                </div>
+                                <!--end i-block-->
+							</td>
+						</tr>
+                         <tr>
+                            <td class="m-item">
+                               <div class="i-block">
+                                	<div class="i-box">
+                                    	<font class="i-txt1">系统消息：</font>
+                                        <font class="i_txt">手机站互助社区规则</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box">
+                                    	<font class="i_txt">
+                                        1、没有广告：在这里只有回复文章后才能留下联系方式，
+                                        例 楼主：现在旧衣服多少钱一斤？
+                                        回复：xxxxxxxx  我的电话18778987458                    
+                                        </font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box_">
+                                        <a href="" class="del">删除</a>
+                                    </div>
+                                    <!--end i-box-->
+                                </div>
+                                <!--end i-block-->
+							</td>
+						</tr>
+                        <tr>
+                            <td class="m-item">
+                               <div class="i-block">
+                                	<div class="i-box">
+                                    	<font class="i-txt1">系统消息：</font>
+                                        <font class="i_txt">红名特权通知</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box">
+                                    	<font class="i_txt">
+                                        1、没有广告：在这里只有回复文章后才能留下联系方式，
+                                        例 楼主：现在旧衣服多少钱一斤？
+                                        回复：xxxxxxxx  我的电话18778987458                    
+                                        </font>
+                                        <font class="i_txt_1">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司</font>
+                                    </div>
+                                    <!--end i-box-->
+                                    <div class="i-box_">
+                                        <a href="" class="del">删除</a>
+                                    </div>
+                                    <!--end i-box-->
+                                </div>
+                                <!--end i-block-->
+							</td>
+						</tr>
+					</table>
+					<table cellspacing="10" id="tab2" style="display:none;">
+                      <tr>
+							<td>
+								发布的帖子总数：<font class="nav_no">11</font>&nbsp;&nbsp;
+                                <a href="" target="" class="nav_hr">点击设置我关心的行业</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+									<font class="week">[我的提问]</font>
+                                    <a href="details.html">
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    </a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										2014-05-07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回复：100
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+									<font class="week">[我的提问]</font>
+                                    <a href="details.html">
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    </a>
+								</div>
+                                <!--end c-item-->
+								  <div class="c-item_">
+										2014-05-07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回复：100
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+									<font class="week">[我的提问]</font>
+                                    <a href="details.html">
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    </a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										2014-05-07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回复：100
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+									<font class="week">[我的提问]</font>
+                                    <a href="details.html">
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司
+                                    </a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										2014-05-07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回复：100
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+									<font class="week">[我的提问]</font>
+                                    <a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										2014-05-07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回复：100
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+									<font class="week">[我的提问]</font>
+                                    <a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										2014-05-07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回复：100
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+									<a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										2014-05-07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回复：100
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+									<a href="details.html">[我的提问]阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										2014-05-07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回复：100
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+									<a href="details.html">[我的提问]阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										2014-05-07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回复：100
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+									<a href="details.html">[我的提问]阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										2014-05-07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回复：100
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+									<a href="details.html">[我的提问]阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										2014-05-07&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回复：100
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+					</table>
+					<table cellspacing="10" id="tab3" style="display:none;">
+                    <tr>
+							<td>
+								发表的回复总数：<font class="nav_no">9</font>&nbsp;&nbsp;
+                                <a href="" target="" class="nav_hr">点击设置我关心的行业</a>
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+									<font class="mot">[我的回复]</font>
+                                    <a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										回复：100&nbsp;&nbsp;&nbsp;2014-05-07&nbsp;&nbsp;&nbsp;小小星星星
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+                                <font class="mot">[我的回复]</font>
+									<a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										回复：100&nbsp;&nbsp;&nbsp;2014-05-07&nbsp;&nbsp;&nbsp;小小星星星
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+                                <font class="mot">[我的回复]</font>
+									<a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										回复：100&nbsp;&nbsp;&nbsp;2014-05-07&nbsp;&nbsp;&nbsp;小小星星星
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+                                <font class="mot">[我的回复]</font>
+									<a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										回复：100&nbsp;&nbsp;&nbsp;2014-05-07&nbsp;&nbsp;&nbsp;小小星星星
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+                                <font class="mot">[我的回复]</font>
+									<a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										回复：100&nbsp;&nbsp;&nbsp;2014-05-07&nbsp;&nbsp;&nbsp;小小星星星
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+                                <font class="mot">[我的回复]</font>
+									<a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										回复：100&nbsp;&nbsp;&nbsp;2014-05-07&nbsp;&nbsp;&nbsp;小小星星星
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+                                <font class="mot">[我的回复]</font>
+									<a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										回复：100&nbsp;&nbsp;&nbsp;2014-05-07&nbsp;&nbsp;&nbsp;小小星星星
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+                                <font class="mot">[我的回复]</font>
+									<a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										回复：100&nbsp;&nbsp;&nbsp;2014-05-07&nbsp;&nbsp;&nbsp;小小星星星
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+                                <font class="mot">[我的回复]</font>
+									<a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										回复：100&nbsp;&nbsp;&nbsp;2014-05-07&nbsp;&nbsp;&nbsp;小小星星星
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+                                <font class="mot">[我的回复]</font>
+									<a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										回复：100&nbsp;&nbsp;&nbsp;2014-05-07&nbsp;&nbsp;&nbsp;小小星星星
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+                                <font class="mot">[我的回复]</font>
+									<a href="">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+								</div>
+								<!--end c-item-->
+								  <div class="c-item_">
+										回复：100&nbsp;&nbsp;&nbsp;2014-05-07&nbsp;&nbsp;&nbsp;小小星星星
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+					</table>
+					<div id="loadMore" onclick="loadMore(this);" style="text-align:center;margin-left:10px;margin-right:10px;background: #fff;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius: 4px;">加载更多……</div>
+				</td></tr>
+        </table>
+      </div>
+      <!--end m-content-->
+    <!-- 回复弹出框 -->
+    <div id="reply_div" align="center">
+		<textarea name="回复 林琳琳:" id="t1"></textarea>
+		<div align="center" style="margin-top:10px;">
+			<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+			<div class="btn btn_confirm">发表</div>
+		</div>
+     </div>
+     <!-- 删除弹出框 -->
+    <div id="reply_div_" align="center">
+         删除后不可恢复，是否删除？
+		<div align="center">
+			<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+			<div class="btn btn_confirm" onclick="deleteRow('tab1',this.parentElement.rowIndex)">确认</div>
+		</div>
+     </div>
+     
+      <!-- 邀请弹出框 -->
+    <div id="reply_div_req" align="center">
+         <div class="">您有<span>1</span>个新的问题邀请,是否回答?</div>
+         <div class="re_txt">取消后还可在生意管家→我的社区→消息中心查看</div>
+		<div align="center">
+			<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+			<div class="btn btn_confirm">确认</div>
+		</div>
+     </div>
+     
+	</body>
+</html>

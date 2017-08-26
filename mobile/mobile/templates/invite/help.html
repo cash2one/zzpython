@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+<style>
+.invite{
+	padding: 20px;
+	line-height: 30px;
+}
+.invite .appbutton{
+	width:100%;
+	margin-top:20px;
+	margin-bottom:20px;
+	background-color:#fff;
+	line-height: 40px;
+	color:#fff;
+	font-size:20px;
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#E10000),to(#EC971F) );
+	border:1px solid #E10000;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.invite .invite-code{
+	font-size: 20px;
+	line-height: 50px;
+	color: #003399;
+	text-align: left;
+}
+</style>
+<head>
+{%include 'head.html'%}
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="invite">
+	<center>
+		<div style="font-size: 20px;">安装APP即可获得再生钱包 <br /><div style="font-size: 25px;color: #ff0000;">“ 20元 ”</div></div>
+	{%if code%}
+	<div style="margin-top: 10px;">我的邀请码</div>
+	<div class="invite-code" style="text-align: center;font-size: 30px;">
+		{{code}}
+	</div>
+	{%endif%}
+	<a href="http://m.zz91.com/app.html">
+		<div class="appbutton">App下载地址</div>
+		<div class="invite-code">
+			获得步骤：<br />
+			1、下载并安装App<br />
+			2、注册并登录到生意管家<br />
+			3、点击邀请码按钮<br />
+			4、输入对方邀请码
+		</div>
+	</a>
+	</center>
+</div>
+{%include 'bottom.html'%}
+</div>
+</body>
+</html>

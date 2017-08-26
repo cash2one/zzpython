@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="Js/jquery.js"></script>
+    <script type="text/javascript" src="Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="Js/bootstrap.js"></script>
+    <script type="text/javascript" src="Js/ckform.js"></script>
+    <script type="text/javascript" src="Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<form class="form-inline definewidth m20" action="index.html" method="get">  
+<button type="button" class="btn btn-success" onClick="window.location.href='addwebtype.html?wtype={{wtype}}'">添加顶级栏目</button>
+<br /><br /><a href="webtype.html?wtype={{wtype}}">顶级栏目</a>
+
+{%if reid%}>><a href="webtype.html?reid={{reid}}">{{re_name}}</a>{%endif%}
+
+
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>栏目名称</th>
+        <th> </th>
+        <th>权重</th>
+        <th>管理操作</th>
+    </tr>
+    </thead>
+<form action="updatetypeok.html">
+<input type="hidden" name="typeid" value="{{typeid}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+    {%for tp in listall%}
+	     <tr>
+	        <td><a href="website.html?wtype={{wtype}}&typeid={{tp.id}}">{{tp.typename}}</a></td>
+	        <td><a href="?reid={{tp.id}}&wtype={{wtype}}{%if reid%}&topid={{reid}}{%endif%}"> {%if tp.has_son%}进入子栏目{%endif%}</a></td>
+	        <td>{{tp.sortrank}}</td>
+	        <td>
+	        <a href="updatetype.html?typeid={{tp.id}}{%if reid%}&reid={{reid}}{%endif%}">编辑</a> / <a href="deletetype.html?typeid={{tp.id}}" onClick="return confirm('是否将此信息删除?')">删除</a>
+	        <a href="addwebtype.html?typeid={{tp.id}}{%if reid%}&topid={{reid}}{%endif%}">添加子栏目</a>
+	        </td>
+        </tr>
+     {%endfor%}
+</form>
+        </table>
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}&wtype={{wtype}}&reid={{reid}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}&wtype={{wtype}}&reid={{reid}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}&wtype={{wtype}}&reid={{reid}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<a href='?page=1&wtype={{wtype}}&reid={{reid}}' >首页</a><a href='?page={{page_listcount}}&wtype={{wtype}}&reid={{reid}}' >尾页</a> 
+</div>
+</body>
+</html>

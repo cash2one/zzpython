@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		{%include 'head.html'%}
+		<link rel="stylesheet" href="/css/offer.css" />
+		<style>
+			.login .button{
+				text-align: center;
+				margin: 10px;
+				border: solid 1px #006600;
+				background-color: #006600;
+				width: 80%;
+				margin-left: auto;
+				margin-right: auto;
+				padding: 10px;
+			}
+			.login .button a{
+				color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			{%include 'top.html'%}
+			<div class="mainContent" style="margin:0 0px;padding:0px;">
+				<div class="login">
+					<ul class="bread Fix">
+						<li><a href="/">首页</a></li>
+						<li class="li-bread c9"><span>注册成功</span></li>
+					</ul>
+					<div class="resultTip mt10 mb10 ac">
+						<span>恭喜您，你已经完成注册！点此<a href='/goback/?backurl={{backurl}}'>返回之前页面</a></span>
+					</div>
+					<div class="button"><a href="/products_publish/">发布供应和求购信息</a></div>
+					<div class="button"><a href="/myrc_index/">进入生意管家</a></div>
+					<div class="button"><a href="/trade/">交易中心</a></div>
+					<div class="button"><a href="/jiage/">行情报价</a></div>
+					<div class="button"><a href="/news/">资讯中心</a></div>
+				</div>
+			</div>
+			{%include 'bottom.html'%}
+		</div>
+	</body>
+
+</html>

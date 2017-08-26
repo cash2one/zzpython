@@ -1,0 +1,18 @@
+<uwsgi>
+ <socket>:8003</socket>
+ <workers>2</workers>
+ <master>true</master>
+ <processes>4</processes>
+ <pythonpath>.</pythonpath>
+ <module>bsteelmanagement.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>bsteelmanagement/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>3048</limit-as>
+ <reload-on-as>400</reload-on-as>
+ <reload-on-rss>400</reload-on-rss>
+ <max-requests>400</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/bsteelmanagement.log</daemonize>
+</uwsgi>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{navlabel}}-供应{{navlabel}}-求购{{navlabel}}-{{navlabel}}回收-ZZ91再生网产品导航(第{{page}}页)</title>
+<meta name="keywords" content="供应{{navlabel}}，求购{{navlabel}}，{{navlabel}}回收">
+<meta name="description" content="ZZ91旗下{{navlabel}}导航为您提供大量的供应{{navlabel}},求购{{navlabel}},{{navlabel}}回收信息,让您快速找到所需信息,节省宝贵的时间。">
+<meta name="robots" content="all" />
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.hack.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/daohang/default.css"/> 
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+{% include 'includes/mobilecontrol.html' %}
+</head>
+<body>
+{% include 'includes/nav.html' %}
+{% include 'includes/lm.html' %}
+<div class="daohangnav">
+	<span>您所在的位置： <a href="http://www.zz91.com">ZZ91再生网</a> > <a href="/">产品导航</a> > {{navlabel}}</span>
+</div>
+<div style="width:960px; margin:0 auto; ">
+<script type="text/javascript" src="http://gg.zz91.com/show?p=753&keywords={{navlabel}}"></script>
+</div>
+<table width="960" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#CCCCCC" class="tablelist" style="border-collapse:separate;border-spacing:1px">
+  <tr>
+    <td width="20" rowspan="3" align="center" bgcolor="#FFFFFF"><b>{{navlabel}}</b></td>
+    <td bgcolor="#FFFFFF">
+    	<div class="apartpageBox">
+        	<a href="1.html" class="next-page">首页</a>
+            {% if firstpage %}
+            <a href="{{prvpage}}.html" class='prev-page'>上一页</a>
+            {% endif %}
+            {% for p in page_range %}
+            {% if p.nowpage %}
+            <strong class="current">{{p.number}}</strong>
+            {% else %}
+            <a href='{{p.number}}.html' >{{p.number}}</a>
+            {% endif %}
+			{% endfor %}
+            {% if lastpage%}
+            <a class="next-page" href='{{nextpage}}.html' >下一页</a>
+            {% endif %}
+            <a class="next-page" href="{{page_listcount}}.html">末页</a>
+			<!--  翻页结束-->
+		</div>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">
+    	<div class="typelist">
+        {%for nav in listall%}
+        <a href="/tags-{{nav.main_code}}/{{nav.id}}/" target="_blank" title="{{nav.name}}">{{nav.name}}</a>
+        {%endfor%}
+        </div>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">
+    <div class="apartpageBox">
+		<a href="1.html" class="next-page">首页</a>
+        {% if firstpage %}
+        <a href="{{prvpage}}.html" class='prev-page'>上一页</a>
+        {% endif %}
+        {% for p in page_range %}
+        {% if p.nowpage %}
+        <strong class="current">{{p.number}}</strong>
+        {% else %}
+        <a href='{{p.number}}.html' >{{p.number}}</a>
+        {% endif %}
+		{% endfor %}
+        {% if lastpage%}
+        <a class="next-page" href='{{nextpage}}.html' >下一页</a>
+        {% endif %}
+        <a href="{{page_listcount}}.html" class="next-page">末页</a>
+		<!--  翻页结束-->
+	</div>
+    </td>
+  </tr>
+</table>
+{% include 'includes/buttom.html' %}
+</body>
+</html>

@@ -1,0 +1,254 @@
+*{
+	margin:0;
+	padding:0;
+}
+html,body{
+	height:100%;
+}
+body{
+	font-family:"microsoft yahei";
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-flex-flow: column;
+     flex-flow: column;
+}
+.cmpname{
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #fff;
+    font-size: 18px;
+    background-color: #000000
+}
+.swiper_main{
+    -webkit-box-flex: 1; 
+    -webkit-flex: 1;
+    flex: 1;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-flex-flow: column;
+     flex-flow: column;
+}
+.swiper-container {
+	width: 100%;
+    height: 100%;
+	background:#000;
+
+    -webkit-box-flex: 1; 
+    -webkit-flex: 1;
+    flex: 1;
+
+  
+}  
+
+.swiper-slide{
+	width:100%;
+	height:100%;
+	background:url(../images/imgbg.png);
+	background-size:100% 100%;
+  overflow: auto;
+
+}
+.swiper-slide8{
+    background-size: 100% 100%;
+}
+.swiper-slide9{
+    background-size: 100% 100%;
+}
+.zzhao{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(19,149,251,0.8);
+}
+img{
+	display:block;
+}
+.swiper-pagination-bullet {
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    opacity: .4;
+}
+.swiper-pagination-bullet-active {
+opacity: 1;
+}
+@-webkit-keyframes start {
+	0%{bottom:10px;opacity:0}
+    50%{bottom:15px;opacity:1}
+    100%{bottom:20px;opacity:0}
+}
+@-moz-keyframes start {
+	0%{bottom:10px;opacity:0}
+    50%{bottom:15px;opacity:1}
+    100%{bottom:20px;opacity:0}
+}
+@keyframes start {
+	0%{bottom:10px;opacity:0}
+    50%{bottom:15px;opacity:1}
+    100%{bottom:20px;opacity:0}
+}
+.ani{
+	position:absolute;
+	}
+.txt{
+	position:absolute;
+}
+#array{
+	position:absolute;z-index:999;-webkit-animation: start 1.5s infinite ease-in-out;
+}
+
+@-webkit-keyframes myrotate /*Safari and Chrome*/
+{
+0% { -webkit-transform:rotate(0deg);}
+25% { -webkit-transform:rotate(-90deg);}    
+50% { -webkit-transform:rotate(-180deg);}
+75% { -webkit-transform:rotate(-270deg);}
+100% { -webkit-transform:rotate(-360deg);}
+}
+#music{
+   position:absolute;z-index:999;
+}
+.music{
+   
+    -webkit-animation: myrotate 2s linear 0s infinite normal;
+}
+
+.cmplogo{
+    background-color: #0090ff
+}
+
+.info_cp{
+  line-height: 24px;
+}
+
+.cpjs{
+    background-color: #66bcff;
+    color: #fff;
+    font-size: 13px;
+    line-height: 18px;
+    padding: 5px 4px;
+    box-sizing:border-box;
+}
+.yliao{
+  color: #000;
+  font-size: 18px;
+  line-height: 24px;
+}
+.lianxi p{
+    font-size: 14px;
+    color: #fff
+}
+#voidmusic{
+  display: none;
+}
+.ysinfo{
+  color: #fff;
+  font-size: 14px;
+  padding:10px;
+  box-sizing:border-box;
+}
+.gs-name{
+      font-size: 24px;
+      color: #000;
+      line-height: 1.2;
+      text-align: center;
+  }
+@media screen and (max-width : 320px){
+  .cpjs{
+    font-size: 10px;
+    line-height: 14px;
+  }
+  .ysinfo{
+    font-size: 10px;
+  }
+}
+
+@media screen and (min-width: 321px) and (max-width : 375px){
+    .gs-name{
+      font-size: 24px;
+      line-height: 1.5;
+  }
+  .yliao{
+    font-size: 20px;
+    line-height: 34px;
+  }
+  .lianxi p{
+    line-height: 28px;
+  }
+}
+@media screen and (min-width : 376px){
+  .gs-name{
+      font-size: 26px;
+      line-height: 1.7;
+  }
+  .lianxi p{
+    line-height: 30px;
+  }
+}
+
+.swiper-container-gg{
+  width: 100%;
+  height: 100%;
+  -webkit-transform: scale(0,0);
+  transform: scale(0,0);
+  
+}
+.block{
+  -webkit-transition: all 0.2s ease-in 2s;
+  transition: all 0.2s ease-in 2s;
+   -webkit-transform: scale(1,1);
+    transform: scale(1,1);
+}
+
+.seeoct{
+  opacity: 0; 
+}
+.cpimg{
+  opacity: 1;
+  -webkit-transition: all 0.5s ease-in 1.5s;
+}
+.cpimg2{
+  opacity: 1;
+  -webkit-transition: all 0.5s ease-in 2s;
+}
+.cpimg3{
+  opacity: 1;
+  -webkit-transition: all 0.5s ease-in 2.5s;
+}
+.cpimg4{
+  opacity: 1;
+  -webkit-transition: all 0.5s ease-in 3s;
+}
+
+.swiper-pagination-pp{
+    position: absolute;
+    bottom: 15px;
+    z-index: 10;
+    width: 100%;
+    text-align: center;
+    z-index: 999;
+}
+.swiper-pagination-pp span{
+  margin: 0 2px;
+}
+
+.cpname{
+    font-size: 100%;
+    color: #000;
+}
+.jiejie{
+    color: #000;
+    line-height: 24px;
+    font-size: 12px;
+}
+.yzcp{
+    color: #fcff00;
+    font-family: 18px;
+    line-height: 18px;
+}
+

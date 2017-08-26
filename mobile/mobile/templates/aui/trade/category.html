@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>产品类别-ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/trade/css/product-category.css"/>
+		<style>
+			.aui-bar{
+	    		position: fixed;
+	    		z-index: 9999;
+	    		width: 100%;
+	    		top: 0;
+	    		left: 0;
+	    	}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">请选择产品类别</div>
+		    <a class="aui-pull-right" href="/myrc_index/">
+		        <span class="aui-iconfont aui-icon-my"></span>
+		    </a>
+		</header>
+		<div class="center">
+			<ul class="category" style="top: 45px;">
+				<li class="click-li" code="1000">
+					<i class="icon-img1"></i>
+					<p>
+						废金属
+					</p>
+				</li>
+				<li code="1001">
+					<i class="icon-img2"></i>
+					<p>
+						废塑料
+					</p>
+				</li>
+				<li code="1003">
+					<i class="icon-img3"></i>
+					<p>
+						废纺织品
+					</p>
+				</li>
+				<li code="1004">
+					<i class="icon-img4"></i>
+					<p>
+						废纸
+					</p>
+				</li>
+				<li code="1007">
+					<i class="icon-img5"></i>
+					<p>
+						二手设备
+					</p>
+				</li>
+				<li code="1005">
+					<i class="icon-img6"></i>
+					<p>
+						电子电器
+					</p>
+				</li>
+				<li code="1002">
+					<i class="icon-img7"></i>
+					<p>
+						橡胶轮胎
+					</p>
+				</li>
+				<li code="1006">
+					<i class="icon-img8"></i>
+					<p>
+						废玻璃
+					</p>
+				</li>
+				<li code="1009">
+					<i class="icon-img9"></i>
+					<p>
+						服务
+					</p>
+				</li>
+				<li code="1008">
+					<i class="icon-img10"></i>
+					<p>
+						其他废料
+					</p>
+				</li>
+			</ul>
+			<div class="product-list" style="margin-top: 45px;">
+				<!-- <div class="product-list-class">
+					<h5>废钢铁</h5>
+					<span>废钢</span>
+					<span>废铁</span>
+					<span>废钢铁</span>
+				</div>	 -->
+			</div>
+		</div>
+	
+	<script>
+		$(function(){
+			$(".category li").on("click", function() {
+				var code = $(this).attr("code");
+				ajaxInfo(code)
+				$(".click-li").removeClass("click-li");
+				$(this).addClass("click-li");
+				//记住点击的类别
+				localStorage.setItem("trade_select_code", code);
+			})
+			$(".product-list").on("click","span",function() {
+				var label_hex = $(this).attr("label_hex")
+				var pinyin=$(this).attr("pinyin");
+				window.location='/trade/'+pinyin+'/';
+			})
+			$(".product-list").on("click","h5",function() {
+				var label_hex = $(this).attr("label_hex")
+				var pinyin=$(this).attr("pinyin");
+				window.location='/trade/'+pinyin+'/';
+			});
+			//记住选择的类别
+			var trade_select_code = localStorage.getItem("trade_select_code");
+			$(".category li").each(function() {
+				if (trade_select_code) {
+					var code = $(this).attr("code");
+					if (trade_select_code==code){
+						$(".click-li").removeClass("click-li");
+						$(this).addClass("click-li");
+					}
+				}
+			});
+			if (trade_select_code){
+				ajaxInfo(trade_select_code);
+			}else{
+				ajaxInfo(1000);
+			}
+		});
+		function ajaxInfo(code){
+			var data={
+				code:code,
+				type:1,
+				datatype:'json',
+			}
+			layer.load(2);
+			zzajax("get","/trade/?code=",data,function(ret){
+		        if (ret) {
+		        	var listHtml = "";
+		        	var allHtml = "";
+		            $.each(ret,function(index,item){
+		            	listHtml = "<h5 label_hex='"+ item.label_hex +"' pinyin='"+item.pinyin+"'>"+ item.label +"</h5>";
+		            	$.each(item.catelist,function(i,catelist){
+		            		listHtml =listHtml +"<span label_hex='"+ catelist.label_hex +"' pinyin='"+catelist.pinyin+"'>"+ catelist.label +"</span>";
+		            	})
+		            	listHtml = "<div class='product-list-class'>" + listHtml + "</div>";
+		            	allHtml +=listHtml;
+		            })
+		            $(".product-list").html(allHtml);
+		            layer.closeAll('loading');
+		        } else {
+		        	layer.closeAll('loading');
+		        };
+		    });
+		}
+	</script>
+	{%include 'aui/bottom.html'%}
+	</body>
+</html>

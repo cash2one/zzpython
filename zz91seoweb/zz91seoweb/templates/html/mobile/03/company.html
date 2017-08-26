@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>公司简介-{{list.name}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+</head>
+<body>
+
+<div class="moblie">
+	<div class="moblie-top">
+        <div class="moblie-title">
+        	<a href="/"><div class="moblite-return">
+            	
+            </div></a>
+            <div class="moblie-title-text">
+                {{list.name}}
+            </div>
+            <!--<div class="moblie-title-collect">
+                <img src="images/collection.jpg" />
+            </div>-->
+            <div class="cb"></div>
+        </div>
+        <!--end moblie-title-->
+    </div>
+	<div class="phoneTitle">
+        <center>
+        <img src="{{list.viptype.vippic}}" />第<span>{%if list.zst_year%}{{list.zst_year}}{%else%}0{%endif%}</span>年
+        </center>
+    </div>
+    <!--end moblie-top-->
+    <div class="company">
+    	<div class="company-title">
+        	公司简介
+        </div>
+        <!--end company-title-->
+        <div class="company-content">
+        	{%if companyimg%}
+        	<div class="company-img">
+            <img src='{{companyimg.filepath}}' />
+            </div>
+			{%endif%}
+            <div class="company-box">
+            	{{list.introduction|safe}}
+            </div>
+            <div class="cb"></div>
+            <table class="company-table">
+            	
+                <tr>
+                	<td colspan="2" style="color:#1359e7;font-size:14px;font-weight:bold">{{list.name}}</td>
+                </tr>
+                <tr>
+                	<td>联&nbsp;系&nbsp;&nbsp;人：</td>
+                    <td>{{list.contact}}</td>
+                </tr>
+				{%if list.ppcphone%}
+                <tr>
+                	<td>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</td>
+                    <td><div class="phone_btn"><a href="tel:{{list.ppcphone}}">{{list.ppcphone}}</a></div></td>
+                </tr>
+				{%else%}
+				{%if list.showcontact%}
+				<tr>
+                	<td>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</td>
+                    <td><div class="phone_btn"  style="margin:3px 3px 5px 0px"><a href="tel:{{list.tel_area_code}}{{list.tel}}">{{list.tel_country_code}}-{{list.tel_area_code}}-{{list.tel}}</a></div></td>
+                </tr>
+				{%if list.mobile%}
+                <tr>
+                	<td>移动电话：</td>
+                    <td><div class="mobile_btn" style="margin:3px 3px 5px 0px"><a href="tel:{{list.mobile}}">{{list.mobile}}</a></div></td>
+                </tr>
+				{%endif%}
+				{%endif%}
+				{%endif%}
+                <tr>
+                	<td colspan="2" style="border-bottom:1px dashed #3e3e3e;margin:5px 0"></td>
+                </tr>
+                <tr>
+                	<td>诚信指数：</td>
+                    <td>{{integral}}</td>
+                </tr>
+                <tr>
+                	<td>经营范围：</td>
+                    <td>{{list.business}}</td>
+                </tr>
+                <tr>
+                	<td colspan="2" style="border-bottom:1px dashed #3e3e3e;margin:5px 0"></td>
+                </tr>
+				{%if list.address%}
+                <tr>
+                	<td>地址：</td>
+                    <td>{{list.address}}</td>
+                </tr>
+				{%endif%}
+            </table>
+        </div>
+        <!--end company-content-->
+        <center>
+        <div class="company-text">
+            {{list.name}}<br />
+            技术支持：<a href="http://m.zz91.com">ZZ91再生网</a>
+        </div>
+        <!--end company-text-->
+        </center>
+    </div>
+    <!--end company-->
+    
+    <div class="moblie-footer">
+    	<ul>
+        	<li class="moblie-footer-img1"><a href="/mobile/index{{company_id}}.htm"></a></li>
+            <li class="moblie-footer-img2click"><a href="/mobile/about{{company_id}}.htm"></a></li>
+            <li class="moblie-footer-img3"><a href="/mobile/products{{company_id}}-0-1.htm"></a></li>
+            <li class="moblie-footer-img4"><a href="/mobile/contact{{company_id}}.htm"></a></li>
+            <div class="cb"></div>
+        </ul>
+    </div>
+    <!--end moblie-footer-->
+</div>
+<!--moblie-->
+{%include "html/mobile/03/footer.html"%}
+</body>
+</html>

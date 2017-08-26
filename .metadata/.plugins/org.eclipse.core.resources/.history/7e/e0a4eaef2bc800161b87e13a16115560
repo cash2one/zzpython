@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <style>
+    	body {
+			background-color: #f4f4f4
+		}
+    </style>
+</head>
+<body>
+	<div class="aui-content-padded">
+	 	<div class="buy-box aui-form">
+	 		<div class="aui-input-row">
+	 			<label class="aui-input-addon">关键词</label>
+	 			<input type="hidden" name="key_id" id="key_id" value="0">
+	 			<input type="text" class="aui-input keywords" maxlength="4" value=""  placeholder="点此输入关键词" />
+	 		</div>
+	 		<div class="aui-input-row">
+	 			<label class="aui-input-addon">出价（元/次）</label>
+	 			<input type="text" class="aui-input price" maxlength="4" value="" placeholder="点此输入出价，最低出价不低于8元" />
+	 		</div>
+	 	</div>
+	 	<div class="aui-padded-20">
+	 		<input type="hidden" name="checked" id="checked" value="0">
+	        <div class="aui-pull-left"><div class="aui-btn aui-btn-success keywords_mod">确定修改</div></div>
+	        <div class="aui-pull-right"><div class="aui-btn aui-btn-success keywords_offline">下线该关键词</div></div>
+        </div>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		var key_id=api.pageParam.key_id;
+		var data={
+			key_id:key_id,
+		}
+		api.showProgress();
+		$("#key_id").val(key_id)
+		zzappajax("post",hosturl+"qianbao/jingjia_keywords_info.html",data,function(ret){
+			if (ret){
+				$(".keywords").val(ret.keywords);
+				$(".price").val(toDecimal2(ret.price));
+				$("#checked").val(ret.checked);
+				if (ret.checked==1){
+					$(".keywords_offline").html("下线该关键词");
+				}else{
+					$(".keywords_offline").html("上线该关键词");
+					$(".keywords_offline").removeClass("aui-btn-success");
+				}
+			}
+			api.hideProgress();
+		},function(){})
+		$(".keywords_mod").on("click",function() {
+			event.stopPropagation();
+			var keywords=$(".keywords").val();
+			if (keywords.length<=0){
+				hint("请输入关键词！")
+				return;
+			}
+			var price=$(".price").val();
+			var maxprice=8;
+			if(!isNaN(price)){
+    			if (parseInt(price)<=parseInt(maxprice)){
+			    	hint("必须输入大于"+maxprice+"的金额！")
+			    }
+    		}else{
+			   hint("出价必须是数字");
+			   return;
+			}
+			var data={
+				key_id:key_id,
+				keywords:keywords,
+				price:price,
+			}
+			zzappajax("post",hosturl+"qianbao/jingjia_keywords_onesave.html",data,function(ret){
+				if (ret){
+					api.execScript({
+						name : "jingjia",
+						frameName:"jingjia_",
+						script : "ajaxinfo()"
+					});
+					api.closeWin();
+				}
+			},function(){})
+		})
+		$(".keywords_offline").on("click",function() {
+			var data={
+				key_id:key_id,
+			}
+			zzappajax("post",hosturl+"qianbao/jingjia_keywords_offline.html",data,function(ret){
+				if (ret){
+					api.execScript({
+						name : "jingjia",
+						frameName:"jingjia_",
+						script : "ajaxinfo()"
+					});
+					api.closeWin();
+				}
+				api.hideProgress();
+			},function(){})
+		})
+	};
+</script>
+</html>

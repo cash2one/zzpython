@@ -1,0 +1,199 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>再生塑料网正在改版中，敬请期待！</title>
+<style>
+a
+{
+	color:#333;
+	text-decoration: none;
+}
+a:hover
+{
+	color:#F00;
+	text-decoration: underline;
+}
+.index
+{
+	line-height:55px;
+	font-size:18px;
+	width:960px;
+	margin-right: auto;
+	margin-left: auto;
+	border: 1px solid #CCC;
+	background-color: #FFC;
+}
+.item_body {
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 10px;
+	clear: both;
+	margin-bottom: 10px;
+}
+.bottom {
+	background-color: #FC6;
+	margin-top: 20px;
+	border: 1px solid #F60;
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	padding-top: 10px;
+	padding-right: 0px;
+	padding-bottom: 10px;
+	padding-left: 0px;
+}
+.item_div {
+	float: left;
+	width: 305px;
+	height: 300px;
+	border: 1px solid #666;
+}
+.item_div .item_title .item_title_more {
+	float: right;
+	width: 80px;
+	text-align: right;
+}
+.item_body .item_div.mid {
+	margin-right: auto;
+	margin-left: 20px;
+}
+.item_div .item_title {
+	font-size: 14px;
+	padding: 4px;
+	background-color: #FC0;
+	font-weight: bold;
+	clear: both;
+	height: 18px;
+	list-style-type: circle;
+}
+.item_div .item_title .item_title_left {
+	float: left;
+	width: 200px;
+}
+.item_body .item_div .item {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+.item_body .item_div .item ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+.item_body .item_div .item ul li {
+	padding: 5px;
+	font-size: 12px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #CCC;
+	line-height: 16px;
+}
+.item_body .item_div.right {
+	float: right;
+}
+#content_time_style
+{
+	color:#CCC;
+	}
+.footer {
+	width: 960px;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 12px;
+	color: #999;
+	text-align: center;
+	padding-top: 40px;
+	padding-bottom: 30px;
+}
+</style>
+</head>
+
+<body><div align="center" class="index">
+  
+  <strong style="color:#F60">再生塑料网正在改版中，敬请期待！！
+Coming soon...
+</strong>
+  <div style="font-size:14px; font-weight:bold; color:#333">废塑料、再生料等塑料信息尽在再生塑料网！</div>
+<div style="font-size:14px; font-weight:bold;color:#333">想先睹为快？点击此处看看<a href="http://suliao.zz91.com/" target="_blank">老版再生塑料网</a></div>
+</div>
+
+<div class="item_body">
+	<div class="item_div">
+    	<div class="item_title"><div class="item_title_left">废塑料价格</div><div class="item_title_more"><a href="http://baojia.kl91.com/a/feisuliaojiage/" target="_blank">更多...</a></div></div>
+      <div class="item">
+        <ul>
+        	
+        	{% for list in priceInfo_suliao %}
+          <li>· <a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}">{{list.title}}</a> <span id="content_time_style">{{list.gmt_time}}</span></li>
+            {% endfor %}
+        </ul>
+        </div>
+  </div>
+    <div class="item_div mid">
+    	<div class="item_title">
+    	  <div class="item_title_left">再生料价格</div><div class="item_title_more"><a href="http://baojia.kl91.com/a/zaishengliaojiage/" target="_blank">更多...</a></div></div>
+        <div class="item">
+        <ul>
+        	{% for list in priceInfo_zsl %}
+          <li>· <a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}">{{list.title}}</a> <span id="content_time_style">{{list.gmt_time}}</span></li>
+            {% endfor %}
+        </ul>
+        </div>
+    </div>
+  <div class="item_div right">
+    	<div class="item_title"><div class="item_title_left">新料价格</div><div class="item_title_more"><a href="http://baojia.kl91.com/a/suliaozixun/" target="_blank">更多...</a></div></div>
+        <div class="item">
+        <ul>
+        	{% for list in priceInfo_xinliao %}
+          <li>· <a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}">{{list.title}}</a> <span id="content_time_style">{{list.gmt_time}}</span></li>
+            {% endfor %}
+        </ul>
+        </div>
+    </div>
+</div>
+<div style="clear:both"></div>
+<div class="item_body">
+    <div class="item_div">
+    	<div class="item_title"><div class="item_title_left">原油价格</div><div class="item_title_more"><a href="http://baojia.kl91.com/a/yuanliaoxingqing/" target="_blank">更多...</a></div></div>
+        <div class="item">
+        <ul>
+        	{% for list in priceInfo_yanyou %}
+          <li>· <a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}">{{list.title}}</a> <span id="content_time_style">{{list.gmt_time}}</span></li>
+            {% endfor %}
+        </ul>
+        </div>
+    </div>
+    <div class="item_div mid">
+    	<div class="item_title"><div class="item_title_left">市场动态</div><div class="item_title_more"><a href="http://baojia.kl91.com/a/jinrisuliaojiage/" target="_blank">更多...</a></div></div>
+        <div class="item">
+        <ul>
+        	{% for list in priceInfo_dongtai %}
+          <li>· <a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}">{{list.title}}</a> <span id="content_time_style">{{list.gmt_time}}</span></li>
+            {% endfor %}
+        </ul>
+        </div>
+    </div>
+    <div class="item_div right">
+    	<div class="item_title"><div class="item_title_left">行情资讯</div><div class="item_title_more"><a href="http://baojia.kl91.com/a/xingqingzixun/" target="_blank">更多...</a></div></div>
+        <div class="item">
+        <ul>
+        	{% for list in priceInfo_hangqing %}
+          <li>· <a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}">{{list.title}}</a> <span id="content_time_style">{{list.gmt_time}}</span></li>
+            {% endfor %}
+        </ul>
+        </div>
+    </div>
+</div>
+<div style="clear:both"></div>
+<div class="bottom"><a href="http://baojia.kl91.com" target="_blank">点此抢先了解废塑料、再生料等相关资讯</a></div>
+<div class="footer">
+Copyright © 2012-2015 ASTO. 杭州阿思拓 版权所有  
+</div>
+</body>
+</html>

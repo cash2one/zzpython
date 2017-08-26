@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{subject}}-ASTO聚焦-杭州阿思拓电子商务有限公司</title>
+<link href="css/common.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<script src="http://img0.zz91.com/zz91/xiazai/js/swfobject.js" type="text/javascript"></script>
+</head>
+
+<body>
+{%include 'top.html'%}
+
+<!-- position start -->
+<div class="place">
+ <p><a href="/">首页</a>  ASTO聚焦 </p> 
+</div>
+<!-- position end -->
+<!-- box start -->
+<div class="clearfix wrap">
+ <div class="w_left">
+   <font class="title"><img src="images/title6.png"></font>
+   <div class="subNav_bd">
+     <p class="f18 blue" style="text-align:center">{{subject}}</p>
+     <br />
+     <br />
+     {{details|safe}}
+   </div>
+</div>
+{%include 'right_culture.html'%}
+<script>
+if (document.getElementById("flashmain")){
+swfobject.embedSWF("shipin/07111.swf", "flashmain", "348", "300", "9.0.0", "http://img0.zz91.com/zz91/xiazai/js/expressInstall.swf",null,null,{wmode:"transparent"},null);
+}
+</script>
+</div>
+<!-- box end -->
+{%include 'bottom.html'%}
+</body>
+</html>

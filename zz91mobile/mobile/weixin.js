@@ -1,0 +1,180 @@
+服务号
+appid=wx2891ef70c5a770d6
+secret=d3f9436cfc50cd9e4f62f96893a1ee0c
+订阅号
+appid=wxb3a1f99915ac43ed
+secret=6514984261ac291bfd6ef38ab150fcfb
+
+{
+     "button":[
+	 {
+           "name":"商机查询",
+           "sub_button":[
+            {	
+               "type":"view",
+               "name":"塑料订货峰会",
+               "url":"http://www.rabbitpre.com/m/V7rqeyN"
+            },
+            {
+               "type":"view",
+               "name":"生意管家",
+               "url":"http://m.zz91.com/myrc_index/"
+            },
+			{	
+				"type":"view",
+               "name":"供求信息",
+               "url":"http://m.zz91.com/trade/"
+            },
+			{	
+               "type":"view",
+               "name":"行情日报",
+               "url":"http://m.zz91.com/weixin/priceday.html"
+            },
+			{	
+               "type":"view",
+               "name":"我要找货",
+               "url":"http://m.zz91.com/trust/"
+            }]
+      },
+	  {
+	  	   "type":"click",
+           "name":"我要投票",
+		   "key":"toupiao"
+       },
+       {
+           "name":"+更多",
+           "sub_button":[
+			{	
+			   "type":"view",
+               "name":"客户端下载",
+               "url":"http://m.zz91.com/app.html"
+            },
+			{	
+               "type":"click",
+               "name":"帐号绑定",
+               "key":"binding"
+            },
+            {	
+               "type":"view",
+               "name":"免费发布",
+               "url":"http://m.zz91.com/products_publish/"
+            },
+			{
+               "type":"view",
+               "name":"废料问答",
+               "url":"http://m.zz91.com/huzhu/"
+            },
+			{
+                "type": "view", 
+                "name": "行业资讯", 
+                "url": "http://m.zz91.com/news/"
+            }]
+       }]
+ }
+
+ 来电宝
+ 
+ {
+     "button":[
+	 {
+           "name":"商机分析",
+           "sub_button":[
+            {	
+               "type":"click",
+               "name":"来电分析",
+               "key":"fenxi"
+            },
+			{	
+			   "type":"view",
+               "name":"商机搜索",
+               "url":"http://m.zz91.com/ldb_weixin/businessearch.html"
+            }]
+      },
+	  {
+           "name":"账户管理",
+		   "sub_button":[
+            {	
+               "type":"view",
+               "name":"账户余额",
+               "url":"http://m.zz91.com/ldb_weixin/balance.html"
+            },
+			{	
+				"type":"view",
+               "name":"电话清单",
+               "url":"http://m.zz91.com/ldb_weixin/phonerecords.html"
+            },
+			{	
+				"type":"view",
+               "name":"点击清单",
+               "url":"http://m.zz91.com/ldb_weixin/phoneclick.html"
+            }]
+		   
+       },
+       {
+           "name":"+更多",
+           "sub_button":[
+			{	
+			   "type":"view",
+               "name":"商机中心",
+               "url":"http://m.zz91.com/"
+            },
+			{
+               "type":"view",
+               "name":"公司介绍",
+               "url":"http://m.zz91.com/ldb_weixin/about.html"
+            },
+			{
+               "type":"view",
+               "name":"产品介绍",
+               "url":"http://m.zz91.com/ldb_weixin/product_introduction.html"
+            },
+			{
+               "type":"view",
+               "name":"联系我们",
+               "url":"http://m.zz91.com/ldb_weixin/contact.html"
+            }]
+       }]
+ }
+ 
+curl  -d '{"button":[{"name":"商机中心","sub_button":[{"type":"view","name":"生意管家","url":"http://m.zz91.com/myrc_index/"},{"type":"view","name":"废料交易","url":"http://m.zz91.com/category/"},{"type":"view","name":"行情日报","url":"http://m.zz91.com/weixin/priceday.html"},{"type":"view","name":"发布信息","url":"http://m.zz91.com/products_publish/"}]},{"name":"优质客户","type":"view","url":"http://m.zz91.com/weixin/company/"},{"name":"+更多","sub_button":[{"type":"click","name":"AQSIQ咨询","key":"aqsiq"},{"type":"click","name":"帐号绑定","key":"binding"},{"type":"view","name":"App下载","url":"http://m.zz91.com/app.html"},{"type":"view","name":"再生钱包","url":"http://m.zz91.com/qianbao/"},{"type":"view","name":"废料问答","url":"http://m.zz91.com/huzhu/?category_id=11"}]}]}' https://api.weixin.qq.com/cgi-bin/menu/create?access_token=pK3D0z1dlWYTgbmpDEYNP1vX9cL2qGpV0hSMGCLU2ZIroZT3HfUBFOCi7o9QMEZp3tes8010-c6YSZHRW_2uSWppuvZIFfNRw7QGB46fMfA
+curl  -d '{"button":[{"name":"商机中心","sub_button":[{"type":"view","name":"生意管家","url":"http://m.zz91.com/myrc_index/"},{"type":"view","name":"废料交易","url":"http://m.zz91.com/category/"},{"type":"view","name":"行情日报","url":"http://m.zz91.com/weixin/priceday.html"},{"type":"view","name":"发布信息","url":"http://m.zz91.com/products_publish/"}]},{"name":"再生钱包","type":"view","url":"http://m.zz91.com/qianbao/"},{"name":"+更多","sub_button":[{"type":"click","name":"AQSIQ咨询","key":"aqsiq"},{"type":"click","name":"帐号绑定","key":"binding"},{"type":"view","name":"签到送礼","url":"http://m.zz91.com/app.html"},{"type":"view","name":"废料问答","url":"http://m.zz91.com/huzhu/?category_id=11"}]}]}' https://api.weixin.qq.com/cgi-bin/menu/create?access_token=eWkgnQP0FGHCF5GR3-6wrq2gK4PkvR_nEYtXHWijSyVDWdm8iDlwPommKKF5hoZHXSCEPA2vbgfN7D1kVaQoYInLQGLfemtoe7rzQYrEWuE
+ #图文回复
+			reply_news = """<xml>
+			<ToUserName><![CDATA[%s]]></ToUserName>
+			<FromUserName><![CDATA[%s]]></FromUserName>
+			<CreateTime>%s</CreateTime>
+			<MsgType><![CDATA[news]]></MsgType>
+			<ArticleCount>3</ArticleCount>
+			<Articles>
+			
+			<item>
+			<Title><![CDATA[ZZ91手机网]]></Title> 
+			<Description><![CDATA['']]></Description>
+			<PicUrl><![CDATA[http://img1.zz91.com/ads/1364745600000/0ba7bf8d-8bb2-4add-a475-aa26e3103105.jpg]]></PicUrl>
+			<Url><![CDATA[http://m.zz91.com]]></Url>
+			</item>
+			<item>
+			<Title><![CDATA[点此查看相关"%s"的行情报价]]></Title> 
+			<Description><![CDATA['']]></Description>
+			<PicUrl><![CDATA[picurl]]></PicUrl>
+			<Url><![CDATA[http://m.zz91.com/price/?keywords=%s]]></Url>
+			</item>
+			<item>
+			<Title><![CDATA[点此查看相关"%s"的供求商机]]></Title> 
+			<Description><![CDATA['']]></Description>
+			<PicUrl><![CDATA[picurl]]></PicUrl>
+			<Url><![CDATA[http://m.zz91.com/offerlist/?keywords=%s]]></Url>
+			</item>
+			
+			</Articles>
+			</xml>"""
+			#文本回复
+			reply_text = """<xml>
+			<ToUserName><![CDATA[%s]]></ToUserName>
+			<FromUserName><![CDATA[%s]]></FromUserName>
+			<CreateTime>%s</CreateTime>
+			<MsgType><![CDATA[text]]></MsgType>
+			<Content><![CDATA[%s]]></Content>
+			<FuncFlag>0</FuncFlag>
+			</xml>"""
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2891ef70c5a770d6&redirect_uri=http://m.zz91.com&response_type=code&scope=snsapi_base&state=123#wechat_redirect

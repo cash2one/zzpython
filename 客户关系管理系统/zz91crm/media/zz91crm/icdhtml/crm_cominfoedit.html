@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>{{companyinfo.company_name}}-详情</title>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+		<style>
+			/*  sectable两状态  begin*/
+			
+			.unselect {
+				cursor: hand;
+				background-color: #b9dbfe;
+				border-left: 1px #243f74 solid;
+				color: #243f74;
+				font-size: 12px;
+				word-break: keep-all;
+				padding: 5px 8px;
+				font-weight: bold;
+				text-align: center;
+			}
+			
+			.selected {
+				background-color: #e0edf7;
+				word-break: keep-all;
+				font-weight: bold;
+				font-size: 14px;
+				padding: 5px 8px;
+				color: #fff;
+				background-color: #5773a5;
+			}
+			
+			.secTable {}
+		</style>
+	</head>
+
+	<body>
+		<div class="demo-content">
+			<table id="secTable" cellspacing="0" cellpadding="0" border="0">
+				<tbody>
+					<tr>
+						<td nowrap="" class="selected" onclick="secBoard(0)">基本信息</td>
+						<td nowrap="" class="unselect"><a href="http://admin1949.zz91.com/web/zz91/salecrm/viewInfo.htm?companyId={{company_id}}" target="_blank">供求信息 <br>(<font color="#FF0000" class="pcount"></font>)</a></td>
+						<TD nowrap class=unselect><a href="http://admin1949.zz91.com/web/zz91/salecrm/viewInfo.htm?companyId={{company_id}}" target="_blank">发送的询盘信息<br>有<font color="#FF0000" class="rcount"></font>条</a></TD>
+						<TD nowrap class=unselect><a href="http://admin1949.zz91.com/web/zz91/salecrm/viewInfo.htm?companyId={{company_id}}" target="_blank">收到的询盘信息<br>有<font color="#FF0000" class="qcount"></font>条</a></TD>
+						<td width="99%" class="unselect">
+							<input name="com_rankFlag" type="hidden" id="com_rankFlag" value="2">
+							<input name="putmy" type="button" class="button button-warning putmy" value="放入我的客户库">
+							<input name="Submit" type="button" id="set_emphases" class="button" value="设置为重点">
+							<input name="Submit" type="button" id="submit_cominfo1" class="button" value="保存"> &nbsp;&nbsp;
+							<input name="closebu" type="button" class="button" id="closebu" onclick="parent.window.close();" value="关闭">
+							<input name="closebu" type="button" class="button" value="到款确认单" onclick="kaitongdang(1)">
+							<input type="button" name="Submit" class="button" value="CS公海记录" onclick="window.open('http://admin1949.zz91.com/web/zz91/crm/highsea/index.htm?companyId={{company_id}}','','')">
+							<input type="button" name="Submit" class="button" value="添加到黄页" onClick="window.open('/huangye/add.html?com_id={{company_id}}','','')">
+							{%if loginflag%}
+							<input type="button" class="button button-info" value="登录" onclick="window.open('http://admin1949.zz91.com/web/zz91/crm/company/adminmyrc.htm?account={{companyinfo.account}}','','')">
+							{%endif%}
+							{%if isvap and isadmin%}
+							<input type="button" class="button fangruicd" value="放到ICD库里">
+							{%endif%}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="doc-content">
+				<form class="form-horizontal">
+					{%if isvap or iszsh or a%}
+					<div class="doc-content">
+						<div class="form-links">
+							<ul class="nav-tabs" style="margin: 0px;">
+								
+								<li noload=1 class="active"><a href="http://adminasto.zz91.com/service/main.html?company_id={{company_id}}" target="serviceframe">CS开通服务</a></li>
+								<li noload=1><a href="http://adminasto.zz91.com/service/ad.html?email={{companyinfo.email}}" target="serviceframe">图片广告服务</a></li>
+								<li noload=1><a href="http://adminasto.zz91.com/service/other.html?company_id={{company_id}}" target="serviceframe">标王/移动端服务</a></li>
+								<li noload=1><a href="ordercompany.html?company_id={{company_id}}" target="serviceframe">开通单</a></li>
+								<li noload=1><a href="/icd/qianbaobalancelist.html?company_id={{company_id}}" target="serviceframe">再生钱包账单</a></li>
+							</ul>
+							<iframe id=serviceframe name=serviceframe style="HEIGHT: 200px; VISIBILITY: inherit; WIDTH: 100%; Z-INDEX: 2" frameborder="0" src="http://adminasto.zz91.com/service/main.html?company_id={{company_id}}"></iframe>
+						</div>
+					</div>
+					{%else%}
+					<div class="doc-content">
+						<div class="form-links">
+							<ul class="nav-tabs" style="margin: 0px;">
+								<li noload=1 class="active"><a href="http://adminasto.zz91.com/service/other.html?company_id={{company_id}}" target="serviceframe">再生钱包开通的服务</a></li>
+								<li noload=1><a href="/icd/qianbaobalancelist.html?company_id={{company_id}}" target="serviceframe">再生钱包账单</a></li>
+							</ul>
+							<iframe id=serviceframe name=serviceframe style="HEIGHT: 100px; VISIBILITY: inherit; WIDTH: 100%; Z-INDEX: 2" frameborder="0" src="http://adminasto.zz91.com/service/other.html?company_id={{company_id}}"></iframe>
+						</div>
+					</div>
+					{%endif%}
+					<div class="row">
+						<div class="control-group span50">
+							<label class="control-label control-label-small">客户信息：</label>
+							<div class="controls control-row-auto span45 span-width">
+								<div class="well well-small">
+									<div class="row">
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">公司名称</label>
+											<div class="controls">
+												<input type="text" class="control-text" name="company_name" id="company_name" value="{{companyinfo.company_name}}">
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">
+												地址
+											</label>
+											<div class="controls">
+												<input type="text" class=" control-text" name="address" id="address" value="{{companyinfo.address}}">
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">
+												邮编
+											</label>
+											<div class="controls">
+												<input type="text" class="control-text" name="address_zip" id="address_zip" value="{{companyinfo.address_zip}}">
+											</div>
+										</div>
+										<div class="control-group span6">
+											
+											<div class="controls">
+											{%if result.domain_zz91%}
+											二级域名：<a href="http://{{result.domain_zz91}}.zz91.com" target="_blank">{{result.domain_zz91}}.zz91.com</a>
+											{%endif%}|网站：<input type="text" class="control-text" name="website" id="website" value="{{resutl.website}}">
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">
+												行业
+											</label>
+											<div class="controls">
+												<select id="industry_code" name="industry_code">
+													{%if companyinfo.industry_code%}
+													<option value="{{companyinfo.industry_code}}">{{companyinfo.industry_code_txt}}</option>{%endif%}
+													<option value="">--请选择--</option>
+													<option value="10001000">废塑料</option>
+													<option value="10001001">废金属</option>
+													<option value="10001002">废纸</option>
+													<option value="10001003">废旧轮胎与废橡胶</option>
+													<option value="10001004">废纺织品与废皮革</option>
+													<option value="10001005">废电子电器</option>
+													<option value="10001006">废玻璃</option>
+													<option value="10001007">废旧二手设备</option>
+													<option value="10001008">其他废料</option>
+													<option value="10001009">服务</option>
+													<option value="10001010">塑料原料</option>
+												</select>
+											</div>
+										</div>
+										<div class="control-group span7">
+											<label for="" class="control-label control-label-small">
+												类型
+											</label>
+											<div class="controls">
+												<select id="service_code" name="service_code">
+													{%if companyinfo.service_code%}
+													<option value="{{companyinfo.service_code}}">{{companyinfo.service_code_txt}}</option>{%endif%}
+													<option value="">--请选择--</option>
+													<option value="10201001">国外供货商</option>
+													<option value="10201002">国外回收贸易商</option>
+													<option value="10201003">码头，仓库储存商</option>
+													<option value="10201004">国内供应商</option>
+													<option value="10201005">国内回收贸易商</option>
+													<option value="10201006">国内加工，拆解商</option>
+													<option value="10201007">利废企业</option>
+													<option value="10201008">设备，技术，服务提供商</option>
+													<option value="10201009">冶炼厂</option>
+													<option value="10201010">电子厂</option>
+													<option value="10201011">造粒厂</option>
+												</select>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="control-group span12">
+											<label class="control-label control-label-small">
+												公司简介
+											</label>
+											<div class="controls control-row4">
+												<textarea type="text" class="input-large" name="introduction" id="introduction" data-valid="{}">{{companyinfo.introduction}}</textarea>
+											</div>
+										</div>
+										<div class="control-group span16">
+											<label class="control-label control-label-small">
+												主营业务
+											</label>
+											<div class="controls control-row4">
+												<textarea type="text" class="input-large" name="business" id="business" data-valid="{}">{{companyinfo.business}}</textarea>
+											</div>
+										</div>
+										<div class="control-group span10">
+											<label class="control-label control-label-small">国家</label>
+											<div class="controls control-row4">
+												<select name="country" id="country" onchange="selectcountry(this.value)">
+													<option value="1">中国</option>
+													<option value="0">其他国家/地区</option>
+												</select>
+											</div>
+										</div>
+
+										<div class="control-group span8" id="othercountrys" style="display:none;">
+											<label class="control-label control-label-small">其他国家</label>
+											<div class="controls control-row4">
+												<select name="ccountry" id="ccountry">
+													<option value="">--请选择其他国家--</option>
+													{%for list in guowaiprovincelist%}
+													<option value="{{list.code}}">{{list.label}}</option>
+													{%endfor%}
+												</select>
+											</div>
+										</div>
+										<div id="mycountry">
+											<div class="control-group span8">
+												<label class="control-label control-label-small">省份</label>
+												<div class="controls control-row4">
+													<select name="p" id="p">
+														<option value="">--请选择省份--</option>
+														{%for province in provincelist%}
+														<option value="{{province.code}}">{{province.label}}</option>
+														{%endfor%}
+													</select>
+												</div>
+											</div>
+											<div class="control-group span8">
+												<label class="control-label control-label-small">城市</label>
+												<div class="controls control-row4">
+													<select name="c" id="c">
+														<option value="">--请选择城市--</option>
+													</select>
+												</div>
+											</div>
+											<div class="control-group span8">
+												<label class="control-label control-label-small">市区</label>
+												<div class="controls control-row4">
+													<select name="d" id="d">
+														<option value="">--请选择市区--</option>
+													</select>
+												</div>
+											</div>
+											<!--  <div class="control-group span8" >
+													<label class="control-label control-label-small">产业带</label>
+													<div class="controls control-row4">
+														<select >
+															<option value="">--请选择产业带--</option>
+														</select>
+													</div>
+											</div>-->
+										</div>
+										<div style="text-align: center;font-size: 20px;">
+											{%if arrviptype.vipcheck%}
+						                	{%if arrviptype.ldb%}
+											<a href="http://www.zz91.com/ppc/index{{company_id}}.htm" target=_blank>查看客户网站商铺</a>
+											{%else%}
+						                	<a href="http://{{arrviptype.vipsubname}}.zz91.com/" target=_blank>查看客户网站商铺</a>
+											{%endif%}
+											{%else%}
+											{%if arrviptype.ldb%}
+											<a href="http://www.zz91.com/ppc/index{{company_id}}.htm" target=_blank>查看客户网站商铺</a>
+											{%else%}
+											<a href="http://company.zz91.com/compinfo{{company_id}}.htm" target=_blank>查看客户网站商铺</a>
+											{%endif%}
+											{%endif%}
+										</div>
+
+									</div>
+									<div class="row">
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">钱包余额:</label>
+											<div class="controls">
+												￥ {{fee}}  <a href="/icd/qianbaobalancelist.html?company_id={{company_id}}" target="_blank">查看账单</a>
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small" style="width: 100px;">是否充值成功:</label>
+											<div class="controls">
+												{%if iszhifu%}<font color="red"><b>是</b></font>{%else%}未支付{%endif%}
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small" style="width: 100px;">是否安装App:</label>
+											<div class="controls">
+												{%if isapp%}<font color="red"><b>是</b></font>{%else%}无{%endif%}
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small" style="width: 100px;">是否绑定微信:</label>
+											<div class="controls">
+												{%if isweixin%}<font color="red"><b>是</b></font>{%else%}无{%endif%}
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">注册来源:</label>
+											<div class="controls">
+												{{companyinfo.regfrom}}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="control-group span50">
+							<label class="control-label control-label-small">联系方式：</label>
+							<div class="controls control-row-auto span45 span-width">
+								<div class="well well-small">
+									<div class="row">
+
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">
+												手机
+											</label>
+											<div class="controls">
+												<input type="text" class=" control-text" name="mobile" id="mobile" value="{{companyinfo.mobile}}">
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">
+												联系人
+											</label>
+											<div class="controls">
+												<input type="text" class=" control-text" name="contact" id="contact" value="{{companyinfo.contact}}">
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">
+												职位
+											</label>
+											<div class="controls">
+												<input type="text" class=" control-text" name="position" id="position" value="{{companyinfo.position}}">
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label class="control-label control-label-small">
+												性别
+											</label>
+											<div class="controls">
+												<select class="input-small" name="sex" id="sex">
+													{%if companyinfo.sex%}
+													<option value="{{companyinfo.sex}}">{{companyinfo.sex_txt}}</option>{%endif%}
+													<option value="">--请选择--</option>
+													<option value="0">先生</option>
+													<option value="1">女士</option>
+												</select>
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">
+												email
+											</label>
+											<div class="controls">
+												<input type="text" class=" control-text" name="email" id="email" value="{{companyinfo.email}}">
+											</div>
+										</div>
+										<div class="control-group span12">
+											<label for="" class="control-label control-label-small">
+												电话
+											</label>
+											<div class="controls">
+												<input type="text" style="width:20px;" name="tel_country_code" id="tel_country_code" value="{{companyinfo.tel_country_code}}">-
+												<input type="text" style="width:30px;" name="tel_area_code" id="tel_area_code" value="{{companyinfo.tel_area_code}}">-
+												<input type="text" style="width:80px;" name="tel" id="tel" value="{{companyinfo.tel}}">
+											</div>
+										</div>
+										<div class="control-group span7">
+											<label for="" class="control-label control-label-small">
+												传真
+											</label>
+											<div class="controls">
+												<input type="text" style="width:20px;" name="fax_country_code" id="fax_country_code" value="{{companyinfo.fax_country_code}}">-
+												<input type="text" style="width:30px;" name="fax_area_code" id="fax_area_code" value="{{companyinfo.fax_area_code}}">-
+												<input type="text" style="width:80px;" name="fax" id="fax" value="{{companyinfo.fax}}">
+											</div>
+										</div>
+										
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">
+												登录账号:
+											</label>
+											<div class="controls" style="line-height: 25px;">
+												{{companyinfo.account}}
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">
+												公司ID号:
+											</label>
+											<div class="controls" style="line-height: 25px;">
+												{{company_id}}
+											</div>
+										</div>
+
+									</div>
+									其他联系人
+									<button type="button" class="button button-success" id="otherpersonShow">添加</button>
+									<table cellspacing="0" class="table table-bordered">
+										<thead>
+											<tr>
+												<th class="control-group span6">联系人</th>
+												<th class="control-group span4">性别</th>
+												<th class="control-group span6">职位</th>
+												<th class="control-group span4">电话</th>
+												<th class="control-group span4">传真</th>
+												<th class="control-group span4">手机</th>
+												<th class="control-group span4">Email</th>
+												<th class="control-group span4">地址</th>
+												<th class="control-group span4">添加时间</th>
+												<th class="control-group span4">备注</th>
+												<th class="control-group span4">修改时间</th>
+												<th class="control-group span4">操作</th>
+											</tr>
+										</thead>
+										<tbody>
+											{%for otherperson in otherpersonlist%}
+											<tr>
+												<td>{{otherperson.name}}</td>
+												<td>{{otherperson.sextxt}}</td>
+												<td>{{otherperson.station}}</td>
+												<td>{{otherperson.tel}}</td>
+												<td>{{otherperson.fax}}</td>
+												<td>{{otherperson.mobile}}</td>
+												<td>{{otherperson.email}}</td>
+												<td>{{otherperson.address}}</td>
+												<td>{{otherperson.gmt_created}}</td>
+												<td>{{otherperson.bz}}</td>
+												<td>{{otherperson.gmt_modified}}</td>
+												<td>
+													{%if otherperson.myflag%}<a href="del_otherperson.html?otherperson_id={{otherperson.id}}&company_id={{company_id}}&dotype={{dotype}}" onclick="return confirm('确定要删除吗！')">删除</a>|
+													<span class="edit" style="cursor:pointer;color:#f00" editid="{{otherperson.id}}">修改</span>{%endif%}
+												</td>
+											</tr>
+											{%endfor%}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="control-group span50">
+							<label class="control-label control-label-small">业务方向：</label>
+							<div class="controls control-row-auto span45 span-width">
+								<div class="well well-small">
+									<div class="row">
+										<div class="control-group span8">
+											<label class="control-label control-label-small">主营方向</label>
+											<input type="radio" name="business_type" id="business_type1" class="radioItem" value="1" {%ifequal companyinfo.business_type '1' %}checked="checked" {%endifequal%}>
+											<label for="business_type1">销售</label> &nbsp;&nbsp;&nbsp;
+											<input type="radio" name="business_type" id="business_type2" class="radioItem" value="2" {%ifequal companyinfo.business_type '2' %}checked="checked" {%endifequal%}>
+											<label for="business_type2">采购</label> &nbsp;&nbsp;&nbsp;
+											<input type="radio" name="business_type" id="business_type0" class="radioItem" value="0" {%ifequal companyinfo.business_type '0' %}checked="checked" {%endifequal%}>
+											<label for="business_type0">两者都有</label> &nbsp;&nbsp;&nbsp;
+										</div>
+										<div class="control-group span9" id="sale_product_txt" style="display:none;">
+											<label class="control-label-auto">销售的产品(提供的服务)</label>
+											<input type="text" class=" control-text" id="sale_details" value="{{companyinfo.sale_details}}">
+										</div>
+										<div class="control-group span9" id="buy_product_txt" style="display:none;">
+											<label class="control-label control-label-auto">采购的产品(需要的服务)</label>
+											<input type="text" class=" control-text" id="buy_details" value="{{companyinfo.buy_details}}">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="control-group span50">
+							<label class="control-label control-label-small">客户活动：</label>
+							<div class="controls control-row-auto span45 span-width">
+								<div class="well well-small">
+									<div class="row">
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">
+												最近登录:
+											</label>
+											<div class="controls">
+												{{companyinfo.last_login_time}}
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">
+												登录次数:
+											</label>
+											<div class="controls">
+												{{companyinfo.num_login}}
+											</div>
+										</div>
+										<div class="control-group span6">
+											<label for="" class="control-label control-label-small">
+												注册时间:
+											</label>
+											<div class="controls">
+												{{companyinfo.regtime}}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="control-group span50">
+							<label class="control-label control-label-small">客户分类：</label>
+							<div class="controls control-row-auto span45 span-width">
+								<div class="well well-small">
+									<div class="row">
+										<div class="control-group">
+											<label class="control-label">公海除杂：</label>
+											<div class="controls rubbish">
+												<label class="checkbox" for="cz1">
+													<input type="checkbox" id="cz1" name="rubbish" value="n"/>成品/新品</label>
+												<label class="checkbox" for="cz2">
+													<input type="checkbox" id="cz2" name="rubbish" value="t"/>不做废料</label>
+												<label class="checkbox" for="cz3">
+													<input type="checkbox" id="cz3" name="rubbish" value="e"/>量小、10吨一下、边缘产品</label>
+												<label class="checkbox" for="cz4">
+													<input type="checkbox" id="cz4" name="rubbish" value="g"/>已是高会</label>
+												<label class="checkbox" for="cz5">
+													<input type="checkbox" id="cz5" name="rubbish" value="u"/>半废品池</label>
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">重点客户：</label>
+											<div class="controls rubbish">
+												<input type="radio" name="emphases" {%ifequal companyinfo.emphases 1 %}checked="checked" {%endifequal%} value="1" id="emphases1">
+												<label for="emphases1">是</label>
+												<input type="radio" name="emphases" {%ifequal companyinfo.emphases 0 %}checked="checked" {%endifequal%} value="0" id="emphases2">
+												<label for="emphases2">否</label>
+											</div>
+											<label class="control-label">是否垃圾客户：</label>
+											<div class="controls rubbish">
+												<input type="radio" name="islaji" {%ifequal companyinfo.islaji 1 %}checked="checked" {%endifequal%} value="1" id="islaji1">
+												<label for="islaji1">是</label>
+												<input type="radio" name="islaji" {%ifequal companyinfo.islaji 0 %}checked="checked" {%endifequal%} value="0" id="islaji2">
+												<label for="islaji2">否</label>
+											</div>
+											<label class="control-label">是否死海客户：</label>
+											<div class="controls rubbish">
+												<input type="radio" name="isdeath" {%ifequal companyinfo.isdeath 1 %}checked="checked" {%endifequal%} value="1" id="isdeath1">
+												<label for="isdeath1">是</label>
+												<input type="radio" name="isdeath" {%ifequal companyinfo.isdeath 0 %}checked="checked" {%endifequal%} value="0" id="isdeath2">
+												<label for="isdeath2">否</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					{%if ctcompanylist.listall%}
+					<font color="#ff0000">有{{ctcompanylist.listcount}}个手机或电话相似的客户，可能会发生撞单，请注意处理！</font>
+					<table cellspacing="0" class="table table-bordered">
+						<thead>
+							<tr>
+								<th class="control-group span6">公司</th>
+								<th class="control-group span4">账号</th>
+								<th class="control-group span4">电话</th>
+								<th class="control-group span6">手机</th>
+								<th class="control-group span4">挑入时间</th>
+								<th class="control-group span4">最后联系时间</th>
+								<th class="control-group span4">最后登录时间</th>
+								<th class="control-group span4">登录次数</th>
+								<th class="control-group span4">ICD销售人员</th>
+								<th class="control-group span4">VAP销售</th>
+							</tr>
+						</thead>
+						<tbody>
+							{%for list in ctcompanylist.listall%}
+							<tr>
+								<td>
+									<a href="/icd/crm_cominfoedit.html?company_id={{list.id}}&dotype={{dotype}}" target="_blank">公司：{{list.name}}</a>
+										{%ifequal list.checked 1%}<font color="#ff0000">[未审]</font>{%endifequal%}
+								</td>
+								<td>{{list.account}}</td>
+								<td>{{list.tel_country_code}}-{{list.tel_area_code}}-{{list.tel}}</td>
+								<td>{{list.mobile}}</td>
+								<td>{{list.assigntime}}</td>
+								<td>{{list.salesinfo.lastteltime}}</td>
+								<td>{{list.last_login_time}}</td>
+								<td>{{list.num_login}}</td>
+								<td>{{list.salesman}}</td>
+								<td>{{list.vap_salesman}}</td>
+							</tr>
+							{%endfor%}
+						</tbody>
+					</table>
+					{%endif%}
+					<div class="doc-content">
+						<h3>联系小计</h3>
+						<div class="form-links">
+							<ul class="nav-tabs">
+								<li {%ifequal telflag 0%}class="active"{%endifequal%}><a href="tellist.html?company_id={{company_id}}&telflag=0" target="topt">ICD电话销售电话记录</a></li>
+								<li {%if isvap%}class="active"{%endif%}><a href="tellist.html?company_id={{company_id}}&telflag=4" target="topt">VAP销售电话记录</a></li>
+								<li {%if iszsh%}class="active"{%endif%}><a href="tellist.html?company_id={{company_id}}&telflag=5" target="topt">再生汇电话记录</a></li>
+								<li noload=1><a href="http://admin1949.zz91.com/web/zz91/salecrm/viewInfo.htm?companyId={{company_id}}" target="_blank">CS服务记录</a></li>
+								<li noload=1><a href="http://admin1949.zz91.com/web/zz91/trust/myLog.htm?companyId={{company_id}}" target="_blank">交易组电话记录</a></li>
+								<li noload=1><a href="#">SEO小计</a></li>
+							</ul>
+							<iframe id=topt name=topt style="HEIGHT: 500px; VISIBILITY: inherit; WIDTH: 100%; Z-INDEX: 2" frameborder="0" src="tellist.html?company_id={{company_id}}&telflag={{telflag}}"></iframe>
+						</div>
+					</div>
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+
+					<div style="position: fixed;bottom: 0px;width: 100%;background-color: #5773a5;height: 50px;line-height: 50px; z-index: 1000;">
+						<div class="control-group" style="text-align: center;margin: 0 auto;width: 100%;">
+							<div class="row">
+								<ul class="toolbar">
+									<li style="float: left;padding-top: 8px;padding-left: 20px;">
+										<input name="putmy" type="button" class="button button-warning putmy" value="放入我的客户库">
+										<input name="puttogonghai" type="button" class="button button-danger puttogonghai" value="放入公海">
+									</li>
+									<li style="padding-top: 8px;">
+										<input type="button" class="button button-warning" id="sale_record" value="销售记录">
+										<input type="button" class="button button-success" id="submit_cominfo2" value="保存公司信息">
+									
+										<input name="closebu" type="button" class="button" value="放到到款确认单" onclick="kaitongdang(1)">
+										<input type="button" class="button button-success" id="close" onclick="parent.window.close();" value="关闭">
+									</li>
+									{%if isvap%}
+									<li style="float: right;padding-top: 8px;padding-right: 20px;">
+										<input type="button" class="button" id="service_record" onclick="window.open('http://admin1949.zz91.com/web/zz91/salecrm/viewInfo.htm?companyId={{company_id}}','','')" value="查看服务记录">
+									</li>
+									{%endif%}
+									<li style="float: right;padding-top: 8px;padding-right: 20px;">
+										<input type="button" class="button" id="customer_log" onclick="window.open('/icd/khloglist.html?company_id={{company_id}}&dotype={{dotype}}','','')" value="操作日志">
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</form>
+				</p>
+				<!-- script end -->
+			</div>
+			<div class="hide">
+				<div class="hidden" id="sale_record_show">
+					<form id="form" class="form-horizontal">
+						<div class="control-group">
+							<label class="control-label">下次联系时间：</label>
+							<div class="controls">
+								<input type="text" class="calendar calendar-time" name="contactnexttime" id="contactnexttime" data-rules="{required : true}"/>
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">联系情况：</label>
+							<div class="controls">
+								<input type="radio" name="contacttype" value="13" checked="checked" onClick="changeTab(13)" id="c_13">
+								<label for="c_13">有效联系</label>
+								<input type="radio" name="contacttype" value="12" onClick="changeTab(12)" id="c_12">
+								<label for="c_12">无效联系</label>
+								<div style="display:none;" id="tabinfo1">
+									<input type='radio' name='c_Nocontact' value='5' id="c_Nocontact5" />
+									<label for="c_Nocontact5">无进展</label>
+									<input type='radio' name='c_Nocontact' value='1' id="c_Nocontact1" />
+									<label for="c_Nocontact1">无人接听</label>
+									<input type='radio' name='c_Nocontact' value='2' onClick="alert('提醒：请注意此选项，请再次确认该客户手机和座机“号码错误”，选择完后该客户将不会在公海和前台出现。如有发现该客户乱选，责任自负。')" id="c_Nocontact2" />
+									<label for="c_Nocontact2">号码错误</label>
+									<input type='radio' name='c_Nocontact' value='3' id="c_Nocontact3" />
+									<label for="c_Nocontact3">停机</label>
+									<input type='radio' name='c_Nocontact' value='4' id="c_Nocontact4" />
+									<label for="c_Nocontact4">关机</label>
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="control-group">
+							<label class="control-label">客户等级：</label>
+							<div class="controls">
+								{%if not isvap%}
+								<select name="com_rank" id="com_rank" onChange="changestar(this.value)" data-rules="{required : true}">
+									<option value="0">--请选择等级--</option>
+									<option value="1.0">★无条件，无意向</option>
+									<option value="2.0">★★有条件，目前无意向</option>
+									<option value="3.0">★★★条件好，意向一般</option>
+									<option value="4.0">★★★★条件好，意向好</option>
+									<option value="4.1">|——普通四星</option>
+									<option value="4.8">|——钻石四星</option>
+									<option value="5.0">★★★★★口头确定付款</option>
+								</select>
+								{%else%}
+								<select name="com_rank" id="com_rank" data-rules="{required : true}">
+									<option value="0">--请选择等级--</option>
+									<option value="1.0" >★无条件，无意愿</option>
+									<option value="2.0" >★★有条件，无意愿</option>
+									<option value="3.0" >★★★意愿不明确</option>
+									<option value="4.0" >★★★★条件好，意向好</option>
+									<option value="4.8" >长4星|——有意愿，时间未定</option>
+									<option value="4.1" >短4星|——近期有意愿【一个月内】</option>
+									<option value="5.0" >★★★★★意愿好，近3天会合作</option>
+									<option value="6.0" >★★★★★★已合作</option>
+								</select>
+								{%endif%}
+							</div>
+						</div>
+						<!--  <div class="control-group" style='display:none' id="change5star">
+							<label class="control-label">五星条件及流程：</label>
+							<div class="controls">
+							</div>
+						</div>-->
+						<div class="control-group">
+							<label class="control-label">电话类型：</label>
+							<div class="controls">
+								{%if not iszsh%}
+									{%if not isvap%}
+									<input type="radio" name="telflag" id="new_zst" value="0" {%if not isvap%}checked{%endif%}>
+									<label for="new_zst">新签</label>
+									{%endif%}
+									<!--<input type="radio" name="telflag" id="renew_zst" value="2">
+									<label for="renew_zst">续签再生通</label>-->
+									{%if isvap%}
+									<input type="radio" name="telflag" id="vapflag" value="4" {%if isvap%}checked{%endif%}>
+									<label for="vapflag">VAP销售</label>
+									{%endif%}
+									<input name="seoflag" type="checkbox" id="seoflag" value="1">
+									<label for="seoflag">SEO销售</label>
+								{%else%}
+									<input type="radio" name="telflag" id="zshflag" value="5" checked>
+									<label for="zshflag">再生汇</label>
+								{%endif%}
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label">备注：</label>
+							<div class="controls">
+								<textarea type="text" class="input-large" name="detail" id="detail" data-valid="{}" data-rules="{required : true}">{{companyinfo.contact}} {{companyinfo.mobile}}</textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="admintel" style="display: none;text-align: center;"><textarea type="text" style="width: 90%;height: 250px;margin-top: 10px;" class="input-large" id="admincontent"></textarea></div>
+			<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+			<script type="text/javascript" src="/assets/js/laytpl.js"></script>
+			<script type="text/javascript" src="/assets/layer/layer.js"></script>
+			<script type="text/javascript" src="/assets/js/bui-min.js"></script>
+			<script type="text/javascript" src="/assets/js/config-min.js"></script>
+			<script type="text/javascript" src="/assets/js/comm.js"></script>
+			<script type="text/javascript">
+				BUI.use('bui/calendar', function(Calendar) {
+					var datepicker = new Calendar.DatePicker({
+						trigger: '.calendar-time',
+						showTime: true,
+						autoRender: true
+					});
+				});
+				BUI.use(['bui/overlay', 'bui/form', 'bui/mask'], function(Overlay, Form) {
+					var form,
+						dialog = new Overlay.Dialog({
+							title: '增加联系人',
+							width: 500,
+							height: 450,
+							loader: {
+								url: '/icd/otherperson.html',
+								autoLoad: false, //不自动加载
+								//params : {dotype : '{{dotype}}'},//附加的参数
+								lazyLoad: false, //不延迟加载
+								callback: function() {
+									var node = dialog.get('el').find('form'); //查找内部的表单元素
+									form = new Form.HForm({
+										srcNode: node,
+										autoRender: true
+									});
+								}
+							},
+							//mask: false,
+							success: function() {
+								//可以直接action 提交
+								form && form.submit(); //也可以form.ajaxSubmit(params);
+								//this.close();
+								//window.location.href = "";
+							}
+						});
+					//dialog.show();
+					var count = 0;
+					$('#otherpersonShow,.edit').on('click', function() {
+						form && form.destroy(); //移除掉之前的表单
+						dialog.show();
+						var editid = $(this).attr('editid');
+						var params = {
+							company_id: {{company_id}},
+							edit: editid,
+							dotype:"{{dotype}}",
+						}; //加载表单的参数
+						dialog.get('loader').load(params);
+						count++;
+					});
+				});
+				BUI.use(['bui/overlay', 'bui/form'], function(Overlay, Form) {
+					var form = new Form.HForm({
+						srcNode: '#form'
+					}).render();
+					var dialog = new Overlay.Dialog({
+						title: '销售记录',
+						width: 500,
+						height: 320,
+						mask:false,
+						align: {
+			              //node : '#t1',//对齐的节点
+			              points: ['bl','br'], //对齐参考：http://dxq613.github.io/#positon
+			              offset: [10,10] //偏移
+			            },
+						//配置DOM容器的编号
+						contentId: 'sale_record_show',
+						success: function() {
+							
+							var user_id = {{user_id}};
+							var company_id = {{company_id}}; //公司id
+							var contacttype = $("input[name='contacttype']:checked").val(); //联系情况
+							var c_Nocontact = $("input[name='c_Nocontact']:checked").val(); //无效联系类型
+							var contactnexttime = $("#contactnexttime").val(); //下次联系时间
+							if (contactnexttime==""){
+								alert("请选择下次联系时间！")
+								return false;
+							}
+							var com_rank = $("#com_rank").val();
+							if (com_rank=="0"){
+								alert("请选择星级！");
+								$("#com_rank").focus()
+								return false;
+							}
+							var telflag = $("input[name='telflag']:checked").val(); //电话类型
+							var detail = $("#detail").val();
+							$.ajax({
+								type: "post",
+								url: "addtellist.html",
+								data: {
+									user_id: user_id,
+									company_id: company_id,
+									contacttype: contacttype,
+									c_Nocontact: c_Nocontact,
+									contactnexttime: contactnexttime,
+									com_rank: com_rank,
+									telflag: telflag,
+									detail: detail,
+									dotype:'{{dotype}}',
+								},
+								dataType: "json",
+								success: function(data) {},
+								error : function(e) {
+									//alert(JSON.stringify(e));
+								}
+							});
+							this.close();
+							window.location.href = "";
+						}
+					});
+					$('#sale_record').on('click', function() {
+						//不在我的客户库
+						var now = new Date();
+						var nowtime=now.getFullYear()+"-"+((now.getMonth()+1)<10?"0":"")+(now.getMonth()+1)+"-"+(now.getDate()<10?"0":"")+now.getDate()+ " " + (now.getHours()<10?"0":"")+now.getHours() + ":" + (now.getMinutes()<10?"0":"")+now.getMinutes()+ ":" + (now.getSeconds()<10?"0":"")+now.getSeconds();
+						$("#contactnexttime").val("{{gmt_created}}");
+						//alert("{{gmt_created}}")
+						if (ismycompany=="0"){
+							//不在任何人的客户库里
+							if (ismysee==2){
+								layer.msg('该客户不在你的客户库里，不能对此操作？', {
+									time: 0 //不自动关闭
+									,btn: ['放入我的库里', '关闭']
+									,yes: function(index){
+										putinmy()
+									}
+								});
+							}else{
+								//在其他人的客户库
+								layer.msg('失败，你没有权限操作？', {
+									time: 0 //不自动关闭
+									,btn: ['关闭'],
+									btnAlign: 'c',
+								});
+							}
+							return false
+						}
+						var user_id={{user_id}};
+						dialog.show();
+						return;
+						layer.open({
+							type: 1,
+							title: '销售记录',
+							shadeClose: true,
+							shade: 0,
+							fixed:false,
+							offset: 'rb',
+							btn: ['保存','取消'],
+							yes: function(index){
+								var user_id = {{user_id}};
+								var company_id = {{company_id}}; //公司id
+								var contacttype = $("input[name='contacttype']:checked").val(); //联系情况
+								var c_Nocontact = $("input[name='c_Nocontact']:checked").val(); //无效联系类型
+								var contactnexttime = $("#contactnexttime").val(); //下次联系时间
+								var com_rank = $("#com_rank").val();
+								var telflag = $("input[name='telflag']:checked").val(); //电话类型
+								var detail = $("#detail").val();
+								$.ajax({
+									type: "post",
+									url: "addtellist.html",
+									data: {
+										user_id: user_id,
+										company_id: company_id,
+										contacttype: contacttype,
+										c_Nocontact: c_Nocontact,
+										contactnexttime: contactnexttime,
+										com_rank: com_rank,
+										telflag: telflag,
+										detail: detail,
+										dotype:'{{dotype}}',
+									},
+									dataType: "json",
+									success: function(data) {},
+									error : function(e) {
+										//alert(JSON.stringify(e));
+									}
+								});
+								layer.close(index); 
+								window.location.href = "";
+							},
+							style:'',
+							maxmin: false, //开启最大化最小化按钮
+							area: ['500px', '320px'],
+							content: $('#sale_record_show'),
+							scrollbar: true,
+							success: function(layero, index){
+								
+							}
+						});
+					});
+					//dialog.show();
+				});
+			</script>
+			<script type="text/javascript">
+				var ismysee="{{ismysee}}";
+				var ismycompany="{{ismycompany}}";
+				var emphases={{companyinfo.emphases}};
+				$(document).ready(function() {
+					//业务方向checkradio切换（销售，采购，或两者都有）
+					var business_type_value = $("input[name='business_type']:checked").val();
+					if (business_type_value == 0) {
+						$("#sale_product_txt").show();
+						$("#buy_product_txt").show();
+					}
+					if (business_type_value == 1) {
+						$("#sale_product_txt").show();
+						$("#buy_product_txt").hide();
+					}
+					if (business_type_value == 2) {
+						$("#sale_product_txt").hide();
+						$("#buy_product_txt").show();
+					}
+					$(".radioItem").change(function() {
+						var business_type_value = $("input[name='business_type']:checked").val();
+						if (business_type_value == 0) {
+							$("#sale_product_txt").show();
+							$("#buy_product_txt").show();
+						}
+						if (business_type_value == 1) {
+							$("#sale_product_txt").show();
+							$("#buy_product_txt").hide();
+						}
+						if (business_type_value == 2) {
+							$("#sale_product_txt").hide();
+							$("#buy_product_txt").show();
+						}
+					});
+					$(".nav-tabs li").click(function() {
+						var noload=$(this).attr("noload")
+						if (!noload){
+							$(".nav-tabs li").removeClass("active");
+							$(this).addClass("active");
+							layer.load(1);
+						}
+					})
+					
+					var str = "{{companyinfo.rubbish}}";
+				    $(str.split(",")).each(function (i,dom){
+				        $(":checkbox[name=rubbish][value='"+dom+"']").prop("checked",true);
+				    });
+				    $("#p").change(function() {
+						getcity()
+					});
+					$("#c").change(function() {
+						getcityarea()
+					});
+					selectOption("p","{{companyinfo.province_code}}");
+					getcity("{{companyinfo.area_code}}");
+					//getcityarea("{{companyinfo.area_code}}");
+					{%if companyinfo.guowai%}
+						selectOption("country","0");
+						selectOption("ccountry","{{companyinfo.area_code}}");
+						selectcountry("0")
+					{%endif%}
+					
+//					var surl="http://adminasto.zz91.com/service/main.html?company_id={{company_id}}&json=1"
+//					$.getScript(surl, function() {
+//						var ret=_suggest_result_;
+//						var pageHtml=""
+//						var getTpl=document.getElementById("servicemainlist").innerHTML;
+//						$.each(ret.result, function(index, item) {
+//							laytpl(getTpl).render(item, function(html) {
+//								pageHtml = pageHtml + html;
+//							});
+//						})
+//						$(".servicemain").html(pageHtml)
+//					});
+					
+					//设置为重点客户
+					if (emphases==1){
+						$('#set_emphases').val("取消为重点");
+					}else{
+						$('#set_emphases').val("设置为重点");
+					}
+					$('#set_emphases').on('click', function() {
+						if (ismycompany=="0"){
+							layer.msg('失败，你没有权限操作？', {
+								time: 0 //不自动关闭
+								,btn: ['关闭']
+							});
+							return false;
+						}
+						if (emphases==1){
+							emphases=0
+						}else{
+							emphases=1
+						}
+						var data={
+							company_id:{{company_id}},
+							emphases:emphases,
+							dotype:"{{dotype}}"
+						}
+						crmajax("post","/icd/set_emphases.html",data,function(ret){
+							if (ret){
+								layer.msg(ret.res);
+								if (emphases==1){
+									$('#set_emphases').val("取消为重点");
+								}else{
+									$('#set_emphases').val("设置为重点");
+								}
+								$("input[name=emphases][value='"+emphases+"']").attr("checked",'checked');
+							}
+						},function(err){
+							layer.open({
+								type: 1,
+								title: 'err',
+								shadeClose: true,
+								shade: 0.3,
+								area: ['70%', '70%'],
+								content: err.responseText
+							});
+						})
+					});
+					//放入我的客户库
+					$('.putmy').on('click', function() {
+						putinmy()
+					});
+					//放到ICD库里
+					$('.fangruicd').on('click', function() {
+						var data={
+							company_id:{{company_id}}
+						}
+						crmajax("get","/icd/assigntoicd.html",data,function(ret){
+								//alert(JSON.stringify(ret))
+								if (ret){
+									if (ret.err=='true'){
+										layer.msg(ret.res, {
+											time: 0 //不自动关闭
+											,btn: ['关闭']
+											,btnAlign: 'c',
+										});
+									}else{
+										layer.msg(ret.res);
+									}
+								}
+							},function(err){
+								layer.open({
+									type: 1,
+									title: 'err',
+									shadeClose: true,
+									shade: 0.3,
+									area: ['70%', '70%'],
+									content: err.responseText
+								});
+							})
+					});
+					//放入公海
+					$('.puttogonghai').on('click', function() {
+						if (ismycompany=="0"){
+							layer.msg('失败，你没有权限操作？', {
+								time: 0 //不自动关闭
+								,btn: ['关闭']
+								,btnAlign: 'c',
+							});
+							return false;
+						}
+						layer.confirm('您是确实要放入公海吗？', {
+							btn: ['确定','取消'] //按钮
+						}, function(){
+							var data={
+								companylist:[{{company_id}}],
+								dotype:"{{dotype}}",
+							}
+							crmajax("get","/icd/droptogonghai.html",data,function(ret){
+								//alert(JSON.stringify(ret))
+								if (ret){
+									if (ret.err=='true'){
+										layer.msg(ret.res, {
+											time: 0 //不自动关闭
+											,btn: ['关闭']
+											,btnAlign: 'c',
+										});
+									}else{
+										layer.msg(ret.res);
+										if (ret.err=="false"){
+											ismycompany="0";
+											ismysee="0";
+										}
+									}
+								}
+							},function(err){
+								layer.open({
+									type: 1,
+									title: 'err',
+									shadeClose: true,
+									shade: 0.3,
+									area: ['70%', '70%'],
+									content: err.responseText
+								});
+							})
+						}, function(){
+							
+						});
+						
+					});
+				});
+				function closeloading(){
+					setTimeout(function(){
+					  layer.closeAll('loading');
+					}, 2);
+				}
+				function changeTab(ID) {
+					if (ID == "13") {
+						document.getElementById("tabinfo1").style.display = "none"
+					} else {
+						document.getElementById("tabinfo1").style.display = ""
+					}
+				}
+				function changestar(id) {
+//					var obj = document.getElementById("change5star")
+//					if (id == "5") {
+//						obj.style.display = ""
+//					} else {
+//						obj.style.display = "none"
+//					}
+				}
+				
+				function kaitongdang(flag){
+					if (ismysee=="0" || ismysee=="2"){
+						layer.msg('失败，你没有权限操作', {
+							time: 0 //不自动关闭
+							,btn: ['关闭']
+						});
+						return false
+					}
+					layer.open({
+						type: 2,
+						title: '开通单',
+						shadeClose: true,
+						shade: 0,
+						fixed:false,
+						//offset: 'rb',
+						btn: ['保存','取消'],
+						yes: function(index){
+							var body = layer.getChildFrame('body', index);
+							var form=body.find('form')
+							form && form.submit(); 
+						},
+						style:'',
+						maxmin: false, //开启最大化最小化按钮
+						area: ['500px', '600px'],
+						content: '/icd/order.html?company_id={{company_id}}&dotype={{dotype}}',
+						scrollbar: true,
+						success: function(layero, index){
+							
+						}
+					});
+				}
+				function putinmy(){
+					var data={
+						company_id:{{company_id}},
+						dotype:"{{dotype}}",
+					}
+					crmajax("get","/icd/assign_putmy.html",data,function(ret){
+						//alert(JSON.stringify(ret))
+						if (ret){
+							layer.msg(ret.res);
+							if (ret.err=="false"){
+								ismycompany="1";
+								ismysee="1";
+							}
+						}
+					},function(err){
+						layer.open({
+							type: 1,
+							title: 'err',
+							shadeClose: true,
+							shade: 0.3,
+							area: ['70%', '70%'],
+							content: err.responseText
+						});
+					})
+				}
+				//主管建议
+				function admintel(tel_id){
+					layer.open({
+						type: 1,
+						title: '主管建议',
+						shadeClose: true,
+						shade: 0,
+						fixed:false,
+						btn: ['保存','取消'],
+						yes: function(index){
+							var data={
+								company_id:{{company_id}},
+								dotype:"{{dotype}}",
+								details:$("#admincontent").val(),
+								tel_id:tel_id
+							}
+							crmajax("post","/icd/admin_telsave.html",data,function(ret){
+								if (ret){
+									layer.msg(ret.res);
+									layer.close(index);
+									topt.window.location.reload();
+								}
+							},function(err){
+								layer.open({
+									type: 1,
+									title: 'err',
+									shadeClose: true,
+									shade: 0.3,
+									area: ['70%', '70%'],
+									content: err.responseText
+								});
+							})
+						},
+						style:'',
+						maxmin: false, //开启最大化最小化按钮
+						area: ['500px', '400px'],
+						content: $(".admintel"),
+						scrollbar: true,
+						success: function(layero, index){
+							
+						}
+					});
+				}
+				//获得公司供求、询盘量
+				function getpostcount(){
+					var data={
+						company_id:{{company_id}},
+						dotype:"{{dotype}}",
+						account:'{{companyinfo.account}}'
+					}
+					crmajax("get","/icd/company_offercount.html",data,function(ret){
+						//alert(JSON.stringify(ret.qcount))
+						if (ret){
+							$(".pcount").html(ret.pcount);
+							$(".qcount").html(ret.qcount);
+							$(".rcount").html(ret.rcount);
+						}
+					},function(err){
+						layer.open({
+							type: 1,
+							title: 'err',
+							shadeClose: true,
+							shade: 0.3,
+							area: ['70%', '70%'],
+							content: err.responseText
+						});
+					})
+				}
+				//保存公司信息提交
+				
+				$(document).ready(function() {
+					
+					$("#tabinfo1 input").click(function() {
+						var detail=$("#detail").val()
+						if (!detail){detail=''}
+						$("#detail").val(detail+" "+$(this).next().text())
+					})
+					$("#submit_cominfo1,#submit_cominfo2").click(function() {
+						if (ismycompany=="0"){
+							if (ismysee==2){
+								layer.msg('该客户不在你的客户库里，不能对此操作？', {
+									time: 0 //不自动关闭
+									,btn: ['放入我的库里', '关闭']
+									,yes: function(index){
+										putinmy()
+									}
+								});
+							}else{
+								layer.msg('失败，你没有权限操作？', {
+									time: 0 //不自动关闭
+									,btn: ['关闭']
+								});
+							}
+							return false
+						}
+						var company_id = {{company_id}};
+						var company_name = $("#company_name").val();
+						var address = $("#address").val();
+						var address_zip = $("#address_zip").val();
+						var website = $("#website").val();
+						var industry_code = $("#industry_code").val();
+						var service_code = $("#service_code").val();
+						var introduction = $("#introduction").val();
+						var business = $("#business").val();
+						var business_type = $("input[name='business_type']:checked").val();
+						var sale_details = $("#sale_details").val();
+						var buy_details = $("#buy_details").val();
+						//var province1txt=$("#province1").find("option:selected").text();
+						//var city1txt=$("#city1").find("option:selected").text();
+						var p = $("#p").val();
+						var c = $("#c").val();
+						var d = $("#d").val();
+						var area_code = "";
+						if (p != "" && c == "") {
+							area_code = p
+						}
+						if (p != "" && c !== "") {
+							area_code = c
+						}
+						if (p != "" && c !== "" && d !=="") {
+							area_code = d
+						}
+						var country=$("#country").find("option:selected").val();
+						var ccountry=$("#ccountry").find("option:selected").val();
+						if (country=="0"){
+							area_code=ccountry;
+						}
+						//正则匹配["($","^()$"]
+						var contact = $("#contact").val();
+						var position = $("#position").val();
+						var tel_country_code = $("#tel_country_code").val();
+						var tel_area_code = $("#tel_area_code").val();
+						var tel = $("#tel").val();
+						var sex = $("#sex").val();
+						var mobile = $("#mobile").val();
+						var email = $("#email").val();
+						var fax_country_code = $("#fax_country_code").val();
+						var fax_area_code = $("#fax_area_code").val();
+						var fax = $("#fax").val();
+						var rubbishlist=$(".rubbish input:checked");
+						var rubbish="";
+						$.each(rubbishlist, function(i, item) {
+							rubbish+=item.value+","
+						});
+						if (rubbish!=""){
+							rubbish=rubbish.substring(0,rubbish.length-1)
+						}
+						$.ajax({
+							type: "post",
+							url: "save_crm_cominfoedit.html",
+							data: {
+								company_id: company_id,
+								company_name: company_name,
+								address: address,
+								address_zip: address_zip,
+								website: website,
+								industry_code: industry_code,
+								service_code: service_code,
+								introduction: introduction,
+								business: business,
+								business_type: business_type,
+								sale_details: sale_details,
+								buy_details: buy_details,
+								contact: contact,
+								position: position,
+								tel_country_code: tel_country_code,
+								tel_area_code: tel_area_code,
+								tel: tel,
+								sex: sex,
+								mobile: mobile,
+								email: email,
+								fax_country_code: fax_country_code,
+								fax_area_code: fax_area_code,
+								fax: fax,
+								area_code: area_code,
+								rubbish:rubbish,
+								emphases:$("input[name='emphases']:checked").val(),
+								islaji:$("input[name='islaji']:checked").val(),
+								isdeath:$("input[name='isdeath']:checked").val(),
+								dotype:'{{dotype}}',
+							},
+							dataType: "json",
+							success: function(data) {
+								//window.location.href = "";
+								//alert("保存成功");
+								layer.msg('保存成功', {time: 2000, icon:6});
+							},
+							error:function(err){
+								//alert(JSON.stringify(err))
+								layer.open({
+									type: 1,
+									title: 'err',
+									shadeClose: true,
+									shade: 0.3,
+									area: ['70%', '70%'],
+									content: err.responseText
+								});
+							}
+						});
+					});
+					//在公海的客户提醒放入客户库
+					if (ismycompany=="0" && ismysee=="2"){
+						layer.msg('该客户不在你的客户库里，是否放入我的客户库？', {
+							time: 0 //不自动关闭
+							,btn: ['放入', '关闭']
+							,yes: function(index){
+								putinmy()
+							}
+						});
+					}
+					getpostcount();
+					selectOption("com_rank","{{com_rank}}")
+				});
+			</script>
+
+			
+
+			
+	</body>
+
+</html>

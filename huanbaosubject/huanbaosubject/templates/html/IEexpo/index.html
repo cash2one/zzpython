@@ -1,0 +1,469 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>IE expo 2012 中国环博会</title>
+<link rel="shortcut icon" href="http://img0.huanbao.com/huanbao/images/logo/favicon.ico">
+<link rel="stylesheet" type="text/css" href="../../commcss/hb.hack.css"/>
+<link rel="stylesheet" type="text/css" href="../../commcss/hb.comm.css" />
+<script src="../../commjs/jquery-1.6.4.min.js"></script>
+<script language="javascript" type="text/javascript" src="../../commjs/hb.comm.js" ></script>
+<style type="text/css">
+a {ont-size: 12px;color: #262626;}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;color: #262626;}
+a:hover {text-decoration: underline;color: #F00;}
+a:active {text-decoration: none;color: #262626;}
+.Internalfivepx{padding:8px;}
+.Internalfivepxt{padding-top:8px;}
+.Internalfivepxl{padding-left:8px;}
+.Internalfivepxb{padding-bottom:8px;}
+.Internalfivepxr{padding-right:8px;}
+.Toptwentypx{ margin-top:10px;}
+.Bottwentypx{ margin-bottom:10px;}
+.Infotitle{font-size:16px; color:#262626; font-weight:bold;}
+.infocon{line-height:24px; font-size:14px; color:#262626; padding-left:20px;}
+.infonewspd{line-height:26px; font-size:12px; color:#262626;}
+.infonewspd li{border-bottom:dashed 1px #c0bfbf; padding-left:5px;}
+.infonewspd a{color:#262626;text-decoration: none;}
+.infonewspd a:hover{color:#FF0000;text-decoration: underline;}
+#listmarquee{height:210px;width:220px;overflow:hidden;}
+.Scopeexhibits{border:solid 1px #05800b; border-radius:2px; line-height:24px; padding:8px; text-align:center;}
+.Scopxhstit{font-size:14px; color:#05800b; font-weight:bold; border-bottom:dashed 1px #95c797; height:30px;}
+.Scopxhstit a{font-size:14px; color:#05800b; font-weight:bold;}
+.Scopxhstit a:hover{font-size:14px; color:#FF0000; font-weight:bold;}
+.Scopoxhspic{height:80px; padding-top:10px;}
+.Scopoxhsname{height:15px; padding-top:5px;}
+.Infotit_a{font-size:16px; color:#FFFFFF; font-weight:bold;}
+.Infocz{width:314px; float:left;}
+.Infoczimg{width:291px; height:218px; text-align:center; margin:0px auto;}
+.INfoczcop{width:291px; height:30px; font-size:14px; color:#262626; line-height:30px; text-align:center; margin:0px auto;}
+.INfoczcop a{font-size:14px; color:#262626; text-decoration: none;}
+.INfoczcop a:hover{color:#FF0000;text-decoration: underline;}
+.Infowq{width:470px; float:left;}
+.Infowqimg{width:170px; height:122px; float:left;}
+.Infocon{width:300px; height:122px; line-height:24px; float:left;}
+</style>
+<script language="javascript" type="text/javascript">
+function ScrollText(content,btnPrevious,btnNext,autoStart)
+{
+    this.Delay = 10;
+    this.LineHeight = 20;
+	this.Amount = 1;//注意:LineHeight一定要能整除Amount.
+	this.Direction = "up";
+    this.Timeout = 1500;
+    this.ScrollContent = this.$(content);
+    this.ScrollContent.innerHTML += this.ScrollContent.innerHTML;
+    //this.ScrollContent.scrollTop = 0;
+    if(btnNext)
+    {
+        this.NextButton = this.$(btnNext);
+        this.NextButton.onclick = this.GetFunction(this,"Next");
+        this.NextButton.onmouseover = this.GetFunction(this,"Stop");
+        this.NextButton.onmouseout = this.GetFunction(this,"Start");
+    }
+    if(btnPrevious)
+    {
+        this.PreviousButton = this.$(btnPrevious);
+        this.PreviousButton.onclick = this.GetFunction(this,"Previous");
+        this.PreviousButton.onmouseover = this.GetFunction(this,"Stop");
+        this.PreviousButton.onmouseout = this.GetFunction(this,"Start");
+    }
+    this.ScrollContent.onmouseover = this.GetFunction(this,"Stop");
+    this.ScrollContent.onmouseout = this.GetFunction(this,"Start");
+    if(autoStart)
+    {
+        this.Start();
+    }
+}
+
+ScrollText.prototype.$ = function(element)
+{
+    return document.getElementById(element);
+}
+
+ScrollText.prototype.Previous = function()
+{
+    clearTimeout(this.AutoScrollTimer);
+    clearTimeout(this.ScrollTimer);
+    this.Scroll("up");
+}
+
+ScrollText.prototype.Next = function()
+{
+    clearTimeout(this.AutoScrollTimer);
+    clearTimeout(this.ScrollTimer);
+    this.Scroll("down");
+}
+
+ScrollText.prototype.Start = function()
+{
+    clearTimeout(this.AutoScrollTimer);
+    this.AutoScrollTimer = setTimeout(this.GetFunction(this,"AutoScroll"), this.Timeout);
+}
+
+ScrollText.prototype.Stop = function()
+{
+    clearTimeout(this.ScrollTimer);
+    clearTimeout(this.AutoScrollTimer);
+}
+
+ScrollText.prototype.AutoScroll = function()
+{
+    if(this.Direction == "up")
+    {
+        if(parseInt(this.ScrollContent.scrollTop) >= parseInt(this.ScrollContent.scrollHeight) / 2)
+        {
+            this.ScrollContent.scrollTop = 0;
+        }
+        this.ScrollContent.scrollTop += this.Amount;
+    }
+    else
+    {
+        if(parseInt(this.ScrollContent.scrollTop) <= 0)
+        {
+            this.ScrollContent.scrollTop = parseInt(this.ScrollContent.scrollHeight) / 2;
+        }
+        this.ScrollContent.scrollTop -= this.Amount;
+    }
+    if(parseInt(this.ScrollContent.scrollTop) % this.LineHeight != 0)
+    {
+        this.ScrollTimer = setTimeout(this.GetFunction(this,"AutoScroll"), this.Delay);
+    }
+    else
+    {
+        this.AutoScrollTimer = setTimeout(this.GetFunction(this,"AutoScroll"), this.Timeout);
+    }
+}
+
+ScrollText.prototype.Scroll = function(direction)
+{
+    if(direction=="up")
+    {
+        if(this.ScrollContent.scrollTop == 0)
+        {
+            this.ScrollContent.scrollTop = parseInt(this.ScrollContent.scrollHeight) / 2;
+        }
+        this.ScrollContent.scrollTop -= this.Amount;
+    }
+    else
+    {
+        this.ScrollContent.scrollTop += this.Amount;
+    }
+    if(parseInt(this.ScrollContent.scrollTop) >= parseInt(this.ScrollContent.scrollHeight) / 2)
+        {
+            this.ScrollContent.scrollTop = 0;
+        }
+    if(parseInt(this.ScrollContent.scrollTop) % this.LineHeight != 0)
+    {
+        this.ScrollTimer = setTimeout(this.GetFunction(this,"Scroll",direction), this.Delay);
+    }
+}
+
+ScrollText.prototype.GetFunction = function(variable,method,param)
+{
+    return function()
+    {
+        variable[method](param);
+    }
+}
+
+window.onload = function()
+{
+var marquee = new ScrollText("listmarquee");
+marquee.LineHeight = 60;
+marquee.Amount = 1;
+marquee.Timeout = 30;
+marquee.Delay = 30;
+marquee.Start();
+}
+</script>
+</head>
+
+<body>
+{%include 'html/comm/top.html'%}
+<div style="width:958px; margin:0px auto;">
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><img src="../images/IEexpo_02.gif" width="958" height="226" /></td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="8"></td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td bgcolor="#e8f6e9" class="Internalfivepx">
+    <div style="width:273px; height:170px; float:left;"><img src="../images/IEexpo_06.gif" width="263" height="170" /></div>
+    <div style="width:665px; height:170px; line-height:24px; float:left;"><span style="font-size:16px; color:#F00; font-weight:bold;">IE expo 2012中国环博会</span><br /><font color="#262626">
+    <strong>主办单位：</strong> 中国环境科学学会（CSES）  上海中贸国际展览有限公司  中华全国工商业联合会环境服务业商会<br />
+    <strong>协办单位：</strong> 德国水、污水和废弃物处理协会  欧洲水协新加坡水协  世界水环境联盟  德国机械设备制造业联合会  德国<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;技术合作公司等 </font><br />
+&nbsp;&nbsp;&nbsp;&nbsp;<font color="#555555">由德国慕尼黑国际博览集团、上海中贸国际展览有限公司、中国环境科学学会、慕尼黑展览（上海）有限公司等单位联<br />
+袂举办的IFAT CHINA +EPTEE+CWS2011亚洲最大的环保水处理展已于2011年5月7日在上海新国际博览中心胜利闭幕。庞大的<br />
+规模、一流的参展商、高质量的买家及优 质的服务使展会获得了众多世界一流企业的青睐和业界一致好评...</font><a href="http://www.huanbao.com/exhibit/details423.htm" target="_blank" style="color:#0774ac;">[更多]</a></div>
+    </td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="8"></td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="280" valign="top" bgcolor="#e8f6e9"><table width="100%" border="0" cellspacing="0" cellpadding="0" background="../images/IEexpo_10.gif">
+      <tr>
+        <td width="12"><img src="../images/IEexpo_09.gif" width="12" height="36" /></td>
+        <td class="Infotitle">参展企业名录</td>
+        <td width="12"><img src="../images/IEexpo_11.gif" width="12" height="36" /></td>
+      </tr>
+    </table>
+      <table border="0" align="center" cellpadding="0" cellspacing="0" class="Toptwentypx">
+        <tr>
+          <td class="infocon"><div id="listmarquee"><ul>
+          <li>南京贝特暖通空调设备有限公司</li>
+          <li>上海日泰阀门（集团）有限公司</li>
+          <li>昆山协羽阀门管道有限公司</li>
+          <li>苏州辉龙净化过滤有限公司</li>
+          <li>杭州大立过滤设备有限公司</li>
+          <li>山东招金膜天有限责任公司</li>
+          <li>上海大张过滤设备有限公司</li>
+          <li>江苏巨能机械有限公司</li>
+          <li>浙江三联环保机械设备有限公司</li>
+          <li>碎得机械（北京有限公司）</li>
+          <li>江苏维尔利环保科技股份有限公司</li>
+          <li>重庆耐德工业股份有限公司</li>
+          <li>中山斯瑞德环保设备科技有限公司</li>
+          <li>赛莱默分析仪器</li>
+          <li>西门子（中国）有限公司</li>
+          <li>日东电工集团美国海德能公司</li>
+          </ul></div></td>
+        </tr>
+        <tr>
+          <td align="center"><a href="../中国环博会参展商名录.pdf" target="_blank"><img src="../images/IEexpo_28.gif" width="257" height="66" /></a></td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+    <td width="380" valign="top" bgcolor="#e8f6e9"><table width="100%" border="0" cellspacing="0" cellpadding="0" background="../images/IEexpo_10.gif">
+      <tr>
+        <td width="12"><img src="../images/IEexpo_09.gif" width="12" height="36" /></td>
+        <td class="Infotitle">展品范围</td>
+        <td width="12"><img src="../images/IEexpo_11.gif" width="12" height="36" /></td>
+      </tr>
+    </table>
+      <table width="96%" border="0" align="center" cellpadding="0" cellspacing="0" class="Toptwentypx Bottwentypx">
+        <tr>
+          <td width="110" class="Scopeexhibits">
+          <ul>
+            <li class="Scopxhstit"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E6%B0%B4%E5%92%8C%E6%B1%A1%E6%B0%B4" target="_blank">水和污水</a></li>
+            <li class="Scopoxhspic"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E6%B0%B4%E6%B3%B5" target="_blank"><img src="../images/IEexpo_15.gif" width="98" height="83" style="border:solid 1px #dbdcdc;" /></a></li>
+            <li class="Scopoxhsname"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E6%B0%B4%E6%B3%B5" target="_blank">水泵</a></li>
+            <li class="Scopoxhspic"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E7%A6%BB%E5%BF%83%E6%9C%BA" target="_blank"><img src="../images/IEexpo_25.gif" width="98" height="83" style="border:solid 1px #dbdcdc;" /></a></li>
+            <li class="Scopoxhsname"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E7%A6%BB%E5%BF%83%E6%9C%BA" target="_blank">离心机</a></li>
+          </ul>
+          </td>
+          <td>&nbsp;</td>
+          <td width="110" class="Scopeexhibits">
+          <ul>
+            <li class="Scopxhstit"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E8%86%9C" target="_blank">膜及膜组件</a></li>
+            <li class="Scopoxhspic"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E8%86%9C%E5%88%86%E7%A6%BB%E8%AE%BE%E5%A4%87" target="_blank"><img src="../images/IEexpo_17.gif" width="98" height="83" style="border:solid 1px #dbdcdc;" /></a></li>
+            <li class="Scopoxhsname"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E8%86%9C%E5%88%86%E7%A6%BB%E8%AE%BE%E5%A4%87" target="_blank">膜分离设备</a></li>
+            <li class="Scopoxhspic"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E8%86%9C" target="_blank"><img src="../images/IEexpo_26.gif" width="98" height="83" style="border:solid 1px #dbdcdc;" /></a></li>
+            <li class="Scopoxhsname"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E8%86%9C" target="_blank">膜与膜组件</a></li>
+          </ul>
+          </td>
+          <td>&nbsp;</td>
+          <td width="110" class="Scopeexhibits">
+          <ul>
+            <li class="Scopxhstit"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E5%87%80%E6%B0%B4%E7%B3%BB%E7%BB%9F" target="_blank">末端净水系统</a></li>
+            <li class="Scopoxhspic"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E9%A5%AE%E6%B0%B4%E6%9C%BA" target="_blank"><img src="../images/IEexpo_20.gif" width="98" height="83" style="border:solid 1px #dbdcdc;" /></a></li>
+            <li class="Scopoxhsname"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E9%A5%AE%E6%B0%B4%E6%9C%BA" target="_blank">饮水机</a></li>
+            <li class="Scopoxhspic"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E5%87%80%E6%B0%B4%E8%BF%87%E6%BB%A4%E5%99%A8" target="_blank"><img src="../images/IEexpo_27.gif" width="98" height="83" style="border:solid 1px #dbdcdc;" /></a></li>
+            <li class="Scopoxhsname"><a href="http://www.huanbao.com/trade/supply/index.htm?keywords=%E5%87%80%E6%B0%B4%E8%BF%87%E6%BB%A4%E5%99%A8" target="_blank">净水过滤器</a></li>
+          </ul>
+          </td>
+        </tr>
+    </table></td>
+    <td>&nbsp;</td>
+    <td width="280" valign="top" bgcolor="#e8f6e9"><table width="100%" border="0" cellspacing="0" cellpadding="0" background="../images/IEexpo_10.gif">
+      <tr>
+        <td width="12"><img src="../images/IEexpo_09.gif" width="12" height="36" /></td>
+        <td class="Infotitle">最新报道</td>
+        <td width="12"><img src="../images/IEexpo_11.gif" width="12" height="36" /></td>
+      </tr>
+    </table>
+      <table width="270" border="0" align="center" cellpadding="0" cellspacing="0" class="Toptwentypx">
+        <tr>
+          <td class="infonewspd"><ul>
+            <li>· <a href="http://www.huanbao.com/exhibit/details423.htm" target="_blank">亚洲最大环保水展IE expo中国环博会7日隆...</a></li>
+            <li>· <a href="http://www.huanbao.com/news/details3816.htm" target="_blank">环保新技术亮相环博会 1秒内分拣垃圾、测...</a></li>
+            <li>· <a href="http://www.huanbao.com/news/details3821.htm" target="_blank">环博会上千元油水分离器适合微型餐企</a></li>
+            <li>· <a href="http://www.huanbao.com/exhibit/details438.htm" target="_blank">格兰富参展IE expo2012中国环博会</a></li>
+            <li>· <a href="http://www.huanbao.com/exhibit/details446.htm" target="_blank">遥测车亮相环博会 1秒钟揪出尾气排放超标车</a></li>
+            <li>· <a href="http://www.huanbao.com/exhibit/details423.htm" target="_blank">中国环保网带您进入2012中国环博会（组图）</a></li>
+            <li>· <a href="http://www.huanbao.com/news/details3900.htm" target="_blank">IE expo中国环博会为中国环境问题提供解...</a></li>
+            <li>· <a href="http://www.huanbao.com/exhibit/details443.htm" target="_blank">参展企业：国电清新震撼登陆IE expo中国...</a></li>
+            <li>· <a href="http://www.huanbao.com/exhibit/details444.htm" target="_blank">固废处理成为IE expo 2012 中国环博会又...</a></li>
+            <li style="border-bottom:0px;">· <a href="http://www.huanbao.com/exhibit/details445.htm" target="_blank">品牌齐聚 IE expo中国环博会</a></li>
+          </ul></td>
+        </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="8"></td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0" background="../images/IEexpo_35.gif">
+  <tr>
+    <td width="12"><img src="../images/IEexpo_34.gif" width="12" height="36" /></td>
+    <td class="Infotit_a">中国环保网会员参展中</td>
+    <td width="12"><img src="../images/IEexpo_36.gif" width="12" height="36" /></td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td bgcolor="#e8f6e9">&nbsp;</td>
+  </tr>
+  <tr>
+    <td bgcolor="#e8f6e9" class="Internalfivepx">
+    <div class="Infocz">
+      <div class="Infoczimg"><a href="http://www.huanbao.com/esite/index9130575.htm" target="_blank"><img src="../images/IEexpo_39.gif" width="291" height="218" /></a></div>
+      <div class="INfoczcop"><a href="http://www.huanbao.com/esite/index9130575.htm" target="_blank">南京贝特暖通空调设备有限公司</a></div>
+    </div>
+    <div class="Infocz">
+      <div class="Infoczimg"><a href="http://www.huanbao.com/esite/index9018388.htm" target="_blank"><img src="../images/IEexpo_41.gif" width="291" height="218" /></a></div>
+      <div class="INfoczcop"><a href="http://www.huanbao.com/esite/index9018388.htm" target="_blank">上海日泰阀门（集团）有限公司</a></div>
+    </div>
+    <div class="Infocz">
+      <div class="Infoczimg"><a href="http://www.huanbao.com/esite/index9026550.htm" target="_blank"><img src="../images/IEexpo_43.gif" width="291" height="218" /></a></div>
+      <div class="INfoczcop"><a href="http://www.huanbao.com/esite/index9026550.htm" target="_blank">昆山协羽阀门管道有限公司</a></div>
+    </div>
+    <div class="Infocz">
+      <div class="Infoczimg"><a href="http://www.huanbao.com/esite/index9017290.htm" target="_blank"><img src="../images/IEexpo_48.gif" width="291" height="218" /></a></div>
+      <div class="INfoczcop"><a href="http://www.huanbao.com/esite/index9017290.htm" target="_blank">苏州辉龙净化过滤有限公司</a></div>
+    </div>
+    <div class="Infocz">
+      <div class="Infoczimg"><a href="http://www.huanbao.com/esite/index9018063.htm" target="_blank"><img src="../images/IEexpo_49.gif" width="291" height="218" /></a></div>
+      <div class="INfoczcop"><a href="http://www.huanbao.com/esite/index9018063.htm" target="_blank">杭州大立过滤设备有限公司</a></div>
+    </div>
+    <div class="Infocz">
+      <div class="Infoczimg"><a href="http://www.huanbao.com/esite/index9130455.htm" target="_blank"><img src="../images/IEexpo_50.gif" width="291" height="218" /></a></div>
+      <div class="INfoczcop"><a href="http://www.huanbao.com/esite/index9130455.htm" target="_blank">山东招金膜天有限责任公司</a></div>
+    </div>
+    <div class="Infocz">
+      <div class="Infoczimg"><a href="http://www.huanbao.com/esite/index9009167.htm" target="_blank"><img src="../images/IEexpo_55.gif" width="291" height="218" /></a></div>
+      <div class="INfoczcop"><a href="http://www.huanbao.com/esite/index9009167.htm" target="_blank">上海大张过滤设备有限公司</a></div>
+    </div>
+    <div class="Infocz">
+      <div class="Infoczimg"><a href="http://www.huanbao.com/esite/index9012318.htm" target="_blank"><img src="../images/IEexpo_56.gif" width="291" height="218" /></a></div>
+      <div class="INfoczcop"><a href="http://www.huanbao.com/esite/index9012318.htm" target="_blank">江苏巨能机械有限公司</a></div>
+    </div>
+    <div class="Infocz">
+      <div class="Infoczimg"><a href="http://www.huanbao.com/esite/index9033334.htm" target="_blank"><img src="../images/IEexpo_54.gif" width="291" height="218" /></a></div>
+      <div class="INfoczcop"><a href="http://www.huanbao.com/esite/index9033334.htm" target="_blank">浙江三联环保机械设备有限公司</a></div>
+    </div>
+    </td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="10"></td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0" background="../images/IEexpo_10.gif">
+  <tr>
+    <td width="12"><img src="../images/IEexpo_09.gif" width="12" height="36" /></td>
+    <td class="Infotitle">现场花絮</td>
+    <td width="12"><img src="../images/IEexpo_11.gif" width="12" height="36" /></td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td bgcolor="#e8f6e9">&nbsp;</td>
+  </tr>
+  <tr>
+    <td bgcolor="#e8f6e9" class="Internalfivepx">
+    <div class="Infocz">
+      <div class="Infoczimg"><img src="../images/IEexpo_60.gif" width="291" height="218" /></div>
+      <div class="INfoczcop">中国环博会会馆</div>
+    </div>
+      <div class="Infocz">
+        <div class="Infoczimg"><img src="../images/IEexpo_61.gif" width="291" height="218" /></div>
+        <div class="INfoczcop">中国环博会展商名录</div>
+      </div>
+      <div class="Infocz">
+        <div class="Infoczimg"><img src="../images/IEexpo_62.gif" width="291" height="218" /></div>
+        <div class="INfoczcop">展区现场客户络绎不绝</div>
+      </div>
+      <div class="Infocz">
+        <div class="Infoczimg"><img src="../images/IEexpo_66.gif" width="291" height="218" /></div>
+        <div class="INfoczcop">中国环博会展览项目</div>
+      </div>
+      <div class="Infocz">
+        <div class="Infoczimg"><img src="../images/IEexpo_67.gif" width="291" height="218" /></div>
+        <div class="INfoczcop">中国环博会德国专区</div>
+      </div>
+      <div class="Infocz">
+        <div class="Infoczimg"><img src="../images/IEexpo_68.gif" width="291" height="218" /></div>
+        <div class="INfoczcop">中国环博会日本专区</div>
+      </div>
+      </td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="10"></td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0" background="../images/IEexpo_10.gif">
+  <tr>
+    <td width="12"><img src="../images/IEexpo_09.gif" width="12" height="36" /></td>
+    <td class="Infotitle">往期展会专题</td>
+    <td width="12"><img src="../images/IEexpo_11.gif" width="12" height="36" /></td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td bgcolor="#e8f6e9" height="5"></td>
+  </tr>
+  <tr>
+    <td bgcolor="#e8f6e9" class="Internalfivepx">
+    <div class="Infowq">
+      <div class="Infowqimg"><a href="http://subject.huanbao.com/2011huexhibit/index/" target="_blank"><img src="../images/IEexpo_73.gif" width="163" height="122" /></a></div>      
+      <div class="Infocon"> &nbsp;&nbsp;&nbsp;&nbsp;由中国化工信息中心和全国功能高分子行业委<br />
+  员会共同举办的中国国际水处理化学品展 览会是<br />
+  一年一度的水处理行业的展会盛事。展出内容涉及<br />
+  污水处理用絮凝剂、工业用水处理阻垢剂、 杀菌<br />
+  剂、消泡剂、循环冷却水...<a href="http://subject.huanbao.com/2011huexhibit/index/" target="_blank" style="color:#0774ac;">[详细]</a></div>
+    </div>
+    <div class="Infowq">
+      <div class="Infowqimg"><a href="http://subject.huanbao.com/IEPZ/index/" target="_blank"><img src="../images/IEexpo_76.gif" width="163" height="122" /></a></div>      
+      <div class="Infocon"> &nbsp;&nbsp;&nbsp;&nbsp;作为业内唯一的环保产品大型交易活动，<br />
+        本届交易会参会企业1500家以上，其中采购商<br />
+        800余家；交易会展出各种环保设备达200多个<br />
+        系列、2000多个品种，全球顶级品牌汇聚一堂<br />
+        国内外一线名优品交易范围...<a href="http://subject.huanbao.com/IEPZ/index/" target="_blank" style="color:#0774ac;">[详细]</a></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td bgcolor="#e8f6e9" height="5"></td>
+  </tr>
+</table>
+<table width="958" border="0" align="center" cellpadding="0" cellspacing="0" style="border-bottom:solid 3px #1fa210;">
+  <tr>
+    <td align="center"><script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe994e93e1e2af4e9051cc56588962b73' type='text/javascript'%3E%3C/script%3E"));
+</script></td>
+  </tr>
+</table>
+</div>
+{% include 'html/comm/buttom.html' %}
+</body>
+</html>

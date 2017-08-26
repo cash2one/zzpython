@@ -1,0 +1,59 @@
+{%extends 'index.html'%}
+{%block content%}
+
+<br /><br /><br />
+<form action="/addcompanyok/"><font color="blue">添加客户</font><br /><br />
+
+<table width="500" border="1" cellpadding="5" cellspacing="0" class="addtab">
+<tr><td>
+公司名称</td><td><input type="text" name="name" value="{%if name%}{{name}}{%endif%}" > <font color="red">{{error1}}</font></td>
+</tr>
+<tr><td>
+手机 </td><td><input type="text" name="mobile" value="{%if mobile%}{{mobile}}{%endif%}" > <font color="red">{{error2}}</font></td>
+</tr>
+<tr><td>
+联系人 </td><td><input type="text" name="contact" value="{%if contact%}{{contact}}{%endif%}" > <font color="red">{{error4}}</font></td>
+</tr>
+<tr>
+  <td>
+邮箱（帐号） </td><td><input type="text" name="mail" value="{%if mail%}{{mail}}{%endif%}"> <font color="red">{{error3}}</font></td>
+</tr>
+
+<tr><td>
+关键字 </td><td><span class="s8px">(多个词用"|"隔开)</span><br /> <input type="text" name="keywords" value="{%if keywords%}{{keywords}}{%endif%}"><font color="red">{{error17}}</font></td>
+</tr>
+<tr><td>
+开始优化时间 </td><td><input type="text" name="begintime" value="{{begintime}}"><font color="red">{{error10}}</font></td>
+</tr>
+<tr><td>
+达标要求   第</td><td><input type="text" name="standarddemand" value="{%if standarddemand%}{{standarddemand}}{%endif%}" class="w25px">页 <font color="red">{{error11}}</font></td>
+</tr>
+<tr><td>
+商铺地址  </td><td><input type="text" name="shopsaddress" value="{%if shopsaddress%}{{shopsaddress}}{%endif%}"> <font color="red">{{error12}}</font></td>
+</tr>
+<tr><td>
+计费类型 </td><td><select id="pricetype" name="chargetype">{%ifequal chargetype "2"%}<option value="2">按天计费</option><option value="1">包年计费</option>{%else%}<option value="1">包年计费</option><option value="2">按天计费</option>{%endifequal%}</select></td>
+</tr>
+<tr><td>
+购买金额 </td><td><input type="text" name="price" value="{%if price%}{{price}}{%endif%}" ><font color="red">{{error13}}</font></td>
+</tr>
+<tr id="{%ifequal chargetype "2"%}price2{%else%}price1{%endifequal%}">
+<td >年数  </td><td><input type="text" name="years" value="{%if years%}{{years}}{%endif%}">年 <font color="red">{{error14}}</font></td>
+</tr>
+<tr id="{%ifequal chargetype "2"%}price1{%else%}price2{%endifequal%}">
+<td>单价  </td><td><input type="text" name="unit_price" value="{%if unit_price%}{{unit_price}}{%endif%}" >元/天<font color="red">{{error16}}</font></td>
+</tr>
+<tr><td>
+</td><td>{%ifequal usertype "seouser"%}
+优化人 {{seouser_name}}<input type="hidden" name="seouser_id" value="{{seouser_id}}">
+{%else%}
+优化人 <select name="seouser_id">{%if seouser_id%}<option value="{{seouser_id}}">{{seouser_name}}</option>{%endif%}{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}</select>
+{%endifequal%}</td>
+</tr>
+<tr><td>
+<input type="submit" value="确认添加"></td><td><input type="button" value="返回" onclick="window.close()"></td>
+</tr>
+</table>
+
+</form>
+{%endblock%}

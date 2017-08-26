@@ -1,0 +1,11 @@
+{%for list in bbslist%}
+<li class="mui-table-view-cell">
+	<a class="mui-navigate-right" href="/huzhuview/{{list.id}}.htm">
+	<span class="mui-ellipsis-2" style="width: 80%;">{{list.title}}</span>
+	<p class='mui-ellipsis'>
+		{{list.nickname}}&nbsp;&nbsp;&nbsp;{{list.reply_time}}
+	</p>
+	<span class="mui-badge mui-badge-success">{{list.replycount}}</span>
+	</a>
+</li>
+{%endfor%}

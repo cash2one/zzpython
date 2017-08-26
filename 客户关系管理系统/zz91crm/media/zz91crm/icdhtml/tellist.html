@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+		<table cellspacing="0" class="table table-bordered">
+			<thead>
+				<tr>
+					<th nowrap>小记时间</th>
+					<th nowrap>联系情况</th>
+					<th nowrap>下次联系</th>
+					<th nowrap>联系人</th>
+					<th nowrap>客户等级</th>
+					<th nowrap>联系内容</th>
+					<th nowrap>主管建议</th>
+					<th nowrap>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{%for telsale in telsalelist%}
+				{%if telsale.havegonghai%}
+				<tr><td height="20" colspan="9" bgcolor="#EBEBE4">{{telsale.havegonghai}}{{telsale.dropgonghainame}} 扔公海</td></tr>
+				{%endif%}
+				<tr>
+					<td bgcolor="#FFFFFF">{{telsale.teltime}}</td>
+					<td bgcolor="#FFFFFF">
+						{{telsale.contacttypetxt}}  {{telsale.nocontacttypetxt}}</td>
+					<td bgcolor="#FFFFFF">{{telsale.contactnexttime}}</td>
+					<td bgcolor="#FFFFFF">
+						{{telsale.realname}}</td>
+					<td bgcolor="#FFFFFF">
+						{{telsale.rank}}星 </td>
+					<td bgcolor="#FFFFFF">{{telsale.detail|safe}}</td>
+					<td bgcolor="#FFFFFF">
+						{%for tlist in telsale.admindetaillist%}
+						{{tlist.realname}}:{{tlist.details|safe}} 时间：{{tlist.gmt_created}}<br />
+						{%endfor%}
+					</td>
+					<td bgcolor="#FFFFFF">
+						{%if iszhuguan%}
+						<a class="button" onclick="admintel({{telsale.id}})">主管建议</a>
+						{%endif%}
+					</td>
+					
+					{%if is_admin%}
+					<td bgcolor="#FFFFFF">
+					<a href="?del=1&com_id={{telsale.company_id}}&id={{telsale.id}}">删除</a>
+					</td>
+					{%endif%}
+				</tr>
+				{%endfor%}
+				<tr>
+					<td colspan="16" align="right" bgcolor="#FFFFFF">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td nowrap="nowrap">页次:<strong><font color="#FF0000">{{page}}</font></strong>/<font color="#FF0000">{{page_listcount}}</font> 每页:<font color="#FF0000"></font> 共计:<font color="#FF0000">{{listcount}}</font></td>
+								<td> <font color="#666666"> 页数 &nbsp;第
+														{%for p in page_range%}
+															{%if p.nowpage%}
+															[&nbsp;<span class='current'>{{p.number}}</span>&nbsp;]
+															{%else%}
+															<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+															{%endif%}
+														{%endfor%}
+														页
+														</font> </td>
+								<td align="right">
+									<a href='?page=1&{{searchurl}}'>首页</a>&nbsp;&nbsp;
+									{% if firstpage %} <a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%} &nbsp;&nbsp;
+									{% if lastpage%} <a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%} &nbsp;&nbsp;
+									<a href='?page={{page_listcount}}&{{searchurl}}'>尾页</a>
+								</td>
+								<td align="right">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+	<script>
+		parent.closeloading();
+		function admintel(tel_id){
+			parent.admintel(tel_id)
+		}
+	</script>
+
+</html>

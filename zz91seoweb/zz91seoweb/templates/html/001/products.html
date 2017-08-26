@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{{csscode}}/css/base.css" />
+<link rel="stylesheet" href="{{csscode}}/css/modules.css" />
+<link rel="stylesheet" href="{{csscode}}/css/style.css" />
+<title>供求列表-{{list.name}}</title>
+<meta content="{{list.business}}" name="description"/>
+<meta content="{{list.ctags}}" name="keywords"/></head>
+<body>
+{%include htmlincludes.topinclude%}
+<div id="content">
+	<!--左边主题板块-->
+           <div class="grid-sub fl">
+                    {%include htmlincludes.leftinclude%}
+                    {%if serieslist%}
+                    <!--产品分类-->
+                    <div class="mod mod-proclass">
+                      <div class="m-body">
+                        <div class="m-header">
+                            <h3>供求分类</h3> 
+                        </div>
+                        <div class="m-content">
+                            <div class="proclass-list">
+                            <ul>
+                            {%for list in serieslist%}
+                                <li><a href="products-{{list.id}}-1.htm" title="{{list.name}}">{{list.name}}</a></li>
+                            {%endfor%}
+                            </ul>
+                            </div>
+                        </div>
+                      </div> 
+                    </div>
+                    <!--产品分类结束-->
+                    {%endif%}
+</div>
+<!--左边主题板块结束-->
+
+	    	<!-- 右面主题板块-->
+<div class="main-wrap fr">
+	<!--明星产品-->
+	<div class="mod mod-starpro">
+		<div class="m-body">
+			<div class="m-header"><h3>供求信息</h3></div>
+			<div class="m-content">
+            	{%if serieslist%}
+				<!--产品分类-->
+				<div class="pro-class">
+					<ul>
+                    {%for list in serieslist%}
+                        <li><a href="products-{{list.id}}-1.html" title="{{list.name}}">{{list.name}}</a></li>
+                    {%endfor%}
+                    </ul>
+				</div>
+				<!--产品分类结束-->
+                {%endif%}
+                <!--
+				<p class="look-way">
+					<a href="/product.html" class="look-way1 current" title="列表查看" ></a>
+					<a href="/product.html?t=1" class="look-way2"  title="大图查看" rel="nofollow"></a>
+				</p>-->
+                <div class="pro-yuanliao">
+					<h2>产品分类</h2>
+  					<ul class="tab_content">
+						<li class="tab tab_cur"><a href="" target="_self">废料供应信息</a></li>
+						<li class="tab"><a href="" target="_self">原料供应信息</a></li>
+					</ul>
+				</div>
+				<div class="image-ment">
+					<!--产品横排图文-->
+					<div class="image-text">
+						<ul>
+                        {%for list in prolist%}
+						<li><div class='pic'>
+						<a href="p{{list.pdt_id}}.html" class="left-image" target="_blank">
+						<img src="{{list.pdt_images}}" alt="{{list.pdt_name}}" />
+						</a>
+						</div>
+						<div class="right-info fl">
+						<a href="p{{list.pdt_id}}.html" class="right-word" target="_blank">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a>
+						<p>{{list.pdt_detaillclear}}...</p>
+						</div>
+						</li>
+						{%endfor%}
+                        
+						</ul>
+					</div>
+					<!--产品横排图文结束-->
+					<!--  翻页开始-->   
+					<div class="apartpageBox">
+                    {% if firstpage %}
+                    <span class='prev-page'><a href="products-{{seriesid}}-{{prvpage}}.html">上一页</a></span>
+                    {% endif %}
+                    {% for p in page_range %}
+                    {% if p.nowpage %}
+                    <strong class="current">{{p.number}}</strong>
+                    {% else %}
+                    <a href='products-{{seriesid}}-{{p.number}}.html' >{{p.number}}</a>
+                    {% endif %}
+					{% endfor %}
+                    {% if lastpage%}
+                    <a class="next-page" href='products-{{seriesid}}-{{nextpage}}.html' >下一页</a></div>
+                    {% endif %}
+					<!--  翻页结束-->
+				</div>
+							</div>
+		</div>
+	</div>
+	<!--明星产品结束-->
+</div>
+<!-- 右面主题板块结束-->
+    </div>
+{%include htmlincludes.buttominclude%}
+</body>
+</html>

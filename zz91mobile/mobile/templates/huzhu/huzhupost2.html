@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>手机版互助社区</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" type="text/css" href="/css/myrc/index.css"/>
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<script type="text/javascript" src="/js/huzhu/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/js/huzhu/style.js"></script>
+<script type="text/javascript" src="/js/huzhu/jquery.lightbox_me.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+</head>
+<body style="position:relative">
+{%include 'top.html'%}
+{%if suc%}
+<div class="resultTip mt10 mb10 ac"><span>提问成功!</span></div>
+{%endif%}
+{%if err%}
+<div class="resultTip mt10 mb10 ac"><span>来写点什么吧...</span></div>
+{%endif%}
+<form method="post" action="/huzhupostsave/">
+	<div class="p-item">
+		<textarea name="content" placeholder="说点什么吧..." cols=""></textarea>
+	{%if username%}
+	
+	<input type="hidden" name="category_id" value="{{category_id}}">
+	<input type="hidden" id="litpic7" name="picurl">
+	<div class="p-box">
+		<div class="p-img">
+			<img src="/images/myrc/upload.png"/>
+			<a href="">上传图片</a><img id="litpic6" width=100 height=40 />
+			<iframe src="/huzhu_imgload/" width=400 height=40></iframe>
+		</div>
+		<!--end p-img-->
+		<div class="p-btn">
+				<input type="submit" value="发布">
+			<div class="pb-reply">
+			</div>
+			<!--end pb-reply-->
+		</div>
+		<!--end p-img-->
+		<div class="cb"></div>
+	</div>
+{%else%}
+<div class="resultTip mt10 mb10 ac">请 <a href="/login/?done={{host}}">登录</a> 之后发贴</div>
+{%endif%}
+</form>
+	<!--end p-box-->
+	</div>
+	<!--end p-item-->
+{%if not nickname%}
+<!-- 回复弹出框 -->
+<div id="reply_div_" align="center">
+<form name="form">
+  <textarea cols="20" rows="10" name="nickname" placeholder="请输入您的昵称："id="t1" onKeyUp="check();"></textarea>
+	<div align="center" style="margin-top:15px;">
+		<div class="btn btn_confirm" onClick=send1()>确定</div>
+	</div>
+</form>
+</div>
+{%endif%}
+{%include 'bottom.html'%}
+</body>
+</html>

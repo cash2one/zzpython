@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="address=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+	<title>流量宝关键词修改-zz91再生网</title>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+    <style>
+    	body {
+			background-color: #f4f4f4
+		}
+		.aui-content-padded{
+			margin-top: 20px;
+		}
+    </style>
+</head>
+<body>
+	<header class="aui-bar aui-bar-nav aui-bar-primary">
+    	<a class="aui-pull-left" href="/qianbao/jingjia_index.html">
+	        <span class="aui-iconfont aui-icon-left"></span>
+	    </a>
+	    <div class="aui-title">修改关键字</div>
+	</header>
+	<div class="aui-content-padded">
+	 	<div class="buy-box aui-form">
+	 		<div class="aui-input-row">
+	 			<label class="aui-input-addon">关键词</label>
+	 			<input type="hidden" name="key_id" id="key_id" value="{{key_id}}">
+	 			<input type="text" class="aui-input keywords" maxlength="4" value="{{keywords}}"  placeholder="点此输入关键词" />
+	 		</div>
+	 		<div class="aui-input-row">
+	 			<label class="aui-input-addon">出价（元/次）</label>
+	 			<input type="number" class="aui-input price" maxlength="6" value="{{price}}" placeholder="点此输入出价，最低出价不低于5元" />
+	 		</div>
+	 	</div>
+	 	<div class="aui-padded-20">
+	 		<input type="hidden" name="checked" id="checked" value="{{checked}}">
+	        <div class="aui-pull-left"><div class="aui-btn aui-btn-success keywords_mod">确定修改</div></div>
+	        <div class="aui-pull-right"><div class="aui-btn aui-btn-success keywords_offline">下线该关键词</div></div>
+        </div>
+	</div>
+<script type="text/javascript">
+	$(function(){
+		var checked={{checked}};
+		var key_id={{key_id}};
+		if (checked==1){
+			$(".keywords_offline").html("下线该关键词");
+			$(".keywords_offline").addClass("aui-btn-success");
+			$(".keywords_offline").removeClass("aui-btn-danger");
+		}else{
+			$(".keywords_offline").html("上线该关键词");
+			$(".keywords_offline").removeClass("aui-btn-success");
+			$(".keywords_offline").addClass("aui-btn-danger");
+		}
+		$(".keywords_mod").on("click",function() {
+			event.stopPropagation();
+			var keywords=$(".keywords").val();
+			if (keywords.length<=0){
+				layer.msg("请输入关键词！")
+				return;
+			}
+			var price=$(".price").val();
+			var maxprice=5;
+			if(!isNaN(price)){
+    			if (parseInt(price)<parseInt(maxprice)){
+			    	layer.msg("必须输入大于"+maxprice+"的金额！");
+			    	return;
+			    }
+    		}else{
+			   layer.msg("出价必须是数字");
+			   return;
+			}
+			var data={
+				key_id:$("#key_id").val(),
+				keywords:keywords,
+				price:price,
+			}
+			zzajax("post","/qianbao/jingjia_keywords_onesave.html",data,function(ret){
+				if (ret){
+					layer.msg("修改成功");
+					window.location='/qianbao/jingjia_index.html'
+				}
+			},function(){})
+		})
+		$(".keywords_offline").on("click",function() {
+			var checked=$("#checked").val();
+			if (checked==1){
+				checked=0;
+			}else{
+				checked=1
+			}
+			var data={
+				key_id:key_id,
+				checked:checked,
+			}
+			zzajax("post","/qianbao/jingjia_keywords_offline.html",data,function(ret){
+				if (ret){
+					layer.msg("修改成功");
+					window.location='/qianbao/jingjia_index.html'
+				}
+			},function(){})
+		})
+	});
+</script>
+{%include 'aui/bottom.html'%}
+</body>
+</html>

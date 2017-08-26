@@ -1,0 +1,188 @@
+<style>
+#shopitem .introduction{width:100%}
+#shopitem .introduction tr td{line-height:30px;border-bottom:1px solid #e1e1e1;font-size:14px;padding:15px 12px}
+#shopitem .introduction h4{font-size:16px;font-weight:bold}
+#shopitem .beCareful{color:#787878}
+
+#shopitem .introduction .buy_btn{width:62px;height:27px;line-height:27px;text-align:center;background:#ff7900;color:#fff;cursor:pointer}
+#shopitem .introduction .gray{color:#696969}
+
+#shopitem .tipp{width:80%;padding:15px;position:relative;display:none;-moz-border-radius:6px;background:#fff;-webkit-border-radius:5px;border-radius:5px;border:1px solid #536376;-webkit-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;-moz-box-shadow:rgba(0,0,0,.6) 0px 2px 12px}
+#shopitem .tipp ul li{line-height:24px;font-size:14px}
+#shopitem .tipp .price{color:#ff7900}
+#shopitem .tipp .explain{color:#909090}
+#shopitem .tipp p{font-size:14px}
+#shopitem .tipp .radio{color:#909090;margin-top:10px}
+#shopitem .tipp .radio .pay{margin-right:15px}
+#shopitem .btn{height:25px;display:inline-block;padding-left:25px;padding-right:25px;text-align:center;line-height:25px;color:#fff;font-size:16px;cursor:pointer}
+#shopitem .btn_cancel{background:#c7c7c7;color:#515151;font-family:"宋体";font-size:14px}
+#shopitem .btn_confirm{background:#009944;font-family:"宋体";font-size:14px;margin-right:5%}
+</style>
+<div class="part" id="shopitem">
+        	<table class="introduction" cellpadding="0" cellspacing="0" style="background:#fff">
+            	<tr>
+                	<td width="5%"><img src="http://m.zz91.com/images/shop/addr_chk.jpg" /></td>
+                    <td width="50%">
+                    	<div>
+                        	<p>查看联系方式</p>
+                            <p class="gray"><span style="font-family:Arial;">&yen;</span> :10元/公司&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            	<a href="/qianbao/simptxt.html" class="gray">简介</a>
+                            </p>
+                        </div>
+                    </td>
+                    <td><a href="#" class="gray">供求最终页直接消费</a></td>
+                </tr>
+                <tr>
+                	<td><img src="http://m.zz91.com/images/shop/showphonenumber.jpg" /></td>
+                    <td>
+                    	<div>
+                        	<p>显示联系方式</p>
+                            <p class="gray"><span style="font-family:Arial;">&yen;</span> :5元/天&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            	<a href="/qianbao/simptxt.html" class="gray">简介</a>
+                            </p>
+                        </div>
+                    </td>
+                    <td>
+<div class="buy_btn" id="showphone" onclick="shopfun.opencontact()">购买</div>
+                    </td>
+                </tr>
+                <tr>
+                	<td><img src="http://m.zz91.com/images/shop/msg_stick.jpg" /></td>
+                    <td>
+                    	<div>
+                        	<p>供求信息置顶</p>
+                            <p class="gray"> <span style="font-family:Arial;">&yen;</span> :15元/天&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            	<a href="/qianbao/simptxt.html" class="gray">简介</a>
+                            </p>
+                        </div>
+                    </td>
+                    <td>
+<div class="buy_btn" id="stick_buy">购买</div>
+                    </td>
+                </tr>
+            </table>
+        
+
+		<input type="hidden" id="qianbaoblance" value="{{qianbaoblance}}">
+         <div id="buyTipp" class="tipp">
+  			<p>您想购买的置顶时间为：</p>
+            <p class="radio">
+                <span class="pay"><input type="radio" name="stick" checked="checked" value="15"/> 15元/天</span>
+                <span class="pay"><input type="radio" name="stick" value="399"/> 399元/月</span>
+            	<span class="pay"><input type="radio" name="stick" value="3999"/> 3999元/年</span>
+            </p>
+			<div align="center" style="margin-top:10px;">
+				<div class="btn btn_confirm" onclick="dismiss();" id="buyprotop">确定</div>
+				<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		
+         <div id="buyTipp2" class="tipp">
+  			<p>您想购买的置顶信息为：</p>
+<iframe src="oflist.html" width="100%" height="160px"></iframe>
+<input type="hidden" id="proid" value="{{offid1}}">
+<input type="hidden" id="proid2" value="{{offid1}}">
+			<div align="center" style="margin-top:10px;">
+				<div class="btn btn_confirm" id="stick_buy3" onclick="dismiss();">确定</div>
+				<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		
+        <div id="extendTipp" class="tipp">
+  			<ul>
+            	<li>微信优质信息推广</li>
+                <li class="price">价格：300元</li>
+                <li class="explain">说明：确定后，将在1-2个工作日内有工作人员联系您，如遇 节假日自动顺延。</li>
+            </ul>
+			<div align="center" style="margin-top:10px;">
+				<div class="btn btn_confirm" onclick="dismiss();" id="wxtgclk">确定</div>
+				<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		
+		<div id="bal" class="tipp" align="center">
+  			<p>您的余额不足，是否在线充值？</p>
+            {%if not isldb%}<p style="color:#909090;font-size:13px;margin-top:10px">{{ggc}}</p>{%endif%}
+			 <div align="center" style="margin-top:10px;">
+			<div class="mui-btn btn_confirm" onClick="{%if isldb%}gotourl('/ldb_weixin/balance.html');{%else%}gotourl('/qianbao/chongzhi.html');{%endif%}dismiss();">确定</div>
+			<div class="mui-btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		
+		<div id="sucess" class="tipp" align="center">
+  			<p>购买成功</p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_cancel" onclick="dismiss();">确定</div>
+		   </div>
+		</div>
+		
+		<div id="sucess1" class="tipp" align="center">
+  			<p>您已经购买成功,我们会在两个工作日内与您联系!</p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_cancel" onclick="dismiss();">确定</div>
+		   </div>
+		</div>
+		
+		<div id="sucess2" class="tipp" align="center">
+  			<p>此供求已经申请过了,正在审核中...</p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_cancel" onclick="dismiss();">确定</div>
+		   </div>
+		</div>
+		
+		<div id="sucess3" class="tipp" align="center">
+  			<p>您的信息已经提交,正在审核中...</p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_cancel" onclick="dismiss();">确定</div>
+		   </div>
+		</div>
+
+		<div id="sucess4" class="tipp" align="center">
+  			<p>您已购买成功，您的所有供求信息均已显示联系方式。</p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_cancel" onclick="dismiss();">确定</div>
+		   </div>
+		</div>
+		<div id="sucess5" class="tipp" align="center">
+  			<p>您的联系方式已公开展示</p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_cancel" onclick="dismiss();">确定</div>
+		   </div>
+		</div>
+		
+		<div id="contact1" class="tipp" align="center">
+  			<p>请填写您的手机号码</p>
+  			<p><input type="text" id="mobile" style="height:27px"></p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_confirm" id="stick_buy2" onclick="dismiss();">确定</div>
+		   	<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<div id="contact2" class="tipp" align="center">
+  			<p>请填写您的手机号码</p>
+  			<p><input type="text" id="mobile1" style="height:27px"></p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_confirm" id="contact3" onclick="dismiss();">确定</div>
+		   	<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<div id="showphone1" class="tipp" align="center">
+  			<p>仅需5元即可全网显示本账号所有供求信息联系方式，并在供求列表页标注显示联系方式，电话量瞬间翻倍。</p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_confirm" id="showphone2" onclick="dismiss();">显示</div>
+		   	<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<div id="showphone3" class="tipp" align="center">
+  			<p>您想购买显示联系方式时间为</p>
+  		    <p class="radio">
+                <span class="pay"><input type="radio" name="shownumb" checked="checked" value="5"/> 5元/天</span>
+                <span class="pay"><input type="radio" name="shownumb" value="120"/> 120元/月</span>
+            	<span class="pay"><input type="radio" name="shownumb" value="1200"/> 1200元/年</span>
+            </p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_confirm" id="showphone4" onclick="dismiss();">确定</div>
+		   	<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+</div>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+</head>
+<body>
+<div id="overlay"></div>
+
+<form class="form-inline definewidth m20">
+<button type="button" class="btn btn-success" onClick="window.location.href='addartical.html'">添加文章</button>&nbsp;&nbsp;
+标题 <input type="text" name="ntitle" value="{%if ntitle%}{{ntitle}}{%endif%}" style="width:180px">&nbsp;
+<select name="typeid" style="width:150px">
+{%if typeid%}<option value="{{typeid}}">{{typename}}</option>{%endif%}
+    <option value="">请选择栏目...</option>{%for tp in alltypelist%}
+    <option value="{{tp.id}}">{{tp.typename}}</option>{%endfor%}
+</select>
+ <input class="btn btn-success" type="submit" value="查询">
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>名称</th>
+        <th>权重</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {%for l in arttypelist%}
+	<tr>
+	<td>{{l.id}}</td>
+	<td>{{l.typename}}</td>
+	<td>{{l.sortrank}}</td>
+	<td></td>
+	</tr>
+	{%endfor%}
+</table>
+<div class="inline pull-right page">
+<form>
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+
+{%if flag%}<input type="hidden" name="flag" value="{{flag}}">{%endif%}
+{%if writer%}<input type="hidden" name="writer" value="{{writer}}">{%endif%}
+<input type="hidden" name="page_listcount" value="{{page_listcount}}">&nbsp;&nbsp;
+去第<input type="text" name="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页  <input type="submit" style="display:none"> &nbsp;&nbsp;
+<a href='?page=1&{{searchurl}}' >首页</a><a href='?page={{page_listcount}}&{{searchurl}}' >尾页</a> 
+</form>
+
+</div>
+</body>
+</html>

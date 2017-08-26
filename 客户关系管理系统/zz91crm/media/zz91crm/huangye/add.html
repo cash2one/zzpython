@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title>公司信息提交</title>
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/province.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+		<style>
+			/* CSS Document */
+			
+			body {
+				background-color: #D0D7E1;
+			}
+			
+			.stitle {
+				font-size: 14px;
+				font-weight: bold;
+				color: #4A711C;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+				border-bottom-color: #87CB31;
+			}
+			
+			a {
+				color: #000000;
+			}
+			
+			a:hover {
+				color: #000000;
+			}
+			
+			.btitle {
+				font-size: 16px;
+				line-height: 30px;
+				font-weight: bold;
+				background-color: #F2F2F2;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+				border-bottom-color: #999999;
+			}
+			
+			td {
+				font-size: 12px;
+				line-height: 22px;
+			}
+			
+			.lit {
+				border-bottom-width: 1px;
+				border-bottom-style: dashed;
+				border-bottom-color: #CCCCCC;
+			}
+		</style>
+		<script>
+			function searchemail(frm) {
+				frm.action = "add.html"
+				frm.submit();
+			}
+
+			function frmsubmit(frm) {
+				frm.action = "save.html";
+				if(frm.account.value.length <= 0) {
+					alert("请输入账号!");
+					frm.account.focus();
+					return false;
+				}
+				if(frm.cname.value.length <= 0) {
+					alert("请输入公司名称!");
+					frm.cname.focus();
+					return false;
+				}
+				getprovincename();
+				if(frm.cadd.value.length <= 0) {
+					alert("请输入地址!");
+					frm.cadd.focus();
+					return false;
+				}
+				if(frm.cmobile.value.length <= 0) {
+					alert("请输入手机号码!");
+					frm.cmobile.focus();
+					return false;
+				}
+				if(frm.ccontactp.value.length <= 0) {
+					alert("请输入联系人!");
+					frm.ccontactp.focus();
+					return false;
+				}
+				if(frm.ckeywords.value == "") {
+					alert("请选择行业!");
+					frm.ckeywords.focus();
+					return false;
+				}
+				if(frm.ckeywords.value == "1") {
+					if(frm.js1.value == "") {
+						alert("必选选择一个金属小类");
+						frm.js1.focus();
+						return false;
+					}
+					if(frm.js1.value == frm.js2.value) {
+						alert("小类比选择项目和其他项不能一样！");
+						frm.js2.focus();
+						return false;
+					}
+				}
+				if(frm.ckeywords.value == "2") {
+					if(frm.sl1.value == "") {
+						alert("必选选择一个塑料小类");
+						frm.sl1.focus()
+						return false;
+					}
+					if(frm.sl1.value == frm.sl2.value) {
+						alert("小类必选择项和其他项不能一样！");
+						frm.sl2.focus();
+						return false;
+					}
+				}
+				if(frm.cproductslist.value == "") {
+					alert("请填写主营业务!");
+					frm.cproductslist.focus();
+					return false;
+				}
+
+				if(frm.province.value == "") {
+					alert("请选择省份!");
+					frm.province.focus();
+					return false;
+				}
+				if(frm.city.value == "") {
+					alert("请选择城市!");
+					frm.city.focus();
+					return false;
+				}
+				frm.submit();
+			}
+
+			function selectleibie(obj) {
+				if (obj){
+					$("#leibie1").hide();
+					$("#leibie2").hide();
+					$("#leibie3").hide();
+					$("#leibie" + obj).show();
+				}
+			}
+
+			function selectsex(s) {
+				var obj = document.getElementById("ccontactph")
+				var obj1 = document.getElementById("ccontactp")
+				obj1.value = obj.value + s
+			}
+		</script>
+	</head>
+
+	<body scroll=yes>
+		<table width="700" border="0" align="center" cellpadding="6" cellspacing="1" bgcolor="#000000" style="font-size:12px">
+			<form id="form1" name="form1" method="post" action="save.html">
+				<tr>
+					<td align="right" bgcolor="#FFFFFF">&nbsp;</td>
+					<td bgcolor="#FFFFFF">
+						<a href="list.html">返回列表</a>
+						<input name="addaction" type="hidden" id="addaction" value="{{addaction}}" />
+						<input name="id" type="hidden" id="id" value="{{id}}" />
+						<input type="hidden" name="com_id" id="com_id" value="{{company_id}}" />
+					</td>
+				</tr>
+				<tr>
+					<td align="right" bgcolor="#FFFFFF"></td>
+					<td bgcolor="#FFFFFF">
+						账号 <input name="account" type="text" id="account" value="{{account}}" size="40" />
+						<input type="button" name="button3" id="button3" value="搜索" onClick="searchemail(this.form)" />
+						<br /> 输入客户的账号点击搜索即可读取客户信息
+					</td>
+				</tr>
+				<tr>
+					<td align="right" bgcolor="#FFFFFF"> <span class="red">*</span>  期刊</td>
+					<td bgcolor="#FFFFFF">
+						<select name="huangye_qukan" id="huangye_qukan">
+							<option value="">--请选择--</option>
+							{%for list in huangyequkanlist%}
+							<option value="{{list.code}}">{{list.label}}</option>
+							{%endfor%}
+						</select>
+						<script>
+							selectOption("huangye_qukan", "{{huangye_qukan}}")
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<td width="80" align="right" bgcolor="#FFFFFF"><span class="red">*</span> 公司名称</td>
+					<td bgcolor="#FFFFFF">
+						<input name="cname" type="text" class="input" id="cname" value="{{comname}}" maxlength="50" style="width: 200px;" />
+						{%if company_id%}<a href="/icd/crm_cominfoedit.html?company_id={{company_id}}&dotype=my" target="_blank">查看</a>{%endif%}
+					</td>
+				</tr>
+				<tr>
+					<td align="right" bgcolor="#FFFFFF"> <span class="red">*</span> 大类</td>
+					<td bgcolor="#FFFFFF">
+						<select name="ckeywords" id="ckeywords" onChange="selectleibie(this.value)">
+							<option value="">--请选择--</option>
+							<option value="1">废金属</option>
+							<option value="2">废塑料</option>
+							<option value="3">综合</option>
+
+						</select>
+						<script>
+							selectOption("ckeywords", "{{comkeywords}}")
+						</script>
+
+					</td>
+				</tr>
+				<tr>
+					<td align="right" bgcolor="#FFFFFF">小类</td>
+					<td bgcolor="#FFFFFF">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" style="display:none" id="leibie1">
+							<tr>
+								<td>必选
+									<select name="js1" id="js1">
+										<option value="">金属细类</option>
+										<option value="贵金属">贵金属（金银铂钯铑等）</option>
+										<option value="稀有金属">稀有金属（钨钼钛锢等）</option>
+										<option value="有色金属">有色金属（锡铜铝锌镍等）</option>
+										<option value="钢铁">钢铁（铁钢工具钢合金钢不锈钢）</option>
+										<option value="其他类">其他类</option>
+									</select>
+									<script>
+										selectOption("js1", "{{js1}}")
+									</script>
+									其他
+									<select name="js2" id="js2">
+										<option value="">金属细类</option>
+										<option value="贵金属">贵金属（金银铂钯铑等）</option>
+										<option value="稀有金属">稀有金属（钨钼钛锢等）</option>
+										<option value="有色金属">有色金属（锡铜铝锌镍等）</option>
+										<option value="钢铁">钢铁（铁钢工具钢合金钢不锈钢）</option>
+										<option value="其他类">其他类</option>
+									</select>
+									<script>
+										selectOption("js2", "{{js2}}")
+									</script>
+								</td>
+							</tr>
+						</table>
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" style="display:none" id="leibie2">
+							<tr>
+								<td>必选
+									<select name="sl1" id="sl1">
+										<option value="">塑料细类</option>
+										<option value="PP">PP</option>
+										<option value="PET">PET</option>
+										<option value="PE">PE</option>
+										<option value="ABS">ABS</option>
+										<option value="PVC">PVC</option>
+										<option value="PS">PS</option>
+										<option value="PA">PA</option>
+										<option value="PC">PC</option>
+										<option value="PVB">PVB</option>
+										<option value="PMMA">PMMA</option>
+										<option value="EVA">EVA</option>
+										<option value="PU">PU</option>
+										<option value="其他类">其他类</option>
+									</select>
+									<script>
+										selectOption("sl1", "{{sl1}}")
+									</script>
+									其他
+									<select name="sl2" id="sl2">
+										<option value="">塑料细类</option>
+										<option value="PP">PP</option>
+										<option value="PET">PET</option>
+										<option value="PE">PE</option>
+										<option value="ABS">ABS</option>
+										<option value="PVC">PVC</option>
+										<option value="PS">PS</option>
+										<option value="PA">PA</option>
+										<option value="PC">PC</option>
+										<option value="PVB">PVB</option>
+										<option value="PMMA">PMMA</option>
+										<option value="EVA">EVA</option>
+										<option value="PU">PU</option>
+										<option value="其他类">其他类</option>
+									</select>
+									<script>
+										selectOption("sl2", "{{sl2}}")
+									</script>
+									
+								</td>
+							</tr>
+						</table>
+						<table width="100%" border="0" cellspacing="0" cellpadding="0" style="display:none" id="leibie3">
+							<tr>
+								<td>必选
+
+									<select name="qt1" id="qt1">
+										<option value="">综合细类</option>
+										<option value="橡胶">橡胶</option>
+										<option value="纺织">纺织</option>
+										<option value="废纸">废纸</option>
+										<option value="废电子电器">废电子电器</option>
+										<option value="服务行业">服务行业</option>
+										<option value="其他">其他</option>
+									</select>
+									<script>
+										selectOption("qt1", "{{qt1}}")
+									</script>
+									其他
+									<select name="qt2" id="qt2">
+										<option value="">综合细类</option>
+										<option value="橡胶">橡胶</option>
+										<option value="纺织">纺织</option>
+										<option value="废纸">废纸</option>
+										<option value="废电子电器">废电子电器</option>
+										<option value="服务行业">服务行业</option>
+										<option value="其他">其他</option>
+									</select>
+									<script>
+										selectOption("qt2", "{{qt2}}")
+									</script>
+									<script>
+										selectleibie("{{comkeywords}}")
+									</script>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" bgcolor="#FFFFFF"><span class="red">*</span> 地区</td>
+					<td bgcolor="#FFFFFF">
+						<font id="mainprovince1"></font>
+						<font id="maincity1"></font>
+						<font id="mainGarden">无园区</font>
+						<input type="hidden" name="cprovince" id="cprovince" value="0">
+							<br>
+						省份<input type="text" name="province" size="15" id="province" onClick="getprovincename()" value="{{province}}">
+						城市<input name="city" type="text" id="city" size="15" onClick="getprovincename()" value="{{city}}">
+						<script>
+							//地区及园区
+							var Fstyle = "";
+							var selectname1 = "province1";
+							var selectname2 = "city1";
+							var selectname3 = "Garden";
+							var Fvalue1 = "";
+							var Fvalue2 = "";
+							var Fvalue3 = "";
+							var hyID = "ckeywords"; //行业ID号
+							getprovincevalue();
+						</script>
+						<script>
+							function getprovincename() {
+								var province1=document.getElementById("province1").options[document.getElementById("province1").selectedIndex].text;
+								if(province1 == "请选择...") {
+									
+								}else{
+									document.getElementById("province").value = province1
+								}
+								var city1 = document.getElementById("city1").options[document.getElementById("city1").selectedIndex].text
+								if(city1 == "请选择...") {
+									
+								} else {
+									document.getElementById("city").value = city1
+								}
+							}
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" bgcolor="#FFFFFF"><span class="red">*</span> 主营业务</td>
+					<td bgcolor="#FFFFFF"><textarea name="cproductslist" id="cproductslist" cols="45" rows="3" class="input">{{business}}</textarea></td>
+				</tr>
+				<tr>
+					<td align="right" bgcolor="#FFFFFF"><span class="red">*</span> 联系人</td>
+					<td bgcolor="#FFFFFF">
+						<input type="hidden" value="{{contact}}" id="ccontactph">
+						<input name="ccontactp" type="text" id="ccontactp" maxlength="50" value="{{contact}}" />
+						<select name="select" id="select" onChange="selectsex(this.value)">
+							<option value="" selected="selected"></option>
+							<option value="先生">先生</option>
+							<option value="女士">女士</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="right" bgcolor="#FFFFFF"><span class="red">*</span> 手机/电话</td>
+					<td bgcolor="#FFFFFF"><input name="cmobile" type="text" class="input" id="cmobile" maxlength="50" value="{{mobile}}" /></td>
+				</tr>
+				<tr>
+					<td align="right" bgcolor="#FFFFFF">微信</td>
+					<td bgcolor="#FFFFFF"><input name="weixin" type="text" class="input" id="weixin" maxlength="50" value="{{weixin}}" /></td>
+				</tr>
+				<tr>
+					<td align="right" bgcolor="#FFFFFF"><span class="red">*</span> 地址</td>
+					<td bgcolor="#FFFFFF"><textarea name="cadd" id="cadd" cols="45" rows="2" class="input">{{address}}</textarea></td>
+				</tr>
+				{%if checkflag%}
+				<tr>
+					<td align="right" bgcolor="#FFFFFF">审核</td>
+					<td bgcolor="#FFFFFF">
+						<input type="radio" name="pcheck" id="pcheck" value="1" {%ifequal pcheck 1%}checked{%endifequal%}/> 已审核
+						<input type="radio" name="pcheck" id="pcheck" value="0" {%ifequal pcheck 0%}checked{%endifequal%}/> 未审核
+					</td>
+				</tr>
+				{%endif%}
+				<tr>
+					<td align="right" bgcolor="#FFFFFF">&nbsp;</td>
+					<td bgcolor="#FFFFFF">
+						<input type="hidden" name="lpersonid" id="lpersonid" value="{{user_id}}" />
+						<input type="button" name="button" id="button" value="提交" onClick="return frmsubmit(this.form)" />
+						<input type="reset" name="button2" id="button2" value="重置" />
+
+					</td>
+				</tr>
+			</form>
+		</table>
+	</body>
+
+</html>

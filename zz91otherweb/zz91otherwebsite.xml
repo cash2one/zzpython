@@ -1,0 +1,19 @@
+<uwsgi>
+ <socket>:8014</socket>
+ <workers>2</workers>
+ <master>true</master>
+ <listen>300</listen>
+ <processes>4</processes>
+ <pythonpath>.</pythonpath>
+ <module>zz91otherweb.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>zz91otherweb/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>2000</limit-as>
+ <reload-on-as>800</reload-on-as>
+ <reload-on-rss>800</reload-on-rss>
+ <max-requests>800</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/zz91otherweb.log</daemonize>
+</uwsgi>

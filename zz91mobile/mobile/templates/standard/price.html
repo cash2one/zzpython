@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>报价列表-ZZ91再生网 手机版_废料移动商务第一站！</title>
+<meta name="keywords" content="废料手机版,再生资源手机版,废料回收手机版,废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备" />
+<meta name="description" content="{{title}},ZZ91再生网是中国最大最旺的网上废料贸易市场,这里为您精选了废金属,废塑料,废纸,废橡胶,纺织废料,废旧设备,废电子电器,废玻璃,废皮革,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备等各类废料供求信息.公司黄页.行业资讯.价格行情.展会信息等。" />
+{%include 'standard/head.html'%}
+{%include 'standard/top.html'%}
+<div class="s-nav-bc bb-c plr10" >
+<p class="bc">
+<a href="/standard/">首页</a>
+<span>&gt;</span>
+<a href="/standard/priceindex/">行情报价</a>
+</p>	
+</div>
+<div class="m10">
+<form action="/standard/price/">
+<input type="text" name="keywords" value=""/>
+<input type="hidden" name="en"	value="utf8"/>
+<input type="submit" value="价格搜索"/>
+</form>
+</div>
+<div class="lh m10">
+{%for list in pricelist%}
+<p><a href="/standard/priceviews/?id={{list.id}}">				
+<span>{{list.title}}</span>	
+</a></p>
+{%endfor%}
+</div>
+<div class="bt-c ac pt10 pb7">	
+	<p style="padding-left:10px;">
+	{% if lastpage %}
+	<a href="/standard/price/?page={{nextpage}}&category_id={{category_id}}&keywords={{keywords}}">下一页</a>
+	{%endif%}
+	{% if firstpage %}
+	<a href="/standard/price/?page={{prvpage}}&category_id={{category_id}}&keywords={{keywords}}">上一页</a>
+	{% endif %}
+	({{page}}/{{page_listcount}})
+	</p>	
+</div>
+
+{%include 'standard/bottom.html'%}
+
+</body>
+</html>

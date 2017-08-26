@@ -1,0 +1,11 @@
+{%for list in pinlunlist.list%}
+<li class="clear">
+	<div class="fr tellhome-pl">
+		<div class="tellhome-info clear">
+			<span class="tellhome-pp fl fweight">{{list.nickname}}</span>
+			<span class="tellhome-time fr">{{list.posttime}}</span>
+		</div>
+		<div class="tellhome-xx">{{list.content|safe}}</div>
+	</div>
+</li>
+{%endfor%}

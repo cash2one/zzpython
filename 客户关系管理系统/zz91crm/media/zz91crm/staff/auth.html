@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>简单表单页</title>
+<!-- 此文件为了显示Demo样式，项目中不需要引入 -->
+  <link href="../assets/css/dpl-min.css" rel="stylesheet">
+  <link href="../assets/css/bui-min.css" rel="stylesheet">
+  <style>
+	  #overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:white;opacity:0.5;filter:alpha(opacity=50);display:none;}
+	  .win{position:absolute;top:50%;left:50%;width:400px;height:100px;background:#fff;border:4px solid gray;margin:-102px 0 0 10px;display:none;padding: 20px;}
+  </style>
+</head>
+<body>
+  <div class="demo-content">
+    
+<!-- 简单搜索页 ================================================== -->
+    <div class="row">
+      <div class="span24 doc-content">
+      {{n}}
+        <form id="search" class="form-panel">
+          <ul class="panel-content">
+            <li>
+              <select name="level">
+                <option>一级类目</option>
+              </select>
+              权限名称：
+              <input type="text" name="authname" value="{%if authname%}{{authname}}{%endif%}"/>
+              <button type="button" class="button button-primary" onClick=send1()>查询>></button>
+              <button type="button" class="button button-success" onclick="window.location='addauth.html'">添加权限</button>
+            </li>
+          </ul>
+        </form>
+        <table cellspacing="0" class="table table-bordered">
+          <thead>
+            <tr>
+              <th width="15"></th>
+              <th>权限id</th>
+              <th>权限名称</th>
+              <th>人数</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          	{%for alist in listall%}
+            <tr>
+              <td><input type="checkbox"></td>
+              <td ><span class="x-tree-icon-wraper"><span class="x-tree-icon x-tree-elbow-expander"></span><span class="x-tree-icon x-tree-elbow-dir"></span></span>{{alist.aid}}</td>
+              <td>{{alist.label}}</td>
+              <td>{{alist.count}}</td>
+              
+              <td>
+              	<!--  <span class="grid-command"><a class="edit" authid="{{alist.aid}}"  authlabel="{{alist.label}}" title="编辑属性">编辑</a></span>-->
+              	<span class="grid-command"><a href="auth_category_set.html?id={{alist.aid}}" title="权限设置">权限设置</a></span>
+              	<span class="grid-command"><a onclick="return confirm('确实要删除吗')" href="auth_category_del.html?id={{alist.aid}}">删除</a></span>
+              </td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+        <div>
+          <div class="inline pull-right page">
+			<form>
+				共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页 &nbsp;&nbsp; {% if firstpage %}
+				<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%} {%for p in page_range%} {%if p.nowpage%}
+				<span class='current'>{{p.number}}</span>&nbsp; {%else%}
+				<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a> {%endif%} {%endfor%} {% if lastpage%}
+				<a href="?page={{nextpage}}&{{searchurl}}"><!--<a href="javascript:void(0)" class="nextpage" value="{{nextpage}}">-->下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp; {%if flag%}
+				<input type="hidden" name="flag" value="{{flag}}">{%endif%} {%if writer%}
+				<input type="hidden" name="writer" value="{{writer}}">{%endif%}
+				<input type="hidden" name="page_listcount" value="{{page_listcount}}">&nbsp;&nbsp; 去第
+				<input type="text" name="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页
+				<input type="submit" style="display:none"> &nbsp;&nbsp;
+				<a href='?page=1&{{searchurl}}'>首页</a><a href='?page={{page_listcount}}&{{searchurl}}'>尾页</a>
+			</form>
+		</div>
+        </div>
+      </div>
+    </div> 
+<!-- script end -->
+  </div>
+  <br />
+  <br />
+   <script type="text/javascript" src="../assets/js/jquery-1.8.1.min.js"></script>
+   <script type="text/javascript" src="../assets/js/jquery.lightbox_me.js"></script>
+  <script type="text/javascript">
+  function send1()
+	{
+		//$("#search").action="http://www.baidu.com"
+		$("#search").submit()
+	}
+  </script>
+  <!-- 快速编辑开始 -->
+  <script type="text/javascript">
+  $(document).ready(function(){
+	  $(".edit").click(function(e){
+			var authid=$(this).attr("authid");
+			$('#authid').val(authid);
+			//alert(authid);
+			var authlabel=$(this).attr("authlabel");
+			$('#authlabel').val(authlabel);
+			//alert(authlabel);
+			$('#win9').lightbox_me({
+				overlaySpeed:0,
+				lightboxSpeed:0,
+        		centered: true, 
+        		onLoad: function() { 
+        		}
+        	});
+			e.preventDefault();
+   });
+	  $('#win10').click(function(e){
+		  var authid=$('#authid').val();
+		  var authlabel=$('#authlabel').val();
+		  $.ajax({
+			  type: "GET",
+			  url: "quickautheditok.html?authid="+authid+"&authlabel="+authlabel,
+			  data:'',
+			  success:function(data){
+			   		window.location.href="";
+			   },
+			   error:function(data){
+					//alert("错误!青重试.");
+			   }
+		  });
+	  });
+	 
+ });
+//关闭窗口
+  function dismiss(){
+		$('#win9').trigger('close');
+	}
+  
+  </script>
+  <!-- 快速编辑结束 -->
+  
+  <!-- 编辑框div开始 -->
+  <div class="win" id="win9" name="win">
+	  <input type="hidden" id="authid" >
+	  <h2><div style="width:200px;height:1px;text-align:left"> &nbsp;快速属性编辑</div> &nbsp;</h2>
+	  <br />
+	  <table>
+				<tr>
+					<td style="width:60px">&nbsp;权限名称:</td>
+					<td>
+						<input type="text" id="authlabel" name="authlabel" value="" style="width:300px">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input type="button" value="确认" id="win10" onclick="dismiss()">
+						<input type="button" onclick="dismiss()" value="返回">
+					</td>
+				</tr>
+	  </table>
+</div>
+  <!-- 编辑框div结束 -->
+</body>
+</html>  

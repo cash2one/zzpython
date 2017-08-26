@@ -1,0 +1,7 @@
+{%for list in categorylist%}
+<li class="mui-table-view-cell">
+    <a class="mui-navigate-right" href="javascript:gotourl('{{appurl}}category/?code={{list.code}}','tradelist');">
+        {{list.label}}
+    </a>
+</li>
+{%endfor%}

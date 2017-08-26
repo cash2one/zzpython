@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>生成栏目</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/style.css" />
+<style type="text/css"> .graph{ width:450px; border:1px solid #F8B3D0; height:25px; } #bar{ display:block; background:#FFE7F4; float:left; height:100%; text-align:center; } #barNum{ position:absolute; } </style> 
+<script src="/bootstrap/Js/jquery-1.7.2.js"></script>
+<script type="text/javascript">
+var i=0;
+function gojd(evertm){
+	if(document.getElementById("bar").style.width == "101%"){
+		document.getElementById("bar").style.width="1%"
+	}
+	if(i<99){
+		setTimeout(function(){
+			leavetm=(evertm/10)-((evertm*(i+1))/1000);
+			document.getElementById("clikbutton").innerHTML='预估剩余时间:<font color="red">'+leavetm+'</font>秒';
+			document.getElementById("bar").style.width = parseInt(document.getElementById("bar").style.width) + 1 + "%";
+			document.getElementById("bar").innerHTML=(i+1)+"%";
+			go(evertm)
+		},evertm);
+		i++;
+	}
+}
+
+
+
+$(document).ready(function(){
+	$("#clearhtml").click(function(){
+		var list2=[]
+		var freshtime = Date.parse(new Date());
+		//alert(freshtime)
+		$.ajax({
+			async:false,
+			type: "GET",
+			url: "cleararthtml.html",
+			data: "getartlist=1&freshtime="+freshtime,
+			success:function(data){
+				jsondata=eval('('+data+')');
+				list2=jsondata.list
+				//alert(list2);
+			},
+			error:function(data){
+				alert("错误!青重试.");
+			}
+		});
+		lendelartvalue=list2.length;
+		if (lendelartvalue==0){alert('缓存已清空');}else{
+			$("#clearbutton").html('&nbsp;&nbsp;&nbsp;&nbsp;<img src="/123/imgs/loading.gif"> 正在清除缓存..')
+			jnumb2=0
+			$.each(list2, function(i2,val2){
+				//alert(val2);
+				$.ajax({
+				   type: "GET",
+				   url: "cleararthtml.html",
+				   data: "type=3&artid="+val2+"&freshtime="+freshtime,
+				   success:function(data){
+				   		if (data=="1"){
+				   			jnumb2+=1;
+				   			if (jnumb2==lendelartvalue){
+				   			window.location.href="buildhtmlok.html?freshtime="+freshtime
+				   			}
+				   		}
+					   },
+				   error:function(data){
+						alert("错误!青重试.");
+				   }
+				});
+			});
+		}
+	});
+});
+
+
+</script>
+
+</head>
+<body>
+
+<form class="form-inline definewidth m20" action="buildhtmlok.html">
+<table>
+<tr><td></td><td><a class="btn btn-success">选择栏目</a></td><td id="clearbutton">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a id="clearhtml" class="btn btn-success">清空缓存</a> (文章删除后,把静态页面删掉) <img src="" width="200px"><a href="cleararthtmlall.html" onClick="return confirm('是否清空所有文章生成状态?')">清空所有文章生成状态</a></td></tr>
+{%for list1 in alltypelist%}
+<tr><td><input type="checkbox" name="buildartical" value="{{list1.id}}"></td><td>{{list1.typename}}: &nbsp;&nbsp;</td><td style="text-align:left"> {%for lt1 in list1.nexttplist%}<input type="checkbox" name="buildartical" value="{{lt1.id}}">&nbsp;{{lt1.typename}} {%endfor%}</td></tr>
+{%endfor%}&nbsp;&nbsp;
+<table>
+<br /><br /><a style="float:left"  href="#" onClick="SelectAll()">全选/反选</a>
+<div style="float:left;width:10px">&nbsp;</div>
+<div id="clikbutton"><a style="float:left" class="btn btn-success" id="buildindex" evertm="12" onclick='buildhtml()'>生成内容
+  
+</a><input type="button" name="button" id="button" value="生成内容" onClick="buildhtml()"><br /></div><br />
+<div class="graph">
+{%if getjindu%}<strong id="bar" style="width:100%;">100%</strong>
+{%else%}
+<strong id="bar" style="width:1%;"></strong>
+{%endif%}
+</div>
+<input type="hidden" name="type" value="3">
+<input type="hidden" name="jindutiao" value="1">
+<input type="hidden" name="freshtime" {%if freshtime%}value="{{freshtime}}"{%endif%}>
+
+</div>
+</form><br />
+<script>
+function SelectAll() {
+ var checkboxs=document.getElementsByName("buildartical");
+ for (var i=0;i<checkboxs.length;i++) {
+  var e=checkboxs[i];
+  e.checked=!e.checked;
+ }
+}
+
+function buildhtml(){
+	var chk_value =[];
+	$('input[name="buildartical"]:checked').each(function(){
+		chk_value.push($(this).val());
+	});
+	lencheckvalue=chk_value.length;
+	if (lencheckvalue>0){
+		var freshtime = Date.parse(new Date());
+		$.ajax({
+			async:false,
+			type: "GET",
+			url: "noarticalhtmlnum.html",
+			data: "chk_value="+chk_value+"&freshtime="+freshtime,
+			success:function(data){
+				jsondata=eval('('+data+')');
+				count=jsondata.count
+				list1=jsondata.list
+			},
+			error:function(data){
+				alert("错误!青重试.");
+			}
+		});
+		lenarticalvalue=list1.length;
+		if (lenarticalvalue==0){alert('文章都已经生成静态');}else{
+			evertm=100*lenarticalvalue
+			i=0;
+			gojd(evertm);
+			jnumb=0
+			$.each(list1, function(i1,val1){
+				$.ajax({
+				   type: "GET",
+				   url: "buildhtmlok.html",
+				   data: "type=3&oneartical="+val1+"&freshtime="+freshtime,
+				   success:function(data){
+				   		if (data=="1"){
+				   			jnumb+=1;
+				   			if (jnumb==lenarticalvalue){
+				   				window.location.href="buildhtmlok.html?freshtime={{freshtime}}"
+				   			}
+				   		}
+				   },
+				   error:function(data){
+						alert("错误!青重试.");
+				   }
+				});
+			});
+		}
+	}else{alert("请选择一个栏目");}
+}
+</script>
+</body>
+</html>

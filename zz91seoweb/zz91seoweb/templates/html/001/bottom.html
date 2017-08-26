@@ -1,0 +1,66 @@
+{%if friendlist%}
+<div class="esite_friend_link">
+	友情链接：
+    {%for list in friendlist%}
+    <a href="{{list.link_address}}" target="_blank">{{list.link_name}}</a>&nbsp;&nbsp;
+    {%endfor%}
+</div>
+{%endif%}
+<!--商铺底部-->
+<div id="footer">
+	<div class="shop-footerb">
+		<div class="shop-footer">
+		<!--关于我们-->
+			<div class="foot-aboutus fl">
+				<h4 class="footer-contact1">关于我们</h4>
+				<div class="ft-abus">
+					<ul>
+					<li><a href="/about.html"  target="_blank">企业简介</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- 主营产品-->
+			<div class="foot-product fl">
+				<h4 class="footer-contact2">主营产品</h4>
+				<div class="ft-product">
+					<p>{{list.business}}</p>
+				</div>
+			</div>
+			<!--联系我们-->
+			<div class="foot-contact fl">
+				<h4 class="footer-contact3">联系我们</h4>
+				<div class="ft-contactus">
+					<p>{{list.name}}</p>
+					<p>地址：{{list.province}} {{list.address}}</p>
+										<p>电话：{{list.mobile}}</p>
+									</div>
+			</div>
+			<!--技术支持-->
+			<div class="foot-support fl">
+				<div class="ft-techsupport">
+					<p class="clf">
+					<img src="{{csscode}}/images/blogo.jpg" alt="ZZ91再生网"/>
+					<span>技术支持：<a href="http://www.zz91.com/" target="_blank">ZZ91再生网</a></span>
+					<span class="sup-buttom">Powered by zz91.com</span>
+				  </p>
+					<p class="record">备案/许可证编号： 浙B2-20080212</p>
+					<p class="f-stat"><noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/3080137/tongji.gif"/></a></noscript></p>
+                   
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+(function(d, t) {
+    var r = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    r.async = 1;
+    r.src = 'http://www.zz91.com/app/log.htm?' + Math.ceil(new Date/3600000)
+    s.parentNode.insertBefore(r, s);
+})(document, 'script');
+</script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!--商铺底部结束-->

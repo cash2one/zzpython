@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>淘再生-再生商客</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://b.zz91.com/comm/js/comm.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_xjfeexxwiw2q33di.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/recyclecrm/css/chapman.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/recyclecrm/css/chapman-t.css"/>
+	</head>
+	<body>
+		<div style="height:48px;">
+			<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+		    	<div class="aui-pull-left">
+			       	消息
+			    </div>
+			    <a class="aui-pull-right" href="javascript:void(0)">
+			        <i class="iconfont icon-sousuo1 aui-font-size-20"></i>
+			    </a>
+			</header>
+		</div>
+		
+		<div class="aui-content">
+		    <ul class="aui-list-view aui-in aui-border-t-0">
+		        <li class="aui-list-view-cell">
+		            <a class="">
+		            	<a href="/crm/customer/list.html?today=0"><i class="iconfont icon-shalou aui-text-primary"></i>
+		            	今日安排联系的客户</a>
+		            	{%ifequal result.num1.count 0%}{%else%}<span class="aui-badge aui-badge-danger">{{result.num1.count}}</span>{%endifequal%}
+		            </a>
+		        </li>
+		        <li class="aui-list-view-cell aui-border-b-0">
+		            <a class="">
+		            	<a href="/crm/customer/list.html?losecontact=losecontact">
+		            	<i class="iconfont icon-bugaoxing aui-text-primary"></i>
+		            	跟丢客户</a>
+		            	{%ifequal result.num2.count 0%}{%else%}<span class="aui-badge aui-badge-danger">{{result.num2.count}}</span>{%endifequal%}
+		            </a>
+		        </li>
+		    </ul>
+		    
+		    <ul class="aui-list-view aui-in aui-border-t-0">
+		        <li class="aui-list-view-cell">
+		            <a href="leave.html" class="">
+		            	<i class="iconfont icon-xinxi aui-text-primary"></i>
+		            	客户留言	
+		            	{%ifequal result.num3.count 0%}{%else%}<span class="aui-badge aui-badge-danger">{{result.num3.count}}</span>{%endifequal%}
+		            </a>
+		        </li>
+		        <li class="aui-list-view-cell">
+		            <a href="notification1.html" class="">
+		            	<i class="iconfont icon-fcstubiao01 aui-text-primary"></i>
+		            	通知
+		            	<span class="aui-badge aui-badge-danger">8</span>
+		            </a>
+		        </li>
+		        <li class="aui-list-view-cell aui-border-b-0">
+		            <a href="commission.html" class="">
+		            	<i class="iconfont icon-rili aui-text-primary"></i>
+		            	代办
+		            	<span class="aui-badge aui-badge-danger">8</span>
+		            </a>
+		        </li>
+		    </ul>
+		</div>
+		
+		<footer class="aui-nav" id="aui-footer">
+		    <ul class="aui-bar-tab aui-border-t">
+		        <li id="tabbar1" onclick="randomSwitchBtn(this,'栏目1',0)">
+		            <span class="iconfont icon-gongzuotai"></span>
+		            <p>工作台</p>
+		        </li>
+		        <li class="active-warning" id="tabbar2" onclick="randomSwitchBtn(this,'栏目2',1)">
+		            <span class="iconfont icon-xiaoxi"></span>
+		            <p>消息</p>
+		        </li>
+		        <li id="tabbar3" onclick="randomSwitchBtn(this,'栏目3',2)">
+		            <span class="iconfont icon-faxian"></span>
+		            <p>发现</p>
+		        </li>
+		        <li id="tabbar4" onclick="randomSwitchBtn(this,'栏目4',3)">
+		            <span class="iconfont icon-kehu"></span>
+		            <p>我的</p>
+		        </li>
+		    </ul>
+		</footer>
+		<script>
+			function randomSwitchBtn(This,lanmo,num){
+				if (num==0){
+					location.href='/crm/index.html'
+				}
+				if (num==1){
+					location.href='/crm/message/index.html'
+				}
+				if (num==2){
+					location.href='/crm/found/index.html'
+				}
+				if (num==3){
+					location.href='/crm/my/index.html'
+				}
+			}
+		</script>
+	</body>
+</html>

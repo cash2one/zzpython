@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{%if typename%}{{typename.typename}}-{%endif%}两性情感人生_恋爱交友_情感故事_爱情婚姻_人生感悟_成功励志_心理测试--知性朋友网</title>
+		<meta name="baidu_union_verify" content="36a35b1ed952bb8212dccef6014ac66a">
+		<meta name="description" content="恋爱婚姻_情感故事_人生感悟:感人爱情故事_亲情故事,两性关系_男女心理分析,人生哲理_成功励志,爱情短信_星座情缘_心理测试_爱情感悟_婚姻家庭_性爱技巧的好文章" />
+		<meta name="keywords" content="两性,情感,感情,爱情,恋爱,交友,人生,励志,亲情,婚姻,性爱,情书,心情,情感故事,爱情故事,人生感悟,成功人生,爱情感悟,星座配对,爱情短信,心理测试" />
+		<link rel="stylesheet" href="/css/comm.css" type="text/css" />
+		<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "//hm.baidu.com/hm.js?67ddfd0565f7cd475fe9c64240e6c43d";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	</head>
+	<style>
+		body {
+			background-color: #ebebeb;
+			font-family: "微软雅黑";
+		}
+		.logo {
+			line-height: 60px;
+			color: #FFCC00;
+			text-align: center;
+			font-size: 20px;
+			font-family: "微软雅黑";
+		}
+		.mainleft {
+			width: 200px;
+			height: 100px;
+			float: left;
+			min-width: 150px;
+		}
+		.mainleft .nav {
+			position: fixed;
+			left: 0px;
+			height: 100%;
+			background-color: #B63798;
+			overflow: auto;
+			width: 200px;
+		}
+		.mainleft ul{
+			width: 100%;
+		}
+		.mainleft li {
+			height: 30px;
+			font-size: 16px;
+			text-align: center;
+			line-height: 30px;
+			color: #fff;
+			font-family: "微软雅黑";
+			margin-bottom: 10px;
+		}
+		.mainleft li a {
+			display: block;
+			border-radius: 10px;
+			border: solid 1px #fff;
+			margin: 10px;
+			color: #000;
+			background-color: #ebebeb;
+		}
+		.mainleft .little{
+			margin-left: 20px;
+			border: none;
+			border-bottom: solid 1px #fff;
+			margin-right: 20px;
+		}
+		.mainleft .little a{
+			border: none;
+			color: #fff;
+			background-color:#B63798;
+		}
+		.mainleft .little .on1{
+			color: #FFCC00;
+			border: none;
+			line-height: 25px;
+		}
+		.mainleft .nav .on {
+			background-color: #FFCC00;
+		}
+		.mainright {
+			float: left;
+			font-family: "微软雅黑";
+			width: 70%;
+			margin-top: 20px;
+			margin-left: 10px;
+			min-width: 700px;
+		}
+		.mainright li {
+			margin-bottom: 10px;
+			background-color: #fff;
+			border: solid 1px #999;
+			float: left;
+			width: 100%;
+			border-radius: 5px;
+			padding: 10px;
+		}
+		.mainright .newsleft {
+			float: left;
+		}
+		.mainright .newsleft .title {
+			font-size: 18px;
+			font-weight: bold;
+			line-height: 35px;
+		}
+		.mainright .newsleft .content {
+			line-height: 25px;
+			color: #666;
+			font-size: 16px;
+		}
+		.mainright .newsimg {
+			width: 200px;
+			border: solid 1px #eee;
+			float: right;
+			text-align: center;
+		}
+		.mainright .newsimg img {
+			max-width: 200px;
+			max-height: 200px;
+		}
+		.mainright .newscontorl {
+			color: #8A8A8A;
+		}
+		.mainrightad {
+			float: right;
+			right: 0px;
+			margin-right: 20px;
+		}
+		.doc-image-list img{
+			float: left;
+			width: 32%;
+			margin-right: 5px;
+		}
+		.evm{
+			padding: 10px;
+			color: #fff;
+			line-height: 30px;
+			font-size: 14px;
+			text-align: center;
+		}
+		.evm a{
+			color: #fff;
+		}
+	</style>
+
+	<body>
+		<div id="top">
+			<div class="mainleft">
+				<div class="nav">
+					<div class="logo">知性朋友网</div>
+					<ul>
+						{%for list in newscolumn%}
+						<li><a href="/{{list.typedir}}/" {%if list.nowdir%}class="on" {%endif%}>{{list.typename}}</a></li>
+						{%if list.nowdir%}
+						{%for list in litilecolumn%}
+						<li class="little"><a href="/{{list.typedir}}/" {%if list.nowdir%}class="on1" {%endif%}>{{list.typename}}</a></li>
+						{%endfor%}
+						{%endif%}
+						{%endfor%}
+					</ul>
+					<div class="evm">
+						两性秘密<br />
+						Android版 下载<br />
+						<img src="/img/1445655292.png"><br />
+						<a href="http://app.zjfriend.com/app/zjfriend1.04.apk">下载到电脑</a>
+						
+					</div>
+
+				</div>
+			</div>
+			<script>
+				function loadMore(objdiv) {
+					var pageobj = document.getElementById("pageindex");
+					var page = pageobj.value;
+					pageobj.value = parseInt(page) + 1;
+					document.getElementById("loadMore").innerHTML = "加载中...";
+					$.get("?", {page: pageobj.value},
+						function(data, status) {
+							if (status == "success" && data != "err\n" && data != "") {
+								document.getElementById("loadMore").style.display = "block";
+								$("#tab1").append(data);
+								document.getElementById("loadMore").innerHTML = "点击后加载更多内容";
+							} else {
+								document.getElementById("loadMore").style.display = "none";
+							}
+						});
+				};
+				$(window).scroll(function() {
+					var obj = $("#top"); //获取店招的高度
+					var vheight = obj.height();
+					var innerHeight = window.innerHeight //获取显示窗口高度
+						|| document.documentElement.clientHeight
+						|| document.body.clientHeight;
+						//判断滚动显示窗口高度	
+					if ($(document).scrollTop() > ($(document).height() - 800)) {
+						//$(".mainrightad").css("position", "fixed");
+						loadMore();
+					} else {
+						//$(".mainrightad").css("position", "static");
+					}
+					if ($(document).scrollTop() == 0) {
+						//$(".mainrightad").css("position", "static");
+					}
+				});
+			</script>
+			<div class="mainright">
+				<input type="hidden" id="pageindex" value="{{page}}" />
+				<ul id="tab1">
+					{%for list in listall%}
+					<a href="/{{list.typedir}}/{{list.id}}.html" target="_blank">
+						<li>
+							<div class="newsleft" style="{%if list.picone%}width: 70%;{%endif%}">
+								<div class="title">{{list.title}}</div>
+								<div class="content">{{list.subcontent}}......[详情]</div>
+								<div class="newscontorl"><span>时间：{{list.pubdate}}</span> <span>点击量：{{list.click}}</span> </div>
+							</div>
+							{%if list.picone%}
+							<div class="newsimg">
+								<img src="http://pyapp.zz91.com/app/changepic.html?url={{list.picone}}&width=200&height=200">
+							</div>
+							{%endif%}
+							<div class="cb"></div>
+							{%if list.picmore%}
+							<div class="doc-images">
+								{%for pp in list.picmore%}
+								<div class="doc-image-list">
+									<img src="{{pp}}" /> 
+								</div>
+								{%endfor%}
+								<div class="clear"></div>
+							</div>
+							{%endif%}
+						</li>
+					</a>
+					{%endfor%}
+				</ul>
+				<div id="loadMore" style="display: none;">加载更多...</div>
+			</div>
+			<script>
+				 //			$(window).scroll(function() {
+				 //				if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+				 //					loadMore(document.getElementById("loadMore"));
+				 //					$(".mainrightad").css("position", "fixed");
+				 //				}
+				 //			});
+			</script>
+			
+		</div>
+	</body>
+
+</html>

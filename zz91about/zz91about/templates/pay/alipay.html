@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+<title>ALIPAY</title>
+<style>
+.je{
+	font-size:18px;
+	line-height:30px;
+	color:#F00;
+	width:200px;
+}
+.text{
+	font-size:14px;
+	line-height:25px;
+	width:200px;
+	color:#090;
+}
+.submit{
+	font-size:16px;
+	line-height:30px;
+	font-family:"微软雅黑";
+	font-weight:bold;
+}
+.err{
+	color:#F00;
+	font-size:12px;
+	line-height:22px;
+}
+</style>
+<script>
+$(document).ready(function(){
+	   $("#form1").submit(function(){
+			if ($("#amount").val()==""){
+				$("#amounterr").html("请输入金额！");
+				return false;
+			}else{
+				if (document.getElementById("amount")){
+					if (isNaN($("#amount").val())==true){
+						$("#amounterr").html("你输入的金额必须是数字！");
+						return false;
+					}else{
+						$("#total_fee").val($("#amount").val());
+					}
+				}
+				$("#amounterr").html("");
+			};
+			if ($("#mobile").val()==""){
+				$("#mobileerr").html("请输入手机号码！");
+				return false;
+			}else{
+				$("#mobileerr").html("");
+			};
+			if ($("#contact").val()==""){
+				$("#contacterr").html("请输入联系人！");
+				return false;
+			}else{
+				$("#contacterr").html("");
+			};
+			$("#paytable").css("display","none");
+			$(this).append("正在进行支付中.....,完成支付后关闭该窗口");
+	   });
+	  
+});
+</script>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="paysave.html">
+<table width="100%" border="0" cellspacing="0" cellpadding="6" style="font-size:14px;" id="paytable">
+  <tr>
+    <td align="center">您选择的会员类型是：<b style="color:#060">{% if name %}{{name}}{%endif%}{% if not name%}{{subject}}{%endif%}</b></td>
+  </tr>
+  {%if total_fee%}
+  <tr>
+    <td align="center">金额：<font color="#FF0000" style="font-size:20px; font-weight:bold">{{total_fee}}</font> 元</td>
+  </tr>
+  {%endif%}
+  <tr>
+    <td align="center">
+    <div style="width:300px; color:#999; font-size:12px; line-height:25px;">为了第一时间能为您开通服务，请填写以下联系方式!</div>
+    <table width="350" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#CCCCCC" style="font-size:14px">
+      {%if otherje%}
+      <tr>
+        <td width="100" align="right" bgcolor="#FFFFFF">请输入金额：</td>
+        <td bgcolor="#FFFFFF"><input type="text" name="amount" id="amount" class="je" {% if money %}value="{{money}}" readOnly="true" {%endif%}/><br /><span class="err" id="amounterr"></span></td>
+      </tr>
+      {%endif%}
+      <tr>
+        <td align="right" bgcolor="#FFFFFF">您的手机：</td>
+        <td bgcolor="#FFFFFF"><input type="text" name="mobile" id="mobile" class="text" /><br /><span class="err" id="mobileerr"></span></td>
+      </tr>
+      <tr>
+        <td align="right" bgcolor="#FFFFFF">联系人：</td>
+        <td bgcolor="#FFFFFF"><input type="text" name="contact" id="contact" class="text"/><br /><span class="err" id="contacterr"></span></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td align="center">
+      <input type="hidden" name="subject" id="subject" value="{{subject}}" />
+      <input type="hidden" name="total_fee" id="total_fee"  value="{{total_fee}}"/>
+<input type="submit" name="submit" id="submit" value="确认支付" class="submit" />
+    </td>
+  </tr>
+</table></form>
+</body>
+</html>

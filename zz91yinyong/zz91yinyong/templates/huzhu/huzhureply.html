@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>手机版互助社区</title>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet"  href="/css/common.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+<link rel="stylesheet" type="text/css" href="/css/myrc/index.css"/>
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<script type="text/javascript" src="/js/huzhu/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/js/huzhu/style.js"></script>
+<script type="text/javascript" src="/js/huzhu/jquery.lightbox_me.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+</head>
+<body style="position:relative">
+{%include 'top.html'%}
+<div>
+{%if suc%}
+<div class="resultTip mt10 mb10 ac"><span>提问成功!</span></div>
+{%endif%}
+{%if err%}
+<div class="resultTip mt10 mb10 ac"><span>来写点什么吧...</span></div>
+{%endif%}
+<form method="post" action="/reply_reply/">
+	<div style="line-height: 30px;margin: 10px;" class="mt10 mb10">回复：{{title}}</div>
+	<div class="p-item">
+		<textarea name="replycontent" placeholder="说点什么吧..." cols=""></textarea>
+	{%if username%}
+	<input type="hidden" name="category_id" value="{{category_id}}">
+	<input type="hidden" id="replyid" name="replyid" value="{{replyid}}">
+	<input type="hidden" id="postid" name="postid" value="{{postid}}">
+	<input type="hidden" id="tocompany_id" name="tocompany_id" value="{{tocompany_id}}">
+	<center><br /><br /><input type="submit" value="发布" style="width: 95%;" class="fav_btn"><br /><br /></center>
+{%else%}
+<div class="resultTip mt10 mb10 ac">请 <a href="/login/?done={{host}}">登录</a> 之后发贴</div>
+{%endif%}
+</form>
+	</div>
+
+{%include 'bottom2.html'%}
+</body>
+</html>

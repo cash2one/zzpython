@@ -1,0 +1,37 @@
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script> 
+<script type="text/javascript" src="http://pyapp.zz91.com/app/areyouknow.html"></script>
+<div style="width: 980px; margin: 0 auto; line-height:30px;"> <b>你可能会喜欢：</b><br />
+  <script src="http://pyapp.zz91.com/showppctxtadscript/?keywords=&amp;showborder=1&amp;showposition=1&amp;m=6&amp;padding=8&amp;w=980&amp;num=6"></script> 
+</div>
+<!--右侧悬浮栏-->
+<div id="lxfs">
+	<div class="top">
+		联系方式<img src="http://img0.zz91.com/zz91/ppc/images/close.gif" class="close" />
+	</div>
+    <div class="middle" {%if not list.ppcphone_zhuan%}style="height:75px"{%endif%}>
+		<div class="telnum" {%if not list.ppcphone_zhuan%}style="height:31px"{%endif%}>
+          <span class="mlt">{{list.ppcphone}}</span>
+          {%if list.ppcphone_zhuan%}
+          <span class="mgt">{{list.ppcphone_zhuan}}</span>
+          {%endif%}
+        </div>
+		<div class="contacts">联系人：{{list.contact}}</div>
+    </div>
+</div>
+<div class="right_bar">
+	<img src="http://img0.zz91.com/zz91/ppc/images/right_bar.jpg" />
+</div>
+<script>
+$(function(){
+		$('#lxfs').show();
+		$('.right_bar').hide();
+	$('.right_bar').click(function(){
+		$(this).hide();
+		$('#lxfs').show();
+	});
+	$('#lxfs .close').click(function(){
+		$('.right_bar').show();
+		$('#lxfs').hide();
+	});
+});
+</script>

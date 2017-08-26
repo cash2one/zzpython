@@ -1,0 +1,560 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<title>{{webtitle}}_ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/laytpl.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/huzhu/css/cunity-detail.css"/>
+		<link rel="canonical" href="http://huzhu.zz91.com/detail/{{id}}.html" >
+		<style>
+			.ask-body .videoframe{width:100px}
+			.ask-body .newspinlun,.ask-body .pricepinlun{line-height:30px}
+			.ask-body .newspinlun img,.ask-body .pricepinlun img{width:30px;vertical-align:middle}
+			.aui-bar{
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			.assess{
+				background-color: #fff;
+			}
+			.ask-body,.assess-mos{
+				word-break:break-all; /*支持IE，chrome，FF不支持*/
+				word-wrap:break-word;/*支持IE，chrome，FF*/
+			}
+			.aui-nav {
+				height: 53px;
+			}
+			.quanlink{
+				min-height: 60px;
+			}
+			.huzu_out {
+				position: fixed;
+				height: 60px;
+				width: 60px;
+				background: #01ba2e;
+				border-radius: 60px;
+				bottom: 45px;
+				left: 10px;
+				text-align: center;
+				line-height: 20px;
+				padding-top: 10px;
+				box-shadow: 0px 0px 5px #888888;
+				color: #ffffff;
+				z-index: 9999;
+			}
+			.huzu_out .aui-icon-add {
+				font-size: 40px;
+				color: #fff
+			}
+			.ptop{
+	    		background-color: #E20000;
+	    		text-align:center;
+	    		width:100%;
+	    		clear:both;
+	    		line-height:33px;
+	    		overflow: hidden;
+	    		padding-left:5px;
+	    		position: fixed;
+	    		top: 45px;
+	    		left: 0px;
+	    		z-index: 999;
+	    	}
+	    	.zdbotton{
+	    		background-color:#C0392B;
+	    		color:#fff;
+	    		width:60px;
+	    		font-size:12px;
+	    		margin-top:8px;
+	    		display:block;
+	    		line-height:20px;
+	    		border-radius:2px;
+	    		position: absolute;
+	    		right:10px;
+	    		top:0px;
+	    		padding-left:4px;
+	    		padding-right:4px;
+	    		text-align:center;
+	    	}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-title">互助详情</div>
+		    <a class="aui-pull-right favorite">
+		        <span class="aui-iconfont aui-icon-favor"></span>
+		    </a>
+		    <a class="aui-pull-right zz91share">
+		        <span class="aui-iconfont aui-icon-share"></span>
+		    </a>
+		</header>
+		<div style="height: 75px;"></div>
+		<div class="aui-tips-danger ptop">
+			<div class="aui-ellipsis-1" style="text-align: left">
+				<i class="aui-iconfont aui-icon-creative"></i>
+				<font style="font-size:14px" color="#fff">下载APP，获取<font color="#FEE900">20</font>元红包</font>
+				<a class="zdbotton" href="http://m.zz91.com/app.html">免费下载</a>
+			</div>
+		</div>
+		<div class="topdiv" onclick="pagetotop();"><span class="aui-iconfont aui-icon-top"></span></div>
+		<div class="huzu_out j-out" style="bottom: 60px;">
+			<a href="/huzhupost/?category_id={{category_id}}" style="color: #fff;"><span style="margin-top:10px" class="addhuzhu">发布<br>话题</span></a>
+		</div>
+		<div class="mainbody">
+			<div class="aui-ask-header">
+				<img src="{{facepic}}" class="ask-avatar"/>
+				<div class="aui-text-info ask-nickname contactperson" company_id="{{company_id}}">{{ nickname }}</div>
+				<span class="aui-pull-right ask-time">{{ gmt_created }}</span>
+			</div>
+			<div class="aui-line-x"></div>
+			<div class="aui-content">
+				<div class="ask-title">{{ title|safe }}</div>
+				<div class="ask-body ask-status">
+					<span class="aui-pull-left">
+						<i class="aui-iconfont aui-icon-attention"></i>
+						{{ visited_count}}
+					</span>
+					<span class="aui-pull-left" style="margin-left: 20px">
+						<i class="aui-iconfont aui-icon-comment"></i>
+						{{ replycount }}
+					</span>
+					<span class="aui-pull-left" style="margin-left: 20px">
+						<i class="aui-iconfont aui-icon-focus"></i>
+						{{ notice_count }}
+					</span>
+					<!--<span class="aui-label aui-label-info aui-pull-left">待解决</span>-->
+				</div>
+				<div class="ask-body bbscontent">
+					{%for list in picurllist%}
+					{%if list.filekz%}
+						<img src="../../image/video.png" class="videoframe" path="{{list.file_path}}" width="50%">
+					{%else%}
+						<img src="{{list.file_path}}" width="100%">
+					{%endif%}
+					{%endfor%}
+					{{ content|safe }}
+				</div>
+			</div>
+			<div class="aui-line-x"></div>
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- 微门户 -->
+					<ins class="adsbygoogle"
+					     style="display:block"
+					     data-ad-client="ca-pub-5512236620584335"
+					     data-ad-slot="8274972003"
+					     data-ad-format="auto"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+
+			<footer class="aui-nav" id="aui-footer">
+				<ul class="czfoot">
+					<li class="b_dianzhan" postid="{{id}}">
+						<span class="aui-iconfont aui-icon-appreciatefill dianzhan" style="font-size:20px"></span> 点赞(<span class="zhanmun">0</span>)
+					</li>
+					<li class="b_guanzhu">
+						<span class="aui-iconfont aui-icon-focus"></span> 关注
+					</li>
+					<li class="b_pinlun" company_id="{{ company_id }}">
+						<span class="aui-iconfont aui-icon-comment"></span> 回复
+					</li>
+					<li class="ask-nickname contact" company_id="{{ company_id }}">
+						<span class="aui-iconfont aui-icon-phone"></span> 联系
+					</li>
+				</ul>
+			</footer>
+		</div>
+		<div class="mark" id="mark"></div>
+		<div style="height:20px;background-color: #f4f4f4"></div>
+		<div class="interfix clear">
+			<h3>全部回复</h3>
+		</div>
+		<div class="assess">
+			{%for d in listall_reply%}
+			<li class="assess-li">
+				<div class="assess-mof clear">
+					<img src="{{d.facepic}}" class="ask-avatar"/> <span class="assess-name" company_id="{{d.company_id}}">{{ d.nickname }}</span>
+					<!--<span class="assess-tip">举报</span>-->
+				</div>
+				<div class="assess-mos">
+					{{ d.content|safe }}
+				</div>
+				<div class="assess-mot clear">
+					<span class="assess-time">{{ d.posttime }}</span>
+					<span class="assess-answer" company_id="{{ d.company_id }}" reply_id="{{ d.reply_id }}"><i></i>回复</span>
+				</div>
+			</li>
+			{%if d.replylist%}
+			<ul class="answer-list">
+				{%for dd in d.replylist.list%}
+				<li class="answer-li">
+					<div class="assess-mof clear">
+						<div class="sanjiao"></div>
+						<div style="height:10px;clear: both"></div>
+						<img src="{{dd.facepic}}" class="ask-avatar"/> <span class="assess-name" company_id="{{dd.company_id}}">{{ dd.nickname}}</span><span class="tape-ask">回复</span> <img src="{{dd.tofacepic}}" class="ask-avatar"/> <span class="assess-name" company_id="{{dd.tocompany_id}}">{{ dd.tonickname}}</span>
+						<!--<span class="assess-tip">举报</span>-->
+					</div>
+					<div class="assess-mos">
+						{{ dd.content|safe }}
+					</div>
+					<div class="assess-mot clear">
+						<span class="assess-time">{{ dd.posttime }}</span>
+						<span class="assess-answer" company_id="{{ dd.company_id }}" reply_id="{{ dd.reply_id }}"><i></i>回复</span>
+					</div>
+				</li>
+				{%endfor%}
+				{%if d.replylist.count%}
+				<li class="hf-more" replyid="{{ d.reply_id }}">
+					查看更多回复...
+				</li>
+				{%endif%}
+			</ul>
+			{%endif%}
+			{%endfor%}
+		</div>
+		<div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;'>上拉获取更多信息</div>
+		<br />
+		<br />
+		<br />
+		<br />
+		
+		<!--<div class="div-wt j-wt">
+			<i class="aui-iconfont aui-icon-writefill"></i>
+		</div>-->
+		<script id="info-list" type="text/html">
+			<li class="assess-li">
+				<div class="assess-mof clear">
+					<img src="<%d.facepic%>" class="ask-avatar"/> <span class="assess-name" company_id="<%d.company_id%>"><% d.nickname %></span>
+					<!--<span class="assess-tip">举报</span>-->
+				</div>
+				<div class="assess-mos">
+					<% d.content %>
+				</div>
+				<div class="assess-mot clear">
+					<span class="assess-time"><% d.posttime %></span>
+					<span class="assess-answer" company_id="<% d.company_id %>" reply_id="<% d.reply_id %>"><i></i>回复</span>
+				</div>
+			</li>
+			<ul class="answer-list" style="display:<% d.replylist.displayDiv %>">
+				<% d.hfList %>
+				<li class="hf-more" style="display:<% d.replylist.displayMore %>" replyid="<% d.reply_id %>">
+					查看更多回复...
+				</li>
+			</ul>
+		</script>
+		<script id="hufu-list" type="text/html">
+			<li class="answer-li">
+				<div class="assess-mof clear">
+					<div class="sanjiao"></div>
+					<div style="height:10px;clear: both"></div>
+					<img src="<%d.facepic%>" class="ask-avatar"/> <span class="assess-name" company_id="<%d.company_id%>"><% d.nickname%></span><span class="tape-ask">回复</span> <img src="<%d.tofacepic%>" class="ask-avatar"/> <span class="assess-name" company_id="<%d.tocompany_id%>"><% d.tonickname%></span>
+					<!--<span class="assess-tip">举报</span>-->
+				</div>
+				<div class="assess-mos">
+					<% d.content %>
+				</div>
+				<div class="assess-mot clear">
+					<span class="assess-time"><% d.posttime %></span>
+					<span class="assess-answer" company_id="<% d.company_id %>" reply_id="<% d.reply_id %>"><i></i>回复</span>
+				</div>
+			</li>
+		</script>
+	</body>
+	
+	<script type="text/javascript">
+		var currPage = 2;
+		var pagecount={{page_listcount}};
+		//判断是否显示已没数据加载
+		var infoid={{id}};
+		var detailsdata;
+		var favoriteflag={{favoriteflag}}
+		
+		$(function(){
+			//获取信息
+			ajaxInfo();
+			//点击回复
+			$(".assess").on("click", ".assess-answer", function() {
+				var company_id = $(this).attr("company_id");
+				var reply_id = $(this).attr("reply_id");
+				window.location='/huzhu_replayshow/?replyid='+reply_id+'&postid='+infoid+'&tocompany_id='+company_id;
+			})
+			$("body").on("click",".assess-name",function() {
+				var company_id = $(this).attr("company_id");
+				if (company_id!=0){
+					window.location='/company/shop'+company_id+'.html';
+				}
+			})
+			//
+			$("body").on("click",".ask-nickname",function() {
+				var company_id = $(this).attr("company_id");
+				if (company_id!=0){
+					window.location='/company/shop'+company_id+'.html';
+				}
+			})
+			//打开资讯
+			$("body").on("click",".newspinlun",function(){
+				var infoid = $(this).attr("id")
+				window.location='/news/newsdetail'+infoid+'.htm';
+			});
+			//打开报价
+			$(".mainbody").on("click",".pricepinlun",function(){
+				var id = $(this).attr("id");
+				window.location='/jiage/detail'+id+'.html';
+				
+			});
+			//打开视频
+			$(".mainbody").on("click",".videoframe",function() {
+				var path=$(this).attr("path");
+				vadioPlay(path);
+			})
+			//点赞
+			$("body").on("click",".b_dianzhan",function() {
+				if (!havelogin("{{mycompany_id}}","{{host}}")){
+					return false
+				}
+				
+				
+				var bbscontent=$(".ask-title").text();
+				if (bbscontent==""){
+					bbscontent=$(".bbscontent").text().substr(0,50);
+				}
+				var data={
+					type : 0,
+					category : 1,
+					content_id : {{id}},
+					content_title : bbscontent,
+				}
+				layer.load(2)
+				zzajax("get","/huzhu/recommend_add.html",data,function(ret){
+					if (ret.err=='login'){
+						window.location="/login/?done={{host}}";
+						return;
+					}
+					if (ret.state=="0"){
+						$(".zhanmun").html(parseInt($(".zhanmun").text())+1);
+						$(".dianzhan").css("color","#ff0000");
+						layer.msg("感谢你的赞赏！")
+					}else{
+						if (parseInt($(".zhanmun").text())>0){
+							$(".zhanmun").html(parseInt($(".zhanmun").text())-1);
+							$(".dianzhan").css("color","");
+						}
+					}
+					layer.closeAll('loading');
+				},function(){
+					layer.closeAll('loading');
+				})
+				
+			})
+			//关注
+			$("body").on("click",".b_guanzhu",function() {
+				if (!havelogin("{{mycompany_id}}","{{host}}")){
+					return false
+				}
+				var bbscontent=$(".ask-title").text();
+				if (bbscontent==""){
+					bbscontent=$(".bbscontent").text().substr(0,50);
+				}
+				var data={
+					type : 1,
+					category : 1,
+					content_id : {{id}},
+					content_title : bbscontent,
+				}
+				layer.load(2)
+				var self=$(this);
+				zzajax("get","/huzhu/recommend_add.html",data,function(ret){
+					if (ret.state=="0"){
+						layer.msg("已关注！");
+						self.html('<span class="aui-iconfont aui-icon-check"></span> 已关注');
+					}else{
+						layer.msg("取消关注！")
+						self.html('<span class="aui-iconfont aui-icon-focus"></span> 关注');
+					}
+					layer.closeAll('loading');
+				},function(){
+					layer.closeAll('loading');
+				})
+			})
+			//回复文章信息
+			$("body").on("click",".b_pinlun", function() {
+				var company_id = $(this).attr("company_id");
+				window.location='/huzhu_replayshow/?postid='+infoid+'&tocompany_id='+company_id;
+			})
+			$("body").on("click",".quanlink",function(){
+				var url = $(this).attr("url");
+				window.location=url;
+				
+			});
+			//点击收藏
+			$(".favorite").on("click", function() {
+				var favorite_type_code = "10091005";
+				var data = {
+					datatype : "json",
+					favorite_type_code : favorite_type_code,
+					forcompany_id : 0,
+					content_id : infoid,
+					title : document.title,
+					pdtid : 0,
+					products_type_code : 0,
+					favoriteflag : favoriteflag
+				};
+				shoucInfo(data,"{{host}}");
+				if (favoriteflag==1){
+					favoriteflag=0;
+				}else{
+					favoriteflag=1;
+				}
+				isfavor($(".favorite").find("span"),favoriteflag);
+			})
+			
+			$(".zz91share").on("click", function() {
+				layer.open({
+				  type: 2,
+				  title: false,
+  				  closeBtn: 0, //不显示关闭按钮
+				  shadeClose: true,
+				  shade: 0.4,
+				  anim: 2,
+				  area: ['90%', '170px'],
+				  content: '/myrc/share.html?p' //iframe的url
+				}); 
+			})
+			$(".hf-more").on("click", function() {
+				var replyid = $(this).attr("replyid")
+//				openWin("hf-list", "../huzhu/hf-list.html", pageParam);
+			})
+			//加载更多
+			var scroll = new auiScroll({
+		        listen:true,
+		        distance:200 //判断到达底部的距离，isToBottom为true
+		    },function(ret){
+		        if(ret.isToBottom){
+		        	if (currPage>=pagecount){
+						$(".la_more").html("全部加载完毕");
+						return false;
+					}
+					$(".la_more").html("加载更多中...");
+					ajaxhf();
+		        }else{
+			        if (ret.scrollTop>150){
+			        	$(".topdiv").fadeIn();
+			        	$(".topdiv").css("bottom","60px");
+			        }else{
+			        	$(".topdiv").fadeOut();
+			        	$(".topdiv").css("bottom","60px");
+			        }
+			        
+		        }
+		
+		    });
+			
+		})
+		function pagetotop(){
+			$('body').animate( {scrollTop: 0}, 500);
+		}
+		function ajaxInfo() {
+			$(".zhanmun").html({{recommend_count}});
+			var notice={{notice}};
+			var recommend={{recommend}}
+			if (notice==0){
+				$(".b_guanzhu").html('<span class="aui-iconfont aui-icon-check"></span> 已关注');
+			}
+			if (recommend==0){
+				$(".dianzhan").css("color","#ff0000");
+			}
+			//保存分享数据到本地
+			var title = document.title;
+			localStorage.setItem("share_title", "" + title);
+			localStorage.setItem("share_description", "我正在查看" + title + "，赶紧跟我一起来体验！http://m.zz91.com/huzhu/" + infoid.toString() + ".html 点击链接查看");
+			localStorage.setItem("share_url", "http://m.zz91.com/huzhu/" + infoid.toString() + ".html");
+			localStorage.setItem("share_pic", "http://img0.zz91.com/zz91/images/indexLogo.png");
+			//收藏情况
+			isfavor($(".favorite").find("span"),{{favoriteflag}});
+			
+			var company_id={{company_id}};
+			if (company_id==0){
+				$(".contact").hide();
+				$(".contactperson").html("再生君")
+			}
+		}
+
+		var dataload = true;
+		function ajaxhf() {
+			if (dataload == true) {
+				dataload = false;
+				var infoid = {{id}};
+				var infoUrl='/huzhureplymore/?postid=' + infoid + '&type=0&datatype=json&page=' + currPage
+				zzajax("get",infoUrl,'',function(ret){
+					if (ret) {
+						htList(ret);
+					}
+					dataload = true;
+				});
+			}
+		}
+
+		//回复信息列表
+		function htList(ret) {
+			var pageHtml = "";
+			$.each(ret, function(index, item) {
+				if (item.replylist.list.length == 0) {
+					item.replylist.displayDiv = "none"
+				} else {
+					item.replylist.displayDiv = ""
+					//循环回复信息列表
+					var hfList = "";
+					$.each(item.replylist.list, function(i, hfTime) {
+						var getTpl = document.getElementById('hufu-list').innerHTML;
+						laytpl(getTpl).render(hfTime, function(html) {
+							hfList = hfList + html;
+						});
+						item.hfList = hfList;
+					})
+				}
+				//判断查看等多回复的显示
+				if (item.replylist.count == null) {
+					item.replylist.displayMore = "none"
+				} else {
+					item.replylist.displayMore = ""
+				}
+				var getTpl = document.getElementById('info-list').innerHTML;
+				laytpl(getTpl).render(item, function(html) {
+					pageHtml = pageHtml + html;
+				});
+			})
+			$(".assess").append(pageHtml);
+			if (pageHtml == "") {
+				$(".la_more").hide();
+			} else {
+				$(".la_more").show();
+			}
+			if (pageHtml != "") {
+				currPage += 1;
+				$(".la_more").html("上拉获取更多信息");
+			}else{
+				$(".la_more").show();
+				$(".la_more").html("全部加载完毕");
+			} 
+		}
+	</script>
+	{%include 'aui/bottom.html'%}
+</html>

@@ -1,0 +1,370 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>首页</title>
+		
+		<link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/index-frame.css"/>
+		<style>
+			.aui-grid-sixteen:after {
+				border: none;
+			}
+			.aui-grid-sixteen li:after {
+				border: none;
+			}
+			.aui-grid-sixteen li .aui-iconfont,.aui-grid-sixteen li .aui-iconfont2 {
+				color: #ffffff;
+				width: 45px;
+				height: 45px;
+				line-height: 45px;
+				border-radius: 50%;
+				font-size: 27px;
+			}
+			.aui-grid-sixteen li .aui-iconfont2{
+				margin-bottom: 5px;
+			}
+			.aui-grid-sixteen p {
+				color: #000
+			}
+			.aui-content .box {
+			}
+			.box {
+				padding-top: 1px;
+				clear: both;
+			}
+			.box-title {
+				margin: 15px 10px 5px 10px;
+				/*margin-bottom: 5px;*/
+				height: 20px;
+				line-height: 20px;
+				border-left: 5px solid #ff9900;
+				color: #666;
+				font-weight: 700;
+				padding-left: 10px;
+				margin-bottom: 10px
+			}
+			.box .aui-list-view {
+				margin-bottom: 0;
+			}
+			.aui-list-view i.aui-iconfont {
+				margin-right: 0;
+			}
+			.aui-content {
+				margin-bottom: 0px;
+			}
+			.mark {
+				background: rgba(0,0,0,0.5);
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				display: none;
+				z-index: 5;
+			}
+			.ptop{
+	    		border: solid 0px #F1C40F;
+	    		background-color: rgba(255,3,7,.5);
+	    		text-align:center;
+	    		width:100%;
+	    		clear:both;
+	    		position: fixed;
+	    		line-height:33px;
+	    		z-index: 9999;
+	    		overflow: hidden;
+	    		padding-left:5px;
+	    	}
+	    	.zdbotton{
+	    		background-color:#C0392B;
+	    		color:#fff;
+	    		width:60px;
+	    		font-size:12px;
+	    		margin-top:8px;
+	    		display:block;
+	    		line-height:20px;
+	    		border-radius:2px;
+	    		position: absolute;
+	    		right:50px;
+	    		top:0px;
+	    		padding-left:4px;
+	    		padding-right:4px;
+	    		text-align:center;
+	    	}
+			.aui-searchbar .aui-iconfont{
+				color: #ebebeb;
+				line-height: 35px;
+			}
+			.searchcenter{
+				margin-top: 6px;
+				width: auto;
+				position: absolute;
+				top: 0;
+				right: 30px;
+				left: 30px;
+			}
+			.aui-bar-primary {
+				background-color: #009900;
+			}
+			
+			.midadlist{
+				height:45px;background-color:#fff
+			}
+			.pcountmain{
+				height:50px;line-height:50px;background-color:#fff;text-align:center;font-size:16px
+			}
+			.pcountmain .procount{
+				font-size:24px;color:#ff0000
+			}
+			.linegrad{
+				height:6px;background-color:#f2f2f2
+			}
+			.midadleft{
+				height:50px;line-height:50px;background-color:#fff;text-align:center;font-size:16px;float: left;width: 50%;border-right:solid 1px #ebebeb;
+				color: #DD191B;
+				font-weight:bold;
+			}
+			.midadleft img{
+				width:40px;
+			    vertical-align: middle;
+			    text-align: center;
+			    margin-left:20px;
+			}
+			.servicemain{
+				overflow: auto;width: 100%;height: 120px
+			}
+			.servicemain td{
+				padding:20px;
+				border: solid 1px #ebebeb;width: 100px;text-align: center;margin-right: 10px
+			}
+		</style>
+	</head>
+	<body>
+	
+		<header class="aui-bar aui-bar-nav aui-bar-primary" id="topbar" style="padding-bottom: 0px;padding-top: 0px;">
+	    	<a class="aui-pull-left">
+		        <img src="http://static.m.zz91.com/image/indexlogo.png" style="height: 30px;margin-top: 8px;">
+		    </a>
+		    <div class="aui-searchbar aui-border-radius searchcenter select-ipt" style="left: 120px;background: #017501;">
+	            <i class="aui-iconfont aui-icon-search"></i>
+	            <div class="aui-searchbar-text">搜索</div>
+	        </div>
+	        
+	        <a class="aui-pull-right my-info">
+		        <span class="aui-iconfont aui-icon-post"></span>
+		    </a>
+		</header>
+		
+		<div class="aui-content mainitem" style="margin-bottom:0px">
+			<ul class="aui-grid-sixteen">
+				<li class="aui-col-xs-3 aui-text-center jy-heart">
+					<span class="aui-iconfont2 aui-zzicon-mei aui-bg-warning"></span>
+					<p>
+						我要买
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center jy-heart">
+					<span class="aui-iconfont2 aui-zzicon-mai aui-bg-danger"></span>
+					<p>
+						我要卖
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center offer-list">
+					<span class="aui-iconfont aui-icon-rankfill aui-bg-success"></span>
+					<p>
+						看行情
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center infomation-heart">
+					<span class="aui-iconfont aui-icon-form aui-bg-info"></span>
+					<p>
+						读资讯
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center firm-page">
+					<span class="aui-iconfont aui-icon-apps aui-bg-danger"></span>
+					<p>
+						找企业
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center community">
+					<span class="aui-iconfont aui-icon-creativefill aui-bg-success"></span>
+					<p>
+						聊商圈
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center changyedai">
+					<span class="aui-iconfont aui-icon-locationfill aui-bg-warning"></span>
+					<p>
+						逛市场
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center vender">
+					<span class="aui-iconfont aui-icon-deliver aui-bg-danger"></span>
+					<p>
+						淘再生
+					</p>
+				</li>
+				<!--<li class="aui-col-xs-3 aui-text-center service">
+					<span class="aui-iconfont aui-icon-servicefill aui-bg-info"></span>
+					<p>
+						产品服务
+					</p>
+				</li>-->
+			</ul>
+		</div>
+		<div class="aui-line-x"></div>
+		<div class="linegrad"></div>
+		<div class="midadlist">
+			
+		</div>
+		
+		<div class="linegrad"></div>
+		<div class="pcountmain"> 这里有  <span class="procount"></span> 条商机，供您选择</div>
+		<div class="linegrad"></div>
+		
+		<div class="linegrad"></div>
+		<div class="midadleft">
+			找物流 <img src="../image/index/wuliu.png">
+		</div>
+		<div class="midadleft">
+			<font style="color:#259fa4">优惠活动</font> <img src="../image/index/youhui.png">
+		</div>
+		<div style="clear:both"></div>
+		<div style="height:10px;background-color:#f2f2f2"></div>
+		<div class="aui-content box">
+			<div class="box-title">
+				产品服务 <div style="float: right;text-align: right" class="infomation-heart">更多</div>
+			</div>
+			<div class="aui-list-view">
+				<div class="servicemain">
+					<table>
+						<tr>
+						<td>
+							<div class=""><img src="../image/addr_chk.jpg" /></div>
+							<div>
+								显示联系方式
+							</div>
+						</td>
+						<td>
+							<div class=""><img src="../image/addr_chk.jpg" /></div>
+							<div>
+								显示联系方式
+							</div>
+						</td>
+						<td>
+							<div class=""><img src="../image/addr_chk.jpg" /></div>
+							<div>
+								显示联系方式
+							</div>
+						</td>
+						<td>
+							<div class=""><img src="../image/addr_chk.jpg" /></div>
+							<div>
+								显示联系方式
+							</div>
+						</td>
+						<td>
+							<div class=""><img src="../image/addr_chk.jpg" /></div>
+							<div>
+								显示联系方式
+							</div>
+						</td>
+						</tr>
+					</table>
+				</div>
+            </div>
+        </div>
+		<div class="aui-content box" style="background-color:#fff">
+			<div class="box-title">
+				商家工具
+			</div>
+			<div class="aui-line-x"></div>
+			<ul class="aui-grid-sixteen">
+				<li class="aui-col-xs-3 aui-text-center my-buyin" tapmode>
+					<span class="aui-iconfont aui-icon-list aui-text-info"></span>
+					<p>
+						我的供求
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center my-xp" tapmode>
+					<span class="aui-iconfont aui-icon-notification aui-text-success"></span>
+					<p>
+						我的询盘
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center my-tradeorder" tapmode>
+					<span class="aui-iconfont aui-icon-explore aui-text-warning"></span>
+					<p>
+						商机订阅
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center my-wuliu" tapmode>
+					<span class="aui-iconfont aui-icon-deliver aui-text-info"></span>
+					<p>
+						物流服务
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center my-pay" tapmode>
+					<span class="aui-iconfont aui-icon-pay aui-text-danger"></span>
+					<p>
+						我的钱包
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center my-addressbook" tapmode>
+					<span class="aui-iconfont aui-icon-addressbook aui-text-info"></span>
+					<p>
+						通信录
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center my-vcard" tapmode>
+					<!-- <img src="../image/muchang.png" class="muchang" /> -->
+					<span class="aui-iconfont aui-icon-qrcode aui-text-success"></span>
+					<p>
+						我的名片
+					</p>
+				</li>
+				<li class="aui-col-xs-3 aui-text-center my-shouc" tapmode>
+					<span class="aui-iconfont aui-icon-favor aui-text-warning"></span>
+					<p>
+						我的收藏
+					</p>
+				</li>
+			</ul>
+		</div>
+		<div class="aui-line-x"></div>
+		<div style="height:10px;background-color:#f2f2f2"></div>
+		<div class="aui-content box">
+			<div class="box-title">
+				今日焦点 <div style="float: right;width: 100px;text-align: right" class="infomation-heart">更多</div>
+			</div>
+			<ul class="aui-list-view hotnews">
+            </ul>
+        </div>
+		<script id="hotnews-list" type="text/html">
+		<li class="aui-list-view-cell" tapmode>
+            <a class="aui-arrow-right newsinfo" id="{{d.id}}" ><div class="aui-img-body" style="padding-right:20px">
+                <div class="aui-ellipsis-1"><b>{{d.title}}</b></div>
+                <p class='aui-ellipsis-2'>{{d.content}}</p>
+            </div></a>
+        </li>
+        <div style="height:10px;background-color:#f2f2f2"></div>
+        </script>
+        
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/jquery.js"></script>
+	<script type="text/javascript" src="../script/aui-dialog.js" ></script>
+	<script type="text/javascript" src="../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../script/common.js"></script>
+	<script type="text/javascript" src="../script/laytpl.js"></script>
+	<script type="text/javascript" src="../script/aui-alert.js" ></script>
+	<script type="text/javascript" src="../script/index-frame.js"></script>
+	<script type="text/javascript" src="../script/servercomm.js"></script>
+	<script type="text/javascript" src="../script/layer/layer.js"></script>
+	<script type="text/javascript" src="../script/aui-scroll.js" ></script>
+</html>

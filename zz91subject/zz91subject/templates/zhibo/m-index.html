@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-touch-fullscreen" content="YES">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="zhibo/m/css/base-min.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+<title>2016第16届中国塑料交易会现场直播</title>
+<link rel="stylesheet" type="text/css" href="zhibo/m/css/index.css" />
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script type="text/javascript" src="zhibo/layer/layer.js"></script>
+<style>
+	.tellhome-pl{
+		width: 100%;
+	}
+	.zbhome-ul img{
+		width: 100%;
+	}
+	.seemore{
+		font-size: 14px;
+	}
+</style>
+</head>
+<body>
+	<script>
+		function getSize(){
+			var winWidth = document.body.clientWidth;
+			var font_Size = 40*(winWidth/320);
+			document.getElementsByTagName('html')[0].style.fontSize = font_Size + "px"
+		}
+		getSize();
+	</script>
+	<div class="zbtop">
+		<div class="zbtop-tt">2016台州塑交会现场直播</div>
+		<div class="zbtop-wen">“PEC2016台州塑交会”将于2016年10月12日至15日浙江路桥台州市国际会展中心举行，同期举办第七 届再生塑料展。ZZ91再生网实时为您直播。</div>
+	</div>
+	<div class="qhzb clear">
+		<div class="fl qhzb-md">
+			<!--<i class="icon-next icon-time icon-next2"></i>
+			<i class="icon-prev icon-time icon-prev2"></i>-->
+		</div>
+		<div class="fl qhzb-md">
+			<div class="munberpp">评论(<span class="rcount">{{pinlunlist.count}}</span>）</div>
+		</div>
+	</div>
+
+	<div class="zbhome ltmodle" >
+		<ul class="zbhome-ul">
+			{%for list in zhibolist%}
+			<li>
+				<div class="zbhome-time">{{list.gmthoure}}  {{list.gmtdate}}</div>
+				<div class="zbhome-sm">{{list.content|safe}}</div>
+			</li>
+			{%endfor%}
+		</ul>
+		<a href="javascript:void(0)" class="seemore" id="loadMore" onClick="loadMore(this);" >查看更多</a>
+		<div class="zbhome-last zhibolast" style="display: none;">直播内容已全部加载完毕了，敬请期待更多内容...</div>
+	</div>
+
+	<div class="tellhome ltmodle" style="display: none;">
+		<ul class="tellhome-list pllist-ul">
+			{%if pinlunlist.list%}
+			{%for list in pinlunlist.list%}
+			<li class="clear">
+				<div class="fr tellhome-pl">
+					<div class="tellhome-info clear">
+						<span class="tellhome-pp fl fweight">{{list.nickname}}</span>
+						<span class="tellhome-time fr">{{list.posttime}}</span>
+					</div>
+					<div class="tellhome-xx">{{list.content|safe}}</div>
+				</div>
+			</li>
+			{%endfor%}
+			{%else%}
+			<li class="clear" style="font-size: 14px;line-height: 30px;text-align: center;">
+				暂无评论
+			</li>
+			{%endif%}
+		</ul>
+		<div class="zbhome-last pinlunlast" style="display: none;">直播内容已全部加载完毕了，敬请期待更多内容...</div>
+	</div>
+
+	<input type="hidden" id="pageindex" value="1" />
+	<div class="sxnew"></div>
+	<div class="fbbottom clear">
+		<input placeholder="我来说两句吧！" class="plipt fl" />
+		<span class="fr fbbtn">发表</span>
+	</div>
+<script type="text/javascript">
+	
+	var topH = $(".qhzb").offset().top;
+	var tabindex=0;
+	var mycompanyid=0;
+	$(window).scroll(function(){
+		var topst = $(document).scrollTop();
+		if(topst>topH){
+			$(".qhzb").addClass("qhzb-fix")
+		}else{
+			$(".qhzb").removeClass("qhzb-fix")
+		}
+	})
+
+	$(".qhzb-md").bind("click",function(){
+		var index = $(this).index();
+		tabindex=index;
+		if(index==0){
+			$(".qhzb ").css({"background":"url(zhibo/m/images/qibg.png)","background-size":"100% 100%"})
+		}else{
+			$(".qhzb ").css({"background":"url(zhibo/m/images/qibg2.png)","background-size":"100% 100%"})
+		}
+		$(".ltmodle").hide().eq(index).show()
+	})
+	function loadfirst(){
+		layer.msg('加载中', {icon: 16});
+		$.get("zhibo_more.html?orderflag={{orderflag1}}&mobileflag=1&"+(new Date()).getTime().toString(),{
+			page:1,
+		},function(data,status){
+			if (status=="success" && data!="err\n" && data!=""){
+				$(".zbhome-ul").html(data);
+				$(".zhibolast").hide()
+			}else{
+				$(".zhibolast").show()
+			}
+			layer.closeAll('loading');
+		});
+	}
+	var zload=true
+	function loadMore(objdiv){
+		if (zload==false){
+			return;
+		}
+		zload=false;
+		self=objdiv
+		var pageobj=document.getElementById("pageindex");
+		var page=pageobj.value;
+		pageobj.value=parseInt(page)+1
+		self.innerHTML="加载中...";
+		$.get("zhibo_more.html?orderflag={{orderflag1}}&mobileflag=1&"+(new Date()).getTime().toString(),{
+			page:pageobj.value,
+		},function(data,status){
+			zload=true;
+			if (status=="success" && data!="err\n" && data!=""){
+				self.style.display="block";
+				$(".zbhome-ul").append(data);
+				self.innerHTML="点击后加载更多内容";
+				$(".zhibolast").hide()
+			}else{
+				self.style.display="none";
+				$(".zhibolast").show()
+			}
+		});
+	};
+	function loadpinlun(){
+		layer.msg('加载中', {icon: 16});
+		$.get("zhibo_pinlun_more.html?mobileflag=1&"+(new Date()).getTime().toString(),{
+			page:1,
+		},function(data,status){
+			if (status=="success" && data!="err\n" && data!=""){
+				$(".pllist-ul").html(data);
+			}else{
+			}
+			layer.closeAll('loading');
+		});
+	}
+	
+	function loadpinluncount(){
+		$.get("zhibo_pinluncount.html?"+(new Date()).getTime().toString(),{
+			page:1,
+		},function(data,status){
+			$(".rcount").html(data.rcount);
+			//$(".visited_count").html(data.visited_count);
+		},"json");
+	}
+	var pinpunpage=1;
+	var pload=true;
+	function morepinpun(){
+		if (pload==false){
+			return;
+		}
+		pload=false;
+		$.get("zhibo_pinlun_more.html?mobileflag=1&"+(new Date()).getTime().toString(),{
+			page:pinpunpage+1,
+		},function(data,status){
+			//alert(data)
+			pload=true
+			if (status=="success" && data!="err\n" && data!=""){
+				$(".pllist-ul").append(data);
+				pinpunpage=pinpunpage+1;
+				$(".pinlunlast").hide()
+			}else{
+				$(".pinlunlast").show()
+				//alert("已经是最后一页！")
+			}
+		});
+	}
+	function loginstatus(data){
+		var ajaxurl="http://m.zz91.com/loginstatus.html?p="+(new Date()).getTime().toString();
+		$.getScript(ajaxurl, function() {
+			if (success=="true"){
+				mycompanyid=companyId;
+				data['company_id']=mycompanyid;
+				savepinlun(data);
+				return true;
+			}else{
+				window.location.href="http://m.zz91.com/login/?done=http://www.zz91.com/zt/zhibo.html?mobileflag=1"
+				//openoverlay('http://www.zz91.com/mini/login.htm?destUrl=http://www.zz91.com/submitCallback.htm&regfrom=10031041','注册/登录',750,430,0);
+				return false;
+			}
+		});
+		return false;
+	}
+	function savepinlun(data){
+		$.ajax({  
+		    url:'zhibo_pinlun_save.html?'+(new Date()).getTime().toString(),// 跳转到 action  
+		    data:data,  
+		    type:'post',  
+		    cache:false,  
+		    dataType:'json',  
+		    success:function(data) {
+		    	$(".plipt").val("");
+		    	loadpinlun();
+		    	loadpinluncount();
+		    },  
+		     error : function(e) {  
+		          //alert(JSON.stringify( e ))
+		     }  
+		});
+	}
+	$(function(){
+		loadfirst();
+		$(window).scroll(function(){
+			if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+				if (tabindex==0){
+					loadMore(document.getElementById("loadMore"));
+				}else{
+					morepinpun();
+				}
+			}
+		});
+		$(".sxnew").bind("click",function(){
+	    	loadfirst();
+	    	//loadpinlun();
+	    	//loadpinluncount();
+	    })
+		$(".fbbtn").bind("click",function(){
+	    	var data={  
+		        bbs_post_id:680765,
+				replyid:0,
+				tocompany_id:0,
+				title:"回复：中国塑料交易会现场直播",
+				content:$(".plipt").val(),
+				company_id:mycompanyid,
+		    }
+	    	//alert(JSON.stringify( data ))
+		    loginstatus(data)
+		})
+		loadpinlun()
+	})
+</script>
+<div style="display:none">
+    <script>
+         var _hmt = _hmt || [];
+         (function() {
+             var hm = document.createElement("script");
+             hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+             var s = document.getElementsByTagName("script")[0];
+             s.parentNode.insertBefore(hm, s);
+         })();
+    </script>
+    <!--baidu analysis-->
+    <script>
+        var _hmt = _hmt || [];
+        
+        (function() {
+             var hm = document.createElement("script");
+             hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+             var s = document.getElementsByTagName("script")[0];
+             s.parentNode.insertBefore(hm, s);
+         })();
+    </script>
+</div>
+</body>
+</html>

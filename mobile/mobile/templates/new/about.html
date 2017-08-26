@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/> 
+<title>会员服务 - ZZ91再生网 - 手机版</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" /> 
+<meta content="yes" name="apple-mobile-web-app-capable" /> <meta content="black" name="apple-mobile-web-app-status-bar-style" /> <meta content="telephone=no" name="format-detection" /> 
+<style type="text/css">
+@charset "utf-8";
+body,textarea,input,select,option {font-size:12px;color:#333;font-family:"微软雅黑",Tahoma,Arial,sans-serif;}h1,h2,h3,h4,h5,h6,input, textarea, select{font-size:100%;}body,h1,h2,h3,h4,h5,h6,blockquote,ol,ul,dl,dd,p,textarea,input,select,option,form {margin:0;}ol,ul,li,textarea,input,select,option,th,td {padding:0;}table {border-collapse:collapse;}ol,ul {list-style-type:none;}.clears:before,.clears:after {content:'';display:table;}.clears:after {clear:both;}.clears {*zoom:1;}.clear {clear:both;overflow:hidden;}a {text-decoration:none;color:#333;}a,textarea,input{outline:none}textarea {overflow:auto;resize:none;}.img img {display:block;}a img {border:none;}.z_index{position:fixed;_position:absolute;z-index:999;display:none;}label,label input{vertical-align:middle}.pr {position:relative;}.pa {position:absolute;}.fl {float:left;}.fr {float:right;}a:hover{text-decoration:none}body{word-break:break-all;word-wrap:break-word;cursor:default;}input[type="submit"],input[type="reset"],input[type="button"],button,a:active{-webkit-appearance: none;}input[type="checkbox"],input[type="text"],input[type="submit"]{-webkit-border-radius:0;border-radius:0;}html, body, form,fieldset, p, div,h1, h2, h3, h4, h5, h6 {-webkit-text-size-adjust:none;}.display_box{display:-moz-box;display:-webkit-box;display:box;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;}html{font-size:62.5%;}body{font-size:1.2rem;}
+.m6{padding:0 15px 30px 15px;}
+.m6 dl{overflow:hidden;padding:25px 0 15px 0;border-bottom:1px solid #ECECEC;}
+.m6 dt{float:left;margin-right:10px;}
+.m6 dd{overflow:hidden;zoom: 1;}
+.m6 .hr1{font-size:20px;color:#333;padding-top:3px;}
+.m6 .hr2{font-size:15px;color:#999;}
+
+.m6 .b{padding:20px 0 10px 0;} 
+.m6 .b .title{font-size:19px;vertical-align: middle;color:#3b9f18;padding-left:20px;font-weight:bold;text-indent:0em;}
+.m6 .b p{line-height:28px;color:#333;font-size:15px;padding-bottom:15px;text-indent:0em;}
+.m6 .f a{display:block;height:40px;line-height:40px;font-size:20px;color:#fff;text-align:center;background-color: #64B729;border:5px solid #EBEBEB;border-radius:5px;}
+.m6 .f a i{display:inline-block;width:14px;height:19px;background:url(img/s_down.png) no-repeat;-webkit-background-size:14px 19px;background-size:14px 19px;vertical-align: middle;margin-left:8px;}
+.box{display:-moz-box;display:-webkit-box;display:box;-moz-box-pack:center;-webkit-box-pack:center;box-pack:center;-moz-box-align:center;-webkit-box-align:center;box-align:center;}
+
+.s_header {height: 41px;}
+.s_header nav {position: fixed;left: 0px;top: 0px;padding: 6px 0;background-color: #64B729;width: 100%;z-index: 5;}
+.bg {background: url(/new/images/s_floor.png) no-repeat;-webkit-background-size: 90px 63px;background-size: 90px 63px;vertical-align: middle;}
+.s_header a {display: inline-block;height: 29px;line-height: 29px;}
+.s_header a:nth-of-type(1) {background-position: -74px 0;vertical-align: top;margin-left: 7px;}
+.s_header a span, .s_header a:nth-of-type(2) {display: inline-block;height: 27px;line-height: 27px;border: 1px solid #499712;margin-left: 11px;border-left: 0;background-color: #78C442;padding: 0 8px;font-size: 13px;color: #fff;font-weight: bold;}
+.s_header a:nth-of-type(2) {border-left: 1px solid #499712;}
+.s_header nav .more {float: right;width: 50px;height: 41px;margin: -6px 0;text-align: center;cursor: pointer;}
+.s_header i {float: none;display: inline-block;width: 25px;height: 18px;background-position: -20px 0;margin: 12px 0px 0 0;}
+.s_header .s_b {float: right;display: inline-block;width: 26px;height: 23px;margin-right: 17px;margin-top: 5px;background-position: -27px -24px;}
+
+#toplistwrap{display:none;}
+.s_toplist{background-color:#369914;z-index:99999;display:block;box-shadow:0 2px 3px #6D766A;display:none;position:fixed;width:100%;}
+.s_topwrap{padding:8px 0;}
+.s_topwrap div{-webkit-box-flex:1;width:100%;-moz-box-flex:1;box-flex:1;height:30px;line-height:30px;}
+.s_topwrap a,.s_topbottom a{display:block;height:39px;line-height:39px;color:#FFF;width:84px;text-align:center;-webkit-box-flex:1;color:#fff;font-size:16px;font-weight:bold;-moz-box-flex:1;}
+.s_topbottom a{height:45px;line-height:45px;}
+.s_topline{border-top:1px solid #248909;border-bottom:1px solid #55A63F;content: "";margin:0 10px;height:auto;margin-top:5px;}
+.s_topbottom{width:100%;}
+.up i{background:url(/new/images/up_slide.png) no-repeat;-webkit-background-size:57px 27px;-moz-background-size:57px 27px;background-size:57px 27px;display:inline-block;width:57px;height:27px;position: absolute;left:50%;margin-left:-29px;top:0px;cursor:pointer;z-index:1;}
+.tel{display:inline-block;height:29px;line-height:29px;border:1px solid #A7C790;background:url(/new/images/s_120ask_drugstoreins2.png) no-repeat;-webkit-background-size:13px 14px;background-size:13px 14px;background-position: 17px 8px;padding-left:39px;padding-right:20px;color:#4fa413;font-weight:bold;font-size:13px;margin:15px 0 18px 0;background-color: #F1FCE9;}
+.wbottom
+{
+	clear:both;
+	text-align:center;
+	font-size: 14px;
+	line-height: 30px;
+	color: #666;
+	border-top-width: 2px;
+	border-top-style: solid;
+	border-top-color: #090;
+}
+</style>
+</head>
+<body>
+<header class="s_header">
+	<nav>
+			<a href="javascript:void(0)" onClick="history.back()" class="bg">
+				<span>返回</span>
+			</a>
+			<a href="/huzhu/">再生互助</a>
+			
+			<span class="more" id="more">
+				 <i class="bg"></i>
+			</span>
+		<a href="/feedback/" id="" class="bg s_b"></a>
+	</nav>
+</header>
+<div id="toplistwrap" style="height:215px;display:none">
+<div class="s_toplist" id="toplist" style="height:130px;display:none">
+	<div class="s_topwrap">
+		<div class="box">
+			<a href="/offerlist/?keywords=废金属">废金属</a>
+			<a href="/offerlist/?keywords=废塑料">废塑料</a>
+			<a href="/offerlist/?keywords=废电子电器">废电器</a>
+			<a href="/offerlist/?keywords=废橡胶">废橡胶</a>
+			<a href="/offerlist/?keywords=废纸">废纸</a>
+		</div>
+		<div class="box">
+			<a href="/offerlist/?keywords=废皮革">废皮革</a>
+			<a href="/offerlist/?keywords=废纺织品">废纺织品</a>
+			<a href="/offerlist/?keywords=二手设备">二手设备</a>
+			<a href="/offerlist/?keywords=废玻璃">废玻璃</a>
+			<a href="/offerlist/?keywords=服务">服务</a>
+		</div>
+	</div>
+	<div class="s_topline">	
+	</div>
+	<div class="box s_topbottom">
+		<a href="/">首页</a><a href="/price/">行情报价</a><a href="/category/">废料交易</a><a href="/huzhu/">再生互助</a><a href="/myrc_index/">个人中心</a>
+	</div>
+	<div class="up pr">
+		<i id="slideup"></i>
+	</div>
+</div>
+</div><div class="m6 img">
+	<div class="h">
+		<dl>
+			<dt><img src="/new/images/zst.jpg" alt="" width="51" height="51"></dt>
+			<dd class="hr1">关于我们</dd>
+			<dd class="hr2">杭州阿思拓信息科技有限公司</dd>
+		</dl>
+	</div>
+	<div class="b">
+		
+	<p>　　杭州阿思拓信息科技有限公司【简称ASTO】成立于2005年，一直致力于成为我国资源再生、新能源、节能减排等低碳环保经济领域的具有影响力的信息服务供应商。经过八年的不懈努力，现旗下拥有<a href="http://www.zz91.com/" target="_blank">ZZ91再生网</a>（<a href="http://www.zz91.com/" target="_blank">www.zz91.com</a>中文站和<a href="http://www.recyclechina.com/" target="_blank">www.recyclechina.com</a>英文站）、<a href="http://www.huanbao.com/" target="_blank">中国环保网</a>（<a href="http://www.huanbao.com/" target="_blank">www.huanbao.com</a>）、<a href="http://www.jnmaimai.com/" target="_blank">中国节能网</a>（<a href="http://www.jnmaimai.com/" target="_blank">www.jnmaimai.com</a>）等一系列再生环保低碳品牌网站,成为再生行业内的知名BtoB电子商务品牌。</p>
+	<p>
+	　　公司于2010年6月份正式落户江干东方电子商务园。近年来，公司规模快速扩大，提供就职岗位200余个，产品（服务）市场占有率在同行业中处于领先地位，竞争优势显著，发展前景巨大。市委书记黄坤明，浙江省发改委副主任黄勇，市委副书记叶明，副市长佟桂莉，江干区委书记徐立毅，江干区区长蔡仲光等领导曾先后莅临视察指导工作。并荣获浙江省国家级高新技术企业，杭州雏鹰计划重点培育企业，杭州科技创业种子资金支助企业，江干区双十佳最佳成长型企业，杭州大学生见习基地，中国电子商务百强行业网站......</p>
+	<p>
+	　　<strong>ASTO价值观：</strong> 简单、勤奋、开放、担当、主动、快速、严谨</p>
+	<p>
+	　　<strong>ZZ91再生网简介</strong></p>
+	<p>
+	　　<strong>ZZ91创办：</strong>ZZ91再生网【简称ZZ91】是由海外留学归国团队和国内本土专业精英人士共同创办的再生废料商贸易平台。网站采用国际英文站（www.Recyclechina.com）和中文站（www.zz91.com）双站点运营模式，并搭建废金属网、废塑料网、再生塑料网、综合废料网等垂直细分网站。网站内容全面覆盖废金属，废塑料，废橡胶，废纸，废电子，废纺织等九大废料产业。平台提供先进而又简便适用的供应信息发布、求购信息搜寻网络平台，普及全国，面向整个世界，强势覆盖国内废料业集聚产地、港口、园区等。</p>
+	<p>
+	　　<strong>ZZ91服务矩阵：</strong>首创“网+会+刊”模式。打造线上线下服务相结合的全方位立体型服务新模式，并在全国各大再生资源产业集散地先行设立16个联络机构，深入线下，挖掘市场，打造系统的全功能型服务品牌。解决行业发展瓶颈，推进产业信息化升级，是我国最先进的再生资源网络及线下服务体系。并运用ZZODP废料分类标准系统和ZZPic 1.0图片管理技术系统两大先进系统解决行业难题，推进产业信息化升级，积极推动我国循环经济和低碳经济的发展，助力我国经济发展方式的转变和经济结构的调整。</p>
+	<p>
+	<strong>网：</strong>再生通---一种会员身份，享受网上四大服务和网下三大服务以及多种增值服务。<br>
+	　　品牌通---广告、品牌宣传利器，零成本网上业务员。<br>
+	　　短信报价---最新最及时的金属和部分塑料的行情报价，随时随地关注商机。<br>
+	<strong>会：</strong>主办线下废料商见面会--区域性行业线下见面会，讨论市场，贸易对接。<br>
+	　　承办协会展会/大型展会---大型交易会或展会，范围广，品牌响、推广大。<br>
+	<strong>刊：</strong>《中国再生资源商务大全》---年度优质企业客户名录集结，市场研究，行情预测。<br>
+	　　《再生汇》杂志---找到最适合你的客户信息。</p>
+	<p>
+	　　<strong>ZZ91实力：</strong>八年的经营，ZZ91现已成为中国最大最旺的废料贸易市场，是中国废料商人首选网上贸易平台，成长为最具影响力和品牌价值的再生资源产业电子商务网站，并连续四届被中国中小企业电子商务应用发展大会评为中国行业电子商务网站100强，得到业界普遍关注及充分肯定，是中国最受推崇的再生资源产业B2B品牌网站。</p>
+	<p>
+	　　目前ZZ91拥有各类废料注册会员100余万，网站产品信息860万条之多，并以日增2万条的速度更新。开展了14项之多的研发项目，已实现科技成果转化7项，成功推向市场，并取得6项软件著作权，1项软件产品，以其技术之新，实用之切取得了良好的经济效益和社会效益，得到了政府部门产业发展方式的转变和结构调整的支持，也推动了我国循环经济和低碳经济的发展，更获得了行业协会，合作伙伴及用户的好评和肯定。</p></div>
+</div>
+<script type="text/javascript">
+//导航滚动js
+ var toplist = document.getElementById("toplist");
+ var toplistwrap = document.getElementById("toplistwrap");
+ var more = document.getElementById('more');
+more.onclick=function(){
+	if(toplist.style.display!='none')
+	{
+		toplist.slideUp(10,130);
+		toplistwrap.slideUp(10,150); 
+	}
+	else
+	{
+		toplist.slideDown(10,130);
+		toplistwrap.slideDown(10,150); 
+		more.className += ' moreclick';
+	}
+}
+document.getElementById('slideup').onclick = function() 
+{
+	toplist.slideUp(10,130);
+	toplistwrap.slideUp(10,150); 
+}
+
+window.HTMLElement.prototype.slideDown=function(speed,height)
+{
+	var o = this;
+	clearInterval(o.slideFun);
+	var h = height;
+	var i = 0;
+	o.style.height = '0px';	
+	o.style.display = 'block';
+	o.style.overflow = 'hidden';
+	o.slideFun = setInterval(function(){
+		
+		i = i + 30;
+		if(i>h) i=h;
+		o.style.height = i+'px';
+		if(i>=h)
+		{
+			o.style.removeProperty('overflow');
+			clearInterval(o.slideFun);
+		}	
+	},speed);
+}
+
+window.HTMLElement.prototype.slideUp=function(speed,height)
+{
+	var o = this;
+	clearInterval(o.slideFun);
+	var h = height;
+	var i = h;
+	o.style.overflow = 'hidden';
+	o.slideFun = setInterval(function(){
+		i -= 30;
+		if(i<0) i=0;
+		o.style.height = i+'px';
+		if(i<=0)
+		{
+			o.style.display = 'none';
+			o.style.removeProperty('overflow');
+			more.className = more.className.replace(' moreclick','');
+			clearInterval(o.slideFun);
+		}	
+	
+	},speed);
+}</script>
+{%include 'new/bottom.html'%}
+</body>
+</html>

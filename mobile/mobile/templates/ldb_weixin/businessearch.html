@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<html>
+	<head>
+		<title>商机搜索_ZZ91再生网来电宝</title>
+        <link rel="stylesheet" type="text/css" href="../css/ldb_weixin/index.css"/>
+        <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+        <script>
+		function loadMore(objdiv){
+				self=objdiv
+				var pageobj=document.getElementById("pageindex");
+				var page=pageobj.value;
+				pageobj.value=parseInt(page)+1
+				
+				self.innerHTML="加载中...";
+				$.get("/ldb_weixin/businessearchmore.html",
+				{
+					page:pageobj.value
+				},
+				function(data,status){
+					if (status=="success" && data!="err\n" && data!=""){
+						self.style.display="block";
+						$("#item_tab").append(data);
+						self.innerHTML="点击后加载更多内容";
+					}else{
+						self.style.display="none";
+					}
+				});
+			};
+		</script>
+	</head>
+	<body>
+       <div class="dh">
+       		<div class="dh-txt">来电宝专区</div>
+            <!--end dh-txt-->
+            <div class="search"><form action="?" method="get">
+            	<div class="search_input">
+                	<input type="text" name="companyname" id="companyname" value="{{companyname}}" />
+                </div>
+                <!--end search_input-->
+                <div><input class="search_btn" type="submit" value="搜公司"></div>
+                <!--end search_btn-->
+                <div class="cb"></div>
+                </form>
+            <!--end search-->
+            <div class="cb"></div>
+           </div>
+       </div>
+       <!--end dh-->
+        <div class="item">
+        	<center>
+            	<div class="item_tab" id="item_tab">
+                	{%for ldb in listall%}
+                        	<div class="tab_box">
+                            	<a href="http://m.zz91.com/companyinfo/?company_id={{ldb.company_id}}">
+                                    	<div class="box-company">
+                                        	<div class="com-name">{{ldb.companyname}}<span style="font-weight:normal; color:#999">[{{ldb.area}}]</span></div>
+                                            <div class="cb"></div>
+                                        </div>
+                                        <div class="box-addr">{{ldb.ppckeywords}}</div>
+                                </a>
+                                    <a href="tel:{{ldb.ftel}}">
+                                    	<div class="box-tel">
+                                        	<div class="tel-logo"><img src="../images/ldb_weixin/phone.png" /></div>
+                                            <div class="tel-phone">{{ldb.ppctel}}</div>
+                                            <div class="cb"></div>
+                                        </div>
+                                    </a>
+                            </div>
+                    {%endfor%}
+                </div>
+            </center>
+        </div>
+        <input type="hidden" id="pageindex" value="1">
+        <a href="javascrpt:;">
+        <div class="page_" id="pagemore" onclick="loadMore(this)">
+            查看更多
+        </div>
+        </a>
+        {%include 'ldb_weixin/bottom_ldb.html'%}
+	</body>
+</html>

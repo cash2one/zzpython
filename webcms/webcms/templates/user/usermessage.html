@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/style.css" />
+    <script type="text/javascript" src="/bootstrap/My97DatePicker/WdatePicker.js"></script>
+	<script src="/bootstrap/Js/jquery-1.7.2.js"></script>
+<script>
+$(function(){
+	$('.upisok').click(function(){
+		var auto_id=$(this).attr("auto_id")
+		var is_ok=$(this).attr("is_ok")
+		$.ajax({
+		   type: "GET",
+		   url: "changehand.html",
+		   data: "auto_id="+auto_id+"&is_ok="+is_ok,
+		   success:function(data){
+			   	if(is_ok==1){
+					$("#img"+auto_id).attr('src','/123/imgs/weizhua.png')
+					$("#isok"+auto_id).attr('is_ok',0)
+					}
+					else {
+					$("#img"+auto_id).attr('src','/123/imgs/yizhua.png')
+					$("#isok"+auto_id).attr('is_ok',1)
+					}
+			   },
+		   error:function(data){
+				//alert("错误!青重试.");
+		   }
+		}); 
+	 });
+});
+</script>
+</head>
+<body>
+<form class="form-inline definewidth m20">
+<input type="hidden" name="freshtime" value="{{freshtime}}">
+号码 <input type="text" name="phone" {%if phone%}value="{{phone}}"{%endif%} style="width:120px">
+处理状态 <select name="is_hand" style="width:80px">
+{%if handname%}<option value="{{is_hand}}">{{handname}}</option>{%endif%}
+<option value="">--请选择</option>
+<option value="1">已处理</option>
+<option value="0">未处理</option>
+</select>
+<!--<input class="Wdate" type="text" style="width:100px" name="gmt_begin" {%if gmt_begin%}value={{gmt_begin}}{%endif%} id="datebegin" onClick="WdatePicker()"> 
+ 到 <input class="Wdate" type="text" style="width:100px" name="gmt_end" {%if gmt_end%}value={{gmt_end}}{%endif%} id="datebegin" onClick="WdatePicker()">-->
+<input class="btn btn-success" type="submit" value="查询">
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>电话</th>
+        <th>省市</th>
+        <th>地区</th>
+        <th>内容</th>
+        <th>IP</th>
+        <th>发送时间</th>
+        <th>处理状态</th>
+    </tr>
+    </thead>
+<input type="hidden" name="typeid" value="{{typeid}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+    {%for list in listall%}
+	     <tr>
+	        <td>{{list.id}}</td>
+	        <td>{{list.name}}</td>
+	        <td>{{list.phone}}</td>
+	        <td>{{list.province}}</td>
+	        <td>{{list.city}}</td>
+	        <td>{{list.content}}</td>
+	        <td>{{list.ip}}</td>
+	        <td>{{list.sendtime}}</td>
+	        <td><a href="javascript:void(0)" title="点击改变处理状态" id="isok{{list.id}}" auto_id="{{list.id}}" is_ok="{{list.is_handle}}" class="upisok">{% ifequal list.is_handle 1%}<img id="img{{list.id}}" src="/123/imgs/yizhua.png">{%else%}<img id="img{{list.id}}" src="/123/imgs/weizhua.png">{%endifequal%}</a></td>
+        </tr>
+     {%endfor%}
+</table>
+
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}&wtype={{wtype}}{%if typeid%}&typeid={{typeid}}{%endif%}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<a href='?page=1&{{searchurl}}' >首页</a><a href='?page={{page_listcount}}&{{searchurl}}' >尾页</a> 
+</div>
+<br /><br />
+</body>
+</html>

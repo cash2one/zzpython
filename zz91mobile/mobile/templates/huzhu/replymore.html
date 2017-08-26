@@ -1,0 +1,47 @@
+{%for list in listall_reply%}
+<div class="l-txt">{{list.content|safe}}</div>
+<div class="l-box">
+    <div class="lb-left">
+        <div class="ll-txt">
+            <font class="lt">{{list.nickname}}</font>
+        </div>
+        <!--end ll-txt-->
+    </div>
+    <!--end lb-left-->
+    <div class="lb-right">
+        <a href="/huzhu_replayshow/?replyid={{list.reply_id}}&postid={{postid}}&tocompany_id={{list.company_id}}"><div class="lr-re_" id="{{list.reply_id}}" replyid="{{list.reply_id}}" postid="{{postid}}" tocompany_id="{{list.company_id}}" title="回复：{{title}}" onClick="//openfrm(event,{{list.reply_id}})">回复</div>
+        <!--end lr-re_-->
+        <div class="lr-re">
+            <img src="/images/myrc/re.png"/>
+        </div></a>
+        <!--end lr-re-->
+        <div class="lr-txt">{{list.posttime}}</div>
+        <!--end lr-txt-->
+        <div class="cb"></div>
+    </div>
+    <!--end lb-right-->
+    <div class="cb"></div>
+</div>
+<!--end l-box-->
+<div class="l-block" id="l-block{{list.reply_id}}">
+{%for list1 in list.replylist.list%}
+<div class="lb-box">
+    <div class="lb-txt">
+        <font class="lt">{{list1.nickname}}</font> 回复 {{list1.tonickname}} :<font class="lt_">{{list1.content|safe}}</font>
+    </div>
+    <!--end lb-txt-->
+    <div class="lb-txt_">
+        <div class="lt-txt">{{list1.posttime}}</div>
+        <!--end lt-txt-->
+        <div class="lt-re replypost" id="{{list1.reply_id}}" replyid="{{list.reply_id}}" nickname="{{list1.nickname}}" tocompany_id="{{list1.company_id}}" postid="{{postid}}" title="回复：{{title}}" onClick="//openfrm(event,{{list.reply_id}})">
+            <a href="/huzhu_replayshow/?replyid={{list.reply_id}}&postid={{postid}}&tocompany_id={{list1.company_id}}">回复</a>
+        </div>
+        <!--endl lt-re-->
+        <div class="cb"></div>
+    </div>
+    <!--end lb-txt-->
+</div>
+<!--end lb-box-->
+{%endfor%}
+</div>
+{%endfor%}

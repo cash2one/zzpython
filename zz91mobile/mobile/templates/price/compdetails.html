@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+	<head>{%include 'head.html'%}
+		
+        <link rel="stylesheet" type="text/css" href="/css/pindao/index.css"/>
+	<style type="text/css"> 
+	.box1 a:link{color:#000;text-decoration:none}
+	.box1 a:hover{text-decoration:underline}
+	.box1 a:visited{color:#000}
+	</style> 
+	</head>
+	<body>{%include 'top.html'%}
+     <div class="content">
+       <div class="c-tle">
+       		<a href="/">首页</a> > <a href="/jiage/">行情报价</a> > {{title}}
+       </div>
+      		<div class="item">
+            	<div class="i-tle">{{title}}</div>
+                <!--end i-tle-->
+                <div class="i-tle time">时间：{{gmt_created|safe}}</div>
+                <!--end i-tle-->
+                <div class="i-tab">
+                	{{content|safe}}<br /><br />
+                </div>
+                <!--end i-tab-->
+                {%if priceabout%}
+                <div class="box1">
+                	<div class="b-tle">相关报价</div>
+                    <!--end b-tle-->
+                    <div class="b-dt">
+                    	<dt>
+                    	{%for about in priceabout%}
+                			<dl><a href="/jiage/detail{{about.id}}.html{%if keywords%}&keywords={{keywords}}{%endif%}">{{about.title}}</a></dl>
+                			<dl>&nbsp;</dl>
+                		{%endfor%}
+                		</dt>
+                    </div>
+                    <!--end b-dt-->
+                </div>
+                {%endif%}
+                <script type="text/javascript">
+/*手机站：首页 20:3，创建于2014-7-22*/
+var cpro_id = "u1629209";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+                <!--end box-->
+                {%if zhibuy or zhioffer%}
+                <div class="box1">
+                	<div class="b-tle">相关供求</div>
+                    <!--end b-tle-->
+                    <div class="b-dt">
+                    	<dt>
+                    	{%for zhi in zhibuy%}
+                			<dl><a href="/trade/detail{{zhi.id}}.html">{{zhi.title}}</a></dl>
+                			<dl>&nbsp;</dl>
+                		{%endfor%}
+                    	{%for zhi in zhioffer%}
+                			<dl><a href="/trade/detail{{zhi.id}}.html">{{zhi.title}}</a></dl>
+                			<dl>&nbsp;</dl>
+                		{%endfor%}
+                		</dt>
+                    </div>
+                    <!--end b-dt-->
+                </div>
+                {%endif%}
+                <!--end box-->
+                {%if feizhibbs%}
+                 <div class="box1">
+                	<div class="b-tle">相关问答</div>
+                    <!--end b-tle-->
+                    <div class="b-dt">
+                    	<dt>
+                    	{%for bbs in feizhibbs%}
+                			<dl><a href="/huzhuview/{{bbs.td_id}}.htm">{{bbs.td_title}}</a></dl>
+                			<dl>&nbsp;</dl>
+                		{%endfor%}
+                		</dt>
+                    </div>
+                    <!--end b-dt-->
+                </div>
+                {%endif%}
+                <!--end box-->
+            </div>
+            <!--end item-->
+       </div>{%include 'bottom.html'%}
+      <!--end content-->
+	</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="address=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+	<title>供求列表独家广告-zz91再生网</title>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+    <style>
+    	body{
+    		
+    	}
+    	.title{
+    		font-size:20px;
+    		text-align:center;
+    		height:50px;
+    		line-height:50px;
+    		font-weight:bold;
+    	}
+    	.price{
+    		line-height: 40px;
+    		padding-left:10px;
+    	}
+    	.price span{
+    		color:#ff0000
+    	}
+    	
+    	.main{
+    		line-height:30px;
+    		font-size:14px;
+    		margin-bottom:20px;
+    		padding:10px
+    	}
+    	.buybutton{
+    		position: fixed;
+    		bottom:0px;
+    		left:0px;
+    		border-radius:0px;
+    	}
+    </style>
+</head>
+<body>
+	
+	<header class="aui-bar aui-bar-nav aui-bar-primary">
+    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+	        <span class="aui-iconfont aui-icon-left"></span>
+	    </a>
+	    <div class="aui-title">供求列表独家广告</div>
+	    <a class="aui-pull-right" href="/myrc_index/">
+	        <span class="aui-iconfont aui-icon-my"></span>
+	    </a>
+	</header>
+	<div class="aui-content-padded">
+	<!--供求独家广告-->
+		<div class="price">价格：<span>￥ 1200元  / 月</span></div>
+		<div class="aui-line-x"></div>
+		<div class="main">
+		<span style="font-size: 18px;font-weight:bold">曝光率高 销货快 </span><br />
+		图片形式，巨幅版面，动态展播，曝光率高，<br />
+		让客户迅速找到，同等投入，最高回报
+		<br />
+		案例：
+		<img src="http://static.m.zz91.com/image/service/ad_top.png" style="width:100%">
+		<br />
+		<br /><span style="color:#999">注：购买后两个工作日内（节假日自动顺延）工作人员会联系您。<br />本服务只面向ZZ91再生网移动端用户</span>
+		</div>
+        <a class="aui-btn aui-btn-block aui-btn-success buybutton" href="cp_listad_buy.html">立即购买</a>
+    </div>
+    <input type="hidden" id="backvalue" value="">
+    <div style="height:80px"></div>
+    {%include 'aui/bottom.html'%}
+</body>
+</html>

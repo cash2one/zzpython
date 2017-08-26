@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{navcategoryname}}-帮助中心-ZZ91再生网</title>
+<link href="../css/css.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<!--top-->
+<div class="main_box top_box">
+<div class="logo"><a href="#" title="ZZ91再生网帮助中心"><img src="../images/logo.jpg" width="280" height="54" border="0" /></a></div>
+<div class="lmmain">
+<div class="contacttel">咨询热线：0571-56612345</div>
+<ul>
+  <li ><a href="../">首 页</a></li>
+  <li {{zsttab1}}><a href="/question/">常见问题</a></li><li {{zsttab2}}><a href="/list-9/">再生通客服</a></li><li><a href="/contact/">联系客服</a></li><li><a href="/beginner/">新手上路</a></li></ul>
+</div>
+</div>
+<div class="clearboth"></div>
+<div class="topline"></div>
+<!--top-->
+<!--search-->
+{%include 'search.html'%}
+<!--search-->
+<div class="clearboth"></div>
+<!--main-->
+<div class="nav main_box">当前位置：<a href='/'>首页</a> > {{navnamelist|safe}}</div>
+<div class="main_box">
+<div class="main_left">
+	<div class="ltitle"><p>帮助分类</p></div>
+    <div>
+    	<ul>
+        	{%include 'leftcatory.html'%}
+        </ul>
+    </div>
+    <div class="ltitle"><p>联系我们</p></div>
+    <div class="lbox">
+    	<strong>服务热线：</strong><br>
+		0571-56612345 56611111<br>
+		<strong>传真：0</strong>571-56637777<br>
+	<strong>服务邮箱：</strong>service@zz91.net <br />
+	<img src="../images/jb.jpg" width="190" height="65" /> 
+    <strong>网站功能改进建议 </strong></div>
+</div>
+<div class="main_body">
+  <div class="mainlist">
+  	<div class="dcontent">
+    	<div class="dtitle">{{navcategoryname}}</div>
+        <div class="dlist">
+        	<ul>
+			{%for list in helplist.listall%}
+           	  <li><a href="/detail-{{list.aid}}/">· {{list.subject}}</a></li>
+			{%endfor%}
+            </ul>
+        </div>
+        <div class="dpagelist">
+			<ul>
+				{% if helplist.pagelist.firstpage %}
+				<li><a href="/list-{{cat_id}}-1/">首页</a></li>
+				<li><a href="/list-{{cat_id}}-{{helplist.pagelist.prvpage}}/">上一页</a></li>
+				{% endif %}
+				{% for p in helplist.pagelist.page_range %}
+				
+				{% if p.nowpage %}
+				<li class="pageon">{{p.number}}</li>
+				{% else %}
+				<li><a href="/list-{{cat_id}}-{{p.number}}/">{{p.number}}</a></li>
+				{% endif %}
+				{% endfor %}
+				
+				{% if helplist.pagelist.lastpage%}
+				<li><a href="/list-{{cat_id}}-{{helplist.pagelist.nextpage}}/">下一页</a></li>
+				<li><a href="/list-{{cat_id}}-{{helplist.pagelist.lastpage}}/">末页</a></li>
+				{% endif %}
+			</ul>
+		</div>
+    </div>
+    <div class="clearboth"></div>
+    </div>
+</div>
+</div>
+<!--main-->
+{%include 'bottom.html'%}
+
+</body>
+</html>

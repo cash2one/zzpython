@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<title>APP客户端下载-zz91再生网</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+<link rel="stylesheet" href="css/index.css" />
+<style>
+	#topBarInfo {width: 1200px;margin:0 auto;}
+	#topBar #topBarInfo #topBarLinkNew{
+		width: 422px;
+	}
+</style>
+
+<script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<!--[if IE 6]> 
+    <script src="js/clarity.js"></script> 
+    <script type="text/javascript">
+    DD_belatedPNG.fix('img');
+    DD_belatedPNG.fix('.xiazai');
+    </script>  
+<![endif]-->
+<body>
+    <div style="width:100%; background-color:#F9F7EC">
+        <div> {%include 'html/comm/top.html'%} </div>
+    </div>
+    <style>
+	#topBarInfo {width: 1200px;margin:0 auto;}
+	#topBar #topBarInfo #topBarLinkNew{
+		width: 422px;
+	}
+</style>
+    <div class="bgumg1">
+        <div class="contentbox">
+            <div class="nav clearfix">
+                <a href="index3.html"><img src="images/gou3.png"></a>
+                <a href="index2.html"><img src="images/gou2.png"></a>
+                <a href="index.html"><img src="images/gou1.png"></a>
+            </div>
+            <div class="xiazai">
+                <div class="xiazai-box">
+                    <a href="https://itunes.apple.com/us/app/zz91zai-sheng-wang/id944851616?l=zh&ls=1&mt=8" class="pgxz">
+                        <div class="azxz-div" onclick="downloadios()"></div>
+                    </a>
+                    <a href="javascript:void(0)" class="azxz" ></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bgumg2"></div>
+    <div class="bgumg3"></div>
+    <div class="bgumg4"></div>
+    {% include 'html/comm/buttom.html' %}
+</body>
+
+<script type="text/javascript">
+    $(function(){
+        $(".azxz").bind("click",function(){
+            download()
+        })
+        function download(){
+                var ua = navigator.userAgent.toLowerCase();
+                if(ua.match(/MicroMessenger/i)=="micromessenger") {
+                    window.location="http://a.app.qq.com/o/simple.jsp?pkgname=com.zz91.app2"
+                    document.getElementById("weixin").style.display="";
+                    document.getElementById("weixin").style.display="none";
+                    var bodyHight = $("body").height();
+                    var tanhtml='<div class="tanc" style="position:absolute;z-index:2;top:0;text-align:center;width:100%;overflow:hidden;background:#000;opacity: 0.8;height:100%"><img src="http://img0.zz91.com/zz91/images/wxmark.png" width="100%"/><div>'
+                    $("body").append(tanhtml);
+                    $(".tanc").on("click",function(){
+                        $(this).hide()
+                    })
+                } else {
+                    //window.location="http://a.app.qq.com/o/simple.jsp?pkgname=com.zz91.app2";
+                    //window.location="http://fusion.qq.com/cgi-bin/qzapps/unified_jump?appid=12148164&from=mqq&actionFlag=0&params=pname%3Dcom.zz91.app2%26versioncode%3D216%26channelid%3D%26actionflag%3D0"
+                    window.location="http://app.zz91.com/app/zz91-1.3.0.apk"
+                    document.getElementById("weixin").style.display="none";
+                }
+        }
+    })
+    function downloadios(){
+                var ua = navigator.userAgent.toLowerCase();
+                if(ua.match(/MicroMessenger/i)=="micromessenger") {
+                    document.getElementById("weixin").style.display="";
+                    document.getElementById("weixin").style.display="none";
+                    var bodyHight = $("body").height();
+                    var tanhtml='<div class="tanc" style="position:absolute;z-index:2;top:0;text-align:center;width:100%;overflow:hidden;background:#000;opacity: 0.8;height:100%"><img src="http://img0.zz91.com/zz91/images/wxmark.png" width="100%"/><div>'
+                    $("body").append(tanhtml);
+                    $(".tanc").on("click",function(){
+                        $(this).hide()
+                    })
+                    window.location="https://itunes.apple.com/us/app/zz91zai-sheng-wang/id944851616?l=zh&ls=1&mt=8";
+                } else {
+                    window.location="https://itunes.apple.com/us/app/zz91zai-sheng-wang/id944851616?l=zh&ls=1&mt=8";
+                    document.getElementById("weixin").style.display="none";
+                }
+            }    
+</script>
+</html>

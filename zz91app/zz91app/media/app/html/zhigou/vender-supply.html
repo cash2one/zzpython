@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>我的供货单</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/zhigou/vender-supply.css"/>
+</head>
+<body>
+    <div class="bfcolor">请在下方填写您的真实报价（价格必填），并对您的货物描述清楚。</div>
+    <div class="bfcolor">例如：HDPE再生颗粒，吹膜用，白色，优质，杭州，10吨/月，8000元/吨。</div>
+    <div class="textarea"><textarea class="mygh"></textarea></div>
+    <div class="bfcolor">注：不合理报价会被系统自动屏蔽</div>
+    <span class="btn">提交报价</span>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        // zzalert(JSON.stringify(api.pageParam))
+        $(".btn").on("click",function(){
+            var content = $(".mygh").val();
+            if(content==""){
+                hint("您的报价内容还没填写！");
+                return;
+            }
+            var data = {
+                company_id:UserInfo.memberID(),
+                usertoken:UserInfo.token(),
+                appsystem:api.systemType,
+                datatype:"json",
+                buy_id:api.pageParam.buy_id,
+                content:content
+            }
+            api.ajax({
+                url : hosturl + 'trust/supplyFormok.html',
+                method : 'post',
+                timeout : 30,
+                dataType : 'json',
+                returnAll : false,
+                data:{
+                    values: data
+                }
+            }, function(ret, err) {
+                if (ret) {
+                  if(ret.error_code=="0"){
+                        api.alert({
+                            title: '我的供货',
+                            msg: "提交成功,我们会尽快和您联系，谢谢合作",
+                            buttons:['确定']
+                        },function(ret,err){
+                        	api.closeWin({
+                            });
+                        })
+                    }else{
+                        api.alert({
+                            title: '我的供货',
+                            msg: "提交失败,请重试！",
+                            buttons:['确定']
+                        },function(ret,err){
+                        })
+                    }
+                } else {
+                };
+            });
+        })
+    }
+    function  hint(ts){
+          $(".hint").remove()
+          var hintHtml = '<div class="hint" style="position:fixed;color:#fff;line-height:18px;font-size:14px;width:100%">'
+          +'<span style="display:block;margin:0 8px;background:#000;opacity:0.8;border-radius:5px;padding:10px 10px;text-align:center">'+ts+'<span>'
+          +'</div>';
+          $("body").append(hintHtml);
+          var hint_height =$(".hint").height();
+          var wd_height =$(window).height();
+          var top_height = (wd_height - hint_height)/2
+          $(".hint").css("top",top_height+"px");
+          setTimeout(function(){
+            $(".hint").fadeOut("slow",function(){
+              $(".hint").remove()
+            })
+          },2000)
+    }
+</script>
+</html>

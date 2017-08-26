@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>产品信息-{{list.name}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+</head>
+<body>
+
+<div class="moblie">
+	{%include "html/mobile/02/top.html"%}
+   
+    <div class="moblie-main1">
+        <div class="moblie-main1-text">
+            {{productsdetail.products_type}}{{productsdetail.title}}
+        </div>
+        
+        <!--end search-->
+        <div class="cb"></div>
+    </div>
+    <!--end moblie-main1-->
+	{%for i in productsdetail.piclist%}
+	<img src="{{i.images}}" />
+	{%endfor%}
+	<div class="content" style="padding:10px; line-height:22px;"> 
+         <div class="pro-dis">
+            {%if productsdetail.price%}
+            <p><span>{{productsdetail.products_type}}价格：</span></a>{{productsdetail.price}}</p>
+            {%endif%}
+            {%if productsdetail.total_quantity%}
+            <p><span>总量：</span>{{productsdetail.total_quantity}}{{productsdetail.quantity_unit}}</p>
+            {%endif%}
+            {%if productsdetail.location%}
+            <p><span>现货所在地：</span>{{productsdetail.location}}</p>
+            {%endif%}
+            <p><span>公司所在地：</span>{{list.province}}</p>
+            <p><span>发布日期：</span>{{productsdetail.refresh_time}}</p>
+            <p><span>信息有效期：</span>{{productsdetail.expire_time}}</p> 
+        </div>
+        <div>供求详情</div>
+        <div class="prodesc">
+            {{productsdetail.detailsfull|safe}}
+        </div>
+		<div class="contact">
+	
+	<div class="contact-text">
+    	<b>{{list.name}}</b>
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	<span class="contact-name">联 系 人：</span>{{list.contact}}
+    </div>
+    <!--contact-text-->
+    {%if list.ppcphone%}
+    <div class="contact-text">	
+		<span class="contact-name">电    话：</span> <a href="tel:{{list.ppcphone}}">{{list.ppcphone}}</a><a href="tel:{{list.ppcphone}}"><img src="{{htmlincludes.img}}images/icon7.jpg" align="absmiddle" /></a>	
+	</div>
+	{%else%}
+	<div class="contact-text">
+	<span class="contact-name">电    话：</span> <a href="tel:{{list.tel_area_code}}{{list.tel}}">{{list.tel_country_code}}-{{list.tel_area_code}}-{{list.tel}}</a><a href="tel:{{list.tel_area_code}}{{list.tel}}"><img src="{{htmlincludes.img}}images/icon7.jpg" align="absmiddle" /></a>
+    </div>
+	<!--contact-text-->
+    <div class="contact-text">
+    	{%if list.mobile%}<span class="contact-name">移动电话：</span> <a href="tel:{{list.mobile}}">{{list.mobile}}</a><a href="tel:{{list.mobile}}"><img src="{{htmlincludes.img}}images/icon8.jpg" align="absmiddle" /></a>{%endif%}
+    </div>
+	{%endif%}
+    <!--contact-text-->
+    <div contact="contact-text">
+    	{%if list.email%}<span class="contact-name">邮箱：</span> {{list.email}}{%endif%}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.qq%}<span class="contact-name">QQ：</span>{{list.qq}}{%endif%}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.fax%}<span class="contact-name">传    真：</span> {{list.fax}}{%endif%}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.address%}<span class="contact-name">地    址：</span>{{list.address}}{%endif%}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.website%}<span class="contact-name">公司主页：</span> {{list.website}}{%endif%}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if list.website%}<span class="contact-name">企业网站：</span> {{list.website}}{%endif%}
+    </div>
+    <!--contact-text-->
+</div>
+    </div>
+    <!--end moblie-item-->
+    <div class="cb"></div>
+    
+    {%include "html/mobile/02/bottom.html"%}
+    <!--end moblie-footer-->
+</div>
+<!--moblie-->
+
+</body>
+</html>

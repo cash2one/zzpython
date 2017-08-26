@@ -1,0 +1,23 @@
+<uwsgi>
+ <socket>:8035</socket>
+ <workers>5</workers>
+ <master>true</master>
+ <processes>10</processes>
+ <listen>200</listen>
+ <pythonpath>.</pythonpath>
+ <module>mobile.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>mobile/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>2048</limit-as>
+ <reload-on-as>1000</reload-on-as>
+ <reload-on-rss>1000</reload-on-rss>
+ <max-requests>1000</max-requests>
+ <touch-reload>1.txt</touch-reload>
+ <log-5xx>true</log-5xx>
+ <log-4xx>true</log-4xx>
+ <disable-logging>true</disable-logging>
+ <daemonize>/mnt/var/log/uwsgi/zz91mobile.log</daemonize>
+</uwsgi>

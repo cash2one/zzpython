@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <style>
+    	body{
+    		
+    	}
+    	.aui-switch {
+		    width: 4.3rem;
+		    height: 1.2rem;
+		    position: relative;
+		    vertical-align: top;
+		    border: 1px solid #dddddd;
+		    background-color: #ff0000;
+		    border-radius: 0.6rem;
+		    background-clip: content-box;
+		    display: inline-block;
+		    outline: none;
+		    -webkit-appearance: none;
+		    appearance: none;
+		    -webkit-user-select: none;
+		    user-select: none;
+		    -webkit-box-sizing: border-box;
+		    box-sizing: border-box;
+		    -webkit-background-clip: padding-box;
+		    background-clip: padding-box;
+		    -webkit-transition: all 0.2s linear;
+		    transition: all 0.2s linear;
+		}
+		.aui-switch:before {
+		    width: 2.1rem;
+		    height: 1.1rem;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    border-radius: 0.6rem;
+		    background-color: #fff;
+		    content: '';
+		    -webkit-transition: left 0.2s;
+		    transition: left 0.2s;
+		}
+		.aui-switch:checked {
+		    border-color: #03a9f4;
+		    background-color: #03a9f4;
+		}
+		.aui-switch:checked:before {
+		    left: 2.1rem;
+		}
+    </style>
+</head>
+<body>
+	<section class="aui-content datu">
+		<div class="danewslist"></div>
+		<script id="info-list-da" type="text/html">
+        <div class="aui-card-list aui-border-t aui-border-b detaillist">
+            
+            <div class="aui-card-list-content" style="display:{{d.picdisplay}}">
+                <img src="{{d.picone}}" />
+            </div>
+            <div class="aui-card-list-header aui-padded-t-5 aui-padded-b-5">
+                <h2>{{d.title}}</h2>
+            </div>
+            <div class="aui-card-list-content-padded aui-padded-t-0 aui-padded-b-0" style="color:#7b7b7b;">
+                {{d.subcontent}}
+            </div>
+            <div class="aui-card-list-footer aui-font-size-12" style="color:#999;">
+                <div>
+                    <span>2048 赞</span> - <span>295 评论</span> - <span>去往栏目</span>
+                </div>
+            </div>
+        </div>
+        </script>
+     </section>
+     
+	 <div class="aui-content xiaotu">
+        <ul class="aui-list aui-media-list">
+        	<div class="newslist"></div>
+            <script id="info-list-xiao" type="text/html">
+            <li class="aui-list-item">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title aui-font-size-18"><b>{{d.title}}</b></div>
+                        </div>
+                        <div class="aui-list-item-text">
+                            <p class="aui-ellipsis-2">{{d.subcontent}}</p>
+                        </div>
+                        <div class="aui-info aui-padded-b-0">
+                            <div class="aui-info-item aui-font-size-12">
+                                {{d.source}}
+                            </div>
+                            <div class="aui-info-item aui-font-size-12">{{d.pubdate}}</div>
+                        </div>
+                    </div>
+                    <div class="aui-list-item-media" style="display:{{d.picdisplay}}">
+                        <img src="{{d.picone}}">
+                    </div>
+                </div>
+            </li>
+            </script>
+        </ul>
+    </div>
+    <div style="position: fixed;bottom:20px;width:100%;text-align: center;z-index: 10">
+    	<div id="selecttu" style="position: absolute;text-align: center;width: 100%;z-index: 1000;font-size: 12px;line-height: 1.1rem;">小图 &nbsp; &nbsp;&nbsp;大图</div>
+    	<input class="aui-switch aui-text-success" type="checkbox" name="tutype" id="tutype" checked=""> 
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/aui-skin.js" ></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		$("body").on("click",".detaillist",function(){
+        	//var infoid = $(this).attr("infoid")
+        	var infoid="1"
+			var pageParam = {
+	          wintitle:"资讯详情",
+	          type:"detail",
+	          bounces:false,
+	          infoid:infoid,
+	        };
+	        openWin("detail"+infoid,"../list/detail.html",pageParam);
+        })
+        $("#selecttu").on("click",function(){
+        	var tutype=$("#tutype").attr("checked");
+        	var tutype=document.getElementById("tutype");
+        	$("#tutype").attr("checked","");
+        })
+        ajaxinfo();
+	};
+	function ajaxinfo(){
+		var typeid=api.pageParam.typeid;
+		if (typeid){
+			var url="/app/list.html?"+ (new Date()).getTime().toString();
+			var data={
+				"typeid":typeid,
+				"datatype":"json"
+			}
+			zzappajax("get",hosturl+url,data,function(ret){
+				var pageHtml = "";
+				var tutype=$("#tutype").attr("checked");
+				if (tutype=="checked"){
+					$.each(ret.result, function(index, item) {
+						var getTpl = $api.html($api.byId("info-list-da"));
+						if (!item.picone){
+							item.picdisplay="none";
+						}else{
+							item.picdisplay=""
+						}
+						laytpl(getTpl).render(item, function(html) {
+							pageHtml = pageHtml + html;
+						});
+					})
+					$(".danewslist").html(pageHtml);
+					$(".datu").show();
+					$(".xiaotu").hide();
+				}
+			},function(){})
+		}
+	}
+	/*
+	var skin = new auiSkin({
+	    name:"night", //皮肤样式名字，不能为中文
+	    skinPath:'../../css/aui-skin-night.css', //皮肤样式表路径
+	    default:false,//是否默认立即使用
+	    beginTime:"20:00",//开始时间
+	    endTime:"07:00"//结束时间
+	})
+	skin.setSkin();
+	*/
+</script>
+</html>

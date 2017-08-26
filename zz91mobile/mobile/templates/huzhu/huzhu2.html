@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>{{webtitle}}_ZZ91废料移动商务</title>
+        <link rel="stylesheet" type="text/css" href="/css/myrc/index.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+		<link rel="stylesheet" href="/css/comm-searchbar.css" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <script src="/js/AliMobile.Jload3.js?v=0309"></script>
+		<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/huzhu/style.js"></script>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <script type="text/javascript" src="/js/huzhu/jquery.lightbox_me.js"></script>
+        
+		<script>
+			$(window).scroll(function(){
+				if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+					loadMore(document.getElementById("loadMore"));
+				}
+			});
+			
+			function loadMore(objdiv){
+				self=objdiv
+				var pageobj=document.getElementById("pageindex");
+				var page=pageobj.value;
+				pageobj.value=parseInt(page)+1
+				
+				self.innerHTML="加载中...";
+				
+				$.get("/huzhumore/",
+				{
+					page:pageobj.value,
+					datetype:document.getElementById("datetype").value,
+					keywords:document.getElementById("skeywords").value,
+					category_id:"{{category_id}}",
+					htype:document.getElementById("htype").value
+				},
+				function(data,status){
+					if (status=="success" && data!="err\n" && data!=""){
+						self.style.display="block";
+						$("#tab1").append(data);
+						self.innerHTML="点击后加载更多内容";
+					}else{
+						self.style.display="none";
+					}
+				});
+			};
+			function openfavorite(id){
+				
+				self=$("#sc"+id.toString());
+				var mycompany_id=$("#mycompany_id").val();
+				var title=self.attr("title");
+				if (mycompany_id=='None'){
+					window.location='/login/?done={{host}}';
+					return false;
+				}
+				$.get("/openfavorite/",
+				{
+					pdtid:id,
+					favorite_type_code:"10091005",
+					title:title
+				},
+				function(data,status){
+					if (status=="success" && data!="err\n" && data!=""){
+						self.html("已收藏");
+					}else{
+						//self.html("已收藏");
+					}
+				});
+			}
+		</script>
+	</head>
+	<body>
+{%include 'top.html'%}
+{%if username%}
+{%if not mynickname%}
+	<script>
+    
+	function savenick(){
+		window.location="?nickname="+$("#nickname").val();
+	}
+    </script>
+    <!-- 回复弹出框 -->
+	<div id="reply_div_nick" align="center">
+    <form name="form">
+    	<font color="#CC0000">您还没有填写您的昵称，请填写！</font>
+      <input type="text" name="nickname" id="nickname" onKeyUp="check();" style="width:80%; line-height:30px;" placeholder="请输入您的昵称！">
+      <div align="center" style="margin-top:15px;">
+        <div class="btn btn_confirm" onClick=savenick()>确定</div>
+        </div>
+    </form>
+    </div>
+{%endif%}
+{%if not myguanzhu%}
+	<script>
+    
+	function saveguanzhu(){
+		document.getElementById("formguanzhu").submit();
+	}
+    </script>
+    <!-- 回复弹出框 -->
+	<div id="reply_div_guanzhu" align="center" style="line-height:30px;">
+    <form name="formguanzhu" id="formguanzhu" action="?" method="get">
+    <font color="#CC0000">点击设置我关心的行业</font> <br />
+      <input type="checkbox" name="myguanzhu" id="myguanzhu" value="1" /> <label for="myguanzhu">废塑料</label>
+      <input type="checkbox" name="myguanzhu" id="myguanzhu1" value="2" /> <label for="myguanzhu1">废金属</label>
+      <input type="checkbox" name="myguanzhu" id="myguanzhu2" value="3" /> <label for="myguanzhu2">综合废料</label>
+      <div align="center" style="margin-top:15px;">
+        <div class="btn btn_confirm" onClick=saveguanzhu()>确定</div>
+        </div>
+    </form>
+    </div>
+{%endif%}
+{%endif%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+    <form action="/huzhu/" method="get" id="wikiSearchFrm">
+    	<div style="position:relative;">
+        	<div class="sch-input">
+        		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+        	</div>
+        	<button type=submit class="sch-button" >搜答案</button>
+    		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+    	</div>
+    </form>
+
+      <div class="m-content">
+      	<table width="100%" border=0 cellpadding=0>
+				{%if datefirst%}
+                <tr>
+				   <td>
+					  <ul class="m-ul m-item_1" id="tabUL" style="margin-left:10px;margin-right:10px;">
+						<li class="{%ifequal category_id '1'%}m-li_{%else%}m-li{%endifequal%}"><a href="/huzhu/wenda.html">问答</a></li>
+						<li class="{%ifequal category_id '2'%}m-li_{%else%}m-li{%endifequal%}"><a href="/huzhu/shequ.html">社区</a></li>
+						<li class="{%ifequal category_id '3'%}m-li_{%else%}m-li{%endifequal%}"><a href="/huzhu/xueyuan.html">学院</a></li>
+						<li class="{%ifequal htype 'hot'%}m-li_{%else%}m-li{%endifequal%}"><a href="/huzhu/remen.html">热门</a></li>
+						<li class="{%ifequal htype 'new'%}m-li_{%else%}m-li{%endifequal%}"><a href="/huzhu/zuixin.html">最新</a></li>
+					  </ul>
+				   </td>
+				</tr>
+                {%endif%}
+				<tr><td>
+					<table cellspacing="10" id="tab1">
+{%for list in bbslist%}
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+									<a href="/huzhu/{{list.id}}.html" target=_blank>{{list.title}}</a>
+								</div>
+								<!--end c-item-->
+								<div class="c-item_" style="line-height: 25px;">
+									<div class="i-box">
+										{{list.nickname}}&nbsp;&nbsp;&nbsp;{%if list.replycount%}回复：{{list.replycount}}&nbsp;&nbsp;&nbsp;{%endif%}{{list.reply_time}}
+									</div>
+									<!--end i-box-->
+									<div class="i-box_">
+									<div class="i-sc" postid="{{list.id}}" id="sc{{list.id}}" onClick="openfavorite({{list.id}})" title="{{list.title}}">
+									 <img src="/images/myrc/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+										 <div class="cb"></div>
+									</div>
+									<!--end i-box_-->
+									<div class="cb"></div>
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+{%endfor%}
+					</table>
+					
+					
+					<div id="loadMore" onClick="loadMore(this);" style="text-align:center;margin-left:10px;margin-right:10px;background: #fff;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;">加载更多……</div>
+                    <input type="hidden" id="pageindex" value="1" />
+                    <input type="hidden" id="datetype" value="{{datetype}}" />
+                    <input type="hidden" id="htype" value="{{htype}}" />
+                    <input type="hidden" id="skeywords" value="{{keywords}}" />
+                    <input type="hidden" id="mycompany_id" value="{{company_id}}" />
+				</td></tr>
+        </table>
+      </div>
+      <!--end m-content-->
+      <div class="m-btn">
+      	<a href="/huzhupost/?category_id={{category_id}}">我要提问</a>
+      </div>
+      <!--end m-btn-->
+</div>
+{%include 'bottom2.html'%}
+</body>
+</html>

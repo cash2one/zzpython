@@ -1,0 +1,182 @@
+{%extends "index.html"%}
+{%block body%}
+    <div class="list">
+    	<div class="l-title">
+        	您所在的位置：<a href="/" target="_blank">zz91再生网资讯中心</a>→<a href="/{{typeurl}}/" target="_blank">废料{{typename}}</a>
+        </div>
+		<div class="cb"></div>
+        <div class="l-block">
+        	<div class="l-left">
+            	<div class="l-left-title">
+                	<div class="l-left-label"></div>
+                    <div class="l-left-caption">
+                    	废料专题
+                    </div>
+                    <div class="l-left-record">
+                    	共找到{{count}}条记录
+                    </div>
+                    <!--end l-left-record-->
+                </div>
+                <!--end l-left-title-->
+                <div class="l-left-content">
+                	<div class="l-itemimg">
+                    	<ul>
+{%for sl in special_list%}
+                        	<li>
+                            	<div class="l-itemimg-img2">
+                                	<a href="{{sl.filename}}.html" target="_blank"><img src="{{sl.litpic}}" alt="{{sl.title|safe}}"/></a>
+                                </div>
+                                <!--end l-itemimg-img-->
+                                <div class="l-itemimg-text2">
+                                	<a href="{{sl.filename}}.html" target="_blank" title="{{sl.title|safe}}">{{sl.title|safe}}</a>
+                                </div>
+                                <!--end l-itemimg-text-->
+                            </li>
+{%endfor%}
+                            <div class="cb"></div>
+                        </ul>
+                    </div>
+                    <!--end l-itemimg-->
+
+                    {%if page > 1%}
+                    <div class="page">
+                    	<div class="page-index">
+                        	{%if search%}
+                        	<a href="tags-{{typename_hex}}-p{{1}}.html">首页</a>
+								{%else%}
+                        	<a href="/{{col_req}}/p{{1}}.html">首页</a>
+								{%endif%}
+                        </div>
+                        <div class="page-previous">
+                        	{%if search%}
+                        	<a href="tags-{{typename_hex}}-p{{pageprv}}.html">上一页</a>
+								{%else%}
+                        	<a href="/{{col_req}}/p{{pageprv}}.html">上一页</a>
+								{%endif%}
+                        </div>
+                        <div class="page-list">
+                        	<ul>
+                            	{%for pg in page_list%}
+		                        		<li>
+										{% ifequal page pg %}
+										<a href="/{{col_req}}/p{{pg}}.html" class="page-list-click">
+										{{pg}}
+										</a>
+										{%else%}
+										<a href="/{{col_req}}/p{{pg}}.html">{{pg}}</a>
+										{%endifequal%}
+										</li>
+									{%endfor%}
+                            </ul>
+                        </div>
+                        <div class="page-next">
+                        	 {%if search%}
+                        	<a href="tags-{{typename_hex}}-p{{pagenext}}.html">下一页</a>
+                        {%else%}
+                        	<a href="/{{col_req}}/p{{pagenext}}.html">下一页</a>
+                        {%endif%}
+                        </div>
+                        <div class="page-last">
+                        	{%if search%}
+                        	<a href="tags-{{typename_hex}}-p{{pages_number}}.html">末页</a>
+                        {%else%}
+                        	<a href="/{{col_req}}/p{{pages_number}}.html">末页</a>
+                        {%endif%}
+                        </div>
+                        <!--end page-last-->
+                        <div class="cb"></div>
+                    </div>
+                    <!--end page-->
+                {%endif%}
+                    
+                    
+                </div>
+                <!--end l-left-content-->
+                <div class="cb"></div>
+            </div>
+            <div class="l-right">
+            	<div class="l-slider">
+                	
+                </div>
+                <!--end l-slider-->
+                <div class="l-ranking">
+                    <div class="l-ranking-title">
+                        <div class="l-ranking-caption">
+                            本周热门资讯排行榜
+                        </div>
+                        <!--end l-ranking-caption-->
+                        <div class="l-ranking-more"></div>
+                        <!--end l-ranking-more-->
+                        <div class="cb"></div>
+                    </div>
+                    <!--end l-ranking-title-->
+                    <div class="l-ranking-content">
+                        <ul>
+{%for h in hotest%}
+                            <li>
+                                <div class="l-ranking-text"><a href="{{h.weburl}}" target="_blank" title="{{h.title|safe}}">{{h.title20|safe}}</a></div>
+                                <div class="l-ranking-date">{{h.pubdate}}</div>
+                                <div class="cb"></div>
+                            </li>
+{%endfor%}
+                        </ul>
+                    </div>
+                    <!--end l-ranking-content-->
+                </div>
+                <!--end ranking-->
+                <div class="l-slider">
+                	
+                </div>
+                <!--end l-slider-->
+                <div class="l-topic">
+                	<div class="l-topic-title">
+                    	为您推荐相关专题
+                    </div>
+                    <!--end l-topic-title-->
+                    <div class="l-slider-block">
+                    	<ul id="l_slider">
+                    	{%for sl in special_tui%}
+                            <li><a href="{{sl.filename}}" target="_blank"><img src="{{sl.litpic}}" /></a></li>
+						{%endfor%}                        
+                            <div class="cb"></div>
+                        </ul>
+                        <div class="l-slider-bg"></div>
+                        <div class="l-slider-button">
+                            <div class="l-slider-text" id="l_slider_text">
+                                <ul>
+                    	{%for sl in special_tui%}
+                            <li>{{sl.title|safe}}</li>
+						{%endfor%}                        
+                                </ul>
+                            </div>
+                            <div class="l-slider-ul" id="l_slider_button">
+                                <ul>
+                                    <li data-aaa="1" style="color:#ff7300;font-weight:bold;background:url(http://img0.zz91.com/zz91/news/images/l-slider-icon_click.jpg) no-repeat"></li>
+                                    <li data-aaa="2"></li>
+                                    <li data-aaa="3"></li>
+                                    <li style="margin-right:0px" data-aaa="4"></li>
+                                    <div class="cb"></div>
+                                </ul>
+                            </div>
+                            <div class="cb"></div>
+                        </div>
+                    </div>
+                    <!--end l-slider-block-->
+                    
+                </div>
+                <!--end l-topic-->
+            </div>
+            <!--end l-right-->
+            <div class="cb"></div>
+        </div>
+        <!--end l-block-->
+    </div>
+    <!--end list-->
+    
+</div>
+<!--end zixun-->
+<input type="hidden" id="index_hidden" value="1" />
+
+</body>
+</html>
+{%endblock%}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>6.21再生塑料年度峰会-展会路线</title>
+		<link rel="stylesheet" type="text/css" href="css/base-min.css" />
+		<link rel="stylesheet" type="text/css" href="css/swiper.css"  />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+		<script src="http://b.zz91.com/comm/js/laytpl.js"></script>
+	    <script src="http://b.zz91.com/layer/layer.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript" src="js/viewport.js"></script>
+		
+		<div style="height:  2.65rem;">
+			<div class="header-navbox">
+				<div class="header-nav">
+					<a onClick="javascript :history.back(-1)" class="icon icon-fh"></a>
+					展会路线
+				</div>
+			</div>
+		</div>
+		
+		<div class="list-box">
+			<div class="zhfw-lx">
+				<div class="zhlx-map-warp">
+					<div class="zhlx-map" id="dituContent"></div>
+				</div>
+				<div class="zhfw-lxmain">
+					<p><span>酒店信息：</span>杭州浙商开元名都酒店</p>
+					<p><span>电话：</span>400-6886-687</p>
+					<p><span>地址：</span>杭州余杭区迎宾路535号，近南苑地铁站</p>
+					<p><span>杭州萧山机场出发：</span>场候车厅坐机场大巴到杭州东站火车站-坐地铁一号线 (临平方向) 南苑站(D出口)下车-步行520米至酒店。</p>
+					<p><span>地铁线路：</span><br />杭州城站火车站或杭州东站出发：地铁一号线（临平方向）-南苑站（D出口）下车-步行520米至酒店</p>
+					<p><span>自驾线路：</span>杭州南：由杭州南收费站下高速，途径中河高架，转德胜高架，走杭甬高速路，行至余杭高速出口下，转迎宾路；</p>
+					<p><span>杭州西：</span>进入杭州绕城高速路，至乔司枢纽转，行至杭甬高速，行至余杭高速出口下，转迎宾路；</p>
+					<p><span>杭州北：</span>至乔司枢纽转，行至杭甬高速，行至余杭高速出口下，转迎宾路；</p>
+					<p><span>杭州东：</span>沪昆高速转杭甬高速，行至余杭高速出口下，转迎宾路；</p>
+					<h3 class="zhfw-lxts">
+						注：如遇到高峰限行时间可就近上杭州绕城高速转杭甬高速，行至余杭 高速出口下，转迎宾路。
+					</h3>
+				</div>
+			</div>
+		</div>
+		
+		<div style="height: 2.725rem;">
+			<div class="bottom-nav">
+				<a href="index.html" class="fl bottom-box">
+					<i class="icon icon-idx"></i><br />首页
+				</a>
+				<a href="zhxxindex.html" class="fl bottom-box">
+					<i class="icon icon-xx"></i><br />信息
+				</a>
+				<a href="zhzslist.html" class="fl bottom-box">
+					<i class="icon icon-zs"></i><br />招商
+				</a>
+				<a href="newsindex.html" class="fl bottom-box">
+					<i class="icon icon-xw"></i><br />新闻
+				</a>
+				<a href="zhfwlist.html" class="fl bottom-box nav-this">
+					<i class="icon icon-fw"></i><br />服务
+				</a>
+			</div>
+		</div>
+		<div style="display:none">
+		    <script>
+		        var _hmt = _hmt || [];
+		        (function() {
+		            var hm = document.createElement("script");
+		            hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+		            var s = document.getElementsByTagName("script")[0];
+		            s.parentNode.insertBefore(hm, s);
+		        })();
+		    </script>
+		    <!--baidu analysis-->
+		    <script>
+		        var _hmt = _hmt || [];
+		        
+		        (function() {
+		            var hm = document.createElement("script");
+		            hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+		            var s = document.getElementsByTagName("script")[0];
+		            s.parentNode.insertBefore(hm, s);
+		        })();
+		    </script>
+		</div>
+	</body>
+	<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
+    }
+    
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(120.309462,30.396065);//定义一个中心点坐标
+        map.centerAndZoom(point,17);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+    
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+    
+    //地图控件添加函数：
+    function addMapControl(){
+        //向地图中添加缩放控件
+	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+	map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+//	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+//	map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+	map.addControl(ctrl_sca);
+    }
+    
+    //标注点数组
+    var markerArr = [{title:"杭州浙商开元名都酒店",content:"我的备注",point:"120.309408|30.396088",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ];
+    //创建marker
+    function addMarker(){
+        for(var i=0;i<markerArr.length;i++){
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0,p1);
+			var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point,{icon:iconImg});
+			var iw = createInfoWindow(i);
+			var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+			marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                        borderColor:"#808080",
+                        color:"#333",
+                        cursor:"pointer"
+            });
+			
+			(function(){
+				var index = i;
+				var _iw = createInfoWindow(i);
+				var _marker = marker;
+				_marker.addEventListener("click",function(){
+				    this.openInfoWindow(_iw);
+			    });
+			    _iw.addEventListener("open",function(){
+				    _marker.getLabel().hide();
+			    })
+			    _iw.addEventListener("close",function(){
+				    _marker.getLabel().show();
+			    })
+				label.addEventListener("click",function(){
+				    _marker.openInfoWindow(_iw);
+			    })
+				if(!!json.isOpen){
+					label.hide();
+					_marker.openInfoWindow(_iw);
+				}
+			})()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i){
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json){
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        return icon;
+    }
+    
+    initMap();//创建和初始化地图
+</script>
+</html>

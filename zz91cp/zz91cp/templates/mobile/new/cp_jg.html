@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<style>
+			body{
+				background: #fff;
+			}
+			.text-33{
+				color: #333;
+			}
+			.text-f60{
+				color: #f60;
+			}
+			.aui-bar{
+				min-height: 36px;
+				line-height: 36px;
+				background-color: #f3f3f3;
+				position: fixed;
+				top: 0;
+				z-index: 5;
+			}
+			.aui-grid-label{
+				height: 36px;
+				line-height: 36px;
+				border-left: 1px solid #ddd;
+				border-bottom: 1px solid #C3D1BA;
+			}
+			.aui-grid-label a{
+				color: #666;
+			}
+			.nav-this a{
+				color: #00632b;
+			}
+			.aui-content-padded {
+		        padding: 0.75rem;
+		        background-color: #ffffff;
+		        margin-top: 0.75rem;
+		    }
+		    .aui-searchbar{
+		    	width: 95%;
+		    	height: 35px;
+		    	border: 1px solid #8C8C8C;
+		    	border-radius: 0;
+		    }
+		    .aui-searchbar-input{
+		    	border-right: 1px solid #8c8c8c;
+		    	border-radius: 0;
+		    	height: 35px;
+		    	line-height: 35px;
+		    }
+		    .aui-searchbar .aui-iconfont{
+		    	color: #666;
+		    	font-size: 17px;
+		    }
+		    .aui-searchbar input{
+		    	width: 89%;
+		    	height: 35px;
+		    }
+		    .aui-searchbar-btn{
+		    	width: 95px;
+		    	height: 35px;
+		    	background: url(http://tags.zz91.com/mobile/img/s_120ask_search.png) no-repeat;
+   				background-size: 95px 60px;
+		    }
+		    
+		    .aui-content,.aui-card-list{
+		    	background: #f7f7f7;
+		    }
+		    .aui-content a{
+		    	color: #333;
+		    }
+		    .aui-card-list-header{
+		    	background: #e1e1e1;
+		    	border-top: 1px solid #CFCFCF;
+   				border-bottom: 1px solid #CFCFCF;
+		    }
+		    .aui-list-view{
+		    	background: #f7f7f7;
+		    }
+		    .aui-list-view:after{
+		    	border-top: 0;
+		    }
+			.aui-list-view .aui-img-object{
+				max-width: 80px;
+			}
+			.aui-list-view-cell > a{
+				text-overflow: clip; 
+     			white-space: normal; 
+			}
+			.aui-list .aui-list-item{
+				background: transparent;
+				padding-left: 0;
+			}
+			.nab-tle{
+				position: relative;
+			}
+			.nab-tle span{
+				display: inline-block;
+			    width: 7px;
+			    height: 7px;
+			    border-top: 1px solid #CFCFCF;
+			    border-right: 1px solid #CFCFCF;
+			    -webkit-transform: rotate(-45deg);
+			    background-color: #F7F7F7;
+			    position: absolute;
+			    left: 50%;
+			    bottom: -13px;
+			}
+			.box-bq a {
+			    float: left;
+			    display: inline-block;
+			    height: 32px;
+			    line-height: 32px;
+			    padding: 0 13px;
+			    border: 1px solid #D1D1D1;
+			    box-shadow: 0 0 5px #EAE9E9;
+			    margin: 16px 0 0 12px;
+			    background-color: #fff;
+			    color: #666;
+			}
+			.messages{
+				position: fixed;
+			    right: 5px;
+			    height: 40px;
+			    width: 40px;
+			    bottom: 110px;
+			    background-color: #03C;
+			    border-radius: 10px;
+			    z-index: 999999;
+			    text-align: center;
+			    color: #FFF;
+			    line-height: 16px;
+			    padding-top: 5px;
+			    box-shadow: #333 0px 0px 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-light">
+		    <div class="aui-row aui-font-size-16">
+		        <div class="aui-col-xs-2">
+		            <div class="aui-grid-label">
+		            	<a href="cp_name.html">废不锈钢</a>
+		            </div>
+		        </div>
+		        <div class="aui-col-xs-2">
+		            <div class="aui-grid-label nav-this">
+		            	<a href="cp_jg.html">价格</a>
+		            </div>
+		        </div>
+		        <div class="aui-col-xs-2">
+		            <div class="aui-grid-label">
+		            	<a href="cp_sj.html">商家</a>
+		            </div>
+		        </div>
+		        <div class="aui-col-xs-2">
+		            <div class="aui-grid-label">
+		            	<a href="cp_gq.html">供求</a>
+		            </div>
+		        </div>
+		        <div class="aui-col-xs-2">
+		            <div class="aui-grid-label">
+		            	<a href="cp_tp.html">图片</a>
+		            </div>
+		        </div>
+		        <div class="aui-col-xs-2">
+		            <div class="aui-grid-label">
+		            	<a href="">互助</a>
+		            </div>
+		        </div>
+		    </div>
+		</header>
+		<div style="height: 36px;"></div>
+		
+		<a class="messages aui-font-size-12">
+			在线<br />咨询
+		</a>
+		
+		<div class="aui-searchbar aui-margin-t-15 aui-margin-b-15" id="search">
+	        <div class="aui-searchbar-input aui-border-radius aui-padded-l-0 aui-margin-l-0 aui-margin-r-0">
+	            <i class="aui-iconfont aui-icon-search"></i>
+	            <input type="search" placeholder="请输入搜索内容" id="search-input" class="">
+	        </div>
+	        <div class="aui-searchbar-btn"></div>
+	    </div>
+	    
+	    <section class="aui-content aui-margin-b-0">
+		    <div class="aui-card-list aui-margin-b-0">
+		    	<div class="aui-font-size-14 aui-padded-l-15 aui-padded-t-5 aui-padded-b-5">
+		    		<a href="cp_name.html">废不锈钢首页</a>><a href="">废不锈钢行情报价</a>
+		    	</div>
+				
+				<div class="box">
+					<div class="aui-card-list-header aui-padded-t-0 aui-padded-b-0">
+			            <div><span class="aui-font-size-16">废不锈钢行情报价 </span></div>
+			        </div>
+			        <div class="aui-content">
+					    <ul class="aui-list aui-list-in">
+					        <li class="aui-list-item">
+					            <div class="aui-list-item-inner aui-padded-l-15 aui-padded-r-15">
+					               <a href="" class="aui-padded-t-10 aui-padded-b-10">
+					               	<p class="aui-font-size-12 text-33" style="font-weight: bold;">废不锈钢不锈钢</p>
+					               	<p class="aui-font-size-12 text-33 aui-padded-t-10">价格：<span class="text-f60">13000.0-13100.0元/吨</span></p>
+					               </a>
+					            </div>
+					        </li>
+					        <li class="aui-list-item">
+					            <div class="aui-list-item-inner aui-padded-l-15 aui-padded-r-15">
+					               <a href="" class="aui-padded-t-10 aui-padded-b-10">
+					               	<p class="aui-font-size-12 text-33" style="font-weight: bold;">废不锈钢不锈钢</p>
+					               	<p class="aui-font-size-12 text-33 aui-padded-t-10">价格：<span class="text-f60">13000.0-13100.0元/吨</span></p>
+					               </a>
+					            </div>
+					        </li>
+					        <li class="aui-list-item">
+					            <div class="aui-list-item-inner aui-padded-l-15 aui-padded-r-15">
+					               <a href="" class="aui-padded-t-10 aui-padded-b-10">
+					               	<p class="aui-font-size-12 text-33" style="font-weight: bold;">废不锈钢不锈钢</p>
+					               	<p class="aui-font-size-12 text-33 aui-padded-t-10">价格：<span class="text-f60">13000.0-13100.0元/吨</span></p>
+					               </a>
+					            </div>
+					        </li>
+					        <li class="aui-list-item">
+					            <div class="aui-list-item-inner aui-padded-l-15 aui-padded-r-15">
+					               <a href="" class="aui-padded-t-10 aui-padded-b-10">
+					               	<p class="aui-font-size-12 text-33" style="font-weight: bold;">废不锈钢不锈钢</p>
+					               	<p class="aui-font-size-12 text-33 aui-padded-t-10">价格：<span class="text-f60">13000.0-13100.0元/吨</span></p>
+					               </a>
+					            </div>
+					        </li>
+					        <li class="aui-list-item">
+					            <div class="aui-list-item-inner aui-padded-l-15 aui-padded-r-15">
+					               <a href="" class="aui-padded-t-10 aui-padded-b-10">
+					               	<p class="aui-font-size-12 text-33" style="font-weight: bold;">废不锈钢不锈钢</p>
+					               	<p class="aui-font-size-12 text-33 aui-padded-t-10">价格：<span class="text-f60">13000.0-13100.0元/吨</span></p>
+					               </a>
+					            </div>
+					        </li>
+					        <li class="aui-list-item">
+					            <div class="aui-list-item-inner aui-padded-l-15 aui-padded-r-15">
+					               <a href="" class="aui-padded-t-10 aui-padded-b-10">
+					               	<p class="aui-font-size-12 text-33" style="font-weight: bold;">废不锈钢不锈钢</p>
+					               	<p class="aui-font-size-12 text-33 aui-padded-t-10">价格：<span class="text-f60">13000.0-13100.0元/吨</span></p>
+					               </a>
+					            </div>
+					        </li>
+					        <li class="aui-list-item">
+					            <div class="aui-list-item-inner aui-padded-l-15 aui-padded-r-15">
+					               <a href="" class="aui-padded-t-10 aui-padded-b-10">
+					               	<p class="aui-font-size-12 text-33" style="font-weight: bold;">废不锈钢不锈钢</p>
+					               	<p class="aui-font-size-12 text-33 aui-padded-t-10">价格：<span class="text-f60">13000.0-13100.0元/吨</span></p>
+					               </a>
+					            </div>
+					        </li>
+					    </ul>
+					    <div class="aui-text-center aui-padded-t-10">
+					    	<a href="" style="color: green;">查看更多</a>
+					    </div>
+					</div>
+				</div>
+				
+				<div class="box">
+					<div class="aui-card-list-header aui-padded-t-0 aui-padded-b-0">
+			            <div class="aui-font-size-16 nab-tle">地区价格<span></span></div>
+			        </div>
+			        <div class="box-bq aui-font-size-12 aui-padded-b-15 clear">
+			        	<a href="">
+			        		北京
+			        	</a>
+			        	<a href="">
+			        		天津
+			        	</a>
+			        	<a href="">
+			        		河北
+			        	</a>
+			        	<a href="">
+			        		山西
+			        	</a>
+			        	<a href="">
+			        		内蒙古
+			        	</a>
+			        	<a href="">
+			        		辽宁
+			        	</a>
+			        	<a href="">
+			        		吉林
+			        	</a>
+			        	<a href="">
+			        		黑龙江
+			        	</a>
+			        	<a href="">
+			        		上海
+			        	</a>
+			        	<a href="">
+			        		江苏
+			        	</a>
+			        	<a href="">
+			        		浙江
+			        	</a>
+			        	<a href="">
+			        		安徽
+			        	</a>
+			        	<a href="">
+			        		福建
+			        	</a>
+			        	<a href="">
+			        		江西
+			        	</a>
+			        	<a href="">
+			        		山东
+			        	</a>
+			        	<a href="">
+			        		河南
+			        	</a>
+			        	<a href="">
+			        		湖北
+			        	</a>
+			        	<a href="">
+			        		湖南
+			        	</a>
+			        	<a href="">
+			        		广东
+			        	</a>
+			        	<a href="">
+			        		广西
+			        	</a>
+			        	<a href="">
+			        		海南
+			        	</a>
+			        	<a href="">
+			        		重庆
+			        	</a>
+			        	<a href="">
+			        		四川
+			        	</a>
+			        	<a href="">
+			        		贵州
+			        	</a>
+			        	<a href="">
+			        		云南
+			        	</a>
+			        	<a href="">
+			        		西藏
+			        	</a>
+			        	<a href="">
+			        		陕西
+			        	</a>
+			        	<a href="">
+			        		甘肃
+			        	</a>
+			        	<a href="">
+			        		青海
+			        	</a>
+			        	<a href="">
+			        		宁夏
+			        	</a>
+			        	<a href="">
+			        		新疆
+			        	</a>
+			        	<a href="">
+			        		台湾
+			        	</a>
+			        	<a href="">
+			        		香港
+			        	</a>
+			        	<a href="">
+			        		澳门
+			        	</a>
+			        </div>
+				</div>
+				
+				<div class="box">
+					<div class="aui-card-list-header aui-padded-t-0 aui-padded-b-0">
+			            <div class="aui-font-size-16 nab-tle">相关标签<span></span></div>
+			        </div>
+			        <div class="box-bq aui-font-size-12 aui-padded-b-15 clear">
+			        	<a href="">
+			        		旧衣服
+			        	</a>
+			        	<a href="">
+			        		废塑料
+			        	</a>
+			        	<a href="">
+			        		废旧电瓶价格
+			        	</a>
+			        	<a href="">
+			        		通用废塑料
+			        	</a>
+			        	<a href="">
+			        		废旧轮胎
+			        	</a>
+			        	<a href="">
+			        		PE
+			        	</a>
+			        	<a href="">
+			        		PP
+			        	</a>
+			        	<a href="">
+			        		二手设备产品
+			        	</a>
+			        	<a href="">
+			        		贵金属
+			        	</a>
+			        	<a href="">
+			        		ABS
+			        	</a>
+			        	<a href="">
+			        		废塑料市场
+			        	</a>
+			        	<a href="">
+			        		废轮胎
+			        	</a>
+			        	<a href="">
+			        		再生塑料颗粒
+			        	</a>
+			        	<a href="">
+			        		废铜价格
+			        	</a>
+			        	<a href="">
+			        		废料
+			        	</a>
+			        	<a href="">
+			        		废料回收
+			        	</a>
+			        	<a href="">
+			        		废金属网
+			        	</a>
+			        	<a href="">
+			        		废塑料报价
+			        	</a>
+			        	<a href="">
+			        		报废汽车
+			        	</a>
+			        	<a href="">
+			        		废塑料
+			        	</a>
+			        	<a href="">
+			        		废塑料价格
+			        	</a>
+			        	<a href="">
+			        		编织袋
+			        	</a>
+			        	<a href="">
+			        		废铝
+			        	</a>
+			        	<a href="">
+			        		废金属
+			        	</a>
+			        	<a href="">
+			        		PVC
+			        	</a>
+			        	<a href="">
+			        		废塑料
+			        	</a>
+			        	<a href="">
+			        		废电动车电机
+			        	</a>
+			        	<a href="">
+			        		金属
+			        	</a>
+			        	<a href="">
+			        		废纸产品
+			        	</a>
+			        	<a href="">
+			        		废旧电动车
+			        	</a>
+			        	<a href="">
+			        		废铁
+			        	</a>
+			        	<a href="">
+			        		电动车废电瓶
+			        	</a>
+			        	<a href="">
+			        		废塑料pp
+			        	</a>
+			        	<a href="">
+			        		废电子电器
+			        	</a>
+			        	<a href="">
+			        		颗粒
+			        	</a>
+			        	<a href="">
+			        		废旧木材
+			        	</a>
+			        	<a href="">
+			        		废钢回收
+			        	</a>
+			        	<a href="">
+			        		旧衣服
+			        	</a>
+			        	<a href="">
+			        		废塑料颗粒
+			        	</a>
+			        	<a href="">
+			        		膜
+			        	</a>
+			        	<a href="">
+			        		废纸价格
+			        	</a>
+			        	<a href="">
+			        		二手超市货架
+			        	</a>
+			        	<a href="">
+			        		料破碎
+			        	</a>
+			        	<a href="">
+			        		通用废塑料
+			        	</a>
+			        	<a href="">
+			        		pet价格
+			        	</a>
+			        	<a href="">
+			        		废塑料pet
+			        	</a>
+			        	<a href="">
+			        		200l塑料
+			        	</a>
+			        	<a href="">
+			        		1a80铝板
+			        	</a>
+			        	<a href="">
+			        		电动车废电池
+			        	</a>
+			        </div>
+				</div>
+		    </div>
+		</section>
+	</body>
+</html>

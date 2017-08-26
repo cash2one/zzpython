@@ -1,0 +1,108 @@
+<div id="top">
+	<div class="top-content">
+		<div class="top-contentleft">
+			<div class="top-user">
+				<p class="top-login">
+					<a href="http://www.zz91.com/" target="_blank"><img src="{{csscode}}images/logo.jpg" alt="ZZ91再生网" style="width:95px;height:24px;margin-top:3px;" /></a>
+					<strong class="hello"> 您好，</strong>
+					<strong><a href="http://china.zz91.com/login.htm" target="_blank" rel="nofollow">请登录</a></strong>
+					<strong>
+					<a href="http://china.zz91.com/register/register_stp1.htm" target="_blank" rel="nofollow">免费注册</a>
+					</strong>
+				</p>
+			</div>
+		</div>
+		<div class="top-contentright">
+			<ul>
+				<li class="arran none">
+					<a href="http://www.zz91.com/zt/mobileweb/index/" target="_blank" rel="nofollow">手机网</a>
+				</li>
+				<li class="bgxian">
+					<a href="http://www.zz91.com/ppc/" target="_blank" rel="nofollow">来电宝</a>
+				</li>
+				<li class="bgxian">
+					<a href="http://help.zz91.com/" target="_blank" rel="nofollow">帮助中心</a>
+				</li>
+				<li class="bgxian">
+					<a href="http://about.zz91.com/contact.html" target="_blank" rel="nofollow">意见反馈</a>
+				</li>
+				<li class="bgxian">
+					<a href="http://myrc.zz91.com/" target="_blank" rel="nofollow">生意管家</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div id="header">
+	<div class="mod mod-shopsigns">
+		<div class="company fl">
+			<div class="company-name fl">
+				<div class="com-name">{{list.name|safe}}</div>
+				<p class="com-pro"><span>主营：</span>{{list.businesstop|safe}}</p>
+			</div>
+		</div>
+		<style>
+			{%if list.fjtel%}
+			.call-num {
+				height: 97px;
+				padding-top: 10px;
+				padding-left: 56px;
+				background: url(images/icon_tel.png) 25px 32px no-repeat;
+			}
+			{%else%}
+			.call-num {
+				height: 97px;
+				line-height: 97px;
+				padding-left: 58px;
+				background: url(images/icon_tel.png) 25px 32px no-repeat;
+			}
+			{%endif%}
+			.call-number {
+				font-family: Arial;
+				font-size: 22px;
+				font-weight: bold;
+			}
+			.call-number-zj {
+				color: #333
+			}
+		</style>
+		<div class="call-num fr">
+			<p class="call-number">{{list.ppcphone}}</p>
+			{%if list.fjtel%}
+			<p class="call-number-zj">如何拨打？<br>先拨打{{list.tel}}，听到语音后直接拨{{list.fjtel}}</p>
+			{%endif%}
+		</div>
+	</div>
+	<div class="mod mod-topnav">
+		<ul class="shop-nav">
+			<li {{lmselected.n1}}>
+				<a href="index{{company_id}}.htm" title="首页">首页</a>
+			</li>
+			<li {{lmselected.n2}}>
+				<a href="zxgq{{company_id}}.htm" title="产品信息">供求信息</a>
+			</li>
+			<li {{lmselected.n3}}>
+				<a href="gsdt{{company_id}}.htm" title="公司动态">公司动态</a>
+			</li>
+			<li {{lmselected.n4}}>
+				<a href="gsjj{{company_id}}.htm" title="企业介绍">企业介绍</a>
+			</li>
+			<li {{lmselected.n5}}>
+				<a href="contact{{company_id}}.htm" title="联系方式" rel="nofollow">联系方式</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+<script>
+	$(document).ready(function() {
+		$(".zz91floatewm").remove();
+		var hintHtml = '<div class="zz91floatewm" style="position:fixed;width:129px;height:160px;left:10px;top:40px;text-align:center"><a href="http://www.zz91.com/zt/mb/index2.html" target=_blank><img src="http://img0.zz91.com/zz91/images/weixin_ewm.png"></a><div onclick="closefloatewm()">关闭</div></div>';
+		hintHtml += '<div class="zz91floatewm" style="position:fixed;width:129px;height:160px;right:10px;top:40px;text-align:center"><a href="http://www.zz91.com/zt/mb/index.html" target=_blank><img src="http://img0.zz91.com/zz91/images/app_ewm.png"></a><div onclick="closefloatewm()">关闭</div></div>'
+		$("body").append(hintHtml);
+	})
+
+	function closefloatewm() {
+		$(".zz91floatewm").remove();
+	}
+</script>

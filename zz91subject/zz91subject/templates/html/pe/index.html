@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>pe专场推荐</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script src="js/style.js"></script>
+</head>
+  <body>
+  <div style="width:100%; background-color:#F9F7EC">
+	<div style="width:933px;margin:0 auto">
+		{%include 'html/comm/top.html'%}
+    </div>
+</div>
+    <div class="top">
+       <div class="content">
+       <center>
+          <div class="item">
+             <div class="i-title"></div>
+             <!--end i-title-->
+             <div class="i-content">
+        	   <div class="i-block">
+			   {%for list in adlist%}
+				{%if list%}
+                 <div class="box">
+                    <div class="box-img"> 
+                    	<a href="{{list.picurl}}" target=_blank><img src="{{list.picaddress}}" /></a>
+                    </div>
+                    <!--end box-img-->
+                    <div class="box-text">
+					{{list.ad_description.title}}
+                    </div>
+                    <!--end box-text-->
+                    <div class="box-info">
+                        <div class="box-info-text">
+                            {{list.ad_description.company}}
+                        </div>
+                        <div class="box-info-text">
+                             {{list.ad_description.price}}
+                        </div>
+                        <!--end box-info-text-->
+                    </div>
+                    <!--end box-info-->
+                </div>			
+                <!--end box-->
+                {%else%}
+				<div class="box">
+                    <div class="box-img"> 
+					<img src="http://www.zz91.com/zt/year/images/img1.jpg" />
+                    </div>
+					<div class="box-info">
+                        <div class="box-info-text">
+                           <a href="http://www.zz91.com/register/register_stp1.htm" target=_blank>立即报名</a>
+                        </div>
+                        <div class="box-info-text">
+                            
+                        </div>
+                        <!--end box-info-text-->
+                    </div>
+                </div>
+				{%endif%}
+			{%endfor%}
+                <!--end box-->
+                <div class="cb"></div>
+            </div>
+            <!--end i-block-->
+        </div>
+             <!--end i-content-->
+          </div>
+          </center>
+          <!--end item-->   
+       </div>
+       <!--end content-->
+    </div>
+    <!--end top-->    
+    <center>
+          <div class="item">
+             <div class="i-title1"></div>
+             <!--end i-title1-->
+             <div class="i-content1">
+        	   <div class="i-block1">
+			   {%for list in listall%}
+                 <div class="box">
+                    <div class="box-img">
+                        {%if list.ldbflag%}
+						<a href="http://www.zz91.com/ppc/index{{list.com_id}}.htm" target="_blank"><img src="{{list.pdt_images}}" title="{{list.pdt_kind.kindtxt}}{{list.pdt_name}}" /></a>
+						{%else%}
+                        <a href="http://{{list.com_subname}}.zz91.com" target="_blank"><img src="{{list.pdt_images}}" title="{{list.pdt_kind.kindtxt}}{{list.pdt_name}}" /></a>
+						{%endif%}
+                    </div>
+                    <!--end box-img-->
+                    <div class="box-text">
+					{%if list.ldbflag%}
+                        <a href="http://www.zz91.com/ppc/index{{list.com_id}}.htm" target="_blank">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a>
+					{%else%}
+						<a href="http://{{list.com_subname}}.zz91.com" target="_blank">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a>
+					{%endif%}
+                    </div>
+                    <!--end box-text-->
+                    <div class="box-info">
+                        <div class="box-info-text">
+                            {%if list.ldbflag%}
+							<a href="http://www.zz91.com/ppc/index{{list.com_id}}.htm" target="_blank">{{list.com_name}}</a>
+						{%else%}
+						<a href="http://{{list.com_subname}}.zz91.com" target="_blank">{{list.com_name}}</a>
+						{%endif%}
+                        </div>
+                        <!--end box-info-text-->
+                        <div class="box-info-text">
+                            地区：{{list.com_province}}
+                        </div>
+                        <!--end box-info-text-->
+                    </div>
+                    <!--end box-info-->
+                </div>
+                <!--end box-->
+            {%endfor%}   	
+                <!--end box-->
+                	
+                <!--end box-->
+                <div class="cb"></div>
+                <center>
+            <div class="page">
+			{% if firstpage %}
+			<a href="?page=1#hy" class="page-one">首页</a>
+			{%endif%}
+			{% if firstpage %}
+			<a href="?page={{prvpage}}#hy" class="page-one">上一页</a>
+			{% endif %} 
+			{% for p in page_range %}
+			{% if p.nowpage %}
+			<a href="javascript:void(0)" class="page-list page-list-click">{{p.number}}</a>
+			{% else %}
+			<a href="?page={{p.number}}#hy" class="page-list">{{p.number}}</a>
+			{% endif %}
+			{% endfor %}
+			{% if lastpage%}
+			<a href="?page={{nextpage}}#hy" class="page-one">下一页</a>
+			{% endif %}
+            </div>
+            <!--end page-->
+            </center>
+          <!--end-page-->
+            </div>
+            <!--end i-block-->           
+        </div>
+             <!--end i-content1-->
+          </div>
+          </center>
+          <!--end item--> 
+         <center>
+          <div class="item">
+             <div class="i-title2"></div>
+             <!--end i-title2-->
+             <div class="i-content">
+        	<div class="i-block3">
+        	<div class="i-block3-box">
+            	<div class="m2-item fl" id="s1">
+                	<ul>
+                    	{%for list in comcompanylist.list%}
+                    	<li>
+                            <div class="m2-item-title">
+                                {%if list.ldbflag%}
+									<a href="http://www.zz91.com/ppc/productdetail{{list.pdt_id}}.htm" target="_blank">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a>
+								{%else%}
+								<a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target="_blank">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a>
+								{%endif%}
+                            </div>	
+                            <div class="m2-item-text">
+                                {%if list.ldbflag%}
+									<a href="http://www.zz91.com/ppc/index{{list.com_id}}.htm" target="_blank">{{list.com_name}}</a>
+								{%else%}
+								<a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target="_blank">{{list.com_name}}</a>
+								{%endif%}
+                            </div>
+                            <div class="cb"></div>
+                        </li>
+					{%endfor%}
+                    </ul>
+                </div>
+                <div class="m2-item-line"></div>
+                <div class="m2-item fl" id="s2">
+                	<ul>
+                    	{%for list in comcompanylist1.list%}
+                    	<li>
+                            <div class="m2-item-title">
+                                {%if list.ldbflag%}
+									<a href="http://www.zz91.com/ppc/productdetail{{list.pdt_id}}.htm" target="_blank">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a>
+								{%else%}
+								<a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target="_blank">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a>
+								{%endif%}
+                            </div>	
+                            <div class="m2-item-text">
+                                {%if list.ldbflag%}
+									<a href="http://www.zz91.com/ppc/index{{list.com_id}}.htm" target="_blank">{{list.com_name}}</a>
+								{%else%}
+								<a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target="_blank">{{list.com_name}}</a>
+								{%endif%}
+                            </div>
+                            <div class="cb"></div>
+                        </li>
+					{%endfor%}
+                    </ul>
+                </div>
+                <div class="cb"></div>
+            </div>
+            <!--end i-blcok-->
+            </div>
+            <!--end i-block2-->
+        </div>
+        <!--end i-content-->
+          </div>
+          </center>
+          <!--end item--> 
+         <center>
+          <div class="item">
+             <div class="i-title3"></div>
+             <!--end i-title3-->
+             <div class="i-content2">
+        	<div class="i-block3">
+               <div class="i-block3-box">
+        		    <div class="i-block3-box-img">
+                      <img src="images/txt.jpg"/>
+                    </div>
+                    <!--end i-block3-box-img-->
+                    <div class="i-block3-box-img1">
+                      <img src="images/line.jpg"/>
+                    </div>
+                    <!--end i-block3-box-img1-->
+                    <div class="i-block3-box-img2">
+                      <a href="http://www.zz91.com/register/register_stp1.htm" target="_blank">
+                      <img src="images/btn.jpg"/>
+                      </a>
+                    </div>
+                    <!--end i-block3-box-img2-->
+                </div>
+                <!--end i-block3-box-->
+            </div>
+            <!--end i-block3-->
+           </div>
+             <!--end i-content2-->
+          </div>
+          </center>
+          <!--end item-->  
+          <div style="width:100%;">
+	<div style="width:950px;margin:0 auto;text-align:center;">
+		{% include 'html/comm/buttom.html' %}
+    </div>
+</div>               
+  </body>
+</html>

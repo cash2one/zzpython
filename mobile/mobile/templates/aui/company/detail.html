@@ -1,0 +1,402 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>{{webtitle}}-ZZ91再生网</title>
+		<meta name="keywords" content="{{list.name}}">
+		<meta name="description" content="{{list.business}}">
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/laytpl.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-dialog.js" ></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-slide.css" />
+		<style>
+			body{
+				background: #f2f2f2
+			}
+			.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+			.clearfix{height:1%}
+			.clearfix{display:block}
+			.aui-text-main{
+				color:#009900
+			}
+			.aui-bar{
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			.aui-list-item-title a{
+				color: #333
+			}
+			a{
+				color:#333
+			}
+			.navlist{
+				position: fixed;
+				width: 100%;
+				top: 45px;
+				z-index: 2;
+				background: #fff
+			}
+			.navlist li{
+				padding: 5px 0;
+				border-bottom: 1px solid #eee
+			}
+			.navlist .thisnav{
+				color: #009900;
+				border-bottom: 1px solid #009900
+			}
+			.navlist .thisnav a{
+				color: #009900;
+			}
+			.aui-slide-node{
+				display: box;
+				display: -webkit-box;
+				display: -moz-box; 
+				-webkit-box-align:center;
+				-moz-box-align:center; 
+				-moz-box-pack:center;
+				-webkit-box-pack:center;
+			}
+			.aui-slide-node img{
+				width: auto;
+				height: auto;
+				max-width:100%;
+				max-height:100%;
+			}
+			.aui-slide-page-wrap{
+				z-index: 1
+			}
+			footer{
+				position: fixed;
+				bottom: 0;
+				width: 100%;
+				background: #f2f2f2;
+				z-index: 2
+			}
+			.footnav>li{
+				height: 45px;
+			}
+			.footnav>li>span{
+				height: 20px;
+				display: inline-block;
+			}
+			.footnav-first{
+				background: #009900;
+				color:#fff;
+			}
+			.footnav-first>p{
+				color:#fff;
+			}
+			.num-cp{
+				position: absolute;
+				right: 28px;
+				top: 35px;
+				font-size: 12px;
+				color: #8f8f94
+			}
+			.poptele{
+				top: 80px;
+				background: #fff;
+				padding: 0 20px;
+				width: 280px;
+				border-radius: 0.5rem;
+				display: none;
+			}
+			.poptele-title{
+				height: 40px;
+				line-height: 40px;
+			}
+			.poptele-btnbox>div{
+				border-top: 1px solid #eee;
+				height: 50px;
+				line-height: 50px;
+			}
+			.poptele-btnbox>div:first-child{
+				border-right: 1px solid #eee
+			}
+			.cp-list-header{
+				height: 30px;
+				line-height: 30px;
+				padding-left: 20px;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">供应详情</div>
+		    <a class="aui-pull-right zz91share">
+		        <span class="aui-iconfont aui-icon-share"></span>
+		    </a>
+		</header>
+		<div style="height: 45px;"></div>
+		<div style="height: 32px;">
+			<ul class="aui-row aui-text-center navlist aui-font-size-14">
+				<li class="aui-col-xs-6 "><a href="/trade.html">供应详情</a></li>
+				<li class="aui-col-xs-6 thisnav"><a href="view2.html">公司简介</a></li>
+			</ul>
+		</div>
+		<div class="aui-content aui-margin-b-15">
+		    <ul class="aui-list aui-media-list">
+		       	<li class="aui-list-item aui-list-item-middle">
+		       		<div class="aui-media-list-item-inner">
+		       			<div class="aui-list-item-inner aui-text-center">
+		                    {{list.name}}
+		                </div>
+		       		</div>
+		       	</li>
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner">
+		                <div class="aui-list-item-inner aui-font-size-14">
+		                    <span class="aui-padded-r-0" style="width: 4rem;">
+		                   		<span class="aui-text-main">所 在&nbsp;&nbsp;地：</span>
+		                	</span>
+		                    {{list.address}}
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner">
+		                <div class="aui-list-item-inner aui-font-size-14 aui-text-danger aui-list-item-arrow">
+		                    <span class="aui-iconfont aui-icon-safe"></span>诚信认证已审核
+
+		                </div>
+		            </div>
+		        </li>
+
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner">
+		                
+		                <div class="aui-list-item-inner aui-font-size-14">
+		                    <span class="aui-padded-r-0" style="width: 4rem;">
+		                   		<span class="aui-text-main">经营范围：</span>
+		                	</span>
+		                    
+		                    中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳
+
+		                </div>
+		            </div>
+		        </li>
+		    </ul>
+		</div>
+		
+		<div class="aui-content aui-margin-b-15">
+		    <ul class="aui-list aui-media-list">
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner">
+		                
+		                <div class="aui-list-item-inner aui-font-size-14">
+		                    <span class="aui-padded-r-0" style="width: 4rem;">
+		                   		<span class="aui-text-main">公司简介：</span>
+		                	</span>
+		                    
+		                    <span class="aui-text-default">中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳中国广东咸阳</span>
+
+		                </div>
+		            </div>
+		        </li>
+		    </ul>
+		</div>
+
+		<div class="aui-content aui-margin-b-15">
+		    <ul class="aui-list aui-media-list">
+		       	
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner">
+		                
+		                <div class="aui-list-item-inner aui-font-size-14">
+		                    <span class="aui-padded-r-0" style="width: 4rem;">
+		                   		<span class="aui-text-main">联 系&nbsp;&nbsp;人：</span>
+		                	</span>
+		                    
+		                    叶先生
+
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner">
+		                
+		                <div class="aui-list-item-inner aui-font-size-14">
+		                    <span class="aui-padded-r-0" style="width: 4rem;">
+		                   		<span class="aui-text-main">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</span>
+		                	</span>
+		                    
+		                    河北保定
+
+		                </div>
+		            </div>
+		        </li>
+		    </ul>
+		</div>
+		
+		<div class="cp-list-header">
+            供应信息（7）
+        </div>
+		<div class="aui-content">
+		    <ul class="aui-list-view">
+		    	
+		        <li class="aui-list-view-cell aui-img list-top">
+		            <div class="aui-img-box aui-pull-left">
+		            	<a href="#">
+			            	<img class="aui-img-object aui-pull-left" src="http://img3.zz91.com/135x135/products/2016/5/27/1464347230726.jpg">
+			            </a>
+		            </div>
+		            <div class="aui-img-body aui-arrow-right aui-padded-r-10 aui-pull-left">
+		                <a href="" class="aui-ellipsis-1">图文列表</a>
+		                <p class="aui-ellipsis-1">熊县</p>
+		                <p class="aui-ellipsis-1">2017/03/25</p>
+		                <span class="num-cp">1555.00</span>
+		            </div>
+		        </li>
+		        <li class="aui-list-view-cell aui-img list-top">
+		            <div class="aui-img-box aui-pull-left">
+		            	<a href="#">
+			            	<img class="aui-img-object aui-pull-left" src="http://img3.zz91.com/135x135/products/2016/5/27/1464347230726.jpg">
+			            </a>
+		            </div>
+		            <div class="aui-img-body aui-arrow-right aui-padded-r-10 aui-pull-left">
+		                <a href="" class="aui-ellipsis-1">图文列表</a>
+		                <p class="aui-ellipsis-1">熊县</p>
+		                <p class="aui-ellipsis-1">2017/03/25</p>
+		                <span class="num-cp">1555.00</span>
+		            </div>
+		        </li>
+		        <li class="aui-list-view-cell aui-img list-top">
+		            <div class="aui-img-box aui-pull-left">
+		            	<a href="#">
+			            	<img class="aui-img-object aui-pull-left" src="http://img3.zz91.com/135x135/products/2016/5/27/1464347230726.jpg">
+			            </a>
+		            </div>
+		            <div class="aui-img-body aui-arrow-right aui-padded-r-10 aui-pull-left">
+		                <a href="" class="aui-ellipsis-1">图文列表</a>
+		                <p class="aui-ellipsis-1">熊县</p>
+		                <p class="aui-ellipsis-1">2017/03/25</p>
+		                <span class="num-cp">1555.00</span>
+		            </div>
+		        </li>
+		        <li class="aui-list-view-cell aui-img list-top">
+		            <div class="aui-img-box aui-pull-left">
+		            	<a href="#">
+			            	<img class="aui-img-object aui-pull-left" src="http://img3.zz91.com/135x135/products/2016/5/27/1464347230726.jpg">
+			            </a>
+		            </div>
+		            <div class="aui-img-body aui-arrow-right aui-padded-r-10 aui-pull-left">
+		                <a href="" class="aui-ellipsis-1">图文列表</a>
+		                <p class="aui-ellipsis-1">熊县</p>
+		                <p class="aui-ellipsis-1">2017/03/25</p>
+		                <span class="num-cp">1555.00</span>
+		            </div>
+		        </li>
+		        
+		    </ul>
+		</div>
+		
+	
+		<div class="poptele" id="poptele">
+			<div class="poptele-title">请选择拨打电话</div>
+			<div class="aui-content aui-margin-b-15">
+			    <ul class="aui-list aui-list-in">
+			        
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-title ">
+			                	<a href="tel:0571-56633145" class="aui-text-info"><span class="aui-iconfont aui-icon-mobile"></span>12345667</a>
+			                </div>
+			            </div>
+			        </li>
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-title">
+			                	<a href="tel:0571-56633145" class="aui-text-info"><span class="aui-iconfont aui-icon-phone"></span>12345678911</a>
+			                </div>
+			            </div>
+			        </li>
+			    </ul>
+			</div>
+			<div class="aui-row poptele-btnbox aui-text-center aui-text-info">
+				<div class="aui-col-xs-6 j_clock">关闭</div>
+				<div class="aui-col-xs-6">加入通讯录</div>
+			</div>
+		</div>
+
+		<div style="height:45px"></div>
+		<footer>
+			<ul class="aui-row aui-text-center aui-font-size-12 footnav">
+				<li class="aui-col-xs-6 footnav-first j_phone">
+					<span>吴先生</span>
+            		<p>400-745-0982</p>
+				</li>
+				<li class="aui-col-xs-2 j_phone">
+					<span class="aui-iconfont aui-icon-phone"></span>
+            		<p>电话</p>
+				</li>
+				<li class="aui-col-xs-2">
+					<span class="aui-iconfont aui-icon-comment"></span>
+            		<p>留言</p>
+				</li>
+				<li class="aui-col-xs-2">
+					<span class="aui-iconfont aui-icon-favor"></span>
+            		<p>收藏</p>
+				</li>
+			</ul>
+		</footer>
+
+<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-slide.js"></script>
+<script type="text/javascript">
+
+    var index;
+    $(".j_phone").on("click",function(){
+    	index = layer.open({
+			  type: 1,
+			  title: false,
+			  closeBtn: 0, //不显示关闭按钮
+			  shadeClose: true,
+			  shade: 0.4,
+			  anim: 2,
+			  content: $('#poptele') //iframe的url
+		}); 
+    })
+    
+    $(".j_clock").on("click",function(){
+    	layer.close(index)
+    })
+    
+</script>
+
+	</body>
+	
+	<script type="text/javascript">
+		$(".zz91share").on("click", function() {
+			layer.open({
+			  type: 2,
+			  title: false,
+				  closeBtn: 0, //不显示关闭按钮
+			  shadeClose: true,
+			  shade: 0.4,
+			  anim: 2,
+			  area: ['90%', '170px'],
+			  content: '/myrc/share.html?p' //iframe的url
+			}); 
+		})
+	</script>
+	{%include 'aui/bottom.html'%}
+</html>

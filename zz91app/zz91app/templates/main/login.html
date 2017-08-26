@@ -1,0 +1,31 @@
+<style>
+	.loginmain{line-height: 30px;padding: 20px;}
+</style>
+{%if tourlstr%}
+<center>
+	<div style="line-height: 30px;color: #ff0000;margin-top: 20px;">
+		{{tourlstr}}
+	</div>
+</center>
+{%endif%}
+<form name="form1" method="post">
+<div class="loginmain">
+	<div>
+	<div style="float: left;width: 20%;line-height: 40px;">账   号：</div><div style="float: left;width: 80%;"><input type="text" name="username" placeholder="用户名 /手机 /邮箱" autocomplete="off" maxlength="50"/></div>
+	<div style="float: left;width: 20%;line-height: 40px;">密   码：</div><div style="float: left;width: 80%;"><input type="password" name="passwd" placeholder="请输入密码" autocomplete="off" maxlength="50"/></div>
+	</div>
+	<div style="text-align: center;line-height: 30xp;">
+		<input type=hidden name="tourl" id="tourl" value="{{tourl}}"/>
+		<input type=hidden name="jsstr" id="jsstr" value="{{jsstr}}"/>
+		<input type=hidden name="wintarget" id="wintarget" value="{{wintarget}}"/>
+	</div>
+	<button type="button" name="button" id="button" class="mui-btn mui-btn-danger" style="width: 100%;line-height: 30px;font-size: 16px;" onclick="zz91login(this.form)">登录</button>
+	
+</div>
+<nav class="mui-bar mui-bar-tab" style="padding-bottom: 10px;height: 60px;"><center>
+	<button type="button" name="button" id="button" class="mui-btn mui-disabled" style="width: 45%;line-height: 20px;font-size: 14px; margin-left: 0%;" onclick="gotourl('forgetpasswd.html','reg')">忘记密码</button>
+	<button type="button" name="button" id="button" class="mui-btn mui-btn-blue mui-disabled" style="width: 45%;line-height: 20px;font-size: 14px; margin-left: 5%;" onclick="gotourl('reg.html','reg')">免费注册</button>
+</center>
+</nav>
+</form>
+<input type="hidden" id="appnavname" value="登陆" />

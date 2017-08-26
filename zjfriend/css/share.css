@@ -1,0 +1,55 @@
+html, body {
+    		background-color: transparent;
+	}
+	.warp{
+		height: 100%;
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    display: flex;
+	    -webkit-box-orient: vertical;
+	    -webkit-flex-flow: column;
+	           flex-flow: column;
+	}
+	.top{
+		-webkit-box-flex: 1; 
+	    -webkit-flex: 1;
+	    flex: 1;
+	}
+	.main{
+	 margin-bottom: 50px;
+	 background-color: #fff;
+	 padding-top: 20px;
+	 border-top: 1px solid #e1e1e1
+	}
+	.share_list{
+		overflow: hidden;
+	}
+	.share_type{
+		width: 33.3333%;
+		display: inline-block;
+		float: left;
+		text-align: center;
+		font-size: 12px;
+	}
+	.share_type p{
+		font-size: 12px;
+	}
+	.share_type img{
+		width:30%;
+
+	}
+	.oback{
+		background-color: #e1e1e1;
+		border-radius: 5px;
+		text-align: center;
+		line-height: 30px;
+		margin: 30px;
+	}
+	.zhezao{
+		background-color: #000;
+	    opacity: 0.5;
+	    position: absolute;
+	    top: 0px;
+	    z-index: -1;
+	    width: 100%
+	}

@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>杭州婚之集旗舰店介绍</title>
+<link rel="stylesheet" type="text/css" href="tuiguang/css/style.css"/>
+<script src="tuiguang/js/jquery.min.js"></script>
+<script src="tuiguang/js/index.js"></script>
+<script src="tuiguang/js/base.js"></script>
+<script src="weddingdress/js/jquery-1.7.2.js"></script>
+<script>
+$(function(){
+	$('.bottonsubmit').click(function(){
+		//var keywords_id=$(this).attr("keywords_id")
+		var name=$("#name").val();
+		var telphone=$("#telphone").val();
+		var email=$("#email").val();
+		var remark=$("#remark").val();
+		var friend =[];    
+		$('input[name="friend"]:checked').each(function(){    
+			friend.push($(this).val());    
+		});
+		//alert(friend);
+		if (name.length<1){
+			alert('请填写您的姓名');
+		}
+		else if(telphone.length<5){
+			alert('请填写联系号码');
+		}
+		else{
+			//alert(name);
+	   		//$("#baidu"+keywords_id).html('<img src="../loading.gif" />')
+			//alert(keywords_id);
+			$.ajax({
+			   type: "GET",
+			   url: "sendyuyue.html",
+			   data: 'name='+name+'&telphone='+telphone+'&email='+email+'&friend='+friend+'&remark='+remark,
+			   //dataType: "json",
+			   //cache:false,
+			   //contentType: "application/json; charset=utf-8", 
+			   success:function(data){
+			   		//$("#secontflowdownlogo1").html(data)
+					alert('您的信息已经成功提交,我们会尽快与您联系!');					$("#name").val('');
+					$("#telphone").val('');
+					$("#email").val('');
+					$("#remark").val('');
+					$("input[name='friend']").each( function() {     
+			            $(this).attr("checked", false);     
+			        });
+			   		//alert(data);
+			   },
+			   error:function(data){
+					alert("错误!青重试.");
+			   }
+			}); 
+		}
+	 });
+});
+</script>
+</head>
+<body>
+  <div class="header">
+  	<div class="logo">
+  	  <img src="tuiguang/images/logo.jpg"/>	
+  	</div>
+  	<div class="ruler"></div>
+{%include 'common/mid.html'%}
+    <div class="clear"></div>
+  	<div class="bannerdian"></div>
+  </div>
+  <div class="clear"></div>
+  <div class="shopcontenter">
+     <div class="shopcontenter_headr"><img src="tuiguang/images/shop/flashshipstope.jpg"/></div>
+     <div class="shopsecontflow">
+       <div class="shopfirstflowpictrues">
+         <div class="pictrueinside"><a href="javascript:void();"><img class="showout" src="tuiguang/images/shop/shop_03.jpg"/><img class="icon1" src="tuiguang/images/dbaise/zhuanye.gif"/></a><div class="wordslinkslong">
+           <div class="alonglistofwords">婚之集杭州旗舰店专业婚纱礼仪师 现场一对一指导</div>
+           <a class="linkdiv" href="dressfree.html">预约到店>></a></div></div>
+         <div class="pictrueinside"><a href="javascript:void();"><img class="showout" src="tuiguang/images/shop/shop_05.jpg"/><img class="icon1" src="tuiguang/images/dbaise/pinzhi.gif"/></a><div class="wordslinksop">
+             <div class="alonglistofwords">婚之集旗舰店产品品质均属婚纱上游品质</div>
+             <a class="linkdiv" href="dressfree.html">预约到店>></a></div></div>
+       </div>
+      <div class="shopfirstflowpictrues">
+         <div class="pictrueinside"><a href="javascript:void();"><img class="showout" src="tuiguang/images/shop/shop_07.jpg"/><img class="icon1" src="tuiguang/images/dbaise/lexiang.gif"/></a><div class="wordslinkslong">
+           <div class="alonglistofwords">婚之集旗舰店欢迎大家试纱 分享给身边的朋友</div>
+           <a class="linkdiv" href="dressfree.html">预约到店>></a></div></div>
+         <div class="pictrueinside"><a href="javascript:void();"><img class="showout" src="tuiguang/images/shop/shop_08.jpg"/><img class="icon1" src="tuiguang/images/dbaise/shushi.gif"/></a><div class="wordslinksop">
+           <div class="alonglistofwords">婚之集舒适优雅的环境给你提供最好的服务</div>
+           <a class="linkdiv" href="dressfree.html">预约到店>></a></div></div>
+       </div>
+       <div class="shopfirstflowpictrues">
+         <div class="pictrueinside"><a href="javascript:void();"><img class="showout" src="tuiguang/images/shop/shop_09.jpg"/><img class="icons" src="tuiguang/images/dbaise/xinyin.gif"/></a><div class="wordslinks">
+           <div class="alonglistofwords">婚之集杭州旗舰店里的一切都力求耳目一新</div>
+           <a class="linkdiv" href="dressfree.html">预约到店>></a></div></div>
+         <div class="pictrueinside"><a href="javascript:void();"><img class="showout" src="tuiguang/images/shop/shop_11.jpg"/><img class="icons" src="tuiguang/images/dbaise/duoyang.gif"/></a><div class="wordslinks">
+           <div class="alonglistofwords">婚之集杭州旗舰店提供更多的产品以及服务</div>
+           <a class="linkdiv" href="dressfree.html">预约到店>></a></div></div>
+         <div class="pictrueinside"><a href="javascript:void();"><img class="showout" src="tuiguang/images/shop/shop_13.jpg"/><img class="icons" src="tuiguang/images/dbaise/zhengjie.gif"/></a><div class="wordslinks">
+           <div class="alonglistofwords">婚之集杭州旗舰店的整洁让您一切尽在掌握</div>
+           <a class="linkdiv" href="dressfree.html">预约到店>></a></div></div>
+       </div>
+     </div>
+     <div class="thirdflowpictrue">
+       <div><img src="tuiguang/images/shop/bookanappoint.jpg"/></div>
+     </div>
+     <div class="secontflowdownlogo">
+     <form name="form" method="post">
+     <input class="name" type="text" name="name" id="name" value=""/>
+     <input class="tephone" type="text" name="telphone" id="telphone" value=""/>
+     <input class="email" type="text" name="email" id="email" value=""/>
+      <input class="checkboxer1" type="checkbox" name="friend" value="老公"/>
+     <input class="checkboxer2" type="checkbox" name="friend" value="闺蜜"/>
+      <input class="checkboxer3" type="checkbox" name="friend" value="亲人"/>
+      <input class="checkboxer4" type="checkbox" name="friend" value="同学 "/>
+      <input class="checkboxer5" type="checkbox" name="friend" value="其它"/>
+     <textarea class="textarea" id="remark" name="remark">如果你有其他需求，请一并告诉我，方便给你安排:</textarea>
+     <input class="bottonsubmit" type="button" value="确认提交>>"/>
+     </form>
+      <a class="question" href="javascript:imTalk('2875992531','','ce','ce')" uin="2875992531" tag="imTalker" wpatype="17" >点击咨询>></a>
+    </div>
+  <div class="thehighsatisfaction"></div>
+  <div class="atlast">
+  <div class="first">
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_03.jpg"/></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_04.jpg"/></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_06.jpg"/></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_08.jpg"/></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_09.jpg"/></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_10.jpg" /></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_11.jpg"/></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_12.jpg"/></a></div>
+    </div>
+    <div class="first">
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_14.jpg"/></a></div>
+      <a class="linktoon" href="marrygettogether.html">
+      <div class="pictrueinsides"></div>
+      </a>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_18.jpg"/></a></div>
+    </div>
+    <div class="firsts">
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_20.jpg"/></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_21.jpg" /></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_22.jpg"/></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_23.jpg"/></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_24.jpg"/></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_26.jpg"/></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_27.jpg"/></a></div>
+      <div class="pictrueinside"><a href="Weddingdress.html"><img class="hiden" src="tuiguang/images/foot/foot_29.jpg"/></a></div>
+    </div>
+</div>
+</div>
+<div class="ruler clear"></div>
+{%include 'common/foot.html'%}
+</body></html>

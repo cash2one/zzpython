@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
+    <script type="text/javascript" src="../function.js"></script>
+    <script type="text/javascript" src="../Js/jquery.js"></script>
+    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="../Js/bootstrap.js"></script>
+    <script type="text/javascript" src="../Js/ckform.js"></script>
+    <script type="text/javascript" src="../Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+<form class="form-inline definewidth m20">  
+<div style="font-size:16px">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="button" class="{%ifequal chargetype "1"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?chargetype=1{%if company_type%}&company_type={{company_type}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}'">包年客户</button>&nbsp;&nbsp;
+<button type="button" class="{%ifequal chargetype "2"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?chargetype=2{%if company_type%}&company_type={{company_type}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}'">包天客户</button>&nbsp;&nbsp;
+<br /><br />
+总数:<font color="green">{{listcount}}</font>&nbsp;
+<button type="button" class="{%ifequal company_type "1"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?company_type=1{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}'">所有客户</button>&nbsp;&nbsp;
+<button type="button" class="{%ifequal company_type "2"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?company_type=2{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}'">在线客户</button>&nbsp;&nbsp;
+<button type="button" class="{%ifequal company_type "4"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?company_type=4{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}'">到期客户</button>&nbsp;&nbsp;
+<button type="button" class="{%ifequal company_type "6"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?company_type=6{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}'">欠费客户</button>&nbsp;&nbsp;
+<button type="button" class="{%ifequal company_type "5"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?company_type=5{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}'">丢单客户</button>&nbsp;&nbsp;
+{%ifequal username "yunying"%}
+<a href="?company_type=7{%if chargetype%}&chargetype={{chargetype}}{%endif%}">{%ifequal company_type "7"%}<font color="blue">已删除客户</font>{%else%}已删除客户{%endifequal%}</a>
+{%endifequal%}
+</div><br />
+    邮箱:<input type="text" style="width:80px" name="mail" value="{%if mail%}{{mail}}{%endif%}" id="rolename"class="abc input-default" placeholder="">&nbsp;&nbsp;  
+    公司名称:<input type="text" style="width:80px" name="company_name" value="{%if company_name%}{{company_name}}{%endif%}" id="rolename"class="abc input-default" placeholder="">&nbsp;&nbsp;  
+    手机:<input type="text" style="width:80px" name="mobile" value="{%if mobile%}{{mobile}}{%endif%}" id="rolename"class="abc input-default" placeholder="">&nbsp;&nbsp;  
+    联系人:<input type="text" style="width:80px" name="contact" value="{%if contact%}{{contact}}{%endif%}" id="rolename"class="abc input-default" placeholder="">&nbsp;&nbsp;  
+优化人员: 
+<select name="seo_id" style="width:100px">
+{%if seouser_id%}<option value="{{seouser_id}}">{{seouser_name}}</option>{%endif%}<option value="">--SEO人员</option>&nbsp;&nbsp;
+{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+    <button type="submit" class="btn btn-primary"> 查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">添加公司</button>
+</form>
+<form name="form">
+<input type="hidden" name="company_id" value="{{company_id}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr  align="center">
+	<th align="center" nowrap="nowrap">&nbsp;</th>
+	<th align="left" nowrap="nowrap">公司名</th>
+	<th align="left" nowrap="nowrap">关键词</th>
+	<th align="center" nowrap="nowrap">邮箱</th>
+	<th align="center" nowrap="nowrap">手机</th>
+	<th align="center" nowrap="nowrap">联系人</th>
+	<!--<td>优化人</td>-->
+	<!--<th align="center" nowrap="nowrap">小计</th>-->
+	{%ifequal username "seo"%}
+	<th align="center" nowrap="nowrap">操作</th>
+	{%endifequal%}
+	{%ifequal username "sales"%}
+	<th align="center" nowrap="nowrap">操作</th>
+	{%endifequal%}
+	{%ifequal username "yunying"%}
+	<th align="center" nowrap="nowrap">操作</th>
+	{%endifequal%}
+	</th></tr>
+    </thead>
+    	
+    	{%for list in list_company.list%}
+	<tr align="center">
+	<td align="center" bgcolor="#FFFFFF"><input type="checkbox" name="checkAll" value="{{list.id}}" id="checkAll" onclick="setSelectAll();"></td>
+	<td align="left" bgcolor="#FFFFFF">
+	{%ifequal company_id list.id%}
+	<input type="text" name="name" value={{name}} style="width:100px">
+	{%else%}
+	<a href="/keywords/?mail={{list.mail}}">{{list.name}}</a> <span style="color:#C60">[<a href="/addkeywords/?company_id={{list.id}}" style="color:#F60">添加词</a>]</span> 
+	{%endifequal%}
+	</td>
+	<td align="left" bgcolor="#FFFFFF">{%for ck in list.comp_keywords%}<span class="s10px"><a href="/keywords/?keywords={{ck.keywords}}&mail={{list.mail}}">{{ck.keywords}}</a></span> {%endfor%}</td>
+	<td align="center" bgcolor="#FFFFFF">
+	{%ifequal company_id list.id%}
+	<input type="text" name="mail" value={{mail}} style="width:120px">
+	{%else%}
+	{{list.mail}}
+	{%endifequal%}
+	</td>
+	<td align="center" bgcolor="#FFFFFF">
+	
+	{%ifequal company_id list.id%}
+	<input type="text" name="mobile" value={{mobile}} style="width:100px">
+	{%else%}
+	{{list.mobile}}
+	{%endifequal%}
+	</td>
+	<td align="center" bgcolor="#FFFFFF">
+	
+	{%ifequal company_id list.id%}
+	<input type="text" name="contact" value={{contact}} style="width:80px">
+	{%else%}
+	{{list.contact}}
+	{%endifequal%}
+	</td>
+	<!--<td>{{list.seouser_name}}</td>-->
+	<!--<td align="center" bgcolor="#FFFFFF">&nbsp;</td>-->
+	{%ifequal username "seo"%}
+	<td align="center" bgcolor="#FFFFFF">{%ifequal company_type "7"%}
+	<a href="/reductioncompany/?company_id={{list.id}}" onclick="return confirm('是否还原此信息?')">还原</a>
+	{%else%}
+		{%ifequal company_id list.id%}
+		<input type="button" onClick=send10() value="√"><input type="button" onClick="window.location.href='/returnpage/?request_url={{request_url}}'" value="X">
+		{%else%}
+		<a href="/delcompany/?company_id={{list.id}}" onclick="return confirm('是否将此信息删除?')">删除</a>/
+		<a href="/updatecompany/?company_id={{list.id}}">修改</a>
+		{%endifequal%}
+	{%endifequal%}
+	</td>
+	{%endifequal%}
+	{%ifequal username "sales"%}
+	<td align="center" bgcolor="#FFFFFF">{%ifequal company_type "7"%}
+	<a href="/reductioncompany/?company_id={{list.id}}" onclick="return confirm('是否还原此信息?')">还原</a>/<a href="/updatecompany/?company_id={{list.id}}">修改</a>
+	{%else%}<a href="/delcompany/?company_id={{list.id}}" onclick="return confirm('是否将此信息删除?')">删除</a>/<a href="/updatecompany/?company_id={{list.id}}">修改</a>
+	{%endifequal%}
+	</td>
+	{%endifequal%}
+	{%ifequal username "yunying"%}
+	<td align="center" bgcolor="#FFFFFF">{%ifequal company_type "7"%}
+	<a href="/reductioncompany/?company_id={{list.id}}" onclick="return confirm('是否还原此信息?')">还原</a>/<a href="/updatecompany/?company_id={{list.id}}">修改</a>
+	{%else%}<a href="/delcompany/?company_id={{list.id}}" onclick="return confirm('是否将此信息删除?')">删除</a>/<a href="/updatecompany/?company_id={{list.id}}">修改</a>
+	{%endifequal%}
+	</td>
+	{%endifequal%}
+	</tr>
+	{%endfor%}
+        
+</table>
+</form>
+&nbsp;&nbsp;&nbsp;&nbsp;       
+{%ifequal username "seo"%}
+	{%ifequal company_type "5"%}
+<input type="button" value="取消丢单" onClick=send5() class="btn btn-success">
+	{%else%}
+<input type="button" value="丢单" onClick=send4() class="btn btn-success">
+	{%endifequal%}
+{%endifequal%}
+{%ifequal username "yunying"%}
+	{%ifequal company_type "5"%}
+<input type="button" value="取消丢单" onClick=send5() class="btn btn-success">
+	{%else%}
+<input type="button" value="丢单" onClick=send4() class="btn btn-success">
+	{%endifequal%}
+{%endifequal%}
+        
+        
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<a href='?page=1&{{searchurl}}' >首页</a><a href='?page={{page_listcount}}&{{searchurl}}' >尾页</a> 
+</div>
+</body>
+</html>
+<script>
+    $(function () {
+        
+		$('#addnew').click(function(){
+
+				window.location.href="/addcompany/";
+		 });
+
+
+    });
+
+	function del()
+	{
+		
+		
+		if(confirm("确定要删除吗？"))
+		{
+		
+			var url = "index.html";
+			
+			window.location.href=url;		
+		
+		}
+	
+	
+	
+	
+	}
+</script>

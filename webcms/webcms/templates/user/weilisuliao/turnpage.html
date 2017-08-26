@@ -1,0 +1,32 @@
+{%if page_listcount > 1%}
+<div class="page">
+  {% if firstpage %}
+  <div class="page-style"> <a href="list_1.html">首页</a> </div>
+  <div class="page-style"> <a href="list_{{prvpage}}.html">上一页</a> </div>
+  {%else%}
+  <div class="page-style"> <a>首页</a> </div>
+  <div class="page-style"> <a>上一页</a> </div>
+  {% endif %}
+  <ul>
+  {%for pg in page_range%}
+    {%if pg.nowpage%}
+    <li><a style="background:gray;color:white">{{pg.number}}</a></li>
+    {%else%}
+    <li> <a href="list_{{pg.number}}.html">{{pg.number}}</a> </li>
+    {%endif%}
+  {%endfor%}
+    <div class="cb"></div>
+  </ul>
+  {% if lastpage%}
+  <div class="page-style"> <a href="list_{{nextpage}}.html">下一页</a> </div>
+  <div class="page-style"> <a href="list_{{page_listcount}}.html">尾页</a> </div>
+  {%else%}
+  <div class="page-style"> <a>下一页</a> </div>
+  <div class="page-style"> <a>尾页</a> </div>
+  {% endif %}
+  <div class="page-txt">共{{page_listcount}}页</div>
+  <!--<div class="page-style_"><div style="float:left;">到 <input type="text" id="page1" value="{{page}}"> 页</div><div style="width:10px;float:left;">&nbsp;</div><div class="page-confirm" onClick=turnpage()>确定</div>-->
+  </div>
+</div>
+<!--end page--> 
+{%endif%}

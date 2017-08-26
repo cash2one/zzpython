@@ -1,0 +1,236 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>ZZ91钨钢回收网_钨钢回收_钨钢回收价格_今日钨钢回收价格_ZZ91再生网(原中国再生资源交易网)</title>
+<meta name="keywords" content="钨钢回收,钨钢回收网,钨钢价格,今日钨钢回收价格">
+<meta name="description" content="ZZ91旗下钨钢价格信息网,为钨钢商家提供今日钨钢回收价格,今日钨钢价格行情,钨钢回收,供应钨钢,钨钢回收方面的钨钢商机信息！">
+<meta name="author" content="ZZ91再生网" />
+<meta name="robots" content="all" />
+<link type="text/css" rel="stylesheet" href="../daohang/daohanglistleft.css" />
+<link type="text/css" rel="stylesheet" href="http://img.zz91.com/210newIndex/style/header2010_11.css" />
+<link type="text/css" rel="stylesheet" href="http://img.zz91.com/210newIndex/style/search2010_11.css" />
+<link type="text/css" rel="stylesheet" href="http://img.zz91.com/210newIndex/style/general2010_11.css" />
+<link type="text/css" rel="stylesheet" href="http://img.zz91.com/210newIndex/style/comm_hack.css" />
+<script type="text/ecmascript" src="http://img0.zz91.com/front/js/top/default.js"></script>
+<script  type="text/javascript">
+var _bdhm_top = 0;
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+var _bdhm_tim = new Image(1,1);
+_bdhm_tim.id = "bdhmPerimg";
+_bdhm_tim.src = _bdhmProtocol + "hm.baidu.com/_tt.gif?si=5a7dcd19ace799a3caa19efdaa407fd5&rnd=" + Math.round(Math.random()*2147483647);
+_bdhm_tim.onload=function(){_bdhm_top = 1;}
+</script></head>
+<body>
+{% include 'daohang/nav.html' %}
+<div id="shead">
+
+        	<div id="shead_title">
+
+            	<h1>ZZ91{{keywords}}回收价格网：</h1>
+
+            </div>
+
+            <div id="shead_tags"> 
+                <a href="http://daohang.zz91.com/wuganghuishou/" target="_blank">{{label}}网</a> | 
+                
+                <a href="http://price.zz91.com/priceSearch.htm?title={{keywords1}}" target="_blank">今日{{label}}价格</a> |  
+
+                <a href="http://price.zz91.com/priceSearch.htm?title={{keywords1}}" target="_blank">{{label}}网上报价</a> | 
+                         
+                <a href="http://trade.zz91.com/offerlist--a1--b--c--d--e--f--p1--{{keywords}}.htm" target="_blank">供应{{keywords}}</a>  | 
+
+                <a href="http://trade.zz91.com/offerlist--a2--b--c--d--e--f--p1--{{keywords}}.htm" target="_blank">回收{{keywords}}</a>  | 
+
+                <a href="http://daohang.zz91.com" target="_blank">废料导航</a>
+
+            </div>
+
+        </div>
+        <div style="clear:both"></div>
+
+        <!--box list start-->
+
+    	<div id="sbody">
+
+    	  <div id="sbody_left">
+<div><script type="text/javascript" src="http://gg.zz91.com/show?p=374&keywords={{adkeywords}}"></script></div>
+            <div id="sbody_left_area">
+			{%if offerSalesinfo%}
+              <div id="sbody_left_content">
+
+                <div id="sbody_left_title">
+
+                  <h3>供应{{keywords}}</h3>
+
+                </div>
+
+                <div id="sbody_left_list">
+
+                  <ul>
+
+                    {% for list in offerSalesinfo %}
+
+                        <li><a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target="_blank" title="{{list.title}}" class="listleft" ><font style="font-size:14px">供应{{list.title}}</font></a><span id="content_time_style">{{list.gmt_time}}</span></li>
+
+                    {% endfor %}
+
+                       
+
+                      
+
+                  </ul>
+
+                </div>
+
+                <div id="morelink"><a href="http://trade.zz91.com/offerlist--a1--b--c--d--e--f--p1--{{label}}.htm" id="more_style2" target="_blank" title="更多供应{{keywords}}信息">>>>更多</a></div>
+
+              </div>
+              {%endif%}
+                        
+               <div style="clear:both"></div>
+               
+              {%if offerBuyinfo%}
+              <div id="sbody_left_content">
+
+                <div id="sbody_left_title">
+
+                  <h3>{{keywords}}回收</h3>
+
+                </div>
+
+                <div id="sbody_left_list">
+
+                  <ul>
+
+                        {% for list in offerBuyinfo %}
+                        <li><a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target="_blank"  class="listleft"title="{{list.title}}"><font style="font-size:14px">{{list.title}}回收</font></a><span id="content_time_style">{{list.gmt_time}}</span></li>
+                        {% endfor %}
+                  </ul>
+
+                </div>
+
+                <div id="morelink"><a href="http://trade.zz91.com/offerlist--a2--b--c--d--e--f--p1--{{label}}.htm" id="more_style2" target="_blank" title=" 更多{{label}}回收|求购{{keywords}}信息">>>>更多</a></div>
+
+              </div>
+              {%endif%}
+            </div>
+
+<div style="clear:both"></div>
+    	    <div id="sbody_left_area">
+              {%if priceInfo_hangqing%}
+              <div id="sbody_left_content">
+                <div id="sbody_left_title">
+                  <h3>{{label}}行情网|{{label}}资讯</h3>
+                </div>
+                <div id="sbody_left_list">
+                  <ul>
+                        {% for list in priceInfo_hangqing %}
+                        <li><a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a></li>
+                        {% endfor %}
+                  </ul>
+                </div>
+                <div id="morelink"><a href="http://price.zz91.com/channel/wasteMetal.htm" id="more_style2" target="_blank" title="更多{{label}}行情|{{label}}资讯信息">>>>更多</a></div>
+              </div>
+              {%endif%}
+
+  	      </div>
+
+  	    </div>
+<div id="sbody_middle"></div>
+<div id="sbody_right">
+
+                    	<div id="sbody_right_style">
+
+            				<div class="sbody_right_style_tit">
+
+                			<h3>{{label}}产品大全</h3>
+
+            				</div>
+
+		    				<div class="right_content_list">
+                             <a href="http://tags.zz91.com/tagssearchList/钨钢/" class='tag1' target="_blank" title="钨钢">钨钢</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/矽钢片/" class='tag2' target="_blank" title="矽钢片">矽钢片</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废钢铣刀/" class='tag3' target="_blank" title="废钢铣刀">废钢铣刀</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/钨钢刀具/" class='tag1' target="_blank" title="钨钢刀具">钨钢刀具</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/铣刀/" class='tag2' target="_blank" title="铣刀">铣刀</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废钨钢回收/" class='tag3' target="_blank" title="废钨钢回收">废钨钢回收</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废钨钢粉/" class='tag1' target="_blank" title="废钨钢粉">废钨钢粉</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/钻头/" class='tag2' target="_blank" title="钻头">钻头</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/钨钢粉末/" class='tag3' target="_blank" title="钨钢粉末">钨钢粉末</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/磨削料/" class='tag1' target="_blank" title="磨削料">磨削料</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废钨钢粉末/" class='tag2' target="_blank" title="废钨钢粉末">废钨钢粉末</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/刀片/" class='tag3' target="_blank" title="刀片">刀片</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废模具/" class='tag1' target="_blank" title="废模具">废模具</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/钨钢灰/" class='tag2' target="_blank" title="钨钢灰">钨钢灰</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/钨钢价格/" class='tag3' target="_blank" title="钨钢价格">钨钢价格</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/废旧钨钢/" class='tag1' target="_blank" title="废旧钨钢">废旧钨钢</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/钨合金/" class='tag2' target="_blank" title="钨合金">钨合金</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/PCB/" class='tag3' target="_blank" title="PCB">PCB</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/钨钢合金/" class='tag1' target="_blank" title="钨钢合金">钨钢合金</a> | 
+							
+                            <a href="http://tags.zz91.com/tagssearchList/钨钢硬质合金/" class='tag2' target="_blank" title="钨钢硬质合金">钨钢硬质合金</a> | 
+							
+
+							
+							
+            
+		                    
+
+                         </div>
+
+           		  </div>
+
+                		<div id="sbody_right_style" style="margin-top:8px;">
+
+                			<div class="sbody_right_style_tit">
+
+                	  			<h3>{{label}}热门话题</h3>
+
+                			</div>
+							<div>
+                            <ul style="padding-left:10px;">
+                            	{% for list in huzhuInfo %}
+
+                                    <li>· <a href="http://huzhu.zz91.com/viewReply{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a></li>
+            
+                                {% endfor %}
+                            </ul>
+                            </div>
+                    		<div class="right_content_list"><a href="http://huzhu.zz91.com/bbsCategory1.htm" id="more_style" target="_blank" title="更多{{label}}行情热门话题">>>>更多{{label}}热门话题</a>
+
+                			</div>
+
+                    	</div>
+ {% include 'daohang/right.html' %}
+                	</div>
+
+            	</div>
+
+</div>
+
+        </div>    
+
+<!--box list end-->
+{% include 'daohang/bottom.html' %}
+</div>
+</body>
+</html>

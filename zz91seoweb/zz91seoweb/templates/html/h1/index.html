@@ -1,0 +1,361 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{{list.name}}-ZZ91再生网工厂秀</title>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+		<link rel="stylesheet" href="{{htmlincludes.img}}css/swiper.min.css">
+		<link rel="stylesheet" href="{{htmlincludes.img}}css/animate.min.css">
+		<link rel="stylesheet" href="{{htmlincludes.img}}css/index.css">
+		<script src="{{htmlincludes.img}}js/swiper.min.js"></script>
+		<script src="{{htmlincludes.img}}js/swiper.animate.min.js"></script>
+		<style>
+			.lianxi a{
+			 	color: #fff;
+			 }
+		</style>
+	</head>
+
+	<body>
+		<audio controls="controls" id="voidmusic" autoplay="autoplay" loop="loop">
+			<source src="{{htmlincludes.img}}upload/music.mp3" type="audio/mpeg">
+		</audio>
+		<div style="position: absolute;left: 0px;top: 7px;z-index: 200000;"><img src="http://img0.zz91.com/zz91/mobile/images/logo1.png" style="height: 25px;"></div>
+		<div class="cmpname" style="padding-left: 70px;text-align: left;">{{list.name}}</div>
+		<div class="swiper_main">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<!---------slide1 ---------->
+					<section class="swiper-slide swiper-slide1">
+						<img src="{{htmlincludes.img}}images/stepbg1.jpg" class="ani" style="width:100%;height:100%;left:0px;top:0px;z-index:3;" swiper-animate-effect="zoomIn" swiper-animate-duration="1.5s" swiper-animate-delay="0s">
+						<div class="cmplogo resize ani" style="width:230px;height:80px;left:20px;top:62px;z-index:4;" swiper-animate-effect="fadeInDown" swiper-animate-duration="1.5s" swiper-animate-delay="1s">
+							{%if list.ppcphone%}
+							<img src="http://img0.zz91.com/zz91/ppc/images/ldblogo.jpg" class="logoimg resize" style="width: 55px;height: 55px;top: 12px;left: 10px;position: absolute;"> {%else%}
+							<img src="{{list.logo_pic}}" class="logoimg resize" style="width: 55px;height: 55px;top: 12px;left: 10px;position: absolute;"> {%endif%}
+							<div class="gs-name resize ani" style="top: 5px;width: 150px;left: 70px;" swiper-animate-effect="bounce" swiper-animate-duration="1.8s" swiper-animate-delay="1.5s">{{list.name}}</div>
+						</div>
+					</section>
+					<!-- -------------slide2-------------->
+					<section class="swiper-slide swiper-slide2">
+						<img src="{{htmlincludes.img}}images/titleimg.png" class="resize ani" style="width: 71px;height: 17px;top: 13px;left: 47px;" swiper-animate-effect="slideInDown" swiper-animate-duration="0.5s" swiper-animate-delay="0s">
+						<div class="resize ani" style="width: 26px;height: 36px;top: 7px;left: 16px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s">
+							<img src="{{htmlincludes.img}}images/img_05.png" width="100%" height="100%">
+							<img src="{{htmlincludes.img}}images/img_09.png" width="100%" height="100%" style="top: 5px;left: 5px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="1s" class="resize ani">
+						</div>
+						<div class="resize ani info_cp" style="width: 235px;height: 310px;top: 55px;left: 25px;z-index: 2;overflow: hidden;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s">
+							<p>{{list.introduction|safe}}</p>
+						</div>
+						<div class="resize ani" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.5s" swiper-animate-delay="1.0s" style="position: absolute;bottom: 30px;right: 40px;z-index: 100000;"><a href="http://{{list.domain_zz91}}.m.zz91.com/mobile/about{{company_id}}.htm" style="color: #FCFF00;">更多详情>></a></div>
+						<img src="{{htmlincludes.img}}images/img_01.png" style="width: 16px;height: 151px;top: 0px;left:303px; position: absolute;" class="resize ani" swiper-animate-effect="slideInDown" swiper-animate-duration="1.5s" swiper-animate-delay="1s">
+						<img src="{{htmlincludes.img}}images/img_02.png" style="width: 40px;height: 131px;top: 0px;left:263px; position: absolute;" class="resize ani" swiper-animate-effect="slideInDown" swiper-animate-duration="1.5s" swiper-animate-delay="1s">
+						<img src="{{htmlincludes.img}}images/img_03.png" style="width: 40px;height: 38px;top: 0px;left:223px; position: absolute;" class="resize ani" swiper-animate-effect="slideInDown" swiper-animate-duration="1.5s" swiper-animate-delay="1s">
+						<img src="{{htmlincludes.img}}images/img_04.png" style="width: 27px;height: 17px;top: 0px;left:195px; position: absolute;" class="resize ani" swiper-animate-effect="slideInDown" swiper-animate-duration="1.5s" swiper-animate-delay="1s">
+						<img src="{{htmlincludes.img}}images/img_06.png" style="width: 90px;height: 57px;bottom: 0px;left:0px; position: absolute;" swiper-animate-effect="slideInLeft" swiper-animate-duration="1.5s" swiper-animate-delay="2s" class="resizebtm ani">
+						<img src="{{htmlincludes.img}}images/img_07.png" style="width: 80px;height: 75px;bottom: 0px;left:240px; position: absolute;" swiper-animate-effect="slideInRight" swiper-animate-duration="1.5s" swiper-animate-delay="1.5s" class="resizebtm ani">
+					</section>
+					<!-- --------------slide3------------ -->
+					<section class="swiper-slide swiper-slide3">
+						<img src="{{htmlincludes.img}}images/titleimg2.png" class="resize ani" style="width: 71px;height: 17px;top: 13px;left: 47px;" swiper-animate-effect="slideInDown" swiper-animate-duration="0.5s" swiper-animate-delay="0s">
+						<div class="resize ani" style="width: 26px;height: 36px;top: 7px;left: 16px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s">
+							<img src="{{htmlincludes.img}}images/img_05.png" width="100%" height="100%">
+							<img src="{{htmlincludes.img}}images/img_09.png" width="100%" height="100%" style="top: 5px;left: 5px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="1s" class="resize ani">
+						</div>
+						<img src="{{htmlincludes.img}}images/kuang.png" swiper-animate-effect="zoomIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s" class="resize ani" style="top: 80px;left: 35px;width: 250px;height: 265px;">
+						<div class="resize" style="top: 92px;left: 48px;width: 224px;height: 239px;position: absolute; z-index: 5">
+							<div class="swiper-container-gg resize ani" swiper-animate-effect="zoomIn block" swiper-animate-duration="2s" swiper-animate-delay="1s">
+								<div class="swiper-wrapper ">
+									{%for img in companyimglist%}
+									<div class="swiper-slide resize" style="background-image:url({{img.filepath}})"></div>
+									{%endfor%}
+									<!--<div class="swiper-slide resize" style="background-image:url({{htmlincludes.img}}images/fcimg2.png)"></div>
+									<div class="swiper-slide resize" style="background-image:url({{htmlincludes.img}}images/fcimg3.png)"></div>
+									<div class="swiper-slide resize" style="background-image:url({{htmlincludes.img}}images/fcimg4.png)"></div>
+									<div class="swiper-slide resize" style="background-image:url({{htmlincludes.img}}images/fcimg5.png)"></div>
+									<div class="swiper-slide resize" style="background-image:url({{htmlincludes.img}}images/fcimg6.png)"></div>
+									<div class="swiper-slide resize" style="background-image:url({{htmlincludes.img}}images/fcimg7.png)"></div>-->
+								</div>
+								<!---- Add Pagination-->
+								<div class="swiper-pagination-pp"></div>
+							</div>
+						</div>
+						<img src="{{htmlincludes.img}}images/img_01.png" style="width: 16px;height: 151px;top: 0px;left:303px; position: absolute;" class="resize ani" swiper-animate-effect="slideInDown" swiper-animate-duration="1.5s" swiper-animate-delay="1s">
+						<img src="{{htmlincludes.img}}images/img_02.png" style="width: 40px;height: 131px;top: 0px;left:263px; position: absolute;" class="resize ani" swiper-animate-effect="slideInDown" swiper-animate-duration="1.5s" swiper-animate-delay="1s">
+						<img src="{{htmlincludes.img}}images/img_03.png" style="width: 40px;height: 38px;top: 0px;left:223px; position: absolute;" class="resize ani" swiper-animate-effect="slideInDown" swiper-animate-duration="1.5s" swiper-animate-delay="1s">
+						<img src="{{htmlincludes.img}}images/img_04.png" style="width: 27px;height: 17px;top: 0px;left:195px; position: absolute;" class="resize ani" swiper-animate-effect="slideInDown" swiper-animate-duration="1.5s" swiper-animate-delay="1s">
+						<img src="{{htmlincludes.img}}images/img_06.png" style="width: 90px;height: 57px;bottom: 0px;left:0px; position: absolute;" swiper-animate-effect="slideInLeft" swiper-animate-duration="1.5s" swiper-animate-delay="2s" class="resizebtm ani">
+						<img src="{{htmlincludes.img}}images/img_07.png" style="width: 80px;height: 75px;bottom: 0px;left:240px; position: absolute;" swiper-animate-effect="slideInRight" swiper-animate-duration="1.5s" swiper-animate-delay="1.5s" class="resizebtm ani">
+					</section>
+					<!-------------slide4---------------->
+					<!--<section class="swiper-slide swiper-slide4">
+						<img src="{{htmlincludes.img}}images/titleimg3.png" class="resize ani" style="width: 71px;height: 17px;top: 13px;left: 47px;" swiper-animate-effect="slideInDown" swiper-animate-duration="0.5s" swiper-animate-delay="0s">
+						<div class="resize ani" style="width: 26px;height: 36px;top: 7px;left: 16px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s">
+							<img src="{{htmlincludes.img}}images/img_05.png" width="100%" height="100%">
+							<img src="{{htmlincludes.img}}images/img_09.png" width="100%" height="100%" style="top: 5px;left: 5px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="1s" class="resize ani">
+						</div>
+						<img src="{{htmlincludes.img}}images/kuang.png" swiper-animate-effect="zoomIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s" class="resize ani" style="top: 77px;left: 9px;width: 307px;height: 320px;">
+						<img src="{{htmlincludes.img}}images/cpimg1.png" swiper-animate-effect="slideInUp cpimg" swiper-animate-duration="0.5s" swiper-animate-delay="1.5s" class="resize ani seeoct" style="top: 93px;left: 25px;width: 134px;height: 142px;">
+						<img src="{{htmlincludes.img}}images/cpimg2.png" swiper-animate-effect="slideInRight cpimg4" swiper-animate-duration="0.5s" swiper-animate-delay="3s" class="resize ani seeoct" style="top: 238px;left: 25px;width: 134px;134px;height: 142px;">
+						<img src="{{htmlincludes.img}}images/cpimg3.png" swiper-animate-effect="slideInLeft cpimg2" swiper-animate-duration="0.5s" swiper-animate-delay="2s" class="resize ani seeoct" style="top: 93px;left: 166px;width: 134px;height: 142px;">
+						<img src="{{htmlincludes.img}}images/cpimg4.png" swiper-animate-effect="slideInDown cpimg3" swiper-animate-duration="0.5s" swiper-animate-delay="2.5s" class="resize ani seeoct" style="top: 238px;left: 166px;width: 134px;height: 142px;">
+						<img src="{{htmlincludes.img}}images/img_06.png" style="width: 90px;height: 57px;bottom: 0px;left:0px; position: absolute;" swiper-animate-effect="slideInLeft" swiper-animate-duration="1.5s" swiper-animate-delay="2s" class="resizebtm ani">
+						<img src="{{htmlincludes.img}}images/img_07.png" style="width: 80px;height: 75px;bottom: 0px;left:240px; position: absolute;" swiper-animate-effect="slideInRight" swiper-animate-duration="1.5s" swiper-animate-delay="1.5s" class="resizebtm ani">
+					</section>-->
+					<!-------------slide5---------------->
+					{%for pro in productslist.list%} 
+					{%ifequal pro.n "1"%}
+					<section class="swiper-slide swiper-slide5">
+						<img src="{{htmlincludes.img}}images/titleimg3.png" class="resize ani" style="width: 71px;height: 17px;top: 13px;left: 47px;" swiper-animate-effect="slideInDown" swiper-animate-duration="0.5s" swiper-animate-delay="0s">
+						<div class="resize ani" style="width: 26px;height: 36px;top: 7px;left: 16px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s">
+							<img src="{{htmlincludes.img}}images/img_05.png" width="100%" height="100%">
+							<img src="{{htmlincludes.img}}images/img_09.png" width="100%" height="100%" style="top: 5px;left: 5px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="1s" class="resize ani">
+						</div>
+						{%for i in pro.piclist%} 
+						{%ifequal i.im "1"%}
+						<img src="{{i.images_big}}" style="width: 138px;height: 138px;top: 88px;left:20px; position: absolute;" swiper-animate-effect="fadeInLeft" swiper-animate-duration="1.5s" swiper-animate-delay="2s" class="resize ani"> 
+						{%endifequal%} 
+						{%ifequal i.im "2"%}
+						<img src="{{i.images_big}}" style="width: 138px;height: 138px;top: 88px;left:163px; position: absolute;" swiper-animate-effect="fadeInRight" swiper-animate-duration="1.5s" swiper-animate-delay="2s" class="resize ani"> 
+						{%endifequal%} 
+						{%endfor%}
+						<!--<img src="{{htmlincludes.img}}images/cpimg5.png" style="width: 138px;height: 138px;top: 88px;left:20px; position: absolute;" swiper-animate-effect="fadeInLeft" swiper-animate-duration="1.5s" swiper-animate-delay="2s" class="resize ani">
+						<img src="{{htmlincludes.img}}images/cpimg6.png" style="width: 138px;height: 138px;top: 88px;left:163px; position: absolute;" swiper-animate-effect="fadeInRight" swiper-animate-duration="1.5s" swiper-animate-delay="2s" class="resize ani">-->
+						<div class="resize ani cpname" style="top:50px;left: 20px;height: 32px;width: 280px;overflow: hidden;text-overflow: ellipsis; white-space: nowrap;" swiper-animate-effect="fadeInDown" swiper-animate-duration="0.5s" swiper-animate-delay="1s">
+							{{pro.products_type}}{{pro.title}}
+						</div>
+						<div class="resize ani" style="top:80px;left: 30px;height: 2px;width: 280px;background-color: #fff;" swiper-animate-effect="zoomIn" swiper-animate-duration="1s" swiper-animate-delay="1s"></div>
+
+						<img src="{{htmlincludes.img}}images/img_06.png" class="resizebtm ani" style="width: 90px;height: 57px;bottom: 0px;left:0px; position: absolute;" swiper-animate-effect="slideInLeft" swiper-animate-duration="1.5s" swiper-animate-delay="2s">
+						<img src="{{htmlincludes.img}}images/img_07.png" class="resizebtm ani" style="width: 80px;height: 75px;bottom: 0px;left:240px; position: absolute;" swiper-animate-effect="slideInRight" swiper-animate-duration="1.5s" swiper-animate-delay="1.5s">
+
+						<div class="resize ani jiejie" style="width: 280px;height: 150px;line-height:16px;top: 230px;left:20px; position: absolute;overflow: hidden;" swiper-animate-effect="fadeInDown" swiper-animate-duration="1.5s" swiper-animate-delay="2.5s">
+							{{pro.details|safe}} {%for pmor in pro.listmore%} {%if pmor.content%}
+							<p>{{pmor.property}}：{{pmor.content}}</p>
+							{%endif%} {%endfor%} {%if pro.total_quantity%}
+							<p>数量：{{pro.total_quantity}}{{pro.quantity_unit}}</p>
+							{%endif%} {%if pro.price%}
+							<p>价格：{{pro.price}}</p>
+							{%endif%}
+						</div>
+						<div class="resize ani" style="position: absolute;bottom: 15px;right: 20px;z-index: 100000;" swiper-animate-effect="fadeInDown" swiper-animate-duration="1.5s" swiper-animate-delay="3.5s"><a href="http://{{list.domain_zz91}}.m.zz91.com/mobile/productdetail{{pro.pdtid}}.htm" style="color: #FCFF00;">更多详情 >></a></div>
+					</section>
+					{%endifequal%}
+					<!-------------slide6---------------->
+					<!--<section class="swiper-slide swiper-slide6">
+						<img src="{{htmlincludes.img}}images/titleimg3.png" class="resize ani" style="width: 71px;height: 17px;top: 13px;left: 47px;" swiper-animate-effect="slideInDown" swiper-animate-duration="0.5s" swiper-animate-delay="0s">
+						<div class="resize ani" style="width: 26px;height: 36px;top: 7px;left: 16px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s">
+							<img src="{{htmlincludes.img}}images/img_05.png" width="100%" height="100%">
+							<img src="{{htmlincludes.img}}images/img_09.png" width="100%" height="100%" style="top: 5px;left: 5px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="1s" class="resize ani">
+						</div>
+						<div class="resize ani" style="left: 20px;top: 45px;width: 280px;height: 15px;" swiper-animate-effect="rotateInDownLeft" swiper-animate-duration="1.5s" swiper-animate-delay="1s">
+							<img src="{{htmlincludes.img}}images/mubbg.png" class="resize ani" style="left: 8px;top: 0;width: 15px;height: 15px;">
+							<p class="yzcp resize" style="left: 27px;top: 0;position: absolute;">PC优质破碎料</p>
+						</div>
+						<img src="{{htmlincludes.img}}images/cpimg7.png" style="width: 140px;height: 140px;top: 78px;left:20px; position: absolute;" swiper-animate-effect="rotateIn" swiper-animate-duration="1s" swiper-animate-delay="1s" class="resize ani">
+						<img src="{{htmlincludes.img}}images/cpimg8.png" style="width: 140px;height: 140px;top: 218px;left:160px; position: absolute;" swiper-animate-effect="rotateIn" swiper-animate-duration="1s" swiper-animate-delay="1s" class="resize ani">
+						<div style="width: 140px;height: 140px;top: 78px;left:160px; position: absolute;" swiper-animate-effect="fadeInLeft" swiper-animate-duration="1.5s" swiper-animate-delay="1s" class="resize ani cpjs">
+							<p>货源地： 进口，国产</p>
+							<p>来源产品： 国产国外</p>
+							<p>此废料可用于： 粉碎</p>
+							<p>注塑代替粒子使用</p>
+							<p>颜色：白色</p>
+							<p>形态：破碎料</p>
+							<p>级别：增强，阻燃</p>
+						</div>
+						<div src="{{htmlincludes.img}}images/cpimg6.png" style="width: 140px;height: 140px;top: 218px;left:20px; position: absolute;" swiper-animate-effect="fadeInRight" swiper-animate-duration="1.5s" swiper-animate-delay="1s" class="resize ani cpjs">
+							<p>外观：白色环保V0级</p>
+							<p>原生优先</p>
+							<p>杂质（杂物）含量：</p>
+							<p>无黑星黒点黄斑</p>
+							<p>加工说明： 可直接加工生产</p>
+						</div>
+						<img src="{{htmlincludes.img}}images/img_06.png" class="resizebtm ani" style="width: 90px;height: 57px;bottom: 0px;left:0px; position: absolute;" swiper-animate-effect="slideInLeft" swiper-animate-duration="1.5s" swiper-animate-delay="2s">
+						<img src="{{htmlincludes.img}}images/img_07.png" class="resizebtm ani" style="width: 80px;height: 75px;bottom: 0px;left:240px; position: absolute;" swiper-animate-effect="slideInRight" swiper-animate-duration="1.5s" swiper-animate-delay="1.5s">
+					</section>-->
+					<!-------------slide7---------------->
+					{%ifequal pro.n "2"%}
+					<section class="swiper-slide swiper-slide7">
+						<img src="{{htmlincludes.img}}images/titleimg3.png" class="resize ani" style="width: 71px;height: 17px;top: 13px;left: 47px;" swiper-animate-effect="slideInDown" swiper-animate-duration="0.5s" swiper-animate-delay="0s">
+						<div class="resize ani" style="width: 26px;height: 36px;top: 7px;left: 16px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s">
+							<img src="{{htmlincludes.img}}images/img_05.png" width="100%" height="100%">
+							<img src="{{htmlincludes.img}}images/img_09.png" width="100%" height="100%" style="top: 5px;left: 5px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="1s" class="resize ani">
+						</div>
+						<img src="{{htmlincludes.img}}images/btbian.png" class="resize ani" style="width: 245px;height: 30px;top: 43px;left: 20px;" swiper-animate-effect="fadeInLeft" swiper-animate-duration="1s" swiper-animate-delay="0.5s">
+						<h2 class="resize ani yliao" style="width: 245px;height: 30px;top: 43px;left: 30px;text-align: left;overflow: hidden;text-overflow: ellipsis; white-space: nowrap;" swiper-animate-effect="fadeInLeft" swiper-animate-duration="1s" swiper-animate-delay="0.8s">{{pro.products_type}}{{pro.title}}</h2>
+						<div class="resize ani" style="width: 280px;height: 133px;top: 85px;left: 20px;background-color: #99d166" swiper-animate-effect="fadeInLeft" swiper-animate-duration="1s" swiper-animate-delay="1s"></div>
+						<div class="resize ani ysinfo" style="width: 280px;height: 130px;line-height:16px;font-size:12px;top: 85px;left: 20px;overflow: hidden;" swiper-animate-effect="fadeInRight" swiper-animate-duration="2s" swiper-animate-delay="1s">
+							{{pro.details|safe}} {%for pmor in pro.listmore%} {%if pmor.content%}
+							<p>{{pmor.property}}：{{pmor.content}}</p>
+							{%endif%} {%endfor%} {%if pro.total_quantity%}
+							<p>数量：{{pro.total_quantity}}{{pro.quantity_unit}}</p>
+							{%endif%} {%if pro.price%}
+							<p>价格：{{pro.price}}</p>
+							{%endif%}
+						</div>
+						<div class="resize ani" style="position: absolute;bottom: 20px;right: 30px;z-index: 100000;" swiper-animate-effect="fadeInDown" swiper-animate-duration="1.5s" swiper-animate-delay="2.5s"><a href="http://{{list.domain_zz91}}.m.zz91.com/mobile/productdetail{{pro.pdtid}}.htm" style="color: #FCFF00;">更多详情 >></a></div>
+						{%for i in pro.piclist%} 
+						{%ifequal i.im "1"%}
+						<img src="{{htmlincludes.img}}images/tuk.png" class="resize ani" style="width: 137px;height: 137px;top: 230px;left:20px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="1.5s">
+						<img src="{{i.images_big}}" class="resize ani" style="width: 133px;height: 133px;top: 232px;left:22px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="2s"> 
+						{%endifequal%} 
+						{%ifequal i.im "2"%} 
+						{%if i.images_big%}
+						<img src="{{htmlincludes.img}}images/tuk.png" class="resize ani" style="width: 137px;height: 137px;top: 230px;left:162px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="2.5s">
+						<img src="{{i.images_big}}" class="resize ani" style="width: 133px;height: 133px;top: 232px;left:164px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="3s"> 
+						{%endif%} 
+						{%endifequal%} 
+						{%endfor%}
+						<img src="{{htmlincludes.img}}images/img_06.png" class="resizebtm ani" style="width: 90px;height: 57px;bottom: 0px;left:0px; position: absolute;" swiper-animate-effect="slideInLeft" swiper-animate-duration="1.5s" swiper-animate-delay="2s">
+						<img src="{{htmlincludes.img}}images/img_07.png" class="resizebtm ani" style="width: 80px;height: 75px;bottom: 0px;left:240px; position: absolute;" swiper-animate-effect="slideInRight" swiper-animate-duration="1.5s" swiper-animate-delay="1.5s">
+					</section>
+					{%endifequal%}
+					<!-------------slide8---------------->
+					{%endfor%}
+					<section class="swiper-slide swiper-slide8">
+						<div class="zzhao"></div>
+						<img src="{{htmlincludes.img}}images/titleimg4.png" class="resize ani" style="width: 71px;height: 17px;top: 13px;left: 47px;z-index: 3" swiper-animate-effect="slideInDown" swiper-animate-duration="0.5s" swiper-animate-delay="0s">
+						<div class="resize ani" style="width: 26px;height: 36px;top: 7px;left: 16px;z-index: 3" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="0.5s">
+							<img src="{{htmlincludes.img}}images/img_05.png" width="100%" height="100%">
+							<img src="{{htmlincludes.img}}images/img_09.png" class="resize ani" width="100%" height="100%" style="top: 5px;left: 5px;" swiper-animate-effect="zoomIn" swiper-animate-duration="0.5s" swiper-animate-delay="1s">
+						</div>
+						<img src="{{htmlincludes.img}}images/lxfangbg.png" style="width: 266px;height: 285px;top: 63px;left: 30px;z-index: 3" swiper-animate-effect="zoomIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s" class="resize ani"> {%if list.ppcphone%}
+						<img src="{{htmlincludes.img}}images/icon_ldb.png" style="width: 17px;height: 146px;top: 84px;left: 42px;z-index: 3" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="1s" class="resize ani">
+						<img src="{{htmlincludes.img}}images/img_ldb.png" style="width: 47px;height: 144px;top: 84px;left: 62px;z-index: 3" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="1.5s" class="resize ani"> {%else%}
+						<img src="{{htmlincludes.img}}images/icon.png" style="width: 17px;height: 210px;top: 84px;left: 42px;z-index: 3" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="1s" class="resize ani">
+						<img src="{{htmlincludes.img}}images/img.png" style="width: 47px;height: 208px;top: 84px;left: 62px;z-index: 3" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="1.5s" class="resize ani"> {%endif%}
+						<div class="resize ani lianxi" style="width: 177px;height: 232px;top: 82px;left: 114px;z-index: 3" swiper-animate-effect="fadeInRightBig" swiper-animate-duration="1s" swiper-animate-delay="1.5s" class="resize ani">
+							<p class="resize" style="position: absolute;top: 0;font-size:20px;">{{list.contact}}</p>
+							{%if list.ppcphone%}
+							<p class="resize" style="position: absolute;top: 45px;font-size:20px;"><a href="tel:{{list.ppcphone}}">{{list.ppcphone}}</a></p>
+							<p class="resize" style="position: absolute;top: 88px;">{%if list.domain_zz91%}<a href="http://{{list.domain_zz91}}.m.zz91.com" target="_blank">http://{{list.domain_zz91}}.m.zz91.com</a>{%endif%}</p>
+							<p class="resize" style="position: absolute;top: 132px;">{{list.address}}</p>
+							{%else%} 
+							{%if list.showcontact%}
+							<p class="resize" style="position: absolute;top: 27px;font-size:20px;"><a href="tel:{{list.mobile}}">{{list.mobile}}</a>
+								<a href="tel:{{list.mobile}}"></p>
+							<p class="resize" style="position: absolute;top: 57px;"><a href="tel:{{list.tel_area_code}}{{list.tel}}">{%if list.tel_country_code%}{{list.tel_country_code}}-{%endif%}{%if list.tel_area_code%}{{list.tel_area_code}}-{%endif%}{{list.tel}}</a></p>
+							<p class="resize" style="position: absolute;top: 85px;">{{list.weixin}}</p>
+							<p class="resize" style="position: absolute;top: 111px;">{{list.email}}</p>
+							{%endif%}
+
+							<p class="resize" style="position: absolute;top: 140px;">{%if list.domain_zz91%}<a href="http://{{list.domain_zz91}}.m.zz91.com" target="_blank">http://{{list.domain_zz91}}.m.zz91.com</a>{%endif%}</p>
+							<p class="resize" style="position: absolute;top: 167px;">{{list.fax}}</p>
+							<p class="resize" style="position: absolute;top: 196px;">{{list.address}}</p>
+							{%endif%}
+						</div>
+					</section>
+					<!-------------slide9---------------->
+					<section class="swiper-slide swiper-slide9">
+						<div class="zzhao"></div>
+						<div class="resize ani" style="width: 280px;height: 30px;top: 55px;left: 20px;z-index: 3;z-index: 3;color: #fff;text-align: center;" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0s" class="resize ani">{{list.name}}</div>
+						<p class="resize ani" style="width: 280px;height: 2px;top: 98px;left: 20px;z-index: 3;z-index: 3;background-color: #fcff00;" swiper-animate-effect="zoomIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s" class="resize ani"></p>
+						<img src="{{htmlincludes.img}}images/jiantou.png" style="width: 21px;height: 22px;top: 126px;left: 150px;z-index: 3" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay="0.5s" class="resize ani">
+						<img src="{{htmlincludes.img}}images/shaowen.png" style="width: 123px;height: 13px;top: 165px;left: 97px;z-index: 3" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay="1.5s" class="resize ani">
+						<img src="http://pyapp.zz91.com/getqiyexiupic{{company_id}}.html" style="width: 136px;height: 136px;top: 192px;left: 94px;z-index: 3" swiper-animate-effect="bounceInDown" swiper-animate-duration="1s" swiper-animate-delay="2s" class="resize ani">
+					</section>
+					<!-------------slide10---------------->
+					<section class="swiper-slide swiper-slide10">
+						<div class="resize ani" style="width: 280px;height: 30px;top: 55px;left: 20px;z-index: 3;z-index: 3;color: #fff;text-align: center;" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="0s" class="resize ani">ZZ91再生网制作！</div>
+						<p class="resize ani" style="width: 280px;height: 2px;top: 98px;left: 20px;z-index: 3;z-index: 3;background-color: #fcff00;" swiper-animate-effect="zoomIn" swiper-animate-duration="1s" swiper-animate-delay="0.5s" class="resize ani"></p>
+						<img src="{{htmlincludes.img}}images/zz91logo.png" style="width: 131px;height: 131px;top: 161px;left: 94px;z-index: 4" swiper-animate-effect="fadeInDown" swiper-animate-duration="1s" swiper-animate-delay="1s" class="resize ani">
+						<img src="{{htmlincludes.img}}images/yz.png" style="width: 200px;height: 200px;top: 161px;left: 94px;z-index: 3" swiper-animate-effect="fadeInUp" swiper-animate-duration="1s" swiper-animate-delay="1s" class="resize ani">
+					</section>
+				</div>
+				<img src="{{htmlincludes.img}}images/arrow.png" style="width:46px;height:46px; top:380px; left:150px;" id="array" class="resize">
+				<img src="{{htmlincludes.img}}images/music_bg.png" style="width:46px;height:46px; top:30px; right:15px;" id="music" class="music">
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+	</body>
+	<script>
+		var muisc_audio = document.getElementById('voidmusic')
+		document.getElementById('music').onclick = function() {
+			if (this.className != "") {
+				this.className = "";
+				muisc_audio.pause();
+			} else {
+				this.className = "music";
+				muisc_audio.play();
+			}
+		}
+		var mubindex = true;
+		function load() {
+			document.addEventListener('touchstart', touch, false);
+			function touch(event) {
+				if (mubindex) {
+					muisc_audio.play();
+				}
+				mubindex = false;
+			}
+	
+		}
+	
+	
+		window.addEventListener('load', load, false);
+		var swiper = new Swiper('.swiper-container-gg', {
+			pagination : '.swiper-pagination-pp',
+			effect : 'cube',
+			grabCursor : true,
+			cube : {
+				shadow : true,
+				slideShadows : true,
+				shadowOffset : 20,
+				shadowScale : 0.94
+			}
+		});
+		scaleW = window.innerWidth / 320;
+		scaleH = window.innerHeight / 480;
+		var resizes = document.querySelectorAll('.resize');
+		for (var j = 0; j < resizes.length; j++) {
+			resizes[j].style.width = parseInt(resizes[j].style.width) * scaleW + 'px';
+			resizes[j].style.height = parseInt(resizes[j].style.height) * scaleH + 'px';
+			resizes[j].style.top = parseInt(resizes[j].style.top) * scaleH + 'px';
+			resizes[j].style.left = parseInt(resizes[j].style.left) * scaleW + 'px';
+		}
+		var resizebtm = document.querySelectorAll('.resizebtm');
+		for (var j = 0; j < resizebtm.length; j++) {
+			resizebtm[j].style.width = parseInt(resizebtm[j].style.width) * scaleW + 'px';
+			resizebtm[j].style.height = parseInt(resizebtm[j].style.height) * scaleH + 'px';
+			resizebtm[j].style.left = parseInt(resizebtm[j].style.left) * scaleW + 'px';
+		}
+		var mySwiper = new Swiper('.swiper-container', {
+			direction : 'vertical',
+			pagination : '.swiper-pagination',
+			//virtualTranslate : true,
+			mousewheelControl : true,
+			onInit : function(swiper) {
+				swiperAnimateCache(swiper);
+				swiperAnimate(swiper);
+			},
+			onSlideChangeEnd : function(swiper) {
+				swiperAnimate(swiper);
+			},
+			onTransitionEnd : function(swiper) {
+				swiperAnimate(swiper);
+			},
+			loop : true,
+			loopAdditionalSlides : 1,
+			watchSlidesProgress : true,
+			onProgress : function(swiper) {
+				for (var i = 0; i < swiper.slides.length; i++) {
+					var slide = swiper.slides[i];
+					var progress = slide.progress;
+					var translate = progress * swiper.height / 4;
+					scale = 1 - Math.min(Math.abs(progress * 0.5), 1);
+					var opacity = 1 - Math.min(Math.abs(progress / 2), 0.5);
+					slide.style.opacity = opacity;
+					es = slide.style;
+					es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = 'translate3d(0,' + translate + 'px,-' + translate + 'px) scaleY(' + scale + ')';
+				}
+			},
+			onSetTransition : function(swiper, speed) {
+				for (var i = 0; i < swiper.slides.length; i++) {
+					es = swiper.slides[i].style;
+					es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = speed + 'ms';
+				}
+			},
+		})
+	</script>
+	{%include "html/mobile/comm/footer.html"%}
+
+</html>

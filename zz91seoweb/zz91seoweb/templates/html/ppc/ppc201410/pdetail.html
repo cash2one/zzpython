@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/base.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/style.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/salesroom.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico" />
+<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+<title>供求列表-{{list.name}}</title>
+<meta content="{{list.business}}" name="description"/>
+<meta content="{{list.ctags}}" name="keywords"/></head></head>
+<style>
+.path{line-height:30px;height: 30px;overflow: hidden;border-bottom: 1px solid #e0e0e0;}
+.path span{padding-left: 5px;}
+.detail-tit{line-height:32px; font-size:16px; text-align:left;}
+/* 联系方式页面css */
+.contact-detail{ margin:20px 0 0 5px;}
+.contact-detailt{ width:535px; height:290px; border:1px solid #f1f1f1; border-top:2px solid #dd3c48;}
+.contact-detailb{ width:535px; height:10px; background:url(../images/con-way.jpg) no-repeat;}
+.card-imgdetail{ margin:20px 0 0 25px; height:77px;}
+.card-imgdetail img{width:77px; height:77px; float:left;}
+.card-imgdetail p{ height:27px; line-height:27px; margin:0 0 6px 0;}
+.card-imgdetail  strong{ font-size:14px; margin:0 15px 0 0;}
+.card-imgdetail small{ font-size:18px; font-family:Arial; font-weight:bold;}
+.card-person{ float:left; margin:10px 0 0 23px;}
+.contact-detailt h4{ height:36px; line-height:36px;font-size:18px; padding:0 0 0 20px; margin:15px 0 0 0;font-family:微软雅黑,  Microsoft YaHei, 黑体, Helvetica, 宋体, sans-serif;background:#ededed;font-weight: normal;}
+.card-info{ margin:22px 0 0 0; padding:0 0 0 35px;}
+.card-info p{ line-height:25px;}
+.text-in222{ text-indent:47px;}
+.text-in333{ text-indent:24px;}
+.contactway-map{ width:728px; height:420px; margin:30px auto 300px;}
+/*图片垂直居中*/
+.pic-mid i{display:inline-block; height:100%; vertical-align:middle;}
+.pic-mid img{vertical-align:middle;}
+/*产品图片*/
+.pro-gallery{width:309px; height:377px; border:1px solid #f1f1f1; overflow:hidden; margin-top:20px;}
+.g-con{ height:309px; width:309px; text-align:center;display: table-cell;vertical-align: middle;}
+.g-con img{max-height:309px; max-width:309px; _zoom:expression( function(elm) { if (elm.width > 309 || elm.height > 309 ){ if (elm.width>elm.height) { elm.width=309; } else{ elm.height=309; } } elm.style.zoom = '1'; }(this) );}
+.g-nav{height:49px; padding:9px 0; position:relative; border-top:1px solid #f1f1f1;}
+.g-lst{height:49px; overflow:hidden; position:relative; left:11px;}
+.g-lst li{float:left; height:47px; width:47px; overflow:hidden; margin-right:10px; border:1px solid #f1f1f1;text-align:center;}
+.g-lst .act{border-color:#faa937;}
+.small-btpic{width:49px; height:49px;display:table-cell; vertical-align:middle;}
+.g-lst img{max-height:47px; max-width:47px; _zoom:expression( function(elm) { if (elm.width > 47 || elm.height > 47 ){ if (elm.width>elm.height) { elm.width=47; } else{ elm.height=47; } } elm.style.zoom = '1'; }(this) );}
+.g-pre,.g-nex{position:absolute; top:9px; height:49px; width:31px;}
+.g-pre{background:url(../images/bigbg.png) no-repeat -31px -280px; left:0;}
+.g-pre:hover{background-position:0 -280px;}
+.g-nex{background:url(../images/bigbg.png) no-repeat -93px -280px; right:0;}
+.g-nex:hover{background-position:-62px -280px;}
+/*产品价格信息*/
+.info-wrap{width:420px; padding-top:20px;}
+.pro-price{border-bottom:1px solid #f1f1f1;}
+.count,.price{float:left;}
+.info-dt{line-height:2;}
+.count{width:100px; height:60px; border-right:1px solid #f1f1f1;}
+.price{padding-left:25px;}
+.price em{margin-right:8px; font:bold 26px arial,sans-serif;color: #fd7522;}
+.pro-dis{
+line-height:2;
+padding-top: 8px;
+padding-right: 0;
+padding-bottom: 10px;
+padding-left: 0;
+}
+.pro-dis span{display:inline-block; width:80px; text-align:left;}
+.bt-ask,.bt-contact{float:left; text-indent:-100%; overflow:hidden;}
+.bt-ask{height:36px; width:133px; margin-right:12px; background:url(../images/bigbg.png) no-repeat 0 -210px;}
+.bt-ask:hover{ background:url(../images/bigbg.png) no-repeat 0 -511px;}
+.bt-contact{height:34px; width:131px; background:url(../images/bigbg.png) no-repeat 0 -246px;}
+.bt-contact:hover{background:url(../images/bigbg.png) no-repeat 0 -547px;}
+/*产品详情*/
+.detail-yang{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #666;
+	border-top-width: 1px;
+	border-top-style: dotted;
+	border-top-color: #666;
+	line-height:35px;
+}
+.detail-yang .yangprice{
+	float:left;
+	margin-left:20px;
+}
+.detail-yang .yangprice font{
+	font-size: 26px;
+	color: #F30;	
+}
+.detail-yang .logo{
+	background-image: url(http://img0.zz91.com/zz91/newsample/images/yang.jpg);
+	height: 22px;
+	width: 24px;
+	float:left;
+	margin-top:10px;
+}
+.d-yang{
+	
+}
+.d-yang .d-yang-img{
+	float:left;
+	width:175px;
+	height:130px;
+	background-image: url(../images/ny.gif);
+	background-repeat: no-repeat;
+	background-position: 30px 30px;
+	margin-top:10px;
+	margin-bottom:10px;
+	border-right-width: 1px;
+	border-right-style: dotted;
+	border-right-color: #999;	
+}
+.d-yang .d-yang-content{
+	float:left;
+	width:550px;
+	line-height:28px;
+	margin-left:20px;
+	margin-top:10px;
+}
+.d-yang .d-yang-content .ny{
+	margin-top:10px;
+}
+.d-yang .d-yang-content li{
+	width:250px;
+	float:left;
+}
+.detail-con{margin-top:16px; padding-bottom:10px;}
+.d-tabnav{height:31px; position:relative; border-bottom:1px solid #f1f1f1; background:url(../images/bg-tab.jpg) repeat-x 0 0;}
+.collectcss{width:85px; height:23px;position:absolute; top:3px; right:10px; background:#0F0; z-index:11; text-indent:-99999px;}
+.collectcss a{ display:block;width:85px; height:23px; background:url(../images/collect.jpg) no-repeat 0 0;}
+.collectcss a:hover{ background:url(../images/collect.jpg) no-repeat 0 -23px;}
+.collectcss1{width:85px; height:23px;position:absolute; top:3px; right:10px; background:#0F0; z-index:11; text-indent:-99999px;}
+.collectcss1{display:block;width:85px; height:23px; background:url(../images/collect.jpg) no-repeat 0 -46px;}
+.tab-lst{height:32px; position:absolute; top:0; left:13px;}
+.tab-lst li{float:left; padding:2px 16px 0; line-height:30px; cursor:pointer;}
+.tab-lst .tab-cur{font-weight:bold;  padding-top:0; border-top:2px solid; border-left:1px solid #f1f1f1; border-right:1px solid #f1f1f1;background-color: #fff;}
+/*分享*/
+.product-share{width:600px; height:27px; position:absolute; top:0; right:0; margin-top:3px;}
+.product-share1{float:left; width:380px; height:27px; line-height:27px; text-align:right;}
+
+
+/*用户可编辑内容*/
+.content{width:712px; padding:8px 33px 8px 25px; overflow:hidden;}
+.content p{line-height:1.7;}
+.con-lst{width:100%; padding-bottom:6px; border-bottom:1px solid #f1f1f1; margin-bottom:11px;}
+.con-lst li{width:30%; line-height:2; float:left;}
+.prodesc{font-size: 14px;}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+		$(".g-nav li").mouseover(function(){
+			$(".g-nav li").removeClass("act");
+			$(this).addClass("act");
+			$(".g-con img").attr("src",$(this).attr("o-src"));
+		});
+		$(".tab-lst li").click(function(){
+			$(".tab-lst li").removeClass("tab-cur");
+			$(this).addClass("tab-cur");
+			if ($(this).attr("o-data")=="content")
+			{
+				$(".content").css("display","");
+				//$(".pro-hint").css("display","");
+				$(".contact-detailt").css("display","none");
+			}else{
+				$(".content").css("display","none");
+				//$(".pro-hint").css("display","none");
+				$(".contact-detailt").css("display","");
+			}
+		});
+});
+</script>
+<body>
+
+{%include htmlincludes.topinclude%}
+
+<div class="upd">
+
+{%include htmlincludes.leftinclude%}
+
+  </div>
+	<!-- 右面主题板块-->
+<div class="main-wrap product_detail_tabs fr">
+		<!-- detail -->
+	<div class="path">
+		<a href="/ppc/index{{company_id}}.htm" title="{{list.name}}">{{list.name}}</a><span>></span>
+        <a href="/ppc/zxgq{{company_id}}.htm" title="供求信息">供求信息</a><span>></span>
+		{{productsdetail.products_type}}{{productsdetail.title}}
+	</div>
+	<div class="detail-wrap">
+		
+		<div class="clf">
+			<div class="pro-gallery fl" id="proGallery">
+				<div class="g-con pic-mid">
+                    <a href="http://trade.zz91.com/pic/{{id}}.html" target="_blank">
+                    <img src="{{productsdetail.defaultimages}}" alt="{{productsdetail.title}}" />
+                    </a>
+				</div>
+				<div class="g-nav">
+					<ul class="g-lst pic-mid">
+                    {%for pic in productsdetail.piclist%}
+						<li class o-src="{{pic.images_big}}">
+							<a href="javascript:;" class="small-btpic"><img src="{{pic.images}}" alt="{{productsdetail.title}}" /></a>
+						</li>
+                    {%endfor%}
+					</ul>
+				</div>
+			</div>
+			<div class="info-wrap fr">
+				
+				<div class="pro-dis">
+                	<h1 class="detail-tit">{{productsdetail.products_type}}{{productsdetail.title}}</h1>
+                    {%if laidbflag%}
+                    	<div class="detail-yang">
+                        	<div class="logo"></div>
+                            <div class="yangprice">拿样价格：<font>{{laidblist.take_price}}</font> 元</div>
+                            <div class="clear"></div>
+                        </div>
+                    {%endif%}
+                	{%if productsdetail.price%}
+                	<p><span>{{productsdetail.products_type}}价格：</span></a>{{productsdetail.price}}</p>
+                    {%endif%}
+                    {%if productsdetail.total_quantity%}
+                    <p><span>总量：</span></a>{{productsdetail.total_quantity}}{{productsdetail.quantity_unit}}</p>
+                    {%endif%}
+                    {%if productsdetail.listmore%}
+						
+						{%for ll in productsdetail.listmore%}
+							{%if ll.content%}
+								<p><span>{{ll.property}}：</span>{{ll.content}} </p>
+							{%endif%}
+						{%endfor%}
+					{%endif%}
+                    {%if productsdetail.location%}
+					<p><span>现货所在地：</span></a>{{productsdetail.location}}</p>
+					{%endif%}
+					<p><span>公司所在地：</span>{{list.province}}</p>
+                    <p><span>发布日期：</span>{{productsdetail.refresh_time}}</p>
+                    <!--<p><span>信息有效期：</span>{{productsdetail.expire_time}}</p> -->
+				</div>
+
+<div class="card-imgdetail" style="margin:0px;border:1px solid #E0E0E0;width:{%if list.ppcphone_zhuan%}385{%else%}280{%endif%}px">
+	<div class="card-person" style="margin:5px;width:{%if list.ppcphone_zhuan%}385{%else%}280{%endif%}px">
+    	<img onerror="this.onerror=null;this.src='images/ldblogo.jpg'" src="images/ldblogo.jpg" style="height:60px;width:60px" alt="{{list.contact}}" />
+		<p><strong>&nbsp;&nbsp;{{list.contact}} </strong>{{list.position}}</p>
+		<p>&nbsp;&nbsp;免费服务电话：<small>{{list.ppcphone}}{%if list.ppcphone_zhuan%} {{list.ppcphone_zhuan}}{%endif%}</small></p>
+	</div>
+</div>
+
+				<!--<div class="clf">-->
+					<!--<a href="contact{{company_id}}.htm" class="bt-contact" rel="nofollow">查看联系方式</a>-->
+				<!--</div>-->		
+			</div>
+		</div>
+		<div class="detail-con">
+        {%if laidbflag%}
+        <p class="lst-tit">样品交易信息</p>
+				<div class="d-yang">
+                	<div class="d-yang-img"></div>
+                    <ul class="d-yang-content">
+                    	<li>拿样价格：{{laidblist.take_price}}元</li>
+                        <li>运费：{{laidblist.send_price}}元 {%ifequal laidblist.is_cashdelivery 1%}(支持货到付款){%endifequal%}</li>
+                        <li>样品数量：{{laidblist.amount}}件</li>
+                        <li>发货地址：{{laidblist.area_code}}</li>
+                        <li>单位重量：{{laidblist.weight}}千克/件</li>
+                        <li>支付方式：支持支付宝交易</li>
+                        <div class="clear"></div>
+                        <a href="http://yang.zz91.com/sale/{{id}}.htm" class="bt-ask J_fsxjd ny" target="_blank">申请拿样</a>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/tradedetails/css/details_style.css"/>
+<br /><br />
+                    </ul>
+                </div>
+             {%endif%}
+             <div class="clear"></div>
+			<div class="d-tabnav">
+            
+                <ul class="tab-lst">
+					<li class="tab-cur" o-data="content">供求详情</li>
+					<li o-data="contact">联系方式</li>
+				</ul>
+				<div class="product-share" >
+				 <span class="product-share1">分享到：</span>
+				<!-- Baidu Button BEGIN -->
+                            <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+                            <a class="bds_qzone"></a>
+                            <a class="bds_tsina"></a>
+                            <a class="bds_tqq"></a>
+                            <a class="bds_renren"></a>
+                            <a class="bds_t163"></a>
+                            <span class="bds_more">更多</span>
+                            <a class="shareCount"></a>
+                            </div>
+                            <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6712776" ></script>
+                            <script type="text/javascript" id="bdshell_js"></script>
+                            <script type="text/javascript">
+                            document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+                            </script>
+                            <!-- Baidu Button END -->
+							
+				</div>
+			</div>
+			<div class="content">
+				
+				<div class="prodesc">
+					{{productsdetail.detailsfull|safe}}
+				</div>
+			</div>
+		</div>
+	</div>
+   
+    <!-- end detail -->
+	
+	<div class="contact-detailt" style="display:none">
+		<div class="card-imgdetail">
+			<img onerror="this.onerror=null;this.src='http://img0.zz91.com/front/images/esite/logo.gif'" src="http://img0.zz91.com/front/images/esite/logo.gif" />
+			<div class="card-person">
+				<p>
+					<strong>{{list.contact}}</strong>
+					 {{list.position}}
+				</p>
+				<p>电话：<small>{{list.ppcphone}}{%if list.ppcphone_zhuan%} {{list.ppcphone_zhuan}}{%endif%}</small></p>
+				<div></div>
+			</div>
+		</div>
+		<h4>{{list.name}}</h4>
+		<div class="card-info">
+			{%if list.ppcphone%}
+			<p class="text-in222">电话：<span>{{list.ppcphone}}{%if list.ppcphone_zhuan%} {{list.ppcphone_zhuan}}{%endif%}</span></p>
+			{%endif%}
+			{%if list.address%}
+			<p class="text-in222">地址：{{list.address}}</span></p>
+			{%endif%}
+			{%if list.address_zip%}
+			<p class="text-in222">邮编：<span>{{list.address_zip}}</span></p>
+			{%endif%}
+		</div>
+	</div>
+	<!-- end related -->
+</div>  
+<!-- 右面主题板块结束-->	
+  <div style="clear:both"></div>
+</div>
+<div style="clear:both"></div>
+{%include htmlincludes.buttominclude%}
+</body>
+</html>

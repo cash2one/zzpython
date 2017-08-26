@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{label}}网_{{label}}市场_求购{{label}}价格-ZZ91再生网</title>
+<meta name="keywords" content="{{label}},{{label}}网,求购{{label}},出售{{label}},{{label}}价格,{{label}}市场,{{label}}厂家,{{label}}转让">
+<meta name="description" content="ZZ91旗下{{label}}网是国内最权威、时效性最强的二手设备专业网站，为您及时发布{{label}}市场,求购{{label}}价格,出售{{label}},让{{label}}厂家在求购和出售过程中节省宝贵的时间！">
+<meta name="author" content="ZZ91再生网" />
+<meta name="robots" content="all" />
+{% include 'daohang/nav_cssjs.html' %}
+</head>
+<body>
+{% include 'daohang/nav.html' %}
+{% include 'daohang/head_ershou.html' %}
+        <div style="clear:both"></div>
+
+        <!--box list start-->
+
+    	<div id="sbody">
+
+    	  <div id="sbody_left">
+<div><script type="text/javascript" src="http://gg.zz91.com/show?p=374&keywords={{adkeywords}}"></script></div>
+            <div id="sbody_left_area">
+			{%if offerSalesinfo%}
+              <div id="sbody_left_content">
+
+                <div id="sbody_left_title">
+
+                  <h3>出售{{label}}</h3>
+
+                </div>
+
+                <div id="sbody_left_list">
+
+                  <ul>
+
+                    {% for list in offerSalesinfo %}
+
+                        <li><a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target="_blank" title="{{list.title}}" class="listleft" ><font style="font-size:14px">出售{{list.title}}</font></a><span id="content_time_style">{{list.gmt_time}}</span></li>
+
+                    {% endfor %}
+                  </ul>
+
+                </div>
+
+                <div id="morelink"><a href="http://trade.zz91.com/offerlist--a1--b--c--d--e--f--p1--{{label}}.htm" rel="nofollow" id="more_style2" target="_blank" title="更多出售{{label}}信息">>>>更多</a></div>
+
+              </div>
+              {%endif%}
+                        
+               <div style="clear:both"></div>
+               
+              {%if offerBuyinfo%}
+              <div id="sbody_left_content">
+
+                <div id="sbody_left_title">
+
+                  <h3>求购{{label}}</h3>
+
+                </div>
+
+                <div id="sbody_left_list">
+
+                  <ul>
+
+                        {% for list in offerBuyinfo %}
+                        <li><a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target="_blank"  class="listleft" title="{{list.title}}"><font style="font-size:14px">求购{{list.title}}</font></a><span id="content_time_style">{{list.gmt_time}}</span></li>
+                        {% endfor %}
+                  </ul>
+
+                </div>
+
+                <div id="morelink"><a href="http://trade.zz91.com/offerlist--a2--b--c--d--e--f--p1--{{label}}.htm" rel="nofollow" id="more_style2" target="_blank" title=" 更多{{label}}出售|求购{{label}}信息">>>>更多</a></div>
+
+              </div>
+              {%endif%}
+
+            </div>
+
+<div style="clear:both"></div>
+    	    <div id="sbody_left_area">
+             
+  	      </div>
+
+  	    </div>
+<div id="sbody_middle"></div>
+<div id="sbody_right">
+
+                    	<div id="sbody_right_style">
+
+            				<div class="sbody_right_style_tit">
+
+                			<h3>{{label}}市场产品大全</h3>
+
+            				</div>
+
+		    				<div class="right_content_list">
+							{% for list in tagsinfo %}
+                            <a href="http://tags.zz91.com/tagssearchList/{{list.name}}/" rel="nofollow" class='tag{{list.n}}' target="_blank" title="{{list.name}}">{{list.name}}</a> | 
+							{% endfor %}
+		                    
+
+                         </div>
+
+           		  </div>
+                        {%if huzhuInfo_new%}
+                                 <div id="sbody_right_style" style="margin-top:8px;">
+
+                			<div class="sbody_right_style_tit">
+
+                	  			<h3>最新{{keywords3}}资讯排行榜</h3>
+
+                			</div>
+							<div>
+                            <ul style="padding-left:10px;">
+                            	{% for list in huzhuInfo_new %}
+
+                                    <li>· <a href="http://huzhu.zz91.com/viewReply{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a></li>
+            
+                                {% endfor %}
+                            </ul>
+                            </div>
+                    		<div class="right_content_list"><a href="http://huzhu.zz91.com/" rel="nofollow" id="more_style" target="_blank" title="更多最新{{keywords3}}资讯排行榜">>>>更多最新{{keywords3}}资讯排行榜</a>
+
+                			</div>
+
+                    	</div>  
+                        {% endif %}
+                        {%if priceInfo_new%}
+<div id="sbody_right_style" style="margin-top:8px;">
+
+                			<div class="sbody_right_style_tit">
+
+                	  			<h3>{{keywords2}}价格行情</h3>
+
+                			</div>
+							<div>
+                            <ul style="padding-left:10px;">
+                            	{% for list in priceInfo_new %}
+
+                                    <li>· <a href="http://price.zz91.com/priceDetails_{{list.id}}.htm" target="_blank" title="{{list.title}}"><font style="font-size:14px">{{list.title}}</font></a></li>
+            
+                                {% endfor %}
+                            </ul>
+                            </div>
+                    		<div class="right_content_list"><a href="http://price.zz91.com/priceSearch.htm?title={{keywords2}}" rel="nofollow" id="more_style" target="_blank" title="更多{{keywords2}}价格行情">>>>更多{{keywords2}}价格行情</a>
+
+                			</div>
+
+                    	</div>
+                        {% endif %}             
+ {% include 'daohang/right_trade.html' %}
+                	</div>
+
+            	</div>
+
+</div>
+
+        </div>    
+
+<!--box list end-->
+{% include 'daohang/bottom_nofollowlab.html' %}
+</div>
+</body>
+</html>

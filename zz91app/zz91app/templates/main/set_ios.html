@@ -1,0 +1,83 @@
+<ul class="mui-table-view" >
+	{%if company_id%}
+	{%else%}
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right">
+			<font color="red">您还未登录</font><button class="mui-btn mui-pull-left mui-btn-blue" onclick="gotourl('/login/?tourl=','blank');">登录</button>
+		</a>
+	</li>
+	{%endif%}
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" href="javascript:gotourl('/huzhu/','blank')">
+			再生互助
+		</a>
+	</li>
+	
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" href="javascript:gotourl('/news/','blank')">
+			资讯中心
+		</a>
+	</li>
+</ul>
+<ul class="mui-table-view" style="margin-top: 25px;">	
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" href="javascript:openblank('/order/business.html')">
+			我的商机订阅
+		</a>
+	</li>
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" href="javascript:openblank('/myrc_favorite/');">
+			我的收藏夹
+		</a>
+	</li>
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" href="javascript:openblank('/qianbao/')">
+			再生钱包
+		</a>
+	</li>
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" onclick="gotourl('forgetpasswd.html','reg')">
+			忘记密码
+		</a>
+	</li>
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" onclick="getcachefunction()">
+			清空缓存<span id="cachesize" style="float: right;"></span>
+		</a>
+	</li>
+</ul>
+<!--<ul class="mui-table-view" style="margin-top: 25px;">
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" onclick="ioscheckupdate()">
+			检查新版本<span id="visiton" style="float: right;"></span>
+		</a>
+	</li>
+</ul>-->
+<ul class="mui-table-view" style="margin-top: 25px;">
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" href="javascript:gotourl('/ldb_weixin/about.html','blank');">
+			关于我们
+		</a>
+	</li>
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" href="javascript:gotourl('/fk.html','blank');">
+			意见反馈
+		</a>
+	</li>
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" href="javascript:gotourl('/ldb_weixin/contact.html','blank');">
+			联系我们
+		</a>
+	</li>
+</ul>
+{%if company_id%}
+<ul class="mui-table-view" style="margin-top: 25px;" id="zhifufangshi">
+	<li class="mui-table-view-cell">
+		<a style="text-align: center;color: #FF3B30;" onclick="loginout()">
+			退出账号
+		</a>
+	</li>
+</ul>
+{%endif%}
+<div style="height: 20px;">&nbsp;</div>
+<input type="hidden" id="appnavname" value="设置" />

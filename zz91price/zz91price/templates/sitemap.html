@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset>
+{%for alist in listall%}
+  {%for list in alist%}
+  <url>
+    <loc>{{list.loc}}</loc>
+    <lastmod>{{list.lastmod}}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>{{list.priority}}</priority>
+  </url>
+  {%endfor%}
+  {%endfor%}
+</urlset>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>我的</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/win_user.css" />
+	</head>
+
+	<body>
+		<div class="login" tapmode="">
+			<div class="login-header-btn close" tapmode="" onclick="closeWin()"></div>
+			<div class="loginbg"></div>
+			<img src="../image/profile_default.png" alt="" style="width:80px;height:80px;border-radius:40px;" class="personal_logo">
+			<div class="userinfo">
+				<div class="title">
+					点击登录
+				</div>
+				<!--<div class="subtitle">
+					常居地：北京
+				</div>-->
+			</div>
+			<img src="../image/personal_icon_arrow.png" alt="" class="person_arrow">
+		</div>
+		<!-- 第一块 -->
+		<div class="firstblock">
+			<!--<div class="item" tapmode="presshover" onclick="openNewWindow('messages','../html/my_messages.html','我的消息')">
+				<img src="../image/frame04covermsg.png" alt="" class="item_ico">
+				<span>我的消息</span>
+				<img src="../image/arrow.png" alt="" class="item_arrow">
+			</div>-->
+			<div class="h1"></div>
+			<div class="item" tapmode="presshover" onclick="openNewWindow('my_favorite_list','../html/my_favorite_list.html','我的收藏')">
+				<img src="../image/my_favorite_user_icon_normal.png" alt="" class="item_ico">
+				<span>我的收藏</span>
+				<img src="../image/arrow.png" alt="" class="item_arrow">
+			</div>
+			<div class="h1"></div>
+			<div class="item" tapmode="presshover" onclick="openNewWindow('my_pinlun','../html/my_pinlun.html','我的评论')">
+				<img src="../image/my_review_user_icon_normal.png" alt="" class="item_ico">
+				<span>我的评论</span>
+				<img src="../image/arrow.png" alt="" class="item_arrow">
+			</div>
+			<div class="h1"></div>
+			<div class="item" tapmode="presshover" onclick="openNewWindow('histroy','../html/my_history.html','最近浏览')">
+				<img src="../image/my_history_user_icon_normal.png" alt="" class="item_ico">
+				<span>最近浏览</span>
+				<img src="../image/arrow.png" alt="" class="item_arrow">
+			</div>
+		</div>
+		<!-- 第三块 -->
+		<div class="h10"></div>
+		<div class="thirdblock">
+			<div class="item" tapmode="presshover" onclick="openSetting()">
+				<img src="../image/my_setting_user_icon_normal.png" alt="" class="item_ico">
+				<span>设置</span>
+				<img src="../image/arrow.png" alt="" class="item_arrow">
+			</div>
+		</div>
+		<div class="h10"></div>
+		<div class="h10"></div>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript" src="../script/jquery.js"></script>
+	<script type="text/javascript" src="../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../script/jQuery.md5.js"></script>
+	<script type="text/javascript" src="../script/common.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			checkLoginStatus();
+			fixIos7Bar($(".header"));
+		};
+
+		function openNewWindow(name, url,wintitle) {
+			var pageParam={'wintitle':wintitle};
+			openWin(name,url,pageParam)
+		}
+
+		function checkLoginStatus() {
+				
+			//api.showProgress({title:'加载中',model:false});
+			//alert(UserInfo.memberID())
+			if (UserInfo.has_login()) {
+				api.ajax({
+				    url: hosturl+'/sex/show_member.html?mid='+UserInfo.memberID(),
+				    method: 'get',
+				    timeout: 30,
+				    dataType: 'json',
+				    returnAll:false,
+				    data:{}
+				},function(ret,err){
+				    if (ret) {
+				    	$(".title").html(ret.uname)
+				        if(ret.face.length!=0){
+				        	$(".personal_logo").attr("src",ret.face)
+				        }
+				    }else {
+				        //api.alert({
+				            //msg:('错误码：'+err.code+'；错误信息：'+err.msg+'网络状态码：'+err.statusCode)
+				        //});
+				        UserInfo.clear();
+				    }
+				    api.hideProgress();
+				});
+				//$(".title").html(UserInfo.username())
+			}
+		}
+
+		function closeWin() {
+			api.closeWin({})
+		}
+
+		function openSetting() {
+			api.openWin({
+				name: 'landing',
+				url: './win_setting.html',
+				bounces: false,
+				delay: 200
+			});
+		}
+		$(".login").on("click", function() {
+			if (UserInfo.has_login()) {
+				var infourl="./my_info.html";
+			}else{
+				var infourl="./frm_login.html";
+			}
+			api.openWin({
+				name: 'login',
+				url: infourl,
+				bounces: false,
+				delay: 200
+			});
+		})
+	</script>
+
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{% include 'comm/seo.html' %}
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/price/new/css/main/style.css"/>
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css"/>
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script language="javascript" type="text/javascript" src="/My97DatePicker/WdatePicker.js"></script>
+<script src="http://img0.zz91.com/zz91/price/new/chart/flash.js"></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+<script src="http://img0.zz91.com/zz91/pricesearch/style.js"></script></head>
+<script>
+function send1()
+{
+document.form.action="/chart/{{id}}.html"
+document.form.submit()
+}
+function turnpage() {
+	var page1=document.getElementById("page1").value;
+	if (page1<1)
+	{
+	page1=1;
+	}
+	window.location.href='/chart/{{id}}-'+page1+'.html';
+}
+jQuery(function($){
+    $('#pricechart').flash({ 
+       swf        : '/chart/beechart-line.swf',
+       width      : 600,
+       height     : 360, 
+       flashvars  : {
+			w:500,
+			h:200,
+			dataUrl : '/pricecharturl.html?chartarg={{chartarg}}',
+			cssUrl : '/flash/chart.css'
+		}
+    });
+});
+</script>
+</head>
+<body>
+{% include 'comm/top.html' %}{% include 'comm/mid.html'%}
+	<div class="part">
+    	<div class="item">
+        	<div class="item-zb">
+            	<div class="item-zb-tle">您所在的位置：<a href="/" target="_blank">行情报价首页</a> > <a href="http://price.zz91.com/channel/wasteMetal.htm" target="_blank">废金属行情列表</a> > {{label}}趋势图</div>
+                <!--end item-zb-tle-->
+                <div class="item-zb-box">
+                	<div class="item-zb-box-tle">品名：{{assistname}}-{{label}}-{{area}}</div>
+                    <!--end item-zb-box-tle-->
+                    <form name="form">
+                    <div class="item-zb-box-info">
+                    	{%if area%}
+                    	<div class="zb-info-item">
+                          <div class="zb-info-item-sel">
+                        	<select name="area">
+								{%if area%}<option value="{{area}}">{{area}}</option>{%endif%}
+								<option value="">--地区</option>
+								{%for ar in arealist%}
+								<option value="{{ar.label}}">{{ar.label}}</option>
+								{%endfor%}
+							</select>
+                          </div>
+                        </div>
+                        {%endif%}
+                        <!--end zb-info-item-->
+                        <div class="zb-info-item">
+                        	<div class="zb-info-item-txt">时间：</div>
+                            <div class="zb-info-item-date">
+                            	<input class="Wdate" name="gmt_begin" {%if gmt_begin%}value="{{gmt_begin}}"{%endif%} type="text" style="width:100px" onclick="WdatePicker()"> - <input class="Wdate" name="gmt_end" {%if gmt_end%}value="{{gmt_end}}"{%endif%} type="text" style="width:100px" onclick="WdatePicker()">
+                            </div>
+                            <!--end zb-info-item-date-->
+                            <div class="cb"></div>
+                        </div>
+                        <!--end zb-info-item-->
+                        <div class="zb-info-item">
+                        	<div class="zb-info-item-btn" onClick="send1()">确定</div>
+                        </div>
+                        <!--end zb-info-item-->
+                        <div class="cb"></div>
+                    </div>
+                    </form>
+                    
+                    <!--end item-zb-box-info-->
+                    <div class="item-zb-box-pic" id="pricechart">
+
+
+                    
+                    </div>
+                    <!--end item-zb-box-pic-->
+                    <div class="item-zb-box-ps">本信息仅供参考，ZZ91再生网力求准确可靠，但不作为您投资决策的唯一因素!</div>
+                    <!--end item-zb-box-ps-->
+                </div>
+                <!--end item-zb-box-->
+                <div class="item-zb-tab">
+                
+                相关标签 {%for tag in tgslist%}<a href="/s/{{tag.tag_hex}}-0" target="_blank"> &nbsp;{{tag.tag}}</a> {%endfor%}<br /><br />
+                
+                	<table class="zb-tab" cellpadding="0" cellspacing="0" border="0">
+                    	<tr>
+                        	<td class="zb-tab-td0">时间</td>
+                        	{%for pf in listname%}
+                            <td class="zb-tab-td1">{{pf}}</td>
+                        	{%endfor%}
+                            <td class="zb-tab-td">商家报价</td>
+                        </tr>
+{%for pl in plist%}
+                        <tr>
+                        	<td class="zb-tab-td_">{{pl.postdate}}</td>
+                        	
+                        	{%for field in pl.listvalue%}
+                        	<td class="zb-tab-td_"><a href="{{pl.purl}}" target="_blank">{{field|safe}}</a></td>
+                        	{%endfor%}
+                        	
+                            <td class="zb-tab-td_" id="zb-tab-td_No"><a href="/s/{{pl.hexptitle}}-1/" target="_blank">{{pl.company_numb}}家</a></td>
+                        </tr>
+{%endfor%}
+                    </table>
+                </div>
+                <!--end item-zb-tab-->
+                <div class="page">
+                {% if firstpage %}
+      			   <div class="page-style"> <a href="/chart/{{id}}-{{prvpage}}.html{%if area%}?area={{area}}{%endif%}">上一页</a> </div>
+      			{%endif%}
+      				  <ul>
+      				  {%for pg in page_range%}
+      				  {%if pg.nowpage%}
+        				<li> <a style="background:#eaeaea;font-weight:bold">{{pg.number}}</a> </li>
+        			  {%else%}
+        				<li> <a href="/chart/{{id}}-{{pg.number}}.html{%if area%}?area={{area}}{%endif%}">{{pg.number}}</a> </li>
+        			  {%endif%}
+        			  {%endfor%}
+      				 </ul>
+      		   {% if lastpage%}
+      			   <div class="page-style"> <a href="/chart/{{id}}-{{nextpage}}.html{%if area%}?area={{area}}{%endif%}">下一页</a> </div>
+     			{%endif%}
+     			   <div class="page-txt">共{{page_listcount}}页</div>
+      			   <div class="page-confirm" onClick="turnpage()">确定</div>
+      			   <div class="page-style_">
+                   	<div class="page-style-info">到 </div>
+                    <!--end page-style-info-->
+                    <div class="page-style-info"><input type="text" id="page1" value=""></div>
+                    <!--end page-style-info-->
+                    <div class="page-style-info">页</div>
+                    <!--end page-style-info-->
+                    <div class="cb"></div>
+                   </div>
+    		     </div>
+                 <!--end page-->
+                 <div class="item-zb-box-tle_">
+                 	<div class="zb-tle-name">{{label}}相关商家报价</div>
+                    <!--end zb-tle-name-->
+                    <div class="zb-tle-a"><a href="/s/{{hexlabel}}-1/" target="_blank">更多</a></div>
+                    <!--end zb-tle-a-->
+                    <div class="cb"></div>
+                 </div>
+                 <!--end item-zb-box-tle_-->
+                 <div class="item-zb-tab">
+                	<table class="zb-tab" cellpadding="0" cellspacing="0" border="0">
+                    	<tr>
+                        	<td class="zb-tab-td0">产品</td>
+                            <td class="zb-tab-td1">地区</td>
+                            <td class="zb-tab-td">报价</td>
+                            <td class="zb-tab-td">商家</td>
+                        </tr>
+{%for abl in aboucomplist%}
+                        <tr>
+                            <td class="zb-tab-td_"><a href="{{abl.url}}" target="_blank">{{abl.td_title}}</a></td>
+                            <td class="zb-tab-td_">{{abl.province}} {{abl.city}}</td>
+                            <td class="zb-tab-td_">{{abl.price}}</td>
+                            <td class="zb-tab-td_"><a href="{{abl.url}}" target="_blank">{{abl.companyname}}</a></td>
+                        </tr>
+{%endfor%}
+                    </table>
+                </div>
+                <!--end item-zb-tab-->
+            </div>
+            
+            <!--end item-zb-->
+            <div class="item-yb">
+	            <div class="cb"></div>
+	            <style>
+	            .cplist li{float:left;padding:5px;border:solid 1px #ccc;margin:3px;}
+	            </style>
+	            <div class="item-yb-box_">
+	                 <div class="item-yb-box-tle">相关产品</div>
+	                 <div class="item-yb-box-info">
+	                    <ul class=cplist>
+						{%for list in cplist%}
+							<li><a href="http://www.zz91.com/cp/{{list.pingyin}}/" target=_blank title="{{list.label}}">{{list.label}}</a></li>
+						{%endfor%}
+						</ul>
+						<div class="cb"></div>
+	                 </div>
+	        	</div>
+            	<div class="item-yb-box_">
+                	<div class="item-yb-box-tle">{{label}}行情导读</div>
+                    <div class="item-yb-box-info">
+                    	<ul>
+                    	{%for hq in hangqinglist%}
+                        	<li><a href="{{hq.url}}" target="_blank">{{hq.td_title}}</a></li>
+                        {%endfor%}
+                        </ul>
+                    </div>
+                    <!--end item-yb-box-info-->
+                </div>
+                <!--end item yb-box-->
+                <div class="item-yb-box-info" style="margin-bottom: 10px;"><center>
+            <script type="text/javascript">
+			    /*新老站 资讯中部 250*250，创建于2013-12-9*/
+			    var cpro_id = "u1429359";
+			</script>
+			<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+			</center></div>
+                
+                {%ifequal maintypename "废金属"%}
+                <div class="item-yb-box">
+                	<div class="yb-box-bg">
+                    	<div class="yb-bg-tab">
+                        	<table class="bg-tab" cellspacing="0" border="0">
+                            	<tr>
+                                	<td><a href="/feitong/" target="_blank">废铜</a></td>
+                                    <td><a href="/feixi/" target="_blank">废锡</a></td>
+                                    <td><a href="/feilv/" target="_blank">废铝</a></td>
+                                    <td><a href="/feitie/" target="_blank">废铁</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a href="/feimutai/" target="_blank">废鉬鈦</a></td>
+                                	<td><a href="/feidianping/" target="_blank">废电瓶</a></td>
+                                    <td><a href="/feigangcaigoujia/" target="_blank">废钢采购</a></td>
+                                    <td><a href="/guowaifeijinshu/" target="_blank">国外废金属</a></td>
+                                </tr>
+                                <tr>
+                                	<td><a href="/feiqianfeixin/" target="_blank">废铅废锌</a></td>
+                                    <td><a href="/feinie/" target="_blank">废镍</a></td>
+                                    <td><a href="/shengtie1/" target="_blank">生铁</a></td>
+                                    <td><a href="/feigang1/" target="_blank">废钢</a></td>
+                                </tr>
+                                <tr>
+                                	<td><a href="/wangshangbaojia1/" target="_blank">网上报价</a></td>
+                                    <td><a href="/feibuxiugang/" target="_blank">废不锈钢</a></td>
+                                    <td><a href="" target="_blank"></a></td>
+                                    <td><a href="" target="_blank"></a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--end yb-bg-tab-->
+                        <div class="yb-bg-tab">
+                        	<table class="bg-tab" cellspacing="0" border="0">
+                            	<tr>
+                                	<td><a href="/shanghaijibenjinshu/" target="_blank">上海基本金属</a></td>
+                                    <td><a href="/gediyouse/" target="_blank">各地有色</a></td>
+                                    <td><a href="/shanghaixiaojinshu/" target="_blank">上海小金属</a></td>
+                                </tr>
+                                <tr>
+                                	<td><a href="/shanghaijinshufenmo/" target="_blank">上海金属粉末</a></td>
+                                    <td><a href="/changjiangyouse/" target="_blank">长江有色</a></td>
+                                    <td><a href="/huatongxianhuo/" target="_blank">华通现货</a></td>
+                                </tr>
+                                <tr>
+                                	<td><a href="/qihuo/" target="_blank">LME/期货价格</a></td>
+                                    <td><a href="/shanghaihejin/" target="_blank">上海合金</a></td>
+                                    <td><a href="" target="_blank"></a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--end yb-bg-tab-->
+                        <div class="yb-bg-tab" style="padding-bottom:12px">
+                        	<table class="bg-tab" cellspacing="0" border="0">
+                            	<tr>
+                                	<td><a href="/shanghaiguijinshu/" target="_blank">上海贵金属</a></td>
+                                    <td><a href="/huatongguijinshu/" target="_blank">华通贵金属</a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--end yb-bg-tab-->
+                    </div>
+                    <!--end yb-box-bg-->
+                    <div class="yb-box-bg-tle">其他废金属</div>
+                    <!--end yb-box-bg-tle-->
+                    <div class="yb-box-bg-tle_">现货/有色</div>
+                    <!--end yb-box-bg-tle-->
+                    <div class="yb-box-bg-tle_p">贵金属</div>
+                    <!--end yb-box-bg-tle-->
+                </div>
+                {%endifequal%}
+                {%ifequal maintypename "废塑料"%}
+                 <div class="item-yb-box">
+                	<div class="yb-box-bg">
+                    	<div class="yb-bg-tab">
+                        	<table class="bg-tab" cellspacing="0" border="0">
+                            	<tr>
+                                	<td><a href="/pet/" target="_blank">PET</a></td>
+                                    <td><a href="/abs/" target="_blank">ABS</a></td>
+                                    <td><a href="/ldpe/" target="_blank">LDPE</a></td>
+                                    <td><a href="/pp/" target="_blank">PP</a></td>
+                                    <td><a href="/pvc/" target="_blank">PVC</a></td>
+                                </tr>
+                                <tr>
+                                	<td><a href="/pmma/" target="_blank">PMMA</a></td>
+                                    <td><a href="/pc/" target="_blank">PC</a></td>
+                                    <td><a href="/pa/" target="_blank">PA</a></td>
+                                    <td><a href="/eva/" target="_blank">EVA</a></td>
+                                    <td><a href="/hips/" target="_blank">HIPS</a></td>
+                                </tr>
+                                <tr>
+                                	<td><a href="/gpps/" target="_blank">GPPS</a></td>
+                                    <td><a href="/hdpe/" target="_blank">HDPE</a></td>
+                                    <td><a href="/lldpe/" target="_blank">LLDPE</a></td>
+                                    <td><a href="/ps/" target="_blank">PS</a></td>
+                                    <td><a href="" target="_blank"></a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--end yb-bg-tab-->
+                    </div>
+                    <!--end yb-box-bg-->
+                    <div class="yb-box-bg-tle">热门{{maintypename}}行情</div>
+                    <!--end yb-box-bg-tle-->
+                </div>
+                {%if suliao_zaowan%}
+                <!--end item-yb-box-->
+                <div class="item-yb-box_">
+                	<div class="item-yb-box-tle">{{maintypename}}早参/晚报</div>
+                    <div class="item-yb-box-info">
+                    	<ul>
+                    	{%for slzw in suliao_zaowan%}
+                        	<li><a href="{{slzw.url}}" target="_blank">{{slzw.td_title}}</a></li>
+                        {%endfor%}
+                        </ul>
+                    </div>
+                    <!--end item-yb-box-info-->
+                </div>
+                {%endif%}
+                <!--end item yb-box_-->
+                <div class="item-yb-box_">
+                	<div class="item-yb-box-tle">{{maintypename}}评论</div>
+                    <div class="item-yb-box-info">
+                    	<ul>
+                    	{%for slpl in suliao_pinglun%}
+                        	<li><a href="{{slpl.url}}" target="_blank">{{slpl.td_title}}</a></li>
+                        {%endfor%}
+                        </ul>
+                    </div>
+                    <!--end item-yb-box-info-->
+                </div>
+                <!--end item yb-box_-->
+                {%endifequal%}
+                
+                {%if marketlist%}
+           <div class="item-yb-box_">
+               <div class="item-yb-box-tle">产业带</div>
+                  <div class="item-yb-box-info">
+                    <ul>
+					{%for l in marketlist%}
+                        <li><a href="http://y.zz91.com/{{l.words}}/" title="{{l.name}}" target="_blank">{{l.name}}{%if list.company_num%}({{list.company_num}}){%endif%}</a></li>
+					{%endfor%}
+                    </ul>
+                 </div>
+           </div>
+           {%endif%}
+                <!--end item-yb-box-->
+                <div class="item-yb-block">
+                	<div class="yb-box-bg">
+                    	<div class="yb-bg-info" style="padding-left:10px;">
+                        	<script src="http://pyapp.zz91.com/showppctxtadscript/?keywords={{lable}}&amp;showposition=&amp;m=8&amp;w=240&amp;showborder=1&amp;adposition=636"></script>
+                        </div>
+                        <!--end yb-bg-info-->
+                    </div>
+                    <!--end yb-box-bg-->
+                    <div class="item-yb-block-tle">来电宝专区</div>
+                    <!--end ietm-yb-block-tle-->
+                </div>
+                <!--end item-yb-block-->
+            </div>
+            <!--end item-yb-->
+            <div class="cb"></div>
+        </div>
+        <!--end item-->
+    </div>
+    <!--end part-->
+<div style="width:100%;">
+	<div style="width:960px;margin:0 auto;text-align:center;">
+		{% include 'comm/buttom.html' %}
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body><form id="form1" name="form1" method="post" action="/index-data-add-more/">
+<table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#FFFFFF">title
+      
+        <textarea name="title" cols="50" rows="10" id="title"></textarea>
+        link
+      <input type="text" name="linkurl1" id="linkurl1" />
+      sort
+      <input name="sort" type="text" id="sort" value="0" />
+      <input type="submit" name="button" id="button" value="添加" />
+      <input type="hidden" name="category_code" id="category_code" value="{{category_code}}" /></td>
+  </tr>
+</table></form>
+<br />
+<table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#FFFFFF">id</td>
+    <td bgcolor="#FFFFFF">category_code</td>
+    <td bgcolor="#FFFFFF">title</td>
+    <td bgcolor="#FFFFFF">link</td>
+    <td bgcolor="#FFFFFF">is_checked</td>
+    <td bgcolor="#FFFFFF">sort</td>
+    <td bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+  {%for list in listall%}
+  <tr>
+    <td bgcolor="#FFFFFF">{{list.id}}</td>
+    <td bgcolor="#FFFFFF">{{list.category_code}}</td>
+    <td bgcolor="#FFFFFF">{{list.title}}</td>
+    <td bgcolor="#FFFFFF">{{list.link}}</td>
+    <td bgcolor="#FFFFFF">{{list.is_checked}}</td>
+    <td bgcolor="#FFFFFF">{{list.sort}}</td>
+    <td bgcolor="#FFFFFF"><a href="/indexdata/?category_code={{category_code}}&amp;del=1&amp;id={{list.id}}" onclick="return confirm('确实要删除吗？')">删除</a></td>
+  </tr>
+  {%endfor%}
+</table>
+</body>
+</html>

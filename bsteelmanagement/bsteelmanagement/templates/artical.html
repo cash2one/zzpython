@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Csss/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Csss/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Csss/style.css" />
+    <script type="text/javascript" src="arg.js"></script>
+    <script type="text/javascript" src="Jss/jquery.js"></script>
+    <script type="text/javascript" src="Jss/jquery.sorted.js"></script>
+    <script type="text/javascript" src="Jss/bootstrap.js"></script>
+    <script type="text/javascript" src="Jss/ckform.js"></script>
+    <script type="text/javascript" src="Jss/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<form class="form-inline definewidth m20">  
+
+<select name="typeid" style="width:100px">
+{%if typeid%}<option value="{{typeid}}">{{typename}}</option>{%endif%}
+    <option value="">请选择栏目...</option>{%for type in typelist%}
+    <option value="{{type.id}}">{{type.name}}</option>{%endfor%}
+</select>
+
+    标题：
+    <input type="text" style="width:180px" name="stitle" {%if stitle%}value={{stitle}}{%endif%} id="rolename"class="abc input-default" placeholder="">&nbsp;&nbsp;  
+  <select name="sort" style="width:80px">
+<option value="">排序...</option>
+<option value=1>更新时间</option>
+<option value=2>点击量</option>
+</select>
+    <button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" onClick="window.location.href='/bssteel/addartical.html'">添加文章</button>
+</form>
+<form name="form">
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>文章id</th>
+        <th>选择</th>
+        <th>标题</th>
+        <th>发布时间</th>
+        <th>更新时间</th>
+        <th>类别</th>
+        <th>点击</th>
+        <th>发布人</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+<input type="hidden" name="type_id" value="{{type_id}}">
+    {%for srt in listall%}
+	     <tr>
+            <td>{{srt.id}}</td>
+			<td><input type="checkbox" name="checkAll" value="{{srt.id}}"></td>
+			<td><a href="updateartical.html?id={{srt.id}}">{{srt.title}}</a></td>
+			<td>{{srt.gmt_created}}</td><td>{{srt.sortrank}}</td>
+			<td><a href="?typeid={{srt.typeid}}">{{srt.typename}}</a></td>
+			<td>{{srt.click}}</td><td>{{srt.editor}}</td>
+			<td><a href="updateartical.html?id={{srt.id}}">编辑</a></td>
+        </tr>
+     {%endfor%}
+     
+        </table>
+</form>
+    &nbsp;&nbsp;&nbsp;&nbsp;<button type="checkbox" class="btn btn-success" id="selAll" onClick="selectAll();">全选</button>
+	&nbsp;&nbsp;<button type="checkbox" class="btn btn-success" id="selAll" onClick="inverse();">取消</button>
+	<input type="button" class="btn btn-success" value="删除" onClick=send1()>
+
+<div class="inline pull-right page">
+	
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+        
+{% if firstpage %}<a href="?page={{prvpage}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}<a href="?page={{nextpage}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+     
+<a href='?page=1' >首页</a><a href='?page={{page_listcount}}' >尾页</a> 
+     </div>
+</body>
+</html>

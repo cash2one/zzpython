@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>底部-刷新</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+</head>
+  <style>
+    .footer span{
+      width: 25%;
+      float: left;
+      text-align: center;
+      height: 50px;
+      border-top: 1px solid #e1e1e1;
+      position: relative;
+      line-height: 50px;
+      padding-top: 10px;
+      background-color: #f2f2f2;
+      color: #959595
+    }
+    .footer span i{
+      display: block;
+      height: 15px;
+      width: 15px;
+      background-image: url(../../image/imageslist.png);
+      background-size: 250px;
+      position: absolute;
+      left: 50%;
+      margin-left: -7px;
+      top: 7px;
+
+    }
+    .gonew{
+      border-right:1px solid #e1e1e1;
+    }
+    .footer .gonew i{
+      background-position: -135px -0px;
+    }
+    .footer .notinto i{
+      background-position: -135px -17px;
+    }
+  </style>
+<body>
+<div id="wrap">
+  <!-- <div id="main">
+  </div> -->
+  <div class="footer">
+    <span class="gonew j_moreInfo"><i></i>刷新</span>
+    <span class="gonew j_allinfo"><i></i>一键刷新</span>
+    <span class="gonew j_autoinfo"><i></i><span style="color:#FF9000">自动刷新</span></span>
+    <span class="notinto j_notOut"><i></i>暂不发布</span>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+ apiready = function(){
+    $(".j_allinfo").on("click",function(){
+        var jsfun = 'funcGoto();';
+        api.execScript({
+            name: 'buyinout',
+            frameName: 'frame_0',
+            script: "allinfo()"
+        });
+    })
+    $(".j_moreInfo").on("click",function(){
+        var jsfun = 'funcGoto();';
+        api.execScript({
+            name: 'buyinout',
+            frameName: 'frame_0',
+            script: "moreInfo()"
+        });
+    })
+    $(".j_notOut").on("click",function(){
+        var jsfun = 'funcGoto();';
+        api.execScript({
+            name: 'buyinout',
+            frameName: 'frame_0',
+            script: "notOut()"
+        });
+    })
+    $(".j_autoinfo").on("click",function(){
+        var pageParam = {
+			wintitle : "供求自动刷新",
+			type : "serviceshow12",
+			bounces : false,
+		};
+		openWin("serviceshow12", "../service/show12.html", pageParam);
+    })
+    
+ }
+</script>
+</html>

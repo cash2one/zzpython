@@ -1,0 +1,49 @@
+<style>
+.content,.content p{font-size:18px}
+</style>
+<div class="news_detail">
+	<h4>{{content.title|safe}}</h4>
+	<hr />
+	<div class="time">发布时间：{{content.pubdate}} 来源：ZZ91 浏览量：{{content.click}}</div>
+	<div class="content">
+		{{content.content|safe}}
+	</div>
+	{%if typenews%}
+	<div class="relevantnews">相关资讯</div>
+	<ul class="mui-table-view ">
+	{%for list in typenews%}
+		<li class="mui-table-view-cell"><a href="/news/newsdetail{{list.id}}.html" class="mui-navigate-right">{{list.title}}</a></li>
+	{%endfor%}
+	</ul>
+	{%endif%}
+</div>
+<nav class="mui-bar mui-bar-tab" style="display: none;" id="newsnav">
+	<a id="defaultTab" class="mui-tab-item mui-active" href="javascript:shareSystem()">
+		<span class="mui-icon mui-icon-upload"></span>
+		<span class="mui-tab-label">分享</span>
+	</a>
+	<a class="mui-tab-item" href="javascript:favorite('&content_id={{id}}&favorite_type_code=10091012&title={{content.title}}')">
+		<span class="mui-icon mui-icon-star"></span>
+		<span class="mui-tab-label">收藏</span>
+	</a>
+	<!--<a class="mui-tab-item" href="tab-webview-subpage-contact.html">
+		<span class="mui-icon mui-icon-chat"></span>
+		<span class="mui-tab-label">评论</span>
+	</a>-->
+</nav>
+<img id="pic" src="../img/add.png"/>
+<input type="hidden" value="{{content.title|safe}}" id="sharetitle" />
+<textarea id="sharecontent" rows="3" style="display: none;">我正在查看{{title}}，赶紧跟我一起来体验！http://m.zz91.com/priceviews/?id={{id}} 点击链接查看</textarea>
+<input type="hidden" id="zsharehref" value="http://m.zz91.com/news/newsdetail{{id}}.htm">
+<input type="hidden" id="zsharehrefTitle" value="{{content.title|safe}}">
+<input type="hidden" id="zsharehrefDes" value="我正在查看{{content.title|safe}}，赶紧跟我一起来体验！http://m.zz91.com/news/newsdetail{{id}}.htm 点击链接查看">
+<div class="favorite" style="display: none;padding: 20px;">
+	<br />
+	<div style="text-align: left;font-size: 18px;width: 80%;">
+		收藏成功,您可以在“生意管家-我的收藏夹”中查看。
+	</div>
+	<br />
+	<button onclick="closeoverlay()" class="mui-btn mui-btn-danger">  知道了    </button>
+	<br />
+</div>
+<input type="hidden" id="appnavname" value="资讯详情-资讯中心" />

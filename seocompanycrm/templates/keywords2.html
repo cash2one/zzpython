@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="../Css/style.css" />
+    <script type="text/javascript" src="../Js/jquery.js"></script>
+    <script type="text/javascript" src="../function.js"></script>
+    <script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="../Js/bootstrap.js"></script>
+    <script type="text/javascript" src="../Js/ckform.js"></script>
+    <script type="text/javascript" src="../Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+<script>
+$(function(){
+	$('.updatebaidu').click(function(){
+		var keywords_id=$(this).attr("keywords_id")
+   		$("#baidu"+keywords_id).html('<img src="../loading.gif" />')
+		//alert(keywords_id);
+		$.ajax({
+		   type: "GET",
+		   url: "/updateranking/",
+		   data: "keywords_id="+keywords_id,
+		   //dataType: "json",
+		   //cache:false,
+		   //contentType: "application/json; charset=utf-8", 
+		   success:function(data){
+		   		$("#baidu"+keywords_id).html(data)
+		   		//alert(data);
+		   },
+		   error:function(data){
+				//alert("错误!青重试.");
+		   }
+		}); 
+	 });
+});
+</script>
+</head>
+<body>
+
+<form class="form-inline definewidth m20">  
+<div style="font-size:16px">
+&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="button" class="{%ifequal chargetype "1"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?chargetype=1{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}'">包年关键词</button>&nbsp;&nbsp;
+<button type="button" class="{%ifequal chargetype "2"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?chargetype=2{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}'">包天关键词</button>&nbsp;&nbsp;
+<br /><br />
+总数:<font color="green">{{listcount}}</font>&nbsp;
+单数:<font color="green">{{listcount1}}</font>&nbsp;
+<button type="button" class="{%ifequal keywords_type "1"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?keywords_type=1{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}'">所有关键词</button>&nbsp;&nbsp;
+<button type="button" class="{%ifequal keywords_type "8"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?keywords_type=8{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}'">在线关键词</button>&nbsp;&nbsp;
+<button type="button" class="{%ifequal keywords_type "2"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?keywords_type=2{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}'">达标关键词</button>&nbsp;&nbsp;
+<button type="button" class="{%ifequal keywords_type "3"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?keywords_type=3{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}'">未达关键词</button>&nbsp;&nbsp;
+<button type="button" class="{%ifequal keywords_type "4"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?keywords_type=4{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}'">包年到期关键词</button>&nbsp;&nbsp;
+<button type="button" class="{%ifequal keywords_type "6"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?keywords_type=6{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}'">欠费关键词</button>&nbsp;&nbsp;
+<button type="button" class="{%ifequal keywords_type "7"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?keywords_type=7{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}'">丢单关键词</button>&nbsp;&nbsp;
+{%ifequal username "yunying"%}
+<button type="button" class="{%ifequal keywords_type "5"%}btn btn-primary{%else%}btn btn-success{%endifequal%}" onClick="window.location.href='?keywords_type=5{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if company_name%}&company_name={{company_name}}{%endif%}{%if mail%}&mail={{mail}}{%endif%}{%if mobile%}&mobile={{mobile}}{%endif%}{%if shopsaddress%}&shopsaddress={{shopsaddress}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}'">已删除关键词</button>&nbsp;&nbsp;
+{%endifequal%}
+</div><br />
+{%if chargetype%}<input type="hidden" name="chargetype" value="{{chargetype}}">{%endif%}
+{%if keywords_type%}<input type="hidden" name="keywords_type" value="{{keywords_type}}">{%endif%}
+邮箱: <input type="text" style="width:90px" name="mail" value="{%if mail%}{{mail}}{%endif%}">
+商铺地址: <input type="text" style="width:90px" name="shopsaddress" value="{%if shopsaddress%}{{shopsaddress}}{%endif%}">
+关键词: <input type="text" style="width:90px" name="keywords" value="{%if keywords%}{{keywords}}{%endif%}">
+公司名称: <input type="text" style="width:90px" name="company_name" value="{%if company_name%}{{company_name}}{%endif%}">
+手机: <input type="text" style="width:90px" name="mobile" value="{%if mobile%}{{mobile}}{%endif%}"><br /><br />
+开始优化时间: 
+<input class="Wdate" style="width:100px" type="text" name="begintime" id="datebegin" onClick="WdatePicker()"> 
+到 <input class="Wdate" style="width:100px" type="text" name="begintime2" id="dateend" onClick="WdatePicker()">
+
+{%ifequal username "seo"%}
+优化人员:  
+<select name="seo_id" style="width:130px">
+{%if seouser_id%}<option value="{{seouser_id}}">{{seouser_name}}</option>{%endif%}<option value=""><font class="s8px">--选择SEO人员</font></option>
+{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+{%ifequal username "sales"%}
+优化人员:  
+<select name="seo_id" style="width:130px">
+{%if seouser_id%}<option value="{{seouser_id}}">{{seouser_name}}</option>{%endif%}<option value=""><font class="s8px">--选择SEO人员</font></option>
+{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+{%ifequal usertype "salesman"%}
+优化人员:  
+<select name="seo_id" style="width:130px">
+{%if seouser_id%}<option value="{{seouser_id}}">{{seouser_name}}</option>{%endif%}<option value=""><font class="s8px">--选择SEO人员--</font></option>
+{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+
+{%ifequal username "seo"%}&nbsp;&nbsp;&nbsp;
+销售人员:
+<select name="sales_id" style="width:130px">
+{%if sales_id%}<option value="{{sales_id}}">{{sales_name}}</option>{%endif%}<option value=""><font class="s8px">--选择销售人员</font></option>
+{%for seo in salesuser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+{%ifequal username "sales"%}&nbsp;&nbsp;&nbsp;
+销售人员:
+<select name="sales_id" style="width:130px">
+{%if sales_id%}<option value="{{sales_id}}">{{sales_name}}</option>{%endif%}<option value=""><font class="s8px">--选择销售人员</font></option>
+{%for seo in salesuser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+{%ifequal usertype "seouser"%}&nbsp;&nbsp;&nbsp;
+销售人员:
+<select name="sales_id" style="width:130px">
+{%if sales_id%}<option value="{{sales_id}}">{{sales_name}}</option>{%endif%}<option value=""><font class="s8px">--选择销售人员--</font></option>
+{%for seo in salesuser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+{%ifequal usertype "company"%}&nbsp;&nbsp;&nbsp;
+销售人员:
+<select name="sales_id" style="width:130px">
+{%if sales_id%}<option value="{{sales_id}}">{{sales_name}}</option>{%endif%}<option value=""><font class="s8px">--选择销售人员--</font></option>
+{%for seo in salesuser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+{%endifequal%}
+<button type="submit" class="btn btn-primary"> 查询</button>&nbsp;&nbsp;
+
+<input type="button" class="btn btn-success" value="一键更新排名" onclick="window.location.href='?update=1&{{searchurl}}'">
+</form>
+
+<form name="form">
+<input type="hidden" name="company_id" value="{{company_id}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+<input type="hidden" id="seo_id" name="seo_id">
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr  align="center">
+	<th bgcolor="#FFFFFF">&nbsp;</th>
+	<th nowrap="nowrap" bgcolor="#CCCCCC">商铺地址</th>
+	<th nowrap="nowrap" bgcolor="#CCCCCC">邮箱</th>
+	<th nowrap="nowrap" bgcolor="#CCCCCC">公司名</th>
+	{%ifnotequal usertype "company"%}
+	<th nowrap="nowrap" bgcolor="#CCCCCC">SEO备注</th>
+	{%endifnotequal%}
+	<th nowrap="nowrap" bgcolor="#CCCCCC">关键词</th>
+	<th nowrap="nowrap" bgcolor="#CCCCCC">百度排名</th>
+	<th nowrap="nowrap" bgcolor="#CCCCCC">达标要求</th>
+	<th nowrap="nowrap" bgcolor="#CCCCCC">历史排名</th>
+	<th nowrap="nowrap" bgcolor="#CCCCCC">计费方式</th>
+	<th nowrap="nowrap" bgcolor="#CCCCCC">付款数 <a href="?sortrank={%ifequal sortrank "10"%}11{%else%}10{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↑</a></th>
+	{%if chargetype%}
+	{%ifequal chargetype "2"%}
+	<th nowrap="nowrap" bgcolor="#CCCCCC">余额 <a href="?sortrank={%ifequal sortrank "3"%}6{%else%}3{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↑</a></th>
+	{%endifequal%}
+	{%else%}
+	<th nowrap="nowrap" bgcolor="#CCCCCC">余额 <a href="?sortrank={%ifequal sortrank "3"%}6{%else%}3{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↑</a></th>
+	{%endif%}
+	<th nowrap="nowrap" bgcolor="#CCCCCC">开始优化时间 <a href="?sortrank={%ifequal sortrank "1"%}7{%else%}1{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↑</a></th>
+	<th nowrap="nowrap" bgcolor="#CCCCCC">达标时间 <a href="?sortrank={%ifequal sortrank "4"%}8{%else%}4{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↑</a></th>
+	
+	{%if chargetype%}
+	{%ifequal chargetype "1"%}
+	<th nowrap="nowrap" bgcolor="#CCCCCC">到期时间<a href="?sortrank={%ifequal sortrank "2"%}9{%else%}2{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↓</a></th>
+	{%endifequal%}
+	{%else%}
+	<th nowrap="nowrap" bgcolor="#CCCCCC">到期时间<a href="?sortrank={%ifequal sortrank "2"%}9{%else%}2{%endifequal%}{%if chargetype%}&chargetype={{chargetype}}{%endif%}{%if keywords_type%}&keywords_type={{keywords_type}}{%endif%}{%if sales_id%}&sales_id={{sales_id}}{%endif%}{%if seouser_id%}&seo_id={{seouser_id}}{%endif%}{%if begintime%}&begintime={{begintime}}{%endif%}{%if begintime2%}&begintime2={{begintime2}}{%endif%}">↓</a></th>
+	{%endif%}
+	{%ifnotequal usertype "company"%}
+	<th nowrap="nowrap" bgcolor="#CCCCCC">优化人</th>
+	{%endifnotequal%}
+	<th nowrap="nowrap" bgcolor="#CCCCCC">销售人员</th>
+	{%ifequal username "seo"%}
+	<th nowrap="nowrap" bgcolor="#CCCCCC">操作</th>
+	{%endifequal%}
+	{%ifequal username "sales"%}
+	<th nowrap="nowrap" bgcolor="#CCCCCC">操作</th>
+	{%endifequal%}
+	{%ifequal username "yunying"%}
+	<th nowrap="nowrap" bgcolor="#CCCCCC">操作</th>
+	{%endifequal%}
+	</tr>
+    </thead>
+    	{%for list in list_keywords.list%}
+	<tr align="center">
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><input type="checkbox" name="checkAll" value="{{list.id}}" id="checkAll" onclick="setSelectAll();"></td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="http://{{list.shopsaddress}}" target="_blank">{{list.shopsaddress}}</a></td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.mail}}</td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF">
+	{%ifnotequal usertype "company"%}
+	<a href="http://192.168.2.2/admin1/crmlocal/crm_cominfoedit.asp?mail={{list.mail}}&dotype=vappaycomp" target="_blank">{{list.company_name}}</a>
+	{%else%}
+	{{list.company_name}}
+	{%endifnotequal%}
+	</td>
+	{%ifnotequal usertype "company"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/keywordsremarks/?keywords_id={{list.id}}" target="_blank">备注</a></td>
+	{%endifnotequal%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="http://www.baidu.com/s?wd={{list.keywords}}&ie=utf-8" target="_blank">{{list.keywords}}</a></td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><div id="baidu{{list.id}}">{{list.baidu_ranking}}</div></td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF">第{{list.standarddemand}}页</td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF">
+	<!--<a href="/updateranking/?keywords_id={{list.id}}">更新</a>-->
+	<a href="javascript:void(0)" keywords_id="{{list.id}}" class="updatebaidu">更新</a>
+	 <a href="/rankinghistory/?keywords_id={{list.id}}" target="_blank">查看</a></td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{%ifequal list.chargetype 1%}包年{%else%}按天{%endifequal%}</td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.price}}元</td>
+	{%if chargetype%}
+	{%ifequal chargetype "2"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.balance}}</td>
+	{%endifequal%}
+	{%else%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.balance}}</td>
+	{%endif%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.begintime}}</td>
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.standardtime}}</td>
+	{%if chargetype%}
+	{%ifequal chargetype "1"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.expire_time}}</td>
+	{%endifequal%}
+	{%else%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.expire_time}}</td>
+	{%endif%}
+	{%ifnotequal usertype "company"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.seouser_name}}</td>
+	{%endifnotequal%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF">{{list.salesman_name}}</td>
+	{%ifequal username "seo"%}
+	{%ifequal keywords_type "5"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/reductionkeywords/?keywords_id={{list.id}}" onclick="return confirm('是否还原信息?')">还原</a></td>
+	{%else%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/delkeywords/?keywords_id={{list.id}}" onclick="return confirm('是否将此信息删除?')">删除</a>/<a href="/updatekeywords/?keywords_id={{list.id}}">修改</a></td>
+	{%endifequal%}
+	{%endifequal%}
+	{%ifequal username "sales"%}
+	{%ifequal keywords_type "5"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/reductionkeywords/?keywords_id={{list.id}}" onclick="return confirm('是否还原信息?')">还原</a></td>
+	{%else%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/delkeywords/?keywords_id={{list.id}}" onclick="return confirm('是否将此信息删除?')">删除</a>/<a href="/updatekeywords/?keywords_id={{list.id}}">修改</a></td>
+	{%endifequal%}
+	{%endifequal%}
+	{%ifequal username "yunying"%}
+	{%ifequal keywords_type "5"%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/reductionkeywords/?keywords_id={{list.id}}" onclick="return confirm('是否还原信息?')">还原</a></td>
+	{%else%}
+	<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="/delkeywords/?keywords_id={{list.id}}" onclick="return confirm('是否将此信息删除?')">删除</a>/<a href="/updatekeywords/?keywords_id={{list.id}}">修改</a></td>
+	{%endifequal%}
+	{%endifequal%}
+	</tr>
+	{%endfor%}
+        
+</table>
+</form>
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="checkbox" class="btn btn-success" id="selAll" onClick="selectAll();">全选</button>
+<button type="checkbox" class="btn btn-success" id="selAll" onClick="inverse();">取消</button>
+{%ifequal username "seo"%}
+<input type="button" class="btn btn-primary" value="分配给" onClick=send1()>
+<select name="seo_id" id="select" onchange="changeSelect()" class="btn btn-success" style="width:100px;height:30px;">
+{%if seo_id%}<option value="{{seo_id}}">{{seo_name}}</option>{%endif%}
+<option value="">请选择...</option>
+{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>&nbsp;&nbsp;
+	{%ifequal keywords_type "7"%}
+<input type="button" class="btn btn-success" value="取消丢单" onClick=send8()>
+	{%else%}
+<input type="button" class="btn btn-success" value="丢单" onClick=send7()>
+	{%endifequal%}
+{%endifequal%}
+{%ifequal username "sales"%}
+<input type="button" class="btn btn-primary" value="分配给" onClick=send9()>
+<select name="seo_id" id="select" onchange="changeSelect()" class="btn btn-success" style="width:100px;height:30px;">
+<option value="">请选择...</option>
+{%for sale in salesuser%}<option value="{{sale.id}}">{{sale.name}}</option>{%endfor%}
+</select>&nbsp;&nbsp;
+	{%ifequal keywords_type "7"%}
+<input type="button" class="btn btn-success" value="取消丢单" onClick=send8()>
+	{%else%}
+<input type="button" class="btn btn-success" value="丢单" onClick=send7()>
+	{%endifequal%}
+{%endifequal%}
+        
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<a href='?page=1&{{searchurl}}' >首页</a><a href='?page={{page_listcount}}&{{searchurl}}' >尾页</a> 
+</div>
+</body>
+</html>
+<script>
+    $(function () {
+        
+		$('#addnew').click(function(){
+
+				window.location.href="/addcompany/";
+		 });
+
+
+    });
+
+	function del()
+	{
+		
+		
+		if(confirm("确定要删除吗？"))
+		{
+		
+			var url = "index.html";
+			
+			window.location.href=url;		
+		
+		}
+	}
+</script>

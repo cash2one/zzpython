@@ -1,0 +1,16 @@
+{%for list in newslist.list%}
+<li class="mui-table-view-cell">
+	<a class="mui-navigate-right" href="javascript:gotourl('{{appurl}}news/newsdetail{{list.id}}.html','blank');">
+		<!--<div class="mui-pull-left">
+			<img class="mui-media-object mui-pull-left" src="{{list.litpic}}">
+		</div>-->
+		<div class="mui-media-body">
+			<span class="mui-ellipsis">{{list.title|safe}}</span>
+			<!--<div class="mui-text-right">
+                <span class="mui-h5">{{list.pubdate}}</span>
+            </div>-->
+			<div class="mui-clearfix"></div>
+		</div>
+	</a>
+</li>
+{%endfor%}

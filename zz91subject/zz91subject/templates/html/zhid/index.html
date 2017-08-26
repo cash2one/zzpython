@@ -1,0 +1,152 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <title>供求消息置顶</title>
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <meta content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <link rel="stylesheet" href="css/base-min.css">
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+    <style type="text/css">
+        body{
+            max-width: 640px;
+            margin: 0 auto;
+            background: #384478
+        }
+        img{
+            vertical-align: middle;
+        }
+        .band img{
+            width: 100%
+        }
+        .content{
+            padding: 20px 15px 25px;
+        }
+        .canhc{
+            position: relative;
+        }
+        .buymy{
+            width: 100%
+        }
+        .buybtn{
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            width: 134px;
+            margin-left: -67px;
+        }
+        .title{
+            text-align: center;
+            font-size: 24px;
+            color: #fff;
+            height: 75px;
+            line-height: 75px;
+        }
+        .anli-img img{
+            width: 100%
+        }
+        .anzhu{
+            color: #ffecce;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="band"><img src="images/topband.png"></div>
+
+    <div class="content">
+        <div class="canhc">
+            <img src="images/buyimg.png" class="buymy">
+            <a href="http://m.zz91.com/qianbao/shop.html" class="buybtn"><img src="images/buybtn.png" class="buymy"></a>
+        </div>
+        <div class="title">案例</div>
+        <div class="anli-img"><img src="images/buycp.png" class="buymy"></div>
+        <div class="anzhu">注：购买后两个工作日内（节假日自动顺延）工作人员会联系您。</div>
+    </div>
+	<style>
+		.buybutton{
+    		position: fixed;
+    		bottom:0px;
+    		left:0px;
+    		border-radius:0px;
+			text-align:center;
+			font-size:20px;
+			line-height:50px;
+			background-color:#01ba2e;
+			color:#fff;
+			width:100%;
+    	}
+	</style>
+	<div class="buybutton" style="display:none">立即购买</div>
+    <div style="display:none">
+	<script>
+        
+		apiready = function() {
+			$(".canhc").find("a").attr("src","javascript:;")
+			$(".buybutton").css("display","block");
+			$(".canhc").click(function(){
+				openad()
+			})
+			$(".buybutton").click(function(){
+				openad()
+			})
+			function openad(){
+				var pageParam = {
+					wintitle : "供求置顶推广",
+					type : "serviceshow3",
+					bounces : false,
+					url:"widget://html/service/show3.html",
+					wname:"serviceshow3_"
+				};
+				
+				api.openWin({
+					name : "serviceshow3",
+					url : "widget://html/comm/win-blank.html",
+					pageParam : pageParam,
+					bounces : false,
+					vScrollBarEnabled : false,
+					hScrollBarEnabled : false,
+					animation : {
+						type : "push", //动画类型（详见动画类型常量）
+						subType : "from_right", //动画子类型（详见动画子类型常量）
+						duration : 300,                //动画过渡时间，默认300毫秒
+					},
+					showProgress : true,
+					allowEdit:true
+				});
+			}
+		}
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <!--baidu analysis-->
+    <script>
+        var _hmt = _hmt || [];
+        
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</div>
+</body>
+<script>
+</script>
+
+</html>

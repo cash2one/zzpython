@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>BeeChart Demo</title>
+    <script src="http://sjpsega.github.com/beechart/js/beechart/jquery-1.7.2.js"></script>
+    <script src="http://sjpsega.github.com/beechart/js/beechart/flash.js"></script>
+</head>
+<body> <form name="form1" method="get" action="tongji.html">
+<table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30">日期 从 
+     
+        <input type="text" name="fromday" id="fromday">
+        天数
+        <input name="daysnum" type="text" id="daysnum" size="10">
+<input type="submit" name="button" id="button" value="搜索"></td>
+  </tr>
+</table></form>
+
+<div id="chart-container"></div>
+    <script>
+       jQuery(function($){
+            $('#chart-container').flash({ 
+               swf        : 'beechart-line.swf?w=960&h=400',
+               width      : 1040, 
+               height     : 600, 
+               flashvars  : { 
+                  dataUrl : 'tongji_chart.html?fromday={{fromday}}&daysnum={{daysnum}}'
+               } 
+            }); 
+       });
+    </script>
+</body>
+</html>
+

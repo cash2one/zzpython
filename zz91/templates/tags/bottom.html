@@ -1,0 +1,188 @@
+<div style="clear:both"></div>
+<script>
+(function(d, t) {
+    var r = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    r.async = 1;
+    r.src = 'http://www.zz91.com/app/log.htm?' + Math.ceil(new Date/3600000)
+    s.parentNode.insertBefore(r, s);
+})(document, 'script');
+</script>
+<div class="footer">
+    <p>
+        <a href="http://www.zz91.com/about/index.asp" target="_blank">关于我们</a> | <a href="http://www.recyclechina.com/" target="_blank">国际站</a> | <a href="http://www.zz91.com/service/ppt/index.asp" target="_blank">品牌通服务</a> | <a href="http://www.zz91.com/service/zst/" target="_blank">再生通服务</a> | <a href="http://www.zz91.com/cn/helpcenter/" target="_blank">新手指南</a> | <a href="http://www.zz91.com/webmap.html" target="_blank">网站地图</a> | <a href="http://www.zz91.com/hkfs/" target="_blank">支付方式</a> | <a href="http://www.zz91.com/about/question.asp" target="_blank">意见投诉</a> | <a href="http://www.zz91.com/about/linkus.asp" target="_blank">友情链接</a> | <a href="http://www.zz91.com/about/contactus.asp" target="_blank">客服中心</a> | <a href="http://www.zz91.com/about/zhaopin.asp" target="_blank">诚聘英才</a> | <a href="http://daohang.zz91.com/" target="_blank">产品导航</a>
+        <br />
+        全国统一服务热线：0571-56611111 56612345   广告服务：0571-56611688   传真：0571-56637777<br />
+        法律顾问：京衡律师集团事务所 罗益群 律师     RecycleChina &copy; All Rights Reserved ZZ91再生网 版权所有<br />
+        ZZ91再生网为中国物资再生协会副会长单位  中国塑协理事单位<br />
+        并与中国有色金属工业协会、中国塑料协会 、阿里巴巴、《资源再生》杂志等达成战略合作<br />
+    </p>
+    <p>
+       <a href="http://www.idinfo.cn/SignHandle?userID=3301030000102711" target="_blank"><img src="http://img0.zz91.com/front/images/footerpic/gongshang.gif" alt="ZZ91再生网"/></a>
+        <a href="http://www.miibeian.gov.cn/" target="_blank" title="ZZ91再生网"><img src="http://img0.zz91.com/front/images/footerpic/gongshangbeian.gif" alt="ZZ91再生网"/></a>
+        <img src="http://img0.zz91.com/front/images/footerpic/Icp.gif" alt="ZZ91再生网"/>
+        <a href="http://www.cyberpolice.cn/" target="_blank" title="ZZ91再生网"><img src="http://img0.zz91.com/front/images/footerpic/wangjing.gif" alt="ZZ91再生网"/></a>
+        <a href="http://www.pingpinganan.gov.cn/" target="_blank" title="ZZ91再生网"><img src="http://img0.zz91.com/front/images/footerpic/wangjing2.gif" alt="ZZ91再生网"/></a>
+    </p><div class="weChat_code">
+<script type="text/javascript" src="http://gg.zz91.com/show?p=591"></script>
+</div>
+</div>
+
+
+<!--footer end-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F73d9f9d8e887bb907820c69bd605587b' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<!--baidu analysis-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<div id="roll"><div title="回到顶部" id="roll_top"></div><div title="转到底部" id="roll_bottom"></div></div>
+
+<script>
+
+$(document).ready(function(){
+	new zz91SearchSlide("#zz91-searchWeb","TopSeaType","search");
+	$('li.treasureBox').mousemove(function() {
+        $(this).find('ul').slideDown("fast"); //you can give it a speed
+        $(this).find('a').first().addClass('ishover');
+        $(this).find('a').first().removeClass('nohover');
+    });
+    $('li.treasureBox').mouseleave(function() {
+        $(this).find('ul').slideUp("fast");
+        $(this).find('a').first().removeClass('ishover');
+        $(this).find('a').first().addClass('nohover');
+    });
+	var $html = $('html')||{},
+		$window = $(window),
+		$zz91ProdNavBar = $('.zz91ProdNavBar')||{},
+		$rollPosition = $rollPosition||{},
+		$roll = $('#roll')||{},
+		$rollT = $('#roll_top')||{},
+		$rollB = $('#roll_bottom')||{};	
+	$(window).scroll(function(){
+		$rollPosition.l= Math.floor(($html.width()/2)+($zz91ProdNavBar.width()/2)+$roll.width())||'';
+		$roll.css({'left':$rollPosition.l+'px'});
+		if($window.scrollTop()>200){
+			$roll.fadeIn(100).animate({'top':($(this).scrollTop() + $(window).height() -280)}, 0)
+		} else {
+			$roll.fadeOut(300);
+		}
+	});
+	$rollT.click(
+		function(){$('html,body').animate({'scrollTop':'0px'},800);
+		});
+	$rollB.click(
+	   	function(){$('html,body').animate({'scrollTop':$('body').height()},800)
+	});	
+	$zz91ProdNavBar.find('a').click(function(event){
+			event.preventDefault();
+			var  hr= $(this).attr('href');
+			$('html,body').animate({'scrollTop':$(hr).offset().top-60},500);
+			$(hr).parent().attr('class','zz91ProdNav zz91ProdNavOver');
+	});
+	$('.zz91ProdNavBox div').mouseover(function(event){
+		$(this).attr('class','zz91ProdNav zz91ProdNavOver');
+	});
+	$('.zz91ProdNavBox div').mouseout(function(event){
+		$(this).attr('class','zz91ProdNav zz91ProdNavOut');
+	});
+})
+function  creatbackTopbtn(){
+	var btc = document.createElement('div'),
+		$btc  = $(btc);
+	$btc.attr('id','btcontainer');
+	$btc.css({ 'float':'left','width':'1000px','height':'1000px','background-color':'#CCC'});
+	$btc.html('<div class=123><\/div>');
+	return $btc
+}
+//以下为搜索相关
+function topSearch() {
+    var keyWord = document.getElementById("search").value;
+    var type = document.getElementById("TopSeaType");
+	var address_trade = "http://trade.zz91.com",
+		address_price = "http://price.zz91.com";
+    if (keyWord == "" || keyWord.substring(0, "请输入您感兴趣的".length) == "请输入您感兴趣的") {
+        alert("请您输入关键字！");
+        return false;
+	}
+    if (type.value == "1") {
+        zz91Search.products({
+            contextpath:address_trade,
+            target:"_blank",
+            searchOptions:{
+                keywords:keyWord,
+                ptype:"1"
+            }
+        });
+    } else if (type.value == "2") {
+        zz91Search.products({
+            contextpath:address_trade,
+            target:"_blank",
+            searchOptions:{
+                keywords:keyWord,
+                ptype:"2"
+            }
+        });
+    } else if (type.value == "3") {
+        zz91Search.price({
+            contextpath:address_price,
+            target:"_blank",
+            searchOptions:{
+                keywords:keyWord
+            }
+        });
+    }
+	return false;
+}
+function UTF8UrlEncode(input){    
+   
+        var output = "";    
+   
+        var currentChar = '';    
+   
+        for(var counter = 0; counter < input.length; counter++){    
+   
+            currentChar = input.charCodeAt(counter);    
+   
+            if((0 <= currentChar) && (currentChar <= 127))    
+   
+                output = output + UTF8UrlEncodeChar(currentChar);    
+   
+            else   
+   
+                output = output + encodeURIComponent(input.charAt(counter));    
+   
+        }    
+   
+        var reslut = output.toUpperCase();    
+        return reslut.replace(/%26/, "%2526");     
+    } 
+	function UTF8UrlEncodeChar(input){    
+   
+        if(input <= 0x7F) return "%" + input.toString(16);    
+   
+        var leadByte = 0xFF80;    
+   
+        var hexString = "";    
+   
+        var leadByteSpace = 5;    
+   
+        while(input > (Math.pow(2, leadByteSpace + 1) - 1)){    
+   
+            hexString = "%" + ((input & 0x3F) | 0x80).toString(16) + hexString;    
+   
+            leadByte = (leadByte >> 1);    
+   
+            leadByteSpace--;    
+   
+            input = input >> 6;    
+   
+        }    
+   
+        return ("%" + (input | (leadByte & 0xFF)).toString(16) + hexString).toUpperCase();    
+   
+	} 
+</script>

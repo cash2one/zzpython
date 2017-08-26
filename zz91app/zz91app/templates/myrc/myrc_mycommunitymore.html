@@ -1,0 +1,28 @@
+{%for list in listall%}
+<tr>
+<td class="m-item">
+<div class="i-block">
+<div class="i-box">
+<font class="i_txt">{{list.nickname}}</font>  
+<font>评论了我的提问</font>
+<font class="it">&nbsp;&nbsp;&nbsp;{{list.gmt_created}}</font>
+</div>
+<!--end i-box-->
+<div class="i-box">
+<font class="i_txt_1">{{list.post_title|safe}}</font>
+</div>
+<!--end i-box-->
+<div class="i-box">
+<font class="i_txt_">评论:</font>
+<font>{{list.title|safe}}</font>
+</div>
+<!--end i-box-->
+<div class="i-box_">
+<a href="" class="hf">回复</a>
+</div>
+<!--end i-box-->
+</div>
+<!--end i-block-->
+</td>
+</tr>
+{%endfor%}

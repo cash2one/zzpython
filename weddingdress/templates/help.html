@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>杭州婚之集帮助中心</title>
+<link rel="stylesheet" type="text/css" href="tuiguang/css/style.css"/>
+<script src="tuiguang/js/jquery.min.js"></script>
+<script src="tuiguang/js/index.js"></script>
+<script src="tuiguang/js/base.js"></script>
+<script type="text/javascript" src="http://static.paipaiimg.com/js/base.js?t=200101115" check="base.js" charset="gb2312"></script>
+</head>
+<body>
+<div class="header">
+  <div class="logo"> <img src="tuiguang/images/logo.jpg"/> </div>
+  <div class="ruler"> </div>
+
+{%include 'common/mid.html'%}
+
+  <div class="clear"></div>
+  <div class="helpbanner banners"></div>
+</div>
+<div class="helpcontenter">
+  <div class="help-header">当前位置：婚之集> 帮助中心</div>
+  <div class="sibe">
+    <h1 class="h1style">帮助中心</h1>
+    <ul class="ulhelp">
+     <li class="tab0" {%ifequal typeid "1"%}style="background-color: rgb(204, 204, 204); font-size: 16px; padding: 2px; list-style-image: url(../images/help/help_06.jpg);"{%endifequal%}><a href="?typeid=1">热门活动</a></li>
+     {%for art in arttypelist%}
+      <li class="tab0" {%ifequal artid art.id%}style="background-color: rgb(204, 204, 204); font-size: 16px; padding: 2px; list-style-image: url(../images/help/help_06.jpg);"{%endifequal%}><a href="?typeid=2&artid={{art.id}}">{{art.title}}</a></li>
+     {%endfor%}
+    </ul>
+  </div>
+  <div class="contentbody">
+  
+    <div class="content0" align="left" {%if not typeid%}style="display:block;"{%endif%}{%ifequal typeid "1"%}style="display:block;"{%endifequal%}>
+    {%if artid%}<h3><center>{{artdetail.title}}</h3></center><br />{{artdetail.content|safe}}<br />
+    {%else%}{%for art in artlist%}<br /><center><a href="?artid={{art.id}}&typeid=1"><img src="{{art.litpic}}" width="715px" height="150"/></a></center>{%endfor%}<br />
+    {%endif%}
+    </div>
+    
+    <div class="content1" align="left" {%ifequal typeid "2"%}style="display:block;"{%endifequal%}>
+    <center><h3>{{artdetail.title}}</h3></center><br />{{artdetail.content|safe}}<br />
+    </div>
+    
+  </div>
+</div>
+<div class="ruler clear"></div>
+{%include 'common/foot.html'%}
+</body></html>

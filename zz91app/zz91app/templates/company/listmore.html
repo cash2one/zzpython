@@ -1,0 +1,15 @@
+	{%for list in companylist%} 
+	<a href="javascript:gotourl('/companyinfo/?forcid={{list.id}}','blank');">
+	<li class="mui-table-view-cell mui-media">
+			<div class="mui-media-body">
+				<span class="zz91-index-title">{{list.compname}}</span>
+				<p class='mui-ellipsis-2'>
+					[{{list.area_province}}]{{list.business}}
+				</p>
+				<span style="color: #FF0000;">{%if list.ldbphone%}<img src="http://m.zz91.com/images/tel.png"> {{list.ldbphone.front_tel}}{%endif%}</span>
+			</div>
+		<div style="clear: both;"></div>
+	</li>
+	<div style="clear: both;"></div>
+	</a>
+	{%endfor%}

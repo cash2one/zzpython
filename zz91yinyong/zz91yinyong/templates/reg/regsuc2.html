@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/offer.css" />
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent" style="margin:0 0px;padding:0px;">
+	<div class="login">
+<ul class="bread Fix">
+	<li><a href="/">首页</a></li>
+	<li class="li-bread c9"><span>注册成功</span></li>
+</ul>		
+<div class="resultTip mt10 mb10 ac">
+	<span>恭喜您，{{contact}}注册成功！点此<a href='/goback/?backurl={{backurl}}'>返回之前页面</a></span>
+</div>                 
+</div>
+</div>
+{%include 'bottom.html'%}
+</div>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<title>{%if province%}{{province}}{%endif%}{{industry}}{%if category%}-{{category}}{%endif%}-废料产业带</title>
+		<link href="/ye/css/industrial.m.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+		<script type="text/javascript" src="/js/huzhu/jquery.lightbox_me.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('.btn_confirm1').click(function() {
+					var area = $("#area1").val();
+					window.location.href = '?province=' + area;
+				});
+				$('.choice').click(function(e) {
+					$('.provincelist').lightbox_me({
+						overlaySpeed: 0,
+						lightboxSpeed: 0,
+						modalCSS: {
+							top: '10%',
+							width: '80%'
+						},
+						//centered: true,
+						onLoad: function() {
+							var target = $.event.fix(e).currentTarget;
+						}
+					});
+					e.preventDefault();
+				})
+			});
+			$(window).scroll(function() {
+				if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+					loadMore(document.getElementById("loadMore"));
+				}
+			});
+
+			function loadMore(objdiv) {
+				self = objdiv
+				var pageobj = document.getElementById("pageindex");
+				var page = pageobj.value;
+				pageobj.value = parseInt(page) + 1
+				self.innerHTML = "加载中...";
+				$.get("/ye/ye_more/", {
+						page: pageobj.value,
+						industry: "{{industry}}",
+					},
+					function(data, status) {
+						if (status == "success" && data != "err\n" && data != "") {
+							self.style.display = "block";
+							$("#ok").append(data);
+							self.innerHTML = "点击后加载更多内容";
+						} else {
+							self.style.display = "none";
+							alert('no');
+						}
+					});
+			};
+		</script>
+	</head>
+
+	<body>
+		{%include 'ye/top.html'%}
+		<div id="deal">
+			<dl id="deal-details" class="list">
+				<dd><h3 class="deal-title">
+            	<a href="javascript:;" class="choice">选择地区</a>
+            	<span><a href="/ye/{{big_category}}/">{{industry}}</a>{%if category%}&nbsp;&gt;&nbsp;{{category}}{%endif%}{%if province%}&nbsp;&gt;&nbsp;<font class="current">{{province}}</font>{%endif%}</span>
+            	</h3>
+            	</dd>
+            	<dd>
+					<div>
+						<p class="detail-group">
+							{%for l in nowcategory%}
+							<a href="/ye/{{big_category}}/{{l.code}}.html" target="_blank" class="cell dg-item">{{l.name}}</a>
+							{%if l.br%}
+							</p>
+							<p class="detail-group">
+							{%endif%}
+							{%endfor%}
+						</p>
+					</div>
+				</dd>
+			</dl>
+			<dl class="list">
+				
+				<dd>
+					<dl class="list" id='ok'>
+						{% for list in marketlist%}
+						<dd>
+							<a href="/ye/ye_detail/{{list.words}}.html" target="_blank" class="react">
+								<div class="dealcard">
+									<div class="dealcard-img imgbox" data-src="">
+										<img src="{{list.pic_address}}" />
+									</div>
+									<div class="dealcard-right">
+										<div class="dealcard-brand oow">{{list.name}}</div>
+										<div class="title text-block">{{list.introduction}}</div>
+										<div class="info">
+											<span class="seller">市场商家（<font class="red">{{list.company_num}}</font>）户</span>
+											<span class="trade">市场供求（<font class="red">{{list.product_num}}</font>）条</span>
+										</div>
+									</div>
+								</div>
+							</a>
+						</dd>
+						{%endfor%}
+					</dl>
+				</dd>
+			</dl>
+		</div>
+		<style>
+			.provincelist {
+				width: 100%;
+				height: 350px;
+				background: #fff;
+				overflow: auto;
+				padding: 10px;
+				margin-bottom: 100px;
+				-moz-border-radius: 3px;
+				-webkit-border-radius: 3px;
+				border-radius: 3px
+			}
+			
+			.provincelist li {
+				width: 60px;
+				height: 28px;
+				line-height: 28px;
+				text-align: center;
+				cursor: pointer;
+				border: 1px solid #b7b7b7;
+				margin-right: 5px;
+				float: left;
+				margin-bottom: 10px;
+			}
+		</style>
+		<div class="provincelist" style="display: none;">
+			<url>
+				{%for list in arealist%}
+				<li><a href="?province={{list}}">{{list}}</a></li>
+				{%endfor%}
+				</ul>
+		</div>
+
+		<input type="hidden" id="pageindex" value="1" />
+		<div id="loadMore" onClick="loadMore(this);" style="text-align:center;margin-left:10px;margin-right:10px;background: #fff;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;">加载更多……</div>
+
+		<!--  #翻页
+		<div style="background-color: #fff;">
+    <div class="page">
+  	<ul>
+  	{% if firstpage %}
+    	<li class="page_prev"><a href="?page={{prvpage}}&province={{province}}">上一页</a></li>
+	{%else%}
+    	<li class="page_prev" style="color:gray">上一页</li>
+	{% endif %}
+        <li class="page_no">
+        <select onChange="window.location='?page='+this.value+'&province={{province}}'">
+            <option>第{{page}}页</option>
+            {%for p in page_range%}
+            <option value="{{p.number}}">第{{p.number}}页</option>
+            {%endfor%}
+        </select> /{{page_listcount}}页
+			</li>
+    {% if lastpage%}
+        <li class="page_next"><a href="?page={{nextpage}}&province={{province}}">下一页</a></li>
+	{%else%}
+    	<li class="page_prev" style="color:gray">下一页</li>
+	{% endif %}
+    </ul>
+  </div>
+</div>-->
+	</body>
+{%include 'ye/bottom.html'%}
+</html>

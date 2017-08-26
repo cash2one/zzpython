@@ -1,0 +1,95 @@
+<style>
+	.mui-left label img {width: 100%;}
+</style>
+<div id="slider" class="mui-slider">
+<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_mycommunity/?company_id={{company_id}}');">消息中心<span class="mui-badge mui-badge-success">{{replycount}}</span></a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_mypost/?company_id={{company_id}}');">我的提问</a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_myreply/?company_id={{company_id}}');">我的回复</a>
+</div>
+<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4" style="{%ifequal sendtype '1'%}margin-left: 33%;{%endifequal%}"></div>
+<ul class="mui-table-view">
+
+<div>
+		{%for list in invitelist%}
+		<div class="mui-left" style="border-bottom:solid 1px #ccc;padding: 10px;">
+			<label>
+				<font>{{list.nickname}}</font>
+                <font style="color: #FF3300;">邀请</font>我回答
+                <font style="color: #ccc;">&nbsp;&nbsp;&nbsp;{{list.gmt_created}}</font>
+                <p style="border: solid 1px #9C9EA8;padding: 5px;background-color: #F2F2F2;">
+                	<font class="i_txt_1">{%if list.is_viewed%}<font color="#FF0000">[未读]</font>{%endif%}<a href="/huzhuview/{{list.post_id}}.htm" target="_blank">{{list.title}}</a></font>
+                </p>
+                <!--end i-box-->
+                <div class="i-box_">
+                	<a href="/huzhuview/{{list.post_id}}.htm" class="mui-btn mui-btn-success">回复</a>
+                    <a href="javascript:mycommunitydel('{{list.post_id}}','invitedel','{{list.id}}')" class="mui-btn">删除</a>
+                </div>
+			</label>
+		</div>
+		{%endfor%}
+		{%for list in listall%}
+		<div class="mui-left" style="border-bottom:solid 1px #ccc;padding: 10px;">
+			<label>
+				<font>{{list.nickname}}</font>
+                <font style="color: #FF3300;">回复了我的提问</font>
+                <font style="color: #ccc;">&nbsp;&nbsp;&nbsp;{{list.gmt_created}}</font>
+                <div class="i-box">
+                	<font style="color: #006600;">回复:</font>
+                	<p style="border: solid 1px #9C9EA8;padding: 5px;background-color: #F2F2F2;">{%if list.is_viewed%}<font color="#FF0000">[未读]</font>{%endif%}<a href="/huzhuview/{{list.post_id}}.htm" target="_blank">{{list.title|safe}}</a></p>
+                </div>
+                <a href="/huzhuview/{{list.post_id}}.htm" class="mui-btn mui-btn-success">回复</a>
+			</label>
+		</div>
+		{%endfor%}
+</div>
+
+</ul>
+{%ifequal listcount 0%}
+<div class="mui-content-padded" style="margin-top: 10px;"><ul class="mui-pager"><li>没有留言信息</li></ul></div>
+{%else%}
+<nav class="mui-bar mui-bar-tab" style="border-top: solid 1px #006600;text-align: center;">
+
+<div class="mui-content-padded" style="margin-top: 10px;">
+	<ul class="mui-pager">
+		{% if firstpage %}
+		<li>
+			<a href="javascript:loaddata('http://app.zz91.com/myrc_mycommunity/?page={{prvpage}}&company_id={{company_id}}','myrc_mycommunity')">
+				上一页
+			</a>
+		</li>
+		{%else%}
+		<li class="mui-disabled">
+			<span>上一页 </span>
+		</li>
+		{%endif%}
+		{% if lastpage%}
+		<li>
+			<a href="javascript:loaddata('http://app.zz91.com/myrc_mycommunity/?page={{nextpage}}&company_id={{company_id}}','myrc_mycommunity')">
+				下一页
+			</a>
+		</li>
+		{%else%}
+		<li class="mui-disabled">
+			<span>下一页</span>
+		</li>
+		{%endif%}
+	</ul>
+</div>
+</nav>
+{%endifequal%}
+</div>
+<!-- 删除弹出框 -->
+<div class="mycommunitydel" align="center" style="display: none;">
+<form name="form" method="post">
+           <br />删除后不可恢复，是否删除？
+	<div align="center">
+        <input type="hidden" id="pid" name="pid" value="0">
+        <input type="hidden" id="ptype" name="ptype" value="0">
+        <input type="hidden" id="post_id" name="post_id" value="0">
+        <br />
+        <button class="mui-btn mui-btn-danger" type="submit" onclick="return submitfrm(this.form,'http://app.zz91.com/myrc_mycommunitydel/')">确认</button>
+	</div>
+ </form>
+ </div>
+ <input type="hidden" id="appnavname" value="我的社区" />

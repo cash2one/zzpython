@@ -1,0 +1,252 @@
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script type="text/javascript">document.write('<script src="http://11.mydrivers.com/common/js/' + ('__proto__' in {} ? 'zepto.min.js' : 'jquery-1.7.2.min.js') + '"><\/script>');</script>
+    <style>
+        #mcover{ position: fixed;top:0;left:0;width:100%;	height:100%;background:rgba(0, 0, 0, 0.7);	display:none;z-index:20000;}
+        #mcover img {position: fixed;right: 18px;top:5px;width: 260px;height: 180px;z-index:20001;}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <!--分享-->
+        <div id="mcover" onclick="$('#mcover').hide();">
+            <img src="http://11.mydrivers.com/m/images/v2/guide.png" />
+        </div>
+
+        <div class="bdsharebuttonbox">
+
+            <a id="a_wx_wxin" href="javascript:$('#mcover').show();"  class="mbds_wxin"></a>
+	        <a id="a_wx_friend" href="javascript:$('#mcover').show();"  class="mbds_friend"></a>
+             
+            <a id="a_sougou_wxin" href="javascript:void(SogouMse.Utility.shareWithInfo({shareTitle:'国内最大航母模型亮相 居然能发射导弹', shareContent:'', shareUrl:'http://m.mydrivers.com/newsview/416512.html', shareImageUrl:'http://img1.mydrivers.com/img/20150418/8ef48ee1815e49089a172ec691006d49.jpg', shareType:'4'}));" class="mbds_wxin"></a> 
+            <a id="a_sougou_friend" href="javascript:void(SogouMse.Utility.shareWithInfo({shareTitle:'国内最大航母模型亮相 居然能发射导弹', shareContent:'', shareUrl:'http://m.mydrivers.com/newsview/416512.html', shareImageUrl:'http://img1.mydrivers.com/img/20150418/8ef48ee1815e49089a172ec691006d49.jpg', shareType:'2'}));" class="mbds_friend"></a>
+
+            <a id="a_uc_wxin" href="javascript:ucshare('j_ishare_pic','国内最大航母模型亮相 居然能发射导弹','国内最大航母模型亮相 居然能发射导弹','http://m.mydrivers.com/newsview/416512.html','WechatTimeline');" data-platform="WechatTimeline" class="mbds_wxin"></a>
+	        <a id="a_uc_friend" href="javascript:ucshare('j_ishare_pic','国内最大航母模型亮相 居然能发射导弹','国内最大航母模型亮相 居然能发射导弹','http://m.mydrivers.com/newsview/416512.html','WechatFriends');"  data-platform="WechatFriends" class="mbds_friend"></a>
+
+            <a id="a_qq_wxin" href="javascript:void(mqqShare('timeline'));" data-share-type="wechat_qq:timeline" class="mbds_wxin"></a>
+            <a id="a_qq_friend" href="javascript:void(mqqShare('friend'));" data-share-type="wechat_qq:friend" class="mbds_friend"></a>
+
+            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>                       
+            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "32" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+
+            <style> 
+            .bdsharebuttonbox{padding:25px 0 25px 20px;}
+            .mbds_wxin {background:url(http://11.mydrivers.com/m/images/v2/friend.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:20px!important;display:none}
+            .mbds_friend {background:url(http://11.mydrivers.com/m/images/v2/wxin.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:20px!important;display:none}            
+               
+            .bds_qzone {background:url(http://11.mydrivers.com/m/images/v2/kjian.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:20px!important;}
+            .bds_tsina {background:url(http://11.mydrivers.com/m/images/v2/sina.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:10px!important;}                
+            </style>
+            <script type="text/javascript">
+                var ua = navigator.userAgent.toLowerCase();
+                if (ua.indexOf("sogoumobilebrowser") > -1) {
+                    $("#a_sougou_wxin,#a_sougou_friend").show();
+                }
+                else if(ua.indexOf("micromessenger") > -1)
+                {
+                    $("#span_guanzhu").show();
+                    $("#a_wx_wxin,#a_wx_friend").show();
+                }
+                else if (ua.indexOf("ucbrowser") > -1) {
+                    $("#a_uc_wxin,#a_uc_friend").show();
+                }
+                else if(ua.indexOf("mqqbrowser") > -1)
+                {
+                    $("#a_qq_wxin,#a_qq_friend").show();
+                }
+				$("#a_uc_wxin,#a_uc_friend").show();
+                window.article_config = {        
+                    news_title: "国内最大航母模型亮相 居然能发射导弹" ,      
+                    share_img: "http://img1.mydrivers.com/img/20150418/8ef48ee1815e49089a172ec691006d49.jpg",        
+                };
+
+                $(function () {
+                    var weixinParams,
+                    ua = navigator.userAgent,
+                    isAndroid = /Android/i.test(window.navigator.userAgent),
+                    newQQbrowerWeixinApi = 'http://jsapi.qq.com/get?api=app.zz91.com,app.share',
+        
+                    getQQbrowerVersion = function () {
+                        try {
+                            var reg = /MQQBrowser\/(\d{2})/;
+                            var regRemoveDot = /\./g;
+                            ua =  ua.replace(regRemoveDot,'');
+                            var res = reg.exec(ua);
+                            if(res && res.length > 1){
+                                return parseInt(res[1], 10);
+                            }
+                            return 0;
+                        }catch(e){
+                            return 0;
+                        }
+                    },
+                    
+                    loadQqPushJs = function (url, callback) {
+                        var head = document.getElementsByTagName('head')[0];
+                        var js = document.createElement('script');
+                        js.setAttribute('type', 'text/javascript'); 
+                        js.setAttribute('src', url); 
+                        head.appendChild(js);
+                        js.onload = callback;
+                    },
+        
+                    newWxShareLoad = function (type) {
+                        if (getQQbrowerVersion() >= 54) {
+                            loadQqPushJs(newQQbrowerWeixinApi, noInstallDeleteWeixin);
+                        }
+                    },
+                    
+                    deleteWeixinShare = function () {
+                        $('[data-share-type="wechat_qq:timeline"]').remove();
+                        $('[data-share-type="wechat_qq:friend"]').remove();
+                    },
+                    
+                    noInstallDeleteWeixin = function () {
+                        browser.app.isInstallApk(function(data){
+                            if (!data) {
+                                deleteWeixinShare();
+                            }
+                        }, isAndroid ? {'packagename':'com.zz91.app'} : {'apkKey':'weixin'});
+                    },
+        
+                    handleShareWeixinNewQQbrower = function () {
+                        browser.app.share(weixinParams);
+                    },
+        
+                    mqqShare = function (type) {
+                        var title, url, imgUrl, to_app, qqbrowerVersion,
+                            config = window.article_config;
+            
+                        if (type === 'friend') {
+                            //Statistics.addStatistics('000022_weixin_QQMB_sharefriend');
+                            to_app = 1;
+                        }
+                        else {
+                            //Statistics.addStatistics('000022_weixin_QQMB_sharefriends'); 
+                            to_app = 8;
+                        }
+            
+                        title = config.news_title;
+                        imgUrl = config.share_img;
+            
+                        url = location.href;
+                        if (url.indexOf('?') > 0) {
+                            url += '&_once_=000022_weixin_QQMB_back';
+                        }
+                        else {
+                            url += '?_once_=000022_weixin_QQMB_back';
+                        }
+            
+                        weixinParams = {title: title, url: url, img_url: imgUrl, to_app: to_app};
+                        if (!isAndroid) {
+                            handleShareWeixinNewQQbrower();
+                        }
+                        else {
+                            if (getQQbrowerVersion() >= 54) {
+                                handleShareWeixinNewQQbrower();
+                            }
+                            else {
+                                wxShare().init({title: title,url: url,imgUrl: imgUrl,to_app: to_app});
+                            }
+                        }
+                    };
+                
+                window.mqqShare = mqqShare;
+                window.newWxShareLoad = newWxShareLoad;
+                }());
+
+                // 微信分享数据
+                window.weixinShareData = {
+                    "img_url": window.article_config.share_img,
+                    "link": window.location.href,
+                    "title": window.article_config.news_title,
+                    "desc": $('meta[name="description"]').attr('content')
+                };
+
+                $(function () {
+                    newWxShareLoad();
+                });
+
+                function ucshare(obj, title, content, url, platform) {
+                    var getPos = {
+                        getTop: function (e) {
+                            var offset = e.offsetTop;
+                            if (e.offsetParent != null) offset += getPos.getTop(e.offsetParent);
+                            return offset;
+                        },
+                        getLeft: function (e) {
+                            var offset = e.offsetLeft;
+                            if (e.offsetParent != null) offset += getPos.getLeft(e.offsetParent);
+                            return offset;
+                        },
+                        getCss3offsetTop: function (e) {
+                            var css3offset = getComputedStyle(e, null).webkitTransform;
+                            if (css3offset == "none") {
+                                var css3offsetTop = 0;
+                            } else {//存在CSS3属性
+                                var css3offsetTop = parseInt(css3offset.split(",")[5].replace(")", ""))
+                            }
+                            if (e.parentNode.tagName != "BODY") css3offsetTop += getPos.getCss3offsetTop(e.parentNode);
+                            return css3offsetTop;
+                        },
+                        getCss3offsetLeft: function (e) {
+                            var css3offset = getComputedStyle(e, null).webkitTransform;
+                            if (css3offset == "none") {
+                                var css3offsetLeft = 0;
+                            } else {//存在CSS3属性
+                                var css3offsetLeft = parseInt(css3offset.split(",")[4])
+                            }
+                            if (e.parentNode.tagName != "BODY") css3offsetLeft += getPos.getCss3offsetLeft(e.parentNode);
+                            return css3offsetLeft;
+                        },
+                        getNodeInfoById: function (e) {
+                            var myNode = document.getElementById(e);
+                            if (myNode) {
+                                var pos = [getPos.getLeft(myNode) + getPos.getCss3offsetLeft(myNode), getPos.getTop(myNode) + getPos.getCss3offsetTop(myNode), myNode.offsetWidth, myNode.offsetHeight]
+                                return (pos)
+                            } else {
+                                return ""
+                            }
+                        }
+                    }
+
+                    if (typeof (ucweb) != "undefined") {
+                        var UCBrowserText = ucweb.startRequest("shell.page_share", [title, content, url, platform, '', '我们正在看【' + title + '】，一起来看吧', getPos.getNodeInfoById(obj)]);
+                        //var UCBrowserText = ucweb.startRequest("shell.page_share", ['', '使用UC浏览器分享js API', 'http://wap.uc.cn', '', 'invisible:QQ,Qzone', 'UC浏览器','']);
+                    }
+                    else if (typeof (ucbrowser) != "undefined") {
+
+                        if (platform == _platforms.sweibo[0]) {
+                            platform = _ucPlatName.iweibo;
+                        }
+                        else if (platform == _platforms.friend[0]) {
+                            platform = _ucPlatName.ifriend;
+                            url += _frompre + "from=" + _fromPlat.ucfriend;
+                        }
+                        else if (platform == _platforms.fsircle[0]) {
+                            platform = _ucPlatName.ifcircle;
+                            url += _frompre + "from=" + _fromPlat.ucweichat;
+                        }
+
+
+                        ucbrowser.web_share(title, content, url, platform, '', '@驱动之家', obj);//title 指html的title
+                        //ucbrowser.web_share('title', 'content', 'url', 'platform', 'disablePlatform', 'source', 'htmlID');
+                    }
+                    else {
+                        //alert("sorry,your browser version not support!");
+                    }
+                }
+                
+            </script>
+        </div>
+
+
+    </div>   
+</body>
+</html>

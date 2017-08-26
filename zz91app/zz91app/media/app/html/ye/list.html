@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link href="../../css/ye/industrial.m.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body>
+		<div class="nodata">
+			暂无相关数据
+		</div>
+		<div id="deal">
+			<dl class="list">
+				<dd>
+					<dl class="list" id='yelist'>
+						<div class="aui-toast"  id="loading">
+							<div class="aui-toast-loading"></div>
+							<div class="aui-toast-content">
+								加载中
+							</div>
+						</div>
+					</dl>
+				</dd>
+			</dl>
+		</div>
+		<div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;display:none'>
+			上拉获取更多信息
+		</div>
+		<script id="ye-list" type="text/html">
+			<dd>
+			<a url="/ye/ye_detail/{{d.words}}.html" target="_blank" class="react">
+			<div class="dealcard">
+			<div class="dealcard-img imgbox" data-src="">
+			<img src="{{d.pic_address}}" />
+			</div>
+			<div class="dealcard-right">
+			<div class="dealcard-brand oow">{{d.name}}</div>
+			<div class="title text-block">{{d.introduction}}</div>
+			<div class="info">
+			<span class="seller">市场商家（<font class="red">{{d.company_num}}</font>）户</span>
+			<span class="trade">市场供求（<font class="red">{{d.product_num}}</font>）条</span>
+			</div>
+			</div>
+			</div>
+			</a>
+			</dd>
+		</script>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript">
+		var currPage = 1;
+		var big_category, small_category;
+		var nowurl = "";
+		var searchdata;
+		apiready = function() {
+			big_category = api.pageParam.big_category;
+			small_category = api.pageParam.small_category;
+			var tourl = api.pageParam.tourl;
+			nowurl = "ye/";
+			if (big_category) {
+				nowurl = nowurl + big_category + "/"
+			}
+			if (small_category) {
+				nowurl = nowurl + small_category + ".html"
+			}
+			if (tourl) {
+				nowurl = tourl;
+			}
+			//页面刷新
+			api.setRefreshHeaderInfo({
+				visible : true,
+				// bgColor: '#F2F2F2',
+				bgColor : '#E6E6E6',
+				textColor : '#000000',
+				textDown : '下拉刷新',
+				textUp : '释放刷新',
+			}, function(ret, err) {
+				currPage = 1;
+				ajaxInfo();
+				api.toast({
+					msg : '数据已是最新！',
+					duration : 3000,
+					location : 'bottom'
+				});
+			});
+			
+			//底部加载更多
+			api.addEventListener({
+				name : 'scrolltobottom'
+			}, function(ret, err) {
+				$(".la_more").html("加载更多中...");
+				setTimeout(function() {
+					ajaxInfo();
+				}, 10)
+			});
+			searchdata = {};
+			ajaxInfo();
+			
+		}
+		function searcharea(k){
+			currPage=1;
+			if (k=="不限"){
+				k=""
+			}
+			searchdata['province']=k;
+			api.showProgress({
+				title : '加载中',
+				modal : true
+			});
+			ajaxInfo();
+		}
+		var dataload = true;
+		var loadnum=1;
+		function ajaxInfo() {
+			if (dataload == false) {
+				return;
+			}
+			dataload = false;
+			api.ajax({
+				url : hosturl + nowurl + '?page=' + currPage + '&datatype=json',
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : searchdata
+				}
+			}, function(ret, err) {
+				if (ret) {
+					loadnum=1;
+					var pageHtml = "";
+					var yelist = ret.list;
+					$.each(yelist, function(index, item) {
+						var getTpl = $api.html($api.byId("ye-list"));
+						laytpl(getTpl).render(item, function(html) {
+							pageHtml = pageHtml + html;
+						});
+					})
+					if (currPage == 1) {
+						if (pageHtml == "") {
+							$(".nodata").show();
+							$(".la_more").hide();
+						} else {
+							$(".nodata").hide();
+							$(".la_more").show();
+						}
+						api.pageUp({
+							'top' : true
+						});
+						$("#yelist").html(pageHtml);
+					} else {
+						$("#yelist").append(pageHtml);
+					}
+					api.refreshHeaderLoadDone();
+					api.hideProgress();
+					if (pageHtml != "") {
+						currPage += 1;
+						$(".la_more").html("上拉获取更多信息");
+					} else {
+						$(".la_more").html("全部加载完毕");
+					}
+					
+				}else{
+					//出错重试3次
+					if (loadnum<=3){
+						ajaxInfo();
+					}else{
+						$(".nodata").show();
+						$(".la_more").hide();
+					}
+				}
+				loadnum=loadnum+1;
+				dataload = true;
+				$("#yelist").on("click","a",function() {
+					var tourl=$(this).attr("url");
+					var pageParam = {
+						wintitle : $(this).find(".oow").text(),
+						type : "ye-detail",
+						tourl : tourl,
+						bounces : false
+					};
+					openWin("ye-detail", "../ye/detail.html", pageParam);
+				})
+			})
+		}
+	</script>
+</html>

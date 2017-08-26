@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="Js/jquery.js"></script>
+    <script type="text/javascript" src="123/function.js"></script>
+    <script type="text/javascript" src="Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="Js/bootstrap.js"></script>
+    <script type="text/javascript" src="Js/ckform.js"></script>
+    <script type="text/javascript" src="Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+<style>
+body,div,h2{margin:0;padding:0;}
+#overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:white;opacity:0.5;filter:alpha(opacity=50);display:none;}
+.win{position:absolute;top:50%;left:50%;width:400px;height:200px;background:#fff;border:4px solid gray;margin:-102px 0 0 10px;display:none;}
+h2{font-size:15px;text-align:right;background:#F0FFF0;border-bottom:1px solid gray;padding:1px;}
+h2 span{color:gray;cursor:pointer;background:#fff;border:1px solid gray;padding:0 2px;}
+</style>
+<script>
+ function editor(i)
+{
+	var oWin = document.getElementsByName("win")[i];
+	var oLay = document.getElementById("overlay");
+	this.onclick = function ()
+	{
+		oLay.style.display = "block";
+		oWin.style.display = "block"
+	};
+	
+};
+</script>
+</head>
+<body>
+<div id="overlay"></div>
+
+<form class="form-inline definewidth m20">
+<button type="button" class="btn btn-success" onClick="window.location.href='addartical.html'">添加文章</button>&nbsp;&nbsp;
+标题 <input type="text" name="ntitle" value="{%if ntitle%}{{ntitle}}{%endif%}" style="width:180px">&nbsp;
+<select name="typeid" style="width:150px">
+{%if typeid%}<option value="{{typeid}}">{{typename}}</option>{%endif%}
+    <option value="">请选择栏目...</option>{%for tp in alltypelist%}
+    <option value="{{tp.id}}">{{tp.typename}}</option>{%endfor%}
+</select>
+ <input class="btn btn-success" type="submit" value="查询">
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>日期</th>
+        <th>标题</th>
+        <th>栏目</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+<input type="hidden" name="typeid" value="{{typeid}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+    {%for l in listall%}
+	     <tr>
+	     <td>{{l.id}}</td>
+	     <td>{{l.ndate}}</td>
+	     <td><a href="{{l.weburl}}" target="_blank">{{l.ntitle}}</a></td>
+	     <td>{{l.typename}}</td>
+	     <td>
+<div class="win" name="win"><h2><div style="width:200px;height:1px;text-align:left"> &nbsp;快速属性编辑</div> &nbsp;</h2>
+<form>
+<input type="hidden" name="page" value="{{page}}">
+<table>
+<tr>
+<td>标题:</td>
+<td><input type="text" name="title" value="{{l.title}}" style="width:300px"></td>
+</tr>
+<tr><td>
+属性: </td><td>{%for att in attlist%}
+{{att.attname}} <input type="checkbox" name="att">
+{%endfor%}
+</td></tr>
+<tr>
+<td></td>
+<td><input type="submit" value="确认"> <input type="submit" value="返回"></td>
+</tr>
+</table>
+</form>
+</div>
+<!--<a href="javascript:void(0)" onClick="editor({{l.js}})" title="编辑属性"><img src="123/imgs/trun.gif"></a>-->
+{%if isdelete%}
+<a href="del_aqsiq.html?artid={{l.id}}&isdelete=0" onClick="return confirm('是否还原此信息?')" title="还原"><img src="123/imgs/d-revert.png"></a>
+{%else%}
+<a href="update_aqsiq.html?artid={{l.id}}" title="编辑"><img src="123/imgs/gtk-edit.png"></a>&nbsp;&nbsp;
+<a href="del_aqsiq.html?artid={{l.id}}&isdelete=1" onClick="return confirm('是否将此信息删除?')" title="删除"><img src="123/imgs/b_drop.png"></a>
+{%endif%}
+	     </td>
+        </tr>
+     {%endfor%}
+        </table>
+<div class="inline pull-right page">
+<form>
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+
+{%if flag%}<input type="hidden" name="flag" value="{{flag}}">{%endif%}
+{%if writer%}<input type="hidden" name="writer" value="{{writer}}">{%endif%}
+<input type="hidden" name="page_listcount" value="{{page_listcount}}">&nbsp;&nbsp;
+去第<input type="text" name="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页  <input type="submit" style="display:none"> &nbsp;&nbsp;
+<a href='?page=1&{{searchurl}}' >首页</a><a href='?page={{page_listcount}}&{{searchurl}}' >尾页</a> 
+</form>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>样品商机等你来发-废料专题-ZZ91再生网</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script type="text/javascript" src="js/jquery-latest.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(window).scroll(function() {
+		if ($(window).scrollTop() > 50) {
+			$('#jump li:eq(0)').fadeIn(800);
+		} else {
+			$('#jump li:eq(0)').fadeOut(800);
+		}
+	});
+
+});
+
+function gotoF1(){
+	var top = $(".img").offset().top;
+	$('body').animate({
+			scrollTop: (top-20)
+		},
+		500);
+	return false;
+}
+
+function gotoF2(){
+	var top = $(".img_").offset().top;
+	$('body').animate({
+			scrollTop: (top-20)
+		},
+		500);
+	return false;
+}
+function gotoTop(){
+	$('body,html').animate({
+			scrollTop: 0
+		},
+		500);
+	return false;
+}
+</script>
+</head>
+<body style="height:100%">
+	<div style="width:100%; background-color:#F9F7EC">
+		<div style="width:933px;margin:0 auto">
+			{%include 'html/comm/top.html'%}
+    	</div>
+   </div>
+		<div class="top_"></div>
+		<!--end top-->
+        <div class="item">
+		<div class="content">
+        	<div class="box">
+                <img src="images/f1.png" class="img" />
+            	<div class="b-img">
+                	<span> <img src="images/s1.jpg" /> </span>
+                    <div class="btn">
+                    	<a href="http://myrc.zz91.com/myproducts/office_post1.htm?isYP=1" target="_blank"><img src="images/ffk.jpg" /></a>
+                    </div>
+                    <!--end btn-->
+                </div>
+                <!--end b-img-->
+            </div>
+            <div class="block">
+                <img src="images/f2.png" class="img_" />
+            	<div class="b-img_">
+                	<span> <img src="images/s2.jpg" /> </span>
+                    <div class="btn">
+                    	<a href="http://myrc.zz91.com/myproducts/office_post_list.htm?checkStatus=1&isExpired=0&isPause=0" target="_blank"><img src="images/add.jpg" /></a>
+                    </div>
+                    <!--end btn-->
+                </div>
+                <!--end b-img_-->
+            </div>
+        </div>
+		<!--end content-->
+        
+        <div class="top">
+  			<ul id="jump">
+    			<li>
+                	 <div class="dh" id="dh">
+            			<div class="dh-t_" onclick="gotoTop();"> 回到顶部 </div>
+                        <!--end dh-top-->
+                        <div class="dh-t" action-data="方法一" onclick="gotoF1();">方法一</div>
+                        <!--end dh-f1-->
+                        <div class="dh-t1" action-data="方法二" onclick="gotoF2();">方法二</div>
+                        <!--end dh-f2-->
+                	</div> 
+                </li>
+  			</ul>
+		</div>
+        
+        </div>
+        <!--end item-->
+  		<div style="width:100%;">
+			<div style="width:950px;margin:0 auto;text-align:center">
+				{% include 'html/comm/buttom.html' %}
+   		 </div>
+		</div>
+</body>
+</html>

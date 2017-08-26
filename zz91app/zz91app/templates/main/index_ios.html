@@ -1,0 +1,162 @@
+<style>
+/**edit_start 2014-06-23**/
+.b-box{border-top:1px solid #f2f2f2;border-bottom:1px solid #ebebeb}
+.navTable-text{width:60px;text-align:center;font-size:14px;color:#444;margin-top:5px}
+.navTable{width:100%;}
+.navTable tr td{width:25%;padding:10px 0;position:relative;background-color: #fff;}
+.navTable tr td:hover{background:#ebebeb}
+.newstitle{color:#666;background: #f2f2f2;line-height: 30px;padding-left: 15px;border-bottom: solid 1px #f2f2f2;}
+/**edit_end 2014-06-23**/
+</style>
+
+<form method="post" style="margin: 0px;padding: 0px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td style="padding-top: 14px;" align="center"><input type="search" id="searchtext" placeholder="请输入关键字搜索" style="width: 97%;" {%if keywords%}value="{{keywords}}"{%endif%}/></td>
+	    <td align="center" style="padding-left: 5px;padding-right: 5px;"><button class="mui-btn mui-btn-primary mui-icon mui-icon-search" onclick="zz91search(this.form,'/offerlist/?keywords=','tradelist')">搜供求</button></td>
+	    <td align="center" style="padding-right: 5px;"><button class="mui-btn mui-btn-green" onclick="showSide(searchtext.value)">筛选</button></td>
+	  </tr>
+	</table>
+</form>
+<div class="b-box" style="display: none;">
+  <center>
+    <table class="navTable" align="center" style="width: 100%;" frame="void" border="1" bordercolor="#f2f2f2">
+      <tbody>
+        <tr>
+          <td><a href="javascript:gotourl('/category/','trade')">
+          	<center>
+              <div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/1.png" border="0"> </div>
+              <div class="navTable-text"> 交易中心 </div>
+            </center></a>
+            </td>
+          <td><a href="javascript:gotourl('/priceindex/','price')">
+            <center>
+              <div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/2.png" border="0"> </div>
+              <div class="navTable-text"> 行情报价 </div>
+            </center>
+            </a>
+            </td>
+          <td><a href="javascript:gotourl('/news/','news')">
+          	<center>
+              <div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/3.png" border="0"> </div>
+              <div class="navTable-text"> 资讯中心 </div>
+            </center>
+           </a> 
+           </td>
+          <td><a href="javascript:gotourl('/company/','company')">
+          	<center>
+              <div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/4.png" border="0"> </div>
+              <div class="navTable-text"> 公司黄页 </div>
+            </center>
+             </a>
+             </td>
+        </tr>
+        <tr>
+          <td> <a href="javascript:gotourl('/huzhu/','huzhu');">
+          	<center>
+              <div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/5.png" border="0"> </div>
+              <div class="navTable-text"> 废料问答 </div>
+            </center>
+            </a>
+            </td>
+          <td><a href="javascript:gotourl('/myrc_index/','myrc');">
+          	<center>
+              <div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/6.png" border="0"> </div>
+              <div class="navTable-text"> 生意管家 </div>
+            </center>
+            </a>
+            </td>
+          <td><a href="javascript:gotourl('/qianbao/','blank');">
+          	<center>
+          	  <!--<span class="mui-badge mui-badge-danger message-num" style="left:70%" id="qianbaonum">1</span>-->
+              <div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/7.png" border="0"> </div>
+              <div class="navTable-text"> 再生钱包 </div>
+            </center>
+            </a>
+            </td>
+          <td><a href="javascript:gotourl('/ldb_weixin/index.html','laidianbao');">
+          	<center>
+              <div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/8.png" border="0"> </div>
+              <div class="navTable-text"> 来电宝 </div>
+            </center>
+            </a>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+  </center>
+</div>
+<div style="background-color: #fff;">
+	{%if mybusi%}
+	{%else%}
+	<a href="javascript:gotourl('/order/business.html','order');"><div class="mui-h5" style="height: 100px;background-color: #f2f2f2;text-align: center;line-height: 30px;">
+		<div style="margin-top: 40px;font-size: 18px;color: #FF3300;">订阅我的商机，随时、随地查看.<br />点此立即订阅 > </div>
+	</div></a>
+	{%endif%}
+</div>
+{%if adlist%}
+<div>
+	<a href='javascript:openhttpurl("{{adlist.target_url}}")'><img src="{{adlist.picaddress}}" border=0 style="width:100%" /></a>
+</div>
+{%endif%}
+<div style="padding-bottom: 40px;">
+	<ul class="mui-table-view">
+{%if productListtop%} {% for list in productListtop %}
+	<li class="mui-table-view-cell">
+		<a href="javascript:gotourl('/detail/?id={{list.pdt_id}}','blank')">
+			<img src="{{list.pdt_images}}" style="width: 80px;height: 80px;float: left;margin: 10px;margin-left: -5px;margin-top:-2px ;">
+			<div class="mui-media-body">
+				<span class="mui-ellipsis-2" style="color:#f00"><img src="http://m.zz91.com/images/pindao/d.png"  align="absmiddle"/>{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}{%if list.isbuycontact%}&nbsp;<img src="http://m.zz91.com/images/pindao/eye.jpg" />{%endif%}</span>
+				<h5 style="float: left;">{{list.com_province}} {{list.pdt_price}}</h5>
+				<div class="mui-text-right">
+					<span class="mui-h5">{{list.pdt_time_en}}</span>
+				</div>
+				<div class="mui-clearfix"></div>
+				<p class="mui-h6 mui-ellipsis-2">{{list.pdt_detail}}</p>
+				{%if list.ldbtel%}
+				<p>免费拨打：<font color="#F40000">{{list.ldbtel.front_tel}}</font>
+				</p>{%endif%}
+			</div>
+		</a>
+	</li>
+	{%endfor%} {%endif%} {%if productList%} {% for list in productList %}
+	<li class="mui-table-view-cell">
+		<a href="javascript:gotourl('/detail/?id={{list.pdt_id}}','blank')">
+			<img src="{{list.pdt_images}}" style="width: 80px;height: 80px;float: left;margin: 10px;margin-left: -5px;margin-top:-2px ;">
+			<div class="mui-media-body">
+				<span class="mui-ellipsis-2">{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}{%if list.isbuycontact%}&nbsp;<img src="http://m.zz91.com/images/pindao/eye.jpg" />{%endif%}</span>
+				<h5 style="float: left;">{{list.com_province}} {{list.pdt_price}}</h5>
+				<div class="mui-text-right">
+					<span class="mui-h5">{{list.pdt_time_en}}</span>
+				</div>
+				<div class="mui-clearfix"></div>
+				<p class="mui-h6 mui-ellipsis-2">{{list.pdt_detail}}</p>
+				{%if list.ldbtel%}
+				<p>免费拨打：<font color="#F40000">{{list.ldbtel.front_tel}}</font>
+				</p>{%endif%}
+			</div>
+		</a>
+	</li>
+	{%endfor%}
+	<div id="pulldiv" class="pulldiv" onclick="loadmorep(this,'/offerlist/?keywords={{keywords_hex}}&ptype={{pdt_kind}}&havepic={{havepic}}&priceflag={{priceflag}}&province={{province_hex}}&iosindex=1&iosapp=1')" title="/offerlist/?keywords={{keywords_hex}}&ptype={{pdt_kind}}&havepic={{havepic}}&priceflag={{priceflag}}&province={{province_hex}}&iosindex=1&iosapp=1"><span class="mui-icon mui-icon-down"></span><span>点此加载更多</span>
+	</div>
+	{%else%}
+	<li class="mui-table-view-cell">
+		<a href="javascript:gotourl('/order/business.html','order');">
+		            没有找您需要的信息，请点此修改定制关键词！
+		</a>
+	</li>
+	{%endif%}
+	</ul>
+</div>
+<nav class="mui-bar mui-bar-tab">
+<a class="mui-tab-item" id="bottomlabel1" href="javascript:gotourl('/offerlist/?keywords={{keywords_hex}}&ptype={{pdt_kind}}&havepic={{havepic}}&priceflag={{priceflag}}&iosindex=1&iosapp=1','newindex');bottomlabel(1)">
+	<span class="mui-icon mui-icon-list"></span><span class="mui-tab-label">全部</span>
+</a>
+<a class="mui-tab-item" id="bottomlabel2" href="javascript:bottomlabel(2);fj();">
+	<span class="mui-icon mui-icon-location"></span><span class="mui-tab-label">附近</span>
+</a>
+<a class="mui-tab-item" href="javascript:showSide(searchtext.value)">
+	<span class="mui-icon mui-icon-search"></span><span class="mui-tab-label">筛选</span>
+</a>
+</nav>

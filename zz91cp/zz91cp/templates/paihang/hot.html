@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<title>热门产品词_商机排行榜-zz91再生网</title>
+		<meta name="keywords" content="热门产品词,热门产品,产品词">
+		<meta name="description" content="ZZ91再生网热门产品词包含最新最全废料产品、热门废料产品、废料热门产品，让客户对再生资源热门产品一目了然。">
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/header.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/banner.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/hot.css"  />
+		<meta http-equiv="Cache-Control" content="no-transform"/>
+		<meta http-equiv="Cache-Control" content="no-siteapp"/>
+	</head>
+	<body>
+		{% include 'nav.html' %}
+		<div style="clear: both;"></div>
+		<div class="warp">
+			<div class="logosearch fl">
+				<div class="logo fl">
+					<img src="http://b.zz91.com/cp/paihang/img/img-01.png" class="fl"/>
+					<p class="fl logo-title">商机排行榜</p>
+				</div>
+				<div class="search fl">
+					<form action="http://trade.zz91.com/trade/searchfirst/" method="get" id="searchForm1" target="_blank">
+					<input class="searchInput fl" name="keywords" placeholder="输入产品关键词,获取对应产品信息" style="font-size: 14px;" /> 
+					<a class="searchButtom fl">搜索关键词</a>
+					</form>
+				</div>
+			</div>
+			<div class="nav fl">
+				<a href="/cp/" class="nav-oth">微门户首页</a>
+				<a href="sj-index.html" class="nav-oth" >商机排行榜</a>
+				<a href="sj-hotcp.html" class="nav-idx">热门产品词</a>
+				<a href="sj-sjbd.html" class="nav-oth">商机榜单</a>
+				<a href="sj-spbd.html" class="nav-oth">商铺榜单</a>
+			</div>
+			<div class="Mian fl">
+				<div class="main-left fl">
+					{% for each_info in list_all_1 %}
+					<div class="content">
+						<div class="contentT">
+							<p class="products fl"><a href="http://daohang.zz91.com/tags-{{ each_info.code }}/" target="_blank">{{ each_info.label }}</a></p>
+							<img src="http://b.zz91.com/cp/paihang/img/img-04.png" class="fl"/>
+							<p class="keyword fl">共有{{ each_info.count }}个关键词</p>
+						</div>
+						<div class="contentB fl">
+							<ul>
+								{% for each_keywords in each_info.all_list %}
+								<li class="contentB-main1"><a href="{{ each_keywords.tags_py }}/" target="_blank">{{ each_keywords.tags_name }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="main-right fl">
+					{% for each_info in list_all_2 %}
+					<div class="content">
+						<div class="contentT">
+							<p class="products fl"><a href="http://daohang.zz91.com/tags-{{ each_info.code }}/" target="_blank">{{ each_info.label }}</a></p>
+							<img src="http://b.zz91.com/cp/paihang/img/img-04.png" class="fl"/>
+							<p class="keyword fl">共有{{ each_info.count }}个关键词</p>
+						</div>
+						<div class="contentB fl">
+							<ul>
+								{% for each_keywords in each_info.all_list %}
+								<li class="contentB-main1"><a href="{{ each_keywords.tags_py }}/" target="_blank">{{ each_keywords.tags_name }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+		{% include 'bottom.html' %}
+	</body>
+</html>

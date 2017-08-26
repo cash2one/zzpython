@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+-->
+</style></head>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+  <form id="form2" name="form2" method="get" action="/seo/seotempmanager/"><tr>
+    <td>门市部
+    <input type="text" name="domain" id="domain" />
+    <input type="submit" name="button2" id="button2" value="搜索" /></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr></form>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#FFFFFF">邮箱</td>
+    <td bgcolor="#FFFFFF">公司名称</td>
+    <td bgcolor="#FFFFFF">门市部</td>
+    <td bgcolor="#FFFFFF">css模板</td>
+    <td bgcolor="#FFFFFF">html模板</td>
+    <td bgcolor="#FFFFFF">操作</td>
+  </tr>
+  {%for list in listall%}
+  <form id="form1" name="form1" method="post" action="/seo/templatesave/"><tr>
+    <td bgcolor="#FFFFFF"><input type="hidden" name="company_id" id="company_id" value="{{list.company_id}}" /></td>
+    <td bgcolor="#FFFFFF">{{list.name}}</td>
+    <td bgcolor="#FFFFFF"><a href="http://{{list.domain_zz91}}.zz91.net" target="_blank">{{list.domain_zz91}}.zz91.net</a></td>
+    <td bgcolor="#FFFFFF">
+      <input type="text" name="css" id="css" value="{{list.css}}" />
+    </td>
+    <td bgcolor="#FFFFFF"><input type="text" name="html" id="html" value="{{list.html}}" /></td>
+    <td bgcolor="#FFFFFF"><input type="submit" name="button" id="button" value="修改" /></td>
+  </tr></form>
+  {%endfor%}
+</table>
+<div class='pageBar'>
+		{% if firstpage %}
+		<a href="?page=1{{sear}}" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+		<a href="?page={{prvpage}}{{sear}}" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+		{% endif %}
+		{% for p in page_range %}
+		{% if p.nowpage %}
+		<span class="cpb" style="margin-right:5px;">{{p.number}}</span>
+		{% else %}
+		<a href="?page={{p.number}}{{sear}}" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+		{% endif %}
+		{% endfor %}
+		&nbsp;
+		{% if lastpage%}
+		<a href="?page={{nextpage}}{{sear}}" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+		<a href="?page={{page_listcount}}{{sear}}" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+		{% endif %}
+</div>
+</body>
+</html>

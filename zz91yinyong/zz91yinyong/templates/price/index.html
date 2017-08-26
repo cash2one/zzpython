@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		{%include 'head.html'%}
+
+		<link rel="stylesheet" type="text/css" href="../css/pindao/index.css" />
+		<script type="text/javascript" src="../js/pindao/jquery-1.8.3.min.js"></script>
+		<style type="text/css">
+			.main a:link{color:#000;text-decoration:none}
+			.main a:hover{text-decoration:underline}
+			.main a:visited{color:#000}
+		</style>
+	</head>
+
+	<body>{%include 'top.html'%}
+		<div class="main">
+			<div class="tle">
+				<a href="/">首页</a> > <a href="/priceindex/">行情报价</a>
+			</div>
+			<div class="box_">
+				<table class="box_tab" cellpadding="0" cellspacing="0">
+					<tr>
+						<td rowspan="4" class="tab_div">
+							<center>
+								<div class="tab-img">
+									<img src="../images/pindao/js.png" />
+								</div>
+								<div class="tab-txt">废金属</div>
+							</center>
+						</td>
+						<td class="td_div" id="td_gap"><a href="jinshuarea/" class="on" style="color:#176ebc">全国各地价格<img src="../images/pindao/on.png" /></a>
+						</td>
+						<td id="td_gap"><a href="/priceindex/70.html">LME</a>
+						</td>
+					</tr>
+					<tr>
+						<td class="td_div"><a href="/priceindex/83.html">现货</a>
+						</td>
+						<td><a href="/priceindex/32.html">废金属评论</a>
+						</td>
+					</tr>
+					<tr>
+						<td class="td_div" id="td_gap_2">
+							<select name="select" onChange="window.location='/price/?category_id='+this.value">
+								<option value="">期货</option>
+								<option value="72">沪铜</option>
+								<option value="71">沪铝</option>
+								<option value="206">沪钢</option>
+								<option value="69">沪锌</option>
+							</select>
+						</td>
+						<td id="td_gap_2">
+							<select name="select2" onChange="window.location='/price/?category_id='+this.value">
+								<option value="">有色</option>
+								<option value="84">上海和金</option>
+								<option value="210">长江有色</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="td_div" id="td_gap_"><a href="/priceindex/33.html">废金属周报</a>
+						</td>
+						<td id="td_gap_"><a href="/priceindex/216.html">废金属行情综述</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!--end box-->
+			<div class="box_">
+				<table class="box_tab" cellpadding="0" cellspacing="0">
+					<tr>
+						<td rowspan="5" class="tab_div">
+							<center>
+								<div class="tab-img">
+									<img src="../images/pindao/sl.png" />
+								</div>
+								<div class="tab-txt">废塑料</div>
+							</center>
+						</td>
+						<td class="td_div" id="td_gap"><a href="/priceindex/areasuliao/" class="on" style="color:#176ebc">各地废塑料行情<img src="../images/pindao/on.png" /></a>
+						</td>
+						<td id="td_gap"><a href="/priceindex/suliaoxinliao/">塑料新料<img src="../images/pindao/on_.png" /></a>
+						</td>
+					</tr>
+					<tr>
+						<td class="td_div"><a href="/priceindex/suliaoarea/">全国废塑料价格<img src="../images/pindao/on_.png" /></a>
+						</td>
+						<td><a href="/priceindex/suliaoqihuo/">塑料期货<img src="../images/pindao/on_.png" /></a>
+						</td>
+					</tr>
+					<tr>
+						<td class="td_div"><a href="/priceindex/suliaozaishengliao/" class="on" style="color:#176ebc">塑料再生料价格<img src="../images/pindao/on.png" /></a>
+						</td>
+						<td><a href="/priceindex/34.html">废塑料评论</a>
+						</td>
+					</tr>
+					<tr>
+						<td class="td_div"><a href="/priceindex/217.html">废塑料行情综述</a>
+						</td>
+						<td><a href="/priceindex/35.html">废塑料周报</a>
+						</td>
+					</tr>
+					<tr>
+						<td class="td_div" id="td_gap_"><a href="/priceindex/meiguosuliao/">美国废塑料价格<img src="../images/pindao/on_.png" /></a>
+						</td>
+						<td id="td_gap_"><a href="/priceindex/ouzhousuliao/">欧洲废塑料价格<img src="../images/pindao/on_.png" /></a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!--end box-->
+			<div class="box_">
+				<table class="box_tab" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="32" rowspan="5" class="tab_div">
+							<center>
+								<div class="tab-img">
+									<img src="../images/pindao/fz.png" />
+								</div>
+								<div class="tab-txt">废纸</div>
+							</center>
+						</td>
+						<td class="td_div" id="td_gap"><a href="/price/?category_id=231" class="on" style="color:#176ebc">废纸各地价格</a>
+						</td>
+						<td id="td_gap"><a href="/priceindex/25.html">废纸网上报价</a>
+						</td>
+					</tr>
+					<tr>
+						<td class="td_div"><a href="/priceindex/27.html">国内日废</a>
+						</td>
+						<td><a href="/priceindex/28.html">国内美废</a>
+						</td>
+					</tr>
+					<tr>
+						<td class="td_div"><a href="/priceindex/26.html">国内欧废</a>
+						</td>
+						<td><a href="/priceindex/29.html">国外废纸</a>
+						</td>
+					</tr>
+
+
+				</table>
+			</div>
+			<!--end box-->
+			<div class="box_">
+				<table cellpadding="0" cellspacing="0" class="box_tab">
+					<tr>
+						<td rowspan="2" class="tab_div">
+							<center>
+								<div class="tab-img">
+									<img src="../images/pindao/xjj.png" />
+								</div>
+								<div class="tab-txt">橡胶</div>
+							</center>
+						</td>
+						<td width="50%" class="td_div" id="td_gap"><a href="/price/?category_id=30&keywords=国内橡胶">国内橡胶</a>
+						</td>
+						<td id="td_gap"><a href="/price/?category_id=219&keywords=废橡胶行情综述">废橡胶行情综述</a>
+						</td>
+
+					</tr>
+
+				</table>
+			</div>
+			<!--end box-->
+			<div class="box_">
+				<table cellpadding="0" cellspacing="0" class="box_tab">
+					<tr>
+						<td rowspan="2" class="tab_div">
+							<center>
+								<div class="tab-img">
+									<img src="../images/pindao/yy.png" />
+								</div>
+								<div class="tab-txt">原油</div>
+							</center>
+						</td>
+						<td width="50%" class="td_div" id="td_gap"><a href="/priceindex/220.html">行情综述</a>
+						</td>
+						<td id="td_gap"><a href="/priceindex/190.html">油价</a>
+						</td>
+
+					</tr>
+
+				</table>
+			</div>
+
+			<!--end box-->
+
+		</div>
+		<script type="text/javascript">
+			/*手机站：首页 20:3，创建于2014-7-22*/
+			var cpro_id = "u1629209";
+		</script>
+		<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+		{%include 'bottom.html'%}
+		<!--end main-->
+	</body>
+
+</html>

@@ -1,0 +1,9 @@
+{%for list in listall%}
+<div class="td_lst">
+<div class="tab-lst"><a href="/companyinfo/?company_id={{list.company_id}}" target="_blank">{{list.target_name}}</a></div>
+<div class="tab-lst">
+<div class="lst-date">{{list.gmt_created}}</div>
+<div class="lst-price">{{list.click_fee}}元</div>
+</div>
+</div>
+{%endfor%}

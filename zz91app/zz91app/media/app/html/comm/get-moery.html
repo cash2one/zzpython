@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>如何赚钱？</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/comm/get-moery.css"/>
+</head>
+<body>
+	<ul class="way">
+		<li>
+			<div>任务1：发布信息有钱赚</div>
+			<div class="clear">
+				奖励：<span class="orange">10%分成</span>
+				<span class="fr-text-one postoffer">立即发布</span></div>
+			<div class="degree">次数：无限制</div>
+		</li>
+		<li>
+			<div>任务2：拨打电话有钱赚</div>
+			<div class="clear">
+				奖励：<span class="orange">每通电话一分钟奖励1元</span>
+				<span class="fr-text-two">任意400号码</span></div>
+			<div class="degree">次数：无限制</div>
+		</li>
+		<li>
+			<div>任务3：邀请好友有钱赚</div>
+			<div class="clear">
+				奖励：<span class="orange">每邀请1人奖5元</span>
+				<span class="fr-text-one yaoqing">立即邀请</span></div>
+			<div class="degree">次数：无限制</div>
+		</li>
+		<li>
+			<div>任务4：询盘留言有钱赚</div>
+			<div class="clear">
+				奖励：<span class="orange">0.5元/条</span>
+				<span class="fr-text-one category">立即询盘</span></div>
+			<div class="degree">次数：每日最高5元</div>
+		</li>
+		<li>
+			<div>任务5：互动发帖有钱赚</div>
+			<div class="clear">
+				奖励：<span class="orange">0.5元/条</span>
+				<span class="fr-text-one huzhupost">立即发帖</span></div>
+			<div class="degree">次数：每日最高5元</div>
+		</li>
+		<li>
+			<div>任务6：互动回帖有钱赚</div>
+			<div class="clear">
+				奖励：<span class="orange">0.5元/条</span>
+				<span class="fr-text-one huzhulist">立即回帖</span></div>
+			<div class="degree">次数：每日最高5元</div>
+		</li>
+	</ul>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript">
+apiready = function() {
+	//发布供求
+	$(".postoffer").on("click", function() {
+		if (!havelogin){
+			return;
+		}
+		var pageParam = {
+			wintitle : "发布信息",
+			type : "issue-info",
+			module : "发布",
+			bounces : false
+		};
+		openWin("issue-info", "../myrc/issue-info.html", pageParam);
+	})
+	//邀请码
+	$(".yaoqing").on("click", function() {
+		if (!havelogin){
+			return;
+		}
+		var pageParam = {
+			wintitle : "邀请码",
+			type : "invite-code",
+			bounces : false
+		};
+		openWin("invite-code", "../myrc/invite-code.html", pageParam);
+	})
+	//互助回帖
+	$(".huzhulist").on("click", function() {
+		var pageParam = {
+			type : "community",
+			module : "发布", //头部右边文字
+			nav_list : [{
+				"typename" : "问答",
+				"id" : 1
+			}, {
+				"typename" : "社区",
+				"id" : 2
+			}, {
+				"typename" : "学院",
+				"id" : 3
+			}, {
+				"typename" : "热门",
+				"id" : 4
+			}],
+			frame_url : ["../huzhu/hudong-list.html"],
+			topnumber : 4 //滚动Nav栏数码
+		};
+		openWin("community", "widget://html/comm/infomation-heart.html", pageParam);
+	})
+	//产品类目
+	$(".category").on("click", function() {
+		var pageParam = {
+			wintitle : "产品类目",
+			type : "product-category",
+			bounces : false
+		};
+		openWin("product-category", "../trade/product-category.html", pageParam);
+	})
+	//互助发布
+	$(".huzhupost").on("click", function() {
+		if (!havelogin){
+			return;
+		}
+		var pageParam = {
+			wintitle : "互助社区发布",
+			type : "issue",
+			bounces : false
+		};
+		openWin("issue", "../huzhu/issue.html", pageParam);
+	})
+	
+}
+</script>
+</html>

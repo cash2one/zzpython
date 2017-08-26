@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+		<title>ZZ91再生网-手机客户端APP,安卓/苹果/Android/iPhone/IOS手机版应用下载-ZZ91再生网</title>
+		<meta name="description" content="ZZ91再生网APP,ZZ91再生网手机客户端,安卓/苹果/Android/IOS/iPhone/iPhone4/iPhone4S/iPhone5/iPhone5S/iPhone6手机版应用下载,废料商人的APP。" />
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="email=no" name="format-detection" />
+		<meta content="black" name="apple-mobile-web-app-status-bar-style">
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/AP.css" />
+		<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+
+	</head>
+
+	<body>
+		<div class="" id="weixin" style="display:none;width:100%; text-align: right;"><img src="http://img0.zz91.com/zz91/images/wxmark.png" style="margin-right: 20px;"></div>
+		<div class="content">
+			<h1>ZZ91再生网 手机客户端</h1>
+			<div class="instruction">
+				<ul>
+					<li>随时随地掌握废料商机</li>
+					<li>私人信息定制，及时推送。</li>
+					<li>无限刷新供求，供求抢先一步</li>
+					<li>随时接收买卖家询盘信息。</li>
+				</ul>
+			</div>
+			<div class="link">
+				<div class="link-left" onclick="download();">
+					<center><a href="javascript:">安卓版 <img src="http://img0.zz91.com/zz91/mobile/images/icon_android.jpg" /></a>
+					</center>
+				</div>
+				<a href="https://itunes.apple.com/us/app/zz91zai-sheng-wang/id944851616?l=zh&ls=1&mt=8">
+					<div class="link-right" onclick="downloadios()">
+						<center>苹果版 <img src="http://img0.zz91.com/zz91/mobile/images/icon_apple.jpg" />
+						</center>
+					</div>
+				</a>
+				<div class="cb"></div>
+			</div>
+			<!--<div class="con-bg">
+				<img src="http://img0.zz91.com/zz91/mobile/images/bg.jpg" />
+			</div>-->
+		</div>
+		<center>
+			<div style="margin-top:3px;">
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- 微门户 -->
+			<ins class="adsbygoogle"
+			     style="display:block"
+			     data-ad-client="ca-pub-5512236620584335"
+			     data-ad-slot="8274972003"
+			     data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+			</div>
+		</center>
+		<script>
+			function download(){
+				var ua = navigator.userAgent.toLowerCase();
+				if(ua.match(/MicroMessenger/i)=="micromessenger") {
+					window.location="http://a.app.qq.com/o/simple.jsp?pkgname=com.zz91.app2"
+					document.getElementById("weixin").style.display="";
+					document.getElementById("weixin").style.display="none";
+					var bodyHight = $("body").height();
+					var tanhtml='<div class="tanc" style="position:absolute;z-index:2;top:0;text-align:center;width:100%;overflow:hidden;background:#000;opacity: 0.8;height:100%"><img src="http://img0.zz91.com/zz91/images/wxmark.png" width="100%"/><div>'
+					$("body").append(tanhtml);
+					$(".tanc").on("click",function(){
+						$(this).hide()
+					})
+				} else {
+					//window.location="http://a.app.qq.com/o/simple.jsp?pkgname=com.zz91.app2";
+					//window.location="http://fusion.qq.com/cgi-bin/qzapps/unified_jump?appid=12148164&from=mqq&actionFlag=0&params=pname%3Dcom.zz91.app2%26versioncode%3D216%26channelid%3D%26actionflag%3D0"
+					window.location="http://app.zz91.com/app/zz91.apk"
+					document.getElementById("weixin").style.display="none";
+				}
+			}
+			function downloadios(){
+				var ua = navigator.userAgent.toLowerCase();
+				if(ua.match(/MicroMessenger/i)=="micromessenger") {
+					document.getElementById("weixin").style.display="";
+					document.getElementById("weixin").style.display="none";
+					var bodyHight = $("body").height();
+					var tanhtml='<div class="tanc" style="position:absolute;z-index:2;top:0;text-align:center;width:100%;overflow:hidden;background:#000;opacity: 0.8;height:100%"><img src="http://img0.zz91.com/zz91/images/wxmark.png" width="100%"/><div>'
+					$("body").append(tanhtml);
+					$(".tanc").on("click",function(){
+						$(this).hide()
+					})
+					window.location="https://itunes.apple.com/us/app/zz91zai-sheng-wang/id944851616?l=zh&ls=1&mt=8";
+				} else {
+					window.location="https://itunes.apple.com/us/app/zz91zai-sheng-wang/id944851616?l=zh&ls=1&mt=8";
+					document.getElementById("weixin").style.display="none";
+				}
+			}
+			var browser={
+			  versions:function() {
+			    var u=navigator.userAgent, app = navigator.appVersion;
+			    return {//移动终端浏览器版本信息 
+			      trident: u.indexOf('Trident') > -1, //IE内核
+			      presto: u.indexOf('Presto') > -1, //opera内核
+			      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+			      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+			      mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
+			      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+			      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+			      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+			      iPad: u.indexOf('iPad') > -1, //是否iPad
+			      webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+			    };
+			  }(),
+			  language:(navigator.browserLanguage || navigator.language).toLowerCase()
+			}
+			if(browser.versions.ios || browser.versions.iPhone || browser.versions.iPad){
+			  window.location="https://itunes.apple.com/us/app/zz91zai-sheng-wang/id944851616?l=zh&ls=1&mt=8";
+			}else if (browser.versions.android){
+				download();
+			  //window.location="http://a.app.qq.com/o/simple.jsp?pkgname=com.zz91.app2";
+			}
+		</script>
+		<div style="display:none">
+			<script>
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+					var s = document.getElementsByTagName("script")[0];
+					s.parentNode.insertBefore(hm, s);
+				})();
+			</script>
+			<!--baidu analysis-->
+			<script>
+				var _hmt = _hmt || [];
+				
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+					var s = document.getElementsByTagName("script")[0];
+					s.parentNode.insertBefore(hm, s);
+				})();
+			</script>
+		</div>
+	</body>
+
+</html>

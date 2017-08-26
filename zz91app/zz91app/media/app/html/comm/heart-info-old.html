@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>消息中心</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/comm/heart-info.css"/>
+</head>
+<body>
+	<ul class="heart-ul">
+		<li class="clear daiban" tapmode="index-nav-li">
+			<div class="icon icon1"></div>
+			<div class="name">
+				<span>待处理事项</span>
+				<p>待处理事项，移动使你生意更方便</p>
+			</div>
+			<div class="jiant"></div>
+			<div class="info-numb">0</div>
+		</li>
+		<li class="clear system" tapmode="index-nav-li" mtype="0">
+			<div class="icon icon2"></div>
+			<div class="name">
+				<span>系统消息</span>
+				<p>最新通知，行情快递</p>
+			</div>
+			<div class="jiant"></div>
+			<div class="info-numb j_xt">0</div>
+		</li>
+		<li class="clear system" tapmode="index-nav-li" mtype="1">
+			<div class="icon icon3"></div>
+			<div class="name">
+				<span>询盘留言</span>
+				<p>最新客户留言，不能错过的商机</p>
+			</div>
+			<div class="jiant"></div>
+			<div class="info-numb j_xp">0</div>
+		</li>
+		<li class="clear system" tapmode="index-nav-li" mtype="2">
+			<div class="icon icon4"></div>
+			<div class="name">
+				<span>钱包提醒</span>
+				<p>您的再生钱包最新进账和消费情况</p>
+			</div>
+			<div class="jiant"></div>
+			<div class="info-numb j_qb">0</div>
+		</li>
+		<li class="clear system" tapmode="index-nav-li" mtype="3">
+			<div class="icon icon5"></div>
+			<div class="name">
+				<span>互动社区</span>
+				<p>您的社区问题及时提醒</p>
+			</div>
+			<div class="jiant"></div>
+			<div class="info-numb j_hd">0</div>
+		</li>
+	</ul>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+apiready = function(){
+	ajaxInfo();
+	//待处理事项
+	$(".daiban").on("click",function(){
+		var pageParam = {
+          wintitle:"如何赚钱?",
+          type:"get-moery"
+        };
+        openWin("get-moery","../comm/get-moery.html",pageParam);
+	})
+	//系统消息
+	$(".system").on("click",function(){
+		var	mtype = $(this).attr("mtype")
+		var pageParam = {
+	        wintitle:"消息",
+	        type:"news-list",
+	        nav_list:[{"typename": "未读", "id": 2}, {"typename": "已读", "id": 1}, {"typename": "全部", "id": 0}],
+	        module:"全部标为已读",
+	        frame_url:["../comm/news-list.html"],
+	        topnumber:3,   //滚动Nav栏数码
+	        mtype:mtype
+	    };
+	    openWin("news-list","infomation-heart.html",pageParam);
+	})
+}
+function ajaxInfo(){
+	var company_id =  UserInfo.memberID();
+	var usertoken = UserInfo.token();
+	api.ajax({
+	    url : hosturl + 'messagesindex.html?company_id='+ 779560 +'&usertoken='+ usertoken +'&appsystem='+ api.systemType +'&datatype=json',
+	    method : 'get',
+	    timeout : 30,
+	    dataType : 'json',
+	    returnAll : false
+	}, function(ret, err) {
+	    if (ret) {
+	    	$(".j_xt").text(ret.count0);
+	    	$(".j_xp").text(ret.count1);
+	    	$(".j_qb").text(ret.count2);
+	    	$(".j_hd").text(ret.count3);
+	    	$(".info-numb").show()
+	    } else {
+	    	api.hideProgress();
+	    };
+	});
+}
+</script>
+</html>

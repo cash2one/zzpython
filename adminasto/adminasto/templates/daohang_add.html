@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>导航管理</title>
+</head>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+-->
+</style>
+<script>
+function selectOption(menuname,value)
+{
+    var menu = document.getElementById(menuname);
+	if (menu)
+	{
+	for(var i=0;i<=menu.options.length;i++){
+		if(menu.options[i].value==value)
+		{
+			menu.options[i].selected = true;
+			break;
+		}
+	}
+	}
+}
+</script>
+<body>
+<form id="form1" name="form1" method="post" action="/daohangsave/">
+  <a href="/daohangadd/">返回主类</a><br />
+<table width="100%" border="0" cellspacing="1" cellpadding="4" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#FFFFFF">类别名称</td>
+    <td bgcolor="#FFFFFF">
+      <input type="text" name="label" id="label" /><input type="hidden" name="id" id="id" value="0"/><input type="hidden" name="sid" id="sid" value="{{sid}}"/>
+    </td>
+    <td bgcolor="#FFFFFF">关键字</td>
+    <td bgcolor="#FFFFFF">搜索关键字
+      <input name="keywords" type="text" id="keywords" size="10" value="" />
+      <br />      
+      导航关键字
+      <input name="keywords1" type="text" id="keywords1" size="10" value="" />
+      <br />
+      报价关键字
+      <input name="keywords2" type="text" id="keywords2" size="10" value="" />
+      <br />
+      互助关键字
+<input name="keywords3" type="text" id="keywords3" size="10" value="" />
+      </td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF">类别拼音<br>关键词类型</td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF"><input type="text" name="pingyin" id="pingyin" />
+      <br />
+      <input name="type" type="radio" id="type" value="0" checked="checked" />
+      导航关键字
+      <input type="radio" name="type" id="type" value="1" />
+      微门户关键词</td>
+    <td bgcolor="#FFFFFF">类别模版</td>
+    <td bgcolor="#FFFFFF"><input name="templates" type="text" id="templates" /></td>
+    <td bgcolor="#FFFFFF"><textarea name="num_str" id="num_str" cols="30" rows="3"></textarea></td>
+    <td bgcolor="#FFFFFF">排序</td>
+    <td bgcolor="#FFFFFF"><input name="ord" type="text" id="ord" size="3"  value="0" /></td>
+    <td bgcolor="#FFFFFF"><input type="submit" name="button" id="button" value="添加" /></td>
+  </tr>
+</table>
+</form>
+<form id="forms" name="forms" method="get" action="/daohangadd/">
+<table width="100%" border="0" cellspacing="1" cellpadding="4" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#FFFFFF">类别名称
+      <input type="text" name="label_s" id="label_s" />
+      
+      <input type="submit" name="button2" id="button2" value="搜索" /></td>
+  </tr>
+</table>
+</form>
+<iframe name="toclb" src="" scrolling="no" frameborder="0" width="500" height="50"></iframe>
+<br />
+<div class='pageBar'>
+		{% if firstpage %}
+		<a href="?page=1&{{searchmore}}" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+		<a href="?page={{prvpage}}&{{searchmore}}" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+		{% endif %}
+		{% for p in page_range %}
+		{% if p.nowpage %}
+		<span class="cpb" style="margin-right:5px;">{{p.number}}</span>
+		{% else %}
+		<a href="?page={{p.number}}&{{searchmore}}" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+		{% endif %}
+		{% endfor %}
+		&nbsp;
+		{% if lastpage%}
+		<a href="?page={{nextpage}}&{{searchmore}}" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+		<a href="?page={{page_listcount}}&{{searchmore}}" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+		{% endif %}
+</div>
+  <table width="100%" border="0" cellspacing="1" cellpadding="3" bgcolor="#666666">
+    <tr>
+      <td bgcolor="#FFFFFF">ID</td>
+      <td bgcolor="#FFFFFF">类别名称</td>
+      <td bgcolor="#FFFFFF">关键字</td>
+      <td bgcolor="#FFFFFF">大类</td>
+      <td bgcolor="#FFFFFF">类别拼音</td>
+      <td bgcolor="#FFFFFF">类别模版</td>
+      <td bgcolor="#FFFFFF">条数控制</td>
+      <td bgcolor="#FFFFFF">排序</td>
+      <td bgcolor="#FFFFFF">&nbsp;</td>
+      <td bgcolor="#FFFFFF">操作</td>
+    </tr>
+	{% for list in listall %}
+	<form id="form{{list.id}}" name="form{{list.id}}" method="post" target="toclb" action="/daohangsave/">
+    <tr>
+      <td bgcolor="#FFFFFF">{{list.id}}</td>
+      <td bgcolor="#FFFFFF"><input type="text" name="label" id="label" value="{{list.label}}" />
+      <input type="hidden" name="id" id="id" value="{{list.id}}"/>
+      <input type="hidden" name="sid" id="sid" value="{{list.sid}}"/>
+      <a href="?sid={{list.id}}">查看细类</a>（{{list.dcount}}）</td>
+      <td bgcolor="#FFFFFF">1搜索关键字
+        <input name="keywords" type="text" id="keywords" size="10" value="{{list.keywords}}" />
+        
+        <br />
+        2导航关键字
+        <input name="keywords1" type="text" id="keywords1" size="10" value="{{list.keywords1}}" />
+        <br />
+        3报价关键字
+        <input name="keywords2" type="text" id="keywords2" size="10" value="{{list.keywords2}}" />
+      <br />
+      4互助关键字
+      <input name="keywords3" type="text" id="keywords3" size="10" value="{{list.keywords3}}" />
+      <br /></td>
+      <td bgcolor="#FFFFFF">
+      <select name="sid" id="sid{{list.id}}">
+      	<option value="0">大类</option>
+      	{% for cb in listcb %}
+        <option value="{{cb.id}}">{{cb.label}}</option>
+        {% endfor %}
+      </select>
+      <script>selectOption("sid{{list.id}}","{{list.sid}}")</script>
+      </td>
+      <td bgcolor="#FFFFFF"><input type="text" name="pingyin" id="pingyin" value="{{list.pingyin}}"/>
+        <br />
+        <input type="text" name="type" id="type" value="{{list.type}}"/>
+      </td>
+      <td bgcolor="#FFFFFF"><input type="text" name="templates" id="templates" value="{{list.templates}}"/>
+      <br /></td>
+      <td bgcolor="#FFFFFF"><textarea name="num_str" id="num_str" cols="30" rows="3">{{list.num_str}}</textarea></td>
+      <td bgcolor="#FFFFFF"><input name="ord" type="text" id="ord" size="3" value="{{list.ord}}"/></td>
+      <td bgcolor="#FFFFFF"><a href="/daohangdel/?id={{list.id}}" onclick="return confirm('确实要删除吗？')">删除</a></td>
+      <td bgcolor="#FFFFFF">
+        <input type="submit" name="button" id="button" value="修改" />
+     </td>
+    </tr>
+	</form>
+	{% endfor %}
+  </table>
+  <div class='pageBar'>
+		{% if firstpage %}
+		<a href="?page=1&{{searchmore}}" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+		<a href="?page={{prvpage}}&{{searchmore}}" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+		{% endif %}
+		{% for p in page_range %}
+		{% if p.nowpage %}
+		<span class="cpb" style="margin-right:5px;">{{p.number}}</span>
+		{% else %}
+		<a href="?page={{p.number}}&{{searchmore}}" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+		{% endif %}
+		{% endfor %}
+		&nbsp;
+		{% if lastpage%}
+		<a href="?page={{nextpage}}&{{searchmore}}" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+		<a href="?page={{page_listcount}}&{{searchmore}}" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+		{% endif %}
+</div>
+</body>
+</html>

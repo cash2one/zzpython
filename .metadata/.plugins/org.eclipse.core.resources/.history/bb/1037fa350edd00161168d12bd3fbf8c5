@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-touch-fullscreen" content="YES">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="../llb/css/base-min.css" />
+<title>ZZ91搜索竞价服务流量宝</title>
+<link rel="stylesheet" type="text/css" href="../llb/css/index.css" />
+</head>
+<body>
+<script type="text/javascript" src="../llb/js/viewport.js"></script>
+	<div class="band"></div>
+	<div class="content">
+		<ul>
+			<li>
+				<div class="con-img">
+					<img src="../llb/img/images_01.png" />
+				</div>
+				<div class="con-main">
+					<h1>高曝光率</h1>
+					<p>ZZ91 移动端+PC端 <br>全网推广，位置靠前 <br />第一时间享用高曝光率</p>
+				</div>
+			</li>
+			<li>
+				<div class="con-img">
+					<img src="../llb/img/images_02.png" />
+				</div>
+				<div class="con-main">
+					<h1>点击付费</h1>
+					<p>仅为点击效果付费 <br>不点击不付费 <br />畅享海量免费曝光服务</p>
+				</div>
+			</li>
+			<li>
+				<div class="con-img">
+					<img src="../llb/img/images_03.png" />
+				</div>
+				<div class="con-main">
+					<h1>及时展示</h1>
+					<p>产品实时更新 <br>随时上下线 <br />操作灵活便捷</p>
+				</div>
+			</li>
+			<li>
+				<div class="con-img">
+					<img src="../llbimg/images_04.png" />
+				</div>
+				<div class="con-main">
+					<h1>尊贵标签</h1>
+					<p>产品标题点亮“优”标签 <br>图片左上角标志“优质” <br />彰显尊贵身份</p>
+				</div>
+			</li>
+			<li>
+				<div class="con-img">
+					<img src="img/images_05.png" />
+				</div>
+				<div class="con-main">
+					<h1>数据分析</h1>
+					<p><br>完善的数据分析 <br />轻松把握市场商机</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="foot">
+		<div class="foot-box">
+			<h1>
+				<div class="kaitong"></div><span>开通方式</span>
+			</h1>
+			<p>再生钱包里金额大于500，即可开通服务</p>
+		</div>
+		<div class="foot-box">
+			<h1>
+				<div class="koufei"></div><span>扣费方式</span>
+			</h1>
+			<p>展示不付费,当客户点击你的推广产品时,才会进行扣费。</p>
+			<p>每次扣费的金额取决于你为关键词设定的出价。</p>
+			<p>你也可以按需要,随时将你的推广产品下线,灵活控制推<br>广费用。</p>
+		</div>
+		
+	</div>
+	
+	<div class="join buybutton">
+		<p>强占先机，时不待我</p>
+		<a href="" target="_blank">立即加入ZZ91流量宝</a>
+	</div>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+	<script type="text/javascript">
+		apiready = function(){
+			var closeiosflag=$api.getStorage("closeiosflag");
+			if (!closeiosflag || closeiosflag==1){
+				$(".buybutton").hide();	
+			}
+			$(".buybutton").on("click", function() {
+				//供求置顶
+				event.stopPropagation();
+				var pageParam = {
+	                wintitle:"开通流量宝",
+	                type:"servicejingjia",
+	                bounces:false
+	            };
+	            openWin("servicejingjia", "../service/show14_1.html", pageParam);
+			})
+		};
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+	</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>seo客户管理系统</title>
+    <link href="/static/css/s.css" type="text/css" rel="stylesheet">
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 收录更新
+            $('.sl-gengxin').click(function() {
+                var jsValue = $(this).attr("value"); //要求json格式的字符串必须以双引号包含，否则报错
+                var jsData = $.parseJSON(jsValue); //json格式字符串，转为json对象
+                var msb = jsData.msb;
+                var com_id = jsData.id;
+                // alert(msb);
+                function loadFunc() {
+                    $('.sl-nm-' + com_id).find('a').html("<img src='/static/images/loading_16x16.gif' width='16px' height='16px'>");
+                }
+                $.ajax({
+                    type:"GET",
+                    url:"get_sl.html?msb=" + msb + "&id=" + com_id,
+                    beforeSend:loadFunc,
+                    success:function(data,status) {
+                        // alert(data);
+                        // var slNm = $('.sl-nm-' + com_id).find('a').text();
+                        // alert(slNm);
+                        $('.sl-nm-' + com_id).find('a').html(data);
+                    },
+                    error:function(data,status) {
+                        alert(data + status);
+                    }
+                    });
+                });
+
+            // 反链更新
+            $('.fl-gengxin').click(function() {
+                var jsValue=$(this).attr("value");
+                var jsData=$.parseJSON(jsValue);
+                var com_id=jsData.id;
+                var msb_url=jsData.msb.trim();
+                var selVal='.fl-nm-' + com_id
+
+                function loadFunc() {
+                    $(selVal).find('a').html("<img src='/static/images/loading_16x16.gif' width='16px' height='16px'>");
+                }
+
+                $.ajax({
+                    type:"GET",
+                    beforeSend:loadFunc,
+                    url:"get_fl.html?msb=" + msb_url + "&id=" + com_id,
+                    success:function(data) {
+                        $(selVal).find('a').html(data);
+                    },
+                    error:function(data,status) {
+                        alert(data + status);
+                    }
+                });
+            });
+
+            // 排名更新
+            $('.pm-gengxin').click(function() {
+                var jsValue=$(this).attr("value");
+                var jsData=$.parseJSON(jsValue);
+                var compMsb=jsData.msb_url;
+                var kwId=jsData.kw_id;
+                var kyWs=jsData.ky_ws;
+                var sID=jsData.sid;
+                var selVal='.kw-pm-' + kwId;
+
+                function loadFunc() {
+                    $(selVal).html("<img src='/static/images/loading_16x16.gif' width='16px' height='16px'>");
+                }
+
+                $.ajax({
+                    type:"GET",
+                    beforeSend:loadFunc,
+                    url:"get_pm.html?msb_url=" + compMsb + "&q=" + kyWs + "&kid=" + kwId + "&sid=" + sID,
+                    success:function(data,status) {
+                        $(selVal).html(data);
+                    },
+                    error:function(data,status) {
+                        alert(data + status);
+                    }
+                });
+            });
+
+            // 选中事件
+            $('#yh-ry').on('change', function() {
+                $(this).find('option:selected').attr("selected", "selected").siblings().removeAttr("selected");
+            });           
+
+        });
+         // 首页复选框
+        function CheckAll(form)
+        {
+            for (var i=0;i<form.elements.length;i++)
+                {
+                    var e = form.elements[i];
+                    if (e.name.substr(0,3)=='cbb')
+                        e.checked = form.cball.checked;
+                }
+        }
+
+         // 分配单子以及是否把单子放到过期库
+        function PostAll(form, selectText, selectValue)
+        {
+            form.action="fp_seokh.html";
+            var selectcb="0";
+            for (var i=0;i<form.elements.length;i++)
+            {
+                var e=form.elements[i];
+                if (e.name.substr(0,3)=='cbb')
+                {
+                    if(e.checked==true)
+                    {
+                        selectcb+=","+e.value;
+                    }
+                }
+            }
+            form.selectcb.value=selectcb.substr(2)
+            if (selectcb=="0")
+            {
+                alert("请选择你要操作的单子！！！");
+                return false;
+            }
+            else
+            {
+                if (confirm(selectText))
+                {
+                    if (selectText=="确定要分配吗?")
+                    {
+                        var fpRy=$('.sl-seo-er').find('option:selected').text();
+                        if (fpRy=="请选择")
+                            alert("请选择分配到谁的库里！！！");
+                        else
+                        {
+                            form.dostay.value=selectValue;
+                            form.submit();
+                        }
+                    }
+                    else
+                    {
+                        form.dostay.value=selectValue;
+                        form.submit();
+                    }
+                }
+            }   
+        }
+
+        function selectOption(menuname, seValue)
+        {
+            var menu = document.getElementById(menuname);
+            if (menu)
+            {
+                for(var i=0;i<=menu.options.length;i++){
+                    if(menu.options[i].value==seValue)
+                    {
+                        menu.options[i].selected = true;
+                        break;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+<table border="0" cellpadding="0" cellspacing="0"  class="tb-1">
+    <tr align="center">
+        {% if paginator.has_previous %}
+        <td><a href="?page=1&{{ url_params }}">首页</a></td>
+        <td><a href="?page={{ paginator.previous_page_num }}&{{ url_params }}">上一页</a></td>
+        {% endif %}
+        <td>总记录数:&nbsp;&nbsp;{{ paginator.row_count }}条 &nbsp; &nbsp;{{ paginator.page_num }}/{{ paginator.get_pages}}页 &nbsp; &nbsp;{{ paginator.per_page }}/页</td>
+        {% if paginator.has_next %}
+        <td><a href="?page={{ paginator.next_page_num }}&{{ url_params }}">下一页</a></td>
+        <td><a href="?page={{ paginator.number_pages }}&{{ url_params }}">尾页</a></td>
+        {% endif %}
+        <td>
+            &nbsp;到&nbsp;
+            <input type="text" size="4" name="sy-tz" id="sy-tz" value="">&nbsp;页&nbsp;
+            <input type="button" value="Go!" onclick="window.location='seolist.html?{{ url_params }}'" class="tz-btn" >
+        </td>
+    </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="tb-2">
+    <tr class="tb-2-tr">
+        {% ifequal waste_flag 2 %}<td class="current">{%else%}<td class="">{% endifequal  %}<a href="?waste=" class="sy-kh">所有客户</a></td>
+        {% ifequal waste_flag 0 %}<td class="current">{%else%}<td class="">{% endifequal  %}<a href="?waste=0" class="zx-kh">在线客户</a></td>
+        {% ifequal waste_flag 1 %}<td class="current">{%else%}<td class="">{% endifequal  %}<a href="?waste=1" class="dd-kh">过期客户</a></td>
+    </tr>
+</table>
+<form id="fm1" name="fm1" action="seolist.html?waste=0" method="get" class="fm">
+    {% csrf_token %}
+    <table width="100% "border="0" cellpadding="3" cellspacing="0" class="tb-3">
+        <tr class="tb-3-tr1">
+            <td align="center" class="tb-3-td1" width="100%">
+                <input type="button" value="添加客户" onclick="window.location='add_seokh.html'">
+            </td>
+        </tr>
+        <tr class="tb-3-tr2">
+            <td>
+                账号：<input type="text" size="20" name="email" id="email">&nbsp;
+                关键字：<input type="text" size="20" name="keywords" id="keywords">&nbsp;
+                门市部：<input type="text" size="20" id="comp-msb" name="comp-msb">&nbsp;
+                <select id="db-qk" name="db-qk">
+                    <option value="default" selected="selected">请选择达标情况...</option>
+                    <option value="0">未达标</option>
+                    <option value="1">已达标</option>
+                </select>
+                <script>selectOption('db-qk', '{{ db_qk | default:'default' }}')</script>
+                {% if is_admin %}
+                <select id="yh-ry" name="yh-ry" autocomplete="off">
+                    <option value="default" selected="selected">请选择seo人员...</option>
+                    {% for each_seo in all_seo_ers %}
+                    <option value="{{ each_seo.id }}">{{ each_seo.realname }}</option>
+                    {% endfor %}
+                </select>
+                {% endif %}
+                <script>selectOption('yh-ry', '{{ yh_ry | default:'default' }}')</script>
+                {% if is_admin %}
+                <select id="vap" name="vap" autocomplete="off">
+                    <option value="default" selected="selected">请选择vap人员</option>
+                    {% for each_vap in all_vap_sales %}
+                    <option value="{{ each_vap.id }}">{{ each_vap.realname }}</option>
+                    {% endfor %}
+                </select>
+                {% endif %}
+                <script>selectOption('vap', '{{ vap_sales | default:'default' }}')</script>
+                {% if is_waste %}
+                <input type="hidden" id="waste" name="waste" value="{{ is_waste }}">
+                {% endif %}
+                <input type="submit" value="搜索">
+            </td>
+        </tr>
+    </table>
+</form>
+<form id="fm2" name="fm2" action="" method="post" class="fm">
+    {% csrf_token %}
+    <table cellpadding="5" cellspacing="1" class="tb-4" width="1400px" border="1"  align="center" bgcolor="#fff">
+        <tr bgcolor="#ddd">
+            <td width="10">&nbsp;</td>
+            <td width="50">单子接入时间</td>
+            <td width="50">账号</td>
+            <td width="80">公司名</td>
+            <td width="400">关键词</td>
+            <td width="30">门市部</td>
+            <td width="20">购买金额</td>
+            <td width="20">收录量</td>
+            <td width="30">优化人</td>
+            <td width="30">销售</td>
+            <td width="40">操作</td>
+        </tr>
+        {% for each in seo_ds %}
+        <tr>
+            <td><input type="checkbox" value="{{ each.id }}" id="cbb-{{ each.id }}" name="cbb-{{ each.id }}"></td>
+            <td>{{ each.seo_start | date:'Y-m-d' }}</td>
+            <td class="com-email"><a href="http://admin1949.zz91.com/web/zz91/crm/company/adminmyrc.htm?account={{ each.com_email | safe }}" target="_blank">
+                {{ each.com_email | safe }}</a></td>
+            <td>
+                <a href="http://192.168.2.4/icd/tellist.html?company_id={{ each.com_id }}" target="_blank">{{ each.name | truncatechars:16 }}</a><br>
+                <a href="seo_dolist.html?sid={{ each.id }}&com_id={{ each.com_id }}" target="_blank">seo小计</a>
+            </td>
+            <td>
+                <table align="center" class="tb-5" width="100%">
+                    <tr class="tb-5-tr1">
+                        <td width="150">key</td>
+                        <td width="20">百度排名</td>
+                        <td width="20">达标要求</td>
+                        <td width="70">达标时间</td>
+                        <td width="70">过期时间</td>
+                        <td width="20">历史</td>
+                    </tr>
+                    {% for each_kws in each.key_ws %}
+                    <tr>
+                        {% if each_kws.keywords %}
+                        {% load myfilter %}
+                        <td width="150"><a href="http://www.baidu.com/s?wd={{ each_kws.keywords }}&ie=gbk" target="_blank">{{ each_kws.keywords}}</a></td>
+                        {% endif %}
+                        <td>
+                            <span class="kw-pm-{{ each_kws.id }}">{{ each_kws.baidu_ranking | default:100 | stringformat:'d' }}</span><br>
+                            <div class="pm-gengxin" value='{"kw_id":"{{each_kws.id}}","ky_ws":"{{each_kws.keywords}}","msb_url":"{{each.com_msb}}","sid":"{{ each.id }}"}'>
+                                <a href="javascript:void(0)">更新</a>
+                            </div>
+                        </td>
+                        <td>
+                            {% if not each_kws.target_require %}第1页
+                            {% else %}
+                            {% ifequal each_kws.target_require 1 %}第{{ each_kws.target_require }}页{% endifequal %}
+                            {% ifnotequal each_kws.target_require 1 %}前{{ each_kws.target_require }}页{% endifnotequal %}
+                            {% endif %}
+                        </td>
+                        <td width="70">{{ each_kws.target_time | date:'Y-m-d' }}</td>
+                        <td width="70">{{ each_kws.expire_time | date:'Y-m-d' }}</td>
+                        <td><a href="k_history.html?sid={{ each_kws.sid }}&kid={{ each_kws.id }}" target="_blank">历史</a></td>
+                        {% endfor %}
+                    </tr>
+                </table>
+            </td>
+            <td><a href="http://{{each.com_msb}}/" target="_blank">{{ each.com_msb }}</a></td>
+            <td>{{ each.price | stringformat:"d" }}</td>
+            <td>
+                <span class="sl-nm-{{ each.id }}"><a href="https://www.baidu.com/s?wd=site:{{ each.com_msb | trim }}" target="_blank">{{ each.baidu_sl | default_if_none:0 | stringformat:"d" }}</a></span><br>
+                <div class="sl-gengxin" value='{"msb":"{{ each.com_msb | trim }}","id":"{{ each.id }}"}'>
+                    <a href="javascript:void(0)">更新</a>
+                </div>
+            </td>
+            {% if each.seoperson %}
+            <td>{{ each.seoperson }}</td>
+            {% else %}
+            <td>&nbsp;</td>
+            {% endif %}
+            {% if each.realname %}
+            <td>{{ each.realname }}</td>
+            {% else %}
+            <td>&nbsp;</td>
+            {% endif %}
+            <td><a href="del_seokh.html?id={{ each.id }}" onclick="return confirm('删除不可恢复,确定要删除吗?')">删除</a>|<a href="modify_seokh.html?id={{ each.id }}&waste={{ is_waste | default:'' }}">修改</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <table width="100%"><tr><td>&nbsp;</td></tr></table>
+    <table>
+        <tr>
+            <td><input type="checkbox" onclick="CheckAll(this.form)" id="cball" name="cball">&nbsp;全选</td>
+            <td><input type="button" value="分配给" onclick="PostAll(this.form,'确定要分配吗?','assignto')"></td>
+            <td>
+                <select class="sl-seo-er" id="to-person-id" name="to-person-id">
+                    <option selected="selected" value="defautl">请选择</option>
+                    {% for each_seo in all_seo_ers %}
+                    <option value="{{ each_seo.id }}">{{ each_seo.realname }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            <td><input type="button" value="放入过期库" onclick="PostAll(this.form,'确定放入过期库吗?','waste')"></td>
+            <td><input type="button" value="取消放入过期库" onclick="PostAll(this.form,'确定取消放入过期库吗?','nowaste')"></td>
+        </tr>
+    </table>
+    <input type="hidden" name="selectcb">
+    <input type="hidden" name="dostay">
+</form>
+</div>
+</body>
+</html>

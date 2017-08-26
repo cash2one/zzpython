@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{% include 'comm/seo.html' %}
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/price/new/css/main/style.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/2014price/css/2014price.css"/>
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css"/>
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+<script src="http://img0.zz91.com/zz91/pricesearch/style.js"></script>
+
+<script type="text/javascript">
+function send1()
+{
+document.form.action="/{{pinyin}}/"
+document.form.submit()
+}
+function turnpage() {
+	var page1=document.getElementById("page1").value;
+	if (page1<1)
+	{
+	page1=1;
+	}
+	window.location.href='/cprice{%if code%}-{{code}}{%endif%}/{%if hexkwd %}_k{{hexkwd}}_{%endif%}{%if provincecode %}_c{{provincecode}}_{%endif%}{%if citycode %}_t{{citycode}}_{%endif%}{%if postInDays %}_d{{postInDays}}_{%endif%}{%if price1 %}_q{{price1}}_{%endif%}/p'+page1+'.html';
+}
+$(function(){
+    $('#province').change(function(){
+        var provincecode=$(this).children('option:selected').val();  //获得select的值
+		$.ajax({
+		   type: "GET",
+		   url: "/getcitylist.html",
+		   data: "provincecode="+provincecode,
+		   //data:{baidusl:baidusl,numb:"1"},
+		   //dataType: 'html',
+		   success:function(data){
+		   		//alert(data);
+		   		$('#city').html('<option value="">-请选择城市</option>'+data)
+		   		
+		   },
+		   error:function(data){
+				//alert("错误!青重试.");
+		   		$('#city').html('<option value="">-请选择城市</option>')
+		   }
+		});
+    });
+})
+$(function(){
+	$('#searchcomp').click(function(){
+		htmltxt='/cprice-{%if code%}{{code}}{%endif%}/';
+		var hexkwd=document.getElementById("hexkwd").value
+		var pvce=document.getElementById("province")
+		var province=pvce.options[pvce.selectedIndex].value
+		var cty=document.getElementById("city")
+		var city=cty.options[cty.selectedIndex].value
+		var postInDays=document.getElementById("postInDays").value
+		var price1=document.getElementById("price1").value
+		arg=0
+		postInDays=$("#postInDays").val();
+		if (hexkwd.length>0){
+			htmltxt+='_k'+hexkwd+'_'
+			arg=1
+		}
+		if (province.length>0){
+			htmltxt+='_c'+province+'_'
+			arg=1
+		}
+		if (city.length>0){
+			htmltxt+='_t'+city+'_'
+			arg=1
+		}
+		if (postInDays.length>0){
+			htmltxt+='_d'+postInDays+'_'
+			arg=1
+		}
+		if (price1.length>0){
+			htmltxt+='_q'+price1+'_'
+			arg=1
+		}
+		if (arg==1){
+			htmltxt+='/'
+			//alert(htmltxt)
+			window.location.href=htmltxt;
+		}else{
+			window.location.href='/cprice/';
+		}
+	});
+});
+
+
+$(function(){
+	$('#keywords').change(function(){
+		keywords=$("#keywords").val();
+		$.ajax({
+		   type: "GET",
+		   url: "/gethexkwd.html",
+		   data: "keywords="+keywords,
+		   success:function(data){
+		   		//alert(data);
+		   		//var hexkwd=data;
+		   		$("#hexkwd").val(data)
+		   },
+		   error:function(data){
+				//alert("错误!青重试.");
+		   }
+		});
+	});
+});
+
+</script>
+<!--1-->
+<style type="text/css">
+.byb a{padding:0px 30px;background:#07af4e}
+a.button1{ display:block; float:left; margin:1px; width: 127px; height: 34px; background-image: url(../images/companyPrice/button1.gif); color: #fff; text-align: center; font-weight: bold; font-size: 14px; line-height: 34px;margin-left:20px;}
+a.button1:hover{ background-position:left -34px; color:#;}
+.byb{ padding:8px; text-align:center;}
+.subDivBoarder{border:1px solid #cccdcd;}
+.p_content{ padding:8px; border: 1px solid #cccdcd; border-top:none;}
+.p_content li{ padding-left:12px; border-bottom:1px dashed #F0F0F0; font-size:13px; line-height:28px;}
+.p_contenta li{ float:left;}
+.p_contenta  span{ display:block; float:left;}
+.p_content li.top{ font-weight:bolder; font-size:14px;}
+.p_qr_codes{margin-top:25px}
+
+.pl_box{display:inline-block;margin-top:10px}
+.pl_box a.pl_box_sub{height:30px;line-height:30px;text-align:center;color:#fff;font-size:14px;font-weight:bold;display:block}
+.pl_box a.search_btn{width:90px;background:url(/images/main/search_1.jpg) no-repeat}
+.pl_box a.publish_btn{width:140px;background:url(/images/main/publish_1.jpg) no-repeat}
+.pl_box a.search_btn:hover{width:90px;background:url(/images/main/search_2.jpg) no-repeat}
+.pl_box a.publish_btn:hover{width:140px;background:url(/images/main/publish_2.jpg) no-repeat}
+
+.part_left_content input,select{font-size:14px}
+</style>
+</head>
+<body>
+{% include 'comm/top.html' %}{% include 'comm/mid.html'%}
+	<div class="part">
+    	<div class="part_left">
+        	<div class="part_left_tle">您所在的位置：<a href="http://jiage.zz91.com/cprice/" target="_blank">企业报价首页</a>{%if maincode%}> <a href="/cprice-{{maincode}}/">{{mainlabel}}</a>{%endif%} >  {{title}}</div>
+            <!--end part_left_tle-->
+            <div class="part_left_content">
+
+				<label for="keywords" id="keywords-lable">查找关键字</label>
+				<input name="keywords" id="keywords" type="text" size="16" {%if keywords%}value="{{keywords}}"{%endif%}/>
+				<input id="hexkwd" type="hidden" {%if hexkwd%}value="{{hexkwd}}"{%endif%}/>
+				<select name="province" id="province">
+					{%if province%}<option value="{{provincecode}}">{{province}}</option>{%endif%}
+					<option value="">-请选择省份</option>
+					{%for pro in provincelist%}
+					<option value="{{pro.code}}">{{pro.label}}</option>
+					{%endfor%}
+				</select>
+				<select name="city" id="city">
+					{%if city%}<option value="{{citycode}}">{{city}}</option>{%endif%}
+					<option value="">-请选择城市</option>
+					{%if ctlist%}{{ctlist|safe}}{%endif%}
+				</select>
+                <span id="validTime1">
+                    <select name="postInDays" id="postInDays" class="validTime">
+					{%if postInDays%}<option value="{{postInDays}}">{{daytxt}}</option>{%endif%}
+                        <option value="" >-日期</option>
+                        <option value='1' >最近一天</option>
+                        <option value='7' >最近一周</option>
+                        <option value='20' >最近20天</option>
+                        <option value='30' >最近一月</option>
+                    </select>
+                </span>
+                <span id="prices1">
+                    <select name="price1" id="price1" onchange="changeprices(this.value)"  class="price1">
+					{%if price1%}<option value="{{price1}}">{{pricetxt}}</option>{%endif%}
+                        <option value="">-价格</option>
+                        <option value="1a1000" >1000以下</option>
+                        <option value="1000a3000" >1000-3000</option>
+                        <option value="3000a5000" >3000-5000</option>
+                        <option value="5000a10000" >5000-10000</option>
+                        <option value="10000a1000000" >10000以上</option>
+                        <option value="0"  >其他价格</option>
+                    </select>
+                </span>
+                <div class="cb"></div>
+                <div class="pl_box"><a id="searchcomp" class="pl_box_sub search_btn">搜 索</a></div>
+                <div class="pl_box"><a href="http://myrc.zz91.com/mycompanyprice/createPrice.htm" class="pl_box_sub publish_btn" target="_blank">立即发布报价</a></div>
+                <div class="cb"></div>
+
+
+				<br />
+            	<div class="pl_content_caption">
+                	<center>
+                    	<h1>{{ctitle}}</h1>
+                    </center>
+                </div>
+                <div class="pl_content_txt">
+                	<center>
+                    	{%for tag in tagslist%}<a href="http://tags.zz91.com/s/{{tag.label_hex}}/" target="_blank">{{tag.label}}</a> {%endfor%} <br /><span>发布时间：{{refresh_time}}　</span>
+                    </center>
+                </div>
+                <br />
+                <div class="p_content p_contentA">
+                
+                <ul class="p_content p_contentA">
+				<li>产品名称： {{ctitle}}</li>
+				<li>产品价格： {{price2}}</li>
+				<li>公司所在地： {{pprovince}} {{pcity}}</li>
+				<li>发布时间：{{refresh_time}}</li>
+				<li>产品描述：{{details|safe}}</li>
+				</ul>
+				<div style="width: 100%;text-align: center;line-height: 30px;">我要订阅该行情<br>扫一扫，关注 “zz91再生网”<br /><img src="http://img0.zz91.com/zz91/weixin/images/priceorder.png"><br /></div>
+                </div>
+                
+				<div class="byb">
+				<a class="button1" href="javascript:openoverlay('http://www.zz91.com/inquiry/questionCompanyPrice.htm?companyPriceId={{cid}}&destUrl=http://price.zz91.com','询价/注册/登录',800,500,0);">在线询价</a>
+                 <a target="_blank" href="{{company_url}}" class="button1" title="逛逛门市部">逛逛门市部</a>
+                <a href="/cprice-{{maincode}}/" class="button1" class="与其他商家报价比一比">其他商家报价</a>
+				<div style="clear:both"></div>
+<script src="http://img0.zz91.com/zz91/js/openoverlay.js"></script>
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/css/openoverlay.css">
+   
+            </div>
+                <div class="part_left_content">
+           		</div>
+                
+                <!--end pl_content_box-->
+                <div class="pl_content_read" style="background:url(../../images/main/tle.jpg);width:120px">该公司其他报价</div>
+                <!--end pl_content_read-->
+                <div class="pl_content_articles">
+                	<ul>
+                	{%for cplt1 in compricelist%}
+                    	<li><a href="{{cplt1.curl}}" target="_blank">{{cplt1.td_title}}</a></li>
+					{%endfor%}
+					</ul>
+                </div>
+                <!--end pl_content_articles-->
+                <div class="pl_content_label">
+                	<span>本文标签：</span>{%for tag in tagslist%}<a href="http://tags.zz91.com/s/{{tag.label_hex}}/" target="_blank">{{tag.label}}</a> {%endfor%}
+                </div>
+                <!--end pl_content_label-->
+                <div class="pl_content_statement">免责声明:本信息仅供参考，ZZ91再生网力求准确可靠，但不作为您投资决策的唯一因素!</div>
+                <!--end pl_content_statement-->
+                <div class="clear"></div>
+            <script src="http://pyapp.zz91.com/showppctxtadscript/?keywords=&amp;showborder=1&amp;showposition=1&amp;m=4&amp;padding=8&amp;w=670&amp;num=4&adposition=636"></script>
+            </div>
+            <!--end part_left_content-->
+        </div>
+        <!--end part_left-->
+        <div class="part_right">
+        	<div class="item-yb-box_">
+        	<div class="item-yb-box-info"><center>
+            <script type="text/javascript">
+			    /*新老站 资讯中部 250*250，创建于2013-12-9*/
+			    var cpro_id = "u1429359";
+			</script>
+			<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+			</center></div>
+               <div class="item-yb-box-tle">最新热门{{mainlabel}}产品</div>
+               <div class="item-yb-box-info">
+                  <div class="yb-info-block_">
+                    <!--end yb-info-left-->
+				        <ul class="category">
+				        	{%for list in cplist%}
+							<li><a href="http://www.zz91.com/cp/{{list.pingyin}}/" target=_blank title="{{list.label}}">{{list.label}}</a></li>
+							{%endfor%}
+				        </ul>
+                    <!--end yb-info-right-->
+                    <div class="cb"></div>
+                   </div>
+                   <!--end yb-info-block-->
+                
+                   <div class="yb-info-block">
+                    <!--end yb-info-left-->
+                    <div class="yb-info-right">
+                    
+                    
+                    
+                    </div>
+                    <!--end yb-info-right-->
+                    <div class="cb"></div>
+                   </div>
+                   <!--end yb-info-block-->
+                </div>
+               <!--end item-yb-box-info-->
+            </div>
+            
+            <div class="item-yb-box_">
+               <div class="item-yb-box-tle">{{wsbjtxt}}网上报价</div>
+                  <div class="item-yb-box-info">
+                    <ul>
+                    {%for wsbj in wsbjlist%}
+                        <li><a href="{{wsbj.url}}" target="_blank" title="{{wsbj.fulltitle}}">{{wsbj.td_title}}</a></li>
+                    {%endfor%}
+                    </ul>
+                 </div>
+                <!--end item-yb-box-info-->
+              </div>
+           <!--end item-yb-box_-->
+           <div class="item-yb-box_">
+               <div class="item-yb-box-tle">{{mainlabel}}最新供应</div>
+                  <div class="item-yb-box-info">
+                    <ul>
+{%for ofl in offerlist%}
+                        	<li><a href="{{ofl.url}}" title="{{ofl.fulltitle}}" target="_blank">{{ofl.fulltitle}}</a></li>
+{%endfor%}                    </ul>
+                 </div>
+                <!--end item-yb-box-info-->
+              </div>
+           <!--end item-yb-box_-->
+           <div class="item-yb-box_">
+               <div class="item-yb-box-tle">{{mainlabel}}最新求购</div>
+                  <div class="item-yb-box-info">
+                    <ul>
+{%for byl in buylist%}
+                        	<li><a href="{{byl.url}}" title="{{byl.fulltitle}}" target="_blank">{{byl.fulltitle}}</a></li>
+{%endfor%}                    </ul>
+                 </div>
+                <!--end item-yb-box-info-->
+              </div>
+           <!--end item-yb-box_-->
+        </div>
+        <!--end part_right-->
+        <div class="cb"></div>
+    </div>
+    <!--end part_-->
+<div style="width:100%;">
+	<div style="width:960px;margin:0 auto;text-align:center;">
+		{% include 'comm/buttom.html' %}
+    </div>
+</div>
+<script type="text/javascript" src="http://www.zz91.com/app/log.htm?{{timenow}}"></script>
+</body>
+</html>

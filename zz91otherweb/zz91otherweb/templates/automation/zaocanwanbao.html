@@ -1,0 +1,62 @@
+{%extends 'automation/suliao_price.html'%}
+{%block content1%}
+<table class="table table-bordered table-hover definewidth m10" >
+<tr>
+<td>
+<a href="" style="color:black">早间评论</a> <a href="?arg=1">抓取</a>
+</td>
+<td>
+来源网站 <a target="_blank" href="http://info.1688.com/tags_list/v5003220-l18935.html">http://info.1688.com/tags_list/v5003220-l18935.html</a>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<a href="?szaocan={%if not szaocan%}1{%endif%}">生成塑料早参</a>
+</td>
+</tr>
+{%if suliaozaocan%}
+<tr>
+<td colspan="2">
+{{suliaozaocan|safe}}
+</td>
+</tr>
+{%endif%}
+<tr>
+<td>
+<a href="" style="color:black">晚间评论 <a href="?arg=2">抓取</a>
+</td>
+<td>
+来源网站 <a target="_blank" href="http://www.rdqh.com/pinglun.aspx">http://www.rdqh.com/pinglun.aspx</a>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<a href="?wanbao={%if not wanbao%}1{%endif%}">生成塑料晚报</a>
+</td>
+</tr>
+{%if suliaowanbao%}
+<tr>
+<td colspan="2">
+{{suliaowanbao|safe}}
+</td>
+</tr>
+{%endif%}
+
+<tr>
+<td colspan="2">
+<a href="?jzaocan={%if not jzaocan%}jinshu{%endif%}" target="_blank">生成金属早参</a>
+</td>
+</tr>
+{%if jinshuzaocan%}
+<tr>
+<td colspan="2">
+{{jinshuzaocan|safe}}
+---------源码---------<br />
+{{jinshuzaocan}}
+</td>
+</tr>
+{%endif%}
+
+
+</table>
+{%endblock%}

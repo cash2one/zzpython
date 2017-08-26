@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="css/weixin/style.css">
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js">
+		</script>
+		<script>
+			wx.config({
+			      debug: true,
+			      appId: 'wx2891ef70c5a770d6',
+			      timestamp: {{timestamp}},
+			      nonceStr: '{{nonceStr}}',
+			      signature: '{{signature}}',
+			      jsApiList: [
+			        'checkJsApi',
+			        'onMenuShareTimeline',
+			        'onMenuShareAppMessage',
+			        'onMenuShareQQ',
+			        'onMenuShareWeibo',
+			        'hideMenuItems',
+			        'showMenuItems',
+			        'hideAllNonBaseMenuItem',
+			        'showAllNonBaseMenuItem',
+			        'translateVoice',
+			        'startRecord',
+			        'stopRecord',
+			        'onRecordEnd',
+			        'playVoice',
+			        'pauseVoice',
+			        'stopVoice',
+			        'uploadVoice',
+			        'downloadVoice',
+			        'chooseImage',
+			        'previewImage',
+			        'uploadImage',
+			        'downloadImage',
+			        'getNetworkType',
+			        'openLocation',
+			        'getLocation',
+			        'hideOptionMenu',
+			        'showOptionMenu',
+			        'closeWindow',
+			        'scanQRCode',
+			        'chooseWXPay',
+			        'openProductSpecificView',
+			        'addCard',
+			        'chooseCard',
+			        'openCard'
+			      ]
+			  });
+		</script>
+
+	</head>
+{{jsapi_ticket}}
+	<body ontouchstart="">
+		<button class="btn btn_primary" id="chooseWXPay">chooseWXPay</button>
+	</body>
+	<script>
+		wx.ready(function () {
+		document.querySelector('#chooseWXPay').onclick = function () {
+		    // 注意：此 Demo 使用 2.7 版本支付接口实现，建议使用此接口时参考微信支付相关最新文档。
+		    wx.chooseWXPay({
+		      timestamp: {{timestamp}},
+		      nonceStr: '{{nonceStr}}',
+		      package: 'bank_type=WX&body=aa&fee_type=1&input_charset=utf8&notify_url=&out_trade_no={{timestamp}}&partner=1230440002&spbill_create_ip=115.236.188.99&total_fee=1&sign={{signature}}',
+		      signType: 'SHA1', // 注意：新版支付接口使用 MD5 加密
+		      paySign: '{{signature}}'
+		    });
+		  };
+		});
+		wx.error(function (res) {
+  			alert(res.errMsg);
+		});
+	</script>
+
+</html>

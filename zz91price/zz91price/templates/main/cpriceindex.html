@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>废塑料企业报价_废塑料工厂报价_网上报价-废塑料报价频道_第{1}页,ZZ91再生网,zz91.com</title>
+		<meta name="keywords" content="废塑料企业报价,废塑料工厂报价,废塑料网上报价, 废塑料厂家报价, 废塑料公司报价、废塑料报价,废塑料价格" />
+		<meta name="description" content="ZZ91再生网旗下的废塑料企业报价频道包括废塑料价格、工厂废塑料报价、废塑料网上报价、废塑料公司报价、废塑料厂家报价，让您快速掌握大量的企业和工厂、厂家的产品详细信息及最新报价。" />
+
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico">
+		<!--import common css-->
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/css/zz91.common.css">
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/price/css/base.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.price.css">
+		<!--import common js-->
+		<script src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+		<script>
+			$(function(){
+			    $('#province').change(function(){
+			        var provincecode=$(this).children('option:selected').val();  //获得select的值
+					$.ajax({
+					   type: "GET",
+					   url: "/getcitylist.html",
+					   data: "provincecode="+provincecode,
+					   //data:{baidusl:baidusl,numb:"1"},
+					   //dataType: 'html',
+					   success:function(data){
+					   		//alert(data);
+					   		$('#city').html('<option value="">-请选择城市</option>'+data)
+					   		
+					   },
+					   error:function(data){
+							//alert("错误!青重试.");
+					   		$('#city').html('<option value="">-请选择城市</option>')
+					   }
+					});
+			    });
+			})
+			function searchcomp(){
+					var htmltxt='/cprice{%if code%}-{{code}}{%endif%}/'
+					var hexkwd=document.getElementById("hexkwd").value
+					var pvce=document.getElementById("province")
+					var province=pvce.options[pvce.selectedIndex].value
+					var cty=document.getElementById("city")
+					var city=cty.options[cty.selectedIndex].value
+					//alert(hexkwd)
+					//alert(province)
+					//alert(city)
+					arg=0
+					if (hexkwd.length>0){
+						htmltxt+='_k'+hexkwd+'_'
+						arg=1
+					}
+					if (province.length>0){
+						htmltxt+='_c'+province+'_'
+						arg=1
+					}
+					if (city.length>0){
+						htmltxt+='_t'+city+'_'
+						arg=1
+					}
+					//alert(arg)
+					if (arg==1){
+						htmltxt+='/'
+						window.location.href=htmltxt;
+					}else{
+						window.location.href='/cprice/';
+					}
+			}
+			
+			$(function(){
+				$('#keywords').change(function(){
+					keywords=$("#keywords").val();
+					$.ajax({
+					   type: "GET",
+					   url: "/gethexkwd.html",
+					   data: "keywords="+keywords,
+					   success:function(data){
+					   		//alert(data);
+					   		//var hexkwd=data;
+					   		$("#hexkwd").val(data)
+					   },
+					   error:function(data){
+							//alert("错误!青重试.");
+					   }
+					});
+				});
+			});
+		</script>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/companyprice/css/CompaniesOffer.css" />
+		<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+		<script src="http://img0.zz91.com/zz91/companyprice/js/CompaniesOffer.js"></script>
+		<script language="javascript" type="text/javascript" src="http://img0.zz91.com/zz91/companyprice/js/calendar.js"></script>
+		
+	</head>
+
+	<body>
+{% include 'comm/top.html' %}{% include 'comm/mid.html'%}
+	
+
+		
+
+		<div class="main_box">
+			<div class="zz91leader">当前位置:
+				<a href="http://www.zz91.com" target="_blank">ZZ91再生网</a> &gt;
+				<a href="/companyprice/index.htm">企业报价</a>
+			</div>
+		</div>
+
+		<div class="CompaniesOffer">
+			<div class="co-m1">
+				<div class="m1-left fl">
+					<div class="m1-left-title f14 fb">
+						<a href="http://myrc.zz91.com/mycompanyprice/createPrice.htm" target="_blank">我要发布企业报价</a>
+					</div>
+					<!--end m1-left-title-->
+					<div class="m1-left-login">
+						<div class="m1-login-left fl">
+							<a href="http://china.zz91.com/login.htm" target="_blank">登录</a>
+						</div>
+						<div class="m1-login-right fr">
+							<a href="http://china.zz91.com/register/register_stp1.htm" target="_blank">注册</a>
+						</div>
+						<!--end m1-login-right-->
+						<div class="cb"></div>
+					</div>
+					<!--end m1-left-login-->
+					<div class="m1-left-content">
+
+						<div class="f14">
+							精确搜索
+						</div>
+						<div class="mt5">
+							<input name="keyword" id="keywords" class="m1-text" type="text" size="13" {%if keyword%}value="{{keyword}}" {%endif%}/>
+							<input id="hexkwd" type="hidden" {%if hexkwd%}value="{{hexkwd}}" {%endif%}/>
+						</div>
+						<div class="mt5">
+							<select id="province" class="m1-select mr10">
+								<option value="">选择省份</option>
+								{%for pro in provincelist%}
+								<option value="{{pro.code}}">{{pro.label}}</option>
+								{%endfor%}
+							</select>
+							<select name="city" id="city" class="m1-select">
+								{%if citycode%}
+								<option value="{{citycode}}">{{city}}</option>{%endif%}
+								<option value="">-选择城市</option>
+								{%if ctlist%}{{ctlist|safe}}{%endif%}
+							</select>
+						</div>
+						<div class="mt5">
+							<input type="text" class="m1-text2" value="请选择日期" name="clickTime" id="clickTime" />
+						</div>
+						<div class="mt5">
+							<a class="m1-left-search" onClick="searchcomp()"></a>
+						</div>
+
+					</div>
+					<!--end m1-left-content-->
+				</div>
+				<!--end m1-left-->
+				<div class="m1-center fl">
+					<div class="m1-center-title">
+						<div class="fl f14 fb">
+							最新企业报价
+						</div>
+						<div class="cb"></div>
+					</div>
+					<!--end m1-center-title-->
+					<div class="m1-center-content">
+						<div class="fb fl" style="width:150px;text-align:center">产品名称</div>
+						<div class="fb fl" style="width:145px;text-align:center">产品价格</div>
+						<div class="fb fl" style="width:150px;text-align:center">所在地区</div>
+						<div class="cb"></div>
+						<div id="m1-table">
+							<ul>{%for cpr in compricelist%}
+								<li>
+									<div class="fl" style="width:150px;text-align:center"><a href="{{cpr.curl}}" title="{{cpr.td_title}}" target="_blank">{{cpr.td_title}}</a>
+									</div>
+									<div class="fl" style="width:145px;text-align:center">{{cpr.price}}</div>
+									<div class="fr" style="width:150px;text-align:center">{{cpr.province}} {{cpr.city}} </div>
+									<div class="cb"></div>
+								</li>{%endfor%}
+						</div>
+						<!--end m1-table-->
+					</div>
+					<!--end m1-center-content-->
+				</div>
+				<!--end m1-center-->
+				<div class="m1-right fr">
+					<div class="m1-right-title">
+						<div class="f14 fb">
+							企业报价排名
+						</div>
+					</div>
+					<!--end m1-center-title-->
+					<div>
+						<ul class="m1-right-ul">
+							<li><a href="http://company.zz91.com/compinfo258539.htm" target="_blank" title="深圳市中南泰龙实业有限公司/中南泰龍(香港)有限公司">深圳市中南泰龙实业有限公司/中南泰</a>
+							</li>
+							<li><a href="http://company.zz91.com/compinfo155120.htm" target="_blank" title="深圳市千塑环保科技有限公司">深圳市千塑环保科技有限公司</a>
+							</li>
+							<li><a href="http://company.zz91.com/compinfo533201.htm" target="_blank" title="佛山顺德区比格塑胶贸易有限公司">佛山顺德区比格塑胶贸易有限公司</a>
+							</li>
+							<li><a href="http://company.zz91.com/compinfo22549.htm" target="_blank" title="C.S.O.国际贸易公司">C.S.O.国际贸易公司</a>
+							</li>
+							<li><a href="http://company.zz91.com/compinfo396269.htm" target="_blank" title="个体经营(刘伏桂)">个体经营(刘伏桂)</a>
+							</li>
+							<li><a href="http://company.zz91.com/compinfo845440.htm" target="_blank" title="定州市耐特尔装饰材料有限公司">定州市耐特尔装饰材料有限公司</a>
+							</li>
+							<li><a href="http://company.zz91.com/compinfo282244.htm" target="_blank" title="中南泰龙（香港）有限公司">中南泰龙（香港）有限公司</a>
+							</li>
+							<li><a href="http://company.zz91.com/compinfo98815.htm" target="_blank" title="佛山市顺德区杏坛镇骏华实业有限公司">佛山市顺德区杏坛镇骏华实业有限公司</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!--end m1-right-->
+				<div class="cb"></div>
+			</div>
+			<!--end co-m1-->
+			<div class="co-m2">
+				<div class="co-m2-title fl f14 fb">
+					热门地区
+				</div>
+				<!--end co-m2-title-->
+				<div class="co-m2-content fl">
+					<ul>
+						<li><a href="/cprice/_c100110001010__t1001100010101001_/">宁波</a>
+						</li>
+						<li><a href="/cprice/_c100110001008_/">上海</a>
+						</li>
+						<li><a href="/cprice/_c100110001014_/">山东</a>
+						</li>
+						<li><a href="/cprice/_c100110001012_/">福建</a>
+						</li>
+						<li><a href="/cprice/_c100110001009_/">江苏</a>
+						</li>
+						<li><a href="/cprice/_c100110001015_/">河南</a>
+						</li>
+						<li><a href="/cprice/_c100110001018__t1001100010181016_/">东莞</a>
+						</li>
+						<li><a href="/cprice/_c100110001001_/">天津</a>
+						</li>
+						<li><a href="/cprice/_c100110001018__t1001100010181005_/">佛山</a>
+						</li>
+						<li><a href="/cprice/_c100110001023_/">贵州</a>
+						</li>
+						<li><a href="/cprice/_c100110001022_/">四川</a>
+						</li>
+						<li><a href="/cprice/_c100110001022__t1001100010221000_/">成都</a>
+						</li>
+						<li><a href="/cprice/_c100110001013_/">江西</a>
+						</li>
+						<li><a href="/cprice/_c100110001016_/">湖北</a>
+						</li>
+						<li><a href="/cprice/_c100110001002_/">河北</a>
+						</li>
+						<li><a href="/cprice/_c100110001011_/">安徽</a>
+						</li>
+						<li><a href="/cprice/_c100110001003_/">山西</a>
+						</li>
+						<li><a href="/cprice/_c100110001019_/">广西</a>
+						</li>
+						<li><a href="/cprice/_c100110001000_/">北京</a>
+						</li>
+						<li><a href="/cprice/_c100110001004_/">内蒙古</a>
+						</li>
+						<li><a href="/cprice/_c100110001010__t1001100010101009_/">台州</a>
+						</li>
+						<li><a href="/cprice/_c100110001018_/">广东</a>
+						</li>
+						<li><a href="/cprice/_c100110001021_/">重庆</a>
+						</li>
+						<li><a href="/cprice/_c100110001024_/">云南</a>
+						</li>
+						<li><a href="/cprice/_c100110001026_/">陕西</a>
+						</li>
+						<li><a href="/cprice/_c100110001005_/">辽宁</a>
+						</li>
+						<li><a href="/cprice/_c100110001017_/">湖南</a>
+						</li>
+						<li><a href="/cprice/_c100110001014__t1001100010141012_/">临沂</a>
+						</li>
+						<li><a href="/cprice/_c100110001018__t1001100010181015_/">清远</a>
+						</li>
+						<div class="cb"></div>
+					</ul>
+				</div>
+				<!--end co-m2-content-->
+				<div class="cb"></div>
+			</div>
+			<!--end co-m2-->
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<ins class="adsbygoogle"
+			     style="display:block"
+			     data-ad-client="ca-pub-5512236620584335"
+			     data-ad-slot="8274972003"
+			     data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+			<div class="co-m3">
+				<div class="m3-left fl">
+					<div class="m3-left-title f14 fb">
+						行业类别
+					</div>
+					<!--end m3-left-title-->
+					<div class="m3-box">
+						<div class="m3-box-block1 f14 fb">
+							<a href="/companyprice/list.htm?categoryCompanyPriceCode=1000">废塑料</a>
+						</div>
+						<!--end m3-box-block1-->
+						<ul class="m3-box-ul">
+							<li class="fb"><a href="/companyprice/list.htm?categoryCompanyPriceCode=10001000">废料：</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010001000">ABS</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010001001">EVA</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010001002">PA</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010001003">PC</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010001004">PE</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010001005">PET</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010001006">PP</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010001007">PS</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010001008">PVC</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010001009">助剂</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010001010">其它</a>
+							</li>
+							<div class="cb"></div>
+						</ul>
+						<ul class="m3-box-ul">
+							<li class="fb"><a href="/companyprice/list.htm?categoryCompanyPriceCode=10001001">再生塑料：</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010011000">ABS颗粒</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010011001">EVA颗粒</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010011002">PA颗粒</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010011003">PC颗粒</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010011004">PE颗粒</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010011005">PET颗粒</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010011006">PP颗粒</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010011007">PS颗粒</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010011008">PVC颗粒</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=100010011009">其它颗粒</a>
+							</li>
+							<div class="cb"></div>
+						</ul>
+					</div>
+					<!--end m3-box-->
+					<div class="m3-box">
+						<div class="m3-box-block1 f14 fb">
+							<a href="/companyprice/list.htm?categoryCompanyPriceCode=1001">废金属</a>
+						</div>
+						<!--end m3-box-block1-->
+						<ul class="m3-box-ul">
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10011001">铁</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10011002">铜</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10011003">铝</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10011004">铅</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10011005">锌</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10011006">锡</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10011007">镍</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10011008">其它</a>
+							</li>
+						</ul>
+					</div>
+					<!--end m3-box-->
+					<div class="m3-box">
+						<div class="m3-box-block1 f14 fb">
+							<a href="/companyprice/list.htm?categoryCompanyPriceCode=1002">废纸</a>
+						</div>
+						<!--end m3-box-block1-->
+						<ul class="m3-box-ul">
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10021000">牛皮纸</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10021001">瓦楞纸</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10021002">淋膜纸</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10021003">商标纸</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10021004">利乐包</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10021005">书刊</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10021006">新闻纸</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10021007">废报纸</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10021008">其它</a>
+							</li>
+						</ul>
+					</div>
+					<!--end m3-box-->
+					<div class="m3-box" style="border:none;margin-bottom:10px">
+						<div class="m3-box-block1 f14 fb">
+							<a href="/companyprice/list.htm?categoryCompanyPriceCode=1003">综合废料</a>
+						</div>
+						<!--end m3-box-block1-->
+						<ul class="m3-box-ul">
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10031000">橡胶颗粒</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10031001">轮胎</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10031002">旧衣服</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10031003">牛仔裤</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10031004">碎玻璃</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10031005">玻璃瓶</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10031006">电池</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10031007">线路板</a>
+							</li>
+							<li><a href="/companyprice/list.htm?categoryCompanyPriceCode=10031008">其它</a>
+							</li>
+						</ul>
+					</div>
+					<!--end m3-box-->
+				</div>
+				<!--end m3-left-->
+				<div class="m3-right fr">
+					<div class="m3-item fl mr10">
+						<div class="m3-item-title">
+							<div class="fl f14 fb">
+								<a href="/companyprice/list.htm?categoryCompanyPriceCode=1000">废塑料</a>
+							</div>
+							<div class="fr">
+								<a href="/companyprice/list.htm?categoryCompanyPriceCode=1000">更多</a>
+							</div>
+							<div class="cb"></div>
+						</div>
+						<!--end m3-item-title-->
+						<table class="m3-item-table">
+							{%for slcpl in suliaocpricelist%}
+							<tr>
+								<td class="w135"><a href="{{slcpl.curl}}" title="{{slcpl.td_title}}" target="_blank">{{slcpl.td_title}}</a>
+								</td>
+								<td class="w135">{{slcpl.price}}</td>
+								<td class="w70">{{slcpl.td_time}}</td>
+							</tr>
+							{%endfor%}
+						</table>
+					</div>
+
+					<div class="m3-item fl">
+						<div class="m3-item-title">
+							<div class="fl f14 fb">
+								<a href="/companyprice/list.htm?categoryCompanyPriceCode=1001">废金属</a>
+							</div>
+							<div class="fr">
+								<a href="/companyprice/list.htm?categoryCompanyPriceCode=1001">更多</a>
+							</div>
+							<div class="cb"></div>
+						</div>
+						<!--end m3-item-title-->
+						<table class="m3-item-table">
+							{%for slcpl in jinshucpricelist%}
+							<tr>
+								<td class="w135"><a href="{{slcpl.curl}}" title="{{slcpl.td_title}}" target="_blank">{{slcpl.td_title}}</a>
+								</td>
+								<td class="w135">{{slcpl.price}}</td>
+								<td class="w70">{{slcpl.td_time}}</td>
+							</tr>
+							{%endfor%}
+						</table>
+					</div>
+
+					<div class="m3-item fl mr10 mt10">
+						<div class="m3-item-title">
+							<div class="fl f14 fb">
+								<a href="/companyprice/list.htm?categoryCompanyPriceCode=1003">综合废料</a>
+							</div>
+							<div class="fr">
+								<a href="/companyprice/list.htm?categoryCompanyPriceCode=1003">更多</a>
+							</div>
+							<div class="cb"></div>
+						</div>
+						<!--end m3-item-title-->
+						<table class="m3-item-table">
+							{%for slcpl in zonghecpricelist%}
+							<tr>
+								<td class="w135"><a href="{{slcpl.curl}}" title="{{slcpl.td_title}}" target="_blank">{{slcpl.td_title}}</a>
+								</td>
+								<td class="w135">{{slcpl.price}}</td>
+								<td class="w70">{{slcpl.td_time}}</td>
+							</tr>
+							{%endfor%}
+						</table>
+					</div>
+					<!--end m3-item-->
+					<div class="m3-item fl mt10">
+						<div class="m3-item-title">
+							<div class="fl f14 fb">
+								<a href="/companyprice/list.htm?categoryCompanyPriceCode=1002">废纸</a>
+							</div>
+							<div class="fr">
+								<a href="/companyprice/list.htm?categoryCompanyPriceCode=1002">更多</a>
+							</div>
+							<div class="cb"></div>
+						</div>
+						<!--end m3-item-title-->
+						<table class="m3-item-table">
+							{%for slcpl in feizhicpricelist%}
+							<tr>
+								<td class="w135"><a href="{{slcpl.curl}}" title="{{slcpl.td_title}}" target="_blank">{{slcpl.td_title}}</a>
+								</td>
+								<td class="w135">{{slcpl.price}}</td>
+								<td class="w70">{{slcpl.td_time}}</td>
+							</tr>
+							{%endfor%}
+						</table>
+					</div>
+					<!--end m3-item-->
+					<div class="cb"></div>
+				</div>
+				<!--end m3-right-->
+				<div class="cb"></div>
+			</div>
+			<!--end co-m3-->
+			<div class="co-m4">
+				<div class="m4-item fl mr8">
+					<div class="m4-item-title">
+						<div class="fl f14 fb">
+							<a href="http://jiage.zz91.com/">废料资讯</a>
+						</div>
+						<div class="fr">
+							<ul class="m4-title-ul">
+								<li><a href="http://jiage.zz91.com/jinshu/" target="_blank">废金属</a>
+								</li>
+								<li>|</li>
+								<li><a href="http://jiage.zz91.com/suliao/" target="_blank">废塑料</a>
+								</li>
+								<li>|</li>
+								<li><a href="http://jiage.zz91.com/other/" target="_blank">综合废料</a>
+								</li>
+								<div class="cb"></div>
+							</ul>
+						</div>
+						<div class="cb"></div>
+					</div>
+					<!--end m4-item-title-->
+					<ul class="m4-item-ul">
+						{%for pr in pricelist%}
+						<li>
+							<a href="{{pr.url}}" target="_blank" title="{{pr.td_title}}">
+
+								{{pr.td_title}}
+
+							</a>
+						</li>
+						{%endfor%}
+					</ul>
+				</div>
+				<!--end m4-item-->
+				<div class="m4-item fl">
+					<div class="m4-item-title">
+						<div class="fl f14 fb" id="m4_hot1">
+							热门废料供应
+						</div>
+						<div class="fr f14 fb gray" id="m4_hot2">
+							热门废料求购
+						</div>
+						<div class="cb"></div>
+					</div>
+					<!--end m4-item-title-->
+					<ul class="m4-item-ul2" id="m4_hot_ul1">
+						{%for oft in offerlist%}
+						<li>
+							<div class="fl w230"><a href="{{oft.url}}">{{oft.title}}</a>
+							</div>
+							<div class="fr">{{oft.short_time}}</div>
+						</li>
+						{%endfor%}
+					</ul>
+					<ul class="m4-item-ul2" style="display:none" id="m4_hot_ul2">
+						{%for oft in offbuylist%}
+						<li>
+							<div class="fl w230"><a href="{{oft.url}}">{{oft.title}}</a>
+							</div>
+							<div class="fr">{{oft.short_time}}</div>
+						</li>
+						{%endfor%}
+					</ul>
+				</div>
+				<!--end m4-item-->
+				<div class="m4-item fr">
+					<div class="m4-item-title">
+						<div class="fl f14 fb">
+							<a href="/qihuo/" target="_blank">期货价格</a>
+						</div>
+						<div class="fr">
+							2014-10-14
+						</div>
+						<div class="cb"></div>
+					</div>
+					<!--end m4-item-title-->
+					<table class="m4-item-table">
+						<tr>
+							<td class="fb">品名</td>
+							<td class="fb">价格元/吨</td>
+							<td class="fb">涨跌</td>
+						</tr>{%for cdl in chartdatalist%}
+						<tr>
+							<td><a href="/hotchart-{{cdl.chart_category_id}}.html" target="_blank">{{cdl.chart_category}}</a>
+							</td>
+							<td>{{cdl.value}}</td>
+							<td>{{cdl.valuedf}}</td>
+						</tr>{%endfor%}
+					</table>
+				</div>
+				<!--end m4-item-->
+				<div class="cb"></div>
+			</div>
+			<!--end co-m4-->
+			<div class="co-m5">
+				<div class="m5-title">
+					<div class="fl f14 fb">
+						<a href="http://trade.zz91.com/" target="_blank">热门推荐</a>
+					</div>
+					<div class="fr">
+						<a href="http://subject.zz91.com/400Treasure/index.html" target="_blank">我也要出现在这里</a>
+					</div>
+					<div class="cb"></div>
+				</div>
+				<!--end m5-title-->
+				<script src="http://pyapp.zz91.com/showppctxtadscript/?keywords=&amp;showborder=1&amp;showposition=1&amp;m=6&amp;padding=8&amp;w=959&amp;num=6"></script>
+				<!--end n5-item-->
+				<div class="cb"></div>
+			</div>
+			<!--end co-m5-->
+			<div class="co-line"></div>
+		</div>
+		<!--end CompaniesOffer-->
+
+		<script type="text/javascript" src="http://pyapp.zz91.com/app/areyouknow.html"></script>
+		<div class="clear"></div>
+		<div class="footer">
+			<p>
+				<a href="http://about.zz91.com/" target="_blank">关于我们</a> |
+				<a href="http://www.recyclechina.com/" target="_blank">国际站</a> |
+				<a href="http://www.zz91.com/service/baidu/yh.html" target="_blank">百度优化</a> |
+				<a href="http://www.zz91.com/service/zst/" target="_blank">再生通服务</a> |
+				<a href="http://help.zz91.com/" target="_blank">新手指南</a> |
+				<a href="http://www.zz91.com/webmap.html" target="_blank">网站地图</a> |
+				<a href="http://www.zz91.com/hkfs/" target="_blank" rel="nofollow">支付方式</a> |
+				<a href="http://about.zz91.com/contact.html" target="_blank" rel="nofollow">意见投诉</a> |
+				<a href="http://www.zz91.com/about/linkus.asp" target="_blank">友情链接</a> |
+				<a href="http://about.zz91.com/contact.html" target="_blank">客服中心</a> |
+				<a href="http://about.zz91.com/jobs.html" target="_blank">诚聘英才</a> |
+				<a href="http://daohang.zz91.com/" target="_blank">产品导航</a>
+				<br /> 全国统一服务热线：0571-56611111 56612345 市场合作：0571-56633145 广告服务：0571-56611111 传真：0571-56637777
+				<br />
+				<a href="http://www.miibeian.gov.cn" target="_blank">增值电信业务经营许可证 浙B2-20080212</a> 法律顾问：京衡律师集团事务所 罗益群 律师
+				<br /> 版权所有 ZZ91再生网 Copyright&copy;2005-2013 ZZ91.com. All Rights Reserved
+				<br />
+				<br> ZZ91再生网为中国物资再生协会副会长单位 中国塑协理事单位 浙江省电子商务促进会的副会长单位
+				<br /> 并与中国有色金属工业协会、中国塑料协会 、阿里巴巴、《资源再生》杂志等达成战略合作
+				<br />
+
+			</p>
+			<div class="weChat_code">
+				<script type="text/javascript" src="http://gg.zz91.com/show?p=591"></script>
+			</div>
+		</div>
+
+		<div style="display:none">
+			<!--google analysis-->
+			<!--baidu analysis-->
+			<script type="text/javascript">
+				var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+				document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+			</script>
+			<script type="text/javascript">
+				var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+				document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F4d462e1dab089e43f455a2b6fa41bfb2' type='text/javascript'%3E%3C/script%3E"));
+			</script>
+			<script type="text/javascript">
+				var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+				document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd1852f2b391e52cbd020e4b788713ba1' type='text/javascript'%3E%3C/script%3E"));
+			</script>
+
+			<script type="text/javascript" src="http://www.zz91.com/app/log.htm?1413270758844"></script>
+
+		</div>
+	</body>
+
+</html>
+<!--google analysis-->
+<!--baidu analysis-->
+
+<!--51yes analysis-->

@@ -1,0 +1,518 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>crm 公司列表</title>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<SCRIPT language=javascript src="http://{{localIP}}/cn/sources/pop.js"></SCRIPT>
+<SCRIPT language=JavaScript src="http://{{localIP}}/admin1/main.js"></SCRIPT>
+<SCRIPT language=javascript src="http://{{localIP}}/admin1/crmlocal/DatePicker.js"></SCRIPT>
+<SCRIPT language=javascript src="http://{{localIP}}/admin1/crmlocal/js/province_utf8.js"></SCRIPT>
+<SCRIPT language=javascript src="http://{{localIP}}/admin1/crmlocal/js/compkind.js"></SCRIPT>
+<SCRIPT language=javascript src="http://{{localIP}}/admin1/crmlocal/js/list.js"></SCRIPT>
+<SCRIPT language=javascript src="http://{{localIP}}/js/layer/layer.js"></SCRIPT>
+<link href="http://{{localIP}}/admin1/crmlocal/css/list.css" rel="stylesheet" type="text/css">
+<link href="http://{{localIP}}/admin1/crmlocal/datepicker.css" rel="stylesheet" type="text/css">
+<link href="http://{{localIP}}/admin1/main.css" rel="stylesheet" type="text/css">
+<link href="http://{{localIP}}/admin1/color.css" rel="stylesheet" type="text/css">
+<style>
+#ListTable
+{
+	font-size:14px;
+	line-height:25px;
+}
+#ListTable td,#ListTable td a
+{
+	font-size:14px;
+	line-height:25px;
+}
+</style>
+</head>
+<body>
+<div id="wrap">
+<table width="100%" id=secTable border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="28" nowrap class="selected">{{showtxt}} -> {{nowdint}}</td>
+    <td width="100%" align="left" class="unselect">&nbsp;</td>
+  </tr>
+</table>
+<table  border="0" cellpadding="0" cellspacing="0" class="searchtable">
+  <form name="form2" method="get" action="" onSubmit="getprovincename()">
+    <tr>
+      <td height="30" align="left" bgcolor="#FFFFFF">
+        <table border="0" cellspacing="0" cellpadding="2">
+          <tr>
+            <td align="right" nowrap>公司名:</td>
+            <td>
+              <input name="com_name" type="text" class=text id="com_name" style="background-color:#fff;" size="15" value="{{com_name1}}">
+              <input name="action" type="hidden" id="action" value="{{action}}">
+              <input name="dotype" type="hidden" id="dotype" value="{{dotype}}">
+              <input name="lmaction" type="hidden" id="lmaction" value="{{lmaction}}">
+              <input name="cach" type="hidden" id="cach" value="{{cach}}">
+              <input name="lmcode" type="hidden" id="lmcode" value="{{lmcode}}">
+              <input name="zhuce" type="hidden" id="zhuce" value=>
+              <input name="expired" type="hidden" id="expired" value="">
+              <input name="adid" type="hidden" id="adid" value="">
+              <input name="adgonghai" type="hidden" id="adgonghai" value="">
+              <input name="adshihai" type="hidden" id="adshihai" value="">
+              <input name="zsttype" type="hidden" id="zsttype" value="">
+              <input type="hidden" name="sms_code" id="sms_code" value="">
+              <input type="hidden" name="personid" id="personid" value="{{personid}}">
+            </td>
+            <td nowrap>联系人:</td>
+            <td><input name="com_contactperson" type="text" class=text id="com_contactperson" style="background-color:#fff;" size="15" value="{{com_contactperson1}}"></td>
+            <td align="right" nowrap>最后有效联系时间: </td>
+            <td nowrap><script language=javascript>createDatePicker("fromdate",true,"{{fromdate1}}",false,true,true,true);</script>&nbsp;到&nbsp;<script language=javascript>createDatePicker("todate",true,"{{todate1}}",false,true,true,true);</script></td>
+            </tr>
+          <tr>
+            <td align="right" nowrap>电话/手机: </td>
+            <td><input name="com_tel" type="text" class=text id="com_tel" style="background-color:#fff;" size="15" value=""></td>
+            <td><strong style="color:#F00">Email:</strong></td>
+            <td><input name="com_email" type="text" class=text id="com_email" style="background-color:#fff;" size="15"></td>
+            <td align="right">最近登录时间: </td>
+            <td><script language=javascript>createDatePicker("Lfromdate",true,"{{Lfromdate}}",false,true,true,true);</script>&nbsp;到&nbsp;<script language=javascript>createDatePicker("Ltodate",true,"{{Ltodate}}",false,true,true,true);</script></td>
+            </tr>
+          <tr>
+            <td align="right">地&nbsp; 址:</td>
+            <td><input name="com_add" type="text" class=text id="com_add" style="background-color:#fff;" size="15"></td>
+            <td>行业</td>
+            <td>
+              <select name="clscb" id="clscb">
+                <option value="">--请选择--</option>
+                <option value="1">废金属</option>
+                <option value="2">废塑料</option>
+                <option value="3">废旧轮胎与废橡胶</option>
+                <option value="4">废纺织品与废皮革</option>
+                <option value="5">废纸</option>
+                <option value="6">废电子电器与废电脑设备</option>
+                <option value="10">废玻璃与废木制品</option>
+                <option value="12">废旧设备与旧交通工具</option>
+              </select>
+              <script>selectOption("clscb","")</script></td>
+            <td align="right">地区:</td>
+            <td>
+              
+  <font id="mainprovince1"></font><font id="maincity1"></font><font id="mainGarden">无园区</font>
+              <input type="hidden" name="province" id="province">
+              <input type="hidden" name="city" id="city">
+              <input type="hidden" name="cprovince" id="cprovince" value="0">
+              <script>
+                            //地区及园区
+                            var Fstyle="";
+                            var selectname1="province1";
+                            var selectname2="city1";
+                            var selectname3="Garden";
+                            var Fvalue1="{{province2}}";
+                            var Fvalue2="{{city2}}";
+                            var Fvalue3="";
+                            var hyID="clscb";//行业ID号
+                            getprovincevalue();
+                        </script>
+              <script>
+                        function getprovincename()
+                        {
+							
+                            document.getElementById("province").value=document.getElementById("province1").options[document.getElementById("province1").selectedIndex].text
+							//alert(document.getElementById("province1").options[document.getElementById("province1").selectedIndex].text)
+                            document.getElementById("city").value=document.getElementById("city1").options[document.getElementById("city1").selectedIndex].text
+                        }
+                        </script>
+              
+  </td>
+            </tr>
+          <tr>
+            <td align="right">等&nbsp; 级:</td>
+            <td nowrap>
+              
+              <select name="com_rank" id="com_rank" style="background:#ebebeb; width:120px">
+                <option value="">--请选择等级--</option>
+                <option value="1.0" >★无条件，无意向</option>
+                <option value="2.0" >★★有条件，目前无意向</option>
+                <option value="3.0" >★★★条件好，意向一般</option>
+                <option value="4.0" >★★★★条件好，意向好</option>
+                <option value="4.1" >|——短四星</option>
+                <option value="4.8" >|——长四星</option>
+                <option value="5.0" >★★★★★口头确定付款</option>
+                </select>
+              <script>selectOption("com_rank","{{com_rank1}}")</script></td>
+            <td>是否录入</td>
+            <td nowrap>
+              
+              <select name="showitems" id="showitems" style="display:none">
+                <option value="">请选择</option>
+                <option value="offer">有供求信息</option>
+                <option value="receive">有收到询盘</option>
+                <option value="send">有发送询盘</option>
+                </select>
+              <script>selectOption("showitems","")</script>
+              <input name="addcompany" type="checkbox" id="addcompany" value="1" {{addcompanyselect}} ></td>
+            <td align="right">注册时间:</td>
+            <td><script language=javascript>createDatePicker("Regfromdate",true,"{{Regfromdate}}",false,true,true,true)</script>&nbsp;到&nbsp;<script language=javascript>createDatePicker("Regtodate",true,"{{Regtodate}}",false,true,true,true)</script></td>
+            </tr>
+          <tr>
+            <td align="right">主营业务:</td>
+            <td nowrap><input name="zyyw" type="text" class="text" id="zyyw" size="15"></td>
+            <td>排&nbsp; 序:</td>
+            <td nowrap>
+              <script>
+		  function opendcorder(obj)
+		  {
+			  if(obj.checked==true)
+			  {
+				  document.getElementById("dcorder").style.display=""
+			  }else{
+				  document.getElementById("dcorder").style.display="none"
+			  }
+		  }
+		  </script>
+          
+              <select name="comporder" id="comporder" style="width:80px;">
+                <option value="">默认</option>
+                <option value="com_rank">客户等级</option>
+                <option value="logincount">登录次数</option>
+                <option value="teldate2">最后联系时间</option>
+                <option value="com_regtime2">注册时间</option>
+                <option value="lastlogintime2">最近登陆时间</option>
+                </select>
+              <script>selectOption("comporder","{{comporder}}")</script>
+              <select name="ascdesc" id="ascdesc">
+                <option value="desc" >降序</option><option value="asc" >升序</option>
+                </select><input style="display:none" name="duochangoder" type="checkbox" id="duochangoder" onClick="opendcorder(this)" value="1" >
+                <script>selectOption("ascdesc","{{ascdesc}}")</script>
+                </td>
+            <td align="right" bgcolor="#FFFFCC">行业关键字:</td>
+            <td bgcolor="#FFFFCC">
+              <select name="keywords" id="keywords">
+                <option value="">请选择</option>
+                <option value="金属">金属</option>
+                <option value="铜">铜</option>
+                <option value="铝">铝</option>
+                <option value="钢">钢</option>
+                <option value="不锈钢">不锈钢</option>
+                <option value="铁">铁</option>
+                <option value="铅">铅</option>
+                <option value="锌">锌</option>
+                </select>
+              地区关键字
+              <script>selectOption("keywords","{{keywords1}}")</script>
+              
+              <select name="selectdiqu" id="selectdiqu">
+                <option value="">请选择</option>
+                <option value="浙江 | 江苏 | 上海">江浙沪</option>
+                <option value="广东">广东</option>
+                <option value="山东 | 河北">山东河北</option>
+                <option value="天津">天津</option>
+                </select>
+              <script>selectOption("selectdiqu","{{selectdiqu1}}")</script>
+              </td>
+            </tr>
+          </table></td>
+      </tr>
+    
+    
+    <tr id="dcorder" style='display:none'>
+      <td align="center" bgcolor="#f2f2f2">
+        1\
+        <select name="comporder1" id="comporder1" style="width:80px;">
+          <option value="">默认</option>
+          <option value="1">客户等级</option>
+          <option value="2">登录次数</option>
+          <option value="3">下次联系时间</option>
+          <option value="5">最后联系时间</option>
+          <option value="6">注册时间</option>
+          <option value="7">最近登陆时间</option>
+          </select><script>selectOption("comporder1","")</script>
+        2\
+        <select name="comporder2" id="comporder2" style="width:80px;">
+          <option value="">默认</option>
+          <option value="1">客户等级</option>
+          <option value="2">登录次数</option>
+          <option value="3">下次联系时间</option>
+          <option value="5">最后联系时间</option>
+          <option value="6">注册时间</option>
+          <option value="7">最近登陆时间</option>
+          </select><script>selectOption("comporder2","")</script>
+        3\
+        <select name="comporder3" id="comporder13" style="width:80px;">
+          <option value="">默认</option>
+          <option value="1">客户等级</option>
+          <option value="2">登录次数</option>
+          <option value="3">下次联系时间</option>
+          <option value="5">最后联系时间</option>
+          <option value="6">注册时间</option>
+          <option value="7">最近登陆时间</option>
+          </select><script>selectOption("comporder3","")</script>
+        4\
+        <select name="comporder4" id="comporder4" style="width:80px;">
+          <option value="">默认</option>
+          <option value="1">客户等级</option>
+          <option value="2">登录次数</option>
+          <option value="3">下次联系时间</option>
+          <option value="5">最后联系时间</option>
+          <option value="6">注册时间</option>
+          <option value="7">最近登陆时间</option>
+          </select><script>selectOption("comporder4","")</script></td>
+      </tr>
+    <tr>
+      <td align="center" bgcolor="#f2f2f2">
+        再生通:
+          <input name="zstflag" type="checkbox" id="zstflag" value="1" {{zstflagselect}}>
+          <select name="contactcount" id="contactcount">
+            <option value="">联系次数</option>
+          <option value="0-2">2次以下</option>
+          <option value="3-15">3-15次</option>
+          <option value="16-30">16-30次</option>
+          <option value="31-60">31-60次</option>
+          <option value="61-100">61-100次</option>
+          <option value="101-10000">101以上</option>
+          </select>
+        <script>selectOption("contactcount","{{contactcount}}")</script>
+        <select name="logincounts" id="logincounts">
+          <option value="">登录次数</option>
+          <option value="1-2">1-2次以下</option>
+          <option value="3-20">3-20次</option>
+          <option value="21-100">21-100次</option>
+          <option value="101-400">101-400次</option>
+          <option value="400-100000">大于400</option>
+          </select>
+        <script>selectOption("logincounts","{{logincounts}}")</script>
+        <select name="contactpersoncount" id="contactpersoncount">
+          <option value="">联系人数</option>
+          <option value="0-1">1人次</option>
+          <option value="2-8">2-8人次</option>
+          <option value="9-15">9-15人次</option>
+          <option value="16-1000">16人次以上</option>
+        </select>
+        <script>selectOption("contactpersoncount","{{contactpersoncount}}")</script>
+        <select name="nocontactcount" id="nocontactcount">
+          <option value="">无效联系次数</option>
+          <option value="0-10">10人次内</option>
+          <option value="11-20">11-20人次</option>
+          <option value="21-30">21-30人次</option>
+          <option value="31-1000">31人次以上</option>
+        </select>
+        <script>selectOption("nocontactcount","{{nocontactcount}}")</script>
+        
+        <input name="ss" type="hidden" id="ss" value="1">
+        <input type="submit" name="Submit3" value="  搜 索  " class=button>
+        <input name="gaohaisearchFlag" type="hidden" id="gaohaisearchFlag" value="1"> 
+        
+        <a href="http://192.168.2.2/admin1/crmlocal/crm_complist_gonghai.asp?dotype=gonghai_all&lmcode=644">老版公海</a></td>
+    </tr>
+    
+    </form>
+</table>
+<div class="tishi">注：搜索结果最多100000条数据，一天数据更新时间为5：10 和 17：50 这个时间段可能会暂时打不开5分钟左右。</div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+       
+    <table width="100%" border=0 cellpadding=0 cellspacing=0 style="margin:5px 0px 3px 0px;">
+     <tr align="center">    
+     <td width='20%'>&nbsp; </td>
+     {% if firstpage %}
+		<td nowrap> <a href="?page=1{{sear}}" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;</td>
+		<td nowrap> <a href="?page={{prvpage}}{{sear}}" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; </td>
+	 {% endif %}
+		<td>
+     总记录数:&nbsp;{{listcount_all}}&nbsp;条&nbsp;&nbsp;{{page}}/{{page_listcount}} 页&nbsp;&nbsp;30/页
+     </td> 
+     
+
+     {% if lastpage%}
+		<td nowrap> <a href="?page={{nextpage}}{{sear}}" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;</td>
+		<td nowrap> <a href="?page={{page_listcount}}{{sear}}" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;</td>
+	 {% endif %}
+     
+     <td align="center" nowrap>
+     &nbsp;到&nbsp;
+     <input type=text size=4 onKeyUp="value=value.replace(/[^\d]/,'')" name=windowpage maxlength=5>&nbsp;页&nbsp;
+     <input name="GO" type="button" class="button" value="Go!" onClick="location.href='?page='+windowpage.value+'{{sear}}'">
+     
+     </td>
+     
+    </tr>
+</table>
+    
+	</td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><table width="100%"  border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><table width="100%" class="ee" id=ListTable border="0" cellpadding="2" cellspacing="0">
+              <form action="http://{{localIP}}/admin1/crmlocal/crm_allcomp_list.asp" method="post" name=form1>
+                
+				<tr class="topline"> 
+                  <td width="4" bgcolor="#DFEBFF"><span class="STYLE2"></span></td>
+                  <td nowrap bgcolor="#DFEBFF">&nbsp;</td>
+                  <td align="center" nowrap bgcolor="#DFEBFF" class=sort id=td_address>ICD<br>所有者</td>
+                  <td align="center" nowrap bgcolor="#DFEBFF" class=sort id=td_address>VAP<br>所有者</td>
+                  <td bgcolor="#DFEBFF"><span class="STYLE2">公司名</span></td>
+                  <td align="center" class=sort id=td_address nowrap bgcolor="#DFEBFF">客户<br>等级</td>
+                  <td align="center" class=sort id=td_address nowrap bgcolor="#DFEBFF"><span class="style1 STYLE2">Email</span></td>
+                  <td class=sort id=td_address nowrap bgcolor="#DFEBFF">最近登录</td>
+                  <td class=sort id=td_address nowrap bgcolor="#DFEBFF">登录<br>次数</td>
+                  <td class=sort id=td_address nowrap bgcolor="#DFEBFF">注册时间</td>
+                  <td class=sort id=td_address nowrap bgcolor="#DFEBFF">联系人</td>
+                  <td class=sort id=td_address nowrap bgcolor="#DFEBFF">公司电话</td>
+                  <td class=sort id=td_address nowrap bgcolor="#DFEBFF">手机</td>
+                  <td nowrap bgcolor="#DFEBFF" class=sort id=td_address>省份</td>
+                  <td nowrap bgcolor="#DFEBFF" class=sort id=td_address>最后联系时间</td>
+                  <td nowrap bgcolor="#DFEBFF" class=sort id=td_address>到期时间</td>
+                  <td align="center" class=sort id=td_address nowrap bgcolor="#DFEBFF">挑入时间</td>
+                  <td align="center" nowrap bgcolor="#DFEBFF" class=sort id=td_address>录入者</td>
+                </tr>
+                {%for list in listall%}
+                <tr style="cursor:hand" onmouseover=DoHL();  onDblClick="javascript:DoSL();javascript:oow('http://{{localIP}}/admin1/crmlocal/crm_cominfoedit.asp?idprod={{list.com_id}}&dotype={{dotype}}');" onmouseout=DoLL(); {{list.trcolor|safe}}> 
+                 <td height="24">
+				  <input name="cbb0" type="checkbox" title="{{list.com_email}}" value="{{list.com_id}}"></td>
+                  <td nowrap><a href="http://{{localIP}}/admin1/crmlocal/rizhi/salesHistory.asp?com_id={{list.com_id}}&dotype={{dotype}}" target="_blank">日志</a></td>
+				  <td align="center" nowrap>{{list.realname}}</td>
+				  <td align="center" nowrap>{{list.realnametxtvap}}</td>
+                  <td nowrap >
+                  {%if zst%}
+                  【再生通】
+                  {%endif%}
+                  {%if list.havevip%}
+                  <font color=red>[已是高会]</font>
+                  {%endif%}
+                  <a href="http://{{localIP}}/admin1/crmlocal/crm_cominfoedit.asp?idprod={{list.com_id}}&dotype={{dotype}}" target="_blank">公司:{{list.com_name}}</a></td>
+                  <td nowrap>{{list.com_rank}}星</td>
+                  <td>{{list.com_email}}</td>
+                  <td nowrap>{{list.lastlogintime}}</td>
+                  <td nowrap>{{list.logincount}}</td>
+                  <td nowrap>{{list.com_regtime}}</td>
+                  <td nowrap>{{list.com_contactperson}}{{list.com_desi}}</td>
+                  <td nowrap>{{list.com_tel}}</td>
+                  <td nowrap>{{list.com_mobile}}</td>
+                  <td nowrap>{{list.com_province}}</td>
+                  <td nowrap>{{list.teldate}}</td>
+                  <td nowrap>{{list.vip_date}}<br />{{list.vip_dateto}}</td>
+                  <td align="center" nowrap>{{list.fdate}}</td>
+                  <td align="center" nowrap></td>     
+                </tr>
+                {%endfor%}
+               
+                <tr bgcolor="#FFFFFF"> 
+                  <td colspan="40"> 全选 
+                    <input name="cball" type="checkbox" value="" onClick="CheckAll(this.form)">
+                    <input type="button" name="Submit" class="button" value="放到我的客户库" onClick="selectoutmycrm(this.form)">
+                    {%if fpuserlist%}
+                    <select name="personid" class="button" id="dopersonid" style="width: auto;">
+                    	<option value="">请选择--</option>
+                    	{%for pm in fpuserlist%}
+                    	<option value="{{pm.code}}">┆&nbsp;&nbsp;┿
+							{{pm.meno}}
+						</option>
+						{%for us in pm.userlist%}
+							<option value='{{us.personid}}'>┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿
+								{{us.realname}}
+							</option>
+						{%endfor%}
+						{%endfor%}
+                    </select>
+                    <input type="button" name="Submit" class="button" value="分配给" onClick="selectcrmnew(this.form)">
+                    {%endif%}
+                    <input type="hidden" name="dostay" id="dostay">
+                    <input type="hidden" name="dotype" id="dotype" value="gonghai_all">
+                    <input type="hidden" name="selectcb" id="selectcb"> 
+                    <input type="hidden" name="userName" value="">
+                    <input type="hidden" name="flag" id="flag">
+                    <input type="hidden" name="doflag" id="doflag"> 
+                    <input type="hidden" name="page" value="1">                  
+                  </td>
+                </tr>
+              </form>
+            </table>
+        </td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="25"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+			  
+  <tr>
+    <td nowrap="nowrap">页次:<strong><font color="#FF0000">{{page}}</font></strong>/<font color="#FF0000">{{page_listcount}}</font> 每页:<font color="#FF0000"></font> 共计:<font color="#FF0000">{{listcount_all}}</font></td>
+    <td>             
+	<div class='pageBar'>
+		{% if firstpage %}
+		<a href="?page=1{{sear}}" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+		<a href="?page={{prvpage}}{{sear}}" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+		{% endif %}
+		{% for p in page_range %}
+		{% if p.nowpage %}
+		<span class="cpb" style="margin-right:5px;">{{p.number}}</span>
+		{% else %}
+		<a href="?page={{p.number}}{{sear}}" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+		{% endif %}
+		{% endfor %}
+		&nbsp;
+		{% if lastpage%}
+		<a href="?page={{nextpage}}{{sear}}" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+		<a href="?page={{page_listcount}}{{sear}}" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+		{% endif %}
+	</div>
+	</td>
+    <td align="right"><font color="#666666">
+      
+首页上一页
+
+<a href="?page=2&lmcode=644&searchflag=&dotype=gonghai_all&ascdesc=&comporder=">下一页</a> <a href="?page=76393&lmcode=644&searchflag=&dotype=gonghai_all&ascdesc=&comporder=">末页</a>
+
+    </font></td>
+    <td align="right">
+	
+	
+
+    </td>
+  </tr>
+</table>
+</td>
+  </tr>
+ 
+</table>
+
+</div>
+<script>
+function selectcrmnew(form) {
+	selectcb = "0"
+	for(var i = 0; i < form.elements.length; i++) {
+		var e = form.elements[i];
+		if(e.name.substr(0, 3) == 'cbb')
+			if(e.checked == true) {
+				var selectcb = selectcb + "," + e.value
+			}
+	}
+	form.selectcb.value = selectcb.substr(2)
+	if(selectcb == "0") {
+		alert("选择你要分配的信息！")
+		return false
+	} else {
+		if(confirm("分配这些信息吗?")) {
+			//openlayer(selectcb)
+			form.dostay.value = "selec1tcrm"
+			form.submit()
+		}
+	}
+}
+function openlayer(userlist){
+	//iframe窗
+	layer.open({
+	  type: 2,
+	  title: '分配给',
+	  shadeClose: true,
+	  shade: 0.5,
+	  area: ['380px', '300px'],
+	  content: 'http://{{localIP}}/admin1/crmlocal/crm_assign_open.asp?dotype=all&selectcb='+userlist //iframe的url
+	}); 
+}
+</script>
+<iframe name="copekuan" src="" frameborder='0' width="0" height="0" scrolling="no" ></iframe>
+</body>
+</html>

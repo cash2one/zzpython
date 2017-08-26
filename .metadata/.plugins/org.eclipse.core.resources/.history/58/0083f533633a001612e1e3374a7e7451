@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget id="A6997909407544" version="0.0.1"> 
+  <name>ZZ91再生网-再生资源商人首选，废塑料废金属及综合废料的交易平台，一手废料行情报价资讯，废料商人的贴身生意管家</name>  
+  <description>再生资源商人首选，废塑料废金属及综合废料的交易平台，一手废料行情报价资讯，废料商人的贴身生意管家</description>  
+  <author email="kangxy@asto.com.cn" href="http://www.zz91.com">杭州阿思拓信息科技有限公司</author>  
+  <content src="html/index.html"/>  
+  <preference name="pageBounce" value="false"/>  
+  <preference name="appBackground" value="rgba(0,0,0,0.0)"/>  
+  <preference name="windowBackground" value="rgba(0,0,0,0.0)"/>  
+  <preference name="frameBackgroundColor" value="rgba(0,0,0,0.0)"/>  
+  <preference name="hScrollBarEnabled" value="true"/>  
+  <preference name="vScrollBarEnabled" value="true"/>  
+  <preference name="autoLaunch" value="true"/>  
+  <preference name="fullScreen" value="false"/>  
+  <preference name="autoUpdate" value="false"/>  
+  <preference name="smartUpdate" value="false"/>  
+  <preference name="debug" value="false"/>  
+  <preference name="statusBarAppearance" value="false"/>  
+  <preference name="iOS7StatusBarAppearance" value="false"/>  
+  <permission name="readPhoneState"/>  
+  <permission name="record"/>  
+  <permission name="location"/>  
+  <permission name="fileSystem"/>  
+  <permission name="internet"/>  
+  <permission name="bootCompleted"/>  
+  <permission name="hardware"/>  
+  <permission name="camera"/>  
+  <access origin="*"/>  
+  <feature name="UIChatBox"/>  
+  <feature name="wx"> 
+    <param name="urlScheme" value="wx6bb99d2f0581b5b0"/>  
+    <param name="apiKey" value="wx6bb99d2f0581b5b0"/>  
+    <param name="apiSecret" value="5f51f0415f74dae04f4022d96b3d0a94"/> 
+  </feature>  
+  <feature name="wxPay"> 
+    <param name="urlScheme" value="wx6bb99d2f0581b5b0"/>  
+    <param name="apiKey" value="wx6bb99d2f0581b5b0"/>  
+    <param name="apiSecret" value="5f51f0415f74dae04f4022d96b3d0a94"/> 
+  </feature>  
+  <feature name="weibo"> 
+    <param name="urlScheme" value="wb1115579126"/>  
+    <param name="apiKey" value="1115579126"/>  
+    <param name="registUrl" value="http://m.zz91.com/weiboredirect_url.html"/> 
+  </feature>  
+  <feature name="qq"> 
+    <param name="urlScheme" value="tencent1104846806"/>  
+    <param name="apiKey" value="1104846806"/> 
+  </feature>  
+  <feature name="aliPay"> 
+    <param name="urlScheme" value="AliPayA0000000000004"/> 
+  </feature>  
+  <feature name="tencentPush"> 
+    <param name="android_accessId" value="2100196794"/>  
+    <param name="android_accessKey" value="A28F39GPE4KN"/> 
+  </feature>  
+  <feature name="tencentPush"> 
+    <param name="ios_accessId" value="2200196795"/>  
+    <param name="ios_accessKey" value="IU4Z6W353ZVH"/> 
+  </feature>  
+  <feature name="rongCloud2"> 
+    <param name="appKey" value="n19jmcy59ued9"/> 
+  </feature> 
+</widget>

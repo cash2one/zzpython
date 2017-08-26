@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* 竞拍专题 */
+body { background: url(../images/bg.jpg) center repeat; font: 400 12px "宋体", sans-serif, Helvetica;}
+p, ul { margin:0; padding: 0;}
+ul, li { list-style: none;}
+img {border: 0; -ms-interpolation-mode: bicubic; }
+.w960 { width: 960px; margin: 0 auto;}
+a { color: #000; text-decoration: none;}
+a:hover { color: #900;}
+.clearfix:after { clear: both; content: " "; display: block; height: 0; visibility: hidden; } 
+.clearfix { zoom:1; } 
+.clearfix { display:block; } 
+.fl {float:left;}
+.fr {float:right;}
+.f14 { font-size: 14px; font-weight:bold; color:#000;}
+.top { width:960px; height:255px; background:url(../images/t_banner.jpg) no-repeat; }
+.top img { padding: 190px 20px 10px 700px;}
+.title { padding-top:8px; height:43px; background:url(../images/title_bg.png) repeat-x;}
+.wrap_content { background:#fff; padding:30px 15px 35px; overflow:hidden; zoom:1;}
+#Slide { float:left; width:450px; height:280px;}
+.ifocus  { padding: 0 0 0 2px; height: 280px;width: 450px; position:relative;}
+.ifocus_pic  { float: left; width:278px; height: 280px; overflow: hidden; position: relative;}
+.ifocus_pic li  { display: none; width:278px; height: 280px; overflow: hidden;}
+.ifocus_btn  { float: left; margin: 0 10px 0 0; width:135px;}
+.ifocus_btn li  { cursor: pointer; margin:0; padding: 3px; width:135px; height:88px; overflow: hidden; opacity: 0.5; text-align: left;}
+.ifocus_btn .current  { background: url(images/slide.jpg) 0 0 no-repeat; opacity: 1;}
+.s_dedail {  width: 460px;}
+.s_dedail ul {display: block; width: 460px; padding-bottom:5px;}
+.s_dedail ul li { float: left; margin-right: 25px; line-height: 25px;}
+.s_dedail p { padding-top: 10px; line-height: 25px; }
+.b_top { border-top:1px solid #666;}
+.b_time { margin: 10px 8px 10px 0; padding: 14px 5px 18px; width:221px; height:43px; background:url(../images/times.png) no-repeat bottom right; }
+.b_time span { display: inline-block; width: 55px; height: 42px; color: #fff; font: 800 26px/42px Arial; text-align: center;} 
+.b_name { margin-left:0px; width:215px; height:90px; background:url(../images/w_pic.png) no-repeat top; }
+.b_name a { display:block; margin-left:25px; margin-top:40px;}
+.w_active { margin-left:100px; height:200px; width:735px; background:url(../images/active_pic.png) no-repeat center;}
+.w_active01 { margin-left:100px; height:100px; width:565px; background:url(../images/tit.png) no-repeat center;}
+.w_ul { margin: 0 auto; padding-top:15px; width:425px;}
+.w_ul ul li { float:left; margin-right:25px;}
+.w_ul_table { margin: 0 auto; padding-top:15px; width:830px;}
+.w_ul_table table {display: block; width:830px;}
+.w_ul_table table tr td {width:200px;}
+.w_ul_table table tr td.td01{ background:url(../images/arro.jpg)  no-repeat left center; padding-left:30px;  }
+.w_ul_table table tr td.td01 a{ color: #ae0002; font-size: 14px; font-weight: bold; text-decoration: none;}
+.footer { background: #fff; padding: 10px 0px 20px 0; border-top:2px solid #999;}
+.footer p { text-align:center; line-height:25px;}
+.footer p a { margin: 0 5px;}
+.scroll  { margin:0 auto; width:930px; height:240px; overflow: hidden; white-space: nowrap; background:#fff;}
+.scroll img  { margin: auto 8px; border: 0; border:1px #efefef solid;}
+.scroll li { display: inline;}
+.fred{ color: #c30011; font-size: 14px;}

@@ -1,0 +1,15 @@
+﻿var pstr=""+
+{%if offerlist%}
+{%for list in offerlist%}
+"<div class=\"mA-show-item\">"+
+	"<div class=\"mA-item-img\">"+
+		"<a href=\"http://trade.zz91.com/productdetails{{list.id}}.htm\" target=\"_blank\" title=\"{{list.kindtxt}}{{list.title}}\"><img src=\"{{list.pdt_images}}\" alt=\"{{list.kindtxt}}{{list.title}}\"/></a>"+
+	"</div>"+
+	"<div class=\"mA-item-text\">"+
+		"<a href=\"http://trade.zz91.com/productdetails{{list.id}}.htm\" target=\"_blank\" >{{list.kindtxt}}{{list.title}}</a>"+
+	"</div>"+
+"</div>"+
+{%endfor%}
+" ";
+document.write(pstr)
+{%endif%}

@@ -1,0 +1,170 @@
+.essay{
+	border-bottom: 1px solid #ccc;
+	padding: 24px 8px 15px;
+}
+.essay-info-list{
+	color: #959595;
+	line-height: 18px;
+	margin-top: 10px;
+	padding-right: 5px
+}
+.essay-title{
+	font-size: 15px;
+	text-align: center;
+}
+.take{
+	float: right;
+	color: #959595
+}
+.essay-time{
+	font-size: 10px;
+}
+.essay-fsize{
+	float: right;
+	margin-right: 12px;
+}
+.essay-fsize t{
+	padding: 0 5px;
+	display: inline-block;
+}
+.essay-fsize .small-size{
+	float: left;
+}
+.essay-fsize .big-size{
+	font-size: 18px;
+	float: right;
+}
+.essay-click{
+	float: right;
+}
+
+.info-table{
+	padding: 10px 8px;
+	background-color: #f2f2f2;
+	overflow: auto;
+	overflow-style: scrollbar;
+	color:#000;
+	
+}
+.info-table p{
+	color:#000;
+	font-size:16px;
+}
+.info-table table{
+	width: 100%;
+	line-height:30px;
+	font-size:14px;
+	background-color: #FFF;
+	padding: 5px;
+	border: 1px solid #ebebeb;
+	margin-bottom:10px;
+}
+.info-table table td{
+	border: 1px solid #e1e1e1;
+	/*word-break: break-all;*/
+}
+.info-table-list div{
+	display:table; 
+	font-size: 12px;
+	text-align: center;
+	float: left;
+}
+.info-table-list div:first-child p{
+	border-top: 1px solid #e1e1e1
+}
+.info-table-list div p:first-child{
+	border-left: 1px solid #e1e1e1
+}
+.info-table-list div:first-child p{
+	height: auto
+}
+.info-table-list p{ 
+	display: table-cell;
+	vertical-align:middle;
+	width: 25%;
+	border-bottom: 1px solid #e1e1e1;
+	border-right: 1px solid #e1e1e1;
+	height: 50px;
+	background-color:#fff;
+}
+.info-table-list div p:last-child{
+	line-height: 16px;
+	padding: 0px 5px;
+}
+.handle{
+	padding: 10px 8px;
+	border-bottom: 1px solid #cccccc;
+	background-color: #f2f2f2
+}
+.share{
+	width: 27px;
+	height: 27px;
+	background-image: url(../../image/imageslist.png);
+    background-size:320px;
+    float: left;
+    margin-right: 5px;
+}
+.weixin{ background-position: -115px 1px }
+.weikon{ background-position: -115px -25px }
+.xinlang{ background-position: -115px -51px }
+.qq{ background-position: -115px -77px }
+.house{
+	float: right;
+	height: 27px;
+	position: relative;
+}
+.house-img{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	background-image: url(../../image/imageslist.png);
+    background-size:320px;
+    background-position: -120px -105px;
+    left: -22px;
+    color: #404040
+}
+.price-list li{
+	margin: 0px 8px;
+	line-height: 41px;
+	border-bottom: 1px dotted #e1e1e1;
+}
+.supply-li{
+	padding:10px 8px;
+	border-bottom: 1px solid #e1e1e1
+}
+.supply-img{
+	float: left;
+	margin-right: 10px;
+}
+.supply-title{
+	font-size: 15px;
+	font-weight: bold;
+}
+.fr{
+	float: right;
+}
+.supply-time{
+	font-size: 12px;
+}
+.supply-where{
+	color: #959595;
+	font-size: 12px;
+}
+.supply-price{
+	color: #959595;
+	font-size: 12px;
+}
+table{
+	width:100%;
+}
+.info-table table{
+	width:100%;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	border-collapse:collapse;
+}
+.info-table table tr td p{text-align:center;text-indent:0}
+.info-table table tr td{border:1px solid #ccc;text-align:center;text-indent:0}
+.info-table table tr th{text-align:center;text-indent:0}

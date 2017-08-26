@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="http://m.zz91.com/css/index.css?v=0309" />
+<style>
+.appdown{background-color:#FF0;border:solid 1px #F60; line-height:30px; padding-left:5px;}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<header class="t-header t-quick-hidden">
+	<a class="logo" href="/">&nbsp;</a>
+	<div class="icon">
+		<a class="myali-off" href="/login/">&nbsp;</a><img src="http://hm.baidu.com/hm.gif?si=f41f07cad5c54cf66717306958dd62ed&amp;et=0&amp;nv=0&amp;st=4&amp;lt=1366160845,1366247169,1366252986,1366332115&amp;v=wap-0-0.2&amp;rnd=4797520779" width="0" height="0" />
+	</div>
+</header>
+<div class="appdown">
+	下载安卓客户端，首次下载获取20元红包，<a href="http://m.zz91.com/app.html">立即下载</a>
+</div>
+<div class="mainContent" style="margin:0 0px;padding:0px;">
+	<nav class="t-nav-tab-ylw t-nav-tab-4">
+        <ul>
+            <li class="chk"><a href="/">首页</a></li>
+            <li><a href="/category/">类目</a></li>
+            <li><a href="/priceindex/">行情报价</a></li>
+            <li><a href="/myrc_index/">生意管家</a></li>
+        </ul>
+    </nav>
+	<div class="sch-top"></div>
+    <div class="t-index-search2">
+        <div class="t-search-bar pd10">
+            <form action="/searchfirst/" method="get" onSubmit="return AliMobile.SearchBar.chkSearchInput('.t-index-search2');">
+            <div style="position:relative;">
+                <div class="input">
+                    <div class="selected" onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','1');">
+                        <span class="type">
+                        供求
+                        </span>
+                        <span class="arrow"></span>
+                    </div>
+                    <div style="margin-right:55px;">
+                        <input class="searchKey" type="text" name="keywords" value="" autocomplete="off" placeholder="请填写搜索关键词">
+						<!--onFocus="AliMobile.SearchBar.input('.t-index-search2','1');" onKeyUp="AliMobile.SearchBar.input('.t-index-search2','1');"-->
+                    </div>
+                    <input class="searchType" type="hidden" value="selloffer" name="searchtype" />
+                    <input id="version" type="hidden" value="t" name="v" />
+                    <input id="en" type="hidden" value="utf8" name="en" />
+                </div>
+                <div class="submit" onClick="AliMobile.SearchBar.submit('.t-index-search2');">搜索</div>
+                <div class="clear"><a href="javascript:AliMobile.SearchBar.cleanSearchInput('.t-index-search2');"><img src="/images/close2.png"></a></div>
+            </div>
+            </form>
+            <div class="ac selection" style="display:none">
+                <ul>
+                    <li onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','1','供求','selloffer','请输入供求名称');">供求</li>
+                    <li onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','1','公司','company','请输入公司名、地区、产品等');">公司</li>
+                    <li onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','1','价格','price','请输入价格行情关键字');">价格</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="sch-bottom">
+        <span class="c6">热搜词：</span>
+        <a href="http://m.zz91.com/companyinfo/?company_id=28672" style="color:#090">无纺布</a>
+		<a href="http://m.zz91.com/companyinfo/?company_id=114944" style="color:#F60">保险杠破碎料</a>
+        <a href="http://m.zz91.com/detail/?id=1047447" style="color:#03C">求购pp编织袋</a>
+        <a href="http://m.zz91.com/detail/?id=674841" style="color:#C00">购塑料找汇丰</a>
+		<a href="http://m.zz91.com/detail/?id=626050" style="color:#093">PP吨包颗粒</a>
+        <a href="http://m.zz91.com/companyinfo/?company_id=8755" style="color:#093">ABS粉碎料</a>
+        <a href="http://m.zz91.com/detail/?id=1055584" style="color:#C00">PVB边角料</a>
+        <a href="http://m.zz91.com/detail/?id=690612" style="color:#03C">PTA废料</a>
+        
+        <a href="http://m.zz91.com/detail/?id=374411" style="color:#090">EVA颗粒</a>
+        <a href="http://m.zz91.com/detail/?id=882752" style="color:#C00">旧衣服收售</a>
+		<a href="http://m.zz91.com/detail/?id=915313" style="color:#093">供应废旧编织袋</a>
+		<a href="http://m.zz91.com/detail/?id=717102" style="color:#056">废旧钢丸铁粉</a>
+		<a href="http://m.zz91.com/companyinfo/?company_id=442042" style="color:#03C">纸塑铝塑分离</a>
+		<a href="http://m.zz91.com/companyinfo/?company_id=247814" style="color:#090">贵金属废料</a>
+		
+
+    </div>
+    <!--
+    <div class="t-slide t-index-slide" id="J_yybanner01" style="">
+        <div class="wrap" style="width:290px; height:100px; border:0px solid #C4C4C4;">
+            <ul class="slide">
+                <li><a href="http://ma.m.taobao.com/vkfqn"><img src="http://m.zz91.com/images/ya.jpg" width="290" height="100"></a></li>
+            </ul>
+        </div>
+        <div style="height:5px;"></div>
+        <div class="pagination" style="width:290px; height:15px;">
+            <div class="trigs"></div>
+        </div>	
+    </div>
+    <script>
+	AliMobile.Jload3.jqreadyRun(function(){jQuery("#J_yybanner01").slideLayer({effect:'scroll',autoplay:5000});});
+	</script>
+	-->
+	<div class="module">
+    	<div class="t-widget" id="J_Cat_02">
+    		<div class="ajaxtab tab-3">
+    			<ul class="option">
+    				<li isloaded="0" data-type="json" url="/ajaxTopprice/" class="cur">价格行情</li>
+                    <li isloaded="0" data-type="json" url="/ajaxTopbbs/?tp=1" class="">废料动态</li>
+    				<li isloaded="0" data-type="html" url="/html/index/zst.html" class="">再生通</li>
+    			</ul>
+    		</div>
+    		<div class="content tabinfo">
+            	<!--<div class="loading"><img src="/images/load.gif" /></div>-->
+    			<ul class="links">
+					{%for list in pricelist%}
+					<li><a href="/priceviews/?id={{list.id}}">{{list.title}}</a></li>
+					{%endfor%}
+				</ul>
+    			<div class="more"><a href="/priceindex/">更多行情</a></div>
+            </div>
+    	</div>
+    </div>
+    <script>
+   		AliMobile.Jload3.jqreadyRun(function(){AliMobile.mixWidget('#J_Cat_02');}); 
+   	</script>
+
+	<div class="module">
+    	<div class="t-widget" id="J_Cat_03">
+    		<div class="ajaxtab tab-3">
+    			<ul class="option">
+    				<li isloaded="0" data-type="json"	url="/ajaxTopbbs/?tp=4" class="cur">ZZ91动态</li>
+    				<!--json = {"links": [{"url":"/touch/club/detail/threadId-29663123_n-y.html","txt":"创业8年小公司，月入只够饭钱，该放手吗？"},{"url":"/touch/club/detail/threadId-29664497_n-y.html","txt":"免费赠送，产品由滞销变畅销。这样的营销你是否认同？"},{"url":"/touch/club/detail/threadId-29662306_n-y.html","txt":"让你的诚信告别孤独，不交费也可以有后台保证你排名"}],"index" : [{"cat" : "更多热帖", "url" : "/touch/club/index/" }]}-->
+					<li isloaded="0" data-type="json"	url="/ajaxTopbbs/?tp=3" class="">江湖风云</li>
+    			</ul>
+    		</div>
+    		<div class="content tabinfo"><ul class="links">
+			{%for list in bbslist4%}
+			<li><a href="/huzhuview/{{list.id}}.htm">{{list.title}}</a></li>
+			{%endfor%}
+			</ul><div class="more"><a href="/huzhu/">更多</a></div></div>
+
+    	</div>
+    </div>
+    <script>
+
+    		AliMobile.Jload3.jqreadyRun(function(){AliMobile.mixWidget('#J_Cat_03');});
+
+    	</script>
+
+	<div class="op-list">
+		<div class="op-list-inner">
+				{%for list in categorylist%}
+ 		    	<div class="op-list-item">
+    				<a href="/offerlist/?keywords={{list.label}}">
+						<div class="op-list-item-icon fl"><img src="/images/p1.png"></div>
+						<div class="op-list-item-txt"><span>{{list.label}}</span>&nbsp;<span class="f12 c9">{%for b in list.catelist%}{{b.label}}/{%endfor%}</span></div>
+    				</a>
+        		</div>
+				{%endfor%}
+				
+		</div>
+	</div>
+	<a href="#">
+		<div class="title-bar">
+    		<div class="fl">常用服务</div>
+    		<div class="right-arrow"></div>
+    	</div>
+	</a>
+	<div class="srv-bar">
+		<ul>
+			<li>
+				<a href="/huzhu/?category_id=2">
+				<img src="/images/sv3.png"/>
+				<div class="srv-txt">&nbsp;再生互助&nbsp;</div>
+				</a>
+			</li>
+			<li>
+				<a href="/myrc_leavewords/">
+				<img src="/images/sv1.png"/>
+				<div class="srv-txt">&nbsp;询盘留言&nbsp;</div>
+				</a>
+			</li>
+			<!--
+			<li>
+				<a href="/touch/purchase/index/">
+				<img src="/images/sv2.png"/>
+				<div class="srv-txt">&nbsp;商机定制&nbsp;</div>
+				</a>
+			</li>-->
+			<li>
+				<a href="/myrc_favorite/">
+				<img src="/images/sv4.png"/>
+				<div class="srv-txt">&nbsp;&nbsp;收藏夹&nbsp;&nbsp;</div>
+				</a>
+			</li>
+		</ul>
+	</div>	
+</div>
+{%include 'bottom.html'%}
+</div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-touch-fullscreen" content="YES">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="../subject/kanjia/css/base-min.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+
+<title>双11，呼朋唤友来砍价，“零”元价格到--ZZ91再生网</title>
+<meta name="description" content="“0元名额”有限，先到先得">
+<link rel="stylesheet" type="text/css" href="../subject/kanjia/css/index.css" />
+</head>
+<body>
+<script type="text/javascript" src="../subject/kanjia/js/viewport.js"></script>
+	<div class="bandm"></div>
+	{%for list in kanjiaprolist%}
+	<div class="msha-box">
+		<div class="msha-main">
+			<div class="msha-name"><div class="msha-name-td">{{list.name}}</div></div>
+			<div class="msha-price clear">
+				<div class="msha-price-mo fl">
+					<p class="msha-price-tt">原价</p>
+					<p class="msha-price-nun">{{list.price}}元</p>
+				</div>
+				<div class="msha-price-mo fl">
+					<p class="msha-price-tt">最低价</p>
+					<p class="msha-price-nun color-fh">{{list.dprice}}元</p>
+				</div>
+			</div>
+			{%if list.havebaoming%}
+			<div class="msha-btnbox"><a href="baoming.html?pro_id={{list.id}}&weixinid={{weixinid}}&company_id={{company_id}}&usertoken={{usertoken}}" style="width: auto;padding-left: 10px;padding-right: 10px;">已参与（查看详情）</a></div>
+			{%else%}
+			{%if not baoming%}
+			<div class="msha-btnbox"><a href="baoming.html?pro_id={{list.id}}&weixinid={{weixinid}}&company_id={{company_id}}&usertoken={{usertoken}}" onclick="return confirm('您已选择参与“{{list.name}}”的砍价活动！确定参与该砍价活动吗？')" style="width: auto;padding-left: 10px;padding-right: 10px;">我要砍价</a></div>
+			{%else%}
+			<div class="msha-btnbox msha-btnbox2"><a href="javascript:alert('你已经报名了一个产品，本活动只能报名一个产品！')" style="width: auto;padding-left: 10px;padding-right: 10px;">我要砍价</a></div>
+			{%endif%}
+			{%endif%}
+			<div class="msha-tx">前10名会员享受最低<span class="color-fh"><span class="zoowen">0</span>元</span>优惠，先到先得！</div>
+		</div>
+	</div>
+	{%endfor%}
+	{%if noweixin%}
+	<div class="popbox">
+		<div class="popmain" style="text-align: center;">
+			<div style="font-size: 16px;margin-top: 10px;line-height: 25px;">您还未关注微信公众号<br />
+			<span style="color: red;">长按识别二维码并关注</span>
+			</div>
+			<div><img src="../subject/kanjia/images/shuang11.jpg" width="60%"></div>
+			<div style="font-size: 16px;margin-top: 10px;line-height: 25px;">关注后请绑定您的ZZ91账号</div>
+			<a class="popmain-close" href="#"></a>
+		</div>
+	</div>
+	{%endif%}
+
+	<div class="playgz">
+		<p>活动规则：</p>
+		<p>1. 活动对象：ZZ91再生网所有客户。</p>
+		<p>2. 活动时间：2016-11-1 至  2016-11-11。</p>
+		<p>3. 关注ZZ91再生网公众号，登录ZZ91再生网账号参与活动。</p>
+		<p>4. 参与者任选一样进行砍价，每个微信账号只能参加一次。</p>
+		<p>5. “0元名额”有限，先到先得。参与者可以按照砍价显示价格直接购买。</p>
+		<p>6. 本活动最终解释权归属本公司。</p>
+	</div>
+
+	<div class="erwei-box">
+		<img src="../subject/kanjia/images/erweim.png">
+	</div>
+
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script type="text/javascript">
+	$(".popmain-close").bind("click",function(){
+		$(".popbox").hide()
+	})
+	apiready = function() {
+		var company_id="{{company_id}}";
+		if (company_id=="None"){
+			window.location.href="index.html?company_id="+api.pageParam.mid+"&usertoken="+api.pageParam.usertoken+"&apploadflag=1";
+		}else{
+			api.execScript({
+				name : "root",
+				script : "havelogin()"
+			});
+			//api.closeWin()
+		}
+	};
+</script>
+<div style="display:none">
+	    <script>
+	         var _hmt = _hmt || [];
+	         (function() {
+	             var hm = document.createElement("script");
+	             hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+	             var s = document.getElementsByTagName("script")[0];
+	             s.parentNode.insertBefore(hm, s);
+	         })();
+	    </script>
+	    <!--baidu analysis-->
+	    <script>
+	         var _hmt = _hmt || [];
+	        
+	         (function() {
+	             var hm = document.createElement("script");
+	             hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+	             var s = document.getElementsByTagName("script")[0];
+	             s.parentNode.insertBefore(hm, s);
+	         })();
+	    </script>
+	</div>
+</html>

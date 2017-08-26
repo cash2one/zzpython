@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>样品会员中心_ZZ91再生网</title>
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/index.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/finace.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/jquery.alert.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/calendar.css">
+    <script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/index.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/jquery.alert.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/jquery.easydrag.js"></script>
+</head>
+<body class="gbody1000">
+{%include "include/nav.html"%}
+{%include "include/head.html"%}
+{%include "include/lm.html"%}
+<div class="gm1-5 gw-bcrumb">
+    <span><a href="index.html">会员中心</a></span>
+            <strong>
+        <a href="#">全部订单</a>
+    </strong>
+</div>
+<div class="gMain clearfix">
+        
+        {%include "include/leftmenu.html"%}
+        <div class="gContainer">
+		<div class="gwTopic clearfix">
+            <h2>提现记录</h2>
+        </div>
+        <div class="basicForm">
+            <div class="ct">
+                <div class="ctc">
+
+                    <div class="ctcc">
+                        <form name="selecttime" method="POST" action="#">
+                            <span class="ctcitext">从</span>
+                            <div class="ctci">
+                                <em class="ctcico"></em>
+                                <input type="text" name="datefrom" id="datefrom" class="fs-datepicker">
+                            </div>
+                            <span class="ctcitext">到</span>
+                            <div class="ctci">
+                                <em class="ctcico"></em>
+                                <input type="text" name="dateto" id="dateto" class="fs-datepicker">
+                            </div>
+                            <span class="mfw-sb"><input type="submit" value="确定"></span>
+                            <script type="text/javascript">
+							onload = function () {
+								new DatePicker('_datefrom', {
+									inputId: 'datefrom',
+									className: 'date-picker-wp',
+									seprator: '-'
+								});
+								new DatePicker('_dateto', {
+									inputId: 'dateto',
+									className: 'date-picker-wp',
+									seprator: '-'
+								});
+							}
+							</script>
+                        </form>
+                    </div>
+
+                    <p class="ctcdate">
+                        <a href="#" class="select">今天</a>
+                        |
+                        <a href="#">最近7天</a>
+                        |
+                        <a href="#">1个月</a>
+                        |
+                        <a href="#">3个月</a>
+                    </p>
+                </div>
+            </div>
+            <table class="gtb">
+                <tbody>
+                <tr class="gtbTh">
+                    <th width="25%">流水号</th>
+                    <th width="20%"><div>创建时间</div></th>
+                    <th width="15%"><div>金额</div></th>
+                    <th width="25%"><div>充值账户</div></th>
+                    <th width="15%"><div>状态</div></th>
+                </tr>
+				<tr>
+                    <td width="25%">12324234234</th>
+                    <td width="20%"><div>2014-03-08</div></th>
+                    <td width="15%"><div><span class="co"> 0.00</span> 元</div></th>
+                    <td width="25%"><div>kangxianyue@fsdf.com</div></th>
+                    <td width="15%"><div>审核中</div></th>
+                </tr>
+                </tbody><tbody class="ctbd tac">
+	            	                <tr>
+	                    <td colspan="5">暂无提现记录！</td>
+	                </tr>
+	                            </tbody>
+            </table>
+            <div class="gPageBar clearfix">
+                <div class="gPage">
+		<span class="ppa">上一页</span>
+		<span class="pnum">1/1</span>
+		<span class="npa">下一页</span>
+		<input type="hidden" name="url" class="git" value="#">
+	<span class="gp">
+		<span>转到</span>
+		<input type="hidden" name="totalpage" class="git" value="1">
+		<input type="text" name="page" class="git" value="1">
+		<span>页</span>
+	</span>
+	<button type="submit" class="pagbtn">确定</button>
+</div>            </div>
+        </div>
+</div>
+	</div>
+	</div>
+{%include "include/bottom.html"%}
+</body>
+</html>

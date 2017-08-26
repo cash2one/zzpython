@@ -1,0 +1,52 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn"> 
+<head> 
+<title>{{typename}} - 废料网址之家-开启废料商家上网导航</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<link type="text/css" href="css/sub_pub090507.css" rel="Stylesheet" />
+<link type="text/css" href="css/substyle1-v2.0.css" rel="Stylesheet" />
+<base target="_blank" /> 
+</head>
+<body> 
+<div class="b_sub"> 
+  <div class="head"> 
+    <div class="logo"><a href="/" target="_self"><img src="images/logo.gif" alt="废料网址之家"  /></a></div> 
+    <div class="ad"> 
+<br>
+<form action="http://trade.zz91.com/trade/searchfirst/" method="get" id="frmSearch" name="frmSearch" target="_blank"/>
+        <input class="srch_text" type="text" name="keywords" id="keywords" baiduSug="1"/>
+        <input class="srch_button" type="submit" value="搜索" />
+    </form>
+    </div> 
+    <div class="menu"> <a href="javascript://" target="_self" onclick="window.external.AddFavorite(window.location.href,'{{typename}}-废料网址之家-开启废料商家上网导航');">收藏本页</a> <a href="feedback/">我要报错</a> </div> 
+  </div> 
+  <div class="line"></div> 
+  <div class="ple">当前位置：<a href="/" target="_self">首页</a> &gt;&gt; {{typename}}</div> 
+  <div class="b_c"> 
+{%for tp in typelist%}
+  	<h4>{{tp.typename}}</h4>
+  	<div class="p">
+	  	<ul>
+	  	<li> </li>
+{%for tp2 in tp.listweb%}
+<li><a href="{{tp2.url}}">{{tp2.name}}</a></li>
+{%endfor%}
+	  	</ul> 
+	</div>
+{%endfor%}
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 微门户 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5512236620584335"
+     data-ad-slot="8274972003"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </div> 
+  <div class="btns"><a href="/" target="_self"><img src="images/btn_back.gif" alt="返回首页" /></a><a href="javascript:window.opener=null;window.close();" target="_self"><img src="images/btn_close.gif" alt="关闭本页" /></a></div> 
+</div> 
+</body> 
+</html> 

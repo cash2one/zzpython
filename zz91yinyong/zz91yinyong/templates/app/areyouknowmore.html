@@ -1,0 +1,10 @@
+var _suggest_result_={%if newslist.list%}{%for i in newslist.list%}
+    "<div class=\"buble-title\">"+
+       "<a href=\"{{i.weburl}}\" target=_blank title=\"{{i.title}}\">{{i.title}}</a>"+
+    "</div>"+
+    "<div class=\"buble-content\">"+
+        "<div class=\"buble-text\">"+
+            "{{i.littlecontent}}"+
+            "<a href=\"{{i.weburl}}\" target=\"_blank\" class=\"buble-more\">查看详情</a>"+
+        "</div>"+
+    "</div>"{%endfor%}{%else%}""{%endif%}

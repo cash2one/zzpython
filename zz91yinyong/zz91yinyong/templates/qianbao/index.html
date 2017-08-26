@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<html>
+	<head>
+		<title>再生钱包_ZZ91再生网</title>
+        <link rel="stylesheet" type="text/css" href="/css/qianbao/index.css"/>
+        <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <style>
+        	.appdown{background-color:#FF0;border:solid 1px #F60; line-height:25px; padding-left:5px;margin: 5px;}
+        </style>
+	</head>
+	<body style="background:#f5f5f5;height:100%">
+    	<div class="top">
+        	<div class="top_item">
+            	<div class="top-left">
+                	<a href="/"><img src="/images/qianbao/logo.png"></a>
+                </div>
+                <!--end top-left-->
+                <div class="top-right" onClick="window.location.href='zhangdan.html'">账单</div>
+                <!--end top-right-->
+                <div class="cb"></div>
+            </div>
+            <!--end top_item-->
+        </div>
+        <!--end top-->
+    	<div class="part">
+        	<div class="top_bg">
+            	<div class="top_bg_item">
+                	<p class="top_bg_item_tle">当前余额（元）</p>
+                    <p class="top_bg_item_bal">{{blance}}</p>
+                </div>
+            </div>
+            <!--end top_bg-->
+            <table class="top_tab" cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td class="top_tab_td-item">
+                    	<p class="top_tab_td-item_p">昨日进账（元）</p>
+                        <p>{{infeeyd}}</p>
+                    </td>
+                    <td class="top_tab_td-item">
+                    	<p class="top_tab_td-item_p">累计进账（元）</p>
+                        <p>{{infeeall}}</p>
+                    </td>
+                </tr>
+                <tr>
+                	<td class="top_tab_td-item">
+                    	<p class="top_tab_td-item_p">昨日消费（元）</p>
+                        <p>{{outfeeyd}}</p>
+                    </td>
+                    <td class="top_tab_td-item">
+                    	<p class="top_tab_td-item_p">本月消费（元）</p>
+                        <p>{{outfeeall}}</p>
+                    </td>
+                </tr>
+                <tr>
+                	<td><a href="intxt.html">如何进账?</a></td>
+                    <td><a href="shop.html" class="greeLink">再生商城</a></td>
+                </tr>
+            </table>
+            <div class="top_pay_btn" onClick="window.location.href='/qianbao/chongzhi.html'" style="color:white">在线充值</div>
+        </div>
+        <!--end part-->
+
+<!--钱包底部-->
+<br />
+<div class="cb"></div>
+<div class="t-footer ac t-quick-hidden"> 	 	
+    <div class="bar bt-c">
+        <div class="fl">
+        {%if username%}
+            <span class="c-text">当前帐号：</span>{{username}} <a href="/loginout/">退出</a>
+        {%else%}
+        	<a href="/login/?done={{host}}">登录</a> <span class="c9">|</span> <a href="/register/">免费注册</a>
+        {%endif%}
+                </div>
+        <a href="#top"><div class="fr">
+            <div class="fl top-txt c-link">回顶部</div><div class="fl top-pic">&nbsp;</div>
+        </div></a>
+    </div>
+    <center>
+    <div class="link">
+    <br />
+        <div class="mb8"><a href="/standard/">标准版</a>　|　<span class="c9">触屏版</span>　|　<a href="http://china.zz91.com">电脑版</a></div>
+	<!--<div class="mb8"><a href="/">首页</a>&nbsp;&nbsp;<a href="/feedback/">意见反馈</a></div>-->
+        <div class="copyright">ZZ91再生网版权所有 2013-2014</div>
+    </div>
+    </center>
+</div>
+	<style>
+.t-footer {clear:both; color:#666; margin-bottom:80px;}
+.t-footer a{color:#666}
+.t-footer .bar{height:32px;line-height:32px;padding:0 10px;border-bottom:solid 1px #ccc;box-shadow:0px -1px 0px #fff inset;background-color:#f7f7f7;background: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#eee) );}	
+.t-footer .link{}
+.t-footer .top-pic{width:12px;background-image: url('http://m.zz91.com/images/info.png');background-repeat: no-repeat;background-position: -60px -92px;}
+.t-footer .top-txt{padding-right:8px;}
+.t-footer .mb8{margin-bottom:8px;}
+.t-footer .copyright{color:#999}
+.fl{float:left}
+.fr{float:right}
+.bt-c{border-top:1px solid #ccc;}
+.br-c{border-right:1px solid #ccc;}
+.bb-c{border-bottom:1px solid #ccc;}
+.bl-c{border-left:1px solid #ccc;}
+.bt-dotted-c{border-top: dotted 1px #cccccc;}
+.bb-dotted-c{border-bottom: dotted 1px #cccccc;}
+	</style>
+<!--钱包底部完-->
+<script type="text/javascript" src="../js/recordeddata.js"></script>
+	</body>
+</html>

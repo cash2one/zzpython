@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui-flex.css">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<style>
+			body {
+				height: 100%;
+				
+			}
+			footer {
+				position: fixed;
+				bottom: 0px;
+				width: 100%;
+				z-index: 21;
+			}
+			.czfoot {
+				border-top: solid 1px #EBEBEB;
+				width: 100%;
+				background-color: #F6F6F6;
+				line-height: 50px;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+			}
+			.czfoot li {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				text-align: center;
+				border-right: 1px solid #e7e7e7;
+				font-size: 14px;
+			}
+			.czfoot li:last-child {
+				border-right: none;
+			}
+			.czfoot li {
+				-webkit-box-flex: none;
+				-webkit-flex: none;
+				flex: none;
+			}
+			.c_pinlun {
+				width: 40%;
+			}
+			.c_all {
+				width: 60%
+			}
+			.c_all span {
+				margin-right: 12px;
+				margin-left: 12px;
+				font-size: 20px;
+				position: relative;
+			}
+			.c_all span i {
+				font-size: 10px;
+				display: block;
+				position: absolute;
+				
+				top: -18px;
+				height: 13px;
+				z-index: 9999;
+			}
+			.guanzhu_title {
+				line-height: 35px;
+				padding-top: 10px;
+				height: 40px;
+				margin-bottom: 15px;
+				
+			}
+			.news-title {
+				line-height: 30px;
+				font-weight: 700;
+				text-align: left;
+				font-size: 22px;
+				margin-top: 30px;
+			}
+			.news-dis {
+				font-size: 12px;
+				color: #999999;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+			.aui-content img {
+				max-width: 100%;
+			}
+			.aui-content p {
+				line-height: 30px;
+				font-size: 16px;
+				color: #333
+			}
+			.aui-tab-item.aui-active {
+				color: #01BA2E;
+				border-bottom: 2px solid #01BA2E;
+				z-index: 2;
+			}
+			.closediv{
+				background-color:#E51C23;
+				width:26px;
+				height:26px;
+				border-radius:13px;
+				position: fixed;
+				right:10px;
+				top:10px;
+				display:none;
+				z-index: 999;
+				text-align:center;
+			}
+			.closediv span{
+				color:#FFFFFF;
+				font-size:18px;
+				
+			}
+			.ask-text {
+				height: 120px;
+				line-height: 30px;
+				margin-bottom: 10px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				font-size: 14px;
+				color: #666;
+				overflow: hidden;
+			}
+			.ask-text textarea {
+				height: 100%;
+				padding: 5px;
+				margin: 0;
+		
+				border:none;
+			}
+			.ask-reply-btn {
+				padding: 8px 0;
+			}
+			#ask-reply-box {
+				padding: 10px;
+			}
+			
+			
+			.pinlundiv{
+				height:200px;width: 100%;position: fixed;bottom: 50px;text-align: center;display: none;
+				background-color:#EBEBEB;
+				z-index: 20
+			}
+			.sharediv{
+				height:100px;width: 100%;position: fixed;bottom: 50px;text-align: center;
+				background-color:#fff;
+				z-index: 20;
+				padding-top:10px;
+				display:none;
+			}
+			.sharediv img{
+				width:45px;
+				margin:5px;
+			}
+			.sharediv span{
+				display:table-cell;
+				text-align: center;
+				float:left;
+				color:#999;
+				width:20%;
+			}
+			.mark {
+				background: rgba(0,0,0,0.5);
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				display: none;
+				z-index: 5;
+			}
+			iframe{
+				width:100%
+			}
+		</style>
+	</head>
+	<body>
+		<div class="nocontact">点击屏幕，重新加载</div>
+		<div class="topdiv" onclick="pagetotop();"><span class="aui-iconfont aui-icon-top"></span></div>
+		<div class="yuyingfloat flash"><i class="aui-iconfont aui-icon-notificationfill" style="font-size: 36px;"></i></div>
+		<div class="mark" id="mark"></div>
+	    <div class="closediv" onclick="api.closeWin();"><span class="aui-iconfont aui-icon-close"></span></div>
+		<div class="guanzhu_title aui-content-padded">
+			<div class="aui-pull-left">
+				<span class="aui-iconfont aui-icon-left" onclick="api.closeWin();"></span><span class="aui-text-success typename" style="margin-right: 10px;margin-left: 10px"><b></b></span><span style="color: #999;display:none" class="typenamecount">(0)</span>
+			</div>
+			<div class="aui-btn aui-btn-success aui-pull-right haveguanzhu" style="display:none">
+				关注
+			</div>
+			<div class="aui-btn aui-btn-default aui-pull-right noguanzhu" style="display:none">
+				已关注
+			</div>
+		</div>
+		
+		<div class="aui-line-x"></div>
+		<div class="detail newscontent">
+			<script id="info" type="text/html">
+				<div class="aui-content-padded aui-clearfix">
+					<div class="news-title">
+						{{ d.title }}
+					</div>
+					<div class="news-dis">
+						预览量：{{ d.click }} 时间：{{ d.pubdate }}
+					</div>
+				</div>
+				<div style="clear: both"></div>
+				<div class="aui-content">
+					<div class="aui-content-padded">
+						{{ d.content }}
+					</div>
+				</div>
+			</script>
+		</div>
+		
+		<div class="aui-bg-default pinluntab" style="display: none">
+			<div class="aui-line-x"></div>
+			<div class="aui-tab">
+		        <ul class="aui-tab-nav" id="tab">
+		            <li class="aui-tab-item aui-active">全部评论（<span class="pinluncount">0</span>）</li>
+		            <!--<li class="aui-tab-item">气味相投的网友</li>-->
+		        </ul>
+		    </div>
+		</div>
+		
+		<div class="aui-line-x"></div>
+		<div id="ask-reply-box" class="pinlundiv">
+			<div class="ask-text" id="ask-text">
+				<textarea id="pinluncontent" placeholder="请输入你的评论"></textarea>
+			</div>
+			<div class="aui-btn aui-btn-block aui-btn-success ask-reply-btn">发表评论</div>
+		</div>
+		
+		<div class="sharediv">
+			<span><img src="../../image/share/share_to_icon_qq.png"><br />QQ</span>
+			<span><img src="../../image/share/share_to_icon_qzone.png"><br />QQ空间</span>
+			<span><img src="../../image/share/share_to_icon_weibo.png"><br />微博</span>
+			<span><img src="../../image/share/share_to_icon_wx.png"><br />微信</span>
+			<span><img src="../../image/share/share_to_icon_wxq.png"><br />朋友圈</span>
+		</div>
+		
+		
+		<section class="aui-content" id="tab_1">
+	        <ul class="aui-list aui-media-list pinlun_list">
+	            
+	        </ul>
+	    </section>
+		<script id="pinlun_list" type="text/html">
+            <li class="aui-list-item pinlunlist" feedname="{{d.feedbackname}}">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media" style="width:3.0rem;">
+                        <img src="{{d.face}}" style="width:50px;height:50px;border-radius: 50%;"/>
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title" style="color:#4c5276">{{d.feedbackname}}</div>
+                        </div>
+                        <div class="aui-list-item-text" style="color:#333;">
+                            {{d.msg}}
+                        </div>
+                        <div class="aui-info aui-font-size-12 aui-padded-t-0 aui-padded-b-0">
+                            <div class="aui-info-item">{{d.dtime}}</div>
+                            <div class="aui-info-item">
+                                <i class="aui-iconfont aui-icon-comment"  style="color:#4c5276"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </script>
+		<div class="aui-content aui-margin-b-15" id="tab_2" style="display: none;">
+	        <ul class="aui-list aui-media-list">
+	            
+	            <li class="aui-list-item aui-list-item-middle">
+	                <div class="aui-media-list-item-inner">
+	                    <div class="aui-list-item-media" style="width: 3rem;">
+	                        <img src="../../image/demo5.png" class="aui-img-round aui-list-img-sm">
+	                    </div>
+	                    <div class="aui-list-item-inner aui-list-item-arrow">
+	                        <div class="aui-list-item-text">
+	                            <div class="aui-list-item-title aui-font-size-14">AUI</div>
+	                            <div class="aui-list-item-right">08:00</div>
+	                        </div>
+	                        <div class="aui-list-item-text">
+	                            <i class="aui-iconfont aui-icon-like"></i>浏览该文
+	                        </div>
+	                    </div>
+	                </div>
+	            </li>
+	            <li class="aui-list-item aui-list-item-middle">
+	                <div class="aui-media-list-item-inner">
+	                    <div class="aui-list-item-media" style="width: 3rem;">
+	                        <img src="../../image/demo5.png" class="aui-img-round aui-list-img-sm">
+	                    </div>
+	                    <div class="aui-list-item-inner aui-list-item-arrow">
+	                        <div class="aui-list-item-text">
+	                            <div class="aui-list-item-title aui-font-size-14">AUI</div>
+	                            <div class="aui-list-item-right">08:00</div>
+	                        </div>
+	                        <div class="aui-list-item-text">
+	                            <i class="aui-iconfont aui-icon-like"></i>点赞该文
+	                        </div>
+	                    </div>
+	                </div>
+	            </li>
+	           
+	        </ul>
+	    </div>
+		<div style="height: 80px"></div>
+		<footer style="display: none">
+			<ul class="czfoot">
+				<li class="c_pinlun">
+					<span class="aui-iconfont aui-icon-add"></span> 添加评论
+				</li>
+				<li class="c_all">
+					<!--<span class="aui-iconfont aui-icon-like"> <i class="aui-badge aui-badge-warning">123</i> </span>-->
+					<span class="aui-iconfont aui-icon-edit openpinlun" style="padding-left: 5px;padding-right:5px "> <i class="aui-badge aui-badge-info pinluncount">0</i> </span>
+					<span class="aui-iconfont aui-icon-favor shouchan" style="padding-left: 5px;padding-right:5px "> <i class="aui-badge aui-badge-danger shouchancount">0</i> </span>
+					<span class="aui-iconfont aui-icon-share openshare" style="padding-left: 5px;padding-right:5px "></span>
+				</li>
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+	<script type="text/javascript" src="../../script/aui-skin.js" ></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/aui-scroll.js" ></script>
+	<script type="text/javascript">
+		var currPage = 1;
+		var detailsdata;
+		var speechRecognizer;
+		var playvadioflag=1;
+		var vadiocompete=0;
+		apiready = function() {
+			api.parseTapmode();
+			ajaxinfo();
+			$api.addEvt($api.byId('mark'), 'click', function(){
+				closepinlun();
+			});
+			
+			$("body").on("click",".c_pinlun",function(){
+				if ($(".pinlundiv").css("display")=="none"){
+					$("#mark").fadeIn();
+					$("#pinluncontent").val("")
+					$(".sharediv").slideUp();
+		        	$(".pinlundiv").slideDown()
+	        	}else{
+	        		closepinlun();
+	        	}
+	        })
+	        $("body").on("click",".openshare",function(){
+	        	if ($(".sharediv").css("display")=="none"){
+					$("#mark").fadeIn();
+					$(".pinlundiv").slideUp()
+		        	$(".sharediv").slideDown()
+	        	}else{
+	        		closepinlun();
+	        	}
+	        })
+	        $("body").on("click",".openpinlun",function(){
+	        	var infoid = api.pageParam.infoid;
+				var pageParam = {
+		          wintitle:"评论",
+		          type:"pinlun"+infoid,
+		          bounces:false,
+		          infoid:infoid,
+		        };
+		        openWin("pinlun"+infoid,"../list/pinlun.html",pageParam);
+	        })
+	        $("body").on("click",".pinlunlist",function(){
+	        	if ($(".pinlundiv").css("display")=="none"){
+					$("#mark").fadeIn();
+					var feedname=$(this).attr("feedname");
+					if (feedname){
+						$("#pinluncontent").val("(回复："+feedname+")");
+					}
+					$(".sharediv").slideUp();
+		        	$(".pinlundiv").slideDown()
+	        	}else{
+	        		closepinlun();
+	        	}
+	        })
+	        $("body").on("click",".mysite",function(){
+	        	var pageParam = {
+		          wintitle:"流浪汉主页",
+		          type:"mysite",
+		          bounces:false,
+		          infoid:1,
+		        };
+				openWin("mysite","../my/mysite.html",pageParam);
+	        })
+	        $("body").on("click",".shouchan",function(){
+	        	shouchan();
+	        })
+	        $("body").on("click",".haveguanzhu",function(){
+	        	guanzhu();
+	        })
+	        $(".nocontact").on("click",function(){
+	        	ajaxinfo();
+	        })
+	        speechRecognizer = api.require('speechRecognizer');
+			$(".yuyingfloat").on("click","i",function() {
+				if ($(this).attr("class").indexOf("notificationfill")>=0){
+					if (vadiocompete==1){
+						playvadiovll(detailsdata.content);
+						$(this).parent().addClass("flash");
+						return;
+					}
+					//暂停播放
+					$api.setStorage("vadiostopflag","1");
+					stopvadiovll()
+					$(this).parent().removeClass("flash");
+					$(this).removeClass("aui-icon-notificationfill");
+					$(this).addClass("aui-icon-notificationforbidfill");
+				}else{
+					//恢复播放
+					resumevadiovll(detailsdata.content)
+					$api.setStorage("vadiostopflag","0");
+					$(this).parent().addClass("flash");
+					$(this).removeClass("aui-icon-notificationforbidfill");
+					$(this).addClass("aui-icon-notificationfill");
+				}
+			})
+			//发布评论
+			$("body").on("click",".ask-reply-btn",function(){
+	        	var data={
+		    		aid:api.pageParam.infoid,
+		    		msg:$("#pinluncontent").val(),
+		    	}
+		    	if ($("#pinluncontent").val()==""){
+		    		hint("评论内容不能为空！");
+		    		$("#pinluncontent").focus();
+		    		return false;
+		    	}
+		    	loadingshow();
+		    	//显示评论
+		    	zzappajax("get",hosturl+"/app/insert_dede_feedback.html",data,function(ret){
+			    		if (ret) {
+								showpinlun();
+								closepinlun();
+								api.toast({
+									msg : '发布成功！',
+									duration : 2000,
+									location : 'bottom'
+								});
+								$("#pinluncontent").val("");
+								loadinghide();
+						} else {
+							api.toast({
+								msg : '网络错误，请重试！',
+								duration : 2000,
+								location : 'bottom'
+							});
+							loadinghide();
+						}
+			    	},function(){
+			    		api.toast({
+							msg : '网络错误，请重试！',
+							duration : 2000,
+							location : 'bottom'
+						});
+			    		loadinghide();
+			    })
+		    })
+		    
+		};
+		var tab = new auiTab({
+			element : document.getElementById("tab"),
+		}, function(ret) {
+			//alert(JSON.stringify(ret))
+			if (ret.index==1){
+				$("#tab_1").show();
+				$("#tab_2").hide();
+			}else{
+				$("#tab_1").hide();
+				$("#tab_2").show();
+			}
+			
+		});
+		var scroll = new auiScroll({
+	        listen:true,
+	        distance:200 //判断到达底部的距离，isToBottom为true
+	    },function(ret){
+	        if(ret.isToBottom){
+	            //document.getElementById("demo").textContent = "已到达底部";
+	        }else{
+		        if (ret.scrollTop>50){
+		        	$(".closediv").fadeIn();
+		        }else{
+		        	$(".closediv").fadeOut();
+		        }
+		        if (ret.scrollTop>150){
+		        	$(".topdiv").fadeIn();
+		        	$(".topdiv").css("bottom","60px");
+		        }else{
+		        	$(".topdiv").fadeOut();
+		        	$(".topdiv").css("bottom","60px");
+		        }
+	            //document.getElementById("demo").textContent = "滚动高度："+ret.scrollTop;
+	        }
+	
+	    });
+	    
+	    function closepinlun(){
+	    	$("#mark").fadeOut();
+	        $(".pinlundiv").slideUp();
+	        $(".sharediv").slideUp();
+	    }
+	    var dataload = true;
+	    function ajaxinfo(){
+	    	if (dataload == false) {
+				return false;
+			}
+			dataload = false;
+	    	var data={}
+	    	var infoid = api.pageParam.infoid;
+	    	loadingshow();
+	    	$(".nocontact").hide();
+	    	//显示内容
+	    	zzappajax("get",hosturl+"/app/newsdetail" + infoid.toString() + ".html?"+(new Date()).getTime().toString(),data,function(ret){
+	    		
+	    		if (ret) {
+					var getTpl = $api.html($api.byId("info"));
+					var result=ret.result[0];
+					//alert(JSON.stringify(result))
+					if (!result){
+						loadinghide();
+						return false;
+					}
+					laytpl(getTpl).render(result, function(html) {
+						$(".newscontent").html(html)
+					});
+					$(".shouchancount").html(result.fcount);
+					//已经收藏
+					if (result.haveshouchan){
+						haveshouchan();
+					}
+					var typename=result.typename;
+					if (typename){
+						$(".typename b").html(typename);
+					}
+					//栏目信息数
+					var typenamecount=result.typenamecount;
+					if (typenamecount){
+						$(".typenamecount").show();
+						$(".typenamecount").html("("+typenamecount.toString()+"条)");
+					}
+					//是否关注
+					var haveguanzhu=result.haveguanzhu;
+					if (haveguanzhu){
+						$(".haveguanzhu").hide();
+						$(".noguanzhu").show();
+					}else{
+						$(".haveguanzhu").show();
+						$(".noguanzhu").hide();
+					}
+					$(".yuyingfloat").show();
+					$(".pinluntab").show();
+					$("footer").show();
+					detailsdata=result;
+					//播放语音
+					var vadiostopflag=$api.getStorage("vadiostopflag");
+					if (!vadiostopflag || vadiostopflag=="0"){
+						playvadiovll(ret.result[0].title+ret.result[0].content)
+					}else{
+						stopvadiovll();
+					}
+					dataload = true;
+					//显示评论
+	    			showpinlun();
+					loadinghide();
+				} else {
+					api.toast({
+						msg : '网络错误，请重试！',
+						duration : 2000,
+						location : 'bottom'
+					});
+					dataload = true;
+					loadinghide();
+				};
+	    	},function(){
+	    		api.toast({
+					msg : '网络错误，请重试！',
+					duration : 2000,
+					location : 'bottom'
+				});
+				dataload = true;
+				$(".nocontact").show();
+				$("footer").hide();
+	    		loadinghide();
+	    	})
+	    	
+	    }
+	    function showpinlun(){
+	    	var data={
+	    		aid:api.pageParam.infoid,
+	    		page:currPage,
+	    	}
+	    	//显示评论
+	    	zzappajax("get",hosturl+"/app/show_feedback.html?"+(new Date()).getTime().toString(),data,function(ret){
+	    		//alert(JSON.stringify(ret))
+	    		
+	    		if (ret) {
+	    			$(".pinluncount").html(ret.listcount);
+	    			var pageHtml=""
+	    			$.each(ret.result, function(index, item) {
+						var getTpl = $api.html($api.byId("pinlun_list"));
+						if (item.face=="" || !item.face){
+							item.face="../../image/noavatar.gif"
+						}
+						laytpl(getTpl).render(item, function(html) {
+							pageHtml = pageHtml + html;
+						});
+					})
+					$(".pinlun_list").html(pageHtml);
+					if (pageHtml==""){
+						$(".pinlun_list").html('<li class="aui-list-item pinlunlist" style="line-height:50px;text-align:center">暂无评论！ 我来评论</li>')
+					}
+					loadinghide();
+				} else {
+					api.toast({
+						msg : '网络错误，请重试！',
+						duration : 2000,
+						location : 'bottom'
+					});
+					loadinghide();
+				};
+	    	},function(){
+	    		api.toast({
+					msg : '网络错误，请重试！',
+					duration : 2000,
+					location : 'bottom'
+				});
+	    		loadinghide();
+	    	})
+	    }
+	    //收藏
+	    function shouchan(){
+	    	loadingshow();
+	    	var fclose="0"
+	    	if ($(".shouchan").attr("class").indexOf("aui-icon-favorfill")>=0){
+	    		fclose="1"
+	    	}
+	    	var data={
+	    		aid:api.pageParam.infoid,
+	    		close:fclose,
+	    	}
+	    	zzappajax("post",hosturl+"/app/insert_dede_member_stow.html",data,function(ret){
+	    		if (ret){
+	    			if (fclose=="0"){
+		    			api.toast({
+							msg : '收藏成功',
+							duration : 2000,
+							location : 'bottom'
+						});
+						var scount=$(".shouchancount").text();
+						$(".shouchancount").html(parseInt(scount)+1);
+		    			$(".shouchan").removeClass("aui-icon-favor");
+		    			$(".shouchan").addClass("aui-icon-favorfill");
+					}else{
+						api.toast({
+							msg : '取消收藏成功',
+							duration : 2000,
+							location : 'bottom'
+						});
+						var scount=$(".shouchancount").text();
+						$(".shouchancount").html(parseInt(scount)-1);
+		    			$(".shouchan").removeClass("aui-icon-favorfill");
+		    			$(".shouchan").addClass("aui-icon-favor");
+					}
+					loadinghide();
+	    		}
+	    	},function(){
+	    		api.toast({
+					msg : '网络错误，请重试！',
+					duration : 2000,
+					location : 'bottom'
+				});
+	    		loadinghide();
+	    	})
+	    }
+	    function haveshouchan(){
+	    	$(".shouchan").removeClass("aui-icon-favor");
+		    $(".shouchan").addClass("aui-icon-favorfill");
+	    }
+	    function guanzhu(){
+	    	var data={
+	    		tags:detailsdata.typename,
+	    		typeid:detailsdata.typeid,
+	    	}
+	    	zzappajax("post",hosturl+"/app/insert_myguanzhu.html",data,function(ret){
+	    		if (ret){
+	    			api.toast({
+						msg : '关注成功',
+						duration : 2000,
+						location : 'bottom'
+					});
+					$(".haveguanzhu").hide();
+					$(".noguanzhu").show();
+					loadinghide();
+	    		}
+	    	},function(){
+	    		api.toast({
+					msg : '网络错误，请重试！',
+					duration : 2000,
+					location : 'bottom'
+				});
+	    		loadinghide();
+	    	})
+	    }
+		/*
+		var skin = new auiSkin({
+		    name:"night", //皮肤样式名字，不能为中文
+		    skinPath:'../../css/aui-skin-night.css', //皮肤样式表路径
+		    default:false,//是否默认立即使用
+		    beginTime:"20:00",//开始时间
+		    endTime:"07:00"//结束时间
+		})
+		skin.setSkin();
+		*/
+	</script>
+</html>

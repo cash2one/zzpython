@@ -1,0 +1,29 @@
+<!--  <h1>okokokkooji</h1>
+<h1>okokokkooji</h1>
+<h1>okokokkooji</h1>
+<h1>okokokkooji</h1><br>
+{{industry}}<br>-->
+
+{%if marketlist%}
+	{%for list in marketlist%}
+	
+		<dd>
+			<a href="http://m.zz90.com/ye/ye_detail/{{list.words}}.html" target="_blank" class="react">
+				<div class="dealcard">
+					<div class="dealcard-img imgbox" data-src="">
+						<img src="{{list.pic_address}}" />
+					</div>
+					<div class="dealcard-right">
+						<div class="dealcard-brand oow">{{list.name}}</div>
+						<div class="title text-block">{{list.introduction}}</div>
+						<div class="info">
+							<span class="seller">市场商家（<font class="red">{{list.company_num}}</font>）户</span>
+							<span class="trade">市场供求（<font class="red">{{list.product_num}}</font>）条</span>
+						</div>
+					</div>
+				</div>
+			</a>
+		</dd>
+	
+	{%endfor%}
+{%endif%}

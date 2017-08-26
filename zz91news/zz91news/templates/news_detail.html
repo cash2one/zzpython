@@ -1,0 +1,288 @@
+{%extends "index.html"%}
+{%block body%}
+<style>
+.aaaaa a {
+color:blue;
+text-decoration:underline}
+}
+</style>
+    <div class="content"><script src="http://pyapp.zz91.com/showppctxtadscript/?keywords=&showborder=1&;showposition=1&m=6&amp;padding=8&w=970&amp;num=6&amp;adposition=636"></script>
+    	<div class="c-left">
+        	<div class="c-left-title">
+            	当前位置：<a href="/" target="_blank">zz91再生网资讯中心</a>>{%if kind_url%}
+            	<a href="{%if fangpian%}http://subject.zz91.com/prevent/index.html{%else%}/{{kind_url}}/{%endif%}" target="_blank">{{kind_name|safe}}</a>>{%endif%}
+            	<a href="{%if zhuanti%}/zhuanti/{%else%}/{{col_url}}/{%endif%}" target="_blank">{{col_name}}</a>>{{one_new.title}}
+            </div>
+            <!--end c-left-title-->
+            <div class="c-left-content" style="a:link{color:blue;text-decoration:underline}">
+            	<div class="c-title">
+                	<div class="c-title-text">
+<h1>{{title|safe}}</h1>
+                    </div>
+                    <!--end c-title-text-->
+                    <div class="c-title-box">
+                    	
+                        	发布时间：{{pubdate}}
+                       
+                        	来源：ZZ91
+                        
+                        	浏览量：{{click}}
+                         
+                        <div class="cb"></div>
+                    </div>
+                    <!--end c-title-box-->
+                </div>
+				
+                <!--end c-title-->
+                <div class="c-text aaaaa">
+                	<div style="float:left; margin-right:10px;">
+					    <script type="text/javascript">
+					/*新老站 资讯中部 250*250，创建于2013-12-9*/
+					var cpro_id = "u1429359";
+					</script>
+					{%if not img_url%}
+					<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+					{%endif%}
+					</div>{{content|safe}}
+                </div>
+                <!--end c-text-->
+                <div style="width:100%">
+                <center>
+                    <div class="c-page"> <!--文章长度{{text_len}} 按{{every}}字分页 共{{all_page}}页  共 {{l}}段  每次读{{next}}段-->
+                    <center>
+{%if all_page > 1%}
+                        <ul>
+                            	{%for pg in page_list%}
+                        		<li>
+								{% ifequal page pg %}
+								<a href="{%if kind_url%}/{{kind_url}}{%endif%}/{{col_url}}/newsdetail1{{newsid}}-{{pg}}.htm" class="page-list-click">
+								{{pg}}
+								</a>
+								{%else%}
+								<a href="{%if kind_url%}/{{kind_url}}{%endif%}/{{col_url}}/newsdetail1{{newsid}}-{{pg}}.htm">{{pg}}</a>
+								{%endifequal%}
+								</li>
+								{%endfor%}
+                            <div class="cb"></div>
+                        </ul>
+{%endif%}
+					</center>
+                    
+                    </div>
+                    <!--end c-page-->
+					<div>
+					<div class="bdsharebuttonbox"> <a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+					</div>
+                </center>
+                </div>
+                <div class="c-info">
+                	<div class="c-info-left">
+                		{%if up_detail%}
+                    	上一篇：<a href="{{up_detail.weburl}}">{{up_detail.titleu|safe}}</a>
+                    	{%endif%}
+                    </div>
+                    <div class="c-info-right">
+                		{%if nex_detail%}
+                    	下一篇：<a href="{{nex_detail.weburl}}">{{nex_detail.titlen|safe}}</a>
+                    	{%endif%}
+                    </div>
+                    <!--end c-info-right-->
+                    <div class="cb"></div>
+                </div>
+                <!--end c-info-->
+				
+                <div class="c-weixin" style="display:none">
+                	<div class="c-weixin-left">
+                    	<div class="c-weixinLeft-title">
+                        	微信公众号
+                        </div>
+                        <!--c-weixinLeft-title-->
+                        <div class="c-weixinLeft-img">
+                        	<img src="http://img0.zz91.com/zz91/news/images/weixin1.jpg" />
+                        </div>
+                        <!--c-weixinLeft-img-->
+                    </div>
+                    
+                    <!--end c-weixin-right-->
+                    <div class="cb"></div>
+                </div>
+                <!--end c-weixin-->
+                <div class="c-line"></div>
+                <div class="c-extension">
+                	<div class="c-extension-title">
+                    	延伸阅读
+                    </div>
+                    <!--end c-extension-title-->
+                    <div class="c-extension-content">
+                        <ul>
+                        {%for h in news_detail_about%}
+                            <li><a href="{{h.weburl}}" target="_blank">{{h.title}}</a></li>
+						{%endfor%}
+                            <div class="cb"></div>
+                        </ul>
+                    </div>
+                    <!--end c-extension-content-->
+                    <div class="c-extension-label">
+                        <ul>
+                            <li>本文标签：</li>
+{%for tag in kwdlist%}
+                            <li><a href="/column_list/tags-{{tag.kwd_hex}}.html" target="_blank">{{tag.kwd_name}}</a></li>
+{%endfor%}
+                            <div class="cb"></div>
+                        </ul>
+                    </div>
+                    <!--end c-extension-label-->
+                </div>
+                <!--end c-extension-->
+                <div class="c-statement">
+                    免责声明:本信息仅供参考，ZZ91再生网力求准确可靠，但不作为您投资决策的唯一因素!
+                </div>
+                <!--end c-statement-->
+            </div>
+            <!--end c-left-content-->
+            <div class="c-pic" id="5F">
+                <div class="pic-title">
+                    <div class="pic-title-caption">
+                        <a href="/pic/" target="_blank">图片新闻</a>
+                    </div>
+                    <div class="pic-title-more">
+                        <a href="/pic/" target="_blank">更多</a>
+                    </div>
+                    <!--end pic-title-more-->
+                    <div class="cb"></div>
+                </div>
+                <!--end pic-title-->
+                <div class="pic-content">
+                    <div class="pic-img">
+{%for h in hot_img%}
+                        <div class="pic-item">
+                            <div class="pic-item-img">
+                                <a href="{{h.weburl}}" target="_blank"><img src="{{h.litpic}}" alt="{{h.title}}"/></a>
+                            </div>
+                            <!--end pic-item-img-->
+                            <div class="pic-item-text">
+                                <a href="{{h.weburl}}" target="_blank">{{h.title}}</a>
+                            </div>
+                            <!--end pic-item-text-->
+                        </div>
+{%endfor%}
+                        <div class="cb"></div>
+                    </div>
+                    <!--end pic-img-->
+                </div>
+                <!--end pic-content-->
+            </div>
+            <!--end c-pic-->
+        </div>
+        <div class="c-right">
+        	<div class="c-right-weixin">
+            	<div class="c-rightweixin-text">
+                	扫一扫二维码，精彩资讯跟您走
+                </div>
+                <!--end c-rightweixin-text-->
+                <div class="c-rightweixin-img">
+                
+                	<img src="/verifycode/?arg={{qrcode_arg}}" height="123" width="123" />
+                	
+                </div>
+                <!--end c-rightweixin-img-->
+            </div>
+            <!--end c-right-weixin-->
+            <div class="c-right-banner">
+            	<script type="text/javascript">
+/*新闻最终页右边300*250，创建于2014-2-25*/
+var cpro_id = "u1476030";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+            </div>
+            <!--end c-right-banner-->
+            <div class="c-right-banner">
+            	
+            </div>
+            <!--end c-right-banner-->
+            <div class="c-right-banner">
+            	
+            </div>
+            <!--end c-right-banner-->
+            <div class="c-ranking">
+                <div class="c-ranking-title">
+                    <div class="c-ranking-caption">
+                        本周最热资讯
+                    </div>
+                    <!--end c-ranking-caption-->
+                    <div class="c-ranking-more">
+                    	
+                    </div>
+                    <!--end c-ranking-more-->
+                    <div class="cb"></div>
+                </div>
+                <!--end c-ranking-title-->
+                <div class="c-ranking-content">
+                    <ul>
+	                    {%for h in hotnewslist%}
+                        <li>
+                            <div class="c-ranking-text"><a href="{{h.weburl}}" target="_blank">{{h.title}}</a></div>
+                            <div class="c-ranking-date">{{h.pubdate1}}</div>
+                            <div class="cb"></div>
+                        </li>
+						{%endfor%}
+                    </ul>
+                </div>
+                <!--end c-ranking-content-->
+            </div>
+            <!--end ranking-->
+            <div class="c-right-banner">
+            	
+            </div>
+            <!--end c-right-banner-->
+            <div class="c-ranking2">
+                <div class="c-ranking-title">
+                    <div class="c-ranking-caption">
+                        为您推荐相关供求信息
+                    </div>
+                    <!--end c-ranking-caption-->
+                    <div class="cb"></div>
+                </div>
+                <!--end c-ranking-title-->
+
+                <div class="c-ranking-content">
+                    <ul>
+					{%for list in indexofferlist%}
+                        <li class="c-mb10">
+                            <div class="c-ranking-img"><a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target=_blank><img src="{{list.pdt_images}}" /></a></div>
+                            <div class="c-ranking-box">
+                            	<div class="c-ranking-info">
+                                	<a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target=_blank>{{list.title}}</a>
+                                </div>
+                                <!--end c-ranking-info-->
+                                <div class="c-ranking-zi">
+                                	{{list.price}}
+                                </div>
+                                <!--end c-ranking-zi-->
+                                <div class="c-ranking-zi">
+                                	<a href="http://china.zz91.com/inquiry/inquiryApi.htm?productId={{list.id}}#messeges" target=_blank>在线询价</a>
+                                </div>
+                                <!--end c-ranking-zi-->
+                            </div>
+                            <div class="cb"></div>
+                        </li>
+                    {%endfor%}
+                    </ul>
+                </div>
+                <!--end c-ranking-content-->
+            </div>
+            <!--end ranking-->
+        </div>
+        <!--end c-right-->
+        <div class="cb"></div>
+    </div>
+    <!--end content-->
+    
+</div>
+<!--end zixun-->
+<input type="hidden" id="index_hidden" value="1" />
+
+</body>
+</html>
+{%endblock%}

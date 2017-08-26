@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<style>
+			body {footer{
+				position: fixed;
+				bottom: 0px;
+				width: 100%;
+			}
+			.czfoot {
+				border-top: solid 1px #EBEBEB;
+				width: 100%;
+				background-color: #F6F6F6;
+				line-height: 50px;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+			}
+			.czfoot li {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				text-align: center;
+				border-right: 1px solid #e7e7e7;
+				font-size: 14px;
+			}
+			.czfoot li:last-child {
+				border-right: none;
+			}
+			.czfoot li {
+				-webkit-box-flex: none;
+				-webkit-flex: none;
+				flex: none;
+			}
+			.c_pinlun{
+				width:35%;
+				
+			}
+			.c_all{
+				width:65%
+			}
+			.c_all span{
+				margin-right:12px;
+				margin-left:12px;
+				font-size:20px;
+				position: relative;
+			}
+			.c_all span i{
+				font-size:10px;
+				display: block;
+				position: absolute;
+				left:10px;
+				top:3px;
+				height:13px;
+				z-index: 9999;
+			}
+		</style>
+	</head>
+	<body>
+		<footer style="display:none">
+			<ul class="czfoot newsdetail" style="display:none;">
+				<li class="c_pinlun">
+					<span class="aui-iconfont aui-icon-add"></span> 添加评论
+				</li>
+				<li class="c_all">
+					<span class="aui-iconfont aui-icon-like"> <i class="aui-badge aui-badge-warning">123</i> </span>
+					<span class="aui-iconfont aui-icon-edit"> <i class="aui-badge aui-badge-info">123</i> </span>
+					<span class="aui-iconfont aui-icon-favor"> <i class="aui-badge aui-badge-danger">123</i> </span>
+					<span class="aui-iconfont aui-icon-share"></span>
+				</li>
+			</ul>
+			<ul class="czfoot ldbphone" style="display:none">
+				<li class="j_clickphone">
+					查看点击清单
+				</li>
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+		};
+	</script>
+</html>

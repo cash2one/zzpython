@@ -1,0 +1,18 @@
+<uwsgi>
+ <socket>:8013</socket>
+ <workers>4</workers>
+ <master>true</master>
+ <processes>4</processes>
+ <pythonpath>.</pythonpath>
+ <module>zz91news.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>zz91news/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>3000</limit-as>
+ <reload-on-as>400</reload-on-as>
+ <reload-on-rss>400</reload-on-rss>
+ <max-requests>400</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/zz91news.log</daemonize>
+</uwsgi>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="Js/jquery.js"></script>
+    <script type="text/javascript" src="Js/bootstrap.js"></script>
+    <script type="text/javascript" src="Js/ckform.js"></script>
+    <script type="text/javascript" src="Js/common.js"></script>
+</head>
+
+<form action="getfromaccounttocompanyid.html">
+<input type="hidden" name="request_url" value="{{request_url}}">
+<input type="hidden" name="tourl" value="{{tourl}}">
+<table class="table table-bordered table-hover definewidth m10">
+<tr><td  class="tableleft">账号</td><td><input class="w80px" type="text" name="account"> {%if error1%}<font color="red">{{error1}}</font>{%endif%}</td></tr>
+<td class="tableleft"></td>
+<td><input type="submit" class="btn btn-primary" value="查询">&nbsp;&nbsp;<input type="button" value="返回列表" class="btn btn-success"  onClick="window.location.href='returnpage.html?request_url={{request_url}}'"></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

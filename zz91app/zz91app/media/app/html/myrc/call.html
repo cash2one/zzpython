@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>来电宝</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/myrc/call.css"/>
+</head>
+<body>
+<div class="surplus">
+	<div class="surplus-td">
+		<div class="surplus-title">当前余额（元）</div>
+		<div class="surplus-moery">441.10</div>
+	</div>
+</div>
+<div class="old-buy clear">
+	<div class="day-but">
+		<div class="old-buy-tg">昨日消费（元）</div>
+		<div class="old-buy-moery">0.00</div>
+	</div>
+	<div class="mouth-buy">
+		<div class="old-buy-tg">本月消费（元）</div>
+		<div class="old-buy-moery">0.00</div>
+	</div>
+</div>
+<div class="buy-list clear">
+	<span>电话清单</span>
+	<span>点击清单</span>
+</div>
+<div class="btn">在线充值</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript">
+apiready = function(){
+    $(".btn").on("click",function(){
+        var pageParam = {
+            wintitle:"我的来电宝钱包",
+            type:"call-moery",
+        };
+        openWin("call-moery","../myrc/call-moery.html",pageParam);
+    })
+}
+</script>
+</html>

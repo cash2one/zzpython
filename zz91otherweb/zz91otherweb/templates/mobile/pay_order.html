@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+
+</head>
+<body>
+<form class="form-inline definewidth m20">
+订单号：<input type="text" style="width:100px" name="out_trade_no" {%if out_trade_no%}value={{out_trade_no}}{%endif%}>&nbsp;&nbsp;  
+手机号：<input type="text" style="width:100px" name="mobile" {%if mobile%}value={{mobile}}{%endif%}>&nbsp;&nbsp;  
+是否支付成功
+<select name="is_success" style="width:85px">
+	<option value="">--请选择</option>
+	<option value="1">成功</option>
+	<option value="0">未成功</option>
+</select>&nbsp;&nbsp;
+
+<input class="btn btn-success" type="submit" value="查询">
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>公司名称</th>
+        <th>充值</th>
+        <th>成功标识</th>
+        <th>商户网站 唯一订单 号</th>
+        <th>商品名称</th>
+        <th>交易金额</th>
+        <th>交易号</th>
+        <th>联系人</th>
+        <th>手机号</th>
+        <th style="width:65px">时间</th>
+    </tr>
+    <thead>
+    {%for list in listall%}
+	     <tr>
+	     <td>{{list.id}}</td>
+	     <td>{%if list.companyname%}<a href="http://admin1949.zz91.com/web/zz91/crm/company/detail.htm?companyId={{list.company_id}}" target="_blank">{{list.companyname}}</a>{%endif%}</td>
+	     <td><a href="addchongzhi.html?company_id={{list.company_id}}" target="_blank">手动充值</div></td>
+	     <td>{%if list.is_success%}{{list.is_success}}{%endif%}</td>
+	     <td>{%if list.out_trade_no%}{{list.out_trade_no}}{%endif%}</td>
+	     <td>{%if list.subject%}{{list.subject}}{%endif%}</td>
+	     <td>{%if list.total_fee%}{{list.total_fee}}{%endif%}</td>
+	     <td>{%if list.trade_no%}{{list.trade_no}}{%endif%}</td>
+	     <td>{%if list.contact%}{{list.contact}}{%endif%}</td>
+	     <td>{%if list.mobile%}{{list.mobile}}{%endif%}</td>
+	     <td>{%if list.gmt_created%}{{list.gmt_created}}{%endif%}</td>
+        </tr>
+	{%endfor%}        
+</table><br />
+
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<a href='?page=1&{{searchurl}}' >首页</a><a href='?page={{page_listcount}}&{{searchurl}}' >尾页</a> 
+</div>
+</body>
+</html>

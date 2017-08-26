@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>{{ye_detaillist.name}}-废料产业带</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-tab.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-slide.css" />
+		<style>
+			.clearfix:after {
+				content: ".";
+				display: block;
+				height: 0;
+				clear: both;
+				visibility: hidden
+			}
+			
+			.clearfix {
+				height: 1%
+			}
+			
+			.clearfix {
+				display: block
+			}
+			
+			.aui-bar {
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			
+			a {
+				color: #333
+			}
+			
+			.floatpage {
+				/*position: fixed;
+				bottom:0px;*/
+				width: 100%;
+				height: 54px;
+			}
+			
+			.aui-grid-nine li {
+				padding: 15px 0;
+			}
+			
+			.text-33 {
+				color: #333;
+			}
+			
+			.red {
+				color: #f00;
+			}
+			
+			.aui-slide-node {
+				display: box;
+				display: -webkit-box;
+				display: -moz-box;
+				-webkit-box-align: center;
+				-moz-box-align: center;
+				-moz-box-pack: center;
+				-webkit-box-pack: center;
+			}
+			
+			#aui-slide3 .aui-slide-wrap .aui-slide-node {
+				height: 180px;
+			}
+			
+			.aui-slide-node img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			
+			.aui-slide-page-wrap {
+				z-index: 1
+			}
+			
+			.aui-slide-wrap .aui-slide-node {
+				background: rgba(0, 0, 0, 0.7);
+			}
+			
+			.aui-slide-page-dot {
+				background: #fff;
+			}
+			
+			.aui-slide-page-active {
+				background: #333;
+			}
+			
+			.aui-slide-page-wrap {
+				bottom: 25px;
+			}
+			
+			.bg-dark span {
+				height: 30px;
+				line-height: 30px;
+				width: 100%;
+				text-align: left;
+				padding-left: 10px;
+				margin: 0 auto;
+				background: #000;
+				opacity: 0.6;
+				font-size: 16px;
+				color: #fff;
+				display: block;
+				z-index: 1;
+				position: absolute;
+				bottom: 0px;
+				left: 0;
+			}
+			
+			.jin_btn {
+				background: #090;
+				color: #fff;
+			}
+			
+			.aui-list .aui-list-item-media {
+				width: 5.25rem;
+			}
+			
+			.aui-list-item-inner p {
+				height: 1.7rem;
+			}
+			
+			.time {
+				color: #959595;
+			}
+			
+			.aui-list:before {
+				height: 0;
+			}
+			
+			.aui-tab-item {
+				background: #e6e6e6;
+				font-size: 0.8rem;
+			}
+			
+			.aui-tab-item.aui-active {
+				color: #212121;
+				border-bottom: 0;
+				background: #fff;
+				z-index: 98;
+			}
+			
+			.aui-hide {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+			<a class="aui-pull-left" href="javascript:history.back(-1)">
+				<span class="aui-iconfont aui-icon-left"></span>
+			</a>
+			<div class="aui-title aui-font-size-16">{{ye_detaillist.name}}</div>
+			<a class="aui-pull-right aui-btn aui-btn-outlined j_select">
+				<span class="aui-iconfont aui-icon-share aui-margin-r-5"></span>
+			</a>
+		</header>
+		<div style="height: 45px;"></div>
+
+		<div class="topdiv" onclick="pagetotop();" style="bottom: 90px; display: none;"><span class="aui-iconfont aui-icon-top"></span></div>
+
+		<div id="aui-slide3">
+			<div class="aui-slide-wrap">
+				{%for img in ye_imglist.pic_address%}
+				<div class="aui-slide-node bg-dark">
+					<img src="{{img.pic_address}}" />
+					<span>
+		            	{{ye_detaillist.name}}
+		            </span>
+				</div>
+				{%endfor%}
+			</div>
+			<div class="aui-slide-page-wrap">
+				<!--分页容器-->
+			</div>
+		</div>
+
+		<div class="aui-content">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell aui-img">
+					<div class="aui-img-body">
+						市场简介
+					</div>
+				</li>
+				<li class="aui-list-view-cell aui-img">
+					<div class="aui-img-body">
+						{{ye_detaillist.introduction}}
+					</div>
+				</li>
+				<li class="aui-list-view-cell aui-img">
+					<div class="aui-img-body">
+						市场概况
+					</div>
+				</li>
+				<li class="aui-list-view-cell aui-img">
+					<div class="aui-img-body">
+						<div>
+							所属行业：{{ye_detaillist.industry}}&nbsp;{%if ye_detaillist.industry_code%}
+							<a href="/ye/{{ye_detaillist.industry_code}}/" class="aui-text-success aui-margin-l-5">[查看其他废金属市场]</a>{%endif%}
+						</div>
+						<div>
+							所在地区： {{ye_detaillist.area}}
+						</div>
+						<div>
+							主营范围：{{ye_detaillist.business}}
+						</div>
+						<div>
+							市场商户：<span class="red">{{ye_detaillist.company_num}}</span>家
+						</div>
+						<div>
+							市场供求：<span class="red">{{ye_detaillist.product_num}}</span>家
+						</div>
+						{% ifequal is_quit 0 %}
+						<div>
+							<a onclick="join_ajax('{{ye_detaillist.industry}}','{{ye_detaillist.area}}','{{ye_detaillist.id}}')" class="aui-btn aui-btn-block aui-btn-success" href="javascript:void(0);" rel="nofollow">我是该市场商户,我要加入</a>
+						</div>
+						
+						{%else%}
+						<a class="aui-btn aui-btn-block aui-padded-t-5 aui-padded-b-5 aui-font-size-16 aui-margin-t-10 jin_btn">
+							您已加入了该市场
+						</a>
+						<a class="aui-btn aui-btn-block aui-padded-t-5 aui-padded-b-5 aui-font-size-16 aui-margin-t-10 jin_btn" href="/ye/quit_ye.html?id={{ye_detaillist.id}}">
+							我要退出该市场
+						</a>
+						{%endifequal%}
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div style="width: 100%;text-align: center;line-height: 30px;">
+			我要订阅商机<br>长按识别二维码，关注 “zz91再生网”<br><img src="http://img0.zz91.com/zz91/weixin/images/priceorder.png">
+		</div>
+		<div style="height: 50px;">
+		</div>
+		<div style="position: fixed;bottom: 0px;width: 100%;">
+			<div class="aui-tab" id="tab">
+				<div class="aui-tab-item aui-bg-success"><a href="/ye/pro{{market_id}}.html" target="_blank" style="color: #fff;">市场供求</a></div>
+				<div class="aui-tab-item aui-bg-success"><a href="/ye/comp{{market_id}}.html" target="_blank"  style="color: #fff;">市场商户</a></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-slide.js"></script>
+	<script>
+		function pagetotop() {
+			$('body').animate({
+				scrollTop: 0
+			}, 500);
+		}
+
+		var scroll = new auiScroll({
+			listen: true,
+			distance: 200 //判断到达底部的距离，isToBottom为true
+		}, function(ret) {
+			if(ret.isToBottom) {
+				//alert(1)
+				//getmoreinfo()
+				//document.getElementById("demo").textContent = "已到达底部";
+			} else {
+				if(ret.scrollTop > 50) {
+					$(".closediv").fadeIn();
+				} else {
+					$(".closediv").fadeOut();
+				}
+				if(ret.scrollTop > 150) {
+					$(".topdiv").fadeIn();
+				} else {
+					$(".topdiv").fadeOut();
+				}
+			}
+
+		});
+
+		$(function() {
+			var slide3 = new auiSlide({
+				container: document.getElementById("aui-slide3"),
+				// "width":300,
+				"height": 180,
+				"speed": 500,
+				"autoPlay": 0, //自动播放
+				"loop": true,
+				"pageShow": true,
+				"pageStyle": 'dot',
+				'dotPosition': 'center'
+			})
+		})
+
+//		var tab = new auiTab({
+//			element: document.getElementById("tab"),
+//			index: 1,
+//			repeatClick: false
+//		}, function(ret) {
+//			$(".j_infolist").children().addClass("aui-hide");
+//			$(".j_infolist").children().eq(ret.index - 1).removeClass("aui-hide");
+//		});
+	</script>
+
+</html>

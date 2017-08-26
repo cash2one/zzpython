@@ -1,0 +1,31 @@
+<html>
+    <head></head>
+    <body>
+    	{{ret_dict}}
+    <script type="text/javascript">
+    function callpay(){
+        if (typeof WeixinJSBridge == "undefined"){
+            if( document.addEventListener ){
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+            }else if (document.attachEvent){
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+            }
+        }else{
+            jsApiCall();
+        }
+    }
+    function jsApiCall(){
+        WeixinJSBridge.invoke(
+            'getBrandWCPayRequest',
+            {{ret_dict}},
+            function(res){
+                alert(JSON.stringify(res));
+                window.location='{{payreturn_url}}';
+            }
+        );
+    }
+    callpay();
+    </script>
+    </body>
+    </html>

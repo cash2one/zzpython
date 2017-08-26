@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>报价</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/price/quote.css"/>
+</head>
+<body>
+  <div class="hot-title clear border-bottom">
+    <h4>废金属</h4>
+    <div class="headle">
+      <span class="more"><i></i>更多</span>
+      <span class="take"><i></i>订阅</span>
+    </div>
+  </div>
+  <ul class="old-metal">
+  	<li tapmode="on"><span class="old-type">[ 废铜 ]</span> 全国各地废铜报价全国各地废铜报价全国各地废铜报价</li>
+  	<li tapmode="on"><span class="old-type">[ 日评 ]</span> 09月14日废金属行情晚报</li>
+  	<li tapmode="on"><span class="old-type">[ 周报 ]</span> ZZ91废铜周报第126期</li>
+  	<li tapmode="on"><span class="old-type">[ 行情 ]</span> 09月15日期铜市场早间评论</li>
+  </ul>
+  <div class="hot-title clear hot-title-sck">
+    <h4 class="no-right">热门产品</h4>
+    <div class="headle"><span class="qh-time">2015-09-15</span></div>
+  </div>
+  <ul class="qh-table">
+  	<li tapmode="on"><span>沪铜</span><span>40380</span><span class="go-down">420 ↓</span></li>
+  	<li tapmode="on"><span>沪铜</span><span>40380</span><span>0</span></li>
+  	<li tapmode="on"><span>沪铜</span><span>40380</span><span>0</span></li>
+  	<li tapmode="on"><span>沪铜</span><span>40380</span><span class="go-up">420 ↑</span></li>
+  </ul>
+  <div class="hot-title clear border-bottom">
+    <h4>废塑料</h4>
+    <div class="headle">
+      <span class="more"><i></i>更多</span>
+      <span class="take"><i></i>订阅</span>
+    </div>
+  </div>
+  <ul class="old-metal">
+  	<li tapmode="on"><span class="old-type">[ 废铜 ]</span> 全国各地废铜报价全国各地废铜报价全国各地废铜报价</li>
+  	<li tapmode="on"><span class="old-type">[ 日评 ]</span> 09月14日废金属行情晚报</li>
+  	<li tapmode="on"><span class="old-type">[ 周报 ]</span> ZZ91废铜周报第126期</li>
+  	<li tapmode="on"><span class="old-type">[ 行情 ]</span> 09月15日期铜市场早间评论</li>
+  </ul>
+  <div class="hot-title clear border-bottom">
+    <h4>废纸 / 橡胶</h4>
+    <div class="headle">
+      <span class="more"><i></i>更多</span>
+      <span class="take"><i></i>订阅</span>
+    </div>
+  </div>
+  <ul class="old-metal">
+  	<li tapmode="on"><span class="old-type">[ 废铜 ]</span> 全国各地废铜报价</li>
+  	<li tapmode="on"><span class="old-type">[ 日评 ]</span> 09月14日废金属行情晚报</li>
+  	<li tapmode="on"><span class="old-type">[ 周报 ]</span> ZZ91废铜周报第126期</li>
+  	<li tapmode="on"><span class="old-type">[ 行情 ]</span> 09月15日期铜市场早间评论</li>
+  </ul>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+  $(".take").on("click",function(){
+    var pageParam = {
+      wintitle:"订阅报价",
+      type:"take-price"
+    };
+    openWin("take-price","../price/take-price.html",pageParam);
+  })
+  $(".old-metal li").on("click",function(){
+    var pageParam = {
+      wintitle:"金属报价",
+      type:"take-price"
+    };
+    openWin("price-detail","../price/price-detail.html",pageParam);
+  })
+  //行情报价
+  $(".more").on("click",function(){
+    var pageParam = {
+      type:"offer-list"
+    };
+    openWin("offer-list","../price/offer-list.html",pageParam);
+  })
+</script>
+</html>

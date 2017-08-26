@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>推广关键词</title>
+        <script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css" />
+		<style>
+			
+			.keytab>.aui-flex-col:first-child{
+				background: #e4e4e4;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="height:45px;">
+			<header class="aui-bar aui-bar-nav zz-header aui-border-b aui-bg-success">
+		    	<a class="aui-pull-left" href="/">
+			        <span class="aui-iconfont aui-icon-left"></span>
+			    </a>
+			    <div class="aui-title">
+			    	推广关键词
+			    </div>
+			</header>
+		</div>
+		
+		<div class="aui-searchbar-wrap demo" id="search">
+		    <div class="aui-searchbar aui-border-radius" onclick="startSearch()">
+		        <i class="aui-iconfont aui-icon-search"></i>
+		        <div class="aui-searchbar-text">请输入搜索内容</div>
+		        <div class="aui-searchbar-input">
+		        	<form>
+		        	<input type="search" placeholder="请输入搜索内容" id="search-input">
+		        	</form>
+		        </div>
+		        <i class="aui-iconfont aui-icon-roundclosefill aui-margin-r-5" onclick="clearInput()"></i>
+		    </div>
+		    <div class="aui-searchbar-cancel aui-text-info" onclick="doSearch()">搜索</div>
+		</div>
+		
+		<div class="keytab">
+			<div class="aui-flex-col aui-text-center aui-flex-center aui-font-size-18">
+				<div class="aui-flex-item-3 aui-padded-5">
+					关键词
+				</div>
+				<div class="aui-flex-item-2 aui-padded-5">
+					展现量
+				</div>
+				<div class="aui-flex-item-2 aui-padded-5">
+					点击量
+				</div>
+				<div class="aui-flex-item-2 aui-padded-5">
+					消费
+				</div>
+				<div class="aui-flex-item-3 aui-padded-5">
+					上下线
+				</div>
+			</div>
+			<div class="aui-flex-col aui-text-center aui-flex-center aui-font-size-18 bgcolor-ff">
+				<div class="aui-flex-item-3 aui-padded-10">
+					废铝
+				</div>
+				<div class="aui-flex-item-2 aui-padded-10">
+					323
+				</div>
+				<div class="aui-flex-item-2 aui-padded-10">
+					56
+				</div>
+				<div class="aui-flex-item-2 aui-padded-10">
+					￥34
+				</div>
+				<div class="aui-flex-item-3 aui-padded-10">
+					<input type="checkbox" class="aui-switch aui-switch-success aui-pull-right" checked>
+				</div>
+			</div>
+			<div class="aui-line-x"></div>
+			<div class="aui-flex-col aui-text-center aui-flex-center aui-font-size-18 bgcolor-ff">
+				<div class="aui-flex-item-3 aui-padded-10">
+					废聂
+				</div>
+				<div class="aui-flex-item-2 aui-padded-10">
+					43
+				</div>
+				<div class="aui-flex-item-2 aui-padded-10">
+					5
+				</div>
+				<div class="aui-flex-item-2 aui-padded-10">
+					￥53
+				</div>
+				<div class="aui-flex-item-3 aui-padded-10">
+					<input type="checkbox" class="aui-switch aui-switch-success aui-pull-right" >
+				</div>
+			</div>
+			<div class="aui-line-x"></div>
+			<div class="aui-flex-col aui-text-center aui-flex-center aui-font-size-18 bgcolor-ff">
+				<div class="aui-flex-item-3 aui-border-r aui-border-t aui-padded-10">
+					废聂
+				</div>
+				<div class="aui-flex-item-2 aui-padded-10">
+					43
+				</div>
+				<div class="aui-flex-item-2 aui-padded-10">
+					5
+				</div>
+				<div class="aui-flex-item-2 aui-padded-10">
+					￥53
+				</div>
+				<div class="aui-flex-item-3 aui-padded-10">
+					<input type="checkbox" class="aui-switch aui-switch-success aui-pull-right" checked>
+				</div>
+			</div>
+			<div class="aui-line-x"></div>
+		</div>
+		<div class="aui-flex-col aui-padded-b-10" style="position: fixed;bottom: 20px;width: 100%;">
+			<a href="/qianbao/llb_add.html" class="aui-btn aui-btn-success"  style="margin-left: auto;margin-right: auto;width: 50%;">
+				添加关键词
+			</a>
+		</div>
+	</body>
+	<script type="text/javascript">
+		function startSearch(){
+			$(".aui-searchbar-wrap").addClass("focus");
+			$('.aui-searchbar-input input').focus();
+		}
+		function cancelSearch(){
+			$(".aui-searchbar-wrap").removeClass("focus");
+			$("#search-input").val("");
+			$('.aui-searchbar-input input').blur();
+		}
+		function clearInput(){
+			$("#search-input").val("");
+		}
+		function doSearch(){
+			var keywords=$("#search-input").val();
+			window.location="?keywords="+keywords;
+		}
+	</script>
+</html>

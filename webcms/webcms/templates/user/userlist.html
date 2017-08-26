@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/style.css" />
+</head>
+<body>
+<form class="form-inline definewidth m20" action="index.html" method="get">  
+<a class="btn btn-success" href="adduser.html">添加用户</a>
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>帐号</th>
+        <th>密码称</th>
+        <th>权重</th>
+        <th>域名</th>
+        <th>管理操作</th>
+    </tr>
+    </thead>
+    <tbody id="tab1">
+    {%for list in listall%}
+     <tr>
+        <td>{{list.id}}</td>
+        <td>{{list.username}}</td>
+        <td>{{list.password}}</td>
+        <td>{{list.sortrank}} ({%ifequal list.sortrank 1%}管理员{%else%}普通客户{%endifequal%})</td>
+        <td><a href="http://www.{{list.website}}" target="_blank">www.{{list.website}}</a></td>
+        <td>
+		<a href="updateuser.html?userid={{list.id}}&freshtime={{freshtime}}" title="编辑"><img src="/123/imgs/gtk-edit.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		</td>
+    </tr>
+     {%endfor%}
+    </tbody>
+</table>
+{%include 'common/turnpage.html'%}
+</body>
+</html>

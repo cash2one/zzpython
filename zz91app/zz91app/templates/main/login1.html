@@ -1,0 +1,20 @@
+<style>
+	.loginmain{line-height: 30px;padding: 20px;}
+</style>
+<form name="form1" method="post" action="/loginof.html">
+<div class="loginmain">
+	<div>
+	<div style="float: left;width: 20%;line-height: 40px;">账   号：</div><div style="float: left;width: 80%;"><input type="text" name="username" placeholder="用户名 /手机 /邮箱" autocomplete="off" maxlength="50"/></div>
+	<div style="float: left;width: 20%;line-height: 40px;">密   码：</div><div style="float: left;width: 80%;"><input type="password" name="passwd" placeholder="请输入密码" autocomplete="off" maxlength="50"/></div>
+	</div>
+	<div style="text-align: center;line-height: 30xp;">
+		<input type=hidden name="tourl" id="tourl" value=""/>
+		<input type=hidden name="loginflag" id="loginflag" value="1"/>
+		<input type=hidden name="wintarget" id="wintarget" value="blank"/>
+		<div style="line-height: 40px;"><a href="#" onclick="gotourl('forgetpasswd.html','reg')">找回密码</a></div><div>
+	</div>
+	<button type="submit" name="button" id="button" class="mui-btn mui-btn-danger" style="width: 100%;line-height: 30px;font-size: 16px;">登录</button>
+	<br /><button type="button" name="button" id="button" class="mui-btn mui-btn-green mui-disabled" style="width: 100%;line-height: 30px;font-size: 16px;margin-top: 10px;" onclick="gotourl('reg.html','reg')">免费注册</button>
+</div>
+</form>
+<input type="hidden" id="appnavname" value="登陆" />

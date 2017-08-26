@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>端API</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+		
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<meta name="format-detection" content="telephone=no"/>
+		<style>
+			#header {
+				text-align: center;
+				color: #fff;
+				width: 100%;
+				height:30px;
+			}
+			.nav-heart {
+				position: relative;
+				overflow: hidden;
+			}
+			.nav-heart-ul li {
+				float: left;
+				text-align: center;
+				font-size: 14px;
+				height: 29px;
+				line-height: 29px;
+				border-bottom: 1px solid #e9e8e9;
+				color: #333333;
+				line-height: 29px;
+			}
+			.nav-heart-ul .current-nav {
+				color: #01ba2e
+			}
+			.current-nav-bottom {
+				height: 2px;
+				background-color: #01ba2e;
+				position: absolute;
+				bottom: 1px;
+				left: 0;
+			}
+			#wrap {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-orient: vertical;
+				-webkit-flex-flow: column;
+				flex-flow: column;
+			}
+			.clear:after {
+				display: block;
+				clear: both;
+				content: "";
+				visibility: hidden;
+				height: 0
+			}
+			.current-nav-bottom { -webkit-transition: 300ms;}
+			.aui-title{
+				width:100%;
+				text-align:center
+			}
+			.aui-title .line{
+				width:25px;
+				border-left:solid 1px #ebebeb;
+				height: 20px;
+				margin-left:25px;
+				margin-top:12px;
+			}
+			.aui-title ul{
+				width:210px;
+				margin-left:auto;
+				margin-right:auto;
+			}
+			.aui-title li{
+				float:left;
+				text-align:center;
+			}
+			.aui-title .on{
+				color:#FFCC00;
+			}
+			.aui-bar-success{
+				background-color:#01ba2e;
+			}
+			
+			.toguanzhu{
+				padding:20px;
+				border:solid 1px #EBEBEB;
+			}
+			.guanzhu_left{
+				float: left;width: 60%
+			}
+			.guanzhu_left .title{
+				font-size:16px;
+				font-weight:700;
+				color: #01AA2A;
+				margin-right: 10px;
+			}
+			.guanzhu_left{
+				color: #999
+			}
+			.guanzhu_right{
+				float: right;width:40%
+			}
+		</style>
+	</head>
+	<body>
+	
+		<header id="aui-header">
+			<div class="aui-bar aui-bar-nav aui-bar-success">
+		    <div class="aui-iconfont aui-icon1-left aui-pull-left" onclick="api.closeWin();" tapmode style="font-size:20px">
+		    </div>
+		    <div class="aui-title" id="wintitle">
+				<!--<ul><li class="on" type="title" openflag="0" id="wintitle"></li><li class="line"></li><li type="huzhu" openflag="0">互助</li></ul>-->
+			</div>
+		    <div class="aui-iconfont aui-icon1-search aui-pull-right" onclick="doSearch()"></div>
+			</div>
+			<div class="toguanzhu" style="display:none">
+				<div class="guanzhu_left"><span class="title"></span>(共有<span class="ncount">0</span>篇)<br /><span class="gzcount">0</span>人关注</div>
+				<div class="guanzhu_right">
+					<div class="aui-btn aui-btn-success aui-pull-right haveguanzhu" style="display:none">
+						关注
+					</div>
+					<div class="aui-btn aui-btn-default aui-pull-right noguanzhu" style="display:none">
+						已关注
+					</div>
+				</div>
+				<div style="clear: both"></div>
+			</div>
+		</header>
+		
+		<div class="mainbody"></div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/iscroll.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript">
+		var footerheight = $("body").height();
+		var typeid=0;
+		apiready = function() {
+			footerheight = api.pageParam.footerheight;
+			var wintitle = api.pageParam.wintitle;
+			typeid=api.pageParam.typeid
+			$("#wintitle").html(wintitle);
+			$(".guanzhu_left .title").html(wintitle);
+			
+			var searchflag=api.pageParam.searchflag;
+			if (searchflag){
+				$(".toguanzhu").show();
+			}else{
+				$(".toguanzhu").hide();
+			}
+			//
+			opentuijian();
+			gettitlecount(wintitle);
+			$(".aui-title").on("click", "li", function() {
+				var type = $(this).attr("type");
+				var openflag=$(this).attr("openflag");
+				$(".aui-title").find('li').removeClass('on');
+				$(this).addClass('on');
+			})
+			$("body").on("click",".haveguanzhu",function(){
+	        	guanzhu(wintitle);
+	        })
+		}
+		//关注
+		function guanzhu(tags){
+	    	var data={
+	    		tags:tags,
+	    		typeid:0,
+	    	}
+	    	zzappajax("post",hosturl+"/app/insert_myguanzhu.html?"+ (new Date()).getTime().toString(),data,function(ret){
+	    		if (ret){
+	    			api.toast({
+						msg : '关注成功',
+						duration : 2000,
+						location : 'bottom'
+					});
+					$(".haveguanzhu").hide();
+					$(".noguanzhu").show();
+					api.execScript({
+						name : 'root',
+						frameName:'dacong',
+						script : "ajaxinfo()"
+					});
+					api.execScript({
+						name : 'myguanzhu',
+						frameName:'myguanzhu_',
+						script : "getmyorderlist()"
+					});
+					loadinghide();
+	    		}
+	    	},function(){
+	    		api.toast({
+					msg : '网络错误，请重试！',
+					duration : 2000,
+					location : 'bottom'
+				});
+	    		loadinghide();
+	    	})
+	    }
+		//打开推荐列表
+		function opentuijian(){
+			var nav_list = [{
+				"typename" : "最新",
+				"url":"../list/list1.html",
+				"pageParam":{'type':'new','keywords':api.pageParam.wintitle}
+			},{
+				"typename" : "热门",
+				"url":"../list/list1.html",
+				"pageParam":{'type':'hot','keywords':api.pageParam.wintitle}
+			}, {
+				"typename" : "喜欢",
+				"url":"../list/list1.html",
+				"pageParam":{'type':'like','keywords':api.pageParam.wintitle}
+			}, {
+				"typename" : "推荐",
+				"url":"../list/list1.html",
+				"pageParam":{'flag':'c','keywords':api.pageParam.wintitle}
+			}] //头部划动标题
+			var data={
+				reid:typeid,
+			}
+			var columnlist=$api.getStorage("columnlist"+typeid);
+			if (columnlist){
+			
+			}else{
+			zzappajax("get",hosturl+"/app/navlist.html?"+ (new Date()).getTime().toString(),data,function(ret){
+				if (ret){
+					nav_list=ret;
+					$api.setStorage("column_tuijian"+typeid,ret);
+				}
+				gettuijian(nav_list);
+			},function(){})
+			}
+			return;
+		}
+		function gettuijian(ret){
+			var nav_list = ret //头部划动标题
+			getNavlist(nav_list,"list1");
+			openFrame("list1",nowindex["list1"])
+		}
+		function gettitlecount(k){
+			var data={'keywords':k}
+			zzappajax("get",hosturl+"/app/newstitlecount.html?"+ (new Date()).getTime().toString(),data,function(ret){
+				//zzalert(JSON.stringify(ret))
+				$(".guanzhu_left .ncount").html(ret.newscount);
+				$(".guanzhu_left .gzcount").html(ret.gzcount);
+				if (ret.isguanzhu){
+					$(".haveguanzhu").hide();
+					$(".noguanzhu").show();
+				}else{
+					$(".haveguanzhu").show();
+					$(".noguanzhu").hide();
+				}
+			},function(){})
+		}
+	</script>
+</html>

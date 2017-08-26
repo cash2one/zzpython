@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/base.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/style.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/salesroom.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico" />
+<title>供应pp再生颗粒,拉丝级,注塑级颗粒,pp颗粒;求购废旧编织袋,吨包袋-安徽省蚌埠市洁民颗粒厂</title>
+<meta content="求购废旧编织袋,吨包袋；供应pp再生颗粒,拉丝级,注塑级颗粒,pp颗粒" name="description"/>
+<meta content="供应pp再生颗粒,拉丝级,注塑级颗粒,pp颗粒;求购废旧编织袋,吨包袋" name="keywords"/>
+</head>
+<body>
+{%include htmlincludes.topinclude%}
+
+<div class="upd"> 
+
+{%include htmlincludes.leftinclude%}
+
+  </div>
+  <!-- 右面主题板块-->
+  <div class="main-wrap fr"> 
+    <!--明星产品-->
+    <div class="mod mod-starpro">
+      <div class="m-body">
+        <div class="m-header">
+          <h3>公司相册</h3>
+        </div>
+        <div class="m-content">
+          <div class="star-region">
+            <ul class="offer-pro-box">
+            {%if companypiclist%}
+            {%for comp in companypiclist%}
+              <li>
+              	<img src="{{comp.filepath}}" width="145px" height="150px"/>
+              </li>
+            {%endfor%}
+            {%else%}
+            {%for propic in propiclist.list%}
+            	{%if "noimage.gif" not in propic.pdt_images%}
+              <li>
+              	<a href="productdetail{{propic.pdt_id}}.htm"><img src="{{propic.pdt_images}}" alt="{{propic.pdt_kind.kindtxt}}{{propic.pdt_name}}" width="145px" height="150px"/></a>
+              </li>
+	            {%endif%}
+            {%endfor%}
+            {%endif%}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--明星产品结束--> 
+    <div class="clear"></div>
+  </div>
+  <!-- 右面主题板块结束--> 
+  <div style="clear:both"></div>
+</div>
+<div style="clear:both"></div>
+{%include htmlincludes.buttominclude%}
+</body>
+</html>

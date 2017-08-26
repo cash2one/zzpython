@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>选择支付方式</title>
+    <link rel="stylesheet" type="text/css" href="/css/qianbao/index.css"/>
+    <style>
+    .zhifu{padding: 10px;line-height: 25px;margin-top: 20px;}
+	.zhifutitle{
+		line-height: 30px;
+		font-weight: bold;
+	}
+	.zhifu a{
+		display: block;
+		background-color: #F9F9F9;
+		height: 112px;
+		width: 100%;
+		margin-bottom: 20px;
+	}
+	.zhifu .pay1{
+		background: url("http://img0.zz91.com/zz91/mobile/images/pay1.png") no-repeat 0 0;
+	}
+	.zhifu .pay2{
+		background: url("http://img0.zz91.com/zz91/mobile/images/pay2.png") no-repeat 0 0;
+	}
+	.zhifu .pay3{
+		background: url("http://img0.zz91.com/zz91/mobile/images/pay3.png") no-repeat 0 0;
+	}
+	.zhifuitem{margin-left: 100px;padding-left:10px;height: 100%;background-color: #F9F9F9;}
+    .zhifuitem h3{font-size: 20px;color:#000000;font-weight: bold;line-height: 18px;padding-top: 30px;clear: both;}
+    .zhifuitem span{color: #ccc;font-size: 15px;line-height: 18px;}
+    .zhifunum{text-align: right;font-size: 25px;font-weight: bold;color:#F37802}
+    </style>
+</head>
+<body>
+<script>
+	function onloadpay(){
+		document.getElementById("mack").style.display="";
+	}
+	</script>
+	<div id="mack" style="position: absolute;z-index: 2000;background-color: #000000;opacity:0.6;filter: alpha(opacity=0.6);left:0;top:0;display:none;width:100%;height:100%;text-align: center;line-height: 300px; color: #fff;">
+		数据加载中,请稍候......
+	</div>
+	<div class="top">
+    	<div class="top_item">
+        	<div class="top-left">
+            	<a href="/"><img src="/images/qianbao/logo.png"></a>
+            </div>
+            <!--end top-left-->
+           <div class="top-right" onClick="window.location.href='{{backurl}}'">返回</div>
+            <!--end top-right-->
+            <div class="cb"></div>
+        </div>
+        <!--end top_item-->
+    </div>
+    <br />
+    <br />
+	<div class="zhifu">
+	<div class="zhifutitle">请选择支付方式：</div>
+	<a href="http://phppay.zz91.com/pay/toMobilepay.php?{{yeeurl}}" class="pay1" onclick=onloadpay()>
+		<div class="zhifuitem"><h3>银行卡支付</h3><span>支持储蓄卡，信用卡</span></div>
+	</a>
+	<a href="javascript:wap_pay('alipay_wap')" class="pay2" onclick=onloadpay()>
+		<div class="zhifuitem"><h3>支付宝支付</h3><span>推荐有支付宝账号的用户使用</span></div>
+	</a>
+	<a href="javascript:wap_pay('wx_pub')" class="pay3" style="display: none;" onclick=onloadpay()>
+		<div class="zhifuitem"><h3>微信支付</h3><span>推荐安装微信5.0以上的用户使用</span></div>
+	</a>
+	<div class="zhifunum">支付金额：¥{{amount_r}}</div>
+	</div>
+<script src="/js/pingxx/pingpp_pay.js" type="text/javascript"></script>
+<script>
+	var zzajax = function(method, url, arg, successCallback, errorCallback) {
+		var xhr = new XMLHttpRequest();
+		var protocol = /^([\w-]+:)\/\//.test(url) ? RegExp.$1 : window.location.protocol;
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4) {
+				if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304 || (xhr.status === 0 && protocol === 'file:')) {
+					successCallback && successCallback(xhr.responseText);
+				} else {
+					errorCallback && errorCallback();
+				}
+			}
+		};
+		xhr.open(method, url, true);
+		if (method == "post") {
+			xhr.send(arg);
+		} else {
+			xhr.send();
+		}
+	};
+    function wap_pay(channel) {
+        var pay_url = "pay_save.html";
+        var arg="amount={{amount}}";
+        arg+="&order_id={{order_id}}";
+        arg+="&product_name={{product_name}}";
+        arg+="&product_desc={{product_desc}}";
+        arg+="&user_ip={{user_ip}}";
+        arg+="&channel="+channel;
+        //window.location=pay_url+"?"+arg;
+        zzajax("get",pay_url+"?"+arg,arg,function(data){
+        	pingpp.createPayment(data, function(result, err) {
+                console.log(result);
+                console.log(err);
+            });
+        },function(){
+        	
+        });
+    }
+</script>
+</body>
+</html>

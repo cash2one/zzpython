@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<html>
+	<head>
+		<title>账单-再生钱包_ZZ91再生网</title>
+		{%include 'head.html'%}
+        <link rel="stylesheet" type="text/css" href="/css/qianbao/index.css"/>
+        <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+<script>
+			$(window).scroll(function(){
+				if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+					loadMore(document.getElementById("loadMore"));
+				}
+			});
+
+		function loadMore(objdiv){
+				self=objdiv
+				var pageobj=document.getElementById("pageindex");
+				var page=pageobj.value;
+				pageobj.value=parseInt(page)+1
+				
+				self.innerHTML="加载中...";
+				$.get("/qianbao/zhangdannore.html",
+				{
+					page:pageobj.value,
+					timearg:"{{timearg}}"
+				},
+				function(data,status){
+					//alert(data);
+					if (status=="success" && data!="err\n" && data.length>5){
+						self.style.display="block";
+						
+						$("#tab1").append(data);
+						self.innerHTML="点击后加载更多内容";
+					}else{
+						self.style.display="none";
+						self.innerHTML="完";
+					}
+				});
+			};
+</script>
+	</head>
+	<body style="background:#ebebeb">
+    	<div class="top">
+        	<div class="top_item">
+            	<div class="top-left">
+                	<a href="/"><img src="/images/qianbao/logo.png"></a>
+                </div>
+                <!--end top-left-->
+                <div class="top-right" onClick="window.location.href='{{backurl}}'">返回</div>
+                <!--end top-right-->
+                <div class="cb"></div>
+            </div>
+            <!--end top_item-->
+        </div>
+        <!--end top-->
+    	<div class="part">
+        	<table class="bill_tle_tab" cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td style="width:20%">本月  <font color="red"> &nbsp;| <font></td>
+                    <td style="width:25%"><font color="gray" style="font-weight: normal">进账</font> {{infeegmtnowmonth}}</td>
+                    <td style="width:25%"><font color="gray" style="font-weight: normal">消费</font> {{outfeegmtnowmonth}}</td>
+                    <td style="width:25%"><font color="gray" style="font-weight: normal">充值</font> {{outfee5gmtnowmonth}}</td>
+                    <td style="width:5%">&nbsp;</td>
+                </tr>
+            </table>
+        	<!--<table class="bill_tle_tab2" cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td {%ifequal timarg '1'%}style="background:gray;"{%endifequal%} onClick="window.location.href='?timarg=1'">1个月</td>
+                	<td {%ifequal timarg '2'%}style="background:gray;"{%endifequal%} onClick="window.location.href='?timarg=2'">3个月</td>
+                	<td {%ifequal timarg '3'%}style="background:gray;"{%endifequal%} onClick="window.location.href='?timarg=3'">1年</td>
+                	<td {%ifequal timarg '4'%}style="background:gray;"{%endifequal%} onClick="window.location.href='?timarg=4'">1年前</td>
+                	<td {%ifequal timarg '5'%}style="background:gray;"{%endifequal%} onClick="window.location.href='?timarg=5'">全部</td>
+                </tr>
+            </table>-->
+            <table class="bill_lst_tab" cellpadding="0" cellspacing="0" border="0" id="tab1">
+            {%for pay in listall%}
+            	<tr>
+                	<td>
+                    	<p class="td_p_name">{{pay.ftypename}}</p>
+                    	{%ifequal pay.ftype 1%}<p class="td_p_suc">公司名称：<a href="/company/detail{{pay.forcompany_id}}.html" target="_blank">{{pay.forcompanyname}}</a></p>{%endifequal%}
+                        <p class="td_p_suc">{{pay.gmt_date}}</p>
+                    </td>
+                    <td class="lst_tab_right">
+                    	<p class="td_p_drop">{{pay.fee}}</p>
+                        <p class="td_p_suc">{%if pay.product_id%}&nbsp;&nbsp;<a class="td_p_suc" href="/detail/?id={{pay.product_id}}">查看该供求</a>{%endif%}</p>
+                    </td>
+                </tr>
+            {%endfor%}
+            </table>
+            {%if count > 10%}
+            <table class="bill_lst_tab" cellpadding="0" cellspacing="0" border="0">
+            	<tr>
+                	<td align="center"><p class="td_p_name">
+			        <input type="hidden" id="pageindex" value="1">
+			        <div class="page" id="loadMore" onclick="loadMore(this)">
+			            查看更多
+			        </div>
+                    </p></td>
+                </tr>
+            </table>
+            {%endif%}
+            
+        </div>
+        <!--end part-->
+	
+<!--钱包底部-->
+<br />
+{%include 'bottom2.html'%}
+	</body>
+</html>

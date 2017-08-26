@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>中秋祝福</title>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+		<link href="http://img0.zz91.com/front/favicon.ico" rel="shortcut icon">
+		<link rel="stylesheet" href="http://m.zz91.com/zhongqiu/css/swiper.min.css">
+		<link rel="stylesheet" href="http://m.zz91.com/zhongqiu/css/animate.min.css">
+		<link rel="stylesheet" href="http://m.zz91.com/zhongqiu/css/newcss.css">
+		<script src="http://m.zz91.com/zhongqiu/js/swiper.min.js"></script>
+		<script src="http://m.zz91.com/zhongqiu/js/swiper.animate.min.js"></script>
+		<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+		<script type="text/javascript" src="http://m.zz91.com/zhongqiu/js/layer/layer.js"></script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<meta name="viewport" id="viewport" content="width=320, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				/* Firefox */
+				-webkit-box-sizing: border-box;
+				/* Safari */
+				font-family: "楷体", "楷体_GB2312";
+			}
+			
+			html,
+			body {
+				height: 100%;
+			}
+			
+			body {
+				font-family: "microsoft yahei";
+			}
+			
+			.swiper-container {
+				width: 100%;
+				height: 100%;
+				background: #fff;
+			}
+			
+			.swiper-slide {
+				width: 100%;
+				height: 100%;
+				background-size: 100% 100%;
+			}
+			
+			img {
+				display: block;
+			}
+			
+			.swiper-pagination-bullet {
+				width: 6px;
+				height: 6px;
+				background: #fff;
+				opacity: .4;
+			}
+			
+			.swiper-pagination-bullet-active {
+				opacity: 1;
+			}
+			
+			@-webkit-keyframes start {
+				0%,
+				30% {
+					opacity: 0;
+					-webkit-transform: translate(0, 10px);
+				}
+				60% {
+					opacity: 1;
+					-webkit-transform: translate(0, 0);
+				}
+				100% {
+					opacity: 0;
+					-webkit-transform: translate(0, -8px);
+				}
+			}
+			
+			@-moz-keyframes start {
+				0%,
+				30% {
+					opacity: 0;
+					-moz-transform: translate(0, 10px);
+				}
+				60% {
+					opacity: 1;
+					-moz-transform: translate(0, 0);
+				}
+				100% {
+					opacity: 0;
+					-moz-transform: translate(0, -8px);
+				}
+			}
+			
+			@keyframes start {
+				0%,
+				30% {
+					opacity: 0;
+					transform: translate(0, 10px);
+				}
+				60% {
+					opacity: 1;
+					transform: translate(0, 0);
+				}
+				100% {
+					opacity: 0;
+					transform: translate(0, -8px);
+				}
+			}
+			
+			.ani {
+				position: absolute;
+			}
+			
+			.txt {
+				position: absolute;
+			}
+			
+			#array {
+				position: absolute;
+				z-index: 999;
+				-webkit-animation: start 1.5s infinite ease-in-out;
+			}
+			
+			.slide-main {
+				height: 100%;
+				width: 320px;
+				position: absolute;
+				left: 50%;
+				margin-left: -160px;
+			}
+			
+			.bgdiv {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background: url(http://m.zz91.com/zhongqiu/images/911b8413-17ff-49a9-b9cc-cb9483b51526-9247.jpg);
+				background-size: cover;
+				background-position: center center;
+			}
+			
+			.randIn {
+				-webkit-animation: fadeIn 2s 1.4s 1 both, rotate2d 15s 3.4s infinite forwards;
+				-moz-animation: fadeIn 2s 1.4s 1 both, rotate2d 15s 3.4s infinite forwards;
+				animation: fadeIn 2s 1.4s 1 both, rotate2d 15s 3.4s infinite forwards;
+			}
+			
+			.music-box {
+				width: 48px;
+				height: 48px;
+				position: absolute;
+				right: 0;
+				top: 10px;
+				z-index: 99
+			}
+			
+			.music {
+				width: 28px;
+				height: 28px;
+				background: url(http://m.zz91.com/zhongqiu/images/music.png)transparent no-repeat center center;
+				background-size: 100%;
+				position: absolute;
+				left: 5px;
+				top: 5px;
+				z-index: -1;
+			}
+			
+			.music-bg {
+				background: url(http://m.zz91.com/zhongqiu/images/music.gif) transparent no-repeat center center;
+				background-size: contain;
+				width: 100%;
+				height: 100%;
+				display: none;
+			}
+			
+			.music-play .music-bg {
+				display: block;
+			}
+			
+			.music-play .music {
+				-webkit-animation: rotate2d 1.2s linear infinite;
+				animation: rotate2d 1.2s linear infinite;
+			}
+			
+			.get-zhufu {
+				height: 120px;
+				width: 120px;
+				z-index: 8;
+				position: absolute;
+				left: 80px;
+				top: 150px;
+				display: none;
+			}
+			
+			.zhufu-title {
+				position: absolute;
+				width: 100%;
+				border: 0;
+				height: 30px;
+				border-radius: 5px;
+				text-align: center;
+				color: #f06d13;
+				font-size: 24px;
+				font-weight: bold;
+			}
+			
+			.zhufu-nei1 {
+				position: absolute;
+				width: 100%;
+				height: 80px;
+				top: 40px;
+				border: 0;
+				padding: 5px;
+				border-radius: 5px;
+				color: #f06d13;
+				line-height: 20px;
+				font-size: 16px;
+			}
+			
+			.get-zhufu2 {
+				height: 192px;
+				width: 173px;
+				z-index: 8;
+				position: absolute;
+				left: 68px;
+				top: 87px;
+				border: 0;
+				font-size: 18px;
+				resize: none;
+			}
+			
+			.zhufu-nei2 {
+				border-radius: 5px;
+				height: 100%;
+				width: 100%;
+				text-indent: 2em;
+				line-height: 23px;
+				color: #f06d13;
+				border: 0;
+				resize: none;
+			}
+			
+			.hz-ipt {
+				background: transparent;
+				text-shadow: 0px 0px 2px #fff;
+			}
+			
+			.zf-bg {
+				/*background: rgba(135, 176, 251, 0.5);*/
+			}
+			
+			.get-zhufu3 {
+				height: 124px;
+				width: 135px;
+				z-index: 8;
+				position: absolute;
+				left: 45px;
+				top: 133px;
+				display: none;
+			}
+			
+			.zhufu-nei3 {
+				border-radius: 5px;
+				height: 100%;
+				width: 100%;
+				line-height: 23px;
+				color: #f06d13;
+				border: 0;
+				resize: none;
+			}
+			
+			.get-zhufu6 {
+				height: 64px;
+				width: 245px;
+				z-index: 8;
+				position: absolute;
+				left: 38px;
+				top: 300px;
+			}
+			
+			.zhufu-nei6 {
+				border-radius: 5px;
+				line-height: 23px;
+				color: #f06d13;
+				border: 0;
+				resize: none;
+				text-align: center;
+				font-size: 20px;
+			}
+			
+			.bj-btn {
+				position: absolute;
+				background: #fbdcad;
+				text-align: center;
+				line-height: 23px;
+				color: #ff5c00;
+				padding: 0 10px;
+				border-radius: 2px;
+				left: 125px;
+				top: 304px;
+				z-index: 10;
+				box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.5)
+			}
+			
+			.zf-btn {
+				position: absolute;
+				background: #fbdcad;
+				text-align: center;
+				line-height: 23px;
+				color: #ff5c00;
+				padding: 0 10px;
+				border-radius: 2px;
+				left: 185px;
+				top: 304px;
+				z-index: 10;
+				box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.5)
+			}
+			
+			.zf-list {
+				position: absolute;
+				width: 80%;
+				height: 80%;
+				background: rgba(0, 0, 0, 0.5);
+				border-radius: 5px;
+				z-index: 80;
+				left: 10%;
+				top: 10%;
+				overflow: hidden;
+				display: none;
+				color: #fff;
+			}
+			
+			.layui-layer-content p {
+				padding: 10px;
+				font-size: 12px;
+				color: #025703;
+				line-height: 22px;
+			}
+		</style>
+	</head>
+	<body>
+	<div style='margin:0 auto;width:0px;height:0px;overflow:hidden;'>
+	<img src="http://m.zz91.com/zhongqiu/images/fenxianlogo.png" width='700'>
+	</div>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<section class="swiper-slide swiper-slide2">
+					<div class="bgdiv"></div>
+					<div class="slide-main">
+						<img src="http://m.zz91.com/zhongqiu/images/bei1.png" class="ani resize" style="width:214px;height:297px;left:44px;top:41px;z-index:2;border-radius: 6px;" swiper-animate-effect="fadeIn" swiper-animate-duration="3s" swiper-animate-delay="1.4s">
+						<img src="http://m.zz91.com/zhongqiu/images/dr2.png" class="ani resize" style="width:59px;height:222px;right:35px;top:-20px;z-index:3; " swiper-animate-effect="slideInDown" swiper-animate-duration="2s" swiper-animate-delay="2s">
+						<img src="http://m.zz91.com/zhongqiu/images/dr1.png" class="ani resize" style="width:73px;height:239px;right:3px;top:0px;z-index:3;" swiper-animate-effect="slideInDown" swiper-animate-duration="2s" swiper-animate-delay="1.5s">
+						<img src="http://m.zz91.com/zhongqiu/images/ping1.png" class="ani resize" style="width:68px;height:68px;left:70px;top:0px;z-index:4;border-radius: 46px; " swiper-animate-effect="fadeIn" swiper-animate-duration="0.1s" swiper-animate-delay="0.5s">
+						<img src="http://m.zz91.com/zhongqiu/images/yun1.png" class="ani resize" style="width:85px;height:61px;right:18px;top:53px;z-index:5; " swiper-animate-effect="bounceInLeft" swiper-animate-duration="18s" swiper-animate-delay="0.7s">
+						<img src="http://m.zz91.com/zhongqiu/images/yun3.png" class="ani resize" style="width:94px;height:49px;left:15px;top:326px;z-index:5; " swiper-animate-effect="bounceInLeft" swiper-animate-duration="4s" swiper-animate-delay="0.8s">
+						<img src="http://m.zz91.com/zhongqiu/images/hesu.png" class="ani resize" style="width:58px;height:63px;left:68px;top:297px;z-index:4; " swiper-animate-effect="bounceInLeft" swiper-animate-duration="4s" swiper-animate-delay="0.8s">
+						<!--<img src="images/wen2.png" class="ani resize j_wen" style="width:188px;height:127px;left:52px;top:132px;z-index:5; " swiper-animate-effect="bounceIn" swiper-animate-duration="2s" swiper-animate-delay="1.7s">-->
+						<div class="bj-btn btn-bj ani resize zhufuyu" swiper-animate-effect="fadeIn" swiper-animate-duration="3s" swiper-animate-delay="0.7s">
+							编辑
+						</div>
+						<div class="zf-btn ani resize" swiper-animate-effect="fadeIn" swiper-animate-duration="3s" swiper-animate-delay="0.7s">
+							祝福语
+						</div>
+						<div class="get-zhufu2 j_zhufu">
+							<textarea placeholder="内容" class="zhufu-nei2 ani resize hz-ipt zf-bg" style="text-shadow: none;" maxLength="94" swiper-animate-effect="bounceIn" swiper-animate-duration="2s" swiper-animate-delay="0s" readonly="">一轮明月，思念无限﹔一块月饼，合家团圆﹔一声关怀，心心相牵﹔一份相牵，情谊相连﹔一个拥抱，感恩言谢﹔一路走来，你在身边﹔一起努力，美好明天！愿中秋节节日快乐！</textarea>
+						</div>
+						<img src="http://m.zz91.com/zhongqiu/images/14.png" class="ani resize fenxian" style="width:110px; top:auto;bottom: 30px; left:0px;z-index: 10" swiper-animate-effect="bounceIn" swiper-animate-duration="2s" swiper-animate-delay="2s">
+					</div>
+				</section>
+
+				<section class="swiper-slide swiper-slide6">
+					<div class="bgdiv"></div>
+					<div class="slide-main">
+						<img src="http://m.zz91.com/zhongqiu/images/dr2.png" class="ani resize" style="width:54px;height:210px;left:26px;top:0px;z-index:5; " swiper-animate-effect="slideInDown" swiper-animate-duration="2s" swiper-animate-delay="2s">
+						<img src="http://m.zz91.com/zhongqiu/images/yuan1.png" class="ani resize" style="width:205px;height:205px;left:60px;top:55px;z-index:4; " swiper-animate-effect="randIn">
+						<img src="http://m.zz91.com/zhongqiu/images/dr2.png" class="ani resize" style="width:40px;height:150px;left:46px;top:0px;z-index:3; " swiper-animate-effect="slideInDown" swiper-animate-duration="2s" swiper-animate-delay="1.3s">
+						<img src="http://m.zz91.com/zhongqiu/images/yun2.png" class="ani resize" style="width:41px;height:21px;left:80px;top:80px;z-index:5; " swiper-animate-effect="bounceInLeft" swiper-animate-duration="11s" swiper-animate-delay="0.7s">
+						<img src="http://m.zz91.com/zhongqiu/images/dr1.png" class="ani resize" style="width:58px;height:190px;right:40px;top:0px;z-index:5; " swiper-animate-effect="slideInDown" swiper-animate-duration="2s" swiper-animate-delay="1.5s">
+						<img src="http://m.zz91.com/zhongqiu/images/yun1.png" class="ani resize" style="width:85px;height:61px;left:45px;top:225px;z-index:3; " swiper-animate-effect="bounceInLeft" swiper-animate-duration="12s" swiper-animate-delay="0.7s">
+						<img src="http://m.zz91.com/zhongqiu/images/yun3.png" class="ani resize" style="width:133px;height:69px;left:166px;top:196px;z-index:5; " swiper-animate-effect="bounceInLeft" swiper-animate-duration="11s" swiper-animate-delay="0.7s">
+						<img src="http://m.zz91.com/zhongqiu/images/lihe.png" class="ani resize" style="width:171px;height:167px;left:74px;top:74px;z-index:5; " swiper-animate-effect="bounceInDown" swiper-animate-duration="2s" swiper-animate-delay="1.3s">
+						<!--<img src="images/wen6.png" class="ani resize j_wen" style="width:254px;height:54px;left:33px;top:272px;z-index:5; " swiper-animate-effect="bounceInDown" swiper-animate-duration="2s" swiper-animate-delay="1.8s">-->
+						<!--<img src="images/13.png" class="ani resize btn-bj" style="width:100px;left:20px;bottom:80px;z-index:6; " swiper-animate-effect="fadeIn" swiper-animate-duration="3s" swiper-animate-delay="0.7s">-->
+						<div class="get-zhufu6 zhufu-nei6 ani resize hz-ipt zf-bg j_zhufu" style="text-shadow:none;font-size: 18px;" maxLength="36" swiper-animate-effect="bounceIn" swiper-animate-duration="2s" swiper-animate-delay="0s">
+							点此输入您的昵称或姓名
+						</div>
+						<div class="bj-btn ani resize zhufuren" style="bottom:80px;top: auto ;" swiper-animate-effect="fadeIn" swiper-animate-duration="3s" swiper-animate-delay="0.7s">
+							编辑
+						</div>
+						<img src="http://m.zz91.com/zhongqiu/images/14.png" class="fenxian ani resize" style="width:110px;top:auto; bottom:30px; left:0px;z-index: 10" swiper-animate-effect="bounceIn" swiper-animate-duration="2s" swiper-animate-delay="2s">
+					</div>
+				</section>
+			</div>
+			<img src="http://m.zz91.com/zhongqiu/images/web-swipe-tip_95ef4d6.png" style="width:24px;height:18px; bottom:10px; left:50%;margin-left: -12px;" id="array" class="resize">
+			<div class="swiper-pagination"></div>
+			<div class="music-box music-play">
+				<audio id="music-audio" class="audio" preload="" autoplay="autoplay" loop="">
+					<source src="http://m.zz91.com/zhongqiu/music.mp3"></source>
+				</audio>
+				<div class="music-bg"></div>
+				<div class="music"></div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../../script/api.js"></script>
+		<script type="text/javascript" src="../../../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../../../script/common.js"></script>
+		<script>
+			var oindex=0;
+			var nicheng="";
+			var signature=(new Date()).getTime().toString();
+			function sharefunction(){
+				api.actionSheet({
+					cancelTitle : '取消',
+					buttons : ['分享给微信朋友','分享到微信朋友圈'],
+				}, function(ret, err) {
+					if (ret.buttonIndex == 1) {
+						var wx = api.require('wx');
+						wx.shareWebpage({
+						    apiKey: '',
+						    scene: 'session',
+						    title: nicheng+'祝大家中秋节快乐',
+						    description: $(".zhufu-nei2").val(),
+						    thumb: 'widget://res/icon.png',
+						    contentUrl: 'http://m.zz91.com/zhongqiu/index.html?s='+signature
+						}, function(ret, err){
+						    if(ret.status){
+						        api.toast({
+								    msg: '分享成功',
+								    duration: 2000,
+								    location: 'bottom'
+								});
+						    }else{
+						    }
+						});
+					}
+					if (ret.buttonIndex == 2) {
+						var wx = api.require('wx');
+						wx.shareWebpage({
+						    apiKey: '',
+						    scene: 'timeline',
+						    title: nicheng+'祝大家中秋节快乐',
+						    description: $(".zhufu-nei2").val(),
+						    thumb: 'widget://res/icon.png',
+						    contentUrl: 'http://m.zz91.com/zhongqiu/index.html?s='+signature
+						}, function(ret, err){
+						    if(ret.status){
+						        api.toast({
+								    msg: '分享成功',
+								    duration: 2000,
+								    location: 'bottom'
+								});
+						    }else{
+						    }
+						});
+					}
+				});
+			}
+			$(function() {
+				$(".fenxian").on("click", function() {
+					if (nicheng==""){
+						layer.prompt({
+						  formType: 0,
+						  value: '',
+						  title: '点此输入您的昵称或姓名'
+						}, function(v, index, elem){
+							nicheng=v;
+							$(".get-zhufu6").html(v+"<br />祝大家中秋节快乐！"); //得到value
+							layer.msg("立即分享给您的亲人和朋友吧。");
+							savedata()
+							layer.close(index);
+						});
+					}else{
+						sharefunction()
+					}
+					document.title=nicheng+'祝大家中秋节快乐';
+				})
+				$(".zhufuyu").on("click", function() {
+					layer.prompt({
+					  formType: 2,
+					  value: $(".zhufu-nei2").val(),
+					  title: '输入祝福语'
+					}, function(v, index, elem){
+						$(".zhufu-nei2").val(v); //得到value
+						if (nicheng==""){
+							layer.prompt({
+							  formType: 0,
+							  value: '',
+							  title: '点此输入您的昵称或姓名'
+							}, function(v, index, elem){
+								nicheng=v;
+								$(".get-zhufu6").html(v+"<br />祝大家中秋节快乐！"); //得到value
+								layer.msg("立即分享给您的亲人和朋友吧。");
+								savedata()
+								layer.close(index);
+							});
+						}else{
+							layer.close(index);
+							layer.tips('立即分享给您的亲人和朋友吧。', '.fenxian', {
+								tips: [4, '#3595CC'],
+								time: 6000
+							});
+							savedata()
+						}
+					});
+				})
+				$(".get-zhufu6").on("click", function() {
+					layer.prompt({
+					  formType: 0,
+					  value: '',
+					  title: '点此输入您的昵称或姓名'
+					}, function(v, index, elem){
+					  $(".get-zhufu6").html(v+"<br />祝大家中秋节快乐！"); //得到value
+					  layer.msg("立即分享给您的亲人和朋友吧。");
+					  nicheng=v;
+					  savedata()
+					  layer.close(index);
+					});
+				})
+				$(".zhufuren").on("click", function() {
+					layer.prompt({
+					  formType: 0,
+					  value: '',
+					  title: '点此输入您的昵称或姓名'
+					}, function(v, index, elem){
+					  $(".get-zhufu6").html(v+"<br />祝大家中秋节快乐！"); //得到value
+					  layer.msg("立即分享给您的亲人和朋友吧。");
+					  nicheng=v;
+					  savedata()
+					  layer.close(index);
+					});
+				})
+				
+				$("body").on("click",".layui-layer-content p", function() {
+					var vtext=$(this).text();
+					var vlist=vtext.split("、");
+					var vall="";
+					for(i=1;i<=vlist.length;i++){
+						if (vlist[i]){
+							vall+="、"+vlist[i]
+						}
+					}
+					$(".zhufu-nei2").val(vall.substr(1));
+					
+					if (nicheng==""){
+						layer.prompt({
+						  formType: 0,
+						  value: '',
+						  title: '点此输入您的昵称或姓名'
+						}, function(v, index, elem){
+							nicheng=v;
+							$(".get-zhufu6").html(v+"<br />祝大家中秋节快乐！"); //得到value
+							savedata()
+							layer.msg("立即分享给您的亲人和朋友吧。")
+							layer.close(index);
+						});
+					}else{
+						layer.tips('立即分享给您的亲人和朋友吧。', '.fenxian', {
+							tips: [4, '#3595CC'],
+							time: 4000
+						});
+						savedata();
+					}
+					layer.close(oindex);
+				})
+				$(".hz-ipt").on("focus", function() {
+					$(this).addClass("zf-bg")
+				})
+				$(".zf-btn").on("click", function() {
+					//$(".zf-list").fadeIn(1000);
+					oindex=layer.open({
+						type: 1,
+						title: '中秋祝福语',
+						shadeClose: true,
+						shade: 0.3,
+						area: ['70%', '70%'],
+						content: '<p>1、一轮明月，思念无限﹔一块月饼，合家团圆﹔一声关怀，心心相牵﹔一份相牵，情谊相连﹔一个拥抱，中秋节节日快乐！</p><p>2、亲情爱情，情系佳节。家园月圆，圆满中秋。</p><p>3、圆圆的月亮，圆圆的饼，中秋佳节等着你！美丽的星空，美丽的景，愉快心情陪伴你！美好的祝福，美好的心，美好情意滋润你！提前预祝你中秋节快乐！</p><p>4、一轮明月一颗心，二位妙人心连心﹔三邻四舍很交心﹔五合六聚不变心﹔七星伴月很齐心﹔八月十五九（久）开心！短信祝福表我心！中秋愉快！</p><p>5、千里试问平安否？且把思念遥相寄。绵绵爱意与关怀，浓浓情意与祝福，心中怀念月儿圆，仰观月儿心里甜！</p><p>6、默默地思念很深，默默地祝福最真，默默地怀念难舍难分，默默的牵挂永远在心，默默地等待中秋节来临，默默地&hellip;&hellip;祝福你&hellip;&hellip;愉快团圆！欣喜万分！？</p><p>7、一个萝卜两片藕，幸福与你手牵手；三两豆腐四片姜，观物你宜放眼量；五个月饼六块糖，平等沟通团圆有。</p><p>8、把酝酿已久的创意交给秋风，任其去演绎相思的旋律；让翘盼团聚的心跃上太空，在月宫桂树下再叙永恒的主题。</p><p>9、月是中秋分外明，我把相思遥相寄！节日快乐，我的朋友。</p><p>10、相思明月中，祝福花香里：一愿人团圆，千里共婵娟；二愿事业丰，万事皆如意；三愿爱美满，情意永相随。亲爱的客户，中秋快乐！</p><p>11、虽然，老婆饼里没有老婆，乌龙茶里没有龙，麻婆豆腐里没有麻婆，铁观音里没有观音，但是，我为亲爱的客户们，精心准备的月饼里，有&ldquo;真诚、甜蜜、好运、吉祥&rdquo;。祝中秋节快乐。</p><p>12、愿圆圆的月亮带上我的思乡之情，把他传递给远在他乡的父母！</p><p>13、我打八月走过，那等在八月十五的月饼如短信的发送简单而温馨。短信不来，你的月饼不准吃，那悦耳的短信铃声是份亲切的祝福，看完短信吃月饼去吧，中秋节快乐！</p><p>14、又是一年落叶黄，一层秋雨一层凉。整日工作挺辛苦，天凉别忘加衣裳。保重身体多餐饭，珍惜友情常想想。信短情长言未尽，唯愿朋友多安康。中秋快乐，合家团圆！</p><p>15、月亮说，她会在八月十五的晚上安排美丽的月光，将我的祝福送到你的眼里。写在你的心上。</p><p>16、中秋节将至，我将六个愿望﹔做事兢兢业业，事业顺顺利利，好事层层叠叠，心情快快乐乐，身体健健康康，家庭和和美美﹔做成月饼送给你，祝你中秋节快乐！</p><p>17、中秋来临，送上秘制月饼，快乐做皮，幸福做馅，传说只要吃下去的人将会得到神的眷顾，永远开心和幸福，所以我将它送你，因为我希望你开心、幸福！</p><p>18、月到中秋份外明，你的心思看不清；暂借明月寄衷情，希望你能够心领！</p><p>19、中秋佳节倍思您，发条短信祝福您：家圆人圆多宠您！幸福快乐追着您！福星高照绕着您！财源滚滚奔向您！花好月圆只爱您！祝我亲爱的朋友天涯海角中秋节快乐！</p><p>20、幸福杯中酒，举杯邀明月，月圆人团圆，共享中秋月，盛世好佳节，健康更平安，欢乐无限多，开心财运来，祝你更幸福，中秋节快乐！</p><p>21、我在《月亮之上》，看着那《十五的月亮》，想着那《春江花月夜》，很想对您说一句：《月亮代表我的心》。亲爱的客户，愿您中秋愉快，全家幸福安康，团团圆圆过佳节。</p><p>22、夕七彩人间长共中秋八月，杯低吟酒伴同歌盛世高风。</p><p>23、心到*想到*闻到*看到*得到*吃到！福到*运到*财到！中秋节还没到。但愿我的问候是第一个到。祝愿你：中秋愉快！合家欢乐！万事如意！</p><p>24、中秋佳节，圆月皎洁，短信不缺，祝福跳跃，快乐如雪，纷飞不歇，忧愁全解，烦恼逃曳，好运真切，幸福的确，祝：中秋快乐！</p><p>25、月饼圆圆，月亮皎皎，朗朗乾坤，思念普照。圆圆月饼，祝福为勺，圆你心愿，圆你梦想。恭祝阁下：中秋快乐，合家团圆，健康常伴，幸福驾到！</p><p>26、我愿是初秋的夕阳，慢慢落进你远山的怀里；我愿是中秋的月光，轻轻撒在你如水的眼里；我愿是深秋的野菊，朵朵开在你吟秋的梦里。</p><p>27、明月千里难以触摸，对你的思念无处寄托。举杯邀明月，说：福多！钱多！快乐多！</p><p>28、一帆风顺送给你，二话不说祝福你，三言两语话情谊，四面八方齐祝愿，五光十色属你帅。中秋佳节的到来，发表短信祝愿客户的事业蒸蒸日上，家庭和和美美，身体健健康康。</p><p>29、圆圆的月亮，圆圆的思念，圆圆的月饼，圆圆的心愿，圆圆的节日，圆圆的祝愿，中秋十五大团圆，短信幸福快乐圆，祝你合家团圆，美梦得圆，万事皆圆。</p><p>30、对于中秋，我要祝福的很多。用这样的卡片祝福，点点心意，愿你请收下。时间过的真快，再过几天就要迎来中秋节，我只想说，这个九月非比寻常。你知道的！提前祝你中秋愉快！永远幸福！</p><p>31、月神在上，黑土地在下，在这明月相思之夜，猪你和你的嫦娥妹妹相爱如蜜，幸福快乐一辈子。愿月神作证，黑土地见证。呵呵，更要中秋节快乐。</p><p>32、有一句话存在心里很久，怕暴雨把它淋湿，怕狂风把它吹走，怕寒气把它冰冻，怕烈日把它晒透，终於盼到中秋佳节，我想对你说出口：祝你中秋节快乐！</p><p>33、又是一年圆月夜，秋风习习庆佳节，中秋十五悬灯彩，家家户户乐陶陶，平安团圆中秋夜，美滋美味品月饼，祝你健康更幸福，祝你快乐更开心！</p><p>34、我用快乐做馅，幸福做皮，又融入了我无边的祝福制作了一块月饼，希望在中秋这一天送给你，愿你吃了之后，能够快乐如仙子，幸福如天使，无忧无虑一百年！</p><p>35、月白风清两岸亲人同望月，牛耕女织双星伴侣偶牵牛。</p><p>36、无论我在何处，我与你只有一个荧屏的距离；无论我在何时，我都会铭刻你在心里，我永远在远方祝福你！祝远方的朋友健康平安，万事如意！</p><p>37、月儿圆圆是家乡的源泉，股股甘甜把梦实现﹔月儿弯弯是思想的客船，载着游子把梦寻遍。愿天下有梦的人中秋节梦圆！</p><p>38、夏日的最后一抹热浪，慢慢消逝在流去的时光，中秋佳节，带来了金秋的清凉，在这收获的时节，真诚愿您收获一份幸福，收获一份成功！中秋快乐！</p><p>39、一轮明月挂天边，中秋感恩送祝愿，亲爱的客户，值此佳节，祝您全家欢乐团圆，幸福美满，福降门前，好运连连，财神眷恋，四海来缘！</p><p>40、中秋月圆、佳节思亲、远隔天涯、举目有亲、心愿、祝愿、如愿、情缘、了愿。祝你万事遂愿！快乐永远！</p><p>41、守着月儿，就想到了你。即便千里，又怎隔得断这份相思。</p><p>42、中秋佳节，天上月圆，人间团圆，家庭情圆，朋友事圆，心中梦圆，左右逢圆；愿你每一天中，人缘，情缘，福缘，财源，缘缘不断，事事如愿！祝中秋节快乐！</p><p>43、圆圆的月亮高高的天空那边，一家圆满的家人坐在圆圆的桌边，手捧圆圆的月饼慢慢的幸福挂在嘴边。中秋团圆的日子，祝愿我的朋友开心快乐幸福美满每天！</p><p>44、一年一度的中秋佳节又要到，我的短信提前来报道，小小短信诉我心，我愿你时时都如意，刻刻都顺心，一家团圆脸微笑，幸福、快乐少不了！</p><p>45、兄弟，请你在这星期内准备两张一寸免冠彩照，身份证、学历证书复印件，个人简历一份送到国家航天局，据可靠消息：为庆祝中秋节，要招聘嫦娥！</p><p>46、在此中秋佳节来临之际，愿你心情如秋高气爽！笑脸如鲜花常开！愿望个个如愿，中秋快乐！</p><p>47、举杯仰天遥祝：月圆人圆花好，事顺业顺家兴。</p><p>48、忧愁烦恼&ldquo;月&rdquo;过&ldquo;月&rdquo;少，工资薪水&ldquo;月&rdquo;来&ldquo;月&rdquo;高，开心事儿&ldquo;月&rdquo;多&ldquo;月&rdquo;妙，中秋祝福&ldquo;月&rdquo;早&ldquo;月&rdquo;好。祝：中秋节快乐！</p><p>49、月光映照双眼，圆月照亮心田，赏月就在今天，感受名不虚传，每年一个轮回，每次一举重归，望月饮酒相伴，百年至今流传。祝快快乐乐庆中秋，和和美美家团圆！</p><p>50、又是一个中秋时，明月在照杨柳岸。月圆孤夜嫦娥泪，谁解其中相思味。独坐广寒独作舞，可知月下望月人。昔日其形如黛眉，今朝它状似玉盘。每逢佳节更添愁，欲换笑颜却是谁。</p><p>51、皓月闪烁，星光闪耀，中秋佳节，美满快乐！祝福阖家团团圆圆！</p><p>52、遥遥千里暂未聚，但邀明月代传情。月圆酒美共相福，满天福祝都送你。</p><p>53、心到想到得到，看到闻到吃到，福到运到财到，中秋节还没到，但愿我的短信是第一个到，提前祝你中秋节快乐！</p><p>54、炎炎的夏日慢慢的退去，凉凉的金秋缓缓的来临；慢慢的中秋闹闹的走了，悄悄的秋分静静的来了。愿你在秋分之际，好好放松自己，消除一身的疲倦。</p><p>55、玉宇无尘，银河泻影，月色横空，花荫满径，中秋的夜晚格外温馨，空气弥漫着甜蜜，光华浸透着祝福，中秋佳节，真诚祝愿您合家团圆，前途顺利！</p><p>56、以真诚为圆心，以理解为半径，画出友情的圆。以缘份为圆心，以浪漫为半径，画出爱情的圆。以关怀为圆心，以感动为半径，画出团圆的圆。中秋节快乐！</p><p>57、月饼飘香，中秋圆满，生活美好，合家团圆，让我们一起庆祝这美好时刻。祝你中秋节快乐，愿我们接下来的合作更上层楼，共创我们事业的大丰收。</p><p>58、我将你的手机号码告诉了一个陌生人，他叫月老，他会在中秋月圆夜要帮我告诉你﹔我心思你，我心念你，我心祝你中秋快乐！</p><p>59、圆圆的月，就向我的心，为你，而象一块猪肉馅的月饼，任你吞食。</p><p>60、中秋节日到，祝福也送到，祝您：财源四面八方来报到，人才济济不缺料，生意红火金彩多，人脉地脉翻倍多，和您合作愉快不得错过，身体健康中秋快乐！</p><p>61、相逢是首悠扬的歌，相识是杯醇香的酒，相处是那南飞的雁，相知是根古老的藤，心静时总会默默地祝福你！</p><p>62、月儿高高，思念心情给你捎，开口笑笑，好彩好运一起到，心儿跳跳，迎得福气来拥抱，日子好好，幸福生活抱你腰，中秋佳节，祝愿工作事业步步高。</p><p>63、一日思，一夜盼，思盼中秋月儿圆﹔一百年，一千年，百千年来传统延﹔一句诗，一首词，诗词祝兴云追月﹔一个家，一门户，家家户户贺团圆！祝中秋节快乐！</p><p>64、人活一世，亲情、友情、爱情三者缺一已为遗憾；三者缺二，实属可怜；三者全缺，生不如死。</p><p>65、不管是五一还是十一，身体健康才是唯一。只要你把十一当作六一，把海口当成巴黎，生活就会阳光美丽。祝中秋节快乐！</p><p>66、月亮可以不瞧，月饼可以不吃，放假可以不玩，美景可心不赏，佳肴可以不尝！但中秋祝福是不能不送的！祝中秋合家喜洋洋，好运又吉祥，温馨美满心舒畅！</p><p>67、我特意拜托玉帝制作一弯皎皎明月，委托嫦娥洒下漫天熠熠星辉，请求天神创造中秋团圆佳节，只为与你共赏明月，共浴星辉在此中秋团圆佳节！</p><p>68、迎中秋，接白露，秋节秋气齐来到，颂秋高，看秋远，秋花秋景秋烂漫，看秋月，观秋水，送思寄念你身边，白露时节到，愿你多添衣，多锻炼，保重身体，平平安安。</p><p>69、鲜花开在身边，应该欣赏﹔流星划过头顶，应该许愿﹔歌声响在耳边，应该聆听﹔祝福发到手机，应该珍藏﹔佳节来到眼前，应该欢庆﹔祝你中秋节快乐！</p><p>70、月到中秋分外明，节日喜气伴你行。人逢喜事精神爽，人团家圆事业旺。节日愉快身体硬，心想事成您准赢。</p><p>71、月儿圆圆当空照，中秋佳节又来到，明月千里寄相思，一条短信送福到，我愿你事事如意心情好，天天开心不会老，合家团圆人欢笑，生活顺心乐逍遥！</p><p>72、谨此中秋佳节之际，衷心祝愿您和家人团圆美满，幸福安康。</p><p>73、月饼盒包装得再密实，却掩盖不了我对你中秋佳节的祝福﹔月饼再精巧美味，也不及我内心真挚的一声问候。祝你健康快乐，事业辉煌！</p><p>74、一沙一世界，一花一天堂，当短信传到，我的祝福也随之即到，祝福远方的你，活在天堂般的幸福世界里，健康平安，中秋快乐！</p><p>75、想给你一句关怀，忘了﹔想给你一声祝福，远了﹔想给你一个月饼，贵了。想来想去，还是送你一个中秋的月亮，祝你的生活像月光那样挥洒自如！</p><p>76、家庭如明月般幸福团圆、生活如月饼般蜜一样的甜、前途如月光般明亮、老婆如嫦娥漂亮。中秋佳节，为你送你温暖的问候，祝你节日快乐，一切顺利。</p><p>77、一生中总有一些朋友最珍惜，一年中总有一些曰子难忘记﹔从夏走到秋，由陌生转为熟悉，虽不能时时问候，却在特别的曰子，轻轻道声：朋友，中秋节节愉快！</p><p>78、窗前明月光，那是中秋到，举头望明月，低头发信息，传给你快乐，传给你好运，平安发大财，健康又幸福，中秋节快乐！</p><p>79、月到十五分外明，人到中秋情更浓，金秋季节景更美，圆圆明月更传情。遥寄情思与明月，清辉脉脉祝福行，祝君坦途通仙境，国盛家富事业兴。祝中秋快乐！</p><p>80、我们的祝福希望你收到，我们的关心希望你知道，我们天天想着你的好，一生一世忘不了。如此客户岂容易找，有幸我们碰的巧。中秋又到，祝福不会少，愿您合家团圆，辛福乐陶陶！</p><p>81、一轮明月，撒下万缕思念；一袭桂香，醉人的幸福在身边；一柄红烛，映红团聚的笑脸；一封月饼，品尝生活的香甜；一道祝愿，数不尽的好明天。中秋快乐！</p><p>82、又是中秋又是圆，每年中秋夜见明，穿梭灯笼快乐夜，祝君健康永团圆！</p><p>83、许一个美好的心愿祝你快乐连连，中秋月圆、佳节思亲、愿所有的幸福伴随你，愿你笑脸如鲜花常开，愿望个个如愿！祝中秋节快乐！</p><p>84、明月，一闪一闪，挂天边；思念，一丝一丝，连成线；回忆，一幕一幕，在眼前；但愿，一年一年，人圆全。</p><p>85、邀你欣赏一轮圆圆的月，送你一个圆圆的饼，献你一颗圆圆的心，寄你一份圆圆的情，愿你圆一个圆圆的梦。祝中秋节快乐！</p><p>86、我想变成一个垃圾桶，把你的烦恼都统统回收﹔我想化成一个吸尘器，把你的悲伤都统统吸走﹔我想成为一个电风扇，把你的压力都统统吹散，希望中秋佳节这一天，烦恼、悲伤、压力全远离，幸福、快乐、无忧伴随你！</p><p>87、一轮圆月挂天边，满心祝福涌心间，天各一方遥相念，中秋佳节共婵娟，短信一行送祝愿，祝君全家身体健，愿君全家笑开颜，中秋快乐！</p><p>88、中秋佳节至，国庆大假来。送君：时时开心果，刻刻幸运星，岁岁平安符，年年健康身！</p><p>89、圆月亮照着圆餐桌，圆餐桌放着圆盘子，圆盘子里放着圆月饼，圆月饼圆着圆圆的梦，圆圆的梦想就要圆满的实现。祝中秋节快乐！</p><p>90、云淡淡，水清清，中秋佳节盼团圆﹔迎彩霞，送黄昏，且记问候在我心。小小短信，聊表情谊，千里遥寄祝愿，愿你幸福合家欢。</p><p>91、明月几时有，咱俩偷偷碰杯酒。把酒问青天，老婆不能放一边。不知天上宫阙，过节不管鸟订单？中秋月圆人团圆，休息不误赚大钱。节后生意更红火，竞争对手都玩完。发条短信祝朋友中秋快乐，阖家幸福。</p><p>92、有个节日仰头见美女，美女身边有个野兽，野兽常和美女伴舞，下面的人看得不亦乐乎，那个节日愿你中秋团圆，月饼香甜，平平安安，幸福美满。</p><p>93、我们用汗水换取你的微笑，用拼搏换取你们的肯定，用质量赢得你们的信赖，中秋佳节来临之际，借空明圆月，愿您合家团圆，借凉爽秋风，愿你神康体健。</p><p>94、无论你是家庭煮夫，还是叱诧风云男﹔无论你是口红CEO，还是温柔小媳妇﹔无论你是单身寂寞哥，还是多情待嫁姐。都请接受我最诚挚的祝福：中秋快乐！</p><p>95、洁明皓月逢佳期，挚手共享两相依，爱深情浓甜似蜜，翱之清风何求兮。相伴月缺至月圆！共度此时至此生！</p><p>96、我对天感叹，月啊，你能有我的眼睛圆吗？思念之情塞满了我的双眼，我的双眼随着你&hellip;&hellip;</p><p>97、好久没有听到你的声音，好久没有人听我谈心，在中秋月圆之时，真的好想你，祝健康快乐！</p><p>98、明月伴君行千里，丝丝月光如我心。</p><p>99、月到中秋分外明，秋色明媚月动听，花好月圆人欢庆，温暖康泰万家心。中秋佳节到了，祝你月来月开心，月来月幸福，月来月甜蜜，月来月美丽！</p><p>100、月缘财缘人缘，今日一一团缘，花运时运官运，今晚即将走运。</p><p>101、叶黄，花凋，温暖了人心，冷落了繁茂﹔月明，风高，贪图了岁月，流走了夕朝﹔嫦娥，月饼，传奇了童话，美味了佳肴﹔中秋，祝你，停留了幸福，挽住了美好。</p><p>102、天上月圆地下月半月月月圆对月半，今日年尾明日年头年年年尾接年头。</p>' 
+					});
+					layer.msg("点击内容选择祝福语！")
+				})
+				//判断是否点击了下拉菜单
+				$(document).on("touchstart click", function(e) {
+					e = window.event || e; // 兼容IE7
+					obj = $(e.srcElement || e.target);
+					if ($(obj).parents(".zf-list").length == 0 && !$(".zf-list").is(":hidden") && !($(obj).is(".zf-btn,.zf-list"))) {
+						$(".zf-list").hide();
+					}
+				});
+			});
+			function savedata(){
+				document.title=nicheng+'祝大家中秋节快乐';
+				var data={
+					signature : signature,
+					content : $(".zhufu-nei2").val(),
+					sharename : $(".get-zhufu6").html(),
+				}
+				zzappajax("post","http://m.zz91.com/zhongqiu/savecontent.html",data,function(){
+					
+				},function(){
+					
+				})
+				
+				sharefunction()
+			}
+			$(".music-box").on("click", function() {
+				if ($(this).hasClass('music-play')) {
+					document.getElementById('music-audio').pause();
+				} else {
+					document.getElementById('music-audio').play();
+				}
+				$(this).toggleClass("music-play");
+			})
+			var pageScale = 1;
+			var width = document.documentElement.clientWidth || 320;
+			var height = document.documentElement.clientHeight || 480;
+			if (width / height >= 320 / 480) {
+				pageScale = height / 480;
+			} else {
+				pageScale = width / 320;
+			}
+			var content = 'width=320, initial-scale=' + pageScale + ', maximum-scale=' + pageScale + ', user-scalable=no';
+			document.getElementById('viewport').setAttribute('content', content);
+			scaleW = window.innerWidth / 320;
+			scaleH = window.innerHeight / 480;
+			var resizes = document.querySelectorAll('.resize');
+			for (var j = 0; j < resizes.length; j++) {}
+			var mySwiper = new Swiper('.swiper-container', {
+				initialSlide: 0,
+				direction: 'vertical',
+				pagination: '.swiper-pagination',
+				//virtualTranslate : true,
+				mousewheelControl: true,
+				onInit: function(swiper) {
+					swiperAnimateCache(swiper);
+					swiperAnimate(swiper);
+				},
+				onSlideChangeEnd: function(swiper) {
+					swiperAnimate(swiper);
+				},
+				onTransitionEnd: function(swiper) {
+					swiperAnimate(swiper);
+				},
+				watchSlidesProgress: true,
+				onProgress: function(swiper) {
+					for (var i = 0; i < swiper.slides.length; i++) {
+						var slide = swiper.slides[i];
+						var progress = slide.progress;
+						var translate = progress * swiper.height / 4;
+						scale = 1 - Math.min(Math.abs(progress * 0.5), 1);
+						var opacity = 1 - Math.min(Math.abs(progress / 2), 0.5);
+						slide.style.opacity = opacity;
+						es = slide.style;
+						es.webkitTransform = es.MsTransform = es.msTransform = es.MozTransform = es.OTransform = es.transform = 'translate3d(0,' + translate + 'px,-' + translate + 'px) scaleY(' + scale + ')';
+					}
+				},
+				onSetTransition: function(swiper, speed) {
+					for (var i = 0; i < swiper.slides.length; i++) {
+						es = swiper.slides[i].style;
+						es.webkitTransitionDuration = es.MsTransitionDuration = es.msTransitionDuration = es.MozTransitionDuration = es.OTransitionDuration = es.transitionDuration = speed + 'ms';
+					}
+				},
+			})
+		</script>
+		<div style="display: none;">
+			<script>
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+					var s = document.getElementsByTagName("script")[0];
+					s.parentNode.insertBefore(hm, s);
+				})();
+			</script>
+			<!--baidu analysis-->
+			<script>
+				var _hmt = _hmt || [];
+				
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+					var s = document.getElementsByTagName("script")[0];
+					s.parentNode.insertBefore(hm, s);
+				})();
+			</script>
+		</div>
+	</body>
+
+</html>

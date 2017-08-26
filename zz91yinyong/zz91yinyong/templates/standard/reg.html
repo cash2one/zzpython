@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>注册-ZZ91再生网 手机版_废料移动商务第一站！</title>
+<meta name="keywords" content="废料手机版,再生资源手机版,废料回收手机版,废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备" />
+<meta name="description" content="ZZ91再生网是中国最大最旺的网上废料贸易市场,这里为您精选了废金属,废塑料,废纸,废橡胶,纺织废料,废旧设备,废电子电器,废玻璃,废皮革,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备等各类废料供求信息.公司黄页.行业资讯.价格行情.展会信息等。" />
+{%include 'standard/head.html'%}
+{%include 'standard/top.html'%}
+<div class="s-nav-bc bb-c plr10" >
+<p class="bc">
+<a href="/standard/">首页</a>
+<span>&gt;</span>
+<a href="/standard/reg/">注册</a>
+</p>	
+</div>
+<div class="m10 lh20">
+<form action="/standard/reg_save/" method="post" >
+会员名<br>
+{%if errtext1%}<div class="c-red">{{errtext1}}<br/></div>{%endif%}<input id="userName" class="text" type="text" name="userName" value="{{userName}}" autocomplete="off" maxlength="20">
+<br>密码<br>
+{%if errtext2%}<div class="c-red">{{errtext2}}<br/></div>{%endif%}<input id="password1" class="text" type="password" name="password1" value="{{password1}}" autocomplete="off" maxlength="20">
+<br>再次输入密码<br>
+{%if errtext3%}<div class="c-red">{{errtext3}}<br/></div>{%endif%}<input id="password2" class="text" type="password" name="password2" value="{{password2}}" autocomplete="off" maxlength="20">
+<br>电子邮箱<br>
+{%if errtext4%}<div class="c-red">{{errtext4}}<br/></div>{%endif%}<input id="email" class="text" type="text" name="email" value="{{email}}" autocomplete="off">
+<br>手机号码<br>
+{%if errtext5%}<div class="c-red">{{errtext5}}<br/></div>{%endif%}<input class="text" type="text" id="mobile" name="mobile" value="{{mobile}}" autocomplete="off" maxlength="13" placeholder="请输入11位的手机号">
+<br>联系人<br>
+{%if errtext9%}<div class="c-red">{{errtext9}}<br/></div>{%endif%}<input class="text" type="text" id="contact" name="contact" value="{{contact}}" autocomplete="off" maxlength="13" placeholder="">
+<br>电话<br>
+{%if errtext6%}<div class="c-red">{{errtext6}}<br/></div>{%endif%}<input class="text" type="text" id="tel" name="tel" value="{{tel}}" autocomplete="off" maxlength="13" placeholder="请输入电话号码">
+<br>公司名称<br>
+{%if errtext7%}<div class="c-red">{{errtext7}}<br/></div>{%endif%}<input class="text" type="text" id="company" name="company" value="{{company}}" autocomplete="off" maxlength="13" placeholder="请输入公司名称">
+<br>主营产品<br>
+<textarea name="productslist"  style="height:50px;" rows="5" class="text" id="productslist" autocomplete="off" placeholder="请输入主营产品">{{productslist}}</textarea>
+<br>验证码<br>
+{%if errtext8%}<div class="c-red">{{errtext8}}<br/></div>{%endif%}
+<a href="###" ><img src="/verifycode/?t={{t}}&d='+Math.random()" id="yzpic" onClick="this.src='/verifycode/?t={{t}}&d='+Math.random()"/></a><a href="###" onClick="document.getElementById('yzpic').src='/verifycode/?t={{t}}&d='+Math.random()"><font color="#003399">看不清楚?换一张</font></a>
+					<br><input id="valcode1" class="text" type="text" name="valcode1" value="" autocomplete="off" maxlength="6">
+                    <input id="t" type="hidden" name="t" value="{{t}}"><br>
+<br><input type="submit" value="立即注册"/>
+</form>
+</div>
+
+{%include 'standard/bottom.html'%}
+
+</body>
+</html>

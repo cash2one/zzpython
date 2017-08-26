@@ -1,0 +1,40 @@
+<style>
+	.mui-input-row{margin-bottom: 10px;}
+	.mui-input-row span{line-height: 35px;}
+	.mui-input-row label{color: #666666;}
+	.mui-content-padded{margin: 10px;}
+</style>
+<div class="mui-content-padded">
+	<form>
+	<div class="mui-input-row">
+		<label>我的账号</label>
+		<span style="color: #666;">{{account}}</span>
+	</div>
+	<div class="mui-input-row">
+		<label>公司名称</label>
+		<input type="text" name="companyname" id="companyname" class="mui-input" placeholder="请输入公司名称" value="{{companyinfo.name}}">
+	</div>
+	<div class="mui-input-row">
+		<label>联系人</label>
+		<input type="text" name="contact" id="contact" class="mui-input" placeholder="请输入联系人" value="{{companyinfo.contact}}">
+	</div>
+	<div class="mui-input-row">
+		<label>手机</label>
+		<input type="text" class="mui-input" name="mobile" id="mobile"  placeholder="请输入手机" value="{{companyinfo.mobile}}">
+	</div>
+	<div class="mui-input-row">
+		<label>QQ</label>
+		<input type="text" class="mui-input" name="qq" id="qq"  placeholder="请输入QQ" value="{{companyinfo.qq}}">
+	</div>
+	<div class="mui-input-row">
+		<label>主营业务</label>
+		<textarea rows="6" cols="20" style="height: 100px;" name="business" id="business" placeholder="请输入主营业务">{{companyinfo.business}}</textarea>
+	</div>
+	
+	<div class="mui-button-row">
+		<button class="mui-btn mui-btn-primary" style="width: 100%;" onclick="return submitfrm(this.form,'http://app.zz91.com/infosave.html')">确认修改</button>
+	</div>
+	</form>
+	</div>
+
+<input type="hidden" id="appnavname" value="设置" />

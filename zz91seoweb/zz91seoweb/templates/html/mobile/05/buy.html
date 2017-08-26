@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>zz91年底推荐专场</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+</head>
+<body>
+
+<div class="moblie">
+	<div class="moblie-top">
+        <div class="moblie-title">
+        	<div class="moblite-return">
+            	
+            </div>
+            <div class="moblie-title-text">
+                {{list.name}}
+            </div>
+            <div class="moblie-title-collect">
+                <img src="{{htmlincludes.img}}images/collection.jpg" />
+            </div>
+            <div class="cb"></div>
+        </div>
+        <!--end moblie-title-->
+    </div>
+    <!--end moblie-top-->
+    <div class="moblie-banner">
+        <img src="{{htmlincludes.img}}images/banner.jpg" />
+    </div>
+    <!--end moblie-banner-->
+    <div class="moblie-main1">
+        <div class="moblie-main1-text">
+            最新供求
+        </div>
+        <div class="search">
+	<form id="searchForm1" action="products{{company_id}}-{{seriesid}}-1.htm" method="get">
+		<div class="search-box">
+		    <input type="text" class="search-text" name="keywords" />
+		</div>
+		<div class="search-ok">
+		    <input type="submit" class="search-button" value="" />
+		</div>
+		<div class="cb"></div>
+	</form>
+        </div>
+        <!--end search-->
+        <div class="cb"></div>
+    </div>
+    <!--end moblie-main1-->
+    
+    
+{%if prolist%}
+    {%for l in prolist%}
+    <div class="moblie-item">
+    	<div class="moblie-item-img">
+        <a href="/mobile/productdetail{{l.pdt_id}}.htm"><img src="{{l.pdt_images}}" /></a>
+        </div>
+        <div class="moblie-item-center">
+        	<div class="moblie-itemconter-title">
+            	 <a href="/mobile/productdetail{{l.pdt_id}}.htm">{{l.products_type}}{{l.pdt_name}}</a>
+            </div>
+            <div class="moblie-itemconter-text">
+            	 <a href="/mobile/productdetail{{l.pdt_id}}.htm">{{l.pdt_detail}}</a>
+            </div>
+            
+        </div>
+        <div class="moblie-item-right">
+        	<div class="moblie-item-date">
+            	{{l.pdt_time_en}}
+            </div>
+            <div class="moblie-item-enquiry">
+            	<a href="contact{{company_id}}.htm">在线询价</a>
+            </div>
+        </div>
+        <div class="cb"></div>
+    </div>
+	{%endfor%}
+	{%else%}
+	<div class="moblie-item">没有找到相关“{{keywords}}”供求</div>
+	{%endif%}
+    
+    
+    <center>
+    <div class="moblie-page">
+    	{% if firstpage %}
+		<a href="products{{company_id}}-{{seriesid}}-{{prvpage}}.htm{%if keywords%}?keywords={{keywords}}{%endif%}" class="moblie-page-before button">上一页</a>
+		{%endif%}
+        {% if lastpage%}
+		<a href="products{{company_id}}-{{seriesid}}-{{nextpage}}.htm{%if keywords%}?keywords={{keywords}}{%endif%}" class="moblie-page-next button">下一页</a>
+		{%endif%}
+        <div class="cb"></div>
+    </div>
+    <!--end mobllie-page-->
+    </center>
+    <div class="moblie-footer2">
+    	<ul>
+        	<li><a href="/mobile/index{{company_id}}.htm">首页</a></li>
+            <li><a href="/mobile/about{{company_id}}.htm">公司简介</a></li>
+            <li><a href="/mobile/products{{company_id}}-0-1.htm" style="color:#fff;background:#117ec2;border-color:#09649d;border-right:none">产品信息</a></li>
+            <li><a href="/mobile/contact{{company_id}}.htm">联系方式</a></li>
+            <div class="cb"></div>
+        </ul>
+    </div>
+    <!--end moblie-footer-->
+</div>
+<!--moblie-->
+{%include "html/mobile/03/footer.html"%}
+</body>
+</html>

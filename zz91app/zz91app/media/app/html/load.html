@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<link rel="stylesheet" type="text/css" href="../css/aui.css" />
+	<link rel="stylesheet" type="text/css" href="../css/aui-slide.css" />
+	<style type="text/css">
+	body {
+		background: #ffffff;
+	}
+	.bg-dark {
+		background: #333333 !important;
+	}
+	.aui-slide-node {
+	   	color: #ffffff;
+	}
+	img.logo {
+		width: 30%;
+		border-radius: 1px;
+		margin-bottom: 15px;
+	}
+	img.icon {
+		width: 50%;
+		border-radius: 10px;
+	}
+	strong {
+		font-size: 2em;
+		font-weight: 400;
+	}
+	.bg1 {
+		background: #d9e2e5 !important;
+	}
+	.bg2 {
+		background: #eee9e0 !important;
+	}
+	.bg3 {
+		background: #80d3ee !important;
+	}
+	.bg4 {
+		background: #82dd47 !important;
+	}
+	strong.title {
+		color: #ffffff;
+	}
+	.desc {
+		color: #fff;
+		font-size: 0.875em;
+	}
+	.desc p {
+		color: #ffffff;
+	}
+	.close {
+		background: rgba(0,0,0,0.6);
+		padding: 4px 10px;
+		border-radius: 30px;
+		color: #fff;
+		font-size: 0.75em;
+		position: absolute;
+		right: 10px;
+		top: 40px;
+		z-index: 999;
+	}
+	.text-dark {
+		color: #333 !important;
+	}
+	.fadeInTop {
+		-webkit-animation: fadeInTop 1s;
+		        animation: fadeInTop 1s;
+	}
+	.fadeInBottom {
+		-webkit-animation: fadeInBottom 1s;
+		        animation: fadeInBottom 1s;
+	}
+	@-webkit-keyframes fadeInTop {
+	    from {
+	        opacity: 0.2;
+	        -webkit-transform: translate3d(0, -50px, 0);
+	        transform: translate3d(0, -50px, 0);
+	    }
+	    to {
+	        opacity: 1;
+	        -webkit-transform: none;
+	        transform: none;
+	    }
+	}
+	@-webkit-keyframes fadeInBottom {
+	    from {
+	        opacity: 0;
+	        -webkit-transform: translate3d(0, 50px, 0);
+	        transform: translate3d(0, 50px, 0);
+	    }
+	    to {
+	        opacity: 1;
+	        -webkit-transform: none;
+	        transform: none;
+	    }
+	}
+	</style>
+</head>
+<body>
+	<div class="close" tapmode onclick="closeWin()">关闭</div>
+	<div id="aui-slide">
+		<div class="aui-slide-wrap" >
+			<div class="aui-slide-node aui-slide-node-middle aui-slide-node-center">
+				<div class="aui-content aui-padded-15 aui-text-center aui-hide">
+					<img src="../image/load/1.png" class="logo" style="height:auto;width:auto" />
+					<div class="desc">
+						<p><strong class="aui-text-primary">ZZ91再生网</strong></p>
+						<p class="aui-text-primary">废料商人网上生意法宝</p>
+					</div>
+				</div>
+			</div>
+			<div class="aui-slide-node aui-slide-node-middle aui-slide-node-center bg1">
+				<div class="aui-content aui-padded-15 aui-text-center aui-hide">
+					<img src="../image/load/2.png" class="icon" style="height:auto;width:auto"/>
+					<div class="desc">
+						<p><strong class="title aui-text-info">海量商机</strong></p>
+						<p class="text-dark">网站数据实时同步，随时随地掌握废料商机。</p>
+					</div>
+				</div>
+			</div>
+			<div class="aui-slide-node aui-slide-node-middle aui-slide-node-center bg2">
+				<div class="aui-content aui-padded-15 aui-text-center aui-hide">
+					<img src="../image/load/3.png" class="icon" style="height:auto;width:auto"/>
+					<div class="desc">
+						<p><strong class="title aui-text-primary">商机订阅</strong></p>
+						<p class="text-dark">私人信息定制，及时推送。</p>
+					</div>
+				</div>
+			</div>
+			<div class="aui-slide-node aui-slide-node-middle aui-slide-node-center bg3">
+				<div class="aui-content aui-padded-15 aui-text-center aui-hide">
+					<img src="../image/load/4.png" class="icon" style="height:auto;width:auto"/>
+					<div class="desc">
+						<p><strong class="title">任性刷新</strong></p>
+						<p>无限制刷新供求，让您的供求抢先一步</p>
+					</div>
+				</div>
+			</div>
+			<div class="aui-slide-node aui-slide-node-middle aui-slide-node-center bg4">
+				<div class="aui-content aui-padded-15 aui-text-center aui-hide">
+					<img src="../image/load/5.png" class="icon" style="height:auto;width:auto"/>
+					<div class="desc">
+						<p><strong class="title">留言、电话</strong></p>
+						<p>不用电脑值守，随时接收买卖家询盘信息。</p>
+						<p class="aui-padded-15">
+							<div class="aui-btn aui-btn-success" tapmode onclick="closeWin()">立即体验</div>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="aui-slide-page-wrap"><!--分页容器--></div>
+	</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/aui-slide.js"></script>
+
+<script type="text/javascript">
+	apiready = function() {
+		var header = $api.byId('aui-slide');
+    	//$api.fixStatusBar(header);
+    	api.addEventListener({
+		    name:'keyback'
+		},function(ret,err){
+			api.closeWin({
+	        });
+			api.execScript({
+				name : 'root',
+				script : "showbody()"
+			});
+			return false;
+		});
+    }
+	var slide = new auiSlide({
+		container:document.getElementById("aui-slide"),
+		//"width":300,
+		"height":window.innerHeight,
+		"speed":300,
+		"pageShow":true,
+		"pageStyle":'dot',
+		"loop":false,
+		'dotPosition':'center',
+		currentPage:currentFun
+	})
+	var pageCount = slide.pageCount();
+	function currentFun(index) {
+		var slideList = document.querySelectorAll(".aui-slide-node");
+		for (var i = 0; i < slideList.length; i++) {
+			if(index == i){
+				var thisDiv = slideList[i].querySelector("div");
+				setTimeout(function(){
+					if(thisDiv.classList.contains("aui-hide")){
+						thisDiv.classList.remove("aui-hide");
+					}
+					thisDiv.querySelector("img").classList.add("fadeInTop");
+					thisDiv.querySelector(".desc").classList.add("fadeInBottom");
+				}, 300)
+
+			}
+		}
+	}
+	function closeWin(){
+		api.closeWin({
+        });
+		api.execScript({
+			name : 'root',
+			script : "showbody()"
+		});
+	}
+</script>
+</html>

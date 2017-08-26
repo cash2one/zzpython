@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>批量收录统计-seo客户管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="http://192.168.2.4/assets/js/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var urlArray = new Array()
+            $("td[class='bd-url']").each(function(i) {
+                var bdUrl=$(this).find('a').text();
+                // alert(bdUrl);
+                urlArray.push(bdUrl);
+            });
+            // alert(urlArray);
+            // alert(urlArray.length);
+            arrLen = urlArray.length;
+            $('.sl-tj-all').html('总数:<b style="color:#F75000;">'+arrLen.toString()+'条</b>');
+            $('#tj-all-num').val(arrLen.toString())
+            var numAll = 0;
+            var slNum = 0;
+            var wslNum = 0;
+
+            $.each(urlArray,function(i,val) {
+                var eachUrl = $.trim(val);
+                numAll += 1;
+                $.ajax({
+                    type:"GET",
+                    url:"get_plsl.html?url=" + eachUrl,
+                    success:function(data,status) {
+                        // alert(data+status);
+                        var jsData = $.parseJSON(data);
+                        // alert(jsData['title'], status);
+                        if (jsData['sl-status'] == '1')
+                        {
+                            slNum += 1;
+                            $('.sl-tj-sl').html('收录数:<b style="color:green">'+slNum.toString()+'条</b>');
+                            $('.bd-title-'+i.toString()).find('a').text(jsData['title']);
+                            $('.sl-status-'+i.toString()).html('<b style="color:green;" class="sl">收录</b>');
+                            $('.sl-status-'+i.toString()).siblings('#cx-title').val(jsData['title']);
+                            $('.sl-status-'+i.toString()).siblings('#cx-slstatus').val('收录');
+                        }
+                        if (jsData['sl-status'] == '0')
+                        {
+                            wslNum += 1;
+                            $('.sl-tj-wsl').html('未收录数:<b style="color:red">'+wslNum.toString()+'条</b>');
+                            $('.bd-title-'+i.toString()).find('a').text(jsData['title']);
+                            $('.sl-status-'+i.toString()).html('<b style="color:red;" class="wsl">未收录</b>');
+                            $('.sl-status-'+i.toString()).siblings('#cx-title').val(jsData['title']);
+                            $('.sl-status-'+i.toString()).siblings('#cx-slstatus').val('未收录');
+                        }
+                        if (numAll == arrLen){
+                            var slRate = (slNum / numAll *100).toFixed(2);
+                            $('.sl-tj-rate').html('收录率:<b style="color:#000079;">'+slRate.toString()+'%</b>');
+                            $('#tj-sl-num').val(slNum.toString());
+                            $('#tj-wsl-num').val(wslNum.toString());
+                            $('#sl-rate').val(slRate.toString()+'%');
+                        }
+                    }
+                    // error:function(data,status) {
+                    //     alert(data+status);
+                    // }
+                });
+            });
+        });
+
+        // 收录筛选
+        function statusFilter(selectMs) {
+            var slValue = selectMs.options[selectMs.selectedIndex].value;
+            // alert(slValue);
+            if (slValue == 1)
+            {
+                jQuery('.sl-content').css("display","none");
+                jQuery('.sl').parent().parent().parent('tr').css("display","");
+            }
+            else if (slValue == 2)
+            {
+                jQuery('.sl-content').css("display","none");
+                jQuery('.wsl').parent().parent().parent('tr').css("display","");
+            }
+            else
+            {
+                jQuery('.sl-content').css("display","");
+            }
+        }
+        // 导出到excel表格
+        function exExcel(e) {
+            e.preventDefault();
+            var slNum = parseInt(jQuery('.sl-tj-sl').text().match(/\d+/));
+            var wslNum = parseInt(jQuery('.sl-tj-wsl').text().match(/\d+/));
+            var allNum = parseInt(jQuery('.sl-tj-all').text().match(/\d+/));
+            if (allNum == 0) {
+                alert("没有任何可以导出的内容……");
+                return false;
+            }  
+            if (slNum + wslNum == allNum)
+            {
+                // alert("查询完……");
+                with(document.getElementById('export-excel')) {
+                    action="ex_excel.html";
+                    method="post";
+                    submit();
+                }
+            }
+            else
+            {
+                alert("未查询完,不能导出……");
+                return false;
+            }
+        }
+    </script>
+    <style type="text/css">
+        .sl-tj span {
+            margin-left: 10px;
+        }
+        .sl-tj {
+            margin-top:10px;
+            margin-bottom: 10px;
+        }
+        .sl-tb tr td, .sl-tb tr th{
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="sl-tj">
+<span class="sl-tj-all">总数:0</span>&nbsp;&nbsp;
+<span class="sl-tj-sl">收录数:0</span>&nbsp;&nbsp;
+<span class="sl-tj-wsl">未收录数:0</span>&nbsp;&nbsp;
+<span class="sl-tj-rate">收录率:0</span>&nbsp;&nbsp;
+&nbsp;&nbsp;筛选:
+<select name="sl-st" onchange="statusFilter(this)">
+    <option value="0" selected="selected">全部</option>
+    <option value="1">收录</option>
+    <option value="2">未收录</option>
+</select>
+&nbsp;&nbsp;导出到excel&nbsp;
+<a style="color:black;text-decoration: none;" onclick="exExcel(event)" href="#" class="ex-xls glyphicon glyphicon-download"></a>
+&nbsp;&nbsp;<a href="pl_sl.html">继续查询</a>
+</div>
+<div class="table-responsive">
+    <form id="export-excel" name="export-excel">
+    {% csrf_token %}
+    <table cellpadding="5" cellspacing="1" width="100%" class="sl-tb table table-striped table-bordered">   
+        <input type="hidden" id="tj-all-num" name="tj-all-num" value="">
+        <input type="hidden" id="tj-sl-num" name="tj-sl-num" value="">
+        <input type="hidden" id="tj-wsl-num" name="tj-wsl-num" value="">
+        <input type="hidden" id="sl-rate" name="sl-rate" value="">
+        <thead>
+            <th>#</th>
+            <th>标题</th>
+            <th>网址</th>
+            <th>收录状态</th>
+        </thead>
+        <tbody>{% for each_url in bd_url_list %}
+            <tr class="sl-content">
+            <td>{{ each_url.0 | add:'1' }}</td>
+            <td>
+                <span class="bd-title-{{each_url.0}}">
+                    <a href="https://www.baidu.com/s?wd={{ each_url.1 }}" target="_blank" style="color: black;">查询中……</a>
+                </span>
+            </td>
+            <td id="url-{{ each_url.0 | add:'1' }}" class="bd-url"><a href="{{ each_url.1 }}" target="_blank">{{ each_url.1 }}</a></td>
+            <td>
+                <span class="sl-status-{{each_url.0}}">查询中……</span>
+                <input type="hidden" id="cx-title" name="cx-title" value="">
+                <input type="hidden" id="cx-url" name="cx-url" value="{{ each_url.1 }}">
+                <input type="hidden" id="cx-slstatus" name="cx-slstatus" value="">
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </form>
+</div>
+</div>
+</body>
+</html>

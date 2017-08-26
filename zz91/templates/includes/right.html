@@ -1,0 +1,72 @@
+<div class="boxright">
+<div class="box">
+<div class="rightTop">
+<h3>最新产品报价</h3>
+</div>
+<div class="customerPriceList">
+<ul id="right_Ulnewprice">
+{% for list in listall_customerPrice %}
+<li><a href='http://price.zz91.com/companyprice/priceDetails.htm?id={{list.id}}' target='_blank'>{{list.pdt_name}}</a></li>
+<li>{{list.pdt_price}}</li>
+{% endfor %}
+</ul>
+<div style="text-align:center;"><a href="http://www.zz91.com/customerprice/" target="_blank"><b>>>查看更多</b></a></div>
+</div>
+</div>
+<div class="box" >
+<div class="rightTop">
+<h3>搜索标签</h3>
+</div>
+<script>
+function GoTOSeach()
+{
+	var key=document.getElementById("tagName").value
+	if (key!="")
+	{
+		var searname=UTF8UrlEncode(key)
+		searname=searname.replace(/%20/g,"")
+		document.location="/tagssearchList/"+searname+"/"
+	}
+}
+</script>
+<input name="tagName" id="tagName" type="text" style="width: 116px" />
+<input type="button" value="搜索" style="width:38px;" onclick="GoTOSeach()"/>
+</div>
+<div class="box" >
+<div class="rightTop">
+<h3>相关标签</h3>
+</div>
+<div id="right_TagsSame" class="rightDivA">
+{% for list in listall_tags %}
+<a href='http://tags.zz91.com/tagssearchList/{{list.kname}}/' target='_blank' class='tag{{list.classid}}'>{{list.kname}}</a> | 
+{% endfor %}
+</div>
+<div style="text-align:center;"><a href="http://www.zz91.com/cn/tags" target="_blank"><font color="#ff0000" style="font-size:14px;"><strong>查看所有标签&gt;&gt;</strong></font></a></div>
+</div>
+<!--
+		<div class="boxother">
+            <div class="rightTop1">
+                <h3>最近浏览过的标签</h3>
+            </div>
+            <div class="rightDivA">
+                <a href='infoListByKey15.html' class='tag1' target='_blank'>PP</a> | <a href='infoListByKey430.html' class='tag1' target='_blank'>钢铁</a> | <a href='infoListByKey18.html' class='tag1' target='_blank'>PET</a> 
+             </div>
+		</div>
+-->
+        <div class="box">
+            <div class="rightTop">
+            	<h3>热门话题</h3>
+            </div>
+            <div class="HotForum">
+            	<ul id="right_UllistHot">
+				
+				{% for list in listall_forum %}
+				<li>· <a href='http://huzhu.zz91.com/viewReply{{list.td_id}}.htm' target='_blank'>{{list.td_title}}</a></li>
+				{% endfor %}
+				
+				</ul>
+                <div  style="line-height:25px;text-align:right;"><a href="http://forum.zz91.com/" target="_blank"><b>>>查看更多</b></a></div>
+            </div>
+		</div>
+	    <div style="float:right;margin-top:5px;text-align:center;width:170px;"><script type='text/JavaScript' src='http://img.zz91.com/js/swfobject_modified.js'></script><a href='http://www.zz91.com/upimages/upload/openad203.html' target='_blank'><img src='http://img.zz91.com/upimages/upload/2007/9/10191143.gif' alt='标签' border='0' /></a></div>
+	</div>

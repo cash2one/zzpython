@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<title>更多商铺榜单_商机排行榜{% if page %}_第{{ page }}页{% endif %}-zz91再生网</title>
+		<meta name="keywords" content="商铺榜单,精品商铺榜单,人气商铺榜单,潜力商铺榜单,新入商铺榜单,商铺">
+		<meta name="description" content="ZZ91再生网商铺榜单为广大客户提供优质商铺信息、商机榜单信息、商铺商机信息。让客户不再错过任何一家商铺。">
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/header.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/banner.css" />
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/sellerMore.css" />
+		<meta http-equiv="Cache-Control" content="no-transform"/>
+		<meta http-equiv="Cache-Control" content="no-siteapp"/>
+	</head>
+	<body>
+		{% include 'nav.html' %}
+		<div style="clear: both;"></div>
+		<div class="warp">
+			<div class="logosearch fl">
+				<div class="logo fl">
+					<img src="http://b.zz91.com/cp/paihang/img/img-01.png" class="fl"/>
+					<p class="fl logo-title">商机排行榜</p>
+				</div>
+				<div class="search fl">
+					<form action="http://trade.zz91.com/trade/searchfirst/" method="get" id="searchForm1" target="_blank">
+					<input class="searchInput fl" name="keywords" placeholder="输入产品关键词,获取对应产品信息" style="font-size: 14px;" /> 
+					<a class="searchButtom fl">搜索关键词</a>
+					</form>
+				</div>
+			</div>
+			<div class="nav fl">
+				<a href="/cp/" class="nav-oth">微门户首页</a>
+				<a href="sj-index.html" class="nav-oth" >商机排行榜</a>
+				<a href="sj-hotcp.html" class="nav-oth">热门产品词</a>
+				<a href="sj-sjbd.html" class="nav-oth">商机榜单</a>
+				<a href="sj-spbd.html" class="nav-idx">商铺榜单</a>
+			</div>
+			<div class="Main fl">
+				<div class="main-top fl">
+					<div class="main-topL fl">
+						<p class="main-topL1">{{ now_month }}月商铺榜单</p>
+						<p class="main-topL2">ZZ91再生网商机排行榜每月对数千万商机进行统计分析，凸显精品商机榜、人气商机榜、潜力商机榜、新入商机榜等，让您的采购变轻松。</p>
+					</div>
+					<div class="main-topR fr">
+						<a class="fr main-topRb" href="http://www.zz91.com/register/register_stp1.htm" target="_blank">我也要出现在这里</a>
+					</div>
+				</div>
+				<div class="main-content">
+					<div class="main-contentTop fl">
+						<img src="http://b.zz91.com/cp/paihang/img/img-05.png" class="fl"/>
+						<p class="fl main-contentTop1">信誉商家</p>
+					</div>
+					{% for each_member in list_all %}
+					<div class="main-contentMain fl">
+						<div class="main-contentMain1 fl">
+							<p>
+							    <span class="main-contentMain1Z1">{{ each_member.0 | add:"1" }}　</span>
+							    <span class="main-contentMain1Z2"><a href="{{ each_member.1.comp_url }}" target="_blank" style="text-decoration: none;">{{ each_member.1.comp_name | truncatechars:17 }}</a></span>
+							    {% if each_member.1.zst_year > 15 %}
+							    <span class="main-contentMain1Z3">[终身会员]</span>
+							    {% else %}
+							    <span class="main-contentMain1Z3">[已认证]</span>
+							    <span class="main-contentMain1Z1">第{{ each_member.1.zst_year }} 年</span>
+							    {% endif %}
+						    </p>
+						    <p class="fl main-contentMain1Z4_1 fl">
+							    <span><b>类型</b>：{{ each_member.1.industry_name }}</span><br />
+							    <span><b>联系人</b>：{{ each_member.1.contact_man }}</span><br />
+							    {% if each_member.1.market %}
+							    <span><b>所在市场</b>：{{ each_member.1.market }}</span>
+							    {% else %}
+							    <span><b>所在市场</b>：/</span>
+							    {% endif %}
+						    </p>
+						    <p class="main-contentMain1Z4_2">
+							    <span><b>地区</b>：{{ each_member.1.comp_info.comp_p_area }} {{ each_member.1.comp_info.comp_area }}</span><br />
+							    <span><b>会员</b>：{{ each_member.1.member_name }}</span><br />
+							    <span><b>诚信指数</b>：{{ each_member.1.comp_all_score | default:"0" }}</span>
+						    </p>
+						    <p class="main-contentMain1Z4_3 fl"><b>主要产品</b>：{{ each_member.1.comp_business | truncatechars:30 }}</p>
+						</div>
+						<div class="main-contentMain2 fl">
+							{% for each_pro in each_member.1.pro_info %}
+							<p class="fl main-contentMain2_1">
+								{% if each_pro.0 %}
+								<a href="http://trade.zz91.com/productdetails{{ each_pro.2 }}.htm" target="_blank">
+								<img src="http://img3.zz91.com/220x165/{{ each_pro.0 }}" style="width: 156px;height: 126px;" /><br />
+								</a>
+								{% else %}
+								<a href="http://trade.zz91.com/productdetails{{ each_pro.2 }}.htm" target="_blank">
+								<img src="http://img0.zz91.com/front/images/global/noimage.gif" style="width: 156px;height: 126px;" /><br />
+								</a>
+								{% endif %}
+								<span><a href="http://trade.zz91.com/productdetails{{ each_pro.2 }}.htm" target="_blank">{{ each_pro.1 | truncatechars:10 }}</a></span>
+							</p>
+							{% endfor %}
+						</div>
+						<div class="main-contentMain3 fr">
+							<a class="main-contentMain3B1 fr" href="{{ each_member.1.comp_url }}" target="_blank">进入商铺</a>
+							<a class="main-contentMain3B2 fr" href="{{ each_member.1.contact_url }}" target="_blank">联系商家</a>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="tab fl">
+				<div class="tabN">
+					{% if before_page %}
+					<a class="tabB11" href="sj-spbd-more-{{ before_page }}.html">上一页</a>
+					{% else %}
+					<a class="tabB11" href="javacript:void(0)" style="text-decoration: none;">上一页</a>
+					{% endif %}
+					{% for each_page in page_range %}
+					{%  if each_page.nowpage %}
+					<a class="tabB2" href="javacript:void(0)">{{ each_page.number }}</a>
+					{% else %}
+					<a class="tabB3" href="sj-spbd-more-{{ each_page.number }}.html">{{ each_page.number }}</a>
+					{% endif %}
+					{% endfor %}
+					{% if next_page %}
+					<a class="tabB1" href="sj-spbd-more-{{ next_page }}.html">下一页</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		{% include 'bottom.html' %}
+	</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/base.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/style.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/salesroom.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico" />
+<title>供应pp再生颗粒,拉丝级,注塑级颗粒,pp颗粒;求购废旧编织袋,吨包袋-安徽省蚌埠市洁民颗粒厂</title>
+<meta content="求购废旧编织袋,吨包袋；供应pp再生颗粒,拉丝级,注塑级颗粒,pp颗粒" name="description"/>
+<meta content="供应pp再生颗粒,拉丝级,注塑级颗粒,pp颗粒;求购废旧编织袋,吨包袋" name="keywords"/>
+</head>
+<body>
+{%include htmlincludes.topinclude%}
+<div class="upd"> 
+{%include htmlincludes.leftinclude%}
+  </div>
+  <!-- 右面主题板块-->
+  <div class="main-wrap fr"> 
+    <!--公司介绍-->
+    <div class="mod">
+      <div class="m-body">
+        <div class="m-header">
+          <h3>公司介绍</h3>
+        </div>
+        <div class="m-content">
+          <div class="about-corp">
+            <ul class="prointro-conul">
+              <li class="current" ><a href="gsjj{{company_id}}.htm">公司简介</a></li>
+            </ul>
+            <div class="com-intro1">
+              <div class="info-word1">
+                <p> {{list.introduction|safe}}</p>
+              </div>
+            </div>
+            <!--公司介绍结束--> 
+            <!--联系方式-->
+            <div class="basicinfo">
+              <!--公司相册-->
+              <div class="basetitle">
+              	<h4>公司相册</h4>
+                <div class="basecontro clf">
+                	<ul class="photos">
+            {%if companypiclist%}
+            {%for comp in companypiclist%}
+              <li>
+              	<img src="{{comp.filepath}}" width="225px" height="225px"/>
+              </li>
+            {%endfor%}
+            {%else%}
+            {%for propic in propiclist.list%}
+            	{%if "noimage.gif" not in propic.pdt_images%}
+              <li>
+              	<a href="productdetail{{propic.pdt_id}}.htm"><img src="{{propic.pdt_images}}" alt="{{propic.pdt_kind.kindtxt}}{{propic.pdt_name}}" width="225px" height="225px"/></a>
+              </li>
+	            {%endif%}
+            {%endfor%}
+            {%endif%}
+                    </ul>
+                </div>
+              </div>
+              <!--公司相册结束-->
+              <!-- 基本信息-->
+              <div class="basetitle">
+                <h4>基本信息</h4>
+                <div class="basecontro clf">
+                  <div class="control">
+                    <ul>
+						<li><span>公司名称:</span>{{list.name}}</li>
+						<li><span>主营行业:</span>{{list.industry}}</li>
+						<li><span>企业类型:</span>有限责任公司</li>
+						
+						<li><span>所在地区:</span>{{list.address}}</li>                    
+					</ul>
+                  </div>
+                  <div class="contror">
+                    <ul>
+                      <li><span>主营产品:</span></li>
+                      <li class="small-lineh">{{list.business}}</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- 基本信息结束--> 
+              
+                    <!--联系我们-->
+					<div class="contact-way1 basetitle basemarb">
+						<h4>联系我们</h4>
+						<p class="proname1">{{list.name}}</p>
+						<p class="text-in11"><small><span>联系人：</span>{{list.contact}} {{list.position}}</small></p>
+						<p class="text-in11"><small><span>电话：</span>{{list.ppcphone}} {%if list.ppcphone_zhuan%} {{list.ppcphone_zhuan}}{%endif%}</small></p>
+						
+						<p class="text-in11"><small><span>地址：</span>{{list.address}}</small></p>
+						{%if list.address_zip%}
+						<p class="text-in11"><small><span>邮编：</span>{{list.address_zip}}</small></p>
+						{%endif%}
+						{%if list.website%}
+						<p class="text-in11"><small><span>网站：</span><a href="{{list.website}}" target="_blank" title="{{list.name}}主页" rel="nofollow">{{list.website}}</a></small></p>
+						{%endif%}
+					</div>
+					<!--联系我们结束-->
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--联系方式结束-->
+  </div>
+  <!-- 右面主题板块结束--> 
+  <div style="clear:both"></div>
+</div>
+<div style="clear:both"></div>
+{%include htmlincludes.buttominclude%}
+</body>
+</html>

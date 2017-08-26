@@ -1,0 +1,554 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+    <title>zz91再生网</title>
+
+     <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="http://img0.zz91.com/front/favicon.ico">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/front/favicon.ico">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="http://img0.zz91.com/front/favicon.ico">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <link rel="stylesheet" href="../assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+    
+    <style type="text/css">
+        .am-with-fixed-navbar{
+            padding-bottom: 37px;
+        }
+        .am-navbar{
+            height: auto;
+            line-height: auto;
+        }
+        .am-get-dy{
+            position: relative;
+        }
+        .am-close{
+            position: absolute;
+            right: 8px;
+            color: #fff;
+        }
+        .am-close-alt{
+            background: #ff0000;
+            border-style: #ff0000
+        }
+        .am-type li {
+            padding: 5px 0;
+            background: #dedede;
+        }
+        
+        .am-type {
+            height: 100%;
+            overflow: auto;
+            background: #dedede;
+        }
+        .am-type-small {
+            max-height: 100%;
+            overflow: auto;
+        }
+        .am-smcity-name li {
+            border: 1px solid #dedede;
+            border: 1px solid #dedede;
+            width: 40%;
+            padding: 3px 10px;
+            margin: 0 0 10px 10px;
+            font-size: 12px;
+            float: left;
+        }
+        .am-typeList li{
+            line-height: 30px;
+        }
+        .am-typeList .thisCity {
+            background: #f2f2f2;
+        }
+        .am-city-list{
+            height: 80%;
+            overflow: auto;
+            
+        }
+        .am-city-table{
+            
+        }
+        .am-btn-box{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: #f2f2f2;
+            border-top: 1px solid #dedede
+        }
+        .mycity{
+            color: #01ba2e
+        }
+        .mycity .mycity-icon{
+            display:inline-block;
+        }
+        .mycity-icon{
+            display: none;
+            margin-right: 3px;
+            position: relative;
+            top: 1px;
+        }
+        .am-city-table td{
+            width: 33.33%;
+            height: 30px;
+        }
+        .j_secdtt{
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <a href="javascript:void(0)" class="" onClick="window.location='/'">
+                <i class="am-header-icon am-icon-chevron-left"></i>
+            </a>
+        </div>
+
+        <h1 class="am-header-title">
+            商机订阅
+        </h1>
+    </header>
+    <section>
+        <form class="am-form">
+            <div class="am-list-item-desced">
+                <div class="am-g am-padding-left-xs am-padding-right-xs am-margin-top-sm">
+                    <div class="am-u-sm-2 am-text-sm am-padding-top-xs am-padding-left-0 am-padding-right-0">供 求：</div>
+                    <div class="am-u-sm-10 am-form-select">
+                        <select class="" name="otype" id="otype">
+                            <option value="0">全部</option>
+                            <option value="1">供应</option>
+                            <option value="2">求购</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="am-g am-padding-left-xs am-padding-right-xs am-margin-top-sm">
+                    <div class="am-u-sm-2 am-padding-0 am-text-sm">类 别：</div>
+                    <div class="am-u-sm-6 am-my-type">
+                        <!--<span  class="am-btn am-btn-default am-radius am-btn-block am-get-dy">
+                            废钢铁
+                            <a href="javascript:void(0)" class="am-close am-close-alt am-icon-times"></a>
+                        </span>
+
+                        <span  class="am-btn am-btn-default am-radius am-btn-block am-get-dy">
+                            废钢铁
+                            <a href="javascript:void(0)" class="am-close am-close-alt am-icon-times"></a>
+                        </span>-->
+                    </div>
+                    <div class="am-u-sm-4">
+                        <a  class="am-btn am-btn-success am-radius am-btn-block" data-am-modal="{target: '#doc-modal-1'}">选择</a>
+                    </div>
+                </div>
+                <div class="am-g am-padding-left-xs am-padding-right-xs am-margin-top-sm">
+                    <div class="am-u-sm-2 am-padding-0 am-text-sm">地 区：</div>
+                    <div class="am-u-sm-6 am-my-city">
+                        <!--<span  class="am-btn am-btn-default am-radius am-btn-block am-get-dy">
+                            废钢铁
+                            <a href="javascript:void(0)" class="am-close am-close-alt am-icon-times"></a>
+                        </span>
+
+                        <span  class="am-btn am-btn-default am-radius am-btn-block am-get-dy">
+                            废钢铁
+                            <a href="javascript:void(0)" class="am-close am-close-alt am-icon-times"></a>
+                        </span>-->
+                    </div>
+                    <div class="am-u-sm-4">
+                        <a class="am-btn am-btn-success am-radius am-btn-block" data-am-modal="{target: '#doc-modal-2'}">选择</a>
+                    </div>
+                </div>
+                <div class="am-g am-padding-left-xs am-padding-right-xs am-margin-top-sm">
+                    <div class="am-u-sm-2 am-text-sm am-padding-top-xs am-padding-left-0 am-padding-right-0">时 间：</div>
+                    <div class="am-u-sm-10">
+                        <select class="" name="timelimit" id="timelimit">
+                            <option value="1">一天</option>
+                            <option value="2">三天</option>
+                            <option value="3">七天</option>
+                            <option value="4">一个月内</option>
+                            <option value="5">两个月内</option>
+                            <option value="6">三个月内</option>
+                            <option value="7">一年内</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <footer data-am-widget="navbar" class="am-navbar am-cf am-navbar-default  am-no-layout" >
+        <button type="submit" class="am-btn am-btn-success am-btn-block saveorder">确定订阅</button>
+    </footer>
+
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+        <div class="am-modal-dialog" style="width: 80%;height: 80%;position: relative;">
+            <div class="am-modal-hd am-header-default color-ff" style="position: absolute;top:0px;left: 0px;width: 100%;z-index: 999;">请选择供求
+                <a href="javascript: void(0)" class="am-close am-close-spin am-text-white" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd am-padding-0" style="height: 100%;">
+                <div class="am-g am-address" style="height: 100%;">
+                    <div class="am-u-sm-3 am-padding-0 am-type" style="height: 100%;">
+                        <ul class="am-list am-text-sm am-top-bordor-0 am-margin-0 am-typeList">
+                            <li style="height: 60px;"></li>
+                            <li code="1000" class="thisCity">
+                                    废金属
+                            </li>
+                            <li code="1001">
+                                    废塑料
+                            </li>
+                            <li code="1003">
+                                    废纺织品
+                            </li>
+                            <li code="1004">
+                                    废纸
+                            </li>
+                            <li code="1007">
+                                    二手设备
+                            </li>
+                            <li code="1005">
+                                    电子电器
+                            </li>
+                            <li code="1002">
+                                    橡胶轮胎
+                            </li>
+                            <li code="1006">
+                                    废玻璃
+                            </li>
+                            <li code="1009">
+                                    服务
+                            </li>
+                            <li code="1008">
+                                    其他废料
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="am-u-sm-9 am-type-small am-padding-0">
+                        <div style="height: 60px;"></div>
+                        <div class="categorylist">
+                        </div>
+                        <!--<div class="am-padding-0 am-text-left">
+                            <div class="am-text-sm am-padding-sm j_secdtt">废钢铁</div>
+                            <ul class="am-smcity-name am-padding-0 am-margin-0 am-smcity am-cf j_thirdtt">
+                                <li>废铁</li>
+                                <li>废铁</li>
+                                <li>废铁</li>
+                                <li>废铁</li>
+                                <li>废铁</li>
+                                <li>废铁</li>
+                            </ul>
+                        </div>
+                        <hr class="am-padding-bottom-0">
+                        <div class="am-padding-0 am-text-left">
+                            <div class="am-text-sm am-padding-sm j_secdtt">北京市辖</div>
+                            <ul class="am-smcity-name am-padding-0 am-margin-0 am-smcity am-cf j_thirdtt">
+                                <li>东城区</li>
+                                <li>东城区</li>
+                                <li>东城区</li>
+                                <li>东城区</li>
+                                <li>东城区</li>
+                                <li>东城区</li>
+                            </ul>
+                        </div>-->
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-2">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd am-header-default color-ff">请选择地区
+                <a href="javascript: void(0)" class="am-close am-close-spin am-text-white" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd am-padding-0 am-city-list">
+                <div class="am-city-table" >
+                    <table class="am-table am-table-bordered am-text-center am-text-sm am-margin-bottom-0">
+                        <tr >
+                            <td colspan="3"><i class="iconfont mycity-icon">&#xe602;</i><span>不限</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>浙江</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>广东</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>江苏</span></td>
+                        </tr>
+                        <tr>
+                            <td ><i class="iconfont mycity-icon">&#xe602;</i><span>福建</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>安徽</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>河南</span></td>
+                        </tr>
+                       
+                        <tr>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>河北</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>湖北</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>湖南</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>四川</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>江西</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>山东</span></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>海南</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>黑龙江</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>北京</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>上海</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>天津</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>青海</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>陕西</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>山西</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>贵州</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>辽宁</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>宁夏</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>吉林</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>内蒙古</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>广西</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>云南</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>西藏</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>重庆</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>甘肃</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>新疆</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>台湾</span></td>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>香港</span></td>
+                        </tr>
+                        <tr>
+                            <td><i class="iconfont mycity-icon">&#xe602;</i><span>澳门</span></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                
+            </div>
+            <div class="am-btn-box am-padding-xs"><button class="am-btn am-btn-block am-btn-success am-city-btn">确定</button></div>
+        </div>
+    </div>
+
+<!--在这里编写你的代码-->
+<script src="../assets/js/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $(".am-typeList").on("click","li",function(){
+            $(".thisCity").removeClass("thisCity");
+            $(this).addClass("thisCity");
+            var code=$(this).attr("code");
+            getcategoryinfo(code);
+        })
+
+        $(".am-type-small").on("click",".j_secdtt,.j_thirdtt li",function(){
+            var $modal = $("#doc-modal-1");
+            //$(".am-my-type").html();
+            var text = $(this).text();
+            var flag=false;
+            $(".tradevalue").each(function() {
+                if ($(this).text()==text){
+                    flag=true;
+                    hint("已经添加！");
+                    return false;
+                }
+            });
+            if (text!="" && text && flag==false){
+                $modal.modal('close');
+                var typeHtml = '<span class="am-btn am-btn-default am-radius am-btn-block am-get-dy tradevalue">'
+                               + text +'<a href="javascript:void(0)" class="am-close am-close-alt am-icon-times"></a>'
+                                +'</span>'
+                $(".am-my-type").append(typeHtml)
+            }
+            
+        })
+
+        $(".am-my-type,.am-my-city").on("click",".am-close-alt",function(){
+            $(this).parent().remove()
+        })
+
+
+        $(".am-city-table").on("click","td",function(){
+            $(this).toggleClass("mycity")
+        })
+
+        $(".am-city-btn").on("click",function(){
+            var cityHtml = "";
+            //$(".am-my-city").html("");
+            $(".mycity").each(function(i,item){
+                var cityName = $(item).find("span").text();
+                var flag=false;
+                $(".pricevalue").each(function() {
+                    if ($(this).text()=="不限"){
+                        hint("你已经选择了不限，请不用选择其他城市！");
+                        flag=true;
+                    }
+                    if ($(this).text()==cityName){
+                        flag=true;
+                    }
+                });
+                if (flag==false){
+                    cityHtml = '<span class="am-btn am-btn-default am-radius am-btn-block am-get-dy pricevalue">'
+                           + cityName +'<a class="am-close am-close-alt am-icon-times"></a>'
+                            +'</span>'
+                    $(".am-my-city").append(cityHtml)
+                }
+            });
+            var $modal = $("#doc-modal-2");
+            $modal.modal('close');
+            $(".mycity").removeClass("mycity")
+        });
+        //保存订阅
+        $(".saveorder").on("click", function() {
+            var otype=$("#otype").val();
+            var timelimit=$("#timelimit").val();
+            var keywordslist="";
+            $(".tradevalue").each(function() {
+                if ($(this).text() != "全部") {
+                    keywordslist = keywordslist + $(this).text() + "|";
+                }
+            });
+            var provincelist="";
+            $(".pricevalue").each(function() {
+                if ($(this).text() != "全部") {
+                    provincelist = provincelist + $(this).text() + "|";
+                }
+            });
+            var data={
+                otype:otype,
+                timelimit:timelimit,
+                keywordslist:keywordslist,
+                provincelist:provincelist
+            }
+            $.ajax({
+                url : "/order/myordertrade_save.html",
+                type : 'post',
+                dataType : 'json',
+                cache : false,
+                data : data,
+                success:function(ret) {
+                    if (ret.err == "false") {
+                        hint("定制成功！")
+                        window.close();
+                    } else {
+                        hint(ret.errkey)
+                    }
+                },
+                error : function() {
+                    hint("异常！");
+                }
+            });
+        })
+        ajaxInfo();
+    })
+    //初始数据
+    function ajaxInfo(){
+        intoCity("{{result.provincelist}}");
+        intoKeywords("{{result.keywordslist}}");
+        selectOption("otype","{{result.otype}}");
+        selectOption("timelimit","{{result.timelimit}}");
+        getcategoryinfo("1000");
+    }
+    //获取供求类别数据
+    function getcategoryinfo(code){
+    	$.ajax({
+            url : '/category/?code='+ code +'&type=1&datatype=json',
+            type : 'get',
+            dataType : 'json',
+            cache : false,
+            success:function(ret) {
+                if (ret) {
+                    var listHtml = "";
+                    var allHtml = "";
+                    $.each(ret,function(index,item){
+                        listHtml ='<div class="am-text-sm am-padding-sm j_secdtt" label_hex="'+ item.label_hex +'" code="'+item.code+'">'+ item.label +'</div>'
+                        listHtml +='<ul class="am-smcity-name am-padding-0 am-margin-0 am-smcity am-cf j_thirdtt">'
+                        //listHtml = "<h5 label_hex='"+ item.label_hex +"' code='"+item.code+"'>"+ item.label +"</h5>";
+                        $.each(item.catelist,function(i,catelist){
+                            listHtml =listHtml +"<li label_hex='"+ catelist.label_hex +"' code='"+catelist.code+"'>"+ catelist.label +"</li>";
+                        })
+                        //listHtml = "<div class='product-list-class'>" + listHtml + "</div>";
+                        listHtml +='</ul>'
+                        allHtml +=listHtml;
+                    })
+                    $(".categorylist").html(allHtml)
+                } else {
+                };
+            },
+            error : function() {
+                hint("异常！");
+            }
+        });
+    }
+    //添加城市
+    function intoCity(provincelist) {
+        var arrprovince=provincelist.split("|")
+        $(".am-my-city").html("");
+        var cityHtml=""
+        if (arrprovince){
+            for (i=0;i<=arrprovince.length-2;i++){
+                cityHtml += '<span class="am-btn am-btn-default am-radius am-btn-block am-get-dy pricevalue">'
+                           + arrprovince[i] +'<a class="am-close am-close-alt am-icon-times"></a>'
+                            +'</span>'
+            }
+            $(".am-my-city").append(cityHtml);
+        }
+    }
+    //添加供求
+    function intoKeywords(keywordslist) {
+        var arrkeywordslist=keywordslist.split("|")
+        $(".am-my-type").html("");
+        var typeHtml=""
+        if (arrkeywordslist){
+            for (i=0;i<=arrkeywordslist.length-2;i++){
+                typeHtml += '<span class="am-btn am-btn-default am-radius am-btn-block am-get-dy tradevalue">'
+                               + arrkeywordslist[i] +'<a href="javascript:void(0)" class="am-close am-close-alt am-icon-times"></a>'
+                                +'</span>'
+            }
+            $(".am-my-type").append(typeHtml);
+        }
+    }
+</script>
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="../assets/js/amazeui.min.js"></script>
+<script src="../assets/js/app.js"></script>
+{%include 'aui/bottom.html'%}
+</body>
+</html>

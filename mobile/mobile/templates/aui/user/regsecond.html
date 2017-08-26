@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>完善注册信息-zz91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<style type="text/css">
+			body {
+				background: #f4f4f4;
+				width: 100%;
+				height: 100%;
+			}
+			.aui-card {
+				margin-top: 15px;
+			}
+			.aui-input-row {
+				width: 100%
+			}
+			.issue-type {
+				padding: 7px 10px;
+				text-align: center;
+			}
+			.zhushi {
+				text-align: center;
+				font-size: 14px;
+			}
+			.aui-btn-success {
+				background-color: #01ba2e;
+				border: #01ba2e;
+			}
+			.btn-post{
+				padding: 10px;
+			}
+			.red{
+				color: #ff0000;
+			}
+			.resultTip {margin: 20px 15px;border: 1px solid #ffca86;background-color: #fef7de;	padding: 20px;	border-radius: 5px;}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">完善注册信息</div>
+		    <a class="aui-pull-right" href="/myrc_index/">
+		        <span class="aui-iconfont aui-icon-my"></span>
+		    </a>
+		</header>
+		<div class="">
+			{%if username%}
+			<div class="resultTip mt10 mb10 ac">
+				<span style="color: #FF0000;">恭喜您，{{username}}注册成功！</span>
+				<div>我们已根据您的主营产品为你自动发布一条供求信息，请继续完善，<a href="/myrc_products/?checkStatus=0">点此查看</a></div>
+			</div>
+			{%endif%}
+			<div class="aui-tips aui-tips-warning" id="tips-1">
+			    <div class="aui-tips-content aui-ellipsis-1" >
+			        <i class="aui-iconfont aui-icon-warnfill"></i>
+			        请完善以下信息，获得更多废料商机
+			    </div>
+			</div>
+			<div class="aui-form">
+				<div class="aui-input-row">
+					<span class="aui-input-addon"><span class="red">*</span>公司：</span>
+					<input type="text" id="companyname" placeholder="请输入公司名称" class="userName aui-input" maxlength="100" autocomplete="off">
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon"><span class="red">*</span>类型：</span>
+					<select name="serviceCode" id="serviceCode" class="aui-input">
+						<option value="">请选择</option>
+						<option value="10201001">国外供货商</option>
+						<option value="10201002">国外回收贸易商</option>
+						<option value="10201003">码头，仓库储存商</option>
+						<option value="10201004">国内供应商</option>
+						<option value="10201005">国内回收贸易商</option>
+						<option value="10201006">国内加工，拆解商</option>
+						<option value="10201007">利废企业</option>
+						<option value="10201008">设备，技术，服务提供商</option>
+						<option value="10201009">冶炼厂</option>
+						<option value="10201010">电子厂</option>
+						<option value="10201011">造粒厂</option>
+					</select>
+				</div>
+				
+				<div class="aui-input-row">
+					<span class="aui-input-addon"><span class="red">*</span>地区：</span>
+					<input type="hidden" id="provincecode" value="">
+					<input type="text" id="provicetext" placeholder="请选择地区" class="userName aui-input" autocomplete="off" readonly="">
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">Q Q：</span>
+					<input type="number" id="qq" placeholder="请输入您的QQ号码" class="contact aui-input" autocomplete="off" maxlength="30">
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">邮箱：</span>
+					<input type="text" id="email" placeholder="请输入您的邮箱" class="contact aui-input" autocomplete="off" maxlength="30">
+				</div>
+				<div class="reg-into aui-input-row">
+					<span class="aui-input-addon">地址：</span>
+					<input type="text" id="address" placeholder="请输入地址" class="business aui-input" autocomplete="off" maxlength="255">
+				</div>
+				<div class="reg-into aui-input-row">
+					<span class="aui-input-addon">邮编：</span>
+					<input type="text" id="addresszip" placeholder="请输入邮编" class="business aui-input" autocomplete="off" maxlength="255">
+				</div>
+			</div>
+		</div>
+		<div class="btn-post">
+			<div class="aui-btn aui-btn-block aui-btn-success">
+				完成注册
+			</div>
+		</div>
+		<div style="height: 45px;"></div>
+	</body>
+	<script type="text/javascript">
+		var REG_EMAIL = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i;
+		var regmun = new RegExp("^[0-9]*$");
+		$(function(){
+			$(".btn-post").on("click", function() {
+				var email = $("#email").val();
+				var addresszip = $("#addresszip").val();
+				var address = $("#address").val();
+				var qq= $("#qq").val();
+				var serviceCode = $("#serviceCode").val();
+				var provincecode = $("#provincecode").val();
+				var companyname = $("#companyname").val();
+				
+				if (companyname.length<=0){
+					hint("请公司名称");
+					$("#companyname").focus();
+					return false;
+				}
+				
+				if (serviceCode.length<=0){
+					hint("请选择公司类型");
+					$("#serviceCode").focus();
+					return false;
+				}
+				if (provincecode.length<=0){
+					hint("请选择地区");
+					$("#provincecode").focus();
+					return false;
+				}
+				if (email.length > 0) {
+					if (!REG_EMAIL.test(email)) {
+						hint("输入邮箱格式不正确");
+						$("#email").focus();
+						return false;
+					}
+				}
+				if (qq.length > 0) {
+					if (!regmun.test(qq)){
+						hint("请输入正确的QQ，必须是数字");
+						$("#qq").focus();
+						return false;
+					}
+				}
+				var data = {
+					companyname : companyname,
+					serviceCode : serviceCode,
+					email : email,
+					qq : qq,
+					addresszip : addresszip,
+					address : address,
+					provincecode:provincecode,
+					backurl:"{{backurl}}",
+				}
+				postAjax(data);
+			})
+			$("#provicetext").on("click", function() {
+				layer.open({
+					type: 2,
+					title: '选择地区',
+					shadeClose: true,
+					shade: 0.8,
+					scrollbar: false,
+					area: ['85%', '70%'],
+					content: '/user/province.html' //iframe的url
+				}); 
+			});
+		});
+		function xzprovincecode(parea,code){
+			$("#provincecode").val(code);
+			$("#provicetext").val(parea)
+		}
+		function postAjax(data) {
+			layer.load(2)
+			zzajax("post","/user/regsecond_save.html",data,function(ret){
+				//zzalert(JSON.stringify(err))
+				if (ret) {
+					if (ret.err == 'false') {
+						layer.msg("注册成功！");
+						window.location='/user/regsuccess.html?backurl={{backurl}}'
+					} else {
+						hint(ret.errkey)
+					}
+				} else {
+					
+				};
+				layer.closeAll('loading');
+			},function(){
+				layer.closeAll('loading');
+			});
+		}
+
+		function hint(ts) {
+			layer.msg(ts)
+		}
+	</script>
+	{%include 'aui/bottom.html'%}
+</html>

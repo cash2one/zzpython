@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>报价最终页</title>
+		<link rel="stylesheet" type="text/css" href="../../css/price/price-detail.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/price/price-detail.css" />
+		
+		<style>
+			.info-table{
+				overflow:auto;
+			}
+			.info-table img{
+				width:100%
+			}
+		</style>
+</head>
+<body>
+	<div class="essay" style="display:none">
+		<h1 class="essay-title"></h1>
+		<div class="essay-info-list clear">
+			<span class="essay-time"></span>
+		</div>
+	</div>
+	<div class="info-table" style="display:none"></div>
+	<div style="clear: both"></div>
+	
+    <div class="aui-content" id="priceother" style="display: none">
+    	<h3 class="interfix">相关报价</h3>
+        <ul class="aui-list-view price-list">
+            
+        </ul>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+
+<script>
+	apiready = function() {
+		changeserverurl();
+		var data={
+				price_id:api.pageParam.id,
+		}
+		zzappajax("get",hosturl+"price/study_detail.html",data,function(ret){
+			if (ret){
+				$(".info-table").show();
+				$(".essay").show();
+				$(".info-table").html(ret.content)
+			}
+		},function(){
+			
+		})
+	}
+</script>
+
+</html>

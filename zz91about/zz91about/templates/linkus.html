@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" href="css/base.css" rel="stylesheet" />
+<link type="text/css" href="css/about.css" rel="stylesheet" />
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+<script src="js/about.js"></script>
+<title>友情链接-ZZ91再生网</title>
+</head>
+
+<body>
+{%include 'top.html'%}
+<div class="mainlong contentbg">
+	<div class="main">
+    	<div class="contenttitle">
+        	<h3 class="e7"></h3>
+        </div>
+        <div class="jobcontent" style="background-image:none">
+          <div class="jobtitle">【文字友情链接】</div>
+          <div class="linkcontent">
+        	<ul>
+            {%for web in websitelist.list%}
+            	<li style="width:180px">
+                    <div class="txt"><a href='{{web.url}}' target='_blank' title='{{web.name}}'>{{web.name}}</a></div>
+                </li>
+            {%endfor%}
+            </ul>
+            <div style="clear:both"></div>
+          </div>
+        </div>
+        
+        <div class="jobcontent" style="background-image:none">
+          <div class="jobtitle">【图片友情链接】</div>
+          <div class="linkcontent">
+        	<ul>
+            {%for web in websitelist2.list%}
+            	<li style="width:180px">
+                	<div class="img"><a href='{{web.url}}' target='_blank' title='{{web.name}}'><img src='{{web.pic}}' alt='{{web.name}}'  border='0' width="88" height="31"></a></div>
+                </li>
+            {%endfor%}
+            </ul>
+            <div style="clear:both"></div>
+          </div>
+        </div>
+        
+        <div class="jobcontent" style="background-image:none">
+          <div class="jobtitle">【本站链接】</div>
+          <div class="linkcontent">
+<table width="100%" border="0" cellpadding="5" cellspacing="0">
+  <tbody>
+    <tr>
+      <td rowspan="2" width="20%" align="center" style="border-bottom:solid 1px #CCC"><img src="http://www.zz91.com/about/images/logo150.gif" width="150" height="50" alt="ZZ91再生网" title="ZZ91再生网" /></td>
+      <td width="80%">规格（150*50）图片连接代码：</td>
+    </tr>
+    <tr>
+      <td style="border-bottom:solid 1px #CCC"><label>
+        <input name="logo150" type="text" id="logo150" value="&lt;A href='http://www.zz91.com' alt=ZZ91再生网&gt;&lt;img src='http://www.zz91.com/images/logo150.gif'&gt;&lt;/a&gt;" style="width:100%"  />
+      </label></td>
+    </tr>
+    <tr>
+      <td rowspan="2" align="center" style="border-bottom:solid 1px #CCC"><img src="http://www.zz91.com/about/images/logo120.gif" width="120" height="40" alt="ZZ91再生网" title="ZZ91再生网" /></td>
+      <td>规格（120*40）图片连接代码：</td>
+    </tr>
+    <tr>
+      <td style="border-bottom:solid 1px #CCC"><label>
+        <input name="logo120" type="text" id="logo120" value="&lt;A href='http://www.zz91.com' alt=ZZ91再生网&gt;&lt;img src='http://www.zz91.com/images/logo120.gif'&gt;&lt;/a&gt;" style="width:100%"  />
+      </label></td>
+    </tr>
+    <tr>
+      <td rowspan="2" align="center" style="border-bottom:solid 1px #CCC"><img src="http://www.zz91.com/about/images/logo88.gif" width="88" height="31" alt="ZZ91再生网" title="ZZ91再生网" /></td>
+      <td>规格（88*31）图片连接代码：</td>
+    </tr>
+    <tr>
+      <td style="border-bottom:solid 1px #CCC"><label>
+        <input name="logo88" type="text" id="logo88" value="&lt;A href='http://www.zz91.com' alt=ZZ91再生网&gt;&lt;img src='http://www.zz91.com/images/logo88.gif'&gt;&lt;/a&gt;" style="width:100%"  />
+      </label></td>
+    </tr>
+    <tr>
+      <td rowspan="2" align="center">ZZ91再生网</td>
+      <td>文字链接代码：：</td>
+    </tr>
+    <tr>
+      <td><label>
+        <input name="logo150" type="text" id="logo150" value="&lt;a href='http://www.zz91.com' target='_blank'&gt;ZZ91再生网&lt;/a&gt;" style="width:100%"  />
+      </label></td>
+    </tr>
+  </tbody>
+</table>
+<div style="clear:both"></div>
+          </div>
+        </div>
+        
+        <div class="jobcontent" style="background-image:none">
+          <div class="jobtitle">【图片友情链接】</div>
+          <div class="linkcontent">
+        	欢迎添加友情链接 客服热线：0571-56613737 QQ1:2335663681 QQ2:14703479
+            <div style="clear:both"></div>
+          </div>
+        </div>
+        
+    </div>
+</div>
+{%include 'bottom.html'%}
+</body>
+</html>

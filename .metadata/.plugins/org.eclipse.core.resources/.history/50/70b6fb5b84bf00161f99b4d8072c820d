@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>资料</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <style>
+    	body{
+    		height: auto;
+    	}
+        .aui-card {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="aui-content aui-card aui-noborder">       
+        <div class="aui-form">
+        	<div class="aui-input-row my-face" style="height:80px">
+				<span class="aui-input-addon">头像</span>
+				<a class="aui-arrow-right">
+				<div class="aui-input facepic">
+					<img class="aui-pull-right" src="../../image/noavatar.gif" style="width:60px;margin-right:50px;border-radius: 50%;">
+				</div> </a>
+			</div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">手机</span>
+                <input type="text" class="aui-input" id="mobile" value="" placeholder="请输入手机号码"/>
+            </div>
+            	
+            <div class="aui-input-row">
+                <span class="aui-input-addon">昵称</span>
+                <input type="text" class="aui-input" id="uname" placeholder="昵称"/>
+            </div>
+
+            <div class="aui-input-row">
+                <span class="aui-input-addon">性别</span>
+                <div class="aui-pull-left sex">
+                    <input class="aui-radio aui-radio-info" type="radio" name="sex" id="sex" value="男"> <span class="aui-radio-name">男</span>
+                    <input class="aui-radio aui-radio-warning" type="radio" name="sex" id="sex" value="女"> <span class="aui-radio-name">女</span>
+                </div>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">婚姻</span>
+                <div class="aui-pull-left marry">
+                    <input class="aui-radio aui-radio-info" type="radio" name="marry" id="marry" value="已婚"> <span class="aui-radio-name">已婚</span>
+                    <input class="aui-radio aui-radio-warning" type="radio" name="marry" id="marry" value="未婚"> <span class="aui-radio-name">未婚</span>
+                </div>
+            </div>
+            <!--<div class="aui-input-row">
+                <span class="aui-input-addon">生日</span>
+                <input type="text" class="aui-input" placeholder="年/月/日" id="birthday" readonly tapmode onclick="openPicker()" />
+            </div>-->
+            <!--<div class="aui-input-row">
+                <span class="aui-input-addon">个人简介</span>
+                <textarea type="text" value="" id="comname" placeholder="请输入个人简介" class="aui-input"></textarea>
+            </div>-->
+    	</div>
+    </div>
+    <div class="aui-content aui-card aui-noborder">       
+        <div class="aui-form">
+            <div class="aui-input-row">
+				<span class="aui-input-addon">密码：</span>
+				<div class="aui-pull-right aui-btn aui-btn-success mobilebangding" style="margin-right:10px;float:right;margin-top: 5px" bind="0">重置密码</div>
+			</div>
+        </div>
+    </div>
+    <!--<div style="width: 100%;text-align: center">绑定社交账号</div>
+    <div class="aui-content aui-card aui-noborder">       
+        <div class="aui-form">
+        	<div class="aui-input-row">
+				<span class="aui-input-addon">手机：</span>
+				<span style="padding:10px;color:#999;overflow:hidden;text-overflow:ellipsis;width:180px;display:block;float:left">请绑定手机</span>
+				<div class="aui-pull-right aui-btn aui-btn-success mobilebangding" style="margin-right:10px;float:right;margin-top: 5px" bind="0">解绑</div>
+			</div>	
+        	<div class="aui-input-row">
+				<span class="aui-input-addon">微信：</span>
+				<span style="padding:10px;color:#999;overflow:hidden;text-overflow:ellipsis;width:180px;display:block;float:left">请绑定微信</span>
+				<div class="aui-pull-right aui-btn aui-btn-success mobilebangding" style="margin-right:10px;float:right;margin-top: 5px" bind="0">解绑</div>
+			</div>
+			<div class="aui-input-row">
+				<span class="aui-input-addon">QQ：</span>
+				<span style="padding:10px;color:#999;overflow:hidden;text-overflow:ellipsis;width:180px;display:block;float:left">请绑定QQ</span>
+				<div class="aui-pull-right aui-btn aui-btn-success mobilebangding" style="margin-right:10px;float:right;margin-top: 5px" bind="0">解绑</div>
+			</div>
+        </div>
+    </div>-->
+    <div class="aui-content-padded">
+        <div class="aui-btn aui-btn-block aui-btn-info saveinfo" >确认保存</div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js" ></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+
+<script type="text/javascript">
+	
+    function openPicker(){
+        api.openPicker({
+            type: 'date',
+            date: '1985-01-01',
+            title:'选择日期'
+        },function(ret,err){
+            var year = ret.year;
+            var month = ret.month;
+            var day = ret.day;
+            $api.val($api.byId("birthday"),''+year+'/'+month+'/'+day+'');
+        });
+    }
+    var imagesList = [];
+	apiready = function(){
+        api.parseTapmode();
+        
+        $("body").on("click",".mobilebangding",function(){
+        	var pageParam = {
+	          wintitle:"密码重置",
+	          type:"modpass",
+	          bounces:false,
+	        };
+			openWin("modpass","../main/register_one_frm.html",pageParam);
+        })
+        
+        $(".my-face").on("click", function() {
+			api.actionSheet({
+				cancelTitle : '取消',
+				buttons : ['拍照', '从手机相册选择'],
+			}, function(ret, err) {
+				if (ret.buttonIndex == 1) {
+					var photobj = {
+						sourceType : 'camera'
+					}
+					api.pageDown({
+						'bottom' : true //是否滚动，为false时说明当前页面已经到达底部了
+					});
+					getphoto(photobj);
+				}
+				if (ret.buttonIndex == 2) {
+					var photobj = {
+						sourceType : 'album'
+					}
+					getphoto(photobj);
+					//getphotolist(photobj);
+				}
+			});
+		});
+		$(".saveinfo").on("click", function() {
+			infoeditsave();
+		})
+        ajaxinfo()
+    }
+    function ajaxinfo(){
+		zzappajax("get",hosturl+"/app/show_member.html",'',function(ret){
+			if (ret){					
+				var uname=ret.uname;
+				var userid=ret.userid;
+				var mobile=ret.mobile;
+				var sex=ret.sex;
+				var marry=ret.marry;
+				$("#uname").val(uname);
+				$("#mobile").val(mobile);
+				//alert(sex)
+				$(":radio[name=sex][value='"+sex+"']").prop("checked",true);
+				$(":radio[name=marry][value='"+marry+"']").prop("checked",true);
+			}
+		},function(){})
+	}
+	//拍照
+	function getphoto(obj) {
+		var thisBtn = $(".facepic");
+		api.getPicture({
+			sourceType : obj.sourceType,
+			allowEdit : false,
+			quality : 70,
+			targetWidth : 200,
+			targetHeight : 200,
+			saveToPhotoAlbum : false
+		}, function(ret, err) {
+			//zzalert(JSON.stringify(ret))
+			if (ret) {
+				var file = [];
+				file[0] = ret.data;
+				if (ret.data != "") {
+					var imginfo = "";
+					$.each(file, function(i, item) {
+						imagesList.push(item);
+						imginfo +='<img class="aui-pull-right" src="'+item+'" style="width:60px;margin-right:50px;border-radius: 50%;">';
+					});
+					thisBtn.html(imginfo)
+				}
+			} else {
+				api.toast({
+					msg : '系统错误,请重试2',
+					duration : 2000,
+					location : 'bottom'
+				});
+			}
+		});
+	}
+	//保存信息
+	function infoeditsave() {
+		var sex=$(".sex input:checked").val();
+		var marry=$(".marry input:checked").val();
+		var mobile=$("#mobile").val();
+		var uname=$("#uname").val();
+		if (mobile == "") {
+			hint("请输入手机！");
+			return;
+		}
+		if (uname == "") {
+			hint("请输入昵称！");
+			return;
+		}
+		api.showProgress({title:'保存中...',modal:false});
+		var data={
+			sex:sex,
+			mobile:mobile,
+			marry:marry,
+			uname:uname,
+			file:imagesList,
+		}
+		
+		zzappajax("get",hosturl+"/app/modinfo.html",'',function(ret){
+			if (ret){
+				if (ret.err=="false"){
+					hint("保存成功！");
+				}
+			}
+		},function(){})
+		
+	}
+</script>
+</html>

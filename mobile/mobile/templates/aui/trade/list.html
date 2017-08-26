@@ -1,0 +1,797 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>{{seo_keywords}}_供求列表_ZZ91废料移动商务</title>
+		<meta name="keywords" content="废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备">
+		<meta name="description" content="ZZ91再生网是中国最大最旺的网上废料贸易市场,这里为您精选了废金属,废塑料,废纸,废橡胶,纺织废料,废旧设备,废电子电器,废玻璃,废皮革,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备等各类废料供求信息.公司黄页.行业资讯.价格行情.展会信息等。">
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<style>
+			.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+			.clearfix{height:1%}
+			.clearfix{display:block}
+			.popsearch{
+				padding: 10px;
+				height: 100%;
+				position: fixed;
+				width: 100%;
+				top: 0px;
+				background-color: #F4F5F7;
+				z-index: 9999;
+				display: none;
+			}
+			.nearseach{
+				display: block;
+				padding: 10px;
+				margin-top: 10px;
+				background-color: #f9f9f9;
+			}
+			.nearseach a{
+				margin-right: 10px;
+				text-align: center;
+				padding: 10px;
+			}
+			a{
+				color: #333
+			}
+			header{
+				position: fixed;
+				width:100%;
+				top:0px;
+			}
+			.aui-bar-nav .aui-pull-right{
+				flex-direction:column;
+				-webkit-flex-direction:column;
+			}
+			.aui-bar  .header-word-icon{
+				line-height: normal;
+				margin-top: 3px;
+			}
+			.header-word{
+				font-size: 12px;
+				line-height: normal;
+			}
+			.j_navlist>div{
+				position: relative;
+			}
+			.am-icon-sanjiao{
+				display: inline-block;
+				width: 0;
+				height: 0;
+				border-width: 0px 0px 10px 10px;
+				border-style: solid dashed dashed dashed;
+				border-color: transparent transparent #333 transparent;
+				position: absolute;
+				right: 8px;
+				bottom: 3px;
+			}
+			.navbox{
+				width: 100%;
+				background: #fff;
+				z-index: 2000;
+				position: relative;
+			}
+			.navbox-fix{
+				position: fixed;
+				z-index: 2000;
+				top: 0px;
+				width: 100%;
+				background: #009900;
+				color: #fff;
+			}
+			.floatpage{
+				position: fixed;
+				bottom:0px;
+				width:100%;
+				height:54px;
+				z-index: 9999;
+			}
+			.this_select{
+				color: red
+			}
+			.popbox{
+				position: fixed;
+				background: rgba(0,0,0,0.5);
+				height: 100%;
+				width: 100%;
+				z-index: 1;
+				top: 0;
+				padding-top: 73px;
+			}
+			.popbox.aui-invisible{
+				z-index: -1
+			}
+			.popmian{
+				position: fixed;
+				height: 100%;
+				width: 100%;
+				transform:translateY(-100%);
+				-ms-transform:translateY(-100%); 	/* IE 9 */
+				-moz-transform:translateY(-100%); 	/* Firefox */
+				-webkit-transform:translateY(-100%); /* Safari 和 Chrome */
+				-o-transform:translateY(-100%); 	/* Opera */
+				transition: transform 0.5s;
+				-moz-transition: transform 0.5s;	/* Firefox 4 */
+				-webkit-transition: transform 0.5s;	/* Safari 和 Chrome */
+				-o-transition: transform 0.5s;	/* Opera */
+			}
+			.popmian.outMd{
+				transform:translateY(0,);
+				-ms-transform:translateY(0); 	/* IE 9 */
+				-moz-transform:translateY(0); 	/* Firefox */
+				-webkit-transform:translateY(0); /* Safari 和 Chrome */
+				-o-transform:translateY(0,); 	/* Opera */
+			}
+			.popmodule{
+				background: #fff;
+			}
+			.get-type{
+				height: 300px;
+			}
+			.get-type>div{
+				height: 100%;
+				overflow: auto;
+			}
+			.get-type-bg{
+				background: #e6e6e6;
+				margin-top: -1px;
+				margin-bottom: 0
+			}
+			.get-type-sm dt{
+				font-size: 14px;
+				font-weight: bold;
+			}
+			.get-type-sm dd{
+				margin-bottom: 10px;
+			}
+			.get-type-sm dd span{
+				margin-top: 5px;
+				font-size: 12px;
+				background: #fff;
+				display: inline-block;
+				height: 24px;
+				line-height: 24px;
+				float: left;
+				width: 45%;
+				margin-right: 10px;
+				padding: 0 10px;
+			}
+			.this-type{
+				background: rgb(0, 102, 0);
+				color: #fff
+			}
+			.aui-img-box{
+				position: relative;
+				width: 60px;
+				text-align: center;
+				margin-right: 15px;
+			}
+			.hy-type{
+				position: absolute;
+				color: #fff;
+				font-size: 10px;
+				background: #5063cb;
+				width: 18px;
+				height: 18px;
+				border-radius: 50%;
+				text-align: center;
+				line-height: 18px;
+				left: -5px;
+				top: -5px;
+			}
+			.hy-type1{
+				font-size: 12px;
+				border-radius: 20%;
+				background: #5063cb;
+			}
+			.hy-type2{
+				background: #ff0000;
+			}
+			.hy-type3{
+				background: #03a9f4;
+			}
+			.hy-type4{
+				background: #ffc107
+			}
+			.hy-type5{
+				background: #009688
+			}
+			.hy-type6{
+				background: #00bcd4
+			}
+			.getmore{
+				background: #fff
+			}
+			.getmore-box{
+				height: 300px;
+				display: block;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+   				-webkit-box-orient: vertical;
+				-webkit-flex-flow: column;
+		  		flex-flow: column;
+			}
+			.getmore-list{
+				webkit-box-flex: 1; 
+				-webkit-flex: 1;
+				flex: 1;
+				overflow: auto;
+			}
+			.btn-box{
+				height: 50px;
+				padding-top: 8px;
+			}
+			.j_getTime dt{
+				border-bottom: solid 1px #ebebeb;
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			.list-top{
+				background-image:-webkit-linear-gradient(to top, #fff,#FFF3D7); 
+				background-image:linear-gradient(to top, #fff,#FFF3D7)
+			}
+			.list-jingjia{
+				background-image:-webkit-linear-gradient(to top, #fff,#F4FFEA); 
+				background-image:linear-gradient(to top, #fff,#F4FFEA)
+			}
+			.ptop{
+	    		background-color: #009900;
+	    		text-align:center;
+	    		width:100%;
+	    		clear:both;
+	    		line-height:33px;
+	    		overflow: hidden;
+	    		padding-left:5px;
+	    		position: relative;
+	    	}
+	    	.zdbotton{
+	    		background-color:#C0392B;
+	    		color:#fff;
+	    		width:60px;
+	    		font-size:12px;
+	    		margin-top:8px;
+	    		display:block;
+	    		line-height:20px;
+	    		border-radius:2px;
+	    		position: absolute;
+	    		right:10px;
+	    		top:0px;
+	    		padding-left:4px;
+	    		padding-right:4px;
+	    		text-align:center;
+	    	}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+			<a class="aui-pull-left" href="/trade/">
+				<span class="aui-iconfont aui-icon-left"></span>
+			</a>
+			<div class="aui-searchbar aui-border-radius searchcenter" onclick="opensearch()">
+				<i class="aui-iconfont aui-icon-search"></i>
+				<div class="aui-searchbar-text">请输入搜索产品关键词</div>
+			</div>
+			<a class="aui-pull-right shaixuan" href="/products_publish/">
+				<span class="aui-iconfont aui-icon-edit header-word-icon"></span>
+				<span class="header-word">发布</span>
+			</a>
+		</header>
+		<div class="navbox">
+			<div class="aui-row aui-font-size-12 aui-text-center aui-border-b j_navlist">
+				<div class="aui-col-xs-3 aui-border-r aui-padded-5">{{showkeywords}}<i class="am-icon-sanjiao"></i></div>
+				<div class="aui-col-xs-3 aui-border-r aui-padded-5">{{gqtext}}<i class="am-icon-sanjiao"></i></div>
+				<div class="aui-col-xs-3 aui-border-r aui-padded-5">{{ordtext}}<i class="am-icon-sanjiao"></i></div>
+				<div class="aui-col-xs-3 aui-padded-5">筛选<i class="am-icon-sanjiao"></i></div>
+			</div>
+		</div>
+		<div class="aui-tips-danger ptop">
+			<div class="aui-ellipsis-1" style="text-align: left">
+				<i class="aui-iconfont aui-icon-creative"></i>
+				<font style="font-size:14px" color="#fff">下载APP，获取<font color="#FEE900">20</font>元红包</font>
+				<a class="zdbotton" href="http://m.zz91.com/app.html">免费下载</a>
+			</div>
+		</div>
+		<div class="topdiv" onclick="pagetotop();" style="bottom: 90px; display: none;"><span class="aui-iconfont aui-icon-top"></span></div>
+		<div class="popsearch">
+			<form action="/trade/" method="GET">
+			<div class="aui-searchbar" id="search" style="margin: 0px;">
+				<div class="aui-searchbar-input aui-border-radius" style="padding-left: 0px;">
+					<i class="aui-iconfont aui-icon-search"></i>
+					<input type="search" name="keywords" placeholder="请输入搜索产品关键词" id="search-input">
+					<div class="aui-searchbar-clear-btn">
+						<i class="aui-iconfont aui-icon-close"></i>
+					</div>
+				</div>
+			</div>
+			
+			<div style="width: 300px;margin: 0 auto;padding: 20px;">
+				<div class="aui-btn aui-pull-left" onclick="closesearch()">取消</div>
+				<button class="aui-btn aui-btn-success aui-pull-right searchbtn" type="submit">搜索</button>
+			</div>
+			</form>
+			<div style="clear: both;"></div>
+			{%if mysearchkeylist%}
+			<section class="nearseach">
+				最近搜索：
+				{%for l in mysearchkeylist%}
+				<a href="/trade/?keywords={{l.keywords}}">{{l.keywords}}</a>
+				{%endfor%}
+			</section>
+			{%endif%}
+			{%if hotsearchlist%}
+			<section class="nearseach">
+				热门搜索：
+				{%for list in hotsearchlist%}
+				<a href="/trade/?keywords={{list.kname}}">{{list.kname}}</a>
+				{%endfor%}
+			</section>
+			{%endif%}
+		</div>
+		
+		<div class="popbox aui-invisible">
+			<div class="popmian">
+				<div class="popmodule">
+					<div class="aui-row get-type">
+						<div class="aui-col-xs-3">
+							<ul class="aui-list-view get-type-bg aui-font-size-12 aui-text-center j_cptype">
+								<li class="aui-list-view-cell" code="1000">废金属</li>
+								<li class="aui-list-view-cell" code="1001">废塑料</li>
+								<li class="aui-list-view-cell" code="1003">废纺织品</li>
+								<li class="aui-list-view-cell" code="1004">废纸</li>
+								<li class="aui-list-view-cell" code="1007">二手设备</li>
+								<li class="aui-list-view-cell" code="1005">电子电器</li>
+								<li class="aui-list-view-cell" code="1002">橡胶轮胎</li>
+								<li class="aui-list-view-cell" code="1006">废玻璃</li>
+								<li class="aui-list-view-cell" code="1009">服务</li>
+								<li class="aui-list-view-cell" code="1008">其他废料</li>
+							</ul>
+						</div>
+						<div class="aui-col-xs-9 aui-bg-default">
+							<dl class="aui-padded-5 get-type-sm box-div">
+								<!--<dt>废钢铁</dt>
+								<dd class="clearfix">
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+								</dd>
+								<dt>废钢铁</dt>
+								<dd class="clearfix">
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+								</dd>
+								<dt>废钢铁</dt>
+								<dd class="clearfix">
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+								</dd>
+								<dt>废钢铁</dt>
+								<dd class="clearfix">
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+									<span>废铁</span>
+								</dd>-->
+							</dl>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="popmian">
+				<div class="popmodule">
+					<div class="aui-content">
+						<ul class="aui-list-view">
+							<li class="aui-list-view-cell"><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}?{%if nopinyin%}keywords={{keywords}}&{%endif%}{%if haveprice%}&haveprice=1{%endif%}{%if havepic%}&havepic=1{%endif%}">全部</a></li>
+							<li class="aui-list-view-cell"><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}gy.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}{%if haveprice%}&haveprice=1{%endif%}{%if havepic%}&havepic=1{%endif%}">供应</a></li>
+							<li class="aui-list-view-cell"><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}qg.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}{%if haveprice%}&haveprice=1{%endif%}{%if havepic%}&havepic=1{%endif%}">求购</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="popmian">
+				<div class="popmodule">
+					<div class="aui-content">
+						<ul class="aui-list-view ">
+							<li class="aui-list-view-cell"><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{{gqtype}}.html?{%if nopinyin%}keywords={{keywords}}{%endif%}&sorttype=">综合</a></li>
+							<li class="aui-list-view-cell"><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{{gqtype}}.html?{%if nopinyin%}keywords={{keywords}}{%endif%}&sorttype=member">会员等级</a></li>
+							<li class="aui-list-view-cell"><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{{gqtype}}.html?{%if nopinyin%}keywords={{keywords}}{%endif%}&sorttype=pro">信息质量</a></li>
+							<li class="aui-list-view-cell"><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{{gqtype}}.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}haveprice=1">有价格</a></li>
+							<li class="aui-list-view-cell"><a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{{gqtype}}.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}havepic=1">有图片</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="popmian">
+				<div class="popmodule">
+					<div class="getmore-box">
+						<div class="aui-content aui-bg-default aui-margin-b-0 getmore-list">
+							<ul class="aui-grid-nine aui-font-size-12 getmore j_getTime">
+								<dt>
+									<i class="aui-iconfont aui-icon-time aui-font-size-18"></i> 时间
+								</dt>
+								<li class="aui-col-xs-4 aui-text-center aui-padded-t-5 aui-padded-b-5" >
+									<i class="aui-iconfont aui-icon-round aui-font-size-16" timearg="1"></i> 一天内
+								</li>
+								<li class="aui-col-xs-4 aui-text-center aui-padded-t-5 aui-padded-b-5" >
+									<i class="aui-iconfont aui-icon-round aui-font-size-16" timearg="2"></i> 三天内
+								</li>
+								<li class="aui-col-xs-4 aui-text-center aui-padded-t-5 aui-padded-b-5" >
+									<i class="aui-iconfont aui-icon-round aui-font-size-16" timearg="3"></i> 一周内
+								</li>
+								<li class="aui-col-xs-4 aui-text-center aui-padded-t-5 aui-padded-b-5">
+									<i class="aui-iconfont aui-icon-round aui-font-size-16" timearg="4"></i> 一月内
+								</li>
+								<li class="aui-col-xs-4 aui-text-center aui-padded-t-5 aui-padded-b-5">
+									<i class="aui-iconfont aui-icon-round aui-font-size-16" timearg="5"></i> 两月内
+								</li>
+								<li class="aui-col-xs-4 aui-text-center aui-padded-t-5 aui-padded-b-5">
+									<i class="aui-iconfont aui-icon-round aui-font-size-16" timearg=""></i> 全部
+								</li>
+							</ul>
+							<ul class="aui-grid-nine aui-font-size-12 getmore j_getAds">
+								<li class="aui-col-xs-12 aui-padded-t-10 aui-padded-b-0 aui-font-size-14 thismore" area="no">
+									<i class="aui-iconfont aui-icon-locationfill aui-font-size-18"></i> 所在地
+								</li>
+								{%for alst in arealist%}
+								<li area="{{alst}}" class="aui-col-xs-4 aui-text-center aui-padded-t-5 aui-padded-b-5 {%ifequal province alst%}aui-text-success{%endifequal%}">
+									<i area="{{alst}}" class="aui-iconfont {%ifequal province alst%}aui-icon-roundcheckfill{%else%}aui-icon-round{%endifequal%} aui-font-size-16"></i> {{alst}}
+								</li>
+								{%endfor%}
+								<li area="" class="aui-col-xs-4 aui-text-center aui-padded-t-5 aui-padded-b-5 {%ifequal province alst%}aui-text-success{%endifequal%}">
+									<i area="" class="aui-iconfont {%ifequal province alst%}aui-icon-roundcheckfill{%else%}aui-icon-round{%endifequal%} aui-font-size-16"></i> 全国
+								</li>
+							</ul>  
+						</div>
+						<div class="aui-text-center btn-box  aui-padded-l-15 aui-padded-r-15">
+							<input type="hidden" id="area1" value="{{province}}">
+							<input type="hidden" id="timearg1" value="{{timearg}}">
+							<input type="hidden" id="keywords" value="{{keywords}}">
+							<input type="hidden" id="ptype" value="{{ptype}}">
+							<input type="hidden" id="haveprice" value="{%if haveprice%}{{haveprice}}{%endif%}">
+							<input type="hidden" id="havepic" value="{%if havepic%}{{havepic}}{%endif%}">
+							<div class="aui-btn aui-btn-success aui-btn-block aui-padded-b-5 aui-padded-t-5 j_btn btn_confirm">确认</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="aui-content">
+			<center>
+				<script type="text/javascript">
+					/*kangxianyue 20:5 创建于 2017/4/19*/
+					//var cpro_id = "u2958427";
+					/*20:6 创建于 2017/4/27*/
+					var cpro_id = "u2965257";
+				</script>
+				<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/cm.js"></script>
+			</center>
+			{%if adlist%}
+				{%for list in adlist%}
+					<div><a href="{{list.url}}" target="_blank"><img src="{{list.picaddress}}" style="width: 100%;"></a></div>
+				{%endfor%}
+			{%endif%}
+			<ul class="aui-list-view">
+				{%if isding%}
+				{% for list in productListtop %}
+				<li class="aui-list-view-cell aui-img list-top">
+					<a href="/trade/detail{{list.pdt_id}}.html" class="aui-arrow-right">
+					<div class="aui-img-box aui-pull-left">
+						<div class="hy-type hy-type1">顶</div>
+						<img class="aui-img-object" src="{{list.pdt_images}}">
+					</div>
+					<div class="aui-img-body aui-padded-r-10">
+						<b class="aui-ellipsis-1">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</b>{%if list.isbuycontact%}&nbsp;<img src="/images/pindao/eye.jpg" />{%endif%}
+						<p>
+							{{list.com_province}}  {{list.pdt_price}} 
+							{%if list.ldbtel%}
+							{%if list.phone_rate%}{{list.phone_rate}}% 接听率{%endif%}
+							{%endif%}
+						</p>
+						<p class="aui-ellipsis-2">{{list.pdt_detail}}</p>
+					</div>
+					</a>
+				</li>
+				{%endfor%}
+				{%endif%}
+				{% for list in jingjialist %}
+				<li class="aui-list-view-cell aui-img list-jingjia jiangjialist" hiturl="{{list.hiturl}}">
+					<div class="aui-img-box aui-pull-left">
+						<div class="hy-type hy-type5">优</div>
+						<img class="aui-img-object" src="{{list.pdt_images}}">
+					</div>
+					<div class="aui-img-body aui-arrow-right aui-padded-r-10">
+						<b class="aui-ellipsis-1">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</b>{%if list.isbuycontact%}&nbsp;<img src="/images/pindao/eye.jpg" />{%endif%}
+						<p>
+							{{list.com_province}}  {{list.pdt_price}} 
+							{%if list.ldbtel%}
+							{%if list.phone_rate%}{{list.phone_rate}}% 接听率{%endif%}
+							{%endif%}
+						</p>
+						<p class="aui-ellipsis-2">{{list.pdt_detail}}</p>
+					</div>
+				</li>
+				{%endfor%}
+				{%if productList%}
+				{% for list in productList %}
+				<li class="aui-list-view-cell aui-img">
+					<a href="/trade/detail{{list.pdt_id}}.html" class="aui-arrow-right ">
+					<div class="aui-img-box aui-pull-left">
+						{%if list.vipflag.litname%}
+						<div class="hy-type {{list.vipflag.classname}}">{{list.vipflag.litname}}</div>
+						{%endif%}
+						<img class="aui-img-object" src="{{list.pdt_images}}" />
+					</div>
+					<div class="aui-img-body aui-padded-r-10">
+						<b class="aui-ellipsis-1">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</b>{%if list.isbuycontact%}&nbsp;<img src="/images/pindao/eye.jpg" />{%endif%}
+						<p>
+							{{list.com_province}}  {{list.pdt_price}} 
+							{%if list.ldbtel%}
+							{%if list.phone_rate%}{{list.phone_rate}}% 接听率{%endif%}
+							{%endif%}
+						</p>
+						<p class="aui-ellipsis-2">{{list.pdt_detail}}</p>
+					</div>
+					</a>
+				</li>
+				{%endfor%}
+				{%else%}
+				<li class="aui-list-view-cell aui-img">
+				   	<div class="aui-img-body aui-arrow-right aui-padded-r-10"> 
+				   	 没有找到合适{{keywords}}的相关信息。<a href="/products_publish/">点此发布供求</a>
+				   	 </div>
+				</li>
+				{%endif%}
+			</ul>
+		</div>
+
+		<div style="height: 60px;"></div>
+		<div class="floatpage">
+			<div class="page">
+				<ul>
+					{% if firstpage %}
+					<li class="page_prev">
+						<a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{%if gyurl%}{{gyurl}}_{%endif%}p{{prvpage}}.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}{%if province%}province={{province}}&{%endif%}{%if timearg%}timearg={{timearg}}{%endif%}{%if haveprice%}&haveprice={{haveprice}}{%endif%}{%if havepic%}&havepic={{havepic}}{%endif%}&sorttype={{sorttype}}">上一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+					<li class="page_no">
+						<select onChange="window.location='/trade/{%if pinyin%}{{pinyin}}/{%endif%}{%if gyurl%}{{gyurl}}_{%endif%}p'+this.value+'.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}{%if province%}province={{province}}&{%endif%}{%if timearg%}timearg={{timearg}}{%endif%}{%if haveprice%}&haveprice={{haveprice}}{%endif%}{%if havepic%}&havepic={{havepic}}{%endif%}&sorttype={{sorttype}}'">
+							<option>第{{page}}页</option>
+							{%for p in page_range%}
+							<option value="{{p.number}}">第{{p.number}}页</option>
+							{%endfor%}
+						</select> /{{page_listcount}}页
+					</li>
+					{% if lastpage%}
+					<li class="page_next">
+						<a href="/trade/{%if pinyin%}{{pinyin}}/{%endif%}{%if gyurl%}{{gyurl}}_{%endif%}p{{nextpage}}.html?{%if nopinyin%}keywords={{keywords}}&{%endif%}{%if province%}province={{province}}&{%endif%}{%if timearg%}timearg={{timearg}}{%endif%}{%if haveprice%}&haveprice={{haveprice}}{%endif%}{%if havepic%}&havepic={{havepic}}{%endif%}&sorttype={{sorttype}}">下一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+		{%if showgooglead%}
+		{%else%}
+		<center>
+		<script type="text/javascript">
+		/*kangxianyue 20:5 创建于 2017/4/19*/
+		var cpro_id = "u2958427";
+		</script>
+		<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/cm.js"></script>
+		</center>
+		<center>
+			<div style="margin-top:3px;">
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- 微门户 -->
+			<ins class="adsbygoogle"
+				 style="display:block"
+				 data-ad-client="ca-pub-5512236620584335"
+				 data-ad-slot="8274972003"
+				 data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+			</div>
+		</center>
+		<div style="height: 50px;"></div>
+		{%endif%}
+		<script type="text/javascript"> 
+			var myarea='';
+			var clientid="";
+			//选取产品类别
+			$(".j_cptype li").on("click",function(){
+				$(this).addClass("this-type").siblings(".this-type").removeClass("this-type");
+				var categorycode=$(this).attr("code");
+				var ajaxurl="/categoryinfo.html?categorycode="+categorycode+"&ctype=aui";
+				$.getScript(ajaxurl, function() {
+					var result = categorylist;
+					$(".box-div").html(result);
+					return false;
+				});
+			})
+
+
+			//选取需要的类别
+			$(".j_navlist").children().on("click",function(){
+				if($(this).hasClass("this_select")){
+					closePop();
+					return;
+				}
+				$(".this_select").removeClass("this_select");
+				$(this).addClass("this_select")
+				var index = $(this).index();
+				$(".popbox").removeClass("aui-invisible");
+				$(".popmian").removeClass("outMd").eq(index).addClass("outMd")
+			})
+			
+			$.getScript("http://pv.sohu.com/cityjson?ie=utf-8", function() {
+				myarea = returnCitySN.cname;
+				clientid=returnCitySN.cip;
+			})
+			$(".jiangjialist").click(function(){
+				var hiturl=$(this).attr("hiturl");
+				if (hiturl){
+					window.location='/trade/hiturl.html?rd='+hiturl.toString()+'&area='+myarea+"&clientid="+clientid
+				}
+			});
+
+
+			$(document).on("touchstart",function(e){ 
+				e = window.event || e; // 兼容IE7
+				obj = $(e.srcElement || e.target);
+				if ($(obj).is(".popmian")) { 
+					closePop() //隐藏弹出窗口
+					return false;
+				} 
+			}); 
+
+			function closePop(){
+				$(".this_select").removeClass("this_select");
+				$(".popmian").removeClass("outMd")
+				$(".popbox").addClass("aui-invisible"); //隐藏弹出窗口
+				return false;
+			}
+			//筛选时间
+			
+			$(".j_getTime li").on("click",function(){
+				$(this).addClass("aui-text-success").siblings(".aui-text-success").removeClass("aui-text-success");
+				$(".j_getTime li i").removeClass("aui-icon-roundcheckfill");
+				$(".j_getTime li i").removeClass("aui-icon-round");
+				$(".j_getTime li i").toggleClass("aui-icon-round");
+				$(this).find("i").removeClass("aui-icon-round");
+				$(this).find("i").toggleClass("aui-icon-roundcheckfill");
+			})
+
+			//筛选所在地
+			$(".j_getAds li").on("click",function(){
+				if ($(this).attr("area")!="no"){
+					$(this).toggleClass("aui-text-success");
+					$(this).find("i").removeClass("aui-icon-round");
+					if ($(this).find("i").attr("class")=="aui-iconfont aui-font-size-16"){
+						$(this).find("i").toggleClass("aui-icon-roundcheckfill");
+					}else{
+						$(this).find("i").removeClass("aui-icon-roundcheckfill");
+						$(this).find("i").toggleClass("aui-icon-round");
+					}
+				}
+			})
+			//确定筛选
+			$('.btn_confirm').click(function(){
+				var timeselect="";
+				var provincelist = "";
+				$(".j_getAds .aui-icon-roundcheckfill").each(function() {
+					if ($(this).attr("area") != "") {
+						provincelist = provincelist + $(this).attr("area") + "|";
+					}
+				});
+				timeselect=$(".j_getTime .aui-icon-roundcheckfill").attr("timearg");
+				if (!timeselect){
+					timeselect=""
+				}
+				if (provincelist!=""){
+					provincelist=provincelist.substr(0,provincelist.length-1)
+				}
+				//var timearg=$("#timearg1").val();
+				var keywords=$("#keywords").val();
+				var ptype=$("#ptype").val();
+				var haveprice=$("#haveprice").val();
+				var havepic=$("#havepic").val();
+				window.location.href='/trade/{%if pinyin%}{{pinyin}}/{%endif%}{{gqtype}}.html?keywords='+keywords+'&province='+provincelist+'&timearg='+timeselect+'&ptype='+ptype+'&haveprice='+haveprice+'&havepic='+havepic;
+			});
+
+			
+
+			function opensearch(){
+				$(".popsearch").show();
+				$("#search-input").focus();
+				document.getElementById("search-input").focus();
+			}
+			function closesearch(){
+				$(".popsearch").hide();
+				return false;
+			}
+			function pagetotop(){
+				$('body').animate( {scrollTop: 0}, 500);
+				return false;
+			}
+			$(function(){
+				var scroll = new auiScroll({
+			        listen:true,
+			        distance:200 //判断到达底部的距离，isToBottom为true
+			    },function(ret){
+			        if(ret.isToBottom){
+			        }else{
+				        if (ret.scrollTop>150){
+				        	$(".topdiv").fadeIn();
+				        }else{
+				        	$(".topdiv").fadeOut();
+				        }
+				        if (ret.scrollTop>90){
+				        	$(".navbox").addClass("navbox-fix");
+				        	$(".popbox").css("padding-top","28px");
+				        }else{
+				        	$(".navbox").removeClass("navbox-fix");
+				        	$(".popbox").css("padding-top","72px");
+				        }
+			        }
+			
+			    });
+				var provincelist="{{province}}"
+				if (provincelist!="None" && provincelist!=''){
+					provincelist=provincelist.split("|");
+					$.each(provincelist, function(index, item) {
+						$(".j_getAds li").each(function() {
+							if ($(this).attr("area") == item) {
+								$(this).toggleClass("aui-text-success");
+								$(this).find("i").removeClass("aui-icon-round");
+								$(this).find("i").toggleClass("aui-icon-roundcheckfill");
+							}
+						});
+					})
+				}
+				$(".j_getTime li").each(function() {
+					if ($(this).find("i").attr("timearg") == "{{timearg}}") {
+						$(this).toggleClass("aui-text-success");
+						$(this).find("i").removeClass("aui-icon-round");
+						$(this).find("i").toggleClass("aui-icon-roundcheckfill");
+					}
+				});
+				
+			})
+		</script>
+		{%include 'aui/bottom.html'%}
+	</body>
+</html>

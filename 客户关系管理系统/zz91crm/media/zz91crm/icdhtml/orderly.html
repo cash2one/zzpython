@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+		<script type="text/javascript" src="/assets/layer/layer.js"></script>
+		<title></title>
+	</head>
+
+	<body>
+		<ul class="nav-tabs">
+			<li {%ifequal user_category_code '1306'%}class="active"{%endifequal%}><a href="?user_category_code=1306">新签</a></li>
+			<li {%ifequal user_category_code '24'%}class="active"{%endifequal%}><a href="?user_category_code=24">续签</a></li>
+			<li {%ifequal user_category_code '1315'%}class="active"{%endifequal%}><a href="?user_category_code=1315">增值</a></li>
+			<li {%ifequal user_category_code '1325'%}class="active"{%endifequal%}><a href="?user_category_code=1325">再生汇</a></li>
+			<li {%ifequal user_category_code '1324'%}class="active"{%endifequal%}><a href="?user_category_code=1324">交易</a></li>
+		</ul>
+		{%ifequal user_category_code '24'%}
+		<table width="100%" cellpadding="2" cellspacing="0" class="table table-bordered">
+			<tr>
+				<td rowspan="15">续签</td>
+				<td rowspan="4">老客户续费</td>
+				<td><label>
+					<input type="radio" name="radio" id="radio" value="1200老客户续费" />
+					1200老客户续费 </label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio2" value="2180老客户续费" />
+					2180老客户续费</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio3" value="3500老客户续费" />
+					3500老客户续费</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio4" value="老客户续费升级4.0版" />
+					老客户续费升级4.0版</label></td>
+			</tr>
+			<tr>
+				<td rowspan="3">4.0版续费</td>
+				<td><label>
+					<input type="radio" name="radio" id="radio5" value="4.0版再生通续费" />
+					4.0版再生通续费</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio6" value="4.0版金牌会员续费" />
+					4.0版金牌会员续费</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio7" value="4.0版钻石会员续费" />
+					4.0版钻石会员续费</label></td>
+			</tr>
+			<tr>
+				<td rowspan="3">来电宝续费</td>
+				<td><label>
+					<input type="radio" name="radio" id="radio8" value="来电宝2000续费" />
+					来电宝2000续费</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio9" value="来电宝升级3600续费" />
+					来电宝升级3600续费</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio10" value="来电宝3600续费" />
+					来电宝3600续费</label></td>
+			</tr>
+			<tr>
+				<td rowspan="4">过期会员续费</td>
+				<td><label>
+					<input type="radio" name="radio" id="radio11" value="过期再生通续费" />
+					过期再生通续费</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio12" value="过期金牌会员续费" />
+					过期金牌会员续费</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio13" value="过期钻石会员续费" />
+					过期钻石会员续费</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio14" value="过期来电宝续费" />
+					过期来电宝续费</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio15" value="其他" />
+					其他</label></td>
+			</tr>
+		</table>
+		{%endifequal%}
+		{%ifequal user_category_code '1315'%}
+		<table width="100%" cellpadding="2" cellspacing="0" class="table table-bordered">
+			<tr>
+				<td rowspan="17">增值来源1</td>
+				<td rowspan="7">新增值</td>
+				<td><label>
+					<input type="radio" name="radio" id="radio16" value="新增值-1200老客户" />
+					1200老客户</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio17" value="新增值-2180老客户" />
+					2180老客户</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio18" value="新增值-3500老客户" />
+					3500老客户</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio19" value="新增值-来电宝会员" />
+					来电宝会员</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio20" value="新增值-品牌通" />
+					品牌通</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio21" value="新增值-4.0版新客户" />
+					4.0版新客户</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio21" value="新增值-非高会消费" />
+					非高会消费</label></td>
+			</tr>
+			<tr>
+				<td rowspan="7">续费增值</td>
+				<td><label>
+					<input type="radio" name="radio" id="radio22" value="续费增值-1200老客户" />
+					1200老客户</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio23" value="续费增值-2180老客户" />
+					2180老客户</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio24" value="续费增值-3500老客户" />
+					3500老客户</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio25" value="续费增值-来电宝会员" />
+					来电宝会员</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio26" value="续费增值-品牌通" />
+					品牌通</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio27" value="续费增值-4.0版新客户" />
+					4.0版新客户</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio27" value="续费增值-非高会消费" />
+					非高会消费</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio28" value="过期会员" />
+					过期会员</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio29" value="过期广告" />
+					过期广告</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio31" value="其他" />
+					其他</label></td>
+			</tr>
+			<tr>
+				<td rowspan="12">增值来源2</td>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio32" value="新客户" />
+					新客户</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio33" value="老客户" />
+					老客户</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio34" value="公海挑入" />
+					公海挑入</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio35" value="外网录入" />
+					外网录入</label></td>
+			</tr>
+			<tr>
+				<td rowspan="4">呼入</td>
+				<td><label>
+					<input type="radio" name="radio" id="radio36" value="呼入-服务电话" />
+					服务电话</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio37" value="呼入-直线呼入" />
+					直线呼入</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio38" value="呼入-微信咨询" />
+					微信咨询</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio39" value="呼入-在线申请" />
+					在线申请</label></td>
+			</tr>
+			<tr>
+				<td rowspan="2">移动端消费</td>
+				<td><label>
+					<input type="radio" name="radio" id="radio40" value="移动端广告" />
+					移动端广告</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio41" value="再生钱包充值" />
+					再生钱包充值</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio42" value="转介绍" />
+					转介绍</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio43" value="其他" />
+					其他</label></td>
+			</tr>
+		</table>
+		{%endifequal%}
+		{%ifequal user_category_code '1306'%}
+		<table width="100%" cellpadding="2" cellspacing="0" class="table table-bordered">
+			<tr>
+				<td rowspan="10">新签</td>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio44" value="新客户" />
+					新客户</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio45" value="老客户" />
+					老客户</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio46" value="公海挑入" />
+					公海挑入</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio47" value="外网录入" />
+					外网录入</label></td>
+			</tr>
+			<tr>
+				<td rowspan="3">呼入</td>
+				<td><label>
+					<input type="radio" name="radio" id="radio48" value="呼入-服务电话" />
+					服务电话</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio49" value="呼入-直线呼入" />
+					直线呼入</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio50" value="呼入-微信咨询" />
+					微信咨询</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio51" value="再生钱包充值" />
+					再生钱包充值</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio52" value="转介绍" />
+					转介绍</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio53" value="其他" />
+					其他</label></td>
+			</tr>
+		</table>
+		{%endifequal%}
+		{%ifequal user_category_code '1324'%}
+		<table width="100%" cellpadding="2" cellspacing="0" class="table table-bordered">
+			<tr>
+				<td rowspan="10">交易</td>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio44" value="新客户" />
+					新客户</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio45" value="老客户" />
+					老客户</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio46" value="公海挑入" />
+					公海挑入</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio47" value="radio" />
+					外网录入</label></td>
+			</tr>
+			<tr>
+				<td rowspan="3">呼入</td>
+				<td><label>
+					<input type="radio" name="radio" id="radio48" value="呼入-服务电话" />
+					服务电话</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio49" value="呼入-直线呼入" />
+					直线呼入</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio50" value="呼入-微信咨询" />
+					微信咨询</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio51" value="再生钱包充值" />
+					再生钱包充值</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio52" value="转介绍" />
+					转介绍</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio53" value="其他" />
+					其他</label></td>
+			</tr>
+		</table>
+		{%endifequal%}
+		{%ifequal user_category_code '1325'%}
+		<table width="100%" cellpadding="2" cellspacing="0" class="table table-bordered">
+			<tr>
+				<td rowspan="14"> 再生汇</td>
+				<td rowspan="10"> 新签</td><td><label>
+					<input type="radio" name="radio" id="radio54" value="公海客户" />
+					公海客户</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio55" value="会刊收集" />
+					会刊收集</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio56" value="外网收集" />
+					外网收集</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio57" value="转介绍" />
+					转介绍</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio58" value="微信咨询" />
+					微信咨询</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio59" value="在线报名" />
+					在线报名</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio60" value="服务电话" />
+					服务电话</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio61" value="过期高会" />
+					过期高会</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio62" value="服务期高会" />
+					服务期高会</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio63" value="小产品客户" />
+					小产品客户</label></td>
+			</tr>
+			<tr>
+				<td rowspan="3">续费</td>
+				<td><label>
+					<input type="radio" name="radio" id="radio64" value="续费" />
+					续费</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio65" value="过期续费" />
+					过期续费</label></td>
+			</tr>
+			<tr>
+				<td><label>
+					<input type="radio" name="radio" id="radio66" value="续费升级" />
+					续费升级</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label>
+					<input type="radio" name="radio" id="radio67" value="其他" />
+					其他</label></td>
+			</tr>
+		</table>
+		{%endifequal%}
+	</body>
+<script>
+	
+	$(document).ready(function() {
+		$('input').on('click', function() {
+			var self=$(this)
+			closeorder(self)
+		});	
+	})
+	function closeorder(self){
+		var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+		parent.$("#com_ly1").val(self.val());
+		parent.$("#comlyflag").val(1);
+		parent.layer.close(index);
+	}
+</script>
+</html>

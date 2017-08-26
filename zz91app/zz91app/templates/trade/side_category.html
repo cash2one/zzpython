@@ -1,0 +1,40 @@
+<nav class="mui-bar mui-bar-tab" style="top: 0px;height: 40px;line-height: 40px;">
+<a style="display: block;float: left;width: 50%;text-align: center;" href="javascript:loaddata('http://app.zz91.com/offerlistside.html');">筛选</a>
+<a style="display: block;float: left;width: 50%;text-align: center;color: #0033CC;" href="javascript:loaddata('http://app.zz91.com/offerlistside_cate.html?keywords={{keywords}}&tflag={{tflag}}');">分类浏览</a>
+</nav>
+
+<ul class="mui-table-view" style="margin-top: 40px;">
+	{%if first%}
+	{%else%}
+	
+	<li class="mui-table-view-cell mui-left"><a class="mui-navigate-left" href="javascript:loaddata('http://app.zz91.com/offerlistside_cate.html?code={{backcode}}&keywords={{keywords}}&tflag={{tflag}}');">
+        <button class="mui-btn-blue">返回</button>
+    </a></li>
+
+    {%endif%}
+{%for list in categorylist%}
+<li class="mui-table-view-cell mui-left">
+	{%if first%}
+	<a class="mui-navigate-right" href="javascript:loaddata('http://app.zz91.com/offerlistside_cate.html?code={{list.code}}&keywords={{keywords}}&tflag={{tflag}}');">
+        {{list.label}}
+    </a>
+    {%else%}
+	{%if list.catelist%}
+    <a class="mui-navigate-right" href="javascript:loaddata('http://app.zz91.com/offerlistside_cate.html?code={{list.code}}&keywords={{keywords}}&tflag={{tflag}}');">
+        {{list.label}}
+    </a>
+    {%else%}
+    <a class="mui-navigate-right" href="javascript:sideloaddata('/offerlist/?keywords={{list.label_hex}}','tradelist');">
+        {{list.label}}
+    </a>
+    {%endif%}
+    {%endif%}
+</li>
+{%endfor%}
+</ul>
+<nav class="mui-bar mui-bar-tab" style="height: 45px;line-height: 45px;">
+<center>
+<button class="mui-btn mui-btn-green" onclick="back();">&nbsp;取消&nbsp;</button>
+</center>
+</nav>
+<input type="hidden" id="appnavname" value="交易中心" />

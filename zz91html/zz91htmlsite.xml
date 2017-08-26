@@ -1,0 +1,19 @@
+<uwsgi>
+ <socket>:8012</socket>
+ <workers>2</workers>
+ <master>true</master>
+ <listen>100</listen>
+ <processes>2</processes>
+ <pythonpath>.</pythonpath>
+ <module>zz91html.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>zz91html/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>2048</limit-as>
+ <reload-on-as>300</reload-on-as>
+ <reload-on-rss>300</reload-on-rss>
+ <max-requests>300</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/zz91html.log</daemonize>
+</uwsgi>

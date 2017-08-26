@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>ZZ91再生网简易后台</title>
+		<link rel="stylesheet" type="text/css" href="../mobile/css/aui.css" />
+		<script type="text/javascript" src="../mobile/js/jquery.js"></script>
+		<script type="text/javascript" src="../mobile/js/zepto.min.js"></script>
+		<style>
+			body {
+				height: auto;
+			}
+			
+			.aui-card {
+				margin-top: 15px;
+			}
+			
+			.aui-content {
+				margin-bottom: 0;
+			}
+			
+			p {
+				padding: 0 10px;
+			}
+			
+			p.padded {
+				padding: 10px;
+			}
+			
+			.year-list {
+				background: none;
+				text-align: center;
+				overflow: hidden;
+				padding: 10px 5px;
+			}
+			
+			.year {
+				text-align: center;
+				font-size: 12px;
+				margin: 0 5px;
+				background: #fff;
+				height: 32px;
+				line-height: 32px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				color: #333;
+				overflow: hidden;
+			}
+			
+			.year.active {
+				background: #ff9900;
+				border: 1px solid #ff9900;
+				color: #ffffff;
+				-webkit-animation: fadeIn .5s ease both;
+				animation: fadeIn .5s ease both;
+			}
+			
+			.year.disabled {
+				background: #eeeeee;
+				border-color: #eeeeee;
+				color: #666;
+			}
+			
+			.price-list .amount strong {
+				font-size: 18px;
+				font-weight: 400;
+			}
+			
+			.basic-info {
+				margin-bottom: 15px;
+			}
+			
+			@-webkit-keyframes fadeIn {
+				from {
+					background: #ffffff;
+					border: 1px solid #ddd;
+				}
+				to {
+					background: #ff9900;
+					border: 1px solid #ff9900;
+				}
+			}
+			
+			.aui-content-padded {
+				margin-top: 15px;
+			}
+			.aui-input-row .aui-input-addon{
+				color: #0000FF;
+			}
+
+			.full {
+				width: 100%;
+			}
+			.aui-bar-tab{
+				padding-top: 10px;
+			}
+			.aui-nav .aui-bar-tab{
+			background-color: #ebebeb;
+		}
+		</style>
+		<script type="text/javascript" src="../mobile/js/comm.js"></script>
+	</head>
+
+	<body>
+		<div class="aui-tab">
+			<ul class="aui-tab-nav">
+				<li><a href="javascript:window.history.back(-1)">返回列表</a></li>
+				<li class="active"><a href="editpro.html?proid={{proid}}">详情</a></li>
+			</ul>
+		</div>
+		<div class="aui-content basic-info">
+			<div class="aui-form">
+				<div class="aui-input-row">
+					<span class="aui-input-addon">标题</span>
+					<input type="text" class="aui-input" placeholder="标题" id="title" value="{{title}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">是否有图</span>
+					<div class="aui-pull-right">
+						<input class="aui-radio" type="radio" value="p" id="flag" name="flag" {%ifequal flag 'p'%}checked{%endifequal%}>
+						<div class="aui-radio-name">有图</div>
+						<input class="aui-radio" type="radio" value="" id="flag" name="flag" {%ifequal flag ''%}checked{%endifequal%}>
+						<div class="aui-radio-name">无图</div>
+					</div>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">图片</span>
+					<select name="pic" class="selectlist" id="litpic"><option value="" selected="">请选择</option><option value="0">第一张</option><option value="1" >第二张</option><option value="2">第三张</option></select>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">文章主栏目</span>
+					<select name="typeid" type="select" class="aui-input selectlist" id="typeid">
+						<option value="">请选择</option>
+						{%for list in typelist%}
+						<option value="{{list.id}}">{{list.typename}}</option>
+						{%endfor%}
+					</select>
+					<script>selectOption("typeid","{{typeid}}")</script>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">标签</span>
+					<input type="text" class="aui-input" placeholder="标签" id="keywords" value="{{keywords}}" readonly/>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">内容</span>
+					<div class="aui-btn aui-btn-info" id="procontent" tapmode >编辑内容</div>
+				</div>
+				
+				<div class="aui-input-row">
+					<span class="aui-input-addon">内容样式</span>
+					<select name="cstyle" class="selectlist" id="cstyle"><option value="1">过滤</option><option value="0">原始</option></select>
+				</div>
+				<script>selectOption("cstyle","{{cstyle}}")</script>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">审核情况</span>
+					<span id="statustext">
+					{%ifequal arcrank "-1"%}未审核{%endifequal%}
+					{%ifequal arcrank "1"%}已审核{%endifequal%}
+					</span>
+				</div>
+			</div>
+		</div>
+		
+		<div style="height: 60px;"></div>
+		<footer class="aui-nav" id="aui-footer">
+			<ul class="aui-bar-tab">
+				<li>
+					<div class="aui-btn aui-btn-info" id="shpro" tapmode >审核</div>
+				</li>
+				<li>
+					<div class="aui-btn aui-btn-info viewnews" tapmode >预览</div>
+				</li>
+				<li>
+					<div class="aui-btn aui-btn-warning" id="noshpro" tapmode >删除</div>
+				</li>
+			</ul>
+		</footer>
+		
+	</body>
+	<script type="text/javascript" src="../mobile/js/jquery.js"></script>
+	<script type="text/javascript" src="../mobile/js/zepto.min.js"></script>
+	<script type="text/javascript" src="../mobile/js/layer/layer.js"></script>
+	<script type="text/javascript">
+		;
+		! function() {
+			//页面一打开就执行，放入ready是为了layer所需配件（css、扩展模块）加载完毕
+			layer.ready(function() {
+				$("#category_products_main_code").on("click", function() {
+					//iframe层
+					layer.open({
+						type: 2,
+						title: '供求类别',
+						shadeClose: true,
+						shade: 0.8,
+						area: ['70%', '80%'],
+						content: 'category.html?proid={{proid}}' //iframe的url
+					});
+				})
+				$("#procontent").on("click", function() {
+					//iframe层
+					layer.open({
+						type: 2,
+						title: '详细内容',
+						shadeClose: true,
+						shade: 0.8,
+						area: ['90%', '90%'],
+						content: 'dacong_content.html?id={{id}}' //iframe的url
+					});
+				})
+				$(".viewnews").on("click", function() {
+					//iframe层
+					layer.open({
+						type: 2,
+						title: '详细内容',
+						shadeClose: true,
+						shade: 0.8,
+						area: ['100%', '100%'],
+						content: 'dacong_view.html?id={{id}}' //iframe的url
+					});
+				})
+				
+				$(".selectlist").on("change", function() {
+					//iframe层
+					var fildvalue=$(this).val();
+					var fild=$(this).attr("id");
+					savecontent(fild,fildvalue,'dede_archives','{{id}}')
+				})
+				
+				$("body").on("click",".aui-radio",function() {
+					var fild=$(this).attr("id");
+					var fildvalue=$(this).attr("value");
+					savecontent(fild,fildvalue,'dede_archives','{{id}}')
+				})
+				
+				$("body").on("click",".aui-input",function() {
+					if ($(this).attr("type")=="text" && $(this).attr("id")!="typeid"){
+						var oldstr=$(this).val();
+						var fild=$(this).attr("id");
+						var placeholder=$(this).attr("placeholder");
+						var str = prompt(placeholder, oldstr);
+						var fildvalue=str;
+						if (str){
+							savecontent(fild,fildvalue,'dede_archives','{{id}}')
+							$(this).val(str);
+						}
+					}
+				})
+				//审核
+				$("body").on("click","#shpro",function() {
+					var fild="arcrank";
+					var fildvalue="1";
+					savecontent(fild,fildvalue,'dede_archives','{{id}}');
+					$("#statustext").html("已审核");
+					//window.close()
+					window.location='{{request_url}}'
+				})
+				//审核未通过
+				$("body").on("click","#noshpro",function() {
+					delcontent('dede_archives','{{id}}');
+					//window.close()
+					window.location='{{request_url}}'
+				})
+				function savecontent(fild,fildvalue,tablevalue,id){
+					var data={
+						fild : fild,
+						fildvalue : fildvalue,
+						tablevalue : tablevalue,
+						id : id
+					}
+					$.ajax({
+						url : 'dacong_savenews.html',
+						type : 'post',
+						dataType : 'json',
+						cache : false,
+						data : data,
+					    success:function(ret) {
+							if (ret) {
+								if (ret.err == "true") {
+									alert(ret.errkey)
+								} else {
+									layer.msg('保存成功');
+								}
+							} else {
+								alert('异常！1')
+							};
+						},
+						error : function(e) {
+							alert(alert(JSON.stringify(e)));
+						}
+					});
+				}
+				function delcontent(tablevalue,id){
+					if (confirm("确实要删除吗？")){
+						var data={
+							tablevalue : tablevalue,
+							id : id
+						}
+						$.ajax({
+							url : 'dacong_delnews.html',
+							type : 'post',
+							dataType : 'json',
+							cache : false,
+							data : data,
+						    success:function(ret) {
+								if (ret) {
+									if (ret.err == "true") {
+										alert(ret.errkey)
+									} else {
+										layer.msg('删除成功');
+										window.close()
+									}
+								} else {
+									alert('异常！1')
+								};
+							},
+							error : function(e) {
+								alert(alert(JSON.stringify(e)));
+							}
+						});
+					}
+					
+				}
+				
+			});
+		}();
+		
+	</script>
+
+</html>

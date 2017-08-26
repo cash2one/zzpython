@@ -1,0 +1,278 @@
+<script>
+function DoHL(obj)
+{
+	obj.className="offerFilterListNormal_on"
+}
+function DoLL(obj)
+{
+	obj.className="offerFilterListNormal"
+}
+
+</script>
+{% for list in productListtop %}
+<li class="offerFilterListTop">
+	<div class="offerFilterListInfoLeft">
+		{%if nopiclist%}
+		{%else%}
+		<div class="offerFilterListPic"><a href='/productdetails{{list.pdt_id}}.htm' target=_blank><img src='{{list.pdt_images}}' width='100' height='75' ></a></div>
+		{%endif%}
+		<div class="{{offerFilterListPicInfo_class}}">
+			<h5 class="offerFilterListInfoTit">
+			<a target='_blank' href='/productdetails{{list.pdt_id}}.htm' title='{{list.pdt_kind.kindtxt}}{{list.pdt_name1}}'><b title='{{list.pdt_kind.kindtxt}}{{list.pdt_name1}}'>{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</b></a></h5>
+			<p class="offerFilterListInfoLegend" style='word-break:break-all;color:#666'>{{list.pdt_detail}}</p>
+			{%if list.vipflag.vipcheck%}
+			<div class="divcompinfo"><p class="offerFilterListInfoComp" ><span class="fontBlod">企业:</span> <A href='http://{{list.vipflag.vipsubname}}.zz91.com/' target='_blank'>{{list.com_name}} <img src="http://www.zz91.com/cn/images/aoyun/{{list.vippaibian}}.gif" align="absmiddle" ></A>
+			{%if list.arrcompinfo.qq%}
+			<a  rel="nofollow" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{list.arrcompinfo.qq}}&site=www.zz91.com&menu=yes" title="QQ:{{list.arrcompinfo.qq}}"><img border="0" src="http://wpa.qq.com/pa?p=2:{{list.arrcompinfo.qq}}:4" alt="QQ:{{list.arrcompinfo.qq}}" onerror="this.src='http://img0.zz91.com/zz91/china/images/qq.gif'" ></a>
+			{%endif%}
+			<div style="display:none; position:absolute" class="showcompinfo"><a href="http://{{list.vipflag.vipsubname}}.zz91.com/" target="_blank" style="color:#039">{{list.com_name}}</a><br>电话：<font color="#006600">{{list.arrcompinfo.tel}}</font><br>手机：<font color="#006600">{{list.arrcompinfo.mobile}}</font><br>地址：<font color="#006600">{{list.arrcompinfo.address}}</font><br>注册时间：<font color="#006600">{{list.arrcompinfo.regtime}}</font><br>供求数量：<font color="#006600">{{list.arrcompinfo.offercount}}</font></div><!--recommend{{list.com_id}}-->
+			{%if list.fqr%}
+			<img src="http://img0.zz91.com/front/images/esite/fqr.gif" align="absmiddle" >
+			{%endif%}
+			{%if list.cjtj%}
+			<img src="http://img0.zz91.com/front/images/esite/cjtj.jpg" align="absmiddle" >
+			{%endif%}
+			</p></div>
+			{%else%}
+            <div class="divcompinfo"><p class="offerFilterListInfoComp"><span class="fontBlod">企业:</span> <A href='http://company.zz91.com/compinfo{{list.com_id}}.htm' target='_blank'>{{list.com_name}} <img src="http://www.zz91.com/cn/images/aoyun/{{list.vippaibian}}.gif" align="absmiddle" ></A><div style="display:none; position:absolute" class="showcompinfo"><a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target="_blank" style="color:#039">{{list.com_name}}</a><br>电话：<font color="#006600">{{list.arrcompinfo.tel}}</font><br>手机：<font color="#006600">{{list.arrcompinfo.mobile}}</font><br>地址：<font color="#006600">{{list.arrcompinfo.address}}</font><br>注册时间：<font color="#006600">{{list.arrcompinfo.regtime}}</font><br>供求数量：<font color="#006600">{{list.arrcompinfo.offercount}}</font></div><!--recommend{{list.com_id}}-->
+			{%if list.fqr%}
+			<img src="http://img0.zz91.com/front/images/esite/fqr.gif"  align="absmiddle" >
+			{%endif%}
+			{%if list.cjtj%}
+			<img src="http://img0.zz91.com/front/images/esite/cjtj.jpg" align="absmiddle" >
+			{%endif%}
+			</p></div>
+            {%endif%}
+	    </div>
+  </div>
+ <div class="offerFilterListInfoRight">
+			 <span class="offerFilterListInfoAddr">{{list.com_province}}
+			 {%if list.cxcompany%}
+             <img src="http://img0.zz91.com/zz91/company/images/cxlogo.gif">
+             {%endif%}
+				 </span>
+			 <span class="offerFilterListInfoPrice">{{list.pdt_price}}
+				 
+				 </span>
+			 <span class="offerFilterListInfoMember">
+				{%if list.vipflag.vipcheck%}
+				<img src="{{list.vipflag.vippic}}" alt="{{list.vipflag.vipname}}"/><br /><a href="http://www.zz91.com/service/newzst/" target='_blank'  title="{{list.vipflag.vipname}}">{{list.vipflag.vipname}}</a>
+				<br>
+				{%if list.zs%}
+				<img src="http://img0.zz91.com/zz91/images/zs1.png" title="终生会员">
+				{%else%}
+				<b>第<font color=red>{{list.vipflag.zstNum}}</font>年</b>
+				{%endif%}
+				{%endif%}
+			 </span>
+			 <span class="offerFilterListInfoFeed">
+				{%if list.vipflag.vipcheck%}
+				<a href="http://{{list.vipflag.vipsubname}}.zz91.com/zxly.htm" target='_blank'  class="getFeedBack">给我留言</a>
+				<a href="http://{{list.vipflag.vipsubname}}.zz91.com/lxfs.htm" target='_blank'  class="getLinkStyle">联系方式</a>
+				<a href="http://{{list.vipflag.vipsubname}}.zz91.com/" target='_blank'  class="getmsbStyle">门市部</a>
+				{%endif%}
+			 </span>
+  </div>
+</li>
+{% endfor %}
+
+{% for list in fixplist %}
+<li class="offerFilterListTop" onmouseover=DoHL(this); onmouseout=DoLL(this);>
+<SPAN >
+	<div class="offerFilterListInfoLeft">
+		{%if nopiclist%}
+		{%else%}
+		<div class="offerFilterListPic"><a href='/productdetails{{list.pdt_id}}.htm' target=_blank><img src='{{list.pdt_images}}'></a></div>
+		{%endif%}
+		<div class="{{offerFilterListPicInfo_class}}">
+			<h5 class="offerFilterListInfoTit">
+			<b><a  href='/productdetails{{list.pdt_id}}.htm' target='_blank' title='{{list.pdt_kind.kindtxt}}{{list.pdt_name1}}'>{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a></b><span class="datetime">{{list.pdt_time_en}}</span></h5>
+			<p class="offerFilterListInfoLegend" style='word-break:break-all;color:#666'>{{list.pdt_detail}}</p>
+					
+			{%if list.vipflag.vipcheck%}
+			<div class="divcompinfo"><p class="offerFilterListInfoComp"><span class="fontBlod">企业: </span> <A href='http://{{list.vipflag.vipsubname}}.zz91.com/' target='_blank' >{{list.com_name}}</A>
+			{%if list.arrcompinfo.qq%}
+			<a  rel="nofollow" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{list.arrcompinfo.qq}}&site=www.zz91.com&menu=yes" title="QQ:{{list.arrcompinfo.qq}}"><img border="0" src="http://wpa.qq.com/pa?p=2:{{list.arrcompinfo.qq}}:4" alt="QQ:{{list.arrcompinfo.qq}}" onerror="this.src='http://img0.zz91.com/zz91/china/images/qq.gif'" ></a>
+			{%endif%}
+				<div style="display:none; position:absolute" class="showcompinfo"><a href="http://{{list.vipflag.vipsubname}}.zz91.com/" target="_blank">{{list.com_name}}</a><br>电话：{{list.arrcompinfo.tel}}<br>手机：{{list.arrcompinfo.mobile}}<br>地址：{{list.arrcompinfo.address}}<br>注册时间：{{list.arrcompinfo.regtime}}<br>供求数量：{{list.arrcompinfo.offercount}}</div><!--recommend{{list.com_id}}--></p></div>
+			{%if list.fqr%}
+			<img src="http://img0.zz91.com/front/images/esite/fqr.gif">
+			{%endif%}
+			{%if list.cjtj%}
+			<img src="http://img0.zz91.com/front/images/esite/cjtj.jpg">
+			{%endif%}
+			{%endif%}
+	    </div>
+  </div>
+ <div class="offerFilterListInfoRight">
+			 <span class="offerFilterListInfoAddr">{{list.com_province}}
+				 {%if list.cxcompany%}
+             <img src="http://img0.zz91.com/zz91/company/images/cxlogo.gif">
+             {%endif%}
+				 </span>
+			 <span class="offerFilterListInfoPrice">{{list.pdt_price}}</span>
+			 <span class="offerFilterListInfoMember">
+				{%if list.vipflag.vipcheck%}
+				<img src="{{list.vipflag.vippic}}" alt="{{list.vipflag.vipname}}"/><br /><a href="http://www.zz91.com/service/newzst/" target='_blank'  title="{{list.vipflag.vipname}}">{{list.vipflag.vipname}}</a>
+				<br>
+				{%if list.zs%}
+				<img src="http://img0.zz91.com/zz91/images/zs1.png" title="终生会员">
+				{%else%}
+				<b>第<font color=red>{{list.vipflag.zstNum}}</font>年</b>
+				{%endif%}
+				{%endif%}
+			 </span>
+			 <span class="offerFilterListInfoFeed">
+				{%if list.vipflag.vipcheck%}
+				<a href="http://{{list.vipflag.vipsubname}}.zz91.com/zxly.htm" target='_blank'  class="getFeedBack">给我留言</a>
+				<a href="http://{{list.vipflag.vipsubname}}.zz91.com/lxfs.htm" target='_blank'  class="getLinkStyle">联系方式</a>
+				<a href="http://{{list.vipflag.vipsubname}}.zz91.com/" target='_blank'  class="getmsbStyle">门市部</a>
+				{%else%}
+				<a href="http://company.zz91.com/compinfo{{list.com_id}}.htm#message" target='_blank'  class="getFeedBack">给我留言</a>
+				<a href="http://trade.zz91.com/lxfs{{list.com_id}}.htm" target='_blank'  class="getLinkStyle">联系方式</a>
+                <a href="http://trade.zz91.com/gsjj{{list.com_id}}.htm" target='_blank'  class="getmsbStyle">公司主页</a>
+				{%endif%}
+			 </span>
+  </div>
+  </SPAN>
+</li>
+{% endfor %}
+<style>
+.icoxianhuo {
+		display: inline-block;
+		height: 20px;
+		line-height: 20px;
+		vertical-align: text-top;
+		width: 16px;
+		background: url(http://img0.zz91.com/zz91/spot/images/icon_4.png) center no-repeat;
+}
+.showcompinfo
+{
+	background:#FFF;
+	padding: 5px;
+	border: 1px solid #090;
+	line-height: 22px;
+	width: 300px;
+	z-index:9999;
+}
+
+</style>
+{% for list in productList %}
+<li class="offerFilterListNormal" onmouseover=DoHL(this); onmouseout=DoLL(this);>
+<SPAN >
+	<div class="offerFilterListInfoLeft">
+		{%if nopiclist%}
+		{%else%}
+		<div class="offerFilterListPic"><a href='/productdetails{{list.pdt_id}}.htm' target=_blank><img src='{{list.pdt_images}}'></a></div>
+		{%endif%}
+		<div class="{{offerFilterListPicInfo_class}}">
+			<h5 class="offerFilterListInfoTit">
+			{%if list.xianhuoid%}
+			<span class="icoxianhuo" title="现货"></span>
+			{%endif%}
+			
+			{%if list.vipflag.ldb%}
+			<b><a  href='http://www.zz91.com/ppc/productdetail{{list.pdt_id}}.htm' target='_blank' title='{{list.pdt_kind.kindtxt}}{{list.pdt_name1}}'>{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a></b> 
+			{%else%}
+			<b><a  href='/productdetails{{list.pdt_id}}.htm' target='_blank' title='{{list.pdt_kind.kindtxt}}{{list.pdt_name1}}'>{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a></b> 
+			{%endif%}
+			
+			<span class="datetime">{{list.pdt_time_en}}</span></h5>
+			
+			<p class="offerFilterListInfoLegend" style='word-break:break-all;color:#666'>{{list.pdt_detail}}</p>
+			{%if list.vipflag.ldb%}
+			<div style="font-size:12px;">联系电话：<font color=red><b>{{list.vipflag.ldb.ldbphone}}</b></font> 联系人：{{list.arrcompinfo.contact}}</div>
+			{%endif%}
+			<div class="divcompinfo">
+			{%if list.vipflag.vipcheck%}
+			<p class="offerFilterListInfoComp"><span class="fontBlod">企业: </span> <A href='http://{{list.vipflag.vipsubname}}.zz91.com/' target='_blank' >{{list.com_name}}</A>
+			{%if list.arrcompinfo.qq%}
+			<a  rel="nofollow" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{list.arrcompinfo.qq}}&site=www.zz91.com&menu=yes" title="请注明您是在ZZ91与我洽谈！"><img border="0" src="http://wpa.qq.com/pa?p=2:{{list.arrcompinfo.qq}}:4" alt="请注明您是在ZZ91与我洽谈！" onerror="this.src='http://img0.zz91.com/zz91/china/images/qq.gif'" ></a>
+			{%endif%}
+			<div style="display:none; position:absolute" class="showcompinfo"><a href="http://{{list.vipflag.vipsubname}}.zz91.com/" target="_blank" style="color:#039">{{list.com_name}}</a><br>电话：<font color="#006600">{{list.arrcompinfo.tel}}</font><br>手机：<font color="#006600">{{list.arrcompinfo.mobile}}</font><br>地址：<font color="#006600">{{list.arrcompinfo.address}}</font><br>注册时间：<font color="#006600">{{list.arrcompinfo.regtime}}</font><br>供求数量：<font color="#006600">{{list.arrcompinfo.offercount}}</font></div><!--recommend{{list.com_id}}-->
+			{%if list.fqr%}
+			<img src="http://img0.zz91.com/front/images/esite/fqr.gif">
+			{%endif%}
+			{%if list.cjtj%}
+			<img src="http://img0.zz91.com/front/images/esite/cjtj.jpg">
+			{%endif%}
+			
+			{%endif%}</p></div>
+	    </div>
+  </div>
+ <div class="offerFilterListInfoRight">
+			 <span class="offerFilterListInfoAddr">{{list.com_province}}
+			 {%if list.cxcompany%}
+             <img src="http://img0.zz91.com/zz91/company/images/cxlogo.gif">
+             {%endif%}
+				 </span>
+			 <span class="offerFilterListInfoPrice">{{list.pdt_price}}
+             
+             </span>
+			 <span class="offerFilterListInfoMember">
+				{%if list.vipflag.vipcheck%}
+				<img src="{{list.vipflag.vippic}}" alt="{{list.vipflag.vipname}}"/><br /><a href="http://www.zz91.com/service/newzst/" target='_blank'  title="{{list.vipflag.vipname}}">{{list.vipflag.vipname}}</a>
+				<br>
+				{%if list.zs%}
+				<img src="http://img0.zz91.com/zz91/images/zs1.png" title="终生会员">
+				{%else%}
+				<b>第<font color=red>{{list.vipflag.zstNum}}</font>年</b>
+				{%endif%}
+				{%endif%}
+			 </span>
+			 <span class="offerFilterListInfoFeed">
+				{%if list.vipflag.vipcheck%}
+				<a href="http://{{list.vipflag.vipsubname}}.zz91.com/zxly.htm" target='_blank'  class="getFeedBack">给我留言</a>
+				<a href="http://{{list.vipflag.vipsubname}}.zz91.com/lxfs.htm" target='_blank'  class="getLinkStyle">联系方式</a>
+				<a href="http://{{list.vipflag.vipsubname}}.zz91.com/" target='_blank'  class="getmsbStyle">门市部</a>
+				{%else%}
+				
+				
+				{%if list.vipflag.ldb%}
+				<a href="http://www.zz91.com/ppc/index{{list.com_id}}.htm" target='_blank'  class="getLinkStyle">联系方式</a>
+				<a href="http://www.zz91.com/ppc/index{{list.com_id}}.htm" target='_blank'  class="getmsbStyle">公司主页</a>
+				{%else%}
+				<a href="http://company.zz91.com/compinfo{{list.com_id}}.htm#message" target='_blank'  class="getFeedBack">给我留言</a>
+                <a href="http://trade.zz91.com/gsjj{{list.com_id}}.htm" target='_blank'  class="getmsbStyle">公司主页</a>
+				<a href="http://trade.zz91.com/lxfs{{list.com_id}}.htm" target='_blank'  class="getLinkStyle">联系方式</a>
+				{%endif%}
+				{%endif%}
+			 </span>
+  </div>
+  </SPAN>
+</li>
+{% endfor %}
+<li>
+<script>
+function frmtopages(frm,page)
+{
+	window.location="offerlist--{{action}}--p"+page+"--{{searchname}}.htm";
+	return false;
+}
+</script>
+<div id="clear"></div> 
+<div class="offerFilterListPage">
+<div style="float:right;"><form action="" method="post" id="topagefrm" onsubmit="return frmtopages(this,document.getElementById('topages').value)">共{{page_listcount}}页转到 <input type="text" name="topages" id="topages" style="width:30px; height:19px;vertical-align:middle" onKeyUp="value=value.replace(/[^\d]/,'')">
+  <input type="image" name="imageField" id="imageField" src="http://img0.zz91.com/front/images/offerList/queding.gif" style="vertical-align:middle"/>
+</form></div>
+<div style="float:left">
+{% if firstpage %}
+<!--<a href="/offerlist--{{action}}--p1--{{searchname}}.htm" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;-->
+<a href="/offerlist--{{action}}--p{{prvpage}}--{{searchname}}.htm" title="上一页" style="margin-right:2px;">上一页</a>
+{% endif %}
+{% for p in page_range %}
+{% if p.nowpage %}
+<span class="cpb" style="margin-right:2px;">{{p.number}}</span>
+{% else %}
+<a href="/offerlist--{{action}}--p{{p.number}}--{{searchname}}.htm" title="第{{p.number}}页" style="margin-right:2px;">{{p.number}}</a>
+{% endif %}
+{% endfor %}
+&nbsp;
+{% if lastpage%}
+<a href="/offerlist--{{action}}--p{{nextpage}}--{{searchname}}.htm" title="下一页" style="margin-right:2px;">下一页</a>
+<!--<a href="/offerlist--{{action}}--p{{page_listcount}}--{{searchname}}.htm" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;-->
+{% endif %}
+</div>
+</div>
+<input type=hidden id=totalrecords value={{listcount}} />
+</li>

@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>资讯中心</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<style>
+			.go-top {
+				color: #fff;
+				width: 30px;
+				height: 15px;
+				text-align: center;
+				line-height: 15px;
+				background-color: #ff0000;
+				float: right;
+				font-size: 10px;
+				margin-top: 2px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="topdiv" onclick="pagetotop();">
+			<span class="aui-iconfont aui-icon-top"></span>
+		</div>
+		<div class="nodata">
+			暂无相关数据
+		</div>
+		<div class="aui-content newsmain" style="display: none">
+			<ul class="aui-list-view">
+				<div class="j_top"></div>
+				<div class="j_news"></div>
+			</ul>
+		</div>
+		<div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;display:none'>
+			上拉获取更多信息
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/iscroll.js"></script>
+	<script type="text/javascript" src="../../script/aui-scroll.js" ></script>
+	<script id="info-list-top" type="text/html">
+		<li class="aui-list-view-cell aui-img" infoid = "{{ d.id }}">
+			<img class="aui-img-object aui-pull-left" src="{{ d.litpic }}" style="display:{{ d.displayDiv }}">
+			<div class="aui-img-body">
+				<b style="font-size: 16px">{{ d.title }}</b>
+				<p class='aui-ellipsis-2'>
+					{{ d.subcontent }}
+				</p>
+				<span class="go-top">置顶</span>
+			</div>
+		</li>
+	</script>
+	<script id="info-list" type="text/html">
+		<li class="aui-list-view-cell aui-img" infoid = "{{ d.id }}">
+			<img class="aui-img-object aui-pull-left" src="{{ d.litpic }}" style="display:{{ d.displayDiv }}">
+			<div class="aui-img-body">
+				<b style="font-size: 16px">{{ d.title }}</b>
+				<p class='aui-ellipsis-2'>
+					{{ d.subcontent }}
+				</p>
+			</div>
+		</li>
+	</script>
+	<script>
+		var currPage = 1;
+		apiready = function() {
+			changeserverurl();
+			$(".j_top").on("click", "li", function() {
+				var infoid = $(this).attr("infoid")
+				var pageParam = {
+					wintitle : "资讯详情",
+					type : "detail",
+					bounces : false,
+					infoid : infoid
+				};
+				openWin("detail" + infoid.toString(), "../news/detail.html", pageParam);
+			});
+			$(".j_news").on("click", "li", function() {
+				var infoid = $(this).attr("infoid")
+				var pageParam = {
+					wintitle : "资讯详情",
+					type : "detail",
+					bounces : false,
+					infoid : infoid
+				};
+				openWin("detail" + infoid.toString(), "../news/detail.html", pageParam);
+			})
+			ajaxInfo();
+			//加载更多
+			api.addEventListener({
+				name : 'scrolltobottom'
+			}, function(ret, err) {
+				$(".la_more").html("加载更多中...");
+				if ($(".mui-spinner").length == 0) {
+					//$("body").append("<div class='mui-spinner' style='text-align:center;height:50px;line-height:50px;font-size:16px;'>更多加载中...</div>");
+				}
+				setTimeout(function() {
+					ajaxInfo();
+				}, 1000)
+			});
+			//页面刷新
+			api.setRefreshHeaderInfo({
+				visible : true,
+				// bgColor: '#F2F2F2',
+				bgColor : '#E6E6E6',
+				textColor : '#000000',
+				textDown : '下拉刷新',
+				textUp : '释放刷新',
+			}, function(ret, err) {
+				currPage = 1;
+				ajaxInfo();
+				api.toast({
+					msg : '数据已是最新！',
+					duration : 3000,
+					location : 'bottom'
+				});
+			});
+			var scroll = new auiScroll({
+				listen : true,
+				distance : 200 //判断到达底部的距离，isToBottom为true
+			}, function(ret) {
+				if (ret.isToBottom) {
+				} else {
+					if (ret.scrollTop > 150) {
+						$(".topdiv").fadeIn();
+					} else {
+						$(".topdiv").fadeOut();
+					}
+				}
+			});
+		}
+		var dataload = true;
+		function ajaxInfo() {
+			if (dataload == true) {
+				dataload = false;
+				var typeId = api.pageParam.typeid;
+				if (currPage == 1) {
+					//api.showProgress({title:'加载中',modal:false});
+				}
+				loadingshow();
+				api.ajax({
+					url : hosturl + '/news/list.html?datatype=json&typeid=' + typeId + '&page=' + currPage,
+					method : 'get',
+					timeout : 30,
+					dataType : 'json',
+					returnAll : false
+				}, function(ret, err) {
+					var pageHtml = "";
+					if (ret) {
+						$.each(ret.list, function(index, item) {
+							if (item.litpic == null) {
+								item.displayDiv = "none"
+							} else {
+								item.displayDiv = ""
+							}
+							var getTpl = $api.html($api.byId("info-list"));
+							laytpl(getTpl).render(item, function(html) {
+								html = html.replace("\r", "");
+								html = html.replace("\n", "");
+								html = html.replace("　", "");
+								html = html.replace("\t", "");
+								pageHtml = pageHtml + html;
+							});
+						})
+						$(".newsmain").show();
+						if (currPage == 1) {
+							$(".j_news").html(pageHtml);
+							if (ret.topnewslist != null) {
+								var topHtml = ""
+								$.each(ret.topnewslist, function(index, item) {
+									if (item.litpic == null) {
+										item.displayDiv = "none"
+									} else {
+										item.displayDiv = ""
+									}
+									var getTpl = $api.html($api.byId("info-list-top"));
+									laytpl(getTpl).render(item, function(html) {
+										topHtml = topHtml + html;
+									});
+								})
+								$(".j_top").html(topHtml)
+								
+							} else {
+								if (pageHtml == "") {
+									$(".nodata").show();
+									//$(".newsmain").hide();
+								} else {
+									$(".nodata").hide();
+									
+								}
+								
+							}
+						} else {
+							$(".j_news").append(pageHtml);
+							$(".mui-spinner").remove();
+						}
+						if (pageHtml == "") {
+							$(".la_more").hide();
+						} else {
+							$(".la_more").show();
+						}
+						api.refreshHeaderLoadDone();
+						api.hideProgress();
+						loadinghide();
+						if (pageHtml != "") {
+							currPage += 1;
+							$(".la_more").html("上拉获取更多信息");
+						} else {
+							$(".la_more").html("全部加载完毕");
+						}
+					} else {
+						if (err) {
+							saveerrlog(err.body);
+						}
+					};
+					dataload = true;
+				});
+			}
+			//关键字搜索
+		function keywordssearch(keywordstext) {
+			currPage = 1;
+			keywords = keywordstext;
+			api.showProgress({
+				title : '加载中',
+				modal : false
+			});
+			ajaxInfo();
+		}
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

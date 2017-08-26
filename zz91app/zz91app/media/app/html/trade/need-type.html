@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>发布需求</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+</head>
+<style>
+.type li{
+  padding: 8px 8px;
+  border-bottom: 1px solid #e1e1e1;
+}
+.label{
+  width: 100%
+}
+.type li input{
+  float: left;
+  margin-top: 6px;
+  margin-right: 5px;
+}
+input{
+  display: none;
+}
+.type li i{
+  display: block;
+  height: 23px;
+  width: 15px;
+  float: right;
+  background-image: url(../../image/imageslist.png);
+  background-position: -149px -118px;
+  background-size: 250px;
+}
+.btn{
+  border-radius: 5px;
+  text-align: center;
+  line-height: 35px;
+  color: #fff;
+  background-color: #01ba2e;
+  margin:20px 8px 0;
+  display: none;
+}
+</style>
+<body>
+  <ul class="type">
+    <li><label><input name="Fruit" type="checkbox" value="" /><span>废金属</span></label><i></i></li>
+    <li><label><input name="Fruit" type="checkbox" value="" /><span>废塑料</span></label><i></i></li>
+    <li><label><input name="Fruit" type="checkbox" value="" /><span>废电子电器</span></label><i></i></li>
+    <li><label><input name="Fruit" type="checkbox" value="" /><span>废橡胶</span></label><i></i></li>
+    <li><label><input name="Fruit" type="checkbox" value="" /><span>废轮胎</span></label><i></i></li>
+    <li><label><input name="Fruit" type="checkbox" value="" /><span>废纸</span></label><i></i></li>
+    <li><label><input name="Fruit" type="checkbox" value="" /><span>废皮革</span></label><i></i></li>
+    <li><label><input name="Fruit" type="checkbox" value="" /><span>废纺织品</span></label><i></i></li>
+    <li><label><input name="Fruit" type="checkbox" value="" /><span>废旧二手设备</span></label><i></i></li>
+    <li><label><input name="Fruit" type="checkbox" value="" /><span>废玻璃</span></label><i></i></li>
+    <li><label><input name="Fruit" type="checkbox" value="" /><span>其他废料</span></label><i></i></li>
+    <li><label><input name="Fruit" type="checkbox" value="" /><span>服务</span></label><i></i></li>
+  </ul>
+  <span class="btn">确定</span>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src=".././script/laytpl.js"></script>
+<script>
+apiready = function(){
+  var type = api.pageParam.type;
+  if(type == "need-last"){
+    $("input").show();
+    $("i").hide();
+    $(".btn").css("display","block");
+  }else{
+    $(".type li").on("click",function(){
+      var pageParam = {
+        wintitle:"发布需求",
+        type:"need-last",
+      };
+      openWin("need-last","../trade/need-type.html",pageParam);
+    })
+  }
+}
+</script>
+</html>

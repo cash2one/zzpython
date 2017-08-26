@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>来电宝服务-zz91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<style>
+			body {
+			}
+			.title {
+				font-size: 20px;
+				text-align: center;
+				height: 50px;
+				line-height: 50px;
+				font-weight: bold;
+			}
+			.price {
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			.price span {
+				color: #ff0000
+			}
+			.main {
+				line-height: 30px;
+				font-size: 14px;
+				margin-bottom: 20px;
+				padding: 10px
+			}
+			.buybutton {
+				position: fixed;
+				bottom: 0px;
+				left: 0px;
+				border-radius: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">来电宝</div>
+		    <a class="aui-pull-right" href="/myrc_index/">
+		        <span class="aui-iconfont aui-icon-my"></span>
+		    </a>
+		</header>
+		<div class="aui-content-padded">
+			<!--<div class="title">来电宝服务</div>-->
+			<div class="price">
+				价格：<span>￥ 3600元  / 年</span>
+			</div>
+			<div class="aui-line-x"></div>
+			<div class="main">
+				“来电宝”是ZZ91创新产品研究专门为全球中小型再生资源企业，量身打造的全方位互动式精准营销平台，同时采用全国首创按电话效果付费的广告模式，我们郑重承诺，没有商机、没有电话，绝不收取任何费用！
+				<br />
+				<br />
+				来电宝八大优势：
+				<br />
+				1、免费获得400号号码及网站
+				<br />
+				2、全网广告,免费享有
+				<br />
+				3、全程专人一对一服务
+				<br />
+				4、免费展示精准投放
+				<br />
+				5、24小时在线，不错失任何商机
+				<br />
+				6、大数据让您消费更清晰
+				<br />
+				7、来电宝专区，最尊贵的服务
+				<br />
+				8、个性的套餐服务
+				<br />
+				<br />
+				<span style="color:#999">注：购买后两个工作日内（节假日自动顺延）工作人员会联系您。</span>
+			</div>
+			<div class="aui-btn aui-btn-block aui-btn-success buybutton" tapmode>
+				立即购买
+			</div>
+		</div>
+		<input type="hidden" id="backvalue" value="">
+		<div style="height:80px"></div>
+	</body>
+	<script type="text/javascript">
+		$(function(){
+			$(".buybutton").on("click", function() {
+				$(".buybutton").on("click", function() {
+				event.stopPropagation();
+				layer.confirm('确实要来电宝吗？',{
+						btn : ['确定', '取消']
+					}, function() {
+						buyservice();
+					},function(){
+						layer.closeAll();
+					}
+				)
+			})
+			})
+		});
+		//购买置顶广告
+		function buyservice() {
+			var chk_value = $("#backvalue").val();
+			var data = {
+				paytype : '41',
+				baoming : chk_value,
+				datatype : 'json',
+				t : (new Date()).getTime().toString()
+			}
+			layer.load(2);
+			zzajax("get","/qianbao/qianbaopay.html",data,function(ret){
+				if (ret) {
+					if (ret.err == 'false') {
+						layer.confirm(ret.errtext,{
+								btn : ['查看我的服务']
+							}, function() {
+								window.location='/service/index.html';
+							}
+						)
+					}
+					if (ret.err == 'true' && ret.blanceflag == '0') {
+						yuebuzuFun();
+					}
+					if (ret.err == 'true' && ret.blanceflag == '1') {
+						layer.msg(ret.errtext);
+					}
+				} else {
+				};
+				layer.closeAll('loading');
+			});
+		}
+	</script>
+	{%include 'aui/bottom.html'%}
+</html>

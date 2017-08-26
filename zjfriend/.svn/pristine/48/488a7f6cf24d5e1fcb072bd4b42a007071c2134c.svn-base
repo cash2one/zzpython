@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/frm_nav.css"/>
+<body>
+<ul class="category">
+    
+</ul>
+<script src="../script/zepto.min.js"></script>
+<script>
+	function getNavlist(){
+		api.showProgress();
+    	api.ajax({
+			url : 'http://apptest.zz91.com/sex/navlist.html',
+			method : 'get',
+			timeout : 30,
+			data : {
+				t : (new Date()).getTime().toString()
+			},
+			dataType : 'text',
+			returnAll : false
+		}, function(ret, err) {
+			if (ret) {
+				ret=eval(ret)
+				var navHtml = '';
+				for (var i in ret) {
+					navHtml +='<li onclick="openFrame('+ret[i].id+','+i+')"><a class="mui-navigate-right">' + ret[i].typename + '</a></li>'
+				}
+				$(".category").html(navHtml);
+			} 
+			api.hideProgress();
+		});
+    }
+    apiready=function(){
+        getNavlist();
+    }
+
+    function openFrame(tid,m) {
+        try {
+        	api.execScript({name:'root', script: 'openFrame('+tid.toString()+','+m+')'});
+        	api.execScript({
+        		name:'root',
+	            script: '_closeNav();'
+            });
+            //api.execScript({frameName:'frame_'+m.toString(), script: 'changesexmain('+tid.toString()+')'});
+        } catch (e) {
+            //alert(e)
+        }
+    }
+</script>
+</body>
+</html>

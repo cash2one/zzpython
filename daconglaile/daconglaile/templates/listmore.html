@@ -1,0 +1,26 @@
+{%for list in listall%}
+<a href="/{{list.typedir}}/{{list.id}}.html" target="_blank">
+	<li>
+		<div class="newsleft" style="{%if list.picone%}width: 70%;{%endif%}">
+			<div class="title">{{list.title}}</div>
+			<div class="content">{{list.subcontent}}......[详情]</div>
+			<div class="newscontorl"><span>时间：{{list.pubdate}}</span> <span>点击量：{{list.click}}</span> </div>
+		</div>
+		{%if list.picone%}
+		<div class="newsimg">
+			<img src="http://pyapp.zz91.com/app/changepic.html?url={{list.picone}}&width=200&height=200">
+		</div>
+		{%endif%}
+		{%if list.picmore%}
+				<div class="doc-images">
+					{%for pp in list.picmore%}
+					<div class="doc-image-list">
+						<img src="{{pp}}" /> 
+					</div>
+					{%endfor%}
+					<div class="clear"></div>
+				</div>
+				{%endif%}
+	</li>
+</a>
+{%endfor%}

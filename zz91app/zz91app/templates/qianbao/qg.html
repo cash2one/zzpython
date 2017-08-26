@@ -1,0 +1,190 @@
+<style>
+	/* mhome */
+.mhome {
+	padding: 0;
+  	min-width: 300px;
+  	max-width: 640px;
+  	margin: 0 auto;
+  	background: #f5f5f5;
+}
+.viewport {padding:0 5px;}
+.viewport {  
+	min-width: 300px;
+  	max-width: 640px;
+  	margin: 0 auto;
+}
+.floor {
+	color: #7f7f7f;
+  	background: #fff;
+  	margin-bottom: 12px;
+  	box-shadow: 0 1px 1px #dcdcdc;
+}
+.hot-link {
+  padding:40px 10%;
+  display:block;
+}	
+.countdowm {
+	height:50px;
+	text-align:center;
+	margin:0;
+	padding:20px;
+	font-size:20px;
+	color:#666666;
+	padding-top:0;
+}
+.countdowm img {border:none;vertical-align:middle;}
+.seckill-list, .seckill-list2 {
+  overflow: hidden;
+  content: '\20';
+  display: block;
+  clear: both;
+}
+.seckill-list2 {border-top: 1px solid #dadada;border-bottom: 1px solid #dadada;}
+.seckill-list2 li {
+  width: 33%;
+  float: left;
+  height: 65px;
+  font-size: 13px;
+  padding-top:12px;
+  color: #7f7f7f;
+  text-align: center;
+  display: block;
+  border: 0;
+  position:relative;
+}
+.seckill-list2 span,s {display:block;}
+.seckill-list2 font {color:#303030;}
+.seckill-list2 li:nth-child(1)::after, .seckill-list2 li:nth-child(2)::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 45px;
+  background: #dadada;
+  position: absolute;
+  right: -1px;
+  top: 9px;
+}
+.red {color:#de796e;}
+.f12 {font-size:12px;}
+.buy {padding:10px 0 20px;}
+.buyBtn {
+  display: block;
+  width: 117px;
+  margin: 0 auto;
+  height: 39px;
+  background: url(http://www.zz91.com/zt/z/images/bg_btn_buy.jpg) no-repeat;
+}
+
+.tipp{width:80%;padding:15px;position:relative;display:none;-moz-border-radius:6px;background:#fff;-webkit-border-radius:5px;border-radius:5px;border:1px solid #536376;-webkit-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;-moz-box-shadow:rgba(0,0,0,.6) 0px 2px 12px}
+.tipp ul li{line-height:18px;font-size:14px}
+.tipp .price{color:#ff7900}
+.tipp .explain{color:#909090}
+.tipp p{font-size:14px}
+.tipp .radio{color:#909090;margin-top:10px}
+.tipp .radio .pay{margin-right:15px}
+.btn{height:25px;display:inline-block;padding-left:25px;padding-right:25px;text-align:center;line-height:25px;color:#fff;font-size:16px;cursor:pointer}
+.btn_cancel{background:#c7c7c7;color:#515151;font-family:"宋体";font-size:14px}
+.btn_confirm{background:#009944;font-family:"宋体";font-size:14px;margin-right:5%}
+
+.tipp input {line-height: 25px; width: 100%;}
+#huangye span{width: 100px; }
+</style>
+<div class="mhome">
+	<div class="viewport">
+		<div class="floor menu-floor">
+			<div class="hot-link brand">
+				<img width="100%" src="{{list.pic}}" border="0" alt="" />
+			</div>
+			<div class="countdowm">
+				<img src="http://www.zz91.com/zt/z/images/icon_clock.jpg" />&nbsp;&nbsp;<span id="LeftTime"></span>
+			</div>
+			<ul class="seckill-list2">
+				<li>
+					<span style="text-decoration: line-through;">{{list.original_Price}}</span>
+					<div class="red">{{list.present_Price}}</div>
+				</li>
+				<li>{{list.sales_Num}}</li>
+				<li>{{list.left_Num}}</li>
+			</ul>
+			<center class="buy" id="buybutton" style="display: none;">
+				<button onclick="open_qg({{paymoney}})" class="mui-btn mui-btn-danger" style="width: 80%;height:50px;font-weight: bold;">立即抢购</button>
+			</center>
+		</div>
+	</div>
+</div>
+<input type="hidden" id="qianbaoblance" value="{{qianbaoblance}}">
+<input type="hidden" id="paytype" value="{{paytype}}">
+<input type="hidden" id="payend_Time" value="{{list.end_Time}}">
+<input type="hidden" id="havenum" value="{{list.havenum}}">
+
+<div id="chk1" class="tipp">
+	<p style="color: #000000;">需支付<font color="#FF0000">{{paymoney}}</font>元，确定付款？</p>
+	<div align="center" style="margin-top:10px;">
+		<button class="mui-btn mui-btn-danger" onclick="qianbao_pay()">确定</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<button class="mui-btn" onclick="dismiss();">取消</button>
+	</div>
+</div>
+
+<div id="bal" class="tipp" align="center">
+	<p>您的余额不足，是否在线充值？</p>
+	{%if not isldb%}
+	<p style="color:#909090;font-size:13px;margin-top:10px">{{ggc}}</p>{%endif%}
+	<div align="center" style="margin-top:10px;">
+		<button class="mui-btn" onclick="shopfun.chongzhi('/qianbao/');dismiss();">确定</button>
+		<button class="mui-btn" onclick="dismiss();">取消</button>
+	</div>
+</div>
+
+<div id="sucess" class="tipp" align="center">
+	<p>购买成功</p>
+	<div align="center" style="margin-top:10px;">
+		<div class="btn btn_cancel" onclick="dismiss();">确定</div>
+	</div>
+</div>
+
+
+<div id="terror" class="tipp" align="center">
+	<p>系统错误，请重试！</p>
+	<div align="center" style="margin-top:10px;">
+		<button class="mui-btn" onclick="dismiss();">确定</button>
+	</div>
+</div>
+
+<div id="havepay" class="tipp" align="center">
+	<p>您已经购买了该商品，不要重复购买！</p>
+	<div align="center" style="margin-top:10px;">
+		<button class="mui-btn" onclick="dismiss();">确定</button>
+	</div>
+</div>
+
+<div id="sucess1" class="tipp" align="center">
+	<p>您已经购买成功,我们会在两个工作日内与您联系!</p>
+	<div align="center" style="margin-top:10px;">
+		<button class="mui-btn" onclick="dismiss();">确定</button>
+	</div>
+</div>
+<!--购买黄页-->
+<div id="huangye" class="tipp" align="left">
+	<p>请填写您的收货信息</p>
+	<p><span>联系人:</span><input type="text" id="huangye_person"></p>
+	<p><span>联系方式:</span><input type="text" id="huangye_contact"></p>
+	<p><span>收货地址:</span><input type="text" id="huangye_address"></p>
+	<div align="center" style="margin-top:10px;">
+		<button class="mui-btn mui-btn-danger" onclick="huanye_pay()">确定</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;<button class="mui-btn" onclick="dismiss();">取消</button>
+	</div>
+</div>
+<!--购买黄页-->
+<div id="tradead" class="tipp" align="left" style="line-height: 25px;">
+	<p>请填写您的广告信息</p>
+	<p><span>广告词:</span><input type="text" id="tradead_keywords"></p>
+	<p><span>联系人:</span><input type="text" id="tradead_person"></p>
+	<p><span>联系方式:</span><input type="text" id="tradead_contact"></p>
+	<div align="center" style="margin-top:10px;">
+		<div class="btn btn_confirm" id="tradead_buy">确定</div>
+		<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+	</div>
+</div>
+<!--end 弹框-->
+<input type="hidden" id="appnavname" value="{{list.goodsName}}" />

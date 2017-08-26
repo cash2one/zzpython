@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>全部分类</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<style>
+			.flipcard {
+				height: 30px;
+				line-height: 30px;
+				text-align: left;
+				padding-left: 10px;
+				margin: 10px;
+				color: #000;
+				background-color: #fff;
+				font-size: 16px;
+				display: block;
+				border-bottom: solid 1px #ebebeb;
+			}
+			.darktitle {
+				height: 40px;
+				line-height: 40px;
+				margin-left: 15px;
+				font-size: 14px;
+				color: #666;
+				text-align: center
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 1 2X2 -->
+		<div class="row inwrap"></div>
+		<div class="darktitle">
+			删除历史
+		</div>
+		<script id="info-list" type="text/html">
+			<div class="flipcard" tapmode="presshover" onclick="opensearch('{{d.value}}','{{d.type}}')">{{d.value}}</div>
+		</script>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script>
+		function opensearch(k, type) {
+			
+			//供求搜索
+			if (type == "trade-list") {
+				var keywords = k;
+				var pageParam = {
+					type : "trade-list",
+					label_hex : keywords,
+					label : keywords
+				};
+				openWin("trade-list", "../trade/trade-list.html", pageParam);
+				api.execScript({
+					name : 'trade-list',
+					frameName : 'trade-list_',
+					script : "keywordssearch('" + k + "')"
+				});
+			}
+			//行情报价搜索
+			if (type == "offer-list") {
+				var keywords = k;
+				var pageParam = {
+					type : "offer-list",
+					keywords : keywords
+				};
+				//openWin("offer-list", "../price/price.html", pageParam);
+				api.execScript({
+					name : 'offer-list',
+					frameName : 'offer-list_',
+					script : "searchprice('" + k + "')"
+				});
+			}
+			//公司搜索
+			if (type == "company-list") {
+				var keywords = k;
+				var pageParam = {
+					type : "company-list",
+					keywords : keywords
+				};
+				//openWin("offer-list", "../price/price.html", pageParam);
+				api.execScript({
+					name : 'company-list',
+					frameName : 'company-list_',
+					script : "searchkeywords('" + k + "')"
+				});
+			}
+			//互助社区搜索
+			if (type== "community" || type=="huzhu-list") {
+				var keywords = k;
+				var pageParam = {"type" : "huzhu-list","keywords" : ""+keywords+""};
+				//zzalert(JSON.stringify(pageParam))
+				openWin("huzhu-list", "../huzhu/hudong-list.html", pageParam);
+				api.execScript({
+					name : 'huzhu-list',
+					frameName : 'huzhu-list_',
+					script : "keywordssearch('" + keywords + "')"
+				});
+			}
+			api.closeWin({
+				name : 'search'
+			});
+		}
+
+		apiready = function() {
+			
+			var seartext = localStorage.getItem("seartext");
+			var pageHtml = "";
+			if (seartext) {
+				$(".darktitle").css("display", "block")
+				seartext = seartext.substr(0, seartext.length - 1);
+				seartext = eval('[' + seartext + ']');
+				var type = api.pageParam.type;
+				if (!type) {
+					type = "trade-list"
+				};
+				$.each(seartext, function(index, item) {
+					var getTpl = $api.html($api.byId("info-list"));
+					if (item.type == type) {
+						laytpl(getTpl).render(item, function(html) {
+							pageHtml = pageHtml + html;
+						});
+					}
+				});
+				$(".inwrap").html(pageHtml);
+			} else {
+				$(".darktitle").css("display", "none");
+			}
+			$(".darktitle").on("click", function() {
+				localStorage.removeItem('seartext');
+				$(".inwrap").html("")
+			})
+		}
+	</script>
+</html>

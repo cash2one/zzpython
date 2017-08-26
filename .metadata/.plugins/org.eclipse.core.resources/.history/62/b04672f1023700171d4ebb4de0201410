@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>全部分类</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		
+	</head>
+	<body>
+		<div class="aui-content" style="font-size:14px">
+	    	<div style="color: #666;padding: 10px" class="historytitle">最近搜索</div>
+	    	<script id="search-list" type="text/html">
+	    		<li class="aui-list-view-cell">
+	                <div class="aui-arrow-right aui-ellipsis-1 searchname">{{d.keywords}}</div>
+	            </li>
+	        </script>
+	        <ul class="aui-list-view searchhistory" style="margin-left: 10px;">
+            	<div class="aui-toast"  id="loading">
+			        <div class="aui-toast-loading"></div>
+			        <div class="aui-toast-content">加载中</div>
+			    </div>
+	        </ul>
+	    </div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script>
+		function opensearch(k, type) {
+			//alert(type)
+			//供求搜索
+			if (type == "trade-list" || !type || type=='buypage' || type=='salepage') {
+				var keywords = k;
+				var tradetype='0';
+				if (type=='buypage'){
+					tradetype='1'
+				}
+				if (type=='salepage'){
+					tradetype='2'
+				}
+				var pageParam = {
+					type : "trade-list",
+					label_hex : keywords,
+					label : keywords,
+					tradetype:tradetype
+				};
+				openWin("trade-list", "../trade/trade-list.html", pageParam);
+				api.execScript({
+					name : 'trade-list',
+					frameName : 'trade-list_',
+					script : "keywordssearch('" + k + "')"
+				});
+			}
+			//行情报价搜索
+			if (type == "offer-list" || type=='price') {
+				var keywords = k;
+				var pageParam = {
+					type : "offer-list",
+					keywords : keywords
+				};
+				openWin("offer-list", "../price/offer-list.html", pageParam);
+				api.execScript({
+					name : 'offer-list',
+					frameName : 'offer-list_',
+					script : "searchprice('" + k + "')"
+				});
+			}
+			//厂家直购搜索
+			if (type== "vender") {
+				var keywords = k;
+				var pageParam = {
+					type : "vender",
+					keywords : keywords,
+					showbottom : 1
+				};
+				openWin("vender", "../zhigou/vender.html", pageParam);
+				api.execScript({
+					name : 'vender',
+					frameName : 'vender_',
+					script : "searchkeywords('" + k + "')"
+				});
+			}
+			//公司搜索
+			if (type == "company-list") {
+				var keywords = k;
+				var pageParam = {
+					type : "company-list",
+					keywords : keywords
+				};
+				//openWin("offer-list", "../price/price.html", pageParam);
+				api.execScript({
+					name : 'company-list',
+					frameName : 'company-list_',
+					script : "searchkeywords('" + k + "')"
+				});
+			}
+			//互助社区搜索
+			if (type== "community" || type=="huzhu-list" || type=='tradequan') {
+				var keywords = k;
+				var pageParam = {"type" : "huzhu-list","keywords" : ""+keywords+""};
+				//zzalert(JSON.stringify(pageParam))
+				openWin("huzhu-list", "../huzhu/hudong-list.html", pageParam);
+				api.execScript({
+					name : 'huzhu-list',
+					frameName : 'huzhu-list_',
+					script : "keywordssearch('" + keywords + "')"
+				});
+			}
+			api.closeWin({
+				name : api.winName
+			});
+		}
+
+		apiready = function() {
+			changeserverurl();
+			var type = api.pageParam.type;
+			$(".searchhistory").on("click",".searchname",function(){
+				var keywords=$(this).text();
+				opensearch(keywords,type);
+		    })
+			ajaxInfo();
+		}
+		function ajaxInfo(){
+			var data={};
+			$(".historytitle").html("最近搜索");
+			zzappajax("get",hosturl+"keywords/getkeywords.html",data,function(ret){
+				//alert(JSON.stringify(ret));
+				var pageHtml="";
+				$.each(ret, function(index, item) {
+					var getTpl = $api.html($api.byId("search-list"));
+					laytpl(getTpl).render(item, function(html) {
+						pageHtml = pageHtml + html;
+					});
+				});
+				$(".searchhistory").html(pageHtml);
+		    },function(){
+		    })
+		}
+		function searchtis(k){
+			var data={'keywords':k};
+			$(".historytitle").html("相关搜索");
+			zzappajax("get",hosturl+"keywords/searchtis.html",data,function(ret){
+				var pageHtml="";
+				$.each(ret, function(index, item) {
+					var getTpl = $api.html($api.byId("search-list"));
+					laytpl(getTpl).render(item, function(html) {
+						pageHtml = pageHtml + html;
+					});
+				});
+				$(".searchhistory").html(pageHtml);
+		    },function(){
+		    })
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

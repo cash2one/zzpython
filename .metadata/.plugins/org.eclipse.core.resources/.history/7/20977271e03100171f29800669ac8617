@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/aui-flex.css" />
+    <style>
+    	body{
+    		background-color: #f2f2f2;
+    	}
+    	.topdiv{
+			padding-top:5px;
+		}
+    	.linegrad{
+			height:10px;background-color:#f2f2f2;
+			clear: both;
+		}
+		.bg-white { background: #ffffff; }
+    	.aui-grid-nine li .aui-iconfont,.aui-grid-nine li .aui-iconfont2 {
+			color: #ffffff;
+			width: 45px;
+			height: 45px;
+			line-height: 45px;
+			border-radius: 50%;
+			font-size: 27px;
+		}
+		.buyer {
+			position: fixed;
+			height: 60px;
+			width: 60px;
+			background: #01ba2e;
+			border-radius: 50%;
+			bottom: 60px;
+			right: 10px;
+			text-align: center;
+			line-height: 20px;
+			box-shadow: 0px 0px 5px #888888;
+			color: #ffffff;
+			padding-top:5px;
+			z-index: 999;
+		}
+		.buyer .aui-icon-add {
+			font-size: 30px;
+			color: #fff;
+		}
+		.change-bgcolor,.topbgcolor{
+			position:relative
+		}
+		
+		.topimg{
+			position: absolute;
+			top: 5px;
+			left:5px;
+			width:16px;
+			height:16px;
+			background-color: #FA6604;
+			border-radius:8px;
+			overflow: hidden;
+			font-size:10px;
+			color:#fff;
+			text-align:center;
+			line-height:17px;
+		}
+		.boxhearder .aui-iconfont,.boxhearder .aui-iconfont2 {
+			color: #ffffff;
+			line-height: 30px;
+			font-size: 30px;
+			
+		}
+    	.boxhearder{
+			padding-bottom:10px;
+			padding-top:10px;
+			background-color: #01ba2e;
+			position: fixed;
+			top:0px;
+			width:100%;
+			display:none;
+			z-index: 999;
+		}
+		.boxhearder p{
+			color:#fff;
+			
+		}
+    </style>
+</head>
+<body>
+	<div class="aui-content">
+        <ul class="aui-grid-nine">
+            <li class="aui-col-xs-4 aui-text-center tradecenter">
+                <span class="aui-iconfont aui-icon-similar aui-bg-primary"></span>
+                <p>供应大厅</p>
+            </li>
+            <li class="aui-col-xs-4 aui-text-center posttrade">
+                <span class="aui-iconfont aui-icon-edit aui-bg-danger"></span>
+                <p>提交采购单</p>
+            </li>
+            <li class="aui-col-xs-4 aui-text-center tradequan">
+                <span class="aui-iconfont aui-icon-friendfill aui-bg-warning"></span>
+                <p>生意圈</p>
+            </li>
+        </ul>
+    </div>
+    <section class="aui-flex-col aui-text-center boxhearder">
+        <div class="aui-flex-item-4 aui-text-center tradecenter">
+            <span class="aui-iconfont aui-icon-similar"></span>
+            <p>供应大厅</p>
+        </div>
+        <div class="aui-flex-item-4 aui-text-center posttrade">
+            <span class="aui-iconfont aui-icon-edit"></span>
+            <p>提交采购单</p>
+        </div>
+        <div class="aui-flex-item-3 aui-text-center tradequan">
+            <span class="aui-iconfont aui-icon-friendfill"></span>
+            <p>生意圈</p>
+        </div>
+    </section>
+    <!--<div class="buyer">
+    	<i class="aui-iconfont aui-icon-add"></i><br>
+		<span style="margin-top:10px">发采购</span>
+	</div>-->
+	<div class="topdiv" onclick="pagetotop();"><span class="aui-iconfont aui-icon-top"></span></div>
+	<div class="aui-toast"  id="loading">
+        <div class="aui-toast-loading"></div>
+        <div class="aui-toast-content">加载中</div>
+    </div>
+	
+    <div class="aui-content bg-white">
+    	<div class="title aui-border-b aui-padded-10">
+			<b>最新供应信息</b>
+			<span class="aui-pull-right toorder">订阅 <i class="aui-iconfont aui-icon-right"></i></span>
+		</div>
+		<div class="nodata">暂无相关数据<br /><br />
+			<p><div class="aui-btn aui-btn-success orderbutton"><span class="aui-iconfont aui-icon-activity"></span>立即订阅</div></p>
+		</div>
+		<ul class="hq-list aui-list-view">
+			
+		</ul>
+		<script id="info-list" type="text/html">
+			<li class="aui-list-view-cell aui-img" id="{{ d.pdt_id }}">
+				<a class="aui-arrow-right">
+				<div class="topimg" style="display:{{ d.vdisplay }};background-color: {{d.vbgcolor}}">
+					{{d.vipflag.vipname}}
+				</div> <img src="{{ d.pdt_images }}" class="aui-img-object aui-pull-left" style="width: 100px;">
+				<div class="aui-img-body" style="margin-right:18px">
+					<p class="aui-ellipsis-2"  style="color:#000">
+						<b>{{d.pdt_kind.kindtxt}}{{d.pdt_name}}</b>
+					</p>
+					<p class="aui-ellipsis-2">
+						{{d.pdt_detail}}
+					</p>
+					<p>
+						{{d.com_province}}<span class="aui-pull-right">{{d.pdt_price}}</span>
+					</p>
+					<p>
+						{{d.pdt_time_en}}<span class="aui-pull-right" style="display:{{ d.phone_display }}">{{ d.phone_rate }}%接听率</span>
+					</p>
+				</div></a>
+			</li>
+		</script>
+	</div>
+	<div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;display:none'>上拉获取更多信息</div>
+    	
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript" src="../../script/aui-scroll.js" ></script>
+<script type="text/javascript">
+	var currPage = 1;
+	var pagecount=1;
+	var tradetype = "1";
+	var timearg = "";
+	var province = "";
+	var keywords = "";
+	var searchdata;
+	apiready = function(){
+		changeserverurl();
+		$api.setStorage("buyeropenflag", 1);
+		var scroll = new auiScroll({
+	        listen:true,
+	        distance:200 //判断到达底部的距离，isToBottom为true
+	    },function(ret){
+	        if(ret.isToBottom){
+	        }else{
+		        if (ret.scrollTop>150){
+		        	$(".topdiv").fadeIn();
+		        }else{
+		        	$(".topdiv").fadeOut();
+		        }
+		        if (ret.scrollTop>150){
+		        	$(".boxhearder").fadeIn();
+		        }else{
+		        	$(".boxhearder").fadeOut();
+		        }
+		        
+	        }
+	    });
+	    $(".hq-list").on("click", "li", function() {
+			var id = $(this).attr("id");
+			var pageParam = {
+				wintitle : "供求详情",
+				type : "infomation-heart",
+				id : id,
+				nav_list : [{
+					"typename" : "供求详情",
+					"id" : 1
+				}, {
+					"typename" : "公司简介",
+					"id" : 2
+				}], //头部划动标题
+				frame_url : ["../trade/firm-detail.html", "../trade/firm.html"], //打开frame组的页面集合
+				topnumber : 2,
+				bounces : false
+			};
+			//竞价排名点击扣费
+			var key_id=$(this).attr("key_id");
+			var search_id=$(this).attr("search_id");
+			if (key_id && search_id){
+				//alert(searchdata['keywords'])
+				var area=$api.getStorage("zz91area");
+				//alert(key_id)
+				var data={
+					key_id:key_id,
+					keywords:searchdata['keywords'],
+					search_id:search_id,
+					area:area,
+				}
+				zzappajax("get",hosturl+"qianbao/jingjia_click_save.html",data,function(ret){
+					//alert(1)
+				},function(){})
+			}
+			openWin("infomation-heart"+id, "infomation-heart.html", pageParam);
+		})
+		//立即订阅
+		$(".nodata").on("click",".orderbutton",function() {
+			var pageParam = {
+				wintitle : "订阅供求",
+				type : "need-out",
+				bounces : false
+			};
+			if (UserInfo.has_login()) {
+				openWin("order_trade", "../trade/need-out.html", pageParam);
+			} else {
+				pageParam.nextUrl = "widget://trade/need-out.html";
+				pageParam.winName = "order_trade";
+				openWin("frm-login", "../myrc/frm-login.html", pageParam);
+			}
+		})
+		$(".toorder").on("click",function() {
+			var pageParam = {
+				wintitle : "订阅供求",
+				type : "need-out",
+				bounces : false
+			};
+			if (UserInfo.has_login()) {
+				openWin("order_trade", "../trade/need-out.html", pageParam);
+			} else {
+				pageParam.nextUrl = "widget://trade/need-out.html";
+				pageParam.winName = "order_trade";
+				openWin("frm-login", "../myrc/frm-login.html", pageParam);
+			}
+		})
+		//供应大厅
+		$(".tradecenter").on("click", function() {
+			var pageParam = {
+				wintitle : "产品类目",
+				type : "product-category",
+				bounces : false,
+				tradetype:1
+			};
+			openWin("product-category", "../trade/product-category.html", pageParam);
+		})
+		//生意圈
+		$(".tradequan").on("click", function() {
+			var pageParam = {
+				wintitle : "生意圈",
+				type : "tradequan",
+			};
+			openWin("tradequan", "../msg/quan.html", pageParam);
+		})
+		//发布采购单
+		$(".posttrade").on("click", function() {
+			var pageParam = {
+				wintitle : "发布信息",
+				type : "issue-info",
+				module : "发布",
+				bounces : false,
+				ptype:"10331001"
+			};
+			if (UserInfo.has_login()) {
+				openWin("issue-info", "../myrc/issue-info.html", pageParam);
+			} else {
+				pageParam.nextUrl = "../myrc/issue-info.html";
+				pageParam.winName = "issue-info";
+				openWin("frm-login", "../myrc/frm-login.html", pageParam);
+			}
+			//openWin("issue-info", "../myrc/issue-info.html", pageParam);
+		})
+		//页面刷新
+		api.setRefreshHeaderInfo({
+			visible : true,
+			// bgColor: '#F2F2F2',
+			bgColor : '#E6E6E6',
+			textColor : '#000000',
+			textDown : '下拉刷新',
+			textUp : '释放刷新',
+		}, function(ret, err) {
+			
+			currPage = 1;
+			ajaxInfo();
+			api.toast({
+				msg : '数据已是最新！',
+				duration : 3000,
+				location : 'bottom'
+			});
+		});
+		//底部加载更多
+		api.addEventListener({
+			name : 'scrolltobottom'
+		}, function(ret, err) {
+			if (currPage>pagecount){
+				$(".la_more").html("全部加载完毕");
+				return false;
+			}
+			$(".la_more").html("加载更多中...");
+			if ($(".mui-spinner").length == 0) {
+				//$("body").append("<div class='mui-spinner' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999'>更多加载中...</div>");
+			}
+			setTimeout(function() {
+				ajaxInfo();
+			}, 10)
+		});
+		//获取数据
+		//api.showProgress({title : '加载中',modal : false});
+		keywords = api.pageParam.label_hex;
+		keywords = api.pageParam.label;
+		province = api.pageParam.province;
+		timearg = api.pageParam.timearg;
+		//keywords=' + keywords + '&ptype=' + tradetype + '&timearg=' + timearg + '&province=' + province + '&datatype=json&
+		searchdata = {
+			keywords : keywords,
+			datatype : 'json',
+			province : province,
+			timearg : timearg,
+		}
+		ajaxInfo();
+	};
+	var dataload = true;
+	function ajaxInfo() {
+		if (dataload == true) {
+			dataload = false;
+			//是否订阅列表
+			var orderflag=1;
+			if (orderflag){
+				$(".orderbutton").show();
+			}else{
+				$(".orderbutton").hide();
+			}
+			searchdata['clientid']=api.deviceId;
+			searchdata['usertoken']=UserInfo.token();
+			searchdata['appsystem']=api.systemType;
+			searchdata['company_id']=UserInfo.memberID();
+			searchdata['ptype']=tradetype;
+			if (orderflag){
+				searchdata['orderflag']=orderflag;
+			}else{
+				searchdata['orderflag']='';
+			}
+			searchdata['page']=currPage;
+			//zzalert(JSON.stringify(searchdata))
+			api.ajax({
+				url : hosturl + 'offerlist/',
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : searchdata
+				}
+			}, function(ret, err) {
+				if (ret) {
+					var pageHtml = "";
+					var productList = ret.productList;
+					//zzalert(JSON.stringify(ret.jingjialist))
+					
+					if (currPage==1){	
+						pagecount=ret.pagecount;
+					}
+					if (currPage != 1) {
+						productList = ret;
+					}
+					$.each(productList, function(index, item) {
+						if (item.phone_rate == 0 || item.phone_rate == null) {
+							item.phone_display = "none"
+						} else {
+							item.phone_display = ""
+						}
+						item.vdisplay="";
+						//item.vipflag.vipname="";
+						if (item.vipflag.vipname=="再生通"){
+							item.vipflag.vipname="再";
+							item.vbgcolor="#006600";
+						}
+						if (item.vipflag.vipname=="银牌品牌通"){
+							item.vipflag.vipname="银";
+							item.vbgcolor="#666";
+						}
+						if (item.vipflag.vipname=="金牌品牌通"){
+							item.vipflag.vipname="金";
+							item.vbgcolor="#EC971F";
+						}
+						if (item.vipflag.vipname=="钻石品牌通"){
+							item.vipflag.vipname="钻";
+							item.vbgcolor="#0965B8";
+						}
+						if (!item.vipflag.vipcheck){
+							item.vipflag.vipname="";
+							item.vdisplay="none";
+						}
+						if (item.vipflag.vipname=="来电宝"){
+							item.vipflag.vipname="电";
+							item.vbgcolor="#F40000";
+						}
+						if (item.isshowcontact){
+							item.vipflag.vipname="显";
+							item.vbgcolor="#6641E2";
+							item.vdisplay="";
+						}
+						var getTpl = $api.html($api.byId("info-list"));
+						laytpl(getTpl).render(item, function(html) {
+							pageHtml = pageHtml + html;
+						});
+					});
+					
+					var error_code=ret.error_code;
+					//如果是刷新页面，数据替换，如果不是插上新数据在底部，currPage == 1为刷新数据
+					if (currPage == 1) {
+						if (pageHtml==""){
+	                		$(".nodata").show();
+	                		$(".la_more").hide();
+	                	}else{
+	                		$(".nodata").hide();
+	                		$(".la_more").show();
+	                    }
+						api.pageUp({
+							'top' : true
+						});
+						$(".hq-list").html(pageHtml);
+					} else {
+						$(".hq-list").append(pageHtml);
+					}
+					$(".aui-content").show();
+					api.refreshHeaderLoadDone();
+					api.hideProgress();
+					$("#loading").hide();
+					if (pageHtml!=""){
+						currPage += 1;
+						$(".la_more").html("上拉获取更多信息");
+						//显示页码
+						api.toast({
+							msg : currPage+"/"+pagecount+"页",
+							duration : 2000,
+							location : 'bottom'
+						});
+					}else{
+						$(".la_more").html("全部加载完毕");
+					}
+				} else {
+					if(err){
+						saveerrlog(err.body);
+					}
+				};
+				dataload = true;
+			});
+		}
+	}
+</script>
+</body>
+</html>

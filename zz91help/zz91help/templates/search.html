@@ -1,0 +1,23 @@
+<script>
+function subform(frm){
+	if (frm.keywords.value==""){
+		alert("请输入关键字！");
+		return false;
+	}
+}
+</script>
+<div class="main_box"><form id="form1" name="form1" method="get" onsubmit="return subform(this)" action="/searchfirst/">
+	<div class="searchmain">
+    
+    <div class="searchleft">
+    	<div class="search_text">
+       	  <div class="left"><img src="../images/s_left.jpg" width="17" height="38" /></div>
+            <div class="text"><input type="text" class="input" name="keywords" id="keywords" /></div>
+            <div class="right"><input type="image" name="imageField" id="imageField" src="../images/s_button.jpg" width="109" height="38"/></div>
+    	</div>
+        <div class="remen">热门搜索：再生通</div>
+    </div>
+    
+    <div class="search_pic"><a href="/beginner/"><img src="../images/s_pic.jpg" width="303" height="95" /></a></div>
+    </div></form>
+</div>

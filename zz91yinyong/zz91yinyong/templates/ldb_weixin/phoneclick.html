@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<html>
+	<head>
+		<title>点击清单_ZZ91再生网来电宝</title>
+        <link rel="stylesheet" type="text/css" href="../css/ldb_weixin/index.css"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+        <script>
+		function loadMore(objdiv){
+				self=objdiv;
+				var pageobj=document.getElementById("pageindex");
+				var page=pageobj.value;
+				pageobj.value=parseInt(page)+1;
+				
+				self.innerHTML="加载中...";
+				$.get("/ldb_weixin/phoneclickmore.html",
+				{
+					page:pageobj.value
+				},
+				function(data,status){
+					if (status=="success" && data!="err\n" && data!=""){
+						self.style.display="block";
+						$("#tab").append(data);
+						self.innerHTML="点击后加载更多内容";
+					}else{
+						self.style.display="none";
+					}
+				});
+			};
+		</script>
+	</head>
+	<body style="background:#e0f0fa">
+       <div class="list">点击清单</div>
+       <!--end list-->
+         <div class="box">
+          <center>
+        	<div class="tab" id="tab">
+                    	<div class="tab-name">总点击：{{phonerecords.count}}次</div>
+                        <!--end tab-name-->
+                        <div class="tab-name">总消费：{{phonerecords.sum_click_fee}}元</div>
+                        <!--end tab-name-->
+                        <div style="clear:both"></div>
+{%for list in listall%}
+
+                      <div class="td_lst">
+                    	<div class="tab-lst"><a href="/companyinfo/?company_id={{list.company_id}}" target="_blank">{{list.target_name}}</a></div>
+                        <div class="tab-lst">
+                        	<div class="lst-date">{{list.gmt_created}}</div>
+                            <div class="lst-price">{{list.click_fee}}元</div>
+                        </div>
+                      </div>
+
+{%endfor%}
+</div>
+<input type="hidden" id="pageindex" value="1">
+        <a href="javascrpt:;">
+        <div class="page" id="pagemore" onclick="loadMore(this)">
+            查看更多
+        </div>
+        </a>
+          </center>
+         </div>
+         <!--end box-->
+         {%include 'ldb_weixin/bottom_ldb.html'%}
+	</body>
+</html>

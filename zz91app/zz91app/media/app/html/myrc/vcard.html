@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<style>
+			.vcardmain {
+				line-height: 30px;
+				text-align: center;
+				padding: 20px;
+				padding-top: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="vcardmain">
+			<div style="text-align:center" id="vcardpic">
+				<!--</audio><div class="aui-toast"  id="loading">
+			        <div class="aui-toast-loading"></div>
+			        <div class="aui-toast-content">加载中</div>
+			    </div>-->
+			</div>
+			<!--<div>
+				分享得<span style="color:#ff0000;font-size:16px"><b> 2元 </b></span>再生钱包
+			</div>-->
+			<div style="margin-top:50px">
+				<div class="aui-btn aui-btn-warning aui-btn-block sharevcard">
+					分享给朋友
+				</div>
+			</div>
+			<!--<div style="font-size:16px;padding-top:30px">查看自己的名片</div>-->
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/jquery.qrcode.min.js"></script>
+	<script type="text/javascript" src="../../script/qrcode.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			var vardurl="http://mobile.m.zz91.com/mobile/index"+UserInfo.memberID().toString()+".htm";
+			$("#vcardpic").qrcode({width: 256,height: 256,text:vardurl });
+			//$("#vcardpic").html("<img src='http://pyapp.zz91.com/getvcardpic" + UserInfo.memberID().toString() + ".html'>");
+			//$("#vcardpic").html("")
+			$(".sharevcard").on("click", function() {
+				//保存分享数据到本地
+				var title="这是我的名片，咱们交换个名片吧！";
+				localStorage.setItem("share_title",""+title);
+				localStorage.setItem("share_description","我是ZZ91再生网用户，再生资源行业的人都在用这app，你也可以制作名片哦 ，http://m.zz91.com/app.html 点击链接查看");
+				localStorage.setItem("share_url",vardurl);
+				localStorage.setItem("share_pic","http://img0.zz91.com/zz91/images/indexLogo.png");
+				api.execScript({
+					name : api.winName,
+					script : "shareopen()"
+				});
+				
+			})
+			api.hideProgress();
+		};
+	</script>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<style>
+			* {
+				margin: 0;
+			}
+			
+			ul,
+			li {
+				list-style: none;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			body {
+				background: transparent;
+				background: rgba(0, 0, 0, 0.1);
+				overflow: hidden;
+			}
+			
+			#aui-box {
+				position: absolute;
+				width: 80%;
+				height: auto;
+				top: 10%;
+				left: 50%;
+				margin-left: -40%;
+				background: #ffffff;
+				z-index: 2;
+				overflow: hidden;
+				opacity: 0.9;
+				border-radius: 10px;
+				line-height: 20px;
+			}
+			
+			#aui-box.fadeIn {
+				opacity: 1;
+				/*-webkit-animation: fadeIn .3s;*/
+			}
+			
+			#aui-box-header {
+				padding: 10px 15px 0 15px;
+				text-align: center;
+				font-size: 1em;
+			}
+			
+			#aui-box-body {
+				padding: 15px;
+				overflow: hidden;
+				font-size: 0.875em;
+			}
+			
+			#aui-box-footer {
+				position: relative;
+				overflow: hidden;
+				font-size: 1em;
+			}
+			
+			.aui-box-btn {
+				float: left;
+				text-align: center;
+				position: relative;
+				padding: 15px 0;
+				z-index: 999;
+			}
+			
+			.aui-box-btn:after {
+				border-right: 1px solid #dbdbdb;
+				border-top: 1px solid #dbdbdb;
+				display: block;
+				content: '';
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				-webkit-transform-origin: 0 0;
+				-webkit-transform: scale(1);
+				pointer-events: none;
+			}
+			
+			.aui-box-btn:last-child:after {
+				border-right: 0;
+			}
+			
+			@media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+				#aui-box-footer:after,
+				.aui-box-btn:after {
+					right: -100%;
+					bottom: -100%;
+					-webkit-transform: scale(0.5);
+				}
+			}
+			
+			@-webkit-keyframes fadeIn {
+				0% {
+					background: rgba(0, 0, 0, 0);
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="aui-box">
+			<div id="aui-box-header">公告</div>
+			<div id="aui-box-body">
+				<p style='color:red'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尊敬的会员，为了不影响您后期发布信息等正常操作，请您上传企业相关认证信息！</p>
+				<br/>
+				<p style="color: #999;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：根据杭州市人民政府第36次常务会议审议通过的《杭州市网络交易管理暂行办法》规定：通过第三方网络交易平台开展经营的，应当向第三方网络交易平台提交工商登记信息或是身份证明、经营地址、联系方式等信息。未提交相关信息的，第三方网络交易平台不得提供平台服务。</p>
+			</div>
+			<div id="aui-box-footer">
+				<div class="aui-box-btn" style="width: 50%;" tapmode onclick="closeselect()">取消</div>
+				<div class="aui-box-btn" style="width: 50%;" tapmode onclick="opencx()">确定上传</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript">
+		function closeselect() {
+			api.closeFrame();
+		}
+
+		function opencx() {
+			api.execScript({
+				name: api.winName,
+				script: "opencxinfo()"
+			});
+			closeselect();
+		}
+		apiready = function() {
+			var frameHeight = api.frameHeight;
+			var boxHeight = $api.offset($api.byId("aui-box")).h;
+			if (frameHeight - boxHeight > 100) {
+				var boxTop = (frameHeight - boxHeight) / 2;
+				if (boxTop < 50) {
+					boxTop = 100;
+				}
+				var contMaxHeight = frameHeight / 2;
+			} else {
+				var contMaxHeight = frameHeight / 2;
+				var boxTop = (frameHeight - contMaxHeight) / 3;
+			}
+			$api.css($api.byId("aui-box-body"), "max-height:" + contMaxHeight + "px;");
+			$api.css($api.byId("aui-box"), "top:" + boxTop + "px;opacity:1;");
+			$api.addCls($api.byId("aui-box"), "fadeIn");
+			api.parseTapmode();
+			var $body = $api.dom('body');
+			$api.addEvt($body, 'click', function(e) {
+				if (e.target == $body) {
+					//closeselect();
+				} else {
+					e.stopPropagation();
+				}
+			});
+		};
+	</script>
+
+</html>

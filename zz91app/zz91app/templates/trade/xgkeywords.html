@@ -1,0 +1,8 @@
+{%for list in xgkeywords%}
+<li class="mui-table-view-cell">
+    <a class="mui-navigate-right" href="javascript:gotourl('{{appurl}}category/?code={{list.code}}','tradelist');">
+        {{list.label}}
+    </a>
+</li>
+{%endfor%}
+<input type="hidden" id="appnavname" value="相关热门搜索" />

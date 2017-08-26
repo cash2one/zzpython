@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="Js/jquery.js"></script>
+    <script type="text/javascript" src="123/function.js"></script>
+    <script type="text/javascript" src="Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="Js/bootstrap.js"></script>
+    <script type="text/javascript" src="Js/ckform.js"></script>
+    <script type="text/javascript" src="Js/common.js"></script>
+    <script src="chart/jquery-1.7.2.js"></script>
+    <script src="chart/flash.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="chart-container"></div>
+ <script>
+       jQuery(function($){
+            $('#chart-container').flash({ 
+               swf        : 'chart/beechart-pie.swf?w=450&h=450',
+               width      : 800,
+               height     : 600,
+               flashvars  : { 
+                  dataUrl : 'tongji_chart.html?page_arg={{page_arg}}'
+               } 
+            }); 
+       });
+</script>
+
+
+<br /><br />
+<table class="table table-bordered table-hover definewidth m10" style="width:800px">
+<tr><td>
+{{typename}}页面流动情况
+</td></tr>
+    <tr>
+        <th style="width:150px">页面类型</th>
+        <th style="width:150px">日期</th>
+        <th style="width:150px">IP个数</th>
+        <th style="width:150px">页面</th>
+    </tr>
+<form action="updatetypeok.html">
+    {%for l2 in list2%}
+	     <tr>
+	     <td>{{l2.typename}}</td>
+	     <td>{{pubdate}}</td>
+	     <td>{%ifequal page2 8%}{{l2.numb}}{%else%}{%ifequal l2.typeid '100'%}{{l2.numb}}{%else%}<a href="?page={{page2}}&pageid={{l2.id}}&upnumb={{l2.numb}}">{{l2.numb}}</a>{%endifequal%}{%endifequal%}</td>
+	     <td>第 {{page2}} 个</td>
+        </tr>
+     {%endfor%}
+	     <tr>
+	     <td>离开数</td>
+	     <td>{{pubdate}}</td>
+	     <td>{{other_numb}}</td>
+	     <td>第 {{page2}} 个</td>
+        </tr>
+</form>
+        </table>
+
+<div class="inline pull-right page"></div>
+</body>
+</html>

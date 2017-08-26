@@ -1,0 +1,326 @@
+<style>
+	.messages {
+		position: fixed;
+		right: 5px;
+		height: 35px;
+		width: 40px;
+		bottom: 110px;
+		background-color: #03C;
+		border-radius: 20px;
+		z-index: 999999;
+		text-align: center;
+		color: #FFF;
+		line-height: 16px;
+		padding-top: 5px;
+		box-shadow: #333 0px 0px 10px;
+	}
+	.download-bar {
+		position: fixed;
+		bottom: 40px;
+		z-index: 999;
+		overflow: hidden;
+		width: 100%;
+		background: rgba(0, 0, 0, .8)
+	}
+	.download-bar .download {
+		box-sizing: border-box;
+		position: relative;
+		overflow: hidden;
+		padding: 8px;
+	}
+	.download-bar .download ul {
+		margin-left: 5px;
+		color: #FFF;
+		float: left;
+		
+	}
+	.download-bar .download ul li{color: #fff;}
+	.download-bar .download ul li img {
+		width: 20px;
+		height: 20px;
+	}
+	.download-bar .download .intro {
+		display: inline;
+		float: left;
+		line-height: 20px;
+	}
+	.download-bar .download .logo {
+		float: left;
+		width: 35px;
+		height: 35px;
+		background: url(http://img0.zz91.com/zz91/images/48R.png) no-repeat;
+		background-size: 100% 100%;
+	}
+	.download-bar .download .logo-title {
+		font-size: 14px;
+	}
+	.download-bar .download .control-panel {
+		float: right
+	}
+	.download-bar .download .download-btn {
+		padding: 5px;
+		*display: inline;
+		display: inline-block;
+		text-align: center;
+		vertical-align: middle;
+		text-decoration: none;
+		cursor: pointer;
+		margin-top: 5px;
+		float: right;
+		background-color: #2A7FFF;
+		background-image: -webkit-linear-gradient(top, #2a7eef, #2a7fff);
+		background-image: -moz-linear-gradient(top, #2a8000, #2a7fff);
+		background-image: -o-linear-gradient(top, #2a8000, #2a7fff);
+		background-image: -ms-linear-gradient(top, #2a8000, #2a7fff);
+		background-image: linear-gradient(to bottom, #2a7eef, #2a7fff);
+		border: 1px solid #2A7FFF;
+		*border: 0;
+		color: #FFF;
+		-webkit-border-radius: 3px;
+		border-radius: 3px;
+		font-size: 14px;
+		outline: 0
+	}
+	.download-bar .download .download-btn a {
+		display: block;
+		color: #fff
+	}
+	.download-bar .download .close {
+		float: left;
+		line-height: 100%;
+		background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAkhJREFUeNrUmd1twjAQx0144YmGFwTioTBBswHpBozQERghI2SEjkA3SCcomYCAhOAFhUggeAC5dnRBboqdD19I+5dOPGDnfrHPPvvSoJSSEjKZTZjZzIbMxpJ2PrM5M4/ZjNm+sCcOWMBsZjNaXjN4Rm6feRtazDyKJy8vaB44h1YnN8t/QxGDJsTOC6lWPsTy3fg0aoYj4CNgZt37894IPhJOVAQ7wj5rBOuA43oC36YK0KkJTpxuRzbFPAa+ZD2v1ys5Ho+k3W5rU5zP5/i31WrJmrzCaP4YQVf10NVqFVsYhtpwi8UiNv7SEjnpKbYV6SpWv98nzWaTrNfr0pAJHAfr9Xrx8yQaQyq9AU6zHs6nYzQalYYU4QaDAel0OlldpkkM8lUTVuioVB/QyEiGMq+KjqQGHNfEgPgjVUBqwsVrw4Ddm2BDIsDFWx+PQYqxbYggSHC3jZpibLwJULfbJbvdDgUODTANyYUBpzpu/RkZ2KPHp1g346ACphcEB9TJOPcAfcwVjJEWBS0NuLeiwWHlbtDcSM5dVSR+BEjvXxwW+CXloyo4jZH85Lc9I89pGiO3loB8F7cZD4il2mw22ulLhNxut6oj/zIBTBeGpLpcLjSKIpR6x+l0oofDQdXEltVmXFq/3KzazLzGu/GvOo2s9BHATf/RpQ8LfCtz8R7eInownJ2GUx0W5nAV8B80rZY05WYUEM2KF44LPrRLwDZyCTjALAGLNtEE5X3fivhslLySDIXPEDx+nhUZQfwMERR19C3AAIpp/h2CUjiuAAAAAElFTkSuQmCC') no-repeat center;
+		color: #adadad;
+		width: 20px;
+		height: 20px;
+		margin-top: 10px;
+		border-radius: 10px;
+		opacity: .4;
+		margin-right: 10px;
+	}
+</style>
+<a href="http://m.zz91.com/messages.html?t=1{{messto}}" target="_blank">
+<!--<a href="http://qiao.baidu.com/v3/?module=mobile&controller=mobileim&action=index&ucid=493993&type=z&siteid=2499031" target="_blank">-->
+	<div class="messages">在线
+		<br />咨询</div>
+</a>
+<script>
+	//var html="<style>"+
+	//".guanggao{position:absolute; top:0px; left:0px;z-index:999999; background-color:#E84E50}"+
+	//".guanggao img{width:100%}"+
+	//".guanggao .tiyan{position:absolute; bottom:30px; text-align:center; color:#FFF;width:100%}"+
+	//".guanggao .bg_btn{width:40%;height:38px;line-height:40px;text-align:center;border:1px solid #fff60d;position:absolute;bottom:10px;left:10%;-moz-border-radius:6px;-webkit-border-radius:6px;border-radius:6px}"+
+	//".guanggao .bg_btn a{color:#fff60d}"+
+	//".guanggao .bg_a{width:40%;position:absolute;bottom:20px;right:5%}"+
+	//".guanggao .bg_a a{font-size:16px;color:#dfb89f}"+
+	//"</style>"+
+	//"<div class=\"guanggao\">"+
+	// "   <img src=\"/images/qianbao/ad.jpg\" id=\"guanggaoimg\" />"+
+	// "   <div class=\"tiyan\">获得期间体验即送20元</div>"+
+	// "   <div class=\"bg_btn\"><a href=\"qianbao/\">立即体验吧</a></div>"+
+	// "   <div class=\"bg_a\">"+
+	// "    <a href=\"javascript:closead();\">继续访问手机站</a>"+
+	// "   </div>"+
+	//"</div>"
+	//
+	//$(document).ready(function(e) {
+	//	$.get("/guanggao.html?"+Math.floor(Math.random()*1000),{
+	//		
+	//	},
+	//	function(data,status){
+	//		if (status=="success"){
+	//			if (data=="1"){
+	//				$("body").append(html);
+	//				$("body").css("overflow-y","hidden");
+	//				$(".guanggao").css("width",$("body").width());
+	//				$(".guanggao").css("height",$("body").height()+300);
+	//				$(".tiyan").css({"top":$("body").width() * 680/480 -20,"width":$("body").width()});
+	//				$(".bg_btn").css("top",$("body").width() * 380/480 +10);
+	//				$(".bg_a").css("top",$("body").width() * 380/480 + 20);
+	//				$(".guanggao").css("display","");
+	//				setTimeout("closead()",4000)
+	//			}else{
+	//				setTimeout("closead()",4000)
+	//			}
+	//		}else{
+	//
+	//		}
+	//	});
+	//});
+	//function closead(){
+	//	$("body").css("overflow-y","");
+	//	$(".guanggao").css("display","none");
+	//}
+	function closeapp(url){
+		$.get(url, function(result){
+		    if (result=="1"){
+		    	document.getElementById('J_appJump').style.display='none';
+		    }
+		    if (result=="0"){
+		    	document.getElementById('J_appJump').style.display='';
+		    }
+		 });
+	}
+	$(function(){
+		$('#sharebutton').click(function(e){
+			$('#bdsharebuttonbox').lightbox_me({
+					overlaySpeed:0,
+					lightboxSpeed:0,
+					modalCSS:{top:"40%",width:'80%'},
+					//centered: true,
+					onLoad: function() { 
+						var target = $.event.fix(e).currentTarget;
+					}
+			});
+		}); 
+	});
+
+</script>
+
+<div class="cb"></div>
+{%if showgooglead%}
+{%else%}
+<center>
+	<div style="margin-top:3px;">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- 微门户 -->
+	<ins class="adsbygoogle"
+	     style="display:block"
+	     data-ad-client="ca-pub-5512236620584335"
+	     data-ad-slot="8274972003"
+	     data-ad-format="auto"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+	</div>
+</center>
+{%endif%}
+
+<div class="t-footer ac t-quick-hidden">
+	<div class="bar bt-c">
+		<div class="fl">
+			{%if username%}
+			<span class="c-text">当前帐号：</span>{{username}} <a href="/loginout/">退出</a> {%else%}
+			<a href="/login/?done={{host}}">登录</a> <span class="c9">|</span> <a href="/register/">免费注册</a> {%endif%}
+		</div>
+		<a href="#top">
+			<div class="fr">
+				<div class="fl top-txt c-link">回顶部</div>
+				<div class="fl top-pic">&nbsp;</div>
+			</div>
+		</a>
+	</div>
+	<center>
+		<div class="link">
+			<div class="mb8" style="font-size: 18px;"><a href="http://m.zz91.com/app.html">App下载</a>
+			</div>
+			<div class="copyright">ZZ91再生网版权所有 2013-2016</div>
+		</div>
+	</center>
+</div>
+{%if showpost%} {%else%}
+<script>
+	var browser={
+	  versions:function() {
+	    var u=navigator.userAgent, app = navigator.appVersion;
+	    return {//移动终端浏览器版本信息 
+	      trident: u.indexOf('Trident') > -1, //IE内核
+	      presto: u.indexOf('Presto') > -1, //opera内核
+	      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+	      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+	      mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
+	      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+	      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+	      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+	      iPad: u.indexOf('iPad') > -1, //是否iPad
+	      webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+	    };
+	  }(),
+	  language:(navigator.browserLanguage || navigator.language).toLowerCase()
+	}
+	function openappdown(){
+		if(browser.versions.ios || browser.versions.iPhone || browser.versions.iPad){
+		  window.location="https://itunes.apple.com/us/app/zz91zai-sheng-wang/id944851616?l=zh&ls=1&mt=8";
+		}
+		else if (browser.versions.android){
+		  window.location="http://m.zz91.com/app.html";
+		}
+	}
+	
+</script>
+<aside class="download-bar J_fixBar" id="J_appJump" style="display: none;">
+	<div class="download">
+		<a class="close J_closeBtn J_closeAPP" href="javascript:closeapp('/closefloatapp.html?close=1')" target="J_appJumpFrame"></a>
+		<div class="intro" style="padding-top: 5px;;">
+			<div class="logo"></div>
+			<ul>
+				<li class="logo-title">使用APP客户端</li>
+				<li style="font-size: 12px;">获更多优质资源，送<b style="color: #FFFF00;">20</b>元红包</li>
+			</ul>
+		</div>
+		<div class="download-btn"> <a class="J_app" href="http://m.zz91.com/app.html">免费下载</a> </div>
+	</div>
+</aside>
+
+<script>
+	$(document).ready(function(){
+		closeapp("/closefloatapp.html")
+	});
+</script>
+{%endif%}
+<div style="margin-bottom: 20px;" id="shareto" class="tipp" align="center" style="text-align: center;">分享：<br />
+	<div class="bdsharebuttonbox"><a class="bds_mshare" data-cmd="mshare"></a>
+	<a class="bds_qzone" data-cmd="qzone" href="#"></a>
+	<a class="bds_tsina" data-cmd="tsina"></a>
+	<a class="bds_baidu" data-cmd="baidu"></a>
+	<a class="bds_renren" data-cmd="renren"></a>
+	<a class="bds_tqq" data-cmd="tqq"></a>
+	<a class="bds_more" data-cmd="more">更多</a>
+	<a class="bds_count" data-cmd="count"></a></div>
+	<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</div>
+<!--end footer-->
+{%if showpost%} {%else%}
+<div class="floatNav">
+	<a href="/category/">交易中心</a>
+	<a href="/app.html" target="_blank" style="color:#FFFF00;">APP客户端</a>
+	<a href="/priceindex/">行情报价</a>
+	<a href="/myrc_index/">生意管家</a>
+</div>
+{%endif%}
+<div style="display:none">
+	<script>
+//百度站长 链接自动提交
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	<!--baidu analysis-->
+	<script>
+		var _hmt = _hmt || [];
+		
+		(function() {
+			var hm = document.createElement("script");
+			hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+			var s = document.getElementsByTagName("script")[0];
+			s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+</div>

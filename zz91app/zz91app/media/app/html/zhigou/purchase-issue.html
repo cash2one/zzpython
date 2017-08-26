@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>发布采购信息</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/zhigou/purchase-issue.css"/>
+</head>
+<body>
+<div class="box">
+	
+	
+	<div class="flow">
+		<div class="flow-span">1、采购清单</div>
+		<div class="jitu"></div>
+		<div class="flow-span">2、买家报价</div>
+		<div class="jitu"></div>
+		<div class="flow-span">3、下单成交</div>
+	</div>
+	<div class="into-inpt">
+		<span>产&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;品 :</span>
+		<input type="text" placeholder="请输入产品" class="title">
+	</div>
+	<div class="into-inpt">
+		<span>采 &nbsp;&nbsp;购 &nbsp;量 :</span>
+		<input type="text" placeholder="请输入采购量" class="quantity"></div>
+	<div class="into-inpt">
+		<span>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格 :</span>
+		<input type="text" placeholder="请输入价格" class="price"></div>
+	<div class="into-inpt">
+		<span>颜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;色 :</span>
+		<input type="text" placeholder="请输入产品颜色" class="color"></div>
+	<div class="into-inpt">
+		<span>用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;途 :</span>
+		<input type="text" placeholder="请输入产品用途" class="useful"></div>
+	<div class="into-inpt">
+		<span>级&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别 :</span>
+		<input type="text" placeholder="请输入产品级别" class="level"></div>
+	<div class="into-inpt">
+		<span>所 &nbsp;&nbsp;在 &nbsp;地 :</span>
+		<input type="text" placeholder="请输入所在地" class="area_code"></div>
+	<div class="into-inpt">
+		<span>求购详情 :</span><textarea placeholder="请输入求购详情" class="into-tare"></textarea></div>
+	<div class="tishi">注：目前免费委托采购只限<span class="redfont">塑料再生颗粒</span></div>
+	<span class="btn">点此免费发布</span>
+</div>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		$(".btn").on("click",function(){
+			var title = $(".title").val();
+			var quantity = $(".quantity").val();
+			var price = $(".price").val();
+			var color = $(".color").val();
+			var useful = $(".useful").val();
+			var level = $(".level").val();
+			var area_code = $(".area_code").val();
+			var detail = $(".into-tare").val();
+			if(title==""){hint("您的产品名称还没填写！");return};
+			if(quantity==""){hint("您的采购量还没填写！");return};
+			if(price==""){hint("您的价格还没填写！");return};
+			if(color==""){hint("您的产品颜色还没填写！");return};
+			if(useful==""){hint("您的产品用途还没填写！");return};
+			if(level==""){hint("您的产品级别还没填写！");return};
+			if(area_code==""){hint("您的产品所在地还没填写！");return};
+			if(detail==""){hint("您的产品求购详情还没填写！");return};
+			var data = {
+				company_id:UserInfo.memberID(),
+                usertoken:UserInfo.token(),
+                appsystem:api.systemType,
+                datatype:"json",
+				title:title,
+				quantity:quantity,
+				price:price,
+				color:color,
+				useful:useful,
+				level:level,
+				area_code:area_code,
+				detail:detail
+			}
+			api.ajax({
+				url : hosturl + 'trust/supplyPubok.html',
+				method : 'post',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data:{
+      				values: data
+    			}
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(ret))
+				if (ret) {
+					if(ret.error_code=="0"){
+                        api.alert({
+                            title: '我的采购信息',
+                            msg: "发布成功，我们会尽快和您联系，谢谢合作",
+                            buttons:['确定']
+                        },function(ret,err){
+                        	api.closeWin({
+                            });
+                        })
+                    }else{
+                        api.alert({
+                            title: '我的采购信息',
+                            msg: "发布失败,请重试",
+                            buttons:['确定']
+                        },function(ret,err){
+                        	
+                        })
+                    }
+				} else {
+				};
+			});
+		})
+	}
+	function  hint(ts){
+          $(".hint").remove()
+          var hintHtml = '<div class="hint" style="position:fixed;color:#fff;line-height:18px;font-size:14px;width:100%">'
+          +'<span style="display:block;margin:0 8px;background:#000;opacity:0.8;border-radius:5px;padding:10px 10px;text-align:center">'+ts+'<span>'
+          +'</div>';
+          $("body").append(hintHtml);
+          var hint_height =$(".hint").height();
+          var wd_height =$(window).height();
+          var top_height = (wd_height - hint_height)/2
+          $(".hint").css("top",top_height+"px");
+          setTimeout(function(){
+            $(".hint").fadeOut("slow",function(){
+              $(".hint").remove()
+            })
+          },2000)
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+var categorylist=""+
+{%for p in categorycodelist%}
+    <div class="item-title2">+
+    	<div class="item-title-img2"><img src="http://img0.zz91.com/zz91/mobile/images/check_icon.jpg" /></div>+
+        <div class="item-title-text">+
+        	<span>{{p.label}}</span>+
+        </div>+
+        <div class="item-title-icon2"></div>+
+        <div class="cb"></div>+
+    </div>+
+    <div class="item-div">+
+{%for c in p.catelist%}
+    	<div class="item-div-box item-div-style">+
+        	{{c.label}}
+            <div class="item-div-icon">+
+            	<img src="http://img0.zz91.com/zz91/mobile/images/click_ok.png" />+
+            </div>+
+            <input type="hidden" id="item_div1_1" class="item_div_i" value="0" />+
+        </div>+
+{%endfor%}
+        <input type="hidden" class="all" value="1" />+
+    </div>+
+{%endfor%}
+""

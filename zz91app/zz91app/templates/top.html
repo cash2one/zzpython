@@ -1,0 +1,10 @@
+<style>
+.message-num{position: absolute; left: 65%;z-index: 999;top:0px}
+</style>
+<ul>
+	<li class="on" onclick="navlink('/index_ios.html?iosapp=1', 'trade',this);">商机</li>
+	<li onclick="navlink('/priceindex/', 'price',this);">报价</li>
+	<li onclick="navlink('/messagelist/', 'messagelist',this);" style="position: relative;">消息<span class="mui-badge mui-badge-danger message-num" id='messagescount' style='display:none'>1</span></li>
+	<li onclick="navlink('/myrc_index/', 'myrc',this);">我的</li>
+	<li onclick="navlink('/set_ios.html', 'set',this);">更多 ... </li>
+</ul>

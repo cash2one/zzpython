@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>我的供求-未通过</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/myrc/not-by.css"/>
+</head>
+<body>
+<!-- <div class="nav-heart" id="header">
+	<ul class="nav-heart-ul clear" id="wrapper">
+		<li class="current-nav">未通过</li>
+		<li>审核中（4）</li>
+		<li>未通过（4）</li>
+		<li>未通过（4）</li>
+	</ul>
+	<span class="current-nav-bottom" id="navmark"></span>
+</div> -->
+<ul class="look-list">
+	<!-- <li>
+		<div class="look-title">供应PP再生料</div>
+		<div class="look-time">发布时间：2015-03-12  17:36<span class="alter">修改</span></div>
+		<div class="look-reason">退回原因 : 该条供求信息是zz91内部工作人员测试信息。</div>
+	</li> -->
+</ul>
+</body>
+<script id="info-list" type="text/html">
+	<li>
+		<div class="look-title">{{ d.protitle }}</div>
+		<div class="look-time">发布时间：{{ d.real_time }}<span class="alter">修改</span></div>
+		<div class="look-reason">退回原因 : {{ d.unpass_reason }}</div>
+	</li>
+</script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript">
+	var currPage = 1;
+	apiready = function(){
+		api.showProgress({title:'加载中',modal:false});
+		ajaxInfo();
+		//加载更多
+		api.addEventListener({
+			name : 'scrolltobottom'
+		}, function(ret, err) {
+			currPage += 1;
+			if($(".mui-spinner").length==0){
+				$("body").append("<div class='mui-spinner' style='text-align:center;height:50px;line-height:50px;font-size:16px;'>更多加载中...</div>");
+			}
+			
+			setTimeout(function(){
+				ajaxInfo();
+			},1000)
+		});
+		//页面刷新
+		api.setRefreshHeaderInfo({
+			visible : true,
+			// bgColor: '#F2F2F2',
+			bgColor : '#E6E6E6',
+			textColor : '#000000',
+			textDown : '下拉刷新',
+			textUp : '释放刷新',
+		}, function(ret, err) {
+			currPage = 1;
+			ajaxInfo();
+			api.refreshHeaderLoadDone();
+			api.hideProgress();
+			api.toast({
+				msg : '数据已是最新！',
+				duration : 3000,
+				location : 'bottom'
+			});
+		});
+	}
+	function ajaxInfo(){
+		var company_id =  UserInfo.memberID();
+		var usertoken = UserInfo.token();
+		api.ajax({
+		    url : hosturl + 'myrc_products/?company_id='+ company_id +'&usertoken='+ usertoken +'&checkStatus=2&appsystem='+ api.systemType +'&datatype=json&page='+ currPage,
+		    method : 'get',
+		    timeout : 30,
+		    dataType : 'json',
+		    returnAll : false
+		}, function(ret, err) {
+		    if (ret) {
+		    	// zzalert(JSON.stringify(ret))
+		        var pageHtml = "";
+		        $.each(ret.qlistall.list, function(index, item) {
+			        var getTpl = $api.html($api.byId("info-list"));
+			        laytpl(getTpl).render(item, function(html) {
+			            pageHtml = pageHtml + html;
+			        });
+		        })
+		        if(currPage == 1){
+		        	if(ret.qlistall.list.length == 0){							//没有数据时显示
+		    			pageHtml = "<li style='text-align:center'>暂无数据</li>"
+		    		}
+		        	$(".look-list").html(pageHtml);
+		        	var numberList = JSON.stringify(ret.count)
+		        	api.execScript({
+					    name: 'buyinout',
+					    frameName:'buyinout_',
+					    script: "getInfoNumber("+ numberList +")"
+					});
+		        }else{
+		        	$(".look-list").append(pageHtml)
+		        }
+		        api.hideProgress();
+		        $(".mui-spinner").remove();
+		    } else {
+		    	api.hideProgress();
+		    };
+		});
+	}
+</script>
+</html>

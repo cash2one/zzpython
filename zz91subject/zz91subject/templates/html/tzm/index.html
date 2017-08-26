@@ -1,0 +1,547 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>第十四届中国塑料交易会现场直播暨第五届再生塑料展览会_废料专题_ZZ91再生网</title>
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico">
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link type="text/css" href="css/zzsc.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="js/jquery.pikachoose.min.js"></script>
+<script type="text/javascript" src="js/jquery.touchwipe.min.js"></script>
+<script>
+$(document).ready(function() {
+	var timera=null;
+	var i=0;
+	var w=960;
+	var len=$(".zwinfo ul>li").length;
+	$(".zwinfo ul").css("width",960*len);
+	//alert($(".zwinfo ul").css("width"))
+	$(".prov").click(function(){
+		var leftnum=w*i;
+		if (i<len){
+			$(".zwinfo ul").stop().animate({left:"-"+leftnum.toString()+"px"});
+			i+=1;
+		}
+		if (i>len){i=0;}
+	});
+	$(".prov").mouseover(function(){
+		clearTimeout(timera);
+	});
+	$(".prov").mouseout(function(){
+		timera=setTimeout(louautoMove,1000);
+	});
+	
+	$(".nextp").mouseover(function(){
+		clearTimeout(timera);
+	});
+	$(".nextp").mouseout(function(){
+		timera=setTimeout(louautoMove,1000);
+	});
+	
+	$(".nextp").click(function(){
+		if (i>1){
+			i=i-1;
+			var leftnum=w*(i-1);
+			$(".zwinfo ul").stop().animate({left:"-"+leftnum.toString()+"px"});
+			if (i<0){i=len-1;}
+		}
+	});
+	function autogoup(id){
+		var leftnum=id*w;
+		$(".zwinfo ul").stop().animate({left:"-"+leftnum.toString()+"px"});
+	}
+	function louautoMove(){
+			 autogoup(i);
+			 timera=setTimeout(louautoMove,3000);
+			 i=i+1;
+			 if (i>=len){i=0}
+	 }
+	 $(".zwinfo ul").mouseover(function()  //移动到上面时停止自动切换
+	{
+		clearTimeout(timera);
+	});
+	$(".zwinfo ul").mouseout(function()  //移开时继续自动切换
+	{
+		timera=setTimeout(louautoMove,1000);
+	});
+	 timera=setTimeout(louautoMove,100);
+});
+
+</script>
+</head>
+  <body>
+  <div style="width:100%; background-color:#F9F7EC">
+	<div style="width:933px;margin:0 auto">
+		{%include 'html/comm/top.html'%}
+    </div>
+  </div>
+    <div class="top"></div>
+    <!--end top-->
+    <div class="content">
+    	<div class="main">
+        	<div class="mLeft fl">
+            	<div class="mlBox">
+                	<div class="pikachoose">
+    					<ul id="pikame" class="jcarousel-skin-pika">
+                        	<li>
+                            	<img src="images/71.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/72.jpg" />
+                                <span></span>
+                             </li>
+        					<li>
+                            	<img src="images/73.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/74.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/75.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/76.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/77.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/78.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/79.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/80.jpg"/>
+                                <span></span>
+                            </li>
+                        	<li>
+                            	<img src="images/61.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/62.jpg" />
+                                <span></span>
+                             </li>
+        					<li>
+                            	<img src="images/63.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/64.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/65.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/66.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/67.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/68.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/69.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/70.jpg"/>
+                                <span></span>
+                            </li>
+                        	<li>
+                            	<img src="images/35.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/36.jpg" />
+                                <span></span>
+                             </li>
+        					<li>
+                            	<img src="images/37.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/38.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/39.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/40.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/41.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/42.jpg" />
+                                <span></span>
+                             </li>
+        					<li>
+                            	<img src="images/43.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/44.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/45.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/46.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/47.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/48.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/49.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/50.jpg"/>
+                                <span></span>
+                            </li>
+                            <li>
+                            	<img src="images/51.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/52.jpg" />
+                                <span></span>
+                             </li>
+        					<li>
+                            	<img src="images/53.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/54.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/55.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/56.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/57.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/58.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/59.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/60.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/1.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/2.jpg" />
+                                <span></span>
+                             </li>
+        					<li>
+                            	<img src="images/3.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/4.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/5.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/6.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/7.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/8.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/9.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/10.jpg"/>
+                                <span></span>
+                            </li>
+                            <li>
+                            	<img src="images/11.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/12.jpg" />
+                                <span></span>
+                             </li>
+        					<li>
+                            	<img src="images/13.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/14.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/15.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/16.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/17.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/18.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/19.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/20.jpg"/>
+                                <span></span>
+                            </li>
+                            <li>
+                            	<img src="images/21.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/22.jpg" />
+                                <span></span>
+                             </li>
+        					<li>
+                            	<img src="images/23.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/24.jpg" />
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/25.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/26.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/27.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/28.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/29.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/30.jpg"/>
+                                <span></span>
+                            </li>
+                            <li>
+                            	<img src="images/31.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/32.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/33.jpg"/>
+                                <span></span>
+                            </li>
+        					<li>
+                            	<img src="images/34.jpg"/>
+                                <span></span>
+                            </li>
+    				</ul>
+				</div>
+				<script language="javascript">
+					$(document).ready(function (){
+        			$("#pikame").PikaChoose({carousel:true, carouselVertical:true});
+				});
+				</script>
+                </div>
+                <!--end mlBox-->
+            	<div class="mlBox" style="padding:0px">
+                	<div class="mlBox-tle">展会报道 </div>
+                    <div class="mlBox-info">
+                    	<ul class="mlBox-ul">
+                        	<li style="border-right:dashed 1px #666;">
+                            	<center><h4><a href="http://huzhu.zz91.com/viewReply639624.htm" target="_blank" title="ZZ91台州塑交会优质展商不容错过">ZZ91台州塑交会优质展商不容错过</a></h4></center>
+                                <div class="detail">今天是台州塑交会的第二天了，一年一度的台州塑交会正在如火如荼的举办着，热情的参展商和...[<a href="http://huzhu.zz91.com/viewReply639624.htm" target="_blank">全文</a>]</div>
+                            </li>
+                            <li>
+                            	<center><h4><a href="http://huzhu.zz91.com/viewReply639656.htm" target="_blank" title="ZZ91展商合作，再掀高潮">ZZ91展商合作，再掀高潮</a></h4></center>
+                                <div class="detail">展会合作商，新鲜出炉。ZZ91展会第三天再掀高潮，合作商只增不减，合作热情高涨不退。再生君...[<a href="http://huzhu.zz91.com/viewReply639656.htm" target="_blank">全文</a>]</div>
+                            </li>
+                            <li style="border:none;border-right:dashed 1px #666;">
+                            	<center><h4><a href="http://huzhu.zz91.com/viewReply639622.htm" target="_blank" title="ZZ91展会硕果累累">ZZ91展会硕果累累</a></h4></center>
+                                <div class="detail">展会第二天，经过这两天的ZZ91工作人员的努力也已经和不少商家达成了合作。可以称得上是硕果累累...[<a href="http://huzhu.zz91.com/viewReply639622.htm" target="_blank">全文</a>]</div>
+                            </li>
+                            <li style="border:none;">
+                            	<center><h4><a href="http://huzhu.zz91.com/viewReply639568.htm" target="_blank" title="ZZ91展会第二天现场火爆">ZZ91展会第二天现场火爆</a></h4></center>
+                                <div class="detail">ZZ91展会已经开展到了第二天，现场非常火爆。纵观整个ZZ91展区：不管是企业展位，信息墙，样品展区...[<a href="http://huzhu.zz91.com/viewReply639568.htm" target="_blank">全文</a>]</div>
+                            </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <!--end mBox-->
+            </div>
+            <div class="mRight fr">
+            	<div class="mrBox">
+                	<div class="mrBox-tle">组委会联系方式</div>
+                    <div class="mrBox-info">
+                    	<dl class="addrDl">
+                        	<dt>【ZZ91再生网会展部】</dt>
+                            <dd>联&nbsp;系&nbsp;人：刘先生</dd>
+                            <dd>手&nbsp;&nbsp;&nbsp;&nbsp;机：13456949991</dd>
+                            <dd>电&nbsp;&nbsp;&nbsp;&nbsp;话：0571-56611688</dd>
+                            <dd>传&nbsp;&nbsp;&nbsp;&nbsp;真：0571-56637777</dd>
+                            <dd>电子邮箱：liunn@asto.com.cn</dd>
+                            <dd>官方网站：www.zz91.com</dd>
+                            <dd>地&nbsp;&nbsp;&nbsp;&nbsp;址：浙江杭州江干区东方电子商务园</dd>
+                        </dl>
+                    </div>
+                </div>
+                <!--end mrBox-->
+                <div class="mrBox">
+                	<div class="mrBox-tle">组织结构</div>
+                    <div class="mrBox-info">
+                    	<strong>主办单位</strong>
+                    	<ul class="addrUl">
+                        	<li>• 台州市人民政府 </li>
+                            <li>• 台州市国际会展中心</li>
+                        </ul>
+                        <strong>承办单位</strong>
+                    	<ul class="addrUl">
+                        	<li>• ZZ91再生网</li>
+                        </ul>
+                        <strong>会展场馆</strong>
+                    	<ul class="addrUl">
+                        	<li>• 台州市国际会展中心</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end mrBox-->
+                <div class="mrBox">
+                	<div class="mrBox-tle">日程安排 </div>
+                    <div class="mrBox-info">
+                    	<strong>布展时间：</strong>
+                    	<ul class="addrUl">
+                        	<li>9月23-24日（8:00-17:00）</li>
+                        </ul>
+                        <strong>展出时间：</strong>
+                    	<ul class="addrUl">
+                        	<li>9月25-28日（9:00-16:30）</li>
+                            <li style="color:#ed0000">展商8:30入场</li>
+                            <li>9月28日（9:00-15:00）</li>
+                        </ul>
+                        <strong>撤展时间：</strong>
+                    	<ul class="addrUl">
+                        	<li>9月28日（15:00-22:00）</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end mrBox-->
+            </div>
+            <div class="cb"></div>
+        </div>
+        <!--end main-->
+        
+        <div class="main" style="margin-top:0px; padding-top:0px">
+        	<div class="h-title"><img src="images/zwxx1.jpg"></div>
+            <div class="h-custom">
+            	<div class="prov"></div>
+                <div class="nextp"></div>
+                <div class="zwinfo">
+            	<ul>
+                	<li>
+                    	<dl>
+                        {%for list in listall%}
+                        	<dt>
+                            	<h6>{{list.zw}}</h6>
+                                <a href="{{list.url}}" target="_blank">
+                                <div class="content">
+                                	<div class="title">{{list.comname}}</div>
+                                    <hr size="1" color="#CCCCCC">
+                                    <div class="zyyw">{{list.zyyw}}</div>
+									<hr size="1" color="#CCCCCC">
+                                    <img src="{{list.pic}}" width="200" height="120">
+                                </div>
+                                </a>
+                            </dt>
+                            {{list.lis|safe}}
+                        {%endfor%}
+                        </dl>
+                    </li>
+                    <div class="clearfix"></div>
+                </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--end content-->
+    <div class="bottom"><img src="images/line.jpg" style="margin-top:60px" /></div>
+   <div style="width:100%;">
+	 <div style="width:950px;margin:0 auto;text-align:center;">
+		{% include 'html/comm/buttom.html' %}
+    </div>
+  </div>               
+  </body>
+</html>

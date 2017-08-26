@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>ZZ91再生网简易后台</title>
+		<link rel="stylesheet" type="text/css" href="../mobile/css/aui.css" />
+		<style>
+			body {
+				background: #f7f9f8;
+			}
+			#content{
+				height: 300px;
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content">{{details.introduction|safe}}</div>
+		<div class="aui-content-padded">
+			<div class="aui-btn aui-btn-block aui-btn-info" tapmode  id="saveBtn">保存</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../mobile/js/jquery.js"></script>
+	<script type="text/javascript" src="../mobile/js/zepto.min.js"></script>
+	<script type="text/javascript" src="../mobile/js/artEditor.min.js"></script>
+	<script type="text/javascript" src="../mobile/js/layer/layer.js"></script>
+<script>
+	$('#content').artEditor({
+	    imgTar: '#imageUpload',
+	    limitSize: 5,   // 兆
+	    showServer: false,
+	    uploadUrl: '',
+	    data: {},
+	    uploadField: 'image',
+	    placeholader: '<p>请输入文章正文内容</p>',
+	    validHtml: ["br"],
+	    uploadSuccess: function(res) {
+	        // return img url
+	        return res.path;
+	    },
+	    uploadError: function(res) {
+	        // something error
+	        console.log(res);
+	    }
+	});
+	
+	//http://www.bkjia.com/jQuery/1090076.html
+	//http://www.jb51.net/article/82569.htm
+	$(function(){
+		var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+		$("#saveBtn").on("click", function() {
+			var artvalue=$('#content').getValue();
+			
+			var data={
+				fild : 'introduction',
+				fildvalue : artvalue,
+				tablevalue : 'company',
+				id : "{{company_id}}"
+			}
+			$.ajax({
+				url : 'savecontent.html',
+				type : 'post',
+				dataType : 'json',
+				cache : false,
+				data : data,
+			    success:function(ret) {
+					if (ret) {
+						if (ret.err == "true") {
+							alert(ret.errkey)
+						} else {
+							layer.msg('保存成功');
+							parent.layer.close(index);
+						}
+					} else {
+						alert('异常！1')
+					};
+				},
+				error : function(e) {
+					alert(alert(JSON.stringify(e)));
+				}
+			});
+		})
+	})
+	
+</script>
+</html>

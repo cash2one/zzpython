@@ -1,0 +1,378 @@
+{%include 'new/head.html'%}
+<link rel="stylesheet" href="/css/common.css">
+<script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+<script src="http://img0.zz91.com/zz91/js/province.js" type="text/javascript"></script>
+<style>
+	/*提示框*/
+	.tip-layer {
+		position: fixed;
+		width: 100%;
+		height: 20px;
+		left: 50%;
+		top: 50%;
+		margin-top: -20px;
+		margin-left: -110px;
+		text-align: center;
+		padding: 10px;
+		color: #FFF;
+		border-radius: 5px;
+		background: #333;
+		font-weight: bold;
+		z-index: 200;
+		opacity: 0.8;
+	}
+	
+	.regbox .regitem {
+		width: 200px;
+		float: left;
+	}
+	
+	.regbox li select,
+	.regbox li textarea {
+		width: 99%;
+		font-size: 16px;
+		padding: 5px;
+		line-height: 30px;
+	}
+	
+	.submitbutton {
+		width: 100%;
+		margin-top: 20px;
+		background-color: #390;
+		color: #FFF;
+		font-size: 18px;
+		background: -webkit-gradient(linear, 0 0, 0 100%, from(#3C0), to(#390));
+		border-top: 1px solid #360;
+		border-right: 1px solid #360;
+		border-bottom: 1px solid #360;
+		border-left: 1px solid #360;
+		-webkit-border-bottom-left-radius: 2px;
+		-webkit-border-bottom-right-radius: 2px;
+	}
+	/*城市联动*/
+	
+	#school {
+		color: #666;
+	}
+	
+	#school-box {
+		width: 94%;
+		border: 1px solid #CCC;
+		box-shadow: 2px 3px 0 rgba(190, 190, 190, 0.3);
+		background-color: #fff;
+		z-index: 9;
+		position: absolute;
+		display: none;
+		left: 0px;
+	}
+	
+	#school-box a {
+		color: #3777bc;
+		text-decoration: none;
+		padding: 5px;
+		text-align: center;
+		display: inline-block;
+	}
+	
+	#school-box a:hover {
+		background-color: #ccc;
+		color: #fff;
+		cursor: pointer;
+	}
+	
+	#school-box a.active {
+		background-color: #666;
+		color: #fff;
+	}
+	
+	#school-box a:hover {
+		background-color: #ccc;
+		color: #fff;
+		cursor: pointer;
+	}
+	
+	#school-box h1 {
+		color: #333;
+		line-height: 2;
+		padding-left: 10px;
+		background-color: #ebebeb;
+	}
+	
+	#school-box #province,
+	#school-box #school,
+	#school-box #country {
+		border: 1px solid #ccc;
+		margin: 10px;
+		padding: 2px;
+		line-height: 1.5;
+	}
+	
+	#school-box #school {
+		overflow-x: hidden;
+		overflow-y: auto;
+		height: 200px;
+	}
+	
+	#school-box #school a {
+		display: inline-block;
+		width: 45%;
+		text-align: left;
+		float: left;
+	}
+	
+	.area_blue {
+		background-image: url(http://img0.zz91.com/zz91/css/image/arr.gif);
+		background-repeat: no-repeat;
+		background-position: right;
+		height: 24px;
+		width: 96%;
+		border: 1px solid #A0B4C5;
+		line-height: 24px;
+		padding-right: 4px;
+		padding-left: 4px;
+		cursor: pointer;
+		background-color: #fff;
+	}
+	
+	#school-box .nav {
+		padding-right: 2px;
+		padding-left: 2px;
+		color: #333;
+		height: 22px;
+		border-top-width: 1px;
+		border-right-width: 1px;
+		border-bottom-width: 1px;
+		border-left-width: 1px;
+		border-bottom-style: dotted;
+		border-top-color: #CCC;
+		border-right-color: #CCC;
+		border-bottom-color: #CCC;
+		border-left-color: #CCC;
+	}
+	
+	#school-box .navselect {
+		cursor: pointer;
+	}
+</style>
+<script>
+	function selectOption(menuname,value){
+		var menu = document.getElementById(menuname);
+		if (menu){
+			for(var i=0;i<=menu.options.length;i++){
+				if(menu.options[i].value==value){
+				menu.options[i].selected = true;
+				break;
+				}
+			}
+		}
+	}
+</script>
+
+<body onclick="readydo()">
+	<div class="mobile">
+		{%include 'new/top.html'%}
+		<div class="cb"></div>
+		<div style="margin-top:30px;"></div>
+		<div class="m-main">
+			<form name="form1" method="post" action="/myrc/info_save.html" onsubmit="return frmsub(this)">
+				<ul class="regbox">
+					<li>
+						<div class="regitem"><span class="red">*</span>联系人：</div>
+						<input id="contact" class="text" type="text" name="contact" value="{{contact}}" placeholder="请输入您的邮箱" autocomplete="off" maxlength="20">
+					</li>
+					<li>
+						<div class="regitem"><span class="red">*</span>性别：</div>
+						<select name="sex" id="sex">
+							<option value="">请选择</option>
+							<option value="1">女士</option>
+							<option value="0">男士</option>
+						</select>
+						<script>selectOption("sex","{{sex}}")</script>
+					</li>
+					<li>
+						<div class="regitem"><span class="red">*</span>手机：</div>
+						<br />
+						<div style="text-align: left;">{{mobile}}</div>
+					</li>
+					<li>
+						<div class="regitem"><span class="red">*</span>邮箱：</div>
+						<input id="email" class="text" type="text" name="email" value="{{email}}" placeholder="请输入您的邮箱" autocomplete="off" maxlength="20"> {%if errtext%}
+						<div class="c-red">{{errtext|safe}}
+							<br/>
+						</div>{%endif%}
+					</li>
+					<li>
+						<div class="regitem"><span class="red">*</span>QQ：</div>
+						<input id="qq" class="text" type="text" name="qq" value="{{qq}}" placeholder="请输入您的QQ号码" autocomplete="off" maxlength="20"> {%if errtext3%}
+						<div class="c-red">{{errtext3|safe}}
+							<br/>
+						</div>{%endif%}
+					</li>
+					<li>
+						<div class="regitem"><span class="red">*</span>公司名称：</div>
+						<input id="companyname" class="text" type="text" name="companyname" value="{{companyname}}" placeholder="请输入公司名称" autocomplete="off" maxlength="100" readonly> {%if errtext3%}
+						<div class="c-red">{{errtext3|safe}}
+							<br/>
+						</div>{%endif%}
+					</li>
+					<li>
+						<div class="regitem"><span class="red">*</span>主营行业：</div>
+						<select name="industryCode" id="industryCode">
+							<option value="">请选择</option>
+							<option value="10001010">塑料原料</option>
+							<option value="10001003">废旧轮胎与废橡胶</option>
+							<option value="10001004">废纺织品与废皮革</option>
+							<option value="10001005">废电子电器</option>
+							<option value="10001006">废玻璃</option>
+							<option value="10001007">废旧二手设备</option>
+							<option value="10001008">其他废料</option>
+							<option value="10001009">服务</option>
+							<option value="10001000">废塑料</option>
+							<option value="10001001">废金属</option>
+							<option value="10001002">废纸</option>
+						</select>
+						<script>selectOption("industryCode","{{industryCode}}")</script>
+					</li>
+					<li>
+						<div class="regitem"><span class="red">*</span>公司类型：</div>
+						<select name="serviceCode" id="serviceCode">
+							<option value="">请选择</option>
+							<option value="10201001">国外供货商</option>
+							<option value="10201002">国外回收贸易商</option>
+							<option value="10201003">码头，仓库储存商</option>
+							<option value="10201004">国内供应商</option>
+							<option value="10201005">国内回收贸易商</option>
+							<option value="10201006">国内加工，拆解商</option>
+							<option value="10201007">利废企业</option>
+							<option value="10201008">设备，技术，服务提供商</option>
+							<option value="10201009">冶炼厂</option>
+							<option value="10201010">电子厂</option>
+							<option value="10201011">造粒厂</option>
+						</select>
+						<script>selectOption("serviceCode","{{serviceCode}}")</script>
+					</li>
+					<li>
+						<div class="item-title">
+							<span class="red">*</span> 国家/地区：
+						</div>
+						<div class="item-content">
+							<div class="area_blue" id="area_blue" style="float:left">
+								----国家/地区----
+							</div>
+							<input type="hidden" name="areaCode" id="areacode" value="{{areacode}}" />
+							<span class=post_error>&nbsp;</span>
+						</div>
+						<div id="school-box">
+							<h1>国家/地区</h1>
+							<div id="country">
+								<a id="1" href="javascript:getprovince('','10011000',1)">中国</a>
+								<a href="javascript:getprovince('','1001',1)">其他国家</a>
+							</div>
+							<div id="school"></div>
+						</div>
+					</li>
+					<li style="margin-top: 10px;">
+						<div class="regitem">地址：</div>
+						<input id="address" class="text" type="text" name="address" value="{{address}}" placeholder="请输入地址" autocomplete="off" maxlength="255">
+					</li>
+					<li>
+						<div class="regitem">邮编：</div>
+						<input id="addresszip" class="text" type="text" name="addresszip" value="{{addresszip}}" placeholder="请输入邮编" autocomplete="off" maxlength="255">
+					</li>
+					<li>
+						<div class="regitem">主营业务：</div>
+						<textarea name="business" id="business" cols="60" rows="3" style="width: 96%;">{{business}}</textarea>
+					</li>
+					<li>
+						<input style="position: fixed;bottom: 0px;width: 100%;left:0px;margin-left: auto;margin-right: auto;" type="submit" name="regbut" id="regbut" value="确定修改" class="submitbutton">
+					</li>
+					<div class="cb"></div>
+				</ul>
+			</form>
+			<div class="cb"></div>
+		</div>
+	</div>
+	<div class="tip-layer tip-layer-error" style="width: 300px; margin-left: -150px;display: none;">信息提交中...</div>
+	<script>
+		function readydo() {
+			$(".tip-layer-error").css("display", "none");
+		}
+		//readydo();
+		var REG_EMAIL = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i;
+		var regmun = new RegExp("^[0-9]*$");
+		function frmsub(frm) {
+			if (frm.contact.value.length<=0){
+				alert("请输入联系人");
+				frm.contact.focus();
+				return false;
+			}
+			if (frm.sex.value.length<=0){
+				alert("请选择性别");
+				frm.sex.focus();
+				return false;
+			}
+			if (frm.email.value.length <= 0) {
+				alert("请输入邮箱");
+				frm.email.focus();
+				return false;
+			}else if (!REG_EMAIL.test(frm.email.value)) {
+				alert("输入邮箱格式不正确");
+				frm.email.focus();
+				return false;
+			}
+			if (frm.qq.value.length <= 0) {
+				alert("请输入QQ");
+				frm.qq.focus();
+				return false;
+			}else if (!regmun.test(frm.qq.value)){
+				alert("请输入正确的QQ，必须是数字");
+				frm.qq.focus();
+				return false;
+			}
+			if (frm.companyname.value.length<=0){
+				alert("请公司名称");
+				frm.companyname.focus();
+				return false;
+			}
+			if (frm.industryCode.value.length<=0){
+				alert("请选择主营行业");
+				frm.industryCode.focus();
+				return false;
+			}
+			if (frm.serviceCode.value.length<=0){
+				alert("请选择公司类型");
+				frm.serviceCode.focus();
+				return false;
+			}
+			if (frm.areaCode.value.length<=0){
+				alert("请选择国家/地区");
+				frm.areaCode.focus();
+				return false;
+			}
+			$(".tip-layer-error").css("display", "");
+			frm.regbut.disabled = true;
+			//return false;
+		}
+		$(function() {
+			var area_blue = $("#area_blue");
+			var areacode = $("#areacode");
+			var popprovince = true;
+			area_blue.click(function() {
+				if (popprovince) {
+					poparea();
+					popprovince = true;
+				}
+				var self = $(this);
+				if (areacode.val() === "") {
+					self.parent().find(".post_error").html("请选择国家/地区");
+					registerChecked = false;
+				} else {
+					self.parent().find(".post_error").html("");
+				}
+			});
+		});
+		getprovince('', '{{areaCode}}', 0);
+	</script>
+	{%include 'new/bottom.html'%}
+</body>
+</html>

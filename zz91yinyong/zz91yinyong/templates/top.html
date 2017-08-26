@@ -1,0 +1,152 @@
+<style>
+body,textarea,input,select,option {font-size:12px;color:#333;font-family:"微软雅黑",Tahoma,Arial,sans-serif;}h1,h2,h3,h4,h5,h6,input, textarea, select{font-size:100%;}body,h1,h2,h3,h4,h5,h6,blockquote,ol,ul,dl,dd,p,textarea,input,select,option,form {margin:0;}ol,ul,li,textarea,input,select,option,th,td {padding:0;}ol,ul {list-style-type:none;}.clears:before,.clears:after {content:'';display:table;}.clears:after {clear:both;}.clears {*zoom:1;}.clear {clear:both;overflow:hidden;}a {text-decoration:none;color:#333;}a,textarea,input{outline:none}textarea {overflow:auto;resize:none;}.img img {display:block;}a img {border:none;}.z_index{position:fixed;_position:absolute;z-index:999;display:none;}label,label input{vertical-align:middle}.pr {position:relative;}.pa {position:absolute;}.fl {float:left;}.fr {float:right;}a:hover{text-decoration:none}body{word-break:break-all;word-wrap:break-word;cursor:default;}input[type="submit"],input[type="reset"],input[type="button"],button,a:active{-webkit-appearance: none;}input[type="checkbox"],input[type="text"],input[type="submit"]{-webkit-border-radius:0;border-radius:0;}html, body, form,fieldset, p, div,h1, h2, h3, h4, h5, h6 {-webkit-text-size-adjust:none;}.display_box{display:-moz-box;display:-webkit-box;display:box;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;}html{font-size:62.5%;}body{font-size:1.2rem;}
+
+.m6{padding:0 15px 30px 15px;}
+.m6 dl{overflow:hidden;padding:25px 0 15px 0;border-bottom:1px solid #ECECEC;}
+.m6 dt{float:left;margin-right:10px;}
+.m6 dd{overflow:hidden;zoom: 1;}
+.m6 .hr1{font-size:20px;color:#333;padding-top:3px;}
+.m6 .hr2{font-size:15px;color:#999;}
+
+.m6 .b{padding:20px 0 10px 0;} 
+.m6 .b .title{font-size:19px;vertical-align: middle;color:#3b9f18;padding-left:20px;font-weight:bold;text-indent:0em;}
+.m6 .b p{line-height:28px;color:#333;font-size:15px;padding-bottom:15px;text-indent:0em;}
+.m6 .f a{display:block;height:40px;line-height:40px;font-size:20px;color:#fff;text-align:center;background-color: #64B729;border:5px solid #EBEBEB;border-radius:5px;}
+.m6 .f a i{display:inline-block;width:14px;height:19px;background:url(img/s_down.png) no-repeat;-webkit-background-size:14px 19px;background-size:14px 19px;vertical-align: middle;margin-left:8px;}
+.box{display:-moz-box;display:-webkit-box;display:box;-moz-box-pack:center;-webkit-box-pack:center;box-pack:center;-moz-box-align:center;-webkit-box-align:center;box-align:center;}
+
+.s_header {height: 41px;}
+.s_header nav {position: fixed;left: 0px;top: 0px;padding: 6px 0;background-color: #64B729;width: 100%;z-index: 5;}
+.bg {background: url(/new/images/s_floor.png) no-repeat;-webkit-background-size: 90px 63px;background-size: 90px 63px;vertical-align: middle;}
+.s_header a {display: inline-block;height: 29px;line-height: 29px;}
+.s_header a:nth-of-type(1) {background-position: -74px 0;vertical-align: top;margin-left: 7px;}
+.s_header a span, .s_header a:nth-of-type(2) {display: inline-block;height: 27px;line-height: 27px;border: 1px solid #499712;margin-left: 11px;border-left: 0;background-color: #78C442;padding: 0 8px;font-size: 13px;color: #fff;font-weight: bold;}
+.s_header a:nth-of-type(2) {border-left: 1px solid #499712;}
+.s_header nav .more {float: right;width: 50px;height: 41px;margin: -6px 0;text-align: center;cursor: pointer;}
+.s_header i {float: none;display: inline-block;width: 25px;height: 18px;background-position: -20px 0;margin: 12px 0px 0 0;}
+.s_header .s_b {float: right;display: inline-block;width: 26px;height: 23px;margin-right: 17px;margin-top: 5px;background-position: -27px -24px;}
+
+#toplistwrap{display:none;}
+.s_toplist{background-color:#369914;z-index:99999;display:block;box-shadow:0 2px 3px #6D766A;display:none;position:fixed;width:100%;}
+.s_topwrap{padding:0px 0px;}
+.s_topwrap div{-webkit-box-flex:1;width:100%;-moz-box-flex:1;box-flex:1;height:30px;line-height:30px;}
+.s_topwrap a,.s_topbottom a{display:block;height:39px;line-height:39px;color:#FFF;width:84px;text-align:center;-webkit-box-flex:1;color:#fff;font-size:16px;font-weight:bold;-moz-box-flex:1;}
+.s_topbottom a{height:38px;line-height:45px;}
+.s_topline{border-top:1px solid #248909;border-bottom:1px solid #55A63F;content: "";margin:0 10px;height:auto;margin-top:5px;}
+.s_topbottom{width:100%;}
+.up i{background:url(/new/images/up_slide.png) no-repeat;-webkit-background-size:57px 27px;-moz-background-size:57px 27px;background-size:57px 27px;display:inline-block;width:57px;height:27px;position: absolute;left:50%;margin-left:-29px;top:0px;cursor:pointer;z-index:1;}
+.appdown{background-color:#FF0;border:solid 1px #F60; line-height:30px; padding-left:5px;}
+.fav_btn {background: -webkit-gradient(linear, 0 0, 0 bottom, from(#34aa68), to(#38E484));line-height: 20px;border: 1px solid #2A7B4E;padding: 5px 10px;margin:10px auto; font-size: 14px;color: #fff;}
+.tipp{width:60%;padding:15px;position:relative;display:none;-moz-border-radius:6px;background:#fff;-webkit-border-radius:5px;border-radius:5px;border:1px solid #536376;-webkit-box-shadow: rgba(0,0,0,.6) 0px 2px 12px;-moz-box-shadow:rgba(0,0,0,.6) 0px 2px 12px}
+.m-btn{width:100%;line-height:40px;background:#009943;text-align:center;position:fixed;z-index:99999;left:0;bottom:0}
+</style>
+<header class="s_header">
+<nav>
+<a href="/" class="bg"><span>首页</span></a>
+{{nowlanmu|safe}}
+<span class="more" id="more"><i class="bg"></i></span>
+<a href="/feedback/" id="" class="bg s_b"></a>
+</nav>
+</header>
+
+{%if alijsload%}
+<input type="hidden" name="mobileUserAgent" id="mobileUserAgent" value=""><script>AliMobile.Jload3.loadjs('/js/AliMobile.js');</script>
+{%endif%}
+<div id="toplistwrap" style="display:none">
+<div class="s_toplist" id="toplist" style="display:none">
+	<div class="s_topwrap">
+		<div class="box">
+			<a href="/offerlist/?keywords=废金属">废金属</a>
+			<a href="/offerlist/?keywords=废塑料">废塑料</a>
+			<a href="/offerlist/?keywords=废电子电器">废电器</a>
+			<a href="/offerlist/?keywords=废橡胶">废橡胶</a>
+			<a href="/offerlist/?keywords=废纸">废纸</a>
+		</div>
+		<div class="box">
+			<a href="/offerlist/?keywords=废皮革">废皮革</a>
+			<a href="/offerlist/?keywords=废纺织品">废纺织品</a>
+			<a href="/offerlist/?keywords=二手设备">二手设备</a>
+			<a href="/offerlist/?keywords=废玻璃">废玻璃</a>
+			<a href="/offerlist/?keywords=服务">服务</a>
+		</div>
+	</div>
+	<div class="s_topline">	
+	</div>
+	<div class="box s_topbottom">
+		<a href="/priceindex/">行情报价</a><a href="/category/">废料交易</a><a href="/huzhu/">再生互助</a><a href="/myrc_index/">生意管家</a>
+	</div>
+	<div class="up pr">
+		<i id="slideup"></i>
+	</div>
+</div>
+</div>
+<!--<a href="http://m.zz91.com/app.html"><div class="appdown">
+	下载安卓客户端，首次下载获取<b style="color: #FF0000;">100</b>元红包，点此立即下载。<br />活动时间：2015-2-6至2015-3-6
+</div></a>-->
+<script type="text/javascript">
+//导航滚动js
+ var toplist = document.getElementById("toplist");
+ var toplistwrap = document.getElementById("toplistwrap");
+ var more = document.getElementById('more');
+more.onclick=function(){
+	if(toplist.style.display!='none')
+	{
+		toplist.slideUp(10,150);
+		toplistwrap.slideUp(10,150); 
+	}
+	else
+	{
+		toplist.slideDown(10,150);
+		toplistwrap.slideDown(10,150); 
+		more.className += ' moreclick';
+	}
+}
+document.getElementById('slideup').onclick = function() 
+{
+	toplist.slideUp(10,150);
+	toplistwrap.slideUp(10,150); 
+}
+
+window.HTMLElement.prototype.slideDown=function(speed,height)
+{
+	var o = this;
+	clearInterval(o.slideFun);
+	var h = height;
+	var i = 0;
+	o.style.height = '0px';	
+	o.style.display = 'block';
+	o.style.overflow = 'hidden';
+	o.slideFun = setInterval(function(){
+		
+		i = i + 30;
+		if(i>h) i=h;
+		o.style.height = i+'px';
+		if(i>=h)
+		{
+			o.style.removeProperty('overflow');
+			clearInterval(o.slideFun);
+		}	
+	},speed);
+}
+
+window.HTMLElement.prototype.slideUp=function(speed,height)
+{
+	var o = this;
+	clearInterval(o.slideFun);
+	var h = height;
+	var i = h;
+	o.style.overflow = 'hidden';
+	o.slideFun = setInterval(function(){
+		i -= 30;
+		if(i<0) i=0;
+		o.style.height = i+'px';
+		if(i<=0)
+		{
+			o.style.display = 'none';
+			o.style.removeProperty('overflow');
+			more.className = more.className.replace(' moreclick','');
+			clearInterval(o.slideFun);
+		}	
+	
+	},speed);
+}</script>

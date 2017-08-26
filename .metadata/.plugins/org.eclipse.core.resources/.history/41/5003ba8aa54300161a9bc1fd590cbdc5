@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>端API</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <style>
+        #scroller {
+			position: absolute;
+			z-index: 1;
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			height:35px;
+			width:100%;
+			/*-webkit-transform: translateZ(0);
+			 transform: translateZ(0);*/
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-webkit-text-size-adjust: none;
+		}
+		#scroller ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: -webkit-box
+		}
+		#scroller li {
+			width:80px;
+			line-height: 35px;
+			font-size: 14px;
+			overflow: hidden;
+			text-align: center;
+			padding-left:5px;
+			padding-right:5px; 
+		}
+    </style>
+</head>
+<body>
+    <header id="scroller">
+        <ul>
+            <li >健康1</li>
+            <li >家庭1</li>
+            <li>工作1</li>
+            <li >心情1</li>
+        </ul>
+    </header>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript">
+    apiready = function () {
+        //$api.fixStatusBar( $api.dom('header') );
+        api.setStatusBarStyle({
+            style: 'dark',
+            color: '#6ab494'
+        });
+        funIniGroup();
+        $(".aui-bar-tab").on("click","li",function(){
+        	var index=$(this).attr("index");
+        	//alert(index)
+			api.setFrameGroupIndex({
+	            name: 'group1',
+	            index: index-1
+	        });
+		})
+    }
+    
+	function funIniGroup(){
+        var eHeaderLis = $api.domAll('#scroller li'),
+            frames = [];
+        for (var i = 1,len = eHeaderLis.length; i <= len; i++) {
+                frames.push( { 
+                    name: 'list2'+i, 
+                    url: '../list/list2.html', 
+                    bgColor : 'rgba(0,0,0,.2)',
+                    bounces:true
+                } )
+        }
+        api.openFrameGroup({
+            name: 'group2',
+            scrollEnabled: false,
+            rect: {
+                x: 0, 
+                y: 50, 
+                w: 'auto', 
+                h: 300
+            },
+            index: 0,
+            frames: frames
+        }, function (ret, err) {
+
+        });
+        
+    }
+</script>
+</html>

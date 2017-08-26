@@ -1,0 +1,14 @@
+{%if listall%}<table class="bill_lst_tab" cellpadding="0" cellspacing="0" border="0">
+{%for pay in listall%}
+	<tr>
+    	<td>
+        	<p class="td_p_name">{{pay.ftypename}}</p>
+            <p class="td_p_suc">{{pay.gmt_date}}</p>
+        </td>
+        <td class="lst_tab_right">
+        	<p class="td_p_drop">{{pay.fee}}</p>
+            <p class="td_p_suc"> {%if pay.product_id%}&nbsp;&nbsp;<a class="td_p_suc" href="/detail/?id={{pay.product_id}}">查看该供求</a>{%endif%}</p>
+        </td>
+    </tr>
+{%endfor%}
+</table>{%endif%}

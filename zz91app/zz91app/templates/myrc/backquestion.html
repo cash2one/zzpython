@@ -1,0 +1,37 @@
+<style>
+	.qmain{padding: 10px;}
+	.qcontent{color: #000;line-height: 2em;font-size: 16px;padding: 10px;border: solid 1px #9C9EA8;background-color: #fff;}
+	.qcontent img{width: 100%;}
+</style>
+<div class="qmain">
+	<h4>{{qlist.title}}</h3>
+	<div class="qcontent">
+		{{qlist.content|safe}}
+	</div>
+	<p>留言时间：{{qlist.stime}}</p>
+	<p>留言者：<a href="/companyinfo/?forcid={{qlist.companyarray.company_id}}">{{qlist.companyarray.companyname}}</a></p>
+</div>
+{%if sendflag%}
+<div class="qmain">
+<form method="post" name="form" onSubmit="return submitfrm(this,'http://app.zz91.com/myrc_backquestionsave/')">
+    <input type="hidden" name="be_inquired_id" value="{{sendcompany_id}}">
+    <input type="hidden" name="sendcompany_id" value="{{sendcompany_id}}">
+    <input type="hidden" name="inquired_id" value="{{inquired_id}}">
+    <input type="hidden" name="be_inquired_type" value="0">
+    <textarea name="content" placeholder="来问点什么吧..."></textarea>
+    <center>
+        <input type="submit" id="submit" class="comm-btn-auto" name="event_submit_do_reply" value="回复">
+    </center>
+</form>
+</div>
+{%endif%}
+<div class="postsuc" style="display: none;padding: 20px;">
+	<br />
+	<div style="text-align: left;font-size: 18px;width: 80%;">
+		回复成功！
+	</div>
+	<br />
+	<button onclick="closewindow()" class="mui-btn mui-btn-danger">  继续查看留言    </button>
+	<br />
+</div>
+<input type="hidden" id="appnavname" value="留言成功" />

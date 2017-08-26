@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <style type="text/css">
+        .aui-list-item.wechat-top {
+            background-color: #f3f3f7;
+        }
+        .aui-list .wechat-avatar {
+            width:3rem;
+        }
+        .wechat-avatar .aui-row-padded {
+            background-color: #dddee0;
+            padding: 0.1rem;
+            border-radius: 0.2rem;
+            margin-left: -0.05rem;
+            margin-right: -0.05rem;
+        }
+        .wechat-avatar .aui-row-padded [class*=aui-col-xs-] {
+            padding: 0.05rem;
+        }
+        .wechat-avatar,
+        .wechat-avatar > img {
+            border-radius:0.2rem;
+        }
+    </style>
+</head>
+<body>
+	<div class="aui-content aui-margin-b-15">
+        <ul class="aui-list aui-media-list">
+            <!--<li class="aui-list-item wechat-top">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon1-mobile"></i>
+                    </div>
+                    <div class="aui-list-item-inner">
+                        Mac 微信已登录
+                    </div>
+                </div>
+            </li>
+           -->
+            
+            <li class="aui-list-item aui-list-item-middle remen">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media wechat-avatar">
+                        <div class="aui-badge">9</div>
+                        <img src="../../image/demo5.png" />
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">热门标签</div>
+                            <div class="aui-list-item-right">星期一</div>
+                        </div>
+                        <div class="aui-list-item-text aui-font-size-12">
+                            Hello AUI 2.0!
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media wechat-avatar">
+                        <img src="../../image/demo1.png" />
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">一周热文</div>
+                            <div class="aui-list-item-right">1天前</div>
+                        </div>
+                        <div class="aui-list-item-text aui-font-size-12">
+                            Hello AUI 2.0!
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <!--
+            <li class="aui-list-item aui-list-item-middle onlinefriend">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media wechat-avatar">
+                        <div class="aui-dot"></div>
+                        <img src="../../image/demo4.png" />
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">在线葱友</div>
+                            <div class="aui-list-item-right">星期一</div>
+                        </div>
+                        <div class="aui-list-item-text aui-font-size-12">
+                            Hello AUI 2.0!
+                        </div>
+                    </div>
+                </div>
+            </li>-->
+            <li class="aui-list-item aui-list-item-middle">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-media wechat-avatar">
+                        <div class="aui-dot"></div>
+                        <img src="../../image/demo4.png" />
+                    </div>
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-text">
+                            <div class="aui-list-item-title">商城</div>
+                            <div class="aui-list-item-right">星期一</div>
+                        </div>
+                        <div class="aui-list-item-text aui-font-size-12">
+                            Hello AUI 2.0!
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/iscroll.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		$("body").on("click",".remen",function(){
+			var pageParam = {
+	          wintitle:"热门话题",
+	          type:"remen",
+	          bounces:false,
+	        };
+	        //alert(infoid)
+	        openWinNormal("remen","../main/frame1.html",pageParam);
+	    });
+	    $("body").on("click",".onlinefriend",function(){
+	        var pageParam = {
+	          wintitle:"在线葱友",
+	          type:"onlinefriend",
+	          bounces:false,
+	        };
+	        //alert(infoid)
+	        openWin("onlinefriend","http://demo.plhwin.com/chat/",pageParam);
+	        
+        })
+	};
+</script>
+</html>

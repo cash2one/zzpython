@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>layui</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="layui/css/layui.css" media="all">
+		<style>
+			body{
+				padding: 10px;
+			}
+			::-webkit-scrollbar{width:20px;height: 20px;}
+			::-webkit-scrollbar-corner,::-webkit-scrollbar-track{background-color: #5fb878;}
+		</style>
+		<script src="layui/layui.js" charset="utf-8"></script>
+		<script src="js/jquery.js" charset="utf-8"></script>
+		<script src="js/comm.js" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="panel-title" style="margin-bottom: 5px;">
+			<input type="button" class="layui-btn" onclick="opensearch(this)" value="查询>>" />
+		</div>
+		<form class="layui-form" action="">
+		<fieldset class="layui-elem-field" id="searchbar" style="display: none;">
+			<legend>搜索</legend>
+			<div class="layui-field-box">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">代理人姓名/公司</label>
+						<div class="layui-input-inline">
+							<input type="text" name="aname" placeholder="" value="{{aname}}" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">代理级别</label>
+						<div class="layui-input-inline">
+							<select name="dtype" lay-search="">
+								<option value="">请选择代理级别</option>
+								<option value="">所有</option>
+								<option value="省级代理">省级代理</option>
+								<option value="市级代理">市级代理</option>
+								<option value="区县代理">区县代理</option>
+								<option value="加盟馆">加盟馆</option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">街道地址</label>
+						<div class="layui-input-inline">
+							<input type="text" name="address" autocomplete="off" value="{{address}}" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">代理地区</label>
+						<div class="layui-input-inline">
+							<input type="text" name="areatext" id="areatext" readonly="" value="{{areatext}}" placeholder="点击选择地区" class="layui-input">
+							<input type="hidden" name="area" id="area" value="{{area}}">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">联系人</label>
+						<div class="layui-input-inline">
+							<input type="text" name="contactname" autocomplete="off" value="{{contactname}}" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">电话</label>
+						<div class="layui-input-inline">
+							<input type="number" name="phone" autocomplete="off" value="{{phone}}" class="layui-input">
+						</div>
+					</div>
+
+					<div class="layui-inline">
+						<div class="layui-input-inline">
+							<button class="layui-btn" lay-submit="" lay-filter="searchbutton">搜索</button>
+							<!--<button class="layui-btn layui-btn-primary" type="button">导入代理商</button>-->
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		</form>
+		<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+			<div class="layui-tab-content">
+				<table class="layui-table" lay-even="" lay-skin="row">
+					<colgroup>
+						<col width="150">
+						<col width="150">
+						<col width="200">
+						<col>
+					</colgroup>
+					<thead>
+						<tr>
+							<th nowrap>代理人姓名/公司</th>
+							<th nowrap>代理级别</th>
+							<th nowrap>代理地区</th>
+							<th nowrap>具体地址</th>
+							<th nowrap>邮编</th>
+							<th nowrap>第一联系人</th>
+							<th nowrap>联系方式</th>
+							<th nowrap>授权街道通过时间</th>
+							<th nowrap>微信绑定</th>
+							<th nowrap>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						{%for list in listall%}
+						<tr>
+							<td nowrap>{{list.aname|safe}}</td>
+							<td nowrap>{{list.dtype}}</td>
+							<td nowrap>{{list.arealabel}}</td>
+							<td nowrap>{{list.address}}</td>
+							<td nowrap>{{list.postcode}}</td>
+							<td nowrap>{{list.contactname}}</td>
+							<td nowrap>{{list.phone}}</td>
+							<td nowrap>{{list.gmt_created}}</td>
+							<td nowrap>
+								{%if list.weixinbind%}
+								有 {{list.weixinbind}} 个用户绑定的微信
+								{%else%}
+								<font color="#FF5722">未绑定</font>
+								{%endif%}
+							</td>
+							<td nowrap>
+								<a class="layui-btn" href="modagent.html?id={{list.id}}">修改</a> 
+								<a href="agent_del.html?id={{list.id}}" class="layui-btn" onclick="return confirm('确实要删除吗？')">删除</a>
+								<a class="layui-btn" href="javascript:bindewm('{{list.aname}}',{{list.id}})">新增绑定二维码</a>
+								<a class="layui-btn" href="agent_unweixin.html?id={{list.id}}">二维码解绑</a>
+							</td>
+						</tr>
+						{%endfor%}
+					</tbody>
+				</table>
+				<div id="pagelist"></div>
+			</div>
+
+		</div>
+	</body>
+	
+	<script>
+		layui.use(['form','laypage', 'layer'], function() {
+			var laypage = layui.laypage,
+				layer = layui.layer;
+
+			laypage({
+				cont: 'pagelist',
+				pages: {{page_listcount}}, //总页数
+				groups: 10, //连续显示分页数
+				curr:{{page}},
+				jump: function(obj, first){
+					//得到了当前页，用于向服务端请求对应数据
+					var curr = obj.curr;
+					if (!first){
+						window.location='?{{searchurl}}&page='+curr
+					}
+					//
+				}
+			});
+		})
+		$(function(){
+			$("#areatext").on("click", function() {
+				layer.open({
+					type: 2,
+					title: '选择地区',
+					shadeClose: true,
+					shade: 0.3,
+					scrollbar: false,
+					area: ['400px', '500px'],
+					content: '/province.html' //iframe的url
+				}); 
+			});
+		})
+		function bindewm(agentname,aid){
+			layer.open({
+				type: 2,
+				title: agentname,
+				shadeClose: true,
+				shade: 0.3,
+				scrollbar: false,
+				area: ['400px', '500px'],
+				content: '/getbind.html?aid='+aid //iframe的url
+			}); 
+			
+		}
+		function xzprovincecode(parea,code){
+			$("#area").val(code);
+			$("#areatext").val(parea)
+		}
+	</script>
+
+</html>

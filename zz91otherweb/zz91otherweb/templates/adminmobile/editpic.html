@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>ZZ91再生网简易后台</title>
+		<link rel="stylesheet" type="text/css" href="../mobile/css/aui.css" />
+		<style>
+			.aui-bar-tab li{
+				float: left;
+				margin-left: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-tab">
+			<ul class="aui-tab-nav">
+				<li ><a href="editpro.html?proid={{proid}}">供求详情</a></li>
+				<li class="active"><a href="editpic.html?proid={{proid}}">图片</a></li>
+				<li><a href="editcompany.html?proid={{proid}}">公司详情</a></li>
+			</ul>
+		</div>
+		{%for list in piclist%}
+		<div class="aui-content" style="text-align: center;" tapmode>
+			<img src="http://img3.zz91.com/300x300/{{list.pic_address}}" />
+			<div style="color: red;" id="statustxt{{list.id}}">
+				{%ifequal list.check_status "0"%}未审核{%endifequal%}
+				{%ifequal list.check_status "1"%}已审核{%endifequal%}
+				{%ifequal list.check_status "2"%}退回{%endifequal%}
+			</div>
+			<ul class="aui-bar-tab" style="background-color: #ccc;padding: 10px;">
+					<div class="aui-btn aui-btn-info" id="shpro" tapmode picid="{{list.id}}">审核</div>
+					<div class="aui-btn aui-btn-warning" id="noshpro" picid="{{list.id}}" tapmode >退回</div>
+				<div style="clear: both;"></div>
+			</ul>
+		</div>
+		<div style="clear: both;"></div>
+		{%endfor%}
+		
+	</body>
+	<script type="text/javascript" src="../mobile/js/jquery.js"></script>
+	<script type="text/javascript" src="../mobile/js/zepto.min.js"></script>
+	<script type="text/javascript" src="../mobile/js/layer/layer.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			//审核
+			$("body").on("click","#shpro",function() {
+				var pid=$(this).attr("picid");
+				var fild="check_status";
+				var fildvalue="1";
+				savecontent(fild,fildvalue,'products_pic',pid);
+				$("#statustxt"+pid).html("已审核");
+			})
+			//审核未通过
+			$("body").on("click","#noshpro",function() {
+				var pid=$(this).attr("picid");
+				var fild="check_status";
+				var fildvalue="2";
+				savecontent(fild,fildvalue,'products_pic',pid);
+				$("#statustxt"+pid).html("审核未通过");
+			})
+		})
+		function savecontent(fild,fildvalue,tablevalue,id){
+			var data={
+				fild : fild,
+				fildvalue : fildvalue,
+				tablevalue : tablevalue,
+				id : id
+			}
+			$.ajax({
+				url : 'savecontent.html',
+				type : 'post',
+				dataType : 'json',
+				cache : false,
+				data : data,
+			    success:function(ret) {
+					if (ret) {
+						if (ret.err == "true") {
+							alert(ret.errkey)
+						} else {
+							layer.msg('保存成功');
+						}
+					} else {
+						alert('异常！1')
+					};
+				},
+				error : function(e) {
+					alert(alert(JSON.stringify(e)));
+				}
+			});
+		}
+	</script>
+</html>

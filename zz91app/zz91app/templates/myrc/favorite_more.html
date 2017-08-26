@@ -1,0 +1,13 @@
+{%for list in qlist%}
+<li class="mui-table-view-cell mui-media">
+	<a href="{{list.favorite_url}}">
+		<div class="mui-media-body">
+			<span class="mui-ellipsis-1">[{{list.favorite_type}}]{{list.content_title}}</span>
+		</div>
+	</a>
+		<button class="mui-btn mui-btn-danger mui-btn-outlined" onclick="myrc.favoritedel({{list.id}},this)">
+            <span class="mui-icon mui-icon-trash"></span>
+            删除	
+        </button>
+</li>
+{%endfor%}

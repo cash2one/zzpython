@@ -1,0 +1,839 @@
+apiready = function() {
+	//var header = $api.byId('topbar');
+    //$api.fixStatusBar(header);
+    api.openFrame({
+	    name: 'post-add',
+	    url: 'comm/post-add.html',
+	    rect:{
+	        x:api.winWidth/2-25,
+			y:api.winHeight-60,
+	        w:50,
+	        h:50
+	    },
+	    pageParam: {name:'post-add'},
+	    bounces: false,
+	});
+	
+    //判断更新版本
+    checkUpdate();
+	//获取首页数据
+	ajaxInfo();
+	//如监听网络连接事件
+	api.addEventListener({
+	    name: 'online'
+	}, function(ret, err){
+	    if( ret ){
+	    	ajaxInfo();
+	    	api.hideProgress();
+	    }else{
+	    }
+	});
+	//点击搜索框
+	$(".select-ipt").on("click", function() {
+		openSearch();
+	});
+	//行情报价更多
+	$(".j_more").on("click", function() {
+		var pageParam = {
+			type : "price",
+			wintitle : "价格行情",
+			bounces : false
+		};
+		openWin("price", "../price/price.html", pageParam);
+	})
+	//我的供求
+	$(".my-buyin").on("click", function() {
+		var pageParam = {
+			wintitle : "我的供求",
+			type : "infomation-heart",
+			nav_list : [{
+				"typename" : "已经审核",
+				"id" : 1
+			}, {
+				"typename" : "审核中",
+				"id" : 2
+			}, {
+				"typename" : "未通过",
+				"id" : 3
+			}, {
+				"typename" : "暂不发布",
+				"id" : 4
+			}],
+			frame_url : ["../myrc/audit.html", "../myrc/my-supply.html", "../myrc/not-by.html", "../myrc/notout.html"],
+			topnumber : 3
+		};
+		if (UserInfo.has_login()) {//判断是否登录
+			openWin("buyinout", "widget://html/comm/infomation-heart.html", pageParam);
+		} else {
+			pageParam.nextUrl = "widget://html/comm/infomation-heart.html";
+			pageParam.winName = "buyinout";
+			openWin("frm-login", "../myrc/frm-login.html", pageParam);
+		}
+	})
+	//我的询盘
+	$(".my-xp").on("click", function() {
+		var pageParam = {
+			wintitle : "我的询盘",
+			type : "infomation-heart",
+			nav_list : [{
+				"typename" : "收到留言",
+				"id" : 1
+			}, {
+				"typename" : "发送的留言",
+				"id" : 2
+			}],
+			frame_url : ["../myrc/liuyan-in.html", "../myrc/liuyan-out.html"],
+			topnumber : 2,
+			bounces : false,
+		};
+		if (UserInfo.has_login()) {//判断是否登录
+			openWin("infomation-heart-2", "widget://html/comm/infomation-heart.html", pageParam);
+		} else {
+			pageParam.nextUrl = "widget://html/comm/infomation-heart.html";
+			pageParam.winName = "infomation-heart-2";
+			openWin("frm-login", "../myrc/frm-login.html", pageParam);
+		}
+	})
+	//我的收藏
+	$(".my-shouc").on("click", function() {
+		var pageParam = {
+			wintitle : "我的收藏",
+			type : "infomation-heart",
+			nav_list : [{
+				"typename" : "供求",
+				"id" : 1
+			}, {
+				"typename" : "公司",
+				"id" : 2
+			}, {
+				"typename" : "报价",
+				"id" : 3
+			}, {
+				"typename" : "社区",
+				"id" : 4
+			}, {
+				"typename" : "资讯",
+				"id" : 5
+			}],
+			frame_url : ["../myrc/house.html"],
+			topnumber : 4,
+			bounces : false,
+		};
+		if (UserInfo.has_login()) {//判断是否登录
+			openWin("infomation-heart-2", "widget://html/comm/infomation-heart.html", pageParam);
+		} else {
+			pageParam.nextUrl = "widget://html/comm/infomation-heart.html";
+			openWin("frm-login", "../myrc/frm-login.html", pageParam);
+		}
+	})
+	//我的再生钱包
+	$(".my-pay").on("click", function() {
+		var pageParam = {
+			wintitle : "再生钱包",
+			type : "burse",
+			bounces : false
+		};
+		if (UserInfo.has_login()) {//判断是否登录
+			openWin("burse", "../myrc/burse.html", pageParam);
+		} else {
+			pageParam.nextUrl = "widget://html/myrc/burse.html";
+			pageParam.winName = "burse";
+			openWin("frm-login", "../myrc/frm-login.html", pageParam);
+		}
+	});
+	//更多
+	$(".more-hf").on("click", function() {
+		var pageParam = {
+			wintitle : "产品类目",
+			type : "product-category",
+			bounces : false
+		};
+		openWin("product-category", "../trade/product-category.html", pageParam);
+	})
+	//优质推荐
+	$(".buy-name-secd").parent().on("click", function() {
+		var id = $(this).attr("id");
+		var pageParam = {
+			wintitle : "供求详情",
+			type : "infomation-heart",
+			id : id,
+			nav_list : [{
+				"typename" : "供求详情",
+				"id" : 1
+			}, {
+				"typename" : "公司简介",
+				"id" : 2
+			}], //头部划动标题
+			frame_url : ["../trade/firm-detail.html", "../trade/firm.html"], //打开frame组的页面集合
+			topnumber : 2,
+			bounces : false,
+		};
+		openWin("infomation-heart"+id, "infomation-heart.html", pageParam);
+	})
+	//互动社区
+	$(".community").on("click", function() {
+		var pageParam = {
+			type : "community",
+			module : "发布", //头部右边文字
+			nav_list : [{
+				"typename" : "商圈",
+				"id" : 106
+			},{
+				"typename" : "问答",
+				"id" : 1
+			},{
+				"typename" : "热门",
+				"id" : 'hot'
+			},{
+				"typename" : "社区",
+				"id" : 2
+			},{
+				"typename" : "学院",
+				"id" : 3
+			}],
+			bounces : false,
+			frame_url : ["../huzhu/hudong-list.html"],
+			topnumber : 4 //滚动Nav栏数码
+		};
+		openWin("community", "widget://html/comm/infomation-heart.html", pageParam);
+	})
+	//产品类目
+	$(".category").on("click", function() {
+		var pageParam = {
+			wintitle : "产品类目",
+			type : "product-category",
+			bounces : false
+		};
+		openWin("product-category", "../trade/product-category.html", pageParam);
+	})
+	//发布供求
+	$(".my-info").on("click", function() {
+		var pageParam = {
+			wintitle : "发布信息",
+			type : "issue-info",
+			module : "发布",
+			bounces : false
+		};
+		if (UserInfo.has_login()) {
+			openWin("issue-info", "../myrc/issue-info.html", pageParam);
+		} else {
+			pageParam.nextUrl = "../myrc/issue-info.html";
+			pageParam.winName = "issue-info";
+			openWin("frm-login", "../myrc/frm-login.html", pageParam);
+		}
+		//openWin("issue-info", "../myrc/issue-info.html", pageParam);
+	})
+	
+	//产品与服务
+	$(".service").on("click", function() {
+		var pageParam = {
+			wintitle : "产品与服务",
+			type : "service",
+			bounces : false
+		};
+		openWin("burse", "../service/index.html", pageParam);
+	});
+	//交易中心
+	$(".jy-heart").on("click", function() {
+		var pageParam = {
+			wintitle : "产品类目",
+			type : "product-category",
+			bounces : false
+		};
+		openWin("product-category", "../trade/product-category.html", pageParam);
+	})
+	$(".pcountmain").on("click", function() {
+		var pageParam = {
+			wintitle : "产品类目",
+			type : "product-category",
+			bounces : false
+		};
+		openWin("product-category", "../trade/product-category.html", pageParam);
+	})
+	
+	//签到
+	$(".qiandaobtn").on("click", function() {
+		//未登录
+		if (!havelogin()) {
+			return false;
+		}else{
+			qiandao();
+		};
+	})
+	//直购
+	$(".vender").on("click", function() {
+		var pageParam = {
+			//wintitle : "厂家直购",
+			type : "vender",
+			showbottom : 1
+		};
+		openWin("vender", "../zhigou/vender.html", pageParam);
+	})
+	//产业带
+	$(".changyedai").on("click", function() {
+		var pageParam = {
+			type : "changyedai",
+			wintitle : "产业带",
+			bounces : false
+		};
+		openWin("price", "../ye/index.html", pageParam);
+	})
+	//行情报价
+	$(".offer-list").on("click", function() {
+		var pageParam = {
+			type : "price",
+			wintitle : "价格行情",
+			bounces : false
+		};
+		openWin("price", "../price/price.html", pageParam);
+	})
+	//公司黄页
+	$(".firm-page").on("click", function() {
+		var pageParam = {
+			//wintitle : "公司黄页",
+			type : "company-list"
+		};
+		openWin("company-list", "../company/firm-page.html", pageParam);
+	})
+	//订阅
+	$(".dypic-span").on("click", function() {
+		var pageParam = {
+			wintitle : "订阅行情",
+			type : "order_price",
+			bounces : false
+		};
+		if (UserInfo.has_login()) {
+			openWinNormal("order_price", "price/order-main.html", pageParam);
+		} else {
+			pageParam.nextUrl = "../price/order-main.html";
+			pageParam.winName = "order_price";
+			openWin("frm-login", "myrc/frm-login.html", pageParam);
+		}
+	});
+	//互助详情
+	$(".other-mo").on("click", ".j_huzhu", function() {
+		var infoid = $(this).attr("id")
+		var pageParam = {
+			wintitle : "互助详情",
+			type : "cunity-detail",
+			bounces : false,
+			infoid : infoid
+		};
+		openWin("cunity-detail", "../huzhu/cunity-detail.html", pageParam);
+	})
+	//资讯详情
+	$(".other-mo").on("click", ".j_zuixin", function() {
+		var infoid = $(this).attr("id")
+		var pageParam = {
+			wintitle : "资讯详情",
+			type : "detail",
+			bounces : false,
+			infoid : infoid
+		};
+		openWin("detail", "../news/detail.html", pageParam);
+	})
+	//行情报价详情
+	$(".price-list").on("click", "li", function() {
+		var id = $(this).attr("id");
+		if (!id) {
+			return;
+		}
+		var pageParam = {
+			wintitle : "报价详情",
+			type : "price-detail",
+			id : id
+		};
+		openWin("price-detail" + id, "../price/price-detail.html", pageParam);
+	})
+	//热门产品
+	$(".j_hot").on("click", "li", function() {
+		var tourl = $(this).attr("tourl");
+		var substr = tourl.match(/keywords=(\S*)/);
+		var pageParam = {
+			type : "trade-list",
+			label_hex : substr[1]
+		};
+		openWin("trade-list", "../trade/trade-list.html", pageParam);
+	})
+	//我的名片
+	$(".my-vcard").on("click", function() {
+		var pageParam = {
+			wintitle : "我的名片",
+			type : "vcard",
+			bounces : false
+		};
+		if (UserInfo.has_login()) {
+			openWin("vcard", "../myrc/vcard.html", pageParam);
+		} else {
+			pageParam.nextUrl = "../myrc/vcard.html";
+			pageParam.winName = "vcard";
+			openWin("frm-login", "../myrc/frm-login.html", pageParam);
+		}
+	})
+	//我的通信录
+	$(".my-addressbook").on("click", function() {
+		var pageParam = {
+			wintitle : "我的通讯录",
+			type : "my-addressbook",
+			bounces : false
+		};
+		if (UserInfo.has_login()) {//判断是否登录
+			openWin("my-addressbook", "../myrc/addressbook.html", pageParam);
+		} else {
+			pageParam.nextUrl = "widget://html/myrc/addressbook.html";
+			pageParam.winName = "my-addressbook";
+			openWin("frm-login", "../myrc/frm-login.html", pageParam);
+		}
+	});
+	//我的通信录
+	$(".my-tradeorder").on("click", function() {
+		var pageParam = {
+			wintitle : "订阅供求",
+			type : "order_trade",
+			bounces : false
+		};
+		if (UserInfo.has_login()) {
+			openWin("order_trade", "../trade/need-out.html", pageParam);
+		} else {
+			pageParam.nextUrl = "widget://trade/need-out.html";
+			pageParam.winName = "order_trade";
+			openWin("frm-login", "../myrc/frm-login.html", pageParam);
+		}
+	});
+	//我的商铺
+	$(".my-companyshop").on("click",function(){
+        var pageParam = {
+            wintitle:"公司详情",
+            type:"companyshop",
+            showbottom : 0,
+			forcompany_id : UserInfo.memberID(),
+            bounces:false
+        };
+        if (UserInfo.has_login()) {//判断是否登录
+			openWin("companyshop", "../company/shop.html", pageParam);
+		} else {
+			pageParam.nextUrl = "widget://html/company/shop.html";
+			pageParam.winName = "companyshop";
+			openWin("frm-login", "../myrc/frm-login.html", pageParam);
+		}
+    });
+	//页面刷新
+	api.setRefreshHeaderInfo({
+		visible : true,
+		// bgColor: '#F2F2F2',
+		bgColor : '#01ba2e',
+		textColor : '#FFFFFF',
+		textDown : '下拉刷新',
+		textUp : '释放刷新',
+	}, function(ret, err) {
+		currPage = 1;
+		$api.rmStorage("indexdata");
+		ajaxInfo();
+		api.hideProgress();
+		api.toast({
+			msg : '数据已是最新！',
+			duration : 3000,
+			location : 'bottom'
+		});
+	});
+	
+	//加载资讯中心列表菜单
+	var zixunleibie=[{"typename": "行业资讯", "id": 185}, {"typename": "评论预测", "id": 186}, {"typename": "技术文库", "id": 187}, {"typename": "政策法规", "id": 188}, {"typename": "国内财经", "id": 175}, {"typename": "国际财经", "id": 176}]
+	$(".infomation-heart").on("click", function() {
+		var pageParam = {
+			wintitle : "资讯中心",
+			type : "infomation-heart",
+			nav_list : zixunleibie,
+			frame_url : ["../news/infolist.html"],
+			topnumber : 4, //滚动Nav栏数码
+			bounces : false,
+		};
+		openWin("infomation-heartnews", "widget://html/comm/infomation-heart.html", pageParam);
+	})
+	//zixunList();
+}
+var picpath=[],piccaptions=[],picurl=[];
+function ajaxInfo() {
+	api.showProgress({
+		title : '加载中',
+		modal : false
+	});
+	
+	var indexvalues_time=$api.getStorage("indexdata-time");
+	//60分钟数据重新更新
+	var time_start = new Date().getTime();
+	if (indexvalues_time){
+		var difftime=time_start-indexvalues_time;
+		if (difftime>60*60*1000){
+			$api.rmStorage("indexdata");
+		}
+	}
+	///
+	var indexvalues=$api.getStorage("indexdata");
+	if (indexvalues){
+		getindexdata(indexvalues);
+		return false;
+	}
+	
+	var data={
+		company_id : UserInfo.memberID(),
+	}
+	api.ajax({
+		url : hosturl + '/index_new.html?datatype=json',
+		method : 'get',
+		timeout : 10,
+		dataType : 'json',
+		returnAll : false,
+		data : {
+			values : data
+		}
+	}, function(ret, err) {
+		if (ret) {
+			getindexdata(ret)
+			$api.setStorage("indexdata", ret);
+			var time_start = new Date().getTime();
+			$api.setStorage("indexdata-time", time_start);
+			
+			//每日抢购
+			/*
+			if (ret.ad2_1) {
+				$(".zzmoery").text(ret.ad2_1.goodsName);
+				$(".qg-moery").text(ret.ad2_1.goodsname_fu);
+				$(".day-buy-pic img").attr("src", ret.ad2_1.pic);
+				show_time();
+				//每日抢购
+				$(".day-buy-list").on("click", function() {
+					var pageParam = {
+						wintitle : "庆国庆再生钱包活动",
+						type : "sold-bug"
+					};
+					openWin("sold-bug", "../qianbao/sold-bug.html", pageParam);
+				})
+			} else {
+				$(".day-buy").hide();
+			}
+			*/
+			//热门产品
+			//					$(".j_buyname").eq(0).text(ret.ad3.ad3_1.goodsName);
+			//					$(".j_buyname").eq(0).parent().attr("tourl", ret.ad3.ad3_1.tourl)
+			//					$(".j_buyname").eq(1).text(ret.ad3.ad3_2.goodsName);
+			//					$(".j_buyname").eq(1).parent().attr("tourl", ret.ad3.ad3_2.tourl)
+			//					$(".j_buyname").eq(2).text(ret.ad3.ad3_3.goodsName);
+			//					$(".j_buyname").eq(2).parent().attr("tourl", ret.ad3.ad3_3.tourl)
+			//					$(".j_buyname").eq(3).text(ret.ad3.ad3_4.goodsName);
+			//					$(".j_buyname").eq(3).parent().attr("tourl", ret.ad3.ad3_4.tourl)
+			//					$(".j_buyname").eq(4).text(ret.ad3.ad3_5.goodsName);
+			//					$(".j_buyname").eq(4).parent().attr("tourl", ret.ad3.ad3_5.tourl)
+			//					$(".j_buypic").eq(0).find("img").attr("src", ret.ad3.ad3_1.pic);
+			//					$(".j_buypic").eq(1).find("img").attr("src", ret.ad3.ad3_2.pic);
+			//					$(".j_buypic").eq(2).find("img").attr("src", ret.ad3.ad3_3.pic);
+			//					$(".j_buypic").eq(3).find("img").attr("src", ret.ad3.ad3_4.pic);
+			//					$(".j_buypic").eq(4).find("img").attr("src", ret.ad3.ad3_5.pic);
+			//					//优质推荐
+			//					$(".buy-name-secd").eq(0).text(ret.ad1_1.goodsName);
+			//					$(".buy-name-secd").eq(1).text(ret.ad1_2.goodsName);
+			//					$(".buy-name-secd").eq(2).text(ret.ad1_3.goodsName);
+			//					$(".buy-name-secd").eq(3).text(ret.ad1_4.goodsName);
+			//					$(".buy-name-secd").eq(4).text(ret.ad1_5.goodsName);
+			//					$(".buy-name-secd").eq(5).text(ret.ad1_6.goodsName);
+			//					$(".heft").eq(0).text(ret.ad1_1.goodsname_fu);
+			//					$(".heft").eq(1).text(ret.ad1_2.goodsname_fu);
+			//					$(".heft").eq(2).text(ret.ad1_3.goodsname_fu);
+			//					$(".heft").eq(3).text(ret.ad1_4.goodsname_fu);
+			//					$(".heft").eq(4).text(ret.ad1_5.goodsname_fu);
+			//					$(".heft").eq(5).text(ret.ad1_6.goodsname_fu);
+			//					$(".j_tjpic").eq(0).find("img").attr("src", ret.ad1_1.pic);
+			//					$(".j_tjpic").eq(1).find("img").attr("src", ret.ad1_2.pic);
+			//					$(".j_tjpic").eq(2).find("img").attr("src", ret.ad1_3.pic);
+			//					$(".j_tjpic").eq(3).find("img").attr("src", ret.ad1_4.pic);
+			//					$(".j_tjpic").eq(4).find("img").attr("src", ret.ad1_5.pic);
+			//					$(".j_tjpic").eq(5).find("img").attr("src", ret.ad1_6.pic);
+			//					$(".buy-name-secd").eq(0).parent().attr("id", ret.ad1_1.id.substr(1));
+			//					$(".buy-name-secd").eq(1).parent().attr("id", ret.ad1_2.id.substr(1));
+			//					$(".buy-name-secd").eq(2).parent().attr("id", ret.ad1_3.id.substr(1));
+			//					$(".buy-name-secd").eq(3).parent().attr("id", ret.ad1_4.id.substr(1));
+			//					$(".buy-name-secd").eq(4).parent().attr("id", ret.ad1_5.id.substr(1));
+			//					$(".buy-name-secd").eq(5).parent().attr("id", ret.ad1_6.id.substr(1));
+			//行情报价
+			//var pageHtml = "";
+			//$.each(ret.pricelist.list, function(index, item) {
+			//	var getTpl = $api.html($api.byId("info-list"));
+			//	laytpl(getTpl).render(item, function(html) {
+			//		pageHtml = pageHtml + html;
+			//	});
+			//})
+			//$(".price-list").html(pageHtml);
+			//头部广告
+			//zzalert(JSON.stringify(ret.adlistall))
+			
+			//var mySwiper = new Swiper('.swiper-container', {
+			//	autoplay : 5000, //可选选项，自动滑动
+			//	pagination : '.swiper-pagination',
+			//	loop : true,
+			//})
+			//广告
+			/*
+			$(".swiper-slide").on("click", function() {
+				var pageParam = {
+					wintitle : "广告",
+					type : "adlist",
+					bounces : false
+				};
+				var tourl = $(this).attr("tourl");
+				openWin("adlist", tourl, pageParam);
+			})
+			*/
+			//互助热贴
+			//$(".j_huzhu").text(ret.onehuzhulist.title).attr("id", ret.onehuzhulist.id);
+			//最新资讯
+			//$(".j_zuixin").text(ret.onenewslist.title).attr("id", ret.onenewslist.id);
+			
+
+		} else {
+		};
+		if(err){
+			saveerrlog(err.body);
+		}
+		api.refreshHeaderLoadDone();
+	});
+}
+
+function getindexdata(ret){
+	if (ret.adlistall) {
+		var piclist = ret.adlistall;
+		
+		picpath=[],piccaptions=[],picurl=[];
+		if (piclist){
+			$.each(piclist, function(index, item) {
+				if (item){
+					picpath.push(item.picaddress);
+					piccaptions.push(item.ad_title);
+					picurl.push(item.target_url)
+				}
+			});
+		}
+		//未开启更新，关闭ios不能审核的功能
+		var closeiosflag=$api.getStorage("closeiosflag");
+		if (!closeiosflag || closeiosflag==1){
+			$(".versionupate").hide();
+			$(".midadlist").hide();
+		}else{
+			showscrollpic(picpath,piccaptions);
+			$(".midadlist").show();
+		}
+	}		
+	if (ret.qiandao=="1" || !ret.qiandao){
+		$("#qiandaomain").hide();
+	}else{
+		$("#qiandaomain").show();
+	}
+	//行情报价
+	var pageHtml = "";
+	$.each(ret.hotnews, function(index, item) {
+		var getTpl = $api.html($api.byId("hotnews-list"));
+		laytpl(getTpl).render(item, function(html) {
+			pageHtml = pageHtml + html;
+		});
+	})
+	$(".hotnews").html(pageHtml);
+	$(".procount").html(ret.pcount);
+	$(".newsinfo").on("click",function(){
+		var infoid = $(this).attr("id")
+		var pageParam = {
+          wintitle:"资讯详情",
+          type:"detail",
+          bounces:false,
+          infoid:infoid
+        };
+        openWin("detail"+infoid.toString(),"../news/detail.html",pageParam);
+	});
+	
+	api.hideProgress();
+	api.refreshHeaderLoadDone();
+	//认证提醒
+	if (!ret.zxinfo && !ret.zxclose){
+		//openwindows("gonggao",hosturl+"app/html/ad/gonggao.html");
+		api.execScript({
+			name : 'root',
+			script : "opengonggao()"
+		});
+		layer.tips('立即分享给您的亲人和朋友吧。', '.box', {
+			tips: [4, '#3595CC'],
+			time: 6000
+		});
+	}
+}
+
+//打开搜索页面
+function openSearch() {
+	api.openWin({
+		name : 'search',
+		pageParam : api.pageParam,
+		url : 'widget://html/comm/search.html',
+		bounces : false,
+		delay : 200
+	});
+}
+//签到
+function hideqiandao(){
+	$("#qiandaomain").hide();
+}
+var haveqiandao=false;
+function qiandao(){
+	if (haveqiandao==true){
+		return;
+	}
+	haveqiandao=true
+	var data={
+		company_id : UserInfo.memberID(),
+	}
+	api.ajax({
+		url : hosturl + 'qianbao/qiandao.html?datatype=json',
+		method : 'get',
+		timeout : 30,
+		dataType : 'json',
+		returnAll : false,
+		data : {
+			values : data
+		}
+	}, function(ret, err) {
+		if (ret) {
+			if (ret.err=="false"){
+				api.toast({
+				    msg: '签到成功！再生钱包  + 0.5元',
+				    duration: 2000,
+				    location: 'middle'
+				});
+				$("#qiandaomain").hide();
+				api.execScript({
+					name : 'root',
+					script : 'hideqiandao()'
+				});
+			}else{
+				api.toast({
+				    msg: '你今天已经签到',
+				    duration: 2000,
+				    location: 'middle'
+				});
+			}
+			$api.rmStorage("indexdata");
+		} else {
+			if(err){
+				saveerrlog(err.body);
+			}
+			api.toast({
+			    msg: '系统错误',
+			    duration: 2000,
+			    location: 'middle'
+			});
+		};
+		haveqiandao=false;
+	});
+}
+//没人抢购的倒计时
+function show_time() {
+	var time_start = new Date().getTime();
+	//设定当前时间
+	var time_end = new Date("2016/10/11 00:00:00").getTime();
+	//设定目标时间
+	// 计算时间差
+	var time_distance = time_end - time_start;
+	// 天
+	var int_day = Math.floor(time_distance / 86400000)
+	time_distance -= int_day * 86400000;
+	// 时
+	var int_hour = Math.floor(time_distance / 3600000)
+	time_distance -= int_hour * 3600000;
+	// 分
+	var int_minute = Math.floor(time_distance / 60000)
+	time_distance -= int_minute * 60000;
+	// 秒
+	var int_second = Math.floor(time_distance / 1000)
+	// 时分秒为单数时、前面加零
+	if (int_day < 10) {
+		int_day = "0" + int_day;
+	}
+	if (int_hour < 10) {
+		int_hour = "0" + int_hour;
+	}
+	if (int_minute < 10) {
+		int_minute = "0" + int_minute;
+	}
+	if (int_second < 10) {
+		int_second = "0" + int_second;
+	}
+	var lastTime = int_day + "天" + int_hour + "小时" + int_minute + "分" + int_second + "秒";
+	$(".j_time").html(lastTime);
+	// 设置定时器
+	setTimeout("show_time()", 1000);
+}
+
+
+//加载资讯中心列表菜单
+function zixunList() {
+	
+	/*
+	api.ajax({
+		url : hosturl + '/news/columnlist.html?datatype=json',
+		method : 'get',
+		timeout : 30,
+		dataType : 'json',
+		returnAll : false
+	}, function(ret, err) {
+		if (ret) {
+			//资讯中心页面
+			
+		} else {
+		};
+	});
+	*/
+}
+
+//顶部滚动图片
+function showscrollpic(picpath,piccaptions) {
+	var sysType = api.systemType;
+	var pic_top=$(".mainitem").height()+$("#topbar").height()+20;
+	var UIScrollPromptView = api.require('UIScrollPromptView');
+	UIScrollPromptView.open({
+	    rect: {
+	        x: 0,
+	        y: pic_top,
+	        w: api.winWidth,
+	        h: 50
+	    },
+	    data: {
+	        paths: picpath,
+	        
+	    },
+	    styles: {
+	        
+	        indicator: {
+	            align: 'center',
+	            color: '#FFFFFF',
+	            activeColor: '#666'
+	        },
+	        
+	    },
+	    placeholderImg: 'widget://image/ad_load.png',
+	    contentMode: 'scaleToFill',
+	    interval: 6,
+	    fixedOn: api.frameName,
+	    loop: true,
+	    auto:true,
+	    fixed: false
+	},function( ret ){
+	    if( ret ){
+	         if (ret.eventType=="click"){
+				var pageParam = {
+					wintitle : "广告",
+					type : "adlist",
+					bounces : false
+				};
+				var tourl = picurl[ret.index];
+				openWin("adlist", tourl, pageParam);
+			}
+	    }
+	});
+	
+	
+}

@@ -1,0 +1,257 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>{{webtitle}}_ZZ91废料移动商务</title>
+        <meta name="keywords" content="废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备">
+        <meta name="description" content="ZZ91再生网是中国最大最旺的网上废料贸易市场,这里为您精选了废金属,废塑料,废纸,废橡胶,纺织废料,废旧设备,废电子电器,废玻璃,废皮革,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备等各类废料供求信息.公司黄页.行业资讯.价格行情.展会信息等。">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        
+        <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css">
+		
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+		
+		<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+		<link rel="stylesheet" href="/css/comm-searchbar.css" />
+		<link rel="stylesheet"  href="/css/offer.css" />
+		<link rel="stylesheet"  href="/css/huzhu.css" />
+		<link rel="stylesheet" href="/css/comm-more.css" />
+		<link rel="stylesheet" type="text/css" href="/css/pindao/style.css"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        
+        <script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/pindao/jquery.lightbox_me.js"></script>
+        <script type="text/javascript" src="/js/pindao/style.js"></script>
+
+	<script>
+	function searchkeywords(){
+	var keywords=document.getElementById("wikik").value;
+	//alert(keywords);
+	if (keywords.length<1){
+		alert('请填写搜索词');
+		}
+	else{
+		window.location.href='/price/?keywords='+keywords
+		}
+	}
+	</script>
+
+	</head>
+	<body>{%include 'top.html'%}
+	
+<div class="pt10 pb10">
+<div class="pl10 pr10">
+    <form action="/offerlist/" method="get" id="wikiSearchFrm">
+    	<div style="position:relative;">
+        	<div class="sch-input">
+        		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+        	</div>
+        	<div class="sch-button" onClick="searchkeywords()">搜行情</div>
+    		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+    	</div>
+    </form>
+</div>
+</div>
+
+      <div class="m-content">
+          <div class="c-tle">
+          	<div class="t-left">
+            	<a href="/category/">交易中心</a> > {{keywords}}
+            </div>
+            <!--end t-left-->
+            <div class="t-right">
+            	<ul>
+                	<li>
+                    	<div class="r_box_">
+                        	<div class="b_fb"><a href="/products_publish/"><img src="/images/pindao/fb.png"/></a></div>
+                            <!--end b_fb-->
+                            <div class="b_sx"><a href="/products_publish/">发布</a></div>
+                            <!--end b_sx-->
+                            <div class="cb"></div>
+                        </div>
+                        <!--end r_box-->
+                    </li>
+                    <li>
+                    	<div class="r_box" id="sx">
+                    <!--
+                        	<div class="b_fb"><img src="/images/pindao/sx.png"/></div>
+                            <div class="b_sx">筛选</div>
+                    -->
+                            <!--end b_sx-->
+                            <div class="cb"></div>
+                        </div>
+                        <!--end r_box-->
+                    </li>
+                </ul>
+            </div>
+            <!--end t-right-->
+            <div class="cb"></div>
+          </div>
+          <!--end c-tle-->
+      	    <table width="100%" border="0" cellpadding="0">
+				<tr>
+					<td>
+						<div class="tab_ul">
+                        	<ul>
+                            	<li class="tab_ul_li" onClick="mySwitch()">供应<img src="/images/pindao/off.png" />
+                                	<ul class="sub-nav" id="nav_1" style="display: none;">
+          								<a href="/offerlist/?keywords={{keywords}}&ptype=1"><li>全部</li></a>
+          								<a href="/offerlist/?keywords={{keywords}}&ptype=1&priceflag=1"><li>价格</li></a>
+          								<a href="/offerlist/?keywords={{keywords}}&ptype=1&havepic=1"><li>图片</li></a>
+                					</ul>
+                                </li>
+                                <li class="tab_ul_li" onClick="mySwitch1()">求购<img src="/images/pindao/off.png" />
+                                		<ul class="sub-nav1" id="nav_2" style="display: none;">
+          								<a href="/offerlist/?keywords={{keywords}}&ptype=2"><li>全部</li></a>
+          								<a href="/offerlist/?keywords={{keywords}}&ptype=2&priceflag=1"><li>价格</li></a>
+          								<a href="/offerlist/?keywords={{keywords}}&ptype=2&havepic=1"><li>图片</li></a>
+                					</ul>
+                                </li>
+                                <li onClick="mySwitch2()">报价<img src="/images/pindao/off.png" />
+                                		<ul class="sub-nav2" id="nav_3" style="display: none;">
+          								<a href="/trade/pricelist.html?keywords={{keywords}}&type=0"><li>行情报价</li></a>
+          								<a href="/trade/pricelist.html?keywords={{keywords}}&type=1"><li>商家报价</li></a>
+                					</ul>
+                                </li>
+                            </ul>
+                        </div>
+				   </td>
+				</tr>
+				<tr>
+                  <td>
+					<table cellspacing="10" id="tab1">
+					
+                		<tr>
+                		<td valign="top" height="30px">&nbsp;&nbsp;&nbsp;共找到<font color="red">{{listcount}}</font>条相关结果</td>
+                		</tr>
+                		
+                        {% for list in listall %}
+                         <tr>
+							<td class="m-item" onClick="window.location.href='{{list.mobileurl}}'">
+								<div class="i-box">
+                                    <!--end b-img-->
+                                    <div class="b-dt1">
+                			<span style="font-size:14px">{{list.td_title}} <br /><font color="red">{{list.price}}{{list.price_unit}}</font></span>
+                                    </div>
+                                    <!--end b-dt-->
+                                    <div class="cb"></div>
+                                </div>
+                                <!--end i-box-->
+							</td>
+						</tr>
+                        {%endfor%}
+                        
+                        
+					</table>
+                  </td>
+                </tr>
+           </table>
+      </div>
+      			<!--end m-content-->
+      <div id="reply_div" align="center">
+		<div class="sx-box">
+        	<div class="b1-item">
+            	<div class="b1-item-tle">所在地</div>
+                <ul class="b1-item-ul">
+                	<li>
+                    	<ul class="b1-item-ul-ul" id="b1_ul">
+                        	<li area="浙江">浙江</li>
+                            <li area="广州">广州</li>
+                            <li area="江苏">江苏</li>
+                            <li area="福建">福建</li>
+                            <li area="安徽">安徽</li>
+                            <li area="河南">河南</li>
+                            <li area="河北">河北</li>
+                            <li area="湖北">湖北</li>
+                            <li area="湖南">湖南</li>
+                            <li area="山东">山东</li>
+                            <li area="海南">海南</li>
+                            <li area="哈尔滨">哈尔滨</li>
+                            <li area="北京">北京</li>
+                            <li area="上海">上海</li>
+                            <li area="广东">广东</li>
+                            <li area="天津">天津</li>
+                            <li area="青海">青海</li>
+                            <li area="陕西">陕西</li>
+                            <li area="山西">山西</li>
+                            <li area="贵州">贵州</li>
+                            <li area="辽宁">辽宁</li>
+                            <li area="宁夏">宁夏</li>
+                            <li area="吉林">吉林</li>
+                            <li area="内蒙古">内蒙古</li>
+                            <li area="广西">广西</li>
+                            <li area="云南">云南</li>
+                            <li area="西藏">西藏</li>
+                            <li area="重庆">重庆</li>
+                            <li area="甘肃">甘肃</li>
+                            <li area="新疆">新疆</li>
+                            <li area="台湾">台湾</li>
+                            <li area="香港">香港</li>
+                            <li area="澳门">澳门</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--end b1-item-->
+            <div class="b1-item">
+            	<div class="b1-item-tle">时间</div>
+                <ul class="b1-item-ul">
+                	<li>
+                    	<ul class="b1-item-ul-ul" id="b1_ul2">
+                        	<li timearg="1">一天内</li>
+                            <li timearg="2">三天内</li>
+                            <li timearg="3">一周内</li>
+                            <li timearg="4">一个月内</li>
+                            <li timearg="5">两个月内</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--end b1-item-->
+             <div class="b1-item">
+            	<div class="b1-item-tle">您是不是想找</div>
+                <ul class="b1-item-ul_">
+                {%for list in categorylist%}
+                <li><a href="/s/{{list.label_hex}}-{{type}}/">{{list.label}}</a></li>
+                {%endfor%}
+                </ul>
+            </div>
+            <!--end b1-item-->
+        </div>
+        <!--end sx-box-->
+		<div align="center" style="margin-top:10px;">
+			<input type="hidden" id="area1">
+			<input type="hidden" id="timearg1">
+			<input type="hidden" id="keywords" value="{{keywords}}">
+			<div class="btn btn_confirm">确定</div>
+		</div>
+     </div>
+     
+      
+                  <div class="page">
+                  	<ul>
+                  	{% if firstpage %}
+                    	<li class="page_prev"><a href="?page={{prvpage}}&keywords={{keywords}}&type={{type}}">上一页</a></li>
+					{%else%}
+                    	<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+                        <li class="page_no">
+                        <select onChange="window.location='?page='+this.value+'&keywords={{keywords}}&ptype={{pdt_kind}}'">
+                            <option>第{{page}}页</option>
+                            {%for p in page_range%}
+                            <option value="{{p.number}}">第{{p.number}}页</option>
+                            {%endfor%}
+                        </select> /{{page_listcount}}页
+							</li>
+                    {% if lastpage%}
+                        <li class="page_next"><a href="?page={{nextpage}}&keywords={{keywords}}&type={{type}}">下一页</a></li>
+					{%else%}
+                    	<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+                    </ul>
+                  </div>
+			     <!--end page-->
+		{%include 'bottom2.html'%}</body>
+</html>

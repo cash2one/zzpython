@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="address=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>订单详情</title>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+    <style>
+    	body{
+    		height: auto;
+    	}
+        .aui-card {
+            margin-top: 15px;
+        }
+        .aui-input-addon{
+        	color: #009688;
+        }
+    </style>
+</head>
+<body>
+	<header class="aui-bar aui-bar-nav aui-bar-primary">
+    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+	        <span class="aui-iconfont aui-icon-left"></span>
+	    </a>
+	    <div class="aui-title">订单详情</div>
+	    <!--<a class="aui-pull-right settings" href="/myrc_index/">
+	        <span class="aui-iconfont aui-icon-myfill"></span>
+	    </a>-->
+	</header>
+    <div class="aui-content aui-card aui-noborder">       
+        <div class="aui-form">
+            <div class="aui-input-row">
+                <span class="aui-input-addon">订单编号</span>
+                <div class="aui-pull-right">
+                	{{result.orderno}}
+                </div>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">产品名称</span>
+                <div class="aui-pull-right">
+                	{{result.proname}}
+                </div>
+            </div>
+
+            <div class="aui-input-row">
+                <span class="aui-input-addon">款式/型号</span>
+                <div class="aui-pull-right">
+                	{{result.protype}}
+                </div>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">尺码</span>
+                <div class="aui-pull-right">
+                	{{result.prosize}}
+                </div>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">单价</span>
+                <div class="aui-pull-right">
+                	{{result.proname}}
+                </div>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">数量</span>
+                <div class="aui-pull-right">
+                	{{result.pronumber}}
+                </div>
+            </div>
+            
+            <div class="aui-input-row">
+                <span class="aui-input-addon">备注</span>
+                <div class="aui-pull-right">
+                	{{result.prodesc}}
+                </div>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">地区</span>
+                <div class="aui-pull-right">
+                	{{result.arealabel}}
+                </div>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">街道地址</span>
+                <div class="aui-pull-right">
+                	{{result.address}}
+                </div>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">邮编</span>
+                <div class="aui-pull-right">
+                	{{result.postcode}}
+                </div>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">收货人</span>
+                <div class="aui-pull-right">
+                	{{result.contactname}}
+                </div>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">电话</span>
+                <div class="aui-pull-right">
+                	{{result.phone}}
+                </div>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">手机</span>
+                <div class="aui-pull-right">
+                	{{result.mobile}}
+                </div>
+            </div>
+            <div class="aui-input-row">
+                <span class="aui-input-addon">发单时间</span>
+                <div class="aui-pull-right">
+                	{{result.gmt_created}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="aui-content-padded">
+        <a class="aui-btn aui-btn-block aui-btn-info" href="completeorder.html?order_id={{result.id}}">确认收单</a>
+    </div>
+</body>
+</html>

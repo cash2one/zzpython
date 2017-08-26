@@ -1,0 +1,19 @@
+<uwsgi>
+ <socket>:8010</socket>
+ <workers>5</workers>
+ <master>true</master>
+ <listen>100</listen>
+ <processes>10</processes>
+ <pythonpath>.</pythonpath>
+ <module>zz91crm.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>zz91crm/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>1000</limit-as>
+ <reload-on-as>800</reload-on-as>
+ <reload-on-rss>800</reload-on-rss>
+ <max-requests>800</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/zz91crm.log</daemonize>
+</uwsgi>

@@ -1,0 +1,8 @@
+﻿var schoolList = [{%for list in listall%}{"id": "{{list.code}}",
+"name":"{{list.label}}",
+"school": [{%for a in list.child%}
+		{"id": "{{a.code}}",
+		"name":"{{a.label}}",
+		"school": []},
+	{%endfor%}]},
+{%endfor%}]

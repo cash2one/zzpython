@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="Js/jquery.js"></script>
+    <script type="text/javascript" src="123/function.js"></script>
+    <script type="text/javascript" src="Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="Js/bootstrap.js"></script>
+    <script type="text/javascript" src="Js/ckform.js"></script>
+    <script type="text/javascript" src="Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<form class="form-inline definewidth m20" action="analyse_pageout.html">  
+<input type="text" style="width:90px" name="pubdate" value="{{pubdate}}" class="w80px" style="border:1px solid #999;" onclick="fPopCalendar(event,this,this)" onfocus="this.select()" /> 
+ 到 <input type="text" style="width:90px" name="pubdate2" value="{{pubdate2}}" class="w80px" style="border:1px solid #999;" onclick="fPopCalendar(event,this,this)" onfocus="this.select()" />
+ <input class="btn btn-success" type="submit" value="导出">
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>注册页</th>
+        <th>登录页</th>
+        <th>供求发布页</th>
+        <th>企业报价</th>
+    </tr>
+    </thead>
+<form action="updatetypeok.html">
+<input type="hidden" name="typeid" value="{{typeid}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+    {%for dl in statistics_page%}
+	     <tr>
+	     <td>{{dl.id}}</td>
+	     <td>{{dl.pagetypename}}</td>
+	     <td>{{dl.gmt_created}}</td>
+	     <td>{{dl.www}}</td>
+        </tr>
+     {%endfor%}
+</form>
+        </table>
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}&wtype={{wtype}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}&wtype={{wtype}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}&wtype={{wtype}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<a href='?page=1&wtype={{wtype}}' >首页</a><a href='?page={{page_listcount}}&wtype={{wtype}}' >尾页</a> 
+</div>
+</body>
+</html>

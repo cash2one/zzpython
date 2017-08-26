@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<style>
+			body {
+				background-color: #f4f4f4
+			}
+			.aui-content-padded{
+				background-color: #fff;
+				margin:0px;
+				margin-bottom: 10px;
+			}
+			.title {
+				font-size: 14px;
+				text-align: left;
+				height: 30px;
+				line-height: 40px;
+				
+				padding-left:10px;
+			}
+			.price {
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			.price span {
+				color: #ff0000
+			}
+			.main {
+				line-height: 30px;
+				font-size: 14px;
+				margin-bottom: 20px;
+				padding: 10px
+			}
+			.buybutton {
+				position: fixed;
+				bottom: 0px;
+				left: 0px;
+				border-radius: 0px;
+				width: 100%;
+			}
+			.showradio50{
+				display:block;
+				background-color: #fff;
+				padding-bottom:10px;
+			}
+			.showradio50 li {
+				width: 50%;
+				display: block;
+				float: left;
+			}
+			.aui-line-x{
+				margin-top: 10px;margin-bottom: 10px;
+			}
+			.price-info {
+				width: 100%;
+				background: #EBECED;
+				height: 55px;
+			}
+			.price {
+				margin-left: 15px;
+				color: #F76249;
+				font-size: 16px;
+				line-height: 55px;
+			}
+			.price strong {
+				font-size: 26px;
+				margin: 0 5px;
+				font-weight: 400;
+			}
+			.price-info .aui-pull-right {
+				height: 55px;
+				width: 35%;
+				background: #FF6600;
+				padding-top: 10px;
+				text-align: center;
+			}
+			.price-info .aui-pull-right p {
+				color: #ff6600;
+				font-size: 12px;
+				margin-bottom: 0px;
+			}
+			.buy{
+				color:#FFFFFF;
+				line-height:38px;
+			}
+			.daijq {
+				clear: both;
+			}
+			.shili{
+				font-size:14px;
+				color:#0062CC;
+				line-height:40px;
+				margin-left:20px;
+			}
+			.maintitle{
+				background-color: #A1D4CF;
+				line-height:40px;
+				padding-left: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="hidden" id="showcontactvalue" value="">
+		<div class="maintitle">购买的服务内容：独家广告服务</div>
+		<div class="aui-content-padded">
+			<p style="line-height: 30px">请填写您的收货信息</p>
+	 		<div class="buy-box aui-form">
+		 		<div class="aui-input-row">
+		 			<label class="aui-input-addon">广告词</label>
+		 			<input type="text" class="aui-input" id="guanggao" value="" placeholder="请输入独家广告的广告词。如：大量供应pp颗粒" />
+		 		</div>
+		 	</div>
+		</div>
+		<div class="aui-content-padded">
+			<div class="aui-line-x"></div>
+			<div class="showradio50">
+				<p class="title">
+					选择服务时间
+				</p>
+				<div class="aui-line-x"></div>
+				<ul>
+					<li>
+						<input class="aui-radio" type="radio" name="compxiu" id="compxiu1" value="1" money="600" checked />
+						<label class="aui-radio-name" for=compxiu1>￥600/月</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="compxiu" id="compxiu2" value="2" money="1000"  />
+						<label class="aui-radio-name" for=compxiu2>￥1000/2个月</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="compxiu" id="compxiu3" value="6" money="3200" />
+						<label class="aui-radio-name" for=compxiu3>￥3200/半年</label>
+					</li>
+					<li>
+						<input class="aui-radio" type="radio" name="compxiu" id="compxiu4" value="12" money="6500" />
+						<label class="aui-radio-name" for=compxiu4>￥6500/年</label>
+					</li>
+				</ul>
+				<div style="clear: both"></div>
+			</div>
+			<div style="clear: both"></div>
+		</div>
+		<div class="aui-content-padded daijinquanbox">
+			<p class="title">
+				可用代金券
+			</p>
+			<div class="aui-line-x"></div>
+			<div class="daijqmain">
+				
+			</div>
+			<script id="info-list" type="text/html">
+			<div class="daijq">
+				<input class="aui-checkbox" type="checkbox" name="daijqcheck" id="check{{d.id}}" money="-{{d.fee}}" value="{{d.id}}" />
+				<label class="aui-radio-name" for=check{{d.id}}>{{d.fee}}元{{d.title}}</label>
+			</div>
+			</script>
+			
+			<div style="clear: both"></div>
+		</div>
+		<div class="aui-content-padded">
+			<p class="title">
+				推荐优惠服务
+			</p>
+			<div class="aui-line-x"></div>
+			<div class="aui-content">
+				<ul class="aui-list-view youhuiservice">
+					
+				</ul>
+				<script id="youhui-list" type="text/html">
+					<li class="aui-list-view-cell aui-img" url="{{d.tourl}}" index="{{d.id}}">
+						<a class="aui-arrow-right">
+						<img class="aui-img-object aui-pull-left" src="{{d.pic}}">
+						<div class="aui-img-body">
+							<span class="goodsname">{{d.goodsName}}</span>
+							{{d.goodsname_fu}}
+							{{d.original_Price}}
+							{{d.present_Price}}
+							{{d.sales_Num}}
+							{{d.left_Num}}
+							{{d.difftime}}
+						</div>
+						</a>
+					</li>
+				</script>
+			</div>
+			
+		</div>
+		<section class="buybutton">
+			<div class="price-info">
+				<span class="price paymoney">¥<strong></strong>元</span>
+				<div class="aui-pull-right">
+						<div class="buy">立即购买</div>
+				</div>
+			</div>
+		</section>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript">
+		var paymoney=0;
+		var datevalue=0;
+		var djqlist ="0";//代金券ID
+		
+		apiready = function() {
+			var closeiosflag = $api.getStorage("closeiosflag");
+			if (!closeiosflag || closeiosflag == 1) {
+				$(".buybutton").hide();
+			}
+			$("body").on("click",".buybutton",function() {
+				event.stopPropagation();
+				if (havelogin()) {
+					paysubmit();
+				}
+			})
+			$("body").on("click",".aui-radio",function() {
+				event.stopPropagation();
+				getmoneyall();
+			})
+			$("body").on("click",".aui-checkbox", function() {
+				event.stopPropagation();
+				getmoneyall();
+			})
+			$(".youhuiservice").on("click","li", function() {
+				event.stopPropagation();
+				var url=$(this).attr("url");
+				var index=$(this).attr("index");
+				var wintitle=$(this).find(".goodsname").text();
+				var pageParam = {
+					wintitle : wintitle,
+					type : "serviceshow"+index,
+					bounces : false,
+				};
+				openWin("youhui"+index, url, pageParam);
+			});
+			
+			getmoneyall();
+			ajaxInfo();
+			
+		};
+		function getmoneyall(){
+			var showselect=0;
+			$('input[name="compxiu"]:checked').each(function(){
+				showselect+=parseInt($(this).attr("money"));
+				datevalue=$(this).val();
+			});
+			
+			djqlist="0";
+			$('input[name="daijqcheck"]:checked').each(function(){
+				showselect+=parseInt($(this).attr("money"));
+				djqlist+=","+$(this).val();
+			});
+			$(".paymoney").html("¥<strong>"+showselect+"</strong>元");
+			paymoney=showselect;
+		}
+		function ajaxInfo(){
+			//获取我的代金券
+			var data={
+				qtype_id:17
+			}
+			zzappajax("get",hosturl+"qianbao/mydaijinquan.html",data,function(ret){
+				var pageHtml = "";
+				$.each(ret, function(index, item) {
+					var getTpl = $api.html($api.byId("info-list"));
+					laytpl(getTpl).render(item, function(html) {
+						pageHtml = pageHtml + html;
+					});
+				});
+				$(".daijqmain").html(pageHtml);
+				if (pageHtml==""){
+					$(".daijinquanbox").hide();
+				}else{
+					$(".daijinquanbox").show();
+				}
+			},function(){});
+			
+			data={};
+			zzappajax("get",hosturl+"qianbao/youhuilist.html",data,function(ret){
+				var pageHtml = "";
+				$.each(ret.list, function(index, item) {
+					var getTpl = $api.html($api.byId("youhui-list"));
+					laytpl(getTpl).render(item, function(html) {
+						pageHtml = pageHtml + html;
+					});
+				});
+				$(".youhuiservice").html(pageHtml);
+				
+			},function(){});
+			
+		}
+		//购买显示联系方式
+		function paysubmit() {
+			if ($("#guanggao").val()==""){
+				zzalert("请输入广告词！")
+				$("#guanggao").focus();
+			}
+			api.showProgress({
+				title : '扣款中...',
+				modal : false
+			});
+			var company_id = UserInfo.memberID();
+			var usertoken = UserInfo.token();
+			var data = {
+				paytype : '17',
+				money : paymoney,
+				company_id : company_id,
+				usertoken : usertoken,
+				appsystem : api.systemType,
+				datatype : 'json',
+				t : (new Date()).getTime().toString(),
+				voucher_id:djqlist,
+				datevalue:datevalue,
+				
+			}
+			api.ajax({
+				url : hosturl + 'qianbao/qianbaopay.html',
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(ret))
+				if (ret) {
+					if (ret.err == 'false') {
+						//zzalert(ret.errtext);
+						api.confirm({
+							title : '提示',
+							msg : ret.errtext,
+							buttons : ['关闭', '查看我的服务']
+						}, function(ret, err) {
+							if (ret) {
+								if (ret.buttonIndex == 2) {
+									var pageParam = {
+										wintitle : "我的服务",
+										type : "myservice",
+									};
+									openWin("myservice", "../service/myservice.html", pageParam);
+								} else {
+									api.closeWin();
+								}
+								} else {
+								}
+							});
+						}
+						if (ret.err == 'true' && ret.blanceflag == '0') {
+							yuebuzuFun();
+						}
+						if (ret.err == 'true' && ret.blanceflag == '1') {
+							zzalert(ret.errtext);
+						}
+						api.hideProgress();
+					} else {
+						api.hideProgress();
+						if (err) {
+							saveerrlog(err.body);
+						}
+					};
+				});
+				
+		}
+
+		function showcontactcheck(valu) {
+			$("#showcontactvalue").val(valu);
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

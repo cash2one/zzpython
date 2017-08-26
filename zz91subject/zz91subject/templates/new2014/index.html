@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>废料专题-ZZ91再生网</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+<link rel="stylesheet" type="text/css" href="new2014/css/style.css"/>
+</head>
+<body>{% include 'html/comm/top.html' %}{% include 'html/comm/mid.html'%}<div class="content">
+     <div class="link">
+        您所在的位置：<a href="http://www.zz91.com/" target="_blank">zz91再生网</a> > <a href="">废料专题</a>
+     </div>
+     <!--end link-->
+     <div class="c-left">
+     
+{%for list in listall%}
+     <div class="box">
+        <div class="box-title">
+           <div class="bt-left">
+             <img src="new2014/images/{{list.js}}f.jpg"/>
+           </div>
+           <!--end bt-left-->
+             <div class="btr-l">
+               <a href="zhuantimore{{list.id}}.html" target="_blank"><img src="new2014/images/img{{list.js}}.png"/></a>
+             </div>
+             <!--end btr-l-->
+             <div class="btr-r">
+               <a href="zhuantimore{{list.id}}.html" target="_blank">更多></a>
+             </div>
+             <!--end btr-r-->
+           <!--end bt-right-->
+        </div>
+        <div style=" clear:both"></div>
+        <!--end box-title-->
+        <div class="item">
+{%for wb in list.listweb%}
+        <div class="i-block">
+          <div class="item-box">
+            <div class="box-img">
+             <a href="{{wb.url}}" target="_blank"><img src="{{wb.pic}}"/></a><br>
+             <a href="{{wb.url}}" target="_blank">{{wb.name}}</a>
+             </div>
+             <!--end box-img-->
+            </div>
+         </div>
+{%endfor%}
+		<div style="clear:both"></div>
+        <!--end item-->
+        </div>
+        <!--end bt-content-->
+     </div>
+{%endfor%}
+     </div>
+     <!--end c-left-->
+     <div class="c-right">
+         <div class="cr-top">
+           <div class="crt-txt">
+           <img src="new2014/images/rq.jpg"/>
+           </div>
+           <!--end ctr-txt-->
+           <div class="crt-no">
+             <div class="no">
+               <img src="new2014/images/1.jpg"/>
+             </div>
+             <!--end no-->
+             <div class="no-img">
+              <img src="{{recommendlist1.pic}}"/>
+             </div>
+             <!--end no-img-->
+             <div class="no-txt">
+               <a href="{{recommendlist1.url}}" target="_blank">{{recommendlist1.name}}</a>
+             <!--end no-txt-->
+           </div>
+           <!--end ctr-no-->
+           <div class="ctr-top-txt">
+{%for rc in recommendlist%}
+              <div class="ct-item">
+                <div class="i-left{%if rc.js < 4%}1{%endif%}">{{rc.js}}</div>
+                <!--end i-left1-->
+                <div class="i-right">
+                <a href="{{rc.url}}" target="_blank">{{rc.name}}</a>
+                </div>
+                <!--end i-right-->
+              </div>
+              <!--end ct-item-->
+{%endfor%}
+           </div>
+           <!--end ctr-top-txt-->
+         </div>
+         <!--end cr-top-->
+         <div class="cr-middle">
+           <div class="crm-title">
+           <font>本周热门资讯排行榜</font>
+             <img src="new2014/images/bang.jpg"/>
+           </div>
+{%for nl in newslist%}
+           <div class="crm-item">
+              <div class="ci-box">
+                 <div class="ci-box-txt">
+                 <a href="{{nl.weburl}}" title="{{nl.title}}" target="_blank">{{nl.title}}</a>
+                 </div>
+                 <!--end ci-box-txt-->
+                 <div class="ci-box-txt1">{{nl.pubdate}}</div>
+                 <!--end ci-box-txt1-->
+              </div>
+              <!--end ci-box-->
+           </div>
+{%endfor%}
+         </div>
+         <!--end cr-middle-->
+         <div class="cr-bottom">
+            <script type="text/javascript">
+/*废料专题列表 标签云，创建于2014-5-7*/
+var cpro_id = "u1547361";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+         </div>
+         <!--end cr-bottom-->
+     </div>
+     <!--end c-right-->
+  </div>
+  <!--end content-->
+  </div>
+<div style="clear:both"></div>
+<div style="width:100%;">
+	<div style="width:960px;margin:0 auto;text-align:center;">
+		{% include 'html/comm/buttom.html' %}
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>{{companyinfoall.compname}}-ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/laytpl.js" ></script>
+		<style>
+			.topmain {
+				height: 150px;
+				position: relative;
+				/*background-image: url(../../image/myrc_top.jpg);*/
+				background-color: #01AA2A;
+				color: #fff;
+			}
+			.compname{
+				height:80px;
+			}
+			.compname p {
+				padding: 5px;
+				font-size: 18px;
+				line-height: 32px;
+				color: #fff;
+			}
+			.compaddress {
+				font-size: 12px;
+				padding-left: 7px
+				
+			}
+			.compinfo {
+				height: 70px;
+				background: #000;
+				opacity: 0.2;
+				position: absolute;
+				bottom: 0px;
+				width: 100%;
+			}
+			.gongqiunav {
+				background-color: #ebebeb;
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			.compinstro {
+				padding: 5px;
+				color: #fff
+			}
+			.jointxl {
+				position: absolute;
+				right: 10px;
+				top: 40px
+			}
+			.aui-nav {
+				height: 53px;
+			}
+			.aui-bar{
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			#aui-footer {
+				background: rgba(255,255,255,0.9);
+			}
+			.czfoot {
+				border-top: solid 1px #EBEBEB;
+				width: 100%;
+				background-color: #F6F6F6;
+				line-height: 50px;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+			}
+			.czfoot li {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				text-align: center;
+				border-right: 1px solid #e7e7e7;
+				font-size: 14px;
+			}
+			.czfoot li:last-child {
+				border-right: none;
+			}
+			.ptop{
+	    		background-color: #E20000;
+	    		text-align:center;
+	    		width:100%;
+	    		clear:both;
+	    		line-height:33px;
+	    		overflow: hidden;
+	    		padding-left:5px;
+	    		position: fixed;
+	    		top: 45px;
+	    		left: 0px;
+	    		z-index: 999;
+	    	}
+	    	.zdbotton{
+	    		background-color:#C0392B;
+	    		color:#fff;
+	    		width:60px;
+	    		font-size:12px;
+	    		margin-top:8px;
+	    		display:block;
+	    		line-height:20px;
+	    		border-radius:2px;
+	    		position: absolute;
+	    		right:10px;
+	    		top:0px;
+	    		padding-left:4px;
+	    		padding-right:4px;
+	    		text-align:center;
+	    	}
+	    	footer{
+				position: fixed;
+				bottom: 0;
+				width: 100%;
+				background: #f2f2f2;
+				z-index: 2
+			}
+			.footnav>li{
+				height: 53px;
+				padding-top: 8px;
+			}
+			.footnav>li>span{
+				height: 20px;
+				display: inline-block;
+			}
+			.footnav-first{
+				background: #009900;
+				color:#fff;
+			}
+			.footnav-first>p{
+				color:#fff;
+			}
+			.poptele{
+				top: 80px;
+				background: #fff;
+				padding: 0 0px;
+				width: 280px;
+				border-radius: 0.5rem;
+				display: none;
+			}
+			.poptele-title{
+				height: 40px;
+				line-height: 40px;
+				padding-left: 20px;
+			}
+			.poptele-btnbox{
+				display: none;
+			}
+			.poptele-btnbox>div{
+				border-top: 1px solid #eee;
+				height: 50px;
+				line-height: 50px;
+				border-right: 1px solid #eee
+			}
+			.poptele-btnbox>div:last-child{
+				border-right: none
+			}
+			.telbox{
+				line-height: 40px;
+				padding-left: 10px;
+				height: 40px;
+				border-bottom:solid 1px #ebebeb;
+				margin-left: 10px;
+				margin-right: 10px;
+				font-size: 18px;
+				overflow:hidden;
+				text-overflow:ellipsis;
+				white-space:nowrap;
+			}
+			.telbox:last-child{
+				border-bottom: none;
+			}
+			.aui-iconfont{
+				font-size: 18px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-title">公司详情</div>
+		    <a class="aui-pull-right favorite">
+		        <span class="aui-iconfont aui-icon-favor"></span>
+		    </a>
+		    <a class="aui-pull-right zz91share">
+		        <span class="aui-iconfont aui-icon-share"></span>
+		    </a>
+		</header>
+		<div style="height: 75px;"></div>
+		<div class="aui-tips-danger ptop">
+			<div class="aui-ellipsis-1" style="text-align: left">
+				<i class="aui-iconfont aui-icon-creative"></i>
+				<font style="font-size:14px" color="#fff">下载APP，获取<font color="#FEE900">20</font>元红包</font>
+				<a class="zdbotton" href="http://m.zz91.com/app.html">免费下载</a>
+			</div>
+		</div>
+		<div id="infomain">
+			<div class="topmain">
+				{%if companyinfoall.isaddressbook%}
+				{%else%}
+				<div class="aui-btn aui-btn-success jointxl">
+					+ 加入通讯录
+				</div>
+				{%endif%}
+				<div class="compname">
+					<p class="aui-ellipsis-1">{{companyinfoall.compname}}</p>
+					<a href="http://map.baidu.com/mobile/webapp/search/search/qt=s&wd={{list.address}}/vt=map" target="_blank" style="color: #fff;">
+					<div class="compaddress" style="font-size: 14px;">
+						地       址：{{companyinfoall.address}} <span class="aui-iconfont aui-icon-location" style="margin-right: 20px;"></span>
+					</div>
+					</a>
+				</div>
+				<div class="compinfo"></div>
+				<p class="compinstro aui-ellipsis-2">
+					经营范围：{{companyinfoall.business}}
+				</p>
+			</div>
+			<div class="gongqiunav">
+				供求信息（{{companyinfoall.productslistcount}}）
+				{%if companyinfoall.zxinfo%}
+				<div style="float: right;padding-right: 10px;display:none" class="cxinfo"><a href="javascript:;" style="color:red;text-align: left"><i class="aui-iconfont aui-icon-safe"></i>诚信认证已审核</a></div></div>
+				{%endif%}
+			</div>
+		</div>
+		
+		<div class="aui-content">
+			{%if companyinfoall.plist%}
+			<ul class="aui-list-view prolist">
+				{%for d in companyinfoall.plist%}
+				<li class="aui-list-view-cell aui-img" id="{{d.pdt_id}}">
+					<a class="aui-arrow-right">
+					<img class="aui-img-object aui-pull-left" src="{{d.pdt_images}}" style="width:100px">
+					<div class="aui-img-body" style="margin-right:18px">
+						<p class="aui-ellipsis-1"  style="color:#000"><b>{{d.pdt_kind.kindtxt}}{{d.pdt_name}}</b></p>
+						<p>
+							{{d.com_province}}<span class="aui-pull-right">{{d.pdt_price}}</span>
+						</p>
+						<p>
+							{{d.pdt_time_en}}
+						</p>
+					</div></a>
+				</li>
+				{%endfor%}
+			</ul>
+			{%else%}
+			<div class="nodata">暂时无供求信息</div>
+			{%endif%}
+		</div>
+		{%if companyinfoall.plist%}
+		<div class="floatpage">
+	    	<div class="page">
+				<ul>
+					{% if firstpage %}
+					<li class="page_prev">
+						<a href="?{{searchurl}}&page={{prvpage}}">上一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+					<li class="page_no">
+						<select onChange="window.location='?{{searchurl}}&page='+this.value">
+							<option>第{{page}}页</option>
+							<option value="1">首页</option>
+							{%for p in page_range%}
+							<option value="{{p.number}}">第{{p.number}}页</option>
+							{%endfor%}
+							<option value="{{page_listcount}}">末页</option>
+						</select> /{{page_listcount}}页
+					</li>
+					{% if lastpage%}
+					<li class="page_next">
+						<a href="?{{searchurl}}&page={{nextpage}}">下一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+		{%endif%}
+		<div class="poptele" id="poptele">
+			<div class="poptele-title">请选择拨打电话</div>
+			<div class="aui-content tellist" style="margin-bottom: 0px;">
+		       
+			</div>
+			
+			<div class="aui-row poptele-btnbox aui-text-center aui-text-info m_member">
+				<p style="color:#909090;font-size:13px;margin:10px">如虚假信息、虚假号码等可举报申请退款</p>
+				<div class="aui-col-xs-4 j_clock">关闭</div>
+				<div class="aui-col-xs-4 j_addressbook">加入通讯录</div>
+				<div class="aui-col-xs-4 j_jubao">举报</div>
+			</div>
+			<div class="aui-row poptele-btnbox aui-text-center aui-text-info m_vip">
+				<div class="aui-col-xs-6 j_clock">关闭</div>
+				<div class="aui-col-xs-6 j_addressbook">加入通讯录</div>
+			</div>
+		</div>
+		<table class="jubaobox" style="display: none;margin: 20px;">
+			<tr>
+				<td>您将举报该信息：</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" name="report" value="1" id="report1" /><label for="report1">&nbsp;违法违规</label></td>
+				<td>
+					<input type="checkbox" name="report" value="2" id="report2"/><label for="report2">&nbsp;虚假信息</label></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" name="report" value="3" id="report3"/><label for="report3">&nbsp;过期信息</label></td>
+				<td>
+					<input type="checkbox" name="report" value="4" id="report4"/><label for="report4">&nbsp;虚假号码</label> </td>
+			</tr>
+		</table>
+		<script id="info-list" type="text/html">
+			<div class="telbox">
+		        <a href="tel:<%d%>" class="aui-text-info">
+		           <span class="aui-iconfont aui-icon-phone" style="font-size: 22px;"></span> <%d%>
+		        </a>
+	       	</div>
+		</script>
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- 微门户 -->
+		<ins class="adsbygoogle"
+		     style="display:block"
+		     data-ad-client="ca-pub-5512236620584335"
+		     data-ad-slot="8274972003"
+		     data-ad-format="auto"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		<div style="height: 60px;"></div>
+		<footer>
+			<ul class="aui-row aui-text-center aui-font-size-12 footnav">
+				<li class="aui-col-xs-6 footnav-first j_phone">
+					{%if isseecompany%}
+					<span>{{companyinfoall.list.contact}}</span>
+            		<p>{{list.mobile1}}</p>
+            		{%else%}
+            		<button class="aui-btn aui-btn-danger">仅需10元查看</button>
+            		{%endif%}
+				</li>
+				<a>
+				<li class="aui-col-xs-2 j_phone">
+					<span class="aui-iconfont aui-icon-phone"></span>
+            		<p>电话</p>
+				</li>
+				</a>
+				<a href="/leavewords/?company_id={{forcompany_id}}&pdtid={{id}}">
+				<li class="aui-col-xs-2">
+					<span class="aui-iconfont aui-icon-comment"></span>
+            		<p>留言</p>
+				</li>
+				</a>
+				<a>
+				<li class="aui-col-xs-2 favorite">
+					<span class="aui-iconfont aui-icon-favor"></span>
+            		<p>收藏</p>
+				</li>
+				</a>
+			</ul>
+		</footer>
+		<!--<footer class="aui-nav" id="aui-footer">
+			<ul class="czfoot">
+				<li class="b_pinlun">
+					<a href="/company/detail{{ forcompany_id }}.html"><span class="aui-iconfont aui-icon-phone"></span> 联系商家</a>
+				</li>
+				<li class="ask-nickname contact">
+					<a href="/leavewords/?backurl=/company/shop{{ forcompany_id }}.html&company_id={{ forcompany_id }}"><span class="aui-iconfont aui-icon-comment"></span> 留言</a>
+				</li>
+			</ul>
+		</footer>-->
+	<script type="text/javascript">
+		var currPage = 1;
+		var forcompany_id={{forcompany_id}};
+		//查看手机
+	    var isseecompany="{{isseecompany}}";
+	    var seeflag=0;
+	    var joinflag=true;
+	    var favoriteflag={{companyinfoall.favoriteflag}};
+	    var isjubao="{{list.viptype.vipcheck}}";
+		$(function(){
+			ajaxInfo();
+			//打开供求
+			$(".prolist").on("click", "li", function() {
+				var id = $(this).attr("id");
+				window.location='/trade/detail'+id+'.html'
+			})
+			//加入通讯录
+			$("#infomain").on("click", ".jointxl", function() {
+				if (!havelogin("{{company_id}}","{{host}}")){
+					return false
+				}
+				if (joinflag==false){return false;}
+				joinflag=false;
+				var data={
+					forcompany_id : {{forcompany_id}},
+					datatype : "json",
+				}
+				zzajax("get","/myrc/addressbook_join.html",data,function(ret){
+					if (ret){
+						if (ret.err=='login'){
+							window.location="/login/?done={{host}}";
+							return;
+						}
+						layer.msg(ret.errkey)
+						$(".jointxl").hide();
+						joinflag=true;
+					}
+					joinflag=true;
+				},function(){
+					joinflag=true;
+				})
+			})
+			//点击收藏
+			$(".favorite").on("click", function() {
+				var favorite_type_code = "10091003";
+				var data = {
+					datatype : "json",
+					favorite_type_code : favorite_type_code,
+					forcompany_id : {{forcompany_id}},
+					content_id : {{forcompany_id}},
+					title : "{{companyinfoall.compname}}",
+					pdtid : 0,
+					products_type_code : 0,
+					favoriteflag : favoriteflag
+				};
+				shoucInfo(data,"{{host}}");
+				if (favoriteflag==1){
+					favoriteflag=0;
+				}else{
+					favoriteflag=1;
+				}
+				isfavor($(".favorite").find("span"),favoriteflag);
+			})
+			$(".zz91share").on("click", function() {
+				layer.open({
+				  type: 2,
+				  title: false,
+  				  closeBtn: 0, //不显示关闭按钮
+				  shadeClose: true,
+				  shade: 0.4,
+				  anim: 2,
+				  area: ['90%', '170px'],
+				  content: '/myrc/share.html?p' //iframe的url
+				}); 
+			})
+			$(".j_phone").on("click",function(){
+		    	if (isseecompany=="None"){
+		    		layer.confirm('查看此联系方式需<font color=red>{{paymoney}}</font>元，确定付款？', {
+						btn: ['确定','取消'] //按钮
+					}, function(){
+						lookcontact();
+					}, function(){
+					  	
+					});
+		    	}else{
+		    		lookcontact();
+		    	}
+		    })
+		    
+		    $(".j_clock").on("click",function(){
+		    	layer.closeAll()
+		    })
+		    //加入通信录
+		    $(".j_addressbook").on("click",function(){
+		    	layer.load(2);
+		    	var data={
+		    		forcompany_id:{{forcompany_id}}
+		    	}
+		    	zzajax("get","/myrc/addressbook_join.html",data,function(ret){
+		    		if (ret.err=="login"){
+    					window.location='/login/?done=/company/shop{{forcompany_id}}.html';
+    				}else{
+    					if(ret.err=="false"){
+			    			layer.closeAll();
+			    			layer.msg("已经成功加入您的通信录里！");
+			    		}else{
+			    			layer.closeAll();
+			    			layer.msg(ret.errkey)
+			    		}
+    				}
+		    	},function(){})
+		    })
+		    //举报
+		    $(".j_jubao").on("click",function(){
+		    	//layer.load(2);
+		    	layer.open({
+					  type: 1 //此处以iframe举例
+					  ,title: '举报'
+					  //,area: ['390px', '330px']
+					  ,shade: 0
+					  ,maxmin: false
+					  ,content: $(".jubaobox")
+					  ,btn: ['确定举报', '关闭'] //只是为了演示
+					  ,yes: function(){
+					  	jubao()
+					  }
+					  ,btn2: function(){
+					  }
+					  ,zIndex: layer.zIndex //重点1
+					  ,success: function(){
+					  	
+					  }
+				});
+				return;
+		    })
+		});
+		var dataload = true;
+		function ajaxInfo() {
+			//保存分享数据到本地
+			var title="{{companyinfoall.compname}}";
+			localStorage.setItem("share_title",""+title);
+			localStorage.setItem("share_description","我正在查看"+title+"，赶紧跟我一起来体验！http://mobile.m.zz91.com/mobile/index{{forcompany_id}}.htm 点击链接查看");
+			localStorage.setItem("share_url","http://mobile.m.zz91.com/mobile/index{{forcompany_id}}.htm");
+			localStorage.setItem("share_pic","http://img0.zz91.com/zz91/images/indexLogo.png");
+			isfavor($(".favorite").find("span"),{{companyinfoall.favoriteflag}});
+		}
+		function jubao(){
+	    	var chk_value =[];    
+			$('input[name="report"]:checked').each(function(){    
+				chk_value.push($(this).val());    
+			});
+	    	var data={
+	    		forcompany_id:{{forcompany_id}},
+	    		product_id:0,
+	    		chk_value:chk_value
+	    	}
+	    	layer.load(2)
+	    	zzajax("get","/trade/pro_report.html",data,function(ret){
+	    		if (ret.err=="login"){
+					window.location='/login/?done=/company/shop{{forcompany_id}}.html';
+					layer.closeAll();
+				}else{
+					if(ret.err=="false"){
+		    			layer.closeAll();
+		    			layer.msg("您已举报成功，我们会在三个工作日内核查（节假日自动顺延），如核查如实，将会返还您的金额。");
+		    		}else{
+		    			layer.closeAll();
+		    			layer.msg(ret.errkey)
+		    		}
+				}
+	    	},function(){})
+	    }
+	    function lookcontact(){
+	    	//已经打开
+	    	if (isjubao=="1"){
+	    		$(".m_vip").show();
+	    		$(".m_member").hide();
+	    	}else{
+	    		$(".m_member").show();
+	    		$(".m_vip").hide();
+	    	}
+	    	if (seeflag==1){
+	    		layer.open({
+					type: 1,
+					title: false,
+					closeBtn: 0, //不显示关闭按钮
+					shadeClose: true,
+					shade: 0.4,
+					anim: 2,
+					content: $("#poptele") //iframe的url
+				});
+				
+	    		return;
+	    	}
+	    	layer.load(2)
+	    	var data={
+	    		forcompany_id:{{forcompany_id}},
+	    		paytype:1
+	    	}
+	    	zzajax("get","/trade/viewcontact.html",data,function(ret){
+	    		if (ret.err=='true'){
+	    			layer.closeAll();
+	    			if (ret.type=="login"){
+	    				window.location='/login/?done=/company/shop{{forcompany_id}}.html'
+	    			}else{
+	    				layer.msg(ret.errkey);
+	    				if (ret.type=='viewcontact'){
+	    					yuebuzuFun();
+	    				}
+	    			}
+	    		}else{
+	    			var mobilelist=ret.list.mobilelist;
+	    			var telHtml=''
+	    			$.each(mobilelist, function(n, item) {
+		    			var getTpl = $("#info-list").html();
+		    			item['tel']=item;
+						laytpl(getTpl).render(item, function(html) {
+							telHtml = telHtml + html;
+						});
+					})
+	    			layer.closeAll();
+	    			$(".tellist").html(telHtml)
+	    			layer.open({
+						type: 1,
+						title: false,
+						closeBtn: 0, //不显示关闭按钮
+						shadeClose: true,
+						shade: 0.4,
+						anim: 2,
+						content: $("#poptele") //iframe的url
+					});
+					var ntel="<span>"+ret.list.contact+"</span>";
+	            	ntel+="<p>"+ret.list.mobile1+"</p>";
+					$(".footnav-first").html(ntel);
+					isseecompany=1;
+					seeflag=1
+	    		}
+	    	},function(){})
+	    }
+	</script>
+	{%include 'aui/bottom.html'%}
+	</body>
+</html>

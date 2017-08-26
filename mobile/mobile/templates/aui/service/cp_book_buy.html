@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="address=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+	<title>购买商务大全-zz91再生网</title>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+    <style>
+    	body{
+			background: #f4f4f4;
+			width: 100%;
+			height: 100%;
+		}
+		
+		.buybutton{
+    		position: fixed;
+    		bottom:0px;
+    		left:0px;
+    		border-radius:0px;
+    	}
+    </style>
+</head>
+<body>
+	<header class="aui-bar aui-bar-nav aui-bar-primary">
+    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+	        <span class="aui-iconfont aui-icon-left"></span>
+	    </a>
+	    <div class="aui-title">购买商务大全</div>
+	    <a class="aui-pull-right" href="/myrc_index/">
+		        <span class="aui-iconfont aui-icon-my"></span>
+		    </a>
+	</header>
+	<section>
+		<p style="line-height: 30px">请填写您的收货信息</p>
+ 		<div class="buy-box aui-form">
+	 		<div class="aui-input-row">
+	 			<label class="aui-input-addon">联&nbsp; 系 &nbsp;人</label>
+	 			<input type="text" class="aui-input" id="huangye_contact" value="" placeholder="请输入联系人" />
+	 		</div>
+	 		<div class="aui-input-row">
+	 			<label class="aui-input-addon">联系方式</label>
+	 			<input type="text" class="aui-input" id="huangye_person" value="" placeholder="请输入联系方式" />
+	 			
+	 		</div>
+	 		<div class="aui-input-row">
+	 			<label class="aui-input-addon">收货地址</label>
+	 			<input type="text" class="aui-input" id="huangye_address" value="" placeholder="请输入收货地址" />
+	 			<span class="aui-input-addon"><i class="aui-iconfont aui-icon-locationfill"></i></span>
+	 		</div>
+	 	</div>
+ 	</section>
+ 	<div class="aui-btn aui-btn-block aui-btn-success buybutton" tapmode>保存并支付</div>
+</body>
+<script type="text/javascript">
+	$(function(){
+		$(".buybutton").on("click", function() {
+			event.stopPropagation();
+			buybook();
+		})
+	});
+	//购买黄页
+	function buybook() {
+		var contact=$('#huangye_contact').val();
+		//contact=contact.replace("#","");
+		var person=$('#huangye_person').val();
+		//person=person.replace("#","");
+		var address=$('#huangye_address').val();
+		//address=address.replace("#","号");
+		if (contact==""){
+			layer.msg("请输入联系方式");
+			$('#huangye_contact').focus();
+			return false;
+		}
+		if (person==""){
+			layer.msg("请输入联系人");
+			$('#huangye_person').focus();
+			return false;
+		}
+		if (address==""){
+			layer.msg("请输入收货地址");
+			$('#huangye_address').focus();
+			return false;
+		}
+		var chk_value="联系方式：" + contact + "联系人："+person+"联系地址："+address
+		var data = {
+			paytype : '16',
+			baoming : chk_value,
+			datatype : 'json',
+			t : (new Date()).getTime().toString()
+		}
+		layer.load(2);
+		zzajax("get","/qianbao/qianbaopay.html",data,function(ret){
+			if (ret) {
+				if (ret.err == 'false') {
+					layer.confirm(ret.errtext,{
+							btn : ['返回产品服务','关闭']
+						}, function() {
+							window.location='/service/index.html';
+						},function(){
+							window.location='/service/index.html';
+						}
+					)
+				}
+				if (ret.err == 'true' && ret.blanceflag == '0') {
+					yuebuzuFun();
+				}
+				if (ret.err == 'true' && ret.blanceflag == '1') {
+					layer.msg(ret.errtext);
+				}
+			} else {
+			};
+			layer.closeAll('loading');
+		});
+	}
+</script>
+{%include 'aui/bottom.html'%}
+</html>

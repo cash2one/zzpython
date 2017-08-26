@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>{{webtitle}}-知性朋友网</title>
+		<link rel="icon" href="favicon.ico" type="image/x-icon" />
+		<meta name="baidu_union_verify" content="36a35b1ed952bb8212dccef6014ac66a">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="{{subcontent}}" />
+		<link rel="stylesheet" href="/css/comm.css" type="text/css" />
+		<style>
+			.topnav {
+				background-color: #B63798;
+				line-height: 40px;
+				height: 40px;
+			}
+			.topnav li {
+				float: left;
+				width: 70px;
+				border-right: solid 1px seashell;
+				color: #fff;
+				text-align: center;
+			}
+			.topnav li a {
+				color: #fff;
+				display: block;
+			}
+			.detailad1 {
+				margin-top: 20px;
+				margin-bottom: 10px;
+				height: 80px;
+			}
+			.newssearch {
+				height: 50px;
+			}
+			.newssearch .searchleft {
+				width: 50%;
+				float: left;
+			}
+			.newssearch .searchright {
+				float: right;
+				width: 45%;
+			}
+			.title {
+				height: 100px;
+				line-height: 80px;
+				font-size: 26px;
+				font-weight: bold;
+				text-align: center;
+				font-family: "微软雅黑";
+			}
+			.content {
+				float: left;
+				width: 990px;
+			}
+			.content .cleft {
+				float: left;
+				width: 700px;
+				line-height: 30px;
+				font-size: 16px;
+				font-family: "微软雅黑";
+				text-align: left;
+				border-right: solid 1px #ebebeb;
+				padding-right: 10px;
+			}
+			.content .cright {
+				float: right;
+				width: 250px;
+				font-family: "微软雅黑";
+			}
+			.bt {
+				line-height: 25px;
+				text-align: center;
+				font-size: 14px;
+				border-bottom: solid 1px #666;
+				padding-bottom: 10px;
+				margin-bottom: 10px;
+			}
+			.pageStyle {
+				text-align: left;
+			}
+			.cright h2 {
+				background-color: #B63798;
+				color: #fff;
+				font-size: 16px;
+				padding-left: 15px;
+			}
+			.ctj li {
+				float: none;
+				color: #333;
+				width: 100%;
+				text-align: left;
+				font-size: 16px;
+				border: none;
+			}
+			.ctj li a {
+				color: #333;
+				width: 240px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.appdownload {
+				position: fixed;
+				bottom: 50px;
+				margin-left: 30px;
+				width: 200px;
+			font-size: 14px;
+			text-align: center;
+				_position: absolute;
+				_bottom: auto;
+				_top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop, 10)||0)-(parseInt(this.currentStyle.marginBottom, 10)||0)));
+			}
+		</style>
+		<script>
+			var _hmt = _hmt || [];
+			(function() {
+				var hm = document.createElement("script");
+				hm.src = "//hm.baidu.com/hm.js?67ddfd0565f7cd475fe9c64240e6c43d";
+				var s = document.getElementsByTagName("script")[0];
+				s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+	</head>
+
+	<body>
+		<div class="appdownload">
+			<span style="color: #B63798;font-size: 14px;font-weight: bold;">两性秘密</span>
+			<br /> Android版 下载
+			<br />
+			<img src="/img/1445655292.png">
+			<br />
+			<a href="http://app.zjfriend.com/app/zjfriend1.04.apk">下载到电脑</a>
+
+		</div>
+		<div class="topnav">
+			<div class="main" style="width: 1050px;">
+				<ul>
+					<li style="width: 200px;color: #FFCC00;font-size: 18px;">知性朋友网</li>
+					{%for list in newscolumn%}
+					<li><a href="/{{list.typedir}}/" target="_blank">{{list.typename}}</a></li>
+					{%endfor%}
+				</ul>
+			</div>
+			<div class="main">
+				<div class="cb"></div>
+				<div class="newssearch">
+					<div class="searchleft">知性朋友网 > <a href="/list{{typeid}}.html">{{typename}}</a></div>
+					<div class="searchright">
+						<form action="" method="get">
+							<input type="text" width="10" />
+						</form>
+					</div>
+				</div>
+				<h1 class="title">
+				{{webtitle}}
+				</h1>
+				<div class="bt">{{typename}} 发布时间：{{content.pubdate}} 点击：{{content.click}}</div>
+				<div class="content">
+					<dl class="cleft">
+						<div>
+							{{content.content|safe}}</div>
+					</dl>
+					<dl class="cright">
+						<h2>相关推荐</h2>
+						<div class="ctj">
+							<ul>
+								{%for list in typenews%}
+								<li><a href="/detail/{{list.id}}.html" target="_blank" title="{{list.title}}">{{list.title}}</a></li>
+								{%endfor%}
+							</ul>
+						</div>
+					</dl>
+
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

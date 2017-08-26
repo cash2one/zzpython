@@ -1,0 +1,63 @@
+    <div class="m-main">
+    	{%if step0%}
+    	<form name="formforgetpasswd" id="formforgetpasswd" method="post" action="#">
+        <ul class="regbox">
+        	<li>填写账户名，获取短信验证码</li>
+            <li><input id="username" type="text" name="username" class="mui-input-clear" value="" placeholder="请输入手机 或 用户名 或 邮箱" autocomplete="off" maxlength="20"></li>
+            <li><div class="c-red"></div></li>
+            <li><input type="hidden" name="step" id="step" value="1">
+            <button class="mui-btn mui-btn-green" style="width: 100%;" onclick="myrc.forgetpasswd(this.form,'http://app.zz91.com/forgetpasswd.html')" type="button" />获取验证码</button> </li>
+            <li style="text-align: center;">或咨询电话<br><a onclick="dialtel('0571-56612345')">0571-56612345</a></li>
+            <div class="cb"></div>
+        </ul> 
+        </form>
+        <input type="hidden" id="appnavname" value="忘记密码" />
+        {%endif%}
+        {%if step1%}
+        <form name="formforgetpasswd" id="formforgetpasswd" method="post" action="forgetpasswd.html?step=2">
+        <ul class="regbox">
+        	<li>手机号：{{mobile}}</li>
+			<li>登录帐号：{{account}}</li>
+            <li><input id="yzcode" type="text" class="mui-input-clear" name="yzcode" value="{{yzcode}}" placeholder="请输入验证码" autocomplete="off" maxlength="20"></li>
+            <li><div class="c-red"></div></li>
+			<li><div>验证码短信已经发送到您的手机！</div></li>
+            <li><input type="hidden" name="step" id="step" value="2">
+			<input type="hidden" name="account" id="account" value="{{account}}">
+			<input type="hidden" name="mobile" id="mobile" value="{{mobile}}">
+            <button class="mui-btn mui-btn-green" style="width: 100%;" onclick="myrc.forgetpasswd(document.getElementById('formforgetpasswd'),'http://app.zz91.com/forgetpasswd.html')" type="button">确认</button></li>
+            <li>每天限发送5条验证码短信<br>或咨询电话<br>0571-56612345</li>
+            <div class="cb"></div>
+        </ul> 
+        </form>
+        <input type="hidden" id="appnavname" value="输入验证码" />
+        {%endif%}
+        {%if step2%}
+        <form name="formforgetpasswd" id="formforgetpasswd" method="post" action="forgetpasswd.html?step=4">
+        <ul class="regbox">
+        	<li>手机您已通过验证，请输入新密码</li>
+        	<li>手机号：{{mobile}}</li>
+			<li>登录帐号：{{account}}</li>
+            <li><input id="passwd1" type="password" class="mui-input-clear" name="passwd1" value="" placeholder="请输入密码" autocomplete="off" maxlength="20"></li>
+            <li><input id="passwd2" type="password" class="mui-input-clear" name="passwd2" value="" placeholder="再次确认输入密码" autocomplete="off" maxlength="20"></li>
+            <li><div class="c-red"></div></li>
+            <li><input type="hidden" name="step" id="step" value="3">
+			<input type="hidden" name="account" id="account" value="{{account}}">
+			<input type="hidden" name="mobile" id="mobile" value="{{mobile}}">
+            <button class="mui-btn mui-btn-green" style="width: 100%;" onclick="myrc.forgetpasswd(document.getElementById('formforgetpasswd'),'http://app.zz91.com/forgetpasswd.html')" type="button">重置密码</button></li>
+            <li>每天限发送5条验证码短信<br>或咨询电话<br>0571-56612345</li>
+            <div class="cb"></div>
+        </ul> 
+        </form>
+        <input type="hidden" id="appnavname" value="密码重置" />
+        {%endif%}
+		
+		{%if step4%}
+        <ul class="regbox" style="text-align: center;">
+            <li><br /><br />密码重置成功！您已成功登陆</li>
+            <li><button class="mui-btn mui-btn-green" style="width: 100%;" onclick="myrc.forgetpasswdload('{{company_id}}')" type="button">确定</button></li>
+            <div class="cb"></div>
+        </ul> 
+        <input type="hidden" id="appnavname" value="重置成功" />
+        {%endif%}
+        <div class="cb"></div>
+    </div>

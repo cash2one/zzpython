@@ -1,0 +1,19 @@
+<chart>
+    <data>
+        <indexAxis name="月份">
+            <labels>
+                {%for gmt in gmtlist%}{{gmt}},{%endfor%}
+            </labels>
+        </indexAxis>
+        <valueAxis name="报价" unit=""></valueAxis>
+        <dataSets>
+        {%for cl in lmechartlist%}
+            <set name="{{cl.chart_category}}">
+                <values>
+				{%for cl2 in cl.valuelist%}{{cl2}},{%endfor%}
+                </values>
+            </set>
+       	{%endfor%}
+        </dataSets>
+    </data>
+</chart>

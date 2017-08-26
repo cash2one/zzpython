@@ -1,0 +1,15 @@
+SELECT a.id,a.id as company_id,a.name as compname,a.business,a.service_code,
+a.industry_code,a.area_code,length(a.area_code) as area_code_length,a.foreign_city,a.category_garden_id,
+a.membership_code,a.num_visit_month,UNIX_TIMESTAMP(a.gmt_visit) as gmt_visit_time,a.regfrom_code,a.is_block,UNIX_TIMESTAMP(a.regtime) as regtime,UNIX_TIMESTAMP(a.gmt_created) as gmt_created,
+a.address,a.sale_details,a.buy_details,a.tags,a.rubbish,b.label as area_name,c.label as area_province,a.domain_zz91, 
+UNIX_TIMESTAMP(d.gmt_start) as gmt_start,d.apply_status,e.mobile_order, 
+f.email,UNIX_TIMESTAMP(f.gmt_last_login) as last_login_time,f.num_login,f.contact,f.tel_country_code,f.tel_area_code,f.tel,f.mobile as mobile,f.sex,
+g.user_id,g.emphases 
+FROM company as a 
+left OUTER join category as b on b.code=a.area_code 
+left outer join category as c on b.parent_code=c.code 
+left outer join crm_company_service as d on d.company_id=a.id and d.apply_status = '1'
+left outer join crm_service as e on e.code=d.crm_service_code 
+left outer join company_account as f on f.company_id=a.id 
+left outer join kh_assign as g on g.company_id=a.id 
+where a.is_block ='0'

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>登录-ZZ91再生网 手机版_废料移动商务第一站！</title>
+<meta name="keywords" content="废料手机版,再生资源手机版,废料回收手机版,废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备" />
+<meta name="description" content="ZZ91再生网是中国最大最旺的网上废料贸易市场,这里为您精选了废金属,废塑料,废纸,废橡胶,纺织废料,废旧设备,废电子电器,废玻璃,废皮革,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备等各类废料供求信息.公司黄页.行业资讯.价格行情.展会信息等。" />
+{%include 'standard/head.html'%}
+{%include 'standard/top.html'%}
+<div class="s-nav-bc bb-c plr10" >
+<p class="bc">
+<a href="/standard/">首页</a>
+<span>&gt;</span>
+<a href="/standard/myrc_index/">生意管家</a> <span>&gt;</span> 询盘留言
+</p>	
+</div>
+<div class="m10 lh20">
+<div class="result-tip">共有<span class="c-hl">{{qlistcount}}</span>询盘留言</div>
+{%for list in qlist%}
+<div class="list">
+	<div class="item" style="border-top:1px solid #FFF;">    
+			
+			<p class="c-link lh28">{{list.title}}</p>
+			<div class="lh28">{{list.content|safe}}</div>
+			<div class="c9 lh28">留言者：<a href="/standard/companyinfo/?company_id={{list.companyarray.company_id}}">{{list.companyarray.companyname}}</a> <br>留言时间：{{list.stime}}</div>			 
+		
+	</div>
+	<div id="moreDiv"></div>
+</div>
+<hr>
+{%endfor%}
+<div>
+<nav class="page Fix">
+	<span class="left">
+    {% if firstpage %}
+    <a class="pageBtnEnable" href="/standard/myrc_leavewords/?page={{prvpage}}"><span>上一页</span></a>
+    {% endif %}
+    </span>
+	<i class="ac f14">{{page}}/{{page_listcount}}</i>
+	<span class="right">
+    {% if lastpage%}
+    <a class="pageBtnEnable" href="/standard/myrc_leavewords/?page={{nextpage}}"><span>下一页</span></a>
+    {% endif %}
+    </span>
+</nav>
+</div>
+</div>
+
+{%include 'standard/bottom.html'%}
+
+</body>
+</html>

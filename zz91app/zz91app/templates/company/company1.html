@@ -1,0 +1,50 @@
+
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+
+<div class="pt10 pb10">
+<div class="pl10 pr10">
+    <form action="/company/" method="get" id="wikiSearchFrm">
+    	<div style="position:relative;">
+        	<div class="sch-input">
+        		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+        	</div>
+        	<div class="sch-button" onClick="AliMobile.WikiSearch.submitFrm()">搜公司</div>
+    		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+    	</div>
+    </form>
+</div>
+</div>
+<nav class="navTab-0">		
+	<ul style="background-color:#F0F0F0;">
+		<li ><a href="/offerlist/?keywords={{keywords}}">供求</a><p class="dw-arrow"></p></li>
+		<li class="chk"><a href="#nogo">公司</a><p class="dw-arrow"></p></li>
+	</ul>
+</nav>
+<div class="list">
+{%for list in companylist%}  	
+	<div class="item" style="border-top:1px solid #FFF;">    
+		<a href="/companyinfo/?company_id={{list.id}}">	
+			<p class="c-link lh28">{{list.compname}}<span class="c9">[{{list.area_province}}]</span></p>
+			<div class="lh28">{{list.business}}</div>
+			{%if list.ldbphone%}<div class="c9 lh28"><img src="/images/tel.png"> <a href="tel:{{list.ldbphone.tel}}">{{list.ldbphone.front_tel}}</a></div>{%endif%}
+		</a>
+	</div>
+{%endfor%}
+</div>
+<div>
+<nav class="page Fix">
+	<span class="left">
+    {% if firstpage %}
+    <a class="pageBtnEnable" href="/company/?page={{prvpage}}&keywords={{keywords}}&ldb={{ldb}}"><span>上一页</span></a>
+    {% endif %}
+    </span>
+	<i class="ac f14">{{page}}/{{page_listcount}}</i>
+	<span class="right">
+    {% if lastpage%}
+    <a class="pageBtnEnable" href="/company/?page={{nextpage}}&keywords={{keywords}}&ldb={{ldb}}"><span>下一页</span></a>
+    {% endif %}
+    </span>
+</nav>
+</div>
+
+</div>

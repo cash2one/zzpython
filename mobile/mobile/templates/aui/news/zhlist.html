@@ -1,0 +1,381 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>{{webtitle}}</title>
+		<meta name="keywords" content="{{webkeywords}}" />
+		<meta name="description" content="{{webdescription}}" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		{%if seohost%}<link rel="canonical" href="http://news.zz91.com/{{seohost}}" >{%endif%}
+		<style>
+			.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+			.clearfix{height:1%}
+			.clearfix{display:block}
+			.aui-bar{
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			a{
+				color:#333
+			}
+			.floatpage{
+				position: fixed;
+				bottom:0px;
+				width:100%;
+				height:54px;
+			}
+			.navfix-box{
+				height: 25px;
+			}
+			.navfix-box-fix{
+				position: fixed;
+				width: 100%;
+				top:45px;
+				z-index: 1;
+				background: #fff
+			}
+			.navfix-main{
+				width: 100%;
+				overflow: hidden;
+			}
+			.navfix-main-move{
+				position: relative;
+			}
+			.navfix-list li{
+				float: left;
+				font-size: 12px;
+				text-align: center;
+				height: 25px;
+				line-height: 25px;
+				border-bottom: 1px solid #c8c7cc;
+			}
+			.thisNav{
+				color: #009900
+			}
+			.navbd{
+				position: absolute;
+				height: 2px;
+				background:#009900; 
+				z-index: 1;
+				bottom: 0px;
+			}
+			.ptop{
+	    		background-color: #009900;
+	    		text-align:center;
+	    		width:100%;
+	    		clear:both;
+	    		line-height:33px;
+	    		overflow: hidden;
+	    		padding-left:5px;
+	    		position: fixed;
+	    		bottom: 45px;
+	    		left: 0px;
+	    		z-index: 1;
+	    	}
+	    	.zdbotton{
+	    		background-color:#C0392B;
+	    		color:#fff;
+	    		width:60px;
+	    		font-size:12px;
+	    		margin-top:8px;
+	    		display:block;
+	    		line-height:20px;
+	    		border-radius:2px;
+	    		position: absolute;
+	    		right:10px;
+	    		top:0px;
+	    		padding-left:4px;
+	    		padding-right:4px;
+	    		text-align:center;
+	    	}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-title">展会聚集-资讯中心</div>
+		    
+		</header>
+		<div class="topdiv" onclick="pagetotop();" style="bottom: 90px; display: none;"><span class="aui-iconfont aui-icon-top"></span></div>
+		<div style="height: 45px;"></div>
+		<div class="aui-tips-danger ptop">
+			<div class="aui-ellipsis-1" style="text-align: left">
+				<i class="aui-iconfont aui-icon-creative"></i>
+				<font style="font-size:14px" color="#fff">下载APP，获取<font color="#FEE900">20</font>元红包</font>
+				<a class="zdbotton" href="http://m.zz91.com/app.html">免费下载</a>
+			</div>
+		</div>
+		<div class="navfix-box">
+			<div class="navfix-box-fix">
+				<div class="navfix-main j_movebox">
+					<div class="navfix-main-move j_movemian">
+						<ul class="navfix-list clearfix">
+							<li class="{%if not type%}thisNav{%endif%}">热点资讯</li>
+							<li class="{%ifequal type 'zh'%}thisNav{%endifequal%}">展会聚集</li>
+							<li class="{%ifequal type 'hydt'%}thisNav{%endifequal%}">行业动态</li>
+							<li class="{%ifequal type 'cjxw'%}thisNav{%endifequal%}">财经新闻</li>
+							<li class="{%ifequal type 'law'%}thisNav{%endifequal%}">政策法规</li>
+							<li class="{%ifequal type 'tech'%}thisNav{%endifequal%}">技术文库</li>
+						</ul>
+						<div class="navbd"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="aui-content">
+		    <ul class="aui-list-view news-list">
+		    	{%if topnewslist%}
+		    	{%for list in topnewslist.list%}
+		        <li class="aui-list-view-cell aui-img" style="background-color: #F3F5C3;">
+		            <a href="/news/zh/detail{{list.id}}.html" class="aui-arrow-right">
+		            	{%if list.photo_cover%}
+		            	<img class="aui-img-object aui-pull-left" src="{{list.photo_cover}}">
+			            {%endif%}
+			            <div class="aui-img-body" style="margin-right:18px">
+			                <p class="aui-ellipsis-1"  style="color:#000">{{list.name}}</p>
+			                <p>地点：{{list.area_name}}<br /> 开始时间：{{list.start_time}}<br />结束时间：{{list.end_time}}</p>
+			            </div>
+		            </a>
+		        </li>
+		        {%endfor%}
+		        {%endif%}
+		    	{%for list in listall%}
+		        <li class="aui-list-view-cell aui-img">
+		            <a href="/news/zh/detail{{list.id}}.html" class="aui-arrow-right">
+		            	{%if list.photo_cover%}
+		            	<img class="aui-img-object aui-pull-left" src="{{list.photo_cover}}">
+			            {%endif%}
+			            <div class="aui-img-body" style="margin-right:18px">
+			                <p class="aui-ellipsis-1"  style="color:#000">{{list.name}}</p>
+			                <p>地点：{{list.area_name}}<br /> 开始时间：{{list.start_time}}<br />结束时间：{{list.end_time}}</p>
+			            </div>
+		            </a>
+		        </li>
+		        {%endfor%}
+		    </ul>
+		</div>
+
+		<div style="height: 60px;"></div>
+		<div class="floatpage">
+			<div class="page">
+				<ul>
+					{% if firstpage %}
+					<li class="page_prev">
+						<a href="list{{type}}-p{{prvpage}}.html{{searchurl}}">上一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+					<li class="page_no">
+						<select onChange="window.location='list{{type}}-p'+this.value+'.html{{searchurl}}'">
+							<option>第{{page}}页</option>
+							<option value="1">首页</option>
+							{%for p in page_range%}
+							<option value="{{p.number}}">第{{p.number}}页</option>
+							{%endfor%}
+							<option value="{{lastpage}}">末页</option>
+						</select> /{{page_listcount}}页
+					</li>
+					{% if lastpage%}
+					<li class="page_next">
+						<a href="list{{type}}-p{{nextpage}}.html{{searchurl}}">下一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+
+
+	</body>
+	
+	<script type="text/javascript">
+		
+		function getNav(opts,fction){
+			this.seeNum  = opts.seeNum; //可视个数
+			this.moveBox = opts.obj; //滑动菜单
+			this.fction  = fction;
+			//构造三步奏
+			this.init();
+			this.renderDOM();
+			this.bindDOM();
+		}
+		getNav.prototype.init = function(){
+			this.width_w = this.moveBox.width();	   					//页面科室宽度
+			this.moveMain = this.moveBox.find(".j_movemian")	//滑动主
+			this.moveLi  = this.moveMain.find("li");     			//滑动菜单选项
+			this.LiNum   = this.moveLi.length;		   				//滑动菜单选项个数
+			this.moveBd  = this.moveMain.find(".navbd");			//滑动线条
+		}
+		getNav.prototype.renderDOM = function(){
+			var seeNum  = this.seeNum;
+			var moveMain = this.moveMain;
+			var moveLi  = this.moveLi;
+			var LiNum   = this.LiNum;
+			var width_w = this.width_w;
+			var moveBd  = this.moveBd;
+
+			this.mBoxWidth   = width_w/seeNum*LiNum;
+			this.mLiWidth    = width_w/seeNum;
+
+			moveMain.width(this.mBoxWidth);
+			moveLi.width(this.mLiWidth);
+			moveBd.width(this.mLiWidth);
+		}
+		getNav.prototype.bindDOM = function(){
+			var self     = this;
+			var moveBox  = self.moveBox;
+			var moveMain = self.moveMain;
+			var moveLi  = self.moveLi;
+			var LiNum    = self.LiNum;
+			var seeNum   = self.seeNum; //可视个数
+			var mLiWidth = self.mLiWidth;
+
+			var moveBd  = self.moveBd;
+
+			var endRight = -(LiNum - seeNum)*mLiWidth; //最右侧划动位置
+
+			//手指按下的处理事件
+			var startHandler = function(evt){
+				self.mgLeftStart = parseInt(moveMain.css("marginLeft"));
+				//记录手指按下的坐标
+				self.startX = evt.touches[0].pageX;
+			};
+
+			//手指移动的处理事件
+			var moveHandler = function(evt){
+				//兼容chrome android，阻止浏览器默认行为
+				evt.preventDefault();
+
+				//计算手指的偏移量
+				self.offsetX = evt.targetTouches[0].pageX - self.startX;
+
+				self.mgLeftEnd = self.mgLeftStart + self.offsetX;  //手机滑动的距离
+
+				if(self.mgLeftEnd>0){				//判断是否拉到最左端
+					self.mgLeftEnd = self.mgLeftEnd/3
+				}
+				else if( self.mgLeftEnd < endRight){
+					self.mgLeftEnd = endRight - (endRight - self.mgLeftEnd)/3   //判断是否拉到最左端
+				}
+				moveMain.animate({"marginLeft":self.mgLeftEnd +"px"},0)
+			};
+
+			//手指抬起的处理事件
+			var endHandler = function(evt){
+				// evt.preventDefault();
+				self.mgLeft = parseInt(moveMain.css("marginLeft"));
+				if(self.mgLeft>0){								//判断是否拉到最左端
+					moveMain.animate({"marginLeft":0},500)
+				}else if(self.mgLeft<endRight){					//判断是否拉到最右端
+					moveMain.animate({"marginLeft":endRight},500)
+				}
+			};
+
+			self.thisNav = moveMain.find(".thisNav")
+			//手指抬起的处理事件
+			var onClickMv = function(evt){
+				evt.preventDefault();
+
+				var index = $(this).index();		
+				self.thisNav.removeClass("thisNav");
+				$(this).addClass("thisNav");
+				self.thisNav = $(this);
+				moveBd.animate({"marginLeft":index*mLiWidth+"px"},200);  //底边的菜单线条位置
+				var moveNum = seeNum - 2;
+				
+				if(index - moveNum<=0){						//判断是否该移动
+					moveMain.animate({"marginLeft":0},500)
+				}else if(index - moveNum>0&&index - moveNum<=LiNum - seeNum){		//判断是否该移动
+					moveMain.animate({"marginLeft":-(index - moveNum)*mLiWidth},500)
+				}
+
+				ret = {index:index,dom:this}
+				self.fction(ret)
+			};
+
+			//绑定事件
+			moveBox.get(0).addEventListener('touchstart', startHandler);
+			moveBox.get(0).addEventListener('touchmove', moveHandler);
+			moveBox.get(0).addEventListener('touchend', endHandler);
+			for(var i=0;i<LiNum;i++){
+				moveLi.get(i).addEventListener('click', onClickMv);
+			}
+		}
+
+		var Navcontrol=new getNav({
+			obj:$(".j_movebox"),
+			seeNum:4            //科室几个菜单
+		},function(ret){
+			if (ret.index==2){
+				window.location="/news/hydt/?index="+ret.index
+			}
+			if (ret.index==1){
+				window.location="/news/zh/list10371009.html?index="+ret.index
+			}
+			if (ret.index==0){
+				window.location="/news/?index="+ret.index
+			}
+			if (ret.index==3){
+				window.location="/news/cjxw/?index="+ret.index
+			}
+			if (ret.index==4){
+				window.location="/news/law/?index="+ret.index
+			}
+			if (ret.index==5){
+				window.location="/news/tech/?index="+ret.index
+			}
+			console.log(ret)
+		});
+		var nindex={{index}};
+		var topx=-(parseInt(nindex)-2)
+		if (topx>0){
+			topx=0
+		}
+		$(".j_movemian").css("margin-left",topx*90+"px");
+		$(".navbd").css("margin-left",nindex*90+"px")
+		function pagetotop(){
+			$('body').animate( {scrollTop: 0}, 500);
+		}
+		$(function(){
+			var scroll = new auiScroll({
+		        listen:true,
+		        distance:200 //判断到达底部的距离，isToBottom为true
+		    },function(ret){
+		        if(ret.isToBottom){
+		        }else{
+			        if (ret.scrollTop>150){
+			        	$(".topdiv").fadeIn();
+			        }else{
+			        	$(".topdiv").fadeOut();
+			        }
+		        }
+		
+		    });
+		})
+	</script>
+	{%include 'aui/bottom.html'%}
+</html>

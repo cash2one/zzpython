@@ -1,0 +1,50 @@
+{%extends 'index.html'%}
+{%block content%}
+<br /><br /><br />
+<form action="/addkeywordsok/" method="post"><font color="blue">修改关键字</font><br />
+<br /><br />
+<table>
+<tr><td>
+关键字</td><td>  <input type="text" name="keywords" value="{{keywords}}" class="w80px tcenter"><font color="red">{{error1}}</font>
+<input type="hidden" name="keywords_id" value="{{keywords_id}}">
+<input type="hidden" name="isstandard" value="{{isstandard}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+<input type="hidden" name="shopsaddress" value="{{shopsaddress}}">
+</tr>
+<tr><td>
+开始优化时间 </td><td><input type="text" name="begintime" value="{{begintime}}" class="w80px tcenter"><font color="red">{{error2}}</font>
+</tr>
+<tr><td>
+达标时间  </td><td><input type="text" name="standardtime" value="{{standardtime}}" class="w80px tcenter"><font color="red">{{error11}}</font>
+</tr>
+<tr><td>
+到期时间 </td><td><input type="text" name="expire_time" value="{{expire_time}}" class="w80px tcenter"><font color="red">{{error10}}</font>
+</tr>
+<tr><td>
+达标要求   第</td><td><input type="text" name="standarddemand" value="{{standarddemand}}" class="w25px">页 <font color="red">{{error8}}</font>
+</tr>
+<tr><td>
+商铺地址  </td><td><input type="text" name="shopsaddress" value="{{shopsaddress}}" class="w80px tcenter"><font color="red">{{error4}}</font>
+</tr>
+<tr><td>
+计费类型 </td><td><select id="pricetype" name="chargetype">{%ifequal chargetype 2%}<option value="2">按天计费</option><option value="1">包年计费</option>{%else%}<option value="1">包年计费</option><option value="2">按天计费</option>{%endifequal%}</select>
+</tr>
+<tr><td>
+购买金额 </td><td><input type="text" name="price" value="{{price}}" class="w80px"><font color="red">{{error5}}</font>
+</tr>
+<tr id="{%ifequal chargetype "2"%}price2{%else%}price1{%endifequal%}">
+<td >年数  </td><td><input type="text" name="years" value="{%if years%}{{years}}{%endif%}" class="w35px">年 <font color="red">{{error14}}</font></td>
+</tr>
+<tr id="{%ifequal chargetype "2"%}price1{%else%}price2{%endifequal%}">
+<td>单价  </td><td><input type="text" name="unit_price" value="{%if unit_price%}{{unit_price}}{%endif%}" class="w35px">元/天<font color="red">{{error16}}</font></td>
+</tr>
+<tr><td>
+优化人 </td><td><select name="seouser">{%if seouser_id%}<option value="{{seouser_id}}">{{seouser_name}}</option>{%endif%}{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}</select>
+</tr>
+<tr><td>
+<input type="submit" value="确认修改"></td><td><input type="button" value="返回" onclick="window.location='/keywords/'">
+</tr>
+
+</table>
+</form>
+{%endblock%}

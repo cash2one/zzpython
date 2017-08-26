@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<style>
+.qcontent{
+	padding:10px;
+}
+.qcontent img{
+	width:100%;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+<ul class="bread Fix">
+    <li><a href="/">首页</a></li>
+	<li class="li-bread"><a href="/myrc_index/">生意管家</a></li>
+    <li class="li-bread c9"><a href="/myrc_leavewords/">询盘留言</a></li>
+</ul>
+<link rel="stylesheet" href="/css/comm-detail.css" />
+{%if syserr%}
+<div class="resultTip mt10 mb10 ac"><span>该留言出错了！</span></div>
+{%else%}
+{%if suc%}
+<div class="resultTip mt10 mb10 ac"><span>回复成功!</span><br /> <a href="/myrc_leavewords/">继续查看留言</a></div>
+{%else%}
+{%if err%}
+<div class="resultTip mt10 mb10 ac"><span>来写点什么吧...</span></div>
+{%endif%}
+
+<div class="replay-div">
+{%if username%}
+<div class="qcontent">
+{{qlist.content|safe}}
+</div>
+{%if sendflag%}
+<form method="post" name="form" action="/myrc_backquestionsave/">
+    <input type="hidden" name="be_inquired_id" value="{{company_id}}">
+    <input type="hidden" name="inquired_id" value="{{inquired_id}}">
+    <input type="hidden" name="be_inquired_type" value="0">
+    <input type="hidden" name="company_id" value="{{company_id}}">
+    <link rel="stylesheet" href="/css/comm-form.css">
+    <div class="textareaDiv">
+        <textarea name="content" class="new-input-area mb10" placeholder="来问点什么吧..."></textarea>
+    </div>
+    <div>
+        <input type="submit" id="submit" class="comm-btn-auto" name="event_submit_do_reply" value="回复">
+    </div>
+</form>
+{%endif%}
+{%else%}
+<div class="resultTip mt10 mb10 ac">请 <a href="/login/?done={{done}}">登录</a> 之后发贴</div>
+{%endif%}
+{%endif%}
+{%endif%}
+</div>
+</div>
+{%include 'bottom.html'%}
+</div>
+</body>
+</html>

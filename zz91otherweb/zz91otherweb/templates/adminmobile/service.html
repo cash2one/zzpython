@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>ZZ91再生网简易后台</title>
+		<link rel="stylesheet" type="text/css" href="../mobile/css/aui.css" />
+		<style>
+		body{
+			padding: 10px;
+		}
+			.aui-btn{
+				float: left;
+				margin-right: 10px;
+			}
+			.aui-input-row .aui-input-addon{
+				color: #0000FF;
+			}
+		</style>
+		<script type="text/javascript" src="../mobile/js/jquery.js"></script>
+		<script type="text/javascript" src="../mobile/js/zepto.min.js"></script>
+		<script type="text/javascript" src="../mobile/js/layer/layer.js"></script>
+		<script type="text/javascript" src="../mobile/js/comm.js"></script>
+		
+	</head>
+	<body>
+		<div class="aui-tab">
+			<ul class="aui-tab-nav">
+				<li><a href="index.html">返回首页</a></li>
+			</ul>
+		</div>
+		<div style="padding: 10px;">
+			<div class="aui-btn aui-btn-warning" id="searmobile" style="" tapmode>手机查询</div>
+			<div class="aui-btn aui-btn-info chongzhisearch" tapmode>添加开通单</div>
+		</div>
+		<div style="clear: both;"></div>
+		{%for list in listall%}
+		<div class="aui-content basic-info">
+			<div class="aui-form">
+				<div class="aui-input-row">
+					<span class="aui-input-addon">公司名称</span>
+					<span class="aui-margin-l-10">{{list.company_name}}</span>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">帐号</span>
+					<span class="aui-margin-l-10">{{list.account}}</span>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">手机</span>
+					<span class="aui-margin-l-10">{{list.mobile}}</span>
+				</div>
+				
+				<div class="aui-input-row">
+					<span class="aui-input-addon">开通服务</span>
+					<span class="aui-margin-l-10">{{list.crm_service}}</span>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">开始时间</span>
+					<span class="aui-margin-l-10">
+					<input type="text" class="aui-input" placeholder="开始时间" id="gmt_start" value="{{list.gmt_start}}" sid="{{list.id}}" readonly/>
+					</span>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">结束时间</span>
+					<span class="aui-margin-l-10">
+					<input type="text" class="aui-input" placeholder="结束时间" id="gmt_end" value="{{list.gmt_end}}" sid="{{list.id}}" readonly/>
+					</span>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">审核状态</span>
+					<span class="aui-margin-l-10">
+						<select name="apply_status" type="select" class="aui-input selectlist" id="apply_status" sid="{{list.id}}">
+							<option value="0">未开通</option>
+							<option value="1">已开通</option>
+						</select>
+						<script>selectOption("apply_status","{{list.apply_status}}")</script>
+					</span>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">备注</span>
+					<span class="aui-margin-l-10">{{list.remark}}</span>
+				</div>
+				<div class="aui-input-row">
+					<span class="aui-input-addon">年限</span>
+					<span class="aui-margin-l-10">{{list.zst_year}}</span>
+				</div>
+				
+				<div style="clear: both;"></div>
+			<div style="clear: both;"></div>
+		</div>
+		<br /><br />
+		{%endfor%}
+		<div style="height: 60px;"></div>
+		<footer class="aui-nav" id="aui-footer">
+			<ul class="aui-bar-tab" style="padding: 10px;">
+				<li>
+					<p><a href="?page=1&{{searchurl}}">首页</a></p>
+				</li>
+				{% if firstpage %}
+				<li>
+					<p><a href="?page={{prvpage}}&{{searchurl}}">上一页</a></p>
+				</li>
+				{%endif%}
+				<li>
+					<p>{{page}}</p>
+				</li>
+				{% if lastpage%}
+				<li>
+					<p><a href="?page={{nextpage}}&{{searchurl}}">下一页</a></p>
+				</li>
+				{%endif%}
+			</ul>
+		</footer>
+	</body>
+	
+	<script>
+		$(function(){
+			$("body").on("click","#searmobile",function() {
+				var str = prompt("手机号码", '');
+				if (str) {
+					document.location='?mobile='+str;
+				}
+			})
+			$(".shenhe").on("click", function() {
+				//iframe层
+				var sid=$(this).attr("sid")
+				layer.open({
+					type: 2,
+					title: '充值',
+					shadeClose: true,
+					shade: 0.8,
+					area: ['80%', '70%'],
+					content: 'update_prorank.html?prorankid='+sid //iframe的url
+				});
+			})
+			$(".selectlist").on("change", function() {
+				//iframe层
+				var fildvalue=$(this).val();
+				var fild=$(this).attr("id");
+				var sid=$(this).attr("sid");
+				savecontent(fild,fildvalue,'crm_company_service',sid)
+			})
+			$("body").on("click",".aui-input",function() {
+				if ($(this).attr("type")=="text"){
+					var oldstr=$(this).val();
+					var fild=$(this).attr("id");
+					var sid=$(this).attr("sid");
+					var placeholder=$(this).attr("placeholder");
+					var str = prompt(placeholder, oldstr);
+					var fildvalue=str;
+					if (str){
+						savecontent(fild,fildvalue,'crm_company_service',sid)
+						$(this).val(str);
+					}
+				}
+			})
+			function savecontent(fild,fildvalue,tablevalue,id){
+				var data={
+					fild : fild,
+					fildvalue : fildvalue,
+					tablevalue : tablevalue,
+					id : id
+				}
+				$.ajax({
+					url : 'savecontent.html',
+					type : 'post',
+					dataType : 'json',
+					cache : false,
+					data : data,
+				    success:function(ret) {
+						if (ret) {
+							if (ret.err == "true") {
+								alert(ret.errkey)
+							} else {
+								layer.msg('保存成功');
+							}
+						} else {
+							alert('异常！1')
+						};
+					},
+					error : function(e) {
+						alert(alert(JSON.stringify(e)));
+					}
+				});
+			}
+		})
+	</script>
+</html>

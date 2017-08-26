@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>商机排行榜-ZZ91再生网</title>
+		<meta name="keywords" content="商机排行榜，商机排行，精品商机排行榜，潜力商机排行榜，新入商机排行榜，商机">
+		<meta name="description" content="ZZ91再生网商机排行榜为广大客户提供最新最全废料商机、商机排行信息，更快更好地为客户展示供求信息。">
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/header.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/index.css" />
+		<meta http-equiv="Cache-Control" content="no-transform"/>
+		<meta http-equiv="Cache-Control" content="no-siteapp"/>
+	</head>
+	<body>
+		{% include 'nav.html' %}
+		<div style="clear: both;"></div>
+		<div class="warp">
+			<div class="logosearch">
+				<div class="logo fl">
+					<img src="http://b.zz91.com/cp/paihang/img/img-01.png" class="fl"/>
+					<p class="fl logo-title">商机排行榜</p>
+				</div>
+				<div class="search fl">
+					<form action="http://trade.zz91.com/trade/searchfirst/" method="get" id="searchForm1" target="_blank">
+					<input class="searchInput fl" name="keywords" placeholder="输入产品关键词,获取对应产品信息" style="font-size: 14px;" /> 
+					<a class="searchButtom fl">搜索关键词</a>
+					</form>
+				</div>
+			</div>
+			<div class="nav">
+				<a href="/cp/" class="nav-oth">微门户首页</a>
+				<a href="sj-index.html" class="nav-idx" >商机排行榜</a>
+				<a href="sj-hotcp.html" class="nav-oth">热门产品词</a>
+				<a href="sj-sjbd.html" class="nav-oth">商机榜单</a>
+				<a href="sj-spbd.html" class="nav-oth">商铺榜单</a>
+			</div>
+			<div class="Main">
+				<div class="main-left">
+					<div class="hot fl">
+						<div class="hot-top">
+							<p class="hot-search fl">本月热搜词</p>
+							<a class="more" href="/cp/sj-hotcp.html" target="_blank">更多</a>
+						</div>
+						<div class="hot-main">
+							<ul>
+								{% for hot_cp in hot_cp_list %}
+								<li class="hot-main-1 pt8"><a href="/cp/{{ hot_cp.2 }}/" target="_blank">{{ hot_cp.1 }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+					<div class="seller fl">
+						<div class="seller-top">
+							<p class="seller-c fl">信誉商家</p>
+							<a class="more" href="sj-spbd-more.html" target="_blank">更多</a>
+						</div>
+						<div class="seller-main fl">
+							{% for each_memeber in new_member %}
+							<div class="seller-content">
+								<span class="fl seller-content-left">
+									<p style="width:260px;">{{ each_memeber.0 | add:"1" }}&nbsp;&nbsp;<a href="{{ each_memeber.1.comp_url }}" target="_blank" style="text-decoration: none;color:black;">{{ each_memeber.1.comp_name }}</a></p>
+									<p class="seller-content-leftB">{{ each_memeber.1.comp_business | truncatechars:15 }}</p>
+								</span>
+								<a href="http://trade.zz91.com/productdetails{{ each_memeber.1.pdt_img_info.pdt_id }}.htm" target="_blank">
+									<img src="{{ each_memeber.1.pdt_img_info.pdt_img_url }}" class="fl" style="width: 55px;height: 50px;" />
+								</a>
+								<p class="fr seller-content-right">诚信指数：{{ each_memeber.1.comp_all_score | default:'0' }}</p>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="opportunity fl">
+						<div class="opportunity-top fl">
+							<p class="opportunity-c fl">精品商机</p>
+							<a href="sj-sjbd.html" target="_blank" class="more">更多</a>
+						</div>
+						<div class="opportunity-main">
+							{% for each_pro in pro_list %}
+							<div class="opportunity-content fl">
+								<a href="http://trade.zz91.com/productdetails{{ each_pro.pro_id }}.htm" target="_blank">
+									<img src="{{ each_pro.pdt_img_info }}" class="fl" style="width: 103px;height: 99px;" />
+								</a>
+								<span class="fl opportunity-content-c">
+									<p><a href="http://trade.zz91.com/productdetails{{ each_pro.pro_id }}.htm" target="_blank">{{ each_pro.pro_title }}</p></a></p>
+									<p class="opportunity-contentB">地区：{{ each_pro.comp_info.comp_p_area }} {{ each_pro.comp_info.comp_area }}</p>
+								</span>
+								<a href="http://www.zz91.com/inquiry/inquiryApi.htm?productId={{ each_pro.pro_id }}#messeges" class="fl opportunity-buttom" target="_blank">立即询价</a>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="hot-s fl">
+						<div class="hot-sTop">
+							<p class="hot-sC fl">本月热门商圈</p>
+							<a class="more" href="http://huzhu.zz91.com/" target="_blank">更多</a>
+						</div>
+						<div class="hot-sMain">
+							{% for each_info in bbs_list %}
+							<div class="hot-sContent fl">
+								<p class="fl hot-sContent1"><a href="http://huzhu.zz91.com/detail/{{ each_info.bbs_id }}.html" target="_blank">{{ each_info.bbs_title | truncatechars:20 }}</a></p>
+							    <p class="fr hot-sContent2">回复数：{{ each_info.reply_count }}　{{ each_info.post_time }}</p>
+							    <p class="fl hot-sContent3">{{ each_info.bbs_content | striptags | truncatechars:40 }}</p>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<div class="main-right">
+					<div class="hot fl">
+						<div class="hot-top">
+							<p class="hot-search fl">本月飙升榜词</p>
+							<a class="more" href="/cp/sj-hotcp.html" target="_blank">更多</a>
+						</div>
+						<div class="hot-main">
+							<ul>
+								{% for each_keywords in inc_keywords_list %}
+								<li class="hot-main-1 pt8"><a href="/cp/{{ each_keywords.2 }}/" target="_blank">{{ each_keywords.1 }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+					<div class="seller fl">
+						<div class="seller-top">
+							<p class="seller-c fl">人气商铺</p>
+							<a class="more" href="sj-spbd-more.html" target="_blank">更多</a>
+						</div>
+						<div class="seller-mian fl">
+							{% for each_site in hot_website %}
+							<div class="seller-content">
+								<span class="fl seller-content-left">
+									<p style="width:260px;">{{ each_site.0 | add:"1" }}&nbsp;&nbsp;<a href="{{ each_site.1.comp_url }}" target="_blank" style="text-decoration: none;color:black;">{{ each_site.1.comp_name | truncatechars:15  }}</a></p>
+									<p class="seller-content-leftB">{{ each_site.1.comp_business | truncatechars:13 }}</p>
+								</span>
+								<a href="http://trade.zz91.com/productdetails{{ each_site.1.pdt_img_info.pdt_id }}.htm" target="_blank">
+									<img src="{{ each_site.1.pdt_img_info.pdt_img_url }}" class="fl" style="width: 55px;height: 50px;" />
+								</a>
+								<p class="fr seller-content-right">浏览量：{{ each_site.1.visit_count | default:'0' }}</p>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="opportunity fl">
+						<div class="opportunity-top fl">
+							<p class="opportunity-c fl">人气商机</p>
+							<a href="sj-sjbd.html" target="_blank" class="more">更多</a>
+						</div>
+						<div class="opportunity-main">
+							{% for each_pro in pro_list_2 %}
+							<div class="opportunity-content fl">
+								<a href="http://trade.zz91.com/productdetails{{ each_pro.pro_id }}.htm" target="_blank">
+									<img src="{{ each_pro.pdt_img_info }}" class="fl" style="width: 103px;height: 99px;" />
+								</a>
+								<span class="fl opportunity-content-c">
+									<p><a href="http://trade.zz91.com/productdetails{{ each_pro.pro_id }}.htm" target="_blank">{{ each_pro.pro_title }}</p></a></p>
+									<p class="opportunity-contentB">地区：{{ each_pro.comp_info.comp_p_area }} {{ each_pro.comp_info.comp_area }}</p>
+								</span>
+								<a href="http://www.zz91.com/inquiry/inquiryApi.htm?productId={{ each_pro.pro_id }}#messeges" class="fl opportunity-buttom" target="_blank">立即询价</a>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="hot-s fl">
+						<div class="hot-sTop">
+							<p class="hot-sC fl">本月热门商圈</p>
+							<a class="more" href="http://huzhu.zz91.com/" target="_blank">更多</a>
+						</div>
+						<div class="hot-sMain">
+							{% for each_info in bbs_list_2 %}
+							<div class="hot-sContent fl">
+								<p class="fl hot-sContent1">{{ each_info.post_time_2 | date:'m/d' }} <a href="http://huzhu.zz91.com/detail/{{ each_info.bbs_id }}.html" target="_blank">{{ each_info.bbs_title | truncatechars:20 }}</a></p>
+							    <p class="fr hot-sContent2">浏览量：{{ each_info.visited_count }}</p>
+							    <p class="fl hot-sContent3">{{ each_info.bbs_content | striptags | truncatechars:40 }}</p>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+		{% include 'bottom.html' %}
+	</body>
+</html>

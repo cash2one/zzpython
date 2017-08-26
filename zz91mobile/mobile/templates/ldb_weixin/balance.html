@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<html>
+	<head>
+		<title>账户余额_ZZ91再生网来电宝</title>
+        <link rel="stylesheet" type="text/css" href="../css/ldb_weixin/index.css"/>
+        <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+        <script>
+		window.onload = function(){
+			var lis = document.getElementsByTagName("li");
+			var len = lis.length;
+			for(var i=0;i<len;i++){
+				lis[i].onclick = function(){
+				for(var j=0;j<len;j++){
+					lis[j].style.backgroundColor = "#e0e0e0";
+					lis[j].style.color = "#9b9b9b";
+				}
+				this.style.backgroundColor = "#409be4";
+				this.style.color = "#fff";
+				document.getElementById("total_feepay").value=this.title;
+			};
+			}
+		};
+		function pay(){
+			var total_fee=document.getElementById("total_feepay").value;
+			document.getElementById("total_fee").value=total_fee
+			if (isNaN(total_fee)){
+				alert("金额必须是数字！")
+				return false;
+			}
+			if (parseInt(total_fee)<2000 || total_fee==""){
+				alert("金额必须大于2000元以上");
+				return false;
+			}
+			form1.submit();
+		}
+		</script>
+	</head>
+	<body>
+       <div class="tle">来电宝</div>
+       <!--end tle-->
+       <div class="msg">
+       		<div class="msg-box">
+            	<div class="box-mo"><img src="../images/ldb_weixin/mo.jpg" /></div>
+                <div class="box-txt">本月消费（元）</div>
+                <div class="box-link"><a href="phonerecords{{id}}.html"><img src="../images/ldb_weixin/link.jpg" /></a></div>
+                <div class="cb"></div>
+            </div>
+            <!--end msg-box-->
+            <div class="msg-money">{{ldbbalance.mousefee}}</div>
+            <!--end msg-money-->
+       </div>
+       <!--end msg-->
+       <div class="pay">
+       		<div class="pay-txt">账户余额（元）</div>
+            <!--end pay-txt-->
+            <div class="pay-mo">{{ldbbalance.lave}}元</div>
+            <!--end pay-mo-->
+       </div>
+       <!--end pay-->
+       <div class="recharge">
+       		<div class="reg-pay">在线充值（元）</div>
+            <!--end reg-pay-->
+            <div class="reg-tag">
+            	<ul>
+                	
+                    <li class="tag-bg" title="2000">2000</li>
+                    <li class="tag-bg" title="3000">3000</li>
+                    <li class="tag-bg" title="5000">5000</li>
+                    <li class="tag-bg" title="8000">8000</li>
+                    <li class="tag-bg_input"><input type="text" id="total_feepay" placeholder="自定义" value="2000"/></li>
+                    <li class="tag-bg_"><div style="background:#fff">>大于2000元任意输入</div></li>
+                </ul>
+            </div>
+            <!--end reg-tag-->
+            <div class="reg-box">
+                <!--end box-logo-->
+                <div class="box-btn" onclick="pay()">确定充值</div>
+                <!--end box-btn-->
+                <div class="cb"></div>
+            </div>
+            <!--end reg-box-->
+       </div>
+       <!--end recharge-->
+       <!-- 支付成功弹出框 -->
+  		<div id="suc_div">
+  			<div class="suc_qx" onclick="dismiss();"><img src="../images/ldb_weixin/qx.png" /></div>
+            <!--end suc-qx-->
+            <div class="suc_txt">支付成功</div>
+            <!--end suc_txt-->
+		</div>
+        
+        <!-- 支付失败弹出框 -->
+  		<div id="fail_div">
+  			<div class="suc_qx" onclick="dismiss();"><img src="../images/ldb_weixin/qx.png" /></div>
+            <!--end suc-qx-->
+            <div class="fail_txt">支付失败</div>
+            <!--end suc_txt-->
+            <div class="fail_tel">如有疑问，请致电：0571-56633145
+              <form id="form1" name="form1" method="post" action="/zz91pay.html" target="_blank">
+                <input type="hidden" name="total_fee" id="total_fee" value="1000" />
+                <input type="hidden" name="subject" id="subject" value="来电宝充值" />
+                <input type="hidden" name="mobile" id="mobile" value="{{mobile}}"/>
+                <input type="hidden" name="contact" id="contact" value="{{contact}}" />
+                <input type="hidden" name="payreturn_url" id="payreturn_url" value="{%if backurl%}{{backurl}}{%else%}http://m.zz91.com/ldb_weixin/balance.html{%endif%}" />
+                <input type="hidden" name="paytype" id="paytype" value="ldb" /> 
+              </form>
+        </div>
+            <!--end fail_tel-->
+		</div>
+		
+	</body>
+</html>

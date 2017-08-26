@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+<link rel="stylesheet" href="/css/main/base-min.css" type="text/css">
+<link rel="stylesheet" href="/css/main/dataalter.css" type="text/css">
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+    	$("#myform").submit(function(){
+        	var contactname=$("#contact").val();
+        	var tel_country_code=$("#tel_country_code").val();
+        	var tel_area_code=$("#tel_area_code").val();
+        	var tel=$("#tel").val();
+        	var mobile=$("#mobile").val();
+        	var company_name=$("#company_name").val();
+        	var industrcode=$("#industrcode").val();
+        	var servicecode=$("#servicecode").val();
+        	var address=$("#address").val()
+        	var introduction=$("#introduction").val()
+        	var business=$("#business").val()
+        	if(contactname=="")
+        		{
+        			$("#is_name").show();
+        			$("#contact").focus();
+        			return false;
+        		}
+        	if(tel_country_code==""||tel_area_code==""||tel=="")
+    		{
+    			$("#is_tel").show();
+    			$("#tel").focus();
+    			return false;
+    		}
+        	if(mobile=="")
+    		{
+    			$("#is_mobile").show();
+    			$("#mobile").focus();
+    			return false;
+    		}
+        	if(company_name=="")
+        	{
+        		$("#is_company_name").show();
+        		$("#company_name").focus();
+        		return false;
+        	}
+        	if(industrcode=="")
+        	{
+        		$("#is_industrcode").show();
+        		$("#industrcode").focus();
+        		return false;
+        	}
+        	if(servicecode=="")
+        	{
+        		$("#is_servicecode").show();
+        		$("#servicecode").focus();
+        		return false;
+        	}
+        	if(address=="")
+        		{
+        			$("#is_address").show();
+        			$("#address").focus();
+        			return false;
+        		}
+        	if(introduction=="")
+        	{
+        		$("#is_introduction").show();
+        		$("#introduction").focus();
+        		return false;
+        	}
+        	if(business=="")
+        	{
+        		$("#is_business").show();
+        		$("#business").focus();
+        		return false;
+        	}
+    	});
+	});
+</script>
+</head>
+<body>
+	<form action="/{{saveform}}/" method="post" id="myform">
+	<div class="alterpople">
+		<div class="altertitle">
+			<h2 class="altertitle_h2">修改联系方式（打<span class="altertitle_span">*</span>为必填）</h2>
+		</div>
+		<div class="allinfo">
+			<ul class="allinfo_ul">
+				<li>
+					<div class="info-title"><span class="altertitle_span">*</span>联系人姓名：</div>
+					<div class="info_fill">
+					<input type="text" class="fill_ipt" value="{{contactinfolist.contact}}" name="contact" id="contact">
+					<!--<font style="color:red">{{error1}}</font>-->
+					<span style="color: red;display: none" id="is_name">姓名不能为空</span>
+					</div>
+				</li>
+				<li>
+					<div class="info-title"><span class="altertitle_span">*</span>性别：</div>
+					<div class="info_fill single">
+						<label><input name="Fruit" type="radio" value="0"  name="sex" {%ifequal contactinfolist.sex '0'%}checked{%endifequal%}/>先生</label> 
+						<label><input name="Fruit" type="radio" value="1" name="sex" {%ifequal contactinfolist.sex '1'%}checked{%endifequal%}/>女士</label> 
+					</div>
+				</li>
+				<li>
+					<div class="info-title"><span class="altertitle_span">*</span>固定电话：</div>
+					<div class="info_fill">
+						<input type="text" class="guhua guhua_qu" name="tel_country_code" value="{{contactinfolist.tel_country_code}}" id="tel_country_code"> -
+						<input type="text" class="guhua guhua_qu" name="tel_area_code" value="{{contactinfolist.tel_area_code}}" id="tel_area_code"> -
+						<input type="text" class="guhua guhua_haoma" name="tel" value="{{contactinfolist.tel}}" id="tel">
+						<!--  <font style="color:red">{{error2}}</font>-->
+						<span style="color: red;display: none" id="is_tel">电话不能为空</span>
+						<p class="hint">如：86-0571-56612345</p>
+					</div>
+				</li>
+				<li>
+					<div class="info-title">传真：</div>
+					<div class="info_fill">
+						<input type="text" class="guhua guhua_qu" name="fax_country_code" value="{{contactinfolist.fax_country_code}}" > -
+						<input type="text" class="guhua guhua_qu" name="fax_area_code" value="{{contactinfolist.fax_area_code}}" > -
+						<input type="text" class="guhua guhua_haoma" name="fax" value="{{contactinfolist.fax}}" >
+						<p class="hint">如：86-0571-56612345</p>
+					</div>
+				</li>
+				<li>
+					<div class="info-title"><span class="altertitle_span">*</span>手机：</div>
+					<div class="info_fill">
+					<input type="text" class="fill_ipt" name="mobile" value="{{contactinfolist.mobile}}" id="mobile">
+					<!--  <font style="color:red">{{error3}}</font>-->
+					<span style="color: red;display: none" id="is_mobile">手机不能为空</span>
+					</div>
+				</li>
+				<li>
+					<div class="info-title"><span class="altertitle_span">*</span>电子邮箱：</div>
+					<div class="info_fill">
+						<input type="radio" name="c_email" checked> 
+						<input type="text" class="guhua email" disabled="disabled" name="email" value="{{contactinfolist.email}}">
+					</div>
+				</li>
+				<li>
+					<div class="info-title">备用电子邮箱：</div>
+					<div class="info_fill">
+						<input type="radio" name="c_email"> 
+						<input type="text" class="guhua email" name="back_email" value="{{contactinfolist.back_email}}">
+						<p class="hint">（该Email必须有效）选择一个备用邮箱，该邮箱可以接听所有客户对你的询盘</p>
+					</div>
+				</li>
+				<li>
+					<div class="info-title">网站：</div>
+					<div class="info_fill">
+					<input type="text" class="guhua webhttp" name="website" value="{{companyinfolist.website}}">
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="altertitle">
+			<h2 class="altertitle_h2">修改公司信息（打<span class="altertitle_span">*</span>为必填）</h2>
+		</div>
+		<div class="allinfo">
+			<ul class="allinfo_ul">
+				<li>
+					<div class="info-title"><span class="altertitle_span">*</span>公司名称：</div>
+					<div class="info_fill">
+					<input type="text" class="fill_ipt" name="company_name" value="{{companyinfolist.name}}" id="company_name">
+					<!--  <font style="color:red">{{error4}}</font>-->
+					<span style="color: red;display: none" id="is_company_name">公司名称不能为空</span>
+					</div>
+				</li>
+				<li>
+					<div class="info-title"><span class="altertitle_span">*</span>主营业务：</div>
+					<div class="info_fill single">
+						<select class="select_info yewu_info" name="industrcode" id="industrcode">
+						{%if companyinfolist.industry_code %}
+							{%ifnotequal companyinfo.industry_code 0%}
+								<option value="{{companyinfolist.industry_code}}">{{industry_label}}</option>
+							{%endifnotequal%}
+						{%endif%}
+						<option value="">请选择</option>
+						<option value="10001000">废塑料</option>
+						<option value="10001001">废金属</option>
+						<option value="10001002">废纸</option>
+						<option value="10001003">废旧轮胎与废橡胶</option>
+						<option value="10001004">废纺织品与废皮革</option>
+						<option value="10001005">废电子电器</option>
+						<option value="10001006">废玻璃</option>
+						<option value="10001007">废旧二手设备</option>
+						<option value="10001008">其他废料</option>
+						<option value="10001009">服务</option>
+						</select> 
+						<!--<font style="color:red">{{error5}}</font>-->
+						<span style="color: red;display: none" id="is_industrcode">主营业务不能为空</span>
+					</div>
+					
+				</li>
+				<li>
+					<div class="info-title"><span class="altertitle_span">*</span>公司类型：</div>
+					<div class="info_fill">
+						<select class="select_info class_info" name="servicecode" id="servicecode">
+						{%if companyinfolist.service_code %}
+							<option value="{{companyinfolist.service_code}}">{{service_label}}</option>
+						{%endif%}
+						<option value="">请选择</option>
+						<option value="1">国外供货商</option>
+						<option value="2">国外回收贸易商</option>
+						<option value="3">码头，仓库存储商</option>
+						<option value="4">国内供应商</option>
+						<option value="5">国内回收贸易商</option>
+						<option value="6">国内加工，拆解商</option>
+						<option value="7">利废企业</option>
+						<option value="8">设备，技术，服务提供商</option>
+						<option value="9">冶炼厂</option>
+						<option value="10">电子厂</option>
+						<option value="11">造粒厂</option>
+						</select> 
+						<!--  <font style="color:red">{{error6}}</font>-->
+						<span style="color: red;display: none" id="is_servicecode">公司类型不能为空</span>
+					</div>
+				</li>
+				<li>
+					<div class="info-title">国家/地区：</div>
+					<div class="info_fill">
+						<select class="select_info country"><option>请选择</option></select>
+						<select class="select_info save"><option>请选择</option></select>
+						<select class="select_info country"><option>请选择</option></select>
+						<select class="select_info save"><option>请选择</option></select>
+					</div>
+				</li>
+				<li>
+					<div class="info-title">园区/集散地/市场：</div>
+					<div class="info_fill">
+						<select class="select_info class_info"><option>请选择</option></select>
+					</div>
+				</li>
+				<li>
+					<div class="info-title"><span class="altertitle_span">*</span>地址：</div>
+					<div class="info_fill">
+						<input type="text" class="fill_ipt" name="address" value="{{companyinfolist.address}}" id="address">
+						<!--  <font style="color:red">{{error7}}</font>-->
+						<span style="color: red;display: none" id="is_address">地址不能为空</span>
+					</div>
+				</li>
+				<li>
+					<div class="info-title">邮编：</div>
+					<div class="info_fill">
+						<input type="text" class="fill_ipt" name="addresszip" value="{{companyinfolist.address_zip}}">
+					</div>
+				</li>
+				<li>
+					<div class="info-title">QQ：</div>
+					<div class="info_fill">
+					<input type="text" class="fill_ipt" name="qq" value="{{contactinfolist.qq}}">
+					</div>
+				</li>
+				<li>
+					<div class="info-title">微信ID：</div>
+					<div class="info_fill">
+					<input type="text" class="fill_ipt" name="weixin" value="{{contactinfolist.weixin}}">
+					</div>
+				</li>
+				<li>
+					<div class="info-title">MSN：</div>
+					<div class="info_fill">
+					<input type="text" class="fill_ipt" name="msn" value="{{contactinfolist.msn}}">
+					</div>
+				</li>
+				<li>
+					<div class="info-title"><span class="altertitle_span">*</span>公司简介：</div>
+					<div class="info_fill">
+					<textarea class="simple" id="introduction">{{companyinfolist.introduction}}</textarea>
+					</div>
+					<!--  <font style="color:red">{{error8}}</font>-->
+					<span style="color: red;display: none" id="is_introduction">公司简介不能为空</span>
+				</li>
+				<li>
+					<div class="info-title"><span class="altertitle_span">*</span>主营业务：</div>
+					<div class="info_fill">
+					<textarea class="simple" id="business">{{companyinfolist.business}}</textarea>
+					</div>
+					<!-- <font style="color:red">{{error9}}</font>-->
+					<span style="color: red;display: none" id="is_business">主营业务不能为空</span>
+				</li>
+			</ul>
+		</div>
+		
+			  <input type="hidden" name="company_id" value="{{company_id}}">
+			<input type="submit" value="提交修改信息" class="ok_but" style="width:1150px">
+		
+		
+	</div>
+	</form>
+</body>
+</html>

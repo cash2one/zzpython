@@ -1,0 +1,598 @@
+{%block head%}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{webtitle}}</title>
+<meta name="keywords" content="{{webkeywords|safe}}" />
+<meta name="description" content="{{webdescription|safe}}" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/news/css/news.css"/>
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico">
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+<script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script src="http://img0.zz91.com/zz91/news/js/news.js"></script>
+<script src="http://img0.zz91.com/zz91/news/js/Png.js"></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+{%if seohost%}
+<meta http-equiv="mobile-agent" content="format=html5; url=http://m.zz91.com/news/{{seohost}}"/>
+<link rel="alternate" media="only screen and(max-width:640px)" href="http://m.zz91.com/news/{{seohost}}" >
+{%endif%}
+<style type="text/css">
+.mainblock4{
+	margin-top: 10px;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-left: auto;
+	height: auto;
+	width: 960px;
+	background-color: #FFF;
+}
+.m4-title{
+	height: 30px;
+	border: 1px solid #ccc;
+	background: #f7f8fc;
+	padding-left: 20px;
+	line-height: 30px;
+}
+.m4-title a{font-size:14px;font-weight:bold;color:#333}
+.m4-content{
+	padding: 10px 10px
+}
+.m4-content ul li{margin-right:10px;height:24px;line-height:24px;display:inline;white-space:nowrap;float:left}
+</style>
+<!--[if IE 6]>
+<script type="text/javascript" src="js/Png.js"></script>
+<script type="text/javascript">
+EvPNG.fix('div, ul, img, li, input, a');
+</script>
+<![endif]-->
+</head>
+<body>
+{%include 'top.html'%}
+<div class="zixun">
+
+{%endblock%}
+
+	<!--栏目列表-->
+	<div class="nav">
+		<ul>
+        	<li {{lmselected.n1.css1}}><a href="/" {{lmselected.n1.css2}}>资讯中心</a></li>
+			<li {{lmselected.n185.css1}}><a href="/hangye/" {{lmselected.n185.css2}}>行业资讯</a></li>
+			<li {{lmselected.n186.css1}}><a href="/pinlun/" {{lmselected.n186.css2}}>评论预测</a></li>
+			<li {{lmselected.n187.css1}}><a href="/tech/" {{lmselected.n187.css2}}>技术文库</a></li>
+			<li {{lmselected.n175.css1}}><a href="/guonei/" {{lmselected.n175.css2}}>国内财经</a></li>
+			<li {{lmselected.n176.css1}}><a href="/guoji/" {{lmselected.n176.css2}}>国际财经</a></li>
+			<li {{lmselected.n188.css1}}><a href="/law/" {{lmselected.n188.css2}}>政策法规</a></li>
+			<li {{lmselected.n195.css1}}><a href="/company/" {{lmselected.n195.css2}}>企业新闻</a></li>
+			<li {{lmselected.n196.css1}}><a href="/pic/" {{lmselected.n196.css2}}>图片新闻</a></li>
+            <div class="cb"></div>
+		</ul>
+        <ul>
+        <div class="nav-subject">
+    	<li><a href="http://www.zz91.com/zt/" target="_blank">废料专题</a></li>
+        </div>
+        <!--end nav-subject-->
+        <div class="cb"></div>
+        </ul>
+	</div>
+
+
+{%block body%}
+
+    <!--end nav-->
+    <div class="mainblock1">
+    	<div class="m1-left">
+        	<div class="m1-slider">
+        	
+        	
+        	
+            	<div class="m1-slider-img">
+                	<div class="m1-slider-block">
+                        <ul id="m1_slider">
+                        
+{%for topimg in topic_img%}                       
+                            <li><a href="{{topimg.weburl}}" title="{{topimg.title|safe}}" target="_blank"><img src="{{topimg.litpic}}" alt="{{topimg.title|safe}}"/></a></li>
+{%endfor%}
+                            <div class="cb"></div>
+                        </ul>
+                        <div class="m1-slider-bg"></div>
+                        <div class="m1-slider-button">
+                            <div class="m1-slider-text" id="m1_slider_text0">
+                            	<ul>
+{%for topimg in topic_img%}                       
+                            		<li>{{topimg.title12|safe}}</li>
+{%endfor%}
+                                </ul>
+                            </div>
+                            <div class="m1-stext-ul" id="m1_slider_button">
+                                <ul>
+                                    <li style="background:#000;color:#fff" data-aaa="1">1</li>
+                                    <li data-aaa="2">2</li>
+                                    <li data-aaa="3">3</li>
+                                    <li style="margin-right:0px" data-aaa="4">4</li>
+                                    <div class="cb"></div>
+                                </ul>
+                            </div>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end m1-slider-button-->
+                    </div>
+                    <!--end m1-slider-block-->
+                </div>
+                <!--end m1-slider-img-->
+                
+                
+                
+            </div>
+            <!--end m1-slider-->
+                
+            <div class="m1-newspaper">
+            	<div class="m1-newspaper-title">
+                	<div class="m1-newspaper-caption">
+                    	<a href="http://www.zz91.com/xiazai/" target="_blank">ZZ91早晚报</a>
+                    </div>
+                    <!--end m1-newspaper-caption-->
+                    <div class="m1-newspaper-more">
+                    	<a href="http://www.zz91.com/xiazai/" target="_blank">更多</a>
+                    </div>
+                    <!--end m1-newspaper-more-->
+                    <div class="cb"></div>
+                </div>
+                <!--end m1-newspaper-title-->
+                <div class="m1-newspaper-content">
+                	<ul>
+{%for list in downloadinfolist%}
+                    	<li>
+                        	<div class="m1-newspaper-info"><a href="http://www.zz91.com/xiazai/detail{{list.id}}.htm" target="_blank">{{list.title|safe}}</a></div>
+                            <div class="m1-newspaper-text">{{list.putdate}}</div>
+                            <div class="cb"></div>
+                        </li>
+{%endfor%}
+                    </ul>
+                </div>
+                <!--end m1-newspaper-content-->
+            </div>
+            <!--end newspaper-->
+        </div>
+
+        <div class="m1-center">
+        	<div class="m1-center-title">
+            	<div class="m1-center-caption">
+                    	今日焦点
+                </div>
+                <!--end m1-center-caption-->
+                <div class="m1-center-more">
+                    {{time2}}
+                </div>
+                <!--end m1-center-more-->
+                <div class="cb"></div>
+            </div>
+            <!--end m1-center-title-->
+            <div class="m1-center-content">
+            	<div class="m1-news">
+                	<div class="m1-news-title">
+                    	<a href="{{focus1.weburl}}" title="{{focus1.title|safe}}" target="_blank">{{focus1.title|safe}}</a>
+                    </div>
+                    <!--end m1-news-title-->
+                    <div class="m1-news-text" style='line-height: 18px;color: #888;'>
+                    	{{focus1.content}}<a href="{{focus1.weburl}}" target="_blank">>>更多</a>
+                    </div>
+                    <!--end m1-news-text-->
+                </div>
+{%for t in focus2%}
+            	<div class="m1-news">
+                	<div class="m1-news-title">
+                    	<a href="{{t.weburl}}" title="{{t.title|safe}}" target="_blank">{{t.title|safe}}</a>
+                    </div>
+                    <!--end m1-news-title-->
+                    <div class="m1-news-text" style='line-height: 18px;color: #888;'>
+                    	{{t.content|safe}}<a href="{{t.weburl}}" target="_blank">>>更多</a>
+                    </div>
+                    <!--end m1-news-text-->
+                </div>
+{%endfor%}
+
+                <!--end m1-news-->
+                <div class="m1-news-line"></div>
+                <div class="m1-item">
+                	<ul>
+{%for c6 in choose6%}
+                    	<li>
+                        	<div class="m1-item-title"><a href="/column_list/tags-{{c6.kwds_hex}}.html" target="_blank">{{c6.kwds|safe}}</a></div>
+                            <div class="m1-item-line">|</div>
+                            <div class="m1-item-content"><a href="{{c6.weburl}}" target="_blank" title="{{c6.title}}">{{c6.title|safe}}</a></div>
+                            <div class="m1-item-text">{{c6.shorttitle|safe}}</div>
+                            <div class="cb"></div>
+                        </li>
+{%endfor%}
+                    </ul>
+                </div>
+                <!--end m1-item-->
+            </div>
+            <!--end m1-center-content-->
+        </div>
+        <div class="m1-right">
+        	<div class="m1-topic">
+            	<div class="m1-topic-title">
+                	<div class="m1-topic-caption">
+                        <a href="http://www.zz91.com/zt/" target="_blank">热点专题</a>
+                    </div>
+                    <!--end m1-topic-caption-->
+                    <div class="m1-topic-more">
+                        <a href="http://www.zz91.com/zt/" target="_blank">更多</a>
+                    </div>
+                    <!--end m1-topic-more-->
+                    <div class="cb"></div>
+                </div>
+                <!--end m1-topic-title-->
+                <div class="m1-topic-content">
+                	<div class="m1-topic-img">
+                        <div class="m1-topic-block">
+                            <ul id="m1_topic">
+{%for ad in subjectadlist%}
+<li><a href="{{ad.url}}" target=_blank><img src="{{ad.picaddress|safe}}"></a></li>
+{%endfor%}
+                                <div class="cb"></div>
+                            </ul>
+                            <div class="m1-topic-bg"></div>
+                            
+                            <div class="m1-topic-button">
+                                <div class="m1-topic-text" id="m1_topic_text01">
+                                    <ul>
+                                    {%for ad in subjectadlist%}
+                                        <li>{{ad.ad_title|safe}}</li>
+                                    {%endfor%}
+                                    </ul>
+                                </div>
+                                <div class="m1-ttext-ul" id="m1_topic_button">
+                                    <ul>
+                                    {%for ad in subjectadlist%}
+                                        <li data-aaa="{{ad.i}}">{{ad.i}}</li>
+                                    {%endfor%}
+                                        <div class="cb"></div>
+                                    </ul>
+                                </div>
+                                <div class="cb"></div>
+                            </div>
+                            <!--end m1-slider-button-->
+                        </div>
+                        <!--end m1-topic-block-->
+                    </div>
+                    <!--end m1-topic-img-->
+                </div>
+                <!--end m1-topic-content-->
+            </div>
+            <!--end m1-topic-->
+            <div class="m1-ranking">
+            	<div class="m1-ranking-title">
+                	<div class="m1-ranking-caption">
+                    	热门资讯排行榜
+                    </div>
+                    <!--end m1-ranking-caption-->
+                    <div class="m1-ranking-more"></div>
+                    <!--end m1-ranking-more-->
+                    <div class="cb"></div>
+                </div>
+                <!--end m1-ranking-title-->
+                <div class="m1-ranking-content">
+                	<ul>
+{%for h in hotnewslist%}
+                    	<li>
+                        	<div class="m1-ranking-info{{h.numb}}"></div>
+                            <div class="m1-ranking-text" style='text-overflow: ellipsis; white-space: nowrap;'><a href="{{h.weburl}}" title="{{h.title|safe}}" target="_blank">{{h.title|safe}}</a></div>
+                            <div class="cb"></div>
+                        </li>
+{%endfor%}
+                    </ul>
+                </div>
+                <!--end m1-ranking-content-->
+            </div>
+            <!--end ranking-->
+        </div>
+        <!--end m1-right-->
+        <div class="cb"></div>
+    </div>
+    <!--ebd mainblock1-->
+    <div class="mainblock2">
+    	<div class="m2-left">
+
+{%for tk4 in kinds4%}
+
+        	<div class="m2-item">
+            	<div class="m2-item-title">
+                	<div class="m2-item-button">
+                    	<div class="m2-button-left"></div>
+                        <div class="m2-button-center" id="{{tk4.idj}}">
+<h2><a href="{{tk4.kind_url}}/" target="_blank">{{tk4.kind_name|safe}}</a></h2>
+                        </div>
+                        <div class="m2-button-right"></div>
+                        <div class="cb"></div>
+                    </div>
+                    <div class="m2-item-div">
+                    	<div class="m2-div-ul">
+                        	<ul>
+{%for kd in tk4.keywords10%}                    	
+                            	<li><a href="{{tk4.kind_url2}}tags-{{kd.typename_hex}}.html" target="_blank">{{kd.typename|safe}}</a></li>
+{%endfor%}
+                                <div class="cb"></div>
+                            </ul>
+                        </div>
+                    	<div class="m2-item-more">
+                            <a href="{{tk4.kind_url2}}" target="_blank">更多</a>
+                        </div>
+                        <!--end m2-item-more-->
+                        <div class="cb"></div>
+                    </div>
+                    <!--end m2-item-div-->
+                    <div class="cb"></div>
+                </div>
+                <!--end m2-item-title-->
+                <div class="m2-item-content">
+                	<div class="m2-item-slider">
+                    	<div class="m2-sitem-img">
+                            <div class="m2-sitem-block">
+                                <ul class="m2-sitem-pic" id="{{tk4.m2_sitem}}">
+                                
+{%for tk in tk4.roll_img%}
+                                    <li><a href="{{tk.weburl}}" title="{{tk.title|safe}}" target="_blank"><img src="{{tk.litpic}}" alt="{{tk.title|safe}}"/></a></li>
+{%endfor%}
+
+                                    <div class="cb"></div>
+                                </ul>
+                                <div class="m2-sitem-bg"></div>
+                                <div class="m2-sitem-button">
+                                    <div class="m2-sitem-text" id="{{tk4.m2_sitem_text}}">
+
+                                        <ul>
+{%for rmg in tk4.roll_img%}
+                                            <li>{{rmg.title|safe}}</li>
+{%endfor%}
+                                        </ul>
+                                    </div>
+                                    <div class="m2-sitem-ul" id="{{tk4.m2_sitem_button}}">
+                                        <ul>
+                                            <li data-aaa="1" style="color:#ff7300;font-weight:bold">1</li>
+                                            <li data-aaa="2">2</li>
+                                            <li data-aaa="3">3</li>
+                                            <li style="margin-right:0px" data-aaa="4">4</li>
+                                            <div class="cb"></div>
+                                        </ul>
+                                    </div>
+                                    <div class="cb"></div>
+                                </div>
+                                <!--end m2-sitem-button-->
+                            </div>
+                            <!--end m2-sitem-block-->
+                        </div>
+                        <!--end m2-sitem-img-->
+                    </div>
+                    <div class="m2-item-box">
+                    	<ul>
+{%for tkd in tk4.kinds_6%}
+                        	<li>
+                                <div class="m2-box-line"> </div>
+                                <div class="m2-box-text"><a href="{{tkd.weburl}}" title="{{tkd.title|safe}}" target="_blank">{{tkd.title|safe}}</a></div>
+                                <div class="m2-box-date">{{tkd.pubdate1}}</div>
+                                <div class="cb"></div>
+                            </li>
+{%endfor%}
+                        </ul>
+                    </div>
+                    <!--end m2-item-box-->
+                    <div class="cb"></div>
+                </div>
+<!--<script src="http://pyapp.zz91.com/showppctxtadscript/?keywords={{kd.typename}}&amp;showborder=1&amp;showposition=1&amp;m=6&amp;padding=8&amp;w=700&amp;num=4"></script>-->
+                <!--end m2-item-content-->
+                <div class="cb"></div>
+            </div>
+            <!--end m2-item-->
+        
+{%endfor%}
+ 
+        </div>
+        
+        <div class="m2-right">
+        	<div class="m2-info">
+            	<div class="m2-info-title">
+                	<div class="m1-info-caption">
+                        <a href="/company/" target="_blank">企业新闻</a>
+                    </div>
+                    <!--end m1-info-caption-->
+                    <div class="m1-info-more">
+                        <a href="/company/" target="_blank"></a>
+                    </div>
+                    <!--end m1-info-more-->
+                    <div class="cb"></div>
+                </div>
+                <!--end m2-info-title-->
+                <div class="m2-info-content">
+                    <ul>
+{%for c in companynews%}
+                        <li>
+                            <div class="m2-info-info" style='overflow:hidden;text-overflow: ellipsis; white-space: nowrap;'><a href="{{c.weburl}}" target="_blank">{{c.title|safe}}</a></div>
+                            <div class="m2-info-text">{{c.short_time}}</div>
+                            <div class="cb"></div>
+                        </li>
+{%endfor%}
+                    </ul>
+                </div>
+                <!--end m2-info-content-->
+            </div>
+            <!--end m2-info-->
+            
+            
+            <div class="m2-info">
+            	<div class="m2-info-title">
+                	<div class="m1-info-caption">
+                        <h3><a href="hangye/" target="_blank">行业资讯</a></h3>
+                    </div>
+                    <!--end m1-info-caption-->
+                    <div class="m1-info-more">
+                        <a href="hangye/" target="_blank"></a>
+                    </div>
+                    <!--end m1-info-more-->
+                    <div class="cb"></div>
+                </div>
+                <!--end m2-info-title-->
+                <div class="m2-info-content">
+                    <ul>
+{%for c10 in hangye10%}
+                        <li>
+                            <div class="m2-info-info" style='overflow:hidden;text-overflow: ellipsis; white-space: nowrap;'><a href="{{c10.weburl}}" target="_blank" title="{{c10.title|safe}}">{{c10.title|safe}}</a></div>
+                            <div class="m2-info-text">{{c10.pubdate1}}</div>
+                            <div class="cb"></div>
+                        </li>
+{%endfor%}
+                    </ul>
+                </div>
+                <!--end m2-info-content-->
+            </div>
+            <!--end m2-info-->
+            
+            <div class="m2-info">
+            	<div class="m2-info-title">
+                	<div class="m1-info-caption">
+                        <h3><a href="pinglun/" target="_blank">评论预测</a></h3>
+                    </div>
+                    <!--end m1-info-caption-->
+                    <div class="m1-info-more">
+                        <a href="pinglun/" target="_blank"></a>
+                    </div>
+                    <!--end m1-info-more-->
+                    <div class="cb"></div>
+                </div>
+                <!--end m2-info-title-->
+                <div class="m2-info-content">
+                    <ul>
+{%for c10 in pinlun10%}
+                        <li>
+                            <div class="m2-info-info" style='overflow:hidden;text-overflow: ellipsis; white-space: nowrap;'><a href="{{c10.weburl}}" target="_blank" title="{{c10.title|safe}}">{{c10.title|safe}}</a></div>
+                            <div class="m2-info-text">{{c10.pubdate1}}</div>
+                            <div class="cb"></div>
+                        </li>
+{%endfor%}
+                    </ul>
+                </div>
+                <!--end m2-info-content-->
+            </div>
+            <!--end m2-info-->
+            
+            <div class="m2-info">
+            	<div class="m2-info-title">
+                	<div class="m1-info-caption">
+                        <h3><a href="tech/" target="_blank">技术文库</a></h3>
+                    </div>
+                    <!--end m1-info-caption-->
+                    <div class="m1-info-more">
+                        <a href="tech/" target="_blank"></a>
+                    </div>
+                    <!--end m1-info-more-->
+                    <div class="cb"></div>
+                </div>
+                <!--end m2-info-title-->
+                <div class="m2-info-content">
+                    <ul>
+{%for c10 in jishu10%}
+                        <li>
+                            <div class="m2-info-info" style='overflow:hidden;text-overflow: ellipsis; white-space: nowrap;'><a href="{{c10.weburl}}" target="_blank" title="{{c10.title|safe}}">{{c10.title|safe}}</a></div>
+                            <div class="m2-info-text">{{c10.pubdate1}}</div>
+                            <div class="cb"></div>
+                        </li>
+{%endfor%}
+                    </ul>
+                </div>
+                <!--end m2-info-content-->
+            </div>
+            <!--end m2-info-->
+            
+            
+            
+            
+            
+        </div>
+        <!--end m2-right-->
+        <div class="cb"></div>
+    </div>
+ 
+ 
+    <!--end mainblock2-->
+    <div class="mainblock3" id="5F">
+    	<div class="m3-title">
+        	<div class="m3-title-caption">
+            	<h2><a href="/pic/" target="_blank">图片新闻</a></h2>
+            </div>
+            <div class="m3-title-more">
+            	<a href="/pic/" target="_blank">更多</a>
+            </div>
+            <!--end m3-title-more-->
+            <div class="cb"></div>
+        </div>
+        <!--end m3-title-->
+        <div class="m3-content">
+        	<div class="m3-img">
+{%for c in column_imgs%}
+                <div class="m3-item">
+                    <div class="m3-item-img">
+                        <a href="{{c.weburl}}" target="_blank"><img width="110" height="110" src="{{c.litpic}}" title="{{c.title|safe}}"></a>
+                    </div>
+                    <!--end m3-item-img-->
+                    <div class="m3-item-text">
+                        <a href="{{c.weburl}}" target="_blank" title="{{c.title|safe}}">{{c.title20|safe}}</a>
+                    </div>
+                    <!--end m3-item-text-->
+                </div>
+{%endfor%}
+                <div class="cb"></div>
+           	</div>
+            <!--end m3-img-->
+        </div>
+        <!--end m3-content-->
+    </div>
+    <!--end mainblock3-->
+    <script src="http://pyapp.zz91.com/showppctxtadscript/?keywords=&amp;showborder=1&amp;showposition=1&amp;m=6&amp;padding=8&amp;w=960&amp;num=6"></script>
+    <!--end mainblock4-->
+</div>
+<!--end zixun-->
+<script language="javascript" src="http://img0.zz91.com/zz91/news/js/jquery.Sonline.js"></script>
+<script type="text/javascript">
+$(function(){
+$(".zixun").Sonline({
+	Position:"right",//left或right
+	Top:-100,//顶部距离，默认200px
+	Effect:true, //滚动或者固定两种方式，布尔值：true或false
+	DefaultsOpen:true, //默认展开：true,默认收缩：false隔开
+	Qqlist:""
+});
+})	
+</script>
+
+<input type="hidden" id="index_hidden1" value="1" />
+<input type="hidden" id="topic_hidden" value="1" />
+<input type="hidden" id="m2_sitem_hidden1" value="1" />
+<input type="hidden" id="m2_sitem_hidden2" value="1" />
+<input type="hidden" id="m2_sitem_hidden3" value="1" />
+<input type="hidden" id="m2_sitem_hidden4" value="1" />
+<div class="mainblock4">
+    	<div class="m4-title">
+        	<span>友情链接</span>
+        </div>
+        <!--end m4-title-->
+        <div class="m4-content">
+        	<ul>
+        	{%for lk in newslinks%}
+			<li><a href="{{lk.link}}" target="_blank" title="{{lk.title|safe}}">{{lk.title|safe}}</a></li><li>|</li>
+			{%endfor%}
+			<div class="cb"></div>
+            </ul>
+        </div>
+        <!--end m4-content-->
+  <div class="cb"></div>
+    </div>
+    <!--end mainblock4-->
+</body>
+</html>
+{%endblock%}
+{%include 'bottom.html'%}

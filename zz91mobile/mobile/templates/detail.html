@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/offer.css" />
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+<ul class="bread Fix">
+<li><a href="/">首页</a></li>
+<li class="li-bread"><a href="{{backurl}}">搜索结果</a></li>
+<li class="li-bread c9"><span>供求信息</span></li>
+</ul>
+<nav class="navTab-0">
+	<ul>
+	<li class="chk"><a href="#">供求详情</a><p class="dw-arrow"></p></li>
+	<li><a href="/companydetail/?company_id={{list.company_id}}&pdtid={{list.pdtid}}">公司介绍</a></li>
+	</ul>
+</nav>
+
+<div style="margin:10px;">	
+<div class="of_title  b f16">{{list.title}}</div>
+<div class="of_line"></div>
+{%if list.piclist%}							
+<div class="t-slide t-offer-pic-slide" id="offer-pic-slide">
+	<div class="pagination">
+		<a class="prev pg-btn" style="margin-left:10px;">&lt;</a>
+		<a class="next pg-btn" style="margin-right:10px;">&gt;</a>
+	</div>
+	<div class="wrap" style="width:180px; height:180px; border:1px solid #C4C4C4; -webkit-box-shadow:0px 0px 20px #9d9d9d;">
+		<ul class="slide" style="left: 0px; width: 540px; ">
+			{%for pic in list.piclist%}
+			<li style="width: 180px; "><img height="180" width="180" src="{{pic.images}}" big-img="{{pic.images_big}}" onClick="AliMobile.Util.showOfferBigPicDialog(this.getAttribute('big-img'));"></li>
+		{%endfor%}
+		</ul>
+	</div>
+	<div class="pagination">
+		<div class="trigs"></div>
+	</div>
+</div> 
+<script>
+AliMobile.Jload3.jqreadyRun(function(){	jQuery("#offer-pic-slide").slideLayer({effect:'both'});});
+</script>	
+{%endif%}
+							
+<div class="wp100">	
+<table class="ofb wp100">
+<tbody>
+	{%if list.location%}
+	<tr>
+		<td class="dash_td font101 of_td1">所在地：</td>
+		<td class="dash_td of_td2">{{list.location}}</td>
+	</tr>
+	{%endif%}
+	<tr>
+		<td class="dash_td c9">发布日期：</td>
+		<td class="dash_td c6">{{list.refresh_time}}</td>
+	</tr>
+	<tr>
+		<td class="dash_td c9">有效期：</td>
+		<td class="dash_td c6">{{list.expire_time}}</td>
+	</tr>	
+	{%if list.source%}
+	<tr>
+		<td class="dash_td c9">货源地：</td>
+		<td class="dash_td c6">{{list.source}}</td>
+	</tr>
+	{%endif%}
+	{%if list.price%}
+	<tr>
+		<td class="dash_td of_td3">价格：</td>
+		<td class="dash_td of_td4"><font color="#CC0000">{{list.price}}</font></td>
+	</tr>
+	{%endif%}
+	{%if list.quantity%}
+	<tr>
+		<td class="dash_td of_td3">数量：</td>
+		<td class="dash_td of_td4">{{list.quantity}} {{list.quantity_unit}}</td>
+	</tr>
+	{%endif%}
+	<tr>
+		<td colspan="2" class="of_td5" style="line-height: 22px"><div class="mt7">{{list.details|safe}}</div></td>
+	</tr>
+	
+	
+	<tr>
+	<td colspan="2">
+		<div class="of_line"></div>
+		{%if viewflag%}
+		<table>
+			<tbody>
+				<tr>
+					<td colspan="2" class="of_td5">{{list.compname}}{{list.viptype.vipname}}</td>
+				</tr>
+				<tr>
+					<td class="c6">联 系 人：</td>
+					<td class="c9">{{list.contact}}{{list.position}}</td>
+				</tr>
+				<tr>
+					<td class="of_td7">联系方式：</td>
+					<td class="of_td8">
+					{%if list.viptype.ldb%}
+						{%if list.viptype.ldb.ldbphone%}
+						<div class="mobile_btn"><a href="tel:{{list.viptype.ldb.ldbtel}}">{{list.viptype.ldb.ldbphone}}</a></div>
+						{%endif%}
+					{%else%}
+						{%if list.mobile%}
+						<div class="mobile_btn"><a href="tel:{{list.mobile1}}">{{list.mobile}}</a></div>
+						{%endif%}
+						{%if list.tel%}
+						<div class="phone_btn" style="margin:3px 3px 13px 3px"><a href="tel:{{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}">{{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}</a></div>
+						{%endif%}
+					{%endif%}
+					</td>
+				</tr>
+				{%if list.address%}
+				<tr>
+					<td class="c6">地  址：</td>
+					<td class="c9">{{list.address}}</td>
+				</tr>
+				{%endif%}
+			</tbody>
+		</table>
+		{%else%}
+		<table>
+			<tbody>
+				<tr>
+					<td colspan="2" class="of_td5 c-gray1">申请再生通 可直接查看客户联系方式</td>
+				</tr>
+                <tr>
+					<td colspan="2" class="of_td5 c-gray1" style="color:#F00">或加ZZ91微信公众号：zz91weixin，每天打卡送积分即可查看。</td>
+				</tr>
+				<tr>
+					<td class="of_td7">再生通热线：</td>
+					<td class="of_td8">
+						<div class="mobile_btn"><a href="tel:057156611111">057156611111</a></div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		{%endif%}
+	</td>
+	</tr>
+<tr>
+<td colspan="2" class="ac of_td6"> 
+<input type="button" name="favCompany" onClick="window.location='/favorite/?company_id={{list.company_id}}&pdtid={{id}}&products_type_code={{products_type_code}}&title={{list.title}}';" value="收藏该供求" class="fav_btn">
+&nbsp;&nbsp;
+<input type="button" name="favOffer" onClick="window.location='/leavewords/?company_id={{list.company_id}}&pdtid={{id}}';" value="给我留言" class="fav_btn">
+
+</td>
+</tr>
+</tbody></table>
+</div>    
+<script type="text/javascript">
+/*手机站：首页 20:3，创建于2014-7-22*/
+var cpro_id = "u1629209";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+<div id="fadelayer" class="overlayDiv"></div>
+<div id="disFilter" class="picDialogDiv" style="width:100%;">
+	<div id="dialogClose" class="dialogCloseBtn" style="top:0;right:0;" onClick="AliMobile.Util.closeOfferBigPicDialog();"></div>
+	<div class="picDialogContent">
+		<div style="padding:5px;background-color:white;text-align:center;"><img id="showImg" src="" style="width:100%;"></div>
+	</div>
+</div>
+
+	
+</div>	
+<nav class="navTab-2">
+<ul>
+<li class="now"><p class="up-arrow"></p><a href="/detail/?id={{list.pdtid}}" class="tab_03">供求详情</a></li>
+<li><a href="/companydetail/?company_id={{list.company_id}}&pdtid={{list.pdtid}}" class="tab_04">公司介绍</a></li>
+</ul>
+</nav>
+
+
+
+
+<div class="t-index-search2">
+	<div class="t-search-bar pd10">
+		<form action="/offerlist/" method="post" onSubmit="return AliMobile.SearchBar.chkSearchInput('.t-index-search2');">
+		<div style="position:relative;">
+	    	<div class="input">
+	    		<div class="selected" onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','2');">
+	    			<span class="type">产品</span>
+	    			<span class="arrow"></span>
+	    		</div>
+				<div style="margin-right:55px;">
+    	    		<input class="searchKey" type="text" name="keywords" value="" autocomplete="off" placeholder="请填写搜索关键词" onFocus="AliMobile.SearchBar.input('.t-index-search2','2');" onKeyUp="AliMobile.SearchBar.input('.t-index-search2','2');">
+				</div>
+	    		<input class="searchType" type="hidden" value="selloffer" name="searchtype">
+				<input id="version" type="hidden" value="t" name="v">
+				<input id="en" type="hidden" value="utf8" name="en">
+	    	</div>
+	    	<div class="submit" onClick="AliMobile.SearchBar.submit('.t-index-search2');">搜索</div>
+			<div class="clear"><a href="javascript:AliMobile.SearchBar.cleanSearchInput('.t-index-search2');"><img src="/images/close2.png"></a></div>
+		</div>
+		</form>
+		<div class="ac selection" style="display:none;">
+			<ul>
+				<li onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','2','产品','selloffer','请输入产品名称');">产品</li>
+				<li onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','2','公司','company','请输入公司名、地区、产品等');">公司</li>
+				<li onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','2','价格','price','请输入价格行情关键字');">价格</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+{%include 'bottom.html'%}
+</div>
+</body>
+</html>

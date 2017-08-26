@@ -1,0 +1,13 @@
+{%for list in listall%}
+     <tr>
+        <td><a href="">↑</a> &nbsp;{{list.typename}}({{list.id}})</td>
+        <td>{%if list.retypename%}{{list.retypename}}({{list.reid}}){%endif%}</td>
+        <td>{{list.pinyin}}</td>
+        <td>{%if list.tempname%}{{list.tempname}}{%endif%}</td>
+        <td>{{list.sortrank}}</td>
+        <td>
+		<a href="updatearttype.html?typeid={{list.id}}&freshtime={{freshtime}}" title="编辑"><img src="/123/imgs/gtk-edit.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="delarttype.html?typeid={{list.id}}&freshtime={{freshtime}}" onClick="return confirm('请谨慎操作! 是否将此栏目删除?')" title="删除"><img src="/123/imgs/b_drop.png"></a>
+		</td>
+    </tr>
+ {%endfor%}

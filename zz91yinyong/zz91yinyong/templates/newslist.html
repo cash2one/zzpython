@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+<link rel="stylesheet" href="/css/comm-more.css" />
+<script type=text/javascript src="/js/jquery.js"></script>
+<script>AliMobile.Jload3.loadjs('/js/AliMobile.js');</script>
+</head>
+<body>
+<div class="wrapper">
+<div class="floattop">
+	<div>
+        <div class="goindex">
+        <a href="http://m.zz91.com/" class="gobackwrap"><i class="goback-icon"></i><span class="goback">首页</span></a>
+        </div>
+        <ul>
+        <li onClick="chtab(1)" id="cntab1"><a href="#">行业</a></li>
+        <li onClick="chtab(2)" id="cntab2"><a href="#">评论预测</a></li>
+        <li onClick="chtab(3)" id="cntab3"><a href="#">技术</a></li>
+		<li onClick="chtab(4)" id="cntab4"><a href="#">财经</a></li>
+        </ul>
+        <div class="searchright" onClick="rightsearch(this)"></div>
+    </div>
+    <div style="clear:both"></div>
+    <div class="pcategroy" id="pcateg1" style="display:none">
+		{%for list in newsnav.navlist1%}
+		<a href="newslist.html?keywords={{list.label}}&tp=1">{{list.label}}</a>
+		{%endfor%}
+		<div style="clear:both"></div>
+	</div>
+    <div class="pcategroy" id="pcateg2" style="display:none">
+		{%for list in newsnav.navlist2%}
+		<a href="newslist.html?keywords={{list.label}}&tp=2">{{list.label}}</a>
+		{%endfor%}
+		<div style="clear:both"></div>
+	</div>
+    <div class="pcategroy" id="pcateg3" style="display:none">
+		{%for list in newsnav.navlist3%}
+		<a href="newslist.html?keywords={{list.label}}&tp=3">{{list.label}}</a>
+		{%endfor%}
+		<div style="clear:both"></div>
+	</div>
+	
+    <link rel="stylesheet" href="/css/comm-searchbar.css">
+</div>
+<div class="pl10 pr10" style="margin-top:50px;" id="topsearch">
+    <form action="newslist.html" method="get" id="wikiSearchFrm">
+    	<div style="position:relative;">
+        	<div class="sch-input">
+        		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+        	</div>
+        	<div class="sch-button" onClick="AliMobile.WikiSearch.submitFrm()">搜资讯</div>
+    		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+    	</div>
+    </form>
+</div>
+<div class="list">
+{%for list in listall%}  	
+	<div class="item" style="border-top:1px solid #FFF;">    
+		<a href="newsviews.html?id={{list.id}}">	
+			<p class="c-link lh28">{{list.title}}{%if list.havepic%}<font class=c-red>[图]</font>{%endif%}</p>
+			<p class="c9">{{list.littlecontent}}</p>
+		</a>
+	</div>
+{%endfor%}
+	<div id="moreDiv"></div>
+</div>
+	<div>
+			
+    <table class="moreTable" id="moreTable" {{morebutton}}>
+    	<tbody><tr>
+    		<td>
+    			<div class="moreLeft" id="moreLeft"></div>
+    		</td>
+    		<td style="width:100px;">
+    			<div id="moreButton" onClick="AliMobile.GetMore.getMore();" class="moreButton" pagename="wikiPage" url="/newsmore.html?keywords={{keywords}}&" pageindex="1">
+    			更多...
+    			</div>
+    		</td>
+    		<td>
+    			<div class="moreRight" id="moreRight"></div>
+    		</td>
+    	</tr>
+    </tbody></table>
+
+		</div>
+	<script>chtabt({{tp}})</script>
+<div class="h20"></div>
+	</div>
+{%include 'bottom.html'%}
+</div>
+</body>
+</html>

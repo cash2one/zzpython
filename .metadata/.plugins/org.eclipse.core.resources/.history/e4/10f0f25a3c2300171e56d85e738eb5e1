@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <style>
+    	#chart_container {
+				display: inline-block;
+				font-family: Arial, Helvetica, sans-serif;
+				position:relative;
+				margin-top:50px;
+			}
+			#chart {
+			  position: relative;
+			  left: 40px;
+			  width: 540px;
+			  height: 300px;
+			}
+			
+			#y_axis {
+			  position: absolute;
+			  top: 0;
+			  bottom: 0;
+			  width: 40px;
+			}
+			#x_axis {
+				position: absolute;
+				left: 40px;
+				height: 40px;
+				bottom:20px;
+			}
+			#preview{
+				position: absolute;
+				left: 40px;
+				bottom:0px;
+			}
+			.hq-viewinfo{
+				height: 450px;
+			}
+			.pricetitle{
+				width: 100%;
+				text-align: center;
+				font-size: 18px;
+				font-weight: bold;
+				line-height: 30px;
+				margin-bottom: 30px;
+			}
+			.hq-view-other p{
+				float: left;
+				margin: 10px;
+			}
+			.searchlabel{
+				margin-left: 50px;
+			}
+			.searchlabel span{
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				cursor: pointer;
+				color: #000;
+				background: #ebebeb;
+				vertical-align: middle;
+				margin-left: 15px;
+			}
+			.searchlabel .on{
+				background: #54b854;
+				color: #fff;
+			}
+			.hq-list-ul li{
+				width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+			}
+			.footer{
+				width:1200px;
+			}
+			#topBarInfo{
+				width:1200px;
+			}
+    </style>
+</head>
+<body>
+	<div class="aui-content">
+		<h2 class="aui-text-center aui-margin-t-15">{{label}}趋势图</h2>
+		<div class="fr hq-viewinfo">
+            <div class="hq-view-title clearfix">
+                <div class="fl hq-view-name"></div>
+                <div class="fl hq-view-other">
+                    <p>最高：<span class="maxprice"></span></p>
+                    <p>最低：<span class="minprice"></span></p>
+                    <p>均值：<span class="midprice"></span></p>
+                </div>
+                <input id="pid" value="{{id}}" type="hidden">
+            </div>
+            <div style="clear: both;"></div>
+
+            <div class="hq-view-box">
+                <div class="hq-view-tjian">
+                    <span class="searchlabel">
+                        <span>周</span>
+                        <span>月</span>
+                        <span>季</span>
+                        <span>年</span>
+                    </span>
+                </div>
+				<div id="chartContainer">
+					
+				</div>
+            </div>
+        </div>
+		
+	</div>
+</body>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+
+</html>

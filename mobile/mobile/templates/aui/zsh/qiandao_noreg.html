@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>2017废纸产业发展论坛签到-ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<style>
+			body{
+				background: #fff
+			}
+			.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+			.clearfix{height:1%}
+			.clearfix{display:block}
+			a{
+				color:#333
+			}
+			.aui-bar{
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			.from-ul li{
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				padding: 0 15px;
+				margin: 10px 0;
+				line-height: 44px;
+			}
+			.from-info{
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.from-inname{
+				width: 90px;
+				text-align: right;
+				padding-right: 10px;
+
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="http://m.zz91.com/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-title">签到</div>
+		    <a href="http://m.zz91.com/app.html" class="aui-pull-right zz91share aui-font-size-12">
+		        APP下载
+		    </a>
+		</header>
+		<div  style="height:45px;"></div>
+		
+		<div>
+			<ul class="from-ul">
+				<li>
+					<div class="from-inname">手机号码</div>
+					<div class="from-info" style="color: #999;">{{mobile}}
+					<input type="hidden" name="mobile" id="mobile" value="{{mobile}}" />
+					</div>
+				</li>
+				<li>
+					<div class="from-inname"><font color="red">*</font> 联系人</div>
+					<div class="from-info"><input type="text" name="contact" id="contact" value="{{contact}}"></div>
+				</li>
+				<li>
+					<div class="from-inname"><font color="red">*</font>公司名称</div>
+					<div class="from-info"><input type="text" name="companyname" id="companyname" value="{{companyname}}"></div>
+				</li>
+				<li>
+					<div class="from-inname"><font color="red">*</font>主营</div>
+					<div class="from-info"><textarea type="text" name="business" style="height: 150px;" id="business" />{{business}}</textarea></div>
+				</li>
+				
+				<li>
+					<div class="from-inname"></div>
+					<div class="from-info">
+						<input type="hidden" id="company_id" value="{{company_id}}">
+						<button class="aui-btn aui-btn-success aui-padded-l-18 aui-padded-r-18 qiandaobtn">&nbsp;&nbsp;确定签到&nbsp;&nbsp;</button>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	
+	<script type="text/javascript">
+		$(function(){
+			$(".qiandaobtn").on("click", function() {
+				var mobile=$("#mobile").val();
+				var contact=$("#contact").val();
+				var companyname=$("#companyname").val();
+				var business=$("#business").val();
+				var company_id=$("#company_id").val();
+				var data={
+					"mobile":mobile,
+					"contact":contact,
+					"companyname":companyname,
+					"business":business,
+					"company_id":company_id
+				}
+				zzajax("get","qiandao_noreg_save.html",data,function(ret){
+					if (ret.err=='false'){
+						window.location='qiandao_suc.html?id='+ret.id;
+					}else{
+						layer.msg(ret.errkey)
+					}
+				},function(){
+					layer.msg("错误！请重试")
+				})
+			})
+		})
+	</script>
+</html>

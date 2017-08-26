@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+<link rel="stylesheet" href="/css/comm-more.css" />
+		<link rel="stylesheet" type="text/css" href="../css/pindao/index.css" />
+		<script type="text/javascript" src="../js/pindao/jquery-1.8.3.min.js"></script>
+		<style type="text/css">
+			.main a:link{color:#000;text-decoration:none}
+			.main a:hover{text-decoration:underline}
+			.main a:visited{color:#000}
+		</style>
+	</head>
+
+	<body>{%include 'top.html'%}
+		<div class="main">
+			<div class="tle">
+				<a href="/">首页</a> > <a href="/priceindex/">行情报价</a>
+			</div>
+			<div>
+			    <form action="/price/" method="get" id="wikiSearchFrm">
+			    	<div style="position:relative;">
+			        	<div class="sch-input">
+			        		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+			        	</div>
+			        	<div class="sch-button" onClick="document.getElementById('wikiSearchFrm').submit()">搜行情</div>
+			    		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+			    	</div>
+			    </form>
+			</div>
+			<div class="cate-box cb-item0">
+        	<table class="cate-tab2" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<th colspan="5"><img src="http://img0.zz91.com/zz91/mobile/images/icon_metal.png" />金属</th>
+                </tr>
+                <tr>
+                	<td><a href="/price/?category_id=40" target="_blank">废铜</a></td>
+                    <td><a href="/price/?category_id=42" target="_blank">废铁</a></td>
+                    <td><a href="/price/?category_id=41" target="_blank">废铝</a></td>
+                    <td><a href="/price/?category_id=45" target="_blank">废钢</a></td>
+                    <td><a href="/price/?category_id=47" target="_blank">废镍</a></td>
+                </tr>
+                <tr>
+                	<td><a href="/priceindex/70.html" target="_blank">LME</a></td>
+                    <td><a href="/priceindex/83.html" target="_blank">现货</a></td>
+                    <td><a href="/priceindex/32.html" target="_blank">评论</a></td>
+                    <td><a href="/priceindex/33.html" target="_blank">周报</a></td>
+                    <td><a href="/price/?category_id=52" target="_blank">废电瓶</a></td>
+                </tr>
+                <tr>
+                	<td><a href="/price/?category_id=44" target="_blank">废不锈钢</a></td>
+                    <td><a href="/price/?category_id=43" target="_blank">废铅废镍</a></td>
+                    <td><a href="/price/?category_id=72" target="_blank">沪铜</a></td>
+                    <td><a href="/price/?category_id=71" target="_blank">沪铝</a></td>
+                    <td><a href="/price/?category_id=206" target="_blank">沪钢</a></td>
+                </tr>
+                <tr>
+                	<td><a href="/price/?category_id=69" target="_blank">沪锌</a></td>
+                    <td><a href="/price/?category_id=84" target="_blank">上海合金</a></td>
+                    <td><a href="/price/?category_id=210" target="_blank">长江有色</a></td>
+                    <td><a href="/price/?category_id=51" target="_blank">网上报价</a></td>
+                    <td><a href="/priceindex/216.html" target="_blank">行情综述</a></td>
+                </tr>
+                <tr>
+                	<td><a href="/price/?category_id=46" target="_blank">国外<br>废金属</a></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+         <div class="cate-box cb-item1">
+        	<table class="cate-tab" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<th colspan="3"><img src="http://img0.zz91.com/zz91/mobile/images/icon_plastic.png" />塑料</th>
+                </tr>
+                <tr>
+                	<td><a href="/priceindex/areasuliao/" target="_blank">各地废塑料行情</a></td>
+                    <td><a href="/priceindex/suliaoarea/" target="_blank">全国废塑料价格</a></td>
+                    <td><a href="/priceindex/suliaozaishengliao/" target="_blank">塑料再生料价格</a></td>
+                </tr>
+                <tr>
+                	<td><a href="/priceindex/217.html" target="_blank">废塑料行情综述</a></td>
+                    <td><a href="/priceindex/meiguosuliao/" target="_blank">美国废塑料价格</a></td>
+                    <td><a href="/priceindex/ouzhousuliao/" target="_blank">欧洲废塑料价格</a></td>
+                </tr>
+                <tr>
+                	<td><a href="/priceindex/suliaoxinliao/" target="_blank">塑料新料</a></td>
+                    <td><a href="/priceindex/34.html" target="_blank">废塑料评论</a></td>
+                    <td><a href="/priceindex/35.html" target="_blank">废塑料周报</a></td>
+                </tr>
+                <tr>
+                	<td><a href="/priceindex/suliaoqihuo/" target="_blank">塑料期货</a></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="cate-box cb-item2">
+        	<table class="cate-tab" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<th colspan="3"><img src="http://img0.zz91.com/zz91/mobile/images/icon_paper.png" />废纸</th>
+                </tr>
+                <tr>
+                	<td><a href="/price/?category_id=231" target="_blank">废纸各地价格</a></td>
+                    <td><a href="/priceindex/25.html" target="_blank">废纸网上报价</a></td>
+                    <td><a href="/priceindex/27.html" target="_blank">国内日废价格</a></td>
+                </tr>
+                <tr>
+                	<td><a href="/priceindex/28.html" target="_blank">国内美废价格</a></td>
+                    <td><a href="/priceindex/26.html" target="_blank">国内欧废价格</a></td>
+                    <td><a href="/priceindex/29.html" target="_blank">国外废纸价格</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="cate-box cb-item3">
+        	<table class="cate-tab" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<th colspan="3"><img src="http://img0.zz91.com/zz91/mobile/images/icon_rubber.png" />橡胶</th>
+                </tr>
+                <tr>
+                	<td><a href="/price/?category_id=30&keywords=国内橡胶" target="_blank">国内橡胶</a></td>
+                    <td><a href="/price/?category_id=219&keywords=废橡胶行情综述" target="_blank">废橡胶行情综述</a></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="cate-box cb-item4">
+        	<table class="cate-tab" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<th colspan="3"><img src="http://img0.zz91.com/zz91/mobile/images/icon_oil.png" />原油</th>
+                </tr>
+                <tr>
+                	<td><a href="/priceindex/190.html" target="_blank">油价</a></td>
+                    <td><a href="/priceindex/220.html" target="_blank">行情综述</a></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+		</div>
+		<script type="text/javascript">
+			/*手机站：首页 20:3，创建于2014-7-22*/
+			var cpro_id = "u1629209";
+		</script>
+		<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+		{%include 'bottom.html'%}
+		<!--end main-->
+	</body>
+
+</html>

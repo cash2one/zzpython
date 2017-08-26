@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>{{luck_one.title|safe}}-ZZ91再生网-手机端，开启废料移动商务</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script src="http://img0.zz91.com/zz91/mobile/js/style.js"></script>
+</head>
+<body style="background:#f1f1f1">
+
+{%include 'top2.html'%}
+
+<div class="mt48"></div>
+<div class="details">
+
+     <!--end details-listNav-->
+     <div class="details-title">
+     	<center>
+     	<h1>{{luck_one.title}}</h1>
+        <span>发布时间：{{luck_one.pubdate}}</span><span>来源：ZZ91</span><span>浏览量：{{luck_one.click}}</span>
+        </center>
+     </div>
+     <!--end details-title-->
+     <div class="details-content">
+     
+	{%if luck_one.p%}<img src="{{luck_one.body}}">
+	{%else%}
+	{%if luck_one.a%}
+	{{luck_one.body|safe}}<br /><br />
+	{%else%}
+	{{luck_one.body|safe}}
+	{%endif%}
+	{%endif%}
+     		
+     </div>
+     <!--end details-content-->
+</div>
+<!--end details-->
+
+<div class="details-list">
+<div>相关资讯</div>
+	<ul>
+{%for t in aboutnews%}
+        <li><a href="/otherdetail{{t.id}}.htm?type={{type}}">{{t.title}}</a></li>
+{%endfor%}
+    </ul>
+</div>
+<!--end details-list-->
+
+
+{%include 'bottom2.html'%}
+
+
+
+</body>
+</html>

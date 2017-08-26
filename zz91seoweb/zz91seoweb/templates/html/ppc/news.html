@@ -1,0 +1,63 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{{csscode}}css/base.css" />
+<link rel="stylesheet" href="{{csscode}}css/modules.css" />
+<link rel="stylesheet" href="{{csscode}}css/style.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico">
+<title>公司动态-{{list.name}}</title>
+<meta content="" name="description"/>
+<meta content="" name="keywords"/>
+</head>
+<body>
+{%include htmlincludes.topinclude%}
+<div id="content">
+	<!--左边主题板块-->
+           <div class="grid-sub fl">
+                    {%include htmlincludes.leftinclude%}
+           </div>
+<!--左边主题板块结束-->
+
+	<!-- 右面主题板块-->
+<div class="main-wrap fr">
+	<!--明星产品-->
+	<div class="mod mod-starpro">
+		<div class="m-body">
+			<div class="m-header"><h3>公司动态</h3></div>
+			<div class="m-content">
+                <div class="star-region pro-newscon">
+                {%for nlist in newslist%}
+                    <dl class="pro-newslist">
+                    <dt><a href="newsdetail{{nlist.id}}.htm" target="_blank">{{nlist.title|safe}}</a></dt>
+                    <dd>{{nlist.content|safe}}...</dd>
+                    </dl>
+                {%endfor%}
+                    <!--  翻页开始-->   
+					<div class="apartpageBox">
+                    {% if firstpage %}
+                    <span class='prev-page'><a href="news{{company_id}}-{{prvpage}}.htm">上一页</a></span>
+                    {% endif %}
+                    {% for p in page_range %}
+                    {% if p.nowpage %}
+                    <strong class="current">{{p.number}}</strong>
+                    {% else %}
+                    <a href='news{{company_id}}-{{p.number}}.htm' >{{p.number}}</a>
+                    {% endif %}
+					{% endfor %}
+                    {% if lastpage%}
+                    <a class="next-page" href='news{{company_id}}-{{nextpage}}.htm' >下一页</a></div>
+                    {% endif %}
+					<!--  翻页结束-->
+                </div>
+							</div>
+		</div>
+	</div>
+	<!--明星产品结束-->
+</div>
+<!-- 右面主题板块结束-->
+</div>
+{%include htmlincludes.buttominclude%}
+</body>
+</html>

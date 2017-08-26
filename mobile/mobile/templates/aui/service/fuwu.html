@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>基础服务-ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/service/fuwu/css/index.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<style>
+			.aui-tab{
+				position: fixed;
+				top: 45px;
+				width: 100%;
+				z-index: 999;
+			}
+			.aui-bar{
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			.czfoot {
+				position: fixed;
+				bottom: 0px;
+				border-top: solid 1px #EBEBEB;
+				width: 100%;
+				background-color: #F6F6F6;
+				line-height: 45px;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+			}
+			.czfoot li {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				text-align: center;
+				border-right: 1px solid #e7e7e7;
+				font-size: 16px;
+			}
+			.czfoot li:last-child {
+				border-right: none;
+			}
+			
+			.aui-tab-item.aui-active {
+			    color: #27ae60;
+			    border-bottom: 2px solid #27ae60;
+			    z-index: 100;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="display: none;"><img src="http://img0.zz91.com/zz91/images/minilogo.jpg" /></div>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">会员服务</div>
+		    <a class="aui-pull-right" href="/myrc_index/">
+		        <span class="aui-iconfont aui-icon-my"></span>
+		    </a>
+		</header>
+		<div class="aui-tab" id="tab">
+	        <div class="aui-tab-item"><a href="index.html">增值服务</a></div>
+	        <div class="aui-tab-item aui-active"><a href="fuwu.html">基础服务</a></div>
+	        <div class="aui-tab-item"><a href="youhui.html">优惠活动</a></div>
+	    </div>
+	    <div style="height: 88px;"></div>
+		<div>
+			<a href="fuwu_zst.html"><div class="zz-div-box zz-fuwu-modle zz-bg-white">
+				<div class="zz-fuwu-iconbox column-cnt">
+					<i class="iconfont zz-fuwu-icon row-column-cnt">&#xe603;</i>
+				</div>
+				<div class="zz-div-td1">
+					<h3>会员服务</h3>
+					<p>4.0营销服务，更具专业，更加多元</p>
+				</div>
+			</div>
+			</a>
+			<a href="fuwu_ppai.html">
+			<div class="zz-div-box zz-fuwu-modle zz-bg-white">
+				<div class="zz-fuwu-iconbox column-cnt">
+					<i class="iconfont zz-fuwu-icon row-column-cnt">&#xe670;</i>
+				</div>
+				<div class="zz-div-td1">
+					<h3>品牌广告</h3>
+					<p>精准投放，传递品牌形象，彰显企业实力</p>
+				</div>
+			</div>
+			</a>
+			<a href="fuwu_ldb.html">
+			<div class="zz-div-box zz-fuwu-modle zz-bg-white">
+				<div class="zz-fuwu-iconbox column-cnt">
+					<i class="iconfont zz-fuwu-icon row-column-cnt">&#xe619;</i>
+				</div>
+				<div class="zz-div-td1">
+					<h3>来电宝服务</h3>
+					<p>让你的每一分钱都花的有价值</p>
+				</div>
+			</div>
+			</a>
+			<a href="fuwu_baidu.html">
+			<div class="zz-div-box zz-fuwu-modle zz-bg-white">
+				<div class="zz-fuwu-iconbox column-cnt">
+					<i class="iconfont zz-fuwu-icon row-column-cnt">&#xe7df;</i>
+				</div>
+				<div class="zz-div-td1">
+					<h3>百度优化</h3>
+					<p>高性价比推广，流量商机快速变现</p>
+				</div>
+			</div>
+			</a>
+		</div>
+		<input type="hidden" id="showcontactvalue" value="">
+		<input type="hidden" id="backvalue" value="">
+		<div style="height: 45px;"></div>
+		<footer class="czfoot">
+			<li class="chongzhi">
+				<a href="/qianbao/chongzhi.html"><span class="aui-iconfont2 aui-icon-refund"></span> 在线充值</a>
+			</li>
+			<li class="myservice">
+				<a href="/qianbao/myservice.html"><span class="aui-iconfont2 aui-icon-service"></span> 我的服务</a>
+			</li>
+		</footer>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script>
+			(function(d, t) {
+				var r = d.createElement(t),
+					s = d.getElementsByTagName(t)[0];
+				r.async = 1;
+				r.src = 'http://m.zz91.com/wechat/weixinshare.js?wurl='+location.href;
+				s.parentNode.insertBefore(r, s);
+			})(document, "script");
+		</script>
+		{%include 'aui/bottom.html'%}
+		
+	</body>
+</html>
+<script type="text/javascript" src="http://static.m.zz91.com/service/fuwu/js/index.js" ></script>
+
+
+
+<script>
+</script>

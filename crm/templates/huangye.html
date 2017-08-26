@@ -1,0 +1,33 @@
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+body {
+	margin: 10px;
+}
+-->
+</style>
+<div><a href="?ss=1">私海</a> | <a href="?ss=2">公海</a> | <a href="?ss=3">2011-1-1后联系私海</a> | <a href="?ss=4">2011-1-1后联系公海</a></div>
+<form id="form1" name="form1" method="get" action="">
+<div>
+地区：<input type=text name=province value="{{province}}"> 
+主营业务：<input type=text name=productlist id="productlist" value="{{productlist}}">
+<input type="submit" name="button" id="button" value="搜索" />
+<input type="hidden" name=ss value={{ss}}>
+</div>
+
+</form>
+<b>{{nindextext}}</b>
+<div>共有{{listcount}}条记录</div>
+<br>
+{%for list in listall%}
+公司名称：{{list.com_name}}<br>
+主营业务：{{list.com_productslist}}<br>
+联系人：{{list.com_contactperson}}<br>
+电话：{{list.com_tel}}<br>
+手机：{{list.com_mobile}}<br>
+地址：{{list.com_add}}<br>
+简介：{{list.com_intro}}<br>
+<br>
+{%endfor%}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+		<style>
+			body{
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+	<form action="user_assign_vap_ok.html" class="form-horizontal" method="post">
+		{%for list in allsalesman%}
+			<div style="border-bottom: solid 1px #f3f3f3;line-height: 22px; background-color: #F4F8F4;width: 200px;"><b>{{list.cate_label}}</b></div>
+			<div style="line-height: 25px;">
+			{%for man in list.thiscateman%}
+				<label class="checkbox" for="u{{man.id}}"><input name='userid' type="checkbox" id="u{{man.id}}" value="{{man.id}}"/>{{man.realname}}</label>
+			{%endfor%}
+		{%endfor%}
+		</div>
+		<button type="submit" class="button button-primary">  保存   </button>
+	</form>
+	<script type="text/javascript" src="../assets/js/jquery-1.8.1.min.js"></script>
+	<script>
+	$(document).ready(function(){
+		var str = "{{userassignlist}}";
+	    $(str.split(",")).each(function (i,dom){
+	        $(":checkbox[name=userid][value='"+dom+"']").prop("checked",true);
+	    });
+	});
+	</script>
+	</body>
+</html>

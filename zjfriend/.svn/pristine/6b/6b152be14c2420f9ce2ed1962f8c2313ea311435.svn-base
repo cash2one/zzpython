@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/frm_login.css" />
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="api.closeWin();"></a>
+			<h1 class="mui-title">用户注册</h1>
+		</header>
+		<div class="content">
+			<div class="form">
+				<div class="input-wrap">
+					<i class="user"></i>
+					<input type="text" placeholder="邮箱账号或手机号" id="username" value="">
+				</div>
+				<div class="input-wrap">
+					<i class="password"></i>
+					<input type="password" placeholder="密码" id="password" value="">
+				</div>
+			</div>
+			<div class="btn" id="login" tapmode="" onclick="register()">
+				注册
+			</div>
+		</div>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../script/api.js"></script>
+	</body>
+	<script>
+			apiready = function() {
+				fixIos7Bar($(".header"));
+			};
+			function register() {
+				api.showProgress();
+				var username = $("#username").val();
+				var password = $("#password").val();
+				var appid = api.appId;
+				api.ajax({
+					url : hosturl+'/sex/reg.html',
+					method : 'post',
+					timeout : 30,
+					data :{values:{username:username,passwd:password,appid:appid}},
+					dataType : "json",
+					returnAll : false
+				}, function(ret, err) {
+					 if (ret) {
+				        if(ret.error_code==0){
+				        	alert("注册成功")
+				        }else{
+				        	alert(ret.reason)
+				        }
+				    }else {
+				        api.alert({
+				            msg:('错误码：'+err.code+'；错误信息：'+err.msg+'网络状态码：'+err.statusCode)
+				        });
+				    }
+					api.hideProgress();
+				});
+			}
+		</script>
+</html>

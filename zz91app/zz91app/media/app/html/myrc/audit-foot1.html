@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>底部-刷新</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+</head>
+  <style>
+    .footer span{
+      width: 100%;
+      float: left;
+      text-align: center;
+      height: 50px;
+      border-top: 1px solid #e1e1e1;
+      position: relative;
+      line-height: 50px;
+      padding-top: 10px;
+      background-color: #f2f2f2;
+      color: #959595
+    }
+    .footer span i{
+      display: block;
+      height: 15px;
+      width: 15px;
+      background-image: url(../../image/imageslist.png);
+      background-size: 250px;
+      position: absolute;
+      left: 50%;
+      margin-left: -7px;
+      top: 7px;
+
+    }
+    .gonew{
+      border-right:1px solid #e1e1e1;
+    }
+    .footer .gonew i{
+      background-position: -135px -0px;
+    }
+    .footer .notinto i{
+      background-position: -135px -17px;
+    }
+  </style>
+<body>
+<div id="wrap">
+  <!-- <div id="main">
+  </div> -->
+  <div class="footer">
+    <span class="gonew j_allinfo"><i></i>重新发布</span>
+  </div>
+</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+ apiready = function(){
+    $(".j_allinfo").on("click",function(){
+        api.execScript({
+            name: 'buyinout',
+            frameName: 'frame_3',
+            script: "repost()"
+        });
+    })
+ }
+</script>
+</html>

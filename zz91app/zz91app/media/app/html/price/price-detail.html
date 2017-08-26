@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>报价最终页</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/price/price-detail.css" />
+	</head>
+	<body>
+		<div class="essay" style="display:none">
+			<h1 class="essay-title"><!-- 亚洲PPPPPPPPPPPPPPPPPPPPP --></h1>
+			<div class="essay-info-list clear">
+				<span class="essay-time"><!-- 2015年09月14日 08:35 --></span>
+				<span class="take">订阅</span>
+				<span class="essay-fsize"><t class="small-size">A</t>|<t class="big-size">A</t></span>
+			</div>
+			<!--<div style="text-align: center;color: #999;">
+				<宽表格可左右滑动>
+			</div>-->
+		</div>
+		<div class="info-table" style="display:none"></div>
+		<div id="priceother" style="display:none">
+			<!-- <div class="handle clear">
+			<span class="share weixin"></span>
+			<span class="share weikon"></span>
+			<span class="share xinlang"></span>
+			<span class="share qq"></span>
+			<span class="house"><i class="house-img"></i>收藏</span>
+			</div> -->
+			<h3 class="interfix interfix_1">相关价格</h3>
+			<ul class="price-list">
+				<!-- <li tapmode="index-nav-li">09月15日上海废铁市场行情</li> -->
+			</ul>
+			<!--<h3 class="interfix interfix_2">相关供求</h3>
+			<ul class="supply">
+			</ul>-->
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script id="info-list" type="text/html">
+		<li id="{{ d.id }}" class="change-bgcolor">{{ d.title }}</li>
+	</script>
+	<script id="info-list-gq" type="text/html">
+		<li class="supply-li change-bgcolor" id={ { d.id }}>
+		<img src="{{ d.proimg }}" heigth="45" width="54" class="supply-img" style="display:{{ d.display }}">
+		<div><span class="supply-title">{{ d.title }}</span><span class="supply-time fr">{{ d.gmt_time }}</span></div>
+		<div><span class="supply-where">{{ d.province }}</span><span class="supply-price fr">{{ d.price }}元</span></div>
+		</li>
+	</script>
+	<script type="text/javascript">
+		var shouchangdata;
+		apiready = function() {
+			//改变字体大小
+			$(".small-size").on("click", function() {
+				$(".info-table").animate({
+					fontSize : "12px",
+					lineHeight : "24px"
+				});
+			})
+			$(".big-size").on("click", function() {
+				$(".info-table").animate({
+					fontSize : "18px",
+					lineHeight : "32px"
+				});
+			})
+			$(".take").on("click", function() {
+				var pageParam = {
+					wintitle : "订阅行情",
+					type : "order_price",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {
+					openWinNormal("order_price", "../price/order-main.html", pageParam);
+				} else {
+					pageParam.nextUrl = "../price/order-main.html";
+					pageParam.winName = "order_price";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			$(".supply").on("click", "li", function() {
+				var id = $(this).attr("id")
+				var pageParam = {
+					wintitle : "供求详情",
+					type : "infomation-heart",
+					id : id,
+					nav_list : [{
+						"typename" : "供求详情",
+						"id" : 1
+					}, {
+						"typename" : "公司简介",
+						"id" : 2
+					}], //头部划动标题
+					frame_url : ["../trade/firm-detail.html", "../trade/firm.html"], //打开frame组的页面集合
+					topnumber : 2,
+					bounces : false
+				};
+				openWin("infomation-heart", "infomation-heart.html", pageParam);
+			})
+			//获取信息
+			ajaxInfo();
+			$(".price-list").on("click", "li", function() {
+				var id = $(this).attr("id");
+				var pageParam = {
+					wintitle : "报价详情",
+					type : "price-detail",
+					id : id
+				};
+				openWin("price-detail" + id, "../price/price-detail.html", pageParam);
+			})
+		}
+		//报价收藏
+		//收藏
+		function shoucFun(favoriteflag) {
+			//未登录
+			if (!havelogin()){
+				return false;
+			};
+			loadingshow();
+			
+			if (shouchangdata) {
+				shouchangdata['favoriteflag']=favoriteflag;
+				shoucInfo(shouchangdata);
+			}
+		}
+		function ajaxInfo() {
+			api.showProgress({
+				title : '加载中',
+				modal : false
+			});
+			var id = api.pageParam.id;
+			api.ajax({
+				url : hosturl + 'priceviews/?id=' + id + '&datatype=json&company_id='+UserInfo.memberID()+'&appsystem='+api.systemType+"&t=" + (new Date()).getTime().toString(),
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false
+			}, function(ret, err) {
+				if (err) {
+					zzalert(err.statusCode + "错误！")
+					api.hideProgress();
+				}
+				if (ret) {
+					$(".essay-title").html(ret.listall[0].title);
+					$(".essay-time").html(ret.listall[0].gmt_created);
+					$(".info-table").html(ret.listall[0].content);
+					var pageHtml = "";
+					if (ret.priceabout.length == 0) {
+						$(".interfix_1").hide();
+					}
+					$.each(ret.priceabout, function(index, item) {
+						var getTpl = $api.html($api.byId("info-list"));
+						laytpl(getTpl).render(item, function(html) {
+							pageHtml = pageHtml + html;
+						});
+					})
+					var gqHtml = "";
+					if (ret.offerlist) {
+						if (ret.offerlist.length == 0) {
+							$(".interfix_2").hide();
+						}
+						$.each(ret.offerlist, function(index, item) {
+							if (item.proimg == null) {
+								item.proimg = "";
+								item.display = "none"
+							}
+							var getTpl = $api.html($api.byId("info-list-gq"));
+							laytpl(getTpl).render(item, function(html) {
+								gqHtml = gqHtml + html;
+							});
+						})
+					}
+					//保存分享数据到本地
+					var title=ret.listall[0].title;
+					localStorage.setItem("share_title",""+title);
+					localStorage.setItem("share_description","我正在查看"+title+"，赶紧跟我一起来体验！http://m.zz91.com/jiage/detail"+id.toString()+".html 点击链接查看");
+					localStorage.setItem("share_url","http://m.zz91.com/jiage/detail"+id.toString()+".html");
+					localStorage.setItem("share_pic","http://img0.zz91.com/zz91/images/indexLogo.png");
+					
+					
+					$(".price-list").html(pageHtml);
+					$(".supply").html(gqHtml)
+					$("#priceother").css("display", "block");
+					$(".essay").css("display", "block");
+					$(".info-table").css("display", "block");
+					api.hideProgress();
+					//收藏数据
+					var favorite_type_code = 10091004;
+					var data = {
+						company_id : UserInfo.memberID(),
+						usertoken : UserInfo.token(),
+						appsystem : api.systemType,
+						datatype : "json",
+						favorite_type_code : favorite_type_code,
+						forcompany_id : 0,
+						content_id : id,
+						title : ret.listall[0].title,
+						pdtid : 0,
+						products_type_code : 0
+					};
+					shouchangdata=data;
+					//显示是否已经收藏
+					api.execScript({
+						name : 'price-detail'+id.toString(),
+						script : "isfavor("+ret.listall[0].favoriteflag+")"
+					});
+				} else {
+					api.hideProgress();
+				};
+			});
+		}
+	</script>
+</html>

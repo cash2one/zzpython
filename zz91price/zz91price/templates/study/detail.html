@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="Cache-Control" content="no-transform " />
+    <title>{{detail.title|safe}}_行情研究院-ZZ91再生网</title>
+    <meta name="keywords" content="{{detail.title|safe}}" />
+    <meta name="description" content="{{detail.pcontent}}" />
+    <meta http-equiv="mobile-agent" content="format=html5; url=http://m.zz91.com/jiage/detail{{id}}.html"/>
+	<link rel="alternate" media="only screen and(max-width:640px)" href="http://m.zz91.com/jiage/detail{{id}}.html" >
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/comm.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/foot.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/top.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/market/css/index.css" />
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <script src="http://b.zz91.com/comm/js/comm.js"></script>
+    <style>
+    	.fenxiang-fix-ul li{
+			margin-bottom: 9px;
+			text-align: center;
+			padding-left: 13px;
+		}
+    </style>
+</head>
+<body>
+    {% include 'comm/new/header.html' %}
+    <div class="fenxiang-fix">
+        <div class="fenxiang-fix-title">分享</div>
+        <ul class="fenxiang-fix-ul bdsharebuttonbox" data-tag="share_1">
+        	<li><a class="bds_mshare" data-cmd="mshare"></a></li>
+			<li><a class="bds_qzone" data-cmd="qzone" href="#"></a></li>
+			<li><a class="bds_tsina" data-cmd="tsina"></a></li>
+			<li><a class="bds_baidu" data-cmd="baidu"></a></li>
+			<li><a class="bds_renren" data-cmd="renren"></a></li>
+			<li><a class="bds_tqq" data-cmd="tqq"></a></li>
+			<li><a class="bds_more" data-cmd="more">更多</a></li>
+        </ul>
+    </div>
+	<script>
+		window._bd_share_config = {
+			common : {
+				bdText : '{{detail.title|safe}}',	
+				bdDesc : '',	
+				bdUrl : document.url, 	
+				bdPic : ''
+			},
+			share : [{
+				"bdSize" : 32
+			}],
+			selectShare : [{
+				"bdselectMiniList" : ['qzone','tsina','tqq','kaixin001','bdxc','tqf','mshare','renren']
+			}]
+		}
+		with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+    <div class="navbox">
+        <div class="navmain">
+            <div class="fl logo"><a href="http://www.zz91.com/"><img src="http://b.zz91.com/force/images/logo.jpg"></a></div>
+            <div class="fl page-name"><a href="http://jiage.zz91.com/study/"><img src="http://b.zz91.com/market/images/pagename.png"></a></div>
+            <ul class="fl page-handy">
+                <li class="fl"><i class="icon2 icon2-handy1"></i>市场分析</li>
+                <li class="fl"><i class="icon2 icon2-handy2"></i>行业解读</li>
+                <li class="fl"><i class="icon2 icon2-handy3"></i>专业报告</li>
+            </ul>
+            <div class="fr navmain-list">
+                <ul class="clearfix navmain-ul">
+                    <li class="fl {%ifequal type ''%}thisnav{%endifequal%}"><a href="/study/index.html">首页</a></li>
+                    <li class="fl {%ifequal type 'djgd'%}thisnav{%endifequal%}"><a href="/study/djgd/">独家观点</a></li>
+                    <li class="fl {%ifequal type 'hybg'%}thisnav{%endifequal%}"><a href="/study/hybg/">行业报告</a></li>
+                    <li class="fl {%ifequal type 'zjjd'%}thisnav{%endifequal%}"><a href="/study/zjjd/">专家解读</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-ads">
+        <div class="page-ads-main">
+            <i class="icon2 icon2-ads"></i>当前位置：<a href="/study/">行情研究院首页</a> <span class="page-this-ads">{{navlist|safe}}</span> > {{detail.title|safe}}
+        </div>
+    </div>
+    
+    
+    <div class="center clearfix">
+        <div class="fl void-tell-us">
+        	<div class="void-tell-tt">
+            	{%ifequal type 'djgd'%}
+                <img src="http://b.zz91.com/market/images/titleimg1.png" class="fl">
+                {%endifequal%}
+                {%ifequal type 'hybg'%}
+                <img src="http://b.zz91.com/market/images/titleimg2.png" class="fl">
+                {%endifequal%}
+                {%ifequal type 'zjjd'%}
+                <img src="http://b.zz91.com/market/images/titleimg3.png" class="fl">
+                {%endifequal%}
+            </div>
+            <div class="hq-view-box" style="margin-top: 20px;">
+                <div class="hq-view-title">{{detail.title|safe}}</div>
+                <div style="text-align: center;line-height: 50px;">时间：{{detail.gmt_order}}</div>
+                <div class="hq-view-wen">
+                    {{detail.content|safe}}
+                </div>
+                <!--<div class="hq-view-page">
+                    <a href="#" class="this-view-page">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                </div>-->
+                <div class="seeother-view clearfix">
+                	{%if prenextlist.preid%}
+                    <div class="fl seeother-view-title">上一篇：<a href="/study/{{prenextlist.preurlpath}}/detail{{prenextlist.preid}}.html">{{prenextlist.pretitle}}</a></div>
+                    {%endif%}
+                    {%if prenextlist.nextid%}
+                    <div class="fr seeother-view-title">下一篇：<a href="/study/{{prenextlist.nexturlpath}}/detail{{prenextlist.nextid}}.html">{{prenextlist.nexttitle}}</a></div>
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+        {% include 'study/right.html' %}
+    </div>
+    {% include 'comm/new/footer.html' %}
+</body>
+<script src="http://b.zz91.com/market/js/hq-comm.js"></script>
+<script type="text/javascript">
+</script>
+</html>

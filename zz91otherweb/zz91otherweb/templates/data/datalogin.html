@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="Js/jquery.js"></script>
+    <script type="text/javascript" src="123/function.js"></script>
+    <script type="text/javascript" src="Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="Js/bootstrap.js"></script>
+    <script type="text/javascript" src="Js/ckform.js"></script>
+    <script type="text/javascript" src="Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<form class="form-inline definewidth m20">  
+<input type="text" style="width:90px" name="gmt_begin" class="w80px" style="border:1px solid #999;" onclick="fPopCalendar(event,this,this)" onfocus="this.select()" /> 
+ 到 <input type="text" style="width:90px" name="gmt_end" class="w80px" style="border:1px solid #999;" onclick="fPopCalendar(event,this,this)" onfocus="this.select()" />
+&nbsp;&nbsp;<input class="btn btn-success" type="submit" value="查询"> &nbsp;&nbsp;&nbsp;<input class="btn btn-success" type="button" value="年份登录数" onclick="window.location.href='?yearlogin=1'">
+</form>
+{{loginrecordyear}}
+{%if timenow2014%}
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>2012年登录数</th>
+        <th>2013年登录数</th>
+        <th>2014年至今</th>
+    </tr>
+    </thead>
+	     <tr>
+	     <td>{{count2012}}</td>
+	     <td>{{count2013}}</td>
+	     <td>{{count2014}}</td>
+        </tr>
+</table><br />
+{%endif%}
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>每日多次</th>
+        <th>每日一次</th>
+        <th>一周一次</th>
+        <th>一周多次</th>
+        <th>一月多次</th>
+        <th>三月多次</th>
+        <th>其他</th>
+        <th>当前总数</th>
+    
+    </tr>
+    </thead>
+    {%if count%}
+	     <tr>
+	     <td><a href="logdetail.html?arg=3&gmt_begin={{gmt_begin}}&gmt_end={{gmt_end}}" title="查看账号">{{lenl3}}</a> &nbsp;&nbsp;<a href="sendmials.html?gmt_begin={{gmt_begin}}&gmt_end={{gmt_end}}" title="发送邮件"><img src="123/imgs/mail02.png" /></a></td>
+	     <td><a href="logdetail.html?arg=1&gmt_begin={{gmt_begin}}&gmt_end={{gmt_end}}" title="查看账号">{{lenl1}}</a></td>
+	     <td><a href="logdetail.html?arg=2&gmt_begin={{gmt_begin}}&gmt_end={{gmt_end}}" title="查看账号">{{lenl2}}</a></td>
+	     <td><a href="logdetail.html?arg=4&gmt_begin={{gmt_begin}}&gmt_end={{gmt_end}}" title="查看账号">{{lenl4}}</a></td>
+	     <td><a href="logdetail.html?arg=5&gmt_begin={{gmt_begin}}&gmt_end={{gmt_end}}" title="查看账号">{{lenl5}}</a></td>
+	     <td><a href="logdetail.html?arg=6&gmt_begin={{gmt_begin}}&gmt_end={{gmt_end}}" title="查看账号">{{lenl6}}</a></td>
+	     <td><a href="logdetail.html?arg=7&gmt_begin={{gmt_begin}}&gmt_end={{gmt_end}}" title="查看账号">{{lenl7}}</a></td>
+	     <td>{{count}}</td>
+        </tr>
+     {%endif%}
+</table>
+
+<div class="inline pull-right page"></div>
+</body>
+</html>

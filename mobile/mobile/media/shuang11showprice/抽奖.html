@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="js/jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="js/layer/layer.js"></script>
+		<script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery.cookie.js"></script>
+		
+		<style>
+			.fw{
+				width: 700px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			.fw li{
+				float: left;
+				line-height: 50px;
+				margin: 20px;
+				background-color: #E30112;
+				padding: 20px;
+				font-size: 25px;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="fw">
+			<ul>
+				<li style="width: 30%;">一年再生通</li>
+				<li style="background-color: #006600;">2</li>
+				<li style="background-color: #FF8A00;" id="p12">x</li>
+				<li style="background-color: #FF8A00;" id="p13">x</li>
+				<li style="background-color: #006600;">9</li>
+			</ul>
+		</div>
+		<div class="fw">
+			<ul>
+				<li style="width: 30%;">二年再生通</li>
+				<li style="background-color: #006600;">3</li>
+				<li style="background-color: #FF8A00;" id="p22">x</li>
+				<li style="background-color: #FF8A00;" id="p23">x</li>
+				<li style="background-color: #006600;">9</li>
+			</ul>
+		</div>
+		<div class="fw">
+			<ul>
+				<li style="width: 30%;">一年金牌品牌通</li>
+				<li style="background-color: #006600;">4</li>
+				<li style="background-color: #FF8A00;" id="p32">x</li>
+				<li style="background-color: #FF8A00;" id="p33">x</li>
+				<li style="background-color: #006600;">9</li>
+			</ul>
+		</div>
+		<div class="fw">
+			<ul>
+				<li style="width: 30%;">二年钻石品牌通</li>
+				<li style="background-color: #006600;">8</li>
+				<li style="background-color: #FF8A00;" id="p42">x</li>
+				<li style="background-color: #FF8A00;" id="p43">x</li>
+				<li style="background-color: #006600;">9</li>
+			</ul>
+		</div>
+		<div class="fw"><input type="button" value="重置数据"  class="resst" style="width: 50%;line-height: 40px;height: 50px;"/></div>
+	</body>
+	<script>
+		//iframe层-父子操作
+		$(function(){
+			$(".fw li").click(function(){
+				var pid = $(this).attr("id");
+				$.cookie('serverid', pid);
+				if (pid){
+					layer.open({
+					  type: 2,
+					  title:'抽取数字',
+					  area: ['500px', '500px'],
+					  fixed: false, //不固定
+					  maxmin: false,
+					  content: 'cj.html'
+					});
+				}
+			});
+			$(".resst").click(function(){
+				$(".fw li").each(function() {
+					var pid = $(this).attr("id");
+					if (pid){
+						$.cookie('serverid'+pid, null);
+						$(this).html("x")
+					}
+				});
+			})
+			$(".fw li").each(function() {
+				var pid = $(this).attr("id");
+				var serverval=$.cookie('serverid'+pid);
+				if (serverval) {
+					$(this).html("<span style='font-size: 35px;color: #FFFF00;'><b>"+serverval+"</b></span>")
+				}
+			});
+			$.cookie('the_cookie', null); 
+		});
+		function getservervalue(n){
+			var serverid=$.cookie('serverid');
+			//alert(n)
+			$("#"+serverid).html("<span style='font-size: 35px;color: #FFFF00;'><b>"+n+"</b></span>")
+		}
+		
+	</script>
+</html>

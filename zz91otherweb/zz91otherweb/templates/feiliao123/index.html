@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>废料网址之家-开启废料商家上网导航</title>
+		<meta name="keywords" content="废料导航,废料网址之家,废料网址大全,废料网址导航,废料安全网址,网址大全,废料上网导航,废料网址" />
+		<meta name="description" content="废料123导航--新一代上网上网导航，为用户提供再生资源各个行业,废金属,废塑料,废橡胶,废纺织,废纸,二手设备等各种分类的优秀内容和网站入口，提供最简单便捷的上网导航服务。快捷上网，从废料123导航开始。" />
+		<link href="/new/css/reset.css" rel="stylesheet" type="text/css" />
+		<link href="/new/css/index.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="Js/jquery-1.7.2.js"></script>
+		<style type="text/css">
+			.hq-list li {
+				white-space: nowrap; //强制不换行 
+				overflow: hidden; //自动隐藏文字 
+				text-overflow: ellipsis; //文字隐藏后添加省略号 
+			}
+		</style>
+		<script type="text/javascript" src="/new/js/feiliao123.js"></script>
+	</head>
+
+	<body>
+		<div class="header">
+			<div class="top">
+				<div class="top-mo clear">
+					<a class="top-link" href="#">
+						<img src="/new/images/fei123.jpg" height="31">
+					</a>
+					<div class="fr top-handle">
+						<a href="#">首页推荐</a> |
+						<a href="#">加入收藏</a> |
+						<a href="#">留言反馈</a>
+					</div>
+				</div>
+			</div>
+			<div class="search">
+				<ul class="search-ul clear">
+					<li><img src="/new/images/logo.jpg" height="35"></li>
+					<li>
+						<input type="text" class="input-text">
+					</li>
+					<li>
+						<input type="submit" class="btn" value="搜索">
+					</li>
+				</ul>
+			</div>
+			<div class="advert-top">
+			</div>
+			<div class="nav clear">
+				<div class="nav-td nav-now"><a href="">首页</a></div>
+				<div class="nav-td"><a href="/trade/">废料交易</a></div>
+				<div class="nav-td"><a href="http://jiage.zz91.com/" target="_black">废料行情</a></div>
+				<div class="nav-td"><a href="/news/">废料资讯</a></div>
+				<div class="nav-td"><a href="http://company.zz91.com/" target="_black">废料企业</a></div>
+				<div class="nav-td last-nav"><a href="http://huzhu.zz91.com/" target="_black">废料社区</a></div>
+			</div>
+		</div>
+		<div class="content clear">
+			<div class="content1 clear">
+				<div class="advert-mo fl">
+					<div class="advert-one">
+
+					</div>
+					<div class="advert-two">
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<ins class="adsbygoogle" style="display:inline-block;width:250px;height:250px" data-ad-client="ca-pub-5512236620584335" data-ad-slot="9016738803"></ins>
+						<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
+					</div>
+				</div>
+				<div class="daohang fr">
+					<div class="daohang-th">废料网站导航</div>
+					<div class="table-dh">
+						<ul class="daohang-ul">
+							{%for t in webtype%}
+							<li>
+								<a href="feiliao123_more{{t.id}}.html"><span class="table-th" >{{t.typename}}</span></a> {% for list in t.listweb%}
+								<span><a href="{{list.url}}">{{list.typename}}</a></span> {%endfor%}
+								<span class="more"><a href="feiliao123_more{{t.id}}.html">更多>></a></span>
+							</li>
+							{%endfor%}
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			<div class="content2 clear">
+				<div class="info-mo fl">
+					<div class="hangqi">
+						<div class="bit-title bit-nb">行情报价</div>
+						<div class="bit-type">
+							<span class="now-bit">废金属</span>
+							<span>废塑料</span>
+							<span>综合废料</span>
+						</div>
+						<ul class="hq-list">
+							<!--  
+						{%for jsar in jinshu_area%}
+						<li><i></i><a href="http://jiage.zz91.com{{jsar.url}}" target="_blank">{{jsar.td_title}}</a></li>
+						{%endfor%}
+						{%for slgn in suliao_guonei%}
+						<li><i></i><a href="http://jiage.zz91.com{{slgn.url}}" target="_blank">{{slgn.td_title}}</a></li>
+						{%endfor%}-->
+							{%for zhzs in zonghe_zongshu%}
+							<li><i></i><a href="http://jiage.zz91.com{{zhzs.url}}" target="_blank">{{zhzs.td_title}}</a></li>
+							{%endfor%}
+						</ul>
+					</div>
+					<div class="feiliao">
+						<div class="bit-title">废料资讯</div>
+						<ul class="hq-list">
+							{%for h in hotnewslist%}
+							<li><i></i><a href="{{h.weburl}}" target="_black">{{h.title|safe}}</a></li>
+							{%endfor%}
+						</ul>
+					</div>
+				</div>
+				<div class="qiye fr">
+					<div class="qiye-all">
+						<div class="daohang-th">废料企业</div>
+						<div class="qiye-leibie">
+							<div class="qiye-fl-mo">
+								<dl>
+									<dt>废塑料</dt> {%for list in company_suliao.list%}
+									<dd><i></i><a href="{{list.company_url}}" target="_blank">{{list.compname}}</a></dd>
+									{%endfor%}
+								</dl>
+							</div>
+							<div class="qiye-fl-mo">
+								<dl>
+									<dt>废金属</dt> {%for list in company_jinshu.list%}
+									<dd><i></i><a href="{{list.company_url}}" target="_blank">{{list.compname}}</a></dd>
+									{%endfor%}
+								</dl>
+							</div>
+							<div class="qiye-fl-mo">
+								<dl>
+									<dt>综合</dt> {%for list in company_zonghe.list%}
+									<dd><i></i><a href="{{list.company_url}}" target="_blank">{{list.compname}}</a></dd>
+									{%endfor%}
+								</dl>
+							</div>
+						</div>
+					</div>
+					<div class="advert-four">
+
+					</div>
+				</div>
+			</div>
+			<div class="content3">
+				<div class="daohang-th">
+					<span class="fl">废料网站导航</span>
+					<span class="small-tg">
+					<a href="#">野史八卦</a> |
+					<a href="#">手机充值</a> |
+					<a href="#">房产家具</a> |
+					<a href="#">健康生活</a> |
+					<a href="#">安全播报</a>
+				</span>
+				</div>
+				<div class="yule clear">
+					<div class="yule-tk">
+						<img src="images/infoimg.jpg" width="100%" height="200">
+						<ul class="yule-list">
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+						</ul>
+					</div>
+					<div class="yule-tk">
+						<img src="images/infoimg.jpg" width="100%" height="200">
+						<ul class="yule-list">
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+						</ul>
+					</div>
+					<div class="yule-tk">
+						<img src="images/infoimg.jpg" width="100%" height="200">
+						<ul class="yule-list">
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+						</ul>
+					</div>
+					<div class="yule-tk">
+						<img src="images/infoimg.jpg" width="100%" height="200">
+						<ul class="yule-list">
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+							<li><a href="#">格力拟建再再生资源要做再再生资</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="content4 clear">
+				<a href="">使用查询</a> |
+				<a href="">使用查询</a> |
+				<a href="">使用查询</a> |
+				<a href="">使用查询</a> |
+				<a href="">使用查询</a> |
+				<a href="">使用查询</a> |
+				<a href="">使用查询</a> |
+				<a href="">使用查询</a> |
+				<a href="">使用查询</a> |
+				<a href="">使用查询</a> |
+				<a href="">使用查询</a> |
+				<a href="">使用查询</a> |
+				<a href="">使用查询</a>
+			</div>
+		</div>
+		<div class="footer">欢迎使用 2014 废料网站导航，最全，最多的废料网址导航 - 浙ICP备10030021号-3</div>
+	</body>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?201bba55f5f1e9005a2792bd0967bb4c";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+
+</html>

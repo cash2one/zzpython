@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/frm_login.css" />
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="api.closeWin();"></a>
+			<h1 class="mui-title">用户修改</h1>
+		</header>
+		<div class="content">
+			<div style="height:100px;text-align:center" class="head-portrait">
+				<img src="../image/profile_default.png" style="width:100px;height:100px;border-radius:50px;"></div>
+			<div class="form">
+				<div class="input-wrap">
+					昵称:<input type="text" placeholder="昵称" id="uname" value="">
+				</div>
+				<input type="hidden" id="userid" value="">
+				<div class="input-wrap input-sex">
+					性别 <input type="radio" name="sex" value="男" id="sex" />男 <input type="radio" name="sex" id="sex" value="女" checked/>女
+				</div>
+				<!-- <div class="input-wrap">
+					<input type="text" placeholder="所在地区" id="username" value="">
+				</div> -->
+			</div>
+			<div class="btn" id="login" tapmode="" onclick="modinfo()">
+				修改
+			</div>
+		</div>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/common.js"></script>
+		<script type="text/javascript" src="../script/laytpl.js"></script>
+	</body>
+	<script>
+			apiready = function() {
+				fixIos7Bar($(".header"));
+				//获取信息
+				getInfo();
+				$(".head-portrait img").on("click",function(){
+					api.actionSheet({
+					    cancelTitle: '取消',
+					    buttons: ['拍照','从手机相册选择'],
+					},function(ret,err){
+				        if(ret.buttonIndex ==1){
+							var photobj ={
+								sourceType:'camera'
+							}
+							getphoto(photobj);
+				        }
+				        if(ret.buttonIndex ==2){
+				        	var photobj ={
+								sourceType:'album'
+							}
+							getphoto(photobj);
+				        }
+					});
+				})
+			};
+			function getInfo(){
+				api.showProgress();
+				api.ajax({
+				    url: hosturl+'/sex/show_member.html?mid='+UserInfo.memberID(),
+				    method: 'get',
+				    timeout: 30,
+				    dataType: 'json',
+				    returnAll:false,
+				    data:{}
+				},function(ret,err){
+				    if (ret) {
+				        // alert(JSON.stringify(ret));
+				        $("#uname").val(ret.uname);
+				        $("#userid").val(ret.userid);
+				        if(ret.face.length!=0){
+				        	$(".head-portrait img").attr("src",ret.face)
+				        }
+				        if(ret.sex == "男"){
+				        	$(".input-sex input").eq(0).attr("checked","checked")
+				        }else{
+				        	$(".input-sex input").eq(1).attr("checked","checked")
+				        }
+
+				    }else {
+				        api.alert({
+				            msg:('错误码：'+err.code+'；错误信息：'+err.msg+'网络状态码：'+err.statusCode)
+				        });
+				    }
+				    api.hideProgress();
+				});
+			}
+			function getphoto(obj){
+				api.getPicture({
+		    		sourceType: obj.sourceType,
+		    		encodingType: 'jpg',
+		    		mediaValue: 'pic',
+		    		destinationType: 'url',
+		    		allowEdit: true,
+		    		quality: 50,
+		    		targetWidth:100,
+		    		targetHeight:100,
+		    		saveToPhotoAlbum: false
+					}, function(ret, err){ 
+		    			if (ret) {
+		        			// ret.data;
+		        			api.showProgress({title:"图片上传中",modal:false});
+		        			var file =[];
+		        			file[0] = ret.data;
+		        			api.ajax({
+							    url: hosturl+'/sex/uploadface.html',
+							    method: 'post',
+							    timeout: 30,
+							    dataType: 'json',
+							    returnAll:false,
+							    data:{
+							    	values:{mid:UserInfo.memberID(),appid:api.appId},
+							        files: {"file":file}
+							    }
+							},function(oret,err){
+							    if (oret) {
+							         // alert(JSON.stringify(oret));
+							         if(oret.error_code == 0){
+							         	$(".head-portrait img").attr("src",oret.result)
+							         }
+							    }else {
+							        api.alert({
+							            msg:('错误码：'+err.code+'；错误信息：'+err.msg+'网络状态码：'+err.statusCode)
+							        });
+							    }
+							    api.hideProgress();
+							});
+		   	 			} else{
+		        			// api.alert({msg:err.msg});
+		    			}
+					});
+			}
+			function modinfo() {
+				api.showProgress();
+				var uname = $("#uname").val();
+				var userid = $("#userid").val();
+				var sex=$("#sex").val();
+				var appid = api.appId;
+				api.ajax({
+					url : hosturl+'/sex/modinfo.html',
+					method : 'post',
+					timeout : 30,
+					data :{values:{uname:uname,appid:appid,mid:UserInfo.memberID(),userid:userid,sex:sex}},
+					dataType : "json",
+					returnAll : false
+				}, function(ret, err) {
+					 if (ret) {
+				        if(ret.error_code==0){
+				        	alert("修改成功")
+				        }else{
+				        	alert(ret.reason)
+				        }
+				    }else {
+				        api.alert({
+				            msg:('错误码：'+err.code+'；错误信息：'+err.msg+'网络状态码：'+err.statusCode)
+				        });
+				    }
+					api.hideProgress();
+				});
+			}
+		</script>
+</html>

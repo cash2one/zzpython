@@ -1,0 +1,209 @@
+{%include 'new/head.html'%}
+<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+<style>.regbox li input,.regbox li select,.regbox li textarea{width:100%;font-size:14px;padding:0px;padding-top:6px;padding-bottom:6px;line-height:20px;}</style>
+<body>
+<div class="mobile">
+{%include 'new/top.html'%}
+<div class="cb"></div>
+    <div style="margin-top:60px;"></div>
+<div class="m-main">
+<form action="/{{saveform}}/" method="post" name="pform" id="pform">
+<ul class="regbox">
+<li><input type="radio" name="products" class="products" style="width:auto" value="10331000" checked />
+供应信息 
+<input type="radio" style="width:auto"  class="products" name="products" value="10331001"/>
+求购信息
+<font style="color:red"  class="err">{{error6}}</font>
+</li>
+<li>
+<select id="category" name="category" style="padding-right:6px; ">
+<option value="1000">废金属</option>
+<option value="1001">废塑料</option>
+<option value="1002">废橡胶</option>
+<option value="1003">废纺织品</option>
+<option value="1004">废纸</option>
+<option value="1005">废电子电器</option>
+<option value="1006">废玻璃</option>
+<option value="1007">废旧二手设备</option>
+<option value="1008">其他废料</option>
+<option value="1009">服务</option>
+</select>
+<font style="color:red">{{error1}}</font>
+</li>
+<li>
+</li><li>
+<input type="text" name="title" value="{{title}}"  placeholder="请输入产品名称" required="required"/>
+<font style="color:red">{{error2}}</font>
+</li>
+<li>
+<input type="text" name="quantity" value="{{quantity}}" style="width:60%" placeholder="请输入产品数量"  required="required"/>
+<select name="quantity_unit" id="quantity_unit" style="width:36%;padding-right:6px; ">
+
+<option value="吨">吨</option>
+<option value="斤">斤</option>
+<option value="千克">千克</option>
+<option value="台">台</option>
+<option value="辆">辆</option>
+</select>
+<font style="color:red" class="err">{{error3}}</font>
+</li>
+<div id="postytpeflag">
+<li>
+<input type="radio" name="pricetype" class="pricetype" style="width:auto" value="1" checked/>
+公开价格
+<input type="radio" name="pricetype" class="pricetype" style="width:auto" value="0"/>
+电议或面议
+<font style="color:red">{{error7}}</font>
+</li>
+
+<li id="priceviews">建议您选择公开报价，真实的价格有助于买/卖家找到您 <br />
+<input type="text" name="price" id="price" value="{{price}}" style="width:60%" placeholder="请输入价格" required="required"/>
+<select name="price_unit" id="price_unit" style="width:36%; padding-right:6px;" >
+<option value="元">元</option>
+<option value="美元">美元</option>
+<option value="欧元">欧元</option>
+<option value="日元">日元</option>
+</select>
+<font style="color:red">{{error4}}</font>
+</li>
+</div>
+<li>
+<textarea rows="3" cols="20" name="details" placeholder="信息描述: 建议您从产品性能、用途、包装、售后服务等方面来描述">{{details}}</textarea>
+<font style="color:red">{{error5}}</font>
+</li>
+<li>
+<input type="radio" name="validity" class="validity" value="-1" style="width:auto" checked/>
+长期有效
+<input type="radio" style="width:auto" class="validity" name="validity" value="90"/>
+三个月
+<input type="radio" style="width:auto" class="validity" name="validity" value="30"/>
+一个月
+<input type="radio" style="width:auto" class="validity" name="validity" value="20"/>
+二十天
+<input type="radio" style="width:auto" class="validity" name="validity" value="10"/>
+十天
+<font style="color:red">{{error8}}</font>
+</li>
+<input type="hidden" name="proid" value="{{proid}}">
+<input type="hidden" name="picidlist" id="picidlist" />
+<li id="imgpic"></li>
+</form>
+<form name="myform" id="myform" method="post" enctype="multipart/form-data" style="overflow:hidden;display:block;width:100%;" action="/upload/" target='upload' onSubmit="return picsubmit(this)">
+<input type="file" value="选择图片" name="file" id="file" class="comm-btn-secondary" style="opacity=0"/>
+<img style="display:none" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAjCAMAAAA3znPYAAAABGdBTUEAALGPC/xhBQAAAP9QTFRFAAAAycnJqKiourq6rKyssLCwubm5z8/Pm5ub9vb2mZmZ7+/v9PT08fHxioqK2dnZ39/f5+fnkJCQpaWl7Ozs9fX1nJycsbGxt7e38PDwra2toqKi8/Pzvb29xsbGj4+PjIyM0NDQkpKSwMDAqamptbW18vLy+vr61dXVnZ2dyMjI4ODgq6ur09PTwsLCn5+f6enp3NzcpKSk6+vr+fn53t7ei4uLqqqqjY2N6Ojo+Pj47u7u/f3919fXsrKyl5eXlpaWzs7Ou7u7jo6Opqamy8vL+/v7zMzMkZGRysrK2NjY/Pz8iYmJ1NTUv7+//v7+x8fHiIiI9/f3r6+vh4eHNjdlogAAAAF0Uk5TAEDm2GYAAAFWSURBVDjLlZTndoJAEIUnvfdeTW92E2OLiiKihmCQef9nyWGWg+6aIdn7i7vznW1zFwBJ1ZEiiNGXh4pcHRhxUQdGvB9qwIhHHxow4unnmDppfQdyJ+Bm567Qm8A7RLTWAIrvykzP9gbNUsncKJXNPCzLI2Z6vGrXVfBVkH3zVTrLoCyXZdp4UI5e9Hja2Zm6qT5Pt0OkZrv9cEvDLEc75+Jwx7T8wpvYOkeXxGyl0J5RU7pXDG0RnY78C/l5ht6m6l7kD8lnGDpH1YmW01Zshq4otEfhsxg6T/Rs5LPkXYa+pOpW5FvkOwxdEA1phDZFj2bkcL3cFxd+G4TYaYs3sMR23g87v1K3ntbF56PBZ3Awlap2TGLNnAJfx+UbE0k5r14sjd5FNWJrKfX1w9T/wJxLBlk9GPgO/k0H2jXKv44D6kiTbmrAPeVRx2sGoN7w/6dGHX4AK391nTBWia0AAAAASUVORK5CYII=">
+<input type="submit" value="上传图片" class="comm-btn-secondary">
+<iframe name='upload' style=" display:none"></iframe>
+</form>
+<li><input type="button" value="发布信息"  class="button" id="submitbutton"></li>
+</ul>
+</div>
+</div>
+<script>
+function picsubmit(){
+	$("#imgpic").html("正在上传图片...")
+}
+function changepic(picurl,pid){
+	var interval = setTimeout(function(){
+		$("#imgpic").html("<img src='"+picurl+"'>");
+	}, 2000); 
+	$("#picidlist").val(pid);
+}
+function selectOption(menuname,value){
+    var menu = document.getElementById(menuname);
+	if (menu){
+		if (value!=""){
+			for(var i=0;i<=menu.options.length;i++){
+				if(menu.options[i].value.toString()==value.toString()){
+					menu.options[i].selected = true;
+					break;
+				}
+			}
+		}
+	}
+}
+function selectRadio(radioname,value){
+	$(radioname).each(function(){
+		if(value!=""){
+			if ($(this).attr("value")==value){
+				$(this).attr('checked' ,true);
+			}else{
+				$(this).attr('checked' ,false);
+			}
+		}
+	});
+}
+
+$(document).ready(function(e) {
+	$("#submitbutton").click(function(){
+		var o=$("input[name='products']:checked").attr("checked");
+		var v=$("input[name='validity']:checked").attr("checked");
+		var p=$("input[name='pricetype']:checked").attr("checked");
+		if (o){
+			var oo=$("input[name='products']:checked").val();
+			if (oo=="10331000"){
+				if (p){
+				}else{
+					alert("请选择价格类型");
+					return false;
+				}
+			}
+			if (v){
+			}else{
+				alert("请选择供求有效期");
+				return false;
+			}
+			$("#pform").submit();
+		}else{
+			alert("请选择供应或求购");
+			return false;
+		}
+		
+	});
+	$("input[name='pricetype']").change(function(){
+		var o=$("input[name='pricetype']:checked").val();
+		if (o=="0"){
+			$("#priceviews").css("display","none");
+		}else{
+			$("#priceviews").css("display","");
+		}
+	});
+	$("input[name='products']").change(function(){
+		var o=$("input[name='products']:checked").val();
+		if (o=="10331000"){
+			$("#postytpeflag").css("display","");
+		}else{
+			$("#postytpeflag").css("display","none");
+		}
+	});
+	selectOption("category","{{category}}");
+	selectOption("quantity_unit","{{quantity_unit}}");
+	selectOption("price_unit","{{price_unit}}");
+	selectRadio(".products","{{products}}");
+	selectRadio(".pricetype","{{pricetype}}");
+	//selectRadio(".validity","{{validity}}");
+	var ptype="{{products}}";
+	var pricetype="{{pricetype}}";
+	if (ptype!=""){
+		if (ptype=="10331000"){
+			$("#postytpeflag").css("display","");
+		}else{
+			$("#postytpeflag").css("display","none");
+		}
+	}
+	if (pricetype!=""){
+		if (pricetype=="1"){
+			$("#priceviews").css("display","");
+		}else{
+			$("#priceviews").css("display","none");
+		}
+	}
+});
+
+</script>
+<div class="h20"></div>
+</div>
+{%include 'new/bottom.html'%}
+</div>
+
+</body>
+</html>

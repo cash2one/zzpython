@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui-flex.css">
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<style>
+			body {
+				height: 100%;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-orient: vertical;
+				-webkit-flex-flow: column;
+				flex-flow: column;
+			}
+			footer {
+				position: fixed;
+				bottom: 0px;
+				width: 100%;
+				z-index: 21;
+			}
+			.czfoot {
+				border-top: solid 1px #EBEBEB;
+				width: 100%;
+				background-color: #F6F6F6;
+				line-height: 50px;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+			}
+			.czfoot li {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				text-align: center;
+				border-right: 1px solid #e7e7e7;
+				font-size: 14px;
+			}
+			.czfoot li:last-child {
+				border-right: none;
+			}
+			.czfoot li {
+				-webkit-box-flex: none;
+				-webkit-flex: none;
+				flex: none;
+			}
+			.c_pinlun {
+				width: 40%;
+			}
+			.c_all {
+				width: 60%
+			}
+			.c_all span {
+				margin-right: 12px;
+				margin-left: 12px;
+				font-size: 20px;
+				position: relative;
+			}
+			.c_all span i {
+				font-size: 10px;
+				display: block;
+				position: absolute;
+				
+				top: -18px;
+				height: 13px;
+				z-index: 9999;
+			}
+			.guanzhu_title {
+				line-height: 35px;
+				padding-top: 10px;
+				height: 50px;
+				margin-bottom: 15px;
+				
+			}
+			.news-title {
+				line-height: 30px;
+				font-weight: 700;
+				text-align: left;
+				font-size: 22px;
+				margin-top: 30px;
+			}
+			.news-dis {
+				font-size: 12px;
+				color: #999999;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+			.aui-content img {
+				max-width: 100%;
+			}
+			.aui-content p {
+				line-height: 30px;
+				font-size: 16px;
+				color: #333
+			}
+			.aui-tab-item.aui-active {
+				color: #01BA2E;
+				border-bottom: 2px solid #01BA2E;
+				z-index: 2;
+			}
+			.closediv{
+				background-color:#E51C23;
+				width:26px;
+				height:26px;
+				border-radius:13px;
+				position: fixed;
+				right:10px;
+				top:10px;
+				display:none;
+				z-index: 999;
+				text-align:center;
+			}
+			.closediv span{
+				color:#FFFFFF;
+				font-size:18px;
+				
+			}
+			.ask-text {
+				height: 120px;
+				line-height: 30px;
+				margin-bottom: 10px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				font-size: 14px;
+				color: #666;
+				overflow: hidden;
+			}
+			.ask-text textarea {
+				height: 100%;
+				padding: 5px;
+				margin: 0;
+		
+				border:none;
+			}
+			.ask-reply-btn {
+				padding: 8px 0;
+			}
+			#ask-reply-box {
+				padding: 10px;
+			}
+			
+			
+			.pinlundiv{
+				height:200px;width: 100%;position: fixed;bottom: 50px;text-align: center;display: none;
+				background-color:#EBEBEB;
+				z-index: 20
+			}
+			.sharediv{
+				height:100px;width: 100%;position: fixed;bottom: 50px;text-align: center;
+				background-color:#fff;
+				z-index: 20;
+				
+				display:none;
+			}
+			.sharediv img{
+				width:45px;
+				margin:5px;
+			}
+			.sharediv span{
+				display:table-cell;
+				text-align: center;
+				float:left;
+				color:#999;
+				width:20%;
+			}
+			.mark {
+				background: rgba(0,0,0,0.5);
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				display: none;
+				z-index: 5;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="mark" id="mark"></div>
+	    <div class="closediv" onclick="api.closeWin();"><span class="aui-iconfont aui-icon-close"></span></div>
+		<div class="guanzhu_title aui-content-padded">
+			<div class="aui-pull-left">
+				<span class="aui-iconfont aui-icon-left" onclick="api.closeWin();"></span><span class="aui-text-success" style="margin-right: 10px;margin-left: 10px"><b>健康</b></span><span style="color: #999">(23200条)</span>
+			</div>
+			<div class="aui-btn aui-btn-success aui-pull-right">
+				关注
+			</div>
+			<div class="aui-btn aui-btn-default aui-pull-right" style="display:none">
+				已关注
+			</div>
+		</div>
+		
+		<div class="aui-line-x"></div>
+		<div class="detail">
+			
+		</div>
+		<script id="info" type="text/html">
+			<div class="aui-content-padded aui-clearfix">
+				<div class="news-title">
+					{{ d.title }}
+				</div>
+				<div class="news-dis">
+					预览量：{{ d.click }} 时间：{{ d.pubdate }}
+				</div>
+			</div>
+			<div style="clear: both"></div>
+			<div class="aui-content">
+			<div class="aui-content-padded">
+				{{ d.content }}
+			</div>
+		</script>
+		
+		
+		
+		<div class="aui-line-x"></div>
+		<div id="ask-reply-box" class="pinlundiv">
+			<div class="ask-text" id="ask-text">
+				<textarea id="pinluncontent" placeholder="请输入你的评论"></textarea>
+			</div>
+			<div class="aui-btn aui-btn-block aui-btn-success ask-reply-btn">发表评论</div>
+		</div>
+		
+		<div class="sharediv">
+			<span><img src="../../image/share/share_to_icon_qq.png"><br />QQ</span>
+			<span><img src="../../image/share/share_to_icon_qzone.png"><br />QQ空间</span>
+			<span><img src="../../image/share/share_to_icon_weibo.png"><br />微博</span>
+			<span><img src="../../image/share/share_to_icon_wx.png"><br />微信</span>
+			<span><img src="../../image/share/share_to_icon_wxq.png"><br />朋友圈</span>
+		</div>
+		
+		<div class="aui-bg-default">
+			<div class="aui-line-x"></div>
+			<div class="aui-tab">
+		        <ul class="aui-tab-nav" id="tab">
+		            <li class="aui-tab-item aui-active">全部评论（103）</li>
+		            <li class="aui-tab-item">气味相投的网友</li>
+		        </ul>
+		    </div>
+		</div>
+		<section class="aui-content" id="tab_1">
+	        <ul class="aui-list aui-media-list">
+	            <li class="aui-list-item">
+	                <div class="aui-media-list-item-inner">
+	                    <div class="aui-list-item-media" style="width:3.0rem">
+	                        <img src="../../image/demo1.png"/>
+	                    </div>
+	                    <div class="aui-list-item-inner">
+	                        <div class="aui-list-item-text">
+	                            <div class="aui-list-item-title" style="color:#4c5276">流浪男</div>
+	                        </div>
+	                        <div class="aui-list-item-text" style="color:#333;">
+	                            如果谈及中国在技术领域的短板，那么大家可能想到的是发动机，其实还有一样：高级电子芯片！人们通常所说的CPU，所谓CPU即中央处理器，就是其代表产品，它可是为电子信息产品的心脏
+	                        </div>
+	                        <div class="aui-list-item-text">
+	                            <div class="aui-row-padded" style="max-width:90%;">
+	                                <div class="aui-col-xs-4">
+	                                    <img src="../../image/demo/1.jpeg" />
+	                                </div>
+	                                <div class="aui-col-xs-4">
+	                                    <img src="../../image/demo/2.jpeg" />
+	                                </div>
+	                                <div class="aui-col-xs-4">
+	                                    <img src="../../image/demo/3.jpeg" />
+	                                </div>
+	                                <div class="aui-col-xs-4">
+	                                    <img src="../image/demo/2.jpeg" />
+	                                </div>
+	                                <div class="aui-col-xs-4">
+	                                    <img src="../image/demo/1.jpeg" />
+	                                </div>
+	                                <div class="aui-col-xs-4">
+	                                    <img src="../image/demo/3.jpeg" />
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <p class="aui-margin-t-5 aui-font-size-12">山东潍坊</p>
+	                        <div class="aui-info aui-font-size-12" style="padding-top:0; padding-bottom:0">
+	                            <div class="aui-info-item">1小时前</div>
+	                            <div class="aui-info-item">
+	                                <i class="aui-iconfont aui-icon-comment"  style="color:#4c5276"></i>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </li>
+	            <li class="aui-list-item">
+	                <div class="aui-media-list-item-inner">
+	                    <div class="aui-list-item-media" style="width:3.0rem">
+	                        <img src="../../image/demo3.png" />
+	                    </div>
+	                    <div class="aui-list-item-inner">
+	                        <div class="aui-list-item-text">
+	                            <div class="aui-list-item-title" style="color:#4c5276">AUI</div>
+	                        </div>
+	                        <div class="aui-list-item-text" style="color:#333;">
+	                            中国拥有世界顶级航天芯片产品：俄罗斯造不出来了只能求中国分享
+	                        </div>
+	                        <div class="aui-info aui-font-size-12 aui-padded-t-0 aui-padded-b-0">
+	                            <div class="aui-info-item">1小时前</div>
+	                            <div class="aui-info-item">
+	                                <i class="aui-iconfont aui-icon-comment"  style="color:#4c5276"></i>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </li>
+	            <li class="aui-list-item">
+	                <div class="aui-media-list-item-inner">
+	                    <div class="aui-list-item-media" style="width:3.0rem">
+	                        <img src="../../image/liulangnan.png" />
+	                    </div>
+	                    <div class="aui-list-item-inner">
+	                        <div class="aui-list-item-text">
+	                            <div class="aui-list-item-title" style="color:#4c5276">流浪男</div>
+	                        </div>
+	                        <div class="aui-list-item-text" style="color:#333;">
+	                            网传“贴吧之父”俞军加入滴滴
+	                        </div>
+	                        <div class="aui-list-item-text">
+	                            <div class="aui-row-padded" style="max-width:90%;">
+	                                <div class="aui-col-xs-4">
+	                                    <img src="../image/l1.png" />
+	                                </div>
+	                                <div class="aui-col-xs-4">
+	                                    <img src="../image/l2.png" />
+	                                </div>
+	                                <div class="aui-col-xs-4">
+	                                    <img src="../image/l3.png" />
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="aui-info aui-font-size-12 aui-padded-t-0 aui-padded-b-0">
+	                            <div class="aui-info-item">1小时前</div>
+	                            <div class="aui-info-item">
+	                                <i class="aui-iconfont aui-icon-comment"  style="color:#4c5276"></i>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </li>
+	            <li class="aui-list-item">
+	                <div class="aui-media-list-item-inner">
+	                    <div class="aui-list-item-media" style="width:3.0rem">
+	                        <img src="../../image/liulangnan.png" />
+	                    </div>
+	                    <div class="aui-list-item-inner">
+	                        <div class="aui-list-item-text">
+	                            <div class="aui-list-item-title" style="color:#4c5276">流浪男</div>
+	                        </div>
+	                        <div class="aui-list-item-text" style="color:#333;">
+	                            美团、饿了么外卖小哥斗殴：约架中关村
+	                        </div>
+	                        <div class="aui-info aui-font-size-12 aui-padded-t-0 aui-padded-b-0">
+	                            <div class="aui-info-item">1小时前</div>
+	                            <div class="aui-info-item">
+	                                <i class="aui-iconfont aui-icon-comment"  style="color:#4c5276"></i>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </li>
+	        </ul>
+	    </section>
+		
+		<div class="aui-content aui-margin-b-15" id="tab_2" style="display: none">
+	        <ul class="aui-list aui-media-list">
+	            
+	            <li class="aui-list-item aui-list-item-middle">
+	                <div class="aui-media-list-item-inner">
+	                    <div class="aui-list-item-media" style="width: 3rem;">
+	                        <img src="../../image/demo5.png" class="aui-img-round aui-list-img-sm">
+	                    </div>
+	                    <div class="aui-list-item-inner aui-list-item-arrow">
+	                        <div class="aui-list-item-text">
+	                            <div class="aui-list-item-title aui-font-size-14">AUI</div>
+	                            <div class="aui-list-item-right">08:00</div>
+	                        </div>
+	                        <div class="aui-list-item-text">
+	                            <i class="aui-iconfont aui-icon-like"></i>浏览该文
+	                        </div>
+	                    </div>
+	                </div>
+	            </li>
+	            <li class="aui-list-item aui-list-item-middle">
+	                <div class="aui-media-list-item-inner">
+	                    <div class="aui-list-item-media" style="width: 3rem;">
+	                        <img src="../../image/demo5.png" class="aui-img-round aui-list-img-sm">
+	                    </div>
+	                    <div class="aui-list-item-inner aui-list-item-arrow">
+	                        <div class="aui-list-item-text">
+	                            <div class="aui-list-item-title aui-font-size-14">AUI</div>
+	                            <div class="aui-list-item-right">08:00</div>
+	                        </div>
+	                        <div class="aui-list-item-text">
+	                            <i class="aui-iconfont aui-icon-like"></i>点赞该文
+	                        </div>
+	                    </div>
+	                </div>
+	            </li>
+	           
+	        </ul>
+	    </div>
+		<div style="height: 100px"></div>
+		</div>
+		<footer>
+			<ul class="czfoot newsdetail">
+				<li class="c_pinlun">
+					<span class="aui-iconfont aui-icon-add"></span> 添加评论
+				</li>
+				<li class="c_all">
+					<!--<span class="aui-iconfont aui-icon-like"> <i class="aui-badge aui-badge-warning">123</i> </span>-->
+					<span class="aui-iconfont aui-icon-edit"> <i class="aui-badge aui-badge-info">123</i> </span>
+					<span class="aui-iconfont aui-icon-favor openpinlun"> <i class="aui-badge aui-badge-danger">123</i> </span>
+					<span class="aui-iconfont aui-icon-share openshare"></span>
+				</li>
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+	<script type="text/javascript" src="../../script/aui-skin.js" ></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/aui-scroll.js" ></script>
+	<script type="text/javascript">
+		apiready = function() {
+			api.parseTapmode();
+			ajaxinfo();
+			$api.addEvt($api.byId('mark'), 'click', function(){
+				closepinlun();
+			});
+			
+			$("body").on("click",".c_pinlun",function(){
+				$("#mark").fadeIn();
+				$(".sharediv").slideUp();
+	        	$(".pinlundiv").slideDown()
+	        })
+	        $("body").on("click",".openshare",function(){
+				$("#mark").fadeIn();
+				$(".pinlundiv").slideUp()
+	        	$(".sharediv").slideDown()
+	        })
+	        $("body").on("click",".detaillist",function(){
+	        	var infoid = $(this).attr("infoid")
+				var pageParam = {
+		          wintitle:"详情",
+		          type:"detail",
+		          bounces:false,
+		          infoid:infoid,
+		          hiddentop:true,
+		        };
+		        openWin("detail"+infoid,"../list/detail.html",pageParam);
+	        })
+	        //$(".sharediv").slideUp();
+		};
+		var tab = new auiTab({
+			element : document.getElementById("tab"),
+		}, function(ret) {
+			//alert(JSON.stringify(ret))
+			if (ret.index==1){
+				$("#tab_1").show();
+				$("#tab_2").hide();
+			}else{
+				$("#tab_1").hide();
+				$("#tab_2").show();
+			}
+			
+		});
+		var scroll = new auiScroll({
+	        listen:true,
+	        distance:200 //判断到达底部的距离，isToBottom为true
+	    },function(ret){
+	        if(ret.isToBottom){
+	            //document.getElementById("demo").textContent = "已到达底部";
+	        }else{
+		        if (ret.scrollTop>50){
+		        	$(".closediv").fadeIn();
+		        }else{
+		        	$(".closediv").fadeOut();
+		        }
+	            //document.getElementById("demo").textContent = "滚动高度："+ret.scrollTop;
+	        }
+	
+	    });
+	    function closepinlun(){
+	    	$("#mark").fadeOut();
+	        $(".pinlundiv").slideUp();
+	        $(".sharediv").slideUp();
+	    }
+	    function ajaxinfo(){
+	    	var data={}
+	    	var infoid = api.pageParam.infoid;
+	    	loadingshow();
+	    	zzappajax("get",hosturl+"/app/newsdetail" + infoid.toString() + ".html?",data,function(ret){
+	    		if (ret) {
+					var getTpl = $api.html($api.byId("info"));
+					laytpl(getTpl).render(ret.result[0], function(html) {
+						$(".detail").html(html)
+						api.hideProgress();
+					});
+					
+					var speechRecognizer = api.require('speechRecognizer');
+					speechRecognizer.read({
+					    readStr: delHtmlTag(ret.result[0].content),
+					    speed: 60,
+					    volume: 60,
+					    voice: 0,
+					    rate: 16000,
+					    audioPath:'fs://speechRecogniser/read.mp3'
+					},function(ret,err) {
+					    if(ret.status) {
+					        ret.speakProgress
+					    } else {
+					        api.alert({msg:err.msg});
+					    }
+					});
+					loadinghide();
+				} else {
+					api.toast({
+						msg : '网络错误，请重试！',
+						duration : 2000,
+						location : 'bottom'
+					});
+					loadinghide();
+				};
+	    	},function(){
+	    		api.toast({
+					msg : '网络错误，请重试！',
+					duration : 2000,
+					location : 'bottom'
+				});
+	    		loadinghide();
+	    	})
+	    }
+		/*
+		var skin = new auiSkin({
+		    name:"night", //皮肤样式名字，不能为中文
+		    skinPath:'../../css/aui-skin-night.css', //皮肤样式表路径
+		    default:false,//是否默认立即使用
+		    beginTime:"20:00",//开始时间
+		    endTime:"07:00"//结束时间
+		})
+		skin.setSkin();
+		*/
+	</script>
+</html>

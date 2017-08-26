@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>废料产品地图 - ZZ91再生网</title>
+<meta name="keywords" content="废料产品地图,废料供求,废料产品大全,废料公司库" />
+<meta name="description" content="ZZ91再生网产品地图提供再生资源供求信息类别地图，该板块汇总了再生资源行业各类最新废料供求信息大全，更多信息可登陆ZZ91再生网（www.zz91.com）查看" />
+{%include 'sy/head.html'%}
+<link rel="stylesheet" type="text/css" href="http://pyapp.zz91.com/css/sy/index.index.css"/>
+</head>
+<body>
+{%include 'sy/top.html'%}
+<div class="body">
+	 {%include 'sy/hearder.html'%}
+     <div class="synav">当前位置：<a href="http://www.zz91.com" target="_blank">ZZ91首页</a> > 产品地图</div>
+     <div style="clear:both"></div>
+     <script type="text/javascript">
+	var sogou_ad_id=404782;
+	var sogou_ad_height=60;
+	var sogou_ad_width=960;
+	</script>
+	<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>
+     <h3>产品分类大全</h3>
+     <div class="englishcode"><b>按产品字母分类：</b>
+		 {%for p in pinyinlist%}
+		 <a href="p-p{{p}}-1.htm" target="_blank">{{p}}</a>
+		 {%endfor%}
+		 </div>
+     <div style="clear:both"></div>
+     <div class="content">
+     	<ul>
+		{%for list in categorylist%}
+        	<li><a href="p{{list.id}}-1.htm" target="_blank">{{list.label}}</a></li>
+		{%endfor%}
+            
+        </ul>
+     </div>
+     <div style="clear:both"></div>
+     <h3>企业分类大全</h3>
+     <div class="englishcode"><b>按企业字母分类：</b>
+		{%for p in pinyinlist%}
+		 <a href="c-p{{p}}-1.htm" target="_blank">{{p}}</a>
+		{%endfor%}
+	 </div>
+     <div style="clear:both"></div>
+     <div class="content">
+     	<ul>
+        {%for list in categorylist%}
+        	<li><a href="c{{list.id}}-1.htm" target="_blank">{{list.label}}</a></li>
+		{%endfor%}
+        </ul>
+     </div>
+</div>
+{%include 'sy/buttom.html'%}
+<script>
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>再生网登录</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+	<!-- 	<link rel="stylesheet" type="text/css" href="../../css/myrc/frm-login.css"/> -->
+	</head>
+	<style type="text/css">
+		body{
+			background-color: #f4f4f4;
+			width: 100%;
+			height: 100%;
+		}
+		.login-btn{
+			background-color: #01ba2e;
+			border: 1px solid #01ba2e
+		}
+		.login-btn:active{
+			background-color: #01BA60;
+			border: 1px solid #01BA60
+		}
+		.cannot-login{
+			line-height: 20px;
+			margin-top: 10px;
+			margin:10px 15px 0px;
+		}
+		.forget{
+			color: #666666;
+			font-size: 16px;
+		}
+		.enroll{
+			float: right;
+			color: #01ba2e;
+			padding-right: 18px;
+			position: relative;
+			font-size: 16px
+		}
+		.enroll i{
+			position: absolute;
+			height: 13px;
+			width: 18px;
+			display: block;
+			background-image: url(../../image/imageslist.png);
+		    background-size:220px 220px;
+		    background-position: -54px -195px;
+		    right: 0;
+		    top: 4px;
+		}
+		.login-btn-click{
+			background-color: #01aa2a
+		}
+		/* 底部样式 */
+		.bottom {bottom: 0;width: 100%; text-align: center;padding-bottom: 20px;font-size: 12px;margin-top:30px}
+		.bottom img {height: 50px;}
+		.bottom .arrow {text-align: center;margin: 10px 0;}
+		.bottom .arrow img {width: 40px;height: 20px;}
+		#qqpic {margin-right: 10px; margin-left: 10px;}
+		.thirdinfo {color: #666;margin-top: 10px;}
+		.btnhover {background-color: #dcdcdc !important;}
+		
+		.thirdcompy .left {margin-right: 20px;}
+		.thirdcompy .left , .thirdcompy .right {width: 40%; display: inline-block;background: #fff;border: 1px solid #e0e0e0;border-radius: 4px;vertical-align: top;text-align: left; font-size: 18px;}
+		.thirdcompy .left img , .thirdcompy .right img {width: 30px;height: 30px;float: left;margin: 5px 10px;}
+		.thirdcompy span {line-height: 40px;color: #666;}
+	</style>
+	<body>
+		<div style="height:20px">
+		</div>
+		<div class="aui-content aui-card">       
+	        <div class="aui-form">
+	            <div class="aui-input-row">
+	                <i class="aui-input-addon aui-iconfont aui-icon-people aui-text-info"></i>
+	                <input type="text" class="aui-input code-inpt" id="username" placeholder="请输入会员名/邮箱/手机"/>
+	            </div>
+
+	            <div class="aui-input-row">
+	                <i class="aui-input-addon aui-iconfont aui-icon-lock aui-text-warning"></i>
+	                <input type="password" id="password" class="aui-input psword-input" placeholder="请输入密码"/>
+	                <i class="aui-input-addon aui-iconfont aui-icon-attention aui-text-default" tapmode onclick="showPassword();" id="showpass-btn"></i>
+	            </div>
+	            <div class="aui-btn-row">
+	                <div class="aui-btn aui-btn-block aui-btn-warning login-btn" onclick="return false;">确认</div>
+	                <input type="hidden" id="qqopenid" value="">
+	                <input type="hidden" id="open_type" value="">
+	            </div>
+	        </div>
+	    </div>
+	    <div class="cannot-login clear">
+			<span class="forget">忘记密码？</span>
+			<span class="enroll">快速注册<i></i></span>
+		</div>
+		<div class="bottom">
+			<div class="thirdcompy">
+				<div class="left wxlogin" tapmode="btnhover" onclick=""><img src="../../image/logo_weixinpay.png" alt=""><span>微信登陆</span></div>
+				<div class="right qqlogin" tapmode="btnhover" onclick=""><img src="../../image/share_to_icon_qq.png" alt="" id="qqpic"><span>QQ登陆</span></div>
+			</div>
+		</div>
+
+		<!-- <div class="login-form">
+			<ul class="login-form-ul">
+				<li>
+					<div class="input-mo">
+						<div class="input-title">
+							<i class="title-code"></i>账号
+						</div>
+						<input type="text" class="import-ipt code-inpt" placeholder="请输入会员名/邮箱/手机">
+						<t class="dlet"></t>
+					</div>
+				</li>
+				<li>
+					<div class="input-mo">
+						<div class="input-title">
+							<i class="title-password"></i>密码
+						</div>
+						<input type="password" class="import-ipt psword-input" placeholder="请输入密码">
+						<t class="pswoed-type">
+							显示
+						</t>
+					</div>
+				</li>
+				<li>
+					<span class="btn login-btn" tapmode="login-btn-click">登 录</span>
+				</li>
+				<li>
+					<div class="cannot-login clear">
+						<span class="forget">忘记密码？</span>
+						<span class="enroll">快速注册<i></i></span>
+					</div>
+				</li>
+			</ul>
+		</div> -->
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/jQuery.md5.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+	<script type="text/javascript">
+
+		function showPassword(){
+	        $api.attr($api.byId('password'),'type','text');
+	        $api.removeCls($api.byId('showpass-btn'),'aui-icon-attention');
+	        $api.addCls($api.byId('showpass-btn'),'aui-icon-attentionfill');
+	        $api.attr($api.byId('showpass-btn'),'onclick','hidePassword();');
+	        api.parseTapmode();
+	    }
+	    function hidePassword(){
+	        $api.attr($api.byId('password'),'type','password');
+	        $api.removeCls($api.byId('showpass-btn'),'aui-icon-attentionfill');
+	        $api.addCls($api.byId('showpass-btn'),'aui-icon-attention');
+	        $api.attr($api.byId('showpass-btn'),'onclick','showPassword();');
+	        api.parseTapmode();
+	    }
+	    
+		apiready = function() {
+			var oDlet = $(".dlet");
+			var pswoedType = $(".pswoed-type");
+			var cInpt = $(".code-inpt");
+			var psInput = $(".psword-input");
+			var closeiosflag=$api.getStorage("closeiosflag");
+			if (!closeiosflag || closeiosflag==1){
+				$(".thirdcompy").hide();	
+			}
+			var login_sn = UserInfo.has_login();
+			if (login_sn) {
+				
+			}
+			//注册帐号
+			$(".enroll").on("click", function() {
+				var pageParam = {
+					wintitle : "注册帐号",
+					type : "register"
+				};
+				openWin("register", "../myrc/register.html", pageParam);
+			})
+			//忘记密码
+			$(".forget").on("click", function() {
+				var pageParam = {
+					wintitle : "密码重置",
+					type : "passage-revise",
+				};
+				openWin("passage-revise", "../myrc/passage-revise.html", pageParam);
+			})
+			//当输入账户显示删除按钮
+			// cInpt.keyup(function() {
+			// 	if ($(this).val().length != 0) {
+			// 		oDlet.show();
+			// 	} else {
+			// 		oDlet.hide();
+			// 	}
+			// })
+			// oDlet.on("click", function() {
+			// 	cInpt.val("");
+			// 	$(this).hide();
+			// 	cInpt.focus();
+			// })
+			//当输密码弹出显示字样
+			// psInput.keyup(function() {
+			// 	if ($(this).val().length != 0) {
+			// 		pswoedType.show();
+			// 	} else {
+			// 		pswoedType.hide();
+			// 	}
+			// })
+			//点击显示，密码成文字
+			// pswoedType.on("click", function() {
+			// 	if (psInput.attr("type") == "password") {
+			// 		psInput.attr("type", "text");
+			// 		psInput.focus();
+			// 		$(this).text("隐藏")
+			// 	} else {
+			// 		psInput.attr("type", "password");
+			// 		psInput.focus();
+			// 		$(this).text("显示")
+			// 	}
+			// })
+			// psInput.blur(function() {
+			// 	if (psInput.val().length == 0) {
+			// 		$(this).attr("type", "password")
+			// 	}
+			// })
+			
+			//QQ登录
+			var qqopenid;
+			$(".qqlogin").on("click", function() {
+				var obj = api.require('qq');
+				obj.installed(function(ret,err){
+				    if(ret.status){
+				    	api.showProgress({
+							title : '登录中',
+							modal : false
+						});
+				       //api.alert({msg: "QQ已安装"});
+				       var username = new Date().getTime();
+				       obj.login(function(ret,err){
+				       		if (ret){
+					       		qqopenid=ret.openId;
+					       		$("#qqopenid").val(qqopenid);
+							    $("#open_type").val("qq.com");
+					       		opentoolsload(qqopenid,"qq.com");
+						    }else{
+						    	zzalert("QQ登录错误，请重试！")
+						    	api.hideProgress();
+						    }
+						});
+				    }else{
+				       api.alert({msg: "QQ没有安装"});
+				    } 
+				    api.hideProgress();
+				});
+				api.hideProgress();
+			});
+			
+			//微信登陆
+			$(".wxlogin").on("click", function() {
+				var wx = api.require('wx');
+				wx.isInstalled(function(ret, err){
+				    if(ret.installed){
+				        //alert("当前设备已安装微信客户端");
+				        api.showProgress({
+				            style: 'default',
+				            animationType: 'fade',
+				            title: '登录中...',
+				            text: '请稍后...',
+				            modal: true
+				        });
+				        wx.auth({
+						    apiKey: 'wx6bb99d2f0581b5b0'
+						}, function(ret, err){ 
+						    if(ret.status){
+						    	wx.getToken({
+								    apiKey: '',
+								    apiSecret: '',
+								    code: ret.code
+								},function(ret, err){ 
+								    if(ret.status){
+								        //alert(JSON.stringify(ret));
+								        //获取用户信息
+						                var accessToken = ret.accessToken;
+						                var openId = ret.openId;
+						                $("#qqopenid").val(openId);
+						                $("#open_type").val("open.weixin.qq.com");
+						                opentoolsload(openId,"open.weixin.qq.com");
+						                /*
+						                wx.getUserInfo({
+						                    accessToken: ret.accessToken,
+						                    openId: ret.openId
+						                }, function(ret,err){
+						                	alert(JSON.stringify(ret));
+						                });
+						                */
+						                api.hideProgress();
+								    }else{
+								        zzalert("登录失败，请重试！");
+								        api.hideProgress();
+								    }
+								    
+								});
+						        //zzalert(JSON.stringify(ret));
+						    }else{
+						        zzalert("登录失败，请重试！");
+						        api.hideProgress();
+						    }
+						});
+				    }else{
+				        zzalert('当前设备未安装微信客户端');
+				    }
+				});
+			});
+			
+			//点击登录
+			$(".login-btn").on("click", function() {
+				api.showProgress({
+					title : '登录中',
+					modal : false
+				});
+				var login_name = $(".code-inpt").val();
+				var password = $(".psword-input").val();
+				if (login_name.length == 0) {
+					hint("帐号不能为空！");
+					api.hideProgress();
+					return;
+				}
+				if (password.length == 0) {
+					hint("密码不能为空！");
+					api.hideProgress();
+					return;
+				}
+				var data = {
+					username : login_name,
+					passwdjm : UserInfo.get_pwd_hash(password),
+					appid : api.deviceId,
+					appsystem : api.systemType,
+					loginflag : 1,
+					qqopenid : $("#qqopenid").val(),
+					open_type : $("#open_type").val(),
+				}
+				//alert(UserInfo.get_pwd_hash(password))
+				postAjax(data)
+			})
+		}
+		//#第三方开放平台登录
+		function opentoolsload(qqopenid,open_type){
+			var username = new Date().getTime();
+		    var data = {
+				username : username,
+				appid : api.deviceId,
+				appsystem : api.systemType,
+				qqopenid : qqopenid,
+				datatype : 'json',
+				open_type : open_type,
+			}
+		    api.ajax({
+				url : hosturl + 'user/qqlogin.html',
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				data : {
+					values : data
+				},
+				returnAll : false
+			}, function(ret, err) {
+				//zzalert(JSON.stringify(data))
+				if (ret) {
+					//zzalert(JSON.stringify(ret));
+					if (ret.err == 'false') {
+						//密码加密
+						//var pwd_hash = UserInfo.get_pwd_hash(ret.passwd);
+						var pwd_hash = ret.passwd;
+						//登入获取的token
+						var token = ret.token;
+						//登录获取的mid
+						var memberID = ret.result.company_id;
+						//登录获取的mid
+						var contact = ret.result.contact;
+						var username = ret.username
+						//保存信息到本地
+						UserInfo.onSuccess(token, username, pwd_hash, memberID, contact);
+						api.alert({
+							title : '登录帐号',
+							msg : '登录成功！',
+							buttons : ['确定']
+						}, function(ret, err) {
+							api.execScript({
+								name : 'root',
+								script : 'changemyrcindex()'
+							});
+							if (api.pageParam.nextUrl != null) {
+								openWin(api.pageParam.winName, api.pageParam.nextUrl, api.pageParam);
+								setTimeout(function() {
+									api.closeWin()
+								}, 1000)
+							}
+							api.hideProgress();
+							api.closeWin();
+						});
+					} else {
+						//未绑定QQ跳转到注册页面
+						if (ret.result=="noreg"){
+							var html = "";
+							html += '<p>绑定您的QQ，下次即可直接QQ登录了。</p>'
+							$aui.alert({
+								title : '提示',
+								content : html,
+								buttons : ['登录绑定', '立即注册'],
+								radius : 10,
+								titleColor : '#333',
+								contColor : '#333',
+								btnColor : '',
+							}, function(ret) {
+								if (ret == 1) {
+									var pageParam = {
+										wintitle : "注册帐号",
+										type : "register",
+										qqopenid : qqopenid,
+										open_type : open_type,
+									};
+									api.hideProgress();
+									openWin("register", "../myrc/register.html", pageParam);
+								}else{
+									api.hideProgress();
+									$(".login-btn").html("登录绑定");
+									document.getElementById("username").focus();
+								}
+							})
+						}
+					}
+				} else {
+					api.hideProgress();
+				};
+			});
+		}
+		function postAjax(data) {
+			$(".login-btn").removeClass("login-btn");
+			api.ajax({
+				url : hosturl + 'loginof.html?datatype=json',
+				method : 'post',
+				timeout : 30,
+				dataType : 'json',
+				data : {
+					values : data
+				},
+				returnAll : false
+			}, function(ret, err) {
+				if (ret) {
+					//zzalert(JSON.stringify(ret));
+					if (ret.err == 'false') {
+						$(".btn").addClass("login-btn");
+						//密码加密
+						//var pwd_hash = UserInfo.get_pwd_hash(data.passwdjm);
+						var pwd_hash = data.passwdjm
+						//登入获取的token
+						var token = ret.token;
+						//登录获取的mid
+						var memberID = ret.result.company_id;
+						//登录获取的mid
+						var contact = ret.result.contact;
+						var username = data.username
+						//保存信息到本地
+						UserInfo.onSuccess(token, username, pwd_hash, memberID, contact);
+						api.execScript({
+							name : 'root',
+							script : 'changemyrcindex()'
+						});
+						if (api.pageParam.nextUrl != null) {
+							openWin(api.pageParam.winName, api.pageParam.nextUrl, api.pageParam);
+							setTimeout(function() {
+								api.closeWin()
+							}, 1000)
+						}
+						api.closeWin();
+						/*
+						api.alert({
+							title : '登录帐号',
+							msg : '登录成功！',
+							buttons : ['确定']
+						}, function(ret, err) {
+							
+						});
+						*/
+					} else {
+						hint(ret.errkey)
+						$(".btn").addClass("login-btn");
+					}
+					api.hideProgress();
+				} else {
+					if(err){
+						saveerrlog(err.body);
+					}
+					$(".btn").addClass("login-btn")
+					api.hideProgress();
+				};
+			});
+		}
+
+		function hint(ts) {
+			$(".hint").remove()
+			var hintHtml = '<div class="hint" style="position:fixed;color:#fff;line-height:18px;font-size:14px;width:100%">' + '<span style="display:block;margin:0 8px;background:#000;opacity:0.8;border-radius:5px;padding:10px 10px;text-align:center">' + ts + '<span>' + '</div>';
+			$("body").append(hintHtml);
+			var hint_height = $(".hint").height();
+			var wd_height = $(window).height();
+			var top_height = (wd_height - hint_height) / 2
+			$(".hint").css("top", top_height + "px");
+			setTimeout(function() {
+				$(".hint").fadeOut("slow", function() {
+					$(".hint").remove()
+				})
+			}, 2000)
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

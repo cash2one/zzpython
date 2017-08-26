@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/offer.css" />
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+<link rel="stylesheet" href="/css/comm-more.css" />
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+<ul class="bread Fix">
+    <li><a href="/">首页</a></li>
+    <li class="li-bread"><a href="/company/detail{{company_id}}.html">公司信息</a></li>
+    <li class="li-bread c9"><span>公司供求列表</span></li>
+</ul>
+<div class="pt10 pb10">
+<div class="pl10 pr10">
+    <form action="/company/products/{{company_id}}/" method="get" id="wikiSearchFrm">
+    	<div style="position:relative;">
+        	<div class="sch-input">
+        		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+        	</div>
+        	<div class="sch-button" onClick="AliMobile.WikiSearch.submitFrm()">搜供求</div>
+    		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+    	</div>
+    </form>
+</div>
+</div>
+<a name="filterAnchor"></a>
+
+<div id="sellofferList">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="offertype">
+	<tbody>
+	<tr>
+	<td align="center" ><a href="/company/products/{{company_id}}/?{%if keywords%}keywords={{keywords}}&{%endif%}ptype=0"><div class="{{stab1}}">全部</div></a></td>
+	<td align="center"><a href="/company/products/{{company_id}}/?{%if keywords%}keywords={{keywords}}&{%endif%}ptype=1"><div class="{{stab2}}">供应</div></a></td>
+	<td align="center"><a href="/company/products/{{company_id}}/?{%if keywords%}keywords={{keywords}}&{%endif%}ptype=2"><div class="{{stab3}}">求购</div></a></td>
+	</tr></tbody>
+	</table>
+	{% for list in productslist %}
+   <section class="result-list">
+    <a href="/trade/detail{{list.pdt_id}}.html">    	<span class="img"><img class="imgloaded" rel="lazy-load" src="{{list.pdt_images}}" data-src="{{list.pdt_images}}"></span>
+    	<div class="desc c3">
+    		<div class="f16 c4">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}  {{list.pdt_time_en}}</div>
+    		<div class="c3 price">
+    			<div class="f14 b c-ff7300 rmb">
+				<span class="f16">{{list.pdt_price}}</span>
+				</div>
+				{%if list.vipflag.vipcheck%}
+    			<div class="c6 unit"></div>
+				<div class="cxtCom"></div>
+				{%endif%}
+			</div>
+			<p class="c9">{{list.com_province}}</p>
+    	</div></a>
+    </section>
+    {% endfor %}
+</div>
+<script>
+
+AliMobile.Jload3.jqreadyRun(function(){jQuery("#sellofferList img[rel=lazy-load]").scrollLoading();});
+
+</script>
+
+
+<nav class="page Fix">
+	<span class="left">
+    {% if firstpage %}
+    <a class="pageBtnEnable" href="/company/products/{{company_id}}/p{{prvpage}}.html{%if keywords%}?keywords={{keywords}}{%endif%}"><span>上一页</span></a>
+    {% endif %}
+    </span>
+	<i class="ac f14">{{page}}/{{page_listcount}}</i>
+	<span class="right">
+    {% if lastpage%}
+    <a class="pageBtnEnable" href="/company/products/{{company_id}}/p{{nextpage}}.html{%if keywords%}?keywords={{keywords}}{%endif%}"><span>下一页</span></a>
+    {% endif %}
+    </span>
+</nav>
+
+<div class="t-index-search2">
+	<div class="t-search-bar pd10">
+		<form action="/trade/" method="get" onSubmit="return AliMobile.SearchBar.chkSearchInput('.t-index-search2');">
+		<div style="position:relative;">
+	    	<div class="input">
+	    		<div class="selected" onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','2');">
+	    			<span class="type">供求</span>
+	    			<span class="arrow"></span>
+	    		</div>
+				<div style="margin-right:55px;">
+    	    		<input class="searchKey" type="text" name="keywords" value="" autocomplete="off" placeholder="请填写搜索关键词" onFocus="AliMobile.SearchBar.input('.t-index-search2','2');" onKeyUp="AliMobile.SearchBar.input('.t-index-search2','2');">
+				</div>
+	    		<input class="searchType" type="hidden" value="selloffer" name="searchtype">
+				<input id="version" type="hidden" value="t" name="v">
+				<input id="en" type="hidden" value="utf8" name="en">
+	    	</div>
+	    	<div class="submit" onClick="AliMobile.SearchBar.submit('.t-index-search2');">搜索</div>
+			<div class="clear"><a href="javascript:AliMobile.SearchBar.cleanSearchInput('.t-index-search2');"><img src="/images/close2.png"></a></div>
+		</div>
+		</form>
+		<div class="ac selection" style="display:none;">
+			<ul>
+				<li onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','2','供求','selloffer','请输入供求名称');">供求</li>
+				<li onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','2','公司','company','请输入公司名、地区、产品等');">公司</li>
+				<li onClick="AliMobile.SearchBar.setSearchType('.t-index-search2','2','价格','price','请输入价格行情关键字');">价格</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</div>
+{%include 'bottom.html'%}
+</div>
+
+
+</body>
+</html>

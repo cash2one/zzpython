@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>样品会员中心_ZZ91再生网</title>
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/common.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/index.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/jquery.alert.css">
+    <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/sample/admin/css/calendar.css">
+    <script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/index.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/jquery.alert.js"></script>
+    <script type="text/javascript" src="http://img0.zz91.com/zz91/sample/admin/js/jquery.easydrag.js"></script>
+</head>
+<body class="gbody1000">
+{%include "include/nav.html"%}
+{%include "include/head.html"%}
+{%include "include/lm.html"%}
+<div class="gm1-5 gw-bcrumb">
+    <span><a href="index.html">会员中心</a></span>
+            <strong>
+        <a href="order.html">全部订单</a>
+    </strong>
+</div>
+<div class="gMain clearfix">
+        
+        {%include "include/leftmenu.html"%}
+        <div class="gContainer">
+        	<div class="messages">
+               【注意事项】<br />
+            	1.下单后，3日之内未付款，系统将取消订单
+                2.收货之后，未确认收货，将在15天后系统自动确认收货。
+                3.免费样品，一律不退货。
+                <br />
+               
+            </div>
+            <div class="gcTopic">
+                <h2>全部订单</h2>
+            </div>
+            <div class="gTab">
+                <ul class="clearfix">
+                    <li class="current"><a href="#">全部订单</a></li>
+                    <li><a href="#">待付款订单</a></li>
+                    <li><a href="#">待确认收货</a></li>
+                    <li><a href="#">已完成订单</a></li>
+                </ul>
+            </div>
+            <form id="form1" name="form1" method="post" action="#">
+            <div class="optBar clearfix">
+                <div class="listFilter clearfix">
+                    <input type="hidden" class="pin" name="status" value="1" />
+                    <select id="u71" class="u71">
+                    <option selected="" value="订单状态">订单状态</option>
+                    <option value="等待买家付款">等待买家付款</option>
+                    <option value="等待卖家发货">等待卖家发货</option>
+                    <option value="买家提醒发货">买家提醒发货</option>
+                    <option value="等待买家确认收货">等待买家确认收货</option>
+                    <option value="交易成功">交易成功</option>
+                    <option value="交易关闭">交易关闭</option>
+                    <option value="买家申请退货">买家申请退货</option>
+                    <option value="卖家同意退货">卖家同意退货</option>
+                    <option value="等待卖家确认收货">等待卖家确认收货</option>
+                    <option value="退货成功">退货成功</option>
+                    </select>
+                    <input type="text" class="pin" name="keyword" value="" />
+                    成交日期<input type="text" id="datefrom" class="datetext"/>
+					<input type="text" id="dateto" class="datetext" />
+                    <button type="submit">搜索</button>
+                </div>
+                            </div>
+            </form>
+            <script type="text/javascript">
+			onload = function () {
+				new DatePicker('_datefrom', {
+					inputId: 'datefrom',
+					className: 'date-picker-wp',
+					seprator: '-'
+				});
+				new DatePicker('_dateto', {
+					inputId: 'dateto',
+					className: 'date-picker-wp',
+					seprator: '-'
+				});
+			}
+			</script>
+            <div class="tableList">
+                <table class="tableListTit">
+                    <tr>
+                        <th class="w200">产品名称</th>
+                        <th class="w100">单价（元/件）</th>
+                        <th class="w50">数量（件）</th>
+                        <th class="w50">总重量（千克）</th>
+                        <th class="w100">订单状态</th>
+                        <th class="w100">实付款（元）</th>
+                        <th class="w100">交易操作</th>
+                        <th>其他操作</th>
+                    </tr>
+                </table>
+                <table class="tableListItem">
+                    <tr>
+                        <th colspan="8"><span>订单编号：1406190906457971</span><span>下单时间：2014-06-19 09:06</span></th>
+                    </tr>
+                    <tr>
+                        <td class="w200">
+                            <div class="infoListPrd clearfix">
+                                <div class="infoListPrdImg">
+                                    <img src="http://img.gc.gcimg.net/diandongji/product/day_201405/836cefb1aa50d51f201fe362c19b1c38.jpg!100.100" alt="欢鑫三相异步电动机"/>
+                                </div>
+                                <p>【<a target="_blank" href="http://diandongji.gongchang.cn/brand-huanxin/" class="prdBrand">万鑫</a>】<a target="_blank" href="http://diandongji.gongchang.cn/pro-343494/" class="prdName">欢鑫三相异步电动机</a></p>
+                            </div>
+                        </td>
+                        <td class="w100"><div class="prdPrice">760.00元</div></td>
+                        <td class="w50">10</td>
+                        <td class="w50">10</td>
+                        <td class="w100">
+                            <div class="tradeListState">
+                                <p>等待卖家发货</p>
+                            </div>
+                        </td>
+                        <td class="w100">100   <br />（含运费：0元）</td>
+                        <td class="w100">确认发货</td>
+                        <td>
+                            <a href="">备忘</a><br />
+
+                                <a href="#" class="aBtn">查看留言</a>
+                            
+                        </td>
+                    </tr>
+                </table>
+                <table class="tableListItem">
+                    <tr>
+                        <th colspan="8"><span>订单编号：1406190906457971</span><span>下单时间：2014-06-19 09:06</span></th>
+                    </tr>
+                    <tr>
+                        <td class="w200">
+                            <div class="infoListPrd clearfix">
+                                <div class="infoListPrdImg">
+                                    <img src="http://img.gc.gcimg.net/diandongji/product/day_201405/836cefb1aa50d51f201fe362c19b1c38.jpg!100.100" alt="欢鑫三相异步电动机"/>
+                                </div>
+                                <p>【<a target="_blank" href="http://diandongji.gongchang.cn/brand-huanxin/" class="prdBrand">万鑫</a>】<a target="_blank" href="http://diandongji.gongchang.cn/pro-343494/" class="prdName">欢鑫三相异步电动机</a></p>
+                            </div>
+                        </td>
+                        <td class="w100"><div class="prdPrice">760.00元</div></td>
+                        <td class="w50">10</td>
+                        <td class="w50">10</td>
+                        <td class="w100">
+                            <div class="tradeListState">
+                                <p>等待卖家发货</p>
+                            </div>
+                        </td>
+                        <td class="w100">100   <br />（含运费：0元）</td>
+                        <td class="w100">确认发货</td>
+                        <td>
+                            <a href="">备忘</a><br />
+
+                                <a href="#" class="aBtn">查看留言</a>
+                            
+                        </td>
+                    </tr>
+                </table>
+                
+              </div>
+         <div class="gPageBar clearfix">
+         <div class="gPage">
+		<span class="ppa">上一页</span>
+		<span class="pnum">1/1</span>
+		<span class="npa">下一页</span>
+		<input type="hidden" name="url" class="git" value="#">
+	<span class="gp">
+		<span>转到</span>
+		<input type="hidden" name="totalpage" class="git" value="1">
+		<input type="text" name="page" class="git" value="1">
+		<span>页</span>
+	</span>
+	<button type="submit" class="pagbtn">确定</button>
+</div>            </div>
+		</div>
+	</div>
+	</div>
+{%include "include/bottom.html"%}
+</body>
+</html>

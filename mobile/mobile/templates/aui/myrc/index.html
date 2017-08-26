@@ -1,0 +1,503 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>生意管家-zz91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		
+	</head>
+	<style>
+		body {
+			background: #F4F4F4;
+		}
+		.my-header {
+			background-color: #009900;
+			min-height: 180px;
+			position: relative;
+		}
+		.my-info {
+			position: relative;
+			padding: 10px 0;
+			width: 100%;
+			bottom: 0;
+			vertical-align: center;
+			color: #ffffff;
+		}
+		.my-info img {
+			width: 70px;
+			height: 70px;
+			border-radius: 50%;
+			margin-top: 10px;
+		}
+		.my-info p {
+			color: #ffffff;
+			font-size: 15px;
+			margin-top: 5px;
+		}
+		.my-info p.nickname {
+			margin-top: 5px;
+		}
+		.my-menu {
+			position: absolute;
+			width: 100%;
+			height: 45px;
+			line-height: 45px;
+			left: 0;
+			bottom: 0;
+			text-align: center;
+			background: #ffffff;
+			filter: Alpha(opacity=50);
+			background: rgba(255, 255, 255, 0.2) none repeat scroll 0 0 !important;
+			color: #ffffff;
+			font-size: 14px;
+		}
+		.my-menu .aui-col-xs-3 {
+			border-right: 1px solid #009900;
+			width: 33.3%
+		}
+		.my-menu .aui-col-xs-3:last-child {
+			border-right: none;
+		}
+		.my-menu > div:active {
+			background: #ffffff;
+			filter: Alpha(opacity=50);
+			background: rgba(255, 255, 255, 0.2) none repeat scroll 0 0 !important;
+		}
+		.aui-list-view-cell {
+			line-height: 22px;
+		}
+		.aui-list-view i.aui-iconfont,.aui-list-view i.aui-iconfont1 {
+			color: #000
+		}
+		
+		
+		.haveqiandao {
+			
+			line-height:22px;
+			width: 70px;
+			margin-right: 10px;
+			float: left;
+			color: #fff;
+			text-align:left;
+			font-size: 12px;
+			
+		}
+		.shownotinfo{
+			position:relative;
+			margin-top:-15px;
+			text-align:left;
+		}
+		.ptop{
+    		border: solid 0px #F1C40F;
+    		background-color: rgba(255,242,183,.9);
+    		text-align:center;
+    		width:100%;
+    		clear:both;
+    		line-height:33px;
+    		z-index: 9999;
+    		padding-left:5px;
+    	}
+    	.zdbotton{
+    		background-color:#C0392B;
+    		color:#fff;
+    		width:53px;
+    		font-size:12px;
+    		margin-top:8px;
+    		display:block;
+    		float:right;
+    		line-height:18px;
+    		border-radius:2px;
+    		text-align:center
+    	}
+    	.qiyexiu{
+    		line-height:22px;
+    		color:#fff;
+    		font-size:12px;
+    		float: left;
+    		
+    	
+    	}
+    	#faceurl img{
+    		border-radius: 50%;
+    		height:50px;
+    		width:50px;
+    	}
+    	.blance{
+    		color:#FA6604;
+    		
+    	}
+    	.qiandaomain{
+    		margin-bottom:15px;
+    	}
+    	#qiandao{
+			height: 60px;
+			background-color: #fff;
+			padding: 10px;
+			font-size: 14px;
+			line-height: 40px;
+		}
+		#qiandao .qleft{
+			float: left;
+			padding-right: 10px;
+			width: 15%;
+		}
+		#qiandao .qmid{
+			float: left;
+			width: 60%;
+		}
+		#qiandao .qright{
+			float: right;
+			width: 20%;
+		}
+		#qiandao .qright .qiandaobtn{
+			border-radius:30px;
+			width: 70px;
+			text-align: center;
+		}
+		#qiandao .qright .qoff{
+			border-radius:10%;
+		}
+		#qiandao u{
+			font-size: 18px;
+			padding-left: 8px;
+			padding-right: 8px;
+			color: #009900;
+			font-weight: bold;
+		}
+		.aui-bar{
+			background-color: #009900;
+		}
+		header{
+			position: fixed;
+			width:100%;
+			top:0px;
+			
+		}
+	</style>
+	<body>
+	  <header class="aui-bar aui-bar-nav aui-bar-warning" style="position: fixed;z-index: 9999;">
+	  		<a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-title">生意管家</div>
+		    <!--<a href="settings.html" class="aui-pull-right">
+		        <span class="aui-iconfont aui-icon-settings"></span>
+		    </a>-->
+		</header>
+	    <div style="height:45px"></div>
+	    
+	    <div class="shownotinfo my-revise completediv" style="display:none">
+			<div class="aui-tips-warning ptop">
+				<div class="aui-ellipsis-1" style="text-align: left">
+					<i class="aui-iconfont aui-icon-warnfill"></i>
+					<font style="font-size:12px" color="red">您的资料未填写完善，<span class="showtext"></span></font>
+					<span class="zdbotton">立即完善</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="shownotinfo my-credibility zxinfo" style="display:none;">
+			<div class="aui-tips-warning ptop">
+				<div class="aui-ellipsis-1" style="text-align: left">
+					<i class="aui-iconfont aui-icon-warnfill"></i>
+					<font style="font-size:12px" color="red">请上传您的安全认证信息！</font>
+					<span class="zdbotton">立即上传</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="aui-card-list">
+            <div class="aui-card-list-content">
+                <ul class="aui-list aui-media-list">
+                    <li class="aui-list-item aui-list-item-middle my-revise">
+                        <div class="aui-media-list-item-inner">
+                            <div class="aui-list-item-media" id="faceurl" style="width: 3rem;">
+                                <img src="{{faceurl}}" class="aui-img-round">
+                            </div>
+                            <div class="aui-list-item-inner  aui-pull-left">
+                                <div class="aui-list-item-text">
+                                    <div class="aui-list-item-title aui-font-size-14 my-name">{{contact}}</div>
+                                </div>
+                                {%if ldbvalue%}
+                                <div class="ldbmain">
+	                                <div class="aui-list-item-text">
+	                                    <p>来电宝余额：￥<span class="blance">{{blance}}</span></p>
+	                                </div>
+	                                <div class="aui-list-item-text">
+	                                    <p>您的接听率：<span class="ldbjtl">{{ldbjtl}}</span></p>
+	                                </div>
+                                </div>
+                                {%else%}
+                                <div class="aui-list-item-text nomalmain">
+                                    <p>钱包余额：￥<span class="blance">{{blance}}</span></p>
+                                </div>
+                                {%endif%}
+                            </div>
+                            <a href="/qianbao/chongzhi.html" class="aui-pull-right aui-btn aui-btn-warning" style="margin-right:10px;float:right" bind="0">充值</a>
+                        </div>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+        <div class="aui-tips-danger ptop" style="background-color: #ff0000;">
+			<div class="aui-ellipsis-1" style="text-align: left">
+				<i class="aui-iconfont aui-icon-creative"></i>
+				<font style="font-size:14px" color="#fff">下载APP，获取<font color="#FEE900">20</font>元红包</font>
+				<a class="zdbotton" href="http://m.zz91.com/app.html">免费下载</a>
+			</div>
+		</div>
+        <div style="clear: both"></div>
+        {%if not ldbvalue%}
+        {%if qiandao%}
+        {%else%}
+        <div class="qiandaomain">
+        	<div class="aui-line-x"></div>
+			<div id="qiandao">
+				<div class="qleft"><img src="http://static.m.zz91.com/myrc/qiandao.png" style="height: 40px;" border="0">
+				</div>
+				<div class="qmid">
+					今天签到 + <font color="red">0.5</font>元钱包
+				</div>
+				<div class="qright">
+					<p><div class="qiandaobtn aui-btn aui-btn-success">
+						签到
+					</div></p>
+				</div>
+			</div>
+			<div class="aui-line-x"></div>
+		</div>
+		<div style="clear: both"></div>
+		{%endif%}
+		{%endif%}
+		{%if cslist%}
+		<div style="line-height: 50px;text-align: center;" class="cszhuli">我的商务助理：<span style="color:#FC9A30" class="csname">{{cslist.name}}</span>  电话：<span class="cstel"><a href="tel:{{cslist.tel}}">{{cslist.tel}}</a></span></div>
+		{%endif%}
+        <section class="aui-grid aui-margin-b-15">
+        	<div class="aui-line-x"></div>
+	        
+	        {%if ldbvalue%}
+	        <div class="aui-row ldbnav">
+	            <a href="/ldb_weixin/phonerecords.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-copy"></i>
+	                <div class="aui-grid-label">我的话单</div>
+	            </a>
+	            <a href="/ldb_weixin/phoneclick.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-magic"></i>
+	                <div class="aui-grid-label">点击清单</div>
+	            </a>
+	            <a href="/qianbao/chongzhi.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-rechargefill"></i>
+	                <div class="aui-grid-label">在线充值</div>
+	            </a>
+	            <a href="products.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-list"></i>
+	                <div class="aui-grid-label">我的供求</div>
+	            </a>
+	            <a href="/qianbao/jingjia_index.html" class="aui-col-xs-3">
+	            	<div class="aui-badge aui-badge-danger" style="left:50%">新</div>
+	                <i class="aui-iconfont aui-icon-refund"></i>
+	                <div class="aui-grid-label">流量宝</div>
+	            </a>
+	            <a href="favorite.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-favor"></i>
+	                <div class="aui-grid-label">我的收藏</div>
+	            </a>
+	            <a href="addressbook.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-addressbook"></i>
+	                <div class="aui-grid-label">通信录</div>
+	            </a>
+	            <a href="/help/" class="aui-col-xs-3">
+	            	{%if gdshow%}<span class="aui-badge aui-badge-danger" style="left:auto;left:50%;">{{noviewanwer}}</span>{%endif%}
+	                <i class="aui-iconfont aui-icon-question"></i>
+	                <div class="aui-grid-label">服务中心</div>
+	            </a>
+	            <a href="community.html" class="aui-col-xs-3">
+	            	{%if huzhucountshow%}<div class="aui-badge aui-badge-danger" style="left:50%;">{{notviewcount}}</div>{%endif%}
+	                <i class="aui-iconfont aui-icon-creative"></i>
+	                <div class="aui-grid-label">互助社区</div>
+	            </a>
+	            <a href="/qianbao/myservice.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-service"></i>
+	                <div class="aui-grid-label">我的服务</div>
+	            </a>
+	            <a href="info.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-copy"></i>
+	                <div class="aui-grid-label">我的资料</div>
+	                <span style="width: 60px;display: none;" class="aui-badge aui-badge-danger nowanshan">
+						未完善
+					</span>
+	            </a>
+	            <a href="password.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-command"></i>
+	                <div class="aui-grid-label">修改密码</div>
+	            </a>
+	        </div>
+	        {%else%}
+	        <div class="aui-row nomalnav">
+	            <a href="xunpan.html" class="aui-col-xs-3">
+	                <div class="aui-badge aui-badge-danger questioncount" style="display: none;">{{qcount}}</div>
+	                <i class="aui-iconfont aui-icon-comment"></i>
+	                <div class="aui-grid-label">我的留言</div>
+	            </a>
+	            <a href="products.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-list"></i>
+	                <div class="aui-grid-label">我的供求</div>
+	            </a>
+	            <a href="card.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-qrcode"></i>
+	                <div class="aui-grid-label">我的名片</div>
+	            </a>
+	            <a href="/qianbao/" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-pay"></i>
+	                <div class="aui-grid-label">再生钱包</div>
+	            </a>
+	            <a href="/qianbao/jingjia_index.html" class="aui-col-xs-3">
+	            	<div class="aui-badge aui-badge-danger" style="left:50%">新</div>
+	                <i class="aui-iconfont aui-icon-refund"></i>
+	                <div class="aui-grid-label">流量宝</div>
+	            </a>
+	            <a href="favorite.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-favor"></i>
+	                <div class="aui-grid-label">我的收藏</div>
+	            </a>
+	            <a href="addressbook.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-addressbook"></i>
+	                <div class="aui-grid-label">通信录</div>
+	            </a>
+	            <a href="/help/" class="aui-col-xs-3">
+	            	{%if gdshow%}<span class="aui-badge aui-badge-danger" style="left:auto;left:50%;">{{noviewanwer}}</span>{%endif%}
+	                <i class="aui-iconfont aui-icon-question"></i>
+	                <div class="aui-grid-label">服务中心</div>
+	            </a>
+	            <a href="community.html" class="aui-col-xs-3">
+	            	{%if huzhucountshow%}<div class="aui-badge aui-badge-danger" style="left:50%;">{{notviewcount}}</div>{%endif%}
+	                <i class="aui-iconfont aui-icon-creative"></i>
+	                <div class="aui-grid-label">互助社区</div>
+	            </a>
+	            <a href="/qianbao/myservice.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-service"></i>
+	                <div class="aui-grid-label">我的服务</div>
+	            </a>
+	            <a href="info.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-copy"></i>
+	                <div class="aui-grid-label">我的资料</div>
+	                <span style="width: 60px;display: none;" class="aui-badge aui-badge-danger nowanshan">
+						未完善
+					</span>
+	            </a>
+	            <a href="password.html" class="aui-col-xs-3">
+	                <i class="aui-iconfont aui-icon-command"></i>
+	                <div class="aui-grid-label">修改密码</div>
+	            </a>
+	        </div>
+	        {%endif%}
+	        <div class="aui-line-x"></div>
+	    </section>
+	    
+		<div class="aui-content">
+			<ul class="aui-list-view aui-in">
+				{%if isqiyexiu%}
+				<li class="aui-list-view-cell qiyexiu">
+					<a class="aui-arrow-right" href="http://h5.zz91.com/xiu/{{company_id}}.html"><i class="aui-iconfont aui-icon-evaluate"></i>我的企业秀</a>
+				</li>
+				{%endif%}
+				<li class="aui-list-view-cell my-servertel">
+					<a class="aui-arrow-right" href="tel:0571-56612345"><i class="aui-iconfont aui-icon-phone"></i>客服电话
+					<div style="float:right;margin-right:20px;color:#009900">
+						0571-56612345
+					</div></a>
+				</li>
+				<li class="aui-list-view-cell">
+					<a class="aui-arrow-right" href="/myrc/card.html"><i class="aui-iconfont aui-icon-share"></i>推荐给好友</a>
+				</li>
+			</ul>
+		</div>
+		<div style="height:10px"></div>
+		<div class="aui-content">
+			<ul class="aui-list-view aui-in">
+				<li class="aui-list-view-cell">
+					<a class="aui-arrow-right" href="/loginout/"><i class="aui-iconfont aui-icon-close"></i>退出</a>
+				</li>
+			</ul>
+		</div>
+	
+	<script type="text/javascript">
+		var mobilevalue="";
+		var companyname="";
+		function showquestionnum(num){
+			//我的留言提示数字
+			if (num==0){
+				$(".questioncount").hide();
+			}else{
+				$(".questioncount").show();
+				$(".questioncount").text(num);
+			}
+		}
+		//显示，修改头像
+		function showfacehtml(faceurl){
+			//alert(faceurl)
+			if (faceurl){
+				var facehtml="<img src='"+faceurl+"' class='aui-img-round'>";
+			}else{
+				var facehtml="<img src='http://static.m.zz91.com/aui/images/noavatar.gif' class='aui-img-round'>"
+			}
+			$("#faceurl").html(facehtml)
+		}
+		
+		$(function(){
+			showquestionnum({{qcount}});
+			//签到
+			$(".qiandaobtn").on("click", function() {
+				qiandao();
+			})
+			
+		});
+
+		//签到
+		function hideqiandao(){
+			$(".qiandaomain").hide();
+		}
+		var haveqiandao=false
+		function qiandao() {
+			if (haveqiandao==true){
+				return false;
+			}
+			haveqiandao=true
+			var data = {}
+			zzajax("get",'/qianbao/qiandao.html',data,function(ret){
+				if (ret) {
+					if (ret.err == "false") {
+						layer.msg("签到成功！再生钱包  + 0.5元");
+						$(".blance").html(parseFloat($(".blance").html())+0.5)
+						$(".qiandaomain").hide();
+					} else {
+						layer.msg('你今天已经签到')
+					}
+				} else {
+					layer.msg("系统错误")
+				};
+				haveqiandao=false;
+			},function(){})
+		}
+		
+	</script>
+	{%include 'aui/bottom.html'%}
+	</body>
+</html>

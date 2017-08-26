@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>给我留言-zz91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<style>
+			body{
+				background: #fff;
+			}
+			.chat-main{
+				margin-bottom: 45px;
+			}
+			.aui-chat-receiver .aui-bg-ebebeb{
+				background: #ebebeb;
+			}
+			.aui-bg-ebebeb .aui-chat-left-triangle{
+				border-color: transparent #ededed transparent transparent;
+			}
+			.font-cc{
+				color: #ccc;
+			}
+			.chat-foot{
+				background: #f2f2f2;
+				border: 1px solid #e0e0e0;
+				height: 40px;
+				padding-top: 3px;
+			}
+			.chat-foot .aui-iconfont{
+				font-size: 22px;
+				color: #404040;
+			}
+			.chat-foot input{
+				min-height: 1.3rem;
+				padding: 2px 15px;
+				margin-top: 3px;
+				color: #333;
+			}
+			.foot-btn{
+				background: #f2f2f2;
+				color: #333;
+				padding-top: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">给我留言</div>
+		</header>
+		<section class="aui-chat  chat-main">
+		    <div class="aui-content aui-content-padded" id="message-content">
+		    	<div class="aui-chat-receiver">
+		            <div class="aui-chat-receiver-avatar"><img src="../image/demo2.png"></div>
+		            <div class="aui-chat-receiver-cont aui-bg-ebebeb">
+		                <div class="aui-chat-left-triangle"></div>
+		                <span class="aui-font-size-14">你好！欢迎光临，请问有什么可以帮到您的？</span>
+		            </div>
+		        </div>
+		        <div class="aui-chat-sender">
+		            <div class="aui-chat-sender-avatar"><img src="../image/demo1.png"></div>
+		            <div class="aui-chat-sender-cont">
+		                <div class="aui-chat-right-triangle"></div>
+		                <span class="aui-font-size-12 font-cc">2016-12-28 14:11:7</span><br />
+		                <span class="aui-font-size-14">很高兴见到你！</span>
+		            </div>
+		        </div>
+		        <div class="aui-chat-sender">
+		            <div class="aui-chat-sender-avatar"><img src="../image/demo1.png"></div>
+		            <div class="aui-chat-sender-cont">
+		                <div class="aui-chat-right-triangle"></div>
+		                <span class="aui-font-size-12 font-cc">2016-12-28 14:11:7</span><br />
+		                <span class="aui-font-size-14">很高兴见到你！</span>
+		            </div>
+		        </div>
+		        <div class="aui-chat-receiver">
+		            <div class="aui-chat-receiver-avatar"><img src="../image/demo2.png"></div>
+		            <div class="aui-chat-receiver-cont aui-bg-ebebeb">
+		                <div class="aui-chat-left-triangle"></div>
+		                <span class="aui-font-size-14">你好！欢迎光临，请问有什么可以帮到您的？</span>
+		            </div>
+		        </div>
+		        <div class="aui-chat-sender">
+		            <div class="aui-chat-sender-avatar"><img src="../image/demo1.png"></div>
+		            <div class="aui-chat-sender-cont">
+		                <div class="aui-chat-right-triangle"></div>
+		                <span class="aui-font-size-12 font-cc">2016-12-28 14:11:7</span><br />
+		                <span class="aui-font-size-14">很高兴见到你！</span>
+		            </div>
+		        </div>
+		        <div class="aui-chat-receiver">
+		            <div class="aui-chat-receiver-avatar"><img src="../image/demo2.png"></div>
+		            <div class="aui-chat-receiver-cont aui-bg-ebebeb">
+		                <div class="aui-chat-left-triangle"></div>
+		                <span class="aui-font-size-14">你好！欢迎光临，请问有什么可以帮到您的？</span>
+		            </div>
+		        </div>
+		    </div>
+		</section>
+		<footer class="aui-nav chat-foot aui-row" id="aui-footer">
+	        <a class="aui-col-xs-1">
+                <i class="aui-iconfont aui-icon-roundadd"></i>
+            </a>
+            <div class="aui-col-xs-9">
+                <input type="text" placeholder="输入发送内容" class="aui-font-size-12">
+            </div>
+            <div class="aui-col-xs-2">
+                <a href="" class="aui-btn foot-btn">
+            		发送
+            	</a>
+            </div>
+	    </footer>
+	    {%include 'aui/bottom.html'%}
+	</body>
+</html>

@@ -1,0 +1,79 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 tdansitional//EN" "http://www.w3.org/td/xhtml1/DTD/xhtml1-tdansitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>微信签到积分榜</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="../scoreboard/css/style.css"/>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script src="http://img0.zz91.com/zz91/js/openoverlay.js"></script>
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/css/openoverlay.css">
+
+</head>
+<body>
+{%include 'html/comm/top.html'%}
+<style>
+.subject_foofer{color:#FFF}
+.subject_foofer a{color:#fff}
+.subject_foofer a:hover{ color:#FF0}
+</style>
+   <div class="top"></div>
+   <!--end top-->
+   <center>
+    <div class="item">
+    	<div class="i-left">
+        	<img src="../scoreboard/images/left.png" />
+        </div>
+        <!--end i-left-->
+        <div class="i-right">
+        	<div class="i-table">
+            	<table borderColor="#760202" cellPadding="1"border="1">
+                   <tr class="i-tle">
+                	<td class="it-00">公司名称</td>
+                    <td class="it-11">积分总数</td>
+                    <td class="it-11">排名</td>
+                   </tr>
+{%for ac in accountlist%}
+                   <tr class="i-txt">
+                	<td class="{%if ac.numb > 3%}it-0{%else%}it-01{%endif%}"><a href="{{ac.companyurl}}" style="color:blue" target="_blank">{{ac.companyname}}</a></td>
+                    <td class="it-1">{{ac.score}}</td>
+                    <td class="{%if ac.numb > 3%}it-10{%else%}it-12{%endif%}">TOP{{ac.numb}}</td>
+                   </tr>
+{%endfor%}
+                </table>
+            </div>
+            <!--end i-table-->
+            <div class="i-table">
+            	<table borderColor="#760202" cellPadding="1"border="1">
+                   <tr class="i-tle">
+                	<td class="it-00">公司名称</td>
+                    <td class="it-11">兑换物品</td>
+                    <td class="it-11">分值</td>
+                   </tr>
+                   {%for sc in scoreexchange.list%}
+                   <tr class="i-txt">
+                	<td class="{%if sc.numb > 3%}it-0{%else%}it-01{%endif%}"><a href="{{sc.companyurl}}" target="_blank" style="color:blue">{{sc.companyname}}</a></td>
+                    <td class="it-1">{{sc.prizename}}</td>
+                    <td class="it-1">{{sc.score}}</td>
+                   </tr>
+                   {%endfor%}
+                </table>
+            </div>
+            <!--end i-table-->
+        </div>
+        <!--end i-right-->
+        <div class="cb"></div>
+    </div>
+    <!--end item-->
+    </center>
+<div style=" text-align:center;">
+{% include 'html/comm/buttom.html' %}
+</div>
+</body>
+</html>
+
+    </div>
+</div>
+</body>
+</html>

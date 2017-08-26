@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport"  content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+	<meta name="format-detection"  content="telephone=no">
+    <title>我要供货-zz91再生网</title>
+    <link href="/trust/css/caigou.m.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+    <script>
+		function readydo(){
+			$(".tip-layer-error").css("display","none")
+		}
+	</script>
+</head>
+<body onclick="readydo()">
+	<header>
+    	<div class="header"><h2>我的供货</h2></div>
+    </header>
+    <div class="supply">
+    	<div class="supply-form">
+        	<form action="supplyFormok.html" method="post" id="">
+            	<p>请在下方填写您的真实报价（价格必填），并对您的货物描述清楚。</p>
+                <p>例如：HDPE再生颗粒，吹膜用，白色，优质，杭州，10吨/月，8000元/吨</p>
+                <p>
+                	<textarea class="supply-textarea" rows="7" name="content"></textarea>
+                </p>
+                <p>注：不合理报价会被系统自动屏蔽</p>
+                <p>
+                	<input type="submit" class="sub_btn" id="" name="" value="提交报价" />
+                	<input type=hidden name="buy_id" value={{buy_id}}>
+                </p>
+            </form>
+        </div>
+        <!--end supply-form-->
+    </div>
+    {%if errflag%}
+	<div class="tip-layer tip-layer-error" style="width: 300px; margin-left: -150px;">{{errtext}}</div>
+	{%endif%}
+    <!--end supply-->
+</body>
+</html>

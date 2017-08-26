@@ -1,0 +1,13 @@
+<div id="header">
+  <img src="http://img0.zz91.com/zz91/newcompany/images/top_bg.jpg" />
+  <div class="nav">
+    <ul class="nav_list">
+  		<li class="drop-menu-effect"><a href="{{jibie}}"><span{%if shouindex%} class="selected"{%endif%}>首页</span></a></li>
+{%for tp in alltypelist%}
+  		<li class="drop-menu-effect"><a href="{{jibie}}{{tp.pinyin}}/"><span {{tp.id}}{{arttypeid}} {%ifequal tp.id topid%} class="selected"{%endifequal%}>{{tp.typename}}</span></a></li>
+{%endfor%}
+    </ul>
+  </div>
+  <!--end nav-->
+</div>
+<!--end header-->

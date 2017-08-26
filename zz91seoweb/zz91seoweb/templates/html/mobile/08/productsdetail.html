@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>手机</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+<script src="{{htmlincludes.img}}js/jquery.js"></script>
+<script src="{{htmlincludes.img}}js/index.js"></script>
+</head>
+<body style="background:#e7e7e7">
+
+
+<div class="phoneTop">
+	{{list.name}}
+</div>
+<!--end phoneTop-->
+<div class="phoneTitle">
+	<center>
+	<img src="{{list.viptype.vippic}}" />{%if list.zst_year%}第<span>{{list.zst_year}}</span>年{%endif%}
+    </center>
+</div>
+<!--end phoneTitle-->
+
+<div class="phoneBanner">
+	<img src="{{htmlincludes.img}}images/banner2.jpg" />
+</div>
+<!--end phoneBanner-->
+
+<div class="phone-nav">
+	<ul>
+    	<li><a href="/mobile/index{{company_id}}.htm" class="phone-nav-icon1"></a></li>
+    	{%if gongying%}
+        <li><a href="/mobile/products{{company_id}}-1.htm?pdt_type=0" class="phone-nav-icon2"></a></li>
+        <li style="background:#d8d8d8"><a href="/mobile/products{{company_id}}-1.htm?pdt_type=1" class="phone-nav-icon3"></a></li>
+        {%else%}
+        <li style="background:#d8d8d8"><a href="/mobile/products{{company_id}}-1.htm?pdt_type=0" class="phone-nav-icon2"></a></li>
+        <li><a href="/mobile/products{{company_id}}-1.htm?pdt_type=1" class="phone-nav-icon3"></a></li>
+        {%endif%}
+        <li><a href="/mobile/contact{{company_id}}.htm" class="phone-nav-icon4"></a></li>
+        <li><a href="/mobile/credit{{company_id}}.htm" class="phone-nav-icon5"></a></li>
+        <li><a href="/mobile/contact{{company_id}}.htm" class="phone-nav-icon6"></a></li>
+    </ul>
+</div>
+<!--end phone-nav-->
+<div class="fr" style="width:75%">
+<div class="phoneBox-title">
+</div>
+<!--end phoneBox-title-->
+
+
+
+                <div class="content-div2">
+                	<div class="content-caption">
+                    	发布日期：
+                    </div>
+                    <div class="content-text">
+                    	{{productsdetail.refresh_time}}
+                    </div>
+                    <div class="cb"></div>
+                </div>
+                <!--end content-div2-->
+                <div class="content-div2">
+                	<div class="content-caption">
+                    	有效期：
+                    </div>
+                    <div class="content-text">
+                    	{{productsdetail.expire_time}}
+                    </div>
+                    <div class="cb"></div>
+                </div>
+                <!--end content-div2-->
+                <div class="content-div2">
+                	<div class="content-caption">
+                    	数量：
+                    </div>
+                    <div class="content-text">
+                    	{%if productsdetail.total_quantity%}{{productsdetail.total_quantity}}{{productsdetail.quantity_unit}}{%endif%}
+                    </div>
+                    <div class="cb"></div>
+                </div>
+                <!--end content-div2-->
+                <div class="content-div">
+                	{{productsdetail.detailsfull|safe}}
+                </div>
+                <!--end content-div-->
+                <div class="content-div">
+                	
+                	<div class="content-caption2">
+                    	联系人：
+                    </div>
+                    <div class="content-text2">
+                    	{{list.contact}}
+                    </div>
+                    <div class="cb"></div>
+                    {%if list.address%}
+                    <div class="content-caption2">
+                    	地址：
+                    </div>
+                    <div class="content-text2">
+                    	{{list.address}}
+                    </div>
+					{%endif%}
+                    <div class="cb"></div>
+                    
+                    {%if list.ppcphone%}
+                    <div class="content-caption2">
+                    	联系方式：
+                    </div>
+                    <div class="content-text2">
+                    	<div class="phone_btn" style="margin:3px 3px 5px 0px">
+						    <a href="tel:{{list.ppcphone}}" class="content-a2">{{list.ppcphone}}</a>
+                        </div>
+                        <div class="cb"></div>
+                    </div>
+					{%else%}{%if list.showcontact%}
+					<div class="content-caption2">
+                    	联系方式：
+                    </div>
+					<div class="content-text2">
+						{%if list.tel%}
+						<div class="phone_btn" style="margin:3px 3px 5px 0px"><a href="tel:{{list.tel_area_code}}{{list.tel}}">{{list.tel_country_code}}-{{list.tel_area_code}}-{{list.tel}}</a></div>
+						{%endif%}
+						{%if list.mobile%}
+						<div class="mobile_btn" style="margin:3px 3px 5px 0px"><a href="tel:{{list.mobile}}">{{list.mobile}}</a></div>
+						{%endif%}
+					</div>
+                    {%endif%}
+					{%endif%}
+                    
+                    <div class="cb"></div>
+                </div>
+
+
+
+
+
+
+
+    
+    
+</div>
+<div class="cb"></div>
+
+<div class="phoneRuturntop">
+	<img src="{{htmlincludes.img}}images/ruturn_top.jpg" class="fr" onclick="bookmarks();" />
+    <div class="cb"></div>
+</div>
+<!--phoneRuturntop-->
+
+<div class="phoneFooterText">
+	<span>{{list.name}}</span><br />
+    技术支持：<a href="http://m.zz91.com">ZZ91再生网</a>
+</div>
+<!--end phoneFooterText-->
+
+
+
+</body>
+</html>

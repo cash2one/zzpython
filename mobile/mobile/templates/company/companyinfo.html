@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>{{webtitle}}_ZZ91废料移动商务</title>
+<meta name="keywords" content="废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备">
+<meta name="description" content="ZZ91再生网是中国最大最旺的网上废料贸易市场,这里为您精选了废金属,废塑料,废纸,废橡胶,纺织废料,废旧设备,废电子电器,废玻璃,废皮革,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备等各类废料供求信息.公司黄页.行业资讯.价格行情.展会信息等。">
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width">
+<link rel="stylesheet"  href="/css/comm-base.css" />
+<link rel="stylesheet"  href="/css/comm-touch.css" />
+<link rel="stylesheet"  href="/css/common.css" />
+<link rel="stylesheet"  href="/css/offer.css" />
+<link rel="stylesheet" type="text/css" href="/css/qianbao/index.css"/>
+<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+<script type="text/javascript" src="/js/qianbao/style.js"></script>
+<script type="text/javascript" src="/js/qianbao/jquery.lightbox_me.js"></script>
+</head>
+<body>
+<div class="wrapper">
+	<div style="height: 65px;"></div>
+	<script>
+		var browser={
+		  versions:function() {
+		    var u=navigator.userAgent, app = navigator.appVersion;
+		    return {//移动终端浏览器版本信息 
+		      trident: u.indexOf('Trident') > -1, //IE内核
+		      presto: u.indexOf('Presto') > -1, //opera内核
+		      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+		      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+		      mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
+		      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+		      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+		      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+		      iPad: u.indexOf('iPad') > -1, //是否iPad
+		      webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+		    };
+		  }(),
+		  language:(navigator.browserLanguage || navigator.language).toLowerCase()
+		}
+		function openappdown(){
+			if(browser.versions.ios || browser.versions.iPhone || browser.versions.iPad){
+			  window.location="https://itunes.apple.com/us/app/zz91zai-sheng-wang/id944851616?l=zh&ls=1&mt=8";
+			}
+			else if (browser.versions.android){
+			  window.location="http://m.zz91.com/app.html";
+			}
+		}
+		
+	</script>
+	<aside class="download-bar J_fixBar" id="J_appJump" style="top:40px;height: 65px;left: 0px;">
+		<div class="download">
+			<a class="close J_closeBtn J_closeAPP" href="javascript:closeapp('/closefloatapp.html?close=1')" target="J_appJumpFrame"></a>
+			<div class="intro" style="padding-top: 5px;;">
+				<div class="logo"></div>
+				<ul>
+					<li class="logo-title">使用APP客户端</li>
+					<li style="font-size: 12px;">获更多优质资源，送<b style="color: #FFFF00;">20</b>元红包</li>
+				</ul>
+			</div>
+			<div class="download-btn"> <a class="J_app" href="http://m.zz91.com/app.html">免费下载</a> </div>
+		</div>
+	</aside>
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+<ul class="bread Fix">
+    <li><a href="/">首页</a></li>
+    <li class="li-bread"><a href="{{backurl}}">搜索结果</a></li>
+    <li class="li-bread c9"><span>公司信息</span></li>
+</ul>
+
+<div style="margin:10px;">	
+<div class="of_title b f16">{{list.name}}</div>
+<div class="of_line"></div>
+<div class="pd2"><span class="c6">会员类型：{{list.viptype.vipname}}{%if list.viptype.vipcheck%}<img src="{{list.viptype.vippic}}">{%endif%}</span></div>
+{%if list.business%}
+<div class="pd2 lh22"><span class="c6">经营范围：</span><span class="c9">{{list.business}}</span></div>
+{%endif%}
+<div class="of_line"></div>
+
+<table>
+	<tbody>
+		<tr>
+			<td colspan="2" class="of_td5">{{list.name}}</td>
+		</tr>
+		<tr>
+			<td class="c6">联 系 人：</td>
+			<td class="c9">{{list.contact}}{{list.position}}</td>
+		</tr>
+		<tr>
+			<td class="of_td7">联系方式：</td>
+			<td class="of_td8">
+            <div class="contactbox">
+			{%if list.viptype.ldb%}
+				<a href="tel:{{list.viptype.ldb.ldbtel}}" onclick="telclick('/trade/telclicklog.html?tel={{list.viptype.ldb.ldbtel}}&pagefrom=company&forcompany_id={{forcompany_id}}')">{{list.viptype.ldb.ldbphone}}</a>
+			{%else%}
+				{%if isseecompany%}
+					{%if list.mobile%}
+                        {%if list.mobilelist%}
+                            {%for mob1 in list.mobilelist%}
+                            <a href="tel:{{mob1}}" onclick="telclick('/trade/telclicklog.html?tel={{mob1}}&pagefrom=company&forcompany_id={{forcompany_id}}')"><img src="/images/qianbao/m.jpg"/> {{mob1}}</a>
+                            {%endfor%}
+                        {%else%}
+                            <a href="tel:{{list.mobile1}}" onclick="telclick('/trade/telclicklog.html?tel={{list.mobile1}}&pagefrom=company&forcompany_id={{forcompany_id}}')"><img src="/images/qianbao/m.jpg" /> {{list.mobile1}}</a>
+                        {%endif%} 
+                    {%endif%}
+                    {%if list.tel%}
+                            <a href="tel:{{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}" id="tel" onclick="telclick('/trade/telclicklog.html?tel={{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}&pagefrom=company&forcompany_id={{forcompany_id}}')"><img src="/images/qianbao/tel.jpg"/>{{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}</a>
+                    {%endif%}
+				{%else%}
+			        <div class="block_info_item_a">
+                	{%if company_id%}
+						<a href="javascript:;"  id="{%if qianbaoblance >= 10%}chk_link{%else%}chk1_link{%endif%}">仅需{{paymoney}}元查看</a> {%if isjubao%}<img src="/images/qianbao/jb.jpg" /> 曾被举报{%endif%}
+					{%else%}
+		            	<a href="/login/?done={{host}}&keywords={{keywords}}">登录</a> <a href="/register/" target="_blank">立即注册</a>
+					{%endif%}
+                    </div>
+				{%endif%}
+			{%endif%}
+            </div>
+			</td>
+			{%if isseecompany%}
+			{%if forvipflag%}
+			<td class="of_td8" valign="top">
+				<div style="padding: 5px 5px 5px 10px;margin:3px;" id="jb4">
+{%ifnotequal isseecompany 2%}<span class="jbbox"><img src="/images/qianbao/jb.jpg" />&nbsp;&nbsp;{%if idcheck%}{{idchecktxt}}{%else%}<font id="jb3"><span id="jb2">举报</span></font>{%endif%}</div>{%endifnotequal%}
+				</div>
+			</td>
+			{%endif%}
+			{%endif%}
+		</tr>
+		{%if list.address%}
+		<tr>
+			<td class="c6">地  址：</td>
+			<td class="c9">{{list.address}}</td>
+		</tr>
+		{%endif%}
+	</tbody>
+</table>
+
+<div class="wp100 mt7">
+	<div class="bt-c bb-c pd10" style="background-color:#f7F7F7">公司简介</div>
+	<div class="lh22">{{list.introduction|safe}}</div>
+	<table class="ofb wp100">
+		<tbody>
+			<tr>
+			<td colspan="2" class="ac of_td6"> 
+				<input type="button" name="favOffer" onClick="window.location='/favorite/?company_id={{forcompany_id}}&title={{list.name}}';" value="收藏该公司" class="fav_btn">
+				<input type="button" name="favCompany" onClick="window.location='/leavewords/?backurl={{backurl}}&company_id={{forcompany_id}}';" value="给我留言" class="fav_btn">
+				<input type="button" name="favCompany" onClick="window.location='/company/products/{{forcompany_id}}/';" value="查看所有供求" class="fav_btn">
+			</td>
+			</tr>
+		</tbody>
+	</table>
+</div>    
+<center>
+					<div style="margin-top:3px;">
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- 微门户 -->
+					<ins class="adsbygoogle"
+					     style="display:block"
+					     data-ad-client="ca-pub-5512236620584335"
+					     data-ad-slot="8274972003"
+					     data-ad-format="auto"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+					</div>
+				</center>
+<script type="text/javascript">
+    /*kangxianyue 创建于 2017/1/14*/
+    var cpro_id = "u2876715";
+</script>
+<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/cm.js"></script>
+<div id="fadelayer" class="overlayDiv"></div>
+<div id="disFilter" class="picDialogDiv" style="width:100%;">
+	<div id="dialogClose" class="dialogCloseBtn" style="top:0;right:0;" onClick="AliMobile.Util.closeOfferBigPicDialog();"></div>
+	<div class="picDialogContent">
+		<div style="padding:5px;background-color:white;text-align:center;"><img id="showImg" src="" style="width:100%;"></div>
+	</div>
+</div>
+
+	
+</div>	
+
+</div>
+<div style="width: 100%;text-align: center;line-height: 30px;">关注 “zz91再生网” 微信公众号<br>查看更多商机<br /><img src="http://www.zz91.com/zt/sqb/images/erwei.png"><br />长按识别二维码</div>
+        <div id="tippOff_" align="center" class="tipp">
+        	<table>
+            	<tr>
+                	<td>您将举报该信息：</td>
+                    <td></td>
+                </tr>
+                <tr>
+                	<td><input type="checkbox" name="report" id="report1" value="违法违规" value="1" />&nbsp;<label for="report1">违法违规</label></td>
+                    <td><input type="checkbox" name="report" id="report2" value="虚假信息" value="2" />&nbsp;<label for="report2">虚假信息</label></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name="report" id="report4" value="虚假号码" value="4" />&nbsp;<label for="report4">虚假号码 </label></td>
+                    <td></td>
+                </tr>
+            </table>
+		  <div align="center" style="margin-top:10px;">
+			<div class="btn btn_confirm" id="tipp_link" company_id="{{company_id}}" forcompany_id="{{forcompany_id}}" product_id="0" onClick="dismiss();">确定</div>
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 举报弹框 part1-->
+          <div id="tippOff" align="center" class="tipp">
+  			<p>您已举报成功，我们会在三个工作日内核查（节假日自动顺延），如核查如实，将会返还您的金额。</p>
+			<div align="center" style="margin-top:15px;">
+				<div class="btn btn_confirm" onClick="dismiss()">关闭</div>
+		   </div>
+		</div>
+		<!--end 举报弹框 part1-->
+          <div id="tippOff2" align="center" class="tipp">
+  			<p>您还没有选择举报项，请重新选择。</p>
+  			<div align="center" style="margin-top:15px;">
+			<div class="btn btn_confirm" id="tipp_link2" company_id="{{company_id}}" forcompany_id="{{forcompany_id}}" product_id="{{id}}" onClick="dismiss();">确定</div>
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+			</div>
+		</div>
+		<!--end 举报弹框 part2-->
+        <div id="chk" class="tipp">
+  			<p>您已经查看过此信息，是否继续查看？</p>
+            <p style="color:#909090;font-size:13px;margin-top:10px">如虚假信息、虚假号码等可举报申请退款</p>
+			 <div align="center" style="margin-top:10px;">
+			<div class="btn btn_confirm" id="block_info_item_chk" onClick="dismiss();">确定</div>
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 查看弹框 part1-->
+        <div id="chk1" class="tipp">
+        	<center>
+  			<p>查看此联系方式需{{paymoney}}元，确定付款？</p>
+            <p style="color:#909090;font-size:13px;margin-top:10px">如虚假信息、虚假号码等可举报申请退款</p>
+        	</center>
+            
+			 <div align="center" style="margin-top:10px;">
+			<!--<div class="btn btn_confirm" id="chk1_link" onclick="dismiss();">确定</div>-->
+			<div class="btn btn_confirm" onClick="window.location.href='?id={{id}}&paytype=1&company_id={{forcompany_id}}&keywords={{keywords}}'">确定</div>
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 查看弹框 part2-->
+        <div id="bal" class="tipp" align="center">
+  			<p>您的余额不足，是否在线充值？</p>
+            {%if not isldb%}<p style="color:#909090;font-size:13px;margin-top:10px">{{ggc}}</p>{%endif%}
+			 <div align="center" style="margin-top:10px;">
+			<div class="btn btn_confirm" onClick="window.location.href='{%if isldb%}/ldb_weixin/balance.html?backurl={{host}}{%else%}/qianbao/chongzhi.html{%endif%}'">确定</div>
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 查看弹框 part3-->
+        <div id="inline_chk_Div" class="tipp" align="center">
+  			<p>查看此联系方式需{{paymoney}}元，确定付款？</p>
+            <p style="color:#909090;font-size:13px;margin-top:10px">如虚假信息、虚假号码等可举报申请退款</p>
+			 <div align="center" style="margin-top:10px;">
+			<!--<div class="btn btn_confirm" onclick="dismiss();" id="inlineChk">确定</div>-->
+			<div class="btn btn_confirm" onClick="window.location.href='?id={{id}}&paytype=1&keywords={{keywords}}'">确定</div>
+			<div class="btn btn_cancel" onClick="dismiss();">取消</div>
+		   </div>
+		</div>
+<style>
+    #mcover{ position: fixed;top:0;left:0;width:100%;	height:100%;background:rgba(0, 0, 0, 0.7);	display:none;z-index:20000;}
+    #mcover img {position: fixed;right: 18px;top:5px;width: 260px;height: 180px;z-index:20001;}
+</style>
+<div class="box">
+        <!--分享-->
+        <div id="mcover" onclick="$('#mcover').hide();">
+            <img src="http://img0.zz91.com/zz91/mobile/images/guide.png" />
+        </div>
+        <div class="bdsharebuttonbox tipp" id="bdsharebuttonbox">
+            <a id="a_wx_wxin" href="javascript:$('#mcover').show();"  class="mbds_wxin1"></a>
+	        <a id="a_wx_friend" href="javascript:$('#mcover').show();"  class="mbds_friend1"></a>
+            <a id="a_sougou_wxin" href="javascript:void(SogouMse.Utility.shareWithInfo({shareTitle:'{{list.name}}-ZZ91再生网', shareContent:'', shareUrl:'http://m.zz91.com/companyinfo/?company_id={{forcompany_id}}', shareImageUrl:'http://img0.zz91.com/zz91/images/48R.png', shareType:'4'}));" class="mbds_wxin1"></a> 
+            <a id="a_sougou_friend" href="javascript:void(SogouMse.Utility.shareWithInfo({shareTitle:'{{list.name}}-ZZ91再生网', shareContent:'', shareUrl:'http://m.zz91.com/companyinfo/?company_id={{forcompany_id}}', shareImageUrl:'http://img0.zz91.com/zz91/images/48R.png', shareType:'2'}));" class="mbds_friend1"></a>
+            <a id="a_uc_wxin" href="javascript:ucshare('j_ishare_pic','{{list.name}}','{{list.name}}-ZZ91再生网','http://m.zz91.com/companyinfo/?company_id={{forcompany_id}}','WechatTimeline');" data-platform="WechatTimeline" class="mbds_wxin1"></a>
+	        <a id="a_uc_friend" href="javascript:ucshare('j_ishare_pic','{{list.name}}','{{list.name}}-ZZ91再生网','http://m.zz91.com/companyinfo/?company_id={{forcompany_id}}','WechatFriends');"  data-platform="WechatFriends" class="mbds_friend1"></a>
+            <a id="a_qq_wxin" href="javascript:void(mqqShare('timeline'));" data-share-type="wechat_qq:timeline" class="mbds_wxin1"></a>
+            <a id="a_qq_friend" href="javascript:void(mqqShare('friend'));" data-share-type="wechat_qq:friend" class="mbds_friend1"></a>
+            <a href="#" class="bds_qzone1" data-cmd="qzone" title="分享到QQ空间"></a>                       
+            <a href="#" class="bds_tsina1" data-cmd="tsina" title="分享到新浪微博"></a>
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "32" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+            <style> 
+            .bdsharebuttonbox{padding:25px 0 25px 20px;}
+            .bdsharebuttonbox .mbds_wxin1 {background:url(http://img0.zz91.com/zz91/mobile/images/friend.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:20px!important;display:none;padding-left:0px;}
+            .bdsharebuttonbox .mbds_friend1 {background:url(http://img0.zz91.com/zz91/mobile/images/wxin.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:20px!important;display:none;padding-left:0px;}            
+            .bdsharebuttonbox .bds_qzone1 {background:url(http://img0.zz91.com/zz91/mobile/images/kjian.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:20px!important;padding-left:0px;}
+            .bdsharebuttonbox .bds_tsina1 {background:url(http://img0.zz91.com/zz91/mobile/images/sina.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:10px!important;padding-left:0px;}                
+            </style>
+            <script type="text/javascript">
+                var ua = navigator.userAgent.toLowerCase();
+                if (ua.indexOf("sogoumobilebrowser") > -1) {
+                    $("#a_sougou_wxin,#a_sougou_friend").show();
+                }
+                else if(ua.indexOf("micromessenger") > -1)
+                {
+                    $("#span_guanzhu").show();
+                    $("#a_wx_wxin,#a_wx_friend").show();
+                }
+                else if (ua.indexOf("ucbrowser") > -1) {
+                    $("#a_uc_wxin,#a_uc_friend").show();
+                }
+                else if(ua.indexOf("mqqbrowser") > -1)
+                {
+                    $("#a_qq_wxin,#a_qq_friend").show();
+                }
+                window.article_config = {        
+                    news_title: "{{list.name}}-ZZ91再生网" ,      
+                    share_img: "http://img0.zz91.com/zz91/images/48R.png",        
+                };
+                $(function () {
+                    var weixinParams,
+                    ua = navigator.userAgent,
+                    isAndroid = /Android/i.test(window.navigator.userAgent),
+                    newQQbrowerWeixinApi = 'http://jsapi.qq.com/get?api=app.isInstallApk,app.share',
+                    getQQbrowerVersion = function () {
+                        try {
+                            var reg = /MQQBrowser\/(\d{2})/;
+                            var regRemoveDot = /\./g;
+                            ua =  ua.replace(regRemoveDot,'');
+                            var res = reg.exec(ua);
+                            if(res && res.length > 1){
+                                return parseInt(res[1], 10);
+                            }
+                            return 0;
+                        }catch(e){
+                            return 0;
+                        }
+                    },
+                    loadQqPushJs = function (url, callback) {
+                        var head = document.getElementsByTagName('head')[0];
+                        var js = document.createElement('script');
+                        js.setAttribute('type', 'text/javascript'); 
+                        js.setAttribute('src', url); 
+                        head.appendChild(js);
+                        js.onload = callback;
+                    },
+                    newWxShareLoad = function (type) {
+                        if (getQQbrowerVersion() >= 54) {
+                            loadQqPushJs(newQQbrowerWeixinApi, noInstallDeleteWeixin);
+                        }
+                    },
+                    deleteWeixinShare = function () {
+                        $('[data-share-type="wechat_qq:timeline"]').remove();
+                        $('[data-share-type="wechat_qq:friend"]').remove();
+                    },
+                    noInstallDeleteWeixin = function () {
+                        browser.app.isInstallApk(function(data){
+                            if (!data) {
+                                deleteWeixinShare();
+                            }
+                        }, isAndroid ? {'packagename':'com.tencent.mm'} : {'apkKey':'weixin'});
+                    },
+                    handleShareWeixinNewQQbrower = function () {
+                        browser.app.share(weixinParams);
+                    },
+                    mqqShare = function (type) {
+                        var title, url, imgUrl, to_app, qqbrowerVersion,
+                            config = window.article_config;
+                        if (type === 'friend') {
+                            //Statistics.addStatistics('000022_weixin_QQMB_sharefriend');
+                            to_app = 1;
+                        }
+                        else {
+                            //Statistics.addStatistics('000022_weixin_QQMB_sharefriends'); 
+                            to_app = 8;
+                        }
+                        title = config.news_title;
+                        imgUrl = config.share_img;
+                        url = location.href;
+                        if (url.indexOf('?') > 0) {
+                            url += '&_once_=000022_weixin_QQMB_back';
+                        }
+                        else {
+                            url += '?_once_=000022_weixin_QQMB_back';
+                        }
+                        weixinParams = {title: title, url: url, img_url: imgUrl, to_app: to_app};
+                        if (!isAndroid) {
+                            handleShareWeixinNewQQbrower();
+                        }
+                        else {
+                            if (getQQbrowerVersion() >= 54) {
+                                handleShareWeixinNewQQbrower();
+                            }
+                            else {
+                                wxShare().init({title: title,url: url,imgUrl: imgUrl,to_app: to_app});
+                            }
+                        }
+                    };
+                
+                window.mqqShare = mqqShare;
+                window.newWxShareLoad = newWxShareLoad;
+                }());
+
+                // 微信分享数据
+                window.weixinShareData = {
+                    "img_url": window.article_config.share_img,
+                    "link": window.location.href,
+                    "title": window.article_config.news_title,
+                    "desc": $('meta[name="description"]').attr('content')
+                };
+
+                $(function () {
+                    newWxShareLoad();
+                });
+
+                function ucshare(obj, title, content, url, platform) {
+                    var getPos = {
+                        getTop: function (e) {
+                            var offset = e.offsetTop;
+                            if (e.offsetParent != null) offset += getPos.getTop(e.offsetParent);
+                            return offset;
+                        },
+                        getLeft: function (e) {
+                            var offset = e.offsetLeft;
+                            if (e.offsetParent != null) offset += getPos.getLeft(e.offsetParent);
+                            return offset;
+                        },
+                        getCss3offsetTop: function (e) {
+                            var css3offset = getComputedStyle(e, null).webkitTransform;
+                            if (css3offset == "none") {
+                                var css3offsetTop = 0;
+                            } else {//存在CSS3属性
+                                var css3offsetTop = parseInt(css3offset.split(",")[5].replace(")", ""))
+                            }
+                            if (e.parentNode.tagName != "BODY") css3offsetTop += getPos.getCss3offsetTop(e.parentNode);
+                            return css3offsetTop;
+                        },
+                        getCss3offsetLeft: function (e) {
+                            var css3offset = getComputedStyle(e, null).webkitTransform;
+                            if (css3offset == "none") {
+                                var css3offsetLeft = 0;
+                            } else {//存在CSS3属性
+                                var css3offsetLeft = parseInt(css3offset.split(",")[4])
+                            }
+                            if (e.parentNode.tagName != "BODY") css3offsetLeft += getPos.getCss3offsetLeft(e.parentNode);
+                            return css3offsetLeft;
+                        },
+                        getNodeInfoById: function (e) {
+                            var myNode = document.getElementById(e);
+                            if (myNode) {
+                                var pos = [getPos.getLeft(myNode) + getPos.getCss3offsetLeft(myNode), getPos.getTop(myNode) + getPos.getCss3offsetTop(myNode), myNode.offsetWidth, myNode.offsetHeight]
+                                return (pos)
+                            } else {
+                                return ""
+                            }
+                        }
+                    }
+
+                    if (typeof (ucweb) != "undefined") {
+                        var UCBrowserText = ucweb.startRequest("shell.page_share", [title, content, url, platform, '', '我们正在看【' + title + '】，一起来看吧', getPos.getNodeInfoById(obj)]);
+                        //var UCBrowserText = ucweb.startRequest("shell.page_share", ['', '使用UC浏览器分享js API', 'http://wap.uc.cn', '', 'invisible:QQ,Qzone', 'UC浏览器','']);
+                    }
+                    else if (typeof (ucbrowser) != "undefined") {
+
+                        if (platform == _platforms.sweibo[0]) {
+                            platform = _ucPlatName.iweibo;
+                        }
+                        else if (platform == _platforms.friend[0]) {
+                            platform = _ucPlatName.ifriend;
+                            url += _frompre + "from=" + _fromPlat.ucfriend;
+                        }
+                        else if (platform == _platforms.fsircle[0]) {
+                            platform = _ucPlatName.ifcircle;
+                            url += _frompre + "from=" + _fromPlat.ucweichat;
+                        }
+
+
+                        ucbrowser.web_share(title, content, url, platform, '', '@ZZ91再生网', obj);//title 指html的title
+                        //ucbrowser.web_share('title', 'content', 'url', 'platform', 'disablePlatform', 'source', 'htmlID');
+                    }
+                    else {
+                        //alert("sorry,your browser version not support!");
+                    }
+                }
+                
+            </script>
+        </div>
+</div>
+		<!--end 查看弹框 供求-->
+<div class="m-btn" style="background: #ebebeb; border-top: solid #ccc 1px;">
+	<input type="button" name="favOffer" onClick="window.location='/openfavorite/?pdtid={{forcompany_id}}&favorite_type_code=10091002&title={{list.name}}';" value="&nbsp;&nbsp;收藏&nbsp;&nbsp;" class="fav_btn">&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" name="sharebutton" id="sharebutton" value="&nbsp;&nbsp;分享&nbsp;&nbsp;" class="fav_btn">
+</div>
+{%include 'bottom2.html'%}
+</div>
+</body>
+</html>

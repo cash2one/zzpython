@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+		<script type="text/javascript" src="/assets/layer/layer.js"></script>
+		<script type="text/javascript" src="/assets/js/bui-min.js"></script>
+		<script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
+		<script type="text/javascript" src="/assets/js/config-min.js"></script>
+		<title></title>
+	</head>
+
+	<body>
+		<table cellspacing="0" cellpadding="0" class="table table-bordered">
+   
+    <tr>
+      <td rowspan="12">会员服务</td>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox" id="checkbox" value="新签再生通" />
+      新签再生通</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox2" id="checkbox2" value="续费再生通" />
+      续费再生通 <br />到期时间：<input type="text" class="calendar calendar-time" value="{{gmt_end}}" /></label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox2" id="checkbox2" value="续费银牌品牌通" />
+      续费银牌品牌通<br />到期时间：<input type="text" class="calendar calendar-time" value="{{gmt_end}}" /></label></td>
+    </tr>
+    
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox2" id="checkbox2" value="新签金牌品牌通" />
+      新签金牌品牌通</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox2" id="checkbox2" value="续费金牌品牌通" />
+      续费金牌品牌通 <br />到期时间：<input type="text" class="calendar calendar-time" value="{{gmt_end}}" /></label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox3" id="checkbox3" value="新签钻石品牌通"/>
+      新签钻石品牌通</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox3" id="checkbox3" value="续费钻石品牌通"/>
+      续费钻石品牌通 <br />到期时间：<input type="text" class="calendar calendar-time" value="{{gmt_end}}" /></label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox4" id="checkbox4" value="终身会员"/>
+      终身会员</label></td>
+    </tr>
+    <tr>
+      <td rowspan="4">来电宝会员</td>
+      <td><label>
+      <input type="checkbox" name="checkbox5" id="checkbox5" value="新签来电宝5元"/>
+      新签来电宝5元</label></td>
+    </tr>
+    <tr>
+      <td><label>
+      <input type="checkbox" name="checkbox6" id="checkbox6" value="续费来电宝5元"/>
+      续费来电宝5元 <br />余额：<input type="text" class="ldbblance" value="0" /></label></td>
+    </tr>
+    <tr>
+      <td><label>
+      <input type="checkbox" name="checkbox6" id="checkbox6" value="新签来电宝按通计费"/>
+      新签按通计费</label></td>
+    </tr>
+    <tr>
+      <td><label>
+      <input type="checkbox" name="checkbox6" id="checkbox6" value="续费来电宝按通计费"/>
+      续费按通计费 <br />余额：<input type="text" class="ldbblance" value="0" /></label></td>
+    </tr>
+    <tr>
+      <td rowspan="6">功能服务</td>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox7" id="checkbox7" value="微站"/>
+      微站</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox8" id="checkbox8" value="移动生意管家"/>
+      移动生意管家</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox9" id="checkbox9" value="企业秀"/>
+      企业秀</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox10" id="checkbox10" value="商铺服务"/>
+      商铺服务</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox11" id="checkbox11" value="百度优化"/>
+      百度优化</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox11" id="checkbox11" value="独立网站"/>
+      独立网站</label></td>
+    </tr>
+    <tr>
+      <td rowspan="9">再生汇</td>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox12" id="checkbox12" value="再生汇-黄页/刊物"/>
+      黄页/刊物</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox13" id="checkbox13" value="再生汇-展位"/>
+      展位</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox14" id="checkbox14" value="再生汇-易拉宝"/>
+      易拉宝</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox15" id="checkbox15" value="再生汇-品牌广告"/>
+      品牌广告</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox16" id="checkbox16" value="再生汇-LED图片广告"/>
+      LED图片广告</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox17" id="checkbox17" value="再生汇-LEDE视频广告"/>
+      LEDE视频广告</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox18" id="checkbox18" value="再生汇-KT版"/>
+      KT版</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox18" id="checkbox18" value="再生汇-演讲"/>
+      演讲</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox19" id="checkbox19" value="再生汇-其他"/>
+      其他</label></td>
+    </tr>
+    <tr>
+      <td rowspan="3">增值广告</td>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox20" id="checkbox20" value="增值-新签广告"/>
+      新签广告</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox21" id="checkbox21" value="增值-续签广告"/>
+      续签广告</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox21" id="checkbox21" value="再生钱包"/>
+      再生钱包</label></td>
+    </tr>
+    <tr>
+      <td rowspan="2">其他</td>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox22" id="checkbox22" value="定金"/>
+      定金</label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+      <input type="checkbox" name="checkbox23" id="checkbox23" value="其他"/>
+      其他</label></td>
+    </tr>
+  </table>
+  <div style="height: 50px;"></div>
+  <center style="position: fixed;bottom: 0px;line-height:40px;height:40px;width: 100%;background-color: #ccc;"><a class="button button-warning savecp">确定</a></center>
+	</body>
+<script>
+	BUI.use('bui/calendar', function(Calendar) {
+		var datepicker = new Calendar.DatePicker({
+			trigger: '.calendar',
+			autoRender: true
+		});
+	});
+	$(document).ready(function() {
+		$('.savecp').on('click', function() {
+			var self=$(this);
+			var cplist=''
+			var cparr=[]
+			$.each($("input:checked"), function(i, item) {
+				var cvalue=$(this).val();
+				var endtime=$(this).parent().find(".calendar");
+				if (endtime.val()){
+					if (endtime.val()!=''){
+						cplist+=cvalue+"|"+endtime.val()+",";
+					}else{
+						cplist+=cvalue+",";
+					}
+				}else{
+					var ldbblance=$(this).parent().find(".ldbblance");
+					if (ldbblance.val()){
+						if (ldbblance.val()!=''){
+							cplist+=cvalue+"*"+ldbblance.val()+",";
+						}else{
+							cplist+=cvalue+",";
+						}
+					}else{
+						cplist+=cvalue+",";
+					}
+				}
+				cparr.push(cvalue)
+			});
+			closeorder(cplist,cparr)
+		});
+	})
+	function closeorder(cplist,cparr){
+		var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+		parent.$("#service_type2").val(cplist);
+		var arrcp=cplist.split(",")
+		var cphtml=''
+		$.each(cparr, function(i, item) {
+			cphtml+="<a>"+arrcp[i]+"</a>";
+		});
+		parent.$(".cplistbox").html(cphtml);
+		parent.layer.close(index);
+	}
+</script>
+</html>

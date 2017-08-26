@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+body
+{
+	font-size:12px;
+}
+</style>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="30"><a href="/ppc/sendadd/?company_id={{company_id}}">添加关键词</a></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#ebebeb">关键字</td>
+    <td bgcolor="#ebebeb">供求</td>
+    <td bgcolor="#ebebeb">内容</td>
+    <td bgcolor="#ebebeb">群发邮件</td>
+    <td bgcolor="#ebebeb">群发短信</td>
+    <td bgcolor="#ebebeb">群发询盘</td>
+    <td bgcolor="#ebebeb">&nbsp;</td>
+  </tr>
+  {%for list in listall%}
+  <tr>
+    <td bgcolor="#FFFFFF">{{list.keywords}}</td>
+    <td bgcolor="#FFFFFF">{{list.type}}</td>
+    <td bgcolor="#FFFFFF">{{list.sendtitle}}<br />
+    {{list.sendcontent}}</td>
+    <td bgcolor="#FFFFFF"><a href="/ppc/senddetail/?company_id={{list.company_id}}&sid={{list.id}}">已群发客户</a></td>
+    <td bgcolor="#FFFFFF">已群发客户 </td>
+    <td bgcolor="#FFFFFF">已群发客户 </td>
+    <td bgcolor="#FFFFFF"><a href="?del=1&id={{list.id}}&company_id={{list.company_id}}" onclick="return confirm('确实要删除吗？')">删除</a></td>
+  </tr>
+  {%endfor%}
+</table>
+<div class='pageBar'>
+		{% if firstpage %}
+		<a href="?page=1{{sear}}" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+		<a href="?page={{prvpage}}{{sear}}" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+		{% endif %}
+		{% for p in page_range %}
+		{% if p.nowpage %}
+		<span class="cpb" style="margin-right:5px;">{{p.number}}</span>
+		{% else %}
+		<a href="?page={{p.number}}{{sear}}" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+		{% endif %}
+		{% endfor %}
+		&nbsp;
+		{% if lastpage%}
+		<a href="?page={{nextpage}}{{sear}}" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+		<a href="?page={{page_listcount}}{{sear}}" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+		{% endif %}
+</div>
+</body>
+</html>

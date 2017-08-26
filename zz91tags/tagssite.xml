@@ -1,0 +1,19 @@
+<uwsgi>
+ <socket>:8019</socket>
+ <workers>4</workers>
+ <master>true</master>
+ <processes>8</processes>
+ <listen>500</listen>
+ <pythonpath>.</pythonpath>
+ <module>zz91tags.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>zz91tags/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>2000</limit-as>
+ <reload-on-as>100</reload-on-as>
+ <reload-on-rss>100</reload-on-rss>
+ <max-requests>100</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/zz91tags.log</daemonize>
+</uwsgi>

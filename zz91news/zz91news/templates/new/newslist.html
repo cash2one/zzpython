@@ -1,0 +1,573 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>{%if listall%}{{webtitle}}{%else%}暂无相关资讯-ZZ91再生网{%endif%}</title>
+    <meta name="keywords" content="{{webkeywords}}" />
+    <meta name="description" content="{{webdescription}}" />
+    <meta http-equiv="Cache-Control" content="no-transform " />
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/comm.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/foot.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/top.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/infomation/css/index.css" />
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <script src="http://b.zz91.com/comm/js/comm.js"></script>
+    <script src="http://b.zz91.com/layer/layer.js"></script>
+    <script type="text/javascript" src="http://b.zz91.com/infomation/js/zx-comm.js" ></script>
+    <meta http-equiv="mobile-agent" content="format=html5; url=http://m.zz91.com/news/{{type}}/{%if type1%}{{type1}}/{%endif%}"/>
+	<link rel="alternate" id="mobilecontrol" media="only screen and(max-width:640px)" href="http://m.zz91.com/news/{{type}}/{%if type1%}{{type1}}/{%endif%}" >
+    {% include 'new/mobilecontrol.html' %}
+    <style>
+    	.zx-hsou-box{
+    		width:auto;padding-left: 10px;padding-right: 10px;margin-bottom: 3px;
+    	}
+    	.zx-listright-box{
+    		margin-bottom: 20px;
+    	}
+    	.zx-listright-name{
+    		font-weight: bold;
+    		font-size: 16px;
+    	}
+    	.zx-iconlist span{
+    		display: block;
+    		float: left;
+    		margin-right: 10px;
+    	}
+    </style>
+</head>
+	<body>
+		{% include 'new/header.html' %}
+	    <div class="zx-searchnav">
+	    	<div class="zx-searchnav-con">
+	    		<div class="fl logo">
+	    			<a href="http://www.zz91.com">
+	    				<img src="http://b.zz91.com/infomation/images/zx-logo.png">
+	    			</a>
+	    		</div>
+            	<div class="fl page-name">
+            		<a href="http://news.zz91.com">
+            			<img src="http://b.zz91.com/infomation/images/zx-pagename.png">
+            		</a>
+            	</div>
+            	<div class="fl zx-search">
+            		<div class="zx-search-con">
+            			<form action="/search/" method="get" onsubmit="if(this.keywords.value==''){alert('请输入关键字');this.keywords.focus();return false;}">
+            			<input class="fl j_searchipt" name="keywords" id="keywords" placeholder="搜索您感兴趣的资讯" />
+            			<button class="fl zx-search-main" type="submit" style="border: none;"><i class="icon2 zx-search-icon"></i></button>
+            			</form>
+            		</div>
+            	</div>
+            	<div class="fr navmain-list">
+	                <ul class="clearfix navmain-ul">
+	                    <li class="fl zx-firstli"><a href="/index.html">首页</a></li>
+	                    <li class="fl"><a href="/zh/">展会聚集</a></li>
+	                    <li class="fl {%ifequal type 'hydt'%}thisnav{%endifequal%}"><a href="/hydt/">行业动态</a></li>
+	                    <li class="fl {%ifequal type 'cjxw'%}thisnav{%endifequal%}"><a href="/cjxw/">财经新闻</a></li>
+	                    <li class="fl {%ifequal type 'law'%}thisnav{%endifequal%}"><a href="/law/">政策法规</a></li>
+	                    <li class="fl {%ifequal type 'tech'%}thisnav{%endifequal%}"><a href="/tech/">技术文库</a></li>
+	                    <!--<li class="fl"><a href="/myorder.html"><img src="http://b.zz91.com/infomation/images/zx-btn_01.png"></a></li>-->
+	                </ul>
+	            </div>
+	    	</div>
+	    </div>
+	    <div class="bandbox-hy">
+	    	<div class="zx-hy-top">
+	    		<div class="zx-hy-top-con">
+	    			{%ifequal type 'hydt'%}
+	    			<img src="http://b.zz91.com/infomation/images/zx-title_08.png" />
+	    			{%endifequal%}
+	    			{%ifequal type 'cjxw'%}
+	    			<img src="http://b.zz91.com/infomation/images/zx-title_12.png" />
+	    			{%endifequal%}
+	    			{%ifequal type 'law'%}
+	    			<img src="http://b.zz91.com/infomation/images/zx-title_15.png" />
+	    			{%endifequal%}
+	    			{%ifequal type 'tech'%}
+	    			<img src="http://b.zz91.com/infomation/images/zx-zh-title_12.png" />
+	    			{%endifequal%}
+	    			<p>最新最全的行业信息</p>
+	    		</div>
+	    		<div class="zx-hy-topbor"></div>
+	    	</div>
+	    </div>
+	    <div class="zx-center clearfix">
+	    	<div class="fl zx-content">
+	    		{%if listall%}
+	    		<div class="zx-content-box">
+	    			<div class="zx-content-title zx-hy-title clearfix">
+	    				{%ifequal type 'search'%}
+	    				<div style="font-size: 16px;color: #333333;line-height: 30px;margin-left: 40px;">共找到 "{{keywords}}"相关{{listcount}}条资讯</div>
+	    				{%endifequal%}
+	    				{%ifequal type 'hydt'%}
+	    				<!--<img src="http://b.zz91.com/infomation/images/zx-title_09.png" class="fl"/>-->
+	    				<ul class="hq-type-ul dy-type-ul fr">
+	    					<li class="fl {%ifequal type1 ''%}this-hq-type{%endifequal%}"><a href="/hydt/p1.html">全部</a></li>
+		                    <li class="fl {%ifequal type1 'steel'%}this-hq-type{%endifequal%}"><a href="/hydt/steel/">废钢铁</a></li>
+		                    <li class="fl {%ifequal type1 'youse'%}this-hq-type{%endifequal%}"><a href="/hydt/youse/">废有色</a></li>
+		                    <li class="fl {%ifequal type1 'plastic'%}this-hq-type{%endifequal%}"><a href="/hydt/plastic/">废塑料</a></li>
+		                    <li class="fl {%ifequal type1 'otherwaste'%}this-hq-type{%endifequal%}"><a href="/hydt/otherwaste/">综合废料</a></li>
+		                </ul>
+		                
+		                {%endifequal%}
+		                {%ifequal type 'law'%}
+		                <!--<img src="http://b.zz91.com/infomation/images/zx-title_16.png" class="fl"/>-->
+		                <ul class="hq-type-ul dy-type-ul fr">
+		                	<li class="fl {%ifequal type1 ''%}this-hq-type{%endifequal%}"><a href="/law/">全部</a></li>
+		                    <li class="fl {%ifequal type1 'feijinsu'%}this-hq-type{%endifequal%}"><a href="/law/?keywords=金属">废金属</a></li>
+		                    <li class="fl {%ifequal type1 'plastic'%}this-hq-type{%endifequal%}"><a href="/law/plastic/">废塑料</a></li>
+		                    <li class="fl {%ifequal type1 'otherwaste'%}this-hq-type{%endifequal%}"><a href="/law/otherwaste/">综合废料</a></li>
+		                </ul>
+		                {%endifequal%}
+		                {%ifequal type 'tech'%}
+		                <!--<img src="http://b.zz91.com/infomation/images/zx-title_16.png" class="fl"/>-->
+	    				<ul class="hq-type-ul dy-type-ul fr">
+	    					<li class="fl {%ifequal type1 ''%}this-hq-type{%endifequal%}"><a href="/tech/p1.html">全部</a></li>
+		                    <li class="fl {%ifequal type1 'steel'%}this-hq-type{%endifequal%}"><a href="/tech/steel/">废钢铁</a></li>
+		                    <li class="fl {%ifequal type1 'youse'%}this-hq-type{%endifequal%}"><a href="/tech/youse/">废有色</a></li>
+		                    <li class="fl {%ifequal type1 'plastic'%}this-hq-type{%endifequal%}"><a href="/tech/plastic/">废塑料</a></li>
+		                    <li class="fl {%ifequal type1 'otherwaste'%}this-hq-type{%endifequal%}"><a href="/tech/otherwaste/">综合废料</a></li>
+		                </ul>
+		                {%endifequal%}
+		                {%ifequal type 'cjxw'%}
+		                <!--<img src="http://b.zz91.com/infomation/images/zx-title_16.png" class="fl"/>-->
+	    				<ul class="hq-type-ul dy-type-ul fr">
+	    					<li class="fl {%ifequal type1 ''%}this-hq-type{%endifequal%}"><a href="/cjxw/p1.html">全部</a></li>
+		                    <li class="fl {%ifequal type1 'guonei'%}this-hq-type{%endifequal%}"><a href="/cjxw/guonei/">国内财经</a></li>
+		                    <li class="fl {%ifequal type1 'guoji'%}this-hq-type{%endifequal%}"><a href="/cjxw/guoji/">国际财经</a></li>
+		                </ul>
+		                {%endifequal%}
+		                <!--<div class="hq-type-ul fr">
+		                	<div class="zx-listright-btn guanzhu" style="width: 88px;" id="gz{{typeid}}" typeid="{{typeid}}" typename="{{typename}}" closeflag=0> 
+	    							+立即订阅
+	    					</div>
+	    				</div>-->
+	    			</div>
+	    			<ul class="clearfix">
+	    				{%for list in listall%}
+	    				<li class="clearfix">
+	    					{%if list.has_pic%}
+	    					<a href="{{list.weburl}}" target="_blank" class="fl zx-content-pic">
+	    						<img src="{{list.litpic}}" />
+	    					</a>
+	    					{%endif%}
+	    					<div class="fl zx-content-main {%if list.has_pic%}{%else%}zx-content-main3{%endif%}">
+	    						<a href="{{list.weburl}}" target="_blank" class="zx-content-main-name">{{list.title|safe}}</a>
+	    						<p class="zx-content-main-con">{{list.content|safe}}……</p>
+	    						<div class="zx-content-main-time clearfix">
+	    							<span class="fl">{{list.pubdate}}</span>
+	    							<div class="fr zx-iconlist">
+	    								<span><i class="fl icon2 zx-iconlist1" newsid="{{list.id}}"></i><span>{{list.goodpost}}</span></span>
+	    								<span><i class="fl icon2 zx-iconlist2" newsid="{{list.id}}"></i><span>{{list.favoritecount}}</span></span>
+	    								<span></span><i class="fl icon2 zx-iconlist3" title="{{list.title}}" pic="{{list.litpic}}" url="{{list.weburl}}" content="{{list.content}}"></i></span>
+	    							</div>
+	    						</div>
+	    					</div>
+	    				</li>
+	    				{%endfor%}
+	    			</ul>
+	    			
+
+	    			<script type="text/javascript">
+					    /*kangxianyue 940*70 创建于 2017/3/29*/
+					    var cpro_id = "u2939683";
+					</script>
+					<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"></script>
+	    			<div class="zx-page">
+		                <span class="zx-page-span">共{{page_listcount}}页/{{listcount}}条数据</span>
+		                <a href="p1.html{{searchurl}}" class="zx-page-a"><<</a>
+		                <a href="p{{prvpage}}.html{{searchurl}}" class="zx-page-a"><</a>
+		               	{%for pg in page_range%}
+		                <a href="p{{pg.number}}.html{{searchurl}}" class="zx-page-a {% if pg.nowpage %}thispage{%endif%}">{{pg.number}}</a>
+		                {%endfor%}
+		                <a href="p{{nextpage}}.html{{searchurl}}" class="zx-page-a">></a>
+		                <a href="p{{page_listcount}}.html{{searchurl}}" class="zx-page-a">>></a>
+		            </div>
+	    		</div>
+	    		{%else%}
+	    		<div class="zx-content-box">
+	    			<div class="zx-nosearch clearfix">
+	    				<div class="zx-nosearch-img fl">
+	    					<img src="http://b.zz91.com/help/images/hz-search-img.png" />
+	    				</div>
+	    				<div class="zx-nosearch-con fl">
+	    					<p class="zx-nosearch-p">未匹配到与<span>{{keywords}}</span>相关的资讯</p>
+	    					<p class="zx-nosearch-p">建议您缩短或修改搜索词重新搜索，或者看看为您推荐的资讯</p>
+	    				</div>
+	    			</div>
+	    		</div>
+	    		<div class="zx-content-box">
+	    			<div class="zx-content-title zx-hy-title clearfix">
+	    				<img src="http://b.zz91.com/infomation/images/zx-title_02.png" class="fl"/>
+	    			</div>
+	    			<ul class="clearfix">
+	    				{%for list in hotnewslist%}
+	    				<li class="clearfix">
+	    					{%if list.has_pic%}
+	    					<a href="{{list.weburl}}" target="_blank" class="fl zx-content-pic">
+	    						<img src="{{list.litpic}}" />
+	    					</a>
+	    					{%endif%}
+	    					<div class="fl zx-content-main {%if list.has_pic%}{%else%}zx-content-main3{%endif%}">
+	    						<a href="{{list.weburl}}" target="_blank" class="zx-content-main-name">{{list.title|safe}}</a>
+	    						<p class="zx-content-main-con">{{list.content|safe}}……</p>
+	    						<div class="zx-content-main-time clearfix">
+	    							<span class="fl">{{list.pubdate}}</span>
+	    							<div class="fr zx-iconlist">
+	    								<span><i class="fl icon2 zx-iconlist1" newsid="{{list.id}}"></i><span>{{list.goodpost}}</span></span>
+	    								<span><i class="fl icon2 zx-iconlist2" newsid="{{list.id}}"></i><span>{{list.favoritecount}}</span></span>
+	    								<span></span><i class="fl icon2 zx-iconlist3" title="{{list.title}}" pic="{{list.litpic}}" url="{{list.weburl}}" content="{{list.content}}"></i></span>
+	    							</div>
+	    						</div>
+	    					</div>
+	    				</li>
+	    				{%endfor%}
+	    			</ul>
+	    		</div>
+	    		{%endif%}
+	    		
+	    	</div>
+	    	
+	    	<div class="fr zx-listright">
+	    		
+	    		<div class="zx-listright-main">
+	    			<div class="zx-listright-box" style="margin-bottom: 20px;">
+		    			<div class="zx-erweima clearfix">
+		    				<div class="zx-erweima-pic fl">
+		    					<img src="http://b.zz91.com/infomation/images/zx-erweima.png" />
+		    				</div>
+		    				<p class="zx-saoma fl">更多资讯扫描关注<br /> ZZ91微信公众号</p>
+		    			</div>
+		    		</div>
+		    		<script type="text/javascript">
+					    /*kangxianyue 250*250 创建于 2017/3/29*/
+					    var cpro_id = "u2939694";
+					</script>
+					<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"></script>
+	    			<div class="zx-listright-box">
+	    				<div class="zx-listright-title clearfix">
+		    				<div class="fl zx-listright-name">
+		    					热门产品搜索
+		    				</div>
+		    				<a href="http://www.zz91.com/cp/" target="_blank" class="fr zx-xsall">
+	    						全部<i class="icon2 zx-all"></i>
+	    					</a>
+		    			</div>
+		    			<ul class="zx-hsou clearfix">
+		    				<li class="clearfix">
+		    					{%for list in cplist%}
+		    					<a href="http://www.zz91.com/cp/{{list.pingyin}}/" target="_blank" class="fl zx-hsou-box zx-hsou-box{{list.i}} zx-hsou-color{{list.i}}">{{list.label}}</a>
+		    					{%endfor%}
+		    				</li>
+		    			</ul>
+	    			</div>
+	    		</div>
+	    		
+	    		<div class="zx-listright-box zx-rmdy">
+	    			<div class="zx-listright-title clearfix">
+	    				<div class="fl zx-listright-name">
+	    					<img src="http://b.zz91.com/infomation/images/zx-title_01.png" />
+	    				</div>
+	    			</div>
+	    			<ul>
+	    				{%for list in guanzhulist%}
+	    				<li class="clearfix zx-dingyue">
+	    					<div class="zx-listright-img fl">
+	    						<img src="{{list.typedir}}" />
+	    					</div>
+	    					<div class="zx-dingyue-con fl">
+	    						<p>{{list.typename}}</p>
+	    						<div class="zx-listright-btn guanzhu" id="gz{{list.id}}" typeid="{{list.id}}" typename="{{list.typename}}" closeflag=0>
+	    							+订阅
+	    						</div>
+	    					</div>
+	    				</li>
+	    				{%endfor%}
+	    			</ul>
+	    			<div class="zx-listright-search">
+	            		<div class="zx-search-con">
+	            			<form action="/search/" method="get" onsubmit="if(this.keywords.value==''){alert('请输入关键字');this.keywords.focus();return false;}">
+	            			<input class="fl j_searchipt" placeholder="搜索您感兴趣的资讯" name="keywords" />
+	            			<button class="fl zx-search-main" style="border: none;"><i class="icon2 zx-search-icon"></i></button>
+	            			</form>
+	            		</div>
+	            	</div>
+	    		</div>
+	    	</div>
+	    </div>
+	    
+	    <script>
+	    $(function() {
+			function getOther(n){
+				$(".zx-bt-con").html($(".j_movemian a").eq(n).attr('title')); 
+			}
+			
+			//分享
+			var sharedata={
+				url: window.location.href,
+		        title: document.title,
+		        content: '',
+		        pic: ''
+			}
+			
+			$(".share").click(function(){
+				var qzone = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={url}&title={title}&pics={pic}&summary={content}';
+				var sina = 'http://service.weibo.com/share/share.php?url={url}&title={title}&pic={pic}&searchPic=false';
+				var tqq = 'http://share.v.t.qq.com/index.php?c=share&a=index&url={url}&title={title}&appkey=801cf76d3cfc44ada52ec13114e84a96';
+				var douban = 'http://www.douban.com/share/service?href={url}&name={title}&text={content}&image={pic}';
+				var weixin = '/verifycode.html?arg={url}';
+				
+				var scss=$(this).attr("class");
+				if (scss=="share share_qzone"){
+					var shareurl=replaceAPI(qzone,sharedata)
+					window.open(shareurl);
+				}
+				if (scss=="share share_sina"){
+					var shareurl=replaceAPI(sina,sharedata)
+					window.open(shareurl);
+				}
+				if (scss=="share share_qq"){
+					var shareurl=replaceAPI(tqq,sharedata)
+					window.open(shareurl);
+				}
+				if (scss=="share share_douban"){
+					var shareurl=replaceAPI(douban,sharedata)
+					window.open(shareurl);
+				}
+				if (scss=="share share_weixin") {
+					var shareurl = replaceAPI(weixin, sharedata);
+					layer.open({
+						type: 1,
+						shade: false,
+						title: false, //不显示标题
+						area: ['360px', '360px'],
+						content: "<div style='text-align:center'><img src='"+shareurl+"'></div>", //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响
+						cancel: function() {
+							
+						}
+					});
+					//window.open(shareurl);
+				}
+			})
+
+			function replaceAPI(api, options) {
+				api = api.replace('{url}', options.url);
+				api = api.replace('{title}', options.title);
+				api = api.replace('{content}', options.content);
+				api = api.replace('{pic}', options.pic);
+				return api;
+			}
+			//分享
+			$(".zx-iconlist3").click(function(){
+				popShow("zx-tan-fenxiang");
+				sharedata.title=$(this).attr("title");
+				sharedata.pic=$(this).attr("pic");
+				sharedata.url="http://news.zz91.com"+$(this).attr("url");
+				sharedata.content=$(this).attr("content");
+		    })
+			//登录状态
+	        var loginstatus = function(successCallback) {
+	        	var c=window.location.href;
+	        	$(".logintext").attr("href","http://www.zz91.com/login.htm?url="+c)
+	        	var ajaxurl = "http://www.zz91.com/getLoginStatus.htm?p=" + (new Date()).getTime().toString();
+	        	$.getScript(ajaxurl, function(ret) {
+	        		successCallback && successCallback(success);
+	        	});
+	        }
+	        //点赞
+	        $(".zx-iconlist1").click(function(){
+	        	var c=window.location.href;
+	        	var newsid=$(this).attr("newsid");
+	        	var self=$(this);
+	        	layer.load(2)
+				loginstatus(function(ret){
+					if (ret=='false'){
+						window.location='http://www.zz91.com/login.htm?url='+c;
+					}else{
+						var data={
+							newsid:newsid,
+							company_id:companyId
+						}
+						zzajax("get","/dianzhan.html",data,function(ret){
+							if (ret.err=='false'){
+								layer.msg(ret.errkey);
+								if (ret.type=="zhan"){
+									self.css("background-position","-1px -24px");
+									var zcount=self.parent().find("span");
+									zcount.html(parseInt(zcount.html())+1);
+								}else{
+									self.css("background-position","-1px -1px");
+									var zcount=self.parent().find("span");
+									if (parseInt(zcount.html())>0){
+										zcount.html(parseInt(zcount.html())-1);
+									}
+								}
+							}else{
+								layer.msg(ret.errkey);
+							}
+							layer.closeAll("loading")
+						},function(){
+							layer.msg('错误');
+							layer.closeAll("loading")
+						})
+					}
+				});
+		    })
+	        //收藏
+	        $(".zx-iconlist2").click(function(){
+	        	var c=window.location.href;
+	        	var newsid=$(this).attr("newsid");
+	        	var self=$(this);
+	        	layer.load(2)
+				loginstatus(function(ret){
+					if (ret=='false'){
+						window.location='http://www.zz91.com/login.htm?url='+c;
+					}else{
+						var data={
+							content_id:newsid,
+							favorite_type_code:'10091012',
+							company_id:companyId
+						}
+						zzajax("get","/favorite.html",data,function(ret){
+							if (ret.err=='false'){
+								layer.msg(ret.errkey);
+								if (ret.type=="unfavorite"){
+									self.css("background-position","-1px -46px");
+									var zcount=self.parent().find("span");
+									if (parseInt(zcount.html())>0){
+										zcount.html(parseInt(zcount.html())-1);
+									}
+								}else{
+									self.css("background-position","-1px -67px");
+									var zcount=self.parent().find("span");
+									zcount.html(parseInt(zcount.html())+1);
+								}
+							}else{
+								layer.msg(ret.errkey);
+							}
+							layer.closeAll("loading")
+						},function(){
+							layer.msg('错误');
+							layer.closeAll("loading")
+						})
+					}
+				});
+		    })
+	        //订阅
+	        $(".zx-dingyue-con .guanzhu").click(function(){
+	        	var c=window.location.href;
+	        	var typeid=$(this).attr("typeid");
+	        	var tags=$(this).attr("typename");
+	        	var closeflag=$(this).attr("closeflag");
+	        	var self=$(this);
+				loginstatus(function(ret){
+					if (ret=='false'){
+						window.location='http://www.zz91.com/login.htm?url='+c;
+					}else{
+						var data={
+							typeid:typeid,
+							tags:tags,
+							close:closeflag,
+							company_id:companyId
+						}
+						zzajax("get","/insert_myguanzhu.html",data,function(ret){
+							if (ret.err=='false'){
+								if (ret.gzflag==1){
+									layer.msg('关注成功！');
+									$("#gz"+typeid).addClass("zx-listright-btn2");
+									$("#gz"+typeid).addClass("unguanzhu");
+									$("#gz"+typeid).html("取消");
+									$("#gz"+typeid).removeClass("guanzhu");
+									$("#gz"+typeid).attr("closeflag",1)
+								}else{
+									layer.msg('取消成功！');
+									$("#gz"+typeid).removeClass("zx-listright-btn2");
+									$("#gz"+typeid).addClass("guanzhu");
+									$("#gz"+typeid).html("+订阅");
+									$("#gz"+typeid).removeClass("unguanzhu");
+									$("#gz"+typeid).attr("closeflag",0)
+								}
+								
+							}else{
+								layer.msg(ret.errkey);
+							}
+						},function(){
+							layer.msg('错误')
+						})
+					}
+				});
+		    })
+	        loginstatus(function(ret){
+	        	if (ret=='true'){
+	        		var nlist='';
+	        		$.each($('.zx-iconlist1'), function(i, item) {
+	        			var newsid=$('.zx-iconlist1').eq(i).attr("newsid");
+	        			nlist=nlist+newsid+",";
+	        		})
+	        		var data={
+						newsid:nlist,
+						company_id:companyId
+					}
+	        		//点赞情况
+	        		zzajax("get","/isdianzhan.html",data,function(ret){
+						if (ret.err=='false'){
+							var zhanlist=ret.zhanlist;
+							$.each(zhanlist, function(i, item) {
+								if (item==1){
+									$('.zx-iconlist1').eq(i).css("background-position","-1px -24px");
+								}
+							})
+						}
+					},function(){
+					})
+	        		//收藏情况
+	        		zzajax("get","/isfavorite.html",data,function(ret){
+						if (ret.err=='false'){
+							var favortelist=ret.favortelist;
+							$.each(favortelist, function(i, item) {
+								if (item==1){
+									$('.zx-iconlist2').eq(i).css("background-position","-1px -67px");
+								}
+							})
+						}
+					},function(){
+					})
+	        		//我的订阅
+	        		zzajax("get","/myguanzhu.html",data,function(ret){
+						if (ret.err=='false'){
+							var guanzhu=ret.guanzhu;
+							$.each(guanzhu, function(i, item) {
+								$("#gz"+item.typeid).addClass("zx-listright-btn2");
+								$("#gz"+item.typeid).addClass("unguanzhu");
+								$("#gz"+item.typeid).html("取消");
+								$("#gz"+item.typeid).removeClass("guanzhu");
+								$("#gz"+item.typeid).attr("closeflag",1);
+							})
+						}
+					},function(){
+					})
+				}
+	        })
+			
+			function popShow(obj){
+				var popH = $("."+obj);
+				 //设定窗口的位置 	
+				var windowHeight=$(window).height(); 
+				var popHeight=popH.height(); 
+				var scrolltop = $(window).scrollTop();
+		    	var popY=(windowHeight-popHeight)/2 + scrolltop; 
+		    	popH.css("top",popY).show();
+				$(".zx-tan").show();
+		    	
+			}
+			$(".zx-tanbox-close").click(function(){
+				$(".zx-tanbox").hide();
+				$(".zx-tan").hide();
+			})
+		})
+		</script>
+		{% include 'new/footer.html' %}
+	</body>
+</html>
+

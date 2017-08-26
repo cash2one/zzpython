@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>企业报价最终页</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/price/price-detail.css" />
+		
+		<style>
+			.info-table{
+				overflow:auto;
+			}
+			.info-table img{
+				width:100%
+			}
+			.essay-title{
+				font-size:22px;
+				font-weight:bold;
+			}
+			.essay-time{
+				text-align:center;
+			}
+			.info-table img {
+				max-width:100%;
+			}
+			.info-table p{
+				margin-bottom:10px;
+			}
+			.study-time{
+				color:#333;
+			}
+			.fl{
+				float: left;
+			}
+			.carea{
+				color:#006600;
+			}
+			.cprice span{
+				color:#DD191B;
+				font-size:24px;
+			}
+			.info-table .title{
+				color:#999;
+				width:80px;
+			}
+		</style>
+</head>
+<body>
+	<div class="topdiv" onclick="pagetotop();"><span class="aui-iconfont aui-icon-top"></span></div>
+	<div class="aui-toast"  id="loading">
+        <div class="aui-toast-loading"></div>
+        <div class="aui-toast-content">加载中</div>
+    </div>
+	<div class="essay" style="display:none">
+		<h1 class="essay-title"></h1>
+		<div class="essay-info-list clear">
+			<center class="study-time"></center>
+		</div>
+	</div>
+	<div class="info-table" style="display:none">
+		<div class="fl title">所在地：</div><div class="carea fl"></div>
+		<div style="clear: both"></div>
+		<div class="fl title">价格：</div><div class="cprice fl"></div>
+		<div style="clear: both"></div>
+		<div class="fl title">公司：</div><div class="ccompany fl"></div>
+		<div style="clear: both"></div>
+		
+		<div class="title fl">详情：</div>
+		<div class="cdetail"></div>
+	</div>
+	<div style="clear: both"></div>
+	
+    <section class="aui-content companypricemain">
+    	<div class="title aui-padded-5 bg-white" style="line-height: 35px;">
+			<b>其他相关企业报价</b>
+			
+		</div>
+		<div class="nodata">暂无相关数据<br /><br />
+			<p><div class="aui-btn aui-btn-success postbutton"><span class="aui-iconfont aui-icon-post"></span>我要发布产品报价</div></p>
+			<div class="clear"></div>
+		</div>
+		
+		<ul class="aui-list-view companypricelist">
+			
+		</ul>
+		<script id="info-list" type="text/html">
+			<li class="aui-list-view-cell" cid="{{d.id}}">
+				<a class="aui-arrow-right">
+				<div class="aui-img-body" style="line-height: 30px">
+					<p class="aui-ellipsis-2"  style="color:#000">
+						<b>{{d.td_title}}</b>
+					</p>
+					
+					<span>价格：<font style="color:#FC9A30;font-size: 16px">{{d.price}}</font></span>
+					<br />所在地：{{d.province}} {{d.city}}
+					<div style="clear: both"></div>
+					
+					<p>发布时间：{{d.td_time}}</p>
+					<p class="aui-ellipsis-2">
+						公司：{{d.companyname}}
+					</p>
+					
+				</div>
+				</a>
+			</li>
+		</script>
+	</section>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript" src="../../script/aui-scroll.js" ></script>
+<script>
+	apiready = function() {
+		changeserverurl();
+		var scroll = new auiScroll({
+	        listen:true,
+	        distance:200 //判断到达底部的距离，isToBottom为true
+	    },function(ret){
+	        if(ret.isToBottom){
+	        }else{
+		        if (ret.scrollTop>150){
+		        	$(".topdiv").fadeIn();
+		        }else{
+		        	$(".topdiv").fadeOut();
+		        }
+	        }
+	    });
+		var data={
+			id:api.pageParam.id,
+		}
+		zzappajax("get",hosturl+"price/companyprice_detail.html",data,function(ret){
+			if (ret){
+				$(".info-table").show();
+				$(".essay").show();
+				//zzalert(JSON.stringify(ret))
+				$(".essay-title").html(ret.detail.title);
+				$(".study-time").html(ret.detail.refresh_time);
+				$(".carea").html(ret.detail.province+" "+ret.detail.city);
+				$(".cprice").html("<span>"+ret.detail.price+"</span>"+ret.detail.price_unit);
+				$(".cdetail").html(ret.detail.details);
+				$(".ccompany").html(ret.detail.companyname);
+				
+				
+				var pageHtml='';
+				$.each(ret.othercompany_price.list, function(index, item) {
+					var getTpl = $api.html($api.byId("info-list"));
+					laytpl(getTpl).render(item, function(html) {
+						pageHtml = pageHtml + html;
+					});
+				})
+				$(".companypricelist").html(pageHtml);
+			}
+			loadinghide();
+		},function(){
+			loadinghide();
+		})
+	}
+</script>
+
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-touch-fullscreen" content="YES">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="css/base-min.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+<title>现场抽奖活动-2016第16届中国塑料交易会</title>
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+</head>
+<body>
+	<div class="band"></div>
+	<div class="playbg">
+		<div class="playbox">
+			<ul class="playul">
+				<li index="0">
+					<div class="award-name">环保袋<br />或纪念笔</div>
+				</li>
+
+				<li index="1" class="nowplay">
+					<div class="award-name">吉祥物</div>
+				</li>
+
+				<li index="2">
+					<div class="award-name">2016<br>再生资源<br>商务大全</div>
+				</li>
+
+				<li index="7">
+					<div class="award-name">300元<br>再生钱包</div>
+				</li>
+
+				<li class="playbtn">
+					<img src="images/btn2.png" class="j_play cjst-play">
+				</li>
+
+				<li index="3">
+					<div class="award-name">移动端供<br>求信息置顶<br>服务2个月</div>
+				</li>
+
+				<li index="6">
+					<div class="award-name">移动端<br>独家广告<br>2个月</div>
+				</li>
+
+				<li index="5">
+					<div class="award-name">移动端<br>企业秀<br>服务一年</div>
+				</li>
+
+				<li index="4">
+					<div class="award-name">ZZ91<br>《再生影响力》<br>栏目专访</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="fshi">
+		<div class="fshi-box">
+			<div class="fshi-p clear">
+				<div class="fl">1、</div>
+				<div class="fl fshi-sm">扫二维码，关注ZZ91微信公众号。</div>
+			</div>
+			<div class="fshi-p clear">
+				<div class="fl">2、</div>
+				<div class="fl fshi-sm">在对话框中回复“惊喜”，点击推送消息后抽奖。</div>
+			</div>
+			<div class="fshi-p clear">
+				<div class="fl">3、</div>
+				<div class="fl fshi-sm">携带手机到服务台领取礼品（每人只能参与一次抽奖）。</div>
+			</div>
+			<div class="fshi-p clear">
+				<div class="fl">4、</div>
+				<div class="fl fshi-sm">本活动只限“2016中国塑料交易会”展会现场抽奖。</div>
+			</div>
+			<br /><br />
+		</div>
+	</div>
+
+
+	<div class="popbg">
+		<div class="popbox">
+			<div class="pop-close">
+				<img src="images/closebtn.png" class="closebtn j_close">
+			</div>
+			<div class="pop-seename">
+				<div class="namezj"></div>
+			</div>
+			<div class="pop-btn">
+				<img src="images/sucbtn.png" class="succbbtn">
+			</div>
+		</div>
+	</div>
+	<div style="display:none">
+	    <script>
+	         var _hmt = _hmt || [];
+	         (function() {
+	             var hm = document.createElement("script");
+	             hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+	             var s = document.getElementsByTagName("script")[0];
+	             s.parentNode.insertBefore(hm, s);
+	         })();
+	    </script>
+	    <!--baidu analysis-->
+	    <script>
+	         var _hmt = _hmt || [];
+	        
+	         (function() {
+	             var hm = document.createElement("script");
+	             hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+	             var s = document.getElementsByTagName("script")[0];
+	             s.parentNode.insertBefore(hm, s);
+	         })();
+	    </script>
+	</div>
+
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script type="text/javascript">
+	function getSize(){
+		var winWidth = document.body.clientWidth;
+		var font_Size = 40*(winWidth/320);
+		document.getElementsByTagName('html')[0].style.fontSize = font_Size + "px"
+	}
+	getSize()
+	window.onresize = function(){
+		getSize();
+	}
+	var succIndex = 0,playtime,playsu=520,spinNum=0,canNum;
+	var company_id = {{company_id}};
+	var win_prize=0;//中奖号码
+	function loginstatus(){
+		if (company_id!=0){
+			//$(".canplay").css("display","block");
+			getchoujiangstaus()
+		}else{
+			window.location="http://m.zz91.com/login/?done=/taizhou2016/index.html"
+		}
+		return false;
+    }
+	//抽奖情况
+	var cj=true
+    function getchoujiangstaus(){
+    	if (cj==false){
+    		return;
+    	}
+    	cj=false;
+    	var ajaxurl="http://pyapp.zz91.com/choujiangstaus.html?company_id="+company_id.toString()+"&p="+(new Date()).getTime().toString();
+		$.getScript(ajaxurl, function() {
+			//没有做3项操作
+			if (_suggest_result_.firstchoujiang=="0"){
+				alert("你还未关注公众号！请关注后并绑定登录，才可以抽奖！");
+				cj=true
+		        return;
+	        }
+			//中奖号码
+			win_prize = _suggest_result_.xuanzhong;
+	        if (_suggest_result_.choujiangcount>0){
+	        	$(".namezj").html(succName[win_prize]);
+	        	piayCj(endPlay);
+	        }else{
+	        	alert("您已经抽过奖了！")
+	        }
+	        cj=true
+		});
+    }
+    $(".j_play").on("touchstart",function(){
+		loginstatus();
+		$(this).removeClass("j_play")
+        $(this).attr("src","images/btn1.png")
+        $(".cjst-play").unbind("touchstart");
+    });
+    $(".j_close,.succbbtn").on("click",function(){
+        $(".popbg").hide();
+    })
+    function piayCj(endPlay){
+       playtime = setInterval(function(){
+            if(spinNum<4){
+                playsu = playsu-20;
+            }else if(spinNum == 4){
+                playsu = playsu+40;
+            }else if(spinNum > 4){
+                playsu = playsu+40;
+                if(win_prize == succIndex){
+                    clearInterval(playtime);
+                    playsu=520,
+                    spinNum=0;
+                    endPlay&&endPlay();
+                    return;
+                }
+                playsu = playsu+40;
+            }
+            succIndex +=1;
+            if(succIndex==8){
+                succIndex =0;
+                spinNum +=1;
+            }
+            $(".playul li[index="+succIndex+"]").addClass("nowplay").siblings().removeClass("nowplay");
+            if(playsu<80){
+                playsu=80
+            }
+            clearInterval(playtime);
+            piayCj(endPlay);
+        },playsu)
+    }
+    var succName =["环保袋<br />或纪念笔","吉祥物","2016再生资源<br/>商务大全","移动端<br>供求置顶服务<br>2个月","ZZ91<br>《再生影响力》<br>栏目专访","移动端<br>企业秀<br>服务一年","移动端<br>独家广告<br>2个月","300元<br>再生钱包"]
+    function endPlay(){
+        canNum -=1;
+        $(".popbg").show();
+        $(".cjst-play").addClass("j_play");
+    }
+</script>
+</body>
+</html>

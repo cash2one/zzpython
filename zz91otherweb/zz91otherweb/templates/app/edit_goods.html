@@ -1,0 +1,186 @@
+<head>
+	<title>添加抢购商品表页面</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+	<link rel="stylesheet" type="text/css" href="Css/style.css" />
+	<script type="text/javascript" src="Js/jquery.js"></script>
+	<script type="text/javascript" src="Js/bootstrap.js"></script>
+	<script type="text/javascript" src="Js/ckform.js"></script>
+	<script type="text/javascript" src="Js/common.js"></script>
+</head>
+
+<body>
+<br>
+	<a href="{{request_url}}">返回</a>
+	<br>
+	<form action="edit_goods_ok.html" method="post">
+		<table class="table table-bordered table-hover definewidth m10">
+		<tr>
+			<td class="tableleft" width="10%">商品名称：</td>
+			<td><input type="text" name="goodsName" value="{{list.goodsName}}">
+			<input type="hidden" name="gid" value="{{list.id}}">
+			</td>
+		</tr>
+		<tr>
+			<td class="tableleft" width="10%">副标题：</td>
+			<td><input type="text" name="goodsname_fu" value="{{list.goodsname_fu}}"></td>
+		</tr>
+		<tr>
+			<td class="tableleft" width="10%">广告类型：</td>
+			<td>
+				<select name="ad_type" style="width:200px">
+				<option value="0" {%ifequal list.ad_type 0%} selected{%endifequal%}>请选择</option>
+				<option value="1" {%ifequal list.ad_type 1%} selected{%endifequal%}>优质推荐</option>
+				<option value="2" {%ifequal list.ad_type 2%} selected{%endifequal%}>每日抢购</option>
+				<option value="3" {%ifequal list.ad_type 3%} selected{%endifequal%}>热门产品</option>
+				<option value="4" {%ifequal list.ad_type 4%} selected{%endifequal%}>热门品牌</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="tableleft" width="10%">广告位置：</td>
+			<td>
+				<input type="radio" name="ad_position" value="1" {%ifequal list.ad_position 1%} checked{%endifequal%}>1
+				<input type="radio" name="ad_position" value="2" {%ifequal list.ad_position 2%} checked{%endifequal%}>2
+				<input type="radio" name="ad_position" value="3" {%ifequal list.ad_position 3%} checked{%endifequal%}>3
+				<input type="radio" name="ad_position" value="4" {%ifequal list.ad_position 4%} checked{%endifequal%}>4
+				<input type="radio" name="ad_position" value="5" {%ifequal list.ad_position 5%} checked{%endifequal%}>5
+				<input type="radio" name="ad_position" value="6" {%ifequal list.ad_position 6%} checked{%endifequal%}>6
+				<input type="radio" name="ad_position" value="7" {%ifequal list.ad_position 7%} checked{%endifequal%}>7
+				<input type="radio" name="ad_position" value="8" {%ifequal list.ad_position 8%} checked{%endifequal%}>8
+			</td>
+		</tr>
+		<tr>
+			<td class="tableleft" width="10%">跳转URL：</td>
+			<td><input type="text" name="tourl" value="{{list.tourl}}"></td>
+		</tr>
+		<tr>
+			<td class="tableleft">计费类型ID：</td>
+			<td>
+				<select name="billing_Class_ID" style="width:200px">
+				{%if list.billing_Class_ID%}<option value="{{list.billing_Class_ID}}">{{list.billing_Class_ID}}</option>{%endif%}
+				<option value="0">请选择</option>
+				{%for pay in billing_Class_ID.list%}
+				<option value="{{pay.id}}" {%ifequal pay.id list.billing_Class_ID%} selected{%endifequal%}>{{pay.name}}</option>
+				{%endfor%}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="tableleft">开始时间：</td>
+			<td><input type="text" name="start_Time" value="{{list.start_Time}}">&nbsp;&nbsp;格式如：2015-06-27 08:33:45</td> 
+		</tr>
+		<tr>
+			<td class="tableleft">结束时间：</td>
+			<td><input type="text" name="end_Time" value="{{list.end_Time}}">&nbsp;&nbsp;格式如：2015-07-10 88:33:45</td>  
+		</tr>
+		<tr>
+			<td class="tableleft">原价：</td>
+			<td><input type="text" name="original_Price" value="{{list.original_Price}}"></td>
+		</tr>
+		<tr>
+			<td class="tableleft">现价：</td>
+			<td><input type="text" name="present_Price" value="{{list.present_Price}}"></td>
+		</tr>
+		<tr>
+			<td class="tableleft">抢购数量：</td>
+			<td><input type="text" name="sales_Num" value="{{list.sales_Num}}"></td>
+		</tr>
+		<tr>
+			<td class="tableleft">剩余数量：</td>
+			<td><input type="text" name="left_Num" value="{{list.left_Num}}"></td>
+		</tr>
+		<tr>
+			<td class="tableleft">实际剩余数量：</td>
+			<td><input type="text" name="havenum" value="{{list.havenum}}"></td>
+		</tr>
+		<tr>
+			<td class="tableleft">图片：</td>
+			<td><input type="text" id="listpic" name="pic" value="{{list.pic}}">
+				<br /><img id="litpic7" src="{{list.pic}}">
+			</td>
+		</tr>
+		
+
+		<tr><td class="tableleft">上传图片</td><td>
+		
+		<iframe src="imgload.html" width=400 height=40></iframe></td></tr>
+	    <tr>
+			<td class="tableleft">是否上架：</td>
+			<td>
+			<input type="radio" name="status" value="1" {%ifequal list.status '1'%} checked{%endifequal%}>上架<input type="radio" name="status" value="0" {%ifequal list.status '0'%} checked{%endifequal%}>下架</td>
+		</tr>
+		
+		
+		<tr>
+			<td class="tableleft"></td>
+			<td><input type="submit" class="btn btn-primary" value="保存"></td>
+		</tr>
+		</table>
+	</form>
+	<br>
+	<a href="{{request_url}}">返回</a>
+	<br>
+</body>
+
+<script type="text/javascript">
+ 
+ 
+                //图片上传预览    IE是用了滤镜。
+        function previewImage(file)
+        {
+          var MAXWIDTH  = 260; 
+          var MAXHEIGHT = 180;
+          var div = document.getElementById('preview');
+          if (file.files && file.files[0])
+          {
+              div.innerHTML ='<img id=imghead>';
+              var img = document.getElementById('imghead');
+              img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+              }
+              var reader = new FileReader();
+              reader.onload = function(evt){img.src = evt.target.result;}
+              reader.readAsDataURL(file.files[0]);
+          }
+          else //兼容IE
+          {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead>';
+            var img = document.getElementById('imghead');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+          }
+        }
+        function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight )
+            {
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+                 
+                if( rateWidth > rateHeight )
+                {
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else
+                {
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+             
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+</script>     

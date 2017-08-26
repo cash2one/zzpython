@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script>
+// JavaScript Document
+function checkForm(frm){
+	varlulfs="";
+	for(var i=0;i<frm.length;i++)
+	{
+		var objinput=frm[i];
+		if (objinput.title!="")
+		{
+			if (objinput.type=="radio")
+			{
+				if(objinput.checked==true)
+				{
+					varlulfs=varlulfs+objinput.title+"\n";
+				}
+			}else{
+				varlulfs=varlulfs+objinput.title+":"+objinput.value+"\n";
+			}
+			if (objinput.title.substring(0,1)=="*")
+			{
+				if (objinput.value=="")
+				{
+					alert(objinput.title.substring(1)+"不能为空！");
+					objinput.focus();
+					return false
+				}
+				
+			}
+		}
+	}
+	frm.contents.value = varlulfs;
+}
+</script>
+<title>无标题文档</title>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+	color:#333;
+	line-height:28px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style></head>
+
+<body>
+{%if ms%}
+<form id="form1" name="form1" method="post" action="/miaosha_save/" onsubmit="return checkForm(this)">
+<div  style="margin-left:100px; margin-right:100px; margin-top:16px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="5">
+    <tr>
+    <td colspan="2">请务必在<strong style="font-size:16px; color:#F00; font-weight:bold">15分钟内</strong>下单, 并在下单后 <strong style="font-size:16px; color:#F00; font-weight:bold">60分钟内</strong>完成支付。</td>
+    </tr>
+  <tr>
+    <td align="right">联系人</td>
+    <td>
+      <input type="text" name="textfield" id="textfield" title="*联系人" />
+    </td>
+  </tr>
+  <tr>
+    <td align="right">手机/电话</td>
+    <td><input type="text" name="textfield2" id="textfield2"  title="*手机或电话"/></td>
+  </tr>
+  <tr>
+    <td align="right">收货地址</td>
+    <td><input name="textfield3" type="text" id="textfield3" size="40" title="*收货地址" /></td>
+  </tr>
+  <tr>
+    <td colspan="2">付款提醒: 拍下后请及时付款以确保团购成功.<br />      <strong style="font-size:15px; color:#F00; font-weight:bold">请在付款说明中注明您填写的手机号码</strong>，以便我们查询。</td>
+    </tr>
+</table>
+</div>
+<input type="hidden" name="contents" id="contents" value="dfsf" />
+<input type="hidden" name="title" id="title" value="双11黄页秒杀" />
+<div style="background-color:#F5F5F5; text-align:center">
+  <input type="image" name="imageField" id="imageField" src="../images/nextb.jpg" />
+</div>
+</form>
+{%else%}
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="300" align="center"><img src="http://a.tbcdn.cn/app/sns/img/face/0.gif" align="absmiddle"> <span style="color:#666; font-size:14px; margin-left:20px;">亲：请耐心等待。<br />
+      <br />
+    <span style="font-size:16px; font-weight:bold; color:#060">每天<span style="color:#F00">上午10点</span>和<span style="color:#F00">下午15点</span>整点开始秒杀哦！</span></span></td>
+  </tr>
+</table>
+{%endif%}
+</body>
+</html>

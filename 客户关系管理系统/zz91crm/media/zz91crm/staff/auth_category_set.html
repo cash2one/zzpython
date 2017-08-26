@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>添加团队</title>
+ <link href="../assets/css/dpl-min.css" rel="stylesheet">
+  <link href="../assets/css/bui-min.css" rel="stylesheet">
+  <style>
+  	body{
+  		margin: 20px;
+  	}
+  	.topmenu{
+  		background:#AA7700;
+  	}
+  	.fir_menu{
+  		background:#00AA88;
+  	}
+  	.sec_menu{
+  		background:#FF77FF;
+  	}
+  </style>
+</head>
+<body>
+  <div class="demo-content">
+    
+    <!-- 简单表单页 ================================================== --> 
+    <div class="row">
+        <div class="span16 doc-content">
+          <form action="auth_category_setok.html"  method="get" id="J_Form">
+          
+          	<div class="control-group">
+              <label class="control-label">权限名称：</label>
+              <div class="controls">
+                <input type="text" class="input-large" name="authname" data-rules="{required:true}" class="input-normal control-text" {%if listall.label%}value="{{listall.label}}"{%endif%}>
+              </div>
+            </div>
+          
+            <div class="control-group">
+        		<label class="control-label"><s>*</s>选择权限：</label>
+		        <div class="controls bui-form-group"  data-rules="{checkRange:1}" data-messages="{checkRange:'至少勾选一项！'}" >
+		        	{%for topmenu in menulistall%}
+		        		<label class="checkbox" for=""><input class="cb" name="checkid" value="{{topmenu.id}}" type="checkbox"><div  class="topmenu" id="topmenu{{topmenu.id}}"  onClick="showsub({{topmenu.id}})">{{topmenu.label}}</div></label><br>
+		        		{%for fir_menu in topmenu.first_menu%}
+		        			<div id="fir_menu{{topmenu.id}}" class="fir_menu">
+		        			&nbsp;&nbsp;---<label class="checkbox" for=""><input class="cb" name="checkid" value="{{fir_menu.id}}" type="checkbox">{{fir_menu.label}}</label><br>
+		        			{%for sec_menu in fir_menu.second_menu%}
+		        				  <div class="sec_menu" >
+		        				&nbsp;&nbsp;&nbsp;&nbsp;-----<label class="checkbox" for=""><input class="cb" name="checkid" value="{{sec_menu.id}}" type="checkbox">{{sec_menu.label}}</label><br>
+		        				</div>
+		        			{%endfor%}
+		        			</div>
+		        		{%endfor%}
+		        	{%endfor%}
+		        </div>
+      		</div>
+            <input type="hidden" name="aid" value="{{aid}}" >
+            <div class="row actions-bar">
+                <div class="form-actions span13 offset3">
+                  <button type="submit" class="button button-primary">保存</button>
+                  <button type="reset" class="button">重置</button>
+                </div>
+            </div> 
+          </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="../assets/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="../assets/js/bui-min.js"></script>
+  <script type="text/javascript" src="../assets/js/config-min.js"></script>
+  <!-- 表单验证必须加上下面的JS -->
+     <script type="text/javascript">
+      BUI.use('bui/form',function(Form){
+      new Form.Form({
+        srcNode : '#J_Form'
+      	}).render();
+  		});  
+	</script>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+	    var str = "{{auth_code}}";
+	    $(str.split(",")).each(function (i,dom){
+	        $(":checkbox[value='"+dom+"']").prop("checked",true);
+	        $(":checkbox[id='"+dom+"']").prop("checked",true);
+	    });
+	});
+	</script>
+<!-- script end -->
+<script type="text/javascript">
+function showsub(id)
+{
+	//var obj=document.getElementById("topmenu"+id);
+	var obj1=document.getElementById("fir_menu"+id);
+	if (obj1.style.display=="none")
+	{
+		obj1.style.display="block";
+	}
+	else
+		{
+		obj1.style.display="none";
+		}
+}
+</script>
+  </div>
+</body>
+</html> 

@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+
+	<head>
+		<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+		<script type="text/javascript" src="http://img0.zz91.com/lib/asto/asto-all-1.0.0.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var ajaxurl="http://www.zz91.com/getLoginStatus.htm";
+				$.getScript(ajaxurl, function() {
+					if (success == "true")
+					{
+						cid=companyId;
+					}else{	
+						cid=0;
+					}
+					window.parent.Asto.util.Callback.submit(cid,{{id}});
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+	</body>
+
+</html>

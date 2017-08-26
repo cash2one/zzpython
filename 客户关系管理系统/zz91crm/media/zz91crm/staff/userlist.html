@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>简单表单页</title>
+		<!-- 此文件为了显示Demo样式，项目中不需要引入 -->
+		<link href="../assets/css/dpl-min.css" rel="stylesheet">
+		<link href="../assets/css/bui-min.css" rel="stylesheet">
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+		<style>
+			#overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:white;opacity:0.5;filter:alpha(opacity=50);display:none;}
+			  .win{position:absolute;top:50%;left:50%;width:400px;height:250px;background:#fff;border:4px solid gray;margin:-102px 0 0 10px;display:none;padding: 20px;}
+		</style>
+	</head>
+
+	<body>
+		<div class="demo-content">
+
+			<!-- 简单搜索页 ================================================== -->
+			<div class="row">
+				<div class="span24 doc-content">
+					<form id="search" class="form-panel">
+						<ul class="panel-content">
+							<li>
+								<select name="user_category_code" id="user_category_code">
+									<option value="">---选择部门---</option>
+									{%for list in categorylist%}
+									<option value="{{list.code}}">┆&nbsp;&nbsp;┿{{list.cate_label}}</option>
+									{%endfor%}
+								</select>
+								<script>selectOption("user_category_code","{{user_category_code}}")</script>
+								<select name="closeflag" id="closeflag">
+									<option value="">全部</option>
+									<option value="0">开通</option>
+									<option value="1">冻结</option>
+								</select>
+								<script>selectOption("closeflag","{{closeflag}}")</script>
+								员工姓名：
+								<input type="text" name="username" value="{%if username%}{{username}}{%endif%}" />
+								<button type="button" class="button button-primary" onClick=send1()>查询>></button>
+								<button type="button" class="button button-success" onclick="window.location='adduser1.html'">添加员工</button>
+							</li>
+						</ul>
+					</form>
+					<form>
+						<table cellspacing="0" class="table table-bordered" id="senfe">
+							<thead>
+								<!--<th colspan="9">
+					            <ul class="toolbar">
+					              <li><button class="button button-success">开通</button></li>
+					              <li><button class="button button-inverse">冻结</button></li>
+					            </ul>
+					            </th>-->
+								<tr>
+									<th width="15"></th>
+									<th>员工id</th>
+									<th>用户名</th>
+									<th>密码</th>
+									<th>所属团队</th>
+									<th>权限级别</th>
+									<th>员工姓名</th>
+									<th>状态</th>
+									<th>新签客户数</th>
+									<th>续签客户数</th>
+									<th>再生汇客户数</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								{%for list in listall%}
+								<tr>
+									<td>
+										<input type="checkbox" name="checkid" value="{{list.id}}" id="subcheck">
+									</td>
+									<td><span class="x-tree-icon-wraper"><span class="x-tree-icon x-tree-elbow-expander"></span><span class="x-tree-icon x-tree-elbow-dir"></span></span>{{list.id}}</td>
+									<td>{{list.username}}</td>
+									<td>******</td>
+									<td>{{list.user_category}}</td>
+									<td>{{list.auth_category}}</td>
+									<td>{{list.realname}}</td>
+									<td>{{list.statustxt|safe}}</td>
+									<td><a href="/icd/icdlist.html?adminuser_id={{list.id}}&dotype=allbm" target="_blank">{{list.icdcount}}</a></td>
+									<td><a href="/icd/icdlist.html?adminuser_id={{list.id}}&dotype=vap_allbm" target="_blank">{{list.vapcount}}</a></td>
+									<td><a href="/icd/icdlist.html?adminuser_id={{list.id}}&dotype=zsh_allbm" target="_blank">{{list.zshcount}}</a></td>
+									<td>
+										<!--  <span class="grid-command"><a class="edit" userid="{{list.id}}" title="编辑属性">编辑</a></span>-->
+										<span class="grid-command"><a href="edituser1.html?userid={{list.id}}" title="编辑属性">编辑</a></span>
+										<!--<span class="grid-command"><a onclick="return confirm('确实要删除吗')" href="deluser.html?id={{list.id}}">删除</a></span>-->
+										<span class="grid-command">
+              		{%ifequal list.closeflag 1%}
+              			<a href="changestatus_user.html?id={{list.id}}&status={{list.closeflag}}">开通</a>
+              		{%endifequal%}
+              		{%ifequal list.closeflag 0%}
+              			<a href="changestatus_user.html?id={{list.id}}&status={{list.closeflag}}">冻结</a>
+              		{%endifequal%}
+              	</span>
+									</td>
+								</tr>
+								{%endfor%}
+							</tbody>
+						</table>
+						<!--<ul class="toolbar pull-left">
+		            <li><label class="checkbox"><input type="checkbox" id="SelectAll"  value="全选" onclick="selectAll();"/>全选</label></li>
+		            <li><button class="button button-danger" onclick="deleteallAction(this.form)"><i class="icon-white icon-trash"></i>批量删除</button></li>
+		            <li><button class="button button-success">审核通过</button></li>
+		            <li><button class="button button-inverse">审核不通过</button></li>
+	          	</ul>-->
+					</form>
+					<div>
+						<div class="inline pull-right page">
+							<form>
+								共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页 &nbsp;&nbsp; {% if firstpage %}
+								<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%} {%for p in page_range%} {%if p.nowpage%}
+								<span class='current'>{{p.number}}</span>&nbsp; {%else%}
+								<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a> {%endif%} {%endfor%} {% if lastpage%}
+								<a href="?page={{nextpage}}&{{searchurl}}"><!--<a href="javascript:void(0)" class="nextpage" value="{{nextpage}}">-->下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp; {%if flag%}
+								<input type="hidden" name="flag" value="{{flag}}">{%endif%} {%if writer%}
+								<input type="hidden" name="writer" value="{{writer}}">{%endif%}
+								<input type="hidden" name="page_listcount" value="{{page_listcount}}">&nbsp;&nbsp; 去第
+								<input type="text" name="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页
+								<input type="submit" style="display:none"> &nbsp;&nbsp;
+								<a href='?page=1&{{searchurl}}'>首页</a><a href='?page={{page_listcount}}&{{searchurl}}'>尾页</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- script end -->
+		</div>
+		<br />
+		<br />
+		<script type="text/javascript" src="../assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="../assets/js/jquery.lightbox_me.js"></script>
+		<script type="text/javascript">
+			function send1(){
+				//$("#search").action="http://www.baidu.com"
+				$("#search").submit()
+			}
+		</script>
+		<!-- 快速编辑开始 -->
+		<script type="text/javascript">
+			$(document).ready(function(){
+				 
+				  $(".edit").click(function(e){
+						var userid=$(this).attr("userid");
+						$('#userid').val(userid);
+						//alert('ok');
+						$.ajax({
+						   type: "GET",
+						   url: "getquickuseredit.html",
+						   data: "userid="+userid,
+						   success:function(data){
+							   var jsondata = jQuery.parseJSON(data);
+							   username=jsondata['username']
+							   password=jsondata['password']
+							   user_category_code=jsondata['user_category_code']
+							   user_category_label=jsondata['user_category_label']
+							   //alert('ok');
+							   //alert(user_category_label);
+							   auth_category_id=jsondata['auth_category_id']
+							   auth_category_label=jsondata['auth_categor_label'];
+							   //alert(auth_categor_label);
+							   selectOption("user_category",user_category_code.toString())
+							   selectOption("auth_category",auth_category_id.toString())
+							   $('#username').val(username);
+							   $('#password').val(password);
+							   $('#win9').lightbox_me({
+									overlaySpeed:0,
+									lightboxSpeed:0,
+					        		centered: true, 
+					        		onLoad: function() {
+					        		}
+					        	});
+								e.preventDefault();
+						   },
+						   error:function(data){
+								//alert("错误!青重试.");
+						   }
+						});
+						
+				  });	
+				  
+				  $('#win10').click(function(e){
+					  var userid=$('#userid').val();
+					  var username=$('#username').val();
+					  var password=$('#password').val();
+					  var user_category_code=$('#user_category').val();
+					  var auth_category_id=$('#auth_category').val();
+					  $.ajax({
+							type: "GET",
+							url: "quickusereditok.html?userid="+userid+"&username="+username+"&password="+password+"&user_category_code="+user_category_code+"&auth_category_id="+auth_category_id,
+							data:'',
+							success:function(data){
+								window.location.href="";
+							},
+							error:function(data){
+								//alert("错误!青重试.");
+						 	}
+					  });
+				  });
+				  
+				  
+			  });
+			 
+			 function dismiss(){
+					$('#win9').trigger('close');
+				}
+			 
+			 function selectOption(menuname,value)
+				{
+				    var menu = document.getElementById(menuname);
+				    
+					if (menu)
+					{
+					for(var i=0;i<=menu.options.length;i++){
+						if(menu.options[i].value==value)
+						{
+							menu.options[i].selected = true;
+							break;
+						}
+					}
+					}
+				}
+		</script>
+
+		<!-- 编辑框div开始 -->
+		<div class="win" id="win9" name="win">
+			<input type="hidden" id="userid">
+			<h2><div style="width:200px;height:1px;text-align:left"> &nbsp;快速属性编辑</div> &nbsp;</h2>
+			<br />
+			<table>
+				<tr>
+					<td style="width:60px">&nbsp;员工姓名:</td>
+					<td>
+						<input type="text" id="username" name="username" value="" style="width:300px">
+					</td>
+				</tr>
+				<br>
+				<tr>
+					<td style="width:60px">&nbsp;密码:</td>
+					<td>
+						<input type="text" id="password" name="password" value="" style="width:300px">
+					</td>
+				</tr>
+				<br>
+				<tr>
+					<td>&nbsp;所属团队: </td>
+					<td>
+						<select id="user_category" name="user_category" style="width:120px">
+
+							{%for tp in usercategorylist%}
+							<option value="{{tp.code}}">{{tp.label}}</option>
+							{%endfor%}
+						</select>
+						&nbsp;权限级别:
+						<select id="auth_category" name="auth_category" style="width:120px">
+
+							{%for tp in authcategorylist%}
+							<option value="{{tp.id}}">{{tp.label}}</option>
+							{%endfor%}
+						</select>
+					</td>
+				</tr>
+				<br>
+				<tr>
+					<td></td>
+					<td>
+						<input type="button" value="确认" id="win10" onclick="dismiss()">
+						<input type="button" onclick="dismiss()" value="返回">
+					</td>
+				</tr>
+			</table>
+			<!-- 编辑框div结束 -->
+			<!-- 一键删除开始 -->
+			<script type="text/javascript">
+				function selectAll(){  
+					    if ($("#SelectAll").attr("checked")) {  
+					        $(":checkbox").attr("checked", true);  
+					    } else {  
+					        $(":checkbox").attr("checked", false);  
+					    }  
+					}  
+				//子复选框的事件  
+				function setSelectAll(){  
+				    //当没有选中某个子复选框时，SelectAll取消选中  
+				    if (!$("#subcheck").checked) {  
+				        $("#SelectAll").attr("checked", false);  
+				    }  
+				    var chsub = $("input[type='checkbox'][id='subcheck']").length; //获取subcheck的个数  
+				    var checkedsub = $("input[type='checkbox'][id='subcheck']:checked").length; //获取选中的subcheck的个数  
+				    if (checkedsub == chsub) {  
+				        $("#SelectAll").attr("checked", true);  
+				    }  
+				}  
+				//一键删除
+				function deleteallAction(frm){
+				    frm.action="del_alluser.html";
+				    frm.submit();
+				}
+				
+				$(function(){
+				    $("#senfe").find("tr").click(function(){
+				        $(this).find("input[type='checkbox']").attr("checked",!$(this).find("input[type='checkbox']").attr("checked"));
+				    });
+				})
+			</script>
+			<!-- 一键删除结束 -->
+	</body>
+
+</html>

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{keywords}}企业名录,{{keywords}}企业黄页,废料企业名录大全(第{{page}}页) - ZZ91再生网</title>
+<meta name="keywords" content="{{keywords}}企业大全,废料企业名录，ZZ91再生网" />
+<meta name="description" content="ZZ91再生网企业名录提供废料企业信息大全，该板块根据废料企业类别、区域进行分类,用户可根据区域和废料类别选择自己需要寻找的再生资源企业，更多信息可登陆ZZ91再生网（www.zz91.com）查看" />
+{%include 'sy/head.html'%}
+<link rel="stylesheet" type="text/css" href="http://pyapp.zz91.com/css/sy/index.index.css"/>
+</head>
+<body>
+{%include 'sy/top.html'%}
+<div class="body">
+	 {%include 'sy/hearder.html'%}
+     <div class="synav">当前位置：<a href="http://www.zz91.com" target="_blank">ZZ91首页</a> > {{keywords}}企业名录</div>
+     <div style="clear:both"></div>
+     <script type="text/javascript">
+	var sogou_ad_id=404782;
+	var sogou_ad_height=60;
+	var sogou_ad_width=960;
+	</script>
+	<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>
+     <h3>{{keywords}} 企业名录</h3>
+     <div class="englishcode"><b>按企业字母分类：</b>
+		 {%for p in pinyinlist%}
+		 <a href="c-p{{p}}-1.htm" target="_blank">{{p}}</a>
+		 {%endfor%}
+		 </div>
+     <div style="clear:both"></div>
+     <div class="content">
+     	<ul class="item1">
+		{%for list in companylist%}
+        	<li><a href="http://trade.zz91.com/gsjj{{list.id}}.htm" target="_blank">{{list.compname}}</a></li>
+		{%endfor%}
+            
+        </ul>
+     </div>
+     <div style="clear:both"></div>
+	 <div class="cmore">
+	 {{page}}/{{page_listcount}}
+	 {% if firstpage %}
+	<a href="c{{id}}-1.htm" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+	<a href="c{{id}}-{{prvpage}}.htm" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+	{% endif %}
+	{% for p in page_range %}
+	{% if p.nowpage %}
+	<span class="red" style="margin-right:5px;font-size:16px;font-weight:bold">{{p.number}}</span>
+	{% else %}
+	<a href="c{{id}}-{{p.number}}.htm" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+	{% endif %}
+	{% endfor %}
+	&nbsp;
+	{% if lastpage%}
+	<a href="c{{id}}-{{nextpage}}.htm" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+	<a href="c{{id}}-{{page_listcount}}.htm" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+	{% endif %}</div>
+</div>
+{%include 'sy/buttom.html'%}
+<script>
+</body>
+</html>

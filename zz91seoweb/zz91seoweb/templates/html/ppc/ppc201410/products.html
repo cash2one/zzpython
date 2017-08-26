@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/base.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/style.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/zz91/ppc/css/salesroom.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico" />
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+<style>
+.bigpic
+{
+	position:absolute;
+	left:128px;
+	margin-left:0px;
+	top:0px;
+	border:solid 1px #ccc;
+	text-align:center;
+	vertical-align:middle;
+	padding:5px;
+	background-color:#ebebeb;
+	z-index:20;
+	width:300px;	
+}
+.bigpic a
+{
+	display:table-cell;
+	text-align:center;
+	vertical-align:middle;
+	width:290px;
+	
+}
+</style>
+<script>
+$(function(){
+	$(".pic").mouseover(function(){
+		var self=$(this);
+		var bigpic=self.find(".bigpic");
+		$(".bigpic").css("display","none")
+		if (self.find("img").attr("src")!="http://img0.zz91.com/front/images/global/noimage.gif"){
+			self.find(".bigpic").css("display","");
+			if (self.find(".bigimg").length==0){
+				self.find(".bigpic").html("<img src='http://img0.zz91.com/zz91/tradelist/images/loading.gif'>");
+				var bimg=self.find("img").attr("src").replace("150x150","300x300");
+				var bimghref=self.find("img").parent().attr("href")
+				self.find(".bigpic").html("<a href='"+bimghref+"' target=_blank><img src="+bimg+" class=bigimg></a>");
+			}
+		}
+	});
+});
+$(function(){
+	$(".pic").mouseout(function(){
+		var self = $(this);
+		if (self.find(".bigpic").length>0){
+			//self.find(".bigpic").remove();
+		}
+		self.find(".bigpic").css("display","none")
+	});
+});
+$(function(){
+	$(".bigpic").mouseout(function(){
+		var self = $(this);
+		self.css("display","none")
+	});
+});
+</script>
+
+<title>供求列表-{{list.name}}</title>
+<meta content="{{list.business}}" name="description"/>
+<meta content="{{list.ctags}}" name="keywords"/></head></head>
+<body>
+
+{%include htmlincludes.topinclude%}
+
+<div class="upd">
+
+{%include htmlincludes.leftinclude%}
+
+  </div>
+  <!-- 右面主题板块-->
+  <div class="main-wrap fr">
+    <!--明星产品-->
+    <div class="mod mod-starpro">
+      <div class="m-body">
+        <div class="m-header">
+          <h3>供求信息</h3>
+        </div>
+        <div class="m-content">
+          <div class="pro-class">
+            <div>
+              <form id="form1" name="form1" method="get" action="products938557-0-1.htm">
+                <input type="text" name="keywords" id="keywords" style="line-height:25px; width:200px; margin-left:5px;" placeholder="请输入您要搜索的产品名称..."/>
+                <input type="submit" name="button" id="button" value="  搜 索  " style="line-height:25px; height:25px;" />
+              </form>
+            </div>
+          </div>
+          <div class="image-ment"> 
+            <!--产品横排图文-->
+            <div class="image-text">
+              <ul>
+{%for list1 in prolist%}
+                <li>
+                  <div class="pic"><a href="productdetail{{list1.pdt_id}}.htm" class="left-image" target="_blank"> <img src="{{list1.pdt_images}}" alt="{{list1.pdt_name}}" /> </a>
+                  <div class='bigpic' style="display:none"></div>
+				</div>
+                  <div class="right-info fl"> <a href="productdetail{{list1.pdt_id}}.htm" class="right-word" target="_blank">{{list1.pdt_kind.kindtxt}}{{list1.pdt_name}}</a>
+                    <p>{{list1.pdt_detaillclear}}...</p>
+                    <p class="color-phone">电话：{{list.ppcphone}}</p>
+                    <p><a href="productdetail{{list1.pdt_id}}.htm" class="detail-chk">查看详情</a></p>
+                  </div>
+                </li>
+{%endfor%}
+              </ul>
+            </div>
+            <!--产品横排图文结束--> 
+					<!--  翻页开始-->   
+					<div class="apartpageBox">
+                    {% if firstpage %}
+                    <a class='prev-page' href="products{{company_id}}-{{seriesid}}-{{prvpage}}.htm">上一页</a></span>
+                    {% endif %}
+                    {% for p in page_range %}
+                    {% if p.nowpage %}
+                    <strong class="current">{{p.number}}</strong>
+                    {% else %}
+                    <a href='products{{company_id}}-{{seriesid}}-{{p.number}}.htm' >{{p.number}}</a>
+                    {% endif %}
+					{% endfor %}
+                    {% if lastpage%}
+                    <a class="next-page" href='products{{company_id}}-{{seriesid}}-{{nextpage}}.htm' >下一页</a></div>
+                    {% endif %}
+					<!--  翻页结束-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--明星产品结束--> 
+    <div class="clear"></div>
+  </div>
+  <!-- 右面主题板块结束--> 
+  <div style="clear:both"></div>
+</div>
+<div style="clear:both"></div>
+{%include htmlincludes.buttominclude%}
+</body>
+</html>

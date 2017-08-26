@@ -1,0 +1,8 @@
+<script>
+	alert('您已报名成功，我们将会尽快联系您！');
+	{%if backurl%}
+	window.location="{{backurl}}";
+	{%else%}
+	window.history.back(1);
+	{%endif%}
+</script>

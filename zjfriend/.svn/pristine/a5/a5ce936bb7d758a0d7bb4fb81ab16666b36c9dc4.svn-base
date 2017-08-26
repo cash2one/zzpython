@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/main.min.css" type="text/css">
+		<link rel="stylesheet" href="../css/my_pinlun.css" type="text/css">
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+	</head>
+
+	<body>
+		<div class="box">
+			<!--分享-->
+			<div id="MyComments" class="pinlun">
+			
+			</div>
+			<script id="info-list" type="text/html">
+				<div class="plunxx">
+					<div class="plunxx_top">
+						<div class="plunxx_top1"> {{ d.feedbackname }}
+						</div>
+						
+					</div>
+
+					<div class="plunxx_center">
+						{{ d.msg }}
+						<div style="clear: both"></div>
+					</div>
+					<div class="plunxx_bottom">
+						<div class="plunxx_bottom_time"> {{d.dtime}}</div>
+						<!--
+						<div id="o_20289022" onclick="sndReq(416687,20289022,&#39;oppose&#39;,2)" class="plunxx_bottom_fdui">反对[{{ d.bad }}]</div>
+						<div id="s_20289022" onclick="sndReq(416687,20289022,&#39;support&#39;,35)" class="plunxx_bottom_ztong">支持[{{ d.good }}]</div>-->
+					</div>
+					<div id="div_reply_20289022"></div>
+				</div>
+			</script>
+			<div class="jzmore" style="border: 0;display:none">
+				更多加载中...
+			</div>
+		</div>
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../script/common.js"></script>
+		<script type="text/javascript" src="../script/laytpl.js"></script>
+		<script>
+			function pinlun(obj){
+				$("#div_contentbg").css("display","none");
+				obj.style.height="60px";
+				$(".plun_bt_tj_button").css("display","block");
+				document.getElementById("txtContent0").focus();
+			}
+
+			var currPage = 1;
+			var stoploading = false;
+			// var aid=api.pageParam.aid
+			function changesexmain() {
+				api.showProgress();
+				api.ajax({
+					url : hosturl+'/sex/show_feedback.html?mid='+UserInfo.memberID()+'&deviceId='+deviceId+'&page='+currPage,
+					method : 'get',
+					timeout : 30,
+					data : {},
+					dataType : "json",
+					returnAll : false
+				}, function(ret, err) {
+					var pageHtml = "";
+					if (ret) {
+						if(ret.result.length==0){
+							$("#MyComments").html("<div style='width=100%;text-align:center;padding-top:20px;height:100%'>暂无信息</div>");
+							$(".jzmore").css("display", "none");
+							api.hideProgress();
+							return;
+						}
+						$.each(ret.result,function(index,item){
+							var getTpl = $api.html($api.byId("info-list"));
+							laytpl(getTpl).render(item, function(html) {
+								pageHtml = pageHtml + html;
+							});
+						})
+						//$("#span_reviewcount").html(ret.listcount)
+						$("#MyComments").html(pageHtml);
+					}
+					else {
+						$("#MyComments").html("<div style='width=100%;text-align:center;padding-top:20px;height:100%'>暂无信息</div>");
+						$(".jzmore").css("display", "none");
+						api.toast({
+							msg : ('错误码：' + err.code + '；错误信息：' + err.msg + '网络状态码：' + err.statusCode),
+							duration : 3000,
+							location : 'bottom'
+						});
+					}
+					api.hideProgress();
+				})
+			};
+			apiready = function() {
+				var deviceId = api.pageParam.deviceId;
+				api.addEventListener({
+					name : 'keyback'
+				}, function(ret, err) {
+					api.closeWidget();
+				});
+				api.addEventListener({
+					name : 'scrolltobottom'
+				}, function(ret, err) {
+					loadmorelist(currPage + 1);
+				});
+				changesexmain();
+				//下拉刷新
+				api.setRefreshHeaderInfo({
+					visible : true,
+					// bgColor: '#F2F2F2',
+					bgColor : '#E6E6E6',
+					textColor : '#000000',
+					textDown : '下拉刷新',
+					textUp : '释放刷新',
+				}, function(ret, err) {
+					currPage=1;
+					changesexmain()
+					api.refreshHeaderLoadDone();
+					api.hideProgress();
+					api.toast({
+						msg : '数据已是最新！',
+						duration : 3000,
+						location : 'bottom'
+					});
+				});
+			}
+			function loadmorelist(page) {
+				if (stoploading == false) {
+					stoploading = true;
+					$(".jzmore").html("更多加载中...");
+					api.ajax({
+						url : hosturl+'/sex/show_feedback.html?mid='+UserInfo.memberID()+'&deviceId='+deviceId+'&page='+page,
+						method : 'get',
+						timeout : 30,
+						data : {},
+						dataType : "json",
+						returnAll : false
+					}, function(ret, err) {
+						if (ret && ret != "") {
+							var pageHtml = "";
+							$.each(ret.result,function(index,item){
+								var getTpl = $api.html($api.byId("info-list"));
+								laytpl(getTpl).render(item, function(html) {
+									pageHtml = pageHtml + html;
+								});
+							})
+							if (pageHtml==""){
+								stoploading = true;
+								$(".jzmore").css("display", "none");
+							}else{
+								$(".jzmore").css("display", "block");
+								$("#MyComments").append(pageHtml);
+								stoploading = false;
+								currPage = page;
+								$(".jzmore").html("点击加载更多");
+							}
+							
+							api.hideProgress();
+							
+						} else {
+							stoploading = false;
+							$(".jzmore").css("display", "none");
+						};
+					});
+				}
+			}
+		</script>
+	</body>
+
+</html>

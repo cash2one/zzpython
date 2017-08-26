@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>废料关键字大全(第{{page}}页) - ZZ91再生网</title>
+<meta name="keywords" content="废料关键字,废料标签库,ZZ91再生网" />
+<meta name="description" content="ZZ91再生网产品搜索大全提供各类产品、型号、企业等搜索关键词，综合各类关键词信息分类，更多信息可登陆ZZ91再生网（www.zz91.com）查看" />
+{%include 'sy/head.html'%}
+<link rel="stylesheet" type="text/css" href="http://pyapp.zz91.com/css/sy/index.index.css"/>
+</head>
+<body>
+{%include 'sy/top.html'%}
+<div class="body">
+	 {%include 'sy/hearder.html'%}
+     <div class="synav">当前位置：<a href="http://www.zz91.com" target="_blank">ZZ91首页</a> > 废料关键字大全</div>
+     <div style="clear:both"></div>
+     
+     <h3>废料关键字大全</h3>
+     <div class="englishcode"><b>按关键字字母分类：</b>
+		 {%for p in pinyinlist%}
+		 <a href="tags-{{p}}-1.htm" target="_blank">{{p}}</a>
+		 {%endfor%}
+		 </div>
+     <div style="clear:both"></div>
+	 {%for list in categorylist%}
+     <div class="content">
+		<h3>{{list.label}}</h3>
+     	<ul class="item2">
+		{%for d in yearlist%}
+			{%for m in d.month%}
+        	<li><a href="#" target="_blank">{{d.year}}年{{m}}月</a></li>
+			{%endfor%}
+			<div style="clear:both"></div>
+		{%endfor%}
+            
+        </ul>
+     </div>
+     <div style="clear:both"></div>
+	 {%endfor%}
+</div>
+{%include 'sy/buttom.html'%}
+<script>
+</body>
+</html>

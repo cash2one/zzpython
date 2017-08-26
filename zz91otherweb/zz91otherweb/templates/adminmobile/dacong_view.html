@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../mobile/css/aui.css" />
+		<style>
+			.news-title {
+				line-height: 30px;
+				font-weight: 700;
+				text-align: left;
+				font-size: 22px;
+				margin-top: 30px;
+			}
+			.news-dis {
+				font-size: 12px;
+				color: #999999;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+			.aui-content img {
+				max-width: 100%;
+			}
+			.aui-content p {
+				line-height: 30px;
+				font-size: 16px;
+				color: #333
+			}
+			.aui-tab-item.aui-active {
+				color: #01BA2E;
+				border-bottom: 2px solid #01BA2E;
+				z-index: 2;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="detail newscontent">
+			<div class="aui-content-padded aui-clearfix">
+				<div class="news-title">
+					{{ title }}
+				</div>
+				<div class="news-dis">
+					预览量：{{ click }} 时间：{{ pubdate }}
+				</div>
+			</div>
+			<div style="clear: both"></div>
+			<div class="aui-content">
+				<div class="aui-content-padded">
+					{{ content|safe }}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

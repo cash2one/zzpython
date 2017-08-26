@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>公司黄页</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/company/firm-page.css"/>
+</head>
+<body>
+  <div class="nodata">暂无相关数据</div>
+  <ul class="sj-list">
+  	<div class="aui-toast"  id="loading">
+        <div class="aui-toast-loading"></div>
+        <div class="aui-toast-content">加载中</div>
+    </div>
+    <!-- <li>
+      <div class="title">个体经营（柴文旋）<span>[广西]</span></div>
+      <p class="jianjie">公司长期供应PVC大棚膜破碎料，月供应应应应...</p>
+      <div class="tell"><i></i>400-745-0037</div>
+    </li> -->
+  </ul>
+  <div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;display:none'>上拉获取更多信息</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script id="info-list" type="text/html">
+    <li class="change-bgcolor" id="{{ d.id }}">
+      <div class="title">{{ d.compname }}<span>[{{ d.area_province }}]</span></div>
+      <p class="jianjie">{{ d.business }}</p>
+      
+    </li>
+</script>
+<script>
+    var currPage = 1;
+    var keywords="";
+    var province="";
+    apiready = function(){
+        //api.showProgress({title:'加载中',modal:false});
+        //底部加载更多
+        api.addEventListener({
+            name : 'scrolltobottom'
+        }, function(ret, err) {
+            //如果底部没有加载更多提示，添加加载更多提示
+            $(".la_more").html("加载更多中...");
+            if($(".mui-spinner").length==0){
+              //$("body").append("<div class='mui-spinner' style='text-align:center;height:50px;line-height:50px;font-size:16px;'>更多加载中...</div>");
+            }
+            setTimeout(function(){
+              ajaxInfo();
+            },1000)
+        });
+          //页面刷新
+        api.setRefreshHeaderInfo({
+            visible : true,
+            // bgColor: '#F2F2F2',
+            bgColor : '#E6E6E6',
+            textColor : '#000000',
+            textDown : '下拉刷新',
+            textUp : '释放刷新',
+        }, function(ret, err) {
+            currPage = 1;
+            ajaxInfo();
+            
+            api.toast({
+              msg : '数据已是最新！',
+              duration : 3000,
+              location : 'bottom'
+            });
+        });
+        //zzalert(JSON.stringify(api.pageParam))
+        //页面加载获取信息
+        ajaxInfo();
+        $(".sj-list").on("click","li",function(){
+            var id = $(this).attr("id")
+            var pageParam = {
+                wintitle:"公司详情",
+                type:"companyshop",
+                showbottom : 1,
+				forcompany_id : id,
+                bounces:false
+            };
+            //openWin("firm","../trade/firm.html",pageParam);
+            openWin("companyshop", "../company/shop.html", pageParam);
+        });
+        
+    }  
+    //搜索关键字类别
+    function searchkeywords(k){
+    	keywords=k;
+    	api.showProgress({title:'加载中',modal:false});
+    	currPage = 1;
+    	api.execScript({
+			name : 'company-list',
+			script : "xzleimu('"+k+"')"
+		});
+        ajaxInfo();
+    }
+    //搜索关键字地区
+    function searcharea(k){
+    	province=' '+k;
+    	if (k=="不限"){
+    		province='';
+    		k='地区'
+    	}
+    	api.showProgress({title:'加载中',modal:false});
+    	currPage = 1;
+    	api.execScript({
+			name : 'company-list',
+			script : "xzarea('"+k+"')"
+		});
+        ajaxInfo();
+    }
+    //搜索关键字集散地
+    function searchjsd(l,k){
+    	keywords=l;
+    	province=' '+k;
+    	if (k=="不限"){
+    		province='';
+    		k='地区'
+    	}
+    	api.showProgress({title:'加载中',modal:false});
+    	currPage = 1;
+    	api.execScript({
+			name : 'company-list',
+			script : "xzjsd('"+k+"')"
+		});
+        ajaxInfo();
+    }
+    var dataload = true;
+    function ajaxInfo(){
+    if (dataload == true) {
+		dataload = false;
+        api.ajax({
+            url : hosturl + '/company/?datatype=json&page='+currPage+'&keywords='+keywords+''+province,
+            method : 'get',
+            timeout : 30,
+            dataType : 'json',
+            returnAll : false
+        }, function(ret, err) {
+            if (ret) {
+                var pageHtml = "";
+                $.each(ret.list, function(index, item) {
+                    item.telldisplay = ""
+                    if(typeof(item.ldbphone)!="object"){
+                        item.telldisplay = "none";
+                        item.ldbphone.front_tel=""
+                    }
+                    var getTpl = $api.html($api.byId("info-list"));
+                    laytpl(getTpl).render(item, function(html) {
+                        pageHtml = pageHtml + html;
+                    });
+                })
+                if(currPage==1){
+                	if (pageHtml==""){
+                		$(".nodata").show();
+                		$(".la_more").hide();
+                	}else{
+                		$(".nodata").hide();
+                		$(".la_more").show();
+                    }
+                    $(".sj-list").html(pageHtml)
+                    api.pageUp({
+						'top' : true
+					});
+                }else{
+                   $(".sj-list").append(pageHtml) 
+                }
+                $(".mui-spinner").remove();
+                api.refreshHeaderLoadDone();
+                api.hideProgress();
+                if (pageHtml!=""){
+					currPage += 1;
+					$(".la_more").html("上拉获取更多信息");
+				}else{
+					$(".la_more").html("全部加载完毕");
+				}      
+            } else {
+            	if(err){
+					saveerrlog(err.msg);
+				}
+            };
+            dataload = true;
+        });
+      }
+    }
+</script>
+</html>

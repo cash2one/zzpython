@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>筛选</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/trade/choice.css"/>
+		<style>
+			html, body {
+				background: transparent;
+				height: 100%;
+				background: rgba(0,0,0,0.3);
+				overflow: hidden;
+			}
+			#aui-header {
+				position: absolute;
+				top: 40px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				padding-top: 0px;
+			}
+			.type-small {
+				background-color: #fff;
+				border-top: none;
+				overflow: auto;
+				position: absolute;
+				bottom: 85px;
+				top: 85px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				color: #666
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-success" id="aui-header">
+			<a class="aui-btn aui-btn-success aui-pull-left"> <span class="aui-iconfont aui-icon-info"></span> </a>
+			<a class="aui-btn aui-btn-success aui-pull-right" tapmode onclick="closeselect()"> <span class="aui-iconfont aui-icon-roundclosefill"></span> </a>
+			<div class="aui-title">
+				请选择地区
+			</div>
+		</header>
+		<div class="type-small">
+			<video controls="controls" autoplay="autoplay" poster="screen.jpg" onplay="true" width="100%" height="100%" id="vodioplay">
+			  <source src="{{d.vpath}}"></source>
+			</video>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/iscroll.js"></script>
+	<script type="text/javascript">
+		function closeselect() {
+			api.execScript({
+				name : api.winName,
+				script : "keybackFun('1')"
+			});
+			api.closeFrame();
+		}
+
+		apiready = function() {
+			var vadiopath = api.pageParam.vadiopath;
+			$("#vodioplay").attr("src",vadiopath)
+			var $body = $api.dom('body');
+			$api.addEvt($body, 'click', function(e) {
+				if (e.target == $body) {
+					closeselect();
+				} else {
+					e.stopPropagation();
+				}
+			});
+		}
+		
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

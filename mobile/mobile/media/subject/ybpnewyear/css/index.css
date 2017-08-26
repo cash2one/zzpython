@@ -1,0 +1,186 @@
+ *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+    font-family: 'Microsoft Yahei',Tahoma,Helvetica,Arial,sans-serif;
+}
+html,body{
+    height:100%;
+}
+body{
+    font-family:"microsoft yahei";
+}
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    background:#fff;
+}  
+.swiper-slide{
+    width: 100%;
+    height:100%;
+    background-size:100% 100%;
+
+}
+img{
+    display:block;
+}
+.swiper-pagination-bullet {
+width: 6px;
+height: 6px;
+background: #fff;
+opacity: .4;
+}
+.swiper-pagination-bullet-active {
+    opacity: 1;
+}
+.ani{
+    position:absolute;
+}
+#array{
+    position:absolute;
+    z-index:999;
+    -webkit-animation: start 1.5s infinite ease-in-out;
+}
+.slide-main{
+    height: 100%;
+    width: 320px;
+    position: relative;
+    left: 50%;
+    margin-left: -160px;
+}
+.music-box{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    z-index: 99
+}
+.music{
+    width: 100%;
+    height: 100%;
+    background: url(../images/music.png)transparent no-repeat center center;
+    background-size: 100%; 
+}
+.music-bg{
+    background: url(../images/music.gif) transparent no-repeat center center;
+    background-size: contain;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+.music-play .music-bg{
+    display: block;
+}
+.bgdiv{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url(../images/911b8413-17ff-49a9-b9cc-cb9483b51526-9247.png);
+    background-size: cover;
+    background-position: center center;
+}
+
+.imgplay1{
+    animation:bounceIn 1s 0.5s 1 both;
+    -webkit-animation:bounceIn 1s 0.5s 1 both;
+}
+.imgplay2{
+    animation: zoomIn 1.5s ease 1s 1 backwards;
+    -webkit-animation: zoomIn 1.5s ease 1s 1 backwards;
+}
+.imgplay3{
+    animation: zoomOut 1s 1.5s 1 both,zoomIn 2s 2.5s infinite forwards;
+    -webkit-animation: zoomOut 1s 1.5s 1 both,zoomIn 2s 2.5s infinite forwards;
+}
+.imgplay4{
+    animation: zoomOut 1s 1.5s 1 both,zoomIn 2s 1.5s infinite forwards;
+    -webkit-animation: zoomOut 1s 1.5s 1 both,zoomIn 2s 1.5s infinite forwards;
+}
+.imgplay5{
+     animation: zoomOut 1s 1.5s 1 both,zoomIn 2s 1.8s infinite forwards;
+    -webkit-animation: zoomOut 1s 1.5s 1 both,zoomIn 2s 1.8s infinite forwards;
+}
+.imgplay6{
+        animation: fadeInLeft 2s ease 2s 1 both;
+    -webkit-animation: fadeInLeft 2s ease 2s 1 both;
+}
+.imgplay7{
+     animation: fadeInLeft 2s ease 1s 1 both;
+    -webkit-animation: fadeInLeft 2s ease 1s 1 both;
+}
+.imgplay8{
+    animation: fadeInDown 1s 2.5s 1 both,tada 1s 3.5s infinite forwards;
+    -webkit-animation: fadeInDown 1s 2.5s 1 both,tada 1s 3.5s infinite forwards;
+}
+.imgplay9{
+     animation: fadeIn 2s ease 1s 1 both;
+    -webkit-animation: fadeIn 2s ease 1s 1 both;
+}
+
+.imgplay10{
+    animation: fadeInDown 2s ease 1s 1 backwards;
+    -webkit-animation: fadeInDown 2s ease 1s 1 backwards;
+}
+.imgplay11{
+    animation: fadeInDown 2s ease 1.5s 1 backwards;
+    -webkit-animation: fadeInDown 2s ease 1.5s 1 backwards;
+}
+.imgplay12{
+    animation: fadeInDown 2s ease 1.5s 1 both;
+    -webkit-animation: fadeInDown 1.5s ease 2s 1 both;
+}
+.imgplay13{
+    animation: fadeInUp 2s ease 1.5s 1 both;
+    -webkit-animation: fadeInUp 1.5s ease 2s 1 both;
+}
+
+.imgplay14{
+    animation: fadeInDown 1s 2.5s 1 both,tada 1s 3.5s infinite forwards;
+    -webkit-animation: fadeInDown 0.5s 2.5s 1 both,tada 1s 3.5s infinite forwards;
+}
+
+.imgplay15{
+    animation: fadeIn 1s 1.5s 1 both,fadeInDown 2s 3.5s infinite forwards;
+    -webkit-animation: fadeIn 1.5s 2.5s 1 both,fadeInDown 2s 3.5s infinite forwards;
+}
+
+.imgplay16{
+    animation: fadeIn 1s 1.3s 1 both,fadeInDown 2s 3.8s infinite forwards;
+    -webkit-animation: fadeIn 1.3s 2.5s 1 both,fadeInDown 2s 3.8s infinite forwards;
+}
+
+.imgplay17{
+    animation: fadeIn 1s 1s 1 both,fadeInDown 2s 4s infinite forwards;
+    -webkit-animation: fadeIn 1s 2.5s 1 both,fadeInDown 2s 4s infinite forwards;
+}
+
+.imgplay18{
+    animation: fadeIn 1s 1.8s 1 both,fadeInDown 2s 4.2s infinite forwards;
+    -webkit-animation: fadeIn 1.8s 2.5s 1 both,fadeInDown 2s 4.2s infinite forwards;
+}
+
+.imgplay19{
+    animation: fadeInUp 1s 1.5s 1 both,tada 1s 3.5s infinite forwards;
+    -webkit-animation: fadeInUp 1s 1.5s 1 both,tada 1s 3.5s infinite forwards;
+}
+.btnbox1{
+    width: 186px;
+    border: 0;
+    border-radius: 5px;
+    background: url(../images/img12.png) no-repeat 20px 22px #feeaa6;
+    background-size: 19px 15px;
+    color: #e0594e;
+    padding-left: 25px;
+}
+.btnbox2{
+    width: 186px;
+    border: 0;
+    border-radius: 5px;
+    background: url(../images/img13.png) no-repeat 22px 20px #feeaa6;
+    background-size: 11px 18px;
+    color: #e0594e;
+    padding-left: 25px;
+}

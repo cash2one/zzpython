@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title></title>
+    <script type="text/javascript" charset="utf-8" src="ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="editor_api.js"></script>
+</head>
+<body>
+
+<img id="litpic5" src="{{picurl}}"><br />
+<button onClick="setContent(true)">载入图片</button>
+<script type="text/javascript">
+parent.parent.UE.getEditor("myEditor");
+function setContent(isAppendTo) {
+		var b = document.getElementById("litpic5").src;
+		picsrc='<img src="'+ b + '">'
+        parent.parent.UE.getEditor('myEditor').execCommand('insertHtml', picsrc);
+    }
+</script>
+</body>
+ 
+ 
+</html>

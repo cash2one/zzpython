@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="address=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+	<title>支付方式-ZZ91再生网</title>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+    <style type="text/css">
+    body{
+    	height: auto;
+    }
+    .aui-pull-left{
+    	line-height:50px
+    }
+    .paytitle{
+    	background-color:#ebebeb;
+    	line-height:30px;
+    	font-size:14px;
+    	text-align:left;
+    	margin-top:10px;
+    	padding-left:20px;
+    }
+    .zhifunum{text-align: left;font-size: 20px;font-weight: bold;color:#F37802;
+    padding: 20px;
+    }
+    </style>
+</head>
+<body>
+	{%if not pagefrom%}
+	<header class="aui-bar aui-bar-nav aui-bar-primary">
+    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+	        <span class="aui-iconfont aui-icon-left"></span>
+	    </a>
+	    <div class="aui-title">选择支付方式</div>
+	</header>
+	{%endif%}
+	<div class="zhifunum">支付金额：¥{{amount_r}}</div>
+	<div class="buy-list clear" style="margin-bottom:10px;margin-top: 20px">
+		<span style="border-left:solid 3px #01ba2e;padding-left:10px;margin-left:10px;">选择支付方式</span>
+	</div>
+	<section class="aui-content">
+        <ul class="aui-user-view">
+            <li class="aui-user-view-cell aui-img pay2">
+                <a class="aui-img-body aui-arrow-right" target="_blank" href="http://alipay.zz91.com/alipayapi.php?merchant_url={{merchant_url}}&out_trade_no={{order_id}}&subject={{product_name}}&total_fee={{amount_r}}">
+                	<img class="aui-img-object aui-pull-left" src="http://static.m.zz91.com/image/service/zf3.png">
+                    <div class="aui-pull-left">支付宝支付</div>
+                </a>
+            </li>
+            <li class="aui-user-view-cell aui-img pay1">
+                <a class="aui-img-body aui-arrow-right" target="_blank" href="http://m.zz91.com/wxpay/wx_pay.html?out_trade_no={{order_id}}">
+                	<img class="aui-img-object aui-pull-left" src="http://static.m.zz91.com/image/service/zf2.png">
+                    <div class="aui-pull-left">微信支付</div>
+                </a>
+            </li>
+            <li class="aui-user-view-cell aui-img pay3">
+                <a class="aui-img-body aui-arrow-right" target="" href="http://phppay.zz91.com/pay/toMobilepay.php?{{yeeurl}}">
+                	<img class="aui-img-object aui-pull-left" src="http://static.m.zz91.com/image/service/zf1.png">
+                    <div class="aui-pull-left">易宝支付</div>
+                </a>
+            </li>
+        </ul>
+    </section>
+</body>
+<script type="text/javascript">
+	var ua = navigator.userAgent.toLowerCase();
+	if(ua.match(/MicroMessenger/i)=="micromessenger") {
+		$(".pay2").hide();
+	}else{
+		$(".pay3").hide();
+	}
+</script>
+{%include 'aui/bottom.html'%}
+</html>

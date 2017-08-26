@@ -1,0 +1,561 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>价格类目</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/price/price.css"/>
+	</head>
+	<body>
+		<div class="box">
+			<div class="price-type">
+				<i class="type-img1"></i>废金属
+			</div>
+			<ul class="type-small">
+				<li>
+					<span category-id="40" tapmode="index-nav-li">废铜</span>
+					<span category-id="42" tapmode="index-nav-li">废铁</span>
+					<span category-id="41" tapmode="index-nav-li">废铝</span>
+					<span category-id="45" tapmode="index-nav-li">废钢</span>
+					<span category-id="47" tapmode="index-nav-li">废镍</span>
+					<span category-id="70" tapmode="index-nav-li">LME</span>
+					<span category-id="83" tapmode="index-nav-li">现货</span>
+					<span category-id="32" tapmode="index-nav-li">评论</span>
+					<span category-id="33" tapmode="index-nav-li">周报</span>
+					<span category-id="44" tapmode="index-nav-li">废不锈钢</span>
+					<span category-id="43" tapmode="index-nav-li">废铅废锌</span>
+					<span category-id="72" tapmode="index-nav-li">沪铜</span>
+					<span category-id="71" tapmode="index-nav-li">沪铝</span>
+					<span category-id="206" tapmode="index-nav-li">沪钢</span>
+					<span category-id="69" tapmode="index-nav-li">沪锌</span>
+					<span category-id="84" tapmode="index-nav-li">上海合金</span>
+					<span category-id="210" tapmode="index-nav-li">长江有色</span>
+					<span category-id="51" tapmode="index-nav-li">网上报价</span>
+					<span category-id="216" tapmode="index-nav-li">行情综述</span>
+					<span category-id="46" tapmode="index-nav-li">国外废金属</span>
+					<span></span>
+				</li>
+			</ul>
+			<div class="price-type">
+				<i class="type-img2"></i>废塑料
+			</div>
+			<ul class="type-small">
+				<li>
+					<span type="gedi" tapmode="index-nav-li">各地废塑料</span>
+					<span type="quanguo" tapmode="index-nav-li">全国废塑料</span>
+					<span type="zaishen" tapmode="index-nav-li">塑料再生料</span>
+					<span category-id="217" tapmode="index-nav-li">废塑料行情</span>
+					<span type="usa" tapmode="index-nav-li">美国废塑料</span>
+					<span type="ouzhou" tapmode="index-nav-li">欧洲废塑料</span>
+					<span type="xinliao" tapmode="index-nav-li">塑料新料</span>
+					<span category-id="34" tapmode="index-nav-li">废塑料评论</span>
+					<span category-id="35" tapmode="index-nav-li">废塑料周报</span>
+					<span type="qihuo" tapmode="index-nav-li">塑料期货</span>
+					<span></span>
+					<span></span>
+				</li>
+			</ul>
+			<div class="price-type">
+				<i class="type-img3"></i>废纸
+			</div>
+			<ul class="type-small">
+				<li>
+					<span category-id="231" tapmode="index-nav-li">各地废纸</span>
+					<span category-id="25" tapmode="index-nav-li">网上报价</span>
+					<span category-id="27" tapmode="index-nav-li">国内日废</span>
+					<span category-id="28" tapmode="index-nav-li">国内美废</span>
+					<span category-id="26" tapmode="index-nav-li">国内欧废</span>
+					<span category-id="29" tapmode="index-nav-li">国外废纸</span>
+				</li>
+			</ul>
+			<div class="price-type">
+				<i class="type-img4"></i>橡胶
+			</div>
+			<ul class="type-small">
+				<li>
+					<span category-id="308" tapmode="index-nav-li">国内橡胶</span>
+					<span category-id="219" tapmode="index-nav-li">废橡胶行情</span>
+					<span></span>
+				</li>
+			</ul>
+			<div class="price-type">
+				<i class="type-img5"></i>原油
+			</div>
+			<ul class="type-small">
+				<li>
+					<span category-id="190" tapmode="index-nav-li">油价</span>
+					<span category-id="220" tapmode="index-nav-li">行情综述</span>
+					<span></span>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			changeserverurl();
+			var type = api.pageParam.type;
+			if (type != "price") {
+				$(".box").hide();
+				var moreList;
+				switch(type) {
+					case "gedi":
+						moreList = [{
+							title : {
+								name : "各地废塑料",
+								categoryId : "137"
+							},
+							list : [{
+								name : "河北",
+								categoryId : "138",
+								mSrc : ""
+							}, {
+								name : "广东",
+								categoryId : "130",
+								mSrc : ""
+							}, {
+								name : "浙江",
+								categoryId : "127",
+								mSrc : ""
+							}, {
+								name : "上海",
+								categoryId : "115",
+								mSrc : ""
+							}, {
+								name : "齐鲁",
+								categoryId : "126",
+								mSrc : ""
+							}, {
+								name : "东莞",
+								categoryId : "111",
+								mSrc : ""
+							}, {
+								name : "顺德",
+								categoryId : "120",
+								mSrc : ""
+							}, {
+								name : ""
+							}, {
+								name : ""
+							}]
+						}];
+						break;
+					case "quanguo":
+						var moreList = [{
+							title : {
+								name : "全国废塑料",
+								categoryId : "20"
+							},
+							list : [{
+								name : "PET",
+								categoryId : "20",
+								mSrc : "&assist_id=290"
+							}, {
+								name : "PP",
+								categoryId : "20",
+								mSrc : "&assist_id=291"
+							}, {
+								name : "PC",
+								categoryId : "20",
+								mSrc : "&assist_id=293"
+							}, {
+								name : "PS",
+								categoryId : "20",
+								mSrc : "&assist_id=294"
+							}, {
+								name : "PVC",
+								categoryId : "20",
+								mSrc : "&assist_id=297"
+							}, {
+								name : "ABS",
+								categoryId : "20",
+								mSrc : "&assist_id=296"
+							}, {
+								name : "HDPE",
+								categoryId : "20",
+								mSrc : "&assist_id=295"
+							}, {
+								name : "LDPE",
+								categoryId : "20",
+								mSrc : "&assist_id=292"
+							}, {
+								name : "PA",
+								categoryId : "20",
+								mSrc : "&assist_id=298"
+							}, {
+								name : "PMMA",
+								categoryId : "20",
+								mSrc : "&assist_id=299"
+							}, {
+								name : ""
+							}, {
+								name : ""
+							}]
+						}];
+						break;
+					case "zaishen":
+						var moreList = [{
+							title : {
+								name : "塑料再生料价格",
+								ccategoryId : "98"
+							},
+							list : [{
+								name : "中部地区",
+								categoryId : "98",
+								mSrc : "&keywords=e4b8ade983a8e59cb0e58cba"
+							}, {
+								name : "山东",
+								categoryId : "98",
+								mSrc : "&keywords=e5b1b1e4b89c"
+							}, {
+								name : "河北",
+								categoryId : "98",
+								mSrc : "&keywords=e6b2b3e58c97"
+							}, {
+								name : "江苏",
+								categoryId : "98",
+								mSrc : "&keywords=e6b19fe88b8f"
+							}, {
+								name : "浙江",
+								categoryId : "98",
+								mSrc : "&keywords=e6b599e6b19f"
+							}, {
+								name : "广东",
+								categoryId : "98",
+								mSrc : "&keywords=e5b9bfe4b89c"
+							}]
+						}];
+						break;
+						break;
+					case "usa":
+						var moreList = [{
+							title : {
+								name : "美国废塑料价格",
+								categoryId : "62"
+							},
+							list : [{
+								name : "PET",
+								categoryId : "62",
+								mSrc : "&assist_id=290"
+							}, {
+								name : "ABS",
+								categoryId : "62",
+								mSrc : "&assist_id=296"
+							}, {
+								name : "HDPE",
+								categoryId : "62",
+								mSrc : "&assist_id=295"
+							}, {
+								name : "LDPE",
+								categoryId : "62",
+								mSrc : "&assist_id=292"
+							}, {
+								name : "PP",
+								categoryId : "62",
+								mSrc : "&assist_id=291"
+							}, {
+								name : "PVC",
+								categoryId : "62",
+								mSrc : "&assist_id=297"
+							}]
+						}];
+						break;
+					case "ouzhou":
+						var moreList = [{
+							title : {
+								name : "欧洲废塑料价格",
+								categoryId : "63"
+							},
+							list : [{
+								name : "PET",
+								categoryId : "63",
+								mSrc : "&assist_id=290"
+							}, {
+								name : "LEPE",
+								categoryId : "63",
+								mSrc : "&assist_id=292"
+							}, {
+								name : "HDPE",
+								categoryId : "63",
+								mSrc : "&assist_id=295"
+							}, {
+								name : "ABS",
+								categoryId : "63",
+								mSrc : "&assist_id=296"
+							}, {
+								name : "PP",
+								categoryId : "63",
+								mSrc : "&assist_id=291"
+							}, {
+								name : "PVC",
+								categoryId : "63",
+								mSrc : "&assist_id=297"
+							}, {
+								name : "PA",
+								categoryId : "63",
+								mSrc : "&assist_id=298"
+							}, {
+								name : ""
+							}, {
+								name : ""
+							}]
+						}];
+						break;
+					case "xinliao":
+						var moreList = [{
+							title : {
+								name : "余姚塑料城",
+								categoryId : "324"
+							},
+							list : [{
+								name : "PS",
+								categoryId : "324",
+								mSrc : "&assist_id=294"
+							}, {
+								name : "PVC",
+								categoryId : "324",
+								mSrc : "&assist_id=297"
+							}, {
+								name : "LDPE",
+								categoryId : "324",
+								mSrc : "&assist_id=292"
+							}, {
+								name : "HDPE",
+								categoryId : "324",
+								mSrc : "&assist_id=295"
+							}, {
+								name : "LLDPE",
+								categoryId : "324",
+								mSrc : "&assist_id=304"
+							}, {
+								name : "PP",
+								categoryId : "324",
+								mSrc : "&assist_id=291"
+							}, {
+								name : "ABS",
+								categoryId : "324",
+								mSrc : "&assist_id=296"
+							}, {
+								name : ""
+							}, {
+								name : ""
+							}]
+						}, {
+							title : {
+								name : "国内石化出厂价",
+								categoryId : "61"
+							},
+							list : [{
+								name : "LDPE",
+								categoryId : "61",
+								mSrc : "&assist_id=292"
+							}, {
+								name : "HDPE",
+								categoryId : "61",
+								mSrc : "&assist_id=295"
+							}, {
+								name : "PP",
+								categoryId : "61",
+								mSrc : "&assist_id=291"
+							}, {
+								name : "PS",
+								categoryId : "61",
+								mSrc : "&assist_id=294"
+							}, {
+								name : "PVC",
+								categoryId : "61",
+								mSrc : "&assist_id=297"
+							}, {
+								name : "ABS",
+								categoryId : "61",
+								mSrc : "&assist_id=296"
+							}, {
+								name : "LLDPE",
+								categoryId : "61",
+								mSrc : "&assist_id=304"
+							}, {
+								name : ""
+							}, {
+								name : ""
+							}]
+						}, {
+							title : {
+								name : "国内石化企业出厂价",
+								categoryId : "61"
+							},
+							list : [{
+								name : "LDPE",
+								categoryId : "61",
+								mSrc : "&assist_id=292"
+							}, {
+								name : "PP",
+								categoryId : "61",
+								mSrc : "&assist_id=291"
+							}, {
+								name : "HDPE",
+								categoryId : "61",
+								mSrc : "&assist_id=295"
+							}, {
+								name : "PVC",
+								categoryId : "61",
+								mSrc : "&assist_id=297"
+							}, {
+								name : "ABS",
+								categoryId : "61",
+								mSrc : "&assist_id=296"
+							}, {
+								name : "LLDPE",
+								categoryId : "61",
+								mSrc : "&assist_id=304"
+							}]
+						}, {
+							title : {
+								name : "东莞市场价",
+								categoryId : "111"
+							}
+						}, {
+							title : {
+								name : "北京市场价",
+								categoryId : "112"
+							}
+						}, {
+							title : {
+								name : "广州市场价",
+								categoryId : "113"
+							}
+						}, {
+							title : {
+								name : "常州市场价",
+								categoryId : "114"
+							}
+						}, {
+							title : {
+								name : "上海市场价",
+								categoryId : "115"
+							}
+						}, {
+							title : {
+								name : "汕头市场价",
+								categoryId : "118"
+							}
+						}, {
+							title : {
+								name : "杭州市场价",
+								categoryId : "119"
+							}
+						}, {
+							title : {
+								name : "顺德市场价",
+								categoryId : "120"
+							}
+						}, {
+							title : {
+								name : "临沂市场价",
+								categoryId : "121"
+							}
+						}, {
+							title : {
+								name : "齐鲁市场价",
+								categoryId : "126"
+							}
+						}];
+						break;
+					case "qihuo":
+						var moreList = [{
+							title : {
+								name : "国际市场收盘价",
+								categoryId : "233"
+							},
+							list : [{
+								name : "PE",
+								categoryId : "233",
+								mSrc : "&assist_id=300"
+							}, {
+								name : "PP",
+								categoryId : "233",
+								mSrc : "&assist_id=291"
+							}, {
+								name : ""
+							}]
+						}, {
+							title : {
+								name : "香港美金报价",
+								categoryId : "233"
+							},
+							list : [{
+								name : "PE",
+								categoryId : "233",
+								mSrc : "&assist_id=291"
+							}, {
+								name : "ABS",
+								categoryId : "233",
+								mSrc : "&assist_id=296"
+							}, {
+								name : "PS",
+								categoryId : "233",
+								mSrc : "&assist_id=294"
+							}]
+						}];
+						break;
+				}
+				getMore(moreList);
+			}
+			//行情报价
+			$(".type-small").on("click", "span", function() {
+				var categoryId = $(this).attr("category-id");
+				var mSrc = $(this).attr("mSrc");
+				if (categoryId) {
+					var pageParam = {
+						type : "offer-list",
+						categoryId : categoryId,
+						mSrc : mSrc
+					};
+					openWin("offer-list", "../price/offer-list.html", pageParam);
+				} else {
+					var oType = $(this).attr("type");
+					if (oType) {
+						var pageParam = {
+							type : oType,
+							wintitle: $(this).text(),
+							bounces : false
+						};
+						openWin(oType, "../price/price.html", pageParam);
+					}
+				}
+			})
+		}
+		function getMore(moList) {
+			$.each(moList, function(index, item) {
+				var titleHtml = '<div class="price-type change-bgcolor" category-id="' + item.title.categoryId + '">' + item.title.name + '</div>';
+				var spanHtml = "";
+				if (item.list) {
+					$.each(item.list, function(i, listTime) {
+						spanHtml += '<span class="change-bgcolor" category-id="' + listTime.categoryId + '" mSrc="' + listTime.mSrc + '">' + listTime.name + '</span>'
+					})
+					spanHtml = '<ul class="type-small"><li>' + spanHtml + '</li></ul>'
+				}
+				var infoHtml = titleHtml + spanHtml;
+				$("body").append(infoHtml)
+			})
+			$(".price-type").on("click", function() {
+				var categoryId = $(this).attr("category-id");
+				var mSrc = $(this).attr("mSrc");
+				if (categoryId) {
+					var pageParam = {
+						type : "price",
+						categoryId : categoryId,
+						mSrc : mSrc
+					};
+					openWin("offer-list", "../price/offer-list.html", pageParam);
+				}
+			})
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

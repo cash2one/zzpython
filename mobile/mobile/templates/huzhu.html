@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+<link rel="stylesheet" href="/css/comm-more.css" />
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+
+<div class="pt10 pb10">
+<div class="pl10 pr10">
+    <form action="/huzhu/" method="get" id="wikiSearchFrm">
+    	<div style="position:relative;">
+        	<div class="sch-input">
+        		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+        	</div>
+        	<div class="sch-button" onClick="AliMobile.WikiSearch.submitFrm()">搜答案</div>
+    		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+    	</div>
+    </form>
+</div>
+</div>
+{%if category_id%}
+<nav class="t-nav-tab t-nav-tab-3">
+	<ul>
+		<li {{labelstyle1}}><a href="/huzhu/?category_id=11">废料问答</a></li>
+		<li {{labelstyle2}}><a href="/huzhu/?category_id=1">废料动态</a></li>
+		<li {{labelstyle3}}><a href="/huzhu/?category_id=3">江湖风云</a></li>
+	</ul>
+</nav>
+{%endif%}
+{%if keywords%}
+<div class="result-tip">共找到<span class="c-hl">{{bbslistcount}}</span>条相关结果</div>
+{%endif%}
+<div class="list">
+{%for list in bbslist%}  	
+	<div class="item" style="border-top:1px solid #FFF;">    
+		<a href="/huzhuview/{{list.id}}.htm" target=_blank>	
+			<p class="c-link lh28 f16">{{list.title}}{%if list.havepic%}<font class=c-red>[图]</font>{%endif%}</p>
+			<div class="lh28">{{list.content}}</div>
+			<div class="c9 lh28">提问者：{{list.nickname}}&nbsp;&nbsp;&nbsp;{{list.replycount}}回答</div>			 
+		</a>
+	</div>
+{%endfor%}
+	<div id="moreDiv"></div>
+</div>
+<div>		
+    <table class="moreTable" id="moreTable" {{morebutton}}>
+		<tbody>
+			<tr>
+				<td><div class="moreLeft" id="moreLeft"></div></td>
+				<td style="width:100px;">
+					<div id="moreButton" onClick="AliMobile.GetMore.getMore();" class="moreButton" pagename="wikiPage" url="/huzhumore/?category_id={{category_id}}&amp;keywords={{keywords}}&amp;" pageindex="1">更多...</div>
+				</td>
+				<td><div class="moreRight" id="moreRight"></div></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<div class="bottompost"><a href="/huzhupost/?category_id={{category_id}}">我要提问</a></div>
+<div class="h20"></div>
+</div>
+{%include 'bottom.html'%}
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<ul class="mui-table-view">
+        <form method="post">
+	    	<span class="mui-table-view-cell" style="margin-top: 0px;display:block;padding-top: 0px;padding-bottom: 0px;border: 0px;background-image: none;">
+	            <button class="mui-btn mui-btn-primary mui-icon mui-icon-search" onclick="zz91search(this.form,'/offerlist/?keywords=','tradelist')" type="button">搜供求</button>
+	            <input type="search" id="searchtext" placeholder="请输入关键字搜索" style="float: left;width: 70%; margin-top:15px ;" />
+	        </span>
+	    </form>
+    </ul>
+<ul class="mui-table-view">
+    {%for list in categorylist%}
+    <li class="mui-table-view-cell">
+        <a class="mui-navigate-right" href="javascript:gotourl('/category/?code={{list.code}}','blank');">
+            {{list.label}}
+        </a>
+    </li>
+    {%endfor%}
+</ul>
+<input type="hidden" id="appnavname" value="交易中心" />

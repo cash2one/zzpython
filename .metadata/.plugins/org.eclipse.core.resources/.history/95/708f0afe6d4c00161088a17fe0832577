@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <style>
+    	body{
+    		
+    	}
+    </style>
+</head>
+<body>
+	<div class="aui-content">
+        <ul class="aui-list-view aui-in">
+            <li class="aui-list-view-cell aui-img">
+                <img class="aui-img-object aui-pull-right" src="../../image/demo4.png">
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>图文列表缩略图在左边的样式，默认大小为80PX，文字介绍内容可以为一行也可以为两行，超出部分自动省略</p>
+                </div>
+            </li>
+            <li class="aui-list-view-cell aui-img">
+                <img class="aui-img-object aui-pull-right" src="../../image/demo5.png">
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>图文列表缩略图在左边的样式，默认大小为80PX，文字介绍内容可以为一行也可以为两行，超出部分自动省略</p>
+                </div>
+            </li>
+            <li class="aui-list-view-cell aui-img">
+                <img class="aui-img-object aui-pull-right" src="../../image/demo6.png">
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>图文列表缩略图在左边的样式，默认大小为80PX，文字介绍内容可以为一行也可以为两行，超出部分自动省略</p>
+                </div>
+            </li>
+            <li class="aui-list-view-cell aui-img">
+                <img class="aui-img-object aui-pull-right" src="../../image/demo6.png">
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>图文列表缩略图在左边的样式，默认大小为80PX，文字介绍内容可以为一行也可以为两行，超出部分自动省略</p>
+                </div>
+            </li>
+            <li class="aui-list-view-cell aui-img">
+                <img class="aui-img-object aui-pull-right" src="../../image/demo6.png">
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>图文列表缩略图在左边的样式，默认大小为80PX，文字介绍内容可以为一行也可以为两行，超出部分自动省略</p>
+                </div>
+            </li>
+            <li class="aui-list-view-cell aui-img">
+                <img class="aui-img-object aui-pull-right" src="../../image/demo6.png">
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>图文列表缩略图在左边的样式，默认大小为80PX，文字介绍内容可以为一行也可以为两行，超出部分自动省略</p>
+                </div>
+            </li>
+            <li class="aui-list-view-cell aui-img">
+                <img class="aui-img-object aui-pull-right" src="../../image/demo6.png">
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>图文列表缩略图在左边的样式，默认大小为80PX，文字介绍内容可以为一行也可以为两行，超出部分自动省略</p>
+                </div>
+            </li>
+            <li class="aui-list-view-cell aui-img">
+                <img class="aui-img-object aui-pull-right" src="../../image/demo6.png">
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>图文列表缩略图在左边的样式，默认大小为80PX，文字介绍内容可以为一行也可以为两行，超出部分自动省略</p>
+                </div>
+            </li>
+            <li class="aui-list-view-cell aui-img">
+                <img class="aui-img-object aui-pull-right" src="../../image/demo6.png">
+                <div class="aui-img-body">
+                    图文列表
+                    <p class='aui-ellipsis-2'>图文列表缩略图在左边的样式，默认大小为80PX，文字介绍内容可以为一行也可以为两行，超出部分自动省略</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		$(".aui-list-view").on("click","li",function(){
+        	//var infoid = $(this).attr("infoid")
+        	var infoid="1"
+			var pageParam = {
+	          wintitle:"资讯详情",
+	          type:"detail",
+	          bounces:true,
+	          infoid:infoid,
+	          showbottom:1
+	        };
+	        openWin("detail"+infoid,"../list/detail.html",pageParam);
+        })
+	};
+</script>
+</html>

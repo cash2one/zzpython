@@ -1,0 +1,102 @@
+/*center*/
+.center{
+	/*display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+	-webkit-box-orient: horizontal;
+    -webkit-flex-flow: row;
+           flex-flow: row;*/
+           height: 100%;
+           padding-left: 88px;
+}
+.product-list{
+	margin:0 8px;
+	/*-webkit-box-flex: 1; 
+    	-webkit-flex: 1;
+    			flex: 1;*/
+    			height: 100%;
+    			overflow:auto;
+}
+.category{
+	width: 88PX;
+	background-color: #e6e6e6;
+	position: absolute;
+	left: 0px;
+	height: 100%;
+	top:45px;
+	overflow: auto;
+}
+.category li{
+	height: 71px;
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #c4c4c4;
+		 box-sizing:border-box;
+	-moz-box-sizing:border-box; /* Firefox */
+	-webkit-box-sizing:border-box; /* Safari */
+	padding-top: 13px;
+}
+.category .click-li{
+	background-color: #f2f2f2
+}
+.category i{
+	display: block;
+	height: 30px;
+	width: 30px;
+	margin: 0 auto;
+	background-image: url(../../image/imageslist.png);
+	background-size: 200px 220px;
+}
+.category .icon-img1{
+	background-position:  0 -5px
+}
+.category .icon-img2{
+	background-position:  0 -33px
+}
+.category .icon-img3{
+	background-position:  0 -62px
+}
+.category .icon-img4{
+	background-position:  0 -88px
+}
+.category .icon-img5{
+	background-position:  0 -122px
+}
+.category .icon-img6{
+	background-position:  0 -152px
+}
+.category .icon-img7{
+	background-position:  0 -181px
+}
+.category .icon-img8{
+	background-position:  -108px -175px
+}
+.category .icon-img9{
+	background-position:  -136px -175px
+}
+.category .icon-img10{
+	background-position:  -162px -175px
+}
+.category p{
+	text-align: center;
+	font-size: 14px;
+}
+
+.product-list-class {
+	border-bottom: 1px solid #e1e1e1;
+	padding: 6px 0;
+}
+.product-list-class h5 {
+	font-size: 14px;
+}
+.product-list-class span {
+	font-size: 14px;
+	color: #959595;
+	display: inline-block;
+	margin-right: 15px;
+	line-height: 14px;
+	margin-top:8px; 
+	width:43%;
+	border: solid 1px #ebebeb;
+	padding:6px;
+	overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}

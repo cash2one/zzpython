@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title></title>
+</head>
+<body onload="setContent()">
+
+<img id="litpic5" src="{{pic_url}}"><br />
+<script type="text/javascript">
+function setContent() {
+		var b = document.getElementById("litpic5").src;
+        parent.parent.document.getElementById("litpic6").src = b;
+        parent.parent.document.getElementById("litpic7").value = b;
+}
+</script>
+</body>
+
+</html>

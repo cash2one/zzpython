@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>商机订阅-zz91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css" />
+		<style>
+			.ordermain{
+				margin-top: 60px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+			<a class="aui-pull-left" href="javascript:history.back(-1)">
+				<span class="aui-iconfont aui-icon-left"></span>
+			</a>
+			<div class="aui-title">商机订阅</div>
+			<a class="aui-pull-right settings" href="/myrc_index/">
+				<span class="aui-iconfont aui-icon-myfill"></span>
+			</a>
+		</header>
+		<div class="ordermain">
+			<center>
+				<div class="custom">
+					<a href="business.html"><img src="http://img0.zz91.com/zz91/mobile/images/Business_custom.jpg" /></a>
+				</div>
+				<div class="custom">
+					<a href="price.html"><img src="http://img0.zz91.com/zz91/mobile/images/Market_custom.jpg" /></a>
+				</div>
+			</center>
+			<div style="width: 100%;text-align: center;line-height: 30px;">我要订阅该行情<br>长按识别二维码，关注 “zz91再生网”<br /><img src="http://img0.zz91.com/zz91/weixin/images/priceorder.png"><br /></div>
+            <div style="text-align: center;font-weight: bold;color: #ff0000;margin-bottom: 20px; border: solid 1px #006600;background-color: #fff; padding: 10px;"><a href="http://m.zz91.com/register/" style="color: #ff0000;">点此留下您的联系方式，查看更多相关行情报价</a></div>
+            <input type="button" value="定制我的行情" class="aui-btn aui-btn-block" onclick="window.location='/order/price.html'" /> 
+		</div>
+	{%include 'aui/bottom.html'%}
+	</body>
+</html>

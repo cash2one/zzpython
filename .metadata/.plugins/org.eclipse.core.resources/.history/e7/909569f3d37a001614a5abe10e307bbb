@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>AUI快速完成布局</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.2.0.css" />
+    <style type="text/css">
+        #demo {
+            width: 4rem;
+            height: 4rem;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -2rem;
+            margin-top: -2rem;
+            background-color: #e0e0e0;
+            border-radius: 50%;
+            line-height: 4rem;
+            text-align: center;
+            color: #212121;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="aui-bar aui-bar-nav aui-bar-dark">
+        <a class="aui-pull-left aui-btn aui-btn-outlined">
+            <span class="aui-iconfont aui-icon-menu"></span>
+        </a>
+        <div class="aui-title">Title</div>
+        <a class="aui-pull-right aui-btn aui-btn-outlined">
+            <span class="aui-iconfont aui-icon-search"></span>
+        </a>
+    </header>
+    <footer class="aui-bar aui-bar-tab" id="footer">
+        <div class="aui-bar-tab-item aui-active" tapmode>
+            <i class="aui-iconfont aui-icon-home"></i>
+            <div class="aui-bar-tab-label">大葱</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode>
+        	<div class="aui-badge">99</div>
+            <i class="aui-iconfont aui-icon-search"></i>
+            <div class="aui-bar-tab-label">发现</div>
+        </div>
+        
+        <div class="aui-bar-tab-item" tapmode>
+            <div class="aui-dot"></div>
+            <i class="aui-iconfont aui-icon-my"></i>
+            <div class="aui-bar-tab-label">我的</div>
+        </div>
+    </footer>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../script/aui-tab.js" ></script>
+<script type="text/javascript" src="../script/zepto.min.js"></script>
+<script type="text/javascript" src="../script/jquery.js"></script>
+<script type="text/javascript" src="../script/common.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        api.parseTapmode();
+        openGroup();
+    }
+    var tab = new auiTab({
+        element:document.getElementById("footer")
+    },function(ret){
+        if(ret){
+            randomSwitchBtn(ret.index)
+        }
+    });
+    
+    function openGroup(){
+        //var header = $api.byId('aui-header');
+        //var headerPos = $api.offset(header);
+        var headerPos = $api.offset($api.dom('header')).h;
+        var body_h = api.winHeight;
+        var footer_h = $api.offset($api.dom('footer')).h;
+        alert(body_h)
+        api.openFrameGroup({
+            name: 'indexGroup',
+            scrollEnabled: true,
+            rect:{x:0, y:headerPos, w:'auto', h:body_h - headerPos - footer_h},
+            index: 1,
+            frames: [{
+                name:'helper_list',
+                url:'main/dacong.html',
+                vScrollBarEnabled:false,
+                hScrollBarEnabled:false,
+                bounces:false
+            },{
+                name:'ask_list',
+                url:'main/dacong.html',
+                vScrollBarEnabled:false,
+                hScrollBarEnabled:false,
+                bounces:false
+            },{
+                name:'my',
+                url:'main/dacong.html',
+                vScrollBarEnabled:false,
+                hScrollBarEnabled:false,
+                bounces:false
+            }]
+        }, function (ret, err) {
+            //$api.removeCls($api.dom('#aui-footer li.active-info'),'active-info');
+            //$api.addCls($api.byId(''+ret.name+''),'active-info');
+        });
+    }
+
+    // 随意切换按钮
+    function randomSwitchBtn(index) {
+        api.setFrameGroupIndex({
+            name: 'indexGroup',
+            index: index
+        });
+    }
+</script>
+</html>

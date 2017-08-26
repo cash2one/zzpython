@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="../css/main.min.css" type="text/css">
+		<link rel="stylesheet" href="../css/detail.css" type="text/css">
+	</head>
+	<body>
+		<div class="box">
+			<div id="detail">
+				<center class="midload" style="display:none;">
+					<img src="../image/loading_more.gif"><br><br>数据正在加载中......
+				</center>
+			</div>
+			<script id="info" type="text/html">
+				<div class="news_content">
+				<div class="news_t">{{ d.title }}</div>
+				<div class="news_t1">
+				<ul>
+				<li>{{ d.click }}</li>
+				<li>|</li>
+				<li>{{ d.pubdate }}</li>
+				</ul>
+				</div>
+				</div>
+				<div id="content" class="cnewsinfo" style="float:left; margin-right:10px;">
+				{{ d.content }}
+				</div>
+			</script>
+			<script type="text/javascript" src="../script/api.js"></script>
+			<script type="text/javascript" src="../script/laytpl.js"></script>
+			<script type="text/javascript" src="../script/jquery.js"></script>
+			<script type="text/javascript" src="../script/zepto.min.js"></script>
+			<script type="text/javascript" src="../script/jQuery.md5.js"></script>
+			<script type="text/javascript" src="../script/common.js"></script>
+			<script>
+				function sliding() {
+					api.openSlidPane({
+						type : 'left'
+					});
+				}
+
+				function openpinlun() {
+					var pageParam = {
+						aid : api.pageParam.id
+					};
+					openWin("newspinpun", "../html/my_pinlun.html", pageParam);
+				}
+
+				apiready = function() {
+					$(".midload").css("padding-top",api.winHeight/2 -100);
+					$(".midload").css("display","block");
+					var id = api.pageParam.id;
+					var deviceId=api.pageParam.deviceId;
+					api.addEventListener({
+						name : 'keyback'
+					}, function(ret, err) {
+						api.closeWin();
+					});
+					//api.showProgress();			
+					api.ajax({
+						url : hosturl + '/sex/newsdetail' + id.toString() + '.html?' + 'pagetype=json&mid='+UserInfo.memberID()+'&deviceId='+deviceId,
+						method : 'get',
+						timeout : 30,
+						dataType : 'json',
+						returnAll : false
+					}, function(ret, err) {
+						if (ret) {
+							var gettpl = document.getElementById('info').innerHTML;
+							laytpl(gettpl).render(ret.result[0], function(html) {
+								document.getElementById('detail').innerHTML = html;
+								api.hideProgress();
+							});
+						} else {
+						};
+					});
+				};
+			</script>
+		</div>
+	</body>
+</html>

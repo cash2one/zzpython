@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>2017废纸产业发展论坛-废纸行业TOP10评选微信投票！</title>
+		<meta name="description" content="谁是真正的行业精英？你来决定！">
+		<link rel="stylesheet" type="text/css" href="http://m.zz91.com/zt/feizhiluntanH5/css/base-min.css" />
+		<link rel="stylesheet" type="text/css" href="http://m.zz91.com/zt/feizhiluntanH5/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_pxwg2gxpsu8wu3di.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<style>
+			.gztoupiao{
+				text-align: center;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<img src="http://m.zz91.com/zt/feizhiluntanH5/images/feizhi_sharelogo.jpg" style="display: none;">
+		<script src="http://m.zz91.com/zt/feizhiyaoqingH5/js/viewport.js"></script>
+		<div class="bangdan-warp">
+			<div style="height: 2.4rem;">
+				<div class="nav-top">
+					<div class="nav-main">
+						<a onClick="javascript :history.back(-1)" class="nav-hr"></a>废纸行业TOP10评选微信投票
+					</div>
+				</div>
+			</div>
+			
+			<div class="idx-haop2">
+				<div class="idx-haoptime">活动时间：7.20-8.16</div>
+			</div>
+			
+			{%if votecontent.haveday%}
+			<p class="haop-tle">投票时间：8.7-8.12</p>
+			{%else%}
+			<p class="haop-tle">活动已经结束,感谢所有人的参与。</p>
+			{%endif%}
+
+			<div class="bd-top">
+				<div class="bd-qd">
+					<div class="bd-qdbox">
+						
+						<div class="bd-tjtle">
+							<div class="bd-tjmain">
+								<p>入围企业</p>
+								<p>{{ccount}}</p>
+							</div>
+							<div class="bd-tjmain">
+								<p>累计投票</p>
+								<p>{{tcount}}</p>
+							</div>
+							<div class="bd-tjmain">
+								<p>访问量</p>
+								<p>{{vcount}}</p>
+							</div>
+							<div class="bd-tjsolid"></div>
+						</div>
+						<a id="s"></a>
+						<div class="bd-tp">
+							<div class="bd-tptle">
+								入围企业名单<a href="sort.html">查看最新排名 >></a>
+							</div>
+							<div class="bd-search">
+								<input type="text" placeholder="搜索公司名或编号" class="bd-ipt secipt" /><a class="bd-searchbtn fsearch">搜索</a>
+							</div>
+							<ul class="tp-ul">
+								{%if not listall%}没有找到相关公司{%endif%}
+								{%for list in listall%}
+								<li class="tp-li">
+									<a href="view{{list.id}}.html" class="">
+										<div class="tp-tle"><span>{{list.orderid}}</span>{{list.company_name}}</div>
+										<div class="tp-con">{{list.business}}</div>
+									</a>
+									<div class="tp-jg">
+										<div class="tp-jgmain"><span id="ps{{list.company_id}}">{{list.votecount}}</span>票</div>
+										<a class="tp-jgbtn toubtn" company_id="{{list.company_id}}">投他一票</a>
+									</div>
+								</li>
+								{%endfor%}
+							</ul>
+						</div>
+						
+						<div class="tp-rule zz-div-box">
+							<div class="tp-rulemain zz-div-td1">
+								<div class="tp-ruletle">
+									投票规则：
+								</div>
+								<p>1.每一个微信号每天最多拥有3次投票机会</p>
+								<p>2.每天投票超过三次者，当天不能再进行投票，可以分享其他朋友进行投票</p>
+								<p>3.微信号投票前需先关注“ZZ91再生网”微信公众号：</p>
+								<p>① 点击投票按钮</p>
+								<p>② 弹出二维码，长按二维码识别</p>
+								<p>③ 进入关注页面，关注成功</p>
+								<p>④ 自动推送一条评选专题链接，打开页面进行投票</p>
+							</div>
+							<div class="tp-ewm">
+								<img src="http://m.zz91.com/zt/feizhiluntanH5/images/ewmimg.png" class="tp-ewmimg" />
+								<p>扫描关注ZZ91再生网<br />获取最新论坛信息</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="haop-hb">
+				<a href="http://m.zz91.com/zt/feizhiluntanH5/chbm.html" class="haop-hbbtn">
+					参会报名
+				</a>
+			</div>
+			
+			<div style="height: 2.725rem;">
+				<div class="foot-nav">
+					<a href="http://m.zz91.com/zt/feizhiluntanH5/index.html" class="foot-a foot-index">
+						<i class="iconfont icon-shouye-shouye"></i>
+						<p>首页</p>
+					</a>
+					<a href="http://m.zz91.com/zt/feizhiluntanH5/xinxi.html" class="foot-a">
+						<i class="foot-icon-xx"></i>
+						<p>信息</p>
+					</a>
+					<a href="http://m.zz91.com/zt/feizhiluntanH5/bangdan.html" class="foot-a foot-this">
+						<i class="foot-icon-bd"></i>
+						<p class="foot-p">TOP10榜单</p>
+					</a>
+					<a href="http://m.zz91.com/zt/feizhiluntanH5/zhaoshang.html" class="foot-a">
+						<i class="foot-icon-zs"></i>
+						<p>招商</p>
+					</a>
+					<a href="http://m.zz91.com/zt/feizhiluntanH5/fuwu.html" class="foot-a">
+						<i class="foot-icon-fw"></i>
+						<p>服务</p>
+					</a>
+				</div>
+			</div>
+			
+			<div class="tp-saomiao">
+				<div class="tp-closebox">
+					<span class="tp-close">
+						×
+					</span>
+				</div>
+				<img src="http://m.zz91.com/zt/feizhiluntanH5/images/ewmimg.png" />
+				<p>请长按识别二维码，<br />关注ZZ91公众号后参与投票！</p>
+			</div>
+			<div class="gztoupiao" style="display: none;">
+				<img src="http://m.zz91.com/zt/feizhiluntanH5/images/ewmimg.png" style="width: 150px;"/>
+				<p>请长按识别二维码，关注ZZ91公众号</p>
+				<p>点击“我要投票”-“投票验证码”，我们会发送投票验证码。确定后输入投票即可。</p>
+			</div>
+		</div>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script>
+			(function(d, t) {
+				var r = d.createElement(t),
+					s = d.getElementsByTagName(t)[0];
+				r.async = 1;
+				r.src = 'http://m.zz91.com/wechat/weixinshare.js?wurl='+location.href;
+				s.parentNode.insertBefore(r, s);
+			})(document, "script");
+		</script>
+		<script src="http://b.zz91.com/comm/js/comm.js"></script>
+		<script>
+			var tp=false;
+			$(".toubtn").on("click",function(){
+				var forcompany_id=$(this).attr("company_id");
+				var openid="{{openid}}";
+				voteclick($(this),openid,forcompany_id)
+			})
+			function opengz(self,openid,forcompany_id){
+				layer.open({
+					type: 1,
+					title: '关注投票',
+					shadeClose: true,
+					shade: 0.5,
+					fixed:true,
+					//offset: 'rb',
+					btn: ['已获取验证码，点此输入'],
+					yes: function(index){
+						layer.prompt({
+						  formType: 0,
+						  value: '',
+						  title: '输入投票验证码'
+						}, function(v, index, elem){
+							var data={
+								randomnum:v,
+								weixinid:"{{clientid_dy}}"
+							}
+							zzajax("get","/vote/vote_check.html",data,function(ret){
+								if (ret.err=="false"){
+									hint("验证成功！");
+									voteclick(self,openid,forcompany_id);
+									layer.close(index);
+								}else{
+									hint(ret.errkey);
+									layer.close(index);
+								}
+							},function(){
+								layer.close(index);
+							})
+						});
+						layer.close(index); 
+					},
+					style:'',
+					maxmin: false, //开启最大化最小化按钮
+					area: ['80%', '300px'],
+					content: $('.gztoupiao'),
+					scrollbar: true,
+					success: function(layero, index){
+						
+					}
+				});
+			}
+			function voteclick(self,openid,forcompany_id){
+				layer.load(2)
+				var ajaxurl1="/vote/vote.html?company_id="+forcompany_id+"&vtype={{vtype}}"
+				$.getScript(ajaxurl1, function() {
+					var err=_suggest_result_.err;
+					layer.closeAll();
+					if (err=="false"){
+						var vcount=_suggest_result_.vcount;
+						$("#ps"+forcompany_id.toString()).html(vcount)
+						hint("投票成功！");
+					}else{
+						var errtext=_suggest_result_.errtext;
+						var gz=_suggest_result_.gz;
+						if (gz==2){
+							opengz(self,openid,forcompany_id);
+							/*
+							layer.confirm('请在关注ZZ91再生网微信公众号后，点击“我要投票”-“投票验证码”，我们会发送投票验证码。确定后输入投票即可', {
+							 	btn: ['确定','取消'] //按钮
+							}, function(){
+							  	layer.prompt({
+								  formType: 0,
+								  value: '',
+								  title: '输入投票验证码'
+								}, function(v, index, elem){
+									var data={
+										randomnum:v,
+										weixinid:"{{clientid_dy}}"
+									}
+									zzajax("get","/vote/vote_check.html",data,function(ret){
+										if (ret.err=="false"){
+											hint("验证成功！");
+											voteclick(self,openid,forcompany_id);
+											layer.close(index);
+										}else{
+											hint(ret.errkey);
+											layer.close(index);
+										}
+									},function(){
+										layer.close(index);
+									})
+								});
+								
+							}, function(){
+							  
+							});
+							*/
+						}else{
+							if (gz==1){
+								popShow($(".tp-saomiao"));
+							}else{
+								hint(errtext);
+							}
+						}
+					}
+					tp=false;
+				});
+			}
+			$(".fsearch").on("click",function(){
+				var keywords=$(".secipt").val();
+			    window.location='?clientid={{clientid_dy}}&keywords='+keywords+'#s';
+			})
+			//标题提交提示
+			function hint(ts) {
+				layer.msg(ts);
+			}
+			$(".tp-close").click(function(){
+				closePop($(".tp-saomiao"))
+			})
+		</script>
+		<div style="display:none">
+		    <script>
+		        var _hmt = _hmt || [];
+		        (function() {
+		            var hm = document.createElement("script");
+		            hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+		            var s = document.getElementsByTagName("script")[0];
+		            s.parentNode.insertBefore(hm, s);
+		        })();
+		    </script>
+		    <!--baidu analysis-->
+		    <script>
+		        var _hmt = _hmt || [];
+		        
+		        (function() {
+		            var hm = document.createElement("script");
+		            hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+		            var s = document.getElementsByTagName("script")[0];
+		            s.parentNode.insertBefore(hm, s);
+		        })();
+		    </script>
+		</div>
+	</body>
+</html>

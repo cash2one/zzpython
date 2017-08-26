@@ -1,0 +1,17 @@
+<uwsgi>
+ <socket>:881</socket>
+ <listen>80</listen>
+ <master>true</master>
+ <pidfile>/var/run/nginx.pid</pidfile>
+ <processes>8</processes>
+ <pythonpath>/var/pythoncode/mobile/mobile/</pythonpath>
+ <module>mobile.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>/var/pythoncode/mobile/django_wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>6048</limit-as>
+ <daemonize>/var/pythoncode/mobile/log/django.log</daemonize>
+ <plugins>python</plugins>
+</uwsgi>

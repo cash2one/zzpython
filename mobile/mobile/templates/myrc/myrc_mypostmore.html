@@ -1,0 +1,5 @@
+{%for list in listall%}
+<tr><td class="m-item"><div class="c-item"><a href="/huzhuview/{{list.id}}.htm" target="_blank">{{list.title}}</a></div>
+<div class="c-item_">{{list.post_time}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回复：{{list.reply_count}}</div>
+</td></tr>
+{%endfor%}

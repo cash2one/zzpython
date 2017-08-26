@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/> 
+<title>{{kname}}商家报价_{{kname}}供应商报价_{{kname}}商家回收价格_{{kname}}商家出售价格_第{{page}}页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="{{kname}}回收价格,{{kname}}企业报价,{{kname}}出售价格,{{kname}}报价" />
+<meta name="description" content="{{kname}}报价标签频道为你提供最新最全的{{kname}}行情信息,{{kname}}回收价格,{{kname}}出售价格等信息，让你及时掌握最新{{kname}}价格行情资讯，让你生意翻倍。" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" /> 
+<meta content="yes" name="apple-mobile-web-app-capable" /> <meta content="black" name="apple-mobile-web-app-status-bar-style" /> <meta content="telephone=no" name="format-detection" /> 
+<link rel="stylesheet" href="http://tags.zz91.com/mobile/tags_index.css?p=1" />
+</head>
+<body>
+<div class="s_shead">
+	<ul  class="s_nav">
+		<li><a href="/s/{{keywords_hex}}/" >{{kname}}</a></li>
+		<li><a href="/a/{{keywords_hex}}-1/" class="active">价格</a></li>
+		<li><a href="/b/{{keywords_hex}}-1/">问答</a></li>
+		<li><a href="/s/{{keywords_hex}}-0-1/">供应</a></li>
+		<li><a href="/s/{{keywords_hex}}-1-1/">回收</a></li>
+		<li><a href="/d/{{keywords_hex}}-1/">资讯</a></li>
+	</ul>
+</div>
+<div class="t40"></div>
+<center>
+	<script type="text/javascript">
+	/*kangxianyue 20:5 创建于 2017/4/19*/
+	var cpro_id = "u2958427";
+	</script>
+	<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/cm.js"></script>
+</center>
+<div class="tagsnav"><a href="http://tags.zz91.com">标签首页</a> > <a href="http://tags.zz91.com/s/{{keywords_hex}}/">{{tags_keywords}}</a> > <a href="http://tags.zz91.com/a/{{keywords_hex}}-1/">{{tags_keywords}}行情报价</a></div>
+{%if listall%}
+<section class="s_answer">
+	<nav>最新{{kname}}供应商报价</nav>
+	<ul>
+    {% for list in listall %}
+		<li><i class="s_icon"></i><a href="http://m.zz91.com/detail/?id={{list.product_id}}" target="_blank">{{list.title|safe}}</a>{{list.price}} {{list.gmt_time}}</li>
+    {% endfor %}
+    </ul>
+</section>
+<center>
+<div style="font-size:16px; line-height:25px;">{{page}} / {{page_listcount}}</div>
+<div class="pages">
+{% if firstpage %}
+<a href="/c/{{keywords_hex}}-1/" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+<a href="/c/{{keywords_hex}}-{{prvpage}}/" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+{% endif %}
+{% if lastpage%}
+<a href="/c/{{keywords_hex}}-{{nextpage}}/" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+<a href="/c/{{keywords_hex}}-{{page_listcount}}/" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+{% endif %}</div>
+</center>
+{%endif%}
+
+{% include 'mobile/bottom.html' %}
+</body>
+</html>

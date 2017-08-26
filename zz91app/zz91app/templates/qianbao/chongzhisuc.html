@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+		
+			function closepay(){
+				var wobj = plus.webview.currentWebview();
+				if (wobj) {
+					var opener = wobj.opener();
+					if (opener) {
+						//opener.evalJS('reloadpay();');
+					}
+					var parent = wobj.parent();
+					if (parent) { //又得evalJS
+						opener.evalJS('reloadpay();');
+					}
+				}
+				wobj.close();
+			}
+		</script>
+	</head>
+	<body><center><br /><br />
+	充值成功，<button onclick="closepay()">关闭</button></center>
+	</body>
+</html>

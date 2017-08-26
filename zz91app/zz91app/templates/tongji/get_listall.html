@@ -1,0 +1,44 @@
+<title>所有数据</title>
+<h1>所有数据</h1><br>
+
+<table border="1">
+<tr>
+  <th>id</th>
+  <th>clientid</th>
+  <th>visitoncode</th>
+  <th>company_id</th>
+  <th>appsystem</th>
+  <th>url</th>
+  <th>gmt_created</th>
+</tr>
+
+{% for l in result %}
+<tr>
+  <td>{{ l.id }}</td>
+  <td>{{ l.clientid }}</td>
+  <td>{{ l.visitoncode }}</td>
+  <td>{{ l.company_id }}</td>
+  <td>{{ l.appsystem }}</td>
+  <td>{{ l.url }}</td>
+  <td>{{ l.gmt_created }}</td>
+</tr>
+{% endfor %}
+</table><br>
+
+<div class="inline pull-right page">
+				
+			        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+			        {% if firstpage %}<a href="?page={{prvpage}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+			     	{% for p in page_range %}
+					{% if p.nowpage %}
+					<span class='current'>{{p.number}}</span>&nbsp;
+					{% else %}
+					<a href="?page={{p.number}}">{{p.number}}&nbsp;</a>
+					{% endif %}
+					{% endfor %}
+					{% if lastpage %}<a href="?page={{nextpage}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+			                                                
+					<a href='?page=1' >首页</a><a href='?page={{page_listcount}}' >尾页</a> 
+			   </div>
+			   
+<a href="http://127.0.0.1:8000/get_value">返回插入页</a><br>

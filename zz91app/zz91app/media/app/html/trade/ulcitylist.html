@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>选择地区</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/need-out.css"/>
+</head>
+<body>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script>
+apiready = function(){
+  var wheight = $(window).height();
+ //高度
+ var yHeight = 58;
+ if(api.systemType !="ios"){
+    yHeight = 48;
+ }
+  var obj = api.require('UICityList');
+  obj.open({
+      rect: {
+          x: 0,
+          y: yHeight,
+          h:wheight
+      },
+      resource: 'widget://res/UICityList.json',
+      styles: {
+          searchBar: {
+              bgColor: '#01ba2e',
+              cancelColor: '#E3E3E3'
+          },
+          location: {
+              color: '#696969',
+              size: 12
+          },
+          sectionTitle: {
+              bgColor: '#e6e6e6', 
+              color: '#000',
+              size: 12
+          },
+          item: {
+              bgColor: '#fff',
+              activeBgColor: '#01ba2e',
+              color: '#000',
+              size: 14,
+              height: 40
+          },
+          indicator: {
+              bgColor: '#fff',
+              color: '#696969'
+          }
+      },
+      currentCity: '北京',
+      locationWay: 'GPS',
+      hotTitle: '热门城市',
+      placeholder: '输入城市名或首字母查询'
+  }, function(ret, err) {
+      if(ret.eventType == 'selected'){
+        // alert(JSON.stringify(ret.cityInfo))
+        var intoCity = "intoCity("+JSON.stringify(ret.cityInfo)+")"
+        // alert(intoCity)
+        api.execScript({
+            name: 'need-out',
+            frameName: 'need-out_',
+            script: intoCity
+        });
+        api.closeWin();
+      }
+  });
+}
+</script>
+</html>

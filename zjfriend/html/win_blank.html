@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<link href="../css/main.min.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/main.css" type="text/css">
+		<link rel="stylesheet" href="../css/my_favorite.css" type="text/css">
+		<link rel="stylesheet" href="../css/win_blank.css" type="text/css">
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav" id="wintitle">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="api.closeWin();"></a>
+			<h1 class="mui-title"></h1>
+		</header>
+		<div class="box_list">
+			<div class="main">
+				<img src="../image/loading_more.gif">
+			</div>
+		</div>
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../script/laytpl.js"></script>
+		<script type="text/javascript" src="../script/DBapi.js"></script>
+		<script type="text/javascript" src="../script/common.js"></script>
+		<script>
+			apiready = function() {
+				var url = api.pageParam.url;
+				deviceId = api.deviceId;
+				var pagetype=api.pageParam.type;
+				if (pagetype=="detail"){
+					$("footer").css("display","block");
+				}
+				loadcommonurl(url,api.pageParam);
+				$(".write-pl").on("click",function(){
+					var name="write",url="./write-pl.html",pageParam={'wintitle':"评论","id":api.pageParam.id,'bounces':false}
+					openWin(name,url,pageParam)
+				});
+				$("#apinlun").on("click",function(){
+					var name="apinlun",url="./write-pl.html",pageParam={'wintitle':"评论","id":api.pageParam.id,'bounces':false}
+					openWin(name,url,pageParam)
+				})
+				$("#ashoucang").on("click",function(){
+					ashoucang();
+				})
+				
+			}
+			function ashoucang(){
+				api.ajax({
+				    url: hosturl+'/sex/insert_dede_member_stow.html?mid='+UserInfo.memberID()+'&aid='+api.pageParam.id+'&deviceId='+deviceId,
+				    method: 'get',
+				    timeout: 30,
+				    dataType: 'json',
+				    returnAll:false
+				},function(ret,err){
+				    if (ret) {
+				    	alert("收藏成功！")
+				        $("#icon_ashoucang").attr("class","mui-icon mui-icon-starhalf");
+				    }else {
+				        //api.alert({
+				            //msg:('错误码：'+err.code+'；错误信息：'+err.msg+'网络状态码：'+err.statusCode)
+				        //});
+				    }
+				});
+			}
+			function shareSystem(){
+				api.openFrame({
+		    		name: 'share',
+		   		 	url: './share.html',
+		   			rect:{
+		        		x:0,
+		        		y:0,
+		        		w:"auto",
+		        		h:"auto"
+		    		},
+		    		pageParam: {name: 'test'},
+		    		bounces: true,
+		    		bgColor: 'transparent',
+		    		vScrollBarEnabled:true,
+		    		hScrollBarEnabled:true
+				});
+			}
+		</script>
+		<footer class="mui-bar mui-bar-tab" id="newsnav" style="display:none">
+			<a class="mui-tab-item"><span class="write-pl">写评论...</span></a>
+			<!--<a tapmode="mui-active" id="defaultTab" class="mui-tab-item" href="javascript:shareSystem()"> <span class="mui-icon mui-icon-upload"></span> <span class="mui-tab-label">分享</span> </a>-->
+			<a tapmode="mui-active" class="mui-tab-item" id="ashoucang"> <span class="mui-icon mui-icon-star" id="icon_ashoucang"></span> <span class="mui-tab-label">收藏</span> </a>
+			<a tapmode="mui-active" class="mui-tab-item" id="apinlun"> <span class="mui-icon mui-icon-chat"></span> <span class="mui-tab-label">评论</span> </a>
+		</footer>
+		<!-- <nav class="mui-bar mui-bar-tab" id="newsnav" style="display:none">
+			<div class="plunxx_in" onclick="pinlun(this)">
+				<div id="div_contentbg" class="write1">
+					<p>我来说两句...</p>
+				</div>
+				<textarea name="txtContent0" id="txtContent0"  cols="45" rows="5" class="plun_login_textarea"></textarea>
+			</div>
+			<div class="plun_bt_tj_button" style="padding-left: 10px;padding-right: 10px;display: none;">
+				<div style="float:left;width:150px;">
+					<div id="CommentsTip0" class="AjaxTipWarning">dd</div>
+				</div>
+				<input type="button" name="btnlogin" id="btnlogin" value="发表评论" onclick="PostComment(0)" class="button_style1"> 
+			</div>
+		</nav> -->
+	</body>
+</html>

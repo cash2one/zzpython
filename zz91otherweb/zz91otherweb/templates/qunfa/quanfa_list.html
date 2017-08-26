@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://www.feiliao123.com/feiliao123/Css/style.css"> 
+    <script type="text/javascript" src="http://www.feiliao123.com/feiliao123/Js/jquery-1.7.2.js"></script>
+    <title>购买群发客户列表-留言速配服务</title>
+</head>
+<body>
+<div class="container" style="margin-top: 10px;">
+	<h4 style="text-align: center;">购买群发客户列表</h4>
+	<table class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>公司名称</th>
+				<th>购买时间</th>
+				<th>留言内容</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for each_data in all_qf_data %}
+			<tr>
+				<td>{{ each_data.10 }}</td>
+				<td>{{ each_data.3 | date:'Y-m-d H:i:s' }}</td>
+				<td>{{ each_data.1 }}</td>
+				<td><a href="qunfa_record.html?qf_id={{ each_data.0 }}" target="_blank">开始群发</a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="page pull-right">
+		共{{ rowcount }}条记录&nbsp;&nbsp;{{ page_num }}/{{ page_list_count }}
+		{% if first_page %}
+		<a href="?page={{ prev_page }}">上一页</a>
+		{% else %}
+		<a href="javascript:void(0)" style="color: gray;text-decoration: none;">上一页</a>
+		{% endif %}
+		{% if last_page %}
+		<a href="?page={{ next_page }}">下一页</a>
+		{% else %}
+		<a href="javascript:void(0)" style="color: gray;text-decoration: none;">下一页</a>
+		{% endif %}
+		<a href="?page=1">首页</a>
+		<a href="?page={{ page_list_count }}">尾页</a>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>筛选</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/trade/choice.css"/>
+		<style>
+			html, body {
+				background: transparent;
+				height: 100%;
+				background: rgba(0,0,0,0.1);
+				overflow: hidden;
+			}
+			#aui-header {
+				position: absolute;
+				top: 50px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				padding-top: 0px;
+			}
+			.type_small {
+				background-color: #fff;
+				border-top: none;
+				overflow: auto;
+				position: absolute;
+				bottom: 45px;
+				top: 95px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				color: #666
+			}
+			.price-type{
+				background-color:#fff;
+				border-bottom:solid 1px #f2f2f2;
+				
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-success" id="aui-header">
+			<a class="aui-btn aui-btn-success aui-pull-right" tapmode onclick="closeselect()"> <span class="aui-iconfont aui-icon-roundclosefill"></span> </a>
+			<div class="aui-title">
+				请选择塑料类别
+			</div>
+		</header>
+		<div class="type_small">
+			<div class="price-type aui-arrow-right" style="border-bottom:none" tapmode="index-nav-li" category-id="217">
+				<i class="aui-iconfont aui-icon-cascades" tapmode="index-nav-li" style="background: none;top:0px"></i>废塑料行情综述
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span category-id="217" keywords="早参" tapmode="index-nav-li">早参</span>
+					<span category-id="217" keywords="早评" tapmode="index-nav-li">早评</span>
+					<span category-id="217" keywords="晚报" tapmode="index-nav-li">晚报</span>
+					<span category-id="217" keywords="PE" tapmode="index-nav-li">PE</span>
+					<span category-id="217" keywords="PP" tapmode="index-nav-li">PP</span>
+					<span category-id="217" keywords="PVC" tapmode="index-nav-li">PVC</span>
+					<span category-id="217" keywords="ABS!PS" tapmode="index-nav-li">ABS</span>
+					<span category-id="217" keywords="PS!ABS" tapmode="index-nav-li">PS</span>
+					<span category-id="217" keywords="ABS PS" tapmode="index-nav-li">ABS/PS</span>
+					
+				</li>
+			</ul>
+			<div class="price-type aui-arrow-right" tapmode="index-nav-li" category-id="35">
+				<i class="aui-iconfont aui-icon-cascades" style="background: none;top:0px"></i>废塑料周报
+			</div>
+			<div class="price-type aui-arrow-right" tapmode="index-nav-li" category-id="34">
+				<i class="aui-iconfont aui-icon-cascades" style="background: none;top:0px"></i>废塑料评论
+			</div>
+			<div class="price-type aui-arrow-right" style="border-bottom:none" category-id="20">
+				<i class="aui-iconfont aui-icon-cascades" style="background: none;top:0px"></i>废塑料市场行情
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span category-id="20" assist_id="290" tapmode="index-nav-li">PET</span>
+					<span category-id="20" assist_id="291" tapmode="index-nav-li">PP</span>
+					<span category-id="20" assist_id="293" tapmode="index-nav-li">PC</span>
+					<span category-id="20" assist_id="294" tapmode="index-nav-li">PS</span>
+					<span category-id="20" assist_id="297" tapmode="index-nav-li">PVC</span>
+					<span category-id="20" assist_id="296" tapmode="index-nav-li">ABS</span>
+					<span category-id="20" assist_id="295" tapmode="index-nav-li">HDPE</span>
+					<span category-id="20" assist_id="292" tapmode="index-nav-li">LDPE</span>
+					<span category-id="20" assist_id="298" tapmode="index-nav-li">PA</span>
+					<span category-id="20" assist_id="299" tapmode="index-nav-li">PMMA</span>
+					
+					<span></span><span></span>
+				</li>
+			</ul>
+			<div class="price-type aui-arrow-right" tapmode="index-nav-li" category-id="137">
+				<i class="aui-iconfont aui-icon-cascades" style="background: none;top:0px"></i>废塑料网上报价
+			</div>
+			<div class="price-type aui-arrow-right" style="border-bottom:none" tapmode="index-nav-li" category-id="22">
+				<i class="aui-iconfont aui-icon-cascades" style="background: none;top:0px"></i>废塑料市场动态
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span category-id="22" keywords="河北" tapmode="index-nav-li">河北</span>
+					<span category-id="22" keywords="广东" tapmode="index-nav-li">广东</span>
+					<span category-id="22" keywords="浙江" tapmode="index-nav-li">浙江</span>
+					<span category-id="22" keywords="上海" tapmode="index-nav-li">上海</span>
+					<span category-id="22" keywords="齐鲁" tapmode="index-nav-li">齐鲁</span>
+					<span category-id="22" keywords="东莞" tapmode="index-nav-li">东莞</span>
+					<span category-id="22" keywords="天津" tapmode="index-nav-li">天津</span>
+					<span category-id="22" keywords="山东" tapmode="index-nav-li">山东</span>
+					<span category-id="22" keywords="江苏" tapmode="index-nav-li">江苏</span>
+				</li>
+			</ul>
+			
+			<div class="price-type aui-arrow-right" style="border-bottom:none" category-id="98">
+				<i class="aui-iconfont aui-icon-cascades" style="background: none;top:0px"></i>各地塑料再生料市场行情
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span category-id="98" keywords="e4b8ade983a8e59cb0e58cba" tapmode="index-nav-li">中部地区</span>
+					<span category-id="98" keywords="e5b1b1e4b89c" tapmode="index-nav-li">山东</span>
+					<span category-id="98" keywords="e6b2b3e58c97" tapmode="index-nav-li">河北</span>
+					<span category-id="98" keywords="e6b19fe88b8f" tapmode="index-nav-li">江苏</span>
+					<span category-id="98" keywords="e6b599e6b19f" tapmode="index-nav-li">浙江</span>
+					<span category-id="98" keywords="e5b9bfe4b89c" tapmode="index-nav-li">广东</span>
+				</li>
+			</ul>
+			
+			<div class="price-type aui-arrow-right" category-id="1">
+				<i class="aui-iconfont aui-icon-cascades" style="background: none;top:0px"></i>塑料新料
+			</div>
+			<div class="price-type aui-arrow-right" style="border-bottom:none" category-id="233">
+				<i class="aui-iconfont aui-icon-cascades" style="background: none;top:0px"></i>塑料期货-国际市场收盘价
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span category-id="233" assist_id="300" keywords="进口|国际" tapmode="index-nav-li">PE</span>
+					<span category-id="233" assist_id="291" keywords="进口|国际" tapmode="index-nav-li">PP</span>
+					<span category-id="233" keywords="收盘价" tapmode="index-nav-li">收盘价</span>
+				</li>
+			</ul>
+			<div class="price-type aui-arrow-right" style="border-bottom:none" category-id="233">
+				<i class="aui-iconfont aui-icon-cascades" style="background: none;top:0px"></i>塑料期货-香港美金报价
+			</div>
+			<ul class="type-small small-area">
+				<li>
+					<span category-id="233" assist_id="300" keywords="香港" tapmode="index-nav-li">PE</span>
+					<span category-id="233" assist_id="296" keywords="香港" tapmode="index-nav-li">ABS</span>
+					<span category-id="233" assist_id="294" keywords="香港" tapmode="index-nav-li">PS</span>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/iscroll.js"></script>
+	<script type="text/javascript">
+		function closeselect() {
+			api.execScript({
+				name : api.winName,
+				script : "keybackFun('1')"
+			});
+			api.closeFrame();
+		}
+
+		apiready = function() {
+			changeserverurl();
+			
+			//选择类别
+			$(".small-area span").on("click", function() {
+				var categoryId = $(this).attr("category-id");
+				var assist_id = $(this).attr("assist_id");
+				var keywords = $(this).attr("keywords");
+				var mSrc="";
+				if (assist_id){
+					mSrc += "&assist_id="+assist_id;
+				}
+				if (keywords){
+					mSrc += "&keywords="+keywords;
+				}
+				if (categoryId) {
+					var pageParam = {
+						type : "price",
+						categoryId : categoryId,
+						mSrc : mSrc
+					};
+					openWin("offer-list", "../price/offer-list.html", pageParam);
+				}
+			});
+			$(".price-type").on("click", function() {
+				var categoryId = $(this).attr("category-id");
+				var mSrc = $(this).attr("mSrc");
+				if (categoryId) {
+					var pageParam = {
+						type : "price",
+						categoryId : categoryId,
+						mSrc : mSrc
+					};
+					openWin("offer-list", "../price/offer-list.html", pageParam);
+				}
+			});
+			
+			var $body = $api.dom('body');
+			$api.addEvt($body, 'click', function(e) {
+				if (e.target == $body) {
+					closeselect();
+				} else {
+					e.stopPropagation();
+				}
+			});
+		}
+		
+
+		function selectbutton() {
+			
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

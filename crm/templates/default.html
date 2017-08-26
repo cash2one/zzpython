@@ -1,0 +1,46 @@
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style>
+<table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#f2f2f2">公司名称</td>
+    <td bgcolor="#f2f2f2">邮箱</td>
+    <td bgcolor="#f2f2f2">电话</td>
+    <td bgcolor="#f2f2f2">手机</td>
+    <td bgcolor="#f2f2f2">挑入时间</td>
+    <td bgcolor="#f2f2f2">最后联系时间</td>
+    <td bgcolor="#f2f2f2">最后登录</td>
+    <td bgcolor="#f2f2f2">销售</td>
+    <td bgcolor="#f2f2f2">&nbsp;</td>
+  </tr>
+  {%for list in listall%}
+  <tr>
+    <td bgcolor="#FFFFFF"><a href="http://192.168.2.2/admin1/crmlocal/crm_cominfoedit.asp?idprod={{list.com_id}}&dotype={{dotype}}" target="_blank">{{list.com_name}}</a></td>
+    <td bgcolor="#FFFFFF">{{list.com_email}}</td>
+    <td bgcolor="#FFFFFF">{{list.com_tel}}</td>
+    <td bgcolor="#FFFFFF">{{list.com_mobile}}</td>
+    <td bgcolor="#FFFFFF">{{list.fdate}}</td>
+    <td bgcolor="#FFFFFF">{{list.teldate}}</td>
+    <td bgcolor="#FFFFFF">{{list.lastlogintime}}</td>
+    <td bgcolor="#FFFFFF">{{list.realname}}</td>
+    <td bgcolor="#FFFFFF">&nbsp;</td>
+  </tr>
+  {%endfor%}
+</table>
+<script language="JavaScript">
+function changeIframeHeight()  //自动改变 Iframe 的高度
+{
+	parent.document.getElementById("zdaniframe").style.height=document.body.scrollHeight+10;
+}
+changeIframeHeight(); //改变 Iframe 高
+</script>

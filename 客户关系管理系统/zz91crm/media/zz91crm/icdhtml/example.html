@@ -1,0 +1,450 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title> 搜索表单</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <link href="../assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/page-min.css" rel="stylesheet" type="text/css" />   <!-- 下面的样式，仅是为了显示代码，而不应该在项目中使用-->
+   
+ </head>
+ <body>
+  
+	<div class="demo-content">
+    	 <div class="row">
+	      <div class="span24 doc-content">
+	          <form class="form-panel" id="search">
+	            <div class="panel-title">
+	              <span>
+	                <label>最近登录时间：</label><input type="text" class="calendar" name="last_login_time_begin" {%if last_login_time_begin%}value="{{last_login_time_begin}}" {%endif%}>
+	                 <label>至</label> <input type="text" class="calendar" name="last_login_time_end" {%if last_login_time_end%}value="{{last_login_time_end}}" {%endif%}>
+	              </span>
+	              <span>
+	                <label>注册时间：</label><input type="text" class="calendar" name="regtime_begin" {%if regtime_begin%}value="{{regtime_begin}}" {%endif%}> 
+	                <label>至</label> <input type="text" class="calendar" name="regtime_end" {%if regtime_end%}value="{{regtime_end}}" {%endif%}>
+	              </span>
+	            </div>
+	            <div class="panel-title">
+	              <span>
+	                <label>最后联系时间：</label><input type="text" class="calendar" name="gmt_visit_begin" {%if gmt_visit_begin%}value="{{gmt_visit_begin}}" {%endif%}> 
+	                <label>至</label> <input type="text" class="calendar " name="gmt_visit_end" {%if gmt_visit_end%}value="gmt_visit_end" {%endif%}>
+	              </span>
+	              <span>
+	                <label>下次联系时间：</label><input type="text" class="calendar"> 
+	                <label>至</label> <input type="text" class="calendar">
+	              </span>
+	            </div>
+	            <div class="panel-content">
+	              <div class="row">
+	              	<div class="">
+	              	&nbsp;&nbsp;&nbsp;&nbsp;
+			            <label class="control-label">公司名：</label>
+			            <input class="input-large control-text" type="text" name="companyname" value="{%if companyname%}{{companyname}}{%endif%}">
+			            &nbsp;&nbsp;&nbsp;&nbsp;
+			            <label class="control-label">联系人：</label>
+			            <input class="input-large control-text" type="text" name="contact" value="{%if contact%}{{contact}}{%endif%}">
+			            &nbsp;&nbsp;&nbsp;&nbsp;
+			            <label class="control-label">电话/手机：</label>
+			            <input class="input-large control-text" type="text" name="mobile" value="{%if mobile%}{{mobile}}{%endif%}">
+			         </div>
+	              	<br>
+	              	<div class="">
+	              	&nbsp;&nbsp;&nbsp;&nbsp;
+			            <label class="control-label">Email：</label>
+			            <input class="input-large control-text" type="text" name="email" value="{%if email%}{{email}}{%endif%}">
+			            &nbsp;&nbsp;&nbsp;&nbsp;
+			            <label class="control-label">地址：</label>
+			            <input class="input-large control-text" type="text" name="address" value="{%if address%}{{address}}{%endif%}">
+			            &nbsp;&nbsp;&nbsp;&nbsp;
+			            <label class="control-label">主营业务：</label>
+			            <input class="input-large control-text" type="text" name="business" value="{%if business%}{{business}}{%endif%}">
+			         </div>
+			         <br>
+			         <div class="">
+				          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				          <label class="control-label">国家/地区：</label>
+				          		<select class="country" name="country" id="country">
+				          			<option value="">--请选择国家--</option>
+				          			{%for country in countrylist%}
+				          				<option value="{{country.code}}">{{country.label}}</option>
+				          			{%endfor%}
+				          		</select>
+				          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				          <label class="control-label">省份：</label>
+				          		<select class="" name="province" id="province">
+				          			<option value="">--请选择省份--</option>
+				          			
+				          		</select>
+				          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				          <label class="control-label">城市：</label>
+				          		<select class="" name="city" id="city">
+				          			<option value="">--请选择城市--</option>
+				          			
+				          		</select>
+				          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				          <label class="control-label">区县：</label>
+				          		<select class="" name="area" id="area">
+				          			<option value="">--请选择区县--</option>
+				          			
+				          		</select>
+			         </div>
+			         <br>
+			         <div class="">
+			         	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			            <label class="control-label">行业：</label>
+				          		<select class="" name="industry" id="industry">
+				          			{%if industry%}<option value="{{industry}}">{{industry_txt}}</option>{%endif%}
+				          			<option value="">--请选择--</option>
+				          			<option value="10001000">废塑料</option>
+				          			<option value="10001001">废金属</option>
+				          			<option value="10001002">废纸</option>
+				          			<option value="10001003">废旧轮胎与废橡胶</option>
+				          			<option value="10001004">废纺织品与废皮革</option>
+				          			<option value="10001005">废电子电器</option>
+				          			<option value="10001006">废玻璃</option>
+				          			<option value="10001007">废旧二手设备</option>
+				          			<option value="10001008">其他废料</option>
+				          			<option value="10001009">服务</option>
+				          			<option value="10001010">塑料原料</option>
+				          		</select>
+				          		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			            		<label class="control-label">等级：</label>
+			            			<select class="" name="com_rank" id="com_rank">
+					          			<option value="">--请选择等级--</option>
+			                            <option value="1" >★无条件，无意向</option>
+			                            <option value="2" >★★有条件，目前无意向</option>
+			                            <option value="3" >★★★条件好，意向一般</option>
+			                            <option value="4" >★★★★条件好，意向好</option>
+			                            <option value="4.1" >|——普通四星</option>
+			                            <option value="4.8" >|——钻石四星</option>
+			                            <option value="5" >★★★★★口头确定付款</option>
+				          			</select>
+				          			<button type="button" class="button button-primary" onClick=send1()>查询>></button>
+			         </div>
+	              </div>
+	            </div>
+	          </form>  
+	          
+	          
+	          
+	          
+	          					<form>
+						<table cellspacing="0" class="table table-bordered" id="senfe">
+							<thead>
+								<tr>
+									<th width="15"></th>
+									<th nowrap>公司id</th>
+									<th nowrap>中文名</th>
+									<th nowrap>客户等级</th>
+									<th nowrap>email</th>
+									<th nowrap>最近登录</th>
+									<th nowrap>登录次数</th>
+									<th nowrap>注册时间</th>
+									<th nowrap>联系人</th>
+									<th nowrap>公司电话</th>
+									<th nowrap>手机</th>
+									<th nowrap>省份</th>
+									<th nowrap>最后联系时间</th>
+									<th nowrap>下次联系时间</th>
+									<th nowrap>确认单</th>
+									<th nowrap>查看信息</th>
+									<th nowrap>门市部流量</th>
+									<th nowrap>申请时间</th>
+									<th nowrap>到期时间</th>
+									<th nowrap>待开通</th>
+									<th nowrap>挑入时间</th>
+									<th nowrap>录入者</th>
+									<th nowrap>服务者</th>
+									<th nowrap>VAP销售人员</th>
+									<th nowrap>SMS所有者</th>
+									<th nowrap>再生通销售</th>
+									<th nowrap>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								{%for list in listall%}
+								<tr>
+									<td>
+										<input type="checkbox" name="checkid" value="{{list.id}}" id="subcheck">
+									</td>
+									<td nowrap><span class="x-tree-icon-wraper"><span class="x-tree-icon x-tree-elbow-expander"></span><span class="x-tree-icon x-tree-elbow-dir"></span></span>{{list.id}}</td>
+									<td nowrap><a href="crm_cominfoedit.html?company_id={{list.id}}">{{list.name}}</a></td>
+									<td nowrap>{{list.star}}星</td>
+									<td nowrap>{{list.email}}</td>
+									<td nowrap>{{list.last_login_time}}</td>
+									<td nowrap>{{list.num_login}}</td>
+									<td nowrap>{{list.regtime}}</td>
+									<td nowrap>{{list.contact}}</td>
+									<td nowrap>{{list.tel_country_code}}-{{list.tel_area_code}}-{{list.tel}}</td>
+									<td nowrap>{{list.mobile}}</td>
+									<td nowrap>{{list.areatxt}}</td>
+									<td nowrap>{{list.lastcontacttime}}</td>
+									<td nowrap>{{list.nextcontacttime}}</td>
+									
+									<td nowrap>确认单</td>
+									<td nowrap>查看信息</td>
+									<td nowrap>门市部流量</td>
+									<td nowrap>申请时间</td>
+									<td nowrap>到期时间</td>
+									<td nowrap>待开通</td>
+									<td nowrap>挑入时间</td>
+									<td nowrap>录入者</td>
+									<td nowrap>服务者</td>
+									<td nowrap>VAP销售人员</td>
+									<td nowrap>SMS所有者</td>
+									<td nowrap>{{list.salesman}}</td>
+									
+									<td nowrap>
+										<!--  <span class="grid-command"><a class="edit" userid="{{list.id}}" title="编辑属性">编辑</a></span>-->
+										<span class="grid-command"><a href="edituser1.html?userid={{list.id}}" title="编辑属性">编辑</a></span>
+										<span class="grid-command"><a href="user_category_delete.html?id={{list.id}}">删除</a></span>
+										<span class="grid-command">
+              		{%ifequal list.closeflag 1%}
+              			<a href="changestatus_user.html?id={{list.id}}&status={{list.closeflag}}">开通</a>
+              		{%endifequal%}
+              		{%ifequal list.closeflag 0%}
+              			<a href="changestatus_user.html?id={{list.id}}&status={{list.closeflag}}">冻结</a>
+              		{%endifequal%}
+              	</span>
+									</td>
+								</tr>
+								{%endfor%}
+							</tbody>
+						</table>
+					</form>
+					{%if has_auth%}
+					<ul class="toolbar pull-left">
+						<li><label class="checkbox"><input type="checkbox" id="SelectAll"  value="全选" onclick="selectAll();"/>全选</label></li>
+						<li><button class="button button-success" id="fenpei">重新分配给</button></li>
+						<li>
+							<div class="controls bui-form-group-select" >
+				          		<select class="" name="username" id="username">
+				          			<option value="">请选择--</option>
+				          			{%for salesman in allsalesman%}
+				          			<option value="" disabled="disabled">--{{salesman.cate_label}}</option>
+				          				{%for man in salesman.thiscateman%}
+				          					<option value="{{man.id}}">----{{man.username}}</option>
+				          				{%endfor%}
+				          			{%endfor%}
+				          		</select>
+       						</div>
+     					</li>
+					</ul>
+					{%endif%}
+					<div>
+						<div class="inline pull-right page">
+							<form>
+								共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页 &nbsp;&nbsp; {% if firstpage %}
+								<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%} {%for p in page_range%} {%if p.nowpage%}
+								<span class='current'>{{p.number}}</span>&nbsp; {%else%}
+								<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a> {%endif%} {%endfor%} {% if lastpage%}
+								<a href="?page={{nextpage}}&{{searchurl}}"><!--<a href="javascript:void(0)" class="nextpage" value="{{nextpage}}">-->下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp; {%if flag%}
+								<input type="hidden" name="flag" value="{{flag}}">{%endif%} {%if writer%}
+								<input type="hidden" name="writer" value="{{writer}}">{%endif%}
+								<input type="hidden" name="page_listcount" value="{{page_listcount}}">&nbsp;&nbsp; 去第
+								<input type="text" name="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页
+								<input type="submit" style="display:none"> &nbsp;&nbsp;
+								<a href='?page=1&{{searchurl}}'>首页</a><a href='?page={{page_listcount}}&{{searchurl}}'>尾页</a>
+							</form>
+						</div>
+					</div>
+	          
+	          
+	          
+	           
+	      </div>
+	    </div>
+    </div>
+  <script type="text/javascript" src="../assets/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="../assets/js/bui-min.js"></script>
+  <script type="text/javascript" src="../assets/js/config-min.js"></script>
+  <script type="text/javascript">
+        BUI.use('bui/calendar',function(Calendar){
+          var datepicker = new Calendar.DatePicker({
+            trigger:'.calendar',
+            autoRender : true
+          });
+        });
+    </script>
+   <script type="text/javascript">
+   $(document).ready(function(){
+	   $("#country").change(function(){
+		   var selectcountry = $("#country").val()
+		   if(selectcountry==10011000){
+			   $.ajax({
+				   type: "GET",
+				   url: "getsite.html?sitecode=10011000",
+				   dataType: "json",
+				   success:function(data){
+					   $("#province").empty();
+					   html="<option value=''>--请选择省份--</option>";
+						$("#province").append(html);
+					   //$("#province").append("<option value='7'>7</option>");
+					   	for(var i=0;i<data.length;i++){
+					   		html="<option value='"+data[i]['code']+"'>"+data[i]['label']+"</option>";
+					   		$("#province").append(html);
+					   	}
+					},
+					error:function(data){
+						alert("错误!青重试.");
+				 	}
+			   });
+		   }
+		   else{
+			   	$("#province").empty(); 
+			   	$("#city").empty(); 
+			   	$("#area").empty(); 
+				html="<option value=''>--请选择省份--</option>";
+				$("#province").append(html);
+				$("#city").append(html);
+				$("#area").append(html);
+		   }
+	   });
+   });
+  </script>
+  
+  <script type="text/javascript">
+   $(document).ready(function(){
+	   $("#province").change(function(){
+		   var selectprovince = $("#province").val()
+		   if(selectprovince){
+			   //alert("okoko");
+			   $.ajax({
+				   type: "GET",
+				   url: "getsite.html?sitecode="+selectprovince,
+				   dataType: "json",
+				   success:function(data){
+					   $("#city").empty(); 
+					   html="<option value=''>--请选择城市--</option>";
+						$("#city").append(html);
+					   	for(var i=0;i<data.length;i++){
+					   		html="<option value='"+data[i]['code']+"'>"+data[i]['label']+"</option>";
+					   		$("#city").append(html);
+					   	}
+					},
+					error:function(data){
+						alert("错误!青重试.");
+				 	}
+			   });
+		   }
+		   else{
+			   	$("#city").empty(); 
+			   	$("#area").empty(); 
+				html="<option value=''>--请选择城市--</option>";
+				$("#city").append(html);
+				$("#area").append(html);
+		   }
+	   });
+   });
+  </script>
+  
+  <script type="text/javascript">
+   $(document).ready(function(){
+	   $("#city").change(function(){
+		   var selectprovince = $("#city").val()
+		   if(selectprovince){
+			   //alert("okoko");
+			   $.ajax({
+				   type: "GET",
+				   url: "getsite.html?sitecode="+selectprovince,
+				   dataType: "json",
+				   success:function(data){
+					   $("#area").empty();
+					   html="<option value=''>--请选择区县--</option>";
+						$("#area").append(html);
+					   	for(var i=0;i<data.length;i++){
+					   		html="<option value='"+data[i]['code']+"'>"+data[i]['label']+"</option>";
+					   		$("#area").append(html);
+					   	}
+					},
+					error:function(data){
+						alert("错误!青重试.");
+				 	}
+			   });
+		   }
+		   else{
+			   	$("#area").empty(); 
+				html="<option value=''>--请选择区县--</option>";
+				$("#area").append(html);
+		   }
+	   });
+   });
+  </script>
+  
+  <script type="text/javascript">
+		function send1()
+			{
+				//$("#search").action="http://www.baidu.com"
+				$("#search").submit()
+			}
+	</script>
+  
+  
+  <script type="text/javascript">
+				function selectAll(){  
+					    if ($("#SelectAll").attr("checked")) {  
+					        $(":checkbox").attr("checked", true);  
+					    } else {  
+					        $(":checkbox").attr("checked", false);  
+					    }  
+					}  
+				//子复选框的事件  
+				function setSelectAll(){  
+				    //当没有选中某个子复选框时，SelectAll取消选中  
+				    if (!$("#subcheck").checked) {  
+				        $("#SelectAll").attr("checked", false);  
+				    }  
+				    var chsub = $("input[type='checkbox'][id='subcheck']").length; //获取subcheck的个数  
+				    var checkedsub = $("input[type='checkbox'][id='subcheck']:checked").length; //获取选中的subcheck的个数  
+				    if (checkedsub == chsub) {  
+				        $("#SelectAll").attr("checked", true);  
+				    }  
+				}  
+				
+				$(function(){
+				    $("#senfe").find("tr").click(function(){
+				        $(this).find("input[type='checkbox']").attr("checked",!$(this).find("input[type='checkbox']").attr("checked"));
+				    });
+				    
+				    
+				});
+				//新分配
+				$(function(){
+					$("#fenpei").click(function(){
+						
+						var chsub=$("input[type='checkbox'][id='subcheck']:checked").length;//获取选中的subcheck的个数
+						var username=$("#username").val();
+						if (chsub==0){
+							alert("请至少选择一个客户!");
+							return false;
+						}
+						else if(username==""){
+							alert("请选择一个销售!");
+							return false;
+						}
+						else{
+							var companylist=new Array();
+							$("input[type='checkbox'][id='subcheck']:checked").each(function(){
+								var comp=$(this).val();
+								companylist.push(comp);
+							});
+							//alert(username);
+							$.ajax({
+								type: "GET",
+								url:"addnew_assign.html",
+								data:{"companyid":companylist,"userid":username},
+								traditional: true,  
+								success:function(data){
+									//alert(data);
+									window.location.href="";
+								},
+								error:function(data){
+									//alert("错误!青重试.");
+							 	}
+							});
+						}
+					});
+				})
+			</script>
+<body>
+</html>  

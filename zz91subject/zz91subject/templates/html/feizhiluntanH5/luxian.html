@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>废纸产业发展论坛-论坛路线</title>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+		<link rel="stylesheet" type="text/css" href="css/base-min.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_o98y3fawu30oogvi.css" />
+	</head>
+	<body>
+		<script type="text/javascript" src="js/viewport.js"></script>
+		
+		<div class="zhaoshang-warp">
+			<div style="height: 2.4rem;">
+				<div class="nav-top">
+					<div class="nav-main">
+						<a onClick="javascript :history.back(-1)" class="nav-hr"></a>论坛路线<a href="chbm.html" class="nav-ch"></a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="list-box">
+				<div class="luxian-box">
+					<div class="luxian-map-warp">
+						<div class="luxian-map" id="dituContent"></div>
+					</div>
+					<div class="luxian-main">
+						<div class="luxian-list">
+							<div class="luxian-tle">
+								<i class="icon icon-zhidao"></i>酒店信息
+							</div>
+							<p>杭州·富阳东方茂开元名都酒店</p>
+						</div>
+						<div class="luxian-list">
+							<div class="luxian-tle">
+								<i class="iconfont icon-dianhua"></i>电  话
+							</div>
+							<a href="tel:0571-63287888">0571-6328 7888</a>
+						</div>
+						<div class="luxian-list">
+							<div class="luxian-tle">
+								<i class="icon icon-didian"></i>地  址
+							</div>
+							<p>杭州市富阳区金桥北路61号，近514车站</p>
+						</div>
+						<div class="luxian-list">
+							<p class="luxian-tt">杭州萧山机场出发：</p>
+							<p>杭州城站火车站或杭州东站出发：乘坐城战-富阳新车站或杭州东站-富阳新车站 ，到站转乘2路车至东方茂即可到达；杭州龙翔桥514-富阳514车站，可直达</p>
+						</div>
+						<div class="luxian-list">
+							<p class="luxian-tt">自驾：</p>
+							<p>1、富阳高速枢纽站下，行驶5分钟即可到达<br />2、延杭州-富阳320国道行驶50分钟即可到达</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div style="height: 2.725rem;">
+				<div class="foot-nav">
+					<a href="index.html" class="foot-a foot-index">
+						<i class="iconfont icon-shouye-shouye"></i>
+						<p>首页</p>
+					</a>
+					<a href="xinxi.html" class="foot-a">
+						<i class="foot-icon-xx"></i>
+						<p>信息</p>
+					</a>
+					<a href="bangdan.html" class="foot-a">
+						<i class="foot-icon-bd"></i>
+						<p class="foot-p">TOP20榜单</p>
+					</a>
+					<a href="zhaoshang.html" class="foot-a">
+						<i class="foot-icon-zs"></i>
+						<p>招商</p>
+					</a>
+					<a href="fuwu.html" class="foot-a foot-this">
+						<i class="foot-icon-fw"></i>
+						<p>服务</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div style="display:none">
+		    <script>
+		        var _hmt = _hmt || [];
+		        (function() {
+		            var hm = document.createElement("script");
+		            hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+		            var s = document.getElementsByTagName("script")[0];
+		            s.parentNode.insertBefore(hm, s);
+		        })();
+		    </script>
+		    <!--baidu analysis-->
+		    <script>
+		        var _hmt = _hmt || [];
+		        
+		        (function() {
+		            var hm = document.createElement("script");
+		            hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+		            var s = document.getElementsByTagName("script")[0];
+		            s.parentNode.insertBefore(hm, s);
+		        })();
+		    </script>
+		</div>
+	</body>
+	<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
+    }
+    
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(119.939703,30.055173);//定义一个中心点坐标
+        map.centerAndZoom(point,18);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+    
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+    
+    //地图控件添加函数：
+    function addMapControl(){
+        //向地图中添加缩放控件
+	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+	map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+//	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+//	map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+	map.addControl(ctrl_sca);
+    }
+    
+    //标注点数组
+    var markerArr = [{title:"富阳东方茂开元名都大酒店",content:"我的备注",point:"119.939703|30.055173",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ];
+    //创建marker
+    function addMarker(){
+        for(var i=0;i<markerArr.length;i++){
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0,p1);
+			var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point,{icon:iconImg});
+			var iw = createInfoWindow(i);
+			var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+			marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                        borderColor:"#808080",
+                        color:"#333",
+                        cursor:"pointer"
+            });
+			
+			(function(){
+				var index = i;
+				var _iw = createInfoWindow(i);
+				var _marker = marker;
+				_marker.addEventListener("click",function(){
+				    this.openInfoWindow(_iw);
+			    });
+			    _iw.addEventListener("open",function(){
+				    _marker.getLabel().hide();
+			    })
+			    _iw.addEventListener("close",function(){
+				    _marker.getLabel().show();
+			    })
+				label.addEventListener("click",function(){
+				    _marker.openInfoWindow(_iw);
+			    })
+				if(!!json.isOpen){
+					label.hide();
+					_marker.openInfoWindow(_iw);
+				}
+			})()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i){
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json){
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        return icon;
+    }
+    
+    initMap();//创建和初始化地图
+</script>
+</html>

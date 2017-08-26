@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="address=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+	<title>支付-zz91再生网</title>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+    <style type="text/css">
+    body{
+    	height: auto;
+    }
+    .aui-pull-left{
+    	line-height:50px
+    }
+    .paytitle{
+    	background-color:#ebebeb;
+    	line-height:30px;
+    	font-size:14px;
+    	text-align:left;
+    	margin-top:10px;
+    	padding-left:20px;
+    }
+    
+    .moery-type{
+		padding-left:8px;
+		overflow: hidden;
+	}
+	.moery-type div{
+		float: left;
+		width: 50%;
+		padding-right: 8px;
+		margin-bottom: 8px;
+	}
+	.moery-type div span{
+		display: block;
+		background-color: #f2f2f2;
+		text-align: center;
+		color: #000;
+		height: 35px;
+		line-height: 35px;
+	}
+	.moery-type .on{
+		background-color: #01ba2e;
+		color: #fff;
+	}
+    </style>
+</head>
+<body>
+	<header class="aui-bar aui-bar-nav aui-bar-primary">
+    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+	        <span class="aui-iconfont aui-icon-left"></span>
+	    </a>
+	    <div class="aui-title">支付金额</div>
+	    <a class="aui-pull-right" href="/">
+	        <span class="aui-iconfont aui-icon-home"></span>
+	    </a>
+	</header>
+	{%if not money%}
+	<div class="buy-list clear" style="margin-bottom:10px;margin-top: 20px">
+		<span style="border-left:solid 3px #01ba2e;padding-left:10px;margin-left:10px;">选择支付金额</span>
+	</div>
+	{%endif%}
+	<div class="moery-type">
+		{%if money%}
+			<div style="width: 100%;margin-top: 30px;text-align: center;line-height: 35px;">应付金额：<span style="background: none;color: red;font-size: 30px;text-align: center;">￥ {{money}}.00</span></div>
+		{%else%}
+			{%for d in moerylist%}
+			<div><span>{{d}}元</span></div>
+			{%endfor%}
+			<div><span class="aui-iconfont aui-icon-add">添加</span></div>
+		{%endif%}
+	</div>
+	<div style="padding: 20px;"><a class="aui-btn aui-btn-block aui-btn-success chongzhi">确定支付</a></div>
+	<div style="display: none;">
+		<form action="/zz91pay.html" method="post" name="paysubmit" id="paysubmit">
+			<input type="hidden" name="subject" id="subject" value="手机钱包充值" />
+			<input type="hidden" name="mobile" id="mobile" value="{{mobile}}" />
+			<input type="hidden" name="contact" id="contact" value="{{contact}}" />
+			<input type="hidden" name="payreturn_url" id="payreturn_url" value="{{backurl}}" />
+			<input type="hidden" name="paytype" id="paytype" value="{{paytype}}" />
+			<input type="hidden" name="buyer_id" id="buyer_id" value="{{buyer_id}}" />
+			<input type="hidden" name="total_fee" id="paymoney" value="{{paymoney}}" />
+			<input name="pay" type="submit" value="{{paymoney}}元" style="font-size:18px; font-weight:bold;background:#009e47;color:white;width:100%;height:100%" />
+		</form>
+	</div>
+	{%if not money%}
+	<div style="padding: 20px;color: #D15F00;">注：再生钱包充值后只能在ZZ91再生网上消费使用，不支持提现和退款</div>
+	{%endif%}
+	<div class="buy-list clear" style="margin-bottom:10px;margin-top: 20px">
+		<span style="border-left:solid 3px #01ba2e;padding-left:10px;margin-left:10px;">其他人工支付方式</span>
+	</div>
+	<div class="resultTip ac" style="line-height: 30px;padding: 20px;">
+	    
+
+		<p class="part_item_p3">1、您可以将钱打入下面账户后。</p>
+		<p class="part_item_p2">2、然后拨打我们的服务电话：<a href="tel:0571-56635663">0571-56635663</a> </p>
+		<p class="part_item_p2" style="color:#F00">当前最低支付金额为{{paymoney}}元<br /></p>
+		<p class="part_item_p2">&nbsp;</p>
+		<p class="part_item_p2" style="color:gray">支付宝帐户</p>
+		<p class="part_item_p2">ZZ91支付宝帐号：zhifu@asto-inc.com</p>
+
+		<p class="part_item_p2">&nbsp;</p>
+		<p class="part_item_p2" style="color:gray">银行账户</p>
+		<p class="part_item_p2">开户银行：中国农业银行杭州九堡支行 (对公账号)</p>
+		<p class="part_item_p2">收款人：杭州阿思拓信息科技有限公司</p>
+		<p class="part_item_p2">账号：19-033301040023239</p>
+		<p class="part_item_p2">&nbsp;</p>
+
+		<p class="part_item_p2">开户银行：中国农业银行杭州分行吴山支行 </p>
+		<p class="part_item_p2">收款人：宋丹丹 </p>
+		<p class="part_item_p2"> 帐 号：62284 8032 08059 07716</p>
+
+		<p class="part_item_p2">&nbsp;</p>
+		<p class="part_item_p2">开户银行：中国工商银行杭州解放路支行河坊街储蓄所 </p>
+		<p class="part_item_p2">收款人：宋丹丹 </p>
+		<p class="part_item_p2"> 帐 号：6222 0212 0200 6092 242</p>
+
+		<p class="part_item_p2">&nbsp;</p>
+		<p class="part_item_p2">开户银行：中国建设银行杭州吴山支行</p>
+		<p class="part_item_p2">收款人：宋丹丹 </p>
+		<p class="part_item_p2"> 帐 号：6227 0015 4026 0100 125</p>
+
+		<p class="part_item_p2">&nbsp;</p>
+		<p class="part_item_p2">开户银行：中国银行杭州庆春支行涌金支行</p>
+		<p class="part_item_p2">收款人：宋丹丹 </p>
+		<p class="part_item_p2"> 帐 号：4563 5113 0011 4270 118</p>
+
+		<p class="part_item_p2">&nbsp;</p>
+		<p class="part_item_p2">开户银行：招商银行杭州分行解放支行</p>
+		<p class="part_item_p2">收款人：宋丹丹 </p>
+		<p class="part_item_p2"> 帐 号：6225 8857 1624 6103</p>
+
+		<!--<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：上海浦东发展银行杭州分行</p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：6225 2102 0283 3233</p>-->
+
+		<!--<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：中信银行杭州分行营业部</p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：6226 9008 0697 5773</p>
+				
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：中国民生银行杭州涌金支行</p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：6226 2277 8006 4188</p>
+				
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：交通银行东新路支行</p>
+				<p class="part_item_p2">收款人：宋丹 丹 </p>
+				<p class="part_item_p2"> 帐 号：6222 6001 7000 8509 266</p>-->
+
+		<p class="part_item_p2">&nbsp;</p>
+		<p class="part_item_p2">开户银行：杭州联合农村商业银行股份有限公司九堡支(对公账号)</p>
+		<p class="part_item_p2">收款人：杭州阿思拓信息科技有限公司 </p>
+		<p class="part_item_p2"> 帐 号：2010 0007 1327 065</p>
+
+		<p class="part_item_p2">&nbsp;</p>
+		<p class="part_item_p2">开户银行：杭州联合农村商业银行股份有限公司吴山支行</p>
+		<p class="part_item_p2">收款人：宋丹丹 </p>
+		<p class="part_item_p2"> 帐 号：6228 5801 9907 4741 496</p>
+
+		<p class="part_item_p2">&nbsp;</p>
+		<p class="part_item_p2">开户银行：中国邮政储蓄银行南星桥支行</p>
+		<p class="part_item_p2">收款人：宋丹丹 </p>
+		<p class="part_item_p2"> 帐 号：6210 9833 1000 3472 316</p>
+	</div>
+</body>
+<script type="text/javascript">
+$(function(){
+	var maxprice={{maxprice}};
+    $("#paymoney").val({{maxprice}});
+    $(".moery-type").find("span").eq(0).addClass("on");
+	$(".moery-type").on("click", "span",function() {
+		var money=$(this).text();
+		var self=$(this);
+		if (money=="添加"){
+			layer.prompt({
+				title:"请输入金额，必须大于"+maxprice,
+			    type:'number',
+			}, function(text, index){
+			    if( text ){
+		    		if(!isNaN(text)){
+		    			if (parseInt(text)>parseInt(maxprice)){
+		    				$(".moery-type span").removeClass("on");
+					    	self.parent().before("<div><span class=on>"+text+"元</span></div>");
+					    	money=text;
+							$("#paymoney").val(money.replace("元",""));
+							layer.close(index);
+					    }else{
+					    	layer.msg("必须输入大于"+maxprice+"的金额！")
+					    }
+					}else{
+					   layer.msg("请输入数字");
+					}
+			    }else{
+			    }
+			});
+		}
+		$(".moery-type span").removeClass("on");
+		$(this).addClass("on");
+		$("#paymoney").val(money.replace("元",""));
+	});
+	$(".chongzhi").on("click", function() {
+		var money=$("#paymoney").val()
+		if (money=="添加"){
+			layer.msg("请选择充值金额！")
+		}else{
+			document.getElementById("paysubmit").submit();
+		}
+	})
+})
+</script>
+{%include 'aui/bottom.html'%}
+</html>

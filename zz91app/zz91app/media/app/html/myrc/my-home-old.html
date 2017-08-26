@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>管家</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/myrc/my-home.css"/>
+</head>
+<body>
+<div class="my-info-table">
+	<div class="my-info"><span class="login">点此登录</span></div>
+</div>
+<ul class="my-fit">
+	<li class="my-shouc" tapmode="index-nav-li">
+		<span><i></i>我的收藏</span>
+	</li>
+	<li class="my-xp" tapmode="index-nav-li">
+		<span><i></i>我的询盘</span>
+	</li>
+	<li class="my-infoout" tapmode="index-nav-li">
+		<span><i></i>发布供求</span>
+	</li>
+	<li class="my-buyin" tapmode="index-nav-li">
+		<span><i></i>我的供求</span>
+	</li>
+	<li class="my-hd" tapmode="index-nav-li">
+		<span><i></i>互动社区</span>
+	</li>
+	<li class="my-block" tapmode="index-nav-li">
+		<span><i></i>再生钱包</span>
+	</li>
+	<li class="my-tell" tapmode="index-nav-li">
+		<span><i></i>来电宝</span>
+	</li>
+	<li class="my-yaoqi" tapmode="index-nav-li">
+		<span><i></i>邀请码</span>
+	</li>
+	<li class="my-revise" tapmode="index-nav-li">
+		<span><i></i>修改资料</span>
+	</li>
+	<li class="my-password" tapmode="index-nav-li">
+		<span><i></i>修改密码</span>
+	</li>
+	<li class="loginout" tapmode="index-nav-li">
+		<span><i></i>退出</span>
+	</li>
+</ul>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+	apiready = function () {
+		// UserInfo.clear();//清除登录
+		//登录判断
+		isLogin();
+		$(".loginout").on("click",function(){
+		    UserInfo.clear();
+		})
+		$(".login").on("click",function(){
+		    var pageParam = {
+		      wintitle:"登录再生网",
+		      type:"frm-login"
+		    };
+		    openWin("frm-login","../myrc/frm-login.html",pageParam);
+		})
+		$(".my-tell").on("click",function(){
+		    var pageParam = {
+		      wintitle:"来电宝",
+		      type:"call"
+		    };
+		    openWin("call","../myrc/call.html",pageParam);
+		})
+		$(".my-block").on("click",function(){
+		    var pageParam = {
+		      wintitle:"再生钱包",
+		      type:"burse"
+		    };
+		    if(UserInfo.has_login()){	//判断是否登录
+		    	openWin("burse","../myrc/burse.html",pageParam);
+		    }else{
+		    	pageParam.nextUrl = "widget://html/myrc/burse.html";
+		    	pageParam.winName = "burse";
+		    	openWin("frm-login","../myrc/frm-login.html",pageParam);
+		    }
+		});
+		$(".my-buyin").on("click",function(){
+		    var pageParam = {
+		     	wintitle:"我的供求",
+		      	type:"infomation-heart",
+		      	nav_list:[{"typename": "已经审核", "id": 1}, {"typename": "审核中", "id": 2}, {"typename": "未通过", "id": 3}, {"typename": "暂不发布", "id": 4}],
+          		frame_url:["../myrc/audit.html","../myrc/my-supply.html","../myrc/not-by.html","../myrc/notout.html"],
+          	  	topnumber:3
+		    };
+		    if(UserInfo.has_login()){	//判断是否登录
+		    	openWin("buyinout","widget://html/comm/infomation-heart.html",pageParam);
+		    }else{
+		    	pageParam.nextUrl = "widget://html/comm/infomation-heart.html";
+		    	pageParam.winName = "buyinout";
+		    	openWin("frm-login","../myrc/frm-login.html",pageParam);
+		    }
+		})
+		$(".my-shouc").on("click",function(){
+		    var pageParam = {
+		     	wintitle:"我的收藏",
+		      	type:"infomation-heart",
+		      	nav_list:[{"typename": "供求", "id": 1}, {"typename": "公司", "id": 2}, {"typename": "报价", "id": 3}, {"typename": "社区", "id": 4},{"typename": "资讯", "id": 5}],
+          		frame_url:["../myrc/house.html"],
+          	  	topnumber:4
+		    };
+		    if(UserInfo.has_login()){	//判断是否登录
+		    	openWin("infomation-heart-2","widget://html/comm/infomation-heart.html",pageParam);
+		    }else{
+		    	pageParam.nextUrl = "widget://html/comm/infomation-heart.html";
+		    	openWin("frm-login","../myrc/frm-login.html",pageParam);
+		    }
+		})
+		$(".my-xp").on("click",function(){
+		    var pageParam = {
+		     	wintitle:"我的询盘",
+		      	type:"infomation-heart",
+		      	nav_list:[{"typename": "收到留言", "id": 1}, {"typename": "发送的留言", "id": 2}],
+          		frame_url:["../myrc/liuyan-in.html","../myrc/liuyan-out.html"],
+          	  	topnumber:2
+		    };
+		    if(UserInfo.has_login()){	//判断是否登录
+		    	openWin("infomation-heart-2","widget://html/comm/infomation-heart.html",pageParam);
+		    }else{
+		    	pageParam.nextUrl = "widget://html/comm/infomation-heart.html";
+		    	pageParam.winName = "infomation-heart-2";
+		    	openWin("frm-login","../myrc/frm-login.html",pageParam);
+		    }
+		})
+		$(".my-hd").on("click",function(){
+		    var pageParam = {
+		     	wintitle:"我的社区",
+		      	type:"infomation-heart",
+		      	nav_list:[{"typename": "消息中心", "id": 1}, {"typename": "我的提问", "id": 2},{"typename": "我的回复", "id": 3}],
+          		frame_url:["../myrc/shequ-xx.html","../myrc/shequ-tw.html","../myrc/shequ-hf.html"],
+          	  	topnumber:3
+		    };
+		    if(UserInfo.has_login()){	//判断是否登录
+		    	openWin("infomation-heart-2","widget://html/comm/infomation-heart.html",pageParam);
+		    }else{
+		    	pageParam.nextUrl = "widget://html/comm/infomation-heart.html";
+		    	pageParam.winName = "infomation-heart-2";
+		    	openWin("frm-login","../myrc/frm-login.html",pageParam);
+		    }
+		})
+		$(".my-infoout").on("click",function(){
+		    var pageParam = {
+		      wintitle:"发布信息",
+		      type:"issue-info",
+		      module:"发布"
+		    };
+		    openWin("issue-info","../myrc/issue-info.html",pageParam);
+		});
+		$(".my-password").on("click",function(){
+		    var pageParam = {
+		      wintitle:"修改密码",
+		      type:"pust-password",
+		    };
+		    openWin("pust-password","../myrc/pust-password.html",pageParam);
+		});
+		$(".my-yaoqi").on("click",function(){
+		    var pageParam = {
+		      wintitle:"邀请码",
+		      type:"invite-code",
+		    };
+		    openWin("invite-code","../myrc/invite-code.html",pageParam);
+		});
+		$(".my-revise").on("click",function(){
+		    var pageParam = {
+		      wintitle:"修改资料",
+		      type:"pust-data",
+		    };
+		    openWin("pust-data","../myrc/pust-data.html",pageParam);
+		});
+	}
+	function isLogin(){
+		var login_sn = UserInfo.has_login();
+		if(login_sn){
+			$(".login").hide();
+			var contact = UserInfo.contactName();
+			$(".my-info").text("您好，"+ contact +",欢迎登录生意管家！")
+		}
+	}
+</script>
+</html>

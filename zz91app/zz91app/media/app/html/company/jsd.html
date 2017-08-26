@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>集散地</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/trade/choice.css"/>
+    <style>
+    	html, body {
+            background: transparent;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+    		overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div>
+	<ul class="type-small small-area" style="background-color:#fff;border-top:none;overflow: auto;position: absolute;bottom:80px;width:100%;top:0px;">
+		<li>
+			<span style="width:100%;text-align:left;font-weight:bold;padding-left:20px">废金属</span>
+		</li>
+		<li>
+			<span type="1">广东南海</span>
+			<span type="1">浙江永康</span>
+			<span type="1">河南长葛</span>
+		</li>
+		<li>
+			<span type="1">湖南汨罗</span>
+			<span type="1">宁波镇海</span>
+			<span type="1">浙江台州</span>
+		</li>
+		<li>
+			<span type="1">天津子牙</span>
+			<span type="1">山东临沂</span>
+			<span type="1">山东聊城</span>
+		</li>
+		<li>
+			<span type="1">江苏太仓</span>
+			<span type="1">天津静海</span>
+			<span type="1">辽宁大石桥</span>
+		</li>
+		<li>
+			<span type="1">河北邢台</span>
+			<span type="1">安徽界首</span>
+			<span type="1">四川新津</span>
+		</li>
+		<li>
+			<span type="1">福建全通</span>
+			<span type="1">湖南郴州</span>
+			<span type="1"></span>
+		</li>
+		<li>
+			<span style="width:100%;text-align:left;font-weight:bold;padding-left:20px">废塑料</span>
+		</li>
+		<li>
+			<span type="2">广东南海</span>
+			<span type="2">广东顺德</span>
+			<span type="2">汕头贵屿</span>
+		</li>
+		<li>
+			<span type="2">山东临沂</span>
+			<span type="2">山东莱州</span>
+			<span type="2">浙江温州</span>
+		</li>
+		<li>
+			<span type="2">烟台龙口</span>
+			<span type="2">浙江慈溪</span>
+			<span type="2" title="余姚">余姚塑料城</span>
+		</li>
+		<li>
+			<span type="2">浙江台州</span>
+			<span type="2">金华东阳</span>
+			<span type="2">江苏徐州</span>
+		</li>
+		<li>
+			<span type="2">江苏兴化</span>
+			<span type="2">江苏太仓</span>
+			<span type="2">江苏宿迁</span>
+		</li>
+		<li>
+			<span type="2">河北文安</span>
+			<span type="2">河北定州</span>
+			<span type="2">湖南汨罗</span>
+		</li>
+		<li>
+			<span type="2">安徽五河</span>
+			<span type="2">河南安阳</span>
+			<span type="2">河南长葛</span>
+		</li>
+		<li>
+			<span style="width:100%;text-align:left;font-weight:bold;padding-left:20px">二手设备</span>
+		</li>
+		<li>
+			<span type="3">广东深圳</span>
+			<span type="3">江苏徐州</span>
+			<span type="3">浙江台州</span>
+		</li>
+		<li>
+			<span type="3">广西南宁</span>
+			<span type="3">河北廊坊</span>
+			<span></span>
+		</li>
+	</ul>
+	<div style="position: absolute;bottom:0px;height:80px;width:100%" onclick="closeselect()"></div>
+</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+	function closeselect(){
+		api.execScript({
+			name : 'company-list',
+			script : "keybackFun('1')"
+		});
+		api.closeFrame();
+	}
+	apiready = function(){
+		var $body = $api.dom('body');
+		$api.addEvt($body, 'click', function(e){
+	        if(e.target == $body){
+	            closeselect();
+	        }else{
+	            e.stopPropagation();
+	        }
+	    });
+	    $(".small-area span").on("click",function(){
+	    	closeselect();
+	    	var k;
+	    	if ($(this).title){
+	    		k=$(this).attr("title");
+	    	}else{
+	    		k=$(this).text()
+	    	}
+	    	var t=$(this).attr("type")
+	    	if (t=="1"){
+	    		l="废金属"
+	    	}
+	    	if (t=="2"){
+	    		l="废塑料"
+	    	}
+	    	if (t=="3"){
+	    		l="二手设备"
+	    	}
+			api.execScript({
+				name : 'company-list',
+				frameName : 'company-list_',
+				script : "searchjsd('"+l+"','"+k+"')"
+			});
+		})
+	};
+</script>
+</html>

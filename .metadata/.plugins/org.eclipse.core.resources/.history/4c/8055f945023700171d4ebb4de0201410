@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>搜索</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<style>
+	    	.aui-list-view:after {
+	  			border-top: 0px solid #c8c7cc;
+			}
+	    </style>
+	</head>
+	<body>
+		<div class="aui-searchbar-wrap focus" style="background-color: #01BA2E;color: fff">
+	        <a class="aui-pull-left backicon" onclick="api.closeWin();" style="margin-right: 10px;margin-left: 10px;color: #fff">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+	        <div class="aui-searchbar aui-border-radius" tapmode >
+	            <i class="aui-iconfont aui-icon-search"></i>
+	            <div class="aui-searchbar-text">输入你感兴趣的关键词</div>
+	            <div class="aui-searchbar-input">
+	            	<form action="javascript:search();">
+	            	<input type="text" placeholder="" id="search-input">
+	            	</form>
+	            </div>
+	            <i class="aui-iconfont aui-icon-roundclosefill clearinputcontent" style="display: block;margin-right: 10px" tapmode ></i>
+	        </div>
+	        <div class="aui-searchbar-cancel searchbotton" tapmode style="color: #fff">搜索</div>
+	    </div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript">
+		
+		var UIInput;
+		var UIInputid=1;
+		var type;
+		// 完成首页初始化
+		apiready = function() {
+			changeserverurl();
+			api.parseTapmode();
+			type = api.pageParam.type;
+			api.openFrame({
+				name : 'search_body',
+				url : './search_body.html',
+				rect : {
+					x : 0,
+					y : $(".aui-searchbar-wrap").height(),
+					w : 'auto',
+					h : 'auto'
+				},
+				pageParam : api.pageParam,
+				bounces : false,
+				delay : 200
+			});
+			openuiinput();
+			$(".clearinputcontent").on("click",function(){
+				//alert(1)
+				UIInput.value({
+					id:UIInputid,
+				    msg: ''
+				});
+			});
+			
+			//document.getElementById("keywords").focus();
+			$(".searchbotton").on("click", function() {
+				//alert(1)
+				UIInput.value({id:UIInputid},function(ret, err) {
+				    if (ret) {
+				    	if (ret.msg==""){
+				    		zzalert("请输入搜索内容！")
+				    		return;
+				    	}
+				    	var keywords = ret.msg;
+				    	UIInput.close({id:UIInputid});
+						
+				    	//供求搜索
+						if (!type) {
+							var pageParam = {
+								type : "trade-list",
+								label_hex : keywords,
+								label : keywords
+							};
+							type== "trade-list";
+							openWin("trade-list", "../trade/trade-list.html", pageParam);
+							//return;
+						}else{
+							if (type== "trade-list" || type=="buypage" || type=='salepage') {
+								var tradetype='0';
+								if (type=='buypage'){
+									tradetype='1'
+								}
+								if (type=='salepage'){
+									tradetype='2'
+								}
+								var pageParam = {
+									type : "trade-list",
+									label_hex : keywords,
+									label : keywords,
+									tradetype:tradetype
+								};
+								openWin("trade-list", "../trade/trade-list.html", pageParam);
+								api.execScript({
+									name : 'trade-list',
+									frameName : 'trade-list_',
+									script : "keywordssearch('" + keywords + "')"
+								});
+							}
+						}
+						//行情报价搜索
+						if (type== "offer-list" || type=='price') {
+							var pageParam = {
+								type : "offer-list",
+								keywords : keywords
+							};
+							openWin("offer-list", "../price/offer-list.html", pageParam);
+							api.execScript({
+								name : 'offer-list',
+								frameName : 'offer-list_',
+								script : "searchprice('" + keywords + "')"
+							});
+						}
+						//公司搜索
+						if (type== "company-list") {
+							var pageParam = {
+								type : "company-list",
+								keywords : keywords
+							};
+							api.execScript({
+								name : 'company-list',
+								frameName : 'company-list_',
+								script : "searchkeywords('" + keywords + "')"
+							});
+						}
+						//厂家直购搜索
+						if (type== "vender") {
+							var pageParam = {
+								type : "vender",
+								keywords : keywords,
+								showbottom : 1
+							};
+							openWin("vender", "../zhigou/vender.html", pageParam);
+							api.execScript({
+								name : 'vender',
+								frameName : 'vender_',
+								script : "searchkeywords('" + keywords + "')"
+							});
+						}
+						//资讯搜索
+						
+						if (type== "infomation-heartnews") {
+							var pageParam = {
+								type : "vender",
+								keywords : keywords,
+								showbottom : 1
+							};
+							openWin("vender", "../zhigou/vender.html", pageParam);
+							api.execScript({
+								name : 'vender',
+								frameName : 'vender_',
+								script : "searchkeywords('" + keywords + "')"
+							});
+						}
+						//互助社区搜索
+						//zzalert(type)
+						if (type== "community" || type=='huzhu-list' || type=='tradequan') {
+							var pageParam = {
+								type : "huzhu-list",
+								keywords : keywords
+							};
+							openWin("huzhu-list", "../huzhu/hudong-list.html", pageParam);
+							api.execScript({
+								name : 'huzhu-list',
+								frameName : 'huzhu-list_',
+								script : "keywordssearch('" + keywords + "')"
+							});
+						}
+						
+						var data={
+					    	keywords:keywords,
+					    	ktype:type,
+					    }
+					    zzappajax("get",hosturl+"keywords/savekeywords.html",data,function(){
+					    	
+					    },function(){
+					    })
+					    api.closeWin();
+				    } else {
+				        //alert(JSON.stringify(err));
+				    }
+				    
+					
+				});
+				
+				
+			})
+		};
+		function openuiinput(){
+			UIInput = api.require('UIInput');
+			var type = api.pageParam.type;
+			UIInput.open({
+			    rect: {
+			        x: $(".backicon").width()+50,
+			        y: 15,
+			        w: $("#search-input").width(),
+			        h: 20
+			    },
+			    styles: {
+			        bgColor: '#fff',
+			        size: 14,
+			        color: '#000',
+			        placeholder: {
+			            color: '#ccc'
+			        }
+			    },
+			    autoFocus: true,
+			    maxRows: 1,
+			    placeholder: '输入你感兴趣的关键词',
+			    keyboardType: 'default',
+			    fixedOn: api.frameName
+			}, function(ret, err) {
+			
+			    if (ret) {
+			        //alert(JSON.stringify(ret));
+			        UIInputid=ret.id;
+			        if (ret.status==true){
+			        	if (ret.eventType=="change"){
+			        		//alert(2)
+					        UIInput.value({
+					        id:UIInputid
+					        },function(ret1, err) {
+							    if (ret1) {
+							    	if (ret1.status==true && ret1.msg!=""){
+							    		api.execScript({
+											frameName : 'search_body',
+											script : "searchtis('" + ret1.msg + "')"
+										});
+							    	}
+							        //alert(JSON.stringify(ret1));
+							    } else {
+							        //alert(JSON.stringify(err));
+							    }
+							});
+						}
+					}
+			    } else {
+			        //alert(JSON.stringify(err));
+			    }
+			});
+			
+		}
+
+		function voiceSearch() {
+			var obj = api.require('speechRecognizer');
+			api.toast({
+				msg : "语音识别开始，请说话",
+				duration : 1000,
+				location : "middle"
+			});
+			obj.record({
+			}, function(ret, err) {
+				if (ret.status) {
+					// ret.wordStr;
+					api.alert({
+						title : "识别结果",
+						msg : ret.wordStr
+					})
+					obj.stopRecord();
+				}
+			});
+		}
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

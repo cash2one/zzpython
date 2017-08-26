@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>废塑料黄页_废金属黄页_废料商情_废纸黄页-中国再生资源黄页大全</title>
+	<meta name="keywords" content="废塑料黄页,废金属黄页,废纸黄页">
+	<meta name="description" content="中国再生资源商务大全,是ZZ91再生网独家发行的废料黄页全集，其中包括废塑料黄页,废金属黄页,废纸黄页等优质企业名录。覆盖全国各大重点废料集散地,再生资源园区,企业商家;再生资源行业唯一一本专属废料商人的'生意宝典'.">
+	<link rel="stylesheet" href="http://subject.zz91.com/huangye2013/css/style.css">
+	<link rel="stylesheet" href="http://subject.zz91.com/comm/comm.css"/>
+	<link rel="stylesheet" href="http://subject.zz91.com/comm/facebox.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="http://subject.zz91.com/comm/css/jquery.alert.css"/>
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="http://subject.zz91.com/comm/js/jquery.easydrag.js"></script>
+    <script type="text/javascript" src="http://subject.zz91.com/comm/js/jquery.alert.js"></script>
+    
+    
+	<script src="http://subject.zz91.com/comm/facebox.js"></script>
+    <script src="http://subject.zz91.com/comm/checkForm.js"></script>
+    <script>
+		function popwindows()
+		{
+			jIframe('/huangye2013/baoming/', '在线报名','550','300');
+			
+		}
+	</script>
+</head>
+<body>
+{%include 'html/comm/top.html'%}
+<div class="cont">
+<div class="header wrapper">
+	<a href="javascript:popwindows()" class="join" >立即订阅</a>
+</div>
+<div class="wrapper">
+	<div class="title shadow"><img src="../images/title0.png" height="69" width="916" alt="往届火爆热销现场"></div>
+	<div class="contents carousel">
+		<img src="../images/p0.png" height="186" width="881" alt="">
+	</div>
+</div>
+<div class="wrapper">
+	<div class="title shadow"><img src="../images/title1.png" height="69" width="916" alt="往届火爆热销现场"></div>
+	<div class="contents carousel" id="Js_carousel">
+		<div class="container">
+			<ul class="clearfix">
+				<li><img src="../images/pics/1.jpg" height="153" width="230" alt=""></li>
+				<li><img src="../images/pics/2.jpg" height="153" width="230" alt=""></li>
+				<li><img src="../images/pics/3.jpg" height="153" width="230" alt=""></li>
+				<li><img src="../images/pics/4.jpg" height="153" width="230" alt=""></li>
+				<li><img src="../images/pics/5.jpg" height="153" width="230" alt=""></li>
+				<li><img src="../images/pics/6.jpg" height="153" width="230" alt=""></li>
+				<li><img src="../images/pics/7.jpg" height="153" width="230" alt=""></li>
+				<li><img src="../images/pics/8.jpg" height="153" width="230" alt=""></li>
+			</ul>
+		</div>
+		<div class="controls">
+			<span class="prev">prev</span>
+			<span class="next">next</span>
+		</div>
+	</div>
+</div>
+<div class="wrapper mt">
+	<div class="title"><img src="../images/title2.png" height="69" width="916" alt="《中国再生资源商务大全》演变"></div>
+	<div class="contents case">
+		<img src="../images/p1.jpg" height="284" width="848" alt="">
+	</div>
+</div>
+<div class="wrapper mt">
+	<div class="title"><img src="../images/title3.png" height="69" width="916" alt="经典案例"></div>
+	<div class="contents case"><img src="../images/p2.jpg" height="247" width="840" alt=""></div>
+</div>
+<!--<div class="wrapper mt">
+  <div class="contents case"><img src="../images/bj.jpg" alt=""></div>
+</div>-->
+{% include 'html/comm/buttom.html' %}
+</div>
+
+<script>
+//jQuery("#Js_join").facebox();
+carousel("Js_carousel");
+function carousel(el){
+	var doc = document,
+		target = typeof el === "object" ? el : doc.getElementById(el),
+		container = target.getElementsByTagName("div")[0],
+		ul = target.getElementsByTagName("ul")[0],
+		li = target.getElementsByTagName("li"),
+		controls = target.getElementsByTagName("div")[1],
+		num = li.length,
+		liMarginLeft = parseInt((li[0].currentStyle? li[0].currentStyle : window.getComputedStyle(li[0], null)).marginLeft),
+		liWidth = li[0].offsetWidth + 2 * liMarginLeft,
+		frag = doc.createDocumentFragment(),
+		direction = 1,
+		delt,
+		step;
+
+	ul.style.width = liWidth * num * 2 + "px";
+	for (var i = 0; i < num; i++) {
+		frag.appendChild(li[i].cloneNode(true));
+	}
+	ul.appendChild(frag);
+
+	ul.auto = setInterval(function(){
+		move(liWidth);
+	}, 3000);
+
+	if (doc.addEventListener) {
+		controls.addEventListener("click", function(e){
+			doMove(e.target.className);
+		}, false);
+		target.addEventListener("mouseover", function(){
+			clearInterval(ul.auto);
+		}, false);
+		target.addEventListener("mouseout", function(){
+			ul.auto = setInterval(function(){
+				move(liWidth);
+			}, 3000);
+		}, false);
+	} else {
+		controls.attachEvent("onclick", function(e){
+			doMove(e.srcElement.className)
+		});
+		target.attachEvent("onmouseover", function(){
+			clearInterval(ul.auto);
+		});
+		target.attachEvent("onmouseout", function(){
+			ul.auto = setInterval(function(){
+				move(liWidth);
+			}, 3000);
+		});
+	}
+
+	function doMove(className){
+		if (className === "prev") {
+			direction = -1;
+		} else if (className === "next") {
+			direction = 1;
+		}	
+		move(liWidth);
+	}
+	function move(distance){
+		clearTimeout(ul.loop);
+		delt = (container.scrollLeft - distance * direction) % liWidth;
+		distance = distance + delt * direction;
+		step = Math.ceil(distance / 20);
+		if (distance !== 0) {
+			checkBoundry();
+			container.scrollLeft = container.scrollLeft - direction * step;
+			distance = distance - step;
+			ul.loop = setTimeout(function(){
+				move(distance);
+			}, 16);
+		} 
+	}
+	function checkBoundry() {
+		if (direction === 1 && container.scrollLeft === 0) {
+			container.scrollLeft = num * liWidth;
+		} else if (direction === -1 && container.scrollLeft === num * liWidth) {
+			container.scrollLeft = 0;
+		}
+	}
+}
+document.getElementById("title").value = "再生资源黄页报名";
+</script>
+</body>
+</html>

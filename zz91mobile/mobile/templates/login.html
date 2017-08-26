@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/offer.css" />
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent" style="margin:0 0px;padding:0px;">
+	<div class="login">
+<ul class="bread Fix">
+    <li><a href="/">首页</a></li>
+    <li class="li-bread c9"><span>登录</span></li>
+</ul>
+		
+<form method="post" action="/loginof/">
+    {%if error%}
+    <div class="resultTip mt10 mb10 ac">
+        <span>{{error}}</span>
+    </div>
+    {%endif%}
+    {%if tourlstr%}
+    <div class="resultTip mb10 ac">
+        <span style="color:#FF0000;">{{tourlstr}}</span>
+    </div>
+    {%endif%}
+    <p class="p15">会员名/邮箱/手机：</p>
+    <p class="ac"><input id="username" class="input2 wp90" name="username" value="{{username}}" type="text" placeholder="请输入会员名/邮箱/手机"></p>
+    <p class="p15">密码：</p>
+    <p class="ac"><input id="pwd" class="input2 wp90" name="pwd" value="" type="password"></p>
+    <input type="hidden" name="action" value="member/login_handler">
+    <input type="hidden" name="done" value="{{done}}">
+    <p class="ac p15">
+        <input type="submit" class="commonBtn btn3" style="width:100px" name="event_submit_do_login" value="登 录">
+        <input type="button" class="commonBtn btn3" style="width:100px" name="register" value="免费注册" onClick="window.location.href='/register/'">
+        <br /><br />
+        <a href="/weixin/forgetpasswd.html">找回密码</a>
+    </p>
+</form>	
+</div>
+</div>
+
+{%include 'bottom_myrc.html'%}
+</div>
+</body>
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>ZZ91再生网-产业带</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<style>
+			body{
+				background: #fff;
+			}
+			.aui-bar{
+				position: fixed;
+				top: 0px;
+				z-index: 999;
+			}
+			.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+			.clearfix{height:1%}
+			.clearfix{display:block}
+			a{
+				color:#333
+			}
+			.floatpage{
+				position: fixed;
+				bottom:0px;
+				width:100%;
+				height:54px;
+			}
+			.popsearch{
+		    	padding: 10px;
+		    	height: 100%;
+		    	position: fixed;
+		    	width: 100%;
+		    	top: 0px;
+		    	background-color: #F4F5F7;
+		    	z-index: 9999;
+		    	display: none;
+		    }
+		    .rx-nav{
+		    	position: fixed;
+		    	z-index: 999;
+		    	top: 45px;
+		    	background: #f5f5f5;
+		    	width: 100%;
+		    	height: 25px;
+		    	line-height: 25px;
+		    }
+		    .number{
+		    	color: #0667AC;
+		    }
+		    .text-red{
+		    	color: #f00;
+		    }
+		    .text-99{
+		    	color: #999;
+		    }
+		    .gh-box{
+		    	height: 30px;
+		    	background: #f5f5f5;
+		    	line-height: 30px;
+		    }
+		    .aui-btn{
+		    	height: 30px;
+		    	line-height: 30px;
+	    	    padding: 0 20px;
+	    	    border-radius: 0px;
+		    }
+		    .gh-btn{
+		    	background: #ff7800;
+		    	border: 1px solid #ff7800;
+		    	color: #fff;
+		    }
+		    .zg-nav{
+		    	bottom: 54px;
+		    	background: #f5f5f5;
+		    	position: fixed;
+				z-index: 999;
+		    }
+		    .aui-bar-btn-item{
+		    	border-color: #ebebeb;
+		    }
+		    .aui-bar-btn-item.aui-active{
+		    	background: #f5f5f5;
+		    	color: #f00;
+		    }
+		    .aui-list:after{
+		    	background-color: #fff;
+		    }
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <a class="aui-pull-left" href="">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-title">厂家直购</div>
+		    <a class="aui-pull-right aui-btn aui-btn-outlined j_select" href="javascript:opensearch()">
+		        <span class="aui-iconfont aui-icon-search"></span>
+		    </a>
+		</header>
+		
+		<div class="topdiv" onclick="pagetotop();" style="bottom: 90px; display: none;"><span class="aui-iconfont aui-icon-top"></span></div>
+		
+		<div class="popsearch" style="display: none;">
+			<div class="aui-searchbar" id="search" style="margin: 0px;">
+		        <div class="aui-searchbar-input aui-border-radius" style="padding-left: 0px;">
+		            <i class="aui-iconfont aui-icon-search"></i>
+		            <input type="search" placeholder="请输入搜索内容" id="search-input">
+		            <div class="aui-searchbar-clear-btn">
+		                <i class="aui-iconfont aui-icon-close"></i>
+		            </div>
+		        </div>
+		    </div>
+		    <div style="width: 300px;margin: 0 auto;padding: 20px;">
+			    <div class="aui-btn aui-pull-left" onclick="closesearch()">取消</div>
+			    <div class="aui-btn aui-btn-success aui-pull-right searchbtn">搜索</div>
+		    </div>
+		    <div style="clear: both;"></div>
+		    <section class="nearseach">
+		        最近搜索：
+		        
+		        <a href="/news/?keywords=PP颗粒">PP颗粒</a>
+		        
+		        <a href="/news/?keywords=有色金属">有色金属</a>
+		        
+		        <a href="/news/?keywords=PP">PP</a>
+		        
+		        <a href="/news/?keywords=废钢铁">废钢铁</a>
+		        
+		        <a href="/news/?keywords=欧废">欧废</a>
+		        
+		        <a href="/news/?keywords=坯布面料">坯布面料</a>
+		        
+		        <a href="/news/?keywords=通用废塑料">通用废塑料</a>
+		        
+		        <a href="/news/?keywords=化纤">化纤</a>
+		        
+		    </section>
+		    <section class="nearseach">
+		        热门搜索：
+		        
+		        <a href="/news/?keywords=旧衣服">旧衣服</a>
+		        
+		        <a href="/news/?keywords=塑料颗粒">塑料颗粒</a>
+		        
+		        <a href="/news/?keywords=废旧电瓶价格">废旧电瓶价格</a>
+		        
+		        <a href="/news/?keywords=通用废塑料">通用废塑料</a>
+		        
+		        <a href="/news/?keywords=废旧轮胎">废旧轮胎</a>
+		        
+		        <a href="/news/?keywords=PE">PE</a>
+		        
+		        <a href="/news/?keywords=PP">PP</a>
+		        
+		        <a href="/news/?keywords=二手设备产品">二手设备产品</a>
+		        
+		        <a href="/news/?keywords=贵金属">贵金属</a>
+		        
+		        <a href="/news/?keywords=ABS">ABS</a>
+		        
+		    </section>
+		</div>
+		
+		<div class="rx-nav aui-padded-l-5">
+			<div class="aui-font-size-12 aui-pull-left">委托采购热线：<a href="" class="number">0571-56600066</a></div>	            
+	        <div class="aui-font-size-12 aui-pull-right text-99">周一到周五8:30到18:00</div>
+		</div>
+		<div style="height: 70px;"></div>
+		
+		<div class="aui-content aui-row aui-margin-b-15">
+		    <ul class="aui-list">
+		    	<li class="aui-row">
+		    		<div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10 aui-padded-l-5">
+		    			PVC药板料
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10">
+		    			分离
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			80吨/月
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">价格：</span>￥<span class="number">1000-2600</span>/吨
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">所在地：</span>廊坊
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">NO.</span><span class="number">1608023602</span>
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">颜色：</span>白色，透明
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">级别：</span>不限
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-99">发布时间：</span>1天
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-red">正在报价</span>
+			        </div>
+			        <div class="aui-col-xs-12">
+				        <div class="aui-col-xs-6 aui-font-size-12 gh-box  aui-padded-l-5">
+				        	<i class="aui-iconfont aui-icon-phone aui-text-success"></i><a href="" class="number aui-padded-r-5">0571-56630720</a>郑静
+				        </div>
+				        <div class="aui-col-xs-6 gh-box aui-padded-r-10">
+				        	<div class="aui-btn aui-btn-sm aui-font-size-12 aui-pull-right gh-btn">我要供货</div>
+				        </div>
+			        </div>
+		    	</li>
+		    	<li class="aui-row">
+		    		<div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10 aui-padded-l-5">
+		    			PVC药板料
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10">
+		    			分离
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			80吨/月
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">价格：</span>￥<span class="number">1000-2600</span>/吨
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">所在地：</span>廊坊
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">NO.</span><span class="number">1608023602</span>
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">颜色：</span>白色，透明
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">级别：</span>不限
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-99">发布时间：</span>1天
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-red">正在报价</span>
+			        </div>
+			        <div class="aui-col-xs-12">
+				        <div class="aui-col-xs-6 aui-font-size-12 gh-box  aui-padded-l-5">
+				        	<i class="aui-iconfont aui-icon-phone aui-text-success"></i><a href="" class="number aui-padded-r-5">0571-56630720</a>郑静
+				        </div>
+				        <div class="aui-col-xs-6 gh-box aui-padded-r-10">
+				        	<div class="aui-btn aui-btn-sm aui-font-size-12 aui-pull-right gh-btn">我要供货</div>
+				        </div>
+			        </div>
+		    	</li>
+		    	<li class="aui-row">
+		    		<div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10 aui-padded-l-5">
+		    			PVC药板料
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10">
+		    			分离
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			80吨/月
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">价格：</span>￥<span class="number">1000-2600</span>/吨
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">所在地：</span>廊坊
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">NO.</span><span class="number">1608023602</span>
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">颜色：</span>白色，透明
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">级别：</span>不限
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-99">发布时间：</span>1天
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-red">正在报价</span>
+			        </div>
+			        <div class="aui-col-xs-12">
+				        <div class="aui-col-xs-6 aui-font-size-12 gh-box  aui-padded-l-5">
+				        	<i class="aui-iconfont aui-icon-phone aui-text-success"></i><a href="" class="number aui-padded-r-5">0571-56630720</a>郑静
+				        </div>
+				        <div class="aui-col-xs-6 gh-box aui-padded-r-10">
+				        	<div class="aui-btn aui-btn-sm aui-font-size-12 aui-pull-right gh-btn">我要供货</div>
+				        </div>
+			        </div>
+		    	</li>
+		    	<li class="aui-row">
+		    		<div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10 aui-padded-l-5">
+		    			PVC药板料
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10">
+		    			分离
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			80吨/月
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">价格：</span>￥<span class="number">1000-2600</span>/吨
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">所在地：</span>廊坊
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">NO.</span><span class="number">1608023602</span>
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">颜色：</span>白色，透明
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">级别：</span>不限
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-99">发布时间：</span>1天
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-red">正在报价</span>
+			        </div>
+			        <div class="aui-col-xs-12">
+				        <div class="aui-col-xs-6 aui-font-size-12 gh-box  aui-padded-l-5">
+				        	<i class="aui-iconfont aui-icon-phone aui-text-success"></i><a href="" class="number aui-padded-r-5">0571-56630720</a>郑静
+				        </div>
+				        <div class="aui-col-xs-6 gh-box aui-padded-r-10">
+				        	<div class="aui-btn aui-btn-sm aui-font-size-12 aui-pull-right gh-btn">我要供货</div>
+				        </div>
+			        </div>
+		    	</li>
+		    	<li class="aui-row">
+		    		<div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10 aui-padded-l-5">
+		    			PVC药板料
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10">
+		    			分离
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			80吨/月
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">价格：</span>￥<span class="number">1000-2600</span>/吨
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">所在地：</span>廊坊
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">NO.</span><span class="number">1608023602</span>
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">颜色：</span>白色，透明
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">级别：</span>不限
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-99">发布时间：</span>1天
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-red">正在报价</span>
+			        </div>
+			        <div class="aui-col-xs-12">
+				        <div class="aui-col-xs-6 aui-font-size-12 gh-box  aui-padded-l-5">
+				        	<i class="aui-iconfont aui-icon-phone aui-text-success"></i><a href="" class="number aui-padded-r-5">0571-56630720</a>郑静
+				        </div>
+				        <div class="aui-col-xs-6 gh-box aui-padded-r-10">
+				        	<div class="aui-btn aui-btn-sm aui-font-size-12 aui-pull-right gh-btn">我要供货</div>
+				        </div>
+			        </div>
+		    	</li>
+		    	<li class="aui-row">
+		    		<div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10 aui-padded-l-5">
+		    			PVC药板料
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10">
+		    			分离
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			80吨/月
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">价格：</span>￥<span class="number">1000-2600</span>/吨
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">所在地：</span>廊坊
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">NO.</span><span class="number">1608023602</span>
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">颜色：</span>白色，透明
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">级别：</span>不限
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-99">发布时间：</span>1天
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-red">正在报价</span>
+			        </div>
+			        <div class="aui-col-xs-12">
+				        <div class="aui-col-xs-6 aui-font-size-12 gh-box  aui-padded-l-5">
+				        	<i class="aui-iconfont aui-icon-phone aui-text-success"></i><a href="" class="number aui-padded-r-5">0571-56630720</a>郑静
+				        </div>
+				        <div class="aui-col-xs-6 gh-box aui-padded-r-10">
+				        	<div class="aui-btn aui-btn-sm aui-font-size-12 aui-pull-right gh-btn">我要供货</div>
+				        </div>
+			        </div>
+		    	</li>
+		    	<li class="aui-row">
+		    		<div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10 aui-padded-l-5">
+		    			PVC药板料
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-14 aui-text-success aui-padded-t-10">
+		    			分离
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			80吨/月
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">价格：</span>￥<span class="number">1000-2600</span>/吨
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">所在地：</span>廊坊
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">NO.</span><span class="number">1608023602</span>
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-l-5">
+		    			<span class="text-99">颜色：</span>白色，透明
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5">
+		    			<span class="text-99">级别：</span>不限
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-99">发布时间：</span>1天
+			        </div>
+			        <div class="aui-col-xs-6 aui-font-size-12 aui-padded-t-5 aui-padded-b-5 aui-padded-l-5">
+		    			<span class="text-red">正在报价</span>
+			        </div>
+			        <div class="aui-col-xs-12">
+				        <div class="aui-col-xs-6 aui-font-size-12 gh-box  aui-padded-l-5">
+				        	<i class="aui-iconfont aui-icon-phone aui-text-success"></i><a href="" class="number aui-padded-r-5">0571-56630720</a>郑静
+				        </div>
+				        <div class="aui-col-xs-6 gh-box aui-padded-r-10">
+				        	<div class="aui-btn aui-btn-sm aui-font-size-12 aui-pull-right gh-btn">我要供货</div>
+				        </div>
+			        </div>
+		    	</li>
+		    </ul>
+		</div>
+		<div style="height: 80px;"></div>
+	
+		<div class="aui-bar-btn aui-bar-btn-full zg-nav">
+		    <a href="supplyPub.html" class="aui-bar-btn-item aui-active">免费发单</a>
+		    <a href="listmycaigou.html" class="aui-bar-btn-item">我的采购单</a>
+		    <a href="listmysupply.html" class="aui-bar-btn-item">我的供货单</a>
+		</div>
+		
+		<div class="floatpage">
+			<div class="page">
+				<ul>
+					{% if firstpage %}
+					<li class="page_prev">
+						<a href="?{{searchurl}}&page={{prvpage}}">上一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+					<li class="page_no">
+						<select onChange="window.location='?{{searchurl}}&page='+this.value">
+							<option>第{{page}}页</option>
+							<option value="1">首页</option>
+							{%for p in page_range%}
+							<option value="{{p.number}}">第{{p.number}}页</option>
+							{%endfor%}
+							<option value="{{lastpage}}">末页</option>
+						</select> /{{page_listcount}}页
+					</li>
+					{% if lastpage%}
+					<li class="page_next">
+						<a href="?{{searchurl}}&page={{nextpage}}">下一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+	function opensearch(){
+			$(".popsearch").show();
+			$("#search-input").focus();
+			document.getElementById("search-input").focus();
+	}
+	function closesearch(){
+			$(".popsearch").hide();
+	}
+
+	function pagetotop(){
+		$('body').animate( {scrollTop: 0}, 500);
+	}
+
+	var scroll = new auiScroll({
+        listen:true,
+        distance:200 //判断到达底部的距离，isToBottom为true
+    },function(ret){
+        if(ret.isToBottom){
+        	//alert(1)
+        	//getmoreinfo()
+            //document.getElementById("demo").textContent = "已到达底部";
+        }else{
+	        if (ret.scrollTop>50){
+	        	$(".closediv").fadeIn();
+	        }else{
+	        	$(".closediv").fadeOut();
+	        }
+	        if (ret.scrollTop>150){
+	        	$(".topdiv").fadeIn();
+	        }else{
+	        	$(".topdiv").fadeOut();
+	        }
+        }
+
+    });
+    
+</script>

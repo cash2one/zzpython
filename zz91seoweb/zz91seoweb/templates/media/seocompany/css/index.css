@@ -1,0 +1,82 @@
+@charset "utf-8";
+/* CSS Document */
+body
+{
+	background-image: url(../image/bg.jpg);	
+}
+/* 顶部 */
+.center{
+	width:960px;
+	margin:0 auto;
+}
+
+.compcaption
+{
+	height:80px;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #CCC;
+	background-image: url(../image/logo.gif);
+	background-repeat: no-repeat;
+	background-position: 10px;
+	padding-left: 80px;
+	background-color: #FFF;
+	margin-top:8px;
+}
+.compcaption h2
+{
+	font-size:22px;
+	line-height:50px;
+}
+
+.nav{ line-height:30px;}
+.nav span {float:left; width:60px}
+.nav h2{ font-size:12px; font-weight:normal}
+
+#left{
+	width:660px;
+	float:left;
+	
+}
+#left .cpzs{
+	height:275px;
+	border:1px solid #4489F0;
+	background-color: #FFF;
+}
+#left .title{
+	height:30px;
+	background-color: #75A8F4;
+}
+#left .title h2{width:100px;height:30px;line-height:30px;padding-left:10px;font-size:14px;color:#FFF;float:left; font-weight:bold}
+#left .title span{height:30px;float:right; width:60px;}
+#left .title span a{line-height:30px;font-size:14px;color:#FFF;text-decoration:none}
+#left .cpzs .conter{}
+#left .cpzs ul{width:660px;height:245px;}
+#left .cpzs ul li{width:120px;height:110px;padding:10px 0 0 40px;float:left;}
+#left .cpzs ul li span{width:120px;height:25px;display:block;text-align:center}
+#left .cpzs .img{width:118px;height:85px;border:1px solid #9abff7;background:#999}
+#left .cpzs .img img{
+	width:118px;
+	height:85px;
+	}
+
+#left .sjxx{border:1px solid #75A8F4;margin-top:10px;background-color: #FFF;}
+#left .sjxx .title,#left .cpzs .title{line-height:30px;color:#fff;padding-left:10px;font-size:14px;}
+#left .sjxx .conter h1{line-height:30px;font-size:16px;text-align:center; margin-top:20px; font-weight:bold}
+#left .sjxx .conter p{margin-left:20px;margin-right:20px;font-size:14px;color:#666; line-height:25px;}
+#left .sjxx .conter span{font-size:14px;color:#666}
+
+
+#right{width:287px;float:right}
+#right .info{
+	margin-top:10px;
+	border:1px solid #ffa95c;
+	background-color: #FFF;
+}
+#right .info .title{background:#ffa95c;color:#FFF;font-size:14px;line-height:30px; padding-left:10px}
+#right .info p{ margin:10px; line-height:25px;word-break: break-all;}
+#right .info ul{ margin:10px}
+#right .info ul li{ line-height:25px}
+#right .info ul li a{text-decoration:none;color:#000}
+#right .info ul li a:hover{color:#093}
+#right .info .caption{font-size:14px; line-height:25px; font-weight:normal; margin:10px}

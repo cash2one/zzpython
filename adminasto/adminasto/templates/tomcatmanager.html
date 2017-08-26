@@ -1,0 +1,85 @@
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+-->
+</style><form id="form1" name="form1" method="post" action="/tomcatadd/">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>测试地址：<a href="http://test_apps.zz91.com" target="_blank">http://test_apps.zz91.com</a> 门市部测试地址 <a href='http://test_apps.zz91.com/index767535.htm' target=_blank>http://test_apps.zz91.com/index767535.htm</a></td>
+  </tr>
+</table>
+<table width="100%" border=1>
+<tr><td>
+项目名<input name="title" type=text id="title" >
+</input></input> ip
+<input name="ip" type="text" id="ip" value="192.168.110.120" />
+tomcat端口
+<input name="tomcat_part" type="text" id="tomcat_part" size="5" />
+server端口
+<input name="server_part" type="text" id="server_part" size="5" />
+war包名称
+<input name="warname" type="text" id="warname" size="5" />
+apps名称
+<input name="appname" type="text" id="appname" size="5" />
+website
+<input name="website" type="text" id="website" size="15" />
+<input name="action" type="hidden" id="action" value="add" />
+<input type="submit" name="button" id="button" value="添加" />
+</td></tr>
+</table></form>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="30"><a href="?ip=192.168.110.120">192.168.110.120</a> | <a href="?ip=192.168.110.114">192.168.110.114</a> | <a href="?ip=192.168.110.116">192.168.110.116</a> | <a href="?ip=192.168.110.118">192.168.110.118</a> | <a href="?ip=192.168.110.130">192.168.110.130</a> | <a href="?ip=192.168.110.131">192.168.110.131</a></td>
+  </tr>
+  <tr>
+    <td height="30"><form id="form2" name="form2" method="get" action="">
+      项目名
+          <input type="text" name="title" id="title" />
+    IP
+    <input name="ip" type="text" id="ip" />
+    <input type="submit" name="button3" id="button3" value="搜索" />
+    </form></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#CCCCCC">FTP下项目名称</td>
+    <td bgcolor="#CCCCCC">test重启</td>
+    <td bgcolor="#CCCCCC">应用重启</td>
+    <td bgcolor="#CCCCCC">ip</td>
+    
+    <td bgcolor="#CCCCCC">tomcat端口</td>
+	<td bgcolor="#CCCCCC">server端口</td>
+	<td bgcolor="#CCCCCC">war包名</td>
+	<td bgcolor="#CCCCCC">apps名称</td>
+	<td bgcolor="#CCCCCC">website</td>
+	<td bgcolor="#CCCCCC">管理</td>
+	<td bgcolor="#CCCCCC">probe</td>
+    <td bgcolor="#CCCCCC">&nbsp;</td>
+    <td bgcolor="#CCCCCC">&nbsp;</td>
+  </tr>
+  {% for list in listall %}
+  <form id="form{{list.id}}" name="form{{list.id}}" method="post" action="/tomcatadd/">
+  <tr>
+    <td bgcolor="#FFFFFF">
+        <input type="text" name="title" id="title" value="{{list.title}}" />
+      <input type="hidden" name="id" id="id" value="{{list.id}}" />
+      <input name="action" type="hidden" id="action" value="edit" /></td>
+    <td bgcolor="#FFFFFF"><a href="/tomcatsave/?id={{list.id}}&action=start_test&ip={{sip}}">{{list.start_test}}</a></td>
+    <td bgcolor="#FFFFFF"><a href="/tomcatsave/?id={{list.id}}&action=start&ip={{sip}}">{{list.start}}</a></td>
+    <td bgcolor="#FFFFFF"><input name="ip" type="text" id="ip" value="{{list.ip}}" size="15" /></td>
+    <td bgcolor="#FFFFFF"><input name="tomcat_part" type="text" id="tomcat_part" value="{{list.tomcat_part}}" size="6" /></td>
+	<td bgcolor="#FFFFFF"><input name="server_part" type="text" id="server_part" value="{{list.server_part}}" size="6" /></td>
+	<td bgcolor="#FFFFFF"><input name="warname" type="text" id="warname" size="10" value="{{list.warname}}" /></td>
+	<td bgcolor="#FFFFFF"><input name="appname" type="text" id="appname" size="20" value="{{list.appname}}" /></td>
+	<td bgcolor="#FFFFFF"><input name="website" type="text" id="website" size="25" value="{{list.website}}" /></td>
+	<td bgcolor="#FFFFFF"><a href="http://china.zz91.com:{{list.server_part}}/manager/html" target="_blank">manager</a></td>
+	<td bgcolor="#FFFFFF">probe</td>
+    <td bgcolor="#FFFFFF"><input type="submit" name="button2" id="button2" value="修改" /></td>
+    <td bgcolor="#FFFFFF"><a href="/tomcatsave/?id={{list.id}}&action=del" onclick="return confirm('确实要删除吗？')">删除</a></td>
+  </tr>
+  </form>
+  {%endfor%}
+</table>

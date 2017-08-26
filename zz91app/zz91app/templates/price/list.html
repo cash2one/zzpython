@@ -1,0 +1,31 @@
+<style>
+.arrtop{display: block;}
+</style>
+<ul class="mui-table-view">
+    <form method="post" action="###">
+    	<span class="mui-table-view-cell" style="margin-top: 0px;display:block;padding-top: 0px;padding-bottom: 0px;border: 0px;background-image: none;">
+            <button class="mui-btn mui-btn-primary mui-icon mui-icon-search" onclick="zz91search(this.form,'/price/?keywords=','price')" type="button">搜报价</button>
+            <input type="search" id="searchtext" placeholder="请输入产品关键字" style="float: left;width: 73%; margin-top:15px ;" {%if keywords%}value="{{keywords}}"{%endif%}/>
+        </span>
+    </form>
+</ul>
+    {{categoryvalue1}}
+<ul class="mui-table-view">
+    {%if pricelist%}
+    {%for list in pricelist%}
+    <li class="mui-table-view-cell">
+        <a class="mui-navigate-right" href="/priceviews/?id={{list.id}}{%if list.typeid%}&category_id={{list.typeid}}{%endif%}{%if list.assistid%}&assist_id={{list.assistid}}{%endif%}{%if keywords%}&keywords={{keywords_hex}}{%endif%}">
+            {{list.title}}
+        </a>
+    </li>
+    {%endfor%}
+    <div id=pulldiv class='pulldiv' onclick=loadmorep(this,'/pricemore/?category_id={{category_id}}&keywords={{keywords_hex}}') title="/pricemore/?category_id={{category_id}}&keywords={{keywords_hex}}"><span class='mui-icon mui-icon-down'></span><span>点此加载更多</span></div>
+    {%else%}
+    <li class="mui-table-view-cell">
+        <a href="###">
+            没有找你你需要的行情，请修改搜索关键词！
+        </a>
+    </li>
+    {%endif%}
+</ul>
+<input type="hidden" id="appnavname" value="报价中心" />

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>选择供求-zz91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/laytpl.js" ></script>
+		<style>
+			.buybutton {
+				margin-top: 15px;
+				margin-right: 20px
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="nodata">您还没有发布任何供求信息<br /><br />
+			<p><a class="aui-btn aui-btn-success postbutton" href="/products_publish/" target="_blank"><span class="aui-iconfont aui-icon-post"></span>立即发布</a></p>
+		</div>
+		<script id="info-list" type="text/html">
+			<li class="aui-list-view-cell aui-img selectpro" id="<%d.pdt_id%>" proname="<%d.pdt_kind.kindtxt%><%d.pdt_name%>">
+				<a class="aui-arrow-right"> <img class="aui-img-object aui-pull-left" src="<%d.pdt_images%>">
+				<div class="aui-img-body">
+					<p class="aui-ellipsis-1"  style="color:#000"><b><%d.pdt_kind.kindtxt%><%d.pdt_name%></b></p>
+					<p>
+						<%d.com_province%><span class="aui-pull-right"><%d.pdt_price%></span>
+					</p>
+					<p>
+						<%d.pdt_time_en%>
+					</p>
+				</div>
+				</a>
+			</li>
+		</script>
+		<div class="aui-content type-small">
+			<ul class="aui-list-view prolist">
+				<div class="aui-toast"  id="loading">
+			        <div class="aui-toast-loading"></div>
+			        <div class="aui-toast-content">加载中</div>
+			    </div>
+			</ul>
+			<div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;display:none'>上拉获取更多信息</div>
+		</div>
+		
+		<div style="position: absolute;bottom:0px;height:80px;width:100%" onclick="closeselect()"></div>
+	<script type="text/javascript">
+		var currPage = 1;
+		var pagecount=1;
+		
+		$(function(){
+			//底部加载更多
+			var scroll = new auiScroll({
+		        listen:true,
+		        distance:200 //判断到达底部的距离，isToBottom为true
+		    },function(ret){
+		        if(ret.isToBottom){
+		        	if (currPage>=pagecount){
+					$(".la_more").html("全部加载完毕");
+						return false;
+					}
+					$(".la_more").html("加载更多中...");
+					setTimeout(function() {
+						ajaxInfo();
+					}, 1000)
+		        }
+		    });
+			
+			ajaxInfo();
+			$(".prolist").on("click",".selectpro", function() {
+				var pdt_id=$(this).attr("id");
+				var proname=$(this).attr("proname");
+				parent.selectproducts(pdt_id,escape(proname));
+				var index = parent.layer.getFrameIndex(window.name);
+				parent.layer.close(index);
+			})
+			
+		})
+		
+		var dataload = true;
+		function ajaxInfo() {
+			if (dataload == false) {
+				return false;
+			}
+			dataload = false;
+			var data = {
+				page : currPage
+			}
+			zzajax("get","/company/companyproductslist.html",data,function(ret) {
+				if (ret) {
+					var pageHtml = "";
+					$.each(ret, function(index, item) {
+						var getTpl = $("#info-list").html();
+						pagecount=parseInt(item.pagecount);
+						laytpl(getTpl).render(item, function(html) {
+							pageHtml = pageHtml + html;
+						});
+					});
+					
+					if (currPage == 1) {
+						if (pageHtml==""){
+		            		$(".nodata").show();
+		            		$(".la_more").hide();
+		            	}else{
+		            		$(".nodata").hide();
+		            		$(".la_more").show();
+		                }
+		                $(".prolist").html(pageHtml);
+		            }else{
+						$(".prolist").append(pageHtml);
+		            }
+					
+					if (pageHtml!=""){
+						currPage += 1;
+						if (currPage>=pagecount){
+							$(".la_more").html("全部加载完毕");
+						}else{
+							$(".la_more").html("上拉获取更多信息");
+						}
+						
+					}else{
+						$(".la_more").html("全部加载完毕");
+					}
+				}
+				dataload = true;
+			},function(){});
+		}
+	</script>
+	{%include 'aui/bottom.html'%}
+	</body>
+</html>

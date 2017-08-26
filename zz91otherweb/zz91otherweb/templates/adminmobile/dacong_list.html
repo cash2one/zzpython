@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>ZZ91再生网简易后台</title>
+		<link rel="stylesheet" type="text/css" href="../mobile/css/aui.css" />
+	</head>
+	<style>
+		body {
+			background: #f7f9f8;
+		}
+		.aui-nav .aui-bar-tab{
+			background-color: #ebebeb;
+		}
+		.aui-nav li {
+			line-height: 50px;
+		}
+	</style>
+
+	<body>
+		<div class="aui-tab">
+			<ul class="aui-tab-nav" id="demo1">
+				<li><a href="index.html">栏目</a></li>
+				<li {%ifequal arcrank "-1"%}class="active"{%endifequal%}><a href="?arcrank=-1">未审核</a></li>
+				<li {%ifequal arcrank "1"%}class="active"{%endifequal%}><a href="?arcrank=1">已审核</a></li>
+				<li><a href="dacong_add.html">添加</a></li>
+			</ul>
+		</div>
+		<div class="aui-content">
+			<ul class="aui-list-view aui-in">
+				{%for list in listall%}
+				<li class="aui-list-view-cell aui-img">
+					<a href="dacong_edit.html?id={{list.id}}" class="aui-arrow-right">
+						{%if list.litpic%}
+						<img class="aui-img-object aui-pull-left" src="{{list.litpic}}" style="width: 100px;">
+						{%endif%}
+						<div class="aui-img-body">
+							<p class='aui-ellipsis-2'>{{list.title}}</p>
+							<p class='aui-ellipsis-1'>{{list.pubdate}}</p>
+						</div>
+					</a>
+				</li>
+				{%endfor%}
+			</ul>
+			<div style="height: 60px;"></div>
+			<footer class="aui-nav" id="aui-footer">
+				<ul class="aui-bar-tab">
+					<li>
+						<p><a href="?page=1&{{searchurl}}">首页</a></p>
+					</li>
+					{% if firstpage %}
+					<li>
+						<p><a href="?page={{prvpage}}&{{searchurl}}">上一页</a></p>
+					</li>
+					{%endif%}
+					<li>
+						<p>{{page}}</p>
+					</li>
+					{% if lastpage%}
+					<li>
+						<p><a href="?page={{nextpage}}&{{searchurl}}">下一页</a></p>
+					</li>
+					{%endif%}
+				</ul>
+			</footer>
+		</div>
+	</body>
+
+</html>

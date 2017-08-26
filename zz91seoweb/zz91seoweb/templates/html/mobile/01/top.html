@@ -1,0 +1,13 @@
+<div class="phoneTop">
+<div style="float:left; padding-top:5px;"><a href="http://m.zz91.com"><img src="http://m.zz91.com/images/logo.png" align="absmiddle"></a></div>
+{{list.name}}
+</div>
+<!--end phoneTop-->
+{%if list.viptype.vippic%}
+<div class="phoneTitle">
+	<center>
+	<img src="{{list.viptype.vippic}}" />{%if list.zst_year%}第<span>{{list.zst_year}}</span>年{%endif%}
+    </center>
+</div>
+{%endif%}
+<!--end phoneTitle-->

@@ -1,0 +1,68 @@
+﻿<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+-->
+</style>
+<script>
+function smssearch(frm)
+{
+	document.getElementById("sendflag").value="0"
+	frm.submit()
+}
+function sendsms(frm)
+{
+	document.getElementById("sendflag").value="1"
+	frm.submit()
+}
+</script>
+<form id="form1" name="form1" method="get" action="/outmobilelist/">
+<table width="500" border="0" cellpadding="2" cellspacing="1" bgcolor="#999999">
+  <tr>
+    <td bgcolor="#FFFFFF">地区</td>
+    <td bgcolor="#FFFFFF">
+      <input type="text" name="province" id="province" value="{{province}}" />
+    </td>
+    <td bgcolor="#FFFFFF">行业</td>
+    <td bgcolor="#FFFFFF">
+	<select name=hycode>
+		<option value="">--选择类型</option>
+		{%for list in catelist%}
+		<option value="{{list.code}}">{{list.label}}</option>
+		{%endfor%}
+		
+	</select>
+	</td>
+    <td bgcolor="#FFFFFF"><input type="text" name="hangye" id="hangye" value="{{hangye}}" /></td>
+    <td bgcolor="#FFFFFF"><input type="button" name="button" id="button" value="搜索" onclick="smssearch(this.form)" /></td>
+  </tr>
+</table>
+<br />
+<br />
+
+<table width="500" border="0" cellpadding="2" cellspacing="1" bgcolor="#999999">
+  <tr>
+    <td width="78" bgcolor="#FFFFFF">发送数量</td>
+    <td width="411" bgcolor="#FFFFFF">{{listcount}} </td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">发送内容</td>
+    <td bgcolor="#FFFFFF"><textarea name="content" id="content" cols="45" rows="5"></textarea></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">&nbsp;</td>
+    <td bgcolor="#FFFFFF"><!--<input type="button" name="button2" id="button2" value="发送短信" onclick="sendsms(this.form)" />-->
+      <input name="sendflag" type="hidden" id="sendflag" value="0" /></td>
+  </tr>
+</table>
+
+
+</form>
+<table width="500" border="0" cellspacing="1" cellpadding="3" bgcolor="#CCCCCC">
+ {%for list in listall%} <tr>
+    <td bgcolor="#FFFFFF">{{list.mobile}}</td>
+   
+  </tr>{%endfor%}
+</table>
+

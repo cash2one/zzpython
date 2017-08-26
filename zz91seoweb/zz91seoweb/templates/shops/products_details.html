@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>{{prod_detail.title|safe}}-{{comp_info.name}}</title>
+        <meta content="{{prod_detail.details75|safe}}" name="description"/>
+        <script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_104910_7f5aea0indnrvn29.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-slide.css" />
+		
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/shops/css/shops.css"/>
+	</head>
+	<body>
+		<div class="bandbox">
+			<div class="bandimg">
+				<div class="bandimg-bg"></div>
+				<div class="bandmain">
+					<header class="aui-bar aui-bar-nav aui-bg-primary navtop">
+					    <a onClick="javascript :history.back(-1)" class="aui-pull-left">
+					        <span class="aui-iconfont aui-icon-left"></span>返回
+					    </a>
+					    <div class="aui-title">{{prod_detail.products_type}}{{ prod_detail.title }}</div>
+					</header>
+					
+					<div id="aui-slide3">
+					    <div class="aui-slide-wrap" >
+					    	{% for each_pic in prod_detail.piclist %}
+					    	<div class="aui-slide-node bg-dark">
+					    		<img src="{{ each_pic.images }}" alt="{{prod_detail.products_type}}{{prod_detail.title|safe}}"/>
+					    	</div>
+					    	{% endfor %} 
+					    </div>
+					    <div class="aui-slide-page-wrap"><!--分页容器--></div>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+		<div class="bigimg-list">
+			<span class="aui-iconfont aui-icon-roundclosefill j_rclose aui-text-danger aui-font-size-20"></span>
+			<div id="aui-slide4">
+			    <div class="aui-slide-wrap" >
+			    	{% for each_pic in prod_detail.piclist %}
+			        <div class="aui-slide-node bg-dark">
+			            <img src="{{ each_pic.images_big }}" alt="{{prod_detail.products_type}}{{prod_detail.title|safe}}"/>
+			        </div>
+			        {% endfor %}
+			    </div>
+			    <div class="aui-slide-page-wrap"><!--分页容器--></div>
+			</div>
+		</div>
+		
+		<div class="aui-content">
+			<ul class="aui-list-view">
+		        <li class="aui-list-view-cell aui-text-center">
+					<b>{{prod_detail.products_type}}{{ prod_detail.title }}</b>
+		        </li>
+		        {%if prod_detail.price%}
+				<li class="aui-list-view-cell aui-font-size-18">
+					<span class="aui-flex-item-4 aui-text-primary aui-text-right">{{prod_detail.products_type}}价格：</span>
+					<span class="aui-flex-item-8">{{prod_detail.price}}</span>
+				</li>
+				{%endif%} 
+				{%if prod_detail.location%}
+		        <li class="aui-list-view-cell aui-font-size-18">
+		        	<span class="aui-flex-item-4 aui-text-primary aui-text-right">现货所在地：</span>
+		        	<span class="aui-flex-item-8">{{ prod_detail.location | default:'/' }}</span>
+		        </li>
+		        {%endif%}
+		        {%if prod_detail.total_quantity%}
+		        <li class="aui-list-view-cell aui-font-size-18">
+		        	<span class="aui-flex-item-4 aui-text-primary aui-text-right">总量：</span>
+		        	<span class="aui-flex-item-8">{{ prod_detail.total_quantity }}</span>
+		        </li>
+		        {%endif%}
+		        {%if comp_info.province%}
+				<li class="aui-list-view-cell aui-font-size-18">
+					<span class="aui-flex-item-4 aui-text-primary aui-text-right">公司所在地：</span>
+					<span class="aui-flex-item-8">{{comp_info.province}}</span>
+				</li>
+				{%endif%}
+				<li class="aui-list-view-cell aui-font-size-18">
+					<span class="aui-flex-item-4 aui-text-primary aui-text-right">发布日期：</span>
+					<span class="aui-flex-item-8">{{prod_detail.refresh_time}}</span>
+				</li>
+				{% if prod_detail.ship_day %}
+		        <li class="aui-list-view-cell aui-font-size-18">
+		        	<span class="aui-flex-item-4 aui-text-primary aui-text-right">发货时间：</span>
+		        	<span class="aui-flex-item-8">{{ prod_detail.ship_day }}天内可以发货</span>
+		        </li>
+		        {%endif%}
+		        {%if prod_detail.yxtimevalue%}
+		        <li class="aui-list-view-cell aui-font-size-18">
+		        	<span class="aui-flex-item-4 aui-text-primary aui-text-right">有效期：</span>
+		        	<span class="aui-flex-item-8">{{ prod_detail.yxtimevalue }}</span>
+		        </li>
+		        {%endif%}
+		        {%if comp_info.companymarket%}
+		        <li class="aui-list-view-cell aui-font-size-18">
+					<span class="aui-flex-item-4 aui-text-primary aui-text-right">入住市场：</span>
+					<span class="aui-flex-item-8"><a href="{{comp_info.companymarket.murl}}" target="_blank">{{comp_info.companymarket.name|safe}}</a></span>
+				 </li>
+				{%endif%}
+		    </ul>
+		</div>
+		
+		<div class="aui-content aui-padded-15 bgcolor-ff">
+		    <ul class="aui-grid-nine">
+		    	{% if prod_detail.listmore %}
+		    	{% for each_property in prod_detail.listmore %}
+		    	{%if each_property.content%}
+		        <li class="aui-col-xs-4 aui-text-center aui-padded-10">
+		            <div class="aui-text-left">{{ each_property.property | safe }}：</div>
+		        </li>
+		        <li class="aui-col-xs-8 aui-text-center aui-padded-10">
+		            <div class="aui-text-primary aui-text-left">{{ each_property.content | safe }}</div>
+		        </li>
+		        {%endif%}
+		        {% endfor %}
+		        {% endif %}
+		    </ul>
+		    
+		    <p class="main-color aui-padded-t-10 aui-padded-b-10">
+		    	{{ prod_detail.detailsfull | safe }}
+		    </p>
+		    
+<!-- 		    <div class="">
+		    	<img src="http://static.m.zz91.com/shops/images/images2.png" />
+		    </div> -->
+		</div>
+		{% include "shops/tel.html" %}
+		<div style="height: 55px;">
+			<footer class="aui-nav aui-bg-primary" id="aui-footer">
+			    <ul class="aui-bar-tab aui-bg-primary">
+			        <li>
+			        	<a href="{{ company_id }}.html">
+				            <span class="aui-iconfont aui-icon-homefill color-ff"></span>
+				            <p class="color-ff">首页</p>
+			        	</a>
+			        </li>
+			        <li class="j_boda_btn">
+			            <span class="iconfont icon-dianhua1 color-ff"></span>
+			            <p class="color-ff">电话</p>
+			        </li>
+			        <li>
+		        		<span class="iconfont icon-xinxi1 color-ff"></span>
+		           		<a href="http://m.zz91.com/messages.html?companyname={{ comp_info.name }}&forcompany_id={{company_id}}"><p class="color-ff">留言</p></a>
+			        </li>
+			        <li>
+			        	<a href="address{{ company_id }}.html">
+				            <span class="aui-iconfont aui-icon-locationfill color-ff"></span>
+				            <p class="color-ff">地址</p>
+			        	</a>
+			        </li>
+			    </ul>
+			</footer>
+		</div>
+
+	</body>
+	
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-slide.js"></script>
+	<script type="text/javascript">
+		$(function(){
+		    var slide3 = new auiSlide({
+		        container:document.getElementById("aui-slide3"),
+		        // "width":300,
+		        "height":180,
+		        "speed":500,
+		        "autoPlay": 0, //自动播放
+		        "loop":true,
+		        "pageShow":true,
+		        "pageStyle":'dot',
+		        'dotPosition':'center'
+		    });
+		})
+	    function pagetotop(){
+			$('body').animate( {scrollTop: 0}, 500);
+		}
+	    //大图滚动
+	    $(function(){
+	    	//大图滚动
+	    	var wdHright = $(window).height();
+		    var slide4 = new auiSlide({
+		        container:document.getElementById("aui-slide4"),
+		        // "width":300,
+		        "height":wdHright,
+		        "speed":500,
+		        "autoPlay": 0, //自动播放
+		        "loop":true,
+		        "pageShow":true,
+		        "pageStyle":'dot',
+		        'dotPosition':'center'
+		    })
+	
+		    $("#aui-slide3").on("click",function(){
+		    	$(".bigimg-list").addClass("bigimg-list-down")
+		    })
+		    $(".j_rclose").on("click",function(){
+		    	$(".bigimg-list").removeClass("bigimg-list-down")
+		    })
+	    })
+	    
+	    $(window).scroll(function(){
+	        goDiv();
+	    })
+	    
+	    function goDiv(){
+	        if($(window).scrollTop()>60){
+	            $(".aui-bar").css("position","fixed").removeClass("navtop");
+	        }else{
+	            $(".aui-bar").css("position","relative").addClass("navtop");
+	        }
+	    }
+	    $(".j_boda_btn").click(function(){
+			layer.open({
+				area: '90%',
+				title: false,
+			  	type: 1,
+			  	skin: 'layui-layer-demo', //样式类名
+			  	closeBtn: 0, //不显示关闭按钮
+			  	anim: 2,
+			  	zIndex:800,
+			  	shadeClose: true, //开启遮罩关闭
+			  	content: $(".j_boda")
+			});
+		})
+		
+		$(".j_liuy_btn").click(function(){
+			layer.open({
+				area: '90%',
+				title: false,
+			  	type: 1,
+			  	skin: 'layui-layer-demo', //样式类名
+			  	closeBtn: 1, //不显示关闭按钮
+			  	anim: 2,
+			  	zIndex:800,
+			  	shadeClose: true, //开启遮罩关闭
+			  	content: $(".j_liuy")
+			});
+		})
+		
+		$(".closepop").click(function(){
+			layer.closeAll();
+		})
+	</script>
+	{% include "shops/bottom.html" %}
+</html>

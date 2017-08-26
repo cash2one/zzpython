@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<html>
+	<head>
+		<title>在线充值-再生钱包_ZZ91再生网</title>
+        <link rel="stylesheet" type="text/css" href="/css/qianbao/index.css"/>
+        <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+	<script>
+	function send1()
+	{
+		var total_fee=document.getElementById("total_fee").value;
+		if (total_fee<0.01){
+			alert('充值金额最低为100元');
+			//document.form1.action="http://m.zz91.com/zz91pay.html"
+			//document.form1.submit()
+		}
+		else{
+			document.form1.action="http://m.zz91.com/zz91pay.html"
+			document.form1.submit()
+		}
+	}
+	</script>
+    <style>
+	.part_item ul li{
+	width:40%;
+	height:50px;
+	float:left;
+	margin-right:10px;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	border: 1px solid #CCC;
+	margin-bottom: 10px;
+	line-height:50px;
+	}
+	</style>
+	</head>
+	
+	<body>
+	<script>
+	function onloadpay(frm){
+		//document.getElementById("mack").style.display="";
+		
+		return true;
+	}
+	</script>
+	<div id="mack" style="position: absolute;z-index: 2000;background-color: #000000;opacity:0.6;filter: alpha(opacity=0.6);left:0;top:0;display:none;width:100%;height:100%;text-align: center;line-height: 300px; color: #fff;">
+		数据加载中,请稍候......
+	</div>
+    	<div class="top">
+        	<div class="top_item">
+            	<div class="top-left">
+                	<a href="/"><img src="/images/qianbao/logo.png"></a>
+                </div>
+                <!--end top-left-->
+               <div class="top-right" onClick="window.location.href='{{backurl}}'">返回</div>
+                <!--end top-right-->
+                <div class="cb"></div>
+            </div>
+            <!--end top_item-->
+        </div>
+        <!--end top-->
+    	<div class="part">
+        	<center><h3>自动充值</h3></center>
+            <div class="part_item">
+            
+            <ul>
+            	<li style="border:0px;width:46%">
+                <form action="/zz91pay.html" method="post" onsubmit="return onloadpay(this)">
+                <input type="hidden" name="subject" id="subject" value="手机钱包充值" />
+	            <input type="hidden" name="mobile" id="mobile" value="{{mobile}}"/>
+	            <input type="hidden" name="contact" id="contact" value="{{contact}}" />
+	            <input type="hidden" name="payreturn_url" id="payreturn_url" value="{{backurl}}" />
+	            <input type="hidden" name="paytype" id="paytype" value="qianbao" />
+	            <input type="hidden" name="total_fee" id="total_fee" value="100" />
+                <input name="pay" type="submit" value="100元" style="font-size:18px; font-weight:bold;background:#009e47;color:white;width:100%;height:100%"/>
+                </form>
+                </li>
+                <li style="border:0px;width:46%">
+                <form action="/zz91pay.html" method="post" onsubmit="return onloadpay(this)">
+                <input type="hidden" name="subject" id="subject" value="手机钱包充值" />
+	            <input type="hidden" name="mobile" id="mobile" value="{{mobile}}"/>
+	            <input type="hidden" name="contact" id="contact" value="{{contact}}" />
+	            <input type="hidden" name="payreturn_url" id="payreturn_url" value="{{backurl}}" />
+	            <input type="hidden" name="paytype" id="paytype" value="qianbao" />
+	            <input type="hidden" name="total_fee" id="total_fee" value="200" />
+                <input name="pay" type="submit" value="200元" style="font-size:18px; font-weight:bold;background:#009e47;color:white;width:100%;height:100%"/>
+                </form>
+                </li>
+                <li style="border:0px;width:46%">
+                <form action="/zz91pay.html" method="post" onsubmit="return onloadpay(this)">
+                <input type="hidden" name="subject" id="subject" value="手机钱包充值" />
+	            <input type="hidden" name="mobile" id="mobile" value="{{mobile}}"/>
+	            <input type="hidden" name="contact" id="contact" value="{{contact}}" />
+	            <input type="hidden" name="payreturn_url" id="payreturn_url" value="{{backurl}}" />
+	            <input type="hidden" name="paytype" id="paytype" value="qianbao" />
+	            <input type="hidden" name="total_fee" id="total_fee" value="0.1" />
+                <input name="pay" type="submit" value="500元" style="font-size:18px; font-weight:bold;background:#009e47;color:white;width:100%;height:100%"/>
+                </form>
+                </li>
+                <!--<li style="border:0px;width:46%">
+                <form action="https://shenghuo.alipay.com/send/payment/fill.htm" method="post" target="_blank" accept-charset="GBK">
+                <input name="optEmail" type="hidden" value="zhifu@asto-inc.com" />
+                <input name="payAmount" type="hidden" value="1000" />
+                <input name="title" type="hidden" value="{{username}}"/>
+                <input name="memo" type="hidden" value="{{mobile}} {{contact}}"/>
+                <input name="pay" type="submit" value="1000" style="font-size:18px; font-weight:bold;background:#009e47;color:white;width:100%;height:100%"/>
+                </form>
+                </li>-->
+                <li style="border:0px;width:46%">
+                <form action="/zz91pay.html" method="post" onsubmit="return onloadpay(this)">
+                <input type="hidden" name="subject" id="subject" value="手机钱包充值" />
+	            <input type="hidden" name="mobile" id="mobile" value="{{mobile}}"/>
+	            <input type="hidden" name="contact" id="contact" value="{{contact}}" />
+	            <input type="hidden" name="payreturn_url" id="payreturn_url" value="{{backurl}}" />
+	            <input type="hidden" name="paytype" id="paytype" value="qianbao" />
+	            <input type="hidden" name="total_fee" id="total_fee" value="1000" />
+                <input name="pay" type="submit" value="1000元" style="font-size:18px; font-weight:bold;background:#009e47;color:white;width:100%;height:100%"/>
+                </form>
+                </li>
+                <li style="border:0px;width:46%">
+                <form action="/zz91pay.html" method="post" onsubmit="return onloadpay(this)">
+                <input type="hidden" name="subject" id="subject" value="手机钱包充值" />
+	            <input type="hidden" name="mobile" id="mobile" value="{{mobile}}"/>
+	            <input type="hidden" name="contact" id="contact" value="{{contact}}" />
+	            <input type="hidden" name="payreturn_url" id="payreturn_url" value="{{backurl}}" />
+	            <input type="hidden" name="paytype" id="paytype" value="qianbao" />
+	            <input type="hidden" name="total_fee" id="total_fee" value="2000" />
+                <input name="pay" type="submit" value="2000元" style="font-size:18px; font-weight:bold;background:#009e47;color:white;width:100%;height:100%"/>
+                </form>
+                </li>
+                
+                <li style="border:0px;width:46%">
+                <form action="/zz91pay.html" method="post" onsubmit="return onloadpay(this)">
+                <input type="hidden" name="subject" id="subject" value="手机钱包充值" />
+	            <input type="hidden" name="mobile" id="mobile" value="{{mobile}}"/>
+	            <input type="hidden" name="contact" id="contact" value="{{contact}}" />
+	            <input type="hidden" name="payreturn_url" id="payreturn_url" value="{{backurl}}" />
+	            <input type="hidden" name="paytype" id="paytype" value="qianbao" />
+	            <input type="hidden" name="total_fee" id="total_fee" value="0.01" />
+                <input name="pay" type="submit" value="5000元" style="font-size:18px; font-weight:bold;background:#009e47;color:white;width:100%;height:100%"/>
+                </form>
+                </li>
+            </ul>
+            
+            <div style="clear:both"></div>
+            <!--<form name="form1" method="post">
+	            <input type="hidden" name="subject" id="subject" value="手机钱包充值" />
+	            <input type="hidden" name="mobile" id="mobile" value="{{mobile}}"/>
+	            <input type="hidden" name="contact" id="contact" value="{{contact}}" />
+	            <input type="hidden" name="payreturn_url" id="payreturn_url" value="{{backurl}}" />
+	            <input type="hidden" name="paytype" id="paytype" value="qianbao" />
+                <center><select onchange="document.getElementById('total_fee').value=this.value" style="height:40px; width:40%"><option value="100">100元</option><option value="200">200元</option><option value="500">500元</option><option value="1000">1000元</option><option value="1500">1500元</option><option value="2000">2000元</option><option value="3000">3000元</option><option value="5000">5000元</option></select>
+            	<input type="text" id="total_fee" name="total_fee" value="100"  style="width:40%"/><br /><br />
+                <span class="part_item_p2" style="color:#F00">充值金额最低为100元</span><br />
+                <div class="part_item_btn2" onClick="send1()" style="width:100%; margin-top:20px; float:none" ><span style="color:white;font-size:20px">确定充值</span></div></center>
+				<div class="part_item_btn2" style="width:100%; margin-top:20px; float:none;background:gray" ><span style="color:white;font-size:20px">确定充值</span></div></center>
+				<span style="color:red">自动充值系统升级中, 如需充值请使用人工充值</span>
+			</form>-->
+
+	        <span class="part_item_p2" style="color:#F00">充值金额最低为100元, 请在付款说明处，填写您的再生网账号<br />
+	        </span>
+            </div>
+            <!--end part_item-->
+        	
+            <!--<p class="part_item_p">10月1日前充值500元送30元 ；充值1000送100元</p>-->
+        </div>
+        <!--end part-->
+        
+        <div class="part2">
+        	<center><h3>人工充值</h3></center>
+        </div>
+        
+                <p class="part_item_p3"> 您可以将钱打入下面账户后，拨打服务电话人工充值</p>
+				<p class="part_item_p2">服务电话：0571-56635663 </p>
+				
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2" style="color:gray">支付宝帐户</p>
+				<p class="part_item_p2">ZZ91支付宝帐号：zhifu@asto-inc.com</p>
+				
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2" style="color:gray">银行账户</p>
+				<p class="part_item_p2">开户银行：中国农业银行杭州朝晖支支行 (对公账号)</p>
+				<p class="part_item_p2">收款人：杭州阿思拓信息科技有限公司 </p>
+				<p class="part_item_p2"> 帐 号：190156 0104 0013 383</p>
+				<p class="part_item_p2">&nbsp;</p>
+				
+				<p class="part_item_p2">开户银行：中国农业银行杭州分行吴山支行 </p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：62284 8032 08059 07716</p>
+				
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：中国工商银行杭州解放路支行河坊街储蓄所 </p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：6222 0212 0200 6092 242</p>
+                
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：中国建设银行杭州吴山支行</p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：6227 0015 4026 0100 125</p>
+        
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：中国银行杭州庆春支行涌金支行</p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：4563 5113 0011 4270 118</p>
+
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：招商银行杭州分行解放支行</p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：6225 8857 1624 6103</p>
+				
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：上海浦东发展银行杭州分行</p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：6225 2102 0283 3233</p>
+				
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：中信银行杭州分行营业部</p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：6226 9008 0697 5773</p>
+				
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：中国民生银行杭州涌金支行</p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：6226 2277 8006 4188</p>
+				
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：交通银行东新路支行</p>
+				<p class="part_item_p2">收款人：宋丹 丹 </p>
+				<p class="part_item_p2"> 帐 号：6222 6001 7000 8509 266</p>
+				
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：杭州联合农村商业银行股份有限公司九堡支(对公账号)</p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：2010 0007 1327 065</p>
+				
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：杭州联合农村商业银行股份有限公司吴山支行</p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：6228 5801 9907 4741 496</p>
+				
+				<p class="part_item_p2">&nbsp;</p>
+				<p class="part_item_p2">开户银行：中国邮政储蓄银行南星桥支行</p>
+				<p class="part_item_p2">收款人：宋丹丹 </p>
+				<p class="part_item_p2"> 帐 号：6210 9833 1000 3472 316</p>
+
+<!--钱包底部-->
+<br />
+<div class="cb"></div>
+<div class="t-footer ac t-quick-hidden"> 	 	
+    <div class="bar bt-c">
+        <div class="fl">
+        {%if username%}
+            <span class="c-text">当前帐号：</span>{{username}} <a href="/loginout/">退出</a>
+        {%else%}
+        	<a href="/login/?done={{host}}">登录</a> <span class="c9">|</span> <a href="/register/">免费注册</a>
+        {%endif%}
+                </div>
+        <a href="#top"><div class="fr">
+            <div class="fl top-txt c-link">回顶部</div><div class="fl top-pic">&nbsp;</div>
+        </div></a>
+    </div>
+    <center>
+    <div class="link"><br />
+        <div class="mb8"><a href="/standard/">标准版</a>　|　<span class="c9">触屏版</span>　|　<a href="http://china.zz91.com">电脑版</a></div>
+	<!--<div class="mb8"><a href="/">首页</a>&nbsp;&nbsp;<a href="/feedback/">意见反馈</a></div>-->
+        <div class="copyright">ZZ91再生网版权所有 2013-2014</div>
+    </div>
+    </center>
+</div>
+	<style>
+.t-footer {clear:both; color:#666; margin-bottom:80px;}
+.t-footer a{color:#666}
+.t-footer .bar{height:32px;line-height:32px;padding:0 10px;border-bottom:solid 1px #ccc;box-shadow:0px -1px 0px #fff inset;background-color:#f7f7f7;background: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#eee) );}	
+.t-footer .link{}
+.t-footer .top-pic{width:12px;background-image: url('http://m.zz91.com/images/info.png');background-repeat: no-repeat;background-position: -60px -92px;}
+.t-footer .top-txt{padding-right:8px;}
+.t-footer .mb8{margin-bottom:8px;}
+.t-footer .copyright{color:#999}
+.fl{float:left}
+.fr{float:right}
+.bt-c{border-top:1px solid #ccc;}
+.br-c{border-right:1px solid #ccc;}
+.bb-c{border-bottom:1px solid #ccc;}
+.bl-c{border-left:1px solid #ccc;}
+.bt-dotted-c{border-top: dotted 1px #cccccc;}
+.bb-dotted-c{border-bottom: dotted 1px #cccccc;}
+	</style>
+<!--钱包底部完-->
+	</body>
+</html>

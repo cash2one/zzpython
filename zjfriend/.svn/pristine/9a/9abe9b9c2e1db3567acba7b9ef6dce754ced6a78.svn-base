@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/frm_login.css" />
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="api.closeWin();"></a>
+			<h1 class="mui-title">用户登录</h1>
+		</header>
+		<div class="content">
+			<div class="form">
+				<div class="input-wrap">
+					<i class="user"></i>
+					<input type="text" placeholder="邮箱账号或手机号" id="username" value="">
+				</div>
+				<div class="input-wrap">
+					<i class="password"></i>
+					<input type="password" placeholder="密码" id="password" value="">
+				</div>
+			</div>
+			<div class="btn" id="login" tapmode="" onclick="login()">
+				登录
+			</div>
+			<!--<div class="other-login-wrap">
+				<div class="other-login-lable">
+					还可选择以下方式登陆
+				</div>
+				<div class="other-login">
+					<div class="sina">
+						<span class="sina-label">微信登陆</span>
+					</div>
+					<div class="qq">
+						<span class="qq-label">QQ登陆</span>
+					</div>
+				</div>
+			</div>-->
+		</div>
+		<footer>
+			<div>
+				没有账号？
+			</div>
+			<div class="fast-reg" tapmode="" onclick="toRegister()">
+				立即注册
+			</div>
+		</footer>
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/jquery.js"></script>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../script/jQuery.md5.js"></script>
+		<script type="text/javascript" src="../script/common.js"></script>
+		<script>
+			apiready = function() {
+				$(".qq").on("click", function() {
+					intoqq();
+				})
+			};
+			function intoqq() {
+				var obj = api.require('qq');
+				obj.installed(function(ret, err) {
+					if (ret.status) {
+						obj.login(function(ret, err) {
+							api.alert({
+								title : 'id和token',
+								msg : ret.openId + ret.accessToken
+							});
+						});
+					} else {
+						api.alert({
+							msg : "没有安装"
+						});
+					}
+				});
+			}
+
+			function toRegister() {
+				api.openWin({
+					name : 'register',
+					url : 'frm_reg.html'
+				})
+			}
+
+			function login() {
+				api.showProgress();
+				//用户名
+				var username = $("#username").val();
+				//密码
+				var password = $("#password").val();
+				var appid = api.appId;
+				api.ajax({
+					url : hosturl + '/sex/login.html',
+					method : 'post',
+					timeout : 30,
+					data : {
+						values : {
+							username : username,
+							passwd : password,
+							appid : appid
+						}
+					},
+					dataType : "json",
+					returnAll : false
+				}, function(ret, err) {
+					if (ret) {
+						if (ret.error_code == 0) {
+							//密码加密
+							var pwd_hash = UserInfo.get_pwd_hash(password);
+							//登入获取的token
+							var token = ret.result.token;
+							//登录获取的mid
+							var memberID = ret.result.mid;
+							//保存信息到本地
+							UserInfo.onSuccess(token, username, pwd_hash, memberID);
+							api.execScript({
+								name : 'user',
+								frameName: 'user_',
+								script : 'checkLoginStatus();'
+							})
+							//api.closeWin();
+							api.closeWin();
+						}else{
+							api.toast({
+								msg : ret.reason,
+								location : "middle"
+							})
+						}
+					} else {
+						api.toast({
+							msg : ret.reason,
+							location : "middle"
+						})
+					}
+					api.hideProgress();
+				});
+			}
+		</script>
+	</body>
+</html>

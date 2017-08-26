@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>支付方式-ZZ91再生网</title>
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css">
+<link href="css/P_style.css" rel="stylesheet" type="text/css">
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+</head>
+<body scrolling=yes>
+<div id="topBar" >
+    <div id="topBarInfo">
+        <div id="topBarLogin">
+            <iframe src="http://www.zz91.com/status.htm" frameborder="0" width="450" height="28" allowtransparency="true" scrolling="no"></iframe>
+        </div>
+        <div id="topBarLink">
+            <ul>
+	            <li class="tradAssi">
+                    <a href="javascript:void(0)" class="nohover">交易助手</a>
+                <ul style="display: none;">
+                    <li><a href="http://trade.zz91.com/postoffer_step1.htm" target="_blank">发布供求</a></li>
+                    <li><a href="http://myrc.zz91.com/mycompanyprice/createPrice.htm" target="_blank">发布报价</a></li>
+                    <li><a href="http://myrc.zz91.com/subscribe/subscribeIndex.htm" target="_blank">商机定制</a></li>
+                    <li class="selected"><a href="http://huzhu.zz91.com/postReply.htm" target="_blank" class="selected">发布帖子</a></li>
+                </ul>
+                </li>
+		        <li><a href="http://www.recyclechina.com/">国际站</a></li>
+		        <li><a href="http://www.zz91.com/service/baidu/yh.html" target="_blank">百度优化</a></li>
+		        <li><a href="http://sms.zz91.com/" target="_blank">短信报价</a></li>
+		        <li><a href="http://www.zz91.com/specialsubject/hjzw/">黄金展位</a></li>
+		        <li><a href="http://www.zz91.com/service/ppt/index.asp">品牌通</a></li>		
+		        <li><a href="http://www.zz91.com/service/zst/">再生通</a></li>
+		        <li><a href="http://myrc.zz91.com" target="_blank">生意管家</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="header" class=" header clearfix">
+	<div id="logo">
+		<span class="logo">
+				<a href="http://www.zz91.com" target="_blank"><img src="http://img0.zz91.com/zz91/images/logo.png" alt="ZZ91再生网" width="115" height="45"></a>
+				<a href="http://trade.zz91.com" target="_blank"><img src="images/logo_add.png" alt="百度优化"></a>
+		</span>
+	</div>
+	<div class="phone">
+         <strong>全国统一服务热线:<br>
+         0571-56611111/56612345
+         </strong>
+    </div>
+</div>
+<div class="tab clearfix">
+	<div class="tab_menu">
+		<ul>
+			<li><a href="/hkfs/">银行支付</a></li>
+			<li><a href="/hkfs/payonline.html">在线支付</a></li>
+			<li><a href="/hkfs/alipay.html">支付宝/微信</a></li>
+			<li class="selected"><a href="/hkfs/transfer.html">国外客户支付</a></li>
+		</ul>
+	</div>
+	<div class="tab_box"> 
+		
+        
+	  
+		<div class="tab_box_con clearfix">
+            <table width="100%" cellpadding="0" cellspacing="0" class="p_table">
+                  <tr>
+                      <td colspan="2">Wire Transfer<strong> ( 国外转账支付 )</strong></td>
+                  </tr>
+                  <tr>
+                      <td >BANK NAME：   </td>
+                      <td class="tdtitB">  BANK OF CHINA </td>
+                  </tr>
+                  <tr>
+                      <td >BRANCH： </td>
+                      <td class="tdtitB"> QINGCHUN SUB-BRANCH </td>
+                  </tr>
+                  <tr>
+                      <td >SWIFT CODE：</td>
+                      <td class="tdtitB">BKCHCNBJ910 </td> 
+                  </tr>
+                  <tr>
+                      <td >ACCOUNT NUMBER：</td>   
+                      <td class="tdtitB">4531608-0188-013341-2 </td> 
+                  </tr>
+                  <tr>
+                       <td >ACCOUNT HOLDER NAME：</td>   
+                       <td class="tdtitB">SONG DAN DAN </td>  
+                  </tr>
+                  <tr>
+                       <td >BANK PHONE NUMBER：</td>              
+                       <td class="tdtitB">86-571-87067036 </td>
+                  </tr>
+                  <tr>
+                        <td >BANK ADDRESS：</td>
+                        <td class="tdtitB">17 JIUSHENG Road,Hangzhou,Zhejiang Prv.CHINA 310000 </td>
+                  </tr>      
+                  <tr> 
+                      <td class="tablet" colspan="2">
+                      Basic Membership Fee: 3500RMB/Year.<br>
+Pls refer to the latest exchange rate if you transfer the membership fee not in RMB.<br>
+Please reference your ZZ91.COM member ID (email address) on the bank receipt and fax it to our Service Department (Fax: 86 571-56637777) 
+                      </td>
+                  </tr>
+                
+            </table>
+		</div>      
+	</div>
+</div>
+<script type="text/javascript"> 
+	$(function(){
+	    var wweya_li =$("div.tab_menu ul li");
+	    wweya_li.click(function(){
+		$(this).addClass("selected")            //当前<li>元素高亮
+		 .siblings().removeClass("selected");  //去掉其它同辈<li>元素的高亮
+            var index =  wweya_li.index(this);  // 获取当前点击的<li>元素 在 全部li元素中的索引。
+		$("div.tab_box > div")   	//选取子节点。不选取子节点的话，会引起错误。如果里面还有div 
+		.eq(index).show()   //显示 <li>元素对应的<div>元素
+			.siblings().hide(); //隐藏其它几个同辈的<div>元素				
+					}).hover(function(){
+			$(this).addClass("hover");
+		},function(){
+			$(this).removeClass("hover");			
+		})
+	})
+</script>
+<script>
+(function(d, t) {
+    var r = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    r.async = 1;
+    r.src = 'http://www.zz91.com/app/log.htm?' + Math.ceil(new Date/3600000)
+    s.parentNode.insertBefore(r, s);
+})(document, 'script');
+</script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd1852f2b391e52cbd020e4b788713ba1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<div class="footer">
+	<p>
+		<a href="http://www.zz91.com/about/index.asp" target="_blank" rel="nofollow">关于我们</a> | <a href="http://www.recyclechina.com/" target="_blank">国际站</a> | <a href="http://www.zz91.com/service/ppt/index.asp" target="_blank" rel="nofollow">品牌通服务</a> | <a href="http://www.zz91.com/service/zst/" target="_blank" rel="nofollow">再生通服务</a> | <a href="http://www.zz91.com/cn/helpcenter/" target="_blank" rel="nofollow">新手指南</a> | <a href="http://www.zz91.com/webmap.html" target="_blank">网站地图</a> | <a href="http://www.zz91.com/hkfs/" target="_blank" rel="nofollow">支付方式</a> | <a href="http://www.zz91.com/about/question.asp" target="_blank" rel="nofollow">意见投诉</a> | <a href="http://www.zz91.com/about/linkus.asp" target="_blank">友情链接</a> | <a href="http://www.zz91.com/about/contactus.asp" target="_blank" rel="nofollow">客服中心</a> | <a href="http://www.zz91.com/about/zhaopin.asp" target="_blank" rel="nofollow">诚聘英才</a> | <a href="http://daohang.zz91.com/" target="_blank">产品导航</a>
+		<br>
+		全国统一服务热线：0571-56611111 56612345   市场合作：0571-56611688   广告服务：0571-56611111   传真：0571-56637777<br>
+		法律顾问：京衡律师集团事务所 罗益群 律师     RecycleChina © All Rights Reserved ZZ91再生网 版权所有<br>
+		ZZ91再生网为中国物资再生协会副会长单位  中国塑协理事单位<br>
+		并与中国有色金属工业协会、中国塑料协会 、阿里巴巴、《资源再生》杂志等达成战略合作<br>
+	</p>
+	<p>
+		<a href="http://www.idinfo.cn/hzenterprise/hzEnterpriseView.action?nbxh=3301030000102711" target="_blank" rel="nofollow">
+			<img src="http://img0.zz91.com/front/images/footerpic/gongshang.gif" alt="ZZ91再生网">
+		</a>
+		<a href="http://www.miibeian.gov.cn/" target="_blank" title="ZZ91再生网" rel="nofollow">
+			<img src="http://img0.zz91.com/front/images/footerpic/gongshangbeian.gif" alt="ZZ91再生网">
+		</a>
+		<img src="http://img0.zz91.com/front/images/footerpic/Icp.gif" alt="ZZ91再生网">
+		<a href="http://www.cyberpolice.cn/" target="_blank" title="ZZ91再生网" rel="nofollow">
+			<img src="http://img0.zz91.com/front/images/footerpic/wangjing.gif" alt="ZZ91再生网">
+		</a>
+		<a href="http://www.pingpinganan.gov.cn/" target="_blank" title="ZZ91再生网" rel="nofollow">
+			<img src="http://img0.zz91.com/front/images/footerpic/wangjing2.gif" alt="ZZ91再生网">
+		</a>
+		<a href="http://trust.360.cn/search.php" target="_blank" title="360绿色网站" rel="nofollow">
+			<img src="http://trust.360.cn/img.php?sn=8000&amp;id=3" border="0">
+		</a>
+	</p>
+</div>
+</body>
+</html>

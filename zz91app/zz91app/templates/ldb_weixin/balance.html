@@ -1,0 +1,74 @@
+<style>
+	/**balance**/
+.tle{height:50px;line-height:50px;font-size:18px;text-align:center;color:#409be4;background:#fff}
+.msg{height:100px;font-size:14px;background:#409be4}
+
+.msg-box{
+	padding-top: 10px;
+	padding-right: 22px;
+	padding-bottom: 5px;
+	padding-left: 22px;
+}
+.box-mo{margin-right:15px;float:left}
+.box-txt{font-size:17px;color:#fff;float:left}
+.box-link{float:right}
+
+.msg-money{font-size:32px;color:#fff;text-align:center}
+
+.pay{height:100px;font-size:14px;background:#e0f0fa}
+.pay-txt{font-size:17px;color:#6e6e6e;padding:10px 22px 5px 22px}
+.pay-mo{font-size:30px;text-align:center;color:#409be4}
+
+.reg-pay{line-height:32px;padding-left:22px;color:#409be4;font-size:18px}
+.reg-tag{height:150px;padding:10px 0;border-top:1px solid #e0e0e0;border-bottom:1px solid #e0e0e0}
+.tag-click{width:40%;line-height:40px;background:#409be4;text-align:center;color:#fff;margin-left:1.5%;margin-right:5%;font-size:20px;margin-top:10px;margin-bottom:10px;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;cursor:pointer;float:left}
+.tag-bg{width:46%;line-height:40px;background:#e0e0e0;text-align:center;color:#9b9b9b;margin-left:2%;margin-right:2%;font-size:20px;margin-bottom:10px;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;cursor:pointer;float:left}
+.tag-bg_{width:40%;line-height:40px;text-align:center;color:#9b9b9b;margin-left:1.5%;margin-right:5%;font-size:14px;margin-top:10px;margin-bottom:10px;float:left}
+.tag-bg_input input{width:39%;line-height:36px;margin-left:1.5%;margin-right:5%;font-size:16px;margin-top:10px;margin-bottom:10px;border:1px solid #9b9b9b;float:left}
+
+
+.reg-box{padding:25px}
+.box-logo{float:left}
+.box-btn{width:40%;height:40px;line-height:40px;background:#409be4;font-size:20px;text-align:center;color:#fff;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;cursor:pointer;float:right}
+
+
+
+</style>
+   <div class="msg">
+	<div class="msg-box">
+    	<div class="box-mo"><img src="http://m.zz91.com/images/ldb_weixin/mo.jpg" /></div>
+        <div class="box-txt">本月消费（元）</div>
+        <div class="box-link"><a href="ldb_weixin/phonerecords{{id}}.html"><img src="http://m.zz91.com/images/ldb_weixin/link.jpg" /></a></div>
+        <div class="cb"></div>
+    </div>
+    <div class="msg-money">{{ldbbalance.mousefee}}</div>
+   </div>
+   <div class="pay">
+	<div class="pay-txt">账户余额（元）</div>
+    <div class="pay-mo">{{ldbbalance.lave}}元</div>
+   </div>
+   <div id="zhifufangshi">
+   <div class="recharge">
+	<div class="reg-pay">在线充值（元）</div>
+    <div class="reg-tag" style="height:auto;">
+    	<ul>
+        	<li class="tag-bg" title="2000" style="background-color:#409be4;color: #fff;" onclick="selectpay(this)">2000</li>
+            <li class="tag-bg" title="3000" onclick="selectpay(this)">3000</li>
+            <li class="tag-bg" title="5000" onclick="selectpay(this)">5000</li>
+            <li class="tag-bg" title="8000" onclick="selectpay(this)">8000</li>
+            <!--<li class="tag-bg_input"><input type="text" id="total_feepay" placeholder="自定义" value="2000"/></li>
+            <li class="tag-bg_"><div>大于1000元任意输入</div></li>-->
+            <div class="cb"></div>
+        </ul>
+        <div class="cb"></div>
+    </div>
+    <div class="cb"></div>
+    <!--<div class="reg-box">
+    	<div class="box-logo"><img src="http://m.zz91.com/images/ldb_weixin/zfb.jpg" /></div>
+        <div class="box-btn" onclick="pay(document.getElementById('form1'))">确定充值</div>
+        <div class="cb"></div>
+    </div>-->
+   </div>
+   <center><br /><br /><br /><br /><button class="mui-btn mui-btn-blue" style="width: 98%; font-size: 16px;" onclick="payopen('ldb');//shopfun.chongzhi('http://app.zz91.com/qianbao/chongzhi.html')">在线支付</button></center></div>
+
+<input type="hidden" id="appnavname" value="来电宝账户" />

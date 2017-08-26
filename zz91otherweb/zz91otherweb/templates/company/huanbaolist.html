@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="Js/jquery.js"></script>
+    <script type="text/javascript" src="Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="Js/bootstrap.js"></script>
+    <script type="text/javascript" src="Js/ckform.js"></script>
+    <script type="text/javascript" src="Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+    
+    <script>
+		  //以下为一键删除js
+		    function selectAll(){  
+		        if ($("#SelectAll").attr("checked")) {  
+		            $(":checkbox").attr("checked", true);  
+		        } else {  
+		            $(":checkbox").attr("checked", false);  
+		        }  
+		    }  
+		    //子复选框的事件  
+		    function setSelectAll(){  
+		        //当没有选中某个子复选框时，SelectAll取消选中  
+		        if (!$("#subcheck").checked) {  
+		            $("#SelectAll").attr("checked", false);  
+		        }  
+		        var chsub = $("input[type='checkbox'][id='subcheck']").length; //获取subcheck的个数  
+		        var checkedsub = $("input[type='checkbox'][id='subcheck']:checked").length; //获取选中的subcheck的个数  
+		        if (checkedsub == chsub) {  
+		            $("#SelectAll").attr("checked", true);  
+		        }  
+		    }  
+		
+		    //一键删除
+		    function deleteallAction(){
+		        document.demo.action="del_all_huanbaolist.html";
+		        document.demo.submit();
+		    }
+    </script>
+</head>
+<body>
+<form class="form-inline definewidth m20">
+公司 <input type="text" style="width:100px">&nbsp;&nbsp;
+<input class="btn btn-success" type="submit" value="查询">
+</form>
+<form name="demo" >
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+    	<th>选择</th>
+        <th>ID</th>
+        <th width="400px">标题</th>
+        <th width="200px">类别</th>
+        <th>日期</th>
+    </tr>
+    </thead>
+
+<input type="hidden" name="typeid" value="{{typeid}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+    {%for list in listall%}
+	     <tr>
+	     	<td><input type="checkbox" name="checkid" value="{{list.id}}"  id="subcheck"></td>
+	        <td>{{list.id}}</td>
+	        <td><a href="huanbaodetail{{list.id}}.htm" target="_blank">{{list.title}}</a></td>
+	        <td>{{list.category_name}}</td>
+	        <td>{{list.gmt_created}}</td>
+        </tr>
+     {%endfor%}
+
+        </table>
+                <br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success" value="一键删除" onclick="deleteallAction()">
+&nbsp;&nbsp;&nbsp;&nbsp;全选&nbsp;&nbsp;<input type="checkbox" id="SelectAll"  value="全选" onclick="selectAll();"/>
+</form>
+   
+<div class="inline pull-right page">
+<form>
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+
+{%if flag%}<input type="hidden" name="flag" value="{{flag}}">{%endif%}
+{%if writer%}<input type="hidden" name="writer" value="{{writer}}">{%endif%}
+<input type="hidden" name="page_listcount" value="{{page_listcount}}">&nbsp;&nbsp;
+去第<input type="text" name="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页  <input type="submit" style="display:none"> &nbsp;&nbsp;
+<a href='?page=1&{{searchurl}}' >首页</a><a href='?page={{page_listcount}}&{{searchurl}}' >尾页</a> 
+</form>
+
+</div>
+</body>
+</html>

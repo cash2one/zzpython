@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>联系我们-{{list.name}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+<style>
+.contact-text{
+	line-height: 30px;
+	padding-left: 10px;
+}
+.contact-name{
+	width: 85px;
+	display: block;
+	float: left;
+}
+.contact li span{
+	width: 85px;
+}
+.contactdiv{
+	float: left;
+}
+</style>
+</head>
+<body>
+
+<div class="moblie">
+	<div class="moblie-top">
+        <div class="moblie-title">
+        	<a href="/"><div class="moblite-return">
+            	
+            </div></a>
+            <div class="moblie-title-text">
+                {{list.name}}
+            </div>
+            <!--<div class="moblie-title-collect">
+                <img src="images/collection.jpg" />
+            </div>-->
+            <div class="cb"></div>
+        </div>
+        <!--end moblie-title-->
+    </div>
+    <div class="phoneTitle">
+        <center>
+        <img src="{{list.viptype.vippic}}" />第<span>{%if list.zst_year%}{{list.zst_year}}{%else%}0{%endif%}</span>年
+        </center>
+    </div>
+    <div class="company">
+    	<div class="company-title">
+        	联系我们
+        </div>
+        <!--end company-title-->
+        <div class="company-content">
+        	<ul class="contact">
+            	<li class="fb f14">{{list.name}}</li>
+                <li><span>联&nbsp;系&nbsp;&nbsp;人： </span>{{list.contact}}</li>
+				{%if list.ppcphone%}
+                <li><span>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话： </span><div class="contactdiv"><div class="phone_btn" style="margin:3px 3px 5px 0px"><a href="tel:{{list.ppcphone}}">{{list.ppcphone}}</a></div></div></li>
+                {%else%}
+                {%if list.showcontact%}
+			    <li><span>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</span><div class="contactdiv"><div class="phone_btn" style="margin:3px 3px 5px 0px"><a href="tel:{{list.tel_area_code}}{{list.tel}}">{{list.tel_country_code}}-{{list.tel_area_code}}-{{list.tel}}</a></div></div></li>
+                <li><span>移动电话：</span><div class="contactdiv"><div class="mobile_btn" style="margin:3px 3px 5px 0px"><a href="tel:{{list.mobile}}">{{list.mobile}}</a></div></div></li>
+				{%endif%}
+				{%endif%}
+				{%if list.showcontact%}
+				<li><span>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱：</span>{{list.email}}</li>
+				{%if fax%}
+                <li><span>传&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;真：</span>{{list.fax}}</li>
+				{%endif%}
+				{%endif%}
+				{%if list.address%}
+                <li><span>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</span>{{list.address}}</li>
+				{%endif%}
+                <li><span>公司主页： </span><a href="http://{{list.domain_zz91}}.m.zz91.com">{{list.domain_zz91}}.m.zz91.com</a></li>
+            </ul>  
+        </div>
+        {%if list.showcontact%}
+    	<hr>
+	    {%if list.ppcphone%}
+	    {%else%}
+		    {%if list.contactmore%}
+		    	{%for listm in list.contactmore%}
+		    	{%if listm.name%}
+			    <div class="contact-text">
+			    	<span class="contact-name">联系人：</span> {{listm.name}} {{listm.sex}}
+			    </div>
+			    {%endif%}
+			    {%if listm.tel%}
+			    <div class="contact-text">
+			    	<span class="contact-name">电话：</span> <div class="contactdiv"><div class="phone_btn" style="margin:3px 3px 5px 0px"><a href="tel:{{listm.tel}}">{{listm.tel}}</a></div></div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			    {%endif%}
+			    {%if listm.mobile%}
+			    <div class="contact-text">
+			    	<span class="contact-name">手机：</span> <div class="contactdiv"><div class="mobile_btn" style="margin:3px 3px 5px 0px"><a href="tel:{{listm.mobile}}">{{listm.mobile}}</a></div></div>
+			    	<div style="clear: both;"></div>
+			    </div>
+			    {%endif%}
+			    
+			    {%if listm.email%}
+			    <div class="contact-text">
+			    	<span class="contact-name">邮箱：</span> {{listm.email}}
+			    </div>
+			    {%endif%}
+			    {%if listm.qq%}
+			    <div class="contact-text">
+			    	<span class="contact-name">QQ：</span> {{listm.qq}}
+			    </div>
+			    {%endif%}
+			    {%endfor%}
+		    {%endif%}
+	    {%endif%}
+    {%endif%}
+        <!--end company-content-->
+        <center>
+        <div class="company-text">
+            {{list.name}}<br />
+            技术支持：<a href="http://m.zz91.com">ZZ91再生网</a>
+		</div>
+        <!--end company-text-->
+        </center>
+    </div>
+    <!--end company-->
+    
+    <div class="moblie-footer">
+    	<ul>
+        	<li class="moblie-footer-img1"><a href="/mobile/index{{company_id}}.htm"></a></li>
+            <li class="moblie-footer-img2"><a href="/mobile/about{{company_id}}.htm"></a></li>
+            <li class="moblie-footer-img3"><a href="/mobile/products{{company_id}}-0-1.htm"></a></li>
+            <li class="moblie-footer-img4click"><a href="/mobile/contact{{company_id}}.htm"></a></li>
+            <div class="cb"></div>
+        </ul>
+    </div>
+    <!--end moblie-footer-->
+</div>
+<!--moblie-->
+{%include "html/mobile/03/footer.html"%}
+</body>
+</html>

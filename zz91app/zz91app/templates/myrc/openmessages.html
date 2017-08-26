@@ -1,0 +1,8 @@
+var messages="<div class=\"openfloat\" style=\"display:none\">"+
+	"<div>您收到 <span style=\"color:#F00\">{{mcount}}</span> 条新消息 <a href=\"{{url}}\"><b>立即查看</b></a></div>"+
+"</div>"
+document.write(messages)
+$(document).ready(function() {
+	$(".openfloat").slideDown("fast");
+	$(".openfloat").css("display","");
+});

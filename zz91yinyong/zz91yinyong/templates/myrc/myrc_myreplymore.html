@@ -1,0 +1,13 @@
+{%for list in listall%}
+<tr>
+    <td>
+    <div class="m-item">
+        <font class="mot">[帖子]</font><a href="/huzhuview/{{list.post_id}}.htm" target="_blank">{{list.post_title|safe}}</a><br />
+        {{list.content|safe}}
+    </div>
+    <div class="c-item">
+        回复于：{{list.gmt_created}} &nbsp;&nbsp; 回复：{{list.reply_count}}&nbsp;&nbsp;贴主：{{list.nickname}}
+    </div>
+    </td>
+</tr>				
+{%endfor%}

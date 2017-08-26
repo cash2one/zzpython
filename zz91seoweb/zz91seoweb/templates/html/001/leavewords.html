@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{{csscode}}/css/base.css" />
+<link rel="stylesheet" href="{{csscode}}/css/modules.css" />
+<link rel="stylesheet" href="{{csscode}}/css/style.css" />
+<title>在线询价-{{list.name}}</title>
+<meta content="" name="description"/>
+<meta content="" name="keywords"/></head>
+<body>
+{%include htmlincludes.topinclude%}
+<div id="content">
+	<!--左边主题板块-->
+           <div class="grid-sub fl">
+                    {%include htmlincludes.leftinclude%}
+                               </div>
+<!--左边主题板块结束-->
+
+	<!-- 右面主题板块-->
+<div class="main-wrap fr">
+	<!--明星产品-->
+	<div class="mod mod-starpro">
+		<div class="m-body">
+			<div class="m-header">
+				<h3>在线询价</h3>
+			</div>
+			<div class="m-content">
+				<div class="online-liuyan">
+                	{%if sucflag%}
+                    <div id="liuyan_success" class="success"></div>
+                    {%endif%}
+					<form id="liuyan_form" method="POST" action="leavewords_save.html">
+                    {% csrf_token %}
+
+					<p><label><em>*</em>标题：</label><input id="title" type="text" class="title" name="title" /></p>
+					<p class="textarea"><label><em>*</em>内容：</label><textarea id="info" type="text" class="matter" name="content" ></textarea></p>
+					<p><label class="nobg"><em>*</em>姓名：</label>
+					<input id="name" type="text" class="name" name="name" value="" /></p>
+					<p><label><em>*</em>电话：</label><input id="mobile" type="text" class="phone" name="mobile" value="" /></p>
+					<p><label><em>*</em>邮箱：</label><input id="email" type="text" class="mail" name="email" value="" /></p>
+					<p><label>QQ：</label><input id="qq" type="text" class="mail" name="qq" value="" /></p>
+					
+					<p class="button"><input type="submit" name="submit" class="submit" value="提交"/></p>
+					</form>
+                    
+                    <!--<div class="success"></div>-->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--明星产品结束-->
+</div>
+<!-- 右面主题板块结束-->
+
+</div>
+{%include htmlincludes.buttominclude%}
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+	<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta content="address=no" name="format-detection" />
+	<meta name="apple-mobile-web-app-capable" content="no" />
+	<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+	<meta name="apple-touch-fullscreen" content="YES">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+	<title>支付-zz91再生网</title>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+	<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+    <style type="text/css">
+    body{
+    	height: auto;
+    }
+    .aui-pull-left{
+    	line-height:50px
+    }
+    .paytitle{
+    	background-color:#ebebeb;
+    	line-height:30px;
+    	font-size:14px;
+    	text-align:left;
+    	margin-top:10px;
+    	padding-left:20px;
+    }
+    
+    .moery-type{
+		padding-left:8px;
+		overflow: hidden;
+	}
+	.moery-type div{
+		float: left;
+		width: 50%;
+		padding-right: 8px;
+		margin-bottom: 8px;
+	}
+	.moery-type div span{
+		display: block;
+		background-color: #f2f2f2;
+		text-align: center;
+		color: #000;
+		height: 35px;
+		line-height: 35px;
+	}
+	.moery-type .on{
+		background-color: #01ba2e;
+		color: #fff;
+	}
+    </style>
+</head>
+<body>
+	<div class="buy-list clear" style="margin-bottom:10px;margin-top: 20px">
+		<span style="border-left:solid 3px #01ba2e;padding-left:10px;margin-left:10px;">选择支付金额</span>
+	</div>
+	
+	<div class="moery-type">
+		{%for d in moerylist%}
+		<div><span>{{d}}元</span></div>
+		{%endfor%}
+		<div><span class="aui-iconfont aui-icon-add">添加</span></div>
+	</div>
+	<div style="padding: 20px;"><a class="aui-btn aui-btn-block aui-btn-success chongzhi">确定支付</a></div>
+	<div style="display: none;">
+	<form action="/zz91pay.html" method="post" name="paysubmit" id="paysubmit">
+		<input type="hidden" name="subject" id="subject" value="手机钱包充值" />
+		<input type="hidden" name="mobile" id="mobile" value="{{mobile}}" />
+		<input type="hidden" name="contact" id="contact" value="{{contact}}" />
+		<input type="hidden" name="payreturn_url" id="payreturn_url" value="{{backurl}}" />
+		<input type="hidden" name="paytype" id="paytype" value="qianbao" />
+		<input type="hidden" name="total_fee" id="paymoney" value="{{paymoney}}" />
+		<input type="hidden" name="pagefrom" id="pagefrom" value="1" />
+		<input name="pay" type="submit" value="{{paymoney}}元" style="font-size:18px; font-weight:bold;background:#009e47;color:white;width:100%;height:100%" />
+	</form>
+	</div>
+</body>
+<script type="text/javascript">
+$(function(){
+	var maxprice={{maxprice}};
+    $("#paymoney").val({{maxprice}});
+    $(".moery-type").find("span").eq(0).addClass("on");
+	$(".moery-type").on("click", "span",function() {
+		var money=$(this).text();
+		var self=$(this);
+		if (money=="添加"){
+			layer.prompt({
+				title:"请输入金额，必须大于"+maxprice,
+			    type:'number',
+			}, function(text, index){
+			    if( text ){
+		    		if(!isNaN(text)){
+		    			if (parseInt(text)>parseInt(maxprice)){
+		    				$(".moery-type span").removeClass("on");
+					    	self.parent().before("<div><span class=on>"+text+"元</span></div>");
+					    	money=text;
+							$("#paymoney").val(money.replace("元",""));
+							layer.close(index);
+					    }else{
+					    	layer.msg("必须输入大于"+maxprice+"的金额！")
+					    }
+					}else{
+					   layer.msg("请输入数字");
+					}
+			    }else{
+			    }
+			});
+		}
+		$(".moery-type span").removeClass("on");
+		$(this).addClass("on");
+		$("#paymoney").val(money.replace("元",""));
+	});
+	$(".chongzhi").on("click", function() {
+		var money=$("#paymoney").val()
+		if (money=="添加"){
+			layer.msg("请选择充值金额！")
+		}else{
+			document.getElementById("paysubmit").submit();
+		}
+	})
+})
+</script>
+{%include 'aui/bottom.html'%}
+</html>

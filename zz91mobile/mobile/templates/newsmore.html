@@ -1,0 +1,8 @@
+﻿{%for list in listall%}  	
+	<div class="item" style="border-top:1px solid #FFF;">    
+		<a href="newsviews.html?id={{list.id}}">	
+			<p class="c-link lh28">{{list.title}}{%if list.havepic%}<font class=c-red>[图]</font>{%endif%}</p>	
+			<p class="c9">{{list.littlecontent}}</p>
+		</a>
+	</div>
+{%endfor%}

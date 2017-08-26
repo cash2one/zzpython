@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<title>更多商机榜单_商机排行榜{% if page %}_第{{ page }}页{% endif %}-zz91再生网</title>
+		<meta name="keywords" content="商机榜单,精品商机榜单,潜力商机榜单,新入商机榜单,商机">
+		<meta name="description" content="ZZ91再生网商机榜单为广大客户提供最新最全废料商机、商机榜单信息，让客户更直接地了解优质商机。">
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/header.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/banner.css" />
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/opportunityMore.css" />
+		<meta http-equiv="Cache-Control" content="no-transform"/>
+		<meta http-equiv="Cache-Control" content="no-siteapp"/>
+	</head>
+	<body>
+		{% include 'nav.html' %}
+		<div style="clear: both;"></div>
+		<div class="warp">
+			<div class="logosearch fl">
+				<div class="logo fl">
+					<img src="../cp/paihang/img/img-01.png" class="fl"/>
+					<p class="fl logo-title">商机排行榜</p>
+				</div>
+				<div class="search fl">
+					<form action="http://trade.zz91.com/trade/searchfirst/" method="get" id="searchForm1" target="_blank">
+					<input class="searchInput fl" name="keywords" placeholder="输入产品关键词,获取对应产品信息" style="font-size: 14px;" /> 
+					<a class="searchButtom fl">搜索关键词</a>
+					</form>
+				</div>
+			</div>
+			<div class="nav fl">
+				<a href="/cp/" class="nav-oth">微门户首页</a>
+				<a href="sj-index.html" class="nav-oth" >商机排行榜</a>
+				<a href="sj-hotcp.html" class="nav-oth">热门产品词</a>
+				<a href="sj-sjbd.html" class="nav-idx">商机榜单</a>
+				<a href="sj-spbd.html" class="nav-oth">商铺榜单</a>
+			</div>
+			<div class="Main fl">
+				<div class="main-topL fl">
+						<p class="main-topL1">{{ now_month }}月商机榜单</p>
+						<p class="main-topL2">ZZ91再生网商机排行榜每月对数千万商机进行统计分析，凸显精品商机榜、人气商机榜、潜力商机榜、新入商机榜等，让您的采购变轻松。</p>
+					</div>
+					<div class="main-topR fr">
+						<a class="fr main-topRb" href="http://www.zz91.com/register/register_stp1.htm" target="_blank">我也要出现在这里</a>
+					</div>
+				<div class="main-content">
+					<div class="main-contentTop fl">
+						<img src="../cp/paihang/img/img-05.png" class="fl"/>
+						<p class="fl main-contentTop1">精品商机</p>
+						<p class="fr main-contentTop2">共有  {{ all_num }} 多条商机</p>
+					</div>
+					<div class="mian-contentMain">
+						{% for each_pro in pro_list.list_all %}
+						<div class="main-contentMainC fl">
+							<div class="fl main-contentMainC1">
+								<a href="http://trade.zz91.com/productdetails{{ each_pro.pro_id }}.htm" target="_blank">
+								<img src="{{ each_pro.pdt_img_info }}" alt="{{ each_pro.pro_title }}" style="width: 178px;height: 153px;">
+								</a>
+							</div>
+							<div class="fl main-contentMainC2">
+								<p class="main-contentMainC2Z">
+									<a href="http://trade.zz91.com/productdetails{{ each_pro.pro_id }}.htm" target="_blank">
+										{% if each_pro.pdt_kind == 1 %}求购{% else %}供应{% endif %}{{ each_pro.pro_title }}
+									</a>
+								</p>
+								<p class="main-contentMainC2Z2">{% if each_pro.pdt_kind == 1 %}求购{% else %}供应{% endif %}量:{% if each_pro.pro_attr.pro_num %}{{ each_pro.pro_attr.pro_num }} {% else %}不限{% endif %}{% if each_pro.pro_attr.price_range %} 价格：{{ each_pro.pro_attr.price_range }} {% else %}{% endif %}询价数：{{ each_pro.comp_info.q_count }}</p>
+								<p class="main-contentMainC2Z3">{% if each_pro.pro_attr.pro_source %}货源地:{{ each_pro.pro_attr.pro_source }} | {% else %}{% endif %}{% if each_pro.pro_attr.pro_origin %}来源产品:{{ each_pro.pro_attr.pro_origin }} | {% else %}{% endif %}{% for each_attr in each_pro.pro_attr.attr_more %}{{ each_attr.property  }}:{{ each_attr.content }} |{% endfor %}<br/>{{ each_pro.pro_detail | safe | truncatechars:15 }} >>更多</p>
+
+							</div>
+							<div class="fl main-contentMainC3">
+								<p><b>{{ each_pro.comp_info.0 }}</b><br/>[{{ each_pro.comp_info.comp_p_area }} {{ each_pro.comp_info.comp_area }}]<br/>{{ each_pro.market }}</p>
+							</div>
+							<div class="fr main-contentMainC4">
+								<a class="main-contentMainC4B1 fl" href="http://trade.zz91.com/productdetails{{ each_pro.pro_id }}.htm" target="_blank">查看详情</a>
+								<a class="main-contentMainC4B2 fl" href="{{ each_pro.comp_info.contact_url }}" target="_blank">联系商家</a>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div class="tab fl">
+				<div class="tabN">
+					{% if before_page %}
+					<a class="tabB11" href="sj-sjbd-more-{{ before_page }}.html">上一页</a>
+					{% else %}
+					<a class="tabB11" href="javacript:void(0)" style="text-decoration: none;">上一页</a>
+					{% endif %}
+					{% for each_page in page_range %}
+					{%  if each_page.nowpage %}
+					<a class="tabB2" href="javacript:void(0)">{{ each_page.number }}</a>
+					{% else %}
+					<a class="tabB3" href="sj-sjbd-more-{{ each_page.number }}.html">{{ each_page.number }}</a>
+					{% endif %}
+					{% endfor %}
+					{% if next_page %}
+					<a class="tabB1" href="sj-sjbd-more-{{ next_page }}.html">下一页</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		{% include 'bottom.html' %}
+	</body>
+</html>

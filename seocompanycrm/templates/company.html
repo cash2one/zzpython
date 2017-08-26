@@ -1,0 +1,161 @@
+{%extends 'index.html'%}
+{%block content%}
+<script>
+function applyContent()
+{
+var keywords_id=$("#lastname").attr("value");
+
+$.ajax({
+	type: "POST",
+	url: "/updateranking/",
+	data: "keywords_id="+keywords_id,
+	alert(keywords_id)
+}); 
+}
+
+//window.location.href="/addrecordeddata/?weburl="+weburl
+}
+window.onload=myfun;
+</script>
+
+<div class="baonian {%ifequal chargetype "1"%}baonianon{%endifequal%}"><a href="?chargetype=1{%if company_type%}&company_type={{company_type}}{%endif%}">包年</a></div>
+<div class="baonian {%ifequal chargetype "2"%}baonianon{%endifequal%}"><a href="?chargetype=2{%if company_type%}&company_type={{company_type}}{%endif%}">包天</a></div>
+<div style="clear:both"></div>
+
+<div class="listsearch">
+总数:<font color="green">{{listcount}}</font>
+
+<a href="?company_type=1{%if chargetype%}&chargetype={{chargetype}}{%endif%}">{%ifequal company_type "1"%}<font color="blue">所有客户</font>{%else%}所有客户{%endifequal%}</a>
+<a href="?company_type=2{%if chargetype%}&chargetype={{chargetype}}{%endif%}">{%ifequal company_type "2"%}<font color="blue">在线客户</font>{%else%}在线客户{%endifequal%}</a>
+<a href="?company_type=4{%if chargetype%}&chargetype={{chargetype}}{%endif%}">{%ifequal company_type "4"%}<font color="blue">到期客户(包年)</font>{%else%}到期客户(包年){%endifequal%}</a>
+<a href="?company_type=6{%if chargetype%}&chargetype={{chargetype}}{%endif%}">{%ifequal company_type "6"%}<font color="blue">欠费客户(按天)</font>{%else%}欠费客户(按天){%endifequal%}</a>
+<a href="?company_type=5{%if chargetype%}&chargetype={{chargetype}}{%endif%}">{%ifequal company_type "5"%}<font color="blue">丢单客户</font>{%else%}丢单客户{%endifequal%}</a>&nbsp;&nbsp;&nbsp;
+{%ifequal username "yunying"%}
+<a href="?company_type=7{%if chargetype%}&chargetype={{chargetype}}{%endif%}">{%ifequal company_type "7"%}<font color="blue">已删除客户</font>{%else%}已删除客户{%endifequal%}</a>
+{%endifequal%}
+</div>
+
+<br />
+<form>
+<div class="h50px">
+邮箱: <input type="text" name="mail" value="{%if mail%}{{mail}}{%endif%}">
+公司名称: <input type="text" name="company_name" value="{%if company_name%}{{company_name}}{%endif%}">
+手机: <input type="text" name="mobile" value="{%if mobile%}{{mobile}}{%endif%}">
+联系人: <input type="text" name="contact" value="{%if contact%}{{contact}}{%endif%}">
+</div><br />
+<div class="h50px">
+<input type="submit" value="查询"> <input type="button" value="添加客户" onclick="window.open('/addcompany/')">
+</div>
+</form>
+
+
+<form name="form">
+<table border="0" cellpadding="5" cellspacing="1" bgcolor="#333333">
+	<tr  align="center">
+	<td align="center" nowrap="nowrap" bgcolor="#CCCCCC">&nbsp;</td>
+	<td align="left" nowrap="nowrap" bgcolor="#CCCCCC">公司名</td>
+	<td align="left" nowrap="nowrap" bgcolor="#CCCCCC">关键词</td>
+	<td align="center" nowrap="nowrap" bgcolor="#CCCCCC">邮箱</td>
+	<td align="center" nowrap="nowrap" bgcolor="#CCCCCC">手机</td>
+	<td align="center" nowrap="nowrap" bgcolor="#CCCCCC">联系人</td>
+	<!--<td>优化人</td>-->
+	<td align="center" nowrap="nowrap" bgcolor="#CCCCCC">小计</td>
+	{%ifequal username "seo"%}
+	<td align="center" nowrap="nowrap" bgcolor="#CCCCCC">操作</td>
+	{%endifequal%}
+	{%ifequal username "sales"%}
+	<td align="center" nowrap="nowrap" bgcolor="#CCCCCC">操作</td>
+	{%endifequal%}
+	{%ifequal username "yunying"%}
+	<td align="center" nowrap="nowrap" bgcolor="#CCCCCC">操作</td>
+	{%endifequal%}
+	</tr>
+	{%for list in list_company.list%}
+	<tr align="center">
+	<td align="center" bgcolor="#FFFFFF"><input type="checkbox" name="checkAll" value="{{list.id}}" id="checkAll" onclick="setSelectAll();"></td>
+	<td align="left" bgcolor="#FFFFFF"><a href="/keywords/?mail={{list.mail}}">{{list.name}}</a> <span style="color:#C60">[<a href="/addkeywords/?company_id={{list.id}}" style="color:#F60">添加词</a>]</span> </td>
+	<td align="left" bgcolor="#FFFFFF">{%for ck in list.comp_keywords%}<span class="s10px"><a href="/keywords/?keywords={{ck.keywords}}&mail={{list.mail}}">{{ck.keywords}}</a></span> {%endfor%}</td>
+	<td align="center" bgcolor="#FFFFFF">{{list.mail}}</td>
+	<td align="center" bgcolor="#FFFFFF">{{list.mobile}}</td>
+	<td align="center" bgcolor="#FFFFFF">{{list.contact}}</td>
+	<!--<td>{{list.seouser_name}}</td>-->
+	<td align="center" bgcolor="#FFFFFF">&nbsp;</td>
+	{%ifequal username "seo"%}
+	<td align="center" bgcolor="#FFFFFF">{%ifequal company_type "7"%}
+	<a href="/reductioncompany/?company_id={{list.id}}" onclick="return confirm('是否还原此信息?')">还原</a>/<a href="/updatecompany/?company_id={{list.id}}">修改</a>
+	{%else%}<a href="/delcompany/?company_id={{list.id}}" onclick="return confirm('是否将此信息删除?')">删除</a>/<a href="/updatecompany/?company_id={{list.id}}">修改</a>
+	{%endifequal%}
+	</td>
+	{%endifequal%}
+	{%ifequal username "sales"%}
+	<td align="center" bgcolor="#FFFFFF">{%ifequal company_type "7"%}
+	<a href="/reductioncompany/?company_id={{list.id}}" onclick="return confirm('是否还原此信息?')">还原</a>/<a href="/updatecompany/?company_id={{list.id}}">修改</a>
+	{%else%}<a href="/delcompany/?company_id={{list.id}}" onclick="return confirm('是否将此信息删除?')">删除</a>/<a href="/updatecompany/?company_id={{list.id}}">修改</a>
+	{%endifequal%}
+	</td>
+	{%endifequal%}
+	{%ifequal username "yunying"%}
+	<td align="center" bgcolor="#FFFFFF">{%ifequal company_type "7"%}
+	<a href="/reductioncompany/?company_id={{list.id}}" onclick="return confirm('是否还原此信息?')">还原</a>/<a href="/updatecompany/?company_id={{list.id}}">修改</a>
+	{%else%}<a href="/delcompany/?company_id={{list.id}}" onclick="return confirm('是否将此信息删除?')">删除</a>/<a href="/updatecompany/?company_id={{list.id}}">修改</a>
+	{%endifequal%}
+	</td>
+	{%endifequal%}
+	</tr>
+	{%endfor%}
+</table>
+
+
+
+<!--
+<input type="checkbox" id="selAll" onclick="selectAll();"> 全选
+<input type="button" value="分配给" onClick=send6()><select name="seo_id">
+{%if seo_id%}<option value="{{seo_id}}">{{seo_name}}</option>{%endif%}
+<option value="">请选择...</option>
+{%for seo in seouser%}<option value="{{seo.id}}">{{seo.name}}</option>{%endfor%}
+</select>
+-->
+<div style="float:left">
+{%ifequal username "seo"%}
+	{%ifequal company_type "5"%}
+<input type="button" value="取消丢单" onClick=send5()>
+	{%else%}
+<input type="button" value="丢单" onClick=send4()>
+	{%endifequal%}
+{%endifequal%}
+{%ifequal username "yunying"%}
+	{%ifequal company_type "5"%}
+<input type="button" value="取消丢单" onClick=send5()>
+	{%else%}
+<input type="button" value="丢单" onClick=send4()>
+	{%endifequal%}
+{%endifequal%}
+</div>
+<div style="float:left; line-height:30px;">
+{% if firstpage %}
+<a href="?page={{prvpage}}">上一页</a>
+{%else%}
+<font color="gray">上一页</font>
+{%endif%}
+&nbsp;
+{%for p in page_range%}
+{%if p.nowpage%}
+<font color="blue">{{p.number}}</font>&nbsp;
+{%else%}
+<a href="?page={{p.number}}">{{p.number}}&nbsp;</a>
+{%endif%}
+{%endfor%}
+&nbsp;
+{% if lastpage%}
+<a href="?page={{nextpage}}">下一页</a> 
+{%else%}
+<font color="gray">下一页</font>
+{%endif%}
+<font color="gray">第</font>{{page}}<font color="gray">页</font>
+</div>
+</form>
+
+
+
+<br /><br />
+{%endblock%}

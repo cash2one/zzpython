@@ -1,0 +1,26 @@
+{%extends 'index.html'%}
+{%block content%}
+<br /><br /><br />
+
+<form action="/addcompanyok/"><font color="blue">修改客户信息</font><br /><br />
+<input type="hidden" name="company_id" value="{{company_id}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+<table width="500" border="1" cellpadding="5" cellspacing="0" class="addtab">
+<tr><td>
+公司名称  </td><td><input type="text" name="name" value="{{name}}" class="field w80px"> <font color="red">{{error1}}</font>
+</td></tr>
+<tr><td>
+手机 </td><td><input type="text" name="mobile" value="{{mobile}}" class="w80px"> <font color="red">{{error2}}</font>
+</td></tr>
+<tr><td>
+联系人 </td><td><input type="text" name="contact" value="{{contact}}" class="w80px"> <font color="red">{{error4}}</font>
+</td></tr>
+<tr><td>
+邮箱 </td><td><input type="text" name="mail" value="{{mail}}" class="w130px"> <font color="red">{{error3}}</font>
+</td></tr>
+<tr><td>
+<input type="submit" value="确认修改"></td><td><input type="button" value="返回" onclick="window.location='/company/'">
+</td></tr>
+</table>
+</form>
+{%endblock%}

@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>供求详情-图片</title>
+	<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+	<style>
+	body{
+		background-color: #000;
+	}
+	header{
+		position: fixed;
+		top: 0;
+		width: 100%;
+		display:none;
+	}
+	.glv{
+		height: 12px;
+		background-color: #01ba2e
+	}
+	.imglist{
+		padding-top: 0px;
+	}
+	.imglist img{
+		vertical-align: top;
+		width: 100%;
+		border-bottom: 2px solid #fff
+	}
+	.top-black{
+		position: fixed;
+		height: 20px;
+		width: 20px;
+		display: block;
+		background: url(../../image/imageslist.png);
+		background-size: 250px;
+		background-position: -114px -101px;
+		top: 30px;
+		left: 8px;
+	}
+	.bottom-black{
+		position: fixed;
+		height: 32px;
+		width: 33px;
+		display: block;
+		background: url(../../image/imageslist.png);
+		background-size: 250px;
+		background-position: -115px -123px;
+		bottom: 20px;
+		left: 50%;
+		margin-left: -16px;
+	}
+	</style>
+</head>
+<body>
+	<header><div class="glv"></div></header>
+	<i class="top-black"></i>
+	<i class="bottom-black"></i>
+    <div class="imglist">
+    	<!-- <img src="../../image/infoimage.png"> -->
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript">
+	apiready = function() {
+		//展示图片
+		var imgHtml = "";
+		$.each(api.pageParam.imglist,function(index,item){
+			imgHtml += '<img src="'+ item +'">'
+		})
+		$(".imglist").html(imgHtml)
+		//点击关闭
+		$(".bottom-black").on("click",function(){
+			api.closeWin({
+			    name: 'imglist',
+			    animation: {
+			        type: 'reveal',
+			        subType: 'from_bottom'
+			    }
+			});
+		})
+		$("body").on("click",function(){
+			api.closeWin({
+			    name: 'imglist',
+			    animation: {
+			        type: 'reveal',
+			        subType: 'from_bottom'
+			    }
+			});
+		})
+		//点击关闭
+		$(".top-black").on("click",function(){
+			api.closeWin({
+			    name: 'imglist',
+			    animation: {
+			        type: 'reveal',
+			        subType: 'from_left'
+			    }
+			});
+		})
+	}
+</script>
+</html>

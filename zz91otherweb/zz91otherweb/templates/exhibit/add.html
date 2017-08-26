@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" type="text/css" href="Csss/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="Csss/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="Csss/style.css" />
+		<script charset="utf-8" type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+		<link rel="stylesheet" href="kindeditor/themes/default/default.css" />
+		<script charset="utf-8" type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script charset="utf-8" type="text/javascript" src="kindeditor/kindeditor-min.js"></script>
+		<script charset="utf-8" type="text/javascript" src="kindeditor/lang/zh_CN.js"></script>
+		<script charset="utf-8" src="http://b.zz91.com/layer/layer.js"></script>
+
+		<style type="text/css">
+			body {
+				font-size: 14px;
+			}
+			
+			.checkbox {
+				float: left;
+			}
+		</style>
+	</head>
+
+	<body style="padding: 10px;">
+		<form method="post" action="/feiliao123/zh/add_save.html" style="display: block;width: 80%;">
+			<input type="hidden" name="request_url" value="{{request_url}}">
+			<input type="hidden" name="exhibit_id" value="{{exhibit_id}}">
+			<table class="table table-bordered table-hover m10">
+				<tr>
+					<td class="tableleft">展会名称</td>
+					<td colspan="3"><input type="text" name="zname" value="{{name}}" style="width:100%"></td>
+				</tr>
+				<tr>
+					<td class="tableleft">展会图</td>
+					<td colspan="3"><input type="text" name="litpic" id="listpic" value="{{litpic}}" style="width:100%" readonly=""></td>
+				</tr>
+				<tr>
+					<td class="tableleft" style="width: 100px;">图片上传</td>
+					<td colspan="3">
+						<iframe name='upload' width="100%" height="50px" src="/feiliao123/imgload.html?type=pic"></iframe>
+					</td>
+				</tr>
+				<tr>
+					<td class="tableleft">展会地区</td>
+					<td><input type="text" id="area" name="area" value="{{area}}"> 如：中国-杭州</td>
+					<td class="tableleft">关键词/标签</td>
+					<td><input type="text" name="tags" value="{{tags}}"></td>
+				</tr>
+				<tr>
+					<td class="tableleft">展会类别</td>
+					<td>
+						<select name="plate_category_code" id="plate_category_code" style="width:120px">
+							<option value="">请选择...</option>
+							{%for list in bklist%}
+							<option value="{{list.code}}">{{list.label}}</option>
+							{%endfor%}
+						</select>
+					</td>
+					<td class="tableleft">板块类别</td>
+					<td>
+						<select name="exhibit_category_code" id="exhibit_category_code" style="width:120px">
+							{%for list in hylist%}
+							<option value="{{list.code}}">{{list.label}}</option>
+							{%endfor%}
+						</select>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="tableleft">跳转URL</td>
+					<td colspan="3">
+						<input type="text" name="redircturl" value="{{redircturl}}" style="width:100%">
+					</td>
+				</tr>
+				<tr>
+					<td class="tableleft">辅助类别</td>
+					<td colspan="3">
+						{%for list in hzlist%}
+						<label class="checkbox" for="l{{list.code}}"><input type="checkbox" id="l{{list.code}}" name="hz_categorylist" value="{{list.code}}"/> {{list.label}}</label> {%endfor%}
+					</td>
+				</tr>
+				<tr>
+					<td class="tableleft">开始时间</td>
+					<td><input class="Wdate" type="text" style="width:100px" name="start_time" id="start_time" value="{{start_time}}" onClick="WdatePicker()"></td>
+					<td class="tableleft">结束时间</td>
+					<td><input class="Wdate" type="text" style="width:100px" name="end_time" id="end_time" value="{{end_time}}" onClick="WdatePicker()"></td>
+				</tr>
+				<tr>
+					<td class="tableleft" style="width: 100px;">主办单位，承办单位等相关</td>
+					<td colspan="3">
+						<textarea id="allzhuban" name="allzhuban" style="width: 100%;height: 100px;">{{allzhuban}}</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="tableleft" style="width: 100px;">图片上传</td>
+					<td colspan="3">
+						<iframe name='upload' width="100%" height="50px" src="/feiliao123/imgload.html?type=editor"></iframe>
+					</td>
+				</tr>
+
+			</table>
+			<textarea id="myEditor" name="myEditor" style="width:100%;height:400px;visibility:hidden;">  
+			 {{content|safe}}
+			</textarea>
+
+			<button type="submit" class="btn btn-primary" type="button">保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" onClick="window.location.href='returnpage.html?request_url={{request_url}}'">返回列表</button>
+		</form>
+		<script>
+			var str = "{{hz_categorylist}}";
+
+
+			$(function() {
+				$(str.split(",")).each(function(i, dom) {
+					$(":checkbox[name=hz_categorylist][value='" + dom + "']").prop("checked", true);
+				});
+				$("#plate_category_code").val("{{plate_category_code}}");
+				$("#exhibit_category_code").val("{{exhibit_category_code}}");
+			})
+			var editor;
+			KindEditor.ready(function(K) {
+				editor = K.create('textarea[name="myEditor"]', {
+					//uploadJson : '/feiliao123/zh-upload.html?'+(new Date()).getTime().toString(),
+					//fileManagerJson : '../asp/file_manager_json.asp',
+					//allowFileManager : true
+				});
+
+				K('input[name=getHtml]').click(function(e) {
+					alert(editor.html());
+				});
+				K('input[name=isEmpty]').click(function(e) {
+					alert(editor.isEmpty());
+				});
+				K('input[name=getText]').click(function(e) {
+					alert(editor.text());
+				});
+				K('input[name=selectedHtml]').click(function(e) {
+					alert(editor.selectedHtml());
+				});
+				K('input[name=setHtml]').click(function(e) {
+					editor.html('<h3>Hello KindEditor</h3>');
+				});
+				K('input[name=setText]').click(function(e) {
+					editor.text('<h3>Hello KindEditor</h3>');
+				});
+				K('input[name=insertHtml]').click(function(e) {
+					editor.insertHtml('<strong>插入HTML</strong>');
+				});
+				K('input[name=appendHtml]').click(function(e) {
+					editor.appendHtml('<strong>添加HTML</strong>');
+				});
+				K('input[name=clear]').click(function(e) {
+					editor.html('');
+				});
+			});
+			function seteditor(pic){
+				editor.insertHtml('<img src='+pic+' />');
+			}
+		</script>
+	</body>
+
+</html>

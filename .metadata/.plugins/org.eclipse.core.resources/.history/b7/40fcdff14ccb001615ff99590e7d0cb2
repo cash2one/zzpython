@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <style>
+    	body{
+    		line-height:30px;
+    	}
+    </style>
+</head>
+<body>
+	<div class="nodata">暂无数据！</div>
+	<div class="aui-content">
+		<script id="info-list" type="text/html">
+		    <li class="aui-list-view-cell aui-img">
+				<div class="aui-img-body">
+					<div class="aui-pull-left">
+						<span>用户搜索关键字：<font color="blue">{{d.searchkeywords}}</font></span>
+						<span>推广关键词：<font style="color:#FC9A30">{{d.keywords}}</span>
+						<div style="clear: both"></div>
+						<p style="width: 50%;float: left">
+							展现：{{d.showcount}}  <br />点击：{{d.clickcount}}
+						</p>
+						<p style="width: 50%;float: right">
+							消费：￥{{d.feenumber}}  <br />日期：{{d.gmt_modified}}
+						</p>
+					</div>
+					
+				</div>
+			</li>
+		</script>
+		<ul class="aui-list-view allservice">
+			<div class="aui-toast"  id="loading">
+		        <div class="aui-toast-loading"></div>
+		        <div class="aui-toast-content">加载中</div>
+		    </div>
+		</ul>
+		<div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;display:none'>上拉获取更多信息</div>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+<script type="text/javascript">
+	var currPage = 1;
+	var pagecount=1;
+	apiready = function(){
+		//底部加载更多
+		api.addEventListener({
+			name : 'scrolltobottom'
+		}, function(ret, err) {
+			//如果底部没有加载更多提示，添加加载更多提示
+			
+			if (currPage>=pagecount){
+				$(".la_more").html("全部加载完毕");
+				return false;
+			}
+			$(".la_more").html("加载更多中...");
+			setTimeout(function() {
+				ajaxinfo();
+			}, 1000)
+		});
+		//页面刷新
+		api.setRefreshHeaderInfo({
+			visible : true,
+			// bgColor: '#F2F2F2',
+			bgColor : '#E6E6E6',
+			textColor : '#000000',
+			textDown : '下拉刷新',
+			textUp : '释放刷新',
+		}, function(ret, err) {
+			currPage = 1;
+			ajaxinfo();
+			api.toast({
+				msg : '数据已是最新！',
+				duration : 3000,
+				location : 'bottom'
+			});
+		});
+		ajaxinfo();
+	};
+	
+	var dataload = true;
+	function ajaxinfo(){
+		if (dataload == false) {
+			return false;
+		}
+		dataload = false;
+		zzappajax("get",hosturl+"qianbao/jingjia_keywords_paylist.html?"+(new Date()).getTime().toString(),"",function(ret){
+			if (ret) {
+					
+				var pageHtml = "";
+				pagecount=parseInt(ret.pagecount);
+				$.each(ret.list, function(index, item) {
+					var getTpl = $api.html($api.byId("info-list"));
+					laytpl(getTpl).render(item, function(html) {
+						pageHtml = pageHtml + html;
+					});
+				});
+				
+				if (currPage == 1) {
+					if (pageHtml==""){
+	            		$(".nodata").show();
+	            		$(".la_more").hide();
+	            		$(".allservice").hide();
+	            	}else{
+	            		$(".nodata").hide();
+	            		$(".la_more").show();
+	            		$(".allservice").show();
+	                }
+	                $(".allservice").html(pageHtml);
+	                api.pageUp({
+						'top' : true
+					});
+	            }else{
+					$(".allservice").append(pageHtml);
+	            }
+				
+				if (pageHtml!=""){
+					currPage += 1;
+					if (currPage>=pagecount){
+						$(".la_more").html("全部加载完毕");
+					}else{
+						$(".la_more").html("上拉获取更多信息");
+					}
+					
+				}else{
+					$(".la_more").html("全部加载完毕");
+				}
+				
+				
+			} else {
+				api.hideProgress();
+			};
+			api.refreshHeaderLoadDone();
+			api.hideProgress();
+			dataload = true;
+		},function(){})
+	}
+</script>
+</html>

@@ -1,0 +1,112 @@
+/* CSS Document */
+body {
+	background-color: #D0D7E1;
+/*	font-family: "Microsoft YaHei";
+	font-size: 14px;*/
+	font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+.stitle {
+	font-size: 14px;
+	font-weight: bold;
+	color: #4A711C;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #87CB31;
+}
+a {
+	color: #000000;
+}
+a:hover {
+	color: #000000;
+	cursor: pointer;
+}
+
+.btitle {
+	font-size: 16px;
+	line-height: 30px;
+	font-weight: bold;
+	background-color: #F2F2F2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999999;
+}
+td {
+	font-size: 12px;
+	line-height: 22px;
+	white-space:nowrap;
+}
+.lit {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #CCCCCC;
+}
+#db-qk {
+	margin-top: 10px;
+}
+.fm {
+	margin-top: 5px;
+}
+#fm2 {
+	margin-top: 10px;
+}
+.tb-1 {
+	margin:5px 0 3px 0;
+	width:100%;
+}
+.tb-2 {
+	margin-top: 10px;
+	margin-left:20px;
+}
+.tb-2 td {
+	text-align: center;
+}
+.tb-2-tr .current {
+	background-color:#cccc00;
+}
+.tb-2-tr td {
+	width: 100px;
+}
+.tb-3 tr {
+	margin-top:8px;
+}
+/*去除表格本身的边框,文本居中*/
+.tb-4, .tb-5, .main-text .tb-2, .add-tb1, .tb-xg-1, .tb-xg-2 {
+	text-align: center;
+	border-collapse:collapse;
+	border:none;
+}
+.tb-5 .tb-5-tr1, .kh-tb-2 .kh-tb2-tr1 {
+	background-color: #ddd;
+}
+/*设置边框*/
+.tb-4 tr td, .tb-5 tr td, .main-text .tb-2 td, .add-tb1 td, .tb-xg-1 td, .tb-xg-2 td, .kh-tb-2 td, .sl-tb td{
+	border:solid #000 1px;
+}
+
+.search-tb2  td {
+	border:solid #000 1px;
+	width: 91px;
+}
+
+.main-text .tb-2, .kh-main .kh-tb-2, .search-tb2, .sl-tb {
+	text-align: left;
+	border-collapse:collapse;
+	border:none;
+}
+
+.main-text .tb-2 td {
+	text-align: left;
+}
+.tb-xg-1 tr, .kh-tb-2 tr {
+	background-color: #fff;
+}
+.kh-main {
+	margin-top:10px;
+}
+select {
+	height: 21px;
+}
+input[disabled] {
+	cursor: not-allowed;
+	opacity: 0.9;
+}

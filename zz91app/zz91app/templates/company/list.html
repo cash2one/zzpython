@@ -1,0 +1,33 @@
+<form method="post">
+	<span class="mui-table-view-cell" style="margin-top: 0px;display:block;padding-top: 0px;padding-bottom: 0px;border: 0px;background-image: none;">
+        <button class="mui-btn mui-btn-primary mui-icon mui-icon-search" onclick="zz91search(this.form,'/company/?keywords=','tradelist')" type="button">搜公司</button>
+        <input type="search" id="searchtext" placeholder="请输入关键字" style="float: left;width: 70%; margin-top:15px ;" {%if keywords%}value="{{keywords}}"{%endif%}/>
+    </span>
+</form>
+<ul class="mui-table-view ">
+	{%if companylist%}
+	{%for list in companylist%} 
+	<a href="javascript:gotourl('/companyinfo/?forcid={{list.id}}','blank');">
+	<li class="mui-table-view-cell mui-media">
+			<div class="mui-media-body">
+				<span class="zz91-index-title">{{list.compname}}</span>
+				<p class='mui-ellipsis-2'>
+					[{{list.area_province}}]{{list.business}}
+				</p>
+				<span style="color: #FF0000;">{%if list.ldbphone%}<img src="http://m.zz91.com/images/tel.png"> {{list.ldbphone.front_tel}}{%endif%}</span>
+			</div>
+		<div style="clear: both;"></div>
+	</li>
+	<div style="clear: both;"></div>
+	</a>
+	{%endfor%}
+	<div id=pulldiv class='pulldiv' onclick=loadmorep(this,'/company/?keywords={{keywords}}') title="/company/?keywords={{keywords}}"><span class='mui-icon mui-icon-down'></span><span>点此加载更多</span></div>
+	{%else%}
+	<li class="mui-table-view-cell">
+        <a href="###">
+            没有找你你需要的信息，请修改搜索关键词！
+        </a>
+    </li>
+	{%endif%}
+</ul>
+<input type="hidden" id="appnavname" value="公司黄页" />

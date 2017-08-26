@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+<form class="form-inline definewidth m20">
+{%if not company_id%}
+&nbsp;高会 <input type="radio" name="is_senior" value="1" {%ifequal is_senior "1"%}checked="checked"{%endifequal%}> 普会 <input type="radio" name="is_senior" value="0" {%ifequal is_senior "0"%}checked="checked"{%endifequal%}>&nbsp;&nbsp;
+公司名<input type="text" name="company_name" {%if company_name%}value="{{company_name}}"{%endif%} style="width:100px">
+ &nbsp;<select name="industry_code" style="width:140px">
+{%if industry_name%}<option value="{{industry_code}}">{{industry_name}}</option>{%endif%}
+<option value="">--主营行业</option>
+{%for ad in allindustry%}
+<option value="{{ad.code}}">{{ad.label}}</option>
+{%endfor%}
+</select>&nbsp;&nbsp;
+<select name="area_code" style="width:75px">
+{%if area_name%}<option value="{{area_code}}">{{area_name}}</option>{%endif%}
+<option value="">--地区</option>
+{%for ad in allarea%}
+<option value="{{ad.code}}">{{ad.label}}</option>
+{%endfor%}
+</select>&nbsp;&nbsp;
+
+登陆次数 <input type="text" name="logcount_begin" {%if logcount_begin%}value="{{logcount_begin}}"{%endif%} style="width:40px"> 到 <input type="text" name="logcount_end" {%if logcount_end%}value="{{logcount_end}}"{%endif%} style="width:40px">&nbsp;
+{%endif%}
+<br /><br />&nbsp;&nbsp;
+时间筛选 <select name="timetype" style="width:95px">
+{%if timename%}<option value="{{timetype}}">{{timename}}</option>{%endif%}
+<option value="">--时间类型</option>
+<option value="1">登录时间 </option>
+<option value="2">注册时间</option>
+</select>&nbsp;&nbsp;
+ <input class="Wdate" type="text" style="width:95px" name="gmt_begin" {%if gmt_begin%}value={{gmt_begin}}{%endif%} id="datebegin" onClick="WdatePicker()"> 
+ 到 <input class="Wdate" type="text" style="width:95px" name="gmt_end" {%if gmt_end%}value={{gmt_end}}{%endif%} id="datebegin" onClick="WdatePicker()">&nbsp;&nbsp;
+<!--<input class="btn btn-success" type="button" value="在线查询" onClick="window.location.href='?online=1'">&nbsp;&nbsp;-->
+<input class="btn btn-success" type="submit" value="查询">
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th width="200px">公司名称
+        {%ifequal order 'company_name'%}
+        <a href="?order=company_name{%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=company_name desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'company_name desc'%}
+        <a href="?order=company_name{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=company_name desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=company_name{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=company_name desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        </th>
+        <th width="110px">主营行业
+        {%ifequal order 'industry_code'%}
+        <a href="?order=industry_code{%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=industry_code desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'industry_code desc'%}
+        <a href="?order=industry_code{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=industry_code desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=industry_code{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=industry_code desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        </th>
+        <th width="110px">地区
+        {%ifequal order 'main_area_code'%}
+        <a href="?order=main_area_code{%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=main_area_code desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'main_area_code desc'%}
+        <a href="?order=main_area_code{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=main_area_code desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=main_area_code{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=main_area_code desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        </th>
+{%if company_id%}
+        <th width="95px">登录次数</th>
+        <th width="110px">登录时间</th>
+{%else%}
+        <th width="110px">总登录次数
+        {%ifequal order 'sum(log_count)'%}
+        <a href="?order=sum(log_count){%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=sum(log_count) desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'sum(log_count) desc'%}
+        <a href="?order=sum(log_count){%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=sum(log_count) desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=sum(log_count){%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=sum(log_count) desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        </th>
+        <th width="120px">最后登录时间
+        {%ifequal order 'last_logtime'%}
+        <a href="?order=last_logtime{%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=last_logtime desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'last_logtime desc'%}
+        <a href="?order=last_logtime{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=last_logtime desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=last_logtime{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=last_logtime desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        </th>
+        <th width="110px">最后登录时长
+        {%ifequal order 'how_logtime'%}
+        <a href="?order=how_logtime{%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=how_logtime desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'how_logtime desc'%}
+        <a href="?order=how_logtime{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=how_logtime desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=how_logtime{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=how_logtime desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        </th>
+{%endif%}
+        <th width="110px">注册时间
+        {%ifequal order 'regtime'%}
+        <a href="?order=regtime{%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=regtime desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'regtime desc'%}
+        <a href="?order=regtime{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=regtime desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=regtime{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=regtime desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        </th>
+        <th width="65px">日期
+        {%ifequal order 'gmt_date'%}
+        <a href="?order=gmt_date{%if searchurl%}&{{searchurl}}{%endif%}">↑</a> <a href="?order=gmt_date desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%else%}
+        {%ifequal order 'gmt_date desc'%}
+        <a href="?order=gmt_date{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=gmt_date desc{%if searchurl%}&{{searchurl}}{%endif%}">↓</a>
+        {%else%}
+        <a href="?order=gmt_date{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↑</a> <a href="?order=gmt_date desc{%if searchurl%}&{{searchurl}}{%endif%}" style="color:gray">↓</a>
+        {%endifequal%}
+        {%endifequal%}
+        </th>
+    </tr>
+    </thead>
+<form action="updatetypeok.html">
+<input type="hidden" name="typeid" value="{{typeid}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+    {%for list in listall%}
+	     <tr>
+	        <td><a href="http://admin1949.zz91.com/web/zz91/crm/company/detail.htm?companyId={{list.company_id}}" target="_blank">{{list.company_name}}</a> {%ifequal list.issenior 1%}&nbsp;&nbsp;<img src="123/imgs/compvip.gif" width="24px" height="24px">{%endifequal%}</td>
+	        <td>{%if list.industry_label%}{{list.industry_label}}{%endif%}</td>
+	        <td>{%if list.main_area%}{{list.main_area}}-{{list.area}}{%endif%}</td>
+	        {%if company_id%}
+	        <td>1</td>
+	        <td>{{list.gmt_created}}</td>
+	        {%else%}
+	        <td><a href="?company_id={{list.company_id}}{%if searchurl%}&{{searchurl}}{%endif%}">{{list.log_count}}</a></td>
+	        <td>{{list.last_logtime}}</td>
+	        <td>{{list.how_logtime}}</td>
+	        {%endif%}
+	        <td>{{list.regtime}}</td>
+	        <td>{{list.gmt_date}}</td>
+        </tr>
+     {%endfor%}
+</form>
+        </table>
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<input type="button" value="跳到" onClick=turnpage()> <span style="font-size:15px">第 <input type="text" id="page1" style="width:28px" value="{{page}}"> /{{page_listcount}} 页  </span><input type="submit" style="display:none"> &nbsp;&nbsp;
+<a href='?page=1{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}' >首页</a><a href='?page={{page_listcount}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}' >尾页</a> 
+</div>
+</body>
+<script>
+function turnpage(){
+	var page1=document.getElementById("page1").value;
+	if (page1<1)
+	{
+	page1=1;
+	}
+	window.location.href='?page='+page1+'{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}';
+}
+</script>
+</html>

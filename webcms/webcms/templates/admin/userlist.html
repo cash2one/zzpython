@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/style.css" />
+</head>
+<body>
+<form class="form-inline definewidth m20" action="index.html" method="get">  
+<button type="button" class="btn btn-success" onClick="window.location.href='adduser.html'">添加账户</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>帐号</th>
+        <th>密码</th>
+        <th>操作员</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+<form action="updateuserok.html">
+<input type="hidden" name="typeid" value="{{typeid}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+    {%for list in listall%}
+	     <tr>
+	        <td>{{list.id}}</td>
+	        <td>{{list.username}}</td>
+	        <td>{{list.password}}</td>
+	        <td>{{list.admin_name}}</td>
+	        <td>
+			<a href="updateuser.html?uid={{list.id}}" title="编辑"><img src="/123/imgs/gtk-edit.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="deluser.html?uid={{list.id}}" onClick="return confirm('请谨慎操作! 是否将此栏目删除?')" title="删除"><img src="/123/imgs/b_drop.png"></a>
+			</td>
+        </tr>
+     {%endfor%}
+</form>
+</table>
+{%include 'common/turnpage.html'%}
+</body>
+</html>

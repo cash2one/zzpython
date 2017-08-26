@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<title>{{province}}{{pingyinname}}商家报价_{{pingyinname}}价格_-微门户报价中心(第{{page}}页)-zz91.com再生网</title>
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico">
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/cp/css/OldClothes.css"/>
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+<script src="http://img0.zz91.com/zz91/cp/js/OldClothes.js"></script>
+{% include 'mobilecontrol.html' %}
+</head>
+<body>
+<div class="main">
+{% include 'top.html' %}
+</div>
+<div class="OldClothes">
+	<div class="oc-title">
+    	当前位置：<a href="http://www.zz91.com/">ZZ91再生网</a>  &gt; <a href="/cp/">产品微门户</a>  &gt;  <a href="../{{pingyin}}/">{{pingyinname}}</a>
+    </div>
+    <!--end oc-title-->
+    <div class="oc-nav">
+    	<ul>
+        	<li ><a href="/cp/{{pingyin}}/">{{pingyinname}}首页</a></li>
+            <li style="background:#00632b"><a href="/cp/{{pingyin}}/price.html">价格</a></li>
+            <li><a href="/cp/{{pingyin}}/company.html">商家</a></li>
+            <li><a href="/cp/{{pingyin}}/trade.html">供求</a></li>
+            <li><a href="/cp/{{pingyin}}/picture.html">图片</a></li>
+            <li><a href="http://huzhu.zz91.com/newhuzhu/search.htm?keywords={{pingyinname}}" target="_blank">互助</a></li>
+        </ul>
+    </div>
+    <!--end oc-nav-->
+    <div class="cb"></div>
+    <div class="oc-price">
+    	<div class="oc-price-mainblock1">
+    		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<ins class="adsbygoogle"
+				     style="display:block"
+				     data-ad-client="ca-pub-5512236620584335"
+				     data-ad-slot="8274972003"
+				     data-ad-format="auto"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+            <div class="price-m1">
+                <div class="title">优质商家</div>
+                {%for list in pcompanylist%}<div class="content">
+                	<a href="http://{{list.domain_zz91}}.zz91.com" target=_blank>{{list.comname}}</a>
+                    <span>{{list.area_province}}</span>
+                </div>{%endfor%}
+            </div>
+            
+            <!--end price-m1-->
+            <div class="price-m2">
+            	<div class="price-m2-title">
+                	<a href="trademore-1.html?ptype=0">相关{{pingyinname}}供应</a>
+                </div>
+                <!--end price-m2-tile-->
+                <ul>
+				{%for list in salesproducts%}
+                	<li><div class="m2-ul-left"><a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target=_blank>{{list.title}}</a></div><div class="m2-ul-right">{{list.gmt_time_m}}</div></li>
+                {%endfor%}
+                    <div class="cb">
+                </div></ul>
+                <div class="price-m2-title">
+                	<a href="trademore-1.html?ptype=1">相关{{pingyinname}}求购</a>
+                </div>
+                <!--end price-m2-tile-->
+                <ul>
+                	{%for list in buyproducts%}
+                	<li><div class="m2-ul-left"><a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target=_blank>{{list.title}}</a></div><div class="m2-ul-right">{{list.gmt_time_m}}</div></li>
+                {%endfor%}
+                    <div class="cb">
+                </div></ul>
+            </div>	
+            <!--end price-m2-->
+        </div>
+        <!--end oc-mainblock1-->
+        <div class="oc-price-right">
+        	
+            <!--end price-right-box-->
+            <div class="price-right-box2">
+            	<div class="price-box2-title">
+                	<a href="#">{{pingyinname}}最新报价</a>
+                </div>
+                <table class="price-table">
+                	<tr style="border-bottom:1px solid #000">
+                    	<td>产品名称</td>
+                        <td>产品价格</td>
+                        <td>所在地区</td>
+                        <td>发布日期</td>
+                        <td>企业名称</td>
+                    </tr>
+					{%for list in pricelist.list%}
+                    <tr>
+                    	<td><a href="{{list.url}}" target=_blank>{{list.title}}</a></td>
+                        <td>{{list.min_price}}{%if list.max_price%}至{{list.max_price}}{%endif%}{{list.price_unit}}</td>
+                        <td>{{list.area}}</td>
+                        <td>{{list.gmt_time}}</td>
+                        <td><a href="http://company.zz91.com/compinfo{{list.company_id}}.htm" target=_blank>{{list.companyname}}</a></td>
+                    </tr>
+                    
+					{%endfor%}
+                    <tr>
+                      <td colspan="5" align="center">
+                      <div class="page">
+                        <ul>
+                            {% if firstpage %}
+                            <li><a href="pricemore-1.html?province={{province}}">首页</a></li>
+                            <li><a href="pricemore-{{prvpage}}.html?province={{province}}">上一页</a></li>
+                            {% endif %} 
+                            {% for p in page_range %}
+                            {% if p.nowpage %}
+                            <li><a href="javascript:void(0)" class="lion">{{p.number}}</a></li>
+                            {% else %}
+                            <li><a href="pricemore-{{p.number}}.html?province={{province}}">{{p.number}}</a></li>
+                            {% endif %}
+                            {% endfor %}
+                            {% if lastpage%}
+                            <li><a href="pricemore-{{nextpage}}.html?province={{province}}">下一页</a></li>
+                            <li><a href="pricemore-{{page_listcount}}.html?province={{province}}">末页</a></li>
+                            {% endif %}
+                            <li style="border:0">共{{page_listcount}}页</li>
+                            <div class="cb"></div>
+                        </ul>
+                    </div>
+                      </td>
+                    </tr>
+					
+                    
+                </table>
+            </div>
+            <!--end price-right-box2-->
+            <div class="price-right-box3">
+            	<div class="price-box2-title">
+                	地区价格
+                </div>
+                <ul>
+					{%for list in arealist%}
+                	<li><a href="pricemore-1.html?province={{list.label}}">{{list.label}}</a></li>
+                    {%endfor%}
+                    <div class="cb"></div>
+                </ul>
+            </div>
+            <!--end price-right-box3-->
+        </div>
+        <!--end oc-price-mainblock2-->
+        <div class="cb"></div>
+        
+        <!--end oc-price-mainblock3-->
+    </div>
+    <!--end oc-price-->
+    
+</div>
+<!--end OldClothes-->
+{% include 'bottom.html' %}
+</body></html>

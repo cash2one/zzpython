@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>我的收藏夹-{{webtitle}}_ZZ91废料移动商务</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<style>
+			.clearfix:after {
+				content: ".";
+				display: block;
+				height: 0;
+				clear: both;
+				visibility: hidden
+			}
+			
+			.clearfix {
+				height: 1%
+			}
+			
+			.clearfix {
+				display: block
+			}
+			
+			
+			a {
+				color: #333
+			}
+			.j_navlist>div{
+				position: relative;
+			}
+			.am-icon-sanjiao{
+				display: inline-block;
+				width: 0;
+				height: 0;
+				border-width: 0px 0px 10px 10px;
+				border-style: solid dashed dashed dashed;
+				border-color: transparent transparent #333 transparent;
+				position: absolute;
+				right: 8px;
+				bottom: 3px;
+			}
+			.navbox{
+				width: 100%;
+				background: #fff;
+				z-index: 2000;
+				position: relative;
+			}
+			.navbox-fix{
+				position: fixed;
+				z-index: 2000;
+				top: 0px;
+				width: 100%;
+				background: #009900;
+				color: #fff;
+			}
+			.this_select{
+				color: red
+			}
+			.popbox{
+				position: fixed;
+				background: rgba(0,0,0,0.5);
+				height: 100%;
+				width: 100%;
+				z-index: 1;
+				top: 0;
+				padding-top: 73px;
+			}
+			.popbox.aui-invisible{
+				z-index: -1
+			}
+			.popmian{
+				position: fixed;
+				height: 100%;
+				width: 100%;
+				transform:translateY(-100%);
+				-ms-transform:translateY(-100%); 	/* IE 9 */
+				-moz-transform:translateY(-100%); 	/* Firefox */
+				-webkit-transform:translateY(-100%); /* Safari 和 Chrome */
+				-o-transform:translateY(-100%); 	/* Opera */
+				transition: transform 0.5s;
+				-moz-transition: transform 0.5s;	/* Firefox 4 */
+				-webkit-transition: transform 0.5s;	/* Safari 和 Chrome */
+				-o-transition: transform 0.5s;	/* Opera */
+			}
+			.popmian.outMd{
+				transform:translateY(0,);
+				-ms-transform:translateY(0); 	/* IE 9 */
+				-moz-transform:translateY(0); 	/* Firefox */
+				-webkit-transform:translateY(0); /* Safari 和 Chrome */
+				-o-transform:translateY(0,); 	/* Opera */
+			}
+			.popmodule{
+				background: #fff;
+			}
+			.floatpage {
+				position: fixed;
+				bottom: 0px;
+				width: 100%;
+				height: 54px;
+			}
+			.text-33 {
+				color: #333;
+			}
+			
+			.text-99 {
+				color: #999;
+			}
+			
+			.aui-list-view:after {
+				border-top: 0;
+			}
+			
+			.aui-tab-item.aui-active{
+				color: #009900 !important;
+				border-bottom: 2px solid #009900;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+			<a class="aui-pull-left" href="/myrc_index/">
+				<span class="aui-iconfont aui-icon-left"></span>
+			</a>
+			<div class="aui-title">我的收藏夹</div>
+		</header>
+		<div class="navbox">
+			<div class="aui-row aui-font-size-12 aui-text-center aui-border-b j_navlist">
+				<div class="aui-col-xs-12 aui-padded-5">{{statustext}}<i class="am-icon-sanjiao"></i></div>
+			</div>
+		</div>
+		<div class="popbox aui-invisible">
+			<div class="popmian">
+				<div class="popmodule">
+					<div class="aui-content">
+						<ul class="aui-list-view">
+							<li class="aui-list-view-cell">
+								<a href="/myrc/favorite.html?checkStatus=0">全部(<span class="c-red">{{alist}}</span>)</a>
+							</li>
+							<li class="aui-list-view-cell">
+								<a href="/myrc/favorite.html?checkStatus=1">供求(<span class="c-red">{{alist1}}</span>)</a>
+							</li>
+							<li class="aui-list-view-cell">
+								<a href="/myrc/favorite.html?checkStatus=2">公司(<span class="c-red">{{alist2}}</span>)</a>
+							</li>
+							<li class="aui-list-view-cell">
+								<a href="/myrc/favorite.html?checkStatus=3">报价(<span class="c-red">{{alist3}}</span>)</a>
+							</li>
+							<li class="aui-list-view-cell">
+								<a href="/myrc/favorite.html?checkStatus=4">社区(<span class="c-red">{{alist4}}</span>)</a>
+							</li>
+							<li class="aui-list-view-cell">
+								<a href="/myrc/favorite.html?checkStatus=5">资讯(<span class="c-red">{{alist5}}</span>)</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="topdiv" onclick="pagetotop();" style="bottom: 60px;"><span class="aui-iconfont aui-icon-top"></span></div>
+		{%if qlist%}
+		<div class="aui-content">
+			<ul class="aui-list-view">
+				{%for list in qlist%}
+				<li class="aui-list-view-cell aui-img">
+					<div class="aui-img-body aui-row">
+						<a href="{{list.favorite_url}}" class="">
+							<p class="text-33">
+								<font color="#00CC00">[{{list.favorite_type}}]</font>{{list.content_title}}
+							</p>
+							<span class="aui-font-size-12 text-99">
+							加入时间：{{list.gmt_created}}
+							</span>
+						</a>
+						<a class="aui-font-size-12 text-99 aui-padded-t-5 aui-margin-t-5 aui-pull-right j_close" href="favorite_del.html?favid={{list.favid}}" onClick="return confirm('是否将此信息删除?')">删除</a>
+					</div>
+				</li>
+				{%endfor%}
+			</ul>
+		</div>
+
+		
+		<div style="height: 60px;"></div>
+		<div class="floatpage">
+			<div class="page">
+				<ul>
+					{% if firstpage %}
+					<li class="page_prev">
+						<a href="/myrc/favorite.html?page={{prvpage}}&checkStatus={{checkStatus}}">上一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+					<li class="page_no">
+						<select onChange="window.location='?checkStatus={{checkStatus}}&page='+this.value">
+							<option>第{{page}}页</option>
+							<option value="1">首页</option>
+							{%for p in page_range%}
+							<option value="{{p.number}}">第{{p.number}}页</option>
+							{%endfor%}
+							<option value="{{page_listcount}}">末页</option>
+						</select> /{{page_listcount}}页
+					</li>
+					{% if lastpage%}
+					<li class="page_next">
+						<a href="/myrc/favorite.html?page={{nextpage}}&checkStatus={{checkStatus}}">下一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+		{%else%}
+		<div class="nodata" style="display: block">
+			暂无相关数据
+		</div>
+		{%endif%}
+	</body>
+
+	<script type="text/javascript">
+		//选取需要的类别
+		$(".j_navlist").children().on("click",function(){
+			if($(this).hasClass("this_select")){
+				closePop();
+				return;
+			}
+			$(".this_select").removeClass("this_select");
+			$(this).addClass("this_select")
+			var index = $(this).index();
+			$(".popbox").removeClass("aui-invisible");
+			$(".popmian").removeClass("outMd").eq(index).addClass("outMd")
+		})
+		$(document).on("touchstart",function(e){ 
+			e = window.event || e; // 兼容IE7
+			obj = $(e.srcElement || e.target);
+			if ($(obj).is(".popmian")) { 
+				closePop() //隐藏弹出窗口
+				return false;
+			} 
+		}); 
+		function closePop(){
+			$(".this_select").removeClass("this_select");
+			$(".popmian").removeClass("outMd")
+			$(".popbox").addClass("aui-invisible"); //隐藏弹出窗口
+			return false;
+		}
+		function pagetotop(){
+			$('body').animate( {scrollTop: 0}, 500);
+			return false;
+		}
+		$(function(){
+			var scroll = new auiScroll({
+		        listen:true,
+		        distance:50 //判断到达底部的距离，isToBottom为true
+		    },function(ret){
+		        if(ret.isToBottom){
+		        }else{
+			        if (ret.scrollTop>50){
+			        	$(".topdiv").fadeIn();
+			        }else{
+			        	$(".topdiv").fadeOut();
+			        }
+			        if (ret.scrollTop>50){
+			        	$(".navbox").addClass("navbox-fix");
+			        	$(".popbox").css("padding-top","28px");
+			        }else{
+			        	$(".navbox").removeClass("navbox-fix");
+			        	$(".popbox").css("padding-top","72px");
+			        }
+		        }
+		
+		    });
+		})
+	</script>
+	{%include 'aui/bottom.html'%}
+
+</html>

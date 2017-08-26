@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>来电宝</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style_index.css"/>
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+</head>
+<body>{%include 'html/ppc/ppc2014/nav.html'%}
+<div class="main">
+{%include 'html/ppc/ppc2014/ppchead.html'%}
+        <!--end nav-->
+        <div class="content">
+        	<div class="c-left">
+            	<div class="l-tle">什么是来电宝?</div>
+                <!--end l-tle-->
+                <div class="l-box">
+                <div class="b-img">
+                	<img src="images_index/yy.jpg"/>
+                </div>
+                <!--end b-img-->
+                	<div class="b-item">
+                    	<div class="i-txt">
+                        	　　“来电宝”是ZZ91创新产品研究专门为全球中小型再生资源企业，量身打造的全方位互动式精准营销平台，同时采用全国首创按电话效果付费的广告模式，我们郑重承诺，没有商机、没有电话，绝不收取任何费用！
+                        </div>
+                        <!--end i-txt-->
+                        <div class="i-txt_">无商机不付费</div>
+                        <!--end i-txt_-->
+                        <center>
+                        <div class="i-btn">
+                        	<a href="javascript:void(0)" class="share" target="_blank">立刻办理</a>
+                        </div>
+                        <!--end i-btn-->
+                        </center>
+                    </div>
+                    <!--end b-item-->
+                </div>
+                <!--end l-box-->
+                <div class="cb"></div>
+            </div>
+            <!--end c-left-->
+            <div class="c-right">
+            <div id="outer">
+				<ul id="inner">
+					<li><img src="images_index/11.jpg" width="800" height="310" alt=" "></li>
+					<li><img src="images_index/22.jpg" width="800" height="310" alt=" "></li>
+					<li><img src="images_index/33.jpg" width="800" height="310" alt=" "></li>
+					<li><img src="images_index/44.jpg" width="800" height="310" alt=" "></li>
+				</ul>
+			</div>
+            <!--end outer-->
+            <script type="text/javascript">
+    			var outer=document.getElementById("outer");
+    			var oInner=document.getElementById("inner");
+    			var oLis=oInner.getElementsByTagName("li");
+   				 var step=0;
+   				 var timer=null;
+   			 function buttur(ele,obj){
+    			window.clearTimeout(ele.timer);
+    			var end=null;
+    			for(direc in obj){
+    			var direc1=direc.toLowerCase();
+    			var strOffset="offset"+direc1.substr(0,1).toUpperCase()+direc1.substring(1).toLowerCase();
+    			var target=obj[direc];
+    			var nSpeed=(target-ele[strOffset])/10;
+    			nSpeed=nSpeed>=0?Math.ceil(nSpeed):Math.floor(nSpeed);
+    			ele.style[direc1]=ele[strOffset]+nSpeed+"px";
+    			end+=nSpeed;
+    		}
+    		if(end)
+    			if(typeof fnCallback=="function"){
+    				fnCallback.call(ele);
+    			}else{
+           		    ele.timer=window.setTimeout(function(){buttur(ele,obj)},30);
+    			}
+    		}
+    			var divs=document.createElement("div");
+    			divs.setAttribute("id","nav");
+   				 for(var i=0; i<oLis.length;i++){
+       			 var oa=document.createElement("em");
+       			 oa.innerHTML=i+1;
+        			divs.appendChild(oa);
+   			}
+   				 outer.appendChild(divs);
+    			 var btn=document.getElementById("nav").getElementsByTagName("em");
+   				 for(var i=0; i<btn.length; i++){
+      			 btn[i].indx=i;
+       			 btn[0].className="ehover";
+        		 btn[i].onclick=function(){
+           		 //window.clearTimeout(timer);
+            	for(var i=0; i<btn.length; i++){
+                btn[i].className="";
+                btn[this.indx].className="ehover";
+            }
+            buttur(oInner,{left:-oLis[0].offsetWidth*this.indx}); 
+        }    
+    }
+   			 function autoMove(){
+     			step++;
+    			if(step<btn.length){
+            	 for(var i=0; i<btn.length; i++){
+                btn[i].className="";
+                btn[step].className="ehover";
+                buttur(oInner,{left:step*-800});
+            }           
+    	 }else{ 
+                step=btn.length-7;        
+         }
+     			timer=window.setTimeout(autoMove,3000);
+   	 }
+    			autoMove(); 
+    			oleft.onclick=function(){
+    			window.clearTimeout(timer);
+    			step++;
+    			if(step<btn.length){
+             	for(var i=0; i<btn.length; i++){
+                btn[i].className="";
+                btn[step].className="ehover";
+                buttur(oInner,{left:step*-800});
+            }           
+         }else{ 
+                step=btn.length-7;        
+         }
+     }
+   				 oright.onclick=function(){
+    				window.clearTimeout(timer);
+    				step--;
+    			if(step<0){
+            	 step=btn.length;
+        	 }else{ 
+          		for(var i=0; i<btn.length; i++){
+                btn[i].className="";
+                btn[step].className="ehover";
+                buttur(oInner,{left:step*-800}); 
+            }
+         }
+    }
+     
+   			oInner.onmouseover=function(){window.clearTimeout(timer);}
+  			oInner.onmouseout=function(){timer=window.setTimeout(autoMove,3000);}
+   			oleft.onmouseover=function(){window.clearTimeout(timer);}
+   			oleft.onmouseout=function(){timer=window.setTimeout(autoMove,3000);}
+   			oright.onmouseover=function(){window.clearTimeout(timer);}
+   			oright.onmouseout=function(){timer=window.setTimeout(autoMove,3000);} 
+	</script>	
+            </div>
+            <!--end c-right-->
+            <div class="cb"></div>
+        </div>
+        <!--end content-->
+        <div class="bottom">
+        	<div class="b-tle">
+            	<div class="t-txt">成功案例</div>
+                <!--end t-txt-->
+            </div>
+            <!--end b-tle-->
+            <div class="b-block">
+            	<div class="b-box">
+                	<div class="bb-img">
+                    	<div class="b-left">
+                        	<img src="{{successfulCase.pic}}"/>
+                        </div>
+                        <!--end b-left-->
+                        <div class="b-right">
+                        	<ul>
+                            	<li class="b_li_">{{successfulCase.name}}</li>
+                            	<li class="b_li"><a href="{{successfulCase.url}}" target="_blank">{{successfulCase.content|safe}}</a></li>
+                            	<li class="b_li1"> <a href="{{successfulCase.url}}" target="_blank">查看全文>></a></li>
+                            </ul>
+                        </div>
+                        <!--end b-right-->
+                        <div class="cb"></div>
+                    </div>
+                    <!--end bb-img-->
+                </div>
+                <!--end b-box-->
+                <div class="b-box_">
+                	<div class="bb-img">
+                    	<div class="b-left">
+                        	<img src="{{successfulCase2.pic}}"/>
+                        </div>
+                        <!--end b-left-->
+                        <div class="b-right">
+                        	<ul>
+                        	<ul>
+                            	<li class="b_li_">{{successfulCase2.name}}</li>
+                            	<li class="b_li"><a href="{{successfulCase2.url}}" target="_blank">{{successfulCase2.content|safe}}</a></li>
+                            	<li class="b_li1"> <a href="{{successfulCase2.url}}" target="_blank">查看全文>></a></li>
+                            </ul>
+                            </ul>
+                        </div>
+                        <!--end b-right-->
+                        <div class="cb"></div>
+                    </div>
+                    <!--end bb-img-->
+                </div>
+                <!--end b-box_-->
+                <div class="cb"></div>
+            </div>
+            <!--end b-block-->
+        </div>
+        <!--end bottom-->
+    </div>
+    <!--end main-->
+{%include 'html/ppc/ppc2014/footer.html'%}
+</body>
+</html>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>我的来电宝钱包</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/myrc/call-moery.css"/>
+    <style type="text/css">
+    .aui-content,
+    .aui-content-padded {
+        background: #ffffff;
+
+    }
+    .type-title{
+    	line-height:40px;
+    	font-size:20px
+    }
+    .thumb {
+        position: relative;
+        max-height: 280px;
+        overflow: hidden;
+        margin-bottom: 0;
+    }
+    .thumb > img {
+        width: 100%;
+    }
+    .price-info {
+        width: 100%;
+        position:fixed;
+        bottom: 0;
+        left: 0;
+        background: #ff9900;
+        height: 55px;
+    }
+    .price {
+        margin-left: 15px;
+        color: #ffffff;
+        font-size: 16px;
+        line-height: 55px;
+    }
+    .price strong {
+        font-size: 26px;
+        margin: 0 5px;
+        font-weight: 400;
+    }
+    .price-info .aui-pull-right {
+        height: 55px;
+        width: 35%;
+        padding-top: 10px;
+        text-align: center;
+    }
+    .tijiao{
+    	line-height: 38px;
+    	color:#fff;
+    	background: #FF0000;
+    	font-size:18px
+    }
+    .price-info .aui-pull-right p {
+        color: #ff6600;
+        font-size: 12px;
+        margin-bottom: 0px;
+    }
+    .goods-basic-info {
+        padding: 10px;
+        overflow: hidden;
+    }
+    .goods-title {
+        margin-bottom: 5px;
+    }
+    .aui-tab-nav li.active {
+        color: #ff9900;
+        border-bottom: 2px #ff9900 solid;
+    }
+    .info {
+        padding: 10px;
+        overflow: hidden;
+        margin-bottom: 0;
+    }
+    .info img {
+        width: 100%;
+    }
+    .info p {
+        color: #666;
+    }
+    .aui-pull-left{
+    	line-height:50px
+    }
+    .paytitle{
+    	background-color:#ebebeb;
+    	line-height:30px;
+    	font-size:14px;
+    	text-align:left;
+    	margin-top:10px;
+    	padding-left:20px;
+    }
+    
+    </style>
+</head>
+<body>
+	<div class="buy-list clear" style="margin-bottom:10px;margin-top: 20px">
+		<span style="border-left:solid 3px #01ba2e;padding-left:10px;margin-left:10px;">支付金额</span>
+	</div>
+	
+	<div class="moery-type">
+		<!-- <div><span>2000元</span></div>
+		<div><span>3000元</span></div>
+		<div><span>4000元</span></div>
+		<div><span>5000元</span></div> -->
+	</div>
+	<div class="paytitle">支付方式</div>
+	<section class="aui-content">
+        <ul class="aui-user-view">
+            <li class="aui-user-view-cell aui-img zhifutype" payflag="1">
+                <div class="aui-img-body aui-arrow-right">
+                	<img class="aui-img-object aui-pull-left" src="../../image/service/zf3.png">
+                    <div class="aui-pull-left">支付宝支付</div>
+                </div>
+            </li>
+            <li class="aui-user-view-cell aui-img zhifutype" payflag="2">
+                <div class="aui-img-body aui-arrow-right">
+                	<img class="aui-img-object aui-pull-left" src="../../image/service/zf2.png">
+                    <div class="aui-pull-left">微信支付</div>
+                </div>
+            </li>
+            <li class="aui-user-view-cell aui-img zhifutype" payflag="3">
+                <div class="aui-img-body aui-arrow-right">
+                	<img class="aui-img-object aui-pull-left" src="../../image/service/zf1.png">
+                    <div class="aui-pull-left">易宝支付</div>
+                </div>
+            </li>
+        </ul>
+    </section>
+    <!--
+    <section class="aui-content thumb">
+        <div class="price-info">
+            <span class="price">¥<strong class="paymoney">300.00</strong>元</span>
+            <div class="aui-pull-right tijiao">
+                		提交订单
+            </div>
+        </div>
+        
+    </section>
+    -->
+    <input type="hidden" value="300.00" id="paymoney">
+	<h3 class="type-title">人工充值</h3>
+	<p class="tishi redfont">您也可以将钱打入下面账户后，拨打服务电话充值！</p>
+	<p class="tishi">服务电话：0571-56635663</p>
+	<dl class="give-moery">
+		<dt>支付宝账号</dt>
+		<dd>ZZ91支付宝账号：zhifu@asto-inc.com</dd>
+		<dt>银行账户</dt>
+		<dd>
+			<p>开户银行：中国农业银行杭州朝晖支行(对公账号)</p>
+			<p>收 款 人：杭州阿思拓信息科技有限公司</p>
+			<p>帐　　号：190156 0104 0013 383</p>
+		</dd>
+		<dd>
+			<p>开户银行：中国农业银行杭州分行吴山支行</p>
+			<p>收 款 人：宋丹丹</p>
+			<p>帐　　号：62284 8032 08059 07716</p>
+		</dd>
+		<dd>
+			<p>开户银行：中国工商银行杭州解放路支行河坊街储蓄所</p>
+			<p>收 款 人：宋丹丹</p>
+			<p>帐　　号：6222 0212 0200 6092 242</p>
+		</dd>
+		<dd>
+			<p>开户银行：中国建设银行杭州吴山支行</p>
+			<p>收 款 人：宋丹丹</p>
+			<p>帐　　号：6227 0015 4026 0100 125</p>
+		</dd>
+		<dd>
+			<p>开户银行：中国银行杭州庆春支行涌金支行</p>
+			<p>收 款 人：宋丹丹</p>
+			<p>帐　　号：4563 5113 0011 4270 118</p>
+		</dd>
+		<dd>
+			<p>开户银行：招商银行杭州分行解放支行</p>
+			<p>收 款 人：宋丹丹</p>
+			<p>帐　　号：6225 8857 1624 6103</p>
+		</dd>
+		<dd>
+			<p>开户银行：上海浦东发展银行杭州分行</p>
+			<p>收 款 人：宋丹丹</p>
+			<p>帐　　号：6225 2102 0283 3233</p>
+		</dd>
+		<dd>
+			<p>开户银行：中信银行杭州分行营业部</p>
+			<p>收 款 人：宋丹丹</p>
+			<p>帐　　号：6226 9008 0697 5773</p>
+		</dd>
+		<dd>
+			<p>开户银行：中国民生银行杭州涌金支行</p>
+			<p>收 款 人：宋丹丹</p>
+			<p>帐　　号：6226 2277 8006 4188</p>
+		</dd>
+		<dd>
+			<p>开户银行：交通银行东新路支行</p>
+			<p>收 款 人：宋丹丹</p>
+			<p>帐　　号：6222 6001 7000 8509 266</p>
+		</dd>
+		<dd>
+			<p>开户银行：杭州联合农村商业银行股份有限公司九堡支行(对公账号)</p>
+			<p>收 款 人：杭州阿思拓信息科技有限公司</p>
+			<p>帐　　号：2010 0007 1327 065</p>
+		</dd>
+		<dd>
+			<p>开户银行：杭州联合农村商业银行股份有限公司吴山支行</p>
+			<p>收 款 人：宋丹丹</p>
+			<p>帐　　号：6228 5801 9907 4741 496</p>
+		</dd>
+		<dd>
+			<p>开户银行：中国邮政储蓄银行南星桥支行</p>
+			<p>收 款 人：宋丹丹</p>
+			<p>帐　　号：6210 9833 1000 3472 316</p>
+		</dd>
+	</dl>
+	<div style="height:60px"></div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+<script type="text/javascript">
+var pagefrom;
+apiready = function(){
+	//弹出支付方式
+	var payflag=1
+	
+	pagefrom=api.pageParam.pagefrom;
+	$(".zhifutype1111").on("click", function() {
+		api.actionSheet({
+			cancelTitle : '取消',
+			buttons : ['支付宝支付', '微信支付','银行卡支付'],
+		}, function(ret, err) {
+			if (ret.buttonIndex == 1) {
+				$(".zhifutext").html("支付宝支付");
+				payflag=1;
+			}
+			if (ret.buttonIndex == 2) {
+				$(".zhifutext").html("微信支付");
+				payflag=2;
+			}
+			if (ret.buttonIndex == 3) {
+				$(".zhifutext").html("银行卡支付");
+				payflag=3;
+			}
+		});
+	});
+   var paytype = api.pageParam.paytype;
+   var moeryList;
+   if(paytype == "ldb"){
+   		moeryList = ["2000元","3000元","4000元","5000元"];
+   }else{
+   		paytype="qianbao";
+   		moeryList = ["300.00元","500.00元","800.00元","1000.00元","2000.00元","5000.00元"];
+   }
+   var ldbvalue=$api.getStorage("ldbvalue");
+   if (ldbvalue==1){
+   	 	moeryList = ["2500元","3000元","4000元","5000元"];
+   	 	paytype="ldb";
+   	 	maxprice="2500";
+   }else{
+   		maxprice="300";
+   }
+   var moeryHtml = "";
+	$.each(moeryList,function(index,item){
+		if (index==0){
+			moeryHtml += "<div><span class=on>"+ item +"</span></div>";
+		}else{
+			moeryHtml += "<div><span>"+ item +"</span></div>";
+		}
+	})
+	
+	$(".moery-type").html(moeryHtml);
+	$(".moery-type").append("<div><span class=\"aui-iconfont aui-icon-add\">添加</span></div>")
+	
+	$(".moery-type").on("click", "span",function() {
+		var money=$(this).text();
+		var self=$(this);
+		if (money=="添加"){
+			api.prompt({
+				title:"提示",
+				msg:"请输入金额，必须大于"+maxprice,
+			    buttons: ['确定', '取消']
+			}, function(ret, err){
+				
+			    if( ret ){
+			    	if(ret.buttonIndex==1){
+			    		if(!isNaN(ret.text)){
+			    			if (parseInt(ret.text)>parseInt(maxprice)){
+			    				$(".moery-type span").removeClass("on");
+						    	self.parent().before("<div><span class=on>"+ret.text+"元</span></div>");
+						    	money=ret.text;
+								$(".paymoney").html(money.replace("元",""));
+								$("#paymoney").val(money.replace("元",""));
+								return;
+						    }else{
+						    	zzalert("必须输入大于"+maxprice+"的金额！")
+						    }
+						}else{
+						   zzalert("请输入数字");
+						}
+			    	}
+			    }else{
+			    }
+			});
+		}
+		$(".moery-type span").removeClass("on");
+		$(this).addClass("on");
+		$(".paymoney").html(money.replace("元",""));
+		$("#paymoney").val(money.replace("元",""));
+		//$("#paymoney").val("0.01");
+	})
+	$(".zhifutype").on("click",function() {
+		payflag=$(this).attr("payflag");
+		var subject = '再生钱包充值';
+		var body = '再生钱包充值';
+		var amount = $("#paymoney").val();
+		if (amount=="添加" || amount==""){
+			zzalert("请选择金额！");
+			return;
+		}
+		var tradeNO = new Date().getTime();
+		var notifyURL = 'http://m.zz91.com';
+		var paytypevalue;
+		if (payflag==1){
+			paytypevalue="在线-支付宝"
+		}
+		if (payflag==2){
+			paytypevalue="在线-微信支付"
+		}
+		if (payflag==3){
+			paytypevalue="在线-易宝支付"
+		}
+		//保存订单
+		var data={
+			company_id : UserInfo.memberID(),
+			usertoken : UserInfo.token(),
+			appsystem : api.systemType,
+			datatype : "json",
+			total_fee : amount,
+			subject : subject,
+			paytype : paytype,
+			payflag : paytypevalue,
+		}
+		
+		api.ajax({
+		    url : hosturl + 'zz91pay.html',
+		    method : 'get',
+		    timeout : 30,
+		    dataType : 'json',
+		    returnAll : false,
+		    data : {
+				values : data
+			}
+		}, function(ret, err) {
+			//zzalert(JSON.stringify(ret))
+		    if (ret) {
+		    	var yeepayurl=$.param(ret);
+		    	//支付宝支付
+				if (payflag==1){
+					if (api.systemType == "ios") {
+						api.appInstalled({
+						    appBundle: "alipay"
+						},function(ret, err){
+						    if(ret.installed){
+						        confirmzhifu();
+						    }else{
+						        //应用未安装
+						        zzalert("您还未安装支付宝，请安装支付宝后再支付！")
+						        return false;
+						    }
+						});
+					}else{
+						api.showProgress({
+							title : '支付中',
+							modal : true
+						});
+					}
+					var obj = api.require('aliPay');
+					obj.pay({
+					    subject:subject,
+					    body:body,
+					    amount:amount,
+					    tradeNO:ret.order_id
+					},function(ret,err) {
+						if (ret.code==9000){
+							//更新生意管家数据
+							api.execScript({
+								name : 'root',
+								script : 'changemyrcindex()'
+							});
+							if (pagefrom=="qianbao"){
+								api.execScript({
+									name : 'burse',
+									frameName : 'burse_',
+									script : 'ajaxInfo()'
+								});
+							}
+							api.alert({
+						        title: '提示',
+						        msg: '支付成功',
+						        buttons: ['确定']
+						    });
+							api.closeWin();
+					    }else{
+					    	zzalert("支付异常！请重试或选择其他支付方式。");
+					    }
+					    api.hideProgress();
+					});
+				}else{
+					//api.hideProgress();
+				}
+				//微信支付
+				if (payflag==2){
+					if (api.systemType == "ios") {
+						
+						api.appInstalled({
+						    appBundle: "weixin"
+						},function(ret, err){
+						    if(ret.installed){
+						        confirmzhifu();
+						    }else{
+						        //应用未安装
+						        zzalert("您还未安装微信，请安装微信后再支付！")
+						        return false;
+						    }
+						});
+					}else{
+						api.showProgress({
+							title : '支付中',
+							modal : true
+						});
+					}
+					//
+					var out_trade_no=ret.order_id;
+					//var wxdata={
+					//	total_fee:amount*100,
+					//	out_trade_no:out_trade_no,
+					//}
+					//wxpaypost(wxdata)
+					
+					
+					var wxPay = api.require('wxPay');
+					wxPay.config({
+					     apiKey: 'wx6bb99d2f0581b5b0',
+					     mchId: '1340905101',
+					     partnerKey: 'OR3g3vtcNAdvm25ycHKfH5KWrLY9kAvd',
+					     notifyUrl: 'http://m.zz91.com/zz91payverify_notify.html'
+					}, function(ret, err){
+					     if(ret.status){
+					        //zzalert('配置商户支付参数成功');
+					        $paySubmitWx();
+					     }else{
+					        //zzalert(err.code);
+					        zzalert("支付异常！请重试或选择其他支付方式。");
+					        api.hideProgress();
+					     }
+					     //api.hideProgress();
+					});
+					
+					//var wxPay = api.require('wxPay');
+					
+					$paySubmitWx=function(){
+						wxPay.pay({
+						     description: subject,
+						     totalFee: amount*100,
+						     tradeNo: out_trade_no,
+						     spbillCreateIP: '196.168.1.1',
+						     deviceInfo: api.deviceId,
+						     detail: subject,
+						     attach: body,
+						     feeType: 'CNY',
+						     //timeStart: '20091225091010',
+						     //timeExpire: '20091227091010',
+						     //goodsTag: 'WXG',
+						     //productId: '12235413214070356458058',
+						     //openId: 'oUpF8uMuAJO_M2pxb1Q9zNjWeS6o'
+						},function(ret, err){
+							 //zzalert(JSON.stringify(ret))
+						     if(ret.status){
+									var data={
+										out_trade_no : out_trade_no,
+										trade_no : out_trade_no,
+										trade_status : "TRADE_SUCCESS",
+									}
+									api.showProgress({
+										title : '充值中，请不要关闭窗口！',
+										modal : true
+									});
+									api.ajax({
+										url : 'http://m.zz91.com/zz91payverify_notify.html',
+										method : "post",
+										timeout : 30,
+										dataType : 'html',
+										returnAll : false,
+										data : {
+											values : data
+										}
+									}, function(ret, err) {
+										if (pagefrom=="qianbao"){
+											api.execScript({
+												name : 'burse',
+												frameName : 'burse_',
+												script : 'ajaxInfo()'
+											});
+										}
+										api.alert({
+									        title: '提示',
+									        msg: '支付成功',
+									        buttons: ['确定']
+									    });
+										//更新生意管家数据
+										api.execScript({
+											name : 'root',
+											script : 'changemyrcindex()'
+										});
+										api.hideProgress();
+										api.closeWin();
+									});
+									
+									
+						     }else{
+						         //zzalert(err.body);
+						         if (err.code=="-1"){
+						         	zzalert("系统错误，或接口还未开通!");
+						         }
+						         api.hideProgress();
+						     }
+						});
+					}
+					
+					
+				}
+				//银行卡支付
+				if (payflag==3){
+					
+					confirmzhifu();
+					var payurl="http://phppay.zz91.com/pay/toMobilepay.php?"+yeepayurl;
+					var pageParam = {
+						wintitle : "在线充值",
+						type : "backchongzhi",
+						bounces : false
+					};
+					openWin("backchongzhi", payurl, pageParam);
+					api.hideProgress();
+					//zzalert("等待开通中!")
+				}
+				//
+		    } else {
+		    	if(err){
+					saveerrlog(err.body);
+				}
+		    };
+		    //api.hideProgress();
+		});
+		
+	})
+	
+	
+}
+//微信支付
+function wxpaypost(wxdata) {
+	amount=wxdata['total_fee']/100
+	out_trade_no=wxdata['out_trade_no']
+	var wxPay = api.require('wxPay');
+	wxPay.config({
+		apiKey: 'wx6bb99d2f0581b5b0',
+		mchId: '1340905101',
+		partnerKey: 'OR3g3vtcNAdvm25ycHKfH5KWrLY9kAvd',
+		notifyUrl: 'http://m.zz91.com/zz91payverify_notify.html'
+	}, function(ret, err) {
+		if (ret.status) {
+			//zzalert('配置商户支付参数成功');
+			$paySubmitWx();
+		} else {
+			//zzalert(err.code);
+			zzalert("支付异常！请重试或选择其他支付方式。");
+			api.hideProgress();
+		}
+		//api.hideProgress();
+	});
+
+	//var wxPay = api.require('wxPay');
+
+	$paySubmitWx = function() {
+		wxPay.pay({
+			description: '再生钱包充值-微信',
+			totalFee: amount * 100,
+			tradeNo: out_trade_no,
+			spbillCreateIP: '196.168.1.1',
+			deviceInfo: api.deviceId,
+			detail: '再生钱包充值-微信',
+			attach: '',
+			feeType: 'CNY',
+			
+		}, function(ret, err) {
+			if (ret.status) {
+				var data = {
+					out_trade_no: out_trade_no,
+					trade_no: out_trade_no,
+					trade_status: "TRADE_SUCCESS",
+				}
+				api.showProgress({
+					title: '充值中，请不要关闭窗口！',
+					modal: true
+				});
+				api.ajax({
+					url: 'http://m.zz91.com/zz91payverify_notify.html',
+					method: "post",
+					timeout: 30,
+					dataType: 'html',
+					returnAll: false,
+					data: {
+						values: data
+					}
+				}, function(ret, err) {
+					if (pagefrom == "qianbao") {
+						api.execScript({
+							name: 'burse',
+							frameName: 'burse_',
+							script: 'ajaxInfo()'
+						});
+					}
+					api.alert({
+						title: '提示',
+						msg: '支付成功',
+						buttons: ['确定']
+					});
+					//更新生意管家数据
+					api.execScript({
+						name: 'root',
+						script: 'changemyrcindex()'
+					});
+					api.hideProgress();
+					api.closeWin();
+				});
+
+			} else {
+				//zzalert(err.body);
+				if (err.code == "-1") {
+					zzalert("系统错误，或接口还未开通!");
+				}
+				api.hideProgress();
+			}
+		});
+	}
+}
+//确认支付
+function confirmzhifu(){
+	var html = "";
+	html += '<p style="color: #000000;">我已确定支付完成</p>'
+	$aui.alert({
+		title : '',
+		content : html,
+		buttons : ['确定'],
+		radius : 10,
+		titleColor : '#333',
+		contColor : '#333',
+		btnColor : '',
+	}, function(ret) {
+		api.execScript({
+			name : 'root',
+			script : 'changemyrcindex()'
+		});
+		if (pagefrom=="qianbao"){
+			api.execScript({
+				name : 'burse',
+				frameName : 'burse_',
+				script : 'ajaxInfo()'
+			});
+		}
+	})
+}
+</script>
+<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

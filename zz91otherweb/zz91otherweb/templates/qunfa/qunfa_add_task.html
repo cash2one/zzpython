@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加群发任务</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://www.feiliao123.com/feiliao123/Css/style.css">
+    <script type="text/javascript" src="http://www.feiliao123.com/feiliao123/Js/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+    	// 全选与取消全选
+    	function checkAll() {
+    		var checkboxNum = jQuery('input[name=cbb-task]').length;
+    		var allStatus = jQuery('input[name=cbb-task-all]').prop('checked');
+    		jQuery('input[name=cbb-task]').each(function() {
+    			jQuery('input[name=cbb-task]').attr('checked', allStatus);
+    		});
+    	}
+    	// 选择一条或多条信息进行删除
+    	function delChecked(form,doWhat) {
+    		form.action="qunfa_add_task.html?qf_id={{ qf_id }}";
+    		selectCb='0'
+    		for (var i=0;i<form.elements.length;i++) {
+    			var e = form.elements[i]
+    			if (e.checked==true) {
+    				selectCb += ',' + e.value;
+    			}
+    		}
+    		if (selectCb == '0'){
+    			alert('请至少选择一条需要删除的待发任务……');
+    		}
+    		else
+    		{
+    			delStatus = confirm('删除不可恢复,确定删除选中的待发任务吗?');
+    			if (delStatus == true)
+    			{
+    				form['do-what'].value=doWhat;
+    				form.submit();
+    			}
+    		}
+    	}
+    	// 选择一条或多条添加到群发任务里
+    	function addTask(form,doWhat) {
+    		form.action="qunfa_add_task.html?qf_id={{ qf_id }}";
+    		selectCb='0'
+    		for (var i=0;i<form.elements.length;i++) {
+    			var e = form.elements[i]
+    			if (e.checked==true) {
+    				selectCb += ',' + e.value;
+    			}
+    		}
+    		if (selectCb == '0'){
+    			alert('请至少选择一条供求信息,添加到群发任务……');
+    		}
+    		else
+    		{
+    			addStatus = confirm('确定将留言信息发送给该客户吗?');
+    			if (addStatus == true)
+    			{
+    				form['do-what'].value=doWhat;
+    				form.submit();
+    			}
+    		}
+    	}
+    	// 清空所有客户
+    	function resetAll(form) {
+    		form.action="qunfa_add_task.html?qf_id={{ qf_id }}";
+    		resetStatus = confirm('确定清空所有客户吗?')
+    		if (resetStatus == true) {
+    			form.submit();
+    		}
+
+    	}
+    </script>
+    <style type="text/css">
+    	tr td:empty {
+    		border-left: 0;
+    		border-right: 0;
+    	}
+    </style>
+</head>
+<body>
+<table class="table table-bordered" style="height: 878px;">
+		<form action="" name="reset-all" id="reset-all" method="post">
+		<thead>
+			<tr style="height: 35px;">
+				<td colspan="6">
+					<span>待发客户</span> 
+					<input type="button" name="reset-all" value="清空" class="btn btn-default pull-right" style="padding: 0 20px;margin-top: -2.5px;margin-bottom: -2.5px;" onclick="return resetAll(form)">
+					<input type="hidden" name="sq-id" value="{{ qf_id }}">
+				</td>
+			</tr>
+			<tr style="height: 35px;">
+				<th style="width: 45px;">选择</th>
+				<th>供求</th>
+				<th>标题</th>
+				<th>刷新时间</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		</form>
+		<form action="" name="qf-task" id="qf-task" method="post">
+		<tbody>
+			{% if qf_id %}
+			{% for each_pdt in pt_list %}
+			<tr style="height: 35px;">
+				<td>
+					<input type="checkbox" name="cbb-task" value="{{ each_pdt.0 }}">
+				</td>
+				<td>{% if each_pdt.5 == 0 %}供应{% else %}求购{% endif %}</td>
+				<td><a href="http://trade.zz91.com/productdetails{{ each_pdt.1 }}.htm" target="_blank">{{ each_pdt.6 | truncatechars:10 }}</a></td>
+				<td>{{ each_pdt.7 | date:'Y-m-d H:i:s' }}</td>
+				{% if each_pdt.9 == 0 %}<td style="color: red;font-weight: bold;">未发送</td>{% else %}<td style="color:green;font-weight: bold;">已发送</td>{% endif %}
+				<td><a href="?del_id={{ each_pdt.0 }}" style="color: #333;text-decoration: none;" onclick="return confirm('删除不可恢复,确定删除吗?')">删除</a></td>
+			</tr>
+			{% endfor %}
+			<tr>
+				<td colspan="6"></td>
+			</tr>
+			<tr style="height: 35px;">
+				<td colspan="6" class="page">
+    				共{{ rowcount }}条记录  {{ page_num }}/{{ page_list_count }}
+    				{% if first_page %}
+    				<a href="?page={{ prev_page }}&qf_id={{ qf_id }}">上一页</a>
+    				{% else %}
+    				<a href="javascript:void(0)" style="color: gray;text-decoration: none;">上一页</a>
+    				{% endif %}
+    				{% if last_page %}
+    				<a href="?page={{ next_page }}&qf_id={{ qf_id }}">下一页</a>
+    				{% else %}
+    				<a href="javascript:void(0)" style="color: gray;text-decoration: none;">下一页</a>
+    				{% endif %}
+    				<a href="?page=1&qf_id={{ qf_id }}">首页</a>
+    				<a href="?page={{ page_list_count }}&qf_id={{ qf_id }}">尾页</a>
+				</td>
+			</tr>
+			<tr style="height: 51px;">
+				<td colspan="6" style="text-align: left;">
+					<label  style="margin-top: 10px;">
+					<input type="checkbox" name="cbb-task-all" onclick="return checkAll()">
+					<span style="font-weight: 0;">&nbsp;全选&nbsp;&nbsp;</span>
+					</label>
+					<input type="button" name="del-selected" value="删除" class="btn btn-default" style="padding: 3px 30px;" onclick="return delChecked(form,'del-checked')">
+					<input type="button" name="submit-df" value="开始添加到群发任务" class="btn btn-info pull-right" onclick="return addTask(form,'add-task')" disabled="disabled">
+					<input type="hidden" name="do-what" value="">
+				</td>
+			</tr>
+			</form>
+			{% else %}
+			{% for each_num in default_tr_num %}
+			<tr style="height: 35px;">
+				<td>
+					<input type="checkbox" name="cbb">
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			{% endfor %}
+			<tr style="height: 19px;">
+				<td colspan="6"></td>
+			</tr>
+			<tr style="height: 35px;">
+				<td colspan="6" class="page">
+    				共100条记录  1/5
+				</td>
+			</tr>
+			<tr style="height: 51px;">
+				<td colspan="6" style="text-align: left;">
+					<label  style="margin-top: 10px;">
+					<input type="checkbox" name="cbb-all">
+					<span style="font-weight: 0;">&nbsp;全选&nbsp;&nbsp;</span>
+					</label>
+					<input type="button" name="del-selected" value="删除" class="btn btn-default" style="padding: 3px 30px;" onclick="return confirm('没有任何内容可以删除,请先添加,再删除……')">
+					<input type="button" name="submit-df" value="开始添加到群发任务" class="btn btn-info pull-right">
+				</td>
+			</tr>
+			{% endif %}
+		</tbody>
+	</table>	
+</body>
+</html>

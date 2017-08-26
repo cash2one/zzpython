@@ -1,0 +1,463 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="再生通2011" />
+<meta name="keywords" content="再生通2011">
+<title>再生通 ---- 支付方式</title>
+<meta content="“再生通”服务是基于再生行业中小企业的原材料采购和产品推广需求而推出的一款网络营销服务。" name="description" />
+<meta content="废金属，废塑料，废纸，纺织废料，再生资源，废橡胶"  name="keywords" />
+<link rel="shortcut icon" type="image/x-icon" href="http://img0.zz91.com/front/images/logo/favicon.ico">
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/zst/css/zz91.zst2011.hacker.css">
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/zst/css/zz91.zst2011.css">
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="http://img0.zz91.com/zz91/zst/js/html5forIE.js"></script>
+<![endif]-->
+
+<script type="text/javascript" src="http://img0.zz91.com/zz91/zst/js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="http://img0.zz91.com/zz91/zst/js/zz91.zst.js"></script>
+<script language="javascript">
+function payto(frm)
+{
+	var selectcb="";
+	for (var i=0;i<frm.elements.length;i++)
+    {
+		var e = frm.elements[i];
+		if (e.name.substr(0,3)=='pay')
+		{
+		   if (e.checked==true)
+		   {
+		   	  selectcb=e.value;
+		   }
+		}
+    }
+	if (selectcb=="")
+	{
+		alert("请选择一家银行！");
+		return false;
+	}
+	switch (selectcb)
+	{
+		case "1":
+		window.location="http://www.abchina.com/cn/";
+		break;
+		case "2":
+		window.location="http://www.abchina.com/cn/";
+		break;
+		case "3":
+		window.location="http://www.icbc.com.cn/icbc/";
+		break;
+		case "4":
+		window.location="http://www.ccb.com/cn/home/index.html";
+		break;
+		case "5":
+		window.location="http://www.boc.cn/";
+		break;
+		case "6":
+		window.location="http://www.cmbchina.com/";
+		break;
+		case "7":
+		window.location="http://www.spdb.com.cn/";
+		break;
+		case "8":
+		window.location="http://bank.ecitic.com/";
+		break;
+		case "9":
+		window.location="http://www.cmbc.com.cn/";
+		break;
+		case "10":
+		window.location="http://www.psbc.com/portal/zh_CN/index.html";
+		case "11":
+		window.location="http://www.bankcomm.com/BankCommSite/cn/index.html";
+		break;
+		default:
+		window.location="http://www.abchina.com/cn/";
+		break;
+		
+		
+	}
+	
+}
+</script>
+</head>
+
+<body>
+<!--top bar stat-->
+	<div class="topbar">
+		<div class="topBarBlock">
+            <span style="float:left;line-height:28px;">
+            您好,欢迎访问ZZ91.COM！ <a href="http://china.zz91.com/login.htm">[请登录]</a>
+             <a href="http://china.zz91.com/register/register_stp1.htm">[免费注册]</a>
+            </span>
+            <span style="float:right">
+                <a href="http://www.zz91.com/" target="_blank">[返回ZZ91首页]</a> 
+                <a href="http://www.zz91.com/zst/" target="_blank">[再生通]</a> 
+                <a href="http://www.zz91.com/service/ppt/index.asp" target="_blank">[品牌通]</a>
+                <a href="http://suliao.zz91.com/" target="_blank">[再生塑料网]</a>
+            </span>
+            <div style="clear:both"></div>
+        </div>
+	</div>
+<!--top bar end-->
+
+<!--header/nav start-->
+	<header class="zz91_zst_header">
+    	<article class="zz91_zst_site">
+        	<section class="zz91_zst_siteinfo">
+            	<span class="zz91_zst_logo"><a href="http://www.zz91.com"><img src="http://img0.zz91.com/zz91/zst/images/zz91zst_logo.gif" alt="zz91再生通"></a></span>
+            	<span class="zz91_zst_servtel"><img src="http://img0.zz91.com/zz91/zst/images/zz91zst_tel.gif" alt="zz91再生通客服电话"></span>
+                <div class="clear"></div>
+        	</section>
+        </article>
+        
+    	<nav class="zz91_zst_nav">
+        	<ul>
+            	<li><a href="." class="">首页</a></li>
+                <li><a href="about.html" class="">关于再生通</a></li>
+                <li><a href="apply.html" class="">申请再生通</a></li>
+                <li><a href="payment.html" class="selected">支付方式</a></li>
+            </ul>
+        </nav>
+    </header>
+<!---header/nav end-->
+
+<!--main block start-->
+	<div class="zz91_zst_mainblock margintop8">
+    	
+    	<section class="zz91_zst_paytabs">
+        	<div class="paytabs_tit_adv"><script type="text/javascript" src="http://gg.zz91.com/show?p=205"></script></div>
+        	
+            
+            <div class="paytabs_tabs margintop8">
+				<header class="paytabs_tit">
+            	<ul>
+                	<li class="payment_netis" id="payment_net">网上银行支付</li>
+                    <li class="payment_zfb" id="payment_zfb">支付宝支付</li>
+                    <li class="payment_gw" id="payment_gw">国外客户支付</li>
+                </ul>
+    </header>
+            	
+                
+            	<div class="paytabs_cont">
+            		<div class="paytabs_cont_method1">
+                   <form method="post" onSubmit="return false">
+                    	<dl>
+                        	<dt>网银支付快捷，安全，方便！如有疑问，请拨打客户服务热线 0571-56611111 56612345</dt>
+                            <dd>
+                            	<div class="pay_radio"><input name="pay" type="radio" id="paymethod" value="1"></div>
+                                <div class="pay_bank_box">
+                                	<div class="pay_bank_logo">
+                                    	农业银行(对公账号)
+                                    </div>
+                                    <div class="pay_bank_info">
+                                    	<span><span class="fontbold pay_bank_info_tit">开户银行:</span>中国农业银行朝晖支行</span>
+                                        
+                                        <span><span class="fontbold pay_bank_info_tit2">收 款 人:</span>杭州阿思拓信息科技有限公司</span>
+                                        <span><span class="fontbold pay_bank_info_tit">账 号:</span><font class="fontred fontbold">190156 0104 0013 383</font></span>
+                                    </div>
+                                </div>
+                            </dd>
+                            
+                            <dd>
+                            	<div class="pay_radio"><input name="pay" type="radio" id="paymethod" value="2"></div>
+                                <div class="pay_bank_box">
+                                	<div class="pay_bank_logo">
+                                    	农业银行
+                                    </div>
+                                    <div class="pay_bank_info">
+                                    	<span><span class="fontbold pay_bank_info_tit">开户银行:</span>中国农业银行杭州分行吴山支行</span>
+                                        
+                                        <span><span class="fontbold pay_bank_info_tit2">收 款 人:</span>宋丹丹</span>
+                                        <span><span class="fontbold pay_bank_info_tit">账 号:</span><font class="fontred fontbold">62284 8032 08059 07716</font></span>
+                                    </div>
+                                </div>
+                            </dd>
+                          
+                            
+                            <dd>
+                            	<div class="pay_radio"><input name="pay" type="radio" id="paymethod" value="3"></div>
+                                <div class="pay_bank_box">
+                                	<div class="pay_bank_logo_gh">
+                                    	工商银行
+                                    </div>
+                                    <div class="pay_bank_info" style="line-height:18px">
+                                    	<span><span class="fontbold pay_bank_info_tit">开户银行:</span><span style="line-height:16px">中国工商银行杭州解放路支行河坊街储蓄所</span></span>
+                                        
+                                        <span style="line-height:18px"><span class="fontbold pay_bank_info_tit2" style="line-height:18px">收 款 人:</span>宋丹丹</span>
+                                        <span style="line-height:18px"><span class="fontbold pay_bank_info_tit" style="line-height:18px">账 号:</span><font class="fontred fontbold">6222 0212 0200 6092 242</font></span>
+                                    </div>
+                                </div>
+                            </dd> 
+                            
+                            <dd>
+                            	<div class="pay_radio"><input name="pay" type="radio" id="paymethod" value="4"></div>
+                                <div class="pay_bank_box">
+                                	<div class="pay_bank_logo_jh">
+                                    	建设银行
+                                    </div>
+                                    <div class="pay_bank_info">
+                                    	<span><span class="fontbold pay_bank_info_tit">开户银行:</span>中国建设银行杭州吴山支行</span>
+                                        
+                                        <span><span class="fontbold pay_bank_info_tit2">收 款 人:</span>宋丹丹</span>
+                                        <span><span class="fontbold pay_bank_info_tit">账 号:</span><font class="fontred fontbold">6227 0015 4026 0100 125</font></span>
+                                    </div>
+                                </div>
+                            </dd>
+                            
+                             
+                            <dd>
+                            	<div class="pay_radio"><input name="pay" type="radio" id="paymethod" value="5"></div>
+                                <div class="pay_bank_box">
+                                	<div class="pay_bank_logo_zg">
+                                    	中国银行
+                                    </div>
+                                    <div class="pay_bank_info">
+                                    	<span><span class="fontbold pay_bank_info_tit">开户银行:</span>中国银行杭州庆春支行涌金支行</span>
+                                        
+                                        <span><span class="fontbold pay_bank_info_tit2">收 款 人:</span>宋丹丹</span>
+                                        <span><span class="fontbold pay_bank_info_tit">账 号:</span><font class="fontred fontbold">4563 5113 0011 4270 118</font></span>
+                                    </div>
+                                </div>
+                            </dd>
+                            
+                            <dd>
+                            	<div class="pay_radio"><input name="pay" type="radio" id="paymethod" value="6"></div>
+                                <div class="pay_bank_box">
+                                	<div class="pay_bank_logo_zs">
+                                    	招商银行
+                                    </div>
+                                    <div class="pay_bank_info">
+                                    	<span><span class="fontbold pay_bank_info_tit">开户银行:</span>招商银行杭州分行解放支行</span>
+                                        
+                                        <span><span class="fontbold pay_bank_info_tit2">收 款 人:</span>宋丹丹</span>
+                                        <span><span class="fontbold pay_bank_info_tit">账 号:</span><font class="fontred fontbold">6225 8857 1624 6103</font></span>
+                                    </div>
+                                </div>
+                            </dd>
+                            
+                            
+                            <dd>
+                            	<div class="pay_radio"><input name="pay" type="radio" id="paymethod" value="7"></div>
+                                <div class="pay_bank_box">
+                               	  <div class="pay_bank_logo_pf">
+                                    	浦发银行
+                                    </div>
+                                    <div class="pay_bank_info">
+                                    	<span><span class="fontbold pay_bank_info_tit">开户银行:</span>上海浦东发展银行杭州分行</span>
+                                        
+                                        <span><span class="fontbold pay_bank_info_tit2">收 款 人:</span>宋丹丹</span>
+                                        <span><span class="fontbold pay_bank_info_tit">账 号:</span><font class="fontred fontbold">6225 2102 0283 3233</font></span>
+                                    </div>
+                                </div>
+                            </dd>
+                            
+                            <dd>
+                            	<div class="pay_radio"><input name="pay" type="radio" id="paymethod" value="8"></div>
+                              <div class="pay_bank_box">
+                                	<div class="pay_bank_logo_zx">
+                                    	中信银行
+                                    </div>
+                                    <div class="pay_bank_info">
+                                    	<span><span class="fontbold pay_bank_info_tit">开户银行:</span>中信银行杭州分行营业部</span>
+                                        
+                                        <span><span class="fontbold pay_bank_info_tit2">收 款 人:</span>宋丹丹</span>
+                                        <span><span class="fontbold pay_bank_info_tit">账 号:</span><font class="fontred fontbold">6226 9008 0697 5773</font></span>
+                                  </div>
+                                </div>
+                            </dd>
+                            
+                            
+                            <dd>
+                            	<div class="pay_radio"><input name="pay" type="radio" id="paymethod" value="9"></div>
+                                <div class="pay_bank_box">
+                               	  <div class="pay_bank_logo_ms">
+                                    	民生银行</div>
+                                    <div class="pay_bank_info">
+                                    	<span><span class="fontbold pay_bank_info_tit">开户银行:</span>中国民生银行杭州涌金支行</span>
+                                        
+                                        <span><span class="fontbold pay_bank_info_tit2">收 款 人:</span>宋丹丹</span>
+                                        <span><span class="fontbold pay_bank_info_tit">账 号:</span><font class="fontred fontbold">6226 2277 8006 4188</font></span>
+                                    </div>
+                                </div>
+                            </dd>
+                            
+                            <dd>
+                            	<div class="pay_radio"><input name="pay" type="radio" id="paymethod" value="11"></div>
+                              <div class="pay_bank_box">
+                                	<div class="pay_bank_logo_jt">
+                                    	交通银行东新路支行
+                                    </div>
+                                    <div class="pay_bank_info">
+                                    	<span><span class="fontbold pay_bank_info_tit">开户银行:</span>中国邮政储蓄银行南星桥支行</span>
+                                        
+                                        <span><span class="fontbold pay_bank_info_tit2">收 款 人:</span>宋丹丹</span>
+                                        <span><span class="fontbold pay_bank_info_tit">账 号:</span><font class="fontred fontbold">6222 6001 7000 8509 266</font></span>
+                                  </div>
+                              </div>
+                            </dd>
+                            
+                            <dd>
+                            	<div class="pay_radio"><input name="pay" type="radio" id="paymethod" value="10"></div>
+                              <div class="pay_bank_box">
+                                	<div class="pay_bank_logo_yz">
+                                    	邮政储蓄
+                                    </div>
+                                    <div class="pay_bank_info">
+                                    	<span><span class="fontbold pay_bank_info_tit">开户银行:</span>中国邮政储蓄银行南星桥支行</span>
+                                        
+                                        <span><span class="fontbold pay_bank_info_tit2">收 款 人:</span>宋丹丹</span>
+                                        <span><span class="fontbold pay_bank_info_tit">账 号:</span><font class="fontred fontbold">6210 9833 1000 3472 316</font></span>
+                                  </div>
+                              </div>
+                            </dd>
+                            
+                            
+                           
+                            <div class="clear"></div>
+                        </dl>
+                        
+                        <div class="submitpayment">
+                        	<input type="submit" class="surepaybtn" value="" onClick="payto(this.form)">
+                        </div>
+                   </form>
+                   
+                   <div class="pay_other_method">
+                   		<div class="pay_other_method_tit">
+                        	你还可以：
+                        </div>
+                        
+                        <div class="pay_other_method_info">
+                        	
+                            <span>收款地址：浙江省杭州市江干区九盛路9号东方电子商务园A13栋</span>
+							<span>收 款 人：宋丹丹</span>
+							<span>邮　　编：310019</span>
+                        </div>
+                        <div class="clear"></div>
+                   </div>
+                   
+                   
+                   <div class="pay_note">
+                   		    <font class="fontbold">注意：</font>请您在汇款成功后，务必将 ①汇款凭证（汇款小票） ②身份证复印件（个人名义办理）或者营业执照复
+印件（公司名义办理）传真至<font class="fontred">0571－56637777</font>，请在传真件上注明您的<font class="fontred">公司全称、手机号、电子邮箱、订购服务项目、
+身份证复印件</font>以及营业执照，我们将在收到您的传真并核实付款信息无误后，立即向您发送用户名与密码并开通服务。
+                   </div>
+                </div>
+                
+                    <div class="paytabs_cont_method2">
+                    	<div class="pay_tip">支付宝支付安全，方便！如有疑问，请拨打客户服务热线 0571-56611111 56612345</div>
+                        <div class="pay_zfb">
+                        	<div class="pay_zfb_l" style="width:420px;">
+                            	ZZ91支付宝账号：
+                            zhifu@asto-inc.com</div>
+                            <div class="pay_zfb_r">
+                            	<a href="http://www.zz91.com/hkfs/alipay.html" target="_blank"></a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="paytabs_cont_method3">
+                    	<div class="pay_tip">支付宝支付安全，方便！如有疑问，请拨打客户服务热线 0571-56611111 56612345</div>
+                        <div class="pay_table">
+                                <table cellpadding="0" cellspacing="0" width="560" class="table">
+                          <tbody><tr>
+                              <td colspan="2"><div class="tabtit"><span class="tabtitA">Wire Transfer </span><span class="tabtitB">( 国外转账支付 )</span></div></td>
+                          </tr>
+                          <tr>
+                              <td class="tdtitA">BANK NAME：   </td>
+                              <td class="tdtitB">  BANK OF CHINA </td>
+                          </tr>
+                          <tr>
+                              <td class="tdtitA">BRANCH： </td>
+                              <td class="tdtitB"> QINGCHUN SUB-BRANCH </td>
+                          </tr>
+                          <tr>
+                              <td class="tdtitA">SWIFT CODE：</td>
+                              <td class="tdtitB">BKCHCNBJ910 </td> 
+                          </tr><tr>
+                          </tr><tr>
+                              <td class="tdtitA">ACCOUNT NUMBER：</td>   
+                              <td class="tdtitB">4531608-0188-013341-2 </td> 
+                          </tr>
+                          <tr>
+                               <td class="tdtitA">ACCOUNT HOLDER NAME：</td>   
+                               <td class="tdtitB">SONG DAN DAN </td>  
+                          </tr>
+                          <tr>
+                               <td class="tdtitA">BANK FHONE NUMBER：</td>              
+                               <td class="tdtitB">86-571-87067036 </td>
+                          </tr>
+                          <tr>
+                                <td class="tdtitA">BANK ADDRESS：</td>
+                                <td class="tdtitB">17 JIUSHENG Road,Hangzhou,Zhejiang Prv.CHINA 310000 </td>
+                          </tr>      
+                          <tr> 
+                              <td colspan="2" class="tablet">
+                              Basic Membership Fee: 3500RMB/Year.<br>
+                              Pls refer to the latest exchange rate if you transfer the membership fee not in RMB.<br>
+        Please reference your ZZ91.COM member ID (email address) on the bank receipt and fax it to our Service Department (Fax: 86 571-56637777) 
+                              </td>
+                          </tr>
+                    </tbody></table>
+                        </div>
+                    </div>
+            	</div>
+            	
+            	
+            	<div class="clear"></div>
+            </div>
+            
+        </section>
+       
+      	<section class="zz91_zst_applyother" style="margin-top:0">
+        	<div>
+            	<h3 class="tit">再生通服务简介</h3>
+                <p>再生通是ZZ91再生网高级会员，分为：</p>
+                <p><font class="fontbold fontgreen">基础版</font><font class="fontbold fontgold">(3500元/1年)</font><br>再生通会员<font class="fontgreen">（基础版）</font>是为再生资源企业提供的以信息为核心的电子商务必备入门工具！能够享有ZZ91提供的入门级电子商务服务及会员特权(优先、优惠使用各种电子商务增值服务)。</p>
+				<p>
+                <font class="fontbold fontgreen">金牌品牌通</font><font class="fontbold fontgold">(5880元/1年)</font>
+                金牌品牌通是为帮助中小企业在复杂经济环境中抓住机遇，更好的赢得商机，是ZZ91推出标准级电子商务服务。帮助再生资源企业更智能、更精准的在网上做生意。
+                </p>
+            </div>
+        </section>
+        
+        <div class="clear"></div>
+       
+    </div>
+<!--main block end-->
+
+
+<!--footer start-->
+<footer class="zz91_zst_foofer">
+  <p><a href="http://www.zz91.com/about/index.asp" target="_blank">关于我们</a> | <a href="http://www.recyclechina.com/" target="_blank">国际站</a> | <a href="http://www.zz91.com/service/ppt/index.asp" target="_blank">品牌通服务</a> | <a href="http://www.zz91.com/service/zst/" target="_blank">再生通服务</a> | <a href="http://www.zz91.com/cn/helpcenter/" target="_blank">新手指南</a> | <a href="http://www.zz91.com/webmap.html" target="_blank">网站地图</a> | <a href="http://www.zz91.com/hkfs/" target="_blank">支付方式</a> | <a href="http://www.zz91.com/about/question.asp" target="_blank">意见投诉</a> | <a href="http://www.zz91.com/about/linkus.asp" target="_blank">友情链接</a> | <a href="http://www.zz91.com/about/contactus.asp" target="_blank">客服中心</a> | <a href="http://www.zz91.com/about/zhaopin.asp" target="_blank">诚聘英才</a> | <a href="http://daohang.zz91.com/" target="_blank">产品导航</a> <br>
+    全国统一服务热线：0571-56611111 56612345 广告服务：0571-56611688 传真：0571-56637777<br>
+    法律顾问：京衡律师集团事务所 罗益群 律师 RecycleChina @ All Rights Reserved ZZ91再生网 版权所有<br>
+    ZZ91再生网为中国物资再生协会副会长单位 中国塑协理事单位<br>
+    并与中国有色金属工业协会、中国塑料协会 、阿里巴巴、《资源再生》杂志等达成战略合作<br>
+  </p>
+  <p><a href="http://www.idinfo.cn/SignHandle userID=3301030000102711" target="_blank"><img src="http://img0.zz91.com/front/images/footerpic/gongshang.gif" alt="ZZ91再生网"> </a><a href="http://www.miibeian.gov.cn/" target="_blank" title="ZZ91再生网"><img src="http://img0.zz91.com/front/images/footerpic/gongshangbeian.gif" alt="ZZ91再生网"> </a><img src="http://img0.zz91.com/front/images/footerpic/Icp.gif" alt="ZZ91再生网"> <a href="http://www.cyberpolice.cn/" target="_blank" title="ZZ91再生网"><img src="http://img0.zz91.com/front/images/footerpic/wangjing.gif" alt="ZZ91再生网"> </a><a href="http://www.pingpinganan.gov.cn/" target="_blank" title="ZZ91再生网"><img src="http://img0.zz91.com/front/images/footerpic/wangjing2.gif" alt="ZZ91再生网"></a></p>
+</footer>
+<script>
+(function(d, t) {
+    var r = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    r.async = 1;
+    r.src = 'http://www.zz91.com/app/log.htm?' + Math.ceil(new Date/3600000)
+    s.parentNode.insertBefore(r, s);
+})(document, 'script');
+</script>
+<!--baidu analysis-->
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+</script><script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fd1852f2b391e52cbd020e4b788713ba1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!--51yes analysis-->
+<!--footer end-->
+</body>
+</html>

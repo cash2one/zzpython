@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>录入seo客户-seo客户管理系统</title>
+    <link href="/static/css/s.css" type="text/css" rel="stylesheet">
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <script src="http://www.feiliao123.com/feiliao123/My97DatePicker/WdatePicker.js"></script>
+    <script>
+    // 获取当前时间，默认填入到单子优化开始时间与达标时间
+    <!--$(document).ready(function() {-->
+        <!--var nowTime = new Date();-->
+        <!--var nowYear = nowTime.getFullYear();-->
+        <!--var nowMonth = nowTime.getMonth() + 1;-->
+        <!--nowMonth = nowMonth < 10 ? ('0' + nowMonth) : nowMonth;-->
+        <!--var dbMonth = nowTime.getMonth() + 4;-->
+        <!--dbMonth = dbMonth < 10 ? ('0' + dbMonth) : dbMonth;-->
+        <!--var nowDay = nowTime.getDate();-->
+        <!--nowDay = nowDay < 10 ? ('0' + nowDay) : nowDay;-->
+        <!--// var yhTime = nowTime.toLocaleDateString();-->
+        <!--var yhTime = nowYear + '-' + nowMonth + '-' + nowDay;-->
+        <!--var dbTime = nowYear + '-' + dbMonth + '-' + nowDay;-->
+        <!--$('#yh-start-time').val(yhTime);-->
+        <!--$('#bz-db-time').val(dbTime);-->
+    <!--}); -->
+
+    // 添加客户验证
+    function frmsubmit(form)
+    {
+        form.action="save_seokh.html";
+        if(form['seo-zh'].value=="")
+        {
+            alert("请输入邮箱或手机号");
+            // $('.error-text-yx').text('请输入邮箱或手机号');
+            form['seo-zh'].focus();
+            return false;
+        }
+        if(form['seo-zh-comp'].value=="")
+        {
+            alert("请输入公司名称");
+            // $('.error-text-gs').text('请输入公司名称');
+            form['seo-zh-comp'].focus();
+            return false;
+        }
+        if(form['seo-kews'].value=="")
+        {
+            alert("请输入关键词");
+            form['seo-kews'].focus();
+            return false;
+        }
+        if(form['yh-start-time'].value=="")
+        {
+            alert("请输入优化时间");
+            form['yh-start-time'].focus();
+            return false;
+        }
+        if(form['bz-db-time'].value=="")
+        {
+            alert("请输入保证达标时间");
+            form['bz-db-time'].focus();
+            return false;
+        }
+        if(form['msb-link'].value=="")
+        {
+            alert("请输入门市部链接");
+            form['msb-link'].focus();
+            return false;
+        }
+        if(form['yh-jg'].value=="")
+        {
+            alert("请输入优化接入价格");
+            form['yh-jg'].value();
+            return false;
+        }
+        form.submit();
+    }
+
+    // 通过邮箱搜索客户
+    function searchemail(frm)
+    {
+        frm.action="add_seokh.html";
+        frm.submit();
+    }
+    </script>
+</head>
+<body>
+<form id="search-seokh" name="search-seokh"  method="post">
+    {% csrf_token %}
+    <table cellpadding="10" cellspacing="1" class="search-tb2" width="900" align="center">
+        <tr bgcolor="#Fff">
+            <td>&nbsp;</td>
+            <td>
+                <input type="button" value="返回列表" onclick="window.location='seolist.html?waste=0'">
+                <input type="hidden" id="com_id" name="com_id" value="{{ com_id }}">
+            </td>
+        </tr>
+         <tr bgcolor="#Fff">
+            <td><span style="color:red">*</span>账号</td>
+            <td>
+                <input type="text" size="40" id="seo-zh" name="seo-zh" placeholder="请输入客户账号，点击搜索即可读取客户信息" value="{{ seo_email }}">
+                <input type="button" id="seo-zh-sc" name="seo-zh-sc" value="搜索" onclick="searchemail(this.form)">
+                <span class="error-text-yx" style="color: red"></span>
+            </td>
+        </tr>
+        <tr bgcolor="#Fff">
+            <td><span style="color:red">*</span>公司名</td>
+            <td><input type="text" id="seo-zh-comp" name="seo-zh-comp" size="40" placeholder="公司名称" value="{{ comp_name }}"></td>
+        </tr>
+    <!--</table>-->
+<!--</form>-->
+<!--<form id="add-seokh" name="add-seokh" action="">-->
+    <!--<table cellpadding="10" cellspacing="1" class="add-tb1" width="600" align="center" style="text-align:left">-->
+        <!--<tr bgcolor="#Fff">-->
+            <!--<td>账号</td>-->
+            <!--<td><input id="seo-account" name="seo-account" size="40" placeholder="请输入账号" type="text"></td>-->
+        <!--</tr>-->
+        <!--<tr bgcolor="#Fff">-->
+            <!--<td>公司名</td>-->
+            <!--<td><input  type="text" id="seo-comp-name" name="seo-comp-name" size="40" placeholder="请输入公司名称"></td>-->
+        <!--</tr>-->
+        <tr bgcolor="#fff">
+            <td><span style="color:red">*</span>关键词</td>
+            <td>
+                <input type="text" id="seo-kews" name="seo-kews" size="40" placeholder="请输入关键词，以 | 进行分割">
+                <span class="error-text" style="color: red"></span>
+            </td>
+        </tr>
+        <tr bgcolor="#fff">
+            <td><span style="color:red">*</span>单子开始优化时间</td>
+            <td><input id="yh-start-time" name="yh-start-time"  class="Wdate" onclick="WdatePicker()" size="8" value="{{now_time}}"></td>
+        </tr>
+        <tr bgcolor="#fff">
+            <td><span style="color:red">*</span>单子保证达标时间</td>
+            <td><input id="bz-db-time" name="bz-db-time" class="Wdate" onclick="WdatePicker()" size="8" value="{{three_month_later}}">
+            </td>
+        </tr>
+        <tr bgcolor="#fff">
+            <td><span style="color:red">*</span>门市部</td>
+            <td><input type="text" size="40" id="msb-link" name="msb-link" placeholder="请输入门市部链接"> </td>
+        </tr>
+        <tr bgcolor="#fff">
+            <td><span style="color:red">*</span>购买金额</td>
+            <td><input type="text" id="yh-jg" name="yh-jg" placeholder="请输入优化接入价格"></td>
+        </tr>
+        <tr bgcolor="#fff">
+            <td><span style="color:red">*</span>录入人</td>
+            <td>
+                {% if user_name %}{{ user_name }}{% endif %}
+                <input type="hidden" id="lr-ry" name="lr-ry" value="{{ user_id }}">
+            </td>
+        </tr>
+        <tr bgcolor="#fff">
+            <td>&nbsp;</td>
+            <td>
+                <input type="button" id="tj-yh" name="tj-yh" value="提交" onclick="frmsubmit(this.form)">
+                <input type="reset" value="重置">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

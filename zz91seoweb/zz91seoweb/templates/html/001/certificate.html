@@ -1,0 +1,100 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{{csscode}}/css/base.css" />
+<link rel="stylesheet" href="{{csscode}}/css/modules.css" />
+<link rel="stylesheet" href="{{csscode}}/css/style.css" />
+<title>{{list.name}}</title>
+<meta content="{{list.business}}" name="description"/>
+<meta content="" name="keywords"/></head>
+<body>
+{%include htmlincludes.topinclude%}
+<div id="content">
+	<!--左边主题板块-->
+           <div class="grid-sub fl">
+                    {%include htmlincludes.leftinclude%}
+           </div>
+<!--左边主题板块结束-->
+
+	<!-- 右面主题板块-->
+	<div class="main-wrap fr">
+		<!--明星产品-->
+        
+        <div class="mod mod-starpro">
+			<div class="m-body clf">
+				<div class="m-header"><h3>诚信档案</h3></div>
+				<table class="table">
+                	<tr>
+                    	<td class="td1">积分项</td>
+                        <td class="td2">总积分</td>
+                        <td>积分详情</td>
+                    </tr>
+                    <tr>
+                    	<td class="td1">身份认证：</td>
+                        <td class="td2">10 分</td>
+                        <td>工商注册信息通过审核</td>
+                    </tr>
+                    <tr>
+                    	<td class="td1">身份认证：</td>
+                        <td class="td2">20 分</td>
+                        <td>使用再生通服务 1 年</td>
+                    </tr>
+                    <tr>
+                    	<td rowspan="5" class="td1">证书荣誉：</td>
+                        <td rowspan="5" class="td2">5 分</td>
+                        <td>税务登记证 0 张</td>
+                    </tr>
+                    <tr>
+                    	<td>经营许可类证书 1 张</td>
+                    </tr>
+                    <tr>
+                    	<td>产品类证书  1 张</td>
+                        
+                    </tr>
+                    <tr>
+                    	<td>其他证书 0 张</td>
+                    </tr>
+                    <tr>
+                    	<td>过期证书 0 张</td>
+                    </tr>
+                </table>
+			</div>
+		</div>
+		<div class="mod mod-starpro">
+			<div class="m-body clf">
+				<div class="m-header"><h3>企业证书</h3></div>
+				<div class="m-content">
+							<div class="pro-zhengshu">
+							<div class="zhengshu-show">
+							{%for list in certificatelist%}
+							<div class="showdetail fl">
+								<div class="showdetail-l">
+									<span><img src="{{list.pic_name}}" alt="税务登记证" /></span>
+								</div>
+								<dl class="showdetail-r">
+									<dt>{{list.file_name}}</dt>
+									<dd>发证机构：<span>
+										{{list.organization}}</span>
+									</dd>
+									<dd>生效日期：{{list.start_time}}</dd>
+									<dd>截止日期：{{list.end_time}}</dd>
+								</dl>
+							</div>
+                            {%endfor%}
+							
+							</div>
+							
+						</div>
+				</div>
+			</div>
+		</div>
+		<!--明星产品结束-->
+	</div>
+	<!-- 右面主题板块结束-->
+
+</div>
+{%include htmlincludes.buttominclude%}
+</body>
+</html>

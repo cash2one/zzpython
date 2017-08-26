@@ -1,0 +1,11 @@
+var categorylist=""+
+{%for p in categorycodelist%}
+    	"<div class=\"box-item\"><div class=\"box-item-title\">"+
+            	"<a href=\"/trade/{{p.pinyin}}/\">{{p.label}}</a>"+
+            "</div><div class=\"box-item-content\"><ul>"+
+{%for c in p.catelist%}
+                	"<li><a href=\"/trade/{{c.pinyin}}/\" class=\"box-item-click\">{{c.label}}</a></li>"+
+{%endfor%}
+                    "<div class=\"cb\"></div></ul></div></div>"+
+{%endfor%}
+""

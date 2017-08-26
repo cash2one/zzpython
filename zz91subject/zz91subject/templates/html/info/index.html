@@ -1,0 +1,818 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>中国环保网资讯中心-环保行业最权威及时资讯网站</title>
+<meta name="keywords" content="污水处理,水环境,低碳经济,节能减排, 环境保护" />
+<meta name="description" content="中国环保网是环保行业信息最全面专业网站, 中国环保设备人气口碑第一网,致力于为国内环保厂商提供最新、最快、最及时的污水处理,水环境,节能减排,低碳经济,环保设备,供应,采购,合作,工程招/投标,环保展会,环保技术等环保相关信息服务!" />
+</head>
+<link rel="shortcut icon" href="http://img0.huanbao.com/huanbao/images/logo/favicon.ico">
+<link rel="stylesheet" href="http://img0.huanbao.com/huanbao/css/hb.base.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.huanbao.com/huanbao/www/css/hb.comm.css" />
+<link rel="stylesheet" href="css/information.css" />
+<script src="http://img0.huanbao.com/huanbao/js/hb.comm.js"></script>
+<script src="http://img0.huanbao.com/huanbao/js/hb.news.js"></script>
+<script src="http://img0.huanbao.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script src="js/jquery.slideBox.min.js" type="text/javascript"></script>
+<body>
+<div class="header">
+	<div class="h-main">
+    	<div class="h-main-left">
+        	<div class="set-home">
+            	<a href="#" onClick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.huanbao.com');">设为首页</a>
+            </div>
+            <div class="add-favorite">
+            	<a href="javascript:void(0);" target="_self" onclick="javascript:try{ window.external.AddFavorite('http://www.huanbao.com','中国环保网'); } catch(e){ (window.sidebar)?window.sidebar.addPanel('中国环保网','http://www.huanbao.com/',''):alert('请使用按键 Ctrl+d，收藏中国环保网'); }">加入收藏</a>
+            </div>
+        </div>
+        
+        <div class="h-main-right" id="h-main-right">
+        	<ul>
+                <li><a href="http://www.huanbao.com/faq/newGindex.htm" target="_blank">帮助</a></li>
+                <li id="menu">
+                	<ul>
+                    	<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)">
+                        	<div class="droptitle">网站导航</div>
+                            <div class="dropmain" style="display:none; left:-174px">
+                            	<dl>
+                                	<dt>商机频道</dt>
+                                    <dd><a href="">产品库</a></dd>
+                                    <dd><a href="">企业库</a></dd>
+                                    <dd><a href="">采购库</a></dd>
+                                </dl>
+                                <dl>
+                                	<dt>内容频道</dt>
+                                    <dd><a href="">资讯</a></dd>
+                                    <dd><a href="">展会</a></dd>
+                                    <dd><a href="">技术文章</a></dd>
+                                    <dd><a href="">微门户</a></dd>
+                                </dl>
+                                <dl>
+                                	<dt>行业站</dt>
+                                    <dd><a href="">污水处理网</a></dd>
+                                    <dd><a href="">原水处理网</a></dd>
+                                    <dd><a href="">空气净化网</a></dd>
+                                    <dd><a href="">材料药剂网</a></dd>
+                                    <dd><a href="">环卫清洁网</a></dd>
+                                    <dd><a href="">泵网</a></dd>
+                                    <dd><a href="">阀网</a></dd>
+                                    <dd><a href="">风机网</a></dd>
+                                    <dd><a href="">仪器仪表网</a></dd>
+                                    <dd><a href="">综合设备网</a></dd>
+                                    <dd><a href="">环保设备库</a></dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#">我的收藏夹</a></li>
+                <li id="menu">
+                	<ul>
+                    	<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)">
+                        	<div class="droptitle">我的生意管家</div>
+                            <div class="dropmain" style="display:none">
+                            	<dl>
+                                	<dt>采购</dt>
+                                    <dd><a href="">发送询价单</a></dd>
+                                    <dd><a href="">管理询价单</a></dd>
+                                </dl>
+                                <dl>
+                                	<dt>销售</dt>
+                                    <dd><a href="">发布产品信息</a></dd>
+                                    <dd><a href="">管理产品信息</a></dd>
+                                </dl>
+                                <dl>
+                                	<dt>服务</dt>
+                                    <dd><a href="">企业商铺</a></dd>
+                                    <dd><a href="">企业图库</a></dd>
+                                    <dd><a href="">商机订阅</a></dd>
+                                </dl>
+                            </div>
+                        </li>
+                    </ul>
+                	
+                </li>
+                <li><a href="http://www.huanbao.com/myesite/regist.htm" target="_blank">免费注册</a></li>
+                <li id="menu">
+                	<ul>
+                    	<li onmouseover="displaySubMenu(this)" onmouseout="hideSubMenu(this)">
+                        <div class="droptitle" style="background-color:#0C0">登录</div>
+                        <div class="h-login" id="login-block">
+                            <input type="text" class="h-login-text"  placeholder="登录名"/>
+                            <input type="password" class="h-login-text" placeholder="密码"  />
+                            <div class="h-login-show">
+                                <input name="" type="checkbox" value="" />下次自动登录|
+                                <a href="#">忘记密码？</a>
+                          </div>
+                            <div class="h-login-ok">
+                                <input type="submit" class="submit" value="登录">
+                            </div>
+                        </div>
+                        </li>
+                     </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--end h-main-->
+</div>
+<!--end header-->
+<!--main-->
+<div class="main">
+	<div class="searchbarblock">
+    	<div class="m1-logo">
+        	<a href="http://www.huanbao.com" target="_blank"></a>
+        </div>
+        
+        <div class="m1-search">
+        	<div class="search-nav">
+            	<ul id="search-nav">
+                	<li class="active" s-data="请输入您要搜索的产品！"><a href="javascript:void(0)">产品</a></li>
+                    <li s-data="请输入您要搜索的采购信息！"><a href="javascript:void(0)">采购</a></li>
+                    <li s-data="请输入您要搜索的公司！"><a href="javascript:void(0)">公司</a></li>
+                    <li s-data="请输入您要搜索的资讯信息！"><a href="javascript:void(0)">资讯</a></li>
+                    <li s-data="请输入您要搜索的展会信息！"><a href="javascript:void(0)">展会</a></li>
+                </ul>
+            </div>
+            <!--end search-nav-->
+            <div class="search-content">
+            	<form method="get" id="search">
+                    <input type="text" id="search-text" class="search-text" />
+                    <input type="submit" class="search-ok" value="">
+                    
+                </form>
+                <div style="clear:both"></div>
+            </div>
+            <!--end search-content-->
+        </div>
+        <div style="clear:both"></div>
+    </div>
+</div>
+<div style="clear:both"></div>
+<div class="main">
+<div class="mainnavblock">
+    	<div class="m2-nav">
+        	<ul id="m2-nav">
+            	<li><a href="#">首页</a></li>
+                <li><a href="#">产品库</a></li>
+                <li><a href="#">企业库</a></li>
+                <li><a href="#">采购库</a></li>
+                <li class="m2-nav-click"><a href="#">资讯</a></li>
+                <li><a href="#">展会</a></li>
+                <li><a href="#">微门户</a></li>
+                <li><a href="#">技术文章</a></li>
+            </ul>
+        </div>
+        <div class="m2-info">
+        	<ul>
+			<li class="m2-info-title">最新商机：</li>
+			<li class="m2-info-notice"><marquee scrollamount="3" direction="left" behavior="scroll">
+                            <a/>&nbsp;（博山掩的晟源水泵经销处）收到（）的询盘商机、</a>
+                            <a/>&nbsp;（博山掩的晟源水泵经销处）收到（）的询盘商机、</a>
+                            <a/>&nbsp;（成都中广核久源测控科技有限公司）收到（李佰欣）的询盘商机、</a>
+                            <a/>&nbsp;（鼎天）收到（贾发枝）的询盘商机、</a>
+                            <a/>&nbsp;（巍山县鸿诚化工有限公司）收到（贾发枝）的询盘商机、</a>
+                            <a/>&nbsp;（中科院等离子所）收到（陈杰）的询盘商机、</a>
+                            <a/>&nbsp;（北京农人农业科技有限责任公司    ）收到（钱女士）的询盘商机、</a>
+                            <a/>&nbsp;（液压门市）收到（）的询盘商机、</a>
+                            <a/>&nbsp;（北京农人农业科技有限责任公司    ）收到（钱女士）的询盘商机、</a>
+                            <a/>&nbsp;（济南海能水处理设备有限公司）收到（kang）的询盘商机、</a>
+                        </marquee></li>
+			</ul>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+</div>
+
+
+
+
+<div class="information">
+	<div class="m-list">
+    	<ul>
+        	<li><a href="http://www.huanbao.com/news/list10001000.htm">环保新闻</a></li>
+            <li><a href="http://www.huanbao.com/news/list10001005.htm">专家文章</a></li>
+            <li><a href="http://www.huanbao.com/news/list10001002.htm">市场/行情</a></li>
+            <li><a href="http://www.huanbao.com/news/list10001001.htm">政策法规</a></li>
+            <li><a href="http://www.huanbao.com/news/list10001003.htm">工程/案例</a></li>
+            <li><a href="http://www.huanbao.com/exhibit/">行业展会</a></li>
+            <li><a href="http://www.huanbao.com/news/list10001006.htm">上市新闻/上市板块</a></li>
+        </ul>
+    </div>
+    <!--m-list-->
+	<div class="mainblock1">
+    	<div class="m1-left" id="demo1">
+        	<ul class="items">
+                <li><a href="#" title=""><img src="images/1.jpg"></a></li>
+                <li><a href="#" title=""><img src="images/2.jpg"></a></li>
+                <li><a href="#" title=""><img src="images/3.jpg"></a></li>
+            </ul>
+        </div>
+        <!--end m-left-->
+        <div class="m1-conter">
+        	<div class="m1-conter-item">
+            	<div class="m1-item-title">
+                	<a href="#">【焦点】节能环保产业成新兴产业</a>
+                </div>
+                <!--end m1-item-title-->
+                <div class="m1-item-content">
+                	安徽省政府办公厅日前印发《安徽省节能环保产业发展规划》，明确重点领域、重点工程等，提出到20...>> <a href="#">详细</a>
+                </div>
+                <!--end m1-item-content-->
+            </div>
+            <!--end m1-conter-item-->
+            <div class="m1-conter-item" style="margin-top:0">
+            	<div class="m1-item-title">
+                	<a href="#">【焦点】节能环保产业成新兴产业</a>
+                </div>
+                <!--end m1-item-title-->
+                <div class="m1-item-content">
+                	安徽省政府办公厅日前印发《安徽省节能环保产业发展规划》，明确重点领域、重点工程等，提出到20...>> <a href="#">详细</a>
+                </div>
+                <!--end m1-item-content-->
+            </div>
+            <!--end m1-conter-item-->
+            <ul class="m1-conter-ul">
+            	<li><a href="#" class="m1-ul-title">[时事热点]</a> <a href="#">张家口下达淘汰落后产能计划</a></li>
+                <li><a href="#" class="m1-ul-title">[时事热点]</a> <a href="#">张家口下达淘汰落后产能计划</a></li>
+                <li><a href="#" class="m1-ul-title">[时事热点]</a> <a href="#">张家口下达淘汰落后产能计划</a></li>
+            </ul>
+            <!--end m1-conter-ul-->
+        </div>
+        <!--end m-conter-->
+        <div class="m1-right">
+        	
+<!--服务盒子-->
+    	<div class="news_infobox html5radius" id="nsInfobox">
+        	<div class="news_infobox_tabs">
+            	<span class="ifb_tabs_01 newstabsiocn01 isselected">注册会员</span>
+                <span class="ifb_tabs_02 newstabsiocn02 noselected">品牌优势</span>
+            </div>
+			
+            <div class="ifb_tabs_cont" style="display:block">
+            	<div class="ifb_content01">
+					<ul>
+						<li>环保设备信息量超过300万条 </li>
+						<li>客户数逾50万</li>
+						<li>每天新增客户数1300家</li>
+						<li>每天新增信息量5600多条 </li>
+					</ul>
+				</div>
+				<div class="ifb_content02">
+					<ul>
+						<li>拥有每天80000次的曝光机会</li>
+						<li>网-刊-会一站式立体推广渠道</li>
+						<li>杭州市政府、浙江环保局重点支持平台 </li>
+						<li>&lt;&lt; 资源再生&gt;&gt;环保杂志战略合作伙伴</li>
+					</ul>
+				</div>
+            </div>
+        
+            <div class="news_infobox_tabs">
+            	<span class="ifb_tabs_03 newstabsiocn03 noselected">寻找卖家</span>
+                <span class="ifb_tabs_04 newstabsiocn04 noselected">寻找买家</span>
+            </div>
+            <div class="ifb_tabs_cont">
+            	<div class="ifb_content03">
+                    <ul>
+						<li>买家1次发布，立享3大免费买家独享服务</li>
+						<li>50万卖家库信息全部公开，免费查阅 </li>
+						<li>37%机会获得优质商家推荐机会 </li>
+					</ul>
+						    
+				</div>
+				<div class="ifb_content04">
+					<ul>
+						<li>3大买家需求采集渠道</li>
+						<li>日采集可达500条</li>
+						<li>强大的买家中心服务</li>
+					</ul>
+				</div>
+            </div>
+            
+            <div class="news_infobox_tabs">
+            	<span class="ifb_tabs_05 newstabsiocn05 noselected">品牌推广</span>
+                <span class="ifb_tabs_06 newstabsiocn06 noselected">中环通</span>
+            </div>
+            <div class="ifb_tabs_cont">
+				<div class="ifb_content05">
+					<ul>
+						<li>独家 “网+会+刊”全面立体推广渠道 </li>
+						<li>36家线下推广合作机构</li>
+						<li>全年推广 品牌营销专家，指点迷津 </li>
+					</ul>
+				</div>
+				<div class="ifb_content06">
+					<ul>
+						<li>优先展示、买家直通车、网络秘书、环保商铺、品牌推广，5大利器让您生意无忧</li>
+					</ul>
+				</div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    <!--服务盒子-->
+       
+        </div>
+    </div>
+    <!--end mainblock1-->
+    <div class="cb"></div>
+    <div class="mainblock2">
+    	<div class="m2-item fl">
+        	<div class="m2-item-title">
+            	<div class="m2-title-text">
+                	<a href="#">技术文章</a> 
+                </div>
+                <div class="m2-title-more">
+                	<a href="#">更多></a>
+                </div>
+            </div>
+            <!--end m2-item-title-->
+            <ul class="m2-item-ul">
+            	<li><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li><a href="#">光合菌治理湖泊好帮手</a></li>
+            </ul>
+        </div>
+        <!--end m2-item-->
+        <div class="m2-item ml8 m2-w398 fl">
+        	<div class="m2-item-title">
+            	<div class="m2-title-text">
+                	<a href="#">热门展会</a> 
+                </div>
+            </div>
+            <!--end m2-item-title-->
+            <ul class="m2-item-ul2">
+            	<li><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li><a href="#">光合菌治理湖泊好帮手</a></li>
+            </ul>
+        </div>
+        <!--end m2-item-->
+        <div class="m2-item m2-w270 fr">
+        	<div class="m2-item-title">
+            	<div class="m2-title-text">
+                	<a href="http://www.huanbao.com/news/listjphc.htm">精品荟萃</a> 
+                </div>
+            </div>
+            <!--end m2-item-title-->
+            <ul class="m2-item-ul">
+            	<li class="m2-li-bg1"><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li class="m2-li-bg2"><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li class="m2-li-bg3"><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li class="m2-li-bg4"><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li class="m2-li-bg5"><a href="#">光合菌治理湖泊好帮手</a></li>
+                <li class="m2-li-bg6"><a href="#">光合菌治理湖泊好帮手</a></li>
+            </ul>
+        </div>
+        <!--end m2-item-->
+    </div>
+    <!--end mainblock2-->
+    <div class="cb"></div>
+    <div class="mainblock3">
+    	<div class="m3-title">
+        	<a href="#">图文</a>
+        </div>
+        <!--end m3-title-->
+        <div class="m3-content">
+        	<div class="m3-content-box" style="margin-left:0">
+            	<div class="m3-box-one">
+                	<img src="images/m3-img1.jpg" />
+                </div>
+                <!--end m3-box-one-->
+                <div class="m3-box-two">
+                	
+                </div>
+                <!--end m3-box-two-->
+            </div>
+            <div class="m3-content-box">
+            	<div class="m3-box-one">
+                	<img src="images/m3-img2.jpg" />
+                </div>
+                <!--end m3-box-one-->
+                <div class="m3-box-two">
+                	<img src="images/m3-img3.jpg" />
+                </div>
+                <!--end m3-box-two-->
+            </div>
+            <div class="m3-content-box">
+            	<div class="m3-box-one">
+                	<img src="images/m3-img4.jpg" />
+                </div>
+                <!--end m3-box-one-->
+                <div class="m3-box-two">
+                	<img src="images/m3-img5.jpg" />
+                </div>
+                <!--end m3-box-two-->
+            </div>
+            <div class="m3-content-box">
+            	<div class="m3-box-one">
+                	<img src="images/m3-img8.jpg" />
+                </div>
+                <!--end m3-box-one-->
+                <div class="m3-box-two">
+                </div>
+                <!--end m3-box-two-->
+            </div>
+            <div class="m3-content-box" style="margin-right:0">
+            	<div class="m3-box-one">
+                	<img src="images/m3-img6.jpg" />
+                </div>
+                <!--end m3-box-one-->
+                <div class="m3-box-two">
+                	<img src="images/m3-img7.jpg" />
+                </div>
+                <!--end m3-box-two-->
+            </div>
+        </div>
+        <!--end m3-content-->
+    </div>
+    <!--end mainblock3-->
+    <div class="cb"></div>
+    <div class="mainblock4">
+    	<div class="m4-title">
+        	<a href="#">图文</a>
+        </div>
+        <!--end m3-title-->
+        <div class="m4-content">
+        	<div class="m4-content-left">
+            	<div class="m4-left-item m4-item_top">
+                    <div class="m4-item-title">
+                        <span class="m4-title-left">
+                        <a href="#">公司技术文章</a>
+                    </span>
+                    <span class="m4-title-right">
+                        <a href="#">更多></a>
+                    </span>
+                    </div>
+                    <!--end title-->
+                    <div class="m4-item-title">
+                        <span class="m4-title-left">
+                        <a href="http://www.huanbao.com/news/list10001005.htm">专家论文</a>
+                    </span>
+                    <span class="m4-title-right">
+                        <a href="http://www.huanbao.com/news/list10001005.htm">更多></a>
+                    </span>
+                    </div>
+                    <!--end title-->
+                    <div class="m4-item-content m4-item-line">
+                        <div class="m4-item-box">
+                            <div class="m4-box-img">
+                                <img src="images/img1.jpg" />
+                            </div>
+                            <div class="m4-box-text">
+                                <div class="m4-box-title"><a href="#">污水处理厂格栅建好，更要好用好</a></div>
+                                <div class="m4-box-content">近年来，我省不断加大力度，污水处理厂建设全面提速，近百座.... <a href="#">>>详细</a></div>
+                            </div>
+                        </div>
+                        <!--end m1-item-box-->
+                        <ul>
+                            <li><span class="m4-ul-left m4-ul-bg1"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg2"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg1"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg1"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg2"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                        </ul>
+                        <!--end u1-->
+                        <div style="clear:both"></div>
+                    </div>
+                    <!--end m2-item-content-->
+                    <div class="m4-item-content">
+                        <div class="m4-item-box">
+                            <div class="m4-box-img">
+                                <img src="images/img1.jpg" />
+                            </div>
+                            <div class="m4-box-text">
+                                <div class="m4-box-title"><a href="#">污水处理厂格栅建好，更要好用好</a></div>
+                                <div class="m4-box-content">近年来，我省不断加大力度，污水处理厂建设全面提速，近百座.... <a href="#">>>详细</a></div>
+                            </div>
+                        </div>
+                        <!--end m1-item-box-->
+                        <ul>
+                            <li><span class="m4-ul-left m4-ul-bg1"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg2"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg1"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg1"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg2"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                        </ul>
+                        <!--end u1-->
+                        <div style="clear:both"></div>
+                    </div>
+                    <!--end m2-item-content-->
+                </div>
+                <!--end item-->
+                <div style="clear:both"></div>
+                <div class="m4-left-item m4-item_top">
+                    <div class="m4-item-title">
+                        <span class="m4-title-left">
+                        <a href="http://www.huanbao.com/news/list10001002.htm">市场行情</a>
+                    </span>
+                    <span class="m4-title-right">
+                        <a href="http://www.huanbao.com/news/list10001002.htm">更多></a>
+                    </span>
+                    </div>
+                    <!--end title-->
+                    <div class="m4-item-title">
+                        <span class="m4-title-left">
+                        <a href="http://www.huanbao.com/news/list10001001.htm">政策法规</a>
+                    </span>
+                    <span class="m4-title-right">
+                        <a href="http://www.huanbao.com/news/list10001001.htm">更多></a>
+                    </span>
+                    </div>
+                    <!--end title-->
+                    <div class="m4-item-content m4-item-line">
+                        <div class="m4-item-box">
+                            <div class="m4-box-img">
+                                <img src="images/img1.jpg" />
+                            </div>
+                            <div class="m4-box-text">
+                                <div class="m4-box-title"><a href="#">污水处理厂格栅建好，更要好用好</a></div>
+                                <div class="m4-box-content">近年来，我省不断加大力度，污水处理厂建设全面提速，近百座.... <a href="#">>>详细</a></div>
+                            </div>
+                        </div>
+                        <!--end m1-item-box-->
+                        <ul>
+                            <li><span class="m4-ul-left m4-ul-bg1"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg2"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg1"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg1"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg2"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                        </ul>
+                        <!--end u1-->
+                        <div style="clear:both"></div>
+                    </div>
+                    <!--end m2-item-content-->
+                    <div class="m4-item-content">
+                        <div class="m4-item-box">
+                            <div class="m4-box-img">
+                                <img src="images/img1.jpg" />
+                            </div>
+                            <div class="m4-box-text">
+                                <div class="m4-box-title"><a href="#">污水处理厂格栅建好，更要好用好</a></div>
+                                <div class="m4-box-content">近年来，我省不断加大力度，污水处理厂建设全面提速，近百座.... <a href="#">>>详细</a></div>
+                            </div>
+                        </div>
+                        <!--end m1-item-box-->
+                        <ul>
+                            <li><span class="m4-ul-left m4-ul-bg1"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg2"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg1"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg1"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                            <li><span class="m4-ul-left m4-ul-bg2"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                        </ul>
+                        <!--end u1-->
+                        <div style="clear:both"></div>
+                    </div>
+                    <!--end m2-item-content-->
+                </div>
+                <!--end item-->
+          		<div style="clear:both"></div>
+            </div>
+            <!--end m4-content-left-->
+            
+            <div class="m4-right">
+                <div class="m4-right-item">
+                    <div class="m4-right-title">
+                        <a href="http://www.huanbao.com/news/zhuanti/index.htm">热点专题</a>
+                    </div>
+                    <div class="m4-right-content">
+                        <div class="m4-right-block m4-block-mt16">
+                        	<div class="m4-block-img">
+                            	<a href="#"><img src="images/m4_block_img.jpg" /></a>
+                            </div>
+                            <div class="m4-block-text">
+                            	<div class="m4-text-title"><a href="#">阀产业成为市场的宠</a></div>
+                                <div class="m4-text-content">面对泵管阀产业的迅猛发展，我国泵管...<a href="#">[详细]</a></div>
+                            </div>
+                        </div>
+                        <!--end m4-right-box-->
+                        <div class="m4-right-block m4-block-mt16">
+                        	<div class="m4-block-img">
+                            	<a href="#"><img src="images/m4_block_img.jpg" /></a>
+                            </div>
+                            <div class="m4-block-text">
+                            	<div class="m4-text-title"><a href="#">阀产业成为市场的宠</a></div>
+                                <div class="m4-text-content">面对泵管阀产业的迅猛发展，我国泵管...<a href="#">[详细]</a></div>
+                            </div>
+                        </div>
+                        <!--end m4-right-box-->
+                        <div class="m4-right-block m4-block-mt16">
+                        	<div class="m4-block-img">
+                            	<a href="#"><img src="images/m4_block_img.jpg" /></a>
+                            </div>
+                            <div class="m4-block-text">
+                            	<div class="m4-text-title"><a href="#">阀产业成为市场的宠</a></div>
+                                <div class="m4-text-content">面对泵管阀产业的迅猛发展，我国泵管...<a href="#">[详细]</a></div>
+                            </div>
+                        </div>
+                        <!--end m4-right-box-->
+                    </div>
+                </div>
+                <!--mainblock4 right item-->
+                <div class="m4-right-item">
+                    <div class="m4-right-title">
+                        <a href="#">推荐求购信息</a>
+                    </div>
+                    <div class="m4-right-content">
+                        <ul>
+                            <li><a href="#">求购：多乐士环氧地坪</a></li>
+                            <li><a href="#">求购：多乐士环氧地坪</a></li>
+                            <li><a href="#">求购：多乐士环氧地坪</a></li>
+                            <li><a href="#">求购：多乐士环氧地坪</a></li>
+                            <li><a href="#">求购：多乐士环氧地坪</a></li>
+                            <li><a href="#">求购：多乐士环氧地坪</a></li>
+                            <li><a href="#">求购：多乐士环氧地坪</a></li>
+                            <li><a href="#">求购：多乐士环氧地坪</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--mainblock4 right item-->
+                <div class="cb"></div>
+            </div>
+            <!--end mainblock4 right-->
+        </div>
+        <!--end m4-content-->
+    </div>
+    <!--end mainblock4-->
+    <div class="cb"></div>
+    <div class="banner">
+    	<a href="#"><img src="images/banner.jpg" /></a>
+    </div>
+    <!--end banner-->
+    <div class="mainblock5">
+    	<div class="m5-left-item m5-item_top">
+            <div class="m5-item-title">
+                <span class="m5-title-left">
+                <a href="http://www.huanbao.com/news/list10001003.htm">工程/案例</a>
+            </span>
+            <span class="m5-title-right">
+                <a href="http://www.huanbao.com/news/list10001003.htm">更多></a>
+            </span>
+            </div>
+            <!--end title-->
+            <div class="m5-item-title">
+                <span class="m5-title-left">
+                <a href="http://www.huanbao.com/exhibit/">行业展会</a>
+            </span>
+            <span class="m5-title-right">
+                <a href="http://www.huanbao.com/exhibit/">开展时间</a>
+            </span>
+            </div>
+            <!--end title-->
+            <div class="m5-item-title">
+                <span class="m5-title-left">
+                <a href="http://www.huanbao.com/news/list100010061001.htm">上市新闻/上市板块</a>
+            </span>
+            <span class="m5-title-right">
+                <a href="http://www.huanbao.com/news/list100010061001.htm">更多></a>
+            </span>
+            </div>
+            <!--end title-->
+            <div class="m5-item-content m5-item-line">
+                <div class="m5-item-box">
+                    <div class="m5-box-img">
+                        <img src="images/img1.jpg" />
+                    </div>
+                    <div class="m5-box-text">
+                        <div class="m5-box-title"><a href="#">污水处理厂更要好用好</a></div>
+                        <div class="m5-box-content">近年来，我省不断加大力度，污水处理厂建设全面提速，近百座.... <a href="#">>>详细</a></div>
+                    </div>
+                </div>
+                <!--end m5-item-box-->
+                <ul>
+                    <li><span class="m4-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                    <li><span class="m4-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                    <li><span class="m4-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                    <li><span class="m4-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                    <li><span class="m4-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m4-ul-right">2012-12-07</span></li>
+                </ul>
+                <!--end u1-->
+                <div style="clear:both"></div>
+            </div>
+            <!--end m5-item-content-->
+            <div class="m5-item-content m5-item-line">
+                <div class="m5-item-box">
+                    <div class="m5-box-img">
+                        <img src="images/img1.jpg" />
+                    </div>
+                    <div class="m5-box-text">
+                        <div class="m5-box-title"><a href="#">污水处理厂格栅建好用好</a></div>
+                        <div class="m5-box-content">近年来，我省不断加大力度，污水处理厂建设全面提速，近百座.... <a href="#">>>详细</a></div>
+                    </div>
+                </div>
+                <!--end m5-item-box-->
+                <ul>
+                    <li><span class="m5-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m5-ul-right">2012-12-07</span></li>
+                    <li><span class="m5-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m5-ul-right">2012-12-07</span></li>
+                    <li><span class="m5-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m5-ul-right">2012-12-07</span></li>
+                    <li><span class="m5-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m5-ul-right">2012-12-07</span></li>
+                    <li><span class="m5-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m5-ul-right">2012-12-07</span></li>
+                </ul>
+                <!--end u1-->
+                <div style="clear:both"></div>
+            </div>
+            <!--end m5-item-content-->
+            <div class="m5-item-content">
+                <div class="m5-item-box">
+                    <div class="m5-box-img">
+                        <img src="images/img1.jpg" />
+                    </div>
+                    <div class="m5-box-text">
+                        <div class="m5-box-title"><a href="#">污水处理厂格栅建好，更要好</a></div>
+                        <div class="m5-box-content">近年来，我省不断加大力度，污水处理厂建设全面提速，近百座.... <a href="#">>>详细</a></div>
+                    </div>
+                </div>
+                <!--end m5-item-box-->
+                <ul>
+                    <li><span class="m5-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m5-ul-right">2012-12-07</span></li>
+                    <li><span class="m5-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m5-ul-right">2012-12-07</span></li>
+                    <li><span class="m5-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m5-ul-right">2012-12-07</span></li>
+                    <li><span class="m5-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m5-ul-right">2012-12-07</span></li>
+                    <li><span class="m5-ul-left"><a href="#">高压风机的选型及注意事项</a></span><span class="m5-ul-right">2012-12-07</span></li>
+                </ul>
+                <!--end u1-->
+                <div style="clear:both"></div>
+            </div>
+            <!--end m5-item-content-->
+            </div>
+            <!--end item-->
+            <div style="clear:both"></div>
+        </div>
+        <!--end m5-content-left-->
+    </div>
+    <!--end mainblock5-->
+</div>
+<!--end information-->
+<!--底部 start-->
+
+<div class="footer">
+    <div class="footermain">
+    	<div class="m7-item fl">
+        	<div class="m7-item-title">
+            	<a href="#">环保子网</a>
+            </div>
+            <ul>
+            	<li><a href="http://www.huanbao.com/ws" target="_blank">污水处理网</a></li>
+                <li><a href="http://www.huanbao.com/ys" target="_blank">原水处理网</a></li>
+                <li><a href="http://www.huanbao.com/kq" target="_blank">空气净化网</a></li>
+                <li><a href="http://www.huanbao.com/yj" target="_blank">水处理药剂网</a></li>
+                <li><a href="http://www.huanbao.com/beng" target="_blank">泵网</a></li>
+                <li><a href="http://www.huanbao.com/fa" target="_blank">阀网</a></li>
+                <li><a href="http://www.huanbao.com/fj" target="_blank">风机网</a></li>
+                <li><a href="#">仪器仪表网</a></li>
+                <li><a href="http://www.huanbao.com/hw" target="_blank">环卫清洁网</a></li>
+                <li><a href="http://www.huanbao.com/zh" target="_blank">综合设备网</a></li>
+            </ul>
+        </div>
+        <div class="m7-item fr">
+        	<div class="m7-item-title">
+            	<a href="#">关于我们</a>
+            </div>
+            <ul>
+            	<li><a href="http://www.huanbao.com/fudus/vpindex.htm" target="_blank">会员服务</a></li>
+                <li><a href="http://www.huanbao.com/fudus/vppay.htm" target="_blank">支付方式</a></li>
+                <li><a href="http://www.huanbao.com/fudus/epmap.htm" target="_blank">网站地图</a></li>
+                <li><a href="http://www.huanbao.com/faq/newGindex.htm" target="_blank">新手指南</a></li>
+                <li><a href="http://www.huanbao.com/fudus/friendlinks.htm" target="_blank">友情链接</a></li>
+                <li><a href="http://www.huanbao.com/fudus/absjoinus.htm" target="_blank">客服中心</a></li>
+                <li><a href="http://www.huanbao.com/fudus/leaveMsg.htm" target="_blank">意见留言</a></li>
+                <li><a href="http://www.huanbao.com/news/details9187.htm" target="_blank">诚聘英才</a></li>
+                
+                <li>huanbao.com ©All Rights Reserved</li>
+                <li><a href="http://www.huanbao.com">中国环保网</a></li>
+                <li>版权所有</li>
+            </ul>
+        </div>
+    </div>
+    <!--end mainblock7-->
+</div>
+<script src="http://img0.huanbao.com/huanbao/www/js/search.js"></script>
+
+<script>
+	//幻灯
+	var newsSlide = new hb.news.slide();
+	newsSlide.indexTopSlide({conter:'#hbslide',spd:500,intval:3000});
+	
+	//info  tabs
+	var newsInfoTabs = new hb.news.tabs();
+	newsInfoTabs.InfoBoxTabs({
+		tabsbox:'#nsInfobox',
+    	tabsnav:'.news_infobox_tabs',
+    	tabscont:'.ifb_tabs_cont'
+	});
+		
+</script>
+<script>
+jQuery(function($){
+	$('#demo1').slideBox();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>再生钱包</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/myrc/burse.css"/>
+		<style>
+			.czfoot {
+				position: fixed;
+				bottom: 0px;
+				border-top: solid 1px #EBEBEB;
+				width: 100%;
+				background-color: #F6F6F6;
+				line-height: 50px;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+			}
+			.czfoot li {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				text-align: center;
+				border-right: 1px solid #e7e7e7;
+				font-size: 16px;
+			}
+			.czfoot li:last-child {
+				border-right: none;
+			}
+			.aui-img-body {
+				width: 130px;
+				float: left
+			}
+			.buybutton {
+				margin-top: 15px;
+				margin-right: 20px
+			}
+			.howzq {
+				text-align: right;
+				font-size: 12px;
+				color: #666;
+				float: right;
+				margin: 10px 0
+			}
+		</style>
+	</head>
+	<body>
+		<div class="surplus">
+			<div class="surplus-td">
+				<div class="surplus-title">
+					当前余额（元）
+				</div>
+				<div class="surplus-moery j_blance">
+					0.00
+				</div>
+			</div>
+		</div>
+		<div class="old-buy clear">
+			<div class="day-but">
+				<p class="old-buy-tg">
+					累计充值（元）
+				</p>
+				<p class="old-buy-moery j_infeeyd">
+					0.00
+				</p>
+			</div>
+			<div class="mouth-buy">
+				<p class="old-buy-tg">
+					累计进账（元）
+				</p>
+				<p class="old-buy-moery j_infeeall">
+					0.00
+				</p>
+			</div>
+			<div class="day-but">
+				<p class="old-buy-tg">
+					昨日消费（元）
+				</p>
+				<p class="old-buy-moery j_outfeeyd">
+					0.00
+				</p>
+			</div>
+			<div class="mouth-buy">
+				<p class="old-buy-tg">
+					总消费（元）
+				</p>
+				<p class="old-buy-moery j_outfeeall">
+					0.00
+				</p>
+			</div>
+		</div>
+		<div class="buy-list clear">
+			<span style="border-left:solid 3px #01ba2e;padding-left:10px;margin-left:10px;">再生商城</span><span class="howzq">如何赚钱？</span>
+		</div>
+		<div class="aui-content">
+			<ul class="aui-list-view allservice">
+				<li class="aui-list-view-cell aui-img" index=1>
+					<a class="aui-arrow-right">
+					<img class="aui-img-object aui-pull-left" src="../../image/addr_chk.jpg">
+					<div class="aui-img-body">
+						<span>查看联系方式</span>
+						<p>
+							¥ :10元/公司
+						</p>
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell aui-img" index=2>
+					<a class="aui-arrow-right">
+					<img class="aui-img-object aui-pull-left" src="../../image/showphonenumber.jpg">
+					<div class="aui-img-body">
+						<span>显示联系方式</span>
+						<p>
+							¥ :5元/天
+						</p>
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell aui-img" index=12>
+					<a class="aui-arrow-right">
+					<img class="aui-img-object aui-pull-left" src="../../image/service/shuax.png">
+					<div class="aui-img-body">
+						<span>供求自动刷新</span>
+						<p>
+							¥ :100元/月
+						</p>
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell aui-img" index=3>
+					<a class="aui-arrow-right"> <img class="aui-img-object aui-pull-left" src="../../image/msg_stick.jpg">
+					<div class="aui-img-body">
+						<span>供求信息置顶</span>
+						<p>
+							¥ :15元/天
+						</p>
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell aui-img" index=4>
+					<a class="aui-arrow-right"> <img class="aui-img-object aui-pull-left" src="../../image/huangye.png">
+					<div class="aui-img-body">
+						<span>再生资源商务大全</span>
+						<p>
+							¥ :300元/本
+						</p>
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell aui-img" index=5>
+					<a class="aui-arrow-right"> <img class="aui-img-object aui-pull-left" src="../../image/service/pinpai.gif">
+					<div class="aui-img-body">
+						<span>移动端列表独家广告</span>
+						<p>
+							¥ :1200元/月
+						</p>
+					</div>
+					</a>
+				</li>
+				<!--<li class="aui-list-view-cell aui-img" index=6>
+					<a class="aui-arrow-right"> <img class="aui-img-object aui-pull-left" src="../../image/service/weizhan.png">
+					<div class="aui-img-body">
+						<span>企业微站</span>
+						<p>
+							¥ :1500元/年
+						</p>
+					</div>
+					</a>
+				</li>-->
+				<li class="aui-list-view-cell aui-img" index=7>
+					<a class="aui-arrow-right"> <img class="aui-img-object aui-pull-left" src="../../image/service/xiu.png">
+					<div class="aui-img-body">
+						<span>企业秀服务</span>
+						<p>
+							¥ :2000元/年
+						</p>
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell aui-img" index=8>
+					<a class="aui-arrow-right"> <img class="aui-img-object aui-pull-left" src="../../image/service/zst.png">
+					<div class="aui-img-body">
+						<span>再生通</span>
+						<p>
+							¥ :3500元/年
+						</p>
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell aui-img" index=9>
+					<a class="aui-arrow-right"> <img class="aui-img-object aui-pull-left" src="../../image/service/ldb.png">
+					<div class="aui-img-body">
+						<span>来电宝</span>
+						<p>
+							¥ :2500元/年
+						</p>
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell aui-img" index=10>
+					<a class="aui-arrow-right"> <img class="aui-img-object aui-pull-left" src="../../image/service/weizhan.png">
+					<div class="aui-img-body">
+						<span>企业建站服务</span>
+						<p class='aui-ellipsis-2'>
+							根据你的需求定价。
+						</p>
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell aui-img" index=11>
+					<a class="aui-arrow-right"> <img class="aui-img-object aui-pull-left" src="../../image/service/seo.png">
+					<div class="aui-img-body">
+						<span>SEO优化服务</span>
+						<p class='aui-ellipsis-2'>
+							让您的网站在各大搜索引擎排名第一页。
+						</p>
+					</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<input type="hidden" id="showcontactvalue" value="">
+		<input type="hidden" id="backvalue" value="">
+		<div style="height:60px"></div>
+		<footer class="czfoot">
+			<li class="chongzhi">
+				<span class="aui-iconfont aui-icon-refund"></span> 在线充值
+			</li>
+			<li class="mypaylist">
+				<span class="aui-iconfont aui-icon-calendar"></span> 我的账单
+			</li>
+			<li class="myservice">
+				<span class="aui-iconfont aui-icon-service"></span> 我的服务
+			</li>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+	<script type="text/javascript">
+		apiready = function() {
+			$(".allservice").on("click","li", function() {
+				event.stopPropagation();
+				var forcompany_id=$(this).attr("company_id");
+				var index=$(this).attr("index");
+				var wintitle=$(this).find(".aui-img-body").find("span").text();
+				var pageParam = {
+					wintitle : wintitle,
+					type : "serviceshow"+index,
+				};
+				openWin("serviceshow"+index, "../service/show"+index+".html", pageParam);
+			})
+			
+			$(".chongzhi").on("click", function() {
+				if (!UserInfo.has_login()) {
+		        	var pageParam = {
+						wintitle : "在线充值",
+						type : "chongzhi",
+						nextUrl : "../myrc/call-moery.html",
+						winName : "chongzhi",
+						bounces : false,
+						pagefrom : "qianbao",
+					};
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+					return false;
+		        }
+		        var pageParam = {
+		            wintitle:"在线充值",
+		            type:"chongzhi",
+		            pagefrom : "qianbao",
+		        };
+		        var url="../myrc/call-moery.html";
+		        //var url=hosturl+"qianbao/chongzhi_new.html?company_id="+UserInfo.memberID()+"&paytype=qianbao"
+		        openWin("chongzhi",url,pageParam);
+			})
+			$(".myservice").on("click", function() {
+				var pageParam = {
+					wintitle : "我的服务",
+					type : "myservice",
+					bounces : false
+				};
+				openWin("myservice", "../service/myservice.html", pageParam);
+			})
+			$(".mypaylist").on("click", function() {
+				var pageParam = {
+					wintitle : "我的账单",
+					type : "burse-bill",
+				};
+				openWin("burse-bill", "../myrc/burse-bill.html", pageParam);
+			})
+			//如何赚钱
+			$(".howzq").on("click", function() {
+				var pageParam = {
+					wintitle : "如何赚钱?",
+					type : "get-moery"
+				};
+				openWin("get-moery", "../comm/get-moery.html", pageParam);
+			})
+			
+			api.showProgress({
+				title : '加载中',
+				modal : false
+			});
+			ajaxInfo();
+		
+		}
+
+		function showcontactcheck(valu) {
+			$("#showcontactvalue").val(valu);
+		}
+		function backvaluecheck(valu) {
+			$("#backvalue").val(valu);
+		}
+
+		function ajaxInfo() {
+			var company_id = UserInfo.memberID();
+			var usertoken = UserInfo.token();
+			api.ajax({
+				url : hosturl + 'qianbao/?company_id=' + company_id + '&usertoken=' + usertoken + '&appsystem=' + api.systemType + '&datatype=json&t=' + (new Date()).getTime().toString(),
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false
+			}, function(ret, err) {
+				if (ret) {
+					// zzalert(JSON.stringify(ret))
+					$(".j_outfeeall").text(ret.outfeeall);
+					$(".j_outfeeyd").text(ret.outfeeyd);
+					$(".j_infeeall").text(ret.infeeall);
+					$(".j_blance").text(ret.blance);
+					$(".j_infeeyd").text(ret.infeeyd);
+					api.hideProgress();
+				} else {
+					if(err){
+						saveerrlog(err.msg);
+					}
+					api.hideProgress();
+				};
+			});
+		}
+	</script>
+</html>

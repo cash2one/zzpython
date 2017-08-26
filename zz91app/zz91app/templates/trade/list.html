@@ -1,0 +1,190 @@
+<style>
+.lv_icon {
+	background-image:url(http://img0.zz91.com/zz91/tradelist/images/icon_bar.jpg);
+	width:18px;
+	height:18px;
+	float:left;
+	display:block;
+	margin-top:2px;
+	margin-left:10px;
+	position:absolute;
+	top:0px;
+	right:0px;
+}
+.lv1 {background-position:0 -356px;}
+.lv2 {background-position:-33px -356px;}
+.lv3 {background-position:-66px -356px;}
+.lv4 {background-position:-100px -356px;}
+.lv5 {background-position:-133px -356px;}
+.lv6 {background-position:-166px -356px;}
+.arrtop{display: block;}
+</style>
+<div>
+	<form method="post">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+	    <td style="padding-top: 14px;" align="center"><input type="search" id="searchtext" placeholder="请输入关键字搜索" style="width: 98%;" {%if keywords%}value="{{keywords}}"{%endif%}/></td>
+	    <td align="center" style="padding-left: 5px;padding-right: 5px;"><button class="mui-btn mui-btn-primary mui-icon mui-icon-search" type="button" onclick="zz91search(this.form,'/offerlist/?keywords=','tradelist')">搜索</button></td>
+	    <td align="center" style="padding-right: 5px;"><button class="mui-btn mui-btn-green" onclick="showSide('{{keywords_hex}}')" type="button">筛选</button></td>
+	  </tr>
+	</table>
+	</form>
+	{%if productList222%}
+	<div style="padding-left: 0px;">
+		<ul class="zz91-offerlist-bars">
+			<li onclick="showtrade(this,132);">供应<span></span>
+				<div class="tradelistnav" style="display: none;height: 130px;width: 120px;">
+					<ul>
+						<a href="javascript:gotourl('/offerlist/?keywords={{keywords_hex}}&ptype=1&province={{province_hex}}{%if fromindex%}&fromindex={{fromindex}}{%endif%}','tradelist')">
+							<li>全部</li>
+						</a>
+						<a href="javascript:gotourl('/offerlist/?keywords={{keywords_hex}}&ptype=1&priceflag=1&province={{province_hex}}{%if fromindex%}&fromindex={{fromindex}}{%endif%}','tradelist')">
+							<li>价格</li>
+						</a>
+						<a href="javascript:gotourl('/offerlist/?keywords={{keywords_hex}}&ptype=1&havepic=1&province={{province_hex}}{%if fromindex%}&fromindex={{fromindex}}{%endif%}','tradelist')">
+							<li>图片</li>
+						</a>
+					</ul>
+				</div>
+			</li>
+			<li onclick="showtrade(this,132);">求购<span></span>
+				<div class="tradelistnav" style="display: none;height: 130px;width: 120px;">
+					<ul>
+						<a href="javascript:gotourl('/offerlist/?keywords={{keywords_hex}}&ptype=2&province={{province_hex}}{%if fromindex%}&fromindex={{fromindex}}{%endif%}','tradelist')">
+							<li>全部</li>
+						</a>
+						<a href="javascript:gotourl('/offerlist/?keywords={{keywords_hex}}&ptype=2&priceflag=1&province={{province_hex}}{%if fromindex%}&fromindex={{fromindex}}{%endif%}','tradelist')">
+							<li>价格</li>
+						</a>
+						<a href="javascript:gotourl('/offerlist/?keywords={{keywords_hex}}&ptype=2&havepic=1&province={{province_hex}}{%if fromindex%}&fromindex={{fromindex}}{%endif%}','tradelist')">
+							<li>图片</li>
+						</a>
+					</ul>
+				</div>
+			</li>
+
+			<style>
+				.b1-item-ul-ul li{float: left;width: 63px;}
+			</style>
+			<li onclick="showtrade(this,302);">地区<span></span>
+				<div class="tradelistnav" style="display: none;width: 290px;text-align: left:5px;right:-50px">
+					<div class="b1-item">
+
+						<ul class="b1-item-ul">
+							<li>
+								<ul class="b1-item-ul-ul" id="b1_ul">
+									{%for list in arealistnew%}
+									<a href="javascript:gotourl('/offerlist/?keywords={{keywords_hex}}&province={{list.area_hex}}{%if fromindex%}&fromindex={{fromindex}}{%endif%}','tradelist')">
+										<li>{{list.area}}</li>
+									</a>
+									{%endfor%}
+									<li area="">&nbsp;&nbsp;</li>
+									<li area="">&nbsp;&nbsp;</li>
+								</ul>
+							</li>
+							<div class="clear"></div>
+						</ul>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</li>
+			<li onclick="showSide('{{keywords}}');">筛选
+
+			</li>
+		</ul>
+	</div>
+	<div class="mui-clearfix"></div>
+	{%endif%}
+</div>
+<div class="mui-h5" style="line-height: 40px;">
+	{%if nowlanmu2%} &nbsp;&nbsp; 您正在查看&nbsp;&nbsp;{{nowlanmu2}} {%endif%}
+</div>
+{%if adlist%}
+{%for list in adlist%}
+<div>
+<img src="{{list.picaddress}}" style="width: 100%;" onclick="shopfun.openadurl('{{list.url}}')">
+</div>
+{%endfor%}
+{%endif%}
+<ul class="mui-table-view">
+	{%if productListtop%} {% for list in productListtop %}
+	<li class="mui-table-view-cell">
+		<a href="javascript:gotourl('/detail/?id={{list.pdt_id}}','blank')">
+			<img src="{{list.pdt_images}}" style="width: 80px;height: 80px;float: left;margin: 10px;margin-left: -5px;margin-top:-2px ;">
+			<div class="mui-media-body">
+				<span class="mui-ellipsis-2" style="color:#f00"><img src="http://m.zz91.com/images/pindao/d.png"  align="absmiddle"/>{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}{%if list.isbuycontact%}&nbsp;<img src="http://m.zz91.com/images/pindao/eye.jpg" />{%endif%}</span>
+				<h5 style="float: left;">{{list.com_province}} {{list.pdt_price}}</h5>
+				<div class="mui-text-right">
+					<span class="mui-h5">{{list.pdt_time_en}}</span>
+				</div>
+				<div class="mui-clearfix"></div>
+				<p class="mui-h6 mui-ellipsis-2">{{list.pdt_detail}}</p>
+				{%if list.ldbtel%}
+				<p>免费拨打：<font color="#F40000">{{list.ldbtel.front_tel}}</font><br />{%if list.phone_rate%}{{list.phone_rate}}% 接听率{%endif%}
+				</p>{%endif%}
+			</div>
+		</a>
+	</li>
+	{%endfor%} {%endif%} {%if productList%} {% for list in productList %}
+	<li class="mui-table-view-cell">
+		<a href="javascript:gotourl('/detail/?id={{list.pdt_id}}','blank')">
+			<div style="width: 80px;height: 80px;float: left;margin: 10px;margin-left: -5px;margin-top:-2px ;position: relative;">
+				<img src="{{list.pdt_images}}" style="width: 80px;height: 80px;">
+				{%if list.phone_level%}<span class="lv_icon lv{{list.phone_level}}" style="z-index: 2;"></span>{%endif%}
+			</div>
+			<div class="mui-media-body">
+				<span class="mui-ellipsis-2">{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}{%if list.isbuycontact%}&nbsp;<img src="http://m.zz91.com/images/pindao/eye.jpg" />{%endif%}</span>
+				<h5 style="float: left;">{{list.com_province}} {{list.pdt_price}}</h5>
+				<div class="mui-text-right">
+					<span class="mui-h5">{{list.pdt_time_en}}</span>
+				</div>
+				<div class="mui-clearfix"></div>
+				<p class="mui-h6 mui-ellipsis-2">{{list.pdt_detail}}</p>
+				{%if list.ldbtel%}
+				<p>免费拨打：<font color="#F40000">{{list.ldbtel.front_tel}}</font><br />{%if list.phone_rate%}{{list.phone_rate}}% 接听率{%endif%}
+				</p>{%endif%}
+			</div>
+		</a>
+	</li>
+	{%endfor%}
+	<div id="pulldiv" class="pulldiv" onclick="loadmorep(this,'/offerlist/?keywords={{keywords_hex}}&ptype={{pdt_kind}}&havepic={{havepic}}&priceflag={{priceflag}}&province={{province_hex}}')" title="/offerlist/?keywords={{keywords_hex}}&ptype={{pdt_kind}}&havepic={{havepic}}&priceflag={{priceflag}}&province={{province_hex}}"><span class="mui-icon mui-icon-down"></span><span>点此加载更多</span>
+	</div>
+	{%else%}
+	<li class="mui-table-view-cell">
+		<a href="###">
+		            没有找你你需要的信息，请修改搜索关键词！
+		</a>
+	</li>
+	{%endif%}
+</ul>
+<style>
+	.mui-popover {
+		height: 140px;
+	}
+</style>
+<!--右下角弹出菜单-->
+<div id="bottomPopover" class="mui-popover mui-popover-bottom" style="position: absolute;">
+	<div class="mui-popover-arrow"></div>
+	<div class="mui-scroll-wrapper">
+		<div class="mui-scroll">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" id="popoverlist"><a href="javascript:gotourl('/trade/viewhistory.html?keywords={{keywords_hex}}','blank');">浏览历史</a></li>
+				<li class="mui-table-view-cell" id="popoverlist"><a href="javascript:gotourl('/trade/xgkeywords.html?keywords={{keywords_hex}}','blank');">热门搜索</a></li>
+				<li class="mui-table-view-cell" id="popoverlist"><a href="javascript:fj()">附近</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<nav class="mui-bar mui-bar-tab">
+<a class="mui-tab-item" id="bottomlabel1" href="javascript:gotourl('/offerlist/?keywords={{keywords_hex}}&ptype={{pdt_kind}}&havepic={{havepic}}&priceflag={{priceflag}}','newindex');bottomlabel(1)">
+	<span class="mui-icon mui-icon-list"></span><span class="mui-tab-label">全部</span>
+</a>
+<a class="mui-tab-item" href="javascript:openblank('post.html?sep=1');">
+	<span class="mui-icon mui-icon-paperplane"></span><span class="mui-tab-label">我要发布</span>
+</a>
+<a class="mui-tab-item" id="bottomlabel2" href="#bottomPopover">
+	<span class="mui-icon mui-icon-more"></span><span class="mui-tab-label">更多</span>
+</a>
+
+</nav>
+<input type="hidden" id="appnavname" value="供求列表" />

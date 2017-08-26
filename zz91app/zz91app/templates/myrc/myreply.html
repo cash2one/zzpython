@@ -1,0 +1,64 @@
+<style>
+	.mui-left label img {width: 100%;}
+</style>
+<div id="slider" class="mui-slider">
+<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_mycommunity/?company_id={{company_id}}');">消息中心<span class="mui-badge mui-badge-success">{{replycount}}</span></a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_mypost/?company_id={{company_id}}');">我的提问</a>
+<a class="mui-control-item" href="javascript:loaddata('http://app.zz91.com/myrc_myreply/?company_id={{company_id}}');">我的回复</a>
+</div>
+<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4" style="margin-left: 66%;"></div>
+<ul class="mui-table-view">
+
+<div>
+	{%for list in listall%}
+	<div class="mui-left" style="border-bottom:solid 1px #ccc;padding: 10px;">
+		<label>
+			<a href="/huzhuview/{{list.post_id}}.htm" target="_blank">{{list.post_title|safe}}</a><br />
+            <p style="border: solid 1px #9C9EA8;padding: 5px;background-color: #F2F2F2;">回复：{{list.content|safe}}</p>
+           
+            <p>
+                                回复于：{{list.gmt_created}} &nbsp;&nbsp; 回复数：{{list.reply_count}}&nbsp;&nbsp;贴主：{{list.nickname}}
+             </p>
+            <a href="/huzhuview/{{list.post_id}}.htm" class="mui-btn mui-btn-success">查看</a>
+		</label>
+	</div>
+	{%endfor%}
+</div>
+
+</ul>
+{%ifequal listcount 0%}
+<div class="mui-content-padded" style="margin-top: 10px;"><ul class="mui-pager"><li>没有信息</li></ul></div>
+{%else%}
+<nav class="mui-bar mui-bar-tab" style="border-top: solid 1px #006600;text-align: center;">
+
+<div class="mui-content-padded" style="margin-top: 10px;">
+	<ul class="mui-pager">
+		{% if firstpage %}
+		<li>
+			<a href="javascript:loaddata('http://app.zz91.com/myrc_myreply/?page={{prvpage}}&company_id={{company_id}}','myrc_myreply')">
+				上一页
+			</a>
+		</li>
+		{%else%}
+		<li class="mui-disabled">
+			<span>上一页 </span>
+		</li>
+		{%endif%}
+		{% if lastpage%}
+		<li>
+			<a href="javascript:loaddata('http://app.zz91.com/myrc_myreply/?page={{nextpage}}&company_id={{company_id}}','myrc_myreply')">
+				下一页
+			</a>
+		</li>
+		{%else%}
+		<li class="mui-disabled">
+			<span>下一页</span>
+		</li>
+		{%endif%}
+	</ul>
+</div>
+</nav>
+{%endifequal%}
+</div>
+<input type="hidden" id="appnavname" value="我的回复" />

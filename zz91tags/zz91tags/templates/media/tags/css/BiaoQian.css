@@ -1,0 +1,126 @@
+﻿@charset "utf-8";
+/**************************************************
+
+					zz91.标签页
+
+***************************************************/
+
+
+
+
+.main{width:960px;margin:0 auto}
+
+
+/*通用样式*/
+a:hover{text-decoration:underline}
+
+
+/*提示语*/
+.mainblock1{height:30px;background:#f4f4f4;line-height:30px;padding:0 8px}
+.m1-left{float:left}
+.m1-right{float:right}
+.m1-red{color:#f00;margin:0 4px}
+
+/*mainblock2*/
+.mainblock2{margin-top:16px}
+.m2-left{width:650px;float:left}
+
+/*m2-搜索框*/
+.m2-search{width:648px;height:30px;border:1px solid #009944;padding-top:5px}
+.search-title{float:left;margin-left:50px;line-height:20px}
+.search-text{float:left;width:200px;height:12px;padding:4px 3px; vertical-align:middle}
+.search-submit{width:78px;height:22px;background:url(../images/search.jpg) no-repeat;border:0;margin-left:50px;cursor: hand}
+
+/*m2-拼音搜索*/
+.m2-nav{height:30px;line-height:30px;margin-top:5px}
+.m2-nav-classification{font-size:14px;font-weight:700;margin-left:16px}
+.m2-nav-pinyin{font-size:14px;margin-left:50px;margin-right:16px}
+.m2-nav-key{margin:0 2px}
+.m2-nav-key a{color:#000;text-decoration:none}
+
+/*m2-item*/
+.m2-item{width:649px;margin-top:8px;clear:both;background:#009944;}
+.m2-item-title{width:25px;padding-bottom:10px;_padding-bottom:13px;background:#009944;font-size:14px;color:#FFF;font-weight:700;text-align:center;line-height:25px;padding-top:11px;float:left}
+.m2-item-title1{width:25px;padding-bottom:6px;_padding-bottom:9px;background:#009944;font-size:14px;color:#FFF;font-weight:700;text-align:center;line-height:20px;padding-top:5px;float:left}
+.m2-item-title2{width:25px;padding-bottom:6px;_padding-bottom:9px;background:#009944;font-size:14px;color:#FFF;font-weight:700;text-align:center;line-height:24px;padding-top:9px;float:left}
+.m2-item-content{width:623px;border:1px solid #908e8e;border-left:none;float:left;background:#fff; padding-bottom:5px;}
+.m2-item-ul{width:605px;float:left;margin-left:16px;_margin-left:8px;margin-top:10px}
+.m2-item-ul a{
+	color:#000;
+	text-decoration:none;
+	white-space: nowrap;
+	display: block;
+	margin-right: 3px;
+	float: left;
+	line-height: 22px;
+}
+.m2-item-ul a:hover{text-decoration:underline}
+.m2-item-img{margin-right:10px; margin-left:10px;;margin-top:5px;margin-bottom:5px;float:left; width:100px; height:100px; border:solid 1px #ebebeb; text-align:center; vertical-align:middle; display:table}
+.m2-item-img a{display:table-cell;vertical-align: middle;*display: inline;*writing-mode: tb-rl;*text-align: center;*height: 100%;}
+.m2-item-img img{vertical-align: middle;*display: block;}
+.item-ul-tile a{font-size:14px;font-weight:700}
+
+/*m2-SmallItem*/
+.m2-SmallItem{width:320px;margin-top:8px;float:left}
+.m2-SmallItem-title{width:25px;height:91px;_height:93px;background:#009944;font-size:14px;color:#FFF;font-weight:700;text-align:center;line-height:30px;padding-top:15px;float:left}
+.m2-SmallItem-title1{width:25px;height:101px;_height:103px;background:#009944;font-size:14px;color:#FFF;font-weight:700;text-align:center;line-height:24px;padding-top:5px;float:left}
+.m2-SmallItem-title2{width:25px;height:125px;_height:136px;background:#009944;font-size:14px;color:#FFF;font-weight:700;text-align:center;line-height:20px;padding-top:5px;float:left}
+.m2-SmallItem-title3{width:25px;height:125px;_height:136px;background:#009944;font-size:14px;color:#FFF;font-weight:700;text-align:center;line-height:24px;padding-top:5px;float:left}
+.m2-SmallItem-content{width:294px;border:1px solid #908e8e;border-left:none;float:left;padding:3px 0}
+.m2-SmallItem-content2{width:294px;border:1px solid #908e8e;border-left:none;padding:16px 0 14px 0;float:left}
+.m2-SmallItem-ul1{margin:5px 0 0 5px}
+.m2-SmallItem-ul1 li{float:left;margin:0 4px}
+.m2-SmallItem-ul1 li a{color:#015b97;text-decoration:none;font-weight:700;font-size:14px}
+.m2-SmallItem-ul1 li a:hover{text-decoration:underline}
+.m2-SmallItem-ul2{clear:both;margin:0px 0 0 20px}
+.m2-SmallItem-ul2 li{float:left;margin:0 3px;line-height:24px;white-space:nowrap}
+.m2-SmallItem-ul2 li a{color:#000;text-decoration:none}
+.m2-SmallItem-ul2 li a:hover{text-decoration:underline}
+
+/*m2-right*/
+.m2-right{width:294px;float:right}
+
+/*m2-热门排行搜索*/
+.m2-HotSearch{border:1px solid #009944;width:292px;padding-bottom:8px}
+.m2-HotSearch-title{height:30px;background:url(../images/line.jpg) no-repeat 0 26px;text-align:center;line-height:30px;font-size:14px;font-weight:700}
+.m2-HotSearch-content{ padding:20px; line-height:25px;}
+.m2-HotSearch-content a{ display:block; float:left; margin-right:5px;}
+.m2-HotSearch ul{margin-top:8px;width:210px}
+.m2-HotSearch ul li{float:left;line-height:24px;margin-left:50px;display:inline;white-space:nowrap}
+.m2-HotSearch ul li a{color:#000;text-decoration:none}
+.m2-HotSearch ul li a:hover{text-decoration:underline}
+.m2-HotImg-icon{width:13px;height:13px;margin-top:6px;margin-right:8px;font-size:1px;color:#fff}
+.m2-HotImg{float:left;margin-left:22px;_margin-left:13px;margin-top:8px}
+.m2-HotImg-img{width:110px;height:74px;border:1px solid #ccc}
+
+/*m2-最新加入企业和最新资讯报价*/
+.m2-NewInfo{width:292px;border:1px solid #009944;margin-top:8px}
+.m2-NewInfo-title{height:30px;background:#009944;line-height:30px;padding:0 8px}
+.m2-NewInfo-title a{color:#fff;text-decoration:none}
+.m2-NewInfo ul{margin:9px 0 9px 30px}
+.m2-NewInfo ul li{line-height:20px}
+.m2-NewInfo ul li a{color:#000;text-decoration:none}
+.m2-NewInfo ul li a:hover{text-decoration:underline}
+
+/*价格行情标签*/
+.mainblock3{width:960px;margin:8px 0}
+.m3-price{width:475px;border:1px solid #bae59c;border-top:2px solid #357f04}
+.m3-title{height:30px;background:#f7f9f8;line-height:30px;padding-left:16px;font-size:14px;font-weight:700;color:#357f04;border-bottom:1px solid #bae59c}
+.m3-content{padding:8px;height:100px}
+.m3-ul{margin-left:8px}
+.m3-ul li{float:left;margin:0 3px;white-space:nowrap;line-height:24px}
+.m3-ul li a{color:#000;text-decoration:none}
+.m3-ul li a:hover{text-decoration:underline}
+.m3-ul2{margin-left:8px}
+.m3-ul2 li{float:left;line-height:30px;margin:2px;white-space:nowrap}
+.m3-ul2 li a{color:#000;text-decoration:none}
+.m3-ul2 li a:hover{text-decoration:underline}
+.m3-f18{font-size:18px}
+.m3-f24{font-size:24px}/
+
+/*图片轮播*/
+.mainblock4{width:958px;height:128px;padding:8px 0;margin:8px 0;border:1px solid #bae59c}
+.m4-item{width:138px;height:120px;text-align:center;float:left;margin-left:16px;margin-top:8px}
+.m4-item a{color:#000;text-decoration:none}
+.m4-item a:hover{text-decoration:underline}
+.m4-img{width:136px;height:94px;border:1px solid #ccc}

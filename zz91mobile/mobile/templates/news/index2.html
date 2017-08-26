@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>资讯中心-ZZ91再生网-手机端</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+<script src="http://img0.zz91.com/zz91/mobile/js/style.js"></script>
+
+</head>
+<body style="background:#f1f1f1">
+
+{%include 'top.html'%}
+
+<div class="search">
+<form action="/news/search.html" method="get">
+	<div class="search-content">
+    	<input type="text" class="search-text" name="keywords"  placeholder="请输入您要搜索的资讯信息..."/>
+    </div>
+    <div class="search-button">
+    	<center>
+    		<input type="submit" class="search-ok" value="搜  索" />
+        </center>
+    </div>
+    <div class="cb"></div>
+</form>
+</div>
+<!--end search-->
+
+<center>
+	<div class="navItem">
+    	<div class="navItem-block">
+        	<ul>
+        	{%for i in newscolumn%}
+            	<li><a href="/news/{{i.url}}/"><img src="http://img0.zz91.com/zz91/mobile/images/news_img{{i.numb}}.jpg" /></a></li>
+			{%endfor%}
+            </ul>
+        </div>
+        <!--end navItem-block-->
+    </div>
+    <!--end navItem-->
+</center>
+<script type="text/javascript">
+/*手机站：首页 20:3，创建于2014-7-22*/
+var cpro_id = "u1629209";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+{%include 'bottom2.html'%}
+
+</body>
+</html>

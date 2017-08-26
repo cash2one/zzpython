@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../../css/api.css"/>
+    <style>
+    	body{
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        img{
+            vertical-align: middle;
+        }
+        .btnbox{
+            background: url(../../../image/youhui/imgbg3.jpg);
+            background-size: 100%;
+            text-align: center;
+        }
+        .btnimg{
+            cursor: pointer;
+            width: 65%;
+        }
+        .imgmo img{
+            width: 100%
+        }
+    </style>
+</head>
+<body>
+	<div class="imgmo"><img src="../../../image/youhui/imgbg1.jpg"></div>
+    <div class="imgmo"><img src="../../../image/youhui/imgbg2.jpg"></div>
+    <div class="btnbox"><img src="../../../image/youhui/btnby.png" class="btnimg"></div>
+    <div class="imgmo"><img src="../../../image/youhui/imgbg4.jpg"></div>
+</body>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/jquery.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		$(".btnimg").on("click",function() {
+			api.execScript({
+				name : "root",
+				script : "openshowcontactandreflush()"
+			});
+		});
+	};
+</script>
+</html>

@@ -1,0 +1,93 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="{{csscode}}/css/base.css" />
+<link rel="stylesheet" href="{{csscode}}/css/modules.css" />
+<link rel="stylesheet" href="{{csscode}}/css/style.css" />
+<title>{{newsdetail.title}}-{{list.name}}</title>
+<meta content="" name="description"/>
+<meta content="" name="keywords"/></head>
+<body>
+{%include htmlincludes.topinclude%}
+<div id="content">
+	<!--左边主题板块-->
+    <div class="grid-sub fl">
+          {%include htmlincludes.leftinclude%}
+	</div>
+	<!--左边主题板块结束-->
+
+	<!-- 右面主题板块-->
+<div class="main-wrap fr">
+	<!--明星产品-->
+	<div class="mod mod-starpro">
+		<div class="m-body">
+			<div class="m-header"><h3>企业新闻</h3></div>
+			<!-- 新闻详细内容 -->
+			<div class="m-content">
+				<div class="star-region news-detail">
+					<div class="new-detailup">
+					<!-- 新闻头部-->
+						<div class="newdeta-title">
+							<h1>{{newsdetail.title}}</h1>
+							<p>发布时间：{{newsdetail.post_time}}</p>
+						</div>
+						<!-- 新闻头部结束-->
+						<!-- 新闻主要内容-->
+						<div class="newsdeta-con">
+                        {{newsdetail.content|safe}}
+                        </div>
+						<!-- 新闻主要内容结束-->
+					</div>
+                    <!--分享-->
+						<div class="xinwen-share">
+							<span class="xinwen-share1">分享到：</span>
+							<!-- Baidu Button BEGIN -->
+                            <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+                            <a class="bds_qzone"></a>
+                            <a class="bds_tsina"></a>
+                            <a class="bds_tqq"></a>
+                            <a class="bds_renren"></a>
+                            <a class="bds_t163"></a>
+                            <span class="bds_more">更多</span>
+                            <a class="shareCount"></a>
+                            </div>
+                            <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6712776" ></script>
+                            <script type="text/javascript" id="bdshell_js"></script>
+                            <script type="text/javascript">
+                            document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+                            </script>
+                            <!-- Baidu Button END -->
+						</div>
+						<!--分享结束-->
+					<div class="new-detaildown">
+						<div class="newsdeta-more">
+							<p class="last-new fl">上一篇：<a href="n{{nextnews.news1.id}}.html">{{nextnews.news1.title}}</a></p>
+							<p class="next-new fr">下一篇：<a href="n{{nextnews.news2.id}}.html">{{nextnews.news2.title}}</a></p>
+						</div>
+						
+						<div class="other-news">
+							<h2>
+								<p class="pro-othernew fl">{{list.name}}的其它新闻</p>
+								<p class="go-back fr"><a href="news-1.html">返回新闻列表</a></p>
+							</h2>
+						</div>
+						<ul class="more-newlist">
+                        {%for list in otherlist.list%}
+                            <li><a href="n{{list.id}}.html">{{list.title}}</a></li>
+                        {%endfor%}
+                        </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--明星产品结束-->
+</div>  
+<!-- 右面主题板块结束-->
+
+</div>
+{%include htmlincludes.buttominclude%}
+</body>
+</html>

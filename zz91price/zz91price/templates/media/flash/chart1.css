@@ -1,0 +1,107 @@
+guideline{
+	color: #BBBBBB;
+}
+line{
+	thickness: 1.5;
+	fillAlpha.active: .3;
+	dropShadow: light;
+	fillAlpha: 0;
+	thickness.active: 3;
+	lineMethod: line;
+	fillType: gradient;
+	fillType.active: gradient;
+	dropShadow.active: light;
+	lineMethod.active: curve;
+}
+canvas{
+	priLineStyle: line;
+	priLineThickness: 1;
+	gridAlpha: 1;
+	backgroundAlpha: 1;
+	gridThickness: 0;
+	secLineStyle: line;
+	backgroundColor: #FFFFFF;
+	secLineColor: #F2F2F2;
+	gridColor: #F2F2F2;
+	borderAlpha: 1;
+	borderColor: #F2F2F2;
+	borderThickness: 0;
+	priLineAlpha: 1;
+	secLineAlpha: 1;
+	secLineThickness: 0;
+	priLineColor: #F2F2F2;
+	backgroundColor2: #F8F8F8;
+}
+yaxis{
+	lineThickness: 3;
+	tickLength: 3;
+	lineColor: #666666;
+	tickThickness: 0;
+	tickColor: #666666;
+	labelGap: auto;
+}
+line dot{
+	color: inherit#color;
+	shape.hl: circle;
+	dropShadow: none;
+	alpha.hl: 1;
+	dropShadow.hl: light;
+	alpha: 1;
+	radius.hl: 7;
+	borderAlpha.hl: 1;
+	radius: 2;
+	borderAlpha: 1;
+	borderThickness.hl: 2;
+	borderColor: inherit#color;
+	borderThickness: 2;
+	color.hl: inherit#color;
+	shape: circle;
+	borderColor.hl: #FFFFFF;
+}
+xaxis{
+	tickColor: #666666;
+	lineThickness: 3;
+	tickLength: 3;
+	lineColor: #666666;
+	tickThickness: 0;
+}
+chart{
+	colors: #1b75d2,#5f9618,#eead23,#b3351b,#ff862e,#925100;
+	paddingBottom: 30;
+	paddingLeft: 0;
+	enableTooltip: true;
+	paddingRight: 0;
+	animate: true;
+	paddingTop: 30;
+	leftAxisVisibility: visible;
+	smooth: true;
+}
+yaxis label{
+	paddingRight: 0;
+	color: #666666;
+	paddingLeft: 0;
+	visibility: visible;
+}
+legend{
+	itemEachColumn: 4;
+	interactive: true;
+	position: bottom;
+	align: center;
+}
+xaxis label{
+	paddingRight: 0;
+	color: #666666;
+	paddingLeft: 0;
+	visibility: visible;
+}
+tooltip{
+	borderAlpha: 1;
+	borderColor: #666666;
+	borderThickness: 2;
+	backgroundColor: #FFFFFF;
+	backgroundAlpha: 0.8;
+	backgroundType: slash;
+}
+legend item label{
+	color: inherit;
+}

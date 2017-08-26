@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/aui.css"/>
+		<style>
+			html, body {
+				background: transparent;
+				height: 100%;
+				background: rgba(50,50,50,0.1);
+				overflow: hidden;
+			}
+			.main{
+				position: relative;
+				top:50%;
+				left:50%;
+				margin-left:-35%;
+				margin-top:-40%;
+			}
+			.closebotton{
+				position: absolute;
+				top: 10%;
+				left: 50%;
+				width:30px;
+				margin-left:-20px;
+				height: 30px;
+				color: #fff;
+				z-index: 9999;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="closebotton" onclick="closeselect()"><i class="aui-iconfont aui-icon-roundclose" style="font-size: 50px;"></i></div>
+		<div class="main">
+			<img src="http://b.zz91.com/app/ad/images/upgrede.png" onclick="openshow()" style="width:50%;height: 50%;"  class="noorderimg">
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../../script/common.js"></script>
+	<script type="text/javascript">
+		function closeselect() {
+			api.execScript({
+				name : api.winName,
+				script : "keybackFun('1')"
+			});
+			api.closeFrame();
+		}
+		function openshow(){
+			api.execScript({
+				name : "root",
+				script : "openserviceupdate()"
+			});
+			closeselect();
+		}
+		apiready = function() {
+			var $body = $api.dom('body');
+			$api.addEvt($body, 'click', function(e) {
+				if (e.target == $body) {
+					//closeselect();
+				} else {
+					e.stopPropagation();
+				}
+			});
+		};
+	</script>
+</html>

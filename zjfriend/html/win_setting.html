@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css"/>
+		<link rel="stylesheet" href="../css/main.min.css" type="text/css">
+		<link rel="stylesheet" href="../css/win_setting.css" type="text/css">
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" onclick="api.closeWin();"></a>
+			<h1 class="mui-title">设置</h1>
+		</header>
+		<!-- 第一块 -->
+		<div class="firstblock">
+			<div class="item" tapmode="presshover" onclick="openNewWindow('fangkui','my_fangkui.html')">
+				<span>意见反馈</span>
+				<img src="../image/arrow.png" alt="" class="item_arrow">
+			</div><div class="h1"></div>
+			<div class="item" tapmode="presshover" >
+				<span>清楚缓存</span>
+				<img src="../image/arrow.png" alt="" class="item_arrow">
+			</div>
+		</div>
+		<!-- 第二块 -->
+		<div class="h10"></div>
+		<div class="secondblock">
+			<div class="item" tapmode="presshover">
+				<span>版本更新（已是最新版）</span>
+				<span class="fr hint">V1.2</span>
+				<img src="../image/arrow.png" alt="" class="item_arrow">
+			</div>
+			<div class="h1"></div>
+			<div class="item" tapmode="presshover">
+				<span>关于我们</span>
+				<img src="../image/arrow.png" alt="" class="item_arrow">
+			</div>
+			<div class="h1"></div>
+			<div class="item" tapmode="presshover" onclick="loginout()">
+				<span>退出账号</span>
+				<img src="../image/arrow.png" alt="" class="item_arrow">
+			</div>
+		</div>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/common.js"></script>
+		<script type="text/javascript" src="../script/laytpl.js"></script>
+		<script>
+			function openNewWindow(name, url) {
+				api.openWin({
+					name : name,
+					url : url,
+					pageParam : {
+						cid : 1
+					},
+					bounces : false,
+					delay : 200
+				});
+			}
+			function loginout(){
+				UserInfo.clear();
+				
+				api.execScript({
+					frameName : "user",
+					script : 'checkLoginStatus()'
+				});
+				api.closeWin();
+			}
+		</script>
+	</body>
+</html>

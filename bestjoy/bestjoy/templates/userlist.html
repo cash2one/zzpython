@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>layui</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="layui/css/layui.css" media="all">
+		<style>
+			body{
+				padding: 10px;
+			}
+		</style>
+		<script src="layui/layui.js" charset="utf-8"></script>
+		<script src="js/jquery.js" charset="utf-8"></script>
+		<script src="js/comm.js" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+			<div class="layui-tab-content">
+				<table class="layui-table" lay-even="" lay-skin="row">
+					<thead>
+						<tr>
+							<th nowrap>id</th>
+							<th nowrap>用户名</th>
+							<th nowrap>密码</th>
+							<th nowrap>员工姓名</th>
+							<th nowrap>状态</th>
+							<th nowrap>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						{%for list in listall%}
+						<tr>
+							<td nowrap>{{list.id}}</td>
+							<td nowrap>{{list.username|safe}}</td>
+							<td nowrap>***</td>
+							<td nowrap>{{list.realname}}</td>
+							<td nowrap>{{list.statustxt|safe}}</td>
+							<td nowrap>
+								<a href="edituser1.html?userid={{list.id}}" title="编辑属性">编辑</a>
+								<!--{%ifequal list.closeflag 1%}
+			              			<a href="changestatus_user.html?id={{list.id}}&status={{list.closeflag}}">开通</a>
+			              		{%endifequal%}
+			              		{%ifequal list.closeflag 0%}
+			              			<a href="changestatus_user.html?id={{list.id}}&status={{list.closeflag}}">冻结</a>
+			              		{%endifequal%}-->
+							</td>
+						</tr>
+						{%endfor%}
+					</tbody>
+				</table>
+				<div id="pagelist"></div>
+			</div>
+
+		</div>
+	</body>
+	
+	<script>
+		layui.use(['form','laypage', 'layer'], function() {
+			var laypage = layui.laypage,
+				layer = layui.layer;
+
+			laypage({
+				cont: 'pagelist',
+				pages: {{page_listcount}}, //总页数
+				groups: 10, //连续显示分页数
+				curr:{{page}},
+				jump: function(obj, first){
+					//得到了当前页，用于向服务端请求对应数据
+					var curr = obj.curr;
+					if (!first){
+						window.location='?{{searchurl}}&page='+curr
+					}
+					//
+				}
+			});
+		})
+		$(function(){
+			$("#areatext").on("click", function() {
+				layer.open({
+					type: 2,
+					title: '选择地区',
+					shadeClose: true,
+					shade: 0.3,
+					scrollbar: false,
+					area: ['400px', '500px'],
+					content: '/province.html' //iframe的url
+				}); 
+			});
+		})
+		function xzprovincecode(parea,code){
+			$("#area").val(code);
+			$("#areatext").val(parea)
+		}
+	</script>
+
+</html>

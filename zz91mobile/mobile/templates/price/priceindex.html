@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+<link rel="stylesheet" href="/css/comm-more.css" />
+		<link rel="stylesheet" type="text/css" href="../css/pindao/index.css" />
+		<script type="text/javascript" src="../js/pindao/jquery-1.8.3.min.js"></script>
+		<style type="text/css">
+			.main a:link{color:#000;text-decoration:none}
+			.main a:hover{text-decoration:underline}
+			.main a:visited{color:#000}
+		</style>
+	</head>
+
+	<body>{%include 'top.html'%}
+		<div class="main">
+			<div class="tle">
+				<a href="/">首页</a> > <a href="/priceindex/">行情报价</a>
+			</div>
+			<div>
+			    <form action="/jiage/" method="get" id="wikiSearchFrm">
+			    	<div style="position:relative;">
+			        	<div class="sch-input">
+			        		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+			        	</div>
+			        	<div class="sch-button" onClick="document.getElementById('wikiSearchFrm').submit()">搜行情</div>
+			    		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+			    	</div>
+			    </form>
+			</div>
+			<div class="cate-box cb-item0">
+        	<table class="cate-tab2" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<th colspan="5"><img src="http://img0.zz91.com/zz91/mobile/images/icon_metal.png" />金属</th>
+                </tr>
+                <tr>
+                	{%for list in jinshulist%}
+                	<td><a href="/jiage/{{list.pinyin}}/" target="_blank">{{list.name}}</a></td>
+                	{{list.trstr|safe}}
+                	{%endfor%}
+                    <td><a href="/jiage/feijinshuhangqingzongshu/" target="_blank">行情综述</a></td>
+                    <td><a href="/jiage/LMEjibenjinshu/" target="_blank">LME</a></td>
+                </tr>
+                <tr>
+                    <td><a href="/jiage/hutong/" target="_blank">沪铜</a></td>
+                    <td><a href="/jiage/hulv/" target="_blank">沪铝</a></td>
+                    <td><a href="/jiage/hugang/" target="_blank">沪钢</a></td>
+                    <td><a href="/jiage/huxin/" target="_blank">沪锌</a></td>
+                    <td><a href="/jiage/shanghaihejin/" target="_blank">上海合金</a></td>
+                </tr>
+                <tr>
+                    <td><a href="/jiage/feijinshuzhoubao/" target="_blank">周报</a></td>
+                    <td><a href="/jiage/feijinshupinglun/" target="_blank">评论</a></td>
+                </tr>
+            </table>
+        </div>
+         <div class="cate-box cb-item1">
+        	<table class="cate-tab" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<th colspan="3"><img src="http://img0.zz91.com/zz91/mobile/images/icon_plastic.png" />塑料</th>
+                </tr>
+                <tr>
+                	<td><a href="/jiage/areasuliao.html" target="_blank">各地废塑料行情</a></td>
+                    <td><a href="/jiage/suliaoarea.html" target="_blank">全国废塑料价格</a></td>
+                    <td><a href="/jiage/suliaozaishengliao.html" target="_blank">塑料再生料价格</a></td>
+                </tr>
+                <tr>
+                	<td><a href="/jiage/feisuliaohangqingzongshu/" target="_blank">废塑料行情综述</a></td>
+                    <td><a href="/jiage/meiguosuliao.html" target="_blank">美国废塑料价格</a></td>
+                    <td><a href="/jiage/ouzhousuliao.html" target="_blank">欧洲废塑料价格</a></td>
+                </tr>
+                <tr>
+                	<td><a href="/jiage/xinliaochuchangjia.html" target="_blank">新料出厂价</a></td>
+                	<td><a href="/jiage/xinliaoshichangjia.html" target="_blank">新料市场价</a></td>
+                    <td><a href="/jiage/feisuliaopinglun/" target="_blank">废塑料评论</a></td>
+                    
+                </tr>
+                <tr>
+                	<td><a href="/jiage/feisuliaozhoubao/" target="_blank">废塑料周报</a></td>
+                	<td><a href="/jiage/suliaoqihuo.html" target="_blank">塑料期货</a></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="cate-box cb-item2">
+        	<table class="cate-tab" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<th colspan="3"><img src="http://img0.zz91.com/zz91/mobile/images/icon_paper.png" />废纸</th>
+                </tr>
+                <tr>
+                	<td><a href="/jiage/feizhigedijiage/" target="_blank">废纸各地价格</a></td>
+                    <td><a href="/jiage/feizhiwangshangbaojia/" target="_blank">废纸网上报价</a></td>
+                    <td><a href="/jiage/guoneirifei/" target="_blank">国内日废价格</a></td>
+                </tr>
+                <tr>
+                	<td><a href="/jiage/guoneimeifei/" target="_blank">国内美废价格</a></td>
+                    <td><a href="/jiage/guoneioufei/" target="_blank">国内欧废价格</a></td>
+                    <td><a href="/jiage/guowaifeizhi/" target="_blank">国外废纸价格</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="cate-box cb-item3">
+        	<table class="cate-tab" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<th colspan="3"><img src="http://img0.zz91.com/zz91/mobile/images/icon_rubber.png" />橡胶</th>
+                </tr>
+                <tr>
+                	<td><a href="/jiage/guoneixiangjiao/" target="_blank">国内橡胶</a></td>
+                    <td><a href="/jiage/feixiangjiaohangqingzongshu/" target="_blank">废橡胶行情综述</a></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="cate-box cb-item4">
+        	<table class="cate-tab" cellpadding="0" cellspacing="0">
+            	<tr>
+                	<th colspan="3"><img src="http://img0.zz91.com/zz91/mobile/images/icon_oil.png" />原油</th>
+                </tr>
+                <tr>
+                	<td><a href="/jiage/youjia/" target="_blank">油价</a></td>
+                    <td><a href="/jiage/hangqingzongshu/" target="_blank">行情综述</a></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+		</div>
+		<script type="text/javascript">
+			/*手机站：首页 20:3，创建于2014-7-22*/
+			var cpro_id = "u1629209";
+		</script>
+		<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+		{%include 'bottom.html'%}
+		<!--end main-->
+	</body>
+
+</html>

@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>判断公司是否存在</title>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+-->
+</style></head>
+
+<body>
+<br />
+<br />
+{%if listall%}
+<table width="90%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#999">
+  <tr>
+    <td bgcolor="#CCCCCC">公司名称</td>
+    <td bgcolor="#CCCCCC">邮箱</td>
+    <td bgcolor="#CCCCCC">手机</td>
+    <td bgcolor="#CCCCCC">注册时间</td>
+    <td bgcolor="#CCCCCC">sms所有者</td>
+  </tr>
+  {%for list in listall%}
+  <tr>
+    <td bgcolor="#FFFFFF">{{list.name}}</td>
+    <td bgcolor="#FFFFFF">{{list.email}}</td>
+    <td bgcolor="#FFFFFF">{{list.mobile}}</td>
+    <td bgcolor="#FFFFFF">{{list.regtime}}</td>
+    <td bgcolor="#FFFFFF"><iframe src="http://{{localhostIP}}/admin1/crmlocal/sms/userinfo.asp?com_id={{list.id}}&personid={{personid}}&sid={{sid}}" scrolling="no" frameborder="0" width="150" height="25"></iframe></td>
+  </tr>
+  {%endfor%}
+</table>
+{%else%}
+<table width="90%" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#666666" style="display:none">
+  <tr>
+    <td bgcolor="#FFFFFF">该公司不在库里，是否手动添加</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">手机：{{com_mobile}} 联系人：{{com_contactperson}}</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF">
+    <form id="form1" name="form1" method="get" action="http://adminasto.zz91.com/companyadd/">
+      <input type="submit" name="button" id="button" value="添加该公司" />
+      <input type="hidden" name="com_mobile" id="com_mobile" value="{{com_mobile}}" />
+	  <input type="hidden" name="addtype" id="addtype" value="{{addtype}}" />
+	  <input type="hidden" name="personid" id="personid" value="{{personid}}" />
+      <input type="hidden" name="com_contactperson" id="com_contactperson" value="{{com_contactperson}}" />
+      <input type="hidden" name="sid" id="sid" value="{{sid}}" />
+    </form></td>
+  </tr>
+</table>
+<div style="line-height:50px; text-align:center">正在查询添加......</div>
+<script>form1.submit()</script>
+{%endif%}
+</body>
+</html>

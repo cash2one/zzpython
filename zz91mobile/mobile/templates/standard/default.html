@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ZZ91再生网 手机版_废料移动商务第一站！</title>
+<meta name="keywords" content="废料手机版,再生资源手机版,废料回收手机版,废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备" />
+<meta name="description" content="ZZ91再生网是中国最大最旺的网上废料贸易市场,这里为您精选了废金属,废塑料,废纸,废橡胶,纺织废料,废旧设备,废电子电器,废玻璃,废皮革,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备等各类废料供求信息.公司黄页.行业资讯.价格行情.展会信息等。" />
+{%include 'standard/head.html'%}
+<style>
+	.s-header {width:100%;background-color:#390;height:40px;margin:0;padding:0;border:0;}
+    .s-header td{padding:0;}
+    .s-header a{color:#fff;}
+	.s-header td{color:#fff;}
+</style>
+<table class="s-header">
+	<tr>
+		<td style="padding-left:6px">
+			<a href="http://m.zz91.com/standard/" style="color:#fff">ZZ91再生网</a>			
+		</td>
+		<td style="padding-right:6px;text-align:right;">
+			<a href="/standard/login/">登录</a>&nbsp;<a href="/standard/reg/">注册</a>&nbsp;
+			<a href="/standard/myrc_leavewords/">消息</a>
+		</td>
+	</tr>
+</table>
+<table width="100%">
+	<tr>
+		<td width="111px">
+			<a href="http://m.zz91.com/standard/"><img src="http://m.zz91.com/images/logo_s.png" /></a>
+		</td>
+		<td valign="middle" style="text-align:right;padding-right:6px;">
+			<p>{%if username%}当前用户:{{username}}<a href="/standard/loginout/">退出</a>{%endif%}</p>
+		</td>
+	</tr>
+</table>
+<div class="sForm ac lh">
+<form action="/standard/searchindex/?" method="ppost" id="submitForm">
+<div style="position:relative;">
+	<div style="margin-left:6px;margin-right:114px;">
+		<input type="text" style="width:100%;height:28px;border:1px solid #ccc;" name="keywords" />
+	</div>
+	<div style="position:absolute;right:0px;top:0px;">
+        <input type="submit" name="offer" value="搜供求" class="s-btn"/> 
+        <input type="submit" name="company" value="搜公司" class="s-btn"/>
+    </div>
+</div>
+<input type="hidden" name="v" value="s" />
+<input type="hidden" name="en" value="utf8" />
+</form>
+</div>
+<div class="s-navlink mg10 lh20">
+<ul class="link1">			
+<li>
+<p class="fl"><a href="/standard/myrc_index/">生意管家</a></p>
+<p class="links">
+<a href="/standard/myrc_leavewords/">询盘管理</a>&nbsp;
+<a href="/standard/myrc_favorite/">收藏夹</a>&nbsp;
+</p>
+</li>
+<li>
+<p class="fl"><a>商机市场</a></p>
+<p class="links">
+{%for list in categorylist%}
+<a href="/standard/productslist/?keywords={{list.label}}">{{list.label}}</a>&nbsp;
+{%endfor%}
+</p>
+</li>
+<li>
+<p class="fl"><a>资讯社区</a></p>
+<p class="links">
+<a href="/standard/priceindex/">价格行情</a>&nbsp;
+<a href="/standard/huzhu/?category_id=1">废料动态</a>&nbsp;
+<a href="/standard/huzhu/?category_id=2">江湖风云</a>&nbsp;
+<a href="/standard/huzhu/?category_id=3">行业知识</a>&nbsp;
+</p>
+</li>
+</ul>
+</div>
+<div class="s-navlink lh20">
+<a href="/standard/priceindex/"><p class="h c-hl">价格行情</p></a>
+<div>
+{%for list in pricelist%}
+<p><a href="/standard/priceviews/?id={{list.id}}">{{list.title}}</a></p>
+{%endfor%}
+</div>
+</div>
+<div class="s-navlink lh20">
+<a href="/standard/huzhu/"><p class="h c-hl">再生互助</p></a>
+<div>
+<p><a href="/standard/huzhu/?category_id=1">废料动态</a> |
+<a href="/standard/huzhu/?category_id=2">行业知识</a> |
+<a href="/standard/huzhu/?category_id=3">江湖风云</a>
+</p>
+{%for list in bbslist%}
+<p><a href="/standard/huzhuviews/{{list.id}}.htm">{{list.title}}</a></p>
+{%endfor%}
+</div>
+</div>
+<div class="s-navlink lh20">
+<a href="/standard/productscategory/"><p class="h c-hl">最新供求</p></a>
+<div>
+{%for list in offerlist%}
+<p><a href="/standard/productdetail/?pdtid={{list.id}}">{{list.fulltitle}}</a><span class="c6">[{{list.gmt_time}}]</span></p>
+{%endfor%}
+</div>
+</div>
+{%include 'standard/bottom.html'%}
+
+</body>
+</html>

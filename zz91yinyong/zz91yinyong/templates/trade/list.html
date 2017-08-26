@@ -1,0 +1,429 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{{keywords}}_供求列表_ZZ91废料移动商务</title>
+		<meta name="keywords" content="废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备">
+		<meta name="description" content="ZZ91再生网是中国最大最旺的网上废料贸易市场,这里为您精选了废金属,废塑料,废纸,废橡胶,纺织废料,废旧设备,废电子电器,废玻璃,废皮革,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备等各类废料供求信息.公司黄页.行业资讯.价格行情.展会信息等。">
+        <link rel="stylesheet" type="text/css" href="/css/qianbao/shop_index.css"/>
+        <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css">
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+		<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+		<link rel="stylesheet" href="/css/comm-searchbar.css" />
+		<link rel="stylesheet"  href="/css/offer.css" />
+		<link rel="stylesheet"  href="/css/huzhu.css" />
+		<link rel="stylesheet" href="/css/comm-more.css" />
+		<link rel="stylesheet" type="text/css" href="/css/pindao/style.css"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta name="format-detection" content="telephone=no">
+
+		<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js" ></script>
+        <script type="text/javascript" src="/js/pindao/jquery.lightbox_me.js"></script>
+        <script type="text/javascript" src="/js/pindao/style.js"></script>
+	<script>
+	function searchkeywords(){
+	var keywords=document.getElementById("wikik").value;
+	//alert(keywords);
+	if (keywords.length<1){
+		alert('请填写搜索词');
+		}
+	else{
+		window.location.href='/offerlist/?keywords='+keywords
+		}
+	}
+
+$(function(){
+	$('.showphone').click(function(e){
+		var company_id=$('#company_id').val();
+		if (company_id){
+			var qianbaoblance=$('#qianbaoblance').val();
+			var money=5;
+			if (parseInt(qianbaoblance)>=money){
+				$('#showphone1').lightbox_me({
+							overlaySpeed:0,
+							lightboxSpeed:0,
+							centered: true, 
+							onLoad: function() { 
+							}
+					});
+				e.preventDefault();
+			}else{
+				$('#bal').lightbox_me({
+				overlaySpeed:0,
+				lightboxSpeed:0,
+				centered: true, 
+				onLoad: function() { 
+				}
+	        	});
+				e.preventDefault();
+			}
+		}else{
+			window.location.href="/login/?done={{host}}"
+		}
+
+	})
+});
+$(function(){
+	$('#showphone2').click(function(e){
+		$('#showphone3').lightbox_me({
+					overlaySpeed:0,
+					lightboxSpeed:0,
+					centered: true, 
+					onLoad: function() { 
+					}
+			});
+		e.preventDefault();
+	})
+});
+$(function(){
+	$('#showphone4').click(function(e){
+		var qianbaoblance=$('#qianbaoblance').val();
+		var money=$('input[name="shownumb"]:checked').val()
+		if (parseInt(qianbaoblance)>=parseInt(money)){
+			$.ajax({
+			   type: "GET",
+			   url: "/qianbao/qianbaopay.html",
+			   data: "money="+money+"&paytype=11",
+			   success:function(data){
+					//alert(data);
+					if (data=='1'){
+						$('#sucess4').lightbox_me({
+						overlaySpeed:0,
+						lightboxSpeed:0,
+						centered: true, 
+						onLoad: function() { 
+						}
+						});
+						e.preventDefault();
+					}else if (data=='2'){
+						$('#sucess5').lightbox_me({
+						overlaySpeed:0,
+						lightboxSpeed:0,
+						centered: true, 
+						onLoad: function() { 
+						}
+						});
+						e.preventDefault();
+					}
+			   },
+			   error:function(data){
+					//alert("错误!青重试.");
+			   }
+			});
+		}else{
+			$('#bal').lightbox_me({
+			overlaySpeed:0,
+			lightboxSpeed:0,
+			centered: true, 
+			onLoad: function() { 
+			}
+        	});
+			e.preventDefault();
+		}
+	})
+});
+function dismiss(){
+	$('#bal').trigger('close');
+	$('#showphone1').trigger('close');
+	$('#showphone3').trigger('close');
+	$('#sucess4').trigger('close');
+	$('#sucess5').trigger('close');
+}
+
+	</script>
+	</head>
+	<body>
+{%include 'top.html'%}
+{%if company_id%}<input type="hidden" name="company_id" id="company_id" value="{{company_id}}">{%endif%}
+{%if qianbaoblance%}<input type="hidden" name="qianbaoblance" id="qianbaoblance" value="{{qianbaoblance}}">{%endif%}
+
+
+    <form action="/offerlist/" method="get" id="wikiSearchFrm">
+    	<div style="position:relative;">
+        	<div class="sch-input">
+        		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+        	</div>
+        	<div class="sch-button" onClick="searchkeywords()">搜供求</div>
+    		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+    	</div>
+    </form>
+
+      <div class="m-content">
+          <div class="c-tle">
+          	<div class="t-left">
+            	<a href="/category/">交易中心</a> > {{keywords}}
+            </div>
+            <div class="t-right">
+            	<ul>
+                	<li>
+                    	<div class="r_box_">
+                        	<div class="b_fb"><a href="/products_publish/"><img src="/images/pindao/fb.png"/></a></div>
+                            <!--end b_fb-->
+                            <div class="b_sx"><a href="/products_publish/">发布</a></div>
+                            <!--end b_sx-->
+                            <div class="cb"></div>
+                        </div>
+                        <!--end r_box-->
+                    </li>
+                    <li>
+                    	<div class="r_box" id="sx">
+                        	<div class="b_fb"><img src="/images/pindao/sx.png"/></div>
+                            <!--end b_fb-->
+                            <div class="b_sx">筛选</div>
+                            <!--end b_sx-->
+                            <div class="cb"></div>
+                        </div>
+                        <!--end r_box-->
+                    </li>
+                </ul>
+            </div>
+            <!--end t-right-->
+            <div class="cb"></div>
+          </div>
+          <!--end c-tle-->
+      	    <table width="100%" border="0" cellpadding="0">
+				<tr>
+					<td>
+						<div class="tab_ul">
+                        	<ul>
+                            	<li class="tab_ul_li" onClick="mySwitch()">供应<img src="/images/pindao/off.png" />
+                                	<ul class="sub-nav" id="nav_1" style="display: none;">
+          								<a href="?keywords={{keywords}}&ptype=1"><li>全部</li></a>
+          								<a href="?keywords={{keywords}}&ptype=1&haveprice=1"><li>价格</li></a>
+          								<a href="?keywords={{keywords}}&ptype=1&havepic=1"><li>图片</li></a>
+                					</ul>
+                                </li>
+                                <li class="tab_ul_li" onClick="mySwitch1()">求购<img src="/images/pindao/off.png" />
+                                		<ul class="sub-nav1" id="nav_2" style="display: none;">
+          								<a href="?keywords={{keywords}}&ptype=2"><li>全部</li></a>
+          								<a href="?keywords={{keywords}}&ptype=2&haveprice=1"><li>价格</li></a>
+          								<a href="?keywords={{keywords}}&ptype=2&havepic=1"><li>图片</li></a>
+                					</ul>
+                                </li>
+                                <li onClick="mySwitch2()">报价<img src="/images/pindao/off.png" />
+                                		<ul class="sub-nav2" id="nav_3" style="display: none;">
+          								<a href="/trade/pricelist.html?keywords={{keywords}}&type=0"><li>行情报价</li></a>
+          								<a href="/trade/pricelist.html?keywords={{keywords}}&type=1"><li>商家报价</li></a>
+                					</ul>
+                                </li>
+                            </ul>
+                        </div>
+				   </td>
+				</tr>
+				<tr>
+                  <td>
+					<table cellspacing="10" id="tab1">
+						
+						{%if pdt_kindname%}
+                		<tr>
+                			<td valign="top" height="30px">&nbsp;&nbsp;&nbsp;您正在查看&nbsp;&nbsp;{{nowlanmu2}}</td>
+                		</tr>
+                		{%endif%}
+                		
+                		{%if adlist%}
+                		{%for list in adlist%}
+                		<tr>
+                			<td valign="top" height="30px"><a href="{{list.url}}" target="_blank"><img src="{{list.picaddress}}" style="width: 100%;"></a></td>
+                		</tr>
+                		{%endfor%}
+                		{%endif%}
+                		
+                		{%if isding%}
+                        {% for list in productListtop %}
+                         <tr>
+							<td class="m-item">
+								<div class="i-box">
+                                <a href="/detail/?id={{list.pdt_id}}">
+                                	<div class="b-img">
+                                    	<img src="{{list.pdt_images}}" />
+                                    </div>
+                                </a>
+                                    <div class="b-dt">
+                                    	<ul class="b-ul">
+                                        <a href="/detail/?id={{list.pdt_id}}">
+                                        	<li class="b-ul-li-tle"><b>{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</b>　<span class=c9>{{list.pdt_time_en}}</span>&nbsp;<img src="/images/pindao/d.png" />{%if list.isbuycontact%}&nbsp;<img src="/images/pindao/eye.jpg" />{%endif%}</li>
+                                            <li class="b-ul-li-item"></li>
+                                            <li class="b-ul-li-addr">
+                                            	<div class="a-left">{{list.com_province}}</div>
+                                                <div class="a-right">{{list.pdt_price}}</div>
+                                                <div class="cb"></div>
+                                            </li>
+                                         </a>
+                                            {%if list.ldbtel%}
+                                            <li>
+                                            	<a href="tel:{{list.ldbtel.tel}}" onclick="telclick('/trade/telclicklog.html?tel={{list.ldbtel.tel}}&pagefrom=trade')">点击拨打：&nbsp;<font style="color:#F00">{{list.ldbtel.front_tel}}</font></a>
+                                            </li>
+                                            {%endif%}
+                                        </ul>
+                                    </div>
+                                    <div class="cb"></div>
+                                </div>
+							</a></td>
+						</tr>
+                        {%endfor%}
+                		{%endif%}
+                		
+                        {% for list in productList %}
+                         <tr>
+							<td class="m-item">
+								<div class="i-box">
+									<a href="/detail/?id={{list.pdt_id}}">
+                                	<div class="b-img">
+                                		{%if list.ldblevel%}<span class="lv_icon lv{{list.ldblevel}}" style="z-index: 2;"></span>{%endif%}
+                                    	<img src="{{list.pdt_images}}" />
+                                    </div>
+                                    </a>
+                                    <div class="b-dt">
+                                    	<ul class="b-ul">
+                                        <a href="/detail/?id={{list.pdt_id}}">
+                                        	<li class="b-ul-li-tle"><b>{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</b>　<span class=c9>{{list.pdt_time_en}}</span>{%if list.isbuycontact%}&nbsp;<img src="/images/pindao/eye.jpg" />{%endif%}</li>
+                                        </a>
+                                            <li class="b-ul-li-item"></li>
+                                            <li class="b-ul-li-addr">
+                                            	<div class="a-left">{{list.com_province}}</div>
+                                                <div class="a-right">{{list.pdt_price}}</div>
+                                                <div class="cb"></div>
+                                            </li>
+                                         
+                                            {%if list.isbuyshowphone%}
+                                            <li>
+                                            	<a href="/detail/?id={{list.pdt_id}}" style="color:#F00">显示联系方式  </a> &nbsp;&nbsp;<a class="showphone" style="color:gray">如何显示?</a>
+                                            </li>
+                                            {%endif%}
+                                            {%if list.ldbtel%}
+                                            <li>
+                                            	<a href="tel:{{list.ldbtel.tel}}" onclick="telclick('/trade/telclicklog.html?tel={{list.ldbtel.tel}}&pagefrom=trade')">点击拨打：&nbsp;<font style="color:#F00">{{list.ldbtel.front_tel}}</font></a> {%if list.phone_rate%}{{list.phone_rate}}% 接听率{%endif%}
+                                            </li>
+                                            {%endif%}
+                                        </ul>
+                                    </div>
+                                    <div class="cb"></div>
+                                </div>
+							</td>
+						</tr>
+                        {%endfor%}
+					</table>
+                  </td>
+                </tr>
+                </table>
+      </div>
+      			<!--end m-content-->
+      <div id="reply_div" align="center">
+		<div class="sx-box">
+        	<div class="b1-item">
+            	<div class="b1-item-tle">所在地</div>
+                <ul class="b1-item-ul">
+                	<li>
+                    	<ul class="b1-item-ul-ul" id="b1_ul">
+                    		{%for alst in arealist%}
+                        	<li area="{{alst}}" {%ifequal province alst%}style="background-color: rgb(219, 219, 219);"{%endifequal%}>{{alst}}</li>
+                        	{%endfor%}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--end b1-item-->
+            <div class="b1-item">
+            	<div class="b1-item-tle">时间</div>
+                <ul class="b1-item-ul">
+                	<li>
+                    	<ul class="b1-item-ul-ul" id="b1_ul2">
+                        	<li timearg="1" {%ifequal timearg "1"%}style="background-color: rgb(219, 219, 219);"{%endifequal%}>一天内</li>
+                            <li timearg="2" {%ifequal timearg "2"%}style="background-color: rgb(219, 219, 219);"{%endifequal%}>三天内</li>
+                            <li timearg="3" {%ifequal timearg "3"%}style="background-color: rgb(219, 219, 219);"{%endifequal%}>一周内</li>
+                            <li timearg="4" {%ifequal timearg "4"%}style="background-color: rgb(219, 219, 219);"{%endifequal%}>一个月内</li>
+                            <li timearg="5" {%ifequal timearg "5"%}style="background-color: rgb(219, 219, 219);"{%endifequal%}>两个月内</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--end b1-item-->
+            <div class="b1-item">
+            	<div class="b1-item-tle">您是不是想找</div>
+                <ul class="b1-item-ul_">
+                {%for list in categorylist%}
+                <li><a href="/s/{{list.label_hex}}-{{type}}/">{{list.label}}</a></li>
+                {%endfor%}
+                </ul>
+            </div>
+            <!--end b1-item-->
+        </div>
+        <!--end sx-box-->
+		<div align="center" style="margin-top:10px;">
+			<input type="hidden" id="area1" value="{{province}}">
+			<input type="hidden" id="timearg1" value="{{timearg}}">
+			<input type="hidden" id="keywords" value="{{keywords}}">
+			<input type="hidden" id="ptype" value="{{ptype}}">
+			<input type="hidden" id="haveprice" value="{{haveprice}}">
+			<input type="hidden" id="havepic" value="{{havepic}}">
+			<div class="btn btn_confirm">完成筛选</div>
+		</div>
+     </div>
+                  <div class="page">
+                  	<ul>
+                  	{% if firstpage %}
+                    	<li class="page_prev"><a href="?page={{prvpage}}&keywords={{keywords}}&ptype={{pdt_kind}}&province={{province}}&timearg={{timearg}}{%if ptype%}&ptype={{ptype}}{%endif%}{%if haveprice%}&haveprice={{haveprice}}{%endif%}{%if havepic%}&havepic={{havepic}}{%endif%}">上一页</a></li>
+					{%else%}
+                    	<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+                        <li class="page_no">
+                        <select onChange="window.location='?page='+this.value+'&keywords={{keywords}}&ptype={{pdt_kind}}&province={{province}}&timearg={{timearg}}{%if ptype%}&ptype={{ptype}}{%endif%}{%if haveprice%}&haveprice={{haveprice}}{%endif%}{%if havepic%}&havepic={{havepic}}{%endif%}'">
+                            <option>第{{page}}页</option>
+                            {%for p in page_range%}
+                            <option value="{{p.number}}">第{{p.number}}页</option>
+                            {%endfor%}
+                        </select> /{{page_listcount}}页
+							</li>
+                    {% if lastpage%}
+                        <li class="page_next"><a href="?page={{nextpage}}&keywords={{keywords}}&ptype={{pdt_kind}}&province={{province}}&timearg={{timearg}}{%if ptype%}&ptype={{ptype}}{%endif%}{%if haveprice%}&haveprice={{haveprice}}{%endif%}{%if havepic%}&havepic={{havepic}}{%endif%}">下一页</a></li>
+					{%else%}
+                    	<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+                    </ul>
+                  </div>
+			     <!--end page-->
+         {%include 'bottom2.html'%}
+		</body>
+        
+        
+        <div id="showphone1" class="tipp" align="center">
+  			<p>仅需5元即可全网显示本账号所有供求信息联系方式，并在供求列表页标注显示联系方式，电话量瞬间翻倍。</p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_cancel" style="background:#009e47;" id="showphone2" onclick="dismiss();">显示</div><div class="btn btn_cancel" style="background:white">&nbsp;</div>
+		   	<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<div id="showphone3" class="tipp" align="center">
+  			<p>您想购买显示联系方式时间为</p>
+  		    <p class="radio">
+                <span class="pay"><input type="radio" name="shownumb" checked="checked" value="5"/> 5元/天</span>
+                <span class="pay"><input type="radio" name="shownumb" value="120"/> 120元/月</span>
+            	<span class="pay"><input type="radio" name="shownumb" value="1200"/> 1200元/年</span>
+            </p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_cancel" style="background:#009e47;" id="showphone4" onclick="dismiss();">确定</div><div class="btn btn_cancel" style="background:white">&nbsp;</div>
+		   	<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<div id="bal" class="tipp" align="center">
+  			<p>您的余额不足，是否在线充值？</p>
+            {%if not isldb%}<p style="color:#909090;font-size:13px;margin-top:10px">{{ggc}}</p>{%endif%}
+			 <div align="center" style="margin-top:10px;">
+			<div class="btn btn_cancel" style="background:#009e47;" onClick="window.location.href='{%if isldb%}/ldb_weixin/balance.html?backurl={{host}}{%else%}/qianbao/chongzhi.html{%endif%}'">确定</div>
+			<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<div id="sucess4" class="tipp" align="center">
+  			<p>您已购买成功，您的所有供求信息均已显示联系方式。</p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_cancel" style="background:#009e47;" onclick="dismiss();">确定</div>
+		   </div>
+		</div>
+		<div id="sucess5" class="tipp" align="center">
+  			<p>您的联系方式已公开展示</p>
+			<div align="center" style="margin-top:10px;">
+			<div class="btn btn_cancel" style="background:#009e47;" onclick="dismiss();">确定</div>
+		   </div>
+		</div>
+</html>

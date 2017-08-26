@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>再生汇客户修改</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="http://static.m.zz91.com/layui/css/layui.css" media="all">
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script src="http://static.m.zz91.com/layui/layui.js" charset="utf-8"></script>
+		<style>
+			body{
+				padding: 10px;
+			}
+			::-webkit-scrollbar{width:20px;height: 20px;}
+			::-webkit-scrollbar-corner,::-webkit-scrollbar-track{background-color: #5fb878;}
+		</style>
+	</head>
+
+	<body>
+
+		<form class="layui-form" action="">
+			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+				<legend>再生汇客户信息</legend>
+			</fieldset>
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span style="color: red;">*</span> 公司名称</label>
+				<div class="layui-input-block">
+					<input type="text" name="companyname" value="{{result.companyname}}" lay-verify="required" autocomplete="off" placeholder="请输入公司名称" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span style="color: red;">*</span> 地区</label>
+				<div class="layui-input-inline">
+					<input type="text" name="area" value="{{result.area}}" lay-verify="required" placeholder="地区" autocomplete="off" class="layui-input">
+				</div>
+				<div class="layui-form-mid layui-word-aux"></div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span style="color: red;">*</span> 联系人</label>
+				<div class="layui-input-inline">
+					<input type="text" name="contact" value="{{result.contact}}" lay-verify="required" placeholder="请输入联系人" autocomplete="off" class="layui-input">
+				</div>
+				<div class="layui-form-mid layui-word-aux"></div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span style="color: red;">*</span> 手机</label>
+				<div class="layui-input-inline">
+					<input type="number" name="mobile" value="{{result.mobile}}" lay-verify="phone" placeholder="请输入手机" autocomplete="off" class="layui-input">
+				</div>
+				<div class="layui-form-mid layui-word-aux"></div>
+			</div>
+			<div class="layui-form-item layui-form-text">
+				<label class="layui-form-label"><span style="color: red;">*</span> 主营业务</label>
+				<div class="layui-input-block">
+					<textarea placeholder="请输入主营业务" lay-verify="required" name="business" class="layui-textarea">{{result.business}}</textarea>
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label"><span style="color: red;">*</span> 参会费</label>
+				<div class="layui-input-inline">
+					<input type="number" name="fee" id="fee" value="{{result.fee}}" lay-verify="number" placeholder="请输入参会费" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+			    <div class="layui-input-block">
+			      <div id="feecheck1" onclick="isfee()" class="layui-btn">其他人员已付费</div>
+			      <div id="feecheck2" onclick="notfee()" class="layui-btn layui-btn-primary">未付费</div>
+			    </div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label"> 支付方式</label>
+				<div class="layui-input-inline">
+					<input type="text" name="paytype" value="{{result.paytype}}" placeholder="请输入支付方式" autocomplete="off" class="layui-input">
+				</div>
+				<div class="layui-form-mid layui-word-aux"></div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">付款日期</label>
+				<div class="layui-input-inline">
+					<input type="text" name="paytime" value="{{result.paytime}}" id="paytime" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
+				</div>
+				<div class="layui-form-mid layui-word-aux"></div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">是否签到</label>
+				<div class="layui-input-inline">
+					<select name="isqiandao" id="isqiandao" lay-search="">
+						<option value="1">是</option>
+						<option value="0">否</option>
+					</select>
+					<script>
+						$("#isqiandao").val("{{result.isqiandao}}")
+					</script>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label"> 销售</label>
+				<div class="layui-input-inline">
+					<input type="text" name="salesperson" value="{{result.salesperson}}" placeholder="请输入销售人员" autocomplete="off" class="layui-input">
+				</div>
+				<div class="layui-form-mid layui-word-aux"></div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label"> 部门</label>
+				<div class="layui-input-inline">
+					<!--<select name="sales_bm" id="sales_bm" lay-search="">
+						<option value="XQ">XQ</option>
+						<option value="VAP">VAP</option>
+						<option value="续签">续签</option>
+						<option value="再生汇">再生汇</option>
+						<option value="交易">交易</option>
+					</select>-->
+					<select name="sales_bm" lay-search="">
+						<option value="新签部">新签部</option>
+						<option value="增值部">增值部</option>
+						<option value="续签部">续签部</option>
+						<option value="再生汇">再生汇</option>
+						<option value="交易部">交易部</option>
+					</select>
+					<script>
+						$("#sales_bm").val("{{result.sales_bm}}")
+					</script>
+				</div>
+			</div>
+
+			
+			
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<input type="hidden" name="id" value="{{result.id}}" />
+					<input type="hidden" name="mod" value="1" />
+					<button class="layui-btn" lay-submit="" lay-filter="demo1">保存提交</button>
+					<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    注：打 <span style="color: red;">*</span> 号为必填项。<a href="zshdel.html?id={{result.id}}" onclick="return confirm('确实要删除吗！')" class="layui-btn">删除客户</a>
+				</div>
+			</div>
+		</form>
+		
+		<script>
+			layui.use(['form', 'layedit', 'laydate'], function() {
+				var form = layui.form(),
+					layer = layui.layer
+				//自定义验证规则
+				form.verify({
+					
+				});
+
+
+				//监听提交
+				form.on('submit(demo1)', function(data) {
+					var datalist=data.field;
+					layer.load(2)
+					zzajax("get","save.html",datalist,function(ret){
+						//alert(JSON.stringify(ret))
+						if (ret) {
+							if (ret.err == 'false') {
+								layer.msg("添加成功！");
+								window.close()
+								//window.location='/agentlist.html?backurl={{backurl}}'
+							} else {
+								layer.msg(ret.errkey)
+							}
+						} else {
+							
+						};
+						layer.closeAll('loading');
+					},function(err){
+						alert(JSON.stringify(err))
+						layer.closeAll('loading');
+					});
+					return false;
+				});
+			});
+			$(function(){
+				
+			})
+			var fee={{result.fee}};
+			function isfee(){
+				$("#fee").val(1);
+				$("#fee").hide();
+				$("#feecheck1").removeClass("layui-btn-primary")
+				$("#feecheck2").addClass("layui-btn-primary")
+			}
+			function notfee(){
+				$("#fee").val(fee);
+				$("#fee").show()
+				$("#feecheck1").addClass("layui-btn-primary")
+				$("#feecheck2").removeClass("layui-btn-primary")
+			}
+		</script>
+
+	</body>
+
+</html>

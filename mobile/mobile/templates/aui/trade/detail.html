@@ -1,0 +1,742 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>{{webtitle}}_ZZ91废料移动商务</title>
+		<meta name="keywords" content="废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备">
+		<meta name="description" content="{{list.details_text|safe}}">
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/laytpl.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js" ></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-slide.css" />
+		<style>
+			body{
+				background: #f2f2f2
+			}
+			.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+			.clearfix{height:1%}
+			.clearfix{display:block}
+			.aui-text-main{
+				color:#009900
+			}
+			.aui-bar{
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			.aui-list-item-title a{
+				color: #333
+			}
+			a{
+				color:#333
+			}
+			.navlist{
+				position: fixed;
+				width: 100%;
+				top: 45px;
+				z-index: 2;
+				background: #fff
+			}
+			.navlist li{
+				padding: 5px 0;
+				border-bottom: 1px solid #eee
+			}
+			.navlist .thisnav{
+				color: #009900;
+				border-bottom: 1px solid #009900
+			}
+			.navlist .thisnav a{
+				color: #009900;
+			}
+			.aui-slide-node{
+				display: box;
+				display: -webkit-box;
+				display: -moz-box; 
+				-webkit-box-align:center;
+				-moz-box-align:center; 
+				-moz-box-pack:center;
+				-webkit-box-pack:center;
+			}
+			#aui-slide3 .aui-slide-wrap .aui-slide-node{
+				height: 180px;
+			}
+			#aui-slide4{
+				height: 100%;
+			}
+			.aui-slide-node img{
+				width: auto;
+				height: auto;
+				max-width:100%;
+				max-height:100%;
+			}
+			.aui-slide-page-wrap{
+				z-index: 1
+			}
+			footer{
+				position: fixed;
+				bottom: 0;
+				width: 100%;
+				background: #f2f2f2;
+				z-index: 2
+			}
+			.footnav>li{
+				height: 53px;
+				padding-top: 8px;
+			}
+			.footnav>li>span{
+				height: 20px;
+				display: inline-block;
+			}
+			.footnav-first{
+				background: #009900;
+				color:#fff;
+			}
+			.footnav-first>p{
+				color:#fff;
+			}
+			.poptele{
+				top: 80px;
+				background: #fff;
+				padding: 0 0px;
+				width: 280px;
+				border-radius: 0.5rem;
+				display: none;
+			}
+			.poptele-title{
+				height: 40px;
+				line-height: 40px;
+				padding-left: 20px;
+			}
+			.poptele-btnbox{
+				display: none;
+			}
+			.poptele-btnbox>div{
+				border-top: 1px solid #eee;
+				height: 50px;
+				line-height: 50px;
+				border-right: 1px solid #eee
+			}
+			.poptele-btnbox>div:last-child{
+				border-right: none
+			}
+
+			.bigimg-list{
+				position: fixed;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				z-index: 1000;
+				transform:translateY(-100%);
+				-ms-transform:translateY(-100%); 	/* IE 9 */
+				-moz-transform:translateY(-100%); 	/* Firefox */
+				-webkit-transform:translateY(-100%); /* Safari 和 Chrome */
+				-o-transform:translateY(-100%); 	/* Opera */
+
+				transition: transform 0.5s;
+				-moz-transition: transform 0.5s;	/* Firefox 4 */
+				-webkit-transition: transform 0.5s;	/* Safari 和 Chrome */
+				-o-transition: transform 0.5s;	/* Opera */
+
+			}
+			.bigimg-list-down{
+				transform:translateY(0,);
+				-ms-transform:translateY(0); 	/* IE 9 */
+				-moz-transform:translateY(0); 	/* Firefox */
+				-webkit-transform:translateY(0); /* Safari 和 Chrome */
+				-o-transform:translateY(0,); 	/* Opera */
+			}
+			#aui-slide3 .aui-slide-wrap .aui-slide-node{
+				height: 180px;
+				background-color: #000;
+			}
+			.aui-slide-wrap{
+				background-color: #000;
+			}
+			#aui-slide4{
+				height: 100%;
+			}
+
+			.bigimg-list .aui-slide-wrap .aui-slide-node{
+				background: rgba(0,0,0,1);
+			}
+			.j_rclose{
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				z-index: 10
+			}
+			.telbox{
+				line-height: 40px;
+				padding-left: 10px;
+				height: 40px;
+				border-bottom:solid 1px #ebebeb;
+				margin-left: 10px;
+				margin-right: 10px;
+				font-size: 18px;
+			}
+			.telbox:last-child{
+				border-bottom: none;
+			}
+			.aui-iconfont{
+				font-size: 18px;
+			}
+			.pdtdetail img{
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">供应详情</div>
+		    <a class="aui-pull-right zz91share">
+		        <span class="aui-iconfont aui-icon-share"></span>
+		    </a>
+		</header>
+		<div class="topdiv" onclick="pagetotop();"><span class="aui-iconfont aui-icon-top"></span></div>
+		<div style="height: 45px;"></div>
+		<div style="height: 32px;">
+			<ul class="aui-row aui-text-center navlist aui-font-size-14">
+				<li class="aui-col-xs-6 thisnav">供应详情</li>
+				<li class="aui-col-xs-6"><a href="/company/shop{{forcompany_id}}.html">公司简介</a></li>
+			</ul>
+		</div>
+		{%if list.piclist%}
+		<div id="aui-slide3">
+		    <div class="aui-slide-wrap" >
+		    	{%for pic in list.piclist%}
+		        <div class="aui-slide-node bg-dark">
+		            <img src="{{pic.images_big}}" />
+		        </div>
+		        {%endfor%}
+		    </div>
+		    <div class="aui-slide-page-wrap"><!--分页容器--></div>
+		</div>
+		{%endif%}
+
+		<div class="aui-content aui-margin-b-15">
+		    <ul class="aui-list aui-media-list">
+		       	<li class="aui-list-item aui-list-item-middle">
+		       		<div class="aui-media-list-item-inner">
+		       			<div class="aui-list-item-inner aui-text-center">
+		                    {{list.title}}
+		                </div>
+		       		</div>
+		       	</li>
+		       	{%if list.location%}
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner">
+		                <div class="aui-list-item-media aui-font-size-14 aui-padded-r-0" style="width: 5rem;">
+		                    <span class="aui-text-main">货物所在地：</span>
+		                </div>
+		                <div class="aui-list-item-inner">
+		                    <div class="aui-list-item-text">
+		                       {{list.location}}
+		                    </div>
+		                </div>
+		            </div>
+		        </li>
+		        {%endif%}
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner">
+		                <div class="aui-list-item-media aui-font-size-14 aui-padded-r-0" style="width: 5rem;">
+		                    <span class="aui-text-main">发布日期：</span>
+		                </div>
+		                <div class="aui-list-item-inner">
+		                    <div class="aui-list-item-text">
+		                        {{list.refresh_time|safe}}
+		                    </div>
+		                </div>
+		            </div>
+		        </li>
+		        {%if list.expire_time%}
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner">
+		                <div class="aui-list-item-media aui-font-size-14 aui-padded-r-0" style="width: 5rem;">
+		                    <span class="aui-text-main">有 效 &nbsp;&nbsp;期：</span>
+		                </div>
+		                <div class="aui-list-item-inner">
+		                    <div class="aui-list-item-text">
+		                        {{list.expire_time|safe}}
+		                    </div>
+		                </div>
+		            </div>
+		        </li>
+		        {%endif%}
+		        {%if list.price%}
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner">
+		                <div class="aui-list-item-media aui-font-size-14 aui-padded-r-0" style="width: 5rem;">
+		                    <span class="aui-text-main">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</span>
+		                </div>
+		                <div class="aui-list-item-inner">
+		                    <div class="aui-list-item-text">
+		                        {%if list.price%}{%ifequal list.price "0"%}面议或电议{%else%}{%ifequal list.price "0元"%}面议或电议{%else%}{{list.price}}{%endifequal%}{%endifequal%}{%else%}面议或电议{%endif%}
+		                    </div>
+		                </div>
+		            </div>
+		        </li>
+		        {%endif%}
+		        {%if list.quantity%}
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner">
+		                <div class="aui-list-item-media aui-font-size-14 aui-padded-r-0" style="width: 5rem;">
+		                    <span class="aui-text-main">数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：</span>
+		                </div>
+		                <div class="aui-list-item-inner">
+		                    <div class="aui-list-item-text">
+		                        {{list.quantity}}{{list.quantity_unit}}
+		                    </div>
+		                </div>
+		            </div>
+		        </li>
+		        {%endif%}
+		    </ul>
+		</div>
+
+		<div class="aui-content aui-padded-10 pdtdetail" style="background-color: #fff;">
+        	<table border=1 width=100% style='border-color: #536376;border-spacing:0px;border-collapse:collapse'>
+			{%for ll in list.listmore%}
+			{%if ll.content%}
+            <tr><td style='width:30%;padding:5px;border:1px solid #ddd;'>{{ll.property|safe}}：</td><td style='color:#006600;padding:5px;border:1px solid #ddd;'>{{ll.content|safe}}</td> </tr>
+            {%endif%}
+			{%endfor%}
+			</table>
+			<div style="clear: both;"></div>
+			<p style="font-size: 16px;">{{list.details|safe}}</p>
+		</div>
+		
+
+		<div class="aui-content aui-margin-b-15">
+		    <ul class="aui-list aui-media-list">
+		       	<li class="aui-list-item aui-list-item-middle">
+		       		<div class="aui-media-list-item-inner aui-list-item-arrow">
+		       			<div class="aui-list-item-inner aui-text-danger aui-font-size-14">
+		                    <span class="aui-iconfont aui-icon-safe"></span>诚信认证已审核
+		                </div>
+		       		</div>
+		       	</li>
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner aui-list-item-arrow">
+		                <div class="aui-list-item-media aui-font-size-14 aui-padded-r-0" style="width: 4rem;">
+		                    <span class="aui-text-main">公司名称：</span>
+		                </div>
+		                <div class="aui-list-item-inner">
+		                	<a href="/company/shop{{forcompany_id}}.html" target="_blank">
+			                    <div class="aui-list-item-text ">
+			                        {{list.compname}}
+			                    </div>
+			                </a>
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner">
+		                <div class="aui-list-item-media aui-font-size-14 aui-padded-r-0" style="width: 4rem;">
+		                    <span class="aui-text-main">联 系&nbsp;&nbsp;人：</span>
+		                </div>
+		                <div class="aui-list-item-inner">
+		                    <div class="aui-list-item-text">
+		                        {{list.contact}}
+		                    </div>
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-media-list-item-inner">
+		                <div class="aui-list-item-media aui-font-size-14 aui-padded-r-0" style="width: 4rem;">
+		                    <span class="aui-text-main">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：</span>
+		                </div>
+		                
+		                <div class="aui-list-item-inner aui-arrow-right">
+		                	<a href="http://map.baidu.com/mobile/webapp/search/search/qt=s&wd={{list.address}}/vt=map" target="_blank">
+		                    <div class="aui-list-item-text">
+		                        {{list.address}} <span class="aui-iconfont aui-icon-location" style="margin-right: 20px;"></span>
+		                    </div>
+		                   </a>
+		                </div>
+		            </div>
+		        </li>
+		    </ul>
+		</div>
+		<div class="poptele" id="poptele">
+			<div class="poptele-title">请选择拨打电话</div>
+			<div class="aui-content tellist" style="margin-bottom: 0px;">
+		       
+			</div>
+			
+			<div class="aui-row poptele-btnbox aui-text-center aui-text-info m_member">
+				<p style="color:#909090;font-size:13px;margin:10px">如虚假信息、虚假号码等可举报申请退款</p>
+				<div class="aui-col-xs-4 j_clock">关闭</div>
+				<div class="aui-col-xs-4 j_addressbook">加入通讯录</div>
+				<div class="aui-col-xs-4 j_jubao">举报</div>
+			</div>
+			<div class="aui-row poptele-btnbox aui-text-center aui-text-info m_vip">
+				<div class="aui-col-xs-6 j_clock">关闭</div>
+				<div class="aui-col-xs-6 j_addressbook">加入通讯录</div>
+			</div>
+		</div>
+		<table class="jubaobox" style="display: none;margin: 20px;">
+			<tr>
+				<td>您将举报该信息：</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" name="report" value="1" id="report1" /><label for="report1">&nbsp;违法违规</label></td>
+				<td>
+					<input type="checkbox" name="report" value="2" id="report2"/><label for="report2">&nbsp;虚假信息</label></td>
+			</tr>
+			<tr>
+				<td>
+					<input type="checkbox" name="report" value="3" id="report3"/><label for="report3">&nbsp;过期信息</label></td>
+				<td>
+					<input type="checkbox" name="report" value="4" id="report4"/><label for="report4">&nbsp;虚假号码</label> </td>
+			</tr>
+		</table>
+		<script id="info-list" type="text/html">
+			<div class="telbox">
+		        <a href="tel:<%d%>" class="aui-text-info">
+		           <span class="aui-iconfont aui-icon-phone" style="font-size: 22px;"></span> <%d%>
+		        </a>
+	       	</div>
+		</script>
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- 微门户 -->
+		<ins class="adsbygoogle"
+		     style="display:block"
+		     data-ad-client="ca-pub-5512236620584335"
+		     data-ad-slot="8274972003"
+		     data-ad-format="auto"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		<div style="height:45px"></div>
+		<footer>
+			<ul class="aui-row aui-text-center aui-font-size-12 footnav">
+				<li class="aui-col-xs-6 footnav-first j_phone">
+					{%if isseecompany%}
+					<span>{{list.contact}}</span>
+            		<p>{{list.mobile1}}</p>
+            		{%else%}
+            		<button class="aui-btn aui-btn-danger">仅需10元查看</button>
+            		{%endif%}
+				</li>
+				<a>
+				<li class="aui-col-xs-2 j_phone">
+					<span class="aui-iconfont aui-icon-phone"></span>
+            		<p>电话</p>
+				</li>
+				</a>
+				<a href="/leavewords/?company_id={{forcompany_id}}&pdtid={{id}}">
+				<li class="aui-col-xs-2">
+					<span class="aui-iconfont aui-icon-comment"></span>
+            		<p>留言</p>
+				</li>
+				</a>
+				<a>
+				<li class="aui-col-xs-2 favorite">
+					<span class="aui-iconfont aui-icon-favor"></span>
+            		<p>收藏</p>
+				</li>
+				</a>
+			</ul>
+		</footer>
+		{%if list.piclist%}
+		<div class="bigimg-list" >
+			<span class="aui-iconfont aui-icon-roundclosefill j_rclose aui-text-danger aui-font-size-20"></span>
+			<div id="aui-slide4">
+			    <div class="aui-slide-wrap" >
+			    	{%for pic in list.piclist%}
+			        <div class="aui-slide-node bg-dark">
+			            <img src="{{pic.images_big}}" />
+			        </div>
+			        {%endfor%}
+			    </div>
+			    <div class="aui-slide-page-wrap"><!--分页容器--></div>
+			</div>
+		</div>
+		{%endif%}
+	<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-slide.js"></script>
+	<script type="text/javascript">
+		$(function(){
+		    var slide3 = new auiSlide({
+		        container:document.getElementById("aui-slide3"),
+		        // "width":300,
+		        "height":180,
+		        "speed":500,
+		        "autoPlay": 0, //自动播放
+		        "loop":true,
+		        "pageShow":true,
+		        "pageStyle":'dot',
+		        'dotPosition':'center'
+		    });
+		    var scroll = new auiScroll({
+		        listen:true,
+		        distance:200 //判断到达底部的距离，isToBottom为true
+		    },function(ret){
+		        if(ret.isToBottom){
+		        }else{
+			        if (ret.scrollTop>150){
+			        	$(".topdiv").fadeIn();
+			        	$(".topdiv").css("bottom","60px");
+			        }else{
+			        	$(".topdiv").fadeOut();
+			        	$(".topdiv").css("bottom","60px");
+			        }
+			        
+		        }
+		
+		    });
+		})
+	    function pagetotop(){
+			$('body').animate( {scrollTop: 0}, 500);
+		}
+	    //大图滚动
+	    $(function(){
+	    	//大图滚动
+	    	var wdHright = $(window).height();
+		    var slide4 = new auiSlide({
+		        container:document.getElementById("aui-slide4"),
+		        // "width":300,
+		        "height":wdHright,
+		        "speed":500,
+		        "autoPlay": 0, //自动播放
+		        "loop":true,
+		        "pageShow":true,
+		        "pageStyle":'dot',
+		        'dotPosition':'center'
+		    })
+	
+		    $("#aui-slide3").on("click",function(){
+		    	$(".bigimg-list").addClass("bigimg-list-down")
+		    })
+		    $(".j_rclose").on("click",function(){
+		    	$(".bigimg-list").removeClass("bigimg-list-down")
+		    })
+	    })
+	
+		
+	    //查看手机
+	    var isseecompany="{{isseecompany}}";
+	    var seeflag=0;
+	    var favoriteflag={{favoriteflag}};
+	    var isjubao="{{list.viptype.vipcheck}}";
+	    $(function(){
+	    	//保存分享数据到本地
+			var title="{{list.title}}";
+			localStorage.setItem("share_title",""+title);
+			localStorage.setItem("share_description","我正在查看"+title+"，赶紧跟我一起来体验！http://m.zz91.com/trade/detail{{id}}.html 点击链接查看");
+			localStorage.setItem("share_url","http://m.zz91.com/trade/detail{{id}}.html");
+			localStorage.setItem("share_pic","http://img0.zz91.com/zz91/images/indexLogo.png");
+		    
+		    $(".j_phone").on("click",function(){
+		    	if (isseecompany=="None"){
+		    		layer.confirm('查看此联系方式需<font color=red>{{paymoney}}</font>元，确定付款？', {
+						btn: ['确定','取消'] //按钮
+					}, function(){
+						lookcontact();
+					}, function(){
+					  	
+					});
+		    	}else{
+		    		lookcontact();
+		    	}
+		    })
+		    
+		    $(".j_clock").on("click",function(){
+		    	layer.closeAll()
+		    })
+		    //加入通信录
+		    $(".j_addressbook").on("click",function(){
+		    	layer.load(2);
+		    	var data={
+		    		forcompany_id:{{forcompany_id}}
+		    	}
+		    	zzajax("get","/myrc/addressbook_join.html",data,function(ret){
+		    		if (ret.err=="login"){
+    					window.location='/login/?done=/trade/detail{{id}}.html';
+    				}else{
+    					if(ret.err=="false"){
+			    			layer.closeAll();
+			    			layer.msg("已经成功加入您的通信录里！");
+			    		}else{
+			    			layer.closeAll();
+			    			layer.msg(ret.errkey)
+			    		}
+    				}
+		    	},function(){})
+		    })
+		    //举报
+		    $(".j_jubao").on("click",function(){
+		    	//layer.load(2);
+		    	layer.open({
+					  type: 1 //此处以iframe举例
+					  ,title: '举报'
+					  //,area: ['390px', '330px']
+					  ,shade: 0
+					  ,maxmin: false
+					  ,content: $(".jubaobox")
+					  ,btn: ['确定举报', '关闭'] //只是为了演示
+					  ,yes: function(){
+					  	jubao()
+					  }
+					  ,btn2: function(){
+					  }
+					  ,zIndex: layer.zIndex //重点1
+					  ,success: function(){
+					  	
+					  }
+				});
+				return;
+		    })
+		    //点击收藏
+			$(".favorite").on("click", function() {
+				var favorite_type_code = "10091006";
+				var data = {
+					datatype : "json",
+					favorite_type_code : favorite_type_code,
+					forcompany_id : {{forcompany_id}},
+					content_id : {{id}},
+					title : "{{list.title}}",
+					pdtid : {{id}},
+					products_type_code : 0,
+					favoriteflag : favoriteflag
+				};
+				shoucInfo(data,"{{host}}");
+				if (favoriteflag==1){
+					favoriteflag=0;
+				}else{
+					favoriteflag=1;
+				}
+				isfavor($(".favorite").find("span"),favoriteflag);
+			})
+			isfavor($(".favorite").find("span"),favoriteflag);
+	    })
+	    function jubao(){
+	    	var chk_value =[];    
+			$('input[name="report"]:checked').each(function(){    
+				chk_value.push($(this).val());    
+			});
+	    	var data={
+	    		forcompany_id:{{forcompany_id}},
+	    		product_id:{{id}},
+	    		chk_value:chk_value
+	    	}
+	    	layer.load(2)
+	    	zzajax("get","/trade/pro_report.html",data,function(ret){
+	    		if (ret.err=="login"){
+					window.location='/login/?done=/trade/detail{{id}}.html';
+					layer.closeAll();
+				}else{
+					if(ret.err=="false"){
+		    			layer.closeAll();
+		    			layer.msg("您已举报成功，我们会在三个工作日内核查（节假日自动顺延），如核查如实，将会返还您的金额。");
+		    		}else{
+		    			layer.closeAll();
+		    			layer.msg(ret.errkey)
+		    		}
+				}
+	    	},function(){})
+	    }
+	    function lookcontact(){
+	    	//已经打开
+	    	if (isjubao=="1"){
+	    		$(".m_vip").show();
+	    		$(".m_member").hide();
+	    	}else{
+	    		$(".m_member").show();
+	    		$(".m_vip").hide();
+	    	}
+	    	if (seeflag==1){
+	    		layer.open({
+					type: 1,
+					title: false,
+					closeBtn: 0, //不显示关闭按钮
+					shadeClose: true,
+					shade: 0.4,
+					anim: 2,
+					content: $("#poptele") //iframe的url
+				});
+				
+	    		return;
+	    	}
+	    	layer.load(2)
+	    	var data={
+	    		forcompany_id:{{forcompany_id}},
+	    		paytype:1
+	    	}
+	    	zzajax("get","/trade/viewcontact.html",data,function(ret){
+	    		if (ret.err=='true'){
+	    			layer.closeAll();
+	    			if (ret.type=="login"){
+	    				window.location='/login/?done=/trade/detail{{id}}.html'
+	    			}else{
+	    				layer.msg(ret.errkey);
+	    				if (ret.type=='viewcontact'){
+	    					yuebuzuFun();
+	    				}
+	    			}
+	    		}else{
+	    			var mobilelist=ret.list.mobilelist;
+	    			var telHtml=''
+	    			$.each(mobilelist, function(n, item) {
+		    			var getTpl = $("#info-list").html();
+		    			item['tel']=item;
+						laytpl(getTpl).render(item, function(html) {
+							telHtml = telHtml + html;
+						});
+					})
+	    			layer.closeAll();
+	    			$(".tellist").html(telHtml)
+	    			layer.open({
+						type: 1,
+						title: false,
+						closeBtn: 0, //不显示关闭按钮
+						shadeClose: true,
+						shade: 0.4,
+						anim: 2,
+						content: $("#poptele") //iframe的url
+					});
+					var ntel="<span>"+ret.list.contact+"</span>";
+	            	ntel+="<p>"+ret.list.mobile1+"</p>";
+					$(".footnav-first").html(ntel);
+					isseecompany=1;
+					seeflag=1
+	    		}
+	    	},function(){})
+	    }
+		$(".zz91share").on("click", function() {
+			layer.open({
+			  type: 2,
+			  title: false,
+				  closeBtn: 0, //不显示关闭按钮
+			  shadeClose: true,
+			  shade: 0.4,
+			  anim: 2,
+			  area: ['90%', '170px'],
+			  content: '/myrc/share.html?p' //iframe的url
+			}); 
+		})
+	</script>
+	{%include 'aui/bottom.html'%}
+	</body>
+</html>

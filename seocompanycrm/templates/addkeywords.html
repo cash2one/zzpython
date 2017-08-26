@@ -1,0 +1,79 @@
+{%extends 'index.html'%}
+{%block content%}
+<br /><br /><br />
+<form action="/addkeywordsok/" method="post"><font color="blue">添加关键字</font><br />
+  <table>
+  <tr><td><table width="500" border="1" cellpadding="5" cellspacing="0">
+    <input type="hidden" name="company_id" value="{{company_id}}" />
+    <tr>
+      <td> 关键字 </td>
+      <td><input type="text" name="keywords" value="{{keywords}}" class="200" />
+        <font color="red">{{error1}}</font></td>
+    </tr>
+    <tr>
+      <td> 开始优化时间 </td>
+      <td><input type="text" name="begintime" value="{{begintime}}" class="w80px tcenter" />
+        <font color="red">{{error2}}</font></td>
+    </tr>
+    <tr>
+      <td> 达标要求   第 </td>
+      <td><input type="text" name="standarddemand" value="{{standarddemand}}" class="w25px" />
+        页 <font color="red">{{error8}}</font></td>
+    </tr>
+    <tr>
+      <td> 商铺地址 </td>
+      <td><input type="text" name="shopsaddress" value="{{shopsaddress}}" class="w80px" />
+        <font color="red">{{error4}}</font></td>
+    </tr>
+    <tr>
+      <td> 计费类型 </td>
+      <td><select id="pricetype" name="chargetype">
+        {%ifequal chargetype "2"%}
+        <option value="2">按天计费</option>
+        <option value="1">包年计费</option>
+        {%else%}
+        <option value="1">包年计费</option>
+        <option value="2">按天计费</option>
+        {%endifequal%}
+      </select></td>
+    </tr>
+    <tr>
+      <td> 购买金额 </td>
+      <td><input type="text" name="price" value="{{price}}" class="w80px" />
+        <font color="red">{{error5}}</font></td>
+    </tr>
+    <tr id="{%ifequal chargetype "2"%}price2{%else%}price1{%endifequal%}">
+      <td >年数 </td>
+      <td><input type="text" name="years" value="{%if years%}{{years}}{%endif%}" class="w35px" />
+        年 <font color="red">{{error14}}</font></td>
+    </tr>
+    <tr id="{%ifequal chargetype "2"%}price1{%else%}price2{%endifequal%}">
+      <td>单价 </td>
+      <td><input type="text" name="unit_price" value="{%if unit_price%}{{unit_price}}{%endif%}" class="w35px" />
+        元/天<font color="red">{{error16}}</font></td>
+    </tr>
+    <tr>
+      <td> {%ifequal usertype "seouser"%}
+        优化人 </td>
+      <td>{{seouser_name}}
+        <input type="hidden" name="seouser_id" value="{{seouser_id}}" />
+        {%else%}
+        优化人 </td>
+      <td><select name="seouser_id">
+        {%if seouser_id%}
+        <option value="{{seouser_id}}">{{seouser_name}}</option>
+        {%endif%}{%for seo in seouser%}
+        <option value="{{seo.id}}">{{seo.name}}</option>
+        {%endfor%}
+      </select>
+        {%endifequal%} </td>
+    </tr>
+    <tr>
+      <td><input type="submit" value="确认添加" /></td>
+      <td><input type="button" value="返回" onclick="window.location='/company/'" /></td>
+    </tr>
+  </table>
+  </tr>
+  </table>
+</form>
+{%endblock%}

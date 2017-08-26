@@ -1,0 +1,55 @@
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+body {
+	margin-left: 5px;
+	margin-top: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+-->
+</style>
+{{frompageCount}},{{limitNum}},{{nowpage}}<br>
+{{sql}}
+<table width="100%" border="0" cellspacing="1" cellpadding="4" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#CCCCCC">供求</td>
+    <td bgcolor="#CCCCCC">标题</td>
+    <td bgcolor="#CCCCCC">内容</td>
+    <td bgcolor="#CCCCCC">状态</td>
+    <td bgcolor="#CCCCCC">刷新时间</td>
+    <td bgcolor="#CCCCCC">过期时间</td>
+    <td bgcolor="#CCCCCC">标签</td>
+  </tr>
+  {%for list in listall%}
+  <tr>
+    <td bgcolor="#FFFFFF">{{list.products_type}}</td>
+    <td bgcolor="#FFFFFF">{{list.title}}</td>
+    <td bgcolor="#FFFFFF"><pre>{{list.details|safe}}</pre></td>
+    <td bgcolor="#FFFFFF">{{list.status}}</td>
+    <td bgcolor="#FFFFFF">{{list.refresh_time}}</td>
+    <td bgcolor="#FFFFFF">{{list.expire_time}}</td>
+    <td bgcolor="#FFFFFF">{{list.tags}}</td>
+  </tr>
+  {%endfor%}
+</table>
+<div class='pageBar'>
+		{% if firstpage %}
+		<a href="?page=1&companyId={{companyId}}" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+		<a href="?page={{prvpage}}&companyId={{companyId}}" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+		{% endif %}
+		{% for p in page_range %}
+		{% if p.nowpage %}
+		<span class="cpb" style="margin-right:5px;">{{p.number}}</span>
+		{% else %}
+		<a href="?page={{p.number}}&companyId={{companyId}}" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+		{% endif %}
+		{% endfor %}
+		&nbsp;
+		{% if lastpage%}
+		<a href="?page={{nextpage}}&companyId={{companyId}}" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+		<a href="?page={{lastpage}}&companyId={{companyId}}" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+		{% endif %}
+</div>

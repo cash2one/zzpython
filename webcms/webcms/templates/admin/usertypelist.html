@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/style.css" />
+</head>
+<body>
+<form class="form-inline definewidth m20" action="index.html" method="get">  
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>帐号</th>
+        <th>栏目</th>
+    </tr>
+    </thead>
+<form action="updateuserok.html">
+<input type="hidden" name="typeid" value="{{typeid}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+    {%for list in listall%}
+	     <tr>
+	        <td>{{list.id}}</td>
+	        <td>{{list.user_id}}</td>
+	        <td>{{list.typename}}</td>
+        </tr>
+     {%endfor%}
+</form>
+</table>
+{%include 'common/turnpage.html'%}
+</body>
+</html>

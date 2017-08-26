@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+ 
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="Csss/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Csss/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Csss/style.css" />
+    <script type="text/javascript" charset="utf-8" src="ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="editor_api.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lang/zh-cn/zh-cn.js"></script>
+    <style type="text/css">
+        body{
+            font-size:14px;
+        }
+    </style>
+    <script>
+    $("#myEditor").("#table").removeAttr("style").removeAttr("border");
+    </script>
+</head>
+<body>
+    <form method="post" action="addarticalok.html">
+    {%if artid%}<input type="hidden" name="artid" value="{{artid}}">{%endif%}
+    <table class="table table-bordered table-hover m10">
+    <tr>
+        <td class="tableleft">标题</td>
+        <td><input type="text" name="title" value="{{artdetail.title}}"></td>
+    </tr>
+    <tr>
+        <td class="tableleft">类别</td>
+        <td><select name="typeid">
+    {%if artdetail.typeid%}<option value="{{artdetail.typeid}}">{{artdetail.typename}}</option>{%endif%}
+    <option value="">请选择...</option>{%for type in typelist%}
+    <option value="{{type.id}}">{{type.name}}</option>{%endfor%}
+    </select></td>
+    </tr>
+    <tr>
+        <td class="tableleft">点击数</td>
+        <td><input type="text" name="click" value="{%if artdetail.click%}{{artdetail.click}}{%else%}10{%endif%}"></td>
+    </tr>
+    <tr>
+        <td class="tableleft">作者</td>
+        <td><input type="text" name="editor" {%if artdetail.editor%}value="{{artdetail.editor}}"{%endif%}></td>
+    </tr>
+    <tr>
+        <td class="tableleft">发布时间</td>
+        <td><input type="text" name="pubdate" {%if pubdate%}value="{{pubdate}}"{%endif%} readonly="readonly"></td>
+    </tr>
+ 	<tr>
+ 	<td><td>
+    <script type="text/plain" id="myEditor" name="myEditor">
+    {{artdetail.content|safe}}
+    </script>
+    </td>
+    </tr>
+    
+    <tr>
+        <td class="tableleft"></td>
+        <td>
+    </form>
+            <button type="submit" class="btn btn-primary" type="button">保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" onClick="window.location.href='returnpage.html'">返回列表</button>
+        </td>
+    </tr>
+</table>
+    
+	<script>
+		var ue=new UE.ui.Editor();
+		ue.render('content');
+	</script>
+    <script type="text/javascript">
+        var editor_a = UE.getEditor('myEditor',{initialFrameHeight:300,initialFrameWidth:1000});
+    </script>
+</body>
+</html>
+

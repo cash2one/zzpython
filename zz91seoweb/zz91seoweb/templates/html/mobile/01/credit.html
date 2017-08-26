@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>诚信档案-{{list.name}}</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+<script src="{{htmlincludes.img}}js/jquery.js"></script>
+<script src="{{htmlincludes.img}}js/index.js"></script>
+</head>
+<body>
+{%include "html/mobile/01/top.html"%}
+<div class="phoneInfo">
+	<img src="{{htmlincludes.img}}images/archives.jpg" />诚信档案
+</div>
+<!--end phoneInfo-->
+
+<div class="archives">
+	<div class="archives-title">
+    	企业荣誉证书
+    </div>
+    <!--end archives-title-->
+    <div class="archives-img">
+    	<div style="line-height:30px; font-size:14px; padding-top:30px;">ZZ91再生网金牌品牌通会员证书</div>
+        <div style="text-align:left; margin-left:auto; margin-right:auto; width:400px; line-height:25px;">
+        	<br />贵单位： {{list.name}}<br />
+&nbsp;&nbsp;&nbsp;&nbsp;向ZZ91再生网（www.zz91.com）提交的{{list.viptype.vipname}}会员服务申请已经获得批准，将在服务有效期内全面享受ZZ91再生网会员服务。
+<br />特此声明
+<br /><br />
+注：此证书仅证明贵单位有权在服务期内使用ZZ91再生网会员服务。
+        </div>
+    </div>
+    <!--end archives-img-->
+</div>
+<!--end archives-->
+
+<div class="archives">
+	<div class="archives-title">
+    	诚信指数
+    </div>
+    <!--end archives-title-->
+    <table class="archives-table">
+    	<tr>
+        	<td colspan="3" style="height:40px;text-align:left;padding-left:10px">{%if integral%}诚信指数：{{integral}}{%endif%}</td>
+        </tr>
+        <tr>
+        	<td>积分项</td>
+            <td>积分数</td>
+            <td>积分详情</td>
+        </tr>
+        <tr>
+        	<td>企业身份认证</td>
+            <td>0分</td>
+            <td>身份<span style="color:#f00">{%if check_status%}{%if checks%}[已认证]{%else%}[待认证]{%endif%}{%else%}[待认证]{%endif%}</span></td>
+        </tr>
+        <tr>
+        	<td>再生通年限</td>
+            <td>{{zst_year_grade}}分</td>
+            <td>{{zst_year}}年</td>
+        </tr>
+        <tr>
+        	<td>证书荣誉</td>
+            <td>{{certificatefile}}分</td>
+            <td>过期证书<span style="color:#f00">{{certificatefile2}}</span>张</td>
+        </tr>
+    </table>
+</div>
+<!--end archives-->
+
+<div class="archives">
+	<div class="archives-title">
+    	企业自传资质
+    </div>
+    <!--end archives-title-->
+    <div class="archives-text">
+    	该客户暂时还未上传资质， <a href="#">提醒他</a>！
+    </div>
+    <!--end archives-text-->
+</div>
+<!--end archives-->
+
+<div class="phoneRuturntop">
+	<img src="{{htmlincludes.img}}images/ruturn_top.jpg" class="fr" onclick="bookmarks();" />
+    <div class="cb"></div>
+</div>
+<!--phoneRuturntop-->
+{%include "html/mobile/01/foot.html"%}
+<!--end phoneFooter-->
+</body>
+</html>

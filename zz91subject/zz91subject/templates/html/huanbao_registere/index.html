@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>免费注册-环保网</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="css/successfully.css"/>
+<!--[if gte IE 7]>
+    <link href="css/aero.css" rel="stylesheet" />
+<!--<![endif]-->
+<!--[if lt IE 7]>
+    <link href="css/default.css" rel="stylesheet" />
+<![endif]-->
+<script src="http://img0.huanbao.com/lib/jquery/jquery-1.8.0.min.js"></script>	
+<script src="formvalidator/formValidator-4.1.1.js" type="text/javascript" charset="UTF-8"></script>
+<script src="formvalidator/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
+<script language="javascript" src="formvalidator/DateTimeMask.js" type="text/javascript"></script>
+
+
+</head>
+<script type="text/javascript">
+$(document).ready(function(){
+	$.formValidator.initConfig({theme:"126",submitOnce:true,formID:"form1",
+		onError:function(msg){alert(msg);},
+		submitAfterAjaxPrompt : '有数据正在异步验证，请稍等...'
+	});
+	$("#us").formValidator({onShowFixText:"6~12个字符，包括字母、数字、下划线，以字母开头，字母或数字结尾",onShowText:"请输入用户名",onShow:"请输入用户名,只有输入\"maodong\"才是对的",onCorrect:"该用户名可以注册"}).inputValidator({min:6,max:12,onError:"你输入的用户长度不正确,请确认"}).regexValidator({regExp:"username",dataType:"enum",onError:"用户名格式不正确"})
+	    .ajaxValidator({
+		dataType : "html",
+		async : true,
+		url : "http://www.51gh.net/chkuser.aspx?act=ok",
+		success : function(data){
+            if( data.indexOf("此用户名可以注册!") > 0 ) return true;
+            if( data.indexOf("此用户名已存在,请填写其它用户名!") > 0 ) return false;
+			return false;
+		},
+		buttons: $("#button"),
+		error: function(jqXHR, textStatus, errorThrown){alert("服务器没有返回数据，可能服务器忙，请重试"+errorThrown);},
+		onError : "该用户名不可用，请更换用户名",
+		onWait : "正在进行合法性校验，请稍候..."
+	});
+	$("#email").formValidator({onShowFixText:"6~18个字符，包括字母、数字、下划线，以字母开头，字母或数字结尾",onShow:"请输入邮箱",onFocus:"邮箱6-100个字符,输入正确了才能离开焦点",onCorrect:"恭喜你,你输对了",defaultValue:"@"}).inputValidator({min:6,max:100,onError:"你输入的邮箱长度非法,请确认"}).regexValidator({regExp:"^([\\w-.]+)@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.)|(([\\w-]+.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(]?)$",onError:"你输入的邮箱格式不正确"});
+	$("#password1").formValidator({onShowFixText:"6~16个字符，包括字母、数字、特殊符号，区分大小写",onShow:"请输入密码",onFocus:"至少1个长度",onCorrect:"填写正确"}).inputValidator({min:6,max:16,empty:{leftEmpty:false,rightEmpty:false,emptyError:"密码两边不能有空符号"},onError:"密码长度错误,请确认"}).passwordValidator({compareID:"us"});
+	$("#password2").formValidator({onShowFixText:"请再次输入密码",onShow:"输再次输入密码",onFocus:"至少1个长度",onCorrect:"密码一致"}).inputValidator({min:1,empty:{leftEmpty:false,rightEmpty:false,emptyError:"重复密码两边不能有空符号"},onError:"重复密码不能为空,请确认"}).compareValidator({desID:"password1",operateor:"=",onError:"2次密码不一致,请确认"});
+	$("#tel").formValidator({onShowFixText:"建议您输入常用手机号，以便及时获得客户电话询盘",onShow:"请输入手机号码",onFocus:"手机的长度必须是11位",onCorrect:"填写正确"}).inputValidator({min:11,max:11,onError:"手机号码必须为11位,请确认"}).regexValidator({regExp:"mobile",dataType:"enum",onError:"手机的格式不正确"});
+	$("#realname").formValidator({onShow:"请输入真实姓名",onFocus:"请输入名字",onCorrect:"填写正确"}).inputValidator({min:4,max:16,onError:"请输入名字"});
+	$("#position").formValidator({onShow:"请输入职位",onCorrect:"填写正确"}).inputValidator({min:4,max:16,onError:"请输入职位"});
+	$("#address").formValidator({onShow:"请输入详细地址",onCorrect:"填写正确"}).inputValidator({min:4,max:100,onError:"请输确地址"});
+	$("#CompanyName").formValidator({onShow:"请输入公司名称",onFocus:"请输入公司名称",onCorrect:"填写正确"}).inputValidator({min:4,max:100,onError:"请输入公司名称"});
+	$("#postcode").formValidator();
+	$("#product").formValidator({onShow:"请输入主营产品",onFocus:"请输入主营产品",onCorrect:"填写正确"}).inputValidator({min:4,max:100,onError:"请输入主营产品"});
+	$("#Verification").formValidator({onShow:"请输入验证码",onFocus:"请输入验证码",onCorrect:"填写正确"}).inputValidator({min:4,max:100,onError:"请输入验证码"});
+	$("#company").formValidator({onShow:"请选择公司类型",onFocus:"请选择公司类型",onCorrect:"填写正确"}).inputValidator({min:2,max:100,onError:"请选择公司类型"});
+	$("#industry").formValidator({onShow:"请选择所处行业",onFocus:"请选择所处行业",onCorrect:"填写正确"}).inputValidator({min:2,max:100,onError:"请选择所处行业"});
+	$("#phone").formValidator();
+	$("#qq").formValidator();	
+	$("#countries").formValidator({onShow:"请选择你的国家地区",onFocus:"国家地区必须选择",onCorrect:"填写正确",onShowText:"请输入用户名"}).inputValidator({min:4,onError: "请选择国家地区"}).defaultPassed();
+	$("#regions").formValidator({onShow:"请选择你的城市",onFocus:"城市必须选择",onCorrect:"填写正确",onShowText:"请输入用户名"}).inputValidator({min:4,onError: "请选择城市"}).defaultPassed();
+	
+	
+    $("#ms").formValidator({onShowFixText:"",onShowText:"可填写主营业务，公司规模等方面信息，展示贵公司优势，吸引客户，获得更多商机",ajax:true,onShow:"请输入你的描述",onFocus:"描述至少要输入10个汉字或20个字符",onCorrect:"填写正确",defaultValue:"可填写主营业务，公司规模等方面信息，展示贵公司优势，吸引客户，获得更多商机"}).inputValidator({min:1,onError:"请输入公司简介"});
+});
+</script>
+<script src="js/artDialog.min.js"></script>
+<script src="js/successfully.js"></script>
+<body>
+
+<div class="successfully">
+	<div class="sf-title">
+    	<div class="title-left">
+    		欢迎加入中国环保网！
+        	<span class="title-left-register">免费注册：</span>
+        </div>
+        <div class="title-right" style="background:url(images/successfully-img3.jpg) no-repeat">
+        	<span class="title-right-info white">填写有效注册信息</span>
+        	<span class="black">发布成功</span>
+        </div>
+    </div>
+    <!--end successfully-title-->
+   	<div class="sf-left">
+    	<div class="sf-left-title">以下<span class="red">*</span>为必填项</div>
+        <form action="" method="post" name="form1" id="form1">
+  
+  
+    
+<br />
+  <table border="0px" style="font-size:12px" width="710px" class="sf-table">
+  	<tr> 
+      <td align="right">注册类型<span class="sf-item-must">*</span></td>
+      <td><input name="Sf_Radio" type="radio" class="sf-radio" id="SfRadio0" value="" checked="checked" /><label class="" onClick="SfRadio(0,0)">卖家</label>
+          <input name="Sf_Radio" type="radio" class="sf-radio" id="SfRadio1" value="" /><label class="" onClick="SfRadio(1,0)">买家</label></td>
+      <td><div id="" style="width:280px"></div></td>
+    </tr>
+    <tr> 
+      <td align="right" class="sf-table-info" colspan="3">设置您的账户信息 :</td>
+    </tr>
+    <tr> 
+      <td align="right">用户名<span class="sf-item-must">*</span></td>
+      <td><input type="text" id="us" name="us" style="width:220px;_height:24px;_line-height:24px" value="maodong" /></td>
+      <td><div id="usTip" style="width:280px"></div></td>
+    </tr>
+    <tr>
+      <td align="right">&nbsp;</td>
+      <td colspan="2" valign="top"><div id="usFixTip">6~12个字符，包括字母、数字、下划线，以字母开头，字母或数字结尾</div></td>
+    </tr>
+    <tr> 
+      <td align="right">密码<span class="sf-item-must">*</span></td>
+      <td><input type="password" id="password1" name="password1" style="width:220px;_height:24px;_line-height:24px" value="maodong" /></td>
+      <td><div id="password1Tip" style="width:280px"></div></td>
+    </tr>
+    <tr>
+      <td align="right">&nbsp;</td>
+      <td colspan="2" valign="top"><div id="password1FixTip">6~16个字符，包括字母、数字、特殊符号，区分大小写</div></td>
+    </tr>
+    <tr>
+      <td align="right">确认密码<span class="sf-item-must">*</span></td>
+      <td><input type="password" id="password2" name="password2" style="width:220px;_height:24px;_line-height:24px" value="maodong" /></td>
+      <td><div id="password2Tip" style="width:280px"></div></td>
+    </tr>
+    <tr>
+      <td align="right">&nbsp;</td>
+      <td colspan="2" valign="top"><div id="password2FixTip">请再次输入密码</div></td>
+    </tr>
+    <tr> 
+      <td align="right">邮件地址<span class="sf-item-must">*</span></td>
+      <td><input type="text" id="email" name="email" style="width:220px;_height:24px;_line-height:24px" value="maodong" /></td>
+      <td><div id="emailTip" style="width:280px"></div></td>
+    </tr>
+    <tr>
+      <td align="right">&nbsp;</td>
+      <td colspan="2" valign="top"><div id="emailFixTip">6~18个字符，包括字母、数字、下划线，以字母开头，字母或数字结尾</div></td>
+    </tr>
+    <tr> 
+      <td align="right" class="sf-table-info" colspan="3">设置您的账户信息 :</td>
+    </tr>
+    <tr> 
+      <td align="right">真实姓名<span class="sf-item-must">*</span></td>
+      <td><input type="text" id="realname" name="realname" style="width:220px;margin-bottom:8px;_height:24px;_line-height:24px" value="maodong" />
+      	  <input name="Name_Radio" type="radio" class="sf-radio" id="NameRadio0" value="" checked="checked" /><label class="" onClick="SfRadio(0,1)">先生</label>
+          <input name="Name_Radio" type="radio" class="sf-radio" id="NameRadio1" value="" /><label class="" onClick="SfRadio(1,1)">女士</label></td>
+      <td><div id="realnameTip" style="width:280px"></div></td>
+    </tr>
+    <tr> 
+      <td align="right">手机<span class="sf-item-must">*</span></td>
+      <td><input type="text" id="tel" name="tel" style="width:220px;_height:24px;_line-height:24px" /></td>
+      <td><div id="telTip" style="width:280px"></div></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">&nbsp;</td>
+      <td colspan="2" valign="top"><div id="telFixTip">建议您输入常用手机号，以便及时获得客户电话询盘 </div></td>
+    </tr>
+    <tr> 
+      <td align="right">电话<span class="sf-item-must"></span></td>
+      <td><input type="text" id="phone" name="phone" style="width:220px;_height:24px;_line-height:24px" /></td>
+    </tr>
+    <tr> 
+      <td align="right">Q&nbsp;Q<span class="sf-item-must"></span></td>
+      <td><input type="text" id="qq" name="qq" style="width:220px;margin:8px 0;_height:24px;_line-height:24px" /></td>
+    </tr>
+    <tr> 
+      <td align="right">职位<span class="sf-item-must">*</span></td>
+      <td><input type="text" id="position" name="position" style="width:220px;margin-bottom:8px;_height:24px;_line-height:24px" /></td>
+      <td><div id="positionTip" style="width:280px"></div></td>
+    </tr>
+	<tr> 
+      <td align="right">国家地区<span class="sf-item-must">*</span></td>
+      <td style="position:relative;z-index:100">
+      		<input type="text" id="countries" name="countries" style="width:120px;_height:24px;_line-height:24px;margin-right:4px;margin-top:8px;background:url(images/select_icon.jpg) no-repeat 108px 2px; cursor:pointer" readOnly="true" />
+            <div class="select1-block" style="width:128px" id="countries-block">
+            	<ul>
+                	<li>浙江</li>
+                    <li>杭州</li>
+                    <li>浙江</li>
+                    <li>杭州</li>
+                    <li>浙江</li>
+                    <li>杭州</li>
+                </ul>
+            </div>
+            <input type="text" id="regions" name="regions" style="width:120px;_height:24px;_line-height:24px;margin-right:4px;margin-top:8px;background:url(images/select_icon.jpg) no-repeat 108px 2px; cursor:pointer" readOnly="true" />
+            <div class="select1-block" style="left:138px;width:128px" id="regions-block">
+            	<ul>
+                	<li>浙江</li>
+                    <li>杭州</li>
+                    <li>浙江</li>
+                    <li>杭州</li>
+                    <li>浙江</li>
+                    <li>杭州</li>
+                </ul>
+            </div>
+      </td>
+      
+      <td><div id="countriesTip" style="width:280px"></div><div id="regionsTip" style="width:280px"></div></td>
+    </tr>
+	<tr> 
+      <td align="right">详细地址<span class="sf-item-must">*</span></td>
+      <td><input type="text" id="address" name="address" style="width:220px;margin:8px 0;_height:24px;_line-height:24px;" /></td>
+      <td><div id="addressTip" style="width:280px"></div></td>
+    </tr>
+	<tr> 
+      <td align="right">邮编<span class="sf-item-must"></span></td>
+      <td><input type="text" id="postcode" name="postcode" style="width:220px;_height:24px;_line-height:24px;" /></td>
+    </tr>
+    <tr> 
+      <td align="right" class="sf-table-info" colspan="3">公司名称和主营业务 :</td>
+    </tr>
+    <tr> 
+      <td align="right">公司名称<span class="sf-item-must">*</span></td>
+      <td><input type="text" id="CompanyName" name="CompanyName" style="width:220px;_height:24px;_line-height:24px;" /></td>
+      <td><div id="CompanyNameTip" style="width:280px"></div></td>
+    </tr>
+    <tr> 
+      <td align="right">所处行业<span class="sf-item-must">*</span></td>
+      <td style="position:relative;z-index:100">
+      		<input type="text" id="industry" name="industry" style="width:220px;;_height:24px;_line-height:24px;margin-top:8px;background:url(images/select_icon.jpg) no-repeat 208px 2px; cursor:pointer" readOnly="true" />
+            <div class="select1-block" id="industry-block">
+            	<ul>
+                	<li>浙江</li>
+                    <li>杭州</li>
+                    <li>浙江</li>
+                    <li>杭州</li>
+                    <li>浙江</li>
+                    <li>杭州</li>
+                </ul>
+            </div>
+      </td>
+      <td><div id="industryTip" style="width:280px"></div></td>
+    </tr>
+    <tr> 
+      <td align="right">主营产品<span class="sf-item-must">*</span></td>
+      <td><input type="text" id="product" name="product" style="width:220px;margin-top:8px;_height:24px;_line-height:24px;" /></td>
+      <td><div id="productTip" style="width:280px"></div></td>
+    </tr>
+    <tr> 
+      <td align="right">公司类型<span class="sf-item-must">*</span></td>
+     <td style="position:relative">
+      		<input type="text" id="company" name="company" style="width:220px;_height:24px;_line-height:24px;;margin-top:8px;background:url(images/select_icon.jpg) no-repeat 208px 2px; cursor:pointer" readOnly="true" />
+            <div class="select1-block" id="company-block">
+            	<ul>
+                	<li>浙江</li>
+                    <li>杭州</li>
+                    <li>浙江</li>
+                    <li>杭州</li>
+                    <li>浙江</li>
+                    <li>杭州</li>
+                </ul>
+            </div>
+      </td>
+      <td><div id="companyTip" style="width:280px"></div></td>
+    </tr>
+    <tr> 
+      <td align="right" valign="top">公司简介<span class="sf-item-must">*</span></td>
+      <td colspan="2" valign="top"> <textarea id="ms" name="ms" cols="50" rows="5"  class="sf-textarea"></textarea>      </td>
+    </tr>
+    <tr> 
+      <td colspan="3" style="padding-left:60px"><div id="msTip" style="width:280px"></div></td>
+    </tr>
+    <tr> 
+      <td align="right">验证码<span class="sf-item-must">*</span></td>
+      <td><input type="text" id="Verification" name="Verification" style="width:80px;_height:24px;_line-height:24px;" /></td>
+      <td><div id="VerificationTip" style="width:280px"></div></td>
+    </tr>
+  </table>
+  
+  <input type="submit" name="button" class="sf-table-button" id="button" value="同意以下条款，确定提交注册" />
+ 
+</form>
+
+    </div>
+    <!--end sf-left-->
+    <div class="sf-right">
+    	<div class="sf-right-prompt">
+        	为什么要注册环保网会员?
+            <ul>
+            	<li>获得优质货源信息</li>
+            	<li>浏览最新市场行情</li>
+            	<li>建立个性化企业网站</li>
+            	<li>拓展全球商业人脉</li>
+            </ul>
+        </div>
+        <!--end sf-right-prompt-->
+        <div class="sf-right-prompt" style="border:0">
+        	为什么要邮箱验证?
+            <ul>
+            	<li>邮箱验证完全免费</li>
+            	<li>可以用邮箱找回密码</li>
+            	<li>支持邮箱账号登陆</li>
+            	<li>可用于订阅最新行情资讯</li>
+            </ul>
+        </div>
+        <!--end sf-right-prompt-->
+    </div>
+    <!--end sf-right-->
+    <div style="clear:both"></div>
+    
+<link href="css/default.css" rel="stylesheet" />
+
+  <div class="sf-service">
+  	<<中国环保网服务条款>>
+  </div>
+  
+  <!--end service-->
+</div>
+<!--end main-->
+
+
+</body>
+</html>

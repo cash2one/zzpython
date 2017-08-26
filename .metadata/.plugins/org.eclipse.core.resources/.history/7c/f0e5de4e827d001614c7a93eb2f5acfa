@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+    <style type="text/css">
+        .aui-list-item.wechat-top {
+            background-color: #f3f3f7;
+        }
+        .aui-list .wechat-avatar {
+            width:3rem;
+        }
+        .wechat-avatar .aui-row-padded {
+            background-color: #dddee0;
+            padding: 0.1rem;
+            border-radius: 0.2rem;
+            margin-left: -0.05rem;
+            margin-right: -0.05rem;
+        }
+        .wechat-avatar .aui-row-padded [class*=aui-col-xs-] {
+            padding: 0.05rem;
+        }
+        .wechat-avatar,
+        .wechat-avatar > img {
+            border-radius:0.2rem;
+        }
+    </style>
+</head>
+<body>
+	<div class="aui-content aui-margin-b-15">
+		<script id="info-list" type="text/html">
+        <li class="aui-list-item aui-list-item-middle remen" typename="{{d.typename}}">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media wechat-avatar">
+                    <div class="aui-badge noreadnews" style="display: {{d.display}}">{{d.piclist.noreadcount}}</div>
+                    <img src="{{d.piclist.pic}}" />
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">{{d.typename}}</div>
+                        <div class="aui-list-item-right">{{d.piclist.pubdate}}</div>
+                    </div>
+                    <div class="aui-list-item-text aui-font-size-12">
+                        {{d.piclist.title}}
+                    </div>
+                </div>
+            </div>
+        </li>
+        </script>
+        <ul class="aui-list aui-media-list">
+            <!--<li class="aui-list-item wechat-top">
+                <div class="aui-media-list-item-inner">
+                    <div class="aui-list-item-label-icon">
+                        <i class="aui-iconfont aui-icon1-mobile"></i>
+                    </div>
+                    <div class="aui-list-item-inner">
+                        Mac 微信已登录
+                    </div>
+                </div>
+            </li>-->
+        </ul>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/iscroll.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+	//页面刷新
+		api.setRefreshHeaderInfo({
+			visible : true,
+			// bgColor: '#F2F2F2',
+			bgColor : '#E6E6E6',
+			textColor : '#000000',
+			textDown : '下拉刷新',
+			textUp : '释放刷新',
+		}, function(ret, err) {
+			currPage = 1;
+			ajaxinfo();
+			api.toast({
+				msg : '数据已是最新！',
+				duration : 3000,
+				location : 'bottom'
+			});
+		});
+		$("body").on("click",".remen",function(){
+			var wintitle=$(this).attr("typename");
+			var pageParam = {
+	          wintitle:wintitle,
+	          type:"remen",
+	          bounces:false,
+	          footerheight:0,
+	        };
+	        //alert(infoid)
+	        openWinNormal("remen","../main/mainlist.html",pageParam);
+        })
+        function ajaxinfo(){
+	        var data={
+				type:"gz",
+			}
+			zzappajax("get",hosturl+"/app/navlist.html?"+ (new Date()).getTime().toString(),data,function(ret){
+				var pageHtml="";
+				$.each(ret, function(index, item) {
+					var noreadnews=item.piclist.noreadcount;
+					alert(noreadnews)
+					if (parseInt(noreadnews)>0){
+						item.display=""
+					}else{
+						item.display="none"
+					}
+					var getTpl = $api.html($api.byId("info-list"));
+					laytpl(getTpl).render(item, function(html) {
+						pageHtml = pageHtml + html;
+					});
+				})
+				$(".aui-list").html(pageHtml)
+				api.refreshHeaderLoadDone();
+			},function(){
+				api.refreshHeaderLoadDone();
+			})
+		}
+		ajaxinfo();
+	};
+</script>
+</html>

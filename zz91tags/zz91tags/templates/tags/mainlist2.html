@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{kname}}_{{kname}}供应_{{kname}}求购_{{kname}}价格行情_{{kname}}回收-ZZ91再生网</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="{{kname}}, {{kname}}价格行情,{{kname}}资讯, {{kname}}供应,{{kname}}求购,出售{{kname}}, {{kname}}回收价格" />
+<meta name="description" content="{{kname}}标签频道为你提供最新最权威的{{kname}}价格行情信息,{{kname}}回收信息,供求{{kname}}信息,以及{{kname}}报价资讯信息等，及时掌握最新行情资讯，让你生意翻倍。" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="/tags/css/index.css"/>
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.hack.css" />
+<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+<link rel="stylesheet" href="http://tags.zz91.com/tags/css/zz91.tags.css" />
+<link rel="stylesheet" href="http://tags.zz91.com/tags/css/zz91.tagslist.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" /> 
+<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+<script src="http://img0.zz91.com/front/js/topbar/jquery.topbar.js"></script>
+<script src="http://img0.zz91.com/front/js/zz91.common.js"></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+{% include 'includes/head.html' %}
+</head>
+<body>
+{% include 'includes/nav.html' %}
+{% include 'includes/lm.html' %}
+<div class="main">
+    <div class="label">
+        <div class="label-title">
+        	标签：<span>{{tags_keywords}}</span>的信息列表: 供求信息<span>{{listcount}}</span>条 报价<span>{{listcount}}</span>条 资讯<span>{{listcount_news}}</span>条
+        </div>
+        <!--end label-title-->
+        <div class="label-nav">
+        	<ul>
+            	<li><a href="/s/{{keywords_hex}}/" target="_blank" style="background:#666;color:#fff">{{tags_keywords}}首页</a></li>
+                <li><a href="/s/{{keywords_hex}}-0-1/" class="off">供应信息</a></li>
+	            <li><a href="/s/{{keywords_hex}}-1-1/" class="off">求购信息</a></li>
+	            <li><a href="/a/{{keywords_hex}}-1/" class="off">行情报价</a></li>
+	            <li><a href="/c/{{keywords_hex}}-1/" class="off">企业报价</a></li>
+	            <li><a href="/b/{{keywords_hex}}-1/" class="off">{{tags_keywords}}资讯</a></li>
+                <div class="cb"></div>
+            </ul>
+        </div>
+        <!--end label-nav-->
+        <div style=""><script type="text/javascript" src="http://gg.zz91.com/show?p=373&keywords={{adkeywords}}"></script></div>
+        <div class="label-it-title">
+        	<div class="label-it-caption">
+            	今日{{tags_keywords}}价格行情信息
+            </div>
+            <div class="label-it-more">
+            	共有{{tags_keywords}}价格行情信息{{listcount_baojia_all}}条  |   <a href="/a/{{keywords_hex}}-1/">更多</a>
+            </div>
+            <div class="cb"></div>
+        </div>
+        <!--end label-ite-title-->
+        <div class="label-list ml10 fl">
+        
+        	{%if havelist_price%}
+        	<div class="newstitle">相关{{tags_keywords}}产品价格行情：共有<span class=red>{{listcount_baojia}}</span>条   <a href="/a/{{keywords_hex}}-1/">查看更多</a></div>
+        	{%else%}
+			<div class="newstitle">最新价格行情信息</div>
+			{%endif%}
+			<ul>
+            {% for list in listall_baojia %}
+			<li>• <a href="http://price.zz91.com/priceDetails_{{list.td_id}}.htm" target=_blank>{{list.td_title}}</a> <span class="t">{{list.td_time}}</span></li>
+			{% endfor %}
+            </ul>
+        </div>
+        
+        <!--end label-list-->
+        <div class="label-list mr10 fr">
+        	<div class="newstitle">相关{{tags_keywords}}产品价格行情：共有<span class=red>386317</span>条   <a href="/a/e7899be79aaee7bab8-1/">查看更多</a></div>
+        	<ul>
+            	{% for list in listall_baojia_company %}
+				<li>• <a href="http://price.zz91.com/companyprice/priceDetails{{list.td_id}}.htm" target=_blank>{{list.td_title}} <font color="#990000">{{list.price}}</font></a> <span class="t">{{list.td_time}}</span></li>
+				{% endfor %}
+            </ul>
+        </div>
+        <!--end label-list-->
+        <div class="cb"></div>
+        <div class="label-it-title">
+        	<div class="label-it-caption">
+            	今日{{tags_keywords}}供应信息
+            </div>
+            <div class="label-it-more">
+            	共有{{tags_keywords}}供应信息{{listcount0}}条  |   <a href="/s/{{keywords_hex}}-0-1/">更多</a>
+            </div>
+            <div class="cb"></div>
+        </div>
+        <!--end label-ite-title-->
+        <div class="label-box">
+            <ul>
+             {% for list in listall %}
+            
+                <li>
+                    <div class="label-box-title">
+                        <div class="label-box-caption">
+                            <a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target="_blank">供应{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}</a>
+                        </div>
+                        <div class="label-box-date">
+                            {{list.pdt_time_en}}
+                        </div>
+                        <div class="label-box-icon">
+                        
+                        {%if list.vipflag.vipcheck%}
+                        {%if list.vipflag.vippic%}
+						<img src="{{list.vipflag.vippic}}" alt="{{list.vipflag.vipname}}"/> <span class="brand">{{list.vipflag.vipname}}</span> 
+						{%endif%}
+						{%else%}
+						普通会员
+						{%endif%}
+                        
+                        </div>
+                        <div class="label-box-date">
+                            {%if list.vipflag.vipcheck%}
+                    <a href="http://{{list.vipflag.vipsubname}}.zz91.com/" target=_blank class="cpy" title="{{list.com_name}}">{{list.com_name|truncatewords:"10"}}</a>
+                    {%else%}
+                    <a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target=_blank  class="cpy" title="{{list.com_name}}">{{list.com_name}}</a>
+					{%endif%}
+                        </div>
+                        <div class="cb"></div>
+                    </div>
+                    <!--end label-box-title-->
+                    <div class="label-box-content">
+                    	<div class="label-box-img">
+                        	<img src="{{list.pdt_images}}" alt="{{list.com_name}}">
+                        </div>
+                        <div class="label-box-text">
+                        	{{list.pdt_detail}}.......
+                        </div>
+                        <div class="cb"></div>
+                    </div>
+                    <!--end label-box-content-->
+                </li>
+             {%endfor%}
+            </ul>
+        </div>
+        
+        
+        <div class="label-it-title">
+        	<div class="label-it-caption">
+            	今日{{tags_keywords}}求购信息
+            </div>
+            <div class="label-it-more">
+            	共有{{tags_keywords}}求购信息{{listcount1}}条  |   <a href="/s/{{keywords_hex}}-1-1/">更多</a>
+            </div>
+            <div class="cb"></div>
+        </div>
+        <!--end label-ite-title-->
+        <div class="label-box">
+            <ul>
+             {% for list in listall1 %}
+            
+                <li>
+                    <div class="label-box-title">
+                        <div class="label-box-caption">
+                            <a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target="_blank">求购{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}</a>
+                        </div>
+                        <div class="label-box-date">
+                            {{list.pdt_time_en}}
+                        </div>
+                        <div class="label-box-icon">
+                        
+                        {%if list.vipflag.vipcheck%}
+                        {%if list.vipflag.vippic%}
+						<img src="{{list.vipflag.vippic}}" alt="{{list.vipflag.vipname}}"/> <span class="brand">{{list.vipflag.vipname}}</span> 
+						{%endif%}
+						{%else%}
+						普通会员
+						{%endif%}
+                        
+                        </div>
+                        <div class="label-box-date">
+                            {%if list.vipflag.vipcheck%}
+							<a href="http://{{list.vipflag.vipsubname}}.zz91.com/" target=_blank class="cpy" title="{{list.com_name}}">{{list.com_name|truncatewords:"10"}}</a>
+							{%else%}
+							<a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target=_blank  class="cpy" title="{{list.com_name}}">{{list.com_name}}</a>
+							{%endif%}
+                        </div>
+                        <div class="cb"></div>
+                    </div>
+                    <!--end label-box-title-->
+                    <div class="label-box-content">
+                    	<div class="label-box-img">
+                        	<img src="{{list.pdt_images}}" title="">
+                        </div>
+                        <div class="label-box-text">
+                        	{{list.pdt_detail}}.......
+                        </div>
+                        <div class="cb"></div>
+                    </div>
+                    <!--end label-box-content-->
+                </li>
+             {%endfor%}
+            </ul>
+        </div>
+
+
+{%if listall_news%}
+        	<div class="label-it-title">
+        	<div class="label-it-caption">
+            	今日{{tags_keywords}}资讯信息
+            </div>
+            <div class="label-it-more">
+            	共有{{tags_keywords}}资讯信息{{listcount_news}}条  |   <a href="/a/{{keywords_hex}}-1/">更多</a>
+            </div>
+            <div class="cb"></div>
+        </div>
+{%if listall_news%}
+                <div class="tags_newsbox ">
+					<ul>
+						{% for list in listall_news %}
+					<li>• <a href='http://huzhu.zz91.com/viewReply{{list.td_id}}.htm' target='_blank' title="{{list.td_title_f}}">{{list.td_title}}</a><span class="t">{{list.td_time}}</span></li>
+						{% endfor %}
+					</ul>
+                    <div class="clearboth"></div>
+                </div>
+                {%endif%}
+        
+{%endif%}
+</div>
+</div>
+{% include 'tags/right.html' %}
+
+{% include 'tags/bottom.html' %}
+</body>
+</html>

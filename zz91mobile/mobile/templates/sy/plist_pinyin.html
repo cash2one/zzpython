@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{pinyin}}类产品搜索(第{{page}}页) - ZZ91再生网</title>
+<meta name="keywords" content="废料产品搜索,A类废料产品, ZZ91再生网" />
+<meta name="description" content="ZZ91再生网产品A类搜索分类板块，按照字母A把各类再生资源供应信息分类，用户可以根据字母分类查询各类发布的供求信息，更多信息可登陆ZZ91再生网（www.ZZ91.com）查看" />
+{%include 'sy/head.html'%}
+<link rel="stylesheet" type="text/css" href="http://pyapp.zz91.com/css/sy/index.index.css"/>
+</head>
+<body>
+{%include 'sy/top.html'%}
+<div class="body">
+	 {%include 'sy/hearder.html'%}
+     <div class="synav">当前位置：<a href="http://www.zz91.com" target="_blank">ZZ91首页</a> > 产品地图</div>
+     <div style="clear:both"></div>
+     <script type="text/javascript">
+	var sogou_ad_id=404782;
+	var sogou_ad_height=60;
+	var sogou_ad_width=960;
+	</script>
+	<script type='text/javascript' src='http://images.sohu.com/cs/jsfile/js/c.js'></script>
+     <h3>按热门关键词字母分类 ({{pinyin}})</h3>
+     <div class="englishcode"><b>按产品字母分类：</b>
+		 {%for p in pinyinlist%}
+		 <a href="p-p{{p}}-1.htm" target="_blank">{{p}}</a>
+		 {%endfor%}
+		 </div>
+     <div style="clear:both"></div>
+     <div class="content">
+     	<ul class="item1">
+		{%for list in productslist%}
+        	<li><a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target="_blank">{{list.pdt_name}}</a></li>
+		{%endfor%}
+            
+        </ul>
+     </div>
+     <div style="clear:both"></div>
+	 <div class="cmore">
+	 {{page}}/{{page_listcount}}
+	 {% if firstpage %}
+	<a href="p-p{{pinyin}}-1.htm" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+	<a href="p-p{{pinyin}}-{{prvpage}}.htm" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+	{% endif %}
+	{% for p in page_range %}
+	{% if p.nowpage %}
+	<span class="red" style="margin-right:5px;font-size:16px;font-weight:bold">{{p.number}}</span>
+	{% else %}
+	<a href="p-p{{pinyin}}-{{p.number}}.htm" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+	{% endif %}
+	{% endfor %}
+	&nbsp;
+	{% if lastpage%}
+	<a href="p-p{{pinyin}}-{{nextpage}}.htm" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+	<a href="p-p{{pinyin}}-{{page_listcount}}.htm" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+	{% endif %}</div>
+</div>
+{%include 'sy/buttom.html'%}
+<script>
+</body>
+</html>

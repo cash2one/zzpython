@@ -1,0 +1,21 @@
+<chart>
+    <data>
+        <indexAxis name="小时">
+            <labels>
+                {%for chart in activeapplist%}{{chart.gmt_date}},{%endfor%}
+            </labels>
+            
+        </indexAxis>
+        
+        <valueAxis name="客户数" unit="个"></valueAxis>
+        <dataSets>
+            <set name="{{ftypename}}">
+                <values>
+                {%for chart in activeapplist%}{{chart.count}},{%endfor%}
+                </values>
+            </set>
+            
+        </dataSets>
+        
+    </data>
+</chart>

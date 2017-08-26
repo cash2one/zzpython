@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>我的留言-{{webtitle}}_ZZ91废料移动商务</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-tab.js"></script>
+		<style>
+			body{
+				background-color: #EBEBEB;
+			}
+			.aui-bar{
+	    		position: fixed;
+	    		z-index: 9999;
+	    		width: 100%;
+	    		top: 0;
+	    		left: 0;
+	    	}
+	    	.aui-content{
+	    		margin-bottom:15px
+	    	}
+	    	.aui-tab{
+	    		position: fixed;
+	    		top:45px;
+	    		z-index: 999;
+	    	}
+			.pop {
+				display: none;
+				margin-top: 80px;
+			}
+			
+			.pop ul {
+				margin-bottom: 0;
+			}
+			
+			.popshow {
+				display: block;
+			}
+			
+			.aui-list-view-cell {
+				padding: 12px;
+			}
+			
+			.aui-tab-item {
+				height: 1.5rem;
+				line-height: 1.5rem;
+			}
+			
+			.aui-tab-item.aui-active {
+				color: #009900;
+				border-bottom: 2px solid #009900;
+			}
+			
+			.xc3 {
+				color: #333;
+			}
+			
+			.aui-bg-genbtn {
+				background: #009900;
+				color: #fff;
+			}
+			/**page**/
+			
+			.page {
+				height: 48px;
+				line-height: 48px;
+				text-align: center;
+				background: #fff;
+				border-top: 1px solid #c0c0c0;
+				border-bottom: 1px solid #c0c0c0;
+				margin-bottom: 0px;
+				font-size: 12px;
+				position: fixed;
+				bottom: 0px;
+				width: 100%;
+			}
+			
+			.page_next {
+				width: 30%;
+				float: left
+			}
+			
+			.page_prev {
+				border-right: 1px solid #c0c0c0;
+				cursor: pointer;
+				width: 30%;
+				float: left
+			}
+			
+			.page_no {
+				border-right: 1px solid #c0c0c0;
+				width: 39%;
+				float: left;
+				height: 48px;
+			}
+			
+			.font-weight {
+				font-weight: bold;
+			}
+			.questioncontent{
+				line-height: 30px;
+			}
+			.questioncontent img{
+				width: 100%;
+			}
+			
+			
+			.aui-content {
+	    		background: #ffffff;
+	    		overflow: hidden;
+	    	}
+	    	.aui-ask-header {
+	    		width: 100%;
+	    		padding: 10px 15px;
+	    		color: #999;
+	    		font-size: 14px;
+	    		overflow: hidden;
+	    		line-height: 32px;
+	    	}
+	    	.ask-avatar {
+	    		float: left;
+	    		width: 32px;
+	    		height: 32px;
+	    		border-radius: 50%;
+	    	}
+	    	.ask-nickname {
+	    		float: left;
+	    		font-size: 14px;
+	    		line-height: 32px;
+	    		margin-left: 10px;
+	    	}
+	    	.ask-time {
+	    		font-size: 12px;
+	    	}
+	    	.aui-ask-body {
+	    		width: 100%;
+	    		padding: 10px 15px;
+	    	}
+	    	.aui-ask-title {
+	    		font-size: 16px;
+	    		color: #333;
+	    		margin-bottom: 5px;
+	    	}
+	    	.aui-ask-footer {
+	    		padding: 0 15px 15px 15px;
+	    		overflow: hidden;
+	    		line-height: 20px;
+	    	}
+	    	.aui-ask-footer, .comment {
+	    		font-size: 12px;
+	    		color: #999;
+	    	}
+	    	.aui-ellipsis-2 img{
+	    		width: 100%;
+	    	}
+		</style>
+	</head>
+
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+			<a class="aui-pull-left" href="/myrc/">
+				<span class="aui-iconfont aui-icon-left"></span>
+			</a>
+			<div class="aui-title">我的询盘</div>
+		</header>
+		<div class="aui-tab j_select" id="tab">
+			<div {%ifequal sendtype "0"%}class="aui-tab-item aui-active" {%else%}class="aui-tab-item" {%endifequal%}>
+				<a href="?sendtype=0">收到留言{%ifequal sendtype "0"%}({{qlistcount}}){%endifequal%}</a>
+			</div>
+			<div {%ifequal sendtype "1"%}class="aui-tab-item aui-active" {%else%}class="aui-tab-item" {%endifequal%}>
+				<a href="?sendtype=1">发送的留言{%ifequal sendtype "1"%}({{qlistcount}}){%endifequal%}</a>
+			</div>
+		</div>
+		<div {%ifequal sendtype "0"%}class="pop popshow" {%else%}class="pop" {%endifequal%}>
+			{%for list in qlist%}
+			<div class="aui-content">
+				<div class="aui-ask-header">
+		    		<img src="{{list.companyarray.faceurl}}" class="ask-avatar"/>
+		        	<div class="aui-text-info ask-nickname"><a href="/companyinfo/?company_id={{list.companyarray.company_id}}">{{list.companyarray.companyname}}</a></div>
+		        	<!--<span class="aui-pull-right ask-time">{{list.stime}}</span>-->
+		    	</div>
+		    	<div class="aui-line-x"></div>
+		        <div class="aui-ask-body">
+		            <div class="aui-ask-title aui-ellipsis-2">
+		            	{%ifequal list.is_viewed "0"%}
+		            	<font color="red">[未读]</font>
+						{%else%}
+						{%endifequal%}
+						{{list.content|safe}}
+		            </div>
+		        </div>
+		        <div class="aui-ask-footer">
+		        	<span class="aui-pull-left aui-text-warning">
+						<a href="/myrc/xunpan_reply.html?company_id={{list.companyarray.company_id}}&inquired_id={{list.id}}" class="aui-btn aui-bg-genbtn">
+							我要回复
+						</a>
+		        	</span>
+		        	<span class="aui-pull-right comment">
+		        		{{list.stime}}
+		        	</span>
+		        </div>
+			</div>
+			{%endfor%}
+			<div style="height: 100px;"></div>
+			<div class="page">
+				<ul>
+					{% if firstpage %}
+					<li class="page_prev">
+						<a href="/myrc/xunpan.html?page={{prvpage}}&sendtype={{sendtype}}">上一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+					<li class="page_no">
+						<select onChange="window.location='/myrc/xunpan.html?page='+this.value+'&sendtype={{sendtype}}'">
+							<option>第{{page}}页</option>
+							{%for p in page_range%}
+							<option value="{{p.number}}">第{{p.number}}页</option>
+							{%endfor%}
+						</select> /{{page_listcount}}页
+					</li>
+					{% if lastpage%}
+					<li class="page_next">
+						<a href="/myrc/xunpan.html?page={{nextpage}}&sendtype={{sendtype}}">下一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+		<div {%ifequal sendtype "1"%}class="pop popshow" {%else%}class="pop" {%endifequal%}>
+			<div class="aui-content">
+				<ul class="aui-list-view">
+					{%for list in qlist%}
+					<li class="aui-list-view-cell aui-img">
+						<div class="aui-img-body">
+							<a href="" class="">
+								<div class="questioncontent">
+									{%ifequal list.is_viewed "0"%}
+					            	<font color="red">[未读]</font>
+									{%else%}
+									{%endifequal%}
+									{{list.content|safe}}
+								</div>
+								<p class='aui-ellipsis-2'>
+									留言时间：<span class="xc3">{{list.stime}}</span>
+								</p>
+							</a>
+						</div>
+					</li>
+					{%endfor%}
+				</ul>
+				<div style="height: 100px;"></div>
+				<div class="page">
+					<ul>
+						{% if firstpage %}
+						<li class="page_prev">
+							<a href="/myrc/xunpan.html?page={{prvpage}}&sendtype={{sendtype}}">上一页</a>
+						</li>
+						{%else%}
+						<li class="page_prev" style="color:gray">上一页</li>
+						{% endif %}
+						<li class="page_no">
+							<select onChange="window.location='/myrc/xunpan.html?page='+this.value+'&sendtype={{sendtype}}'">
+								<option>第{{page}}页</option>
+								{%for p in page_range%}
+								<option value="{{p.number}}">第{{p.number}}页</option>
+								{%endfor%}
+							</select> /{{page_listcount}}页
+						</li>
+						{% if lastpage%}
+						<li class="page_next">
+							<a href="/myrc/xunpan.html?page={{nextpage}}&sendtype={{sendtype}}">下一页</a>
+						</li>
+						{%else%}
+						<li class="page_prev" style="color:gray">下一页</li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+		</div>
+		{%include 'aui/bottom.html'%}
+	</body>
+
+</html>
+<script type="text/javascript">
+	//	apiready = function() {
+	//		api.parseTapmode();
+	//	}
+	//	var tab = new auiTab({
+	//		element: document.getElementById("tab"),
+	//	}, function(ret) {
+	//		console.log(ret)
+	//	});
+	//	$(".j_select").children().on("click", function() {
+	//		if($(this).hasClass("this_select")) {
+	//			closePop();
+	//			return;
+	//		}
+	//		var indexNum = $(this).index();
+	//		$(".popshow").removeClass("popshow")
+	//		$(".pop").eq(indexNum).addClass("popshow")
+	//	})
+</script>

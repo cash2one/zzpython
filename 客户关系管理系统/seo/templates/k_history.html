@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关键词排名历史-seo客户管理系统</title>
+    <link href="/static/css/s.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="kh-hd">
+    <table cellpadding="5" cellspacing="1" width="100%" class="kh-tb-1">
+        <tr align="center">
+            {% if paginator.has_previous %}
+            <td><a href="?page=1&{{ url_params }}">首页</a></td>
+            <td><a href="?page={{ paginator.previous_page_num }}&{{ url_params }}">上一页</a></td>
+            {% endif %}
+            <td>总记录数：{{ paginator.row_count }}条 &nbsp;&nbsp;{{ paginator.page_num }}/{{ paginator.number_pages }}&nbsp;页 {{ paginator.per_page }}/页</td>
+            {% if paginator.has_next %}
+            <td><a href="?page={{ paginator.next_page_num }}&{{ url_params }}">下一页</a></td>
+            <td><a href="?page={{ paginator.num_pages }}&{{ url_params }}">尾页</a></td>
+            {% endif %}
+            <td>
+                到&nbsp;<input type="text" size="4">&nbsp;&nbsp;
+                <input type="button" value="Go!">
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="kh-main">
+    <table cellpadding="5" cellspacing="1" class="kh-tb-2">
+        <tr class="kh-tb2-tr1">
+            <td>日期</td>
+            <td>百度排名</td>
+            <td>更新日期</td>
+        </tr>
+        {% for each in k_hs %}
+        <tr>
+            <td>{{ each.gmt_created | date:'Y-m-d' }}</td>
+            <td>{{ each.baidu_ranking }}</td>
+            <td>{{ each.gmt_created | date:"Y-m-d H:i:s" }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+{%for list in listall%}
+<li class="mui-table-view-cell"><a href="{{list.mobileurl}}">
+    <span style="font-size:14px">{{list.td_title}} <br /><font color="red">{{list.price}}{{list.price_unit}}</font></span>
+</a></li>
+{%endfor%}

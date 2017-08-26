@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{keywords}}-ZZ91再生网</title>
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico">
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+<link href="http://img0.zz91.com/zz91/cp/news/css/newhbrdlist_css.css" rel="stylesheet" type="text/css" />
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+</head>
+
+<body>
+	{% include 'nav.html' %}
+    <div class="top">
+       <div class="logo"><a href="http://www.zz91.com" target="_blank"><img border="0" src="http://img0.zz91.com/zz91/images/logo.png" /></a><a href="http://price.zz91.com/" target="_blank"><img border="0" src="http://cp.zz91.com/images/newslogo2.jpg" /></a></div>
+       <div class="search">
+          <form action="newssearchfirst.html" method="get">
+          <input name="keywords" type="text" class="search_list2" value="" />
+          <input name="submit" type="submit" class="search_list3" value="" />
+          </form>
+       </div>
+       <div class="others">
+          <div class="cpk"><a href="http://trade.zz91.com/" target=_blank>产品库</a></div>
+          <div class="gsk"><a href="http://company.zz91.com/" target=_blank>公司库</a></div>
+       </div>
+       <div class="cl"></div>
+    </div>
+<div class="menu">
+  <div class="menubg"></div>
+  <div class="menuin">
+    <ul>
+	{%for list in navlistt%}
+     <li class="menuin_li1"><a href="newslist-{{list.name_hex}}-1.html" >{{list.name}}</a></li>
+	{%endfor%}
+
+	 
+    </ul><div class="cl"></div>
+  </div>
+</div>
+
+<div class="mainlist">
+<div style="text-align:center">
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 资讯列表页 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-5512236620584335"
+     data-ad-slot="8654775602"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+	{%for list in newslist.list%}
+	{%if list.yyhtml%}
+   <div class="list_block">
+   <ul>
+	{%endif%}
+    <li><span class="searchleft">·<a href="news{{list.id}}.html" target="_blank" title={{list.title}}>{{list.title}}</a>{%if list.havepic%}<font color=#ff0000>[图]</font>{%endif%}</span><span class="right">{{list.gmt_time}}</span><div class="cl"></div></li>
+    {%if list.yyhtml_end%}
+	</ul>
+	</div>
+	{%endif%}
+	{%endfor%}
+	<div class="cl"></div>
+     
+<div class="page">
+	<table  border=0 align=center cellpadding=0 cellspacing=0 width="100%">
+	<tr><td align="center" style="text-align:center"><div style="float:left">共 <b>{{newslist.count}}</b> 条信息， 共 {{page_listcount}} 页</div> 
+	{% if firstpage %}<span class="pagenum"><a href="newslist-{{keywords_hex}}-{{prvpage}}.html">上一页</a></span>{% endif %} 
+		{% for p in page_range %}
+                    {% if p.nowpage %}
+                    <strong class="current">{{p.number}}</strong>
+                    {% else %}
+                    <span class="pagenum"><a href='newslist-{{keywords_hex}}-{{p.number}}.html' >{{p.number}}</a></span>
+                    {% endif %}
+					{% endfor %}
+    {% if lastpage%}<span class="pagenum"><a href='newslist-{{keywords_hex}}-{{nextpage}}.html'>下一页</a></span>{% endif %} </td></tr></table></div>
+</div>
+<div class="cl"></div>
+<div class="btn_sbox"><div class="btn_search">
+          <form action="newssearchfirst.html" method="get">
+          <input name="keywords" type="text" class="search_list2" value="" />
+          <input name="submit" type="submit" class="search_list3" value="" /><div class="cl"></div>
+          </form><div class="cl"></div>
+       </div></div>
+{% include 'bottom.html' %}
+</body>
+</html>

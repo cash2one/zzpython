@@ -1,0 +1,19 @@
+<uwsgi>
+ <socket>:8040</socket>
+ <workers>4</workers>
+ <master>true</master>
+ <listen>80</listen>
+ <processes>6</processes>
+ <pythonpath>.</pythonpath>
+ <module>recyclecrm.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>recyclecrm/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>800</limit-as>
+ <reload-on-as>500</reload-on-as>
+ <reload-on-rss>500</reload-on-rss>
+ <max-requests>500</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/recyclecrm.log</daemonize>
+</uwsgi>

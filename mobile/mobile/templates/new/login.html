@@ -1,0 +1,29 @@
+{%include 'new/head.html'%}
+<body>
+<div class="mobile">
+	{%include 'new/top.html'%}
+    <div class="cb"></div>
+    <div style="margin-top:60px;"></div>
+    <div class="m-main"><form name="form1" method="post" action="loginsave.html">
+    	<div class="regtitle">ZZ91帐号登录</div>
+        <ul class="regbox">
+        	<li><input id="userName" class="text" type="text" name="userName" value="{{userName}}" placeholder="请输入用户名 或 手机 或 邮箱" autocomplete="off" maxlength="50"></li>
+            <li><input id="passwd" class="text" type="password" name="passwd" value="{{passwd}}" placeholder="请输入ZZ91再生网的密码" autocomplete="off" maxlength="50"></li>
+            <li>{%if error%}<div class="c-red">{{error|safe}}<br/></div>{%endif%}</li>
+            <li> <input type="hidden" name="weixinid" id="weixinid" value="{{weixinid}}">
+            	<input type="hidden" name="tourl" id="tourl" value="{{tourl}}">
+            	<input type="hidden" name="qrcode" id="tourl" value="{{qrcode}}">
+            <input type="submit" name="button" id="button" value="登录并绑定" class="button">
+            	<div style="height: 40px;"></div>
+            	<center style="font-size: 16px;">没有账号，<a href="/register/?weixinid={{weixinid}}&qrcode={{qrcode}}" style="color: #0066CC;">点此注册</a></center>
+            	
+            </li>
+            <div class="cb"></div>
+        </ul> 
+        </form>
+        <div class="cb"></div>
+    </div>
+</div>
+{%include 'new/bottom.html'%}
+</body>
+</html>

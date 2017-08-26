@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+        <style>
+        	body{
+				padding:0px;	
+			}
+			.datew{
+				width: 100px;
+			}
+			.td{
+				width: 110px;
+			}
+        </style>
+	</head>
+
+	<body>
+		<table border="0" cellspacing="1" cellpadding="2" bgcolor="#000000" class="table table-bordered" style="position: fixed;background-color: #fff;z-index: 999;width: 1300px;">
+			<tr>
+				<td align="center" bgcolor="#ebebeb" style="width: 120px;">到单日期</td>
+				<!--<td align="center" bgcolor="#ebebeb" class="td">雪豹</td>
+				<td align="center" bgcolor="#ebebeb" class="td">苍狼</td>
+				<td align="center" bgcolor="#ebebeb" class="td">战龙</td>-->
+				<td align="center" bgcolor="#ebebeb" class="td">新签</td>
+				<td align="center" bgcolor="#ebebeb" class="td">增值</td>
+				<td align="center" bgcolor="#ebebeb" class="td">续签</td>
+				<td align="center" bgcolor="#ebebeb" class="td">再生汇</td>
+				<td align="center" bgcolor="#ebebeb" class="td">交易部</td>
+				<td align="center" bgcolor="#ebebeb">合计</td>
+			</tr>
+			<tr>
+				<td>
+				<select name="yearv" id="yearv" style="width: auto;" onchange="loadtongjidata()">
+					<option value="2011">2011</option>
+					<option value="2012">2012</option>
+					<option value="2013">2013</option>
+					<option value="2014">2014</option>
+					<option value="2015">2015</option>
+					<option value="2016">2016</option>
+					<option value="2017">2017</option>
+					<option value="2018">2018</option>
+					<option value="2019">2019</option>
+					<option value="2020">2020</option>
+					<option value="2021">2021</option>
+					<option value="2022">2022</option>
+					<option value="2023">2023</option>
+				</select>
+				<script>selectOption("yearv","{{nowyear}}")</script>
+				<select name="mouthv" id="mouthv" style="width: auto;" onchange="loadtongjidata()">
+					<option value="01">1月</option>
+					<option value="02">2月</option>
+					<option value="03">3月</option>
+					<option value="04">4月</option>
+					<option value="05">5月</option>
+					<option value="06">6月</option>
+					<option value="07">7月</option>
+					<option value="08">8月</option>
+					<option value="09">9月</option>
+					<option value="10">10月</option>
+					<option value="11">11月</option>
+					<option value="12">12月</option>
+				</select>
+				<script>selectOption("mouthv","{{nowmoth}}")</script>
+				</td>
+				<!--<td align="center" bgcolor="#FFFF33">{{icd1all}}</td>
+				<td align="center" bgcolor="#FFFF33">{{icd2all}}</td>
+				<td align="center" bgcolor="#FFFF33">{{icd3all}}</td>-->
+				<td align="center" bgcolor="#FFFF33">{{icdall}}</td>
+				<td align="center" bgcolor="#FFFF33">{{vapall}}</td>
+				<td align="center" bgcolor="#FFFF33">{{csall}}</td>
+				<td align="center" bgcolor="#FFFF33">{{zshall}}</td>
+				<td align="center" bgcolor="#FFFF33">{{jiaoyiall}}</td>
+				<td align="center" bgcolor="#FFFF33">{{allall}}</td>
+			</tr>
+		</div>
+		<table border="0" cellspacing="1" cellpadding="2" bgcolor="#000000" class="table table-bordered" style="position: absolute;top:100px;z-index: 1;width: 1300px;">
+			{%for list in dlist%}
+			<tr>
+				<td align="center" bgcolor="#FFFFFF" style="width: 120px;">{{list.date}}</td>
+				<!--<td align="center" bgcolor="#FFFFFF" class="td">
+					<a href="/icd/orderlist.html?user_category_code=1306&fromdate={{list.date}}&todate={{list.date}}" target="_blank">{{list.icd1}}</a>
+				</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">
+					<a href="/icd/orderlist.html?user_category_code=1322&fromdate={{list.date}}&todate={{list.date}}" target="_blank">{{list.icd2}}</a>
+				</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">
+					<a href="/icd/orderlist.html?user_category_code=1307&fromdate={{list.date}}&todate={{list.date}}" target="_blank">{{list.icd3}}</a>
+				</td>-->
+				<td align="center" bgcolor="#FFFFFF" class="td">
+					<a href="/icd/orderlist.html?user_category_code=1306&fromdate={{list.date}}&todate={{list.date}}" target="_blank">{{list.icd}}</a>
+				</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">
+					<a href="/icd/orderlist.html?user_category_code=1315&fromdate={{list.date}}&todate={{list.date}}" target="_blank">{{list.vap}}</a>
+				</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">
+					<a href="/icd/orderlist.html?user_category_code=24&fromdate={{list.date}}&todate={{list.date}}" target="_blank">{{list.cs}}</a>
+				</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">
+					<a href="/icd/orderlist.html?user_category_code=1325&fromdate={{list.date}}&todate={{list.date}}" target="_blank">{{list.zsh}}</a>
+				</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">
+					<a href="/icd/orderlist.html?user_category_code=1324&fromdate={{list.date}}&todate={{list.date}}" target="_blank">{{list.jiaoyi}}</a>
+				</td>
+				<td align="center" bgcolor="#FFFFFF">
+					{{list.allprice}}
+				</td>
+			</tr>
+			{%endfor%}
+		</table>
+
+	</body>
+	{{d}}
+	<script>
+		function loadtongjidata(){
+			window.location='?yearv='+$("#yearv").val()+"&mouthv="+$("#mouthv").val();
+		}
+	</script>
+</html>

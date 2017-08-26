@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/page-min.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+        <style>
+        	body{
+        		min-width: 1200px;
+			}
+			.username{
+				width: 100px;
+			}
+			.td{
+				width: 40px;
+			}
+        </style>
+	</head>
+
+	<body>
+		<div style="position: fixed;background-color: #fff;z-index: 999;width: 1300px;">
+		<form id="search" class="form-panel">
+			<div class="panel-title">
+				<span> <label>时间：</label>
+					<input type="text" class="calendar" name="fromdate" {%if fromdate%}value="{{fromdate}}" {%endif%}>
+					<label>至</label>
+					<input type="text" class="calendar" name="todate" {%if todate%}value="{{todate}}" {%endif%}>
+				</span>
+				<button type="submit" class="button button-primary">查询>></button>
+			</div>
+		</form>
+		<table cellpadding="5" cellspacing="0" class="table table-bordered" style="min-width: 1300px;">
+		<thead >
+			<tr>
+				<td align="center" bgcolor="#FFFFFF" class="username">Sales</td>
+				<td colspan="2" align="center" bgcolor="#FFFFFF">5星</td>
+				<td colspan="2" align="center" bgcolor="#FFFFFF">
+					钻4星
+				</td>
+				<td colspan="2" align="center" bgcolor="#FFFFFF">
+					普4星
+				</td>
+				<td colspan="2" align="center" bgcolor="#FFFFFF">3星</td>
+				<td colspan="2" align="center" bgcolor="#FFFFFF">2星</td>
+				<td colspan="2" align="center" bgcolor="#FFFFFF">1星</td>
+				<td colspan="2" align="center" bgcolor="#FFFFFF">再生汇联系量</td>
+				<td colspan="2" align="center" bgcolor="#FFFFFF">VAP联系量</td>
+				<td colspan="2" align="center">合计</td>
+			  	<td align="center" bgcolor="#FFFFFF">有效联系率</td>
+				<td align="center" bgcolor="#FFFFFF">明日安排联系</td>
+				<td align="center" bgcolor="#FFFFFF">公海挑入数</td>
+			</tr>
+			
+			<tr>
+			    <td align="center" bgcolor="#FFFFFF" class="username">&nbsp;</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">无效</td>
+				<td align="center" bgcolor="#f2f2f2" class="td">有效</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">无效</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">有效</td>
+				<td align="center" bgcolor="#F2F2F2" class="td">无效</td>
+				<td align="center" bgcolor="#F2F2F2" class="td">有效</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">无效</td>
+				<td align="center" bgcolor="#F2F2F2" class="td">有效</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">无效</td>
+				<td align="center" bgcolor="#F2F2F2" class="td">有效</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">无效</td>
+				<td align="center" bgcolor="#F2F2F2" class="td">有效</td>
+				<td align="center" bgcolor="#F2F2F2" class="td">无效</td>
+				<td align="center" bgcolor="#F2F2F2" class="td">有效</td>
+				<td align="center" bgcolor="#F2F2F2" class="td">无效</td>
+				<td align="center" bgcolor="#F2F2F2" class="td">有效</td>
+				<td align="center" class="td">无效</td>
+				<td align="center" class="td">有效</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">&nbsp;</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">&nbsp;</td>
+				<td align="center" bgcolor="#FFFFFF" class="td">&nbsp;</td>
+			</tr>
+			</thead>
+		</table>
+		</div>
+		<div style="position: absolute;top:180px;z-index: 1;width: 1300px;">
+		<table cellpadding="5" cellspacing="0" class="table table-bordered" style="width: 100%;">
+			
+			<tbody>
+			{%for salesman in allsalesman%}
+			<tr>
+				<td colspan="25" bgcolor="#f2f2f2">{{salesman.cate_label}}</td>
+			</tr>
+			{%for man in salesman.thiscateman%}
+			<tr class="contactvalue">
+				<td nowrap bgcolor="#FFFFFF" nolook=1 class="username">{{man.realname}}</td>
+				<td user_id="{{man.id}}" rank=5 contacttype=12 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" rank=5 contacttype=13 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" rank=4.8 contacttype=12 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" rank=4.8 contacttype=13 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" rank=4.1 contacttype=12 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" rank=4.1 contacttype=13 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" rank=3 contacttype=12 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" rank=3 contacttype=13 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" rank=2 contacttype=12 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" rank=2 contacttype=13 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" rank=1 contacttype=12 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" rank=1 contacttype=13 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" contacttype=12 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" contacttype=13 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" contacttype=12 vapflag=1 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" contacttype=13 vapflag=1 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" contacttype=12 id="y{{man.id}}" allflag=1 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" contacttype=13 id="w{{man.id}}" allflag=1 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" class="lookv td" nolook=1><span>查看</span></td>
+				<td user_id="{{man.id}}" tomorow=1 class="td"><span>查看</span></td>
+				<td user_id="{{man.id}}" gonghai=1 class="td"><span>查看</span></td>
+			</tr>
+			{%endfor%}
+			{%endfor%}
+			<tbody>
+		</table>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="../../assets/layer/layer.js"></script>
+	<script type="text/javascript" src="/assets/js/bui-min.js"></script>
+	<script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
+	<script type="text/javascript" src="/assets/js/config-min.js"></script>
+	<script type="text/javascript">
+		BUI.use('bui/calendar', function(Calendar) {
+			var datepicker = new Calendar.DatePicker({
+				trigger: '.calendar',
+				autoRender: true
+			});
+		});
+		BUI.use('bui/overlay', function(Overlay) {
+			var dialog = new Overlay.Dialog({
+				title: '非模态窗口',
+				width: 500,
+				height: 300,
+				mask: false,
+				buttons: [],
+				bodyContent: '<p>这是一个非模态窗口,并且不带按钮</p>'
+			});
+			//dialog.show();
+			$('#btnShow').on('click', function() {
+				dialog.show();
+			});
+		});
+		$(document).ready(function() {
+			$('.contactvalue td span').on('click', function() {
+				layer.load(1);
+				var self=$(this).parent();
+				var user_id=self.attr("user_id");
+				var rank=self.attr("rank");
+				var contacttype=self.attr("contacttype");
+				var teltags=self.attr("teltags");
+				var tomorow=self.attr("tomorow");
+				var nolook=self.attr("nolook");
+				var vapflag=self.attr("vapflag")
+				var allflag=self.attr("allflag");
+				var gonghai=self.attr("gonghai")
+				if (vapflag){
+					telflag=4
+				}else{
+					telflag=5
+				}
+				if (allflag==1){
+					telflag=null
+				}
+				if (nolook=="1"){
+					return;
+				}
+				var data={
+					user_id:user_id,
+					rank:rank,
+					contacttype:contacttype,
+					telflag:telflag,
+					fromdate:"{{fromdate}}",
+					todate:"{{todate}}",
+					teltags:teltags,
+					tomorow:tomorow,
+					gonghai:gonghai,
+					dotype:'zsh'
+				}
+				crmajax("get","/icd/tj_contactvalue.html",data,function(ret){
+					if (ret){
+						self.html("<a href='/icd/tj_contactlist.html?"+$.param(data)+"' target='_blank'>"+ret.count+"</a>")
+						setTimeout(function(){
+						  layer.closeAll('loading');
+						}, 2);
+					}
+				},function(err){
+					layer.open({
+						type: 1,
+						title: 'err',
+						shadeClose: true,
+						shade: 0.3,
+						area: ['70%', '70%'],
+						content: err.responseText
+					});
+				})
+			});
+			$('.lookv').on('click', function() {
+				var user_id=$(this).attr("user_id");
+				var y=$("#y"+user_id).text();
+				var w=$("#w"+user_id).text();
+				if (y!="查看" && w!="查看"){
+					if (parseInt(y)+parseInt(w)!=0){
+						var lv=parseInt(w)/(parseInt(y)+parseInt(w));
+						$(this).html(parseInt(lv*100)+"%")
+					}
+				}else{
+					alert("请先点开合计里的“有效”和“无效”的数量！")
+				}
+				setTimeout(function(){
+				  layer.closeAll('loading');
+				}, 2);
+			})
+			
+		})
+	</script>
+</html>

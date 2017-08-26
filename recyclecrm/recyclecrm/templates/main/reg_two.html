@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css" />
+    <script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+    <script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+    <style type="text/css">
+    body {
+        height: auto;
+    }
+    .aui-card {
+        margin-top: 15px;
+    }
+    .avatar-box {
+        width: 100%;
+        padding: 15px 0;
+        text-align: center;
+        font-size: 12px;
+    }
+    .avatar-box p {
+        margin-bottom: 0;
+        font-size: 12px;
+    }
+    .avatar-box img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+    </style>
+</head>
+<body>
+	<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+		<a class="aui-pull-left" href="javascript:history.back(-1)">
+			<span class="aui-iconfont aui-icon-left"></span>
+		</a>
+		<div class="aui-title">
+			注册
+		</div>
+		<a class="aui-pull-right" href="javascript:void(0)">
+			<i class="iconfont icon-sousuo1 aui-font-size-20"></i>
+		</a>
+	</header>
+    <div class="aui-content aui-card aui-noborder">
+    	<form action="reg_save.html" method="post" id="form" enctype="multipart/form-data">
+    	{% csrf_token %}
+        <div class="avatar-box">
+            <img src="image/noavatar.gif" id="avatarImg" tapmode />
+            <p>选择头像</p>
+            <input type="file" name="fileField" id="fileField">
+        </div>
+        <input type="hidden" id="avatar" />
+        <div class="aui-form">
+            <div class="aui-input-row">
+                <label class="aui-input-addon">姓名</label>
+                <input type="text" class="aui-input" id="nickname" name="contact" placeholder="请输入联系人"/>
+            </div>
+            <div class="aui-input-row">
+                <label class="aui-input-addon">职务</label>
+                <input type="text" class="aui-input" id="nickname" name="position" placeholder="请输入职务"/>
+            </div>
+            <div class="aui-input-row">
+                <label class="aui-input-addon">性别</label>
+                <div class="aui-pull-right">
+                    <input class="aui-radio aui-radio-info" type="radio" name="sex" value="男" checked><div class="aui-radio-name">男</div>
+                    <input class="aui-radio aui-radio-warning" type="radio" name="sex" value="女"><div class="aui-radio-name">女</div>
+                </div>
+            </div>
+            <div class="aui-input-row">
+                <label class="aui-input-addon">微信</label>
+                <input type="text" class="aui-input" id="wechat" name="wechat" placeholder="请输入微信号"/>
+            </div>
+            <div class="aui-input-row">
+                <label class="aui-input-addon">地址</label>
+                <input type="text" class="aui-input" id="address" name="address" placeholder="所在公司或个人详细地址"/>
+            </div>
+            <div class="aui-btn-row">
+                <div class="aui-btn aui-btn-default" tapmode ><a href="javascript:history.back(-1)">上一步</a></div>
+                <div class="aui-btn aui-btn-warning" tapmode onclick="document.getElementById('form').submit()">提交</div>
+            </div>
+            <input type="hidden" name="name" value={{mobile}} />
+            <input type="hidden" name="password" value={{password}} />
+        </div>
+       </form>
+    </div>
+</body>
+
+</html>

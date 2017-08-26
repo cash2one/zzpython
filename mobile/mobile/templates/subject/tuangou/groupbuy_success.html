@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+	    <script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>废纸产业发展论坛-参会报名拼团活动</title>
+		<meta name="description" content="组团报名，击穿底价！">
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/subject/tuangou/css/base-min.css" />
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/subject/tuangou/css/index.css" />
+		<style>
+			#mcover{ position: fixed;top:0;left:0;width:100%;	height:100%;background:rgba(0, 0, 0, 0.7);	display:none;z-index:20000;}
+			#mcover img {position: fixed;right: 18px;top:5px;width: 260px;height: 180px;z-index:20001;}
+		</style>
+	</head>
+	<body>
+		<img src="http://static.m.zz91.com/subject/tuangou/images/wx_tuangou.jpg" style="display: none;">
+		<script type="text/javascript" src="http://static.m.zz91.com/subject/tuangou/js/viewport.js"></script>
+		<div id="mcover" onclick="$('#mcover').hide();">
+			<img src="http://img0.zz91.com/zz91/mobile/images/guide.png" />
+		</div>
+		<div class="tgwarp">
+			<div style="height: 2.4rem;">
+				<div class="nav-top">
+					<div class="nav-main">
+						<a onClick="javascript :history.back(-1)" class="nav-hr"></a>参会报名拼团活动
+					</div>
+				</div>
+			</div>
+			{%ifequal joinstatus 0%}
+			<div class="tg-mainbox zz-div-box">
+				<div class="tg-ptimg">
+					<img src="{{gimg}}" />
+				</div>
+				<div class="tg-ptmain zz-div-td1">
+					<p class="tg-pttle">
+						2017废纸产业发展论坛参会服务
+					</p>
+					<p class="tg-ptname">
+						{{grouptype}}人团 |  {{joincount}}人已团
+					</p>
+					
+					<div class="tg-ptjq">
+						<p class="tg-ptxj">
+							¥ <span>{{price}}</span>
+						</p>
+						<p class="tg-ptyj">
+							原价：500元/人
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="tg-mainbox">
+				<p class="tg-closetime">结束时间：2017-8-9 23:59:59</p>
+				<p class="tg-succtle tg-sytle"><i class="icon icon-time2"></i>等待成团，仅剩<span>{{havecount}}</span>个名额</p>
+				<a class="tg-zfcj paybutton">一键参团</a>
+			</div>
+			{%endifequal%}
+			{%ifequal joinstatus 1%}
+			<div class="tg-mainbox">
+				<p class="tg-closetime">结束时间：2017-8-9 23:59:59</p>
+				<p class="tg-succtle tg-sytle"><i class="icon icon-time2"></i>还差<span>{{havecount}}</span>人，赶快邀请好友来参团吧！ </p>
+				<p class="ts-closett">活动结束前人不满将拼团失败</p>
+			</div>
+			{%endifequal%}
+			{%ifequal joinstatus 3%}
+			<div class="tg-mainbox">
+				<p class="tg-succtle">拼团失败</p>
+				<p class="tg-succtt">请补差价支付原价报名费</p>
+				<a href="/qianbao/chongzhi.html?money={{leprice}}&paytype=groupbuy&buyer_id={{gid}}" class="tg-zfcj">支付差价</a>
+			</div>
+			{%endifequal%}
+			
+			{%ifequal joinstatus 2%}
+			<div class="tg-mainbox">
+				<p class="tg-succtle">恭喜你，<span>{{grouptype}}</span>人团成功！</p>
+				<p class="tg-succtt">客服将联系您确认参会细节，请耐心等待！</p>
+			</div>
+			{%endifequal%}
+			
+			{%ifequal joinstatus 1%}
+			<div class="tg-fenx">
+				<div class="tg-fx-solid"></div>
+				<div class="tg-fenxbtn clear">
+					<a href="javascript:;" class="wxshare">
+						<img src="http://static.m.zz91.com/subject/tuangou/images/tuang-weixin.png"/>
+						<p>分享到微信朋友</p>
+					</a>
+					<a href="javascript:;" class="wxshare">
+						<img src="http://static.m.zz91.com/subject/tuangou/images/tuang-pengyq.png"/>
+						<p>分享到微信朋友圈</p>
+					</a>
+				</div>
+			</div>
+			{%endifequal%}
+			
+			<ul class="tg-succul clear">
+				<!--<li class="tg-succli">
+					<img src="http://static.m.zz91.com/subject/tuangou/images/tuang-user1.png" />
+					<span>团长</span>
+				</li>-->
+				{%for list in listall%}
+				<li class="tg-succli">
+					<img src="{{list.facepic}}" />
+					<span>{{list.contact}}</span>
+				</li>
+				{%endfor%}
+				{%for list in nojoinlist%}
+				<li class="tg-succli">
+					<img src="http://static.m.zz91.com/subject/tuangou/images/tuang-user6.png" />
+				</li>
+				{%endfor%}
+			</ul>
+			
+			<p class="tg-succmain">
+				活动名称：{{grouptype}}人团活动-2017废纸产业发展论坛参会服务<br />组团时间：{{creategrouptime}} 
+			</p>
+			
+			<p class="tg-solid"></p>
+			
+			<div class="tg-lc">
+				<div class="tg-lcimg">
+					<img src="http://static.m.zz91.com/subject/tuangou/images/tuang-lc.png" />
+				</div>
+				<p class="zz-div-box">
+					<span>*</span>
+					<span class="zz-div-td1">开团后邀请好友参团，人数不足则拼团失败，需补差价支付 原价参会报名费用（如有疑问，请致电：15868484082）</span>
+				</p>
+			</div>
+			
+		</div>
+		<script>
+			$(".wxshare").bind("click",function(){
+				$('#mcover').show();
+			})
+			$(".paybutton").bind("click",function(){
+				//ispaysucc()
+				window.location='detail_save.html?grouptype={{grouptype}}';
+			})
+			
+			function ispaysucc(){
+				layer.confirm("是否支付完成",{
+						btn : ['是','关闭']
+					}, function() {
+						window.location='?t=1';
+					},function(){
+						
+					}
+				)
+			}
+		</script>
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script>
+			(function(d, t) {
+				var r = d.createElement(t),
+					s = d.getElementsByTagName(t)[0];
+				r.async = 1;
+				r.src = 'http://m.zz91.com/wechat/weixinshare.js?wurl='+location.href;
+				s.parentNode.insertBefore(r, s);
+			})(document, "script");
+		</script>
+		<div style="display:none">
+		    <script>
+		        var _hmt = _hmt || [];
+		        (function() {
+		            var hm = document.createElement("script");
+		            hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+		            var s = document.getElementsByTagName("script")[0];
+		            s.parentNode.insertBefore(hm, s);
+		        })();
+		    </script>
+		    <!--baidu analysis-->
+		    <script>
+		        var _hmt = _hmt || [];
+		        
+		        (function() {
+		            var hm = document.createElement("script");
+		            hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+		            var s = document.getElementsByTagName("script")[0];
+		            s.parentNode.insertBefore(hm, s);
+		        })();
+		    </script>
+		</div>
+	</body>
+</html>

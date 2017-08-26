@@ -1,0 +1,556 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<title>{{webtitle}}_ZZ91废料移动商务</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/huzhu/css/hudong-list.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-popup.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/laytpl.js" ></script>
+		<style>
+			.aui-searchbar .aui-iconfont{
+				color: #ebebeb;
+				line-height: 35px;
+			}
+			.searchcenter{
+				margin-top: 6px;
+				width: auto;
+				position: absolute;
+				top: 0;
+				right: 30px;
+				left: 30px;
+			}
+			.aui-content{
+				margin-bottom: 10px;
+			}
+			.nav-fix{
+				position: fixed;
+				top:0px;
+				width: 100%;
+				z-index: 999;
+			}
+			.pop{
+		        position: fixed;
+		        height: 100%;
+		        background-color: rgba(0,0,0,.5);
+		        top: 0;
+		        width: 100%;
+		        -moz-opacity: 0;
+		        -webkit-opacity: 0;
+		        -o-opacity: 0;
+		        z-index: -1;
+		        margin-top: 90px;
+		    }
+		    .pop-main{
+		        position: absolute;
+		        width: 100%;
+		        top:77px;
+		        background-color: #fff;
+		        -moz-transform:    translate(0px,-240px);
+		        -webkit-transform: translate(0px,-240px);
+		        -o-transform:      translate(0px,-240px);
+		    }
+		    .popshow{
+		        z-index: 1;
+		        display: block;
+		        -moz-opacity: 1;
+		        -webkit-opacity: 1;
+		        -o-opacity: 1;
+		        -moz-transition:     -moz-opacity 0.5s; /* Firefox 4 */
+		        -webkit-transition:  -webkit-opacity 0.5s; /* Safari and Chrome */
+		        -o-transition:       -o-opacity 0.5s; /* Opera */
+		    }
+		    .popshow .pop-main{
+		        -moz-transform:    translate(0px,0px);
+		        -webkit-transform: translate(0px,0px);
+		        -o-transform:      translate(0px,0px);
+		        -moz-transition:     -moz-transform    0.5s; /* Firefox 4 */
+		        -webkit-transition:  -webkit-transform 0.5s; /* Safari and Chrome */
+		        -o-transition:       -o-transform      0.5s; /* Opera */ 
+		    }
+		    .aui-mask{
+		    	opacity:0.2;
+		    }
+		    .popsearch{
+		    	padding: 10px;
+		    	height: 100%;
+		    	position: fixed;
+		    	width: 100%;
+		    	top: 0px;
+		    	background-color: #F4F5F7;
+		    	z-index: 9999;
+		    	display: none;
+		    }
+		    .nearseach{
+		    	display: block;
+		    	padding: 10px;
+		    	margin-top: 10px;
+		    	background-color: #f9f9f9;
+		    }
+		    .nearseach a{
+		    	margin-right: 10px;
+		    	text-align: center;
+		    	padding: 10px;
+		    }
+		    
+		    .floatpage{
+				position: fixed;
+				bottom:0px;
+				width:100%;
+				height:54px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-searchbar aui-border-radius searchcenter" onclick="opensearch()">
+	            <i class="aui-iconfont aui-icon-search"></i>
+	            <div class="aui-searchbar-text">输入你感兴趣的关键词</div>
+	        </div>
+	        <a class="aui-pull-right" onclick="showPopup()">
+		        <span class="aui-iconfont aui-icon-sort"></span>
+		    </a>
+		</header>
+		<div class="topdiv" onclick="pagetotop();"><span class="aui-iconfont aui-icon-top"></span></div>
+		<div class="huzu_out j-out" style="bottom: 60px;">
+			<a href="/huzhupost/?category_id={{category_id}}" style="color: #fff;"><span style="margin-top:10px" class="addhuzhu">发布<br>话题</span></a>
+		</div>
+		<div class="aui-popup aui-popup-top-right" id="top-right" style="margin-top: 45px;">
+		    <div class="aui-popup-arrow"></div>
+		    <div class="aui-popup-content">
+		        <ul class="aui-list aui-list-noborder">
+		            <li class="aui-list-item">
+		                <a href="/trade/" class="aui-arrow-right"><div class="aui-list-item-inner aui-list-item-middle">交易中心</div></a>
+		            </li>
+		            <li class="aui-list-item">
+		                <a href="/jiage/" class="aui-arrow-right"><div class="aui-list-item-inner">行情报价</div></a>
+		            </li>
+		            <li class="aui-list-item">
+		                <a href="/news/" class="aui-arrow-right"><div class="aui-list-item-inner">资讯中心</div></a>
+		            </li>
+		            <li class="aui-list-item">
+		                <a href="/company/" class="aui-arrow-right"><div class="aui-list-item-inner">公司黄页</div></a>
+		            </li>
+		            <li class="aui-list-item">
+		                <a href="/ye/" class="aui-arrow-right"><div class="aui-list-item-inner">产业带</div></a>
+		            </li>
+		            <li class="aui-list-item">
+		                <a href="/qianbao/" class="aui-arrow-right"><div class="aui-list-item-inner">再生钱包</div></a>
+		            </li>
+		            <li class="aui-list-item">
+		                <a href="/myrc_index/" class="aui-arrow-right"><div class="aui-list-item-inner">生意管家</div></a>
+		            </li>
+		        </ul>
+		    </div>
+		</div>
+	    <div class="aui-tab">
+		    <ul class="aui-tab-nav">
+		        <li class="{%ifequal category_id '106'%}active{%endifequal%} j_select">商圈</li>
+		        <li class="{%ifequal category_id '1'%}active{%endifequal%} j_select">问答</li>
+		        <li class="{%ifequal category_id '2'%}active{%endifequal%} j_select">社区</li>
+		        <li class="{%ifequal category_id '3'%}active{%endifequal%} j_select">学院</li>
+		        <li class="{%ifequal category_id '122'%}active{%endifequal%} j_select">招聘</li>
+		    </ul>
+		</div>
+		<div class="pop">
+		        <ul class="aui-list-view">
+		        	{%for list in navlist106%}
+		            <a href="?category_id=106&htype={{list.htype}}&bbs_post_assist_id={{list.bbs_post_assist_id}}"><li class="aui-list-view-cell">{{list.name}}</li></a>
+		            {%endfor%}
+		        </ul>
+		    </div>
+	    </div>
+	    <div class="pop">
+		        <ul class="aui-list-view">
+		            {%for list in navlist1%}
+		            <a href="?category_id=1&htype={{list.htype}}&bbs_post_assist_id={{list.bbs_post_assist_id}}"><li class="aui-list-view-cell">{{list.name}}</li></a>
+		            {%endfor%}
+		        </ul>
+		    </div>
+	    </div>
+	    <div class="pop">
+		        <ul class="aui-list-view">
+		            {%for list in navlist2%}
+		            <a href="?category_id=2&htype={{list.htype}}&bbs_post_assist_id={{list.bbs_post_assist_id}}"><li class="aui-list-view-cell">{{list.name}}</li></a>
+		            {%endfor%}
+		        </ul>
+		    </div>
+	    </div>
+	    <div class="pop">
+		        <ul class="aui-list-view">
+		            {%for list in navlist3%}
+		            <a href="?category_id=3&htype={{list.htype}}&bbs_post_assist_id={{list.bbs_post_assist_id}}"><li class="aui-list-view-cell">{{list.name}}</li></a>
+		            {%endfor%}
+		        </ul>
+		    </div>
+	    </div>
+	    <div class="pop">
+		        <ul class="aui-list-view">
+		            {%for list in navlist122%}
+		            <a href="?category_id=122&htype={{list.htype}}&bbs_post_assist_id={{list.bbs_post_assist_id}}"><li class="aui-list-view-cell">{{list.name}}</li></a>
+		            {%endfor%}
+		            
+		        </ul>
+		    </div>
+	    </div>
+	    {%if bbslist%}
+	    <ul class="cantop-mation j_huzhu">
+		    {%for d in bbslist%}
+		    <div class="aui-content">
+		        <div class="aui-ask-header">
+		    		<img src="{{d.facepic}}" class="ask-avatar"/>
+		        	<a href="/company/shop{{d.company_id}}.html"><div class="aui-text-info ask-nickname">{{ d.nickname }}</div></a>
+		        	<span class="aui-pull-right ask-time">{{ d.reply_time }}</span>
+		    	</div>
+		    	<div class="aui-line-x"></div>
+		        <a href="/huzhu/{{d.id}}.html"><div class="aui-ask-body aui-arrow-right">
+		            <div class="aui-ask-title aui-ellipsis-1">{{ d.title }}</div>
+		            <p class='aui-ellipsis-2'>{{ d.content }}</p>
+		            <p class="pic">{{d.pic}}</p>
+		            <div style="clear: both"></div>
+		        </div></a>
+		        <div style="clear: both"></div>
+		        <div class="aui-ask-footer">
+		        	<span class="aui-pull-left comment">
+						<i class="aui-iconfont aui-icon-appreciate"></i>
+						{{d.recommend_count}}
+		        	</span>
+		        	<span class="aui-pull-left comment" style="margin-left: 5px">
+						<i class="aui-iconfont aui-icon-focus"></i>
+						{{d.notice_count}}
+		        	</span>
+		        	<span class="aui-pull-left comment" style="margin-left: 50px">
+						<i class="aui-iconfont aui-icon-attention"></i>
+						{{d.visited_count}}
+		        	</span>
+		        	<span class="aui-pull-right comment">
+		        		<i class="aui-iconfont aui-icon-commentfill"></i> {{ d.replycount }}
+		        	</span>
+		        </div>
+		    </div>
+		    {%ifequal d.num 5%}
+		    <center>
+				<div style="margin-top:3px;height: 100px;">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- 微门户 -->
+				<ins class="adsbygoogle"
+				     style="display:block"
+				     data-ad-client="ca-pub-5512236620584335"
+				     data-ad-slot="8274972003"
+				     data-ad-format="auto"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				</div>
+			</center>
+		    {%endifequal%}
+		    {%endfor%}
+		</ul>
+		{%else%}
+		<div class="nodata" style="display: block">
+			暂无相关数据
+		</div>
+		{%endif%}
+		<div style="height: 60px;"></div>
+    	<div class="floatpage">
+			<div class="page">
+				<ul>
+					{% if firstpage %}
+					<li class="page_prev">
+						<a href="?{{searchurl}}&page={{prvpage}}">上一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+					<li class="page_no">
+						<select onChange="window.location='?{{searchurl}}&page='+this.value">
+							<option>第{{page}}页</option>
+							<option value="1">首页</option>
+							{%for p in page_range%}
+							<option value="{{p.number}}">第{{p.number}}页</option>
+							{%endfor%}
+							<option value="{{lastpage}}">末页</option>
+						</select> /{{page_listcount}}页
+					</li>
+					{% if lastpage%}
+					<li class="page_next">
+						<a href="?{{searchurl}}&page={{nextpage}}">下一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<script id="info-list" type="text/html">
+			<div class="aui-content">
+		        <div class="aui-ask-header">
+		    		<img src="<%d.facepic%>" class="ask-avatar"/>
+		        	<a href="/company/shop<%d.company_id%>.html"><div class="aui-text-info ask-nickname"><%d.nickname%></div></a>
+		        	<span class="aui-pull-right ask-time"><% d.reply_time %></span>
+		    	</div>
+		    	<div class="aui-line-x"></div>
+		        <a href="/huzhu/<%d.id%>.html"><div class="aui-ask-body aui-arrow-right">
+		            <div class="aui-ask-title aui-ellipsis-1"><% d.title %></div>
+		            <p class='aui-ellipsis-2'><% d.content %></p>
+		            <p class="pic"><%d.pic%></p>
+		            <div style="clear: both"></div>
+		        </div></a>
+		        <div style="clear: both"></div>
+		        <div class="aui-ask-footer">
+		        	<span class="aui-pull-left comment">
+						<i class="aui-iconfont aui-icon-appreciate"></i>
+						<%d.recommend_count%>
+		        	</span>
+		        	<span class="aui-pull-left comment" style="margin-left: 5px">
+						<i class="aui-iconfont aui-icon-focus"></i>
+						<%d.notice_count%>
+		        	</span>
+		        	<span class="aui-pull-left comment" style="margin-left: 50px">
+						<i class="aui-iconfont aui-icon-attention"></i>
+						<%d.visited_count%>
+		        	</span>
+		        	<span class="aui-pull-right comment">
+		        		<i class="aui-iconfont aui-icon-commentfill"></i> <% d.replycount %>
+		        	</span>
+		        </div>
+		    </div>
+		</script>
+		<div class="popsearch">
+			<div class="aui-searchbar" id="search" style="margin: 0px;">
+		        <div class="aui-searchbar-input aui-border-radius" style="padding-left: 0px;">
+		            <i class="aui-iconfont aui-icon-search"></i>
+		            <input type="search" placeholder="请输入搜索内容" id="search-input">
+		            <div class="aui-searchbar-clear-btn">
+		                <i class="aui-iconfont aui-icon-close"></i>
+		            </div>
+		        </div>
+		    </div>
+		    <div style="width: 300px;margin: 0 auto;padding: 20px;">
+			    <div class="aui-btn aui-pull-left" onclick="closesearch()">取消</div>
+			    <div class="aui-btn aui-btn-success aui-pull-right searchbtn">搜索</div>
+		    </div>
+		    <div style="clear: both;"></div>
+		    <section class="nearseach">
+		        最近搜索：
+		        {%for l in mysearchkeylist%}
+		        <a href="?keywords={{l.keywords}}">{{l.keywords}}</a>
+		        {%endfor%}
+		    </section>
+		    <section class="nearseach">
+		        热门搜索：
+		        {%for l in abountkeywords%}
+		        <a href="?keywords={{l.keywords}}">{{l.keywords}}</a>
+		        {%endfor%}
+		    </section>
+		</div>
+<script type="text/javascript">
+    $(function(){
+        $(".j_select").on("click",function(){
+            if($(this).hasClass("this_select")){
+                closePop();
+                return;
+            }
+            $(".aui-tab-nav li").removeClass("active")
+            $(".this_select").removeClass("this_select");
+            $(this).addClass("this_select");
+            $(this).addClass("active");
+            var indexNum = $(this).index();
+            $(".popshow").removeClass("popshow")
+            $(".pop").eq(indexNum).addClass("popshow")
+        })
+        $(".searchbtn").on("click",function(){
+        	var searchtext=$("#search-input").val()
+        	if (searchtext!=""){
+        		window.location='?keywords='+searchtext;
+        	}
+        })
+        var scroll = new auiScroll({
+	        listen:true,
+	        distance:200 //判断到达底部的距离，isToBottom为true
+	    },function(ret){
+	        if(ret.isToBottom){
+	        	//alert(1)
+	        	//getmoreinfo()
+	            //document.getElementById("demo").textContent = "已到达底部";
+	        }else{
+		        if (ret.scrollTop>50){
+		        	$(".closediv").fadeIn();
+		        }else{
+		        	$(".closediv").fadeOut();
+		        }
+		        if (ret.scrollTop>150){
+		        	$(".topdiv").fadeIn();
+		        	$(".topdiv").css("bottom","60px");
+		        }else{
+		        	$(".topdiv").fadeOut();
+		        	$(".topdiv").css("bottom","60px");
+		        }
+		        
+		        if (ret.scrollTop>90){
+		        	$(".aui-tab").addClass("nav-fix");
+		        	$(".pop").css("margin-top","45px");
+		        }else{
+		        	$(".aui-tab").removeClass("nav-fix");
+		        	$(".pop").css("margin-top","90px");
+		        }
+	            //document.getElementById("demo").textContent = "滚动高度："+ret.scrollTop;
+	        }
+	
+	    });
+	    
+    })
+    
+	var popup = new auiPopup();
+    function showPopup(){
+        popup.show(document.getElementById("top-right"))
+    }
+    //关闭弹窗
+    function closePop(){
+        $(".this_select").removeClass("this_select");
+        $(".popshow").removeClass("popshow");
+    }
+    
+	function opensearch(){
+		$(".popsearch").show();
+		$("#search-input").focus();
+		document.getElementById("search-input").focus();
+	}
+	function closesearch(){
+		$(".popsearch").hide();
+	}
+	function pagetotop(){
+		$('body').animate( {scrollTop: 0}, 500);
+	}
+	var currPage = 2;
+	var dataload = true;
+	var hosturl=''
+	function getmoreinfo(){
+		if (dataload==false){
+			return;
+		}
+		dataload = false;
+		
+		var typeId="{{category_id}}";
+		if (typeId=="None"){
+			typeId='';
+		}
+		var htype="{{htype}}";
+		var bbs_post_assist_id="{{bbs_post_assist_id}}";
+		if (bbs_post_assist_id=="None"){
+			bbs_post_assist_id='';
+		}
+		if (!typeId) {
+			typeId = ""
+		}
+		var infoUrl = hosturl+ '/huzhumore/?datatype=json';
+		if (typeId){
+			infoUrl = infoUrl + '&category_id=' + typeId;
+		}
+		if (htype){
+			infoUrl = infoUrl + '&htype=' + htype;
+		}
+		if (bbs_post_assist_id){
+			infoUrl = infoUrl + '&bbs_post_assist_id=' + bbs_post_assist_id;
+		}
+		
+		infoUrl = infoUrl + '&page=' + currPage;
+		var keywords="{{keywords}}"
+		if (keywords && keywords!='None') {
+			infoUrl = infoUrl + "&keywords=" + keywords
+		}
+		zzajax("get",infoUrl,'',function(ret){
+			if (ret) {
+				var pageHtml = "";
+				$.each(ret.list, function(index, item) {
+					if (item){
+						if (item.litpic == null) {
+							item.displayDiv = "none"
+						} else {
+							item.displayDiv = ""
+						}
+						var piclist="";
+						if (item.piclist){
+							$.each(item.piclist, function(ii, pic) {
+								piclist=piclist+"<img src='"+pic.file_path+"'>"
+							})
+						}
+						item.pic=piclist;
+						//重新设置时间样式
+						//alert(item.title)
+						item.reply_time = show_time(item.reply_time);
+						//var getTpl = $("#info-list").html();
+						var getTpl = document.getElementById('info-list').innerHTML;
+						laytpl(getTpl).render(item, function(html) {
+							pageHtml = pageHtml + html;
+						});
+					}
+				})
+				if (currPage == 1) {
+					$(".j_huzhu").html(pageHtml);
+					if (pageHtml == "") {
+						$(".nodata").show();
+						$(".la_more").hide();
+					} else {
+						$(".nodata").hide();
+						$(".la_more").show();
+					}
+				} else {
+					$(".j_huzhu").append(pageHtml);
+					if (pageHtml == "") {
+						$(".la_more").hide();
+					} else {
+						$(".la_more").show();
+					}
+				}
+				if (pageHtml != "") {
+					currPage += 1;
+					$(".la_more").html("上拉获取更多信息");
+				}else{
+					$(".la_more").html("全部加载完毕");
+				} 
+				
+			} 
+			dataload = true;
+		},function(){})
+	}
+    //点击遮罩
+    $(document).on("click",function(e){ 
+        e = window.event || e; // 兼容IE7
+        obj = $(e.srcElement || e.target);
+        if ($(obj).is(".pop")) { 
+        //要执行的函数b
+            closePop()
+        } 
+    }); 
+    //点击遮罩
+    $(".pop").on("click",function(){
+    })
+</script>
+{%include 'aui/bottom.html'%}
+<script type="text/javascript"> 
+		     /*kangxianyue 创建于2016-12-14*/ 
+		     var cpro_id = "u2845509";
+		</script>
+		<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+	</body>
+</html>

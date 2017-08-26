@@ -1,0 +1,593 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>{{webtitle}}_ZZ91废料移动商务</title>
+<link rel="stylesheet"  href="/css/common.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+<link rel="stylesheet" type="text/css" href="/css/myrc/index.css"/>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+<script type="text/javascript" src="/js/huzhu/style.js"></script>
+<script type="text/javascript" src="/js/huzhu/jquery.lightbox_me.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+	<link rel="canonical" href="http://huzhu.zz91.com/detail/{{id}}.html" >
+</head>
+<body>
+{%include 'top.html'%}
+<div style="padding:0 10px">
+	<div class="d-content">
+		<div class="d-main">
+			<div class="dm-txt">
+            
+            {%for plist in picurllist%}
+            <img src="{{plist.file_path}}">
+            {%endfor%}
+        	{{title|safe}}<br />
+        	{{content|safe}}
+            </div>
+			<!--end dm-txt-->
+			<div class="dm-box">
+				<div class="db-left">
+				  <div class="db-box">
+					<div class="db-btn">楼主</div>
+					<!--end db-btn-->
+					<div class="db-txt">{{nickname}}</div>
+					<!--end db-txt-->
+					<div class="cb"></div>
+					</div>
+				</div>
+				<!--end db-left-->
+				<div class="db-right">
+					<div class="db-btn_" onClick="replymain(event);">回复楼主</div>
+					<!--end db-btn_-->
+					<div class="db-txt_">{{gmt_created}}</div>
+					<!--end db-txt_-->
+					<div class="cb"></div>
+				</div>
+				<!--end db-right-->
+				<div class="cb"></div>
+			</div>
+			<!--end dm-box-->
+		</div>
+		
+		<!--end d-main-->
+		<div class="d-dh">共<font class="dh">{{replycount}}</font>条回复</div>
+		<!--end d-dh-->
+		<div class="d-list">
+        {%for list in listall_reply%}
+		    <div class="l-txt">{{list.content|safe}}</div>
+			<div class="l-box">
+				<div class="lb-left">
+					<div class="ll-txt">
+						<font class="lt">{{list.nickname}}</font>
+					</div>
+					<!--end ll-txt-->
+				</div>
+				<!--end lb-left-->
+				<div class="lb-right">
+					<a href="/huzhu_replayshow/?replyid={{list.reply_id}}&postid={{id}}&tocompany_id={{list.company_id}}"><div class="lr-re_" id="replypost{{list.reply_id}}" replyid="{{list.reply_id}}" postid="{{id}}" tocompany_id="{{list.company_id}}" title="回复：{{title}}" onClick="//openfrm(event,{{list.reply_id}})">回复</div>
+					<!--end lr-re_-->
+					<div class="lr-re">
+						<img src="/images/myrc/re.png"/>
+					</div></a>
+					<!--end lr-re-->
+					<div class="lr-txt">{{list.posttime}}</div>
+					<!--end lr-txt-->
+					<div class="cb"></div>
+				</div>
+				<!--end lb-right-->
+				<div class="cb"></div>
+			</div>
+            <!--end l-box-->
+			<div class="l-block" id="l-block{{list.reply_id}}">
+            {%for list1 in list.replylist.list%}
+            <div class="lb-box">
+                <div class="lb-txt">
+                    <font class="lt">{{list1.nickname}}</font> 回复 {{list1.tonickname}} :<font class="lt_">{{list1.content|safe}}</font>
+                </div>
+                <!--end lb-txt-->
+                <div class="lb-txt_">
+                    <div class="lt-txt">{{list1.posttime}}</div>
+                    <!--end lt-txt-->
+                    <a href="/huzhu_replayshow/?replyid={{list.reply_id}}&postid={{id}}&tocompany_id={{list1.company_id}}"><div class="lt-re" id="replypost{{list1.reply_id}}" replyid="{{list.reply_id}}" nickname="{{list1.nickname}}" tocompany_id="{{list1.company_id}}" postid="{{id}}" title="回复：{{title}}" onClick="//openfrm(event,{{list1.reply_id}})">
+                        回复
+                    </div></a>
+                    <!--endl lt-re-->
+                    <div class="cb"></div>
+                </div>
+                <!--end lb-txt-->
+            </div>
+            <!--end lb-box-->
+            {%endfor%}
+            </div>
+            {%if list.replylist.count%}
+            <div class="l-block">
+				<div class="lb-more">
+					<a href="javascript:void(0)" class="btn1" pageindex=1 replyid="{{list.reply_id}}" type="1" id="more{{list.reply_id}}" onClick="replymore(this)">更多</a>
+				</div>
+			</div>
+            {%endif%}
+        {%endfor%}
+        
+		</div>
+        {%if listall_reply%}
+			<div class="l-block">
+				<div class="lb-more">
+					{%if moreflag%}<a href="javascript:void(0)" class="btn1" pageindex=1 postid="{{id}}" type="0" id="more{{id}}" onClick="replymore(this)">更多</a>{%endif%}
+					<font class="more">共<font class="No">{{replycount}}</font>条回复</font>
+				</div>
+			</div>
+        {%endif%}
+        <a name="hh"></a>
+{%if suc%}
+<div class="resultTip mt10 mb10 ac"><span>感谢您的回复,我们将会在工作日30分钟内通过审核，请耐心等待。</span>
+	<script>
+		alert("感谢您的回复,我们将会在工作日30分钟内通过审核，请耐心等待。");
+	</script>
+</div>
+{%endif%}
+{%if err%}
+<div class="resultTip mt10 mb10 ac"><span>来写点什么吧...</span></div>
+{%endif%}
+		{%if username%}
+		
+        {%else%}
+        <div class="resultTip ac lh18">请 <a href="/login/?done={{done}}^jing^reply">登录</a> 之后回复该贴</div>
+        {%endif%}
+		<!--end d-reply-->
+	</div>
+	
+	<!--end d-content-->
+</div>
+
+<div class="d-reply" style="display:none; padding:20px;">
+<form method="post" name="postform" id="postform" action="/huzhu_replay/" onSubmit="return replyfrm(this)">
+<input type="hidden" name="bbs_post_id" value="{{id}}">
+<input type="hidden" name="tocompany_id" value="{{company_id}}">
+<input type="hidden" name="title" value="回复：{{title}}">
+
+    <!--end r-tle-->
+    <div class="r-txt">
+        <textarea name="content" cols="20" rows="10" placeholder="来写点什么吧..." style="border:solid 1px #CCC; padding:10px;"></textarea>
+    </div>
+    <input type="hidden" name="picidlist" id="picidlist" value="">
+    
+</form>
+<div id="imgpic" style=" height:60px;"></div>
+<div>
+<form name="myform" id="myform" method="post" enctype="multipart/form-data" style="overflow:hidden;" action="/huzhu_upload/" target='upload' onSubmit="return picsubmit(this)">
+<input type="file" value="选择图片" name="file" id="file"/>
+<img style="display:none" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAjCAMAAAA3znPYAAAABGdBTUEAALGPC/xhBQAAAP9QTFRFAAAAycnJqKiourq6rKyssLCwubm5z8/Pm5ub9vb2mZmZ7+/v9PT08fHxioqK2dnZ39/f5+fnkJCQpaWl7Ozs9fX1nJycsbGxt7e38PDwra2toqKi8/Pzvb29xsbGj4+PjIyM0NDQkpKSwMDAqamptbW18vLy+vr61dXVnZ2dyMjI4ODgq6ur09PTwsLCn5+f6enp3NzcpKSk6+vr+fn53t7ei4uLqqqqjY2N6Ojo+Pj47u7u/f3919fXsrKyl5eXlpaWzs7Ou7u7jo6Opqamy8vL+/v7zMzMkZGRysrK2NjY/Pz8iYmJ1NTUv7+//v7+x8fHiIiI9/f3r6+vh4eHNjdlogAAAAF0Uk5TAEDm2GYAAAFWSURBVDjLlZTndoJAEIUnvfdeTW92E2OLiiKihmCQef9nyWGWg+6aIdn7i7vznW1zFwBJ1ZEiiNGXh4pcHRhxUQdGvB9qwIhHHxow4unnmDppfQdyJ+Bm567Qm8A7RLTWAIrvykzP9gbNUsncKJXNPCzLI2Z6vGrXVfBVkH3zVTrLoCyXZdp4UI5e9Hja2Zm6qT5Pt0OkZrv9cEvDLEc75+Jwx7T8wpvYOkeXxGyl0J5RU7pXDG0RnY78C/l5ht6m6l7kD8lnGDpH1YmW01Zshq4otEfhsxg6T/Rs5LPkXYa+pOpW5FvkOwxdEA1phDZFj2bkcL3cFxd+G4TYaYs3sMR23g87v1K3ntbF56PBZ3Awlap2TGLNnAJfx+UbE0k5r14sjd5FNWJrKfX1w9T/wJxLBlk9GPgO/k0H2jXKv44D6kiTbmrAPeVRx2sGoN7w/6dGHX4AK391nTBWia0AAAAASUVORK5CYII=">
+<input type="submit" value="上传图片" class="comm-btn-secondary">
+<iframe name='upload' style=" display:none"></iframe>
+</form>
+</div>
+<div align="center" style="margin-top:10px;">
+        <button class="btn btn_cancel" type="reset" onClick="dismiss();">取消</button>
+        <input type="button" class="btn btn_confirm" value="回复" onClick="dismiss();return replyfrm(document.getElementById('postform'))">
+    </div>
+</div>
+<!-- 回复弹出框 -->
+<input type="hidden" id="mycompany_id" value="{{mycompany_id}}">
+<!-- 回复层主弹出框 -->
+<div id="reply_div_cz" align="center">
+    <textarea name="" style="padding:10px;"></textarea>
+    <div align="center" style="margin-top:10px;">
+        <div class="btn btn_cancel" onClick="dismiss();">取消</div>
+        <div class="btn btn_confirm" id="replyreply">回复</div>
+        <span class="replydata"></span>
+    </div>
+</div>
+{%if username%}
+{%if not mynickname%}
+	<script>
+    
+	function savenick(){
+		window.location="?nickname="+$("#nickname").val();
+	}
+    </script>
+    <!-- 回复弹出框 -->
+	<div id="reply_div_nick" align="center">
+    <form name="form">
+    	<font color="#CC0000">您还没有填写您的昵称，请填写！</font>
+      <input type="text" name="nickname" id="nickname" onKeyUp="check();" style="width:80%; line-height:30px;" placeholder="请输入您的昵称！">
+      <div align="center" style="margin-top:15px;">
+        <div class="btn btn_confirm" onClick=savenick()>确定</div>
+        </div>
+    </form>
+    </div>
+{%endif%}
+{%if not myguanzhu%}
+	<script>
+	function saveguanzhu(){
+		document.getElementById("formguanzhu").submit();
+	}
+    </script>
+    <!-- 回复弹出框 -->
+	<div id="reply_div_guanzhu" align="center" style="line-height:30px;">
+    <form name="formguanzhu" id="formguanzhu" action="?" method="get">
+    <font color="#CC0000">点击设置我关心的行业</font> <br />
+      <input type="checkbox" name="myguanzhu" id="myguanzhu" value="1" /> <label for="myguanzhu">废塑料</label>
+      <input type="checkbox" name="myguanzhu" id="myguanzhu1" value="2" /> <label for="myguanzhu1">废金属</label>
+      <input type="checkbox" name="myguanzhu" id="myguanzhu2" value="3" /> <label for="myguanzhu2">综合废料</label>
+      <div align="center" style="margin-top:15px;">
+        <div class="btn btn_confirm" onClick=saveguanzhu()>确定</div>
+        </div>
+    </form>
+    </div>
+{%endif%}
+{%endif%}
+<style>
+    #mcover{ position: fixed;top:0;left:0;width:100%;	height:100%;background:rgba(0, 0, 0, 0.7);	display:none;z-index:20000;}
+    #mcover img {position: fixed;right: 18px;top:5px;width: 260px;height: 180px;z-index:20001;}
+</style>
+<div class="box">
+        <!--分享-->
+        <div id="mcover" onclick="$('#mcover').hide();">
+            <img src="http://img0.zz91.com/zz91/mobile/images/guide.png" />
+        </div>
+        <div class="bdsharebuttonbox tipp" id="bdsharebuttonbox">
+            <a id="a_wx_wxin" href="javascript:$('#mcover').show();"  class="mbds_wxin1"></a>
+	        <a id="a_wx_friend" href="javascript:$('#mcover').show();"  class="mbds_friend1"></a>
+            <a id="a_sougou_wxin" href="javascript:void(SogouMse.Utility.shareWithInfo({shareTitle:'{{webtitle}}-ZZ91再生网', shareContent:'', shareUrl:'http://m.zz91.com/huzhuview/{{id}}.htm', shareImageUrl:'http://img0.zz91.com/zz91/images/48R.png', shareType:'4'}));" class="mbds_wxin1"></a> 
+            <a id="a_sougou_friend" href="javascript:void(SogouMse.Utility.shareWithInfo({shareTitle:'{{webtitle}}-ZZ91再生网', shareContent:'', shareUrl:'http://m.zz91.com/huzhuview/{{id}}.htm', shareImageUrl:'http://img0.zz91.com/zz91/images/48R.png', shareType:'2'}));" class="mbds_friend1"></a>
+            <a id="a_uc_wxin" href="javascript:ucshare('j_ishare_pic','{{webtitle}}','{{webtitle}}-ZZ91再生网','http://m.zz91.com/huzhuview/{{id}}.htm','WechatTimeline');" data-platform="WechatTimeline" class="mbds_wxin1"></a>
+	        <a id="a_uc_friend" href="javascript:ucshare('j_ishare_pic','{{webtitle}}','{{webtitle}}-ZZ91再生网','http://m.zz91.com/huzhuview/{{id}}.htm','WechatFriends');"  data-platform="WechatFriends" class="mbds_friend1"></a>
+            <a id="a_qq_wxin" href="javascript:void(mqqShare('timeline'));" data-share-type="wechat_qq:timeline" class="mbds_wxin1"></a>
+            <a id="a_qq_friend" href="javascript:void(mqqShare('friend'));" data-share-type="wechat_qq:friend" class="mbds_friend1"></a>
+            <a href="#" class="bds_qzone1" data-cmd="qzone" title="分享到QQ空间"></a>                       
+            <a href="#" class="bds_tsina1" data-cmd="tsina" title="分享到新浪微博"></a>
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "32" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+            <style> 
+            .bdsharebuttonbox{padding:25px 0 25px 20px;}
+            .bdsharebuttonbox .mbds_wxin1 {background:url(http://img0.zz91.com/zz91/mobile/images/friend.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:20px!important;display:none;padding-left:0px;}
+            .bdsharebuttonbox .mbds_friend1 {background:url(http://img0.zz91.com/zz91/mobile/images/wxin.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:20px!important;display:none;padding-left:0px;}            
+            .bdsharebuttonbox .bds_qzone1 {background:url(http://img0.zz91.com/zz91/mobile/images/kjian.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:20px!important;padding-left:0px;}
+            .bdsharebuttonbox .bds_tsina1 {background:url(http://img0.zz91.com/zz91/mobile/images/sina.png)!important; width:50px!important; height:50px!important; background-size:50px!important;margin-right:10px!important;padding-left:0px;}                
+            </style>
+            <script type="text/javascript">
+                var ua = navigator.userAgent.toLowerCase();
+                if (ua.indexOf("sogoumobilebrowser") > -1) {
+                    $("#a_sougou_wxin,#a_sougou_friend").show();
+                }
+                else if(ua.indexOf("micromessenger") > -1)
+                {
+                    $("#span_guanzhu").show();
+                    $("#a_wx_wxin,#a_wx_friend").show();
+                }
+                else if (ua.indexOf("ucbrowser") > -1) {
+                    $("#a_uc_wxin,#a_uc_friend").show();
+                }
+                else if(ua.indexOf("mqqbrowser") > -1)
+                {
+                    $("#a_qq_wxin,#a_qq_friend").show();
+                }
+                window.article_config = {        
+                    news_title: "{{webtitle}}-ZZ91再生网" ,      
+                    share_img: "http://img0.zz91.com/zz91/images/48R.png",        
+                };
+                $(function () {
+                    var weixinParams,
+                    ua = navigator.userAgent,
+                    isAndroid = /Android/i.test(window.navigator.userAgent),
+                    newQQbrowerWeixinApi = 'http://jsapi.qq.com/get?api=app.isInstallApk,app.share',
+                    getQQbrowerVersion = function () {
+                        try {
+                            var reg = /MQQBrowser\/(\d{2})/;
+                            var regRemoveDot = /\./g;
+                            ua =  ua.replace(regRemoveDot,'');
+                            var res = reg.exec(ua);
+                            if(res && res.length > 1){
+                                return parseInt(res[1], 10);
+                            }
+                            return 0;
+                        }catch(e){
+                            return 0;
+                        }
+                    },
+                    loadQqPushJs = function (url, callback) {
+                        var head = document.getElementsByTagName('head')[0];
+                        var js = document.createElement('script');
+                        js.setAttribute('type', 'text/javascript'); 
+                        js.setAttribute('src', url); 
+                        head.appendChild(js);
+                        js.onload = callback;
+                    },
+                    newWxShareLoad = function (type) {
+                        if (getQQbrowerVersion() >= 54) {
+                            loadQqPushJs(newQQbrowerWeixinApi, noInstallDeleteWeixin);
+                        }
+                    },
+                    deleteWeixinShare = function () {
+                        $('[data-share-type="wechat_qq:timeline"]').remove();
+                        $('[data-share-type="wechat_qq:friend"]').remove();
+                    },
+                    noInstallDeleteWeixin = function () {
+                        browser.app.isInstallApk(function(data){
+                            if (!data) {
+                                deleteWeixinShare();
+                            }
+                        }, isAndroid ? {'packagename':'com.tencent.mm'} : {'apkKey':'weixin'});
+                    },
+                    handleShareWeixinNewQQbrower = function () {
+                        browser.app.share(weixinParams);
+                    },
+                    mqqShare = function (type) {
+                        var title, url, imgUrl, to_app, qqbrowerVersion,
+                            config = window.article_config;
+                        if (type === 'friend') {
+                            //Statistics.addStatistics('000022_weixin_QQMB_sharefriend');
+                            to_app = 1;
+                        }
+                        else {
+                            //Statistics.addStatistics('000022_weixin_QQMB_sharefriends'); 
+                            to_app = 8;
+                        }
+                        title = config.news_title;
+                        imgUrl = config.share_img;
+                        url = location.href;
+                        if (url.indexOf('?') > 0) {
+                            url += '&_once_=000022_weixin_QQMB_back';
+                        }
+                        else {
+                            url += '?_once_=000022_weixin_QQMB_back';
+                        }
+                        weixinParams = {title: title, url: url, img_url: imgUrl, to_app: to_app};
+                        if (!isAndroid) {
+                            handleShareWeixinNewQQbrower();
+                        }
+                        else {
+                            if (getQQbrowerVersion() >= 54) {
+                                handleShareWeixinNewQQbrower();
+                            }
+                            else {
+                                wxShare().init({title: title,url: url,imgUrl: imgUrl,to_app: to_app});
+                            }
+                        }
+                    };
+                
+                window.mqqShare = mqqShare;
+                window.newWxShareLoad = newWxShareLoad;
+                }());
+
+                // 微信分享数据
+                window.weixinShareData = {
+                    "img_url": window.article_config.share_img,
+                    "link": window.location.href,
+                    "title": window.article_config.news_title,
+                    "desc": $('meta[name="description"]').attr('content')
+                };
+
+                $(function () {
+                    newWxShareLoad();
+                });
+
+                function ucshare(obj, title, content, url, platform) {
+                    var getPos = {
+                        getTop: function (e) {
+                            var offset = e.offsetTop;
+                            if (e.offsetParent != null) offset += getPos.getTop(e.offsetParent);
+                            return offset;
+                        },
+                        getLeft: function (e) {
+                            var offset = e.offsetLeft;
+                            if (e.offsetParent != null) offset += getPos.getLeft(e.offsetParent);
+                            return offset;
+                        },
+                        getCss3offsetTop: function (e) {
+                            var css3offset = getComputedStyle(e, null).webkitTransform;
+                            if (css3offset == "none") {
+                                var css3offsetTop = 0;
+                            } else {//存在CSS3属性
+                                var css3offsetTop = parseInt(css3offset.split(",")[5].replace(")", ""))
+                            }
+                            if (e.parentNode.tagName != "BODY") css3offsetTop += getPos.getCss3offsetTop(e.parentNode);
+                            return css3offsetTop;
+                        },
+                        getCss3offsetLeft: function (e) {
+                            var css3offset = getComputedStyle(e, null).webkitTransform;
+                            if (css3offset == "none") {
+                                var css3offsetLeft = 0;
+                            } else {//存在CSS3属性
+                                var css3offsetLeft = parseInt(css3offset.split(",")[4])
+                            }
+                            if (e.parentNode.tagName != "BODY") css3offsetLeft += getPos.getCss3offsetLeft(e.parentNode);
+                            return css3offsetLeft;
+                        },
+                        getNodeInfoById: function (e) {
+                            var myNode = document.getElementById(e);
+                            if (myNode) {
+                                var pos = [getPos.getLeft(myNode) + getPos.getCss3offsetLeft(myNode), getPos.getTop(myNode) + getPos.getCss3offsetTop(myNode), myNode.offsetWidth, myNode.offsetHeight]
+                                return (pos)
+                            } else {
+                                return ""
+                            }
+                        }
+                    }
+
+                    if (typeof (ucweb) != "undefined") {
+                        var UCBrowserText = ucweb.startRequest("shell.page_share", [title, content, url, platform, '', '我们正在看【' + title + '】，一起来看吧', getPos.getNodeInfoById(obj)]);
+                        //var UCBrowserText = ucweb.startRequest("shell.page_share", ['', '使用UC浏览器分享js API', 'http://wap.uc.cn', '', 'invisible:QQ,Qzone', 'UC浏览器','']);
+                    }
+                    else if (typeof (ucbrowser) != "undefined") {
+
+                        if (platform == _platforms.sweibo[0]) {
+                            platform = _ucPlatName.iweibo;
+                        }
+                        else if (platform == _platforms.friend[0]) {
+                            platform = _ucPlatName.ifriend;
+                            url += _frompre + "from=" + _fromPlat.ucfriend;
+                        }
+                        else if (platform == _platforms.fsircle[0]) {
+                            platform = _ucPlatName.ifcircle;
+                            url += _frompre + "from=" + _fromPlat.ucweichat;
+                        }
+
+
+                        ucbrowser.web_share(title, content, url, platform, '', '@ZZ91再生网', obj);//title 指html的title
+                        //ucbrowser.web_share('title', 'content', 'url', 'platform', 'disablePlatform', 'source', 'htmlID');
+                    }
+                    else {
+                        //alert("sorry,your browser version not support!");
+                    }
+                }
+                
+            </script>
+        </div>
+</div>
+<script>
+
+function picsubmit(){
+	$("#imgpic").html("正在上传图片...")
+}
+function changepic(picurl,pid){
+	var interval = setTimeout(function(){
+		$("#imgpic").html("<img src='"+picurl+"'>");
+	}, 2000); 
+	$("#picidlist").val(pid);
+}
+var page;
+function replymore(obj){
+	var oid=obj.id;
+	var self=$("#"+oid);
+	self.html("加载中...");
+	var postid=self.attr("postid");
+	var replyid=self.attr("replyid");
+	var page=self.attr("pageindex");
+	
+	var type=self.attr("type");
+	$.get("/huzhureplymore/?"+Math.floor(Math.random()*1000),
+	{
+		type:type,
+		postid:postid,
+		replyid:replyid,
+		page:parseInt(page)+1
+	},
+	function(data,status){
+		if (status=="success" && data!="err" && data!=""){
+			if (type==0){
+				$(".d-list").append(data);
+			}else{
+				$("#l-block"+replyid.toString()).append(data);
+			}
+			self.attr({"pageindex":parseInt(page)+1});
+			page=page+1
+			self.html("更多");
+		}else{
+			self.css("display","none");
+		}
+	});
+};
+$(window).scroll(function(){
+	if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+		
+		replymore(document.getElementById("more{{id}}"));
+	}
+});
+function replymain(e){
+	var mycompany_id=$("#mycompany_id").val();
+	if (mycompany_id.toString()=="None"){
+		window.location="/login/?done={{host}}"
+		return false;
+	}
+	$('.d-reply').lightbox_me({
+			overlaySpeed:0,
+			lightboxSpeed:0,
+			modalCSS:{top: '20px',width:'80%'},
+			//centered: true,
+			onLoad: function() { 
+				var target = $.event.fix(e).currentTarget;
+			}
+	});
+	e.preventDefault();
+}
+function replyfrm(frm){
+	var huifucontent=frm.content.value;
+	huifucontent=huifucontent.replace(/[ ]/g,"");
+	if (huifucontent==""){
+		alert("来写点什么吧...");
+		replymain(event);
+		return false;
+	}else{
+		frm.submit();
+	}
+}
+function openfrm(e,id){
+	var mycompany_id=$("#mycompany_id").val();
+	if (mycompany_id.toString()=="None"){
+		window.location="/login/?done={{host}}"
+		return false;
+	}
+	var self=$("#replypost"+id.toString());
+	var replyid=self.attr("replyid");
+	var postid=self.attr("postid");
+	var title=self.attr("title");
+	var tocompany_id=self.attr("tocompany_id");
+	$('#reply_div_cz').lightbox_me({
+		overlaySpeed:0,
+		lightboxSpeed:0,
+		//centered: true, 
+		modalCSS:{top: '20px'},
+		onLoad: function() { 
+			var target = $.event.fix(e).currentTarget;
+			var placeholder = "回复"+$(target).parent().prev().find('.lt').html();
+			$('#reply_div_cz').find('textarea').attr({"placeholder":placeholder});
+			//$('#reply_div_cz').find('textarea').focus();
+			$('#reply_div_cz').find('textarea').empty();
+			$('#reply_div_cz').find('.replydata').attr({"replyid":replyid,"postid":postid,"tocompany_id":tocompany_id});
+		}
+	});
+	e.preventDefault();
+}
+$(function(){
+	
+	$('#replyreply').click(function(e){
+		var mycompany_id=$("#mycompany_id").val();
+		if (mycompany_id.toString()=="None"){
+			window.location="/login/?done={{host}}"
+			return false;
+		}
+		var replyid=$('#reply_div_cz').find('.replydata').attr("replyid");
+		var postid=$('#reply_div_cz').find('.replydata').attr("postid");
+		var tocompany_id=$('#reply_div_cz').find('.replydata').attr("tocompany_id");
+		var replycontent=$('#reply_div_cz').find('textarea').val();
+		var	hfreplycontent=replycontent.replace(/[ ]/g,"");
+		if (hfreplycontent==""){
+			alert("来写点什么吧...");
+			return false;
+		}
+		
+		$.get("/reply_reply/?"+Math.floor(Math.random()*1000),
+		{
+			replyid:replyid,
+			postid:postid,
+			tocompany_id:tocompany_id,
+			replycontent:replycontent
+		},
+		function(data,status){
+			if (status=="success" && data!="err" && data!=""){
+				$('#reply_div_cz').find('textarea').empty();
+				dismiss();
+				$("#l-block"+replyid.toString()).append(data);
+			}else{
+				
+			}
+		});
+	});
+	
+});
+$(function(){
+	$("body").on("click",".quanlink",function(){
+		var url = $(this).attr("url");
+		window.location=url;
+	});
+});
+</script>
+<div class="m-btn" style="background: #ebebeb; border-top: solid #ccc 1px;">
+	<input type="button" name="favOffer" onClick="window.location='/openfavorite/?pdtid={{id}}&favorite_type_code=10091005&title={{title}}';" value="&nbsp;&nbsp;收藏&nbsp;&nbsp;" class="fav_btn">&nbsp;&nbsp;&nbsp;&nbsp;
+	<input type="button" name="sharebutton" id="sharebutton" value="&nbsp;&nbsp;分享&nbsp;&nbsp;" class="fav_btn">
+</div>
+{%include 'bottom2.html'%}
+</body>
+</html>

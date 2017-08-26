@@ -1,0 +1,258 @@
+<html>
+<head>
+<script type="text/javascript" src="../jquery.js"></script>
+<script type="text/javascript">
+
+window.onload = function(){ 
+$("#price2").hide();
+} 
+$(document).ready(function(){
+  $("#pricetype").change(function(){
+    $("#price2").toggle();
+    $("#price1").toggle();
+  });
+});
+
+function send1()
+{
+document.form.action="/assigntoseo/"
+document.form.submit()
+}
+function send2()
+{
+document.form.action="/choicedelete/"
+document.form.submit()
+}
+function send3()
+{
+document.form.action="/choicereduction/"
+document.form.submit()
+}
+function send4()
+{
+document.form.action="/choicelostcomp/"
+document.form.submit()
+}
+function send5()
+{
+document.form.action="/choicereductioncomp/"
+document.form.submit()
+}
+function send6()
+{
+document.form.action="/assigntoseocomp/"
+document.form.submit()
+}
+function send7()
+{
+document.form.action="/choicelost/"
+document.form.submit()
+}
+function send8()
+{
+document.form.action="/choicereductionlost/"
+document.form.submit()
+}
+function send9()
+{
+document.form.action="/assigntosales/"
+document.form.submit()
+}
+
+//选中全选按钮，下面的checkbox全部选中 
+var selAll = document.getElementById("selAll"); 
+function selectAll() 
+{ 
+  var obj = document.getElementsByName("checkAll"); 
+  if(document.getElementById("selAll").checked == false) 
+  { 
+  for(var i=0; i<obj.length; i++) 
+  { 
+    obj[i].checked=false; 
+  } 
+  }else 
+  { 
+  for(var i=0; i<obj.length; i++) 
+  {	  
+    obj[i].checked=true; 
+  }	
+  } 
+  
+} 
+
+//当选中所有的时候，全选按钮会勾上 
+function setSelectAll() 
+{ 
+var obj=document.getElementsByName("checkAll"); 
+var count = obj.length; 
+var selectCount = 0; 
+
+for(var i = 0; i < count; i++) 
+{ 
+if(obj[i].checked == true) 
+{ 
+selectCount++;	
+} 
+} 
+if(count == selectCount) 
+{	
+document.all.selAll.checked = true; 
+} 
+else 
+{ 
+document.all.selAll.checked = false; 
+} 
+} 
+
+//反选按钮 
+function inverse() { 
+var checkboxs=document.getElementsByName("checkAll"); 
+for (var i=0;i<checkboxs.length;i++) { 
+  var e=checkboxs[i]; 
+  e.checked=!e.checked; 
+  setSelectAll(); 
+} 
+} 
+</script>
+<style type="text/css">
+body{ font-size:12px;}
+.loginuer{
+	line-height:30px;
+}
+tr,td{font-size:12px;}
+a:link{color: black}
+a:visited{color: black}
+a:hover{color: blue}
+a:active{color: black}
+a{text-decoration:none}
+
+.s8px{font-size:8px}
+.s10px{font-size:10px}
+.s15px{font-size:15px}
+.s18px{font-size:20px}
+
+.w500{width:500px}
+.w300{width:300px}
+.h300{height:300px}
+.h100{height:100px}
+.h50px{height:25px}
+.h200{height:200px}
+.w150{width:150px}
+.w200{width:200px}
+.w80px{width:100px}
+.w60px{width:60px}
+.w35px{width:35px}
+.w25px{width:25px}
+.tcenter{text-align:center}
+.fleft a{
+	display:block;
+	width:150px;
+	float:left;
+	background-color: #ebebeb;
+	border: 1px solid #999;
+	padding:10px;
+	margin-right:5px;
+	text-align:center;
+}
+.borderb1{border:1px solid gray}
+.red{color:#F00}
+.baonian a{
+	display:block;
+	float:left;
+	width:100px;
+	background-color:#390;
+	color:#FFF;
+	text-align:center;
+	padding:10px;
+	margin-right:5px;
+}
+.baonian a:hover{
+	background-color:#360;
+	color:#FFF
+}
+.baonianon a{
+	color:#FFF;
+	background-color:#C60;
+}
+.listsearch a{
+	padding:10px;
+	margin-right:5px;
+	text-align:center;
+	line-height:30px;
+	background-color:#f2f2f2;
+	
+}
+.addtab input{
+	width:100%;
+}
+</style>
+</head>
+<body>
+
+<div class="loginuer">
+{%if username%}
+<a href="" onClick="applyContent()" id="lastname" value="50">您好</a>, {{username}}!&nbsp;&nbsp;&nbsp;&nbsp;
+{%ifequal usertype "seouser"%}
+<a href="/updatepassword/">修改密码</a>&nbsp;&nbsp;
+{%endifequal%}
+{%ifequal usertype "salesman"%}
+<a href="/updatepassword/">修改密码</a>&nbsp;&nbsp;
+{%endifequal%}
+<a href="/logout/">注销</a>
+{%else%}
+<br /><br /><br /><br />
+
+<div>
+<form action="/login/" method="post">
+
+<table width="500" align="center" cellpadding="5" cellspacing="1" bgcolor="#666666">
+<tr><td colspan="2" bgcolor="#FFFFFF"><span class="red">{{error}}</span></td>
+<tr>
+<td bgcolor="#FFFFFF">用户名：</td>
+<td bgcolor="#FFFFFF"><input type="text" name="username1" {%if username1%}value="{{username1}}"{%endif%} class="w80px">
+  <span class="red">{{error1}}</span> </td>
+<tr>
+<td bgcolor="#FFFFFF">密码：</td>
+<td bgcolor="#FFFFFF"><input type="password" name="password1" {%if password1%}value="{{password1}}"{%endif%} class="w80px">
+  <span class="red">{{error2}}</span> </td></tr>
+<tr><td colspan="2" bgcolor="#FFFFFF">
+<input type="submit" value="登录"></td>
+</table>
+</form>
+{%endif%}
+</div>
+<div class="fleft">
+
+{%if username%}
+
+
+<a href="/">{%if index%}<font color="blue">首页</font>{%else%}首页{%endif%}</a>&nbsp;
+
+{%ifnotequal usertype "company"%}
+<a href="/company/">{%if list_company%}<font color="blue">公司总表</font>{%else%}公司总表{%endif%}</a>&nbsp;
+{%endifnotequal%}
+
+<a href="/keywords/">{%if list_keywords%}<font color="blue">关键字总表</font>{%else%}关键字总表{%endif%}</a>&nbsp;
+
+{%ifequal username "seo"%}
+<a href="/seouser/">{%if seoadmins%}<font color="blue">seo人员管理</font>{%else%}seo人员管理{%endif%}</a>&nbsp;
+{%endifequal%}
+{%ifequal username "yunying"%}
+<a href="/seouser/">{%ifequal seoadmins 1%}<font color="blue">seo人员管理</font>{%else%}seo人员管理{%endifequal%}</a>&nbsp;
+{%endifequal%}
+{%ifequal username "sales"%}
+<a href="/salesman/">{%ifequal salesadmins 2%}<font color="blue">销售人员管理</font>{%else%}销售人员管理{%endifequal%}</a>&nbsp;
+{%endifequal%}
+{%ifequal username "yunying"%}
+<a href="/salesman/">{%ifequal salesadmins 2%}<font color="blue">销售人员管理</font>{%else%}销售人员管理{%endifequal%}</a>&nbsp;
+{%endifequal%}
+&nbsp;&nbsp;&nbsp;&nbsp;
+{%endif%}
+</div>
+
+</div>
+{%block content%}
+
+{%endblock%}
+</body>
+</html>

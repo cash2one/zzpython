@@ -1,0 +1,50 @@
+<input type="hidden" name="mobileUserAgent" id="mobileUserAgent" value="">
+<header class="t-header t-quick-hidden">
+	<a class="logo" href="/">&nbsp;</a>
+	<div class="icon">
+		<a class="s" onClick="AliMobile.SearchBar.showQuickSearch();">&nbsp;</a>
+		<!--<a class="ww-off" href="/touch/wangwang/recent/">&nbsp;</a>-->
+		<a class="myali-off" href="/login/">&nbsp;</a>
+	</div>
+</header>
+<script>AliMobile.Jload3.loadjs('/js/AliMobile.js');</script>
+<div id="quickSearch" style="display: none; ">
+<div class="t-quick-sch-outer t-index-search">
+	<div class="go-back" onclick="AliMobile.SearchBar.hideQuickSearch();">返回</div>
+	<div class="t-quick-sch pd10">
+		<form action="/searchfirst/" method="get" onsubmit="return AliMobile.SearchBar.chkSearchInput('.t-quick-sch-outer');">
+		<div style="position:relative;">
+	    	<div class="input">
+	    		<div class="selected" onclick="AliMobile.SearchBar.setSearchType('.t-quick-sch-outer','1');">
+	    			<span class="type">产品</span>
+	    			<span class="arrow">&nbsp;&nbsp;</span>
+	    		</div>
+				<div style="background-color:#fff;margin-right:65px;border-radius：2px;">
+					<input class="searchKey" type="text" name="keywords" value="" autocomplete="off" onfocus="AliMobile.SearchBar.input('.t-quick-sch-outer','1','.t-quick-sch');" onkeyup="AliMobile.SearchBar.input('.t-quick-sch-outer','1','.t-quick-sch');">
+				</div>
+	    		<input class="searchType" type="hidden" value="selloffer" name="searchtype">
+				<input id="version" type="hidden" value="t" name="v">
+				<input id="en" type="hidden" value="utf8" name="en">
+	    	</div>
+	    	<div class="submit" onclick="AliMobile.SearchBar.submit('.t-quick-sch-outer');"></div>
+			<div class="clear"><a href="javascript:AliMobile.SearchBar.cleanSearchInput('.t-quick-sch-outer');"><img src="/images/close2.png"></a></div>
+		</div>
+		</form>
+		<div class="ac selection" style="display:none;">
+			<ul>
+				<li onclick="AliMobile.SearchBar.setSearchType('.t-quick-sch-outer','1','产品','selloffer','请输入产品名称');">产品</li>
+				<li onclick="AliMobile.SearchBar.setSearchType('.t-quick-sch-outer','1','公司','company','请输入公司名、地区、产品等');">公司</li>
+				<li onclick="AliMobile.SearchBar.setSearchType('.t-quick-sch-outer','1','价格','price','请输入价格行情关键字');">价格</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="quick-history">
+	<div class="title">最近搜索</div>
+	<div>
+        <div class="word"><a href="/touch/search/offerlist/c-10223_n-y.html">所有类目&gt;...&gt;应急指示灯具</a></div>
+        <div class="word"><a href="/touch/search/offerlist/c-32_n-y.html">所有类目&gt;库存积压</a></div>
+        <div class="word"><a href="/touch/search/offerlist/c-53_n-y.html">所有类目&gt;传媒、广电</a></div>
+	</div>
+</div>
+</div>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" href="../css/main.min.css" type="text/css">
+		<link rel="stylesheet" href="../css/my_pinlun.css" type="text/css">
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+	</head>
+
+	<body>
+		<div class="box">
+			<!--分享-->
+			<div id="MyComments" class="pinlun">
+			<script id="info-list" type="text/html">
+				<div class="plunxx">
+					<div class="plunxx_top">
+						<div class="plunxx_top1"> {{ d.feedbackname }}
+							<span>台湾省</span>
+						</div>
+						<div class="plunxx_top3">
+							<div title="这条评论有问题，小编快来和谐它" onclick="userReport(20289022,416687)" style="padding-right:0px;" class="plunxx_bottom_fdui"><span id="span_jubao_20289022" style="color:red;">举报</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="plunxx_center">
+						{{ d.msg }}
+						<div style="clear: both"></div>
+					</div>
+					<div class="plunxx_bottom">
+						<div class="plunxx_bottom_time"> 2015-4-19 12:48:32</div>
+						<div onclick="ShowReply(20289022)" class="plunxx_bottom_fyan">回复</div>
+						<div id="o_20289022" onclick="sndReq(416687,20289022,&#39;oppose&#39;,2)" class="plunxx_bottom_fdui">反对[{{ d.bad }}]</div>
+						<div id="s_20289022" onclick="sndReq(416687,20289022,&#39;support&#39;,35)" class="plunxx_bottom_ztong">支持[{{ d.good }}]</div>
+					</div>
+					<div id="div_reply_20289022"></div>
+				</div>
+			</script>
+			</div>
+
+			<div onclick="seeallreviews(416687)" class="pinlun_more bt1 bb1">查看全部<span id="span_reviewcount"></span>条评论</div>
+
+			
+			<!-- <div class="share">
+				<ul>
+					<li>相关阅读</li>
+				</ul>
+			</div>
+			<div class="newslist">
+				<ul id="ul_relatednews">
+					<li>
+						<div class="newsimg">
+							<a href="http://m.mydrivers.com/newsview/416679.html">
+								<img src="../image/53d04d57b0574b3aadb37855cdcf6834.jpg" width="90" height="67">
+							</a>
+						</div><span class="newst"><a href="http://m.mydrivers.com/newsview/416679.html">8位版《泰坦尼克号》游戏：被画面萌化</a></span><span class="newsTips"><ul><li class="tname">万南 ｜</li><li></li><li class="ttime">19小时前</li><li style="float:right;"><div class="tpinglun"><a href="http://m.mydrivers.com/comment/review.aspx?tid=416679">26</a></div></li></ul></span>
+					</li>
+					<li><span class="newstnopic"><a href="http://m.mydrivers.com/newsview/416131.html">OS X 10.10.3隐藏福利：游戏党感动哭了</a></span><span class="newsTips"><ul><li class="tname">鲲鹏 ｜</li><li></li><li class="ttime">2015-4-17 17:52:15</li><li style="float:right;"><div class="tpinglun"><a href="http://m.mydrivers.com/comment/review.aspx?tid=416131">5</a></div></li></ul></span>
+					</li>
+				</ul>
+			</div> -->
+			<!-- <nav class="mui-bar mui-bar-tab" id="newsnav">
+				<div class="plunxx_in" onclick="pinlun(this)">
+					<div id="div_contentbg" class="write1">
+						<p>我来说两句...</p>
+					</div>
+					<textarea name="txtContent0" id="txtContent0"  cols="45" rows="5" class="plun_login_textarea"></textarea>
+				</div>
+				<div class="plun_bt_tj_button" style="padding-left: 10px;padding-right: 10px;display: none;">
+					<div style="float:left;width:150px;">
+						<div id="CommentsTip0" class="AjaxTipWarning">dd</div>
+					</div>
+					<input type="button" name="btnlogin" id="btnlogin" value="发表评论" onclick="PostComment(0)" class="button_style1"> 
+				</div>
+			</nav> -->
+		</div>
+		<script type="text/javascript" src="../script/api.js"></script>
+		<script type="text/javascript" src="../script/zepto.min.js"></script>
+		<script type="text/javascript" src="../script/common.js"></script>
+		<script type="text/javascript" src="../script/laytpl.js"></script>
+		<script>
+			function pinlun(obj){
+				$("#div_contentbg").css("display","none");
+				obj.style.height="60px";
+				$(".plun_bt_tj_button").css("display","block");
+				document.getElementById("txtContent0").focus();
+			}
+
+			var currPage = 1;
+			var stoploading = false;
+			// var aid=api.pageParam.aid;
+			function changesexmain(aid) {
+				api.showProgress();
+				api.ajax({
+					url : hosturl+'/sex/show_feedback.html?aid='+aid,
+					method : 'get',
+					timeout : 30,
+					data : {},
+					dataType : "json",
+					returnAll : false
+				}, function(ret, err) {
+					var pageHtml = "";
+					if (ret) {
+						$.each(ret.result,function(index,item){
+							var getTpl = $api.html($api.byId("info-list"));
+							laytpl(getTpl).render(item, function(html) {
+								pageHtml = pageHtml + html;
+							});
+						})
+						$("#span_reviewcount").html(ret.listcount)
+						$("#MyComments").html(pageHtml);
+					}
+					else {
+						$("#MyComments").html("<div style='width=100%;text-align:center;padding-top:20px;height:100%'>暂无信息</div>");
+						$(".jzmore").css("display", "none");
+						api.toast({
+							msg : ('错误码：' + err.code + '；错误信息：' + err.msg + '网络状态码：' + err.statusCode),
+							duration : 3000,
+							location : 'bottom'
+						});
+					}
+					api.hideProgress();
+				});
+			};
+			function ShowReply(){
+				var obj = api.require('inputField');
+				obj.open({
+				    bgColor:'#FFFFFF',
+				    lineColor:'#E1E1E1',
+				    fileBgColor:'#FFFFFF',
+				    borderColor:'#E1E1E1',
+				    sendImg:'widget://image/oktrue.png',
+				    maxLines: 60,
+				    placeholder:"您的回复..."
+				},function(ret,err) {
+				    obj.close(function(ret,err){});
+				});
+				function inputField(){
+		　　　　　　obj.close(function(ret,err){});
+		　　　　}
+				return inputField;
+			}
+			apiready = function() {
+				var isfirst = true,inputFd;
+				$(window).scroll(function(){
+					if(isfirst){
+						inputFd = ShowReply();
+						isfirst = false;
+					}
+					inputFd();
+				})
+				var aid = api.pageParam.aid;
+				api.addEventListener({
+					name : 'keyback'
+				}, function(ret, err) {
+					api.closeWidget();
+				});
+				// api.addEventListener({
+				// 	name : 'scrolltobottom'
+				// }, function(ret, err) {
+				// 	loadmorelist(hosturl+'/sex/show_feedback.html?aid='+aid, currPage + 1);
+				// });
+				changesexmain(aid);
+				//下拉刷新
+				api.setRefreshHeaderInfo({
+					visible : true,
+					// bgColor: '#F2F2F2',
+					bgColor : '#E6E6E6',
+					textColor : '#000000',
+					textDown : '下拉刷新',
+					textUp : '释放刷新',
+				}, function(ret, err) {
+					changesexmain()
+					api.refreshHeaderLoadDone();
+					api.hideProgress();
+					api.toast({
+						msg : '数据已是最新！',
+						duration : 3000,
+						location : 'bottom'
+					});
+				});
+			}
+			// function loadmorelist(url, page) {
+			// 	if (stoploading == false) {
+			// 		stoploading = true;
+			// 		$(".jzmore").html("更多加载中...");
+			// 		api.ajax({
+			// 			url : hosturl+'/sex/show_feedback.html?mid='+UserInfo.memberID(),
+			// 			method : 'get',
+			// 			timeout : 30,
+			// 			data : {},
+			// 			dataType : "json",
+			// 			returnAll : false
+			// 		}, function(ret, err) {
+			// 			if (ret && ret != "") {
+			// 				var pageHtml = "";
+			// 				$.each(ret.result,function(index,item){
+			// 					var getTpl = $api.html($api.byId("info-list"));
+			// 					laytpl(getTpl).render(item, function(html) {
+			// 						pageHtml = pageHtml + html;
+			// 					});
+			// 				})
+			// 				$("#MyComments").append(pageHtml);
+			// 				stoploading = false;
+			// 				currPage = page;
+			// 				api.hideProgress();
+			// 				$(".jzmore").html("点击加载更多");
+			// 				} else {
+			// 					stoploading = false;
+			// 					$(".jzmore").css("display", "none");
+			// 				};
+			// 		});
+			// 	}
+			// }
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,14 @@
+<uwsgi>
+ <socket>:8021</socket>
+ <master>true</master>
+ <processes>4</processes>
+ <pythonpath>.</pythonpath>
+ <module>zz91zst.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>zz91zst/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>2048</limit-as>
+ <daemonize>/mnt/var/log/uwsgi/zz91zst.log</daemonize>
+</uwsgi>

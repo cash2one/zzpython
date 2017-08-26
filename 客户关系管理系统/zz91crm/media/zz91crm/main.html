@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<title>ZZ91再生网客户关系管理系统</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="assets/css/dpl-min.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/bui-min.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/main-min.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div class="header">
+
+			<div class="dl-title">
+				<span class="dl-title-text">ZZ91再生网客户关系管理系统</span><br>
+			</div>
+
+			<div class="dl-log">欢迎您，<span class="dl-log-user">{{username}}</span><a href="logout.html" title="退出系统" class="dl-log-quit">[退出]</a><a href="http://www.zz91.com" title="zz91再生网" target="_black" class="dl-log-quit">zz91再生网</a>
+			</div>
+		</div>
+		<div class="content">
+			<div class="dl-main-nav">
+				<div class="dl-inform">
+					<div class="dl-inform-title">贴心小秘书<s class="dl-inform-icon dl-up"></s></div>
+				</div>
+				<ul id="J_Nav" class="nav-list ks-clear">
+					<!--<li class="nav-item dl-selected"><div class="nav-item-inner nav-home">首页</div></li>
+        <li class="nav-item"><div class="nav-item-inner nav-order">表单页</div></li>
+        <li class="nav-item"><div class="nav-item-inner nav-inventory">搜索页</div></li>
+        <li class="nav-item"><div class="nav-item-inner nav-supplier">详情页</div></li>
+        <li class="nav-item"><div class="nav-item-inner nav-marketing">图表</div></li>-->
+					{%for topmenu in toplistall%}
+					<li class="nav-item">
+							<div class="nav-item-inner nav-supplier">{{topmenu.tlabel}}</div>
+					</li>
+					{%endfor%}
+				</ul>
+			</div>
+			<ul id="J_NavContent" class="dl-tab-conten">
+
+			</ul>
+		</div>
+		<script type="text/javascript" src="assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="./assets/js/bui.js"></script>
+		<script type="text/javascript" src="./assets/js/config.js"></script>
+		<script type="text/javascript" src="./assets/js/comm.js"></script>
+
+		<script>
+			/*
+			BUI.use('common/main', function() {
+				var config = [{
+					id: 'staff',
+					menu: [{
+						text: '系统管理',
+						items: [{
+							id: 'user',
+							text: '员工列表',
+							href: 'userlist.html'
+						}, {
+							id: 'user_category',
+							text: '团队管理',
+							href: 'user_category.html'
+						}, {
+							id: 'auth',
+							text: '角色权限管理',
+							href: 'auth.html'
+						}, {
+							id: 'menu',
+							text: '菜单管理',
+							href: 'menu.html'
+						}, ]
+					}]
+				}];
+				new PageUtil.MainPage({
+					modulesConfig: config
+				});
+			});*/
+			
+			BUI.use('common/main', function() {
+				var config = [
+				
+				{%for topmenu in toplistall %}
+				{
+					id: '{{topmenu.tid}}',
+					{%ifequal topmenu.tid 94%}
+					homePage : 'icd/index',
+					{%endifequal%}
+					menu: [
+					       {%for firmenu in topmenu.firlistall%}
+							    {
+									text: '{{firmenu.flabel}}',
+									items: [
+									{%for secmenu in firmenu.seclistall%}
+									{
+										id: '{{secmenu.sec_id}}',text: '{{secmenu.slabel}}',href: '{{secmenu.link}}'
+									}, 
+									{%endfor%}
+									]
+								},
+							{%endfor%}
+					     ]
+				},
+				{%endfor%}
+				];
+				new PageUtil.MainPage({
+					modulesConfig: config
+				});
+			});
+			setInterval("myInterval()",1000*60*5);//1000为1秒钟
+			var ocount=0
+			function myInterval(){
+				var data={
+					ocount:ocount
+				}
+				crmajax("get","/icd/getnewcompanycount.html",data,function(ret){
+					//alert(JSON.stringify(ret))
+					if (ret){
+						ccount=parseInt(ret.ccount);
+						if (ccount-ocount>0 && ocount>0){
+							notify(ccount-ocount);
+						}
+						ocount=ccount;
+					}
+				},function(err){
+					
+				})
+			}
+			function notify(n) {
+				showMsgNotification('新客户提醒','您有‘'+n+'’个新客户，请注意查看！');
+			}
+			function showMsgNotification(title, msg, icon) {
+				var options = {
+					body: msg,
+					icon: icon||"image_url"
+				};
+				var Notification = window.Notification || window.mozNotification || window.webkitNotification;
+				if (Notification && Notification.permission === "granted") {
+					var instance = new Notification(title, options);
+					instance.onclick = function() {
+						// Something to do
+					};
+					instance.onerror = function() {
+						// Something to do
+					};
+					instance.onshow = function() {
+						// Something to do
+//							setTimeout(instance.close, 3000);
+						setTimeout(function () {
+							instance.close();
+						},3000)
+						console.log(instance.body)
+					};
+					instance.onclose = function() {
+						// Something to do
+					};
+					console.log(instance)
+				} else if (Notification && Notification.permission !== "denied") {
+					Notification.requestPermission(function(status) {
+						if (Notification.permission !== status) {
+							Notification.permission = status;
+						}
+						// If the user said okay
+						if (status === "granted") {
+							var instance = new Notification(title, options);
+							instance.onclick = function() {
+								// Something to do
+							};
+							instance.onerror = function() {
+								// Something to do
+							};
+							instance.onshow = function() {
+								// Something to do
+								setTimeout(instance.close, 3000);
+							};
+							instance.onclose = function() {
+								// Something to do
+							};
+						} else {
+							return false
+						}
+					});
+				} else {
+					return false;
+				}
+			}
+		</script>
+		{{firmenulist}}
+	</body>
+
+</html>

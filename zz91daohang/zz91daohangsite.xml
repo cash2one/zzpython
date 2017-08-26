@@ -1,0 +1,19 @@
+<uwsgi>
+ <socket>:8010</socket>
+ <workers>4</workers>
+ <master>true</master>
+ <listen>500</listen>
+ <processes>6</processes>
+ <pythonpath>.</pythonpath>
+ <module>zz91cp.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>zz91daohang/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>2000</limit-as>
+ <reload-on-as>500</reload-on-as>
+ <reload-on-rss>500</reload-on-rss>
+ <max-requests>500</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/zz91daohang.log</daemonize>
+</uwsgi>

@@ -1,0 +1,85 @@
+{%include 'new/head.html'%}
+<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+<style>
+</style>
+<body>
+<div class="mobile">
+	{%include 'new/top.html'%}
+	<script>
+		function checkForm(frm){
+			varlulfs="";
+			for(var i=0;i<frm.length;i++)
+			{
+				var objinput=frm[i];
+				if (objinput.title!="")
+				{
+					if (objinput.type=="radio")
+					{
+						if(objinput.checked==true)
+						{
+							varlulfs=varlulfs+objinput.title+"\n";
+						}
+					}else{
+						varlulfs=varlulfs+objinput.title+":"+objinput.value+"\n";
+					}
+					if (objinput.title.substring(0,1)=="*")
+					{
+						if (objinput.value=="")
+						{
+							alert(objinput.title.substring(1)+"不能为空！");
+							objinput.focus();
+							return false
+						}
+						
+					}
+				}
+			}
+			frm.contents.value = varlulfs;
+		}
+	</script>
+    <div class="cb"></div>
+    <div style="margin-top:50px;"></div>
+    <div class="m-main">
+    	<form id="form1" name="form1" method="post" action="http://www.zz91.com/zt/baomingsave.html" onsubmit="return checkForm(this)">
+    	
+        <ul class="regbox1">
+        <li><input class="text" type="text" name="userName" value="" title="*公司名称" placeholder="您的公司名称" autocomplete="off" maxlength="50">
+            {%if errtext1%}<div class="c-red">{{errtext1|safe}}<br/></div>{%endif%}
+        </li>
+        <li><input class="text" type="text" name="passwd" value="" placeholder="请输入姓名" title="*联系人" autocomplete="off" maxlength="20">
+            {%if errtext2%}<div class="c-red">{{errtext2}}<br/></div>{%endif%}
+        </li>
+        <li>
+        	<label>
+						<input name="Fruit" type="radio" value="男" title="性别：女士" checked="" class="aui-radio aui-radio-info sexradio"/>
+						<span class="aui-radio-name">男士</span></label>
+					<label>
+						<input name="Fruit" type="radio" value="女" title="性别：男士" class="aui-radio aui-radio-info sexradio"/>
+						<span class="aui-radio-name">女士</span></label>
+         </li>
+        <li><input class="text" type="text" name="email" value="" title="*手机" placeholder="请输入手机" autocomplete="off" maxlength="50">
+            {%if errtext5%}<div class="c-red">{{errtext5}}<br/></div>{%endif%}
+        </li>
+        <li><input class="text" type="text" name="qq" value="" placeholder="请输入供应产品" title="供应产品" autocomplete="off" maxlength="100">
+            {%if errtext3%}<div class="c-red">{{errtext3}}<br/></div>{%endif%}
+        </li>
+        <li><input class="text" type="text" name="contact" value="" placeholder="请输入采购产品" title="采购产品" autocomplete="off" maxlength="100">
+            {%if errtext4%}<div class="c-red">{{errtext4}}<br/></div>{%endif%}
+        </li>
+        <li><input class="text" type="text" name="contact" value="" placeholder="请输入月供应/采购量" title="月供应/采购量" autocomplete="off" maxlength="20">
+            {%if errtext4%}<div class="c-red">{{errtext4}}<br/></div>{%endif%}
+        </li>
+        <li>
+            <input type="submit" name="button" id="button" value="立即报名" class="aui-btn aui-btn-block aui-btn-success"></li>
+            <div class="cb"></div>
+        </ul> 
+        <input type="hidden" name="contents" id="contents" value="" />
+        <input type="hidden" name="backurl" value="http://m.zz91.com/" />
+    	<input type="hidden" name="title" id="title1" value="2017诚信商家评选报名" />
+        </form>
+        <div class="cb"></div>
+    </div>
+</div>
+{%include 'new/bottom.html'%}
+</body>
+</html>

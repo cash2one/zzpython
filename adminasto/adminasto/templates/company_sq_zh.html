@@ -1,0 +1,156 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>客户申请</title>
+<SCRIPT language=JavaScript src="http://{{localhostIP}}/admin1/main.js"></SCRIPT>
+<SCRIPT language=javascript src="http://{{localhostIP}}/admin1/DatePicker.js"></SCRIPT>
+<SCRIPT language=javascript src="http://{{localhostIP}}/cn/sources/pop.js"></SCRIPT>
+<SCRIPT language=javascript src="http://{{localhostIP}}/admin1/crmlocal/js/province_utf8.js"></SCRIPT>
+<SCRIPT language=javascript src="http://{{localhostIP}}/admin1/crmlocal/js/compkind.js"></SCRIPT>
+<link href="http://{{localhostIP}}/admin1/datepicker.css" rel="stylesheet" type="text/css">
+<link href="http://{{localhostIP}}/admin1/main.css" rel="stylesheet" type="text/css">
+<link href="http://{{localhostIP}}/admin1/color.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+body {
+	margin-left: 5px;
+	margin-top: 0px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+-->
+table,td{line-height:30px;padding:5px;}
+input{line-height:30px;font-size:14px;padding:5px;}
+select{line-height:30px;padding:5px;height:30px}
+</style>
+<script>
+function compsavesub(frm)
+{
+	var obj=document.getElementById("submitbutton")
+	obj.disabled=true;
+}
+</script>
+</head>
+
+<body><form name="form1" method="post" action="http://{{localhostIP}}/admin1/crmlocal/crm_comp_savelocal.asp" onSubmit="return compsavesub(this)">
+<font color="#FF0000"></font>
+<table  border="1" align="center" cellpadding="4" cellspacing="0">
+
+                  
+                   
+                    <tr bgcolor="#D9ECFF">
+                      <td height="30" colspan="4" class="tbar"><span class="bold">基本信息</span></td>
+                    </tr>
+                    <tr bgcolor="#FFFFFF">
+                      <td align="right">公司名称：                      
+                      <input type="hidden" name="personid" id="personid" value="{{personid}}">
+                      <input name="com_id" type="hidden" id="com_id" value="{{com_id}}">
+                      <input type="hidden" name="addtype" id="addtype" value="{{addtype}}">
+					  <input type="hidden" name="sid" id="sid" value="{{sid}}">
+					  <input type="hidden" name="yufenpai" id="yufenpai" value="1">
+					  <input type="hidden" name="savefromflag" id="savefromflag" value="1">
+                      </td>
+                      <td><input name="cname" type="text" id="cname" class=text size="30" maxlength="96" value="{{cname}}">
+                      
+                      </td>
+                      <td align="right" nowrap>国家/地区：</td>
+                      <td>
+                      
+                      <input name="ckind" type="hidden" id="ckind" value="{{ckind}}">
+                      <input name="countryselect" type="hidden" id="countryselect" value="{{countryselect}}">
+                      <input name="province" type="hidden" id="province" value="{{province}}">
+                      <input name="city" type="hidden" id="city" value="{{city}}">
+                      <input name="province1" type="hidden" id="province1" value="{{province1}}">
+                      <input name="city1" type="hidden" id="city1" value="{{city1}}">
+                      <input name="Garden" type="hidden" id="Garden" value="{{Garden}}">
+					  <input name="regtime" type="hidden" id="regtime" value="{{regtime}}">
+					  </td>
+                    </tr>
+                    <tr bgcolor="#FFFFFF">
+                      <td align="right">所处行业：</td>
+                      <td>
+                      	<select name="ckeywords" id="ckeywords" style="width:150px" onFocus="validateValue(this)" onBlur="validateValueout(this)" onChange="changekind(this.options[this.selectedIndex].value,'ckind','ckindmain');getprovincevalue()" >
+                          <option value="">请选择</option>
+                          <option value="1">废金属</option>
+                          <option value="2">废塑料</option>
+                          <option value="3">废旧轮胎与废橡胶</option>
+                          <option value="4">废纺织品与废皮革</option>
+                          <option value="5">废纸</option>
+                          <option value="6">废电子电器</option>
+                          <option value="10">废玻璃</option>
+                          <option value="12">废旧二手设备</option>
+                          <option value="14">其他废料</option>
+                          <option value="15">服务</option>
+                      </select>
+                      
+                      <script>selectOption("ckeywords","{{ckeywords}}")</script></td>
+                      <td>参加活动</td>
+                      <td><select name="active_flag" id="active_flag">
+                        <option value="">请选择参加活动</option>
+                        
+                      	  {%for list in activelist%}
+                      	  
+                        <option value="{{list.label}}">{{list.label}}</option>
+                        
+                          {%endfor%}
+                      
+                      </select></td>
+                    </tr>
+                    <tr bgcolor="#FFFFFF">
+                      <td align="right">地址：</td>
+                      <td colspan="3"><input name="cadd" type="text" class=text id="cadd" size="50" maxlength="20" value="{{cadd}}">
+                      邮编：
+                      <input class=text name="czip" type="text" id="czip" size="20" maxlength="48" value="{{czip}}"></td>
+                    </tr>
+                    <tr bgcolor="#FFFFFF">
+                      <td align="right">电话：</td>
+                      <td><input name="ctel" type="text" id="ctel" class=text size="30" maxlength="96" value="{{ctel}}"></td>
+                      <td align="right">手机：</td>
+                      <td><input name="cmobile" type="text" id="cmobile" class=text size="30" maxlength="96" value="{{cmobile}}"></td>
+                    </tr>
+                    <tr bgcolor="#FFFFFF">
+                      <td align="right">传真：</td>
+                      <td><input name="cfax" type="text" class=text id="cfax" size="30" maxlength="96" value="{{cfax}}"></td>
+                      <td align="right">电子邮箱：</td>
+                      <td nowrap><input name="cemail" class=text type="text" id="cemail" size="30" maxlength="48" value="{{cemail}}">
+                      </td>
+                    </tr>
+                    
+                    <tr bgcolor="#FFFFFF">
+                      <td align="right">联系人：</td>
+                      <td colspan="3">
+                      <input name="cweb" class=text type="hidden" id="cweb" size="50" maxlength="255" value="{{cweb}}">
+                      <input class=text name="ccontactp" type="text" id="ccontactp" size="20" maxlength="48" value="{{ccontactp}}">
+                      称呼：
+                      
+                      
+                      <select name="cdesi" id="cdesi">
+                      <option value="先生">先生</option>
+                      <option value="女士">女士</option>
+                      </select>
+                      <script>selectOption("cdesi","{{sex}}")</script>
+                      </td>
+                    </tr>
+                    <tr bgcolor="#FFFFFF">
+                      <td align="right" nowrap>公司简介：</td>
+                      <td colspan="3" align="left"><textarea name="cintroduce" cols="60" rows="5" id="cintroduce">{{cintroduce}}</textarea></td>
+                    </tr>
+                   
+                    <tr align="center" bgcolor="#FFFFFF">
+                      <td align="right">主营业务：</td>
+                      <td colspan="3" align="left"><textarea name="cproductslist_en" cols="50" rows="4" id="cproductslist_en">{{cproductslist_en}}</textarea></td>
+                    </tr>
+					
+                    
+                 
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="100" align="center"><input name="submitbutton" type="submit" id="submitbutton" class="button" value=" 确认申请 "></td>
+  </tr>
+</table>
+</form>
+
+
+</body>
+</html>

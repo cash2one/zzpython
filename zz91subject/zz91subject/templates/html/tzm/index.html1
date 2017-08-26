@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>第十四届中国塑料交易会现场直播暨第五届再生塑料展览会_废料专题_ZZ91再生网</title>
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico">
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<link type="text/css" href="css/zzsc.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="js/jquery.pikachoose.min.js"></script>
+<script type="text/javascript" src="js/jquery.touchwipe.min.js"></script>
+<script>
+$(document).ready(function() {
+	var timera=null;
+	var i=0;
+	var w=960;
+	var len=$(".zwinfo ul>li").length;
+	$(".zwinfo ul").css("width",960*len);
+	//alert($(".zwinfo ul").css("width"))
+	$(".prov").click(function(){
+		var leftnum=w*i;
+		if (i<len){
+			$(".zwinfo ul").stop().animate({left:"-"+leftnum.toString()+"px"});
+			i+=1;
+		}
+		if (i>len){i=0;}
+	});
+	$(".prov").mouseover(function(){
+		clearTimeout(timera);
+	});
+	$(".prov").mouseout(function(){
+		timera=setTimeout(louautoMove,1000);
+	});
+	
+	$(".nextp").mouseover(function(){
+		clearTimeout(timera);
+	});
+	$(".nextp").mouseout(function(){
+		timera=setTimeout(louautoMove,1000);
+	});
+	
+	$(".nextp").click(function(){
+		if (i>1){
+			i=i-1;
+			var leftnum=w*(i-1);
+			$(".zwinfo ul").stop().animate({left:"-"+leftnum.toString()+"px"});
+			if (i<0){i=len-1;}
+		}
+	});
+	function autogoup(id){
+		var leftnum=id*w;
+		$(".zwinfo ul").stop().animate({left:"-"+leftnum.toString()+"px"});
+	}
+	function louautoMove(){
+			 autogoup(i);
+			 timera=setTimeout(louautoMove,3000);
+			 i=i+1;
+			 if (i>=len){i=0}
+	 }
+	 $(".zwinfo ul").mouseover(function()  //移动到上面时停止自动切换
+	{
+		clearTimeout(timera);
+	});
+	$(".zwinfo ul").mouseout(function()  //移开时继续自动切换
+	{
+		timera=setTimeout(louautoMove,1000);
+	});
+	 timera=setTimeout(louautoMove,100);
+});
+
+</script>
+</head>
+  <body>
+  <div style="width:100%; background-color:#F9F7EC">
+	<div style="width:933px;margin:0 auto">
+		{%include 'html/comm/top.html'%}
+    </div>
+  </div>
+    <div class="top"></div>
+    <!--end top-->
+    <div class="content">
+    	<div class="main">
+        	<div class="mLeft fl">
+            	<div class="mlBox">
+                	<div class="pikachoose">
+    					<ul id="pikame" class="jcarousel-skin-pika">
+        					<li>
+                            	<a href="http://www.zz91.com" target="_blank">
+                                <img src="images/i.jpg"/></a>
+                                <span>111111111111</span>
+                            </li>
+        					<li>
+                            	<a href="http://www.zz91.com" target="_blank">
+                                <img src="images/i.jpg"/></a>
+                                <span>222222222222222334</span>
+                             </li>
+        					<li>
+                            	<a href="http://www.zz91.com" target="_blank">
+                                <img src="images/i.jpg"/></a>
+                                <span>3333333333333333333333</span>
+                            </li>
+        					<li>
+                            	<a href="http://www.zz91.com" target="_blank">
+                                <img src="images/i.jpg"/></a>
+                                <span>You can use any type of html you want with PikaChoose</span>
+                            </li>
+        					<li>
+                            	<a href="http://www.zz91.com" target="_blank">
+                                <img src="images/i.jpg"/></a>
+                                <span>PikaChoose survives on your donations! Keep the project alive with a donation.</span>
+                            </li>
+        					<li>
+                            	<a href="http://www.zz91.com" target="_blank">
+                                <img src="images/i.jpg"/></a>
+                                <span>This is an example of the basic theme.</span>
+                            </li>
+        					<li>
+                            	<a href="http://www.zz91.com" target="_blank">
+                                <img src="images/i.jpg"/></a>
+                                <span>jCarousel is supported and can be integrated with PikaChoose!</span>
+                            </li>
+        					<li>
+                            	<a href="http://www.zz91.com" target="_blank">
+                                <img src="images/i.jpg"/></a>
+                                <span>Be sure to check out sc.chinaz.com for updates.</span>
+                            </li>
+        					<li>
+                            	<a href="http://www.zz91.com" target="_blank">
+                                <img src="images/i.jpg"/></a>
+                                <span>You can use any type of html you want with PikaChoose</span>
+                            </li>
+        					<li>
+                            	<a href="http://www.zz91.com" target="_blank">
+                                <img src="images/i.jpg"/></a>
+                                <span>PikaChoose survives on your donations! Keep the project alive with a donation.</span>
+                            </li>
+    </ul>
+</div>
+<script language="javascript">
+$(document).ready(function (){
+        $("#pikame").PikaChoose({carousel:true, carouselVertical:true});
+});
+</script>
+                </div>
+                <!--end mlBox-->
+            	<div class="mlBox" style="padding:0px">
+                	<div class="mlBox-tle">展会报道 </div>
+                    <div class="mlBox-info">
+                    	<ul class="mlBox-ul">
+                        	<li style="border-right:dashed 1px #666;">
+                            	<center><h4><a href="#">优质企业信息下载--台州塑胶会</a></h4></center>
+                                <div class="detail">每年台州塑交会都会制作一本会刊，给参展客户提供很多优质的客户信息。的客户毕竟算是少数...[全文}</div>
+                            </li>
+                            <li>
+                            	<center><h4><a href="#">优质企业信息下载--台州塑胶会</a></h4></center>
+                                <div class="detail">每年台州塑交会都会制作一本会刊，给参展客户提供很多大多数客户而言，去现场的客户毕竟算是少数...[全文}</div>
+                            </li>
+                            <li style="border:none;border-right:dashed 1px #666;">
+                            	<center><h4><a href="#">优质企业信息下载--台州塑胶会</a></h4></center>
+                                <div class="detail">每年台州塑交会都会制作一本会刊，给参展客户提上的大多数客户而言，去现场的客户毕竟算是少数...[全文}</div>
+                            </li>
+                            <li style="border:none;">
+                            	<center><h4><a href="#">优质企业信息下载--台州塑胶会</a></h4></center>
+                                <div class="detail">每年台州塑交会都会制作一本会刊，给参展上的大多数客户而言，去现场的客户毕竟算是少数...[全文}</div>
+                            </li>
+                            <div class="clearfix"></div>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <!--end mBox-->
+            </div>
+            <div class="mRight fr">
+            	<div class="mrBox">
+                	<div class="mrBox-tle">组委会联系方式</div>
+                    <div class="mrBox-info">
+                    	<dl class="addrDl">
+                        	<dt>【ZZ91再生网会展部】</dt>
+                            <dd>联&nbsp;系&nbsp;人：刘先生</dd>
+                            <dd>手&nbsp;&nbsp;&nbsp;&nbsp;机：13456949991</dd>
+                            <dd>电&nbsp;&nbsp;&nbsp;&nbsp;话：0571-56611688</dd>
+                            <dd>传&nbsp;&nbsp;&nbsp;&nbsp;真：0571-56637777</dd>
+                            <dd>电子邮箱：liunn@asto.com.cn</dd>
+                            <dd>官方网站：www.zz91.com</dd>
+                            <dd>地&nbsp;&nbsp;&nbsp;&nbsp;址：浙江杭州江干区东方电子商务园</dd>
+                        </dl>
+                    </div>
+                </div>
+                <!--end mrBox-->
+                <div class="mrBox">
+                	<div class="mrBox-tle">组织结构</div>
+                    <div class="mrBox-info">
+                    	<strong>主办单位</strong>
+                    	<ul class="addrUl">
+                        	<li>• 台州市人民政府 </li>
+                            <li>• 台州市国际会展中心</li>
+                        </ul>
+                        <strong>承办单位</strong>
+                    	<ul class="addrUl">
+                        	<li>• ZZ91再生网</li>
+                        </ul>
+                        <strong>会展场馆</strong>
+                    	<ul class="addrUl">
+                        	<li>• 台州市国际会展中心</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end mrBox-->
+                <div class="mrBox">
+                	<div class="mrBox-tle">日程安排 </div>
+                    <div class="mrBox-info">
+                    	<strong>布展时间：</strong>
+                    	<ul class="addrUl">
+                        	<li>9月23-24日（8:00-17:00）</li>
+                        </ul>
+                        <strong>展出时间：</strong>
+                    	<ul class="addrUl">
+                        	<li>9月25-28日（9:00-16:30）</li>
+                            <li style="color:#ed0000">展商8:30入场</li>
+                            <li>9月28日（9:00-15:00）</li>
+                        </ul>
+                        <strong>撤展时间：</strong>
+                    	<ul class="addrUl">
+                        	<li>9月28日（15:00-22:00）</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end mrBox-->
+            </div>
+            <div class="cb"></div>
+        </div>
+        <!--end main-->
+        
+        <div class="main" style="margin-top:0px; padding-top:0px">
+        	<div class="h-title"><img src="images/zwxx1.jpg"></div>
+            <div class="h-custom">
+            	<div class="prov"></div>
+                <div class="nextp"></div>
+                <div class="zwinfo">
+            	<ul>
+                	<li>
+                    	<dl>
+                        {%for list in listall%}
+                        	<dt>
+                            	<h6>{{list.zw}}</h6>
+                                <a href="{{list.url}}" target="_blank">
+                                <div class="content">
+                                	<div class="title">{{list.comname}}</div>
+                                    <hr size="1" color="#CCCCCC">
+                                    <div class="zyyw">{{list.zyyw}}</div>
+									<hr size="1" color="#CCCCCC">
+                                    <img src="{{list.pic}}" width="200" height="120">
+                                </div>
+                                </a>
+                            </dt>
+                            {{list.lis|safe}}
+                        {%endfor%}
+                        </dl>
+                    </li>
+                    <div class="clearfix"></div>
+                </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--end content-->
+    <div class="bottom"><img src="images/line.jpg" style="margin-top:60px" /></div>
+   <div style="width:100%;">
+	 <div style="width:950px;margin:0 auto;text-align:center;">
+		{% include 'html/comm/buttom.html' %}
+    </div>
+  </div>               
+  </body>
+</html>

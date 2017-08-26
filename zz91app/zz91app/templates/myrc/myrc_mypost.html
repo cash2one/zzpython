@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>{{webtitle}}—生意管家_ZZ91废料移动商务</title>
+        <link rel="stylesheet" type="text/css" href="/css/myrc/index_myrc.css"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/myrc/jquery.lightbox_me.js"></script>
+        <script type="text/javascript" src="/js/myrc/style.js"></script>
+		<script>
+			$(window).scroll(function(){
+				if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+					loadMore(document.getElementById("loadMore"));
+				}
+			});
+			
+			function loadMore(objdiv){
+				self=objdiv
+				var pageobj=document.getElementById("pageindex");
+				var page=pageobj.value;
+				pageobj.value=parseInt(page)+1
+				
+				self.innerHTML="加载中...";
+				
+				$.get("/myrc_mypostmore/",
+				{
+					page:pageobj.value
+				},
+				function(data,status){
+					if (status=="success" && data!="err" && data!=""){
+						self.style.display="block";
+						$("#tab1").append(data);
+						self.innerHTML="点击后加载更多内容";
+					}else{
+						self.style.display="none";
+					}
+				});
+			}
+		</script>
+	</head>
+	<body>
+    {%include 'top2.html'%}
+    <div class="mt48"></div>
+      <div class="m-content">
+        <div class="m-tle">
+        	<a href="/">首页</a> > <a href="/myrc_index/">生意管家</a>  > 我的社区
+        </div>
+      	<table width="100%" border=0 cellpadding=0>
+				<tr>
+					<td>
+						<ul class="m-ul m-item_1" id="tabUL" style="margin-left:10px;margin-right:10px;">
+							<li class="m-li"><a href="/myrc_mycommunity/">消息中心</a></li>
+						    <li class="m-li_"><a href="/myrc_mypost/">我的提问</a></li>
+						    <li class="m-li"><a href="/myrc_myreply/">我的回复</a></li>
+					    </ul>
+				   </td>
+				</tr>
+				<tr>
+					
+					<table cellspacing="10" id="tab1">
+                      <tr>
+							<td>
+								发布的帖子总数：<font class="nav_no">{{count}}</font>&nbsp;&nbsp;
+                                
+							</td>
+						</tr>
+
+{%for list in listall%}
+						<tr>
+							<td class="m-item">
+								<div class="c-item">
+                                    <a href="/huzhuview/{{list.id}}.htm" target="_blank">{{list.title}}</a>
+								</div>
+								<!--end c-item-->
+								 <div class="c-item_">
+										{{list.post_time}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回复：{{list.reply_count}}
+								</div>
+								<!--end c-item_-->
+							</td>
+						</tr>
+{%endfor%}
+					</table>
+					<div id="loadMore" onClick="loadMore(this)"  pageindex=1 style="text-align:center;margin-left:10px;margin-right:10px;background: #fff;-moz-border-radius:4px;-webkit-border-radius:4px;border-radius: 4px;">加载更多……</div>
+                    <input type="hidden" id="pageindex" value="1" />
+				</td></tr>
+        </table>
+      </div>
+      <!--end m-content-->
+    
+{%include 'bottom2.html'%}
+	</body>
+</html>

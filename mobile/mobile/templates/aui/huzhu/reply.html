@@ -1,0 +1,305 @@
+<!doctype html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<title>回复信息_ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-slider-full.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layui/layui.js?1"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-dialog.js" ></script>
+		<style>
+			body {
+				width: 100%;
+				height: 100%;
+				font-size: 14px;
+				padding-top: 15px;
+				background-color: #f4f4f4;
+			}
+			.buy-show-box {
+				display: block;
+				background-color: #f2f2f2;
+			}
+			p.title {
+				text-align:left;
+				padding-left:10px;
+				padding-top:10px;
+			}
+			textarea.buy-show {
+				width: 100%;
+				border: none;
+				height: 150px;
+				font-size: 14px;
+				margin-bottom: 0;
+				padding: 10px;
+			}
+			.handle {
+				padding: 30px 8px 0px;
+			}
+			.handle-add {
+				border: 1px dashed #e1e1e1;
+				width: 23px;
+				height: 23px;
+				background: url(../../image/imageslist.png);
+				background-size: 320px;
+				background-position: -110px -234px;
+			}
+			.handle-add {
+				border: 1px dashed #e1e1e1;
+				width: 80px;
+				height: 80px;
+				text-align: center;
+				line-height: 80px;
+				background: #f2f2f2;
+				float: left;
+				margin: 0 20px 20px 0;
+			}
+			.img-kuang {
+				position: relative;
+				margin: 0 20px 20px 0;
+				float: left;
+				border: 1px dashed #e1e1e1;
+				width: 80px;
+				height: 80px;
+			}
+			.aui-icon-move {
+				text-align: center;
+				line-height: 20px;
+				color: #fff
+			}
+			.delt-img {
+				position: absolute;
+				height: 20px;
+				width: 20px;
+				left: -10px;
+				top: -10px;
+				background: red;
+				border-radius: 12px;
+				box-shadow: 0px 0px 2px red;
+			}
+			.handle-add{
+				font-size: 33px;
+				color: #ccc;
+			}
+			.camediv{
+				position: absolute; top: 50%; left: 50%; margin: -40px 0 0 -40px;
+				width: 80px;
+			}
+			.aui-bar{
+				position: fixed;
+				z-index: 999;
+				top: 0px;
+			}
+			.layui-upload-button{
+				opacity: 0;
+				width: 100%;
+			}
+			.layui-upload-iframe{
+				display: none;
+			}
+			#postpic{
+				width: 100%;
+			}
+			.showbigpic{
+				width: 100%;
+				background-color: #000;
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				z-index: 9999;
+				height: 100%;
+				display: table;
+				opacity: 0.9;
+			}
+			.showbigpic img{
+				width: 100%;
+			}
+			.bigpic{
+				display:table-cell;vertical-align: middle;*display: inline;*writing-mode: tb-rl;*text-align: center;*height: 100%;
+			}
+			.bigpic img{
+				vertical-align: middle;*display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">回复帖子</div>
+		    <a class="aui-pull-right" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		</header>
+		<div style="height:45px"></div>
+		<section class="aui-card">
+			<div class="handle">
+				<span class="handle-add aui-iconfont aui-icon-cameraadd">
+					<div class="camediv"><input name="file" class="layui-upload-file" id="postpic" style="opacity:0" type="file"></div>
+				</span>
+			</div>
+			<input type="hidden" name="piclist" id="piclist" value="">
+			<div style="clear:both"></div>
+			<!--<p class="aui-text-center title">
+				详细描述
+			</p>-->
+			<div class="aui-line-x"></div>
+			<div class="aui-form text-area">
+				<textarea placeholder="在这里输入回复内容！" class="buy-show"></textarea>
+			</div>
+		</section>
+		<div class="bigpicbox" style="display: none;">
+			<div class="showbigpic">
+				<div class="aui-slider-close" tapmode onclick="closeopenpic()">关闭</div>
+				<div class="bigpic"></div>
+			</div>
+		</div>
+		<div style="color:#ff0000;padding:10px">回帖审核通过后即可获得 0.5元再生钱包</div>
+		<section class="aui-content-padded">
+			<div class="aui-btn aui-btn-block aui-btn-info handle-into" style="background-color:#01ba2e;border:none">
+				立即回复
+			</div>
+			<input type="hidden" name="category_id" id="category_id" value="{{category_id}}">
+			<input type="hidden" id="replyid" name="replyid" value="{{replyid}}">
+			<input type="hidden" id="postid" name="postid" value="{{postid}}">
+			<input type="hidden" id="tocompany_id" name="tocompany_id" value="{{tocompany_id}}">
+		</section>
+	</body>
+	<script type="text/javascript">
+		var postflag=true;
+		var imagesList = [];
+		var videoPlayer;
+		$(function(){
+			var device = layui.device();
+			var layer;
+			var layermo;
+			layui.use(['layer'], function(){
+			  layer = layui.layer;
+			});
+			layui.use('upload', function(){
+				var thisBtn = $(".handle-add");
+				layui.upload({
+					url: '/huzhu_upload/?source=reply_post'
+					,elem: '#postpic' //指定原始元素，默认直接查找class="layui-upload-file"
+				    ,method: 'post' //上传接口的http类型
+				    ,type:'images'
+				    ,success: function(res){
+						var imginfo = "";
+						$.each(res.piclist, function(i, item) {
+							var videopath=item.databasepath;
+							var pic=item.path;
+							if (item.mediatype=="video"){
+								pic="http://static.m.zz91.com/image/video.png";
+							}
+							imginfo += '<span class="img-kuang">' + '<img src="' + pic + '" width="100%" height="100%" type="'+item.mediatype+'" path="'+pic+'" pid="'+item.id+'">' + '<i class="delt-img aui-iconfont aui-icon-move"></i>' + '</span>'
+							layer.closeAll("loading")
+						});
+						thisBtn.before(imginfo)
+						layer.closeAll("loading")
+				    }
+				    ,before:function(){
+						layer.load(2)
+				    }
+				});
+			});
+			//删除添加的图片
+			$(".handle").on("click", ".aui-icon-move", function() {
+				$(this).parent().fadeOut(function() {
+					$(this).remove();
+				})
+			})
+			
+			
+			
+			var typeId = 1;
+			//浏览图片
+			
+			$(".handle").on("click", "img", function() {
+				var picpath=$(this).attr("path");
+				var vtype=$(this).attr("type");
+				if (vtype=='video'){
+					vadioPlay(picpath)
+					return;
+				}
+				$(".bigpicbox").show()
+				var bigpiclist='<img src="'+picpath+'" alt=""/>'
+				$(".bigpic").html(bigpiclist)
+			});
+			
+			//提交表单
+			$(".handle-into").on("click", function() {
+				huzhupostsave();
+			});
+		})
+		function closeopenpic(){
+			$(".bigpicbox").hide()
+		}
+		function huzhupostsave(){
+			imagesList='';
+			var content = $(".text-area textarea").val()
+			var category_id=$("#category_id").val();
+			var replyid = $("#replyid").val();
+			var postid = $("#postid").val();
+			var tocompany_id = $("#tocompany_id").val();
+			
+			if (content == "") {
+				layer.msg("请填写回复的内容！");
+				$(".text-area textarea").focus();
+				return;
+			}
+			layer.load(2)
+			//获取图片地址
+			$.each($('.img-kuang img'), function(i, item) {
+				var picpath=$(this).attr("path");
+				var vtype=$(this).attr("type");
+				var pid=$(this).attr("pid");
+				imagesList+=pid+","
+			});
+			var data = {
+				datatype : "json",
+				category_id : category_id,
+				replycontent : content,
+				replyid : replyid,
+				postid : postid,
+				tocompany_id : tocompany_id,
+				piclist:imagesList,
+			};
+			//alert(JSON.stringify(data))
+			if (postflag==true){
+				postflag=false;
+				zzajax("post","/reply_reply/",data,function(ret){
+					if (ret) {
+						if (ret.err=='login'){
+							window.location="/login/?done={{host}}";
+							return;
+						}
+						if (ret.err == "false") {
+							layer.msg("回复成功！");
+							window.location='/huzhu/'+postid+".html";
+						} else {
+							layer.msg(ret.errkey);
+							return;
+						}
+					} else {
+						layer.msg('系统错误，请重试');
+					};
+					postflag=true;
+					layer.closeAll('loading');
+				},function(){
+					layer.msg('系统错误，请重试');
+					layer.closeAll('loading');
+				});
+			}
+		}
+	</script>
+	{%include 'aui/bottom.html'%}
+</html>

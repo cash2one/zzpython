@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<title>供应{{kname}}_求购{{kname}}_{{kname}}价格_{{kname}}_ZZ91再生网(原中国再生资源交易网)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="{{kname}}价格,{{kname}}行情,{{kname}}回收,今日{{kname}}价格,{{kname}}供应,{{kname}}求购,{{kname}}资讯" />
+<meta name="description" content="ZZ91再生网{{kname}}标签频道为你提供最新最全的有关{{kname}}价格信息,{{kname}}行情信息,{{kname}}回收信息,{{kname}}供求信息,以及{{kname}}报价资讯信息等" />
+<link href="http://img.zz91.com/cn/css/tagsList.css" rel="stylesheet" type="text/css" />
+<link href="http://img.zz91.com/cn/tags/css.css" rel="stylesheet" type="text/css" />
+<link href="http://img.zz91.com/cn/tags/rightcss.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/favicon.ico">
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.hack.css">
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+<link type="text/css" rel="stylesheet" href="http://daohang.zz91.com/css/zz91.daohang.basic.css" />
+<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/topbar/jquery.topbar.js"></script>
+<script type="text/javascript" src="http://img0.zz91.com/front/js/zz91.common.js"></script>
+<style>
+.keyoffer
+{
+	background-color: #ebebeb;
+	border: 1px double #CCC;
+	float: left;
+	clear: both;
+	width: 100%;
+}
+</style>
+</head>
+<body style="MARGIN-TOP: 0px">
+{% include 'includes/nav.html' %}
+<div class="clearBox"></div>
+<div class="main_box">
+<div class="nav1" style="font-size:14px; margin-top:10px;">标签：<strong><h1>{{kname}}</h1>的信息列表: <a href='#a' id='total1'>供求信息{{listcount}}条</a>{%if listall_baojia%} &nbsp;&nbsp;<a href='#b' id='total3'>报价{{listcount_baojia}}条</a>{%endif%} {%if listall_news%}&nbsp;&nbsp;<a href='#c' id='total3'>资讯{{listcount_news}}条</a> {%endif%}</strong></div>
+<div style="clear:both"></div>
+</div>
+<div class="main_box">
+<div style="width:750px; float:left; margin:0px;">
+<div class="leftContent" style="margin:0px; width:750px">
+	<div class='classTitle'>
+	<a name='a'></a>
+	<div class='leftTitle'>
+	<h2 style='display:inline;'>{{kname}}供应信息{{kname}}求购信息</h2> ( <a href='http://www.zz91.com/offer/?keywords={{tags_keywords}}' target="_blank">查看所有{{kname}}交易信息</a> 
+	| <a href='http://www.zz91.com/offer/?keywords={{tags_keywords}}&ptype=2' target='_blank'>查看所有{{kname}}求购信息</a>)&nbsp;&nbsp;<a href='http://suliao.zz91.com/' style='color:red;' target='_blank'>精确报价,买卖商机, 尽在塑料颗粒网</a>
+	</div>
+    <div style="clear:both"></div>
+	<div class='rightTitle'>共有此类信息<span>{{listcount}}</span>条 | <a href='/tagssearchList/{{tags_keywords}}-1/' target='_blank'>更多&gt;&gt;</a></div>
+	</div>
+    <div><script type="text/javascript" src="http://gg.zz91.com/show?p=373&keywords={{kname}}"></script></div>
+	{%if listall_keycomp%}
+	{% for list in listall_keycomp %}
+	<div class="keyoffer">
+	<ul>
+		<li>
+		<div class='listContent'>
+			<div class='listTitle'>
+				<div class='left' style='width:600px;'>
+					<h3><a href='http://trade.zz91.com/productdetails{{list.pdt_id}}.htm' target='_blank'><b>{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}</b></a></h3>
+					<span class='subTitle'>
+					{%if list.vipflag.vipcheck%}
+					<img src="{{list.vipflag.vippic}}" alt="{{list.vipflag.vipname}}" width="20"/> {{list.vipflag.vipname}}
+					-<a href='http://{{list.vipflag.vipsubname}}.zz91.com/' target='_blank'>{{list.com_name}} <img src="http://www.zz91.com/cn/images/aoyun/{{list.vippaibian}}.gif" width="20" align="absmiddle" ></a>
+                    {%else%}
+					-<a href='http://trade.zz91.com/productdetails{{list.pdt_id}}.htm' target='_blank'>{{list.com_name}} <img src="http://www.zz91.com/cn/images/aoyun/{{list.vippaibian}}.gif" width="20" align="absmiddle" ></a>
+                    {%endif%}
+                    </span>
+				</div>
+				<div class='postTime'>{{list.pdt_time_en}}</div>
+			</div>
+			<div style='clear:both'></div>
+			<div class='abstract' >{{list.pdt_detail}}</div>
+		</div>
+		</li>
+	</ul>
+	</div>
+	{% endfor %}
+	{%endif%}
+	{% for list in listall %}
+	<ul>
+		<li>
+		<div class='listContent'>
+			<div class='listTitle'>
+				<div class='left' style='width:600px;'>
+					<h3><a href='http://trade.zz91.com/productdetails{{list.pdt_id}}.htm') target='_blank'><b>{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}</b></a></h3>
+					<span class='subTitle'>
+					{%if list.vipflag.vipcheck%}
+					<img src="{{list.vipflag.vippic}}" alt="{{list.vipflag.vipname}}" width="20"/> {{list.vipflag.vipname}}
+                    -<a href='http://{{list.vipflag.vipsubname}}.zz91.com/' target='_blank'>{{list.com_name}}</a></span>
+					{%else%}
+					-<a href='http://trade.zz91.com/productdetails{{list.pdt_id}}.htm' target='_blank'>{{list.com_name}}</a></span>
+                    {%endif%}
+				</div>
+				<div class='postTime'>{{list.pdt_time_en}}</div>
+			</div>
+			<div style='clear:both'></div>
+			<div class='abstract' style='padding-bottom:5px'>{{list.pdt_detail}}</div>
+		</div>
+		</li>
+	</ul> 
+	{% endfor %}
+	<div class='pageBar'><a href='/tagssearchList/{{tags_keywords}}-1/'><strong><font color='#ff6600'>点此查看更多&gt;&gt;</font></strong></a></div> 
+</div>
+
+{%if listall_baojia%}
+<div class="leftContent" style="margin:0px; width:800px">
+<div class='classTitle'><a name='b'></a><div class='leftTitle'><h2 style='display:inline;'>{{kname}}报价信息</h2></div><div class='rightTitle'>共有此类信息<span>{{listcount_baojia}}</span>条 | <a href='tradesListByKey15_1.html'>更多&gt;&gt;</a></div></div>
+{% for list in listall_baojia %}
+<ul>
+	<li>
+		<div class='listContent'>
+			<div class='listTitle'>
+				<h3><a href='http://price.zz91.com/priceDetails_{{list.td_id}}.htm' target='_blank'>{{list.td_title}}</a></h3>
+				<span class='subTitle'>{{list.td_time}}</span>
+			</div>
+			<div class='abstract'></div>
+		</div>
+	</li>
+</ul> 
+{% endfor %}
+<div class='pageBar'><a href='/tagspriceList/{{tags_keywords}}-1/'><strong><font color='#ff6600'>点此查看更多&gt;&gt;</font></strong></a></div> 
+</div>
+{%endif%}
+{%if listall_news%}
+<div class="leftContent" style="margin:0px; width:800px">
+<div class='classTitle'><a name='c'></a><div class='leftTitle'><h2 style='display:inline;'>{{kname}}资讯信息</h2></div><div class='rightTitle'>共有此类信息<span>{{listcount_news}}</span>条 | <a href='http://www.zz91.com/cn/tags/tradesListByKey{{tags_id}}_1.html'>更多&gt;&gt;</a></div></div>
+{% for list in listall_news %}
+<ul>
+	<li>
+		<div class='listContent'>
+			<div class='listTitle'>
+				<h3><a href='http://huzhu.zz91.com/viewReply{{list.td_id}}.htm' target='_blank'>{{list.td_title}}</a></h3>
+				<span class='subTitle'>{{list.td_time}}</span>
+			</div>
+			<div class='abstract'></div>
+		</div>
+	</li>
+</ul> 
+{% endfor %}
+<div class='pageBar'><a href='/tagsbbsList/{{tags_keywords}}-1/'><strong><font color='#ff6600'>点此查看更多&gt;&gt;</font></strong></a></div> 
+</div>
+{%endif%}
+</div>
+<link href="http://img.zz91.com/cn/tags/rightcss.css" rel="stylesheet" type="text/css" />
+{% include 'includes/right.html' %}
+</div>
+{% include 'includes/buttom.html' %}
+
+</body>
+</html>

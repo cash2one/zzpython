@@ -1,0 +1,54 @@
+body{overflow-x:hidden;overflow-y:scroll;margin:0;padding:0;background:#f1f1f1;color:#303030}
+a{font-family:"微软雅黑"}
+ul,li{list-style:none}
+
+/* 顶部 */
+.top{width:100%;height:48px;background:url(../images/top_bg.jpg) repeat-x;position:fixed;left:0;top:0;z-index:999}
+.top_item{width:100%;height:48px;background:url("http://img0.zz91.com/zz91/mobile/images/logo1.png") no-repeat 0px 10px;background-position: center;}
+.top-left{float:left;margin-top:12px;padding-left:5px}
+.top-right {width:55px;height:30px;line-height:30px;text-align:center;font-size:14px;background:url(../images/btn.jpg) no-repeat;float:right;margin-right:10px;margin-top:9px}
+.top-right a{color:#fff}
+
+.content{margin-top:70px}
+
+/* 简介 */
+.abstract_tab{width:98%;margin:0 auto;border:1px solid #d5d5d5;background:#fff}
+.abstract_tab tr td{border-bottom:1px solid #d5d5d5;padding:15px 28px;font-size:14px}
+.abstract_tab .gray{color:#929292}
+.abstract_tab dt,dd{line-height:24px}
+
+.abstract_tab ul.ldb li{line-height:25px;margin-bottom:20px}
+
+/* 国外支付 */
+.abroad_tab{width:98%;margin:0 auto;border:1px solid #d5d5d5;border-right:0;background:#fff}
+.abroad_tab tr td{width:33.3%;text-align:center;font-size:18px;border-right:1px solid #d5d5d5;padding:12px 0}
+.abroad_tab tr td a{font-family:"宋体";color:#929292;text-decoration:none}
+.abroad_tab .cur{font-weight:bold;color:#333}
+
+.zfb_tab{width:98%;margin:0 auto;border:1px solid #d5d5d5;background:#fff;margin-top:15px;margin-bottom:10px}
+.zfb_tab tr td{font-size:16px;padding:22px 10px}
+.zfb_tab tr td:first-child{text-align:center}
+
+.form_tab{width:98%;margin:0 auto;background:#fff}
+.form_tab .lb{border-right:1px solid #f1f1f1}
+.form_tab tr td{font-size:14px;padding:7px 28px;border-bottom:1px solid #f1f1f1}
+.form_tab p.info{line-height:25px}
+
+/* 支付宝 */
+.paylist{width:98%;margin:0 auto}
+.paylist .pl_item{padding:7px 28px;border:1px solid #d5d5d5;margin-bottom:10px;background:#fff}
+.paylist .pl_item a{font-family:"宋体";color:#929292}
+.paylist .pl_item ul{overflow:hidden}
+.paylist .pl_item ul li{width:33%;font-size:14px;float:left}
+
+.pay_btn{width:40%;height:41px;line-height:41px;text-align:center;color:#fff;background:#ff3300;font-size:15px;font-weight:bold;margin:20px auto}
+
+/* 网上银行 */
+.notice{width:98%;margin:15px auto;background:#ffffcc;border:1px solid #d5d5d5;}
+.notice p{width:95%;font-size:14px;line-height:24px;color:#666666;margin:0 auto;padding:10px 12px}
+
+.banks_list{width:98%;margin:0 auto}
+.banks_list .bl-item{border:1px solid #d5d5d5;background:#fff;margin-bottom:15px;padding:10px 0}
+.banks_list .logo_bank{text-align:center;padding:22px 5px}
+.banks_list .info_bank ul li{width:263px;line-height:24px;overflow:hidden}
+.banks_list .account{color:#f08300}

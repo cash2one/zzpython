@@ -1,0 +1,303 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>互助社区最终页</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/huzhu/cunity-detail.css"/>
+	</head>
+	<body>
+		<script id="infomation" type="text/html">
+			<div class="essay">
+			<h1 class="essay-title">{{ d.title }}</h1>
+			<div class="essay-info-list">
+			<span class="essay-time"><span>{{ d.nickname }}</span>|<span>{{ d.gmt_created }}</span></span>
+			<span class="click-number"><i class="see-img"></i>{{ d.replycount }}</span>
+			<span class="essay-fsize"><t class="small-size">A</t>|<t class="big-size">A</t></span>
+			</div>
+			</div>
+			<div class="info-content">
+			{{ d.content }}
+			</div>
+		</script>
+		<!--  <div class="handle clear">
+		<span class="share weixin"></span>
+		<span class="share weikon"></span>
+		<span class="share xinlang"></span>
+		<span class="share qq"></span>
+		<span class="house"><i class="house-img"></i>收藏</span>
+		</div> -->
+		<div class="interfix clear" style="display: none;">
+			<h3>全部回复</h3><!--<span class="sort"><i class="sort-img"></i>倒序查看</span>-->
+		</div>
+		<ul class="assess">
+			
+		</ul>
+		<div class='la_more' style='text-align:center;height:50px;line-height:50px;font-size:14px;color:#999;display:none'>上拉获取更多信息</div>
+		<div class="div-wt j-wt">
+			<i class="aui-iconfont aui-icon-writefill"></i>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/laytpl.js"></script>
+	<script id="info-list" type="text/html">
+		<li class="assess-li">
+		<div class="assess-mof clear">
+		<span class="assess-name">{{ d.nickname }}</span>
+		<!--<span class="assess-tip">举报</span>-->
+		</div>
+		<div class="assess-mos">
+		{{ d.content }}
+		</div>
+		<div class="assess-mot clear">
+		<span class="assess-time">{{ d.posttime }}</span>
+		<span class="assess-answer" company_id="{{ d.company_id }}" reply_id="{{ d.reply_id }}"><i></i>回复</span>
+		</div>
+		</li>
+		<ul class="answer-list" style="display:{{ d.replylist.displayDiv }}">
+		{{ d.hfList }}
+		<li class="hf-more" style="display:{{ d.replylist.displayMore }}" replyid="{{ d.reply_id }}">查看更多回复...</li>
+		</ul>
+	</script>
+	<script id="hufu-list" type="text/html">
+		<li class="answer-li">
+		<div class="assess-mof clear">
+		<div class="sanjiao"></div>
+		<span class="assess-name">{{ d.nickname}}</span><span class="tape-ask">回复</span><span class="assess-name">{{ d.tonickname}}</span>
+		<!--<span class="assess-tip">举报</span>-->
+		</div>
+		<div class="assess-mos">
+		{{ d.content }}
+		</div>
+		<div class="assess-mot clear">
+		<span class="assess-time">{{ d.posttime }}</span>
+		<span class="assess-answer" company_id="{{ d.company_id }}" reply_id="{{ d.reply_id }}"><i></i>回复</span>
+		</div>
+		</li>
+	</script>
+	<script type="text/javascript">
+		var currPage = 1;
+		//判断是否显示已没数据加载
+		var oneIn = false;
+		var infoid;
+		apiready = function() {
+			//点击回复
+			$(".assess").on("click", ".assess-answer", function() {
+				var company_id = $(this).attr("company_id");
+				var reply_id = $(this).attr("reply_id");
+				var pageParam = {
+					wintitle : "回复信息",
+					type : "hf-form",
+					tocompany_id : company_id,
+					bbs_post_id : infoid,
+					bbs_post_reply_id : reply_id,
+					bounces : false
+				};
+				if (UserInfo.has_login()) {
+					openWin("hf-form", "../huzhu/hf-form.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/huzhu/hf-form.html";
+					pageParam.winName = "hf-form";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			//加载更多
+			api.addEventListener({
+				name : 'scrolltobottom'
+			}, function(ret, err) {
+				$(".la_more").html("加载更多中...");
+				if ($(".mui-spinner").length == 0) {
+					//$("body").append("<div class='mui-spinner' style='text-align:center;height:50px;line-height:50px;font-size:16px;'>更多加载中...</div>");
+				}
+				setTimeout(function() {
+					ajaxhf();
+				}, 1000)
+			});
+			//获取信息
+			ajaxInfo();
+		}
+		function ajaxInfo() {
+			infoid = api.pageParam.infoid;
+			api.showProgress({
+				title : '加载中',
+				modal : false
+			});
+			api.ajax({
+				url : hosturl + '/huzhuview/' + infoid + '.htm?datatype=json',
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false
+			}, function(ret, err) {
+				if (ret) {
+					//回复文章信息
+					$(".j-wt").on("click", function() {
+						var pageParam = {
+							wintitle : "回复信息",
+							type : "hf-form",
+							tocompany_id : ret.company_id,
+							bbs_post_id : api.pageParam.infoid,
+							bounces : false
+						};
+						if (UserInfo.has_login()) {
+							openWin("hf-form", "../huzhu/hf-form.html", pageParam);
+						} else {
+							pageParam.nextUrl = "widget://html/huzhu/hf-form.html";
+							pageParam.winName = "hf-form";
+							openWin("frm-login", "../myrc/frm-login.html", pageParam);
+						}
+					})
+					if (ret.picurllist.length > 0) {
+						var imgList = "";
+						$.each(ret.picurllist, function(index, item) {
+							imgList += '<img src="' + item + '" width="100%"/>'
+						})
+						ret.content = imgList + ret.content;
+					}
+					var getTpl = $api.html($api.byId("infomation"));
+					laytpl(getTpl).render(ret, function(html) {
+						$("body").prepend(html);
+					});
+					$(".interfix").css("display", "block");
+					//保存分享数据到本地
+					var title = ret.title;
+					localStorage.setItem("share_title", "" + title);
+					localStorage.setItem("share_description", "我正在查看" + title + "，赶紧跟我一起来体验！http://m.zz91.com/huzhu/" + infoid.toString() + ".html 点击链接查看");
+					localStorage.setItem("share_url", "http://m.zz91.com/huzhu/" + infoid.toString() + ".html");
+					localStorage.setItem("share_pic", "http://img0.zz91.com/zz91/images/indexLogo.png");
+					//文字大小变化
+					$(".small-size").on("click", function() {
+						$(".info-content").animate({
+							fontSize : "12px",
+							lineHeight : "24px"
+						});
+					})
+					$(".big-size").on("click", function() {
+						$(".info-content").animate({
+							fontSize : "18px",
+							lineHeight : "32px"
+						});
+					})
+					htList(ret.listall_reply);
+					api.hideProgress();
+					//点击收藏
+					$(".house").on("click", function() {
+						var favorite_type_code;
+						if (ret.category_id == 1) {
+							favorite_type_code = 10091010;
+						} else if (ret.category_id == 2) {
+							favorite_type_code = 10091005;
+						} else if (ret.category_id == 3) {
+							favorite_type_code = 10091011;
+						}
+						var data = {
+							company_id : UserInfo.memberID(),
+							usertoken : UserInfo.token(),
+							appsystem : api.systemType,
+							datatype : "json",
+							favorite_type_code : favorite_type_code,
+							forcompany_id : 0,
+							content_id : infoid,
+							title : ret.title,
+							pdtid : 0,
+							products_type_code : 0
+						};
+						shoucInfo(data);
+					})
+					$(".hf-more").on("click", function() {
+						var replyid = $(this).attr("replyid")
+						var pageParam = {
+							wintitle : "回复列表",
+							type : "hf-list",
+							replyid : replyid
+						};
+						openWin("hf-list", "../huzhu/hf-list.html", pageParam);
+					})
+				} else {
+					if(err){
+						saveerrlog(err.msg);
+					}
+				};
+			});
+		}
+
+		var dataload = true;
+		function ajaxhf() {
+			if (dataload == true) {
+				dataload = false;
+				var infoid = api.pageParam.infoid;
+				api.ajax({
+					url : hosturl + '/huzhureplymore/?postid=' + infoid + '&type=0&datatype=json&page=' + currPage,
+					method : 'get',
+					timeout : 30,
+					dataType : 'json',
+					returnAll : false
+				}, function(ret, err) {
+					if (ret) {
+						htList(ret);
+					} else {
+						if(err){
+							saveerrlog(err.msg);
+						}
+					};
+					dataload = true;
+				});
+			}
+		}
+
+		//回复信息列表
+		function htList(ret) {
+			var pageHtml = "";
+			$.each(ret, function(index, item) {
+				if (item.replylist.list.length == 0) {
+					item.replylist.displayDiv = "none"
+				} else {
+					item.replylist.displayDiv = ""
+					//循环回复信息列表
+					var hfList = "";
+					$.each(item.replylist.list, function(i, hfTime) {
+						var getTpl = $api.html($api.byId("hufu-list"));
+						laytpl(getTpl).render(hfTime, function(html) {
+							hfList = hfList + html;
+						});
+						item.hfList = hfList;
+					})
+				}
+				//判断查看等多回复的显示
+				if (item.replylist.count == null) {
+					item.replylist.displayMore = "none"
+				} else {
+					item.replylist.displayMore = ""
+				}
+				var getTpl = $api.html($api.byId("info-list"));
+				laytpl(getTpl).render(item, function(html) {
+					pageHtml = pageHtml + html;
+				});
+			})
+			if (ret.length == 0 && oneIn == true) {
+				$(".mui-spinner").remove();
+			}
+			$(".assess").append(pageHtml);
+			if (pageHtml == "") {
+				$(".la_more").hide();
+			} else {
+				$(".la_more").show();
+			}
+			oneIn = true;
+			//zzalert(currPage)
+			if (pageHtml != "") {
+				currPage += 1;
+				$(".la_more").html("上拉获取更多信息");
+			}else{
+				$(".la_more").show();
+				$(".la_more").html("全部加载完毕");
+			} 
+		}
+	</script>
+</html>

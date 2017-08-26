@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改seo客户信息-seo客户管理系统</title>
+    <link href="/static/css/s.css" type="text/css" rel="stylesheet">
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <script src="http://www.feiliao123.com/feiliao123/My97DatePicker/WdatePicker.js"></script>
+    <script>
+    // 修改seo单子信息验证
+    function frmsubmit(form)
+    {
+        form.action="modify_seokh.html";
+        if(form['yh-time'].value=="")
+        {
+            alert("请输入单子开始优化时间");
+            form['yh-time'].focus();
+            return false;
+        }
+        if(form['db-time'].value=="")
+        {
+            alert("请输入单子保证达标时间");
+            form['db-time'].focus();
+            return false;
+        }
+        if(form['msb-link'].value=="")
+        {
+            alert("请输入门市部链接");
+            form['msb-link'].focus();
+            return false;
+        }
+        if(form['yh-jg'].value=="")
+        {
+            alert("请输入百度优化接入价格");
+            form['yh-jg'].focus();
+            return false;
+        }
+        form.submit();
+    }
+
+    // 修改关键词验证
+    function kysubmit(form)
+    {
+        form.action="";
+        if(form['xg-ky'].value=="")
+        {
+            alert("请输入关键词");
+            form['xg-ky'].focus();
+            return false;
+        }
+        if(form['xg-ky-jg'].value=="")
+        {
+            alert("请输入关键词接入价格");
+            form['xg-ky-jg'].focus();
+            return false;
+        }
+        if(form['xg-db-time'].value=="")
+        {
+            alert("请输入达标时间");
+            form['xg-db-time'].focus();
+            return false;
+        }
+        if(form['xg-gq-time'].value=="")
+        {
+            alert("请输入过期时间");
+            form['xg-gq-time'].focus();
+            return false;
+        }
+        form.submit();
+    }
+    // 添加关键词验证
+    function addSubmit(form)
+    {
+        form.action=""
+        if(form['keywords'].value=="")
+        {
+            alert("请输入关键词");
+            form['keywords'].focus();
+            return false;
+        }
+        if(form['keyws-price'].value=="")
+        {
+            alert('请输入关键词接入价格');
+            form['keyws-price'].focus();
+            return false;
+        }
+        if(form['ky-db-time'].value=="")
+        {
+            alert('请输入关键词开始优化时间');
+            form['ky-db-time'].focus();
+            return false;
+        }
+        if(form['ky-gq-time'].value=="")
+        {
+            alert("请输入关键词保证达标时间");
+            form['ky-gq-time'].focus();
+            return false;
+        }
+        form.submit();
+    }
+
+    function selectOption(menuname, seValue)
+        {
+            var menu = document.getElementById(menuname);
+            if (menu)
+            {
+                for(var i=0;i<=menu.options.length;i++){
+                    if(menu.options[i].value==seValue)
+                    {
+                        menu.options[i].selected = true;
+                        break;
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div>
+    <table cellspacing="1" cellpadding="10" class="tb-xg-1" border="1" width="1000" align="center" style="text-align:left;">
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="button" onclick="window.location='seolist.html?waste=0'" value="返回列表"></td>
+        </tr>
+        <tr>
+          <td><span style="color:red">*</span>账号</td>
+          <td>{{ com_email }}</td>
+        </tr>
+        <tr bgcolor="#fff">
+          <td><span style="color:red">*</span>关键词</td>
+          <td>
+              <table cellspacing="1" cellpadding="5" class="tb-xg-2" width="100%" style="text-align:left;">
+                      <tr>
+                          <td><span style="color:red">*</span>关键字</td>
+                          <td><span style="color:red">*</span>价格</td>
+                          <td>达标要求</td>
+                          <td><span style="color:red">*</span>关键词达标时间</td>
+                          <td><span style="color:red">*</span>关键词过期时间</td>
+                          <td><span style="color:red">*</span>是否过期</td>
+                          <td>操作</td>
+                      </tr>
+                      {% for each_kws in all_kys %}
+                      <form id="xg-ky-{{ each_kws.id }}" name="xg-ky-{{ each_kws.id }}" action="modify_kws.html" method="post">
+                          {% csrf_token %}
+                      <tr>
+                          <td>
+                              <input type="text" id="xg-ky" name="xg-ky" size="30" value="{{ each_kws.keywords }}">
+                              <input type="hidden" id="kid" name="kid" value="{{ each_kws.id }}">
+                          </td>
+                          <td><input type="text" size="20" id="xg-ky-jg" name="xg-ky-jg" value="{{ each_kws.price | stringformat:'d' }}"></td>
+                          <td>
+                              <select id="db-yq-{{each_kws.id}}" name="db-yq-{{each_kws.id}}">
+                                  <option selected="selected" value="1">第一页</option>
+                                  <option value="2">第二页</option>
+                                  <option value="3">第三页</option>
+                              </select>
+                              <script>
+                                  selectOption('db-yq-{{each_kws.id}}', '{% if each_kws.target_require %}{{ each_kws.target_require }}{% else %}1{% endif %}')
+                              </script>
+                          </td>
+                          <td><input type="text" class="Wdate" size="10" id="xg-db-time" name="xg-db-time" onclick="WdatePicker()" value="{{ each_kws.target_time | date:'Y-m-d' }}"></td>
+                          <td><input type="text" class="Wdate" size="10" id="xg-gq-time" name="xg-gq-time" onclick="WdatePicker()" value="{{ each_kws.expire_time | date:'Y-m-d' }}"></td>
+                          <td>
+                            <select id="isexpire-{{each_kws.id}}" name="isexpire-{{each_kws.id}}">
+                                <option selected="selected" value="0">未过期</option>
+                                <option value="1">已过期</option>
+                            </select>
+                            <script>
+                                  selectOption('isexpire-{{each_kws.id}}', '{{each_kws.isexpire}}')
+                            </script>
+                          </td>
+                          <td>
+                              <input type="button" value="修改" onclick="return kysubmit(this.form)">&nbsp;|
+                              <a href="modify_seokh.html?kid={{ each_kws.id }}&action=del" onclick="return confirm('删除不可恢复,确定要删除吗?')">删除</a>
+                          </td>
+                      </tr>
+                      </form>
+                      {% endfor %}
+                      <form id="ad-ky" name="ad-ky" method="post" action="">{% csrf_token %}
+                          <tr>
+                              <td>
+                                  <input type="text" id="keywords" name="keywords" size="30">
+                                  <input type="hidden" id="add-ky" name="add-ky" value="add">
+                                  <input type="hidden" id="msb" name="msb" value="{{ msb }}">
+                                  <input type="hidden" id="sid" name="sid" value="{{ seo_list_id }}">
+                              </td>
+                              <td><input type="text" size="20" id="keyws-price" name="keyws-price"></td>
+                              <td>
+                                  <select id="ky-db-yq" name="ky-db-yq">
+                                      <option selected="selected" value="1">第一页</option>
+                                      <option value="2">第二页</option>
+                                      <option value="3">第三页</option>
+                                  </select>
+                              </td>
+                              <td>
+                                  <input type="text" class="Wdate" size="10" id="ky-db-time" name="ky-db-time" onclick="WdatePicker()" value="{{now_time}}">
+                              </td>
+                              <td>
+                                  <input type="text" class="Wdate" size="10" id="ky-gq-time" name="ky-gq-time" onclick="WdatePicker()" value="{{three_month_later}}">
+                              </td>
+                              <td>
+                                  <select id="ky-isexpire" name="ky-isexpire">
+                                      <option selected="selected" value="0">未过期</option>
+                                      <option value="1">已过期</option>
+                                  </select>
+                              </td>
+                              <td><input type="button" value="添加" onclick="return addSubmit(this.form)"></td>
+                          </tr>
+                      </form>
+            </table>
+            </td>
+        </tr>
+        <form id="xg-seo-xx" name="xg-seo-xx" action="" method="post">
+            {% csrf_token %}
+            <!--<tr>-->
+                <!--<td><span style="color:red">*</span>账号</td>-->
+                <!--<td>-->
+                    <!--<input type="text" id="xg-zh" name="xg-zh" size="20" value="{{ com_email }}">-->
+                    <!--<span style="color:red">(请确认之后再修改)</span>-->
+                <!--</td>-->
+            <!--</tr>-->
+        <tr>
+          <td><span style="color:red">*</span>单子开始优化时间</td>
+          <td><input type="text" id="yh-time" name="yh-time" value="{{ yh_time | date:'Y-m-d' }}" class="Wdate" size="10" onclick="WdatePicker()"></td>
+        </tr>
+        <tr>
+          <td><span style="color:red">*</span>单子保证达标时间</td>
+          <td><input type="text" id="db-time" name="db-time" value="{{ db_time | date:'Y-m-d' }}" class="Wdate" size="10" onclick="WdatePicker()"></td>
+        </tr>
+        <tr>
+          <td><span style="color:red">*</span>门市部</td>
+          <td><input type="text" id="msb-link" name="msb-link" size="25" placeholder="请输入门市部链接地址" value="http://{{ msb }}"></td>
+        </tr>
+        {% if gq_time %}
+        <tr>
+            <td><span style="color:red">*</span>独立域名过期时间</td>
+            <td>{{gq_time}}</td>
+        </tr>
+        {% endif %}
+        <tr>
+          <td><span style="color:red">*</span>购买金额</td>
+          <td><input type="text" id="yh-jg" name="yh-jg" placeholder="请输入百度优化接入价格" size="5" value="{{ price | stringformat:'d' }}"></td>
+        </tr>
+        <tr>
+          <td><span style="color:red">*</span>优化人</td>
+          <td>{{ yhr_name }}</td>
+        </tr>
+        <tr>
+          <td><span style="color:red">*</span>月报</td>
+          <td><a href="yuebao.html?id={{ seo_list_id }}" target="_blank" style="text-decoration: none;">查看月报</a></td>
+        </tr>
+        <tr>
+          <td>
+              &nbsp;
+              <input type="hidden" id="xg-dz" name="xg-dz" value="xg-dz">
+              <input type="hidden" id="dz-id" name="dz-id" value="{{ seo_list_id  }}">
+          </td>
+          <td><input type="button" id="xg-yh" name="xg-yh" value="确认修改" onclick="return frmsubmit(this.form)"></td>
+        </tr>
+        </form>
+      </table>
+    </div>
+</body>
+</html>

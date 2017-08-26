@@ -1,0 +1,20 @@
+{%for list in listall%}
+
+                      <div class="td_lst">
+                    	<div class="tab-lst">
+                        	<div class="lst-phone" id="lst-phone{{list.id}}">{%ifequal list.state "1"%}<a href="tel:{{list.caller_id}}">{{list.caller_id}}</a>{%else%}<a href="javascript:lookfirst({{list.id}});">{{list.caller_id_}}<font color=red>未接</font>查看</a>{%endifequal%}</div>
+                            <!--end lst--phone-->
+                            <div class="lst-price">{{list.call_fee}}元</div>
+                            <!--end lst-price-->
+                        </div>
+                        <!--end tab-lst-->
+                        <div class="tab-lst">
+                        	<div class="lst-date">{{list.start_time}}</div>
+                            <!--end lst-date-->
+                            <div class="lst-date_">{{list.province}}</div>
+                            <!--end lst-price_-->
+                        </div>
+                        <!--end tab-lst-->
+                      </div>
+
+{%endfor%}

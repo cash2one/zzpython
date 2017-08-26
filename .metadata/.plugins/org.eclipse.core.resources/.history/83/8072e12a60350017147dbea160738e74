@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>行情研究院</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/aui-flex.css" />
+    <style>
+    	body{
+    		
+    	}
+    </style>
+</head>
+<body>
+	<div class="topdiv" onclick="pagetotop();"><span class="aui-iconfont aui-icon-top"></span></div>
+	<section class="aui-content companypricemain">
+    	
+		<div class="aui-tab">
+	        <ul class="aui-tab-nav yanjy_tab">
+	            <li class="active" typeid="359,360">独家观点</li>
+	            <li typeid="357">行业报告</li>
+	            <li typeid="358">专家解读</li>
+	        </ul>
+	    </div>
+	    <ul class="yanjy aui-list-view">
+			
+		</ul>
+		<div class="nodata">暂无相关数据</div>
+	    <script id="yanjy-list" type="text/html">
+			<li class="aui-list-view-cell aui-img" id="{{ d.td_id }}">
+				<a class="aui-arrow-right">
+				<img src="{{ d.pic }}" class="aui-img-object aui-pull-left" style="width: 100px;">
+				<div class="aui-img-body" style="margin-right:18px">
+					<p class="aui-ellipsis-2"  style="color:#000">
+						<b>{{d.td_title}}</b>
+					</p>
+					<p class="aui-ellipsis-2">
+						{{d.content}}
+					</p>
+					<p>
+						{{d.gmt_order}}
+					</p>
+					
+				</div></a>
+			</li>
+		</script>
+	</section>
+	<div class='la_more'>上拉获取更多信息</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script type="text/javascript" src="../../script/aui-scroll.js" ></script>
+<script type="text/javascript">
+	var currPage = 1;
+	var pagecount=0;
+	var typeid=0;
+	apiready = function(){
+		changeserverurl();
+		ajaxInfo();
+		var scroll = new auiScroll({
+	        listen:true,
+	        distance:200 //判断到达底部的距离，isToBottom为true
+	    },function(ret){
+	        if(ret.isToBottom){
+	        }else{
+		        if (ret.scrollTop>150){
+		        	$(".topdiv").fadeIn();
+		        }else{
+		        	$(".topdiv").fadeOut();
+		        }
+	        }
+	    });
+	    //页面刷新
+		api.setRefreshHeaderInfo({
+			visible : true,
+			// bgColor: '#F2F2F2',
+			bgColor : '#E6E6E6',
+			textColor : '#000000',
+			textDown : '下拉刷新',
+			textUp : '释放刷新',
+		}, function(ret, err) {
+			
+			currPage = 1;
+			ajaxInfo();
+			api.toast({
+				msg : '数据已是最新！',
+				duration : 3000,
+				location : 'bottom'
+			});
+		});
+		//底部加载更多
+		api.addEventListener({
+			name : 'scrolltobottom'
+		}, function(ret, err) {
+			if (currPage>pagecount){
+				$(".la_more").html("全部加载完毕");
+				return false;
+			}
+			$(".la_more").html("加载更多中...");
+			setTimeout(function() {
+				ajaxInfo();
+			}, 10)
+		});
+		$(".yanjy_tab li").on("click",function() {
+			$(".yanjy_tab li").removeClass("active");
+			$(this).addClass("active");
+			currPage=1;
+			typeid=$(this).attr("typeid")
+			ajaxInfo();
+		})
+		$(".yanjy").on("click","li",function() {
+			var price_id=$(this).attr("id");
+			
+			var pageParam = {
+				wintitle : "报价详情",
+				type : "study-detail",
+				bounces:false,
+				id : price_id
+			};
+			openWin("study-detail"+price_id, "../price/study_detail.html", pageParam);
+		})
+		$(".yanjy_tab li").removeClass("active");
+		$(".yanjy_tab li").each(function() {
+			if (api.pageParam.typeid==$(this).attr("typeid")){
+				$(this).addClass("active");
+			}
+		});
+	};
+	function ajaxInfo(){
+		//行情研究院
+		if (typeid==0){
+			typeid=api.pageParam.typeid;
+		}
+		var data={
+			typeid:typeid,
+			page:currPage
+		}
+		if (currPage==1){
+			loadingshow();
+		}
+		zzappajax("get",hosturl+"price/studylist.html",data,function(ret){
+			var pageHtml_dj='';
+			if (currPage==1){	
+				pagecount=ret.pagecount;
+			}
+			$.each(ret.list, function(index, item) {
+				var getTpl = $api.html($api.byId("yanjy-list"));
+				laytpl(getTpl).render(item, function(html) {
+					pageHtml_dj = pageHtml_dj + html;
+				});
+			})
+			
+			if (currPage == 1) {
+				if (pageHtml_dj==""){
+            		$(".nodata").show();
+            		$(".la_more").hide();
+            	}else{
+            		$(".nodata").hide();
+            		$(".la_more").show();
+                }
+				api.pageUp({
+					'top' : true
+				});
+				$(".yanjy").html(pageHtml_dj);
+			} else {
+				$(".yanjy").append(pageHtml_dj);
+			}
+			if (pageHtml_dj!=""){
+				currPage += 1;
+				$(".la_more").html("上拉获取更多信息");
+			}else{
+				$(".la_more").html("全部加载完毕");
+			}
+			loadinghide();
+		})
+	}
+</script>
+</html>

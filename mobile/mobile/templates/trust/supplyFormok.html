@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>发布成功</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <style type="text/css">
+        body{background: #ededed;margin:0px;}
+        .head{font-size:15px;text-align: center; color: white; background-color: rgb(49, 160, 255); height: 50px; line-height: 50px; width: 100%;}
+        .mess {background: #ededed;color:#333;font-size:14px;height:180px;text-align:center;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;}
+        .mess img{width: 80px;}
+        .mess-title{font-size: 18px;font-weight:bold;margin-bottom:5px;}
+        p {text-align: center;margin:0;padding:0;}
+        .error {color: #F00}
+    </style>
+</head>
+<body>
+    <div class="head">
+        <p>发布成功</p>
+    </div> 
+    <div class="mess">
+        <img src="http://webim.h.qiao.baidu.com/f/pool/img/webim/mess_suc.png" />
+        <p class="mess-title">感谢成功</p>
+        <p>我们会尽快与您联系</p>
+        <br /><br />
+        {%if merchant_url%}
+        <p><a href="{{merchant_url}}">点此返回</a></p>
+        {%endif%}
+    </div>
+</body>
+</html>

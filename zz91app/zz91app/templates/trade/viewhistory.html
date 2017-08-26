@@ -1,0 +1,23 @@
+{%if listall%}<ul class="mui-table-view">{%for list in listall%}<li class="mui-table-view-cell">
+	<a href="javascript:gotourl('/detail/?id={{list.pdt_id}}','blank')">
+		<div style="width: 75px;height: 90px;float: left;margin: 10px;margin-left: -5px;margin-top:-2px ;position: relative;">
+			<img src="{{list.pdt_images}}" style="width: 75px;height: 80px;">
+			{%if list.phone_level%}<span class="lv_icon lv{{list.phone_level}}" style="z-index: 2;"></span>{%endif%}
+		</div>
+		<div class="mui-media-body">
+			<span class="mui-ellipsis-2" style="overflow: hidden;height: 22px;;">{{list.pdt_kind.kindtxt}}{{list.pdt_name|safe}}{%if list.isbuycontact%}&nbsp;<img src="http://m.zz91.com/images/pindao/eye.jpg" />{%endif%}</span>
+			<span class="mui-h6 mui-ellipsis-2">{{list.com_province}} {{list.pdt_price}} {{list.pdt_time_en}}</span>
+			<span class="mui-h6 mui-ellipsis-2">{{list.pdt_detail}}</span>
+			{%if list.ldbtel%}
+			<p>免费拨打：<font color="#F40000">{{list.ldbtel.front_tel}}</font><br />{%if list.phone_rate%}{{list.phone_rate}}% 接听率{%endif%}
+			</p>{%endif%}
+		</div>
+	</a>
+</li>{%endfor%}{%if showpage%}
+<div id="pulldiv" class="pulldiv" onclick="loadmorep(this,'/trade/viewhistory.html?keywords={{keywords_hex}}')" title="/trade/viewhistory.html?keywords={{keywords_hex}}"><span class="mui-icon mui-icon-down"></span><span>点此加载更多</span>
+</div>
+{%endif%}</ul>{%else%}{%if showpage%}<ul class="mui-table-view"><li class="mui-table-view-cell">
+	<a href="###">
+	            您还没有查看任何供求信息！
+	</a>
+</li></ul>{%endif%}{%endif%}{%if showpage%}<input type="hidden" id="appnavname" value="浏览历史" />{%endif%}

@@ -1,0 +1,136 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <title>买供求置顶2个月送企业秀</title>
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <meta content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <link rel="stylesheet" href="css/base-min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/jquery.js"></script>
+	<style>
+		.anli-box li{
+			width: 25%;
+			float: left;
+			text-align: center;
+			line-height: 100px;
+			padding: 10px;
+		}
+	</style>
+</head>
+<body>
+    <div class="band">
+        <img src="images/bandimg.jpg" class="bandimg">
+        <div class="buybox"><a href="#"><img src="images/buybtn.png" class="buybtn"></a></div>
+    </div>
+    <div class="seemore">
+        <img src="images/ggaoimg.jpg" class="bandimg">
+        <div class="seebox clear">
+            <div class="seebtn-box">
+                <a href="../service/show3.html" title="供求置顶服务"><img src="images/xqbtn.png" class="seebtn"></a>
+            </div>
+            <div class="seebtn-box">
+                <a href="../service/show7.html" title="企业秀服务"><img src="images/xqbtn.png" class="seebtn"></a>
+            </div>
+        </div>
+    </div>
+    <div class="ttbt">
+        <img src="images/ttimg.jpg">
+    </div>
+    <div class="anli">
+        <div class="anli-tt">供求置顶</div>
+        <div class="anli-box">
+        	<img src="../../../image/service/product_top.png" style="width:100%">
+        </div>
+        <div class="anli-tt">企业秀</div>
+        <div class="anli-box">
+        	<ul>
+        		<li>案例一
+        		<a href="http://h5.zz91.com/xiu/55432.html" target="_blank" title="企业秀案例展示"><img src="../../../image/service/wz1.jpg" style="width:100%"></a>
+        		</li>
+				<li>案例二 
+				<a href="http://h5.zz91.com/xiu/709556.html" target="_blank" title="企业秀案例展示"><img src="../../../image/service/wz2.jpg" style="width:100%"></a>
+				</li>
+				<li>案例三
+				<a href="http://h5.zz91.com/xiu/602910.html" target="_blank" title="企业秀案例展示"><img src="../../../image/service/wz3.jpg" style="width:100%"></a>
+				</li>
+				<li>案例四
+				<a href="http://h5.zz91.com/xiu/929830.html" target="_blank" title="企业秀案例展示"><img src="../../../image/service/wz4.jpg" style="width:100%"></a>
+				</li>
+			</ul>
+			<div style="clear: both;"></div>
+        </div>
+    </div>
+<script type="text/javascript">
+	apiready = function(){
+		$(".buybtn").on("click",function() {
+			api.execScript({
+				name : "root",
+				script : "openprotop()"
+			});
+		});
+		$('body').on('click', 'a', function() {
+			var aurl = this.getAttribute('href');
+			var title = this.getAttribute('title');
+			if (aurl && aurl.substring(0, 1) != "#") {
+				if (aurl.indexOf("javascript:") < 0) {
+					if (aurl.indexOf("tel:") >= 0) {
+						
+					} else {
+						api.execScript({
+							name : "root",
+							script : "openblankwin('"+title+"','cshow','"+aurl+"')"
+						});
+						return false;
+					}
+				} else {
+					if (aurl.indexOf("tel:") > 0) {
+						
+					} else {
+						api.execScript({
+							name : "root",
+							script : "openblankwin('"+title+"','cshow','"+aurl+"')"
+						});
+						return false;
+					}
+					return;
+				}
+			}
+		});
+	};
+</script>
+    <div style="display:none">
+	    <script>
+	        var _hmt = _hmt || [];
+	        (function() {
+	            var hm = document.createElement("script");
+	            hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+	            var s = document.getElementsByTagName("script")[0];
+	            s.parentNode.insertBefore(hm, s);
+	        })();
+	    </script>
+	    <!--baidu analysis-->
+	    <script>
+	        var _hmt = _hmt || [];
+	        
+	        (function() {
+	            var hm = document.createElement("script");
+	            hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+	            var s = document.getElementsByTagName("script")[0];
+	            s.parentNode.insertBefore(hm, s);
+	        })();
+	    </script>
+	</div>
+</body>
+<script>
+</script>
+
+</html>

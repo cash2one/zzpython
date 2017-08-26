@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>我的邀请码</title>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/common.css"/>
+</head>
+<style type="text/css">
+	.box{
+		padding-top: 15px
+	}
+	.box p{
+		text-align: center;
+		font-size: 15px;
+		line-height: 35px;
+	}
+	.btn{
+		margin:10px 60px 0;
+		line-height: 35px;
+		text-align: center;
+		color: #fff;
+		border-radius: 5px;
+		background-color: #01ba2e;
+		display: block;
+	}
+	.box .mycode{
+		color: #01ba2e;
+		font-size: 24px;
+	}
+</style>
+<body>
+	<div class="aui-toast"  id="loading">
+        <div class="aui-toast-loading"></div>
+        <div class="aui-toast-content">加载中</div>
+    </div>
+	<div class="box">
+		<p class="top-tishi">邀请朋友安装APP</p>
+		<p class="foot-tishi">即可获得再生钱包 ”5元”</p>
+		<p class="top-tishi">我的邀请码</p>
+		<p class="top-tishi mycode"></p>
+		<span class="btn my-yqm">立即分享</span>
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+<script type="text/javascript">
+apiready = function(){
+	var data={
+		company_id : UserInfo.memberID(),
+		usertoken : UserInfo.token(),
+		clientid : api.deviceId,
+		appsystem : api.systemType,
+		datatype : "json",
+	}
+	api.ajax({
+		url : hosturl +"invite/myinvite.html",
+		method : "get",
+		timeout : 30,
+		dataType : 'json',
+		returnAll : false,
+		data : {
+			values : data
+		}
+	}, function(ret, err) {
+		//zzalert( JSON.stringify( ret ) );
+		if (ret){
+			$(".mycode").html(ret.code)
+			//保存分享数据到本地
+			var title="我的ZZ91再生网邀请码："+ret.code;
+			localStorage.setItem("share_title",""+title);
+			localStorage.setItem("share_description",ret.result);
+			localStorage.setItem("share_url",ret.inviteurl);
+			localStorage.setItem("share_pic","http://img0.zz91.com/zz91/images/indexLogo.png");
+		}else{
+			if(err){
+				saveerrlog(err.msg);
+			}
+			hint("系统错误！");
+		}
+		$("#loading").hide();
+	})
+	//推荐给好友
+	$(".my-yqm").on("click", function() {
+		//分享
+		var html = "";
+		html += '<div class="sharebox"><ul><li class="share_qq"><img src="../image/share/share_to_icon_qq.png"><br />QQ好友</li><li class="share_wx"><img src="../image/share/share_to_icon_wx.png"><br />微信好友</li><li class="share_wxq"><img src="../image/share/share_to_icon_wxq.png"><br />朋友圈</li><li class="share_weibo"><img src="../image/share/share_to_icon_weibo.png"><br />新浪微博</li></div>'
+		$aui.alert({
+			title : '',
+			content : html,
+			buttons : ['取消'],
+			radius : 10,
+			titleColor : '#333',
+			contColor : '#333',
+			btnColor : ''
+		}, function(ret) {
+			//处理回调函数
+			if (ret) {
+				if (ret == 0) {
+					return;
+				}
+			}
+		});
+	});
+}
+</script>
+</html>

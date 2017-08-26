@@ -1,0 +1,91 @@
+﻿@charset "utf-8";
+/* CSS Document */
+html{overflow:hidden;}
+html,body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+body{font-family:"微软雅黑";font-size:12px;color:#000000;word-wrap:break-word;behavior:url("csshover.htc");overflow:hidden;}
+button,input,select,textarea{font:12px/1.5  Arial, "宋体", Helvetica,  Verdana, sans-serif;word-wrap:break-word;color:#565756;}
+ul,li{list-style:none;margin:0;padding:0;}
+h1, h2, h3, h4, h5, h6{font-weight:normal;font-size:100%;} 
+img{border:none;border:0;vertical-align:middle;}
+a{text-decoration:none;outline:none;}
+p{margin:0;padding:0;}
+input,select,textarea{vertical-align:middle;*font-size:100%;}
+input{margin:0;outline:none;padding:0;}
+input::-ms-clear{display:none;}
+.clearfix:after{
+     content:".";       
+     display:block;       
+     height:0;       
+     clear:both;       
+     visibility:hidden;       
+
+}
+.clearfix{*zoom:1}
+
+.ddw{position:absolute;left:0;top:0;color:#000;font-size:16px;z-index:9999;}
+.ddw2{position:absolute;left:20px;top:0;color:#000;font-size:16px;z-index:9999;}
+.num_box{position:relative;}
+.num{color:#90C;font-size:50px;width:100%;text-align:center;position:relative;}
+.num ul{width:100%;position:absolute;left:0;top:0;height:100%;}
+.num ul li{float:left;height:100%;position:relative;}
+#num_0{background:url(../images/bac1.jpg) no-repeat center 100% #880002;background-size:100% 100%;}
+#num_1{background:url(../images/bac2.jpg) no-repeat center 100% #FDFE03;background-size:100% 100%;}
+#num_2{background:url(../images/bac3.jpg) no-repeat center 100% #C7FF16;background-size:100% 100%;}
+#num_3{background:url(../images/bac4.jpg) no-repeat center 100% #C11F12;background-size:100% 100%;}
+
+.fixed_r{position:absolute;right:10px;top:250px;z-index:999;}
+.fixed_r li {width:14px;height:14px;border-radius :50%;text-indent:-9999px;background:#ccc;cursor:pointer;margin-bottom:20px;}
+.fixed_r li.on {background:#DA324D;}
+
+.intro{
+	width: 760px;
+	margin: 0 auto;
+  	height: 100%;
+    overflow: hidden;
+    position: relative;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+.slider {
+	position: absolute;
+    top: 33%;
+	left: 0;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    margin-top: -30px;
+}
+.slider-container {
+	height: 417px;
+	overflow: hidden;
+	position: relative;
+	width: 760px;
+}
+.slider-container .slider-wrapper {
+	left: 0;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	width: 5000em; /*Fix for prevent display errors*/
+	-webkit-transition: all 800ms ease;
+	-moz-transition: all 800ms ease;
+	-o-transition: all 800ms ease;
+	transition: all 800ms ease;
+}
+.slider-container .slide {
+	float: left;
+	height: 417px;
+	overflow: hidden;
+	position: relative;
+	width: 760px;
+}
+
+
+
+
+
+
+

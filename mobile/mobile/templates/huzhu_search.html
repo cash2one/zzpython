@@ -1,0 +1,696 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+{%include 'head.html'%}
+<title>手机版互助社区</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+<link rel="stylesheet" type="text/css" href="/css/myrc/index.css"/>
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+<link rel="stylesheet" href="/css/comm-more.css" />
+<meta name="format-detection" content="telephone=no">
+<script src="/js/myrc/jquery-latest.min.js"></script>
+<script type="text/javascript" src="/js/myrc/style.js"></script>
+<script>
+	$(window).scroll(function(){
+		//alert($(window).scrollBottom());
+		//alert($(window).scrollTop() +"\n"+ $(window).height() + "\n" +$(document).height());
+		if($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+			loadMore(document.getElementById("loadMore"));
+		}
+	});
+	function tabView(tblId)
+	{
+		var children = document.getElementById("tabUL").getElementsByTagName("li");
+		for(var i = 0; i < children.length; i++)
+		{
+			children[i].setAttribute("class","m-li");
+			document.getElementById("tab" + (i+1)).style.display="none";
+		}
+		children[parseInt(tblId.replace("tab",""))-1].setAttribute("class","m-li_");
+		document.getElementById(tblId).style.display = "table";
+	}
+	function loadMore(div)
+	{
+		div.innerHTML = '&nbsp;<image src="images/wait.gif"/>&nbsp;';
+		var table;
+		for(var i = 0; i < 3; i++)
+		{
+			
+			if(document.getElementById("tab" + (i+1)).style.display != "none")
+			{
+				table = document.getElementById("tab" + (i+1));
+				break;
+			}
+		}
+		<!-- 此处内容动态根据后台取出的数据生成 -->
+		var str = '';
+		//迭代获取的后台数据，也可以在后台直接生成html传到前台，但不推荐第二种做法，不方便维护
+		for(var i = 0; i < 10; i++){
+		 str += '<tr>'+
+					'<td class="m-item">'+
+						'<div class="c-item">'+
+							'[动态加载]<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>'+
+						'</div>'+
+						<!--end c-item-->
+						'<div class="c-item_">'+
+							'<div class="i-box">'+
+								'小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07'+
+							'</div>'+
+							<!--end i-box-->
+							'<div class="i-box_">'+
+							'<div class="i-sc">'+
+								 '<img src="images/star.png"/>&nbsp;<span>收藏</span>'+
+							'</div>'+
+							 <!--end i-sc-->
+								 '<div class="cb"></div>'+
+							'</div>'+
+							<!--end i-box_-->
+							'<div class="cb"></div>'+
+						'</div>'+
+						<!--end c-item_-->
+					'</td>'+
+				'</tr>';
+		}
+		table.getElementsByTagName("tbody")[0].innerHTML += str;
+		div.innerHTML = '加载更多……';
+	}
+</script>
+</head>
+<body>
+	{%include 'top.html'%}
+<form action="/huzhu/" method="get" id="wikiSearchFrm">
+	<div style="position:relative;">
+    	<div class="sch-input">
+    		<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">		
+    	</div>
+    	<div class="sch-button" onClick="AliMobile.WikiSearch.submitFrm()">搜答案</div>
+		<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;"><a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a></div>
+	</div>
+</form>
+  <div class="m-content">
+	<table width="100%" border=0 cellpadding=0>
+			
+			<tr><td>
+				<table cellspacing="10" id="tab1">
+				<tr>
+			<td class="m-item_1">
+						共<font>{{bbslistcount}}</font>条结果
+			</td>
+		</tr>
+					<tr>
+					
+{%for list in bbslist%} 
+						<td class="m-item">
+							<div class="c-item">
+								<a href="/huzhuview/{{list.id}}.htm" target=_blank>{{list.content}}</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									{{list.nickname}}&nbsp;&nbsp;&nbsp;回复：{{list.replycount}}&nbsp;&nbsp;&nbsp;{{list.gmt_time}}
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="/images/myrc/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+{%endfor%}
+			
+				</table>
+				<table cellspacing="10" id="tab2" style="display:none;">
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								[每周]<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								[每周]<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								[每周]<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								[每周]<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								[每周]<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								[每周]<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+				</table>
+				<table cellspacing="10" id="tab3" style="display:none;">
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								[每月]<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+					<tr>
+						<td class="m-item">
+							<div class="c-item">
+								<a href="details.html">阿思拓电子商务有限阿思拓电子商务有限公司阿思拓电子商务有限公司公司</a>
+							</div>
+							<!--end c-item-->
+							<div class="c-item_">
+								<div class="i-box">
+									小星星&nbsp;&nbsp;&nbsp;回复：100&nbsp;&nbsp;&nbsp;2014-05-07
+								</div>
+								<!--end i-box-->
+								<div class="i-box_">
+								<div class="i-sc" onclick="javascript:this.innerHTML=('已收藏');">
+									 <img src="images/star.png"/>&nbsp;<span>收藏</span>
+								    </div>
+									 <!--end i-sc-->
+								 <!--end i-sc-->
+									 <div class="cb"></div>
+								</div>
+								<!--end i-box_-->
+								<div class="cb"></div>
+							</div>
+							<!--end c-item_-->
+						</td>
+					</tr>
+				</table>
+				<div id="loadMore" onclick="loadMore(this);" style="text-align:center;margin-left:10px;margin-right:10px;background: #fff;-moz-border-radius: 4px;-webkit-border-radius: 4px;border-radius: 4px;">加载更多……</div>
+			</td></tr>
+	</table>
+  </div>
+  <div class="m-btn">
+	<a href="publish.html" target="">我要提问</a>
+   </div>
+  <!--end m-btn-->
+</body>
+</html>

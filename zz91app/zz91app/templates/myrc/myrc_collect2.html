@@ -1,0 +1,59 @@
+<style>
+.Collection{width:95%;overflow:hidden;margin-top: 20px;}
+.Collection-block{width:105%}
+.Collection .collbox a{
+	background-color:#093;
+	line-height: 25px;
+	padding: 5px;
+	border: 1px solid #090;
+	display:block;
+	color:#FFF;
+	font-size:14px;
+	overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.Collectiontitle{width95%;line-height: 30px;font-size: 16px;border-bottom: solid 1px #248909;padding: 10px;}
+.Collection ul li{width:30%;float:left;margin-right:10px;margin-bottom:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.Collection ul li img{width:100%}
+.lookorder a{
+	background-color: #0C3;
+	line-height: 25px;
+	padding: 5px;
+	border: 1px solid #090;
+	display:block;
+	color:#FFF;
+	width:200px;
+	font-size:14px;
+}
+</style>
+<div class="Collectiontitle">我定制的供求商机</div>
+<center>
+	<div class="Collection">
+		{%if mybusinesscollect%}
+    	<div class="Collection-block">
+        	<ul>
+            {%for b in mybusinesscollect%}
+            {%if b%}
+            <li class="collbox"><a href="javascript:gotourl('/offerlist/?keywords={{b.keywords_hex}}','trade');" target="_blank">{{b.keywords}}</a></li>
+	        {%endif%}
+            {%endfor%}
+            </ul>
+        </div>
+        {%else%}
+        <button class="mui-btn mui-btn-danger" style="width: 100%;" onclick="gotourl('/order/','order');">我要定制商机</button>
+        {%endif%}
+    </div>
+</center>
+<div class="Collectiontitle">我定制的行情商机</div>
+<center>
+	<div class="Collection">
+    	<div class="Collection-block">
+        	<ul>
+            {%for p in mypricecollect%}
+            <li class="collbox"><a href="javascript:gotourl('/price/{{p.id}}.html','price');" target="_blank">{{p.label}}</a></li>
+            {%endfor%}
+            </ul>
+        </div>
+    </div>
+</center>
+<center><br /><br /><button class="mui-btn mui-btn-danger" style="width: 90%;" onclick="gotourl('/order/','order');">我要定制商机</button></center>
+<input type="hidden" id="appnavname" value="我的定制" />

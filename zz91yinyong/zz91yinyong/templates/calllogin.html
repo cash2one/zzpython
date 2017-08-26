@@ -1,0 +1,150 @@
+﻿/*页面输出*/
+	document.write("<form method='post' id='fb-form' action='http://www.zz91.com/doLogin.htm'>");
+	document.write("<div class=FloatBlock id='fb' style='display:none'>");
+	
+	document.write("<div class=fb-main>");
+	document.write("<div class=fb-close><a href='javascript:closefloatblock()' title='关闭' data=1></a></div>");
+	document.write("<div class=fb-content>");
+	
+	document.write("<div class=welcome>欢迎加入ZZ91，开启废料生意网上之旅！</div><div style='clear:both'></div>");
+	document.write("<div class='fb-content-login'><div style='float:left'>用户名：</div><input type=text class=fb-text name=username value='' id=fb-text  />");
+	//document.write("<span id=fb-text-info></span>");
+	document.write("<div style='float:left'>密码：</div><input type=password class=fb-text name=password  type=\"password\" value='' id=fb-text2 />");
+	document.write("<input type=submit class=fb-button value=登录 /><input type=\"hidden\" name=\"url\" value=\"{{backurl}}\" id=\"url\" />");
+	document.write("<div class='fb-buttonreg'><a  href='http://china.zz91.com/register/register_stp1.htm' target=_blank />注册</a></div> <a href='http://china.zz91.com/user/passwordReminder.htm' target=_blank>忘记密码?</a>");
+	document.write("<div style=clear:both></div>");
+	//document.write("<div class=fb-login-info>");
+	//document.write("<input type=checkbox class=fb-checkbox id=fb-checkbox /><span class=fb-checkbox-span onclick=fb_checkbox()>下次自动登录</span>");
+	//document.write("<span class=fb-info-ForgetPassword><a href='http://china.zz91.com/user/passwordReminder.htm'>忘记密码?</a></span>");
+	//document.write("<span class=fb-info-NewUsername><a href='http://china.zz91.com/register/register_stp1.htm'>新用户注册</a></span>");
+	//document.write("</div>");
+	document.write("</div>");
+	
+	document.write("<div class=fb-qq>");
+	document.write("<div class=fb-qq-other>快捷登录：</div>");
+	document.write("<a href='http://china.zz91.com/accessToQQLogin.htm' target='_blank'><img src='http://img0.zz91.com/zz91/china/images/qq_login_common.gif' width='124' height='24' alt='使用QQ号码登录' /></a>");
+	document.write("</div>");
+	document.write("</div>");
+	document.write("<iframe class=\"fb-iframe\" scrolling=\"no\" frameborder=\"0\" height=\"35\" width=\"960\" src=\"\"></iframe>");
+    
+	document.write("</div>");
+    document.write("<div class=fb-bg></div>");
+	document.write("</div>");
+	document.write("</form>");
+	
+	
+	/*验证*/
+	
+	$(document).ready(function() {
+		var js_login_username=$("#fb-text");
+		var js_login_password=$("#fb-text2");
+        var usernamecheck=true;
+		var passwordcheck=true;
+		// 登录 
+		js_login_username.blur(function() {
+			var self = $(this);
+			var reg =  /.*[\u4e00-\u9fa5]+.*$/; 
+			if (self.val() === "") {
+				//self.val("请输入用户名");
+				//self.css("color", "#ff0000");
+				self.css("font-size", "12px")
+				usernamecheck = false;
+                self.css("border","solid 1px #ff0000");
+			} else {
+            	self.css("border","solid 1px #ccc");
+				//self.parent().find(".post_error").html("");
+				usernamecheck=true;
+			}
+		});
+		js_login_password.blur(function() {
+			var self = $(this);
+			if (self.val() === "") {
+				//self.parent().find(".post_error").html("请输入您的密码");
+				//self.parent().find(".post_error").css("color", "#ff0000");
+                //alert('请输入密码！');
+                self.css("border","solid 1px #ff0000");
+                //self.css("border-color","#ff0000");
+				passwordcheck = false;
+			} else {
+            	self.css("border","solid 1px #ccc");
+                //self.css("border","1px");
+				//self.parent().find(".post_error").html("");
+				passwordcheck = true;
+			}
+		});
+		$(".fb-button").mouseover(function(){
+			$(this).css("background","#660")
+		});
+		$(".fb-button").mouseout(function(){
+			$(this).css("background","#98ad2e")
+		});
+		$("#fb-form").submit(function() {
+			js_login_password.blur();
+			js_login_username.blur();
+			if (usernamecheck==false){
+				return false;
+			}
+			if (passwordcheck==false){
+				return false;
+			}
+			//return true;
+		});
+		
+    });
+	var stylestr="";
+stylestr="<style>.FloatBlock a{ color:#666; text-decoration:none;}"+
+".FloatBlock a:hover{color:#F00}"+
+".FloatBlock img{ border:0;}"+
+".FloatBlock form{ padding:0; margin:0;}"+
+".FloatBlock{position:fixed;_position:absolute;_bottom:auto;z-index:100;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));width:100%;height:80px;bottom:0; font-size:12px;}"+
+".FloatBlock .fb-bg{width:100%;height:80px;background:#dbe7c0;opacity:0.9;-moz-opacity:0.9; z-index:3; filter:alpha(opacity:90);position:absolute;left:0;top:0}"+
+".FloatBlock .fb-close a{width:19px;height:19px;display:block;position:absolute;right:5px;top:5px;background-image:url(http://img0.zz91.com/zz91/images/fclose.png);}"+
+".FloatBlock .fb-close a:hover{background-image:url(http://img0.zz91.com/zz91/images/fclose_on.png);}"+
+".FloatBlock .fb-content{width:960px;margin-right: auto;margin-left: auto;height:80px;}"+
+".FloatBlock .fb-main{width:100%;z-index:999;position:relative;}"+
+".FloatBlock .fb-content-login{width:650px;border-right:1px solid #b4c574;margin-top:16px;float:left; line-height:30px;}"+
+".FloatBlock .fb-text{width:150px;height:25px;color:#999;margin-right:16px; float:left; line-height:25px;}"+
+".FloatBlock .fb-button{width:65px;height:30px;background:#98ad2e;border:0;color:#fff;font-weight:700;cursor:pointer; margin-right:10px; display:block; text-align:center; line-height:30px; float:left}"+
+".FloatBlock .fb-buttonreg a{width:65px;height:30px;background:#98ad2e;color:#fff;font-weight:700;margin-right:10px; display:block; text-align:center; line-height:30px; float:left}"+
+".FloatBlock .fb-buttonreg a:hover{color:#FFF;background:#660;}"+
+".FloatBlock .fb-checkbox{ vertical-align:middle;margin-right:8px}"+
+".FloatBlock .fb-checkbox-span{cursor:pointer;color:#333}"+
+".FloatBlock .fb-info-ForgetPassword{margin-left:95px}"+
+".FloatBlock .fb-info-NewUsername{margin-left:130px}"+
+".FloatBlock .fb-login-info{margin-top:8px}"+
+".FloatBlock .fb-qq{margin-top:20px;margin-left:16px;line-height:24px;width:200px; float:left}"+
+".FloatBlock .fb-qq-other{float:left}"+
+".FloatBlock .fb-qq a{display:block;float:left}"+
+".fb-iframe{position:absolute;height:80px;width:960px;z-index:2;filter:chroma(color=#ffffff);}"+
+".FloatBlock iframe{background: transparent;}"+
+".FloatBlock .welcome{ line-height:30px; color:#990; font-weight:bold; font:300 18px/15px \"Microsoft YaHei\",SimHei; margin-top:10px;}"+
+"</style>";
+	document.write(stylestr);
+	/*浮动层自动显示特效*/
+function loginstatus()
+{	
+	var aa=$.getScript("http://www.zz91.com/getLoginStatus.htm",function() {
+		if(success=="true"){
+			return true;
+		}else{
+			setTimeout(floatblock,2000);
+		}
+	});
+}
+function floatblock(){
+	$(document).ready(function() {
+		$("#fb").slideDown("fast");
+		$("#fb").css("display","");
+	});
+	if (document.getElementById("fb"))
+	{
+		document.getElementById("fb").style.display="";
+	}
+}
+loginstatus();
+function closefloatblock(){
+	$("#fb").slideDown("fast");
+	$("#fb").css("display","none");
+}
+
+	

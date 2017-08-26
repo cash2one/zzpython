@@ -1,0 +1,84 @@
+<ul class="mui-table-view">
+	{%if company_id%} {%else%}
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right">
+			<font color="red">您还未登录</font>
+			<button class="mui-btn mui-pull-left mui-btn-blue" onclick="firstlogin();">登录</button>
+		</a>
+	</li>
+	{%endif%}
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" href="javascript:gotourl('/ldb_weixin/about.html','blank');">
+			关于我们
+		</a>
+	</li>
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" href="javascript:gotourl('/fk.html','blank');">
+			意见反馈
+		</a>
+	</li>
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" href="javascript:gotourl('/ldb_weixin/contact.html','blank');">
+			联系我们
+		</a>
+	</li>
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" href="javascript:gotourl('/huzhu/?bbs_post_assist_id=12','blank');">
+			AQSIQ
+		</a>
+	</li>
+</ul>
+<ul class="mui-table-view" style="margin-top: 25px;">
+	{%if company_id%}
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" onclick="changeaccount()">
+			切换账号
+		</a>
+	</li>
+	{%endif%}
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" onclick="gotourl('modpasswd.html','blank')">
+			修改密码
+		</a>
+	</li>
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" onclick="gotourl('forgetpasswd.html','blank')">
+			忘记密码
+		</a>
+	</li>
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" onclick="getcachefunction()">
+			清空缓存<span id="cachesize" style="float: right;"></span>
+		</a>
+	</li>
+
+</ul>
+<ul class="mui-table-view" style="margin-top: 25px;">
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" onclick="shareSystem();">
+			推荐给好友
+		</a>
+	</li>
+	<li class="mui-table-view-cell">
+		<a class="mui-navigate-right" onclick="downWgt();">
+			检查新版本<span id="visiton" style="float: right;"></span>
+		</a>
+	</li>
+</ul>
+{%if company_id%}
+<ul class="mui-table-view" style="margin-top: 25px;" id="zhifufangshi">
+	<li class="mui-table-view-cell">
+		<a style="text-align: center;color: #FF3B30;" onclick="loginout()">
+			退出登录
+		</a>
+	</li>
+</ul>
+{%endif%}
+<img id="pic" src="../img/add.png" />
+<input type="hidden" value="ZZ91再生网-废料商人的移动管家" id="sharetitle" />
+<textarea id="sharecontent" rows="3" style="display: none;">ZZ91再生网-废料商人的移动管家，赶紧跟我一起来体验！http://m.zz91.com/app.html 点击链接查看</textarea>
+<input type="hidden" id="zsharehref" value="http://m.zz91.com/app.html">
+<input type="hidden" id="zsharehrefTitle" value="ZZ91再生网-废料商人的移动管家">
+<input type="hidden" id="zsharehrefDes" value="ZZ91再生网-再生商机随身携带，赶紧跟我一起来体验！http://m.zz91.com/app.html 点击链接查看">
+
+<input type="hidden" id="appnavname" value="设置" />

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>我的询盘-发出留言（最终页）</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/myrc/liuyan-out-hf.css"/>
+</head>
+<body>
+	<div class="box">
+	</div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/laytpl.js"></script>
+<script id="info-list" type="text/html">
+	<div class="hf-tatle">{{ d.title }}</div>
+	<div class="hf-xq">{{ d.content }}</div>
+	<div class="hf-lost"><span>留言者：</span>{{ d.companyarray.companyname }}</div>
+	<div class="hf-lost"><span>留言时间：</span>{{ d.stime }}</div>
+</script>
+<script type="text/javascript">
+	apiready = function(){
+		api.showProgress({title:'加载中',modal:false});
+		ajaxInfo()
+	}
+	function ajaxInfo(){
+		var company_id = UserInfo.memberID();
+		var usertoken = UserInfo.token();
+		var inquired_id = api.pageParam.inquired_id;
+		var sendcom_id = api.pageParam.sendcom_id;
+		api.ajax({
+		    url : hosturl + 'myrc_backquestion/?company_id='+ company_id +'&usertoken='+ usertoken +'&appsystem='+ api.systemType +'&datatype=json&sendcom_id='+ sendcom_id +'&inquired_id='+inquired_id,
+		    method : 'get',
+		    timeout : 30,
+		    dataType : 'json',
+		    returnAll : false
+		}, function(ret, err) {
+		    if (ret) {
+		    	// zzalert(JSON.stringify(ret))
+		    	var getTpl = $api.html($api.byId("info-list"));
+		        laytpl(getTpl).render(ret.qlist, function(html) {
+		            $(".box").html(html)
+		        });
+		        api.hideProgress();
+		    } else {
+		    	api.hideProgress();
+		    };
+		});
+	}
+</script>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+</head>
+<style>
+* {
+    margin:0;
+}
+ul,li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+body{
+    background: transparent;
+    background: rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+#aui-box {
+    position: absolute;
+    width: 80%;
+    height: auto;
+    top: 10%;
+    left: 50%;
+    margin-left: -40%;
+    background: #ffffff;
+    z-index: 2;
+    overflow: hidden;
+    opacity: 0;
+}
+#aui-box.fadeIn {
+    opacity: 1;
+    /*-webkit-animation: fadeIn .3s;*/
+}
+#aui-box-header {
+    padding: 10px 15px 0 15px;
+    text-align: center;
+    font-size: 1em;
+}
+#aui-box-body {
+    padding: 15px;
+    overflow: hidden;
+    font-size: 0.875em;
+}
+#aui-box-footer {
+    position: relative;
+    overflow: hidden;
+    font-size: 1em;
+}
+.aui-box-btn {
+    float: left;
+    text-align: center;
+    position: relative;
+    padding: 15px 0;
+    z-index: 999;
+}
+.aui-box-btn:after {
+    border-right: 1px solid #dbdbdb;
+    border-top: 1px solid #dbdbdb;
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-transform-origin: 0 0;
+    -webkit-transform: scale(1);
+    pointer-events: none;
+}
+.aui-box-btn:last-child:after {
+    border-right: 0;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
+    #aui-box-footer:after,
+    .aui-box-btn:after {
+        right: -100%;
+        bottom: -100%;
+        -webkit-transform: scale(0.5);
+    }
+}
+@-webkit-keyframes fadeIn {
+    0% { background: rgba(0,0,0,0);opacity: 0;}
+    100% { opacity: 1; }
+}
+.sharebox img{
+	margin: 10px;
+	width: 42px;
+}
+.sharebox li{
+	text-align:center;
+	float:left;
+	width:25%;
+	color:#999;
+}
+.showradio50 li{
+	display:block;
+	float:none;
+	width:50%;
+}
+</style>
+<body>
+    <div id="aui-box">
+        <div id="aui-box-header"></div>
+        <div id="aui-box-body"></div>
+        <div id="aui-box-footer"></div>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js" ></script>
+<script type="text/javascript" src="../script/jquery.js"></script>
+<script type="text/javascript" src="../script/zepto.min.js"></script>
+<script type="text/javascript" src="../script/common.js"></script>
+<script type="text/javascript" src="../script/laytpl.js"></script>
+<script type="text/javascript" src="../script/aui-alert.js" ></script>
+<script type="text/javascript">
+	var wintype;
+    apiready = function(){
+        api.parseTapmode();
+        var title = api.pageParam.title;
+        var content = api.pageParam.content;
+        var radius = api.pageParam.radius;
+        var buttons = api.pageParam.buttons;
+        var titleColor = api.pageParam.titleColor;
+        var contColor = api.pageParam.contColor;
+        var btnColor = api.pageParam.btnColor;
+        wintype = api.pageParam.wintype;
+        $api.text($api.byId('aui-box-header'),title);
+        $api.html($api.byId('aui-box-body'),content);
+        $api.css($api.byId('aui-box-header'),'color:'+titleColor+'');
+        var btnHtml = '';
+        var btnWidth = 100/buttons.length;
+        for(var i in buttons){
+            btnHtml += '<div class="aui-box-btn" id="btn-'+i+'" data-status="1" tapmode onclick="btnClick('+i+')" style="color:'+btnColor+';width:'+btnWidth+'%">'+buttons[i]+'</div>';
+        }
+        $api.html($api.byId("aui-box-footer"),btnHtml);
+        var frameHeight = api.frameHeight;
+        var boxHeight = $api.offset($api.byId("aui-box")).h;
+        if(frameHeight - boxHeight > 100){
+            var boxTop = (frameHeight-boxHeight)/2;
+            if(boxTop<50){
+                boxTop = 100;
+            }
+            var contMaxHeight = frameHeight/2;
+        }else{
+            var contMaxHeight = frameHeight/2;
+            var boxTop = (frameHeight-contMaxHeight)/3;
+        }
+        $api.css($api.byId("aui-box-body"),"max-height:"+contMaxHeight+"px;color:"+contColor+"");
+        $api.css($api.byId("aui-box"),"top:"+boxTop+"px;opacity:1;border-radius:"+radius+"px");
+        $api.addCls($api.byId("aui-box"),"fadeIn");
+        api.parseTapmode();
+        
+        $(".tellist li").on("click", function() {
+			var telnum=$(this).attr("tel");
+			//api.call({
+			//	type : 'tel',
+			//	number : telnum
+			//});
+			//保存电话记录
+			savedata_noback("http://m.zz91.com/trade/telclicklog.html?tel=" + telnum + "&pagefrom=apptrade&company_id=" + UserInfo.memberID())
+		});
+		//点击举报
+		$("#jubaocheck").on("click", function() {
+			var chk_value =[];
+			$('input[name="report"]:checked').each(function(){    
+				chk_value.push($(this).val());    
+			});
+			api.execScript({
+				name : 'infomation-heart',
+				frameName : 'frame_0',
+				script : "jubaocheck('"+chk_value+"')"
+			});
+			api.execScript({
+				name : api.winName,
+				frameName : api.winName+'_',
+				script : "jubaocheck('"+chk_value+"')"
+			});
+		});
+		
+		//分享
+		var share_url=localStorage.getItem('share_url');
+		var share_pic=localStorage.getItem('share_pic');
+		var share_title=localStorage.getItem('share_title');
+		var share_description=localStorage.getItem('share_description');
+		
+		$(".share_qq").on("click", function() {
+			var obj = api.require('qq');
+			obj.shareNews({
+				url : share_url,
+				title : share_title,
+				description : share_description,
+				imgUrl : share_pic
+			}, function(ret, err) {
+				if (ret.status) {
+					api.toast({
+					    msg: '分享成功',
+					    duration: 2000,
+					    location: 'bottom'
+					});
+					closeFrame();
+				} else {
+					//zzalert(err.msg);
+				}
+			});
+		});
+		$(".share_wx").on("click", function() {
+			var wx = api.require('wx');
+			wx.shareWebpage({
+			    apiKey: '',
+			    scene: 'session',
+			    title: share_title,
+			    description: share_description,
+			    thumb: 'widget://res/icon.png',
+			    contentUrl: share_url
+			}, function(ret, err){
+			    if(ret.status){
+			        api.toast({
+					    msg: '分享成功',
+					    duration: 2000,
+					    location: 'bottom'
+					});
+			        closeFrame();
+			    }else{
+			        //zzalert(err.code);
+			    }
+			});
+		});
+		$(".share_wxq").on("click", function() {
+			var wx = api.require('wx');
+			wx.shareWebpage({
+			    apiKey: '',
+			    scene: 'timeline',
+			    title: share_title,
+			    description: share_description,
+			    thumb: 'widget://res/icon.png',
+			    contentUrl: share_url
+			}, function(ret, err){
+			    if(ret.status){
+			        api.toast({
+					    msg: '分享成功',
+					    duration: 2000,
+					    location: 'bottom'
+					});
+			        closeFrame();
+			    }else{
+			        //zzalert(err.code);
+			    }
+			});
+		});
+		$(".share_weibo").on("click", function() {
+			var weibo = api.require('weibo');
+			weibo.shareWebPage({
+			    text: share_title,
+			    title: share_title,
+			    description: share_description,
+			    thumb: 'widget://res/icon.png',
+			    contentUrl: share_url
+			},function(ret,err){
+			    if (ret.status) {
+			        api.toast({
+					    msg: '分享成功',
+					    duration: 2000,
+					    location: 'bottom'
+					});
+					closeFrame();
+			    }
+			});
+		});
+		api.execScript({
+			name : api.winName,
+			script : "keybackFun('0')"
+		});
+		
+    }
+    //购买显示联系方式服务
+	function showcontact() {
+		var chk_value =[];
+		$('input[name="showcontact"]:checked').each(function(){    
+			chk_value.push($(this).val());    
+		});
+		api.execScript({
+			name : api.winName,
+			frameName : api.winName+'_',
+			script : "showcontactcheck('"+chk_value+"')"
+		});
+	}
+	//购买供求置顶服务
+	function topproducts() {
+		var chk_value =[];
+		$('input[name="topproducts"]:checked').each(function(){    
+			chk_value.push($(this).val());    
+		});
+		api.execScript({
+			name : api.winName,
+			frameName : api.winName+'_',
+			script : "topproductscheck('"+chk_value+"')"
+		});
+	}
+	//购买黄页
+	function buybook() {
+		var contact=$('#huangye_contact').val();
+		contact=contact.replace("#","");
+		var person=$('#huangye_person').val();
+		person=person.replace("#","");
+		var address=$('#huangye_address').val();
+		address=address.replace("#","号");
+		if (contact==""){
+			zzalert("请输入联系方式");
+			return false;
+		}
+		if (person==""){
+			zzalert("请输入联系人");
+			return false;
+		}
+		if (address==""){
+			zzalert("请输入收货地址");
+			return false;
+		}
+		var chk_value="联系方式：" + contact + "联系人："+person+"联系地址："+address
+		api.execScript({
+			name : api.winName,
+			frameName : api.winName+'_',
+			script : "backvaluecheck('"+chk_value+"')"
+		});
+		return true;
+	}
+	//购买供求列表广告
+	function buyprolistad(){
+		var contact=$('#tradead_contact').val();
+		contact=contact.replace("#","");
+		var person=$('#tradead_person').val();
+		person=person.replace("#","");
+		var tradead_keywords=$('#tradead_keywords').val();
+		tradead_keywords=tradead_keywords.replace("#","");
+		if (contact==""){
+			zzalert("请输入联系方式");
+			return false;
+		}
+		if (person==""){
+			zzalert("请输入联系人");
+			return false;
+		}
+		if (tradead_keywords==""){
+			zzalert("请输入广告词");
+			return false;
+		}
+		var chk_value="联系方式：" + contact + "联系人："+person+"广告词："+tradead_keywords;
+		api.execScript({
+			name : api.winName,
+			frameName : api.winName+'_',
+			script : "backvaluecheck('"+chk_value+"')"
+		});
+		return true;
+	}
+	//购买服务填写联系方式
+	function buyservice(){
+		var contact=$('#tradead_contact').val();
+		contact=contact.replace("#","");
+		var person=$('#tradead_person').val();
+		person=person.replace("#","");
+		if (contact==""){
+			zzalert("请输入联系方式");
+			return false;
+		}
+		if (person==""){
+			zzalert("请输入联系人");
+			return false;
+		}
+		var chk_value="联系方式：" + contact + "联系人："+person;
+		api.execScript({
+			name : api.winName,
+			frameName : api.winName+'_',
+			script : "backvaluecheck('"+chk_value+"')"
+		});
+		return true;
+	}
+	//购买供求自动刷新
+	function buyshuaxin(){
+		var shuax_date=$('#shuax_date').val();
+		var chk_value=shuax_date;
+		api.execScript({
+			name : api.winName,
+			frameName : api.winName+'_',
+			script : "backvaluecheck('"+chk_value+"')"
+		});
+		return true;
+	}
+	//
+    function closeselect(){
+		api.execScript({
+			name : api.winName,
+			script : "keybackFun('1')"
+		});
+		api.closeFrame();
+	}
+    function btnClick(index){
+    	//支付页面,显示联系方式
+    	if (wintype=='showcontact'){
+    		showcontact();
+    	}
+    	if (wintype=='topproducts'){
+    		topproducts();
+    	}
+    	if (wintype=='buybook'){
+    		if (index==1){
+	    		var b=buybook();
+	    		if (b==false){
+	    			return false;
+	    		}
+	    	}
+    	}
+    	if (wintype=='buyprolistad'){
+    		if (index==1){
+	    		var b=buyprolistad();
+	    		if (b==false){
+	    			return false;
+	    		}
+	    	}
+    	}
+    	if (wintype=='buyservice'){
+    		if (index==1){
+	    		var b=buyservice();
+	    		if (b==false){
+	    			return false;
+	    		}
+	    	}
+    	}
+    	if (wintype=='buyshuaxin'){
+    		if (index==1){
+	    		var b=buyshuaxin();
+	    		if (b==false){
+	    			return false;
+	    		}
+	    	}
+    	}
+    	
+        api.sendEvent({
+            name: 'auiAlertEvent',
+            extra: {buttonIndex:index}
+        });
+        closeselect();
+    }
+    function closeFrame(){
+    	closeselect();
+    }
+</script>
+</html>

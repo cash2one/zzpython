@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">    
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<html>
+	<head>
+		<title>{{webtitle}}_ZZ91废料移动商务</title>
+        <meta name="keywords" content="废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备">
+        <meta name="description" content="ZZ91再生网是中国最大最旺的网上废料贸易市场,这里为您精选了废金属,废塑料,废纸,废橡胶,纺织废料,废旧设备,废电子电器,废玻璃,废皮革,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备等各类废料供求信息.公司黄页.行业资讯.价格行情.展会信息等。">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css">
+        <link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css"/>
+        <link rel="stylesheet" type="text/css" href="/css/qianbao/index.css"/>
+        <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        <script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/qianbao/style.js"></script>
+        <script type="text/javascript" src="/js/qianbao/jquery.lightbox_me.js"></script>
+        <style>
+				.contactbox{float:left; margin-left:5px;}
+				.contactbox a{padding-left:8px;padding-right:8px;display:block;color:#ff3300; margin-bottom:5px; border:1px solid #ff3300;color:#ff3300;}
+				.contactbox img{margin-left:5px; vertical-align:middle}
+				.block_info_item_a a{background:#ff3300;color:#fff; text-align:center; padding-left:8px; padding-right:8px; line-height:30px; display:block; float:left; margin-right:5px;}
+
+				</style>
+	</head>
+	<body style="font-size:14px;color:#303030;background:#e2e2e2">
+    {%include 'top.html'%}
+    	<div class="nav"><a href="/">首页</a>&nbsp;>&nbsp;{{nowlanmu2|safe}}</div>
+        <!--end nav-->
+        <div class="block">
+        	<div class="block_nav"></div>
+            <!--end block_nav-->
+            <div id="menu">
+           <div class="block_info_tag" onclick="change('0')" id="mt0">供求详情</div>
+           <!--end block_info_tab-->
+           <div class="block_info_tag_" onclick="change('1')" id="mt1">公司介绍</div>
+           </div>
+           <!--end block_info_tab_-->
+           
+            <div class="block_box">
+            
+            <div class="block_info" style="display:none" id="JKDiv_1">
+            	<center><div style="margin-top:3px;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 手机站 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:320px;height:50px"
+     data-ad-client="ca-pub-5512236620584335"
+     data-ad-slot="1296603602"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></center>
+            	<center><h3>{{list.compname}}</h3></center>
+                <div class="block_info_item_">
+                	<ul>
+                    	<li>会员类型：{{list.viptype.vipname}}</li>
+                        <li>经营范围：{{list.details|safe}}</li>
+                    </ul>
+                </div>
+                <!--end block_info_item-->
+                <div class="block_info_item">
+                	<ul>
+                    	<li>{{list.compname}}</li>
+                        <li>联&nbsp;&nbsp;系&nbsp;&nbsp;人：{{list.contact}}</li>
+                        <li style="margin:5px 0">
+                        <span class="block_info_item_span" style="float:left; display:block; width:60px;">联系方式:</span>
+                        <div class="contactbox">
+                        {%if list.viptype.ldb%}
+                        		{%if list.viptype.ldb.ldbphone%}
+                            	<a href="tel:{{list.viptype.ldb.ldbtel}}" onclick="telclick('/trade/telclicklog.html?tel={{list.viptype.ldb.ldbtel}}&pagefrom=trade')"><img src="/images/qianbao/tel.jpg"/> {{list.viptype.ldb.ldbphone}}</a>
+                        		{%endif%}
+                        {%else%}
+                        		{%if isseecompany%}
+	                        		{%if list.mobile%}
+			                        	{%if list.mobilelist%}
+			                        		{%for mob1 in list.mobilelist%}
+				                        	<a href="tel:{{mob1}}" onclick="telclick('/trade/telclicklog.html?tel={{mob1}}&pagefrom=trade')"><img src="/images/qianbao/m.jpg"/> {{mob1}}</a>
+			                        		{%endfor%}
+			                        	{%else%}
+			                        		<a href="tel:{{list.mobile1}}" onclick="telclick('/trade/telclicklog.html?tel={{list.mobile1}}&pagefrom=trade')"><img src="/images/qianbao/m.jpg" /> {{list.mobile1}}</a>
+		                        		{%endif%} 
+		                        	{%endif%}
+		                        	{%if list.tel%}
+                                            <a href="tel:{{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}" id="tel" onclick="telclick('/trade/telclicklog.html?tel={{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}&pagefrom=trade')"><img src="/images/qianbao/tel.jpg"/>{{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}</a>
+		                            {%endif%}
+		                        {%else%}
+                                <div class="block_info_item_a">
+		                        	{%if company_id%}
+										<a href="javascript:;" id="{%if qianbaoblance >= 5%}chk_link{%else%}chk1_link{%endif%}">仅需5元查看</a> {%ifequal reportcheck 1%}<img src="/images/qianbao/jb.jpg" /> 曾被举报{%endifequal%}
+									{%else%}
+						            	<a href="/login/?done={{host}}&keywords={{keywords}}">登录</a> <a href="/register/" target="_blank">立即注册</a>
+	            					{%endif%}
+                                </div>
+            					{%endif%}
+                        {%endif%}
+                        </div>
+                        {%if isseecompany%}
+                        <span id="jb4" style="float:left; display:block; margin-left:10px;">{%ifnotequal isseecompany 2%}{%if idcheck%}{{idchecktxt}}{%else%} <span class="jbbox"><img src="/images/qianbao/jb.jpg" />&nbsp;&nbsp;<span id="jb">举报</span></span>{%endif%}{%endifnotequal%}</span>
+                        {%endif%}
+                        <div class="clearfix"></div>
+                        </li>
+                        <li>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：{{list.address}}</li>
+                    </ul>
+                </div>
+                <!--end block_info_item-->
+                <div class="block_info_company">
+                	<p class="block_info_company_p">公司简介</p>
+                    <p>{{list.introduction|safe}}</p>
+                </div>
+                <!--end block_info_company-->
+               <div class="part_navBottom">
+           		<center>
+             	<table class="navTab" cellpadding="0" cellspacing="0" border="0" align="center">
+            	  <tr>
+                	<td class="navTab_td">
+                    	<a href="/favorite/?company_id={{forcompany_id}}&title={{list.compname}}">
+                        	<center>
+                            	<div class="navTab-img"><img src="/images/qianbao/sc_.png" /></div>
+                                <div class="navTab-txt">收藏该公司</div>
+                            </center>
+                        </a>
+                    </td>
+                    <td class="navTab_td">
+                    	<a href="/leavewords/?backurl={{backurl}}&company_id={{forcompany_id}}">
+                        	<center>
+                            	<div class="navTab-img"><img src="/images/qianbao/ly.png" /></div>
+                                <div class="navTab-txt">给我留言</div>
+                            </center>
+                       </a>
+                    </td>
+                    <td>
+
+                    	<a href="/offerlist/?company_id={{forcompany_id}}&keywords={{keywords}}">
+                        	<center>
+                            	<div class="navTab-img"><img src="/images/qianbao/ck.png" /></div>
+                                <div class="navTab-txt">查看所有供求</div>
+                            </center>
+                        </a>
+                    </td>
+                  </tr>
+                </table>
+             </center>
+           </div>
+           <!--end part_navBottom-->
+            </div>
+            <!--end block_info-->
+            
+            <div class="block_info" id="JKDiv_0">
+            
+            	<center><h3>{{list.title}}</h3></center>
+                {%if list.piclist%}
+                <div class="block_info_pic">
+                	<div class="new_banner">
+    				  <ul class="rslides f426x240">
+    				  {%for pic in list.piclist%}
+       					<li><a href="javascript:"><img src="{{pic.images_big}}" width="180" height="180" /></a></li>
+        			  {%endfor%}
+    				  </ul>
+					</div>
+                </div>
+                {%endif%}
+                <!--end block_info_pic-->
+                <div class="block_info_msg">
+                	<ul>
+                    	<li>
+                        <span class="block_info_company_p">所&nbsp;&nbsp;在&nbsp;&nbsp;地：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{list.address}}</li>
+                        <li>
+                        <span class="block_info_company_p">发布日期：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{list.refresh_time|safe}}</li>
+                        <li>
+                        <span class="block_info_company_p">有&nbsp;&nbsp;效&nbsp;&nbsp;期：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{list.expire_time|safe}}</li>
+                        <li>
+                        <span class="block_info_company_p">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{%if list.price%}{%ifequal list.price "0元"%}面议或电议{%else%}{{list.price}}{%endifequal%}{%else%}面议或电议{%endif%}</li>
+                        <li>
+                        <span class="block_info_company_p">数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量：</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{list.quantity}}{{list.quantity_unit}}</li>
+                    </ul>
+                </div>
+                <!--end block_info_msg-->
+                 <div class="block_info_company">
+                    <p style="border-bottom:1px solid #e7e7e7;padding-bottom:10px">{{list.details|safe}}</p>
+                </div>
+                <!--end block_info_company-->
+                
+                <div class="block_info_item">
+                	<ul>
+                    	<li>{{list.compname}}</li>
+                        <li>联系人：{{list.contact}}</li>
+                        <li class="block_info_item_li">
+                        <span class="block_info_item_span" style="float:left; display:block; width:60px;">联系方式:</span>
+                        <div class="contactbox">
+                        {%if list.viptype.ldb%}
+                        		{%if list.viptype.ldb.ldbphone%}
+                            	<a href="tel:{{list.viptype.ldb.ldbtel}}" onclick="telclick('/trade/telclicklog.html?tel={{list.viptype.ldb.ldbtel}}&pagefrom=trade')"><img src="/images/qianbao/tel.jpg" />{{list.viptype.ldb.ldbphone}}</a>
+                        		{%endif%}
+                        {%else%}
+                        		{%if isseecompany%}
+	                        		{%if list.mobile%}
+			                        	{%if list.mobilelist%}
+			                        		{%for mob1 in list.mobilelist%}
+				                        	<a href="tel:{{mob1}}" onclick="telclick('/trade/telclicklog.html?tel={{mob1}}&pagefrom=trade')"><img src="/images/qianbao/m.jpg"/> {{mob1}}</a>
+			                        		{%endfor%}
+			                        	{%else%}
+			                        		<a href="tel:{{list.mobile1}}" onclick="telclick('/trade/telclicklog.html?tel={{list.mobile1}}&pagefrom=trade')"><img src="/images/qianbao/m.jpg" /> {{list.mobile1}}</a>
+		                        		{%endif%} 
+		                        	{%endif%}
+		                        	{%if list.tel%}
+                                            <a href="tel:{{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}" id="tel" onclick="telclick('/trade/telclicklog.html?tel={{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}&pagefrom=trade')"><img src="/images/qianbao/tel.jpg"/>{{list.tel_country_code}}{{list.tel_area_code}}{{list.tel}}</a>
+		                            {%endif%}
+		                        {%else%}
+                                	<div class="block_info_item_a">
+		                        	{%if company_id%}
+										<a href="javascript:;" class="block_info_item_a" id="{%if qianbaoblance >= 5%}inline_chk{%else%}chk2_link{%endif%}">仅需5元查看</a> {%if foriszstflag%}{%else%}{%if isjubao%}<img src="/images/qianbao/jb.jpg" /> 曾被举报{%endif%}{%endif%}
+									{%else%}
+						            	<a href="/login/?done={{host}}&keywords={{keywords}}">登录</a> <a href="/register/" target="_blank">立即注册</a>
+	            					{%endif%}
+                                    </div>
+            					{%endif%}
+                        {%endif%}
+                        </div>
+                        {%if isseecompany%}
+                        	{%if forvipflag%}
+                            <span id="jb3" style="float:left; display:block; margin-left:10px;">{%ifnotequal isseecompany 2%}{%if idcheck%}{{idchecktxt}}{%else%}<span class="jbbox"><img src="/images/qianbao/jb.jpg" />&nbsp;&nbsp;<span id="jb2">举报</span></span>{%endif%}{%endifnotequal%}</span> 
+                        	{%endif%}
+                        {%endif%}
+                        <div class="clearfix"></div>
+                        </li>
+                        <li>地址：{{list.address}}</li>
+                    </ul>
+                </div>
+                <!--end block_info_item-->
+                <div class="part_navBottom">
+           		<center>
+             	<table class="navTab_" cellpadding="0" cellspacing="0" border="0" align="center">
+            	  <tr>
+                	<td class="navTab_td">
+                    	<a href="/favorite/?company_id={{list.company_id}}&pdtid={{id}}&products_type_code={{products_type_code}}&title={{list.title}}">
+                        	<center>
+                            	<div class="navTab-img"><img src="/images/qianbao/sc_.png" /></div>
+                                <div class="navTab-txt">收藏信息</div>
+                            </center>
+                       </a>
+                    </td>
+                    <td>
+                    	<a href="/leavewords/?company_id={{list.company_id}}&pdtid={{id}}">
+                        	<center>
+                            	<div class="navTab-img"><img src="/images/qianbao/ly.png" /></div>
+                                <div class="navTab-txt">给我留言</div>
+                            </center>
+                        </a>
+                    </td>
+                  </tr>
+                </table>
+             </center>
+           </div>
+           <!--end part_navBottom-->
+            </div>
+            <!--end block_info-->
+            <div class="block_box_lt"><img src="/images/qianbao/lt.jpg" /></div>
+            <!--end block_box_lt-->
+            <div class="block_box_gt"><img src="/images/qianbao/rt.jpg" /></div>
+            </div>
+            <!--end block_box-->
+        </div>
+        <!--end block-->
+        <div id="tippOff_" align="center" class="tipp">
+        	<table>
+            	<tr>
+                	<td>您将举报该信息：</td>
+                    <td></td>
+                </tr>
+                <tr>
+                	<td><input type="checkbox" name="report" value="1" />&nbsp;违法违规</td>
+                    <td><input type="checkbox" name="report" value="2" />&nbsp;虚假信息</td>
+                </tr>
+                <tr>
+                	<td><input type="checkbox" name="report" value="3" />&nbsp;过期信息</td>
+                    <td><input type="checkbox" name="report" value="4" />&nbsp;虚假号码 </td>
+                </tr>
+            </table>
+		  <div align="center" style="margin-top:10px;">
+			<div class="btn btn_confirm" id="tipp_link" company_id="{{company_id}}" forcompany_id="{{forcompany_id}}" product_id="{{id}}" onclick="dismiss();">确定</div>
+			<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 举报弹框 part1-->
+        <div id="tippOff" align="center" class="tipp">
+  			<p>您已举报成功，我们会在三个工作日内核查（节假日自动顺延），如核查如实，将会返还您的金额。</p>
+			<div align="center" style="margin-top:15px;">
+				<div class="btn btn_confirm" onclick="dismiss()">关闭</div>
+		   </div>
+		</div>
+		<!--end 举报弹框 part1-->
+        <div id="tippOff2" align="center" class="tipp">
+  			<p>您还没有选择举报项，请重新选择。</p>
+  			<div align="center" style="margin-top:15px;">
+			<div class="btn btn_confirm" id="tipp_link2" company_id="{{company_id}}" forcompany_id="{{forcompany_id}}" product_id="{{id}}" onclick="dismiss();">确定</div>
+			<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+			</div>
+		</div>
+		<!--end 举报弹框 part2-->
+        <div id="chk" class="tipp">
+  			<p>您已经查看过此信息，是否继续查看？</p>
+            <p style="color:#909090;font-size:13px;margin-top:10px">如虚假信息、虚假号码等可举报申请退款</p>
+			 <div align="center" style="margin-top:10px;">
+			<!--<div class="btn btn_confirm" id="chk_link" onclick="dismiss();">确定</div>-->
+			<div class="btn btn_confirm" id="block_info_item_chk" onclick="dismiss();">确定</div>
+			<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 查看弹框 part1-->
+        <div id="chk1" class="tipp">
+  			<p>查看此联系方式需5元，确定付款？</p>
+            <p style="color:#909090;font-size:13px;margin-top:10px">如虚假信息、虚假号码等可举报申请退款</p>
+			 <div align="center" style="margin-top:10px;">
+			<!--<div class="btn btn_confirm" id="chk1_link" onclick="dismiss();">确定</div>-->
+			<div class="btn btn_confirm" onclick="window.location.href='?id={{id}}&paytype=1&keywords={{keywords}}'">确定</div>
+			<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 查看弹框 part2-->
+        <div id="bal" class="tipp" align="center">
+  			<p>您的余额不足，是否在线充值？</p>
+            {%if not isldb%}<p style="color:#909090;font-size:13px;margin-top:10px">{{ggc}}</p>{%endif%}
+			 <div align="center" style="margin-top:10px;">
+			<div class="btn btn_confirm" onClick="window.location.href='{%if isldb%}/ldb_weixin/balance.html?backurl={{host}}{%else%}/qianbao/chongzhi.html{%endif%}'">确定</div>
+			<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 查看弹框 part3-->
+        <div id="inline_chk_Div" class="tipp" align="center">
+  			<p>查看此联系方式需5元，确定付款？</p>
+            <p style="color:#909090;font-size:13px;margin-top:10px">如虚假信息、虚假号码等可举报申请退款</p>
+			 <div align="center" style="margin-top:10px;">
+			<!--<div class="btn btn_confirm" onclick="dismiss();" id="inlineChk">确定</div>-->
+			<div class="btn btn_confirm" onclick="window.location.href='?id={{id}}&paytype=1&keywords={{keywords}}'">确定</div>
+			<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+		   </div>
+		</div>
+		<!--end 查看弹框 供求-->
+		
+		<div style="height:8px">&nbsp;</div>
+		
+		<div class="cb"></div>
+		<center><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 移动端 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5512236620584335"
+     data-ad-slot="9255868807"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></center>
+{%include 'bottom2.html'%}
+
+		
+		
+	</body>
+</html>

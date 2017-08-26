@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/subject/621fenghuiH5/css/base-min.css" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/subject/621fenghuiH5/css/index.css" />
+		<title>2017再生塑料行业峰会评选活动</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="http://img0.zz91.com/subject/621fenghuiH5/js/viewport.js"></script>
+		<div class="nav-box">
+			<div class="nav clear">
+				<div class="nav-name">
+					金牌供应商排名
+				</div>
+				<a href="gys.html" class="nav-fh fl">
+					<i class="icon icon-fh"></i>返回
+				</a>
+			</div>
+		</div>
+		<div class="top"></div>
+		
+		<div class="logo">
+			<div class="logo-img">
+				<img src="http://img0.zz91.com/subject/621fenghuiH5/images/logo.png" />
+			</div>
+		</div>
+		
+		<div class="band">
+			<img src="http://img0.zz91.com/subject/621fenghuiH5/images/tle2.png" />
+		</div>
+		
+		{%if votecontent.haveday%}
+		{%ifequal votecontent.haveday 1%}
+		<div class="time">
+			投票今天即将结束，加油投票哦！
+		</div>
+		{%else%}
+		<div class="time">
+			距离活动结束还有：<span class="djs">{{votecontent.haveday}}</span>天
+		</div>
+		{%endifequal%}
+		{%else%}
+		<div class="time">
+			<font color="#FF0000">活动已经结束,感谢所有人的常与。</font>
+		</div>
+		{%endif%}
+		<div class="paih">
+			<div class="paih-tle clear">
+				<span class="fl">
+					最新排名
+				</span>
+				<span class="fr">
+					{{n}}家入围企业
+				</span>
+			</div>
+			<ul class="paih-ul">
+				{%for list in listall%}
+				<li class="paih-li clear">
+					<div class="paih-main">
+						<div class="paih-pm fl">
+							第<span class="red">{{list.n}}</span>
+						</div>
+						<a href="gys-view{{list.id}}.html" class="paih-name fl">
+							  {{list.orderid}}号：{{list.company_name}}
+						</a>
+						<div class="paih-num fr">
+							<span>{{list.votecount}}</span>票
+						</div>
+					</div>
+				</li>
+				{%endfor%}
+			</ul>
+		</div>
+		<div class="rule clear">
+			<div class="rule-dashed"></div>
+			<div class="fl rule-main">
+				<div class="rule-tle">
+					投票规则 :
+				</div>
+				<p>“金牌采购商”评选活动：</p>
+				<p>1.每一个微信号每天最多拥有3次投票机会</p>
+				<p>
+					2.每天投票超过三次者，当天不能再进行投票，可以分享给其他朋友进行投票
+				</p>
+			</div>
+			<div class="fr ewm">
+				<img src="http://img0.zz91.com/subject/621fenghuiH5/images/ewm.png" />
+			</div>
+		</div>
+		<div class="baom clear">
+			<div class="fl baom-img">
+				<img src="http://img0.zz91.com/subject/621fenghuiH5/images/images1.png" />
+			</div>
+			<a href="http://m.zz91.com/subject/621/index.html" class="fr baom-btn">
+				马上报<br />名参展
+			</a>
+		</div>
+		<div style="height: 2.5rem;"></div>
+		<div class="footbot clear">
+			<a href="index.html" class="fl footbot-btn">
+				<i class="icon icon-index"></i>首 页
+			</a>
+			<a href="gys.html" class="fl footbot-btn footbot-this">
+				<i class="icon icon-medal"></i>金牌供应商
+			</a>
+			<a href="cgs.html" class="fl footbot-btn">
+				<i class="icon icon-gwc"></i>金牌采购商
+			</a>
+		</div>
+	</body>
+	<div style="display:none">
+    <script>
+         var _hmt = _hmt || [];
+         (function() {
+             var hm = document.createElement("script");
+             hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+             var s = document.getElementsByTagName("script")[0];
+             s.parentNode.insertBefore(hm, s);
+         })();
+    </script>
+    <!--baidu analysis-->
+    <script>
+         var _hmt = _hmt || [];
+        
+         (function() {
+             var hm = document.createElement("script");
+             hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+             var s = document.getElementsByTagName("script")[0];
+             s.parentNode.insertBefore(hm, s);
+         })();
+    </script>
+</div>
+</html>

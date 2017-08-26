@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+ <html>
+ <head>
+ 	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>帮主约见</title>
+	<link rel="stylesheet" type="text/css" href="../../css/aui.css">
+	<style type="text/css">
+		body{
+			background: #f4f4f4;
+			width: 100%;
+			height: 100%;
+			padding-top: 15px;
+		}
+		.ask-show-box{
+			display: block;
+			background-color: #f2f2f2;
+		}
+		p.title {
+			background: #f4f4f4;
+			padding: 10px 0;
+		}
+		textarea.ask-text{
+			width: 100%;
+			border: none;
+			height: 180px;
+			font-size: 14px;
+			margin-bottom: 0;
+		}
+		.helper {
+			width: 100%;
+			padding: 10px 5px !important;
+			line-height: 32px;
+			font-size: 14px;
+		}
+		#helper-avatar {
+			width: 32px;
+			height: 32px;
+			border-radius: 50%;
+			padding: 0;
+			display: table;
+		}
+		#helper-name {
+			color: #ff9900;
+			margin-right: 5px;
+		}
+		.aui-content-padded {
+			padding-bottom: 0;
+		}
+		.amount {
+			color: #999;
+		}
+		.amount strong {
+			font-weight: 400;
+			color: #ff9900;
+		}
+	</style>
+ </head>
+ <body>
+ 	<section class="aui-card">
+	 	<p class="aui-text-center title">问题描述</p>
+	 	<div class="aui-line-x"></div>
+	 	<div class="aui-form">
+	 		<textarea placeholder="详细的描述问题有助于我们为你解决问题！" class="ask-text"></textarea>
+	 	</div>
+ 	</section>
+ 	<section class="aui-content-padded">
+ 		<div class="aui-btn aui-btn-block aui-btn-info askbutton">提交问题</div>
+ 	</section>
+ </body>
+ <script type="text/javascript" src="../../script/api.js"></script>
+ <script type="text/javascript" src="../../script/zepto.min.js"></script>
+ <script type="text/javascript" src="../../script/jquery.js"></script>
+ <script type="text/javascript" src="../../script/common.js"></script>
+ <script type="text/javascript">
+ 	apiready = function(){
+ 	    api.parseTapmode();
+ 	    var getMoery = true
+		$(".askbutton").on("click",function(){
+			if(getMoery){
+				if ($(".ask-text").val()==""){hint("请输入问题描述");return false;}
+				var data={
+					company_id : UserInfo.memberID(),
+					usertoken : UserInfo.token(),
+					clientid : api.deviceId,
+					appsystem : api.systemType,
+					datatype : "json",
+					content : $(".ask-text").val(),
+					contact : ''
+				}
+				api.ajax({
+					url : hosturl +"feedbacksave.html",
+					method : "post",
+					timeout : 30,
+					dataType : 'json',
+					returnAll : false,
+					data : {
+						values : data
+					}
+				}, function(ret, err) {
+					//zzalert( JSON.stringify( ret ) );
+					if (ret){
+						hint(ret.errkey)
+						
+						if (ret.err=="false"){
+							api.toast({
+							    msg: '提交成功',
+							    duration: 2000,
+							    location: 'bottom'
+							});
+							api.closeWin({
+                            });
+							getMoery = false
+						}
+					}else{
+						if(err){
+							saveerrlog(err.body);
+						}
+						hint("系统错误！");
+					}
+				})
+			}
+		})
+ 	}
+ </script>
+ <script type="text/javascript" src="../../script/servercomm.js"></script>
+ </html>

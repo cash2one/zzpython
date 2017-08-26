@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>公司介绍-{{list.name}}</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+<!--组件依赖css begin-->
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/widget/slider/slider.css" />
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/widget/slider/slider.default.css" /> <!--皮肤文件，若不使用该皮肤，可以不加载-->
+<!--组件依赖css end-->
+<!--组件依赖js begin-->
+<script type="text/javascript" src="{{htmlincludes.img}}js/zepto.js"></script>
+<script type="text/javascript" src="{{htmlincludes.img}}js/touch.js"></script>      <!--新版zepto合并版中不包括touch.js-->
+<script type="text/javascript" src="{{htmlincludes.img}}js/zepto.extend.js"></script>
+<script type="text/javascript" src="{{htmlincludes.img}}js/zepto.ui.js"></script>
+<script type="text/javascript" src="{{htmlincludes.img}}js/widget/slider.js"></script>
+<!--组件依赖js end-->
+
+</head>
+<body>
+
+
+{%include "html/mobile/01/top.html"%}
+
+<!--end phoneTitle-->
+<div class="phoneInfo">
+	<img src="{{htmlincludes.img}}images/icon2.jpg" />公司简介
+</div>
+<!--end phoneInfo-->
+
+<div class="phoneBox">
+{%if companyimg%}
+	<div class="phoneBox-divImg">
+    	<div id="slider" style="height:75px"></div>
+        <script>
+		
+			//创建slider组件
+			var slider = $.ui.slider('#slider', {
+				autoPlay:false,
+				showArr:false,
+				viewNum:3,
+				content:[
+					{%for i in companyimg%}{
+						href: "#",
+						pic: "{{i.filepath}}",
+						title:''
+					}, 
+					{%endfor%}
+				]
+			});
+		</script>
+		<!-- 图片高度自适应 -->
+		<script type="text/javascript" src="{{htmlincludes.img}}js/jquery.js"></script>
+		<script type="text/javascript">
+		$(window).load(function(){
+			$('#slider').css('height','75px');
+		})
+		</script>
+		<!-- 代码 结束 -->
+    </div>
+    <!--end phoneBox-divImg-->
+{%endif%}
+    <div class="phoneBox-divText" id="phoneText" style="height:auto;margin-bottom:20px">
+    
+{{list.introduction|safe}}
+    
+    </div>
+    <!--end phoneBox-divText-->
+    <div class="contact-text">
+    	<span class="contact-name">联 系 人：</span>{{list.contact}}
+    </div>
+    <!--contact-text-->
+    {%if list.ppcphone%}
+    <div class="contact-text">	
+		<span class="contact-name">电    话：</span> <a href="tel:{{list.ppcphone}}">{{list.ppcphone}}</a><a href="tel:{{list.ppcphone}}"><img src="{{htmlincludes.img}}images/icon7.jpg" align="absmiddle" /></a>	
+	</div>
+	{%else%}
+	{%if list.showcontact%}
+	<div class="contact-text">
+	<span class="contact-name">电    话：</span> <a href="tel:{{list.tel_area_code}}{{list.tel}}">{{list.tel_country_code}}-{{list.tel_area_code}}-{{list.tel}}</a><a href="tel:{{list.tel_area_code}}{{list.tel}}"><img src="{{htmlincludes.img}}images/icon7.jpg" align="absmiddle" /></a>
+    </div>
+	<!--contact-text-->
+    <div class="contact-text">
+    	{%if list.mobile%}<span class="contact-name">移动电话：</span> <a href="tel:{{list.mobile}}">{{list.mobile}}</a><a href="tel:{{list.mobile}}"><img src="{{htmlincludes.img}}images/icon8.jpg" align="absmiddle" /></a>{%endif%}
+    </div>
+    {%endif%}
+	{%endif%}
+    <!--contact-text-->
+    <div class="contact-text">
+    	{%if integral%}<span class="contact-name">诚信指数：</span>{{integral}}{%endif%}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	<span class="contact-name">经营范围：</span>{{list.businesstop}}
+    </div>
+    <!--contact-text-->
+    <div class="contact-text">
+    	<span class="contact-name">所在地区：</span>{{list.address}}
+    </div>
+    <!--contact-text-->
+    
+</div>
+<!--end phoneBox-->
+<script src="{{htmlincludes.img}}js/index.js"></script>
+<div class="phoneRuturntop">
+	<img src="{{htmlincludes.img}}images/ruturn_top.jpg" class="fr" onclick="bookmarks();" />
+    <div class="cb"></div>
+</div>
+<!--phoneRuturntop-->
+{%include "html/mobile/01/foot.html"%}
+<!--end phoneFooter-->
+</body>
+</html>

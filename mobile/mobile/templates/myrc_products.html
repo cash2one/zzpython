@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+<link rel="stylesheet" href="/css/comm-more.css" />
+<link rel="stylesheet" type="text/css" href="/css/qianbao/shop_index.css"/>
+<script type="text/javascript" src="/js/shop/jquery.lightbox_me.js"></script>
+<script>
+function reflushpro(id,datastr){
+	var obj=document.getElementById("p"+id)
+	//alert(datastr)
+	if (obj){
+		$("#p"+id).html(datastr)
+		$("#b"+id).html("已是最新")
+		//obj.innerHTML(datastr)
+	}
+}
+</script>
+<script>
+$(function(){
+	$('.protop').click(function(e){
+		//alert(1)
+		//var proid=$('#proid').val();
+		//alert(proid)
+		$('#contact1').lightbox_me({
+					overlaySpeed:0,
+					lightboxSpeed:0,
+            		centered: true, 
+            		onLoad: function() { 
+            		}
+        	});
+		e.preventDefault();
+	})
+});
+$(function(){
+	$('#stick_buy2').click(function(e){
+		//alert(1)
+		//var proid=$('#proid').val();
+		//alert(proid)
+		
+		$.ajax({
+		   type: "GET",
+		   url: "qianbaopay.html",
+		   data: "money="+money+"&paytype=9"+"&proid="+proid,
+		   success:function(data){
+				//alert(data);
+				if (data=='1'){
+					$('#sucess').lightbox_me({
+					overlaySpeed:0,
+					lightboxSpeed:0,
+					centered: true, 
+					onLoad: function() { 
+					}
+					});
+					e.preventDefault();
+				}
+		   },
+		   error:function(data){
+				//alert("错误!青重试.");
+		   }
+		});
+		
+		
+		$('#sucess1').lightbox_me({
+					overlaySpeed:0,
+					lightboxSpeed:0,
+            		centered: true, 
+            		onLoad: function() { 
+            		}
+        	});
+		e.preventDefault();
+	})
+});
+function dismiss(){
+	$('#buyTipp').trigger('close');
+	$('#contact1').trigger('close');
+	$('#sucess1').trigger('close');
+	$('#sucess3').trigger('close');
+}
+</script>
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+<ul class="bread Fix">
+    <li><a href="/">首页</a></li>
+	<li class="li-bread"><a href="/myrc_index/">生意管家</a></li>
+    <li class="li-bread c9"><span>供求管理</span></li>
+</ul>
+<div style="padding:10px;"><div class="comm-btn-auto" onClick="window.location='/products_publish/'">发布供求</div></div>
+<nav class="t-nav-tab t-nav-tab-3">
+	<ul>
+	{%ifequal checkStatus "1"%}
+		<li class="chk"><a href="/myrc_products/?checkStatus=1">已审核(<span class="c-red">{{alist1}}</span>)</a></li>
+		{%else%}
+		<li><a href="/myrc_products/?checkStatus=1">已审核(<span class="c-red">{{alist1}}</span>)</a></li>
+	{%endifequal%}
+	{%ifequal checkStatus "0"%}
+		<li class="chk"><a href="/myrc_products/?checkStatus=0">审核中(<span class="c-red">{{alist0}}</span>)</a></li>
+		{%else%}
+		<li><a href="/myrc_products/?checkStatus=0">审核中(<span class="c-red">{{alist0}}</span>)</a></li>
+	{%endifequal%}
+	{%ifequal checkStatus "2"%}
+		<li class="chk"><a href="/myrc_products/?checkStatus=2">审核未通过(<span class="c-red">{{alist2}}</span>)</a></li>
+		{%else%}
+		<li><a href="/myrc_products/?checkStatus=2">审核未通过(<span class="c-red">{{alist2}}</span>)</a></li>
+	{%endifequal%}
+	</ul>
+</nav>
+<div class="result-tip">共有<span class="c-hl">{{qlistcount}}</span>供求信息</div>
+
+
+{%for list in qlist%}
+<div class="list">
+	<div class="item" style="border-top:1px solid #FFF;">    
+			<p class="c-link lh28"><a href="/products_update/?proid={{list.proid}}">{{list.protitle}}</a> <span class="c-gray1" id="p{{list.proid}}">{{list.refresh_time}}</span></p>
+			<div class="c9 lh28" class="c-gray1">
+                <div id="b{{list.proid}}" style="float:left; margin-right:10px;" class="c-gray1"><a href="/products_refresh/?proid={{list.proid}}&checkStatus={{checkStatus}}&page={{page}}" class="comm-btn-secondary" target="ptarget">刷新</a></div>
+                <a href="/products_update/?proid={{list.proid}}" class="comm-btn-secondary">修改</a>
+                {%if isnotldb%}<a href="" class="comm-btn-secondary protop">置顶</a>{%endif%}
+            </div>
+	</div>
+	<div id="moreDiv"></div>
+</div>
+{%endfor%}
+<iframe src="" frameborder="0" name="ptarget" style="display:none" width="0" height="0"></iframe>
+<div>
+<nav class="page Fix">
+	<span class="left">
+    {% if firstpage %}
+    <a class="pageBtnEnable" href="/myrc_products/?page={{prvpage}}&checkStatus={{checkStatus}}"><span>上一页</span></a>
+    {% endif %}
+    </span>
+	<i class="ac f14">{{page}}/{{page_listcount}}</i>
+	<span class="right">
+    {% if lastpage%}
+    <a class="pageBtnEnable" href="/myrc_products/?page={{nextpage}}&checkStatus={{checkStatus}}"><span>下一页</span></a>
+    {% endif %}
+    </span>
+</nav>
+</div>
+<div class="h20"></div>
+</div>
+{%include 'bottom_myrc.html'%}
+</div>
+
+
+<div id="buyTipp" class="tipp">
+	<p>您想购买的置顶时间为：</p>
+    <p class="radio">
+        <span class="pay"><input type="radio" name="stick" checked="checked"/> 15元/天</span>
+        <span class="pay"><input type="radio" name="stick"/> 399元/月</span>
+    	<span class="pay"><input type="radio" name="stick"/> 3999元/年</span>
+    </p>
+	<div align="center" style="margin-top:10px;">
+		<div class="btn btn_confirm" onclick="dismiss();">确定</div>
+		<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+   </div>
+</div>
+<div id="contact1" class="tipp" align="center">
+	<p>请填写您的手机号码</p>
+	<p><input type="text" id="mobile"></p>
+	<div align="center" style="margin-top:10px;">
+	<div class="btn btn_cancel" id="stick_buy2" onclick="dismiss();">确定</div>
+   	<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+   </div>
+</div>
+<div id="sucess1" class="tipp" align="center">
+	<p>您已经购买成功,我们会在两个工作日内与您联系!</p>
+	<div align="center" style="margin-top:10px;">
+	<div class="btn btn_cancel" onclick="dismiss();">确定</div>
+   </div>
+</div>
+<div id="sucess3" class="tipp" align="center">
+	<p>您的信息已经提交,正在审核中...</p>
+	<div align="center" style="margin-top:10px;">
+	<div class="btn btn_cancel" onclick="dismiss();">确定</div>
+   </div>
+</div>
+
+<!--end 置顶弹框-->
+
+
+</body>
+</html>

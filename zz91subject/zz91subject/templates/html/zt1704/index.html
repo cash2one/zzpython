@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,target-densitydpi = medium-dpi">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-touch-fullscreen" content="YES">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" href="css/animate.min.css">
+<link rel="stylesheet" type="text/css" href="css/base-min.css" />
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+<title>2017中国（宁波）-塑料橡胶工业展览会</title>
+<link rel="stylesheet" type="text/css" href="css/index.css" />
+		
+<link rel="stylesheet" type="text/css" href="http://www.zz91.com/zt/comm/facebox.css" />
+</head>
+<body>
+<script type="text/javascript" src="js/viewport.js"></script>
+	<div class="imgmodule">
+		<img src="images/bgimg1.png" alt="">
+		<span class="btn1"></span>
+	</div>
+	<div class="imgmodule"><img src="images/bgimg2.png" alt=""></div>
+	<div class="imgmodule"><img src="images/bgimg3.png" alt=""></div>
+	<div class="imgmodule"><img src="images/bgimg4.png" alt=""></div>
+	<div class="imgmodule"><img src="images/bgimg5.png" alt=""></div>
+	<div class="imgmodule"><img src="images/bgimg6.png" alt=""></div>
+	<div class="imgmodule"><img src="images/bgimg7.png" alt=""></div>
+	<div class="imgmodule"><img src="images/bgimg8.png" alt=""></div>
+	<div class="imgmodule"><img src="images/bgimg9.png" alt=""></div>
+	<div class="imgmodule"><img src="images/bgimg10.png" alt=""></div>
+	<div class="imgmodule">
+		<img src="images/bgimg12.png" alt="">
+		<span class="btn2"></span>
+	</div>
+
+
+	
+			<div class="popmian">
+				<div class="close-box j_close"></div>
+				<div>
+					<form id="form1" name="form1" method="post" action="/zt/baomingsave.html" onsubmit="return checkForm(this)">
+					<ul class="form-ul">
+						<li class="clear">
+							<div class="form-name fl">公司名称</div>
+							<div class="form-iptbox fl"><input name="textfield1" id="textfield1" type="text" title="*公司名称"></div>
+						</li>
+						<li class="clear">
+							<div class="form-name fl">联系人</div>
+							<div class="form-iptbox fl"><input name="textfield2" id="textfield3" type="text" title="*联系人"></div>
+						</li>
+						<li class="clear">
+							<div class="form-name fl">手机</div>
+							<div class="form-iptbox fl"><input name="textfield3" id="textfield3" type="text" title="*手机"></div>
+						</li>
+						<li class="clear">
+							<div class="form-name fl">主营</div>
+							<div class="form-iptbox fl"><input name="textfield4" id="textfield4" type="text" title="*主营"></div>
+						</li>
+						<li class="clear">
+							<div class="form-name fl">到场时间</div>
+							<div class="form-iptbox fl"><input  type="text" title="*到场时间" id="J-xl"></div>
+						</li>
+					</ul>
+					<input type="hidden" name="contents" id="contents" value="dfsf" />
+	    			<input type="hidden" name="title" id="title1" value="2017塑料橡胶工业展览会报名" />
+					<div class="tj-btn"><input type="submit" name="button" id="button" value=""></div>
+					</form>
+				</div>
+			</div>
+	
+
+	<div style="display:none">
+	    <script>
+	        var _hmt = _hmt || [];
+	        (function() {
+	            var hm = document.createElement("script");
+	            hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+	            var s = document.getElementsByTagName("script")[0];
+	            s.parentNode.insertBefore(hm, s);
+	        })();
+	    </script>
+	    <!--baidu analysis-->
+	    <script>
+	        var _hmt = _hmt || [];
+	        
+	        (function() {
+	            var hm = document.createElement("script");
+	            hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+	            var s = document.getElementsByTagName("script")[0];
+	            s.parentNode.insertBefore(hm, s);
+	        })();
+	    </script>
+	</div>
+
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="js/laydate.dev.js"></script>
+<script src="http://www.zz91.com/zt/comm/facebox.js"></script>
+<script src="http://www.zz91.com/zt/comm/checkForm.js"></script>
+<script type="text/javascript">
+	$(".btn1,.btn2").on("click",function(){
+		popShow($(".popmian"))
+	})
+	$(".j_close").on("click",function(){
+		closePop($(".popmian"))
+	})
+	var popShow = function(obj){
+	    this.window_h = $(window).height();
+	    this.window_w = $(window).width();
+	    this.pageHeight = $(document).height();
+	    this.obj_h    = obj.height();
+	    this.obj_w    = obj.width();
+	    this.Top      = (window_h - obj_h)/2;
+	    this.Left     = (window_w-obj_w)/2;
+	    if($(".wdpop").length>0){
+	        $(".wdpop").show();
+	    }else{
+	        this.wdpopHtml = "<div class='wdpop' style='background:#000;height:" + this.pageHeight +"px;width:"+ this.window_w +"px;position:fixed;z-index:1000;opacity: 0.80;filter:Alpha(opacity=80);left:0;top:0;'><div>"
+	        $("body").append(this.wdpopHtml);
+	    }
+	    obj.css({"top":-this.obj_h+"px","left":this.Left+"px","zIndex":"1001","position":"fixed"}).show();
+	    obj.animate({"top":this.Top+"px"},300,"swing")
+	}
+
+	var closePop = function(obj){
+	    obj.hide();
+	    $(".wdpop").hide();
+	}
+
+	laydate({
+
+        elem: '#J-xl'
+
+     });
+
+
+
+
+</script>
+</html>

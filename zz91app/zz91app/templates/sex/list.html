@@ -1,0 +1,28 @@
+{%if newslist.list%}<div class="list">
+	{%for list in newslist.list%}
+		<a href="javascript:toDetail({{list.id}});"  class="doc">
+			{%if list.picone%}
+			<div style="background-image:url(http://pyapp.zz91.com/app/changepic.html?url={{list.litpic}}&width=100&height=100)" class="doc-image-small back-img"></div>
+			{%endif%}
+			<div class="doc-content">
+				<div class="doc-title">{{list.title|safe}}</div>
+				{%if list.picmore%}
+				<div class="doc-images">
+					{%for pp in list.picmore%}
+					<div class="doc-image-list">
+						<div style="background-image:url({{pp}})" class="doc-image-list-inner back-img"></div>
+					</div>
+					{%endfor%}
+					<div class="clear"></div>
+				</div>
+				{%endif%}
+			</div>
+			<div class="clear"></div>
+			<div class="doc-source">{{list.click}}</div>
+			<div class="doc-info"><span class="doc-info-item"> <img src="../image/renaissance_share_time.png"><span>&nbsp;{{list.pubdate}}</span></span><span class="doc-info-item"> <img src="../image/renaissance_share_comment.png"><span>&nbsp;{{list.click}}</span></span>
+				<span class="doc-info-item"><img src="../image/renaissance_share_like.png"><span>&nbsp;{{list.click}}</span></span>
+			</div>
+			<div class="clear"></div>
+		</a>
+	{%endfor%}
+</div>{%endif%}

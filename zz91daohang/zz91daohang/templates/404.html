@@ -1,0 +1,1396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>404页面</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/comm.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/foot.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/comm/css/top.css" />
+    <link rel="stylesheet" href="http://b.zz91.com/other/css/404.css" />
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <style>
+    	.searchresult{padding:0px;position:absolute; top:35px; border:2px solid #f5ae1e; width:500px; height:300px; background-color:#FFF; z-index:800;}
+		.searchresult ul li{padding:4px;list-style-type: none;line-height:20px}
+		.topgg-mian img{
+			height: 100px;
+		}
+		
+		#page_cover_loading{
+			width:100%;
+			height:400px;
+			z-index:2000000;
+			position:fixed;
+			top:40%;
+			_position:absolute;
+			_bottom:auto;
+			_top:expression(eval(document.documentElement.scrollTop)+50+"px");
+		}
+		#page_cover_loading div
+		{
+			width:300px;
+			height:30px;
+			margin-right: auto;
+			margin-left: auto;
+			border: 1px solid #F90;
+			background-color: #FF9;
+			color:#F60;
+			text-align:center;
+			font-size:14px;
+			line-height:30px;
+			margin-top: 0px;
+			margin-bottom: 0px;
+		}
+    </style>
+    
+</head>
+<body>
+	<div id="page_cover_loading" style="display:none"><div>页面加载中......请稍候！</div></div>
+	<div id="page_cover" style="position:fixed;display:none;z-index:1; width:100%; height:100%; left: 0; top: 0;filter: Alpha(Opacity=20);-moz-opacity: 0.2;opacity:0.2;background-color: #ccc;"></div>
+	<div class="wrapper-header pstion-header">
+    <div class="header-main">
+        <div class="header-main-left fl">
+            <span>您好，欢迎来到ZZ91再生网！</span>
+            <a class="header-left-btn" href="http://www.zz91.com/login.htm" target="_blank">请登录</a> |
+            <a class="header-left-btn" href="http://www.zz91.com/register/register_stp1.htm" target="_blank">免费注册 </a> |
+            <span>&nbsp;&nbsp;服务热线：0571-56611111</span>
+        </div>
+        <div class="header-main-right fr">
+            <ul class="clearfix header-right-nav">
+                <li class="fl header-nav-li ">
+                    <div class="border-hide"></div>
+                    <div class="border-hide1"></div>
+                    <div class="header-nav-name">生意管家<i class="icon-reveal icon-reveal1"></i></div>
+
+                    <div class="header-nav-main header-nav-main1">
+                        <div class="header-nav-bg"></div>
+
+                        <ul class="nav-main-ul1 clearfix">
+                            <li><a href="http://trade.zz91.com/postoffer_step1.htm" target="_blank">发布供求</a></li>
+                            <li><a href="http://myrc.zz91.com/myproducts/office_post_list.htm?checkStatus=1&isExpired=0&isPause=0" target="_blank">管理供求</a></li>
+                            <li><a href="http://myrc.zz91.com/mytrust/entrust.htm" target="_blank">委托采购</a></li>
+                            <li><a href="http://myrc.zz91.com/mytrust/purchase.htm" target="_blank">我的采购</a></li>
+                            <li><a href="http://myrc.zz91.com/mysubscribe/bizList.htm" target="_blank">在线商机</a></li>
+                            <li><a href="http://myrc.zz91.com/mysubscribe/priceList.htm" target="_blank">在线行情</a></li>
+                            <li><a href="http://myrc.zz91.com/mymessage/inbox.htm" target="_blank">留言管理</a></li>
+                            <li><a href="http://myrc.zz91.com/mysubscribe/favorites.htm" target="_blank">收藏管理</a></li>
+                            <li><a href="http://myrc.zz91.com/credit/creditbaseinfo/index.htm" target="_blank">诚信档案</a></li>
+                            <li><a href="http://myrc.zz91.com/mycompany/companyList.htm" target="_blank">会员资料</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="fl header-nav-li ">
+                    <div class="border-hide"></div>
+                    <div class="border-hide1"></div>
+                    <div class="header-nav-name">会员服务<i class="icon-reveal icon-reveal1"></i></div>
+
+                    <div class="header-nav-main header-nav-main2">
+                        <div class="header-nav-bg"></div>
+                        <ul class="nav-main-ul2 clearfix">
+                            <li><a href="http://service.zz91.com/zst.html" target="_blank">再生通</a></li>
+                            <li><a href="http://service.zz91.com/ppt.html" target="_blank">品牌通</a></li>
+                            <li><a href="http://service.zz91.com/ppgg.html" target="_blank">黄金展位</a></li>
+                            <li><a href="http://www.zz91.com/service/baidu/yh.html" target="_blank">百度优化</a></li>
+                            <li><a href="http://www.zz91.com/ppc/" target="_blank">来电宝</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="fl header-nav-li ">
+                    <div class="border-hide"></div>
+                    <div class="border-hide1"></div>
+                    <div class="header-nav-name">移动端<i class="icon-reveal icon-reveal1"></i></div>
+
+                    <div class="header-nav-main header-nav-main3">
+                        <div class="header-nav-bg"></div>
+                        <div class="phone-erwei">
+                            <div class="phone-erwei-img">
+                                <img src="http://b.zz91.com/comm/images/h5erwei.jpg" width="75">
+                            </div>
+                            <div class="phone-erwei-tell">
+                                扫描关注<br>随时查看商机
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="fl header-nav-li ">
+                    <div class="border-hide"></div>
+                    <div class="border-hide1"></div>
+                    <div class="header-nav-name">客服中心<i class="icon-reveal icon-reveal1"></i></div>
+
+                    <div class="header-nav-main header-nav-main4">
+                        <div class="header-nav-bg"></div>
+
+                        <ul class="nav-main-ul2 clearfix">
+                            <li><a href="http://about.zz91.com/contact.html" target="_blank">联系我们</a></li>
+                            <li><a href="http://help.zz91.com/" target="_blank">新手上路</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="fl header-nav-li notmore">
+                    <div class="header-nav-name"><a href="http://www.recyclechina.com/" target="_blank">国际站</a></div>
+                </li>
+                <li class="fl header-nav-li">
+                    <div class="border-hide"></div>
+                    <div class="border-hide1"></div>
+                    <div class="header-nav-name">网站导航<i class="icon-reveal icon-reveal1"></i></div>
+
+                    <div class="header-nav-main header-nav-main5" >
+                        <dl class="nav-main-dl">
+                            <dt><span class="header-right-ca">常用工具</span></dt>
+                            <dd>
+                                <ul class="clearfix">
+                                    <li class="fl"><a href="http://trade.zz91.com/postoffer_step1.htm" target="_blank">快速发布供求</a></li>
+                                    <li class="fl"><a href="http://myrc.zz91.com/mycompanyprice/upload.htm" target="_blank">发布报价</a></li>
+                                    <li class="fl"><a href="http://myrc.zz91.com/mysubscribe/manageSubscribeBiz.htm" target="_blank">商机定制</a></li>
+                                    <li class="fl"><a href="http://huzhu.zz91.com/shequ/fatie.html" target="_blank">发布帖子</a></li>
+                                    <li class="fl"><a href="http://huzhu.zz91.com/shangquan/fatie.html" target="_blank">发布商圈</a></li>
+                                </ul>
+                            </dd>
+                            <dt><a href="http://trade.zz91.com" class="header-right-ca" target="_blank">交易中心</a></dt>
+                            <dd>
+                                <ul class="clearfix">
+                                    <li class="fl"><a href="http://trade.zz91.com/offerindex1000.htm" target="_blank">废金属</a></li>
+                                    <li class="fl"><a href="http://trade.zz91.com/offerindex1001.htm" target="_blank">废塑料</a></li>
+                                    <li class="fl"><a href="http://www.yousuyuan.com/" target="_blank">塑料原料</a></li>
+                                    <li class="fl"><a href="http://trade.zz91.com/offerindex1003.htm" target="_blank">废纺织品</a></li>
+                                    <li class="fl"><a href="http://trade.zz91.com/offerindex1005.htm" target="_blank">废橡胶</a></li>
+                                    
+                                    <li class="fl"><a href="http://trade.zz91.com/offerindex1004.htm" target="_blank">废纸</a></li>
+                                    <li class="fl"><a href="http://trade.zz91.com/offerindex1005.htm" target="_blank">废电子电器</a></li>
+                                    <li class="fl"><a href="http://trade.zz91.com/offerindex1003.htm" target="_blank">废皮革</a></li>
+                                    <li class="fl"><a href="http://trade.zz91.com/offerindex1007.htm" target="_blank">二手设备</a></li>
+                                    <li class="fl"><a href="http://trade.zz91.com/offerindex1003.htm" target="_blank">废玻璃</a></li>
+                                    <li class="fl"><a href="http://trade.zz91.com/offerindex1003.htm" target="_blank">化工废料</a></li>
+                                    <li class="fl"><a href="http://trade.zz91.com/offerindex1003.htm" target="_blank">废木</a></li>
+                                    
+                                </ul>
+                            </dd>
+                            <dt><a href="http://jiage.zz91.com" class="header-right-ca" target="_blank">行情报价</a></dt>
+                            <dd>
+                                <ul class="clearfix">
+                                    <li class="fl"><a href="http://jiage.zz91.com/jinshu/" target="_blank">废金属</a></li>
+                                    <li class="fl"><a href="http://jiage.zz91.com/suliao/" target="_blank">废塑料</a></li>
+                                    <li class="fl"><a href="http://www.yousuyuan.com/price/" target="_blank">塑料原料</a></li>
+                                    <li class="fl"><a href="http://jiage.zz91.com/other/" target="_blank">综合废料</a></li>
+                                    <li class="fl"><a href="http://jiage.zz91.com/cpriceindex/" target="_blank">企业报价</a></li>
+                                </ul>
+                            </dd>
+                            <dt><span class="header-right-ca">再生频道</span></dt>
+                            <dd>
+                                <ul class="clearfix">
+                                    <li class="fl"><a href="http://mingxing.zz91.com/" target="_blank">再生影响力</a></li>
+                                    <li class="fl"><a href="http://www.taozaisheng.com/56/" target="_blank">物流服务</a></li>
+                                    <li class="fl"><a href="http://aqsiq.zz91.com/" target="_blank">AQSIQ服务</a></li>
+                                    <li class="fl"><a href="http://zhanhui.zz91.com/" target="_blank">再生展会</a></li>
+                                    <li class="fl"><a href="http://y.zz91.com/" target="_blank">产业带</a></li>
+                                    <li class="fl"><a href="http://www.zz91.com/photo/" target="_blank">产品相册</a></li>
+                                    <li class="fl"><a href="http://jiage.zz91.com/study/" target="_blank">行情研究院</a></li>
+                                    <li class="fl"><a href="http://www.taozaisheng.com/" target="_blank">淘再生</a></li>
+                                    
+                                </ul>
+                            </dd>
+                            <dt><a href="http://huzhu.zz91.com" class="header-right-ca" target="_blank">互助中心</a></dt>
+                            <dd>
+                                <ul class="clearfix">
+                                    <li class="fl"><a href="http://huzhu.zz91.com/shangquan1/" target="_blank">再生商圈</a></li>
+                                    <li class="fl"><a href="http://huzhu.zz91.com/wenda/" target="_blank">废料问答</a></li>
+                                    <li class="fl"><a href="http://huzhu.zz91.com/shequ/" target="_blank">废料社区</a></li>
+                                    <li class="fl"><a href="http://huzhu.zz91.com/xueyuan/" target="_blank">废料学院</a></li>
+                                    <li class="fl"><a href="http://huzhu.zz91.com/zhaopin/" target="_blank">废料招聘</a></li>
+                                </ul>
+                            </dd>
+                            <dt>
+                                <a href="http://www.taozaisheng.com/" class="header-right-ca" target="_blank">厂家直购</a>&nbsp;&nbsp;
+                                <a href="http://yang.zz91.com/" class="header-right-ca" target="_blank">样品中心</a>
+                            </dt>
+                        </dl>
+                        <a class="nav-mian-dlbtn" href="http://www.zz91.com/webmap/" target="_blank">更多内容 >></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="header-height"></div>
+    
+    <div class="head-module">
+	    <div class="search-engine clearfix">
+            <div class="logo-mod fl">
+                <div class="logo-box"><a href="#"><img src="http://b.zz91.com/index/images/logo.jpg" width="177"></a></div>
+            </div>
+            <div class="search-mian fl">
+				<form action="http://trade.zz91.com/trade/searchfirst/" target="_self" id="topsearchfrm" method="get" onsubmit="return zz91searchindex(this,0)">
+                <div class="search-type j_search-type">
+                    <span class="this-search-type" type="1">产品</span> |
+                    <span type="2">求购</span> |
+                    <span type="7">原料</span> |
+                    <span type="4">公司</span> |
+                    <span type="3">报价</span> |
+                    <span type="6">资讯</span> |
+                    <span type="5">图片</span>
+                </div>
+                <div class="search-into clearfix">
+                    <div class="search-ipt-box fl j_sIptBox">
+                        <input class="search-ipt fl j_searchipt TopKeywords" id="TopKeywords" autocomplete="off" name="keywords"  placeholder="输入产品关键字，搜索产品供应信息" />
+                        <div class="searchresult" style="display:none"></div>
+                    </div>
+                    <input type="submit" value="搜 索" class="fl search-btn">
+                    <a href="http://trade.zz91.com/postoffer_step1.htm" target="_blank" class="search-fabu fl">发布供求信息</a>
+                </div>
+                </form>
+            </div>
+            <div class="apperwei fr">
+                <div class="apperwei-tell">下载手机APP</div>
+                <div class="apperwei-img"><img src="http://b.zz91.com/index/images/erwei.jpg" width="80"></div>
+            </div>
+        </div>
+	</div>
+	
+	<div class="main">
+		<div class="error clearfix">
+			<div class="fl error-img">
+				<img src="http://b.zz91.com/other/images/404-images.png" />
+			</div>
+			<div class="fl error-con">
+				<div class="error-tle">
+					对不起，您查找的页面不存在<p>有可能页面被删除或您输入的地址不正确</p>
+				</div>
+				<div class="error-gother clearfix">
+					<span class="fl">
+						您可以：
+					</span>
+					<a class="fl error-btn" href="http://www.zz91.com" target="_blank">
+						去首页
+					</a>
+					<span class="fl">
+						或者看看下面有没有您需要的信息？
+					</span>
+				</div>
+			</div>
+		</div>
+		<div style="height:100px">
+		    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- 微门户 -->
+			<ins class="adsbygoogle"
+			     style="display:block"
+			     data-ad-client="ca-pub-5512236620584335"
+			     data-ad-slot="8274972003"
+			     data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+		
+		<div class="main-box">
+			<div class="main-boxcon">
+				<div class="main-boxcon-tle">
+					网站重要频道
+				</div>
+				<div class="main-boxcon-list clearfix">
+					<a href="http://trade.zz91.com/" target="_blank" class="main-boxcon-list-a fl">
+						供应大厅
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://trade.zz91.com/buy.htm" target="_blank" class="main-boxcon-list-a fl">
+						求购中心
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://jiage.zz91.com/" target="_blank" class="main-boxcon-list-a fl">
+						行情报价 
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://jiage.zz91.com/cpriceindex/" target="_blank" class="main-boxcon-list-a fl">
+						企业报价
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://news.zz91.com/" target="_blank" class="main-boxcon-list-a fl">
+						资讯中心
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://huzhu.zz91.com/" target="_blank" class="main-boxcon-list-a fl">
+						互助社区
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://company.zz91.com/" target="_blank" class="main-boxcon-list-a fl">
+						企业黄页
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://y.zz91.com/" target="_blank" class="main-boxcon-list-a fl">
+						产业带
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://www.zz91.com/suliao/" target="_blank" class="main-boxcon-list-a fl">
+						废塑料网
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://www.zz91.com/jinshu/" target="_blank" class="main-boxcon-list-a fl">
+						废金属网
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://www.zz91.com/sb/" target="_blank" class="main-boxcon-list-a fl">
+						二手设备网
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://yang.zz91.com/" target="_blank" class="main-boxcon-list-a fl">
+						样品中心
+					</a><br />
+					
+					<a href="http://www.taozaisheng.com/56/" target="_blank" class="main-boxcon-list-a fl">
+						物流服务
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://v.zz91.com/" target="_blank" class="main-boxcon-list-a fl">
+						再生影响力
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://news.zz91.com/zh/" target="_blank" class="main-boxcon-list-a fl">
+						再生展会 
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://news.zz91.com/tech/" target="_blank" class="main-boxcon-list-a fl">
+						再生技术
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://www.zz91.com/zt/" target="_blank" class="main-boxcon-list-a fl">
+						再生专题
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://www.zz91.com/photo/" target="_blank" class="main-boxcon-list-a fl">
+						产品相册
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://www.zz91.com/webmap/" target="_blank" class="main-boxcon-list-a fl">
+						再生地图
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://aqsiq.zz91.com/" target="_blank" class="main-boxcon-list-a fl">
+						AQSIQ
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://service.zz91.com/" target="_blank" class="main-boxcon-list-a fl">
+						会员服务
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://help.zz91.com/" target="_blank" class="main-boxcon-list-a fl">
+						帮助中心
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://about.zz91.com/" target="_blank" class="main-boxcon-list-a fl">
+						关于我们
+					</a>
+					
+				</div>
+			</div>
+			
+			<div class="main-boxcon">
+				<div class="main-boxcon-tle">
+					主要功能
+				</div>
+				<div class="main-boxcon-list clearfix">
+					<a href="http://www.zz91.com/register/register_stp1.htm" target="_blank" class="main-boxcon-list-a fl">
+						注册会员
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://www.zz91.com/login.htm" target="_blank" class="main-boxcon-list-a fl">
+						会员登录
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://trade.zz91.com/postoffer_step1.htm" target="_blank" class="main-boxcon-list-a fl">
+						发布供求 
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://myrc.zz91.com/mycompanyprice/createPrice.htm" target="_blank" class="main-boxcon-list-a fl">
+						发布报价
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://myrc.zz91.com/myproducts/office_post_list.htm?checkStatus=1&isExpired=0&isPause=0" target="_blank" class="main-boxcon-list-a fl">
+						管理供求
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://myrc.zz91.com/mycompanyprice/list.htm" target="_blank" class="main-boxcon-list-a fl">
+						管理报价
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://myrc.zz91.com/mymessage/inbox.htm" target="_blank" class="main-boxcon-list-a fl">
+						留言管理
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://myrc.zz91.com/mycompanycustomers/list.htm" target="_blank" class="main-boxcon-list-a fl">
+						客户管理
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://myrc.zz91.com/mycompany/companyList.htm" target="_blank" class="main-boxcon-list-a fl">
+						会员资料
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://myrc.zz91.com/credit/creditbaseinfo/indexQualification.htm?isEsite=false" target="_blank" class="main-boxcon-list-a fl">
+						诚信认证
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://myrc.zz91.com/mysubscribe/favorites.htm" target="_blank" class="main-boxcon-list-a fl">
+						收藏夹管理
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://myrc.zz91.com/photoabum/index.htm" target="_blank" class="main-boxcon-list-a fl">
+						相册管理
+					</a><br />
+					
+					<a href="http://myrc.zz91.com/mysubscribe/manageSubscribeBiz.htm" target="_blank" class="main-boxcon-list-a fl">
+						商机定制管理
+					</a>
+					<span class="fl">
+						|
+					</span>
+					<a href="http://myrc.zz91.com/mysubscribe/manageSubscribePrice.htm" target="_blank" class="main-boxcon-list-a fl">
+						行情定制管理
+					</a>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div class="main-box clearfix">
+			<div class="main-boxtle clearfix">
+				<span class="fl">主要产品目录</span>
+				<a href="" target="_blank" class="fl main-boxtle-a">
+					查看完整产品目录 >>
+				</a>
+			</div>
+			<div class="fl main-box-lf">
+				<div class="main-boxcon">
+					<div class="main-boxcon-tle">
+						废金属
+					</div>
+					<div class="main-boxcon-list clearfix">
+						<a href="http://trade.zz91.com/trade/s-e992a2e99381.html" target="_blank" class="main-boxcon-a fl">
+							钢铁
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e69c89e889b2e98791e5b19e.html" target="_blank" class="main-boxcon-a fl">
+							有色金属 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e8b4b5e98791e5b19e.html" target="_blank" class="main-boxcon-a fl">
+							贵金属
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e7a880e69c89e98791e5b19e.html" target="_blank" class="main-boxcon-a fl">
+							稀有金属
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e98791e5b19ee58aa9e58982.html" target="_blank" class="main-boxcon-a fl">
+							金属助剂
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e7a185.html" target="_blank" class="main-boxcon-a fl">
+							硅
+						</a><br />
+						
+						<a href="http://trade.zz91.com/trade/s-e98791e5b19ee6b7b7e590882fe5a48de59088e69699.html" target="_blank" class="main-boxcon-a fl">
+							金属混合/复合料 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe98791e5b19ee5a484e79086e8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							废金属处理设备
+						</a>
+						
+					</div>
+				</div>
+				
+				<div class="main-boxcon">
+					<div class="main-boxcon-tle">
+						废电子电器&nbsp;&nbsp;&nbsp;废旧轮胎与废橡胶
+					</div>
+					<div class="main-boxcon-list clearfix">
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe794b5e5ad90.html" target="_blank" class="main-boxcon-a fl">
+							废电子 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe794b5e599a8.html" target="_blank" class="main-boxcon-a fl">
+							废电器
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e58a9ee585ace8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							办公设备 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5a4a9e784b6e6a9a1e883b6.html" target="_blank" class="main-boxcon-a fl">
+							天然废橡胶
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e59088e68890e6a9a1e883b6.html" target="_blank" class="main-boxcon-a fl">
+							合成橡胶废
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe8bdaee8838e.html" target="_blank" class="main-boxcon-a fl">
+							轮胎
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5868de7949fe883b6.html" target="_blank" class="main-boxcon-a fl">
+							再生胶
+						</a><br />
+						
+						<a href="http://trade.zz91.com/trade/s-e783ade5a191e680a7e5bcb9e680a7e4bd93.html" target="_blank" class="main-boxcon-a fl">
+							热塑性弹性体 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe6a9a1e883b6e5a484e79086e8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							废橡胶轮胎处理设备
+						</a>
+						
+					</div>
+				</div>
+				
+				<div class="main-boxcon">
+					<div class="main-boxcon-tle">
+						废纸
+					</div>
+					<div class="main-boxcon-list clearfix">
+						<a href="http://trade.zz91.com/trade/s-e7be8ee5ba9f.html" target="_blank" class="main-boxcon-a fl">
+							美废 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e6aca7e5ba9f.html" target="_blank" class="main-boxcon-a fl">
+							欧废
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e697a5e5ba9f.html" target="_blank" class="main-boxcon-a fl">
+							日废 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e58c85e8a385e5ba9fe7bab8.html" target="_blank" class="main-boxcon-a fl">
+							包装废纸
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e58db0e588b7e5ba9fe7bab8.html" target="_blank" class="main-boxcon-a fl">
+							印刷废纸
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5b7a5e4b89ae5ba9fe7bab8.html" target="_blank" class="main-boxcon-a fl">
+							工业废纸
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e58a9ee585ace5ba9fe7bab8.html" target="_blank" class="main-boxcon-a fl">
+							办公废纸
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e7949fe6b4bbe5ba9fe7bab8.html" target="_blank" class="main-boxcon-a fl">
+							生活废纸
+						</a><br />
+						
+						<a href="http://trade.zz91.com/trade/s-e789b9e7a78de5ba9fe7bab8.html" target="_blank" class="main-boxcon-a fl">
+							特种废纸 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe7bab8e588b6e59381.html" target="_blank" class="main-boxcon-a fl">
+							废纸制品
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e7bab8e6b586.html" target="_blank" class="main-boxcon-a fl">
+							纸浆
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e58da1e7bab8.html" target="_blank" class="main-boxcon-a fl">
+							卡纸
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e7bab8e8beb9.html" target="_blank" class="main-boxcon-a fl">
+							纸边
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e6b7b7e590882fe5a48de59088e5ba9fe7bab8.html" target="_blank" class="main-boxcon-a fl">
+							混合/复合废纸
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe7bab8e5a484e79086e8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							废纸处理设备
+						</a>
+						
+					</div>
+				</div>
+				
+				<div class="main-boxcon">
+					<div class="main-boxcon-tle">
+						废玻璃
+					</div>
+					<div class="main-boxcon-list clearfix">
+						<a href="http://trade.zz91.com/trade/s-e7a28ee78ebbe79283.html" target="_blank" class="main-boxcon-a fl">
+							碎玻璃 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e698bee5838fe7aea1e78ebbe79283.html" target="_blank" class="main-boxcon-a fl">
+							显像管玻璃
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e78ebbe79283e7baa4e7bbb4.html" target="_blank" class="main-boxcon-a fl">
+							玻璃纤维  
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e78ebbe79283e7b289.html" target="_blank" class="main-boxcon-a fl">
+							玻璃粉
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e6b5aee6b395e78ebbe79283.html" target="_blank" class="main-boxcon-a fl">
+							浮法玻璃
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5b9b3e69dbfe78ebbe79283.html" target="_blank" class="main-boxcon-a fl">
+							平板玻璃
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e78ebbe79283e793b6.html" target="_blank" class="main-boxcon-a fl">
+							玻璃瓶
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e78ebbe79283e8bda7e8be8a.html" target="_blank" class="main-boxcon-a fl">
+							玻璃轧辊
+						</a><br />
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e6a0bce6b395e78ebbe79283.html" target="_blank" class="main-boxcon-a fl">
+							格法玻璃  
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5b7a5e4b89ae78ebbe79283.html" target="_blank" class="main-boxcon-a fl">
+							工业玻璃
+						</a>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="fr main-box-rt">
+				<div class="main-boxcon">
+					<div class="main-boxcon-tle">
+						废塑料
+					</div>
+					<div class="main-boxcon-list clearfix">
+						<a href="http://trade.zz91.com/trade/s-e9809ae794a8e5ba9fe5a191e69699.html" target="_blank" class="main-boxcon-a fl">
+							通用废塑料 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5b7a5e7a88be5ba9fe5a191e69699.html" target="_blank" class="main-boxcon-a fl">
+							工程废塑料 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e789b9e7a78de5ba9fe5a191e69699.html" target="_blank" class="main-boxcon-a fl">
+							特种废塑料 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5868de7949fe9a297e7b292.html" target="_blank" class="main-boxcon-a fl">
+							塑料颗粒
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5a191e69699e58aa9e58982.html" target="_blank" class="main-boxcon-a fl">
+							塑料助剂
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5a191e69699e6b7b7e590882fe5a48de59088e69699.html" target="_blank" class="main-boxcon-a fl">
+							塑料混合/复合料	
+						</a><br />
+						
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe5a191e69699e5a484e79086e8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							废塑料处理设备 
+
+						</a>
+					</div>
+				</div>
+				
+				<div class="main-boxcon">
+					<div class="main-boxcon-tle">
+						废纺织品与废皮革
+					</div>
+					<div class="main-boxcon-list clearfix">
+						<a href="http://trade.zz91.com/trade/s-e58c96e7baa4.html" target="_blank" class="main-boxcon-a fl">
+							化纤 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e7bab1e7babf.html" target="_blank" class="main-boxcon-a fl">
+							纱线 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e59dafe5b883e99da2e69699.html" target="_blank" class="main-boxcon-a fl">
+							坯布面料 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e79aaee99da9.html" target="_blank" class="main-boxcon-a fl">
+							皮革
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe6a389e69699.html" target="_blank" class="main-boxcon-a fl">
+							废棉料
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e7be8ae6af9be588b6e59381.html" target="_blank" class="main-boxcon-a fl">
+							羊毛制品丝
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e7899be4bb94e5b883.html" target="_blank" class="main-boxcon-a fl">
+							牛仔布
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5aeb6e7babae5ba9fe69699.html" target="_blank" class="main-boxcon-a fl">
+							家纺废料
+						</a><br />
+						
+						<a href="http://trade.zz91.com/trade/s-e9babb.html" target="_blank" class="main-boxcon-a fl">
+							麻 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e7bc96e7bb87e69699.html" target="_blank" class="main-boxcon-a fl">
+							编织料
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e7babae7bb87e8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							纺织设备
+						</a>
+					</div>
+				</div>
+				
+				<div class="main-boxcon">
+					<div class="main-boxcon-tle">
+						废旧二手设备
+					</div>
+					<div class="main-boxcon-list clearfix">
+						<a href="http://trade.zz91.com/trade/s-e5b7a5e7a88be8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							工程设备 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e58c96e5b7a5e8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							化工设备 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e588b6e586b7e8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							制冷设备  
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e586b6e782bce8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							冶炼设备
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e4baa4e9809ae5b7a5e585b7.html" target="_blank" class="main-boxcon-a fl">
+							交通工具
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e585b6e4bb96e4ba8ce6898be8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							其他二手设备
+						</a><br />
+						
+						<a href="http://trade.zz91.com/trade/s-e4ba8ce6898be59586e59381.html" target="_blank" class="main-boxcon-a fl">
+							二手商品
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe5a191e69699e5a484e79086e8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							废塑料处理设备
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe98791e5b19ee5a484e79086e8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							废金属处理设备
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe6a9a1e883b6e8bdaee8838ee5a484e79086e8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							废橡胶轮胎处理设备 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe7bab8e5a484e79086e8aebee5a487.html" target="_blank" class="main-boxcon-a fl">
+							废纸处理设备
+						</a>
+					</div>
+				</div>
+				
+				<div class="main-boxcon">
+					<div class="main-boxcon-tle">
+						其他废料&nbsp;&nbsp;&nbsp;服务
+					</div>
+					<div class="main-boxcon-list clearfix">
+						<a href="http://trade.zz91.com/trade/s-e5ba9fe69ca8.html" target="_blank" class="main-boxcon-a fl">
+							废木  
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e6b1bde8bda6e5ba9fe69699.html" target="_blank" class="main-boxcon-a fl">
+							汽车废料 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e58c96e5b7a5e5ba9fe69699.html" target="_blank" class="main-boxcon-a fl">
+							化工废料 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e585b6e4bb96e5ba9fe69699.html" target="_blank" class="main-boxcon-a fl">
+							其他废料  
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e68aa5e585b3e6b885e585b3.html" target="_blank" class="main-boxcon-a fl">
+							报关/清关服务
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e789a9e6b581e69c8de58aa1.html" target="_blank" class="main-boxcon-a fl">
+							物流服务 
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e68b9be88198.html" target="_blank" class="main-boxcon-a fl">
+							招聘
+						</a><br />
+						<a href="http://trade.zz91.com/trade/s-e68a80e69caf.html" target="_blank" class="main-boxcon-a fl">
+							技术
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e585b6e4bb96e69c8de58aa1.html" target="_blank" class="main-boxcon-a fl">
+							其他服务
+						</a>
+						<span class="fl main-boxcon-g2">
+							|
+						</span>
+						<a href="http://trade.zz91.com/trade/s-e4bba3e79086.html" target="_blank" class="main-boxcon-a fl">
+							代理 
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="height:200px">
+		    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<!-- 微门户 -->
+			<ins class="adsbygoogle"
+			     style="display:block"
+			     data-ad-client="ca-pub-5512236620584335"
+			     data-ad-slot="8274972003"
+			     data-ad-format="auto"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+		</div>
+	</div>
+	    
+    <style>
+		.jinhun{
+			display: inline-block;
+			width: 18px;
+			height: 20px;
+			vertical-align: middle;
+			background: url(http://img0.zz91.com/zz91/newindex/images/iconimg.png) -110px -126px;
+			margin-right: 3px;
+		}
+	</style>
+	<div class="zx-tan" style="z-index: 1;"></div>
+	<div class="footbox">
+	    <div class="foot-main">
+	        <div class="foot-myhome">
+	            <a href="http://about.zz91.com/" target="_blank">关于我们</a>|<a href="http://www.recyclechina.com/" target="_blank">国际站</a>|<a href="http://www.zz91.com/service/baidu/yh.html" target="_blank">百度优化</a>|<a href="http://service.zz91.com/zst.html" target="_blank">再生通服务</a>|<a href="http://help.zz91.com/" target="_blank">新手指南</a>|<a href="http://www.zz91.com/webmap/" target="_blank">网站地图</a>|<a href="http://www.zz91.com/hkfs/" target="_blank">支付方式</a>|<a href="http://about.zz91.com/contact.html" target="_blank">意见投诉</a>|<a href="http://about.zz91.com/linkus.html" target="_blank">友情链接</a>|<a href="http://help.zz91.com/contact/" target="_blank">客服中心</a>|<a href="http://about.zz91.com/jobs.html" target="_blank">诚聘英才</a>|<a href="http://www.zz91.com/cp/" target="_blank">产品导航</a>|<a href="http://help.zz91.com/detail-131/" target="_blank">信息安全</a>|<a href="http://help.zz91.com/detail-131/" target="_blank">会员权益</a> 
+	        </div>
+	        <div class="foot-tell-us">
+	            <span><i class="comm-icon icon1-foot1"></i>全国统一服务热线：0571-5611111  56612345 </span>
+	            <span><i class="comm-icon icon1-foot2"></i>市场合作：0571-56633145 </span>
+	            <span><i class="comm-icon icon1-foot3"></i>广告服务：0571-5611111</span>
+	            <span><i class="comm-icon icon1-foot4"></i>传真：0571-56637777</span>
+	        </div>
+	        <div class="foot-my-info">
+	            <p>
+	                <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33010402001336"><i class="jinhun"></i>浙公网安备 33010402001336号</a> <a href="http://www.miibeian.gov.cn/state/outPortal/loginPortal.action" target="_blank">增值电信业务经营许可证&nbsp;&nbsp;浙B2-20080212</a>&nbsp;&nbsp;&nbsp;&nbsp;法律顾问：京衡律师集团事务所&nbsp;&nbsp;&nbsp;&nbsp;罗益群&nbsp;&nbsp;&nbsp;&nbsp;律师
+	            </p>
+	            <p>版权所有  ZZ91再生网  Copyright@2005-2013  ZZ91.com. All Rights Reserved</p>
+	        </div>
+	        <div class="footbottom">
+	            <p>ZZ91再生网中国物资再生协会副会长单位&nbsp;&nbsp;&nbsp;&nbsp;中国塑协理事单位&nbsp;&nbsp;&nbsp;&nbsp;浙江省电子商务促进会的副会长单位</p>
+	            <p>并与中国有色金属工业协会、中国塑料协会、阿里巴巴、《资源再生》杂志等达成战略合作</p>
+	        </div>
+	    </div>
+	</div>
+	
+	
+	<div class="browser-popbox">
+	    <div class="browser-popbg"></div>
+	    <div class="browser-popmain">
+	        <div class="browser-view">
+	            <div class="browser-view-close clearfix">
+	                <a href="javascript:void(0)" class="fr browser-close"><img src="http://b.zz91.com/index/images/close.png"></a>
+	            </div>
+	            <div class="browser-view-tell">
+	                <h2>你使用的浏览器版本过低</h2>
+	                <p>为保障你的采购体验，建议你立即升级浏览器！</p>
+	                <p class="browser-view-ts"><i class="bview-icon"></i>微软已停止对IE6~8 的安全更新，你的浏览器可能存在安全风险。</p>
+	            </div>
+	            
+	            <ul class="browser-view-down clearfix">
+	                <li class="fl">
+	                    <a href="http://se.360.cn/">
+	                        <div class=""><img src="http://b.zz91.com/index/images/360.png"></div>
+	                        <p>360浏览器</p>
+	                        <p class="downtx">下载更新</p>
+	                    </a>
+	                </li>
+	                <li class="fl">
+	                    <a href="https://www.google.com/chrome/">
+	                        <div class=""><img src="http://b.zz91.com/index/images/chrome.png"></div>
+	                        <p>Google Chrome</p>
+	                        <p class="downtx">下载更新</p>
+	                    </a>
+	                </li>
+	                <li class="fl">
+	                    <a href="https://www.mozilla.org/">
+	                        <div class=""><img src="http://b.zz91.com/index/images/firefox.png"></div>
+	                        <p>火狐浏览器</p>
+	                        <p class="downtx">下载更新</p>
+	                    </a>
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+	    
+	</div>
+	    
+	
+    <script src="http://b.zz91.com/comm/js/bandMove.js"></script>
+	<script src="http://b.zz91.com/comm/js/comm.js"></script>
+	<script>
+		//顶部搜索
+		function zz91searchindex(frm, s) {
+			var frms=$("#"+frm.id)
+		    var type = frms.find(".this-search-type").attr("type");
+		    var TopKeywords = frms.find(".TopKeywords");
+		    var searchvalue = TopKeywords.val();
+		    
+			if (searchvalue != "") {
+		        searchvalue = searchvalue.replace(/\//gm, "astoxg");
+		        searchvalue = searchvalue.replace(/\%/gm, "astoxf");
+		        searchvalue = searchvalue.replace(/\\/gm, "astoxl");
+		        searchvalue = searchvalue.replace(/-/gm, "astohg");
+		        searchvalue = searchvalue.replace(/\(/gm, "astokhl");
+		        searchvalue = searchvalue.replace(/\)/gm, "astokhr");
+				searchvalue = searchvalue.replace(/\#/gm, "astojh");
+		        searchvalue = encodeURI(searchvalue)
+		    }else{
+		    	return false;
+		    }
+		    if (type == "1" || type == "2") {
+			    $("#page_cover").css("display","");
+				$("#page_cover").css("height",$("#bodymain").height());
+				$("#page_cover_loading").css("display","");
+			}
+		    if (type == "1") {
+		        frm.action = "http://trade.zz91.com/trade/searchfirst/?keywords=" + searchvalue + "&ptype=";
+		        frm.target = "_self"
+		        window.location=frm.action;
+		        return false
+		    }
+		    if (type == "2") {
+		        frm.action = "http://trade.zz91.com/trade/searchfirst/?keywords=" + searchvalue + "&ptype=2";
+		        frm.target = "_self"
+		        window.location=frm.action;
+		        return false
+		    }
+		    if (type == "3") {
+		        frm.action = "http://jiage.zz91.com/s/searchfirst.html?keywords=" + searchvalue + "";
+		        frm.target = "_blank"
+		    }
+		    if (type == "5") {
+		        frm.action = "http://www.zz91.com/photo/searchPic.htm?searchKey=" + searchvalue + "";
+		        frm.target = "_blank"
+		    }
+		    if (type == "4") {
+		        frm.action = "http://company.zz91.com/index-p-" + searchvalue + ".htm";
+		        frm.target = "_blank"
+		    }
+		    if (type == "6") {
+		        frm.action = "http://news.zz91.com/search/?keywords=" + searchvalue + "";
+		        frm.target = "_blank"
+		    }
+		    if (type == "7"){
+				frm.action = "http://www.yousuyuan.com/search.htm?keyword=" + searchvalue + "";
+				frm.target = "_blank";
+				window.open(frm.action)
+				return false
+		    }
+		    if (s == 1) {
+		        frm.submit()
+		    }
+		}
+		$(function(){
+	        main();
+	        showsearchresult();       //搜索弹出更多信息
+		})
+		
+		var searchType = ["输入产品关键字，搜索产品供应信息！","输入关键字，搜索产品求购信息！","输入关键字，搜索原料产品供应信息！","输入公司名称、地区、主营产品等","输入您要搜索的报价产品关键字！","输入您要搜索的资讯关键字！","输入产品关键字，搜索对应产品图片"]
+	    function main(){
+	        $(".j_search-type span").on("click",function(){
+	            var index = $(this).index();
+	            var ipt =  $(this).parents(".search-mian").find(".j_searchipt");
+	            var iptVal = ipt.val()
+	            var iptPrm = ipt.attr("placeholder");
+	
+	            ipt.attr("placeholder",searchType[index]);
+	
+	            $(".this-search-type").removeClass("this-search-type")
+	            $(this).addClass("this-search-type");
+	            if("placeholder" in input){
+	                //支持
+	            }else{
+	                if(iptVal==iptPrm){
+	                    searchVal(); 
+	                }
+	            }
+	        })  
+		}
+	    function showsearchresult(){
+			var ii = 0;
+		    $(".TopKeywords").keyup(function(event) {
+		        var thisval = $(this).val();
+		        var ajaxurl = "http://pyapp.zz91.com/keywordsearch/?keywords=" + thisval;
+		        $.getScript(ajaxurl,
+		        function() {
+		            if (event.keyCode != 40 && event.keyCode != 38) {
+		                var result = _suggest_result_.result;
+		                var myobj = eval('(' + result + ')');
+		                var value = "<ul>"
+		                for (var i = 0; i < myobj.length - 1; i++) {
+		                    value += "<li>" + myobj[i].keyword + "</li>"
+		                }
+		                value += "</ul>";
+		                $(".searchresult").css({
+		                    'position': 'absolute',
+		                    'width': ($(".TopKeywords").width() + 10).toString() + 'px',
+		                    'height': (myobj.length * 24 + 20).toString() + 'px',
+		                    'display': '',
+		                    'top':'38px',
+		                    'z-index': '800'
+		                });
+		                $(".searchresult").html(value);
+		                if (myobj.length==0){
+		                	$(".searchresult").hide();
+		                }
+		                ii = 0;
+		                $("#page_cover").show()
+		            }
+		            $(".searchresult li").mouseover(function() {
+		                $(this).css("background", "#f2f2f2")
+		            });
+		            $(".searchresult li").click(function() {
+		                $(".searchresult").hide();
+						$(".TopKeywords").val($(this).html());
+						$("#page_cover").hide()
+		            });
+		            $(".searchresult li").mouseout(function() {
+		                $(this).css("background", "#fff")
+		            });
+		            if (event.keyCode == 40 || event.keyCode == 38) {
+		                var searchdroplist = $(".searchresult li");
+		                if (event.keyCode == 38) {
+		                    ii -= 1
+		                } else {
+		                    ii += 1
+		                }
+		                if (ii <= 0) {
+		                    ii = 1
+		                }
+		                if (ii > searchdroplist.length) {
+		                    ii = searchdroplist.length
+		                }
+		                $(".TopKeywords").val($(searchdroplist[ii - 1]).html());
+		                $(".searchresult li").css("background", "#fff");
+		                $(searchdroplist[ii - 1]).css("background", "#f2f2f2");
+		                $("#page_cover").hide()
+		                return false
+		            }
+		        });
+		        
+		    });
+		    $(".TopKeywords").click(function(){
+		    	var thisval = $(this).val();
+		        var ajaxurl = "http://pyapp.zz91.com/keywordsearch/?keywords=" + thisval;
+		        $.getScript(ajaxurl,
+		        function() {
+		            if (event.keyCode != 40 && event.keyCode != 38) {
+		                var result = _suggest_result_.result;
+		                var myobj = eval('(' + result + ')');
+		                var value = "<ul>"
+		                for (var i = 0; i < myobj.length - 1; i++) {
+		                    value += "<li>" + myobj[i].keyword + "</li>"
+		                }
+		                value += "</ul>";
+		                $(".searchresult").css({
+		                    'position': 'absolute',
+		                    'width': ($(".TopKeywords").width() + 10).toString() + 'px',
+		                    'height': (myobj.length * 24 + 20).toString() + 'px',
+		                    'display': '',
+		                    'top':'38px',
+		                    'z-index': '800'
+		                });
+		                $(".searchresult").html(value);
+		                if (myobj.length==0){
+		                	$(".searchresult").hide();
+		                }
+		                ii = 0;
+		                $("#page_cover").show()
+		            }
+		            $(".searchresult li").mouseover(function() {
+		                $(this).css("background", "#f2f2f2")
+		            });
+		            $(".searchresult li").click(function() {
+		                $(".searchresult").hide();
+						$(".TopKeywords").val($(this).html());
+						$("#page_cover").hide()
+		            });
+		            $(".searchresult li").mouseout(function() {
+		                $(this).css("background", "#fff")
+		            });
+		            if (event.keyCode == 40 || event.keyCode == 38) {
+		                var searchdroplist = $(".searchresult li");
+		                if (event.keyCode == 38) {
+		                    ii -= 1
+		                } else {
+		                    ii += 1
+		                }
+		                if (ii <= 0) {
+		                    ii = 1
+		                }
+		                if (ii > searchdroplist.length) {
+		                    ii = searchdroplist.length
+		                }
+		                $(".TopKeywords").val($(searchdroplist[ii - 1]).html());
+		                $(".searchresult li").css("background", "#fff");
+		                $(searchdroplist[ii - 1]).css("background", "#f2f2f2");
+		                $("#page_cover").hide()
+		                return false
+		            }
+		        });
+		    })
+		    $("#page_cover").click(function() {
+		        $(".searchresult").hide();
+		        $("#page_cover").hide();
+		    })
+		}
+	</script>
+	<div style="display:none">
+		<script>
+		//百度站长 链接自动提交
+		(function(){
+		    var bp = document.createElement('script');
+		    var curProtocol = window.location.protocol.split(':')[0];
+		    if (curProtocol === 'https'){
+		   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+		  }
+		  else{
+		  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+		  }
+		    var s = document.getElementsByTagName("script")[0];
+		    s.parentNode.insertBefore(bp, s);
+		})();
+		</script>
+		<script>
+		(function(d, t) {
+		    var r = d.createElement(t), s = d.getElementsByTagName(t)[0];
+		    r.async = 1;
+		    r.src = 'http://www.zz91.com/app/log.htm?' + Math.ceil(new Date/3600000)
+		    s.parentNode.insertBefore(r, s);
+		})(document, 'script');
+		</script>
+		<!--google analysis-->
+		<!--baidu analysis-->
+		<script type="text/javascript">
+		var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+		document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9e5665c4d15f331b078276dce766dd43' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		
+		<script type="text/javascript">
+		var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+		document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Ff41f07cad5c54cf66717306958dd62ed' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+</body>
+</html>
+

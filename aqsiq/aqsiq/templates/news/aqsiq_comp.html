@@ -1,0 +1,64 @@
+{%extends "index.html"%}
+{%block content%}
+<h3>AQSIQ查询</h3>
+<div class="aqsiq_mainbox">
+	<div class="aqsiq_more_page">
+		<div id="pageleft" style="float:left">{%if resultlist%}共{{pages}}条信息 第{{page}}/{{pages_number}}页{%else%}1/1页{%endif%}  20/页 </div>
+		<font color="#666666">
+		<div id="pagetop" align="right">
+		{%if page > 1%}
+	<a href="?page=1{{searlink}}">首页</a>
+	<a href="?upage={{pageprv}}{{searlink}}">上一页</a>
+	{%else%}
+	<font color="#666666">首页 上一页</span>
+	{%endif%}
+	{%if page < pages_number and resultlist%}
+	<a href="?page={{pagenext}}{{searlink}}">下一页</a>
+	<a href="?page={{pages_number}}{{searlink}}">尾页</a>
+	{%else%}
+	<font color="#666666">下一页 尾页</span>
+	{%endif%}
+		 </div>
+	</div>
+</div>
+<table width="95%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#D6DDA8" style="margin-left:10px;">
+  <tr>
+    <td height="25" nowrap="nowrap" bgcolor="#F5FFD9">证书号码</td>
+    <td nowrap="nowrap" bgcolor="#F5FFD9">公司名称</td>
+    <td nowrap="nowrap" bgcolor="#F5FFD9">国 家</td>
+    <td nowrap="nowrap" bgcolor="#F5FFD9">状态</td>
+    <td nowrap="nowrap" bgcolor="#F5FFD9">查 看</td>
+    <!--<td nowrap="nowrap" bgcolor="#F5FFD9">投 诉</td>-->
+  </tr>
+  	{%for list in listall%}
+  <tr>
+    <td height="25" bgcolor="#FFFFFF">{{list.scode}}</td>
+    <td bgcolor="#FFFFFF">{{list.scom_name}}</td>
+    <td bgcolor="#FFFFFF">{{list.sgj}}</td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF">{{list.sstat}}</td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF"><a href="aqsiq_compl{{list.id}}.html" target="_blank">查 看</a></td>
+    <!--<td nowrap="nowrap" bgcolor="#FFFFFF"><a href="aqsiq_compshow_ts.asp?id=5801">我要投诉</a></td>-->
+  </tr>
+	{%endfor%}
+</table><br />
+{{sql}}
+<div class="aqsiq_more_page">
+	<div id="pageleft" style="float:left">{%if resultlist%}共{{pages}}条信息 第{{page}}/{{pages_number}}页{%else%}1/1页{%endif%}  20/页</div>
+	
+	<div align="right" id="pagetop">
+	{%if page > 1%}
+	<a href="?page=1{{searlink}}">首页</a>
+	<a href="?upage={{pageprv}}{{searlink}}">上一页</a>
+	{%else%}
+	<font color="#666666">首页 上一页</span>
+	{%endif%}
+	{%if page < pages_number and resultlist%}
+	<a href="?page={{pagenext}}{{searlink}}">下一页</a>
+	<a href="?page={{pages_number}}{{searlink}}">尾页</a>
+	{%else%}
+	<font color="#666666">下一页 尾页</span>
+	{%endif%}
+	</div>
+</div>
+</font>
+{%endblock%}

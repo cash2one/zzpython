@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+		<title>{{pingyinname}}社区_{{pingyinname}}废料论坛_{{pingyinname}}生意人的交流平台-zz91再生网社区微门户</title>
+		<meta name="keywords" content="{{pingyinname}}互助社区,{{pingyinname}}论坛,{{pingyinname}}交流平台"/>
+		<meta name="description" content="zz91再生网旗下互助社区,作为废料生意人的交流平台,在这里您可以咨询废料行业问题、获取废料行业知识、曝光行业骗子，赶紧加入，开启废料生意之旅吧！" />
+		<meta name="applicable-device" content="pc"> 
+		<meta http-equiv="Cache-Control" content="no-transform"/>
+		<meta http-equiv="Cache-Control" content="no-siteapp"/>		
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico">
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+		<link rel="stylesheet" href="/cp/new/css/header.css" />
+		<link rel="stylesheet" href="/cp/new/css/hotnav.css" />
+		<link rel="stylesheet" href="/cp/new/css/cooperation.css" />
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+		<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+		<meta http-equiv="mobile-agent" content="format=html5; url=http://www.zz91.com/cp/{{pingyin}}/huzhu.html?mobileflag=1" />
+		<link rel="alternate" id="mobilecontrol" media="only screen and(max-width:640px)" href="http://www.zz91.com/cp/{{pingyin}}/huzhu.html?mobileflag=1"> 
+		{% include 'mobilecontrol.html' %}
+	</head>
+
+	<body>
+		{% include 'nav.html' %}
+		<div class="warp">
+			<div class="logo">
+				<div class="logoLeft fl">
+					<img src="http://b.zz91.com/cp/img/img03.png" class="fl logoLeft-img" />
+					<p class="logoLeft-main1">{{pingyinname}}</p><br />
+					<p class="logoLeft-main2">当前位置：ZZ91再生网><a href="/cp/">产品微门户</a> >{{pingyinname}}互助</p>
+				</div>
+				<div class="logoRight fr">
+					<script type="text/javascript">
+						/*tags 中部 728*90，创建于2012-8-2*/
+						//var cpro_id = "u1007756";
+						/*kangxianyue 760*90 创建于 2017/2/6*/
+						var cpro_id = "u2887081";
+					</script>
+					<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"></script>
+				</div>
+			</div>
+			<div class="navsearch fl">
+				<div class="navsearchMain">
+					<div class="nav fl">
+						<div class="fl">
+							<a class="navIndex fl" href="/cp/{{pingyin}}/">{{pingyinname}}首页</a><img src="http://b.zz91.com/cp/img/img04.png" /></div>
+						<a class="navOther" href="price.html">价格</a>
+						<a class="navOther" href="company.html">商家</a>
+						<a class="navOther" href="trade.html">供求</a>
+						<a class="navOther" href="picture.html">图片</a>
+						<a class="navOther2" href="huzhu.html">互助</a>
+						<a class="navOther" href="news-1.html">资讯</a>
+					</div>
+					<form method="get" action="http://trade.zz91.com/trade/searchfirst/" id="searchForm1" target="_blank">
+						<div class="search">
+							<input class="searchInput fl" />
+							<img src="http://b.zz91.com/cp/img/img05.png" class="fl searchImg" />
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="Main">
+				<div class="mainLeft fl">
+					<div class="mainLeft-banner">
+						<script type="text/javascript">
+							/*kangxianyue 960*60 创建于 2016/12/14*/
+							var cpro_id = "u2845522";
+						</script>
+						<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"></script>
+					</div>
+					<div class="mainLeft-content fl">
+						{%for list in bbslist%}
+						<div class="mainLeft-contentnr2 fl">
+							<a href="http://huzhu.zz91.com/detail/{{list.id}}.html" class="mainLeft-contentnr-cz fl" target="_blank">
+								<span class="mainLeft-contentnr-ct fl">{{list.title}}</span>
+							</a>
+							<p class="fl">
+								<span class="mainLeft-contentnr-cj">{{list.content}}<a class="mainLeft-contentnr-qw" href="http://huzhu.zz91.com/detail/{{list.id}}.html" target="_blank">[查看全文]</a></span>
+							</p>
+							<p class="fr">
+								<span class="mainLeft-contentnr-cb">发布者：{{list.postname}}</span>
+								<span class="mainLeft-contentnr-cb">更新时间 {{list.gmt_time}}</span>
+								<span class="mainLeft-contentnr-cb">回复数：{{list.reply_count}}</span>
+							</p>
+						</div>
+						{%endfor%}
+					</div>
+					<a class="mainLeft-main1Mmore fl" href="huzhumore-1.html">查看更多　>></a>
+				</div>
+				<div class="mainRight fl">
+					<div class="mainRight-main2">
+						<div class="mainRight-mainT">相关{{pingyinname}}供应</div>
+						<div class="mainRight-mainM">
+							{%for list in salesproducts%}
+							<a class="mainRight-mainMt" href="http://trade.zz91.com/productdetails{{list.id}}.htm">
+								<span class="fl">供应{{list.title}}</span>
+								<span class="fr">{{list.gmt_time_m}}</span>
+							</a>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="mainRight-main2">
+						<div class="mainRight-mainT">相关{{pingyinname}}求购</div>
+						<div class="mainRight-mainM">
+							{%for list in buyproducts%}
+							<a class="mainRight-mainMt" href="http://trade.zz91.com/productdetails{{list.id}}.htm" target=_blank>
+								<span class="fl">求购{{list.title}}</span>
+								<span class="fr">{{list.gmt_time_m}}</span>
+							</a>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="mainRight-banner2">
+						<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+						<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5512236620584335" data-ad-slot="8274972003" data-ad-format="auto"></ins>
+						<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
+					</div>
+					<div class="mainRight-banner1">
+						<script src="http://pyapp.zz91.com/showppctxtadscript/?keywords={{pingyinname}}&showposition=&m=8&w=240&showborder=1&adposition=636"></script>
+					</div>
+				</div>
+			</div>
+			<div class="hotnav">
+				<div class="hotnavTop">
+					<p class="hotnavTopz">热门产品导航</p>
+					<!--<a class="more" href="#">更多</a>-->
+				</div>
+				<div class="hotnavMain fl">
+					{%for list in cplist%}
+					<a href="http://www.zz91.com/cp/{{list.pingyin}}/" target=_blank title="{{list.label}}">{{list.label}}</a>
+					{%endfor%}
+				</div>
+			</div>
+		</div>
+		<script>
+			$(".searchImg").click(function() {
+				//alert(1)
+				var keywords = $(".searchInput").val();
+				//window.location.href="http://trade.zz91.com/trade/searchfirst/"
+				if(keywords.length > 0) {
+					$("#searchForm1").submit()
+				} else {
+					$(".searchInput").focus()
+				}
+			})
+		</script>
+		{% include 'bottom.html' %}
+	</body>
+
+</html>

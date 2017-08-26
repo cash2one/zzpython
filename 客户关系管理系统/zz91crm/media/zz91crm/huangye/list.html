@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+		<title>期刊客户资料管理</title>
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/province.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+		<style>
+			/* CSS Document */
+			
+			body {
+				background-color: #D0D7E1;
+			}
+			
+			.stitle {
+				font-size: 14px;
+				font-weight: bold;
+				color: #4A711C;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+				border-bottom-color: #87CB31;
+			}
+			
+			a {
+				color: #000000;
+			}
+			
+			a:hover {
+				color: #000000;
+			}
+			
+			.btitle {
+				font-size: 16px;
+				line-height: 30px;
+				font-weight: bold;
+				background-color: #F2F2F2;
+				border-bottom-width: 1px;
+				border-bottom-style: solid;
+				border-bottom-color: #999999;
+			}
+			
+			td {
+				font-size: 12px;
+				line-height: 22px;
+			}
+			
+			.lit {
+				border-bottom-width: 1px;
+				border-bottom-style: dashed;
+				border-bottom-color: #CCCCCC;
+			}
+			.page{
+				font-size: 14px;
+				line-height: 30px;
+			}
+			.current{
+				background-color: #F0AD4E;
+				color: #fff;
+			}
+		</style>
+		<script>
+			function searchfrm(frm) {
+				getprovincename();
+			}
+
+			function CheckAll(form) {
+				for(var i = 0; i < form.elements.length; i++) {
+					var e = form.elements[i];
+					if(e.name.substr(0, 3) == 'cbb')
+						e.checked = form.cball.checked;
+				}
+			}
+
+			function opencomp(form) {
+				selectcb = "0"
+				for(var i = 0; i < form.elements.length; i++) {
+					var e = form.elements[i];
+					if(e.name.substr(0, 3) == 'cbb') {
+						if(e.checked == true) {
+							var selectcb = selectcb + "," + e.value
+							window.open("add.asp?id=" + e.value, "", "")
+						}
+					}
+				}
+				form.selectcb.value = selectcb.substr(2)
+			}
+
+			function selectleibie(obj) {
+				if (obj){
+					$("#leibie1").hide();
+					$("#leibie2").hide();
+					$("#leibie3").hide();
+					$("#leibie" + obj).show();
+				}
+			}
+		</script>
+	</head>
+
+	<body scroll=yes>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td height="30"><strong style="font-size:16px">商务大全客户资料管理 </strong></td>
+				<td align="right"><strong style="font-size:16px"><a href="out.asp">退出</a></strong></td>
+			</tr>
+		</table>
+		<table width="100%" border="0" cellspacing="1" cellpadding="6" bgcolor="#000000">
+			<form id="form1" name="form1" method="get" action="list.html" onSubmit="return searchfrm(this.form)">
+				<tr>
+					<td bgcolor="#FFFFFF">
+						<select name="huangye_qukan" id="huangye_qukan" style="float:left">
+							<option value="">--请选择期刊--</option>
+							{%for list in huangyeqklist%}
+							<option value="{{list.code}}">{{list.label}}</option>
+							{%endfor%}
+						</select>
+						<script>
+							selectOption("huangye_qukan", "{{huangye_qukan}}")
+						</script>
+						<table border="0" cellspacing="0" cellpadding="0" style="float:left">
+							<tr>
+								<td>
+									<select name="pcheck" id="pcheck">
+										<option value="">审核情况</option>
+										<option value="1">已审核</option>
+										<option value="0">未审核</option>
+									</select>
+									大类
+									<select name="ckeywords" id="ckeywords" onChange="selectleibie(this.value)">
+										<option value="">请选择业务类型--</option>
+										<option value="1">废金属</option>
+										<option value="2">废塑料</option>
+										<option value="3">综合</option>
+									</select>
+								</td>
+							</tr>
+						</table>
+						<script>
+							selectOption("pcheck", "")
+						</script>
+
+						<table border="0" cellspacing="0" cellpadding="0" style="display:none; float:left" id="leibie1">
+							<tr>
+								<td>必选
+									<select name="js1" id="js1">
+										<option value="">金属细类</option>
+										<option value="贵金属">贵金属（金银铂钯铑等）</option>
+										<option value="稀有金属">稀有金属（钨钼钛锢等）</option>
+										<option value="有色金属">有色金属（锡铜铝锌镍等）</option>
+										<option value="钢铁">钢铁（铁钢工具钢合金钢不锈钢）</option>
+										<option value="其他类">其他类</option>
+									</select>
+									<script>
+										selectOption("js1", "")
+									</script>
+									其他
+									<select name="js2" id="js2">
+										<option value="">金属细类</option>
+										<option value="贵金属">贵金属（金银铂钯铑等）</option>
+										<option value="稀有金属">稀有金属（钨钼钛锢等）</option>
+										<option value="有色金属">有色金属（锡铜铝锌镍等）</option>
+										<option value="钢铁">钢铁（铁钢工具钢合金钢不锈钢）</option>
+										<option value="其他类">其他类</option>
+									</select>
+									<script>
+										selectOption("js2", "")
+									</script>
+								</td>
+							</tr>
+						</table>
+						<table border="0" cellspacing="0" cellpadding="0" style="display:none; float:left" id="leibie2">
+							<tr>
+								<td>必选
+									<select name="sl1" id="sl1">
+										<option value="">塑料细类</option>
+										<option value="PP">PP</option>
+										<option value="PET">PET</option>
+										<option value="PE">PE</option>
+										<option value="ABS">ABS</option>
+										<option value="PVC">PVC</option>
+										<option value="PS">PS</option>
+										<option value="PA">PA</option>
+										<option value="PC">PC</option>
+										<option value="PVB">PVB</option>
+										<option value="PMMA">PMMA</option>
+										<option value="EVA">EVA</option>
+										<option value="PU">PU</option>
+										<option value="其他类">其他类</option>
+									</select>
+									<script>
+										selectOption("sl1", "")
+									</script>
+									其他
+									<select name="sl2" id="sl2">
+										<option value="">塑料细类</option>
+										<option value="PP">PP</option>
+										<option value="PET">PET</option>
+										<option value="PE">PE</option>
+										<option value="ABS">ABS</option>
+										<option value="PVC">PVC</option>
+										<option value="PS">PS</option>
+										<option value="PA">PA</option>
+										<option value="PC">PC</option>
+										<option value="PVB">PVB</option>
+										<option value="PMMA">PMMA</option>
+										<option value="EVA">EVA</option>
+										<option value="PU">PU</option>
+										<option value="其他类">其他类</option>
+									</select>
+									<script>
+										selectOption("sl2", "")
+									</script>
+									<script>
+										selectOption("ckeywords", "")
+									</script>
+									<script>
+										selectleibie("")
+									</script>
+
+								</td>
+							</tr>
+						</table>
+						<table border="0" cellspacing="0" cellpadding="0" style="display:none; float:left" id="leibie3">
+							<tr>
+								<td>必选
+
+									<select name="qt1" id="qt1">
+										<option value="">综合细类</option>
+										<option value="橡胶">橡胶</option>
+										<option value="纺织">纺织</option>
+										<option value="废纸">废纸</option>
+										<option value="废电子电器">废电子电器</option>
+										<option value="服务行业">服务行业</option>
+										<option value="其他">其他</option>
+									</select>
+									<script>
+										selectOption("qt1", "")
+									</script>
+									其他
+									<select name="qt2" id="qt2">
+										<option value="">综合细类</option>
+										<option value="橡胶">橡胶</option>
+										<option value="纺织">纺织</option>
+										<option value="废纸">废纸</option>
+										<option value="废电子电器">废电子电器</option>
+										<option value="服务行业">服务行业</option>
+										<option value="其他">其他</option>
+									</select>
+									<script>
+										selectOption("qt2", "")
+									</script>
+									<script>
+										selectleibie("")
+									</script>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td bgcolor="#FFFFFF">账号
+						<input name="com_email" type="text" id="com_email" size="10" value="{{com_email}}"/> 公司名称
+						<input name="cname" type="text" id="cname" size="10" /> 主营
+						<input name="cproductslist" type="text" id="cproductslist" size="15" value="{{cproductslist}}" /> 地区
+
+						<font id="mainprovince1"></font>
+						<font id="maincity1"></font>
+						<font id="mainGarden">无园区</font>
+						<input type="hidden" name="province" id="province">
+						<input type="hidden" name="city" id="city">
+						<input type="hidden" name="cprovince" id="cprovince" value="0">
+
+						<script>
+							//地区及园区
+							var Fstyle = "";
+							var selectname1 = "province1";
+							var selectname2 = "city1";
+							var selectname3 = "Garden";
+							var Fvalue1 = "";
+							var Fvalue2 = "";
+							var Fvalue3 = "";
+							var hyID = "ckeywords"; //行业ID号
+							getprovincevalue();
+						</script>
+						<script>
+							function getprovincename() {
+								document.getElementById("province").value = document.getElementById("province1").options[document.getElementById("province1").selectedIndex].text
+								document.getElementById("city").value = document.getElementById("city1").options[document.getElementById("city1").selectedIndex].text
+							}
+						</script>
+						<select name="doperson" id="doperson" style="width: auto;">
+							<option value="">销售人员</option>
+							{%for salesman in allsalesman%}
+							<option value="">┆&nbsp;&nbsp;┿{{salesman.cate_label}}</option>
+							{%for man in salesman.thiscateman%}
+							<option value="{{man.id}}">┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿{{man.realname}}</option>
+							{%endfor%} {%endfor%}
+						</select>
+						<input type="submit" name="button" id="button" value="搜索" />
+						<script>
+							selectOption("doperson", "{{doperson}}")
+						</script>
+						<input type="button" name="button2" id="button2" value="添加客户资料" onClick="window.location='add.html'" />
+						<input type="button" name="button2" id="button2" value="客户导出" onClick="window.open('hy_out.html')" />
+					</td>
+				</tr>
+			</form>
+		</table>
+
+		<div class="inline pull-right page">
+			<form action="?{{searchurl}}" method="get" onsubmit="return pagesmit(this)">
+				共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页 &nbsp;&nbsp; {% if firstpage %} <a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%} {%for p in page_range%} {%if p.nowpage%} <span class='current'>{{p.number}}</span>&nbsp;
+				{%else%} <a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a> {%endif%} {%endfor%} {% if lastpage%} <a href="?page={{nextpage}}&{{searchurl}}"><!--<a href="javascript:void(0)" class="nextpage" value="{{nextpage}}">-->下一页</a>{%else%}
+				<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp; {%if flag%}
+				<input type="hidden" name="flag" value="{{flag}}"> {%endif%} {%if writer%}
+				<input type="hidden" name="writer" value="{{writer}}"> {%endif%}
+				<input type="hidden" name="page_listcount" value="{{page_listcount}}"> &nbsp;&nbsp; 去第
+				<input type="text" name="page" id="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页
+				<input type="submit" style="display:none"> &nbsp;&nbsp; <a href='?page=1&{{searchurl}}'>首页</a><a href='?page={{page_listcount}}&{{searchurl}}'>尾页</a>
+			</form>
+		</div>
+
+		<form>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td><input type="button" name="button3" id="button3" value="一键打开" onClick="opencomp(this.form)" /></td>
+				</tr>
+			</table>
+			<table width="100%" border="0" cellspacing="1" cellpadding="6" bgcolor="#000000">
+				<tr>
+					<td width="30" nowrap="nowrap" bgcolor="#ebebeb">
+						<input name="cball" type="checkbox" value="" onClick="CheckAll(this.form)">
+					</td>
+					<td nowrap="nowrap" bgcolor="#ebebeb">期刊</td>
+					<td nowrap="nowrap" bgcolor="#ebebeb">公司名称</td>
+					<td nowrap="nowrap" bgcolor="#ebebeb">帐号（邮箱）</td>
+					<td nowrap="nowrap" bgcolor="#ebebeb">联系人</td>
+					<td nowrap="nowrap" bgcolor="#ebebeb">联系电话/手机</td>
+					<td nowrap="nowrap" bgcolor="#ebebeb">微信</td>
+					<td nowrap="nowrap" bgcolor="#ebebeb">大类</td>
+					<td nowrap="nowrap" bgcolor="#ebebeb">细类</td>
+					<td nowrap="nowrap" bgcolor="#ebebeb">主营业务</td>
+					<td nowrap="nowrap" bgcolor="#ebebeb">地址</td>
+					<td nowrap="nowrap" bgcolor="#ebebeb">添加人</td>
+					<td nowrap="nowrap" bgcolor="#ebebeb">添加时间</td>
+					<td colspan="2" nowrap="nowrap" bgcolor="#ebebeb">操作</td>
+				</tr>
+				{%for list in listall%}
+				<tr>
+					<td bgcolor="#FFFFFF">
+						<input name="cbb" id="cbb{{list.id}}" type="checkbox" value="{{list.id}}">{{list.id}}
+					</td>
+					<td bgcolor="#FFFFFF">{{list.qikanname}}</td>
+					<td bgcolor="#FFFFFF">
+						<a href="/icd/crm_cominfoedit.html?company_id={{list.com_id}}&dotype=allall" target="_blank">{{list.cname}}</a>
+					</td>
+					<td bgcolor="#FFFFFF">{{list.com_email}}</td>
+					<td bgcolor="#FFFFFF">{{list.ccontactp}}</td>
+					<td bgcolor="#FFFFFF">{{list.cmobile}}</td>
+					<td bgcolor="#FFFFFF">{{list.weixin}}</td>
+					<td bgcolor="#FFFFFF">{{list.hyname}}</td>
+					<td bgcolor="#FFFFFF">
+						{{list.js1}}{{list.js2}}{{list.sl1}}{{list.sl2}}{{list.qt1}}{{list.qt2}}
+					</td>
+					<td bgcolor="#FFFFFF">{{list.cproductslist}}</td>
+					<td bgcolor="#FFFFFF">{{list.cadd}}</td>
+					<td bgcolor="#FFFFFF">{{list.realname}}</td>
+					<td bgcolor="#FFFFFF">{{list.fdate}}</td>
+					<td bgcolor="#FFFFFF">
+						<a href="edit.html?id={{list.id}}">修改</a>
+					</td>
+					<td bgcolor="#FFFFFF">
+						<a href="del.html?id={{list.id}}" onClick="return confirm('确实要删除吗？')">删除</a>
+					</td>
+				</tr>
+				{%endfor%}
+
+			</table>
+		</form>
+		<div class="inline pull-right page">
+			<form action="?{{searchurl}}" method="get" onsubmit="return pagesmit(this)">
+				共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页 &nbsp;&nbsp; {% if firstpage %} <a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%} {%for p in page_range%} {%if p.nowpage%} <span class='current'>{{p.number}}</span>&nbsp;
+				{%else%} <a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a> {%endif%} {%endfor%} {% if lastpage%} <a href="?page={{nextpage}}&{{searchurl}}"><!--<a href="javascript:void(0)" class="nextpage" value="{{nextpage}}">-->下一页</a>{%else%}
+				<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp; {%if flag%}
+				<input type="hidden" name="flag" value="{{flag}}"> {%endif%} {%if writer%}
+				<input type="hidden" name="writer" value="{{writer}}"> {%endif%}
+				<input type="hidden" name="page_listcount" value="{{page_listcount}}"> &nbsp;&nbsp; 去第
+				<input type="text" name="page" id="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页
+				<input type="submit" style="display:none"> &nbsp;&nbsp; <a href='?page=1&{{searchurl}}'>首页</a><a href='?page={{page_listcount}}&{{searchurl}}'>尾页</a>
+			</form>
+		</div>
+	</body>
+
+</html>

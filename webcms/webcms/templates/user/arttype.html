@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/style.css" />
+	<script src="/bootstrap/Js/jquery-1.7.2.js"></script>
+<script>
+$(function(){
+	$('.append1').click(function(){
+		var artid=$(this).attr("artid")
+		$.ajax({
+		   type: "GET",
+		   url: "nexttypelist.html",
+		   data: "reid="+artid+"&freshtime={{freshtime}}",
+		   success:function(data){
+				//alert(data)
+				$("#tab1").html(data)
+			   },
+		   error:function(data){
+				//alert("错误!青重试.");
+		   }
+		});
+	 });
+});
+</script>
+</head>
+<body>
+<form class="form-inline definewidth m20" action="index.html" method="get">  
+<button type="button" class="btn btn-success" onClick="window.location.href='addarttype.html'">添加栏目</button>
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>帐号</th>
+        <th>栏目名称</th>
+        <th>上级栏目</th>
+        <th>拼音(目录)</th>
+        <th>模板</th>
+        <th>栏目类别</th>
+        <th>排序</th>
+        <th>管理操作</th>
+    </tr>
+    </thead>
+    <tbody id="tab1">
+    {%for list in listall%}
+     <tr>
+        <td>{{list.user_name}}</td>
+        <td>
+	        {{list.typename}}({{list.id}})
+	        {%if list.hasnext%} &nbsp;
+	        <a href="?reid={{list.id}}&freshtime={{freshtime}}"> &nbsp;查看下级栏目&nbsp; </a>
+	        {%endif%}
+	        {%ifnotequal reid "0"%}<a href="arttype.html?freshtime={{freshtime}}"> &nbsp;&nbsp;返回上级栏目&nbsp; </a>{%endifnotequal%}
+        </td>
+        <td>{%if list.retypename%}{{list.retypename}}({{list.reid}}){%endif%}</td>
+        <td>{{list.pinyin}}</td>
+        <td>{%if list.tempname%}{{list.tempname}}{%endif%}</td>
+        <td>{{list.pagename}}</td>
+        <td>{{list.sortrank}}</td>
+        <td>
+		<a href="updatearttype.html?typeid={{list.id}}&freshtime={{freshtime}}" title="编辑"><img src="/123/imgs/gtk-edit.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="delfromdb.html?artid={{list.id}}&db={{dbtype}}" onClick="return confirm('请谨慎操作! 是否将此栏目删除?')" title="删除"><img src="/123/imgs/b_drop.png"></a>
+		</td>
+    </tr>
+     {%endfor%}
+    </tbody>
+</table>
+{%include 'common/turnpage.html'%}
+</body>
+</html>

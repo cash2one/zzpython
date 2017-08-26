@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/> 
+<title>废金属-废塑料-废纸-纺织废料-再生资源-废橡胶-ZZ91再生网标签频道</title>
+<meta name="keywords" content="废金属,废塑料,废纸,纺织废料,再生资源,废橡胶,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备" />
+<meta name="description" content="ZZ91再生网是废料商人的网上贸易市场,这里为您精选了废金属,废塑料,废纸,废橡胶,纺织废料,废旧设备,废电子电器,废玻璃,废皮革,废铜,废铝,废铁,企业报价,塑料颗粒,二手设备等各类废料供求信息.公司黄页.行业资讯.价格行情.展会信息等。" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" /> 
+<meta content="yes" name="apple-mobile-web-app-capable" /> <meta content="black" name="apple-mobile-web-app-status-bar-style" /> <meta content="telephone=no" name="format-detection" /> 
+<link rel="stylesheet" href="http://tags.zz91.com/mobile/tags_index.css?p=1" />
+</head>
+<body>
+<div class="s_shead">
+	<ul  class="s_nav">
+		<li><a href="/" class="active">首页</a></li>
+		<li><a href="http://m.zz91.com/priceindex/">价格</a></li>
+		<li><a href="http://m.zz91.com/huzhu/">问答</a></li>
+		<li><a href="http://m.zz91.com/category/">供求</a></li>
+		<li><a href="http://m.zz91.com/company/" >公司</a></li>
+        <li><a href="http://m.zz91.com/news/" >资讯</a></li>
+	</ul>
+</div>
+<div class="t40"></div>
+
+<style>
+/*搜索*/
+.s_publicsearchbg{background:url(http://tags.zz91.com/mobile/img/s_120ask_search.png) no-repeat;-webkit-background-size:95px 60px;background-size:95px 60px;}
+input[type="submit"]{-webkit-border-radius:0;border-radius:0;}
+.s_publicwarp{display:-webkit-box;isplay:-webkit-box;display:-moz-box;display:box;padding:11px 12px 17px;background-color: #fff;}
+.s_publicsearch{border:1px solid #8C8C8C;-webkit-box-flex:1;}
+.s_publicsearch input[type="text"]{background-position: -72px -32px;height:33px;border:0 none;display:block;box-sizing:border-box;width:100%;padding:0 5px 0 30px;font-size:15px;color:#666;}
+.s_publicwarp input[type="submit"]{width:96px;height:35px;background-position: 0 0;display: block;font-size:0px;border:1px solid #8C8C8C;border-left:none;}
+/*end*/
+</style>
+<form action="http://m.zz91.com/offerlist/">
+<section class="s_publicwarp">
+    <div class="s_publicsearch">
+        <input type="text" placeholder="请输入搜索关键字" class="s_publicsearchbg" name="keywords" value="{{kname}}" autocomplete="off" autocorrect="off" maxlength="30">
+    </div>
+    <input type="submit" class="s_publicsearchbg" value="">
+</section>
+</form>
+<center>
+	<script type="text/javascript">
+	/*kangxianyue 20:5 创建于 2017/4/19*/
+	var cpro_id = "u2958427";
+	</script>
+	<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/cm.js"></script>
+</center>
+{%for list in categorylist%}
+<a href="/index/{{list.code}}/"><div class="box_css">
+    <ul id="pagenavi1" class="page">
+        <li>{{list.label}}<i></i></li>
+    </ul>
+</div></a>
+{%endfor%}
+{% include 'mobile/bottom.html' %}
+</body>
+</html>

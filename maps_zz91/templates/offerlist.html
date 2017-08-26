@@ -1,0 +1,93 @@
+﻿<script language="Javascript"><!--
+function ANP_goToPage(boxEl){if(boxEl!=null){var pi;if(boxEl.tagName=="SELECT"){pi=boxEl.options[boxEl.selectedIndex].value;}else{pi=boxEl.value;}location.href="PageList.aspx?type=1&province=&city=&garden=&page="+pi+"";}}
+function ANP_checkInput(bid,mv){var el=document.getElementById(bid);var r=new RegExp("^\\s*(\\d+)\\s*$");
+if(r.test(el.value)){if(RegExp.$1<1||RegExp.$1>mv){alert("页索引超出范围！");el.focus();el.select();return false;}
+return true;}alert("页索引不是有效的数值！");el.focus();el.select();return false;}
+function ANP_keydown(e,btnId){
+var kcode;
+if(window.event){kcode=e.keyCode;}
+else if(e.which){kcode=e.which;}
+var validKey=(kcode==8||kcode==46||kcode==37||kcode==39||(kcode>=48&&kcode<=57)||(kcode>=96&&kcode<=105));
+if(!validKey){
+if(kcode==13) document.getElementById(btnId).click();
+if(e.preventDefault) e.preventDefault();else{event.returnValue=false};
+}
+}
+--></script>
+<style>
+.cpb
+{
+	color:#ff0000;
+	font-weight:bold;
+}
+</style>
+<div id='con3left3'>
+   <a href="http://company.zz91.com" target=_blank><img id="myList1_Img0" src='http://img.zz91.com/map1/img/ListTitle1_Img0.gif' /></a>&nbsp;
+   <a href="###"><img id="myList1_Img1" src='http://img.zz91.com/map1/img/ListTitle1_GrayImg1.gif' /></a>
+</div>
+<div id="myList1_Content0" style='display:none'></div>
+<div id="myList1_Content1" style='width: 99%;display:'>
+<!--供求商机 Create By Rolyer 2009.10.23 -->
+<!--List Start-->
+{% for list in listall %}
+<DIV id=list>
+<DIV class=offer1 id=compareColor1>
+<DIV class='buynopic nol' onMouseOver=this.style.cursor='hand'><a href='http://trade.zz91.com/productdetails{{list.pdt_id}}.htm'  target='_blank'><img src='{{list.pdt_images}}' width='100' height='75' alt='{{list.pdt_name}}'></a></DIV>
+<DIV class=buycontent>
+<DIV class=buyinfo> <SPAN class=m> <SPAN class=lh15><a target='_blank' href='http://trade.zz91.com/productdetails{{list.pdt_id}}.htm' class='a1'>{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a></SPAN></SPAN> 
+<NOBR><SPAN class=int_gray>{{list.pdt_time_en}}</SPAN></NOBR> <BR>
+<SPAN class=G> 
+<SPAN class='gray s' style='word-break:break-all;color:#666'>{{list.pdt_detail}}<br>
+{%if list.vipflag.vipcheck%}
+<A href='http://{{list.vipflag.vipsubname}}.zz91.com/' target='_blank'>{{list.com_name}}</A>
+{%endif%}
+{%if list.vipflag.vipcheck%}
+<br><a href='http://{{list.vipflag.vipsubname}}.zz91.com/mysite_offer_detail{{list.com_id}}_{{list.pdt_id}}.html' target='_blank'> <img src='http://img.zz91.com/zz91images/leaveword_ico.gif' border='0' /></a>
+<a href='http://{{list.vipflag.vipsubname}}.zz91.com/mysite_contact{{list.com_id}}.html' target='_blank'><img src='http://img.zz91.com//zz91images/contact_ico.gif' border='0'/></a>
+{%else%}
+<br><a href='http://www.zz91.com/company/compinfo{{list.com_id}}.html#offlist' target='_blank'> <img src='http://img.zz91.com/zz91images/leaveword_ico.gif' border='0' /></a>
+<a href='http://www.zz91.com/company/compinfo{{list.com_id}}.html' target='_blank'><img src='http://img.zz91.com//zz91images/contact_ico.gif' border='0'/></a>
+{%endif%}
+</SPAN> 
+<BR></SPAN>
+</DIV>
+</DIV>
+<BR><DIV class=listmyt style='LINE-HEIGHT: 150%'>
+{%if list.vipflag.vipcheck%}
+&nbsp;<A href='http://{{list.vipflag.vipsubname}}.zz91.com/' target='_blank'><img src='http://img.zz91.com/zz91images/go_msb1.gif' width='68' height='24' border='0' /></a>
+{%endif%}
+</DIV>
+	<DIV class=listaddress style='color:#999999'>{{list.com_province}}</DIV>
+	<DIV class=listathena>
+		{%if list.vipflag.vipcheck%}
+		<a href="http://{{list.vipflag.vipsubname}}.zz91.com/mysite_remark{{list.com_id}}_17.html" target='_blank'  title="{{list.vipflag.vipname}}"><img src="{{list.vipflag.vippic}}" alt="{{list.vipflag.vipname}}"/></a><br /><a href="http://{{list.vipflag.vipsubname}}.zz91.com/mysite_remark{{list.com_id}}_17.html" target='_blank'  title="{{list.vipflag.vipname}}">{{list.vipflag.vipname}}</a>
+		{%else%}
+		{{list.vipflag.vipname}}
+		{%endif%}
+	</DIV>
+<DIV class=hackbox></DIV>      
+</DIV>
+</DIV>
+{% endfor %}
+<!--List End-->
+<!-- AspNetPager V7.2 for VS2005 & VS2008  Copyright:2003-2008 Webdiyer (www.webdiyer.com) -->
+<div style="padding-top:10px;">
+{% if firstpage %}
+<a href="?page=1&provinceID={{provinceID}}&city={{city}}&trade={{trade}}" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+<a href="?page={{prvpage}}&provinceID={{provinceID}}&city={{city}}&trade={{trade}}" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+{% endif %}
+{% for p in page_range %}
+{% if p.nowpage %}
+<span class="cpb" style="margin-right:5px;">{{p.number}}</span>
+{% else %}
+<a href="?page={{p.number}}&provinceID={{provinceID}}&city={{city}}&trade={{trade}}" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+{% endif %}
+{% endfor %}
+&nbsp;
+{% if lastpage%}
+<a href="?page={{nextpage}}&provinceID={{provinceID}}&city={{city}}&trade={{trade}}" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+<a href="?page={{page_listcount}}&provinceID={{provinceID}}&city={{city}}&trade={{trade}}" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+{% endif %}
+</div>
+<!-- AspNetPager V7.2 for VS2005 & VS2008 End -->
+</div>

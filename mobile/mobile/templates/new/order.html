@@ -1,0 +1,48 @@
+{%include 'new/head.html'%}
+<body>
+<div class="mobile">
+	{%include 'new/top.html'%}
+    <div class="cb"></div>
+    <div style="margin-top:60px;"></div>
+    <div class="order_main">
+    	<div class="order_title">废金属</div>
+        <div class="cb"></div>
+    </div>
+    <div class="order_content">
+    	<ul>
+        {%for list in companylist1.list%}
+        	<li><a href="/detail/?id={{list.pdt_id}}"><img src="{{list.pdt_images}}" title="{{list.pdt_name}}" /><br />{{list.pdt_name}}</a></li>
+		{%endfor%}
+        </ul>
+        <div class="more"><a href="/offerlist/?keywords=废金属">查看更多</a></div>
+    </div>
+    <div class="order_main">
+    	<div class="order_title">废塑料</div>
+        
+        <div class="cb"></div>
+    </div>
+    <div class="order_content">
+    	<ul>
+        	{%for list in companylist2.list%}
+        	<li><a href="/detail/?id={{list.pdt_id}}"><img src="{{list.pdt_images}}" title="{{list.pdt_name}}" /><br />{{list.pdt_name}}</a></li>
+			{%endfor%}
+        </ul>
+        <div class="more"><a href="/offerlist/?keywords=废塑料">查看更多</a></div>
+    </div>
+    <div class="order_main">
+    	<div class="order_title">综合废料</div>
+        
+        <div class="cb"></div>
+    </div>
+    <div class="order_content">
+    	<ul>
+        	{%for list in companylist3.list%}
+        	<li><a href="/detail/?id={{list.pdt_id}}"><img src="{{list.pdt_images}}" title="{{list.pdt_name}}" /><br />{{list.pdt_name}}</a></li>
+			{%endfor%}
+        </ul>
+        <div class="more"><a href="/category/">查看更多</a></div>
+    </div>
+</div>
+{%include 'new/bottom.html'%}
+</body>
+</html>

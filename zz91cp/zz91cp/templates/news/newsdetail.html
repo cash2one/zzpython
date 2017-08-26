@@ -1,0 +1,161 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{list.title}}</title>
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico">
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+<link href="http://img0.zz91.com/zz91/cp/news/css/style.css" rel="stylesheet" type="text/css" />
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+</head>
+
+<body>
+{% include 'nav.html' %}
+    <div class="top">
+       <div class="logo"><a href="http://www.zz91.com" target="_blank"><img border="0" src="http://img0.zz91.com/zz91/images/logo.png" /></a><a href="http://jiage.zz91.com/" target="_blank"><img border="0" src="http://cp.zz91.com/images/newslogo2.jpg" /></a></div>
+       <div class="search">
+       <form action="newssearchfirst.html" method="get">
+          <input name="keywords" type="text" class="search_list2" />
+          <input name="submit" type="submit" class="search_list3" value="" />
+          </form>
+       </div>
+       <div class="others">
+          <div class="cpk"><a href="http://trade.zz91.com/" target=_blank>产品库</a></div>
+          <div class="gsk"><a href="http://company.zz91.com/" target=_blank>公司库</a></div>
+       </div>
+       <div class="cl"></div>
+    </div>
+<div class="menu">
+  <div class="menubg"></div>
+  <div class="menuin">
+    <ul>
+     {%for list in navlistt%}
+     <li class="menuin_li1"><a href="newslist-{{list.name_hex}}-1.html" >{{list.name}}</a></li>
+	{%endfor%}
+
+
+    </ul><div class="cl"></div>
+  </div>
+</div>
+<div class="content">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 资讯详细页 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:930px;height:90px"
+     data-ad-client="ca-pub-5512236620584335"
+     data-ad-slot="2458197609"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+   <div class="contentleft">
+     <div class="lode">当前位置：<a href="/news/">废料资讯</a> > {{list.title}} </div>
+     <div class="title">{{list.title}}</div>
+     <div class="laiyuan">{{list.post_time}}　 来源:ZZ91再生网 {%if list.tags%}标签：{{list.tags}}{%endif%}</div>
+   <!--<div class='zaiyao'></div> -->   
+     
+     <div id="content">
+	 <div style="float:left; margin-right:10px;">
+    <script type="text/javascript">
+/*新老站 资讯中部 250*250，创建于2013-12-9*/
+var cpro_id = "u1429359";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+	 </div>
+{{list.content|safe}}           
+
+     </div>
+     
+     <div style='clear:both'></div>
+ 
+     <div class="shengming">
+     
+        <table width="710" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="45" align="center" valign="top">声明：</td>
+    <td width="665">
+本栏目文章和评论等作品仅代表作者或所在媒体的观点，本站对文章版权的归属，权利瑕疵及内容的准确性，可靠性和完整性等情况不承担任何法律责任，如因此发生纠纷，均与本站无关。如本栏目文章和评论侵犯了您的合法权利，请来电告知，我们将及时处理。<br />
+        联系电话：0571-56611111 </td>
+  </tr>
+</table>
+
+     </div>
+	 <div style='clear:both'></div>
+     <div class="others_list">
+        <strong>相关资讯： </strong>
+<ul>
+	{%for list in xgnewslist%}
+		<li>·<a href="news{{list.old_news_id}}.html" target="_blank">{{list.title}}</a>  {{list.post_time}}</li>
+	{%endfor%}
+	{%for list in xgnewslist1%}
+		<li>·<a href="http://huzhu.zz91.com/viewReply{{list.id}}.htm" target="_blank">{{list.title}}</a>  {{list.gmt_time}}</li>
+	{%endfor%}	
+		</ul>
+     </div>
+<div class="cl"></div>
+  </div>
+   <div class="contentright">
+     <div>
+	 <script type="text/javascript">
+/*新老站资讯 右侧 200*200，创建于2013-12-9*/
+var cpro_id = "u1429357";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+	</div>
+    
+     <div class="tjbox">
+       <div class="tjboxtl">最新资讯</div>
+        <ul>
+		{%for list in newslist%}
+        <li class="tj_left2">·<a href="http://huzhu.zz91.com/viewReply{{list.id}}.htm" target=_blank>{{list.title}}</a></li>
+        {%endfor%}
+        </ul>
+     </div><div class="cl"></div>
+     
+     <div class="cl"></div>
+     
+     
+     
+     <div class="tjbox">
+       <div class="tjboxtl">推荐产品</div>
+        <ul>
+		{%for list in prolist%}
+    <li class="tj_left">
+    <table cellpadding="0" cellspacing="0" border="0" style="width:100px; height:102px; overflow:hidden">
+      <tr>
+        <td width="100" height="82" valign="middle" align="center" class="tj_leftin"><a href="http://trade.zz91.com/productdetails{{list.id}}.htm" target="_blank"><img src="{{list.pdt_images}}" width="90" height="80"/></a></td>
+      </tr>
+      <tr>
+        <td height="20" valign="middle" align="center" style=" padding-top:5px;"><a href="http://trade.zz91.com/productdetails{{list.id}}.htm"  target="_blank">{{list.title}}</a></td>
+      </tr>
+    </table>
+    </li>
+       {%endfor%}
+                     
+           <div class="cl"></div>
+        </ul>
+     </div>
+     <div class="cl"></div>
+   </div>
+   <div class="cl"></div>
+</div>
+<div class="btn_sbox">
+<div class="btn_search">
+<form action="newslist.html" method="get">
+          <input name="keywords" type="text" class="search_list2" />
+          <input name="submit" type="submit" class="search_list3" value="" /><div class="cl"></div>
+          </form>
+       </div></div>
+   <script type="text/javascript">
+/*老站点悬浮广告 300*250，创建于2013-2-28*/
+var cpro_id = "u1222766";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/f.js" type="text/javascript"></script>    
+{% include 'bottom.html' %}
+</body>
+</html>
+

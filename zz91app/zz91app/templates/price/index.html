@@ -1,0 +1,161 @@
+<style>
+.box_ .tab-txt{
+	width:100%;
+	height:30px;
+	background-color:#090;
+	color:#FFF;
+	display:block;
+	line-height:30px;
+	margin:0px;
+	padding:0px;
+	padding-left:20px;
+}
+</style>
+<form method="post">
+	<span class="mui-table-view-cell" style="margin-top: 0px;display:block;padding-top: 0px;padding-bottom: 0px;border: 0px;background-image: none;">
+        <button class="mui-btn mui-btn-primary mui-icon mui-icon-search" onclick="zz91search(this.form,'/price/?keywords=','price')" type="button">搜报价</button>
+        <input type="search" id="searchtext" placeholder="请输入产品关键字" style="float: left;width: 73%; margin-top:15px ;" {%if keywords%}value="{{keywords}}"{%endif%}/>
+    </span>
+</form>
+<div class="main">
+
+	<div class="box_">
+    <div class="tab-txt">废金属</div>
+		<table class="box_tab" cellpadding="0" cellspacing="0">
+		  
+		    <tr>
+		      <td class="td_div" id="td_gap" style="width: 50%;"><a href="/priceindex/jinshuarea/" class="on">全国各地价格<img src="http://m.zz91.com/images/pindao/on.png" /></a>
+				</td>
+				<td id="td_gap"><a href="/price/70.html">LME</a>
+				</td>
+			</tr>
+			<tr>
+			  <td class="td_div"><a href="/price/83.html">现货</a>
+				</td>
+				<td><a href="/price/32.html">废金属评论</a>
+				</td>
+			</tr>
+			<tr>
+			    <td class="td_div" id="td_gap_2"><a href="/price/?category_id=72">沪铜</a></td>
+				<td id="td_gap_2"><a href="/price/?category_id=71">沪铝</a></td>
+			</tr>
+			<tr>
+			    <td class="td_div" id="td_gap_2"><a href="/price/?category_id=206">沪钢</a></td>
+				<td id="td_gap_2"><a href="/price/?category_id=69">沪锌</a></td>
+			</tr>
+			<tr>
+			    <td class="td_div" id="td_gap_2"><a href="/price/?category_id=84">上海和金</a></td>
+				<td id="td_gap_2"><a href="/price/?category_id=210">长江有色</a></td>
+			</tr>
+			<tr>
+			  <td class="td_div" id="td_gap_"><a href="/price/33.html">废金属周报</a>
+				</td>
+				<td id="td_gap_"><a href="/price/216.html">废金属行情综述</a>
+				</td>
+			</tr>
+			<tr>
+			  <td class="td_div" id="td_gap_"><a href="/price/?category_id=51">网上报价</a>
+				</td>
+				<td id="td_gap_"><a href="/price/?category_id=46">国外废金属</a>
+				</td>
+			</tr>
+		</table>
+</div>
+	<!--end box-->
+	<div class="box_">
+        <span class="tab-txt">废塑料</span>
+		<table class="box_tab" cellpadding="0" cellspacing="0">
+		    
+		    <tr>
+		      <td class="td_div" id="td_gap" style="width: 50%;"><a href="/priceindex/areasuliao/" class="on">各地废塑料行情<img src="http://m.zz91.com/images/pindao/on.png" /></a>
+				</td>
+				<td id="td_gap"><a href="/priceindex/suliaoxinliao/">塑料新料<img src="http://m.zz91.com/images/pindao/on.png" /></a>
+				</td>
+			</tr>
+			<tr>
+			  <td class="td_div"><a href="/priceindex/suliaoarea/">全国废塑料价格<img src="http://m.zz91.com/images/pindao/on.png" /></a>
+				</td>
+				<td><a href="/priceindex/suliaoqihuo/">塑料期货<img src="http://m.zz91.com/images/pindao/on.png" /></a>
+				</td>
+			</tr>
+			<tr>
+			  <td class="td_div"><a href="/priceindex/suliaozaishengliao/" class="on">塑料再生料价格<img src="http://m.zz91.com/images/pindao/on.png" /></a>
+				</td>
+				<td><a href="/price/34.html">废塑料评论</a>
+				</td>
+			</tr>
+			<tr>
+			  <td class="td_div"><a href="/price/217.html">废塑料行情综述</a>
+				</td>
+				<td><a href="/price/35.html">废塑料周报</a>
+				</td>
+			</tr>
+			<tr>
+			  <td class="td_div" id="td_gap_"><a href="/priceindex/meiguosuliao/">美国废塑料价格<img src="http://m.zz91.com/images/pindao/on_.png" /></a>
+				</td>
+				<td id="td_gap_"><a href="/priceindex/ouzhousuliao/">欧洲废塑料价格<img src="http://m.zz91.com/images/pindao/on.png" /></a>
+				</td>
+			</tr>
+		</table>
+</div>
+	<!--end box-->
+	<div class="box_">
+    <span class="tab-txt">废纸</span>
+		<table class="box_tab" cellpadding="0" cellspacing="0">
+		  
+		    <tr>
+		      <td class="td_div" id="td_gap" style="width: 50%;"><a href="/price/?category_id=231" class="on">废纸各地价格</a>
+				</td>
+				<td id="td_gap"><a href="/price/25.html">废纸网上报价</a>
+				</td>
+			</tr>
+			<tr>
+			  <td class="td_div" style="width: 50%;"><a href="/priceindex/27.html">国内日废</a>
+				</td>
+				<td><a href="/price/28.html">国内美废</a>
+				</td>
+			</tr>
+			<tr>
+			  <td class="td_div" style="width: 50%;"><a href="/priceindex/26.html">国内欧废</a>
+				</td>
+				<td><a href="/price/29.html">国外废纸</a>
+				</td>
+			</tr>
+
+
+		</table>
+</div>
+	<!--end box-->
+	<div class="box_">
+    <span class="tab-txt">橡胶</span>
+		<table cellpadding="0" cellspacing="0" class="box_tab">
+		 
+		    <tr>
+		      <td class="td_div" id="td_gap" style="width: 50%;"><a href="/price/?category_id=30&keywords=国内橡胶">国内橡胶</a>
+				</td>
+				<td id="td_gap"><a href="/price/?category_id=219&keywords=废橡胶行情综述">废橡胶行情综述</a>
+				</td>
+
+			</tr>
+
+		</table>
+</div>
+	<!--end box-->
+	<div class="box_">
+    <span class="tab-txt">原油</span>
+		<table cellpadding="0" cellspacing="0" class="box_tab">
+		
+			<tr>
+				<td class="td_div" id="td_gap" style="width: 50%;"><a href="/price/220.html">行情综述</a>
+				</td>
+				<td id="td_gap"><a href="/price/190.html">油价</a>
+				</td>
+			</tr>
+
+		</table>
+</div>
+
+	<!--end box-->
+
+</div>
+<input type="hidden" id="appnavname" value="报价中心" />

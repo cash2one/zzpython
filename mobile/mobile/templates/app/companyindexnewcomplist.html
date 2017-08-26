@@ -1,0 +1,6 @@
+﻿var cstr=""+
+{%for list in complist%}
+"<li><a href=\"http://{{list.domain_zz91}}.zz91.com\" target=_blank>[{{list.area_province}}]{{list.comname}}</a></li>"+
+{%endfor%}
+"";
+document.write(cstr)

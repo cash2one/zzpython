@@ -1,0 +1,29 @@
+		<div style="display:none" class="j_boda">      <!--拨打电话-->
+		    <ul class="aui-list-view aui-in aui-margin-b-0">
+		        <li class="aui-list-view-cell aui-border-b-0 aui-padded-b-0">
+		           	{% if comp_info.showcontact %}请拨打电话{% endif %}
+		        </li>
+		        <li class="aui-list-view-cell aui-text-info aui-padded-10">
+		           	<i class="aui-icon-phone aui-iconfont aui-text-info aui-margin-r-0"></i>{% if comp_info.showcontact %}
+		           	<a href="tel:{{ comp_info.mobile }}" style="display: inline;">{% if comp_info.viptype.vipname == '来电宝' %}{{ comp_info.ppcphone }}{% else %}{{ comp_info.mobile }}{% endif %}</a>
+		           	{% else %}<a href="http://m.zz91.com/company/shop{{company_id}}.html" style="display: inline;">查看联系方式</a>{% endif %}
+		        </li>
+		        <li class="aui-list-view-cell aui-text-center closepop">
+		           	<p>关闭</p>
+		        </li>
+		    </ul>
+		</div>
+		
+		<div style="display:none" class="j_liuy">
+		    <div class="aui-form">
+		        <div class="aui-input-row aui-text-center aui-bg-default">
+		            <label class="">我要留言</label>
+		        </div>
+		        <div class="aui-input-row">
+		            <textarea class="aui-input" rows="4" placeholder="请输入您的留言"></textarea>
+		        </div>
+		        <div class="aui-input-row aui-flex-col  aui-flex-center">
+		            <div class="aui-btn aui-btn-primary closepop">确定提交</div>
+		        </div>
+		    </div>
+		</div>

@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport"  content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+	<meta name="format-detection"  content="telephone=no">
+    <title>生意管家-我的采购</title>
+    <link href="http://www.zz91.com/zt/0629/css/caigou.m.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<header>
+    	<div class="header"><h2>我的采购</h2></div>
+    </header>
+    <div class="sel-search">
+        <form id="search-form"  method="get" style="display: block;">
+            <div class="box-search" style="display: block!important;">
+                <select title="" class="srch-sel" name=ptype>
+                	<option value="">全部</option>
+                    <option value="00">未审核</option>
+                    <option value="01">正在报价</option>
+                    <option value="02">已有报价</option>
+                    <option value="03">正在洽谈</option>
+                    <option value="04">等待打款</option>
+                    <option value="05">交易完成</option>
+                    <option value="06">交易终止</option>
+                    <option value="99">审核未通过</option>
+                </select>
+            </div>
+            <button type="submit" class="btn" gaevent="imt/search/submit"  id="search-submit">搜索</button>
+        </form>
+    </div>
+    <!--end sel-search-->
+    <h3 class="grey f12 ml12">共： <span class="black">{{listcount}}</span>　条</h3>
+    <div class="wrap">
+    	<section class="supply-con">
+        	<ul class="supply-list">
+        	{%for list in listall%}
+        		<li>
+                	<div class="supply-box">
+                    	<div class="supply-item">
+                        	<p>
+                            	{{list.detail}}
+                            </p>
+                            <p class="supply-info">
+                            	No.{{list.buy_no}}
+                                <span class="fr">状态：<font class="red">{{list.status}}</font></span>
+                            </p>
+                            <p class="supply-info">
+                            	跟进交易员：{{list.dealername}}&nbsp;<img src="http://www.zz91.com/zt/0629/images/icon_phone.png" />
+                                <span class="fr">时间：{{list.gmt_refresh}}</span>
+                            </p>
+                        </div>
+                        <!--end supply-item-->
+                    </div>
+                </li>
+            {%endfor%}
+            </ul> 
+        </section>
+    </div>
+</body>
+
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<input type="button" value="跳到" onClick=turnpage()> <span style="font-size:15px">第 <input type="text" id="page1" style="width:28px" value="{{page}}"> /{{page_listcount}} 页  </span><input type="submit" style="display:none"> &nbsp;&nbsp;
+<a href='?page=1{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}' >首页</a><a href='?page={{page_listcount}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}' >尾页</a> 
+</div>
+</body>
+<script>
+function turnpage(){
+	var page1=document.getElementById("page1").value;
+	if (page1<1)
+	{
+	page1=1;
+	}
+	window.location.href='?page='+page1+'{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}';
+}
+</script>
+</html>

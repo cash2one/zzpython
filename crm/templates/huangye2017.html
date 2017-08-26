@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>2017黄页数据</title>
+<script>
+function selectOption(menuname,value){
+    var menu = document.getElementById(menuname);
+	if (menu){
+		for(var i=0;i<=menu.options.length;i++){
+			if(menu.options[i].value==value)
+			{
+				menu.options[i].selected = true;
+				break;
+			}
+		}
+	}
+}
+function getproductlist(obj,frm){
+	frm.cproductslist1.value=obj.value;
+}
+function hyselect(obj,frm){
+	if (obj.value=="1"){
+		frm.slselect.style.display="none";
+		frm.otselect.style.display="none";
+		frm.slselect.value="";
+		frm.otselect.value="";
+		frm.jsselect.style.display="";
+	}
+	if (obj.value=="2"){
+		frm.slselect.style.display="";
+		frm.jsselect.style.display="none";
+		frm.otselect.style.display="none";
+		frm.jsselect.value="";
+		frm.otselect.value="";
+	}
+	if (obj.value=="3"){
+		frm.slselect.style.display="none";
+		frm.jsselect.style.display="none";
+		frm.otselect.style.display="";
+		frm.jsselect.value="";
+		frm.slselect.value="";
+	}
+}
+</script>
+</head>
+<body>
+<form id="form1" name="form1" method="get" action="/huangye2017.html">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<!--<td>
+	<select name="membertype1" id="membertype1">
+<option value="">会员类型</option>
+<option value="1">高会</option>
+<option value="0">普会</option>
+</select>
+<script>selectOption("membertype1","{{membertype1}}")</script>
+</td>-->
+<td>
+<select name="comkeywords1" id="comkeywords1" onchange="hyselect(this,this.form)">
+<option value="">--请选择--</option>
+<option value="1">废金属</option>
+<option value="2">废塑料</option>
+<option value="3">综合</option>
+</select>
+<script>selectOption("comkeywords1","{{comkeywords1}}")</script>
+</td>
+<td>主营
+  <select name="slselect" id="slselect" onchange="return getproductlist(this,this.form)"{%if slselect1%} {%else%}style="display:none"{%endif%}>
+    <option value="">请选择废塑料</option>
+    <option value="PP">PP</option>
+    <option value="PET">PET</option>
+    <option value="PE">PE</option>
+    <option value="ABS">ABS</option>
+    <option value="PVC">PVC</option>
+    <option value="PS">PS</option>
+    <option value="PA">PA</option>
+    <option value="PC">PC</option>
+    <option value="PVB">PVB</option>
+    <option value="PMMA">PMMA</option>
+    <option value="EVA">EVA</option>
+    <option value="PU">PU</option>
+    <option value="其他类">其他类</option>
+  </select> 
+  <script>selectOption("slselect","{{slselect}}")</script>
+  <select name="jsselect" id="jsselect" onchange="return getproductlist(this,this.form)" {%if jsselect1%} {%else%}style="display:none"{%endif%}>
+    <option value="">请选择废金属</option>
+    <option value="贵金属">贵金属（金银铂钯铑等）</option>
+  	<option value="稀有金属">稀有金属（钨钼钛锢等）</option>
+  	<option value="有色金属">有色金属（锡铜铝锌镍等）</option>
+  	<option value="钢铁">钢铁（铁钢工具钢合金钢不锈钢）</option>
+  	<option value="其他类">其他类</option>
+  </select>
+  <script>selectOption("jsselect","{{jsselect}}")</script>
+  <select name="otselect" id="otselect" onchange="return getproductlist(this,this.form)" {%if otselect%} {%else%}style="display:none"{%endif%}>
+    <option value="">请选择综合</option>
+    <option value="橡胶">橡胶</option>
+    <option value="纺织">纺织</option>
+    <option value="废纸">废纸</option>
+    <option value="废电子电器">废电子电器</option>
+    <option value="服务行业">服务行业</option>
+    <option value="其他">其他</option>
+  </select>
+  <script>selectOption("otselect","{{otselect}}")</script>
+  <input type="hidden" name="otherjs" id="otherjs" value="(otherlist !PET !pp !PE !ABS !PVC !PS !PA !PC !PVB !PMMA !EVA !PU)" />
+  
+  <input name="cproductslist1" type="hidden" id="cproductslist1" size="15" value="{{cproductslist1}}" />
+</td>
+<td>地区
+  <select name="cadd1" id="cadd1">
+  	<option value="">地区</option>
+    <option value="浙江|江苏|上海">江浙沪</option>
+    <option value="广东|福建">广东福建</option>
+    <option value="山东|河南|河北">山东河南河北</option>
+    <option value="湖南|湖北">湖南湖北</option>
+    <option value="(otherprovince !浙江 !江苏 !上海 !广东 !福建 !河北 !山东 !河南 !湖南 !湖北)">其他地区</option>
+  </select>  
+  <script>selectOption("cadd1","{{cadd1}}")</script>
+  </td>
+<td>&nbsp;</td>
+<td><input type="submit" name="button" id="button" value="提交" /></td>
+</tr>
+</table></form>
+
+<div>结果：{{listcount}}</div>
+<br>
+{%for list in listall%}
+<font style="font-size:16px; font-family:'Adobe 黑体 Std R'"><b>公司名称：{{list.cname}}</b></font><br>
+<font style="font:12px; line-height:22px; font-family:'黑体'">主营：{{list.cproductslist}}<br>
+联系人：{{list.ccontactp}}<br>
+{%if list.ctel%}
+电话：{{list.ctel}}<br>
+{%endif%}
+手机：{{list.cmobile}}<br>
+{%if list.weixin%}
+微信：{{list.weixin}}<br>
+{%endif%}
+地址：{{list.cadd}}<br>
+<br>
+<br></font>
+{%endfor%}
+
+</body>
+</html>
+
+
+

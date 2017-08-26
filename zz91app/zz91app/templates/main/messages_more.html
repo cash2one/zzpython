@@ -1,0 +1,7 @@
+{%for list in listall%}
+		<div class="box" onclick="messages.views('/messagelistview/?tourl={{list.url}}&id={{list.id}}',this,'{{list.isviews}}')">
+			<div class="title" {%if list.isviews%}style="color:#C4C4C4"{%endif%}>{{list.title}}</div>
+			<div class="content" {%if list.isviews%}style="color:#C4C4C4"{%endif%}>{{list.content|safe}}</div>
+		</div>
+	<div class="time">{{list.gmt_created|safe}}</div>
+{%endfor%}

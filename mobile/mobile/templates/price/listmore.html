@@ -1,0 +1,7 @@
+﻿{%for list in pricelist%}  	
+	<div class="item" style="border-top:1px solid #FFF;">    
+		<a href="/priceviews/?id={{list.id}}{%if list.typeid%}&category_id={{list.typeid}}{%endif%}{%if list.assistid%}&assist_id={{list.assistid}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}">	
+			<p class="c-link lh28">{{list.title}}</p>		 
+		</a>
+	</div>
+{%endfor%}

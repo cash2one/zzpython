@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>ZZ91再生网简易后台</title>
+		<link rel="stylesheet" type="text/css" href="../mobile/css/aui.css" />
+		<style>
+			p{
+				padding: 10px;
+			}
+			.aui-list-view{
+				margin-bottom: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content">
+			{%for ct in categorylist%}
+			{%if ct.catelist%}
+			<p><a href="?code={{ct.code}}&proid={{proid}}">{{ct.label}}</a><span style="width: 50px;margin-left: 20px;float: right;" class="saveselect" code="{{ct.code}}" label="{{ct.label}}">选定</span></p>
+			{%else%}
+			{%ifequal code '____'%}
+			<p><a href="?code={{ct.code}}&proid={{proid}}">{{ct.label}}</a><span style="width: 50px;margin-left: 20px;float: right;" class="saveselect" code="{{ct.code}}" label="{{ct.label}}">选定</span></p>
+			{%else%}
+			{%endifequal%}
+			
+			{%endif%}
+	        <ul class="aui-list-view">
+	            {%if ct.catelist%} {%for ct1 in ct.catelist%}
+	            <li class="aui-list-view-cell saveselect" label="{{ct1.label}}" code="{{ct1.code}}">
+	                <div class="aui-arrow-right" >{{ct1.label}}</div>
+	            </li>
+	            {%endfor%} {%endif%}
+	        </ul>
+	        {%endfor%}
+	    </div>
+	    <div style="height: 60px;"></div>
+		<footer class="aui-nav" id="aui-footer">
+			<ul class="aui-bar-tab" style="margin-top: 10px;">
+				<li>
+					<div class="aui-btn aui-btn-warning" id="backc" style="" tapmode onclick="window.history.back(-1)">返回</div>
+				</li>
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript" src="../mobile/js/jquery.js"></script>
+	<script type="text/javascript" src="../mobile/js/zepto.min.js"></script>
+	<script type="text/javascript" src="../mobile/js/layer/layer.js"></script>
+	<script>
+		$(function(){
+			var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+			$("body").on("click",".saveselect",function() {
+				var selectvalue=$(this).attr("code");
+				var selectlabel=$(this).attr("label");
+				var proid="{{proid}}";
+				var data={
+					fild : 'category_products_main_code',
+					fildvalue : selectvalue,
+					tablevalue : 'products',
+					id : proid
+				}
+				$.ajax({
+					url : 'savecontent.html',
+					type : 'post',
+					dataType : 'json',
+					cache : false,
+					data : data,
+				    success:function(ret) {
+						if (ret) {
+							if (ret.err == "true") {
+								alert(ret.errkey)
+							} else {
+								//alert('保存成功');
+								layer.msg('保存成功');
+								parent.$('#category_products_main_code').val(selectlabel);
+								parent.layer.close(index);
+							}
+						} else {
+							alert('异常！1')
+						};
+					},
+					error : function(e) {
+						alert(alert(JSON.stringify(e)));
+					}
+				});
+			})
+		})
+	</script>
+</html>

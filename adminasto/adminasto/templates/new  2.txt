@@ -1,0 +1,87 @@
+SELECT p.company_id, p.id, p.account, p.details, p.products_type_code, p.source_type_code, p.title, p.location, p.provide_status, p.total_quantity, p.is_show_in_price, p.price_unit, p.price, p.quantity_unit, p.quantity, p.source, p.specification, p.origin, p.impurity, p.color, p.useful, p.appearance, p.manufacture, p.post_type, p.is_pause, p.is_post_when_view_limit, p.is_post_from_inquiry, p.is_del, p.category_products_main_code, p.category_products_assist_code, p.check_person, p.check_status, p.unchecked_check_status, p.unpass_reason, p.check_time, p.real_time, p.refresh_time, p.expire_time, p.gmt_created, p.gmt_modified, p.min_price, p.max_price, p.goods_type_code, p.tags, p.tags_admin, p.ship_day
+FROM products p
+WHERE p.check_status =1
+AND p.is_pause =0
+AND p.expire_time > NOW( ) 
+AND p.is_del =0
+AND NOT 
+EXISTS (
+
+SELECT id
+FROM company
+WHERE p.company_id = id
+AND is_block =  '1'
+)
+AND p.category_products_main_code LIKE CONCAT(  '1009',  '%' ) 
+AND p.products_type_code =  '10331001'
+ORDER BY p.refresh_time DESC 
+LIMIT 5
+
+
+SELECT cp.company_id AS companyId, c.name AS companyName
+FROM company_price cp, company c
+WHERE is_checked =  '1'
+AND cp.company_id = c.id
+AND c.is_block =  '0'
+GROUP BY company_id
+ORDER BY COUNT( company_id ) DESC 
+LIMIT 6
+
+
+SELECT p.company_id, p.id, p.account, p.details, p.products_type_code, p.source_type_code, p.title, p.location, p.provide_status, p.total_quantity, p.is_show_in_price, p.price_unit, p.price, p.quantity_unit, p.quantity, p.source, p.specification, p.origin, p.impurity, p.color, p.useful, p.appearance, p.manufacture, p.post_type, p.is_pause, p.is_post_when_view_limit, p.is_post_from_inquiry, p.is_del, p.category_products_main_code, p.category_products_assist_code, p.check_person, p.check_status, p.unchecked_check_status, p.unpass_reason, p.check_time, p.real_time, p.refresh_time, p.expire_time, p.gmt_created, p.gmt_modified, p.min_price, p.max_price, p.goods_type_code, p.tags, p.tags_admin, p.ship_day, (
+
+SELECT pic_address
+FROM products_pic
+WHERE product_id = p.id
+ORDER BY is_default DESC , id DESC 
+LIMIT 1
+) AS cover_pic_url
+FROM products p
+WHERE p.check_status =1
+AND p.is_pause =0
+AND p.expire_time > NOW( ) 
+AND p.is_del =0
+AND NOT 
+EXISTS (
+
+SELECT id
+FROM company
+WHERE p.company_id = id
+AND is_block =  '1'
+)
+AND category_products_main_code LIKE CONCAT(  '1000',  "%" ) 
+AND refresh_time >  '2014-02-26 00:00:00'
+AND EXISTS (
+
+SELECT id
+FROM company c
+WHERE c.id = p.company_id
+AND c.membership_code !=  '10051000'
+)
+ORDER BY refresh_time DESC 
+LIMIT 7
+
+
+SELECT COUNT( * ) 
+FROM company_price cp
+INNER JOIN company co ON co.id = cp.company_id
+LEFT JOIN category_company_price ccp ON ccp.code = cp.category_company_price_code
+WHERE cp.is_checked =  '1'
+AND cp.category_company_price_code LIKE CONCAT(  '1000',  '%' )
+
+
+SELECT tags, tags_encode
+FROM tags
+WHERE tags LIKE CONCAT(  '废旧碎玻璃,废旧轮胎',  '%' ) 
+ORDER BY search_count DESC 
+LIMIT 20
+
+SELECT i.sender_account AS senderAccount, i.receiver_account AS receiverAccount, i.send_time AS sendTime
+FROM inquiry i
+WHERE batch_send_type =  '0'
+AND i.send_time > DATE_SUB( CURDATE( ) , INTERVAL 1 
+DAY ) 
+GROUP BY i.sender_account
+ORDER BY i.send_time DESC 
+LIMIT 20
+

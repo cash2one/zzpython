@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<title>{{nowcategory.label}}_供求分类_ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="../css/second/style.css" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mobile/css/moblie.css" />
+		<link rel="stylesheet" href="/css/comm-searchbar-old.css" />
+		<link rel="stylesheet" href="/css/comm-searchbar.css" />
+		<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+		<meta name="format-detection" content="telephone=no">
+		<script>
+			function searchkeywords(){
+				var keywords=document.getElementById("wikik").value;
+				if (keywords.length<1){
+					alert('请填写搜索词');
+				}
+				else{
+					window.location.href='/offerlist/?keywords='+keywords
+				}
+			}
+		</script>
+	</head>
+
+	<body>{%include 'top.html'%}
+		<div class="">
+			<form action="/offerlist/" method="get" id="wikiSearchFrm">
+				<div style="position:relative;">
+					<div class="sch-input">
+						<input id="wikik" type="text" name="keywords" value="" placeholder="请填写搜索关键词" onKeyUp="AliMobile.WikiSearch.showClear();">
+					</div>
+					<div class="sch-button" onClick="searchkeywords()">搜供求</div>
+					<div id="wikiClear" style="position:absolute;top:0px;right:75px;display:none;">
+						<a href="javascript:AliMobile.WikiSearch.clearData();" class="input-close"><img src="/images/close2.png"></a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div id="content">
+			<div class="menu">
+				<ul>
+					<li class="m_li"><a class="category" code="{{nowcategory.code}}" style="font-size:16px">{{nowcategory.label}}<img id="img{{nowcategory.code}}" align="right" src="../images/second/on.png"></a></li>
+					<div>
+						<div class="midcate">{%for ct in categorylist%}
+							<div class="m_ul_span"><a style="color:#009944" href="/trade/{{ct.pinyin}}/" style="font-size:16px;line-height: 40px;">{{ct.label}}</a></div>
+							{%if ct.catelist%} {%for ct1 in ct.catelist%}
+							<a href="/trade/{{ct1.pinyin}}/" class="m_cate" style="font-size:16px;line-height: 40px;">{{ct1.label}}</a> {%endfor%} {%endif%}
+							<div style="clear:both"></div>
+							{%endfor%}
+						</div>
+					</div>
+				</ul>
+			</div>
+			<div class="menu">
+			<ul>
+			{%for list in categorylistmain%}
+				<li class="m_li"><a class="category" href="/trade/category{{list.code}}.html" style="font-size:16px">{{list.label}}<img id="img{{list.code}}" align="right" src="../images/second/off.png"></a></li>
+			{%endfor%}
+			</ul>
+			</div>
+		</div>
+		{%include 'bottom2.html'%}
+	</body>
+
+</html>

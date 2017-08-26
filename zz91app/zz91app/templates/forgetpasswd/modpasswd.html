@@ -1,0 +1,14 @@
+<style>
+	.loginmain{line-height: 30px;padding: 20px;}
+</style>
+<form name="form1" method="post">
+<div class="loginmain">
+	<div>
+	<div style="float: left;width: 35%;line-height: 40px;">旧密码：</div><div style="float: left;width: 65%;"><input type="password" name="oldcold" placeholder="旧密码" autocomplete="off" maxlength="50"/></div>
+	<div style="float: left;width: 35%;line-height: 40px;">新密码：</div><div style="float: left;width: 65%;"><input type="password" name="newcold" placeholder="请输入密码" autocomplete="off" maxlength="50"/></div>
+	<div style="float: left;width: 35%;line-height: 40px;">重复新密码：</div><div style="float: left;width: 65%;"><input type="password" name="sedcold" placeholder="请重复输入密码" autocomplete="off" maxlength="50"/></div>
+	</div>
+	<button type="button" name="button" id="button" class="mui-btn mui-btn-danger" style="width: 100%;line-height: 30px;font-size: 16px;" onclick="modpasswd(this.form)">确定修改</button>
+</div>
+</form>
+<input type="hidden" id="appnavname" value="修改密码" />

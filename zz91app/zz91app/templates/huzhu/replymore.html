@@ -1,0 +1,25 @@
+{%if listall_reply%}
+{%for list in listall_reply%}
+	<div class="zz91-question-left">
+		<font class="lt"><a href="javascript:gotourl('/companyinfo/?forcid={{list.company_id}}','blank');">{{list.nickname}}</a>
+		<div class="zz91-question-time">{{list.posttime}}</div>
+		<div class="zz91-question-anwser-grad">
+		    <span class="zz91-question-arrow-grad" ></span>
+		    {{list.content|safe}}
+		    <div class="backbutton"><button onclick="huzhureplay({{list.reply_id}},{{list.company_id}})">回复</button></div>
+		</div>
+	</div>
+	<div class="mui-clearfix"></div>
+	{%for list1 in list.replylist.list%}
+	<div class="zz91-question-right">
+		<font class="lt"><a href="javascript:gotourl('/companyinfo/?forcid={{list1.company_id}}','blank');">{{list1.nickname}}</a></font> 回复 <a href="javascript:gotourl('/companyinfo/?forcid={{list1.tocompany_id}}','blank');">{{list1.tonickname}} </a>:
+		<div class="zz91-question-time">{{list1.posttime}}</div>
+		<div class="zz91-question-anwser-greed">
+		    <span class="zz91-question-arrow-greed" ></span>
+		    {{list1.content|safe}}
+		</div>
+	</div>
+	{%endfor%}
+{%endfor%}
+	<div class="mui-clearfix"></div>
+{%endif%}

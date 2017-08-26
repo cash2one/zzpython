@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <script src="chart/jquery-1.7.2.js"></script>
+    <script>
+	$(function(){
+		$("#bodyhtml").click(function(){
+			var baidusl=$("#baidusl").val();
+			if (baidusl.length>10){
+				$('#pro1').html('<font color="blue">第一段分析中</font> &nbsp;<img src="123/imgs/jindutiao.gif">');
+				//alert(baidusl)
+				$.ajax({
+				   type: "POST",
+				   url: "baiduincluded.html",
+				   //data: "baidusl="+baidusl+"&numb=1",
+				   data:{baidusl:baidusl,numb:"1"},
+				   dataType: 'html',
+				   success:function(data){
+				   		//$("#isok"+auto_id).html(data)
+				   		//$("#pinyin").val(data);
+				   		//alert(data);
+				   		if (data.length>4){
+						$('#pro1').html('<font color="blue">第一段分析完,'+data+'</font>');
+				   		$("#bd1").val(data)
+				   		$('#pro3').html('<font color="blue">合计分析中</font> &nbsp;<img src="123/imgs/jindutiao.gif">');
+				   		}
+				   		else{
+				   			$('#pro1').html('<font color="blue">抓取速度太快,被百度禁止访问,5分钟后请重试..'+data+'</font>');
+				   		}
+
+				   },
+				   error:function(data){
+						//alert("错误!青重试.");
+				   		$('#pro1').html('<font color="red">第一段分析错误</font>');
+				   }
+				});
+				
+				setTimeout("showHello()",5000);
+				function showHello()
+				{
+				alert(1)
+				}
+				
+				$('#pro2').html('<font color="blue">第二段分析中</font> &nbsp;<img src="123/imgs/jindutiao.gif">');
+					$.ajax({
+					   type: "POST",
+					   url: "baiduincluded.html",
+					   //data: "baidusl="+baidusl+"&numb=2",
+					   data:{baidusl:baidusl,numb:"2"},
+					   dataType: 'html',
+					   success:function(data){
+					   		//$("#isok"+auto_id).html(data)
+					   		//$("#pinyin").val(data);
+					   		//alert(data);
+					   		if (data.length>4){
+					   		$('#pro2').html('<font color="blue">第二段分析完,'+data+'</font>');
+					   		$("#bd2").val(data)
+					   		$('#pro3').html('<font color="blue">合计分析中</font> &nbsp;<img src="123/imgs/jindutiao.gif">');
+					   		}
+					   		else{
+					   			$('#pro2').html('<font color="blue">抓取速度太快,被百度禁止访问,5分钟后请重试..'+data+'</font>');
+					   		}
+					   },
+					   error:function(data){
+							//alert("错误!青重试.");
+					   		$('#pro2').html('<font color="red">第二段分析错误</font>');
+					   }
+					});
+					
+			}
+			else{
+			alert('哥们儿,不能为空!')
+			}
+			
+		})
+	});	
+	
+$(function(){
+       run();
+       var interval;  
+           function run() {  
+              interval = setInterval(chat, "2000");  
+           }
+           function chat() {
+				var bdd1=$("#bd1").val();
+				var bdd2=$("#bd2").val();
+				//alert(bdd1);
+				//alert(bdd2);
+				if (bdd1.length>1&bdd2.length>1){
+					//alert(1);
+					bddlist1 = bdd1.split(",")[0].split("/");
+					bdds1=bddlist1[0]
+					bdds2=bddlist1[1]
+					bddlist2 = bdd2.split(",")[0].split("/");
+					bdds3=bddlist2[0]
+					bdds4=bddlist2[1]
+					var ct=parseInt(bdds1)+parseInt(bdds3)
+					var ctall=parseInt(bdds2)+parseInt(bdds4)
+					var lvall=(ct*100/ctall).toString()+'%'
+					$('#pro3').html('<font color="blue">合计分析完,'+ct.toString()+'/'+ctall.toString()+', 收录率:'+lvall+'</font>');
+					//alert(ct);
+					//alert(ctall);
+					//alert(lvall);
+					$("#bd1").val('');
+					$("#bd2").val('');
+				}
+           }
+     $("#closeChat").click(function(){  
+         clearTimeout(interval);  //关闭定时器  
+     })
+   });
+	
+    </script>
+    </head>
+<body>
+
+<br />
+<textarea id="baidusl" cols="82" rows="20">
+
+{%for i in listall%}
+{{i.baidurl}} {{i.baidudate}}
+{%endfor%}
+
+</textarea><br />
+<input type="button" value="提交" id="bodyhtml"><div id="pro1"></div><div id="pro2"></div><div id="pro3"></div>
+{{allcount}}<br />
+{{count}}<br />
+{{countj}}<br />
+{{time_all}}<br />
+<br /><br /><br /><br />
+<input type="hidden" id="bd1">
+<input type="hidden" id="bd2">
+</body>
+</html>

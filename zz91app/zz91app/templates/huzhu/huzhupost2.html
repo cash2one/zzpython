@@ -1,0 +1,23 @@
+<div style="padding: 10px;height: 100%;">
+<form method="post" name="formbbs" id="formbbs" action="/huzhupostsave/">
+    <input type="hidden" name="category_id" id="category_id" value="{{category_id}}">
+    <input type="hidden" name="company_id" id="company_id" value="{{company_id}}">
+    <input type="text" name="title" id="title" placeholder="标题(必填)" />
+    <textarea name="content" id="content" style="height: 300px;" placeholder="来问点什么吧..."></textarea>
+    <br />
+    <br /> 
+</form>
+<nav class="mui-bar mui-bar-tab" style="border-top: solid 1px #006600;text-align: center;">
+	<button class="mui-btn mui-btn-danger" style="width: 90%;" onclick="submitfrm(document.getElementById('formbbs'),'http://app.zz91.com/huzhupostsave/')">马上提问</button>
+</nav>
+</div>
+<div class="postsuc" style="display: none;padding: 20px;">
+	<br />
+	<div style="text-align: left;font-size: 18px;width: 80%;">
+		发布成功,您可以在“生意管家-我的社区”中查看!
+	</div>
+	<br />
+	<button onclick="closewindow()" class="mui-btn mui-btn-danger">  知道了    </button>
+	<br />
+</div>
+<input type="hidden" id="appnavname" value="我要提问-再生互助" />

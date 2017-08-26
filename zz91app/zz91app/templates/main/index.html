@@ -1,0 +1,693 @@
+<style>
+	/**edit_start 2014-06-23**/
+	
+	.b-box {
+		border-top: 1px solid #f2f2f2;
+		border-bottom: 1px solid #ebebeb
+	}
+	.navTable-text {
+		width: 60px;
+		text-align: center;
+		font-size: 14px;
+		color: #444;
+		margin-top: 5px
+	}
+	.navTable {
+		width: 100%;
+	}
+	.navTable tr td {
+		width: 25%;
+		padding: 10px 0;
+		position: relative;
+		background-color: #fff;
+	}
+	.navTable tr td:hover {
+		background: #ebebeb
+	}
+	.newstitle {
+		color: #666;
+		background: #f2f2f2;
+		line-height: 30px;
+		padding-left: 15px;
+		border-bottom: solid 1px #f2f2f2;
+	}
+	/**edit_end 2014-06-23**/
+</style>
+<style>
+	/* mhome */
+	
+	.mhome {
+		padding: 0;
+		min-width: 300px;
+		max-width: 640px;
+		margin: 0 auto;
+	}
+	.viewport {
+		padding: 0 5px;
+	}
+	.viewport {
+		/*min-width: 300px;
+  	max-width: 640px;*/
+		
+		margin: 0 auto;
+	}
+	/* ----- countdown ----- */
+	
+	.countdowm {
+		height: 21px;
+		text-align: center;
+		margin: 0;
+		padding: 20px;
+		font-size: 20px;
+		color: #666666;
+		padding-top: 0;
+	}
+	.countdowm img {
+		border: none;
+		vertical-align: middle;
+	}
+	/* ----- search-bar ----- */
+	
+	.blue {
+		width: 20%;
+		min-width: 20%;
+		max-width: 20%;
+		background-color: #007aff;
+	}
+	.green {
+		width: 22%;
+		min-width: 22%;
+		max-width: 22%;
+		background-color: #4cd964;
+	}
+	.searbox-bar {
+		padding: 12px 0;
+	}
+	.searbox-bar img {
+		vertical-align: middle;
+	}
+	.search2015 {
+		width: 100%;
+		position: relative;
+	}
+	.flexbox {
+		display: box;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-box;
+		-webkit-box-orient: horizontal;
+		box-orient: horizontal;
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+	}
+	.searbox {
+		position: relative;
+		border-radius: 5px;
+		height: 34px;
+		background-color: #e5e5e5;
+		font-size: 14px;
+	}
+	.searbox .ipt {
+		position: relative;
+		overflow: hidden;
+	}
+	.search2015 .tradebtn {
+		margin-left: 5px;
+		display: block;
+		border-radius: 5px;
+		height: 34px;
+		line-height: 34px;
+		text-align: center;
+		font-size: 13px;
+		color: #fff;
+		cursor: pointer;
+		position: relative;
+	}
+	.search2015 .placeholder {
+		padding-left: 5px;
+		color: #a8a8a8;
+		line-height: 28px;
+		background-color: #e5e5e5;
+		border: 0;
+		outline: none;
+		margin-top: 2px;
+	}
+	/* ----- Content ----- */
+	
+	.floor {
+		color: #7f7f7f;
+		background: #fff;
+		margin-bottom: 12px;
+		box-shadow: 0 1px 1px #dcdcdc;
+	}
+	.app-nav {
+		overflow: hidden;
+		border-top: 1px solid #dddddd;
+	}
+	.app-nav a:nth-child(1)::after,
+	.app-nav a:nth-child(2)::after,
+	.app-nav a:nth-child(3)::after,
+	.app-nav a:nth-child(5)::after,
+	.app-nav a:nth-child(6)::after,
+	.app-nav a:nth-child(7)::after {
+		content: "";
+		display: block;
+		width: 1px;
+		height: 66px;
+		background: #dadada;
+		position: absolute;
+		right: -1px;
+		top: 0;
+	}
+	.app-nav .app-link {
+		width: 25%;
+		float: left;
+		height: 65px;
+		font-size: 12px;
+		text-decoration: none;
+		color: #7f7f7f;
+		text-align: center;
+		display: block;
+		position: relative;
+	}
+	.app-nav .app-link {
+		width: 25%;
+		float: left;
+		height: 65px;
+		font-size: 12px;
+		text-decoration: none;
+		color: #7f7f7f;
+		text-align: center;
+		display: block;
+		border-bottom: 1px solid #dadada;
+	}
+	.app-nav .app-link img {
+		display: block;
+		width: 40px;
+		height: 34px;
+		margin: 5px auto;
+		border: 0;
+	}
+	.title-wrap {
+		overflow: hidden;
+	}
+	.title-wrap .more {
+		height: 18px;
+		line-height: 18px;
+		white-space: nowrap;
+		color: #7f7f7f;
+		font-size: 14px;
+		float: right;
+		background: url(http://www.zz91.com/zt/z/images/icon_arrow.png) right center no-repeat;
+		padding-right: 23px;
+		margin: 13px 7px 2px 7px;
+	}
+	.title-wrap .title {
+		float: left;
+	}
+	.floor .title {
+		padding-bottom: 13px;
+	}
+	.floor .title {
+		white-space: nowrap;
+		display: inline-block;
+		font-size: 15px;
+		color: #7f7f7f;
+		margin: 14px 0 2px 7px;
+	}
+	.floor .activity-floor-title:before,
+	.floor .title:before {
+		content: "";
+		display: block;
+		width: 3px;
+		height: 12px;
+		float: left;
+		background: #d8505c;
+		margin: 1px 7px 0 0;
+	}
+	.floor .title:before {
+		content: "";
+		display: block;
+		width: 3px;
+		height: 12px;
+		float: left;
+		background: #d8505c;
+		margin: 1px 7px 0 0;
+	}
+	.seckill-list,
+	.seckill-list2 {
+		overflow: hidden;
+		content: '\20';
+		display: block;
+		clear: both;
+	}
+	.seckill-list2 {
+		border-top: 1px solid #dadada;
+		border-bottom: 1px solid #dadada;
+	}
+	.seckill-list2 li {
+		width: 33%;
+		float: left;
+		height: 38px;
+		font-size: 13px;
+		padding-top: 12px;
+		color: #7f7f7f;
+		text-align: center;
+		display: block;
+		border: 0;
+		position: relative;
+	}
+	.seckill-list2 span,
+	s {
+		display: block;
+	}
+	.seckill-list2 font {
+		color: #303030;
+	}
+	.seckill-list2 li:nth-child(1)::after,
+	.seckill-list2 li:nth-child(2)::after {
+		content: "";
+		display: block;
+		width: 1px;
+		height: 30px;
+		background: #dadada;
+		position: absolute;
+		right: -1px;
+		top: 9px;
+	}
+	.buy {
+		padding: 10px 0 20px;
+	}
+	.buyBtn {
+		display: block;
+		width: 117px;
+		margin: 0 auto;
+		height: 39px;
+		background: url(http://www.zz91.com/zt/z/images/bg_btn_buy.jpg) no-repeat;
+	}
+	.seckill-list strong {
+		font-weight: bold;
+		display: block;
+		font-size: 13px;
+		margin-bottom: 2px;
+	}
+	.seckill-list span {
+		font-size: 12px;
+		margin: 4px 0;
+		display: block;
+	}
+	.seckill-item {
+		width: 33%;
+		float: left;
+		line-height: 18px;
+		padding: 14px 2.875%;
+		border-left: 1px solid #dadada;
+		margin-left: -1px;
+		overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+	}
+	.seckill-item1 {
+		float: left;
+		padding: 14px 2.875%;
+		line-height: 18px;
+		border-left: 1px solid #dadada;
+		margin-left: -1px;
+		overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+	}
+	.seckill-item2 {
+		width: 50%;
+		float: left;
+		padding: 14px 2.875%;
+		line-height: 18px;
+		border-left: 1px solid #dadada;
+		margin-left: -1px;
+		overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+	}
+	.seckill-name {
+		display: block;
+		font-size: 13px;
+	}
+	.seckill-list {
+		border-top: 1px solid #dadada;
+	}
+	.hot-link {
+		padding: 40px 10%;
+		display: block;
+	}
+	/* 倒计时 */
+	
+	.seckill-timer {
+		display: inline-block;
+		float: right;
+		overflow: hidden;
+		margin: 14px 1% 0;
+		height: 16px;
+		line-height: 16px;
+		font-size: 12px;
+		background: url(http://www.zz91.com/zt/z/images/icon_clock_s.jpg) no-repeat;
+		padding-left: 20px;
+		font-weight: 700;
+	}
+	.down-floor,
+	.up-floor {
+		width: 40%;
+		float: right;
+		padding: 14px 5%;
+		color: #666666;
+	}
+	.item2 {
+		display: block;
+	}
+	.wbox {
+		border-top: 1px solid #dadada;
+		display: -webkit-flex!important;
+		display: -webkit-box;
+	}
+	.wbox li:first-child,
+	.app24 li:first-child {
+		border-right: 1px solid #dadada;
+	}
+	.wbox-flex {
+		-webkit-flex: 1!important;
+		-webkit-box-flex: 1;
+		word-wrap: break-word;
+		word-break: break-all;
+		line-height: 15px;
+	}
+	.wbox-flex a {
+		display: block;
+		padding: 12px 5%;
+	}
+	.wbox li:first-child img {
+		width: 11.08rem;
+		height: 12.8rem;
+	}
+	.wbox strong,
+	span {
+		display: block;
+		color: #7f7f7f;
+	}
+	.wbox strong {
+		font-weight: bold;
+	}
+	.wbox span {
+		font-size: 12px;
+		margin: 4px 0;
+	}
+	.wbox dl {
+		height: 100%;
+	}
+	.wbox dl>dd {
+		height: 50%;
+		overflow: hidden;
+	}
+	.wbox li dd:last-child {
+		border-top: 1px solid #dadada;
+	}
+	.wbox li:last-child img,
+	.wbox dd img {
+		width: 9.08rem;
+		height: 4.38rem;
+	}
+</style>
+<div style="background-color: #fff;">
+	<form method="post">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td style="padding-top: 14px;" align="center">
+					<input type="search" id="searchtext" placeholder="请输入产品关键字" style="width: 97%;" {%if keywords%}value="{{keywords}}" {%endif%}/>
+				</td>
+				<td align="center" style="padding-left: 5px;padding-right: 5px;">
+					<button class="mui-btn mui-btn-primary mui-icon mui-icon-search" onclick="zz91search(this.form,'/offerlist/?keywords=','')" type="button">搜供求</button>
+				</td>
+				<td align="center" style="padding-right: 5px;">
+					<button class="mui-btn mui-btn-green mui-icon mui-icon-paperplane" onclick="openblank('post.html?sep=1');" type="button">发布供求</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<div class="b-box">
+		<center>
+			<table class="navTable" align="center" style="width: 100%;" frame="void" border="1" bordercolor="#f2f2f2">
+				<tbody>
+					<tr>
+						<td>
+							<a href="javascript:gotourl('/category/','blank')">
+								<center>
+									<div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/1.png" border="0"> </div>
+									<div class="navTable-text"> 交易中心 </div>
+								</center>
+							</a>
+						</td>
+						<td>
+							<a href="javascript:gotourl('/priceindex/','blank')">
+								<center>
+									<div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/2.png" border="0"> </div>
+									<div class="navTable-text"> 行情报价 </div>
+								</center>
+							</a>
+						</td>
+						<td>
+							<a href="javascript:gotourl('/news/','blank')">
+								<center>
+									<div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/3.png" border="0"> </div>
+									<div class="navTable-text"> 资讯中心 </div>
+								</center>
+							</a>
+						</td>
+						<td>
+							<a href="javascript:gotourl('/company/','blank')">
+								<center>
+									<div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/4.png" border="0"> </div>
+									<div class="navTable-text"> 公司黄页 </div>
+								</center>
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="javascript:gotourl('/huzhu/','blank');">
+								<center>
+									<div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/5.png" border="0"> </div>
+									<div class="navTable-text"> 互助社区 </div>
+								</center>
+							</a>
+						</td>
+						<td>
+							<a href="javascript:gotourl('/myrc_index/','myrc');">
+								<center>
+									<div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/6.png" border="0"> </div>
+									<div class="navTable-text"> 生意管家 </div>
+								</center>
+							</a>
+						</td>
+						<td>
+							<a href="javascript:gotourl('/qianbao/','blank');">
+								<center>
+									<!--<span class="mui-badge mui-badge-danger message-num" style="left:70%" id="qianbaonum">1</span>-->
+									<div class="navTable-img"> <img src="http://m.zz91.com/images/qianbao/7.png" border="0"> </div>
+									<div class="navTable-text"> 再生钱包 </div>
+								</center>
+							</a>
+						</td>
+						<td>
+							<a href="html/trust/index.html" target="local">
+								<center>
+									<div class="navTable-img"> <img src="http://m.zz91.com/images/trust_logo.png" border="0"> </div>
+									<div class="navTable-text"> 厂家直购 </div>
+								</center>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</center>
+	</div>
+</div>
+<div class="mhome">
+	<div class="viewport">
+		<div class="floor seckill-floor">
+			<div class="title-wrap">
+				<a href="javascript:gotourl('/category/','blank')" class="more">更多</a>
+				<h2 class="title">优质推荐</h2>
+			</div>
+			<ul class="wbox">
+				<li class="wbox-flex">
+					<a name="" href="/qianbao/qg_tourl.html?gid={{ad1_1.id}}">
+						<strong class="seckill-name">{{ad1_1.goodsName}}</strong>
+						<span>{{ad1_1.goodsname_fu}}</span>
+						<img data-src="done" alt="" src="{{ad1_1.pic}}" /></a>
+				</li>
+				<li class="wbox-flex">
+					<dl>
+						<dd>
+							<a name="" href="/qianbao/qg_tourl.html?gid={{ad1_2.id}}">
+								<strong class="seckill-name">{{ad1_2.goodsName}}</strong>
+								<span>{{ad1_2.goodsname_fu}}</span>
+								<img data-src="done" alt="" src="{{ad1_2.pic}}" />
+							</a>
+						</dd>
+						<dd>
+							<a name="" href="/qianbao/qg_tourl.html?gid={{ad1_3.id}}">
+								<strong class="seckill-name">{{ad1_3.goodsName}}</strong>
+								<span>{{ad1_3.goodsname_fu}}</span>
+								<img data-src="done" alt="" src="{{ad1_3.pic}}" />
+							</a>
+						</dd>
+					</dl>
+				</li>
+			</ul>
+			<ul class="seckill-list">
+				<li class="seckill-item">
+					<a href="/qianbao/qg_tourl.html?gid={{ad1_4.id}}">
+					<strong class="seckill-name">{{ad1_4.goodsName}}</strong>
+					<span>{{ad1_4.goodsname_fu}}</span>
+					<img width="100%" src="{{ad1_4.pic}}" border="0" />
+					</a>
+				</li>
+				<li class="seckill-item">
+					<a href="/qianbao/qg_tourl.html?gid={{ad1_5.id}}">
+					<strong class="seckill-name">{{ad1_5.goodsName}}</strong>
+					<span>{{ad1_5.goodsname_fu}}</span>
+					<img width="100%" src="{{ad1_5.pic}}" border="0" />
+					</a>
+				</li>
+				<li class="seckill-item">
+					<a href="/qianbao/qg_tourl.html?gid={{ad1_6.id}}">
+					<strong class="seckill-name">{{ad1_6.goodsName}}</strong>
+					<span>{{ad1_6.goodsname_fu}}</span>
+						<img width="100%" src="{{ad1_6.pic}}" border="0" />
+					</a>
+				</li>
+			</ul>
+		</div>
+		<!--end seckill-floor-->
+		<div class="floor seckill-floor">
+			<div class="title-wrap">
+				<div class="seckill-timer"><span id="LeftTime"></span></div>
+				<h2 class="title">每日抢购</h2>
+			</div>
+			<a href="/qianbao/qg.html?gid={{ad2_1.id}}">
+				<ul class="seckill-list">
+					<li class="seckill-item2" style="border:0">
+						<strong style="padding-top:20px;">{{ad2_1.goodsName}}</strong>
+						<br />
+						<p class="f12">{{ad2_1.goodsname_fu}}</p>
+					</li>
+					<li class="seckill-item2" style="border:0">
+						<img width="100%" src="{{ad2_1.pic}}" border="0" />
+					</li>
+				</ul>
+			</a>
+			<input type="hidden" id="payend_Time" value="{{ad2_1.end_Time}}">
+			<input type="hidden" id="havenum" value="{{ad2_1.havenum}}">
+		</div>
+		<!--end seckill-floor-->
+		<div class="floor seckill-floor">
+			<div class="title-wrap">
+				<a href="javascript:gotourl('/category/','blank')" class="more">更多</a>
+				<h2 class="title">热门产品</h2>
+			</div>
+			<ul class="seckill-list">
+				<li class="seckill-item2">
+					<a href="/qianbao/qg_tourl.html?gid={{ad3_1.id}}">
+					<strong class="seckill-name">{{ad3_1.goodsName}}</strong>
+						<img width="100%" src="{{ad3_1.pic}}" border="0" />
+					</a>
+				</li>
+				<li class="seckill-item2">
+					<a href="/qianbao/qg_tourl.html?gid={{ad3_2.id}}">
+					<strong class="seckill-name">{{ad3_2.goodsName}}</strong>
+						<img width="100%" src="{{ad3_2.pic}}" border="0" />
+					</a>
+				</li>
+			</ul>
+			<ul class="seckill-list">
+				<li class="seckill-item">
+					<a href="/qianbao/qg_tourl.html?gid={{ad3_3.id}}">
+					<strong class="seckill-name">{{ad3_3.goodsName}}</strong>
+						<img width="100%" src="{{ad3_3.pic}}" border="0" />
+					</a>
+				</li>
+				<li class="seckill-item">
+					<a href="/qianbao/qg_tourl.html?gid={{ad3_4.id}}">
+					<strong class="seckill-name">{{ad3_4.goodsName}}</strong>
+						<img width="100%" src="{{ad3_4.pic}}" border="0" />
+					</a>
+				</li>
+				<li class="seckill-item">
+					<a href="/qianbao/qg_tourl.html?gid={{ad3_5.id}}">
+					<strong class="seckill-name">{{ad3_5.goodsName}}</strong>
+						<img width="100%" src="{{ad3_5.pic}}" border="0" />
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+	<!--end viewport-->
+</div>
+
+<div class="newstitle">
+	行情报价<a href="javascript:openblank('/order/price.html');"><span style="float: right;font-size: 14px;line-height: 30px;padding-right: 10px;" class="mui-icon mui-icon-flag">订阅</span></a>
+</div>
+<div>
+	<ul class="mui-table-view ">
+		{%if pricelist%} {%for list in pricelist.list%}
+		<li class="mui-table-view-cell">
+			<a href="/priceviews/?id={{list.id}}{%if list.typeid%}&category_id={{list.typeid}}{%endif%}{%if list.assistid%}&assist_id={{list.assistid}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}">{{list.title}}</a>
+		</li>
+		{%endfor%}
+		<li class="mui-table-view-cell">
+			<a class="mui-navigate-right" href="javascript:gotourl('/priceindex/','price')">
+            查看更多
+        </a>
+		</li>
+		{%else%}
+		<li class="mui-table-view-cell">
+			<a class="mui-navigate-right" href="javascript:gotourl('/order/price.html','blank')">
+				<span style="color: #DD524D;">你还没有订阅行情报价，点此</span><span class="mui-btn-link">立即订阅！</span>
+			</a>
+		</li>
+		{%endif%}
+	</ul>
+</div>
+
+<div class="newstitle">
+	废料商机<a href="javascript:openblank('/order/business.html');"><span style="float: right;font-size: 14px;line-height: 30px;padding-right: 10px;" class="mui-icon mui-icon-flag">订阅</span></a>
+</div>
+<div>
+	<ul class="mui-table-view">
+		{%if mybusi%} {% for list in productlist.list %}
+		<li class="mui-table-view-cell">
+			<a href="/detail/?id={{list.pdt_id}}">
+				<img src="{{list.pdt_images}}" style="width: 80px;height: 80px;float: left;margin: 10px;margin-left: -5px;margin-top:-2px ;">
+				<div class="mui-media-body">
+					<span class="mui-ellipsis-2">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</span>
+					<h5 style="float: left;">{{list.com_province}} {{list.pdt_price}}</h5>
+					<div class="mui-text-right">
+						<span class="mui-h5">{{list.pdt_time_en}}</span>
+					</div>
+					<div class="mui-clearfix"></div>
+					<p class="mui-h6 mui-ellipsis">{{list.pdt_detail}}</p>
+				</div>
+			</a>
+		</li>
+		{%endfor%}
+		<li class="mui-table-view-cell">
+			<a class="mui-navigate-right" href="javascript:gotourl('/offerlist/?keywords={{kname}}&fromindex=1','blank')">
+            查看更多
+        </a>
+		</li>
+		{%else%}
+		<li class="mui-table-view-cell">
+			<a class="mui-navigate-right" href="javascript:gotourl('/order/business.html','blank')">
+				<span style="color: #DD524D;">你还没有订阅供求商机，点此</span><span class="mui-btn-link">立即订阅！</span>
+			</a>
+		</li>
+		{%endif%}
+	</ul>
+</div>
+</body>
+
+</html>

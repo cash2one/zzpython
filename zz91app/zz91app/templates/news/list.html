@@ -1,0 +1,38 @@
+<div>
+	<ul class="mui-table-view">
+        <form method="post" action="###">
+	    	<span class="mui-table-view-cell" style="margin-top: 0px;display:block;padding-top: 0px;padding-bottom: 0px;border: 0px;background-image: none;">
+	            <button class="mui-btn mui-btn-primary mui-icon mui-icon-search" style="" onclick="zz91search(this.form,'/news/list.html?keywords=','news')" type="button">搜索</button>
+	            <input type="search" id="searchtext" placeholder="请输入关键字搜索" style="float: left;width: 78%; margin-top:15px ;" {%if keywords%}value="{{keywords}}"{%endif%}/>
+	        </span>
+	    </form>
+    </ul>
+<ul class="mui-table-view">
+	{%if newslist.list%}
+{%for list in newslist.list%}
+<li class="mui-table-view-cell">
+	<a href="/news/newsdetail{{list.id}}.html" class="mui-navigate-right">
+		<!--<div class="mui-pull-left">
+			<img class="mui-media-object mui-pull-left" src="{{list.litpic}}">
+		</div>-->
+		<div class="mui-media-body">
+			<span class="mui-ellipsis">{{list.title|safe}}</span>
+			<!--<div class="mui-text-right">
+                <span class="mui-h5">{{list.pubdate}}</span>
+            </div>-->
+			<!--<div class="mui-clearfix"></div>-->
+		</div>
+	</a>
+</li>
+{%endfor%}
+<div id=pulldiv class='pulldiv' onclick=loadmorep(this,'/news/list.html?keywords={{keywords}}&typeid={{typeid}}') title="/news/list.html?keywords={{keywords}}&typeid={{typeid}}"><span class='mui-icon mui-icon-down'></span><span>点此加载更多</span></div>
+{%else%}
+<li class="mui-table-view-cell">
+        <a href="###">
+            没有找你你需要的信息，请修改搜索关键词！
+        </a>
+    </li>
+{%endif%}
+</ul>
+</div>
+<input type="hidden" id="appnavname" value="{{typename}} - 资讯中心" />

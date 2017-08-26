@@ -1,0 +1,61 @@
+     <div class="content">
+      		<div class="item">
+            	<div class="i-tle">{{title}}</div>
+                <div class="i-tle time">时间：{{gmt_created}}</div>
+                <div class="i-tab2" style="color: #000000;">
+                	{{content|safe}}
+                </div>
+                {%if priceabout%}
+                <div class="box1">
+                	<div class="b-tle">相关报价</div>
+                    <ul class="mui-table-view ">
+                    	{%for about in priceabout%}
+                			<li class="mui-table-view-cell"><a href="/priceviews/?id={{about.id}}{%if category_id%}&category_id={{category_id}}{%endif%}{%if assist_id%}&assist_id={{assist_id}}{%endif%}{%if keywords%}&keywords={{keywords_hex}}{%endif%}" class="mui-navigate-right">{{about.title}}</a></li>
+                		{%endfor%}
+                    </ul>
+                </div>
+                {%endif%}
+                
+                
+                {%if feizhibbs%}
+                 <div class="box1">
+                	<div class="b-tle">相关问答</div>
+                    <ul class="mui-table-view ">
+                    	{%for bbs in feizhibbs%}
+                			<li class="mui-table-view-cell"><a href="/huzhuview/{{bbs.td_id}}.htm" class="mui-navigate-right">{{bbs.td_title}}</a></li>
+                		{%endfor%}
+                	</ul>
+                </div>
+                {%endif%}
+            </div>
+       </div>
+<nav class="mui-bar mui-bar-tab" style="display: none;" id="newsnav">
+	<a id="defaultTab" class="mui-tab-item mui-active" href="javascript:shareSystem()">
+		<span class="mui-icon mui-icon-upload"></span>
+		<span class="mui-tab-label">分享</span>
+	</a>
+	<a class="mui-tab-item" href="javascript:favorite('&content_id={{id}}&favorite_type_code=10091004&title={{title}}')">
+		<span class="mui-icon mui-icon-star"></span>
+		<span class="mui-tab-label">收藏</span>
+	</a>
+	<!--<a class="mui-tab-item" href="javascript:;">
+		<span class="mui-icon mui-icon-chat"></span>
+		<span class="mui-tab-label">评论</span>
+	</a>-->
+</nav>
+<img id="pic" src="../img/add.png"/>
+<input type="hidden" value="{{title}}" id="sharetitle" />
+<textarea id="sharecontent" rows="3" style="display: none;">我正在查看{{title}}，赶紧跟我一起来体验！http://m.zz91.com/priceviews/?id={{id}} 点击链接查看</textarea>
+<input type="hidden" id="zsharehref" value="http://m.zz91.com/priceviews/?id={{id}}">
+<input type="hidden" id="zsharehrefTitle" value="{{title}}">
+<input type="hidden" id="zsharehrefDes" value="我正在查看{{title}}，赶紧跟我一起来体验！http://m.zz91.com/priceviews/?id={{id}} 点击链接查看">
+<div class="favorite" style="display: none;padding: 20px;">
+	<br />
+	<div style="text-align: left;font-size: 18px;width: 80%;">
+		收藏成功,您可以在“生意管家-我的收藏夹”中查看。
+	</div>
+	<br />
+	<button onclick="closeoverlay()" class="mui-btn mui-btn-danger">  知道了    </button>
+	<br />
+</div>
+<input type="hidden" id="appnavname" value="行情详情-报价中心" />

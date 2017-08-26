@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>批量推送统计-seo客户管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://apps.bdimg.com/libs/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="http://192.168.2.4/assets/js/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var urlArray = new Array()
+            $("td[class='bd-url']").each(function(i) {
+                var bdUrl=$(this).find('a').text();
+                // alert(bdUrl);
+                urlArray.push(bdUrl);
+            });
+            // alert(urlArray);
+            // alert(urlArray.length);
+            arrLen = urlArray.length;
+            $('.sl-tj-all').html('总数:<b style="color:#D2691E;">'+arrLen.toString()+'条</b>');
+            $('#tj-all-num').val(arrLen.toString())
+            var numAll = 0;
+            var slNum = 0;
+            var wslNum = 0;
+            var tsWz = $('#ts-wz').val()
+
+            $.each(urlArray,function(i,val) {
+                var eachUrl = $.trim(val);
+                numAll += 1;
+                $.ajax({
+                    type:"GET",
+                    url:"get_plts.html?url=" + eachUrl + '&tswz=' + tsWz,
+                    success:function(data,status) {
+                        // alert(data+status);
+                        var jsData = $.parseJSON(data);
+                        // alert(jsData);
+                        if (jsData['ts_status'] == '1')
+                        {
+                            var nowTime = new Date()
+                            slNum += 1;
+                            $('.sl-tj-sl').html('推送成功数:<b style="color:green">'+slNum.toString()+'条</b>');
+                            $('.bd-title-'+i.toString()).find('a').text(jsData['ts_time']);
+                            $('.sl-status-'+i.toString()).html('<b style="color:green;" class="sl">推送成功</b>');
+                            $('#ts-status-'+i.toString()).text(jsData['ts_status']);
+                            $('#ts-return-'+i.toString()).text(jsData['ts_return']);
+                        }
+                        if (jsData['ts_status'] == '401')
+                        {
+                            wslNum += 1;
+                            $('.sl-tj-wsl').html('推送失败数:<b style="color:#EE3A8C;">'+wslNum.toString()+'条</b>');
+                            $('.bd-title-'+i.toString()).find('a').text(jsData['ts_time']);
+                            $('.sl-status-'+i.toString()).html('<b style="color:red;" class="wsl">推送失败</b>');
+                            $('#ts-status-'+i.toString()).text(jsData['ts_status']);
+                            $('#ts-return-'+i.toString()).text(jsData['ts_return']);
+                        }
+                        if (numAll == arrLen){
+                            var slRate = (slNum / numAll *100).toFixed(2);
+                            $('.sl-tj-rate').html('推送成功率:<b style="color:#191970;">'+slRate.toString()+'%</b>');
+                        }
+                    },
+                    // error:function(data,status) {
+                    //     alert(data.mesaage);
+                    // }
+                });
+            });
+        });
+
+        // 收录筛选
+        function statusFilter(selectMs) {
+            var slValue = selectMs.options[selectMs.selectedIndex].value;
+            // alert(slValue);
+            if (slValue == 1)
+            {
+                jQuery('.sl-content').css("display","none");
+                jQuery('.sl').parent().parent().parent('tr').css("display","");
+            }
+            else if (slValue == 2)
+            {
+                jQuery('.sl-content').css("display","none");
+                jQuery('.wsl').parent().parent().parent('tr').css("display","");
+            }
+            else
+            {
+                jQuery('.sl-content').css("display","");
+            }
+        }
+    </script>
+    <style type="text/css">
+        .sl-tj span {
+            margin-left: 10px;
+        }
+        .sl-tj {
+            margin-top:10px;
+            margin-bottom: 10px;
+        }
+        .sl-tb tr td, .sl-tb tr th{
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+<div class="sl-tj">
+<span class="sl-tj-all">总数:0</span>&nbsp;&nbsp;
+<span class="sl-tj-sl">推送成功数:0</span>&nbsp;&nbsp;
+<span class="sl-tj-wsl">推送失败数:<b style="color: red;">0条</b></span>&nbsp;&nbsp;
+<span class="sl-tj-rate">成功率:0</span>&nbsp;&nbsp;
+&nbsp;&nbsp;筛选:
+<select name="sl-st" onchange="statusFilter(this)">
+    <option value="0" selected="selected">全部</option>
+    <option value="1">推送成功</option>
+    <option value="2">推送失败</option>
+</select>
+<!-- &nbsp;&nbsp;<a style="color:black;" onclick="exExcel(event)" href="#" class="ex-xls">导出到excel</a> -->
+&nbsp;&nbsp;<a href="pl_sl.html">继续推送</a>
+</div>
+<div class="table-responsive">
+    <form id="export-excel" name="export-excel">
+    {% csrf_token %}
+    <table cellpadding="5" cellspacing="1" width="100%" class="sl-tb table table-striped table-bordered">
+        <input type="hidden" id="ts-wz" name="ts-wz" value="{{ ts_wz }}">
+        <thead>
+            <th>#</th>
+            <th>推送时间</th>
+            <th>推送地址</th>
+            <th>推送状态</th>
+            <th>推送状态标识</th>
+            <th>推送剩余条数</th>
+        </thead>
+        <tbody>{% for each_url in bd_url_list %}
+            <tr class="sl-content">
+            <td>{{ each_url.0 | add:'1' }}</td>
+            <td>
+                <span class="bd-title-{{each_url.0}}">
+                    <a target="_blank" style="color: black;text-decoration:none;">推送中……</a>
+                </span>
+            </td>
+            <td id="url-{{ each_url.0 | add:'1' }}" class="bd-url"><a href="{{ each_url.1 }}" target="_blank">{{ each_url.1 }}</a></td>
+            <td>
+                <span class="sl-status-{{each_url.0}}">推送中……</span>
+            </td>
+            <td id="ts-status-{{each_url.0}}">推送中……</td>
+            <td id="ts-return-{{each_url.0}}">推送中……</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </form>
+</div>
+</div>
+</body>
+</html>

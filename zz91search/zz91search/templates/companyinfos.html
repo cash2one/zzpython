@@ -1,0 +1,5 @@
+﻿{%if compinfo.ldbphone%}
+var _suggest_result_={"result":"<a href='http://www.zz91.com/ppc/index{{company_id}}.htm' target='_blank'>{{compinfo.name}}</a><br />认证信息：[ZZ91认证企业]<br>地址：{{compinfo.address}}<br>电话：{{compinfo.ldbphone}}<br>{{compinfo.weixin|safe}}注册时间：{{compinfo.regtime}}<br>供求数量：{{compinfo.offercount}}条"}
+{%else%}
+var _suggest_result_={"result":"<a href='http://{{compinfo.domain_zz91}}.zz91.com' target='_blank'>{{compinfo.name}}</a><br />认证信息：[ZZ91认证企业]<br>{{compinfo.arrviptype.vipname}}-企业：第{{compinfo.arrviptype.zstNum}}年<br>电话：{{compinfo.tel_country_code}}-{{compinfo.tel_area_code}}-{{compinfo.tel}}<br>手机：{{compinfo.mobile}}<br>{{compinfo.weixin|safe}}地址：{{compinfo.address}}<br>注册时间：{{compinfo.regtime}}<br>供求数量：{{compinfo.offercount}}条{%if compinfo.companymarket%}<br>入驻市场：<a href='{{compinfo.companymarket.url}}' target=_blank>{{compinfo.companymarket.name}}</a>{%endif%}"}
+{%endif%}

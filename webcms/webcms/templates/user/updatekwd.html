@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/style.css" />
+</head>
+<body><br /><br /><br />
+<form>
+<input type="hidden" name="upage" value="1">
+<table class="table table-bordered table-hover definewidth m10">
+<tr><td class="tableleft">原密码</td><td><input class="w25px" type="text" name="oldpwd" {%if oldpwd%}value="{{oldpwd}}"{%endif%}> {%if error1%}<font color="red">{{error1}}</font>{%endif%}</td><tr>
+<tr><td class="tableleft">新密码</td><td><input class="w25px" type="text" name="newpwd" {%if newpwd%}value="{{newpwd}}"{%endif%}> {%if error2%}<font color="red">{{error2}}</font>{%endif%}</td><tr>
+<tr><td class="tableleft">重复新密码</td><td><input class="w25px" type="text" name="renewpwd" {%if renewpwd%}value="{{renewpwd}}"{%endif%}> {%if error3%}<font color="red">{{error3}}</font>{%endif%}</td><tr>
+<tr><td></td>
+<td><input type="submit" class="btn btn-primary" value="保存">&nbsp;&nbsp;<input type="button" value="返回列表" class="btn btn-success"  onClick="window.location.href='returnpage.html?request_url=http://webcms.zz91.com/user/#1'"></td>
+<tr>
+</table>
+</form>
+</body>
+</html>

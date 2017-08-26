@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>批量查询关键词建议-seo客户管理系统</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="http://192.168.2.4/assets/js/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+        	var keyList = new Array();
+        	$('td[class="keywords"]').each(function() {
+        		var kyText = $(this).text();
+        		keyList.push(kyText);
+        	});
+        	var cxXz = $('#cx-xz').val();
+        	var allNum = keyList.length;
+        	$('.tj-all-num').text(allNum.toString() + '个');
+        	var kzNum = 0;
+        	var bkzNum = 0;
+        	var tjNum = 0;
+        	$.each(keyList, function(i,val) {
+        		tjNum += 1;
+        		var eachKeyword = $.trim(val);
+        		// alert(eachKeyword);
+        		$.ajax({
+        			'url':"get_pl_cc.html?keyword=" + encodeURIComponent(eachKeyword) + '&cx-xz=' + cxXz,
+        			'type':"GET",
+        			'success':function(data,status)
+        			{
+        				var jsData = $.parseJSON(data);
+        				$('#bdindex-' + i.toString()).text(jsData['zt_index']);
+        				$('#bdssl-' + i.toString()).text(jsData['gjc_ssl']);
+        				$('#bdin-' + i.toString()).text(jsData['gjc_intitle_ssl']);
+        				$('#cxxz-' + i.toString()).text(jsData['cx_xz']);
+        				$('#bz-' + i.toString()).text('--');
+        				if (jsData['cx_jy'] == 1)
+        				{
+        					kzNum += 1;
+        					$('.tj-nz-num').text(kzNum.toString() + '个');
+        					$('#jy-' + i.toString()).html('<b style="color:green;" class="kz-gjc">可以做</b>');
+                            $('#ckbj-' + i.toString()).html('<b style="color:#FFB90F;">'+jsData['ck_jg']+'</b>')
+
+        				}
+        				else
+        				{
+        					bkzNum += 1;
+        					$('.tj-bnz-num').text(bkzNum.toString() + '个');
+        					$('#jy-' + i.toString()).html('<b style="color:red;" class="bkz-gjc">不能做</b>');
+        					$('#ckbj-' + i.toString()).text(jsData['ck_jg']);
+                            $('#bz-' + i.toString()).html('<b style="color:blue;">'+jsData['ck_jy']+'</b>')
+        				}
+        			},
+        			// 'error':function(data,status)
+        			// {
+        			// 	alert('未知错误');
+        			// }
+        		});
+        	});
+        });
+
+        // 筛选
+        function statusFilter(selectMs)
+        {
+        	var slValue = selectMs.options[selectMs.selectedIndex].value;
+        	// alert(slValue);
+        	if (slValue == 1)
+        	{
+        		jQuery('.main-content').css('display', 'none');
+        		jQuery('.kz-gjc').parent().parent('tr').css('display', '');
+        	}
+        	else if (slValue == 2)
+        	{
+        		jQuery('.main-content').css('display', 'none');
+        		jQuery('.bkz-gjc').parent().parent('tr').css('display', '');
+        	}
+        	else 
+        	{
+        		jQuery('.main-content').css('display', '');
+        	}
+        }
+
+    </script>
+    <style type="text/css">
+    	.container {
+    		margin-top: 10px;
+    	}
+    	.tj-all-num {
+    		color: red;
+    		font-weight: bold;
+    	}
+    	.tj-nz-num {
+    		color:#EEB422;
+    		font-weight: bold;
+    	}
+    	.tj-bnz-num {
+    		color:#7B68EE;
+    		font-weight: bold;
+    	}
+    	td, th {
+    		white-space: nowrap;
+    	}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="tj-info" style="margin-bottom: 10px;">
+		总查询数：<span class="tj-all-num">0个</span>&nbsp;&nbsp;
+		可以做：<span class="tj-nz-num">0个</span>&nbsp;&nbsp;
+		不能做：<span class="tj-bnz-num">0个</span>&nbsp;&nbsp;
+		筛序：
+		<select id="sx-gjc" name="sx-gjc" onchange="statusFilter(this)">
+			<option value="0" selected="selected">全部</option>
+			<option value="1">可以做</option>
+			<option value="2">不能做</option>
+		</select>&nbsp;&nbsp;
+		<a href="ciku.html">继续查询</a>
+	</div>
+	<div class="table table-responsive">
+	    <input type="hidden" id="cx-xz" name="cx-xz" value="{{ cx_xz }}">
+	    <table class="table table-striped table-bordered">
+	    	<thead>
+	    		<tr>
+	    			<th>#</th>
+	    			<th>关键词</th>
+	    			<th>百度整体搜索指数</th>
+	    			<th>百度搜索量</th>
+	    			<th>百度intitle搜索量</th>
+	    			<th>查询选择</th>
+	    			<th>参考报价</th>
+	    			<th>参考建议</th>
+	    			<th width="200">原因</th>
+	    			<th>查询人</th>
+	    		</tr>
+	    	</thead>
+	    	<tbody>
+	    		{% for each_ky in k_list %}
+	    		<tr class="main-content">
+	    			<td>{{ each_ky.0 | add:"1" }}</td>
+	    			{% load myfilter %}
+	    			<td class="keywords" id="keys-{{ each_ky.0 }}"><a href="https://www.baidu.com/s?wd={{each_ky.1 | urlencode }}&ie=utf-8" target="_blank">{{ each_ky.1 }}</a></td>
+	    			<td id="bdindex-{{ each_ky.0 }}">查询中……</td>
+	    			<td id="bdssl-{{ each_ky.0 }}">查询中……</td>
+	    			<td id="bdin-{{ each_ky.0 }}">查询中……</td>
+	    			<td id="cxxz-{{ each_ky.0 }}">查询中……</td>
+	    			<td id="ckbj-{{ each_ky.0 }}">查询中……</td>
+	    			<td id="jy-{{ each_ky.0 }}">查询中……</td>
+	    			<td id="bz-{{ each_ky.0 }}" style="white-space: pre-wrap;">查询中……</td>
+	    			<td id="cxr-{ each_ky.0 }}">{{ cx_person }}</td>
+	    		</tr>
+	    		{% endfor %}
+	    	</tbody>
+	    </table>
+
+	</div>
+</div>
+</body>
+</html>

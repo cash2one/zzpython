@@ -1,0 +1,179 @@
+/* Write your styles */
+
+a {
+	color: #666
+}
+
+body {
+	padding-top: 49px;
+}
+
+li {
+	list-style: none;
+}
+
+.am-header {
+	position: fixed;
+	top: 0;
+	z-index: 1012
+}
+
+.background-f2 {
+	background-color: #f2f2f2!important;
+}
+
+.color-ff {
+	color: #fff!important;
+}
+
+.color-99 {
+	color: #999!important
+}
+
+.color-66 {
+	color: #666!important
+}
+
+.color-00 {
+	color: #000!important
+}
+
+.color-brue {
+	color: blue;
+}
+
+.am-text-small {
+	font-size: 10px!important
+}
+
+.red {
+	color: red!important
+}
+
+.am-text-small {
+	font-size: 1rem;
+}
+
+.topada img {
+	width: 100%;
+}
+
+.download-bar {
+	position: fixed;
+	bottom: 0px;
+	z-index: 999;
+	overflow: hidden;
+	width: 100%;
+	background: rgba(0, 0, 0, .8)
+}
+
+.download-bar .download {
+	box-sizing: border-box;
+	position: relative;
+	overflow: hidden;
+	padding: 8px;
+}
+
+.download-bar .download ul {
+	margin-left: 5px;
+	color: #FFF;
+	float: left;
+	margin: 0px;
+	padding-top: 0px;
+	padding-left: 5px;
+}
+
+.download-bar .download ul li {
+	color: #fff;
+}
+
+.download-bar .download ul li img {
+	width: 20px;
+	height: 20px;
+}
+
+.download-bar .download .intro {
+	display: inline;
+	float: left;
+	width: 230px;
+	line-height: 20px;
+}
+
+.download-bar .download .logo {
+	float: left;
+	width: 35px;
+	height: 35px;
+	background: url(http://img0.zz91.com/zz91/images/48R.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.download-bar .download .logo-title {
+	font-size: 14px;
+}
+
+.download-bar .download .control-panel {
+	float: right
+}
+
+.download-bar .download .download-btn {
+	padding: 5px;
+	*display: inline;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	cursor: pointer;
+	margin-top: 5px;
+	float: right;
+	background-color: #2A7FFF;
+	background-image: -webkit-linear-gradient(top, #2a7eef, #2a7fff);
+	background-image: -moz-linear-gradient(top, #2a8000, #2a7fff);
+	background-image: -o-linear-gradient(top, #2a8000, #2a7fff);
+	background-image: -ms-linear-gradient(top, #2a8000, #2a7fff);
+	background-image: linear-gradient(to bottom, #2a7eef, #2a7fff);
+	border: 1px solid #2A7FFF;
+	*border: 0;
+	color: #FFF;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	font-size: 14px;
+	outline: 0
+}
+
+.download-bar .download .download-btn a {
+	display: block;
+	color: #fff
+}
+
+.download-bar .download .close {
+	float: left;
+	line-height: 100%;
+	background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAkhJREFUeNrUmd1twjAQx0144YmGFwTioTBBswHpBozQERghI2SEjkA3SCcomYCAhOAFhUggeAC5dnRBboqdD19I+5dOPGDnfrHPPvvSoJSSEjKZTZjZzIbMxpJ2PrM5M4/ZjNm+sCcOWMBsZjNaXjN4Rm6feRtazDyKJy8vaB44h1YnN8t/QxGDJsTOC6lWPsTy3fg0aoYj4CNgZt37894IPhJOVAQ7wj5rBOuA43oC36YK0KkJTpxuRzbFPAa+ZD2v1ys5Ho+k3W5rU5zP5/i31WrJmrzCaP4YQVf10NVqFVsYhtpwi8UiNv7SEjnpKbYV6SpWv98nzWaTrNfr0pAJHAfr9Xrx8yQaQyq9AU6zHs6nYzQalYYU4QaDAel0OlldpkkM8lUTVuioVB/QyEiGMq+KjqQGHNfEgPgjVUBqwsVrw4Ddm2BDIsDFWx+PQYqxbYggSHC3jZpibLwJULfbJbvdDgUODTANyYUBpzpu/RkZ2KPHp1g346ACphcEB9TJOPcAfcwVjJEWBS0NuLeiwWHlbtDcSM5dVSR+BEjvXxwW+CXloyo4jZH85Lc9I89pGiO3loB8F7cZD4il2mw22ulLhNxut6oj/zIBTBeGpLpcLjSKIpR6x+l0oofDQdXEltVmXFq/3KzazLzGu/GvOo2s9BHATf/RpQ8LfCtz8R7eInownJ2GUx0W5nAV8B80rZY05WYUEM2KF44LPrRLwDZyCTjALAGLNtEE5X3fivhslLySDIXPEDx+nhUZQfwMERR19C3AAIpp/h2CUjiuAAAAAElFTkSuQmCC') no-repeat center;
+	color: #adadad;
+	width: 20px;
+	height: 20px;
+	margin-top: 10px;
+	border-radius: 10px;
+	opacity: .4;
+	margin-right: 10px;
+}
+/*微信浏览器分享弹窗*/
+#mcover {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.7);
+	display: none;
+	z-index: 20000;
+}
+
+#mcover img {
+	position: fixed;
+	right: 18px;
+	top: 5px;
+	width: 260px;
+	height: 180px;
+	z-index: 20001;
+}

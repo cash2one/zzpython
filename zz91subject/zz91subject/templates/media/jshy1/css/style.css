@@ -1,0 +1,150 @@
+html {font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body {margin: 0; font: 400 12px/1.5 "\5B8B\4F53", Arial, Helvetica, sans-serif; color:#333; }
+
+a { text-decoration: none; color: #6b6b6b;}
+
+b, strong {font-weight: bold; }
+
+q {quotes: none;}
+
+q:before,q:after {content: '';content: none;}
+
+p { margin: 0;}
+
+ul {list-style: none; list-style-image: none;}
+
+img {border: 0;-ms-interpolation-mode: bicubic;}
+
+figure, form, dl, dt, dd, ul, ol {margin: 0;padding: 0;}
+
+button,input,select,textarea {font-size: 100%; margin: 0;vertical-align: baseline; outline: 0 none; }
+
+button,input {line-height: normal;}
+
+button,input[type="button"], input[type="reset"], input[type="submit"] {cursor: pointer; -webkit-appearance: button;*overflow: visible;}
+
+input[type="checkbox"],input[type="radio"] {box-sizing: border-box;padding: 0;}
+
+button::-moz-focus-inner,input::-moz-focus-inner {border: 0;padding: 0;}
+
+textarea {overflow: auto;vertical-align: top;}
+
+table {border-collapse: collapse;border-spacing: 0;}
+
+.clearfix:after { clear: both; content: " "; display: block; height: 0; visibility: hidden; }
+
+.clearfix { zoom:1; }
+
+.clearfix { display:block; } 
+
+.hidden { display: none;}
+
+/*reset end*/
+
+
+
+body { background: url(../images/bg.jpg) top center no-repeat;}
+
+.wrapper { margin: 0 auto; width: 960px;}
+
+.header { padding-top: 200px; height: 40px; background: url(../images/header.jpg) top center no-repeat; }
+
+.header p { padding: 0 0 0 20px; height: 20px; color: #fff; font: 800 14px/20px "微软雅黑";}
+
+.nav { height: 35px; background: url(../images/nav.png) repeat-x; line-height: 35px;}
+
+.nav ul { font-size: 15px; font-family: "微软雅黑";}
+
+.nav ul li { float: left; padding: 0 10px; background: url(../images/nav_li.png) right no-repeat;}
+
+.nav ul a { color: #fff; text-shadow: 2px 2px 1px #000; outline: 0 none;}
+
+.nav ul a:hover { text-decoration: none;}
+
+.nav ul .cur a { color: #c37846;}
+
+
+
+.left { float: left; width: 677px;}
+
+.right { float: right; width: 283px;}
+
+
+
+.wrap .title { height: 30px; background: url(../images/title_body.png) repeat-x;}
+
+.wrap .title h3 { margin: 0; padding-left: 20px; height: 30px; background: url(../images/title_bg.png) no-repeat; color: #fff; line-height: 30px; font-family: "微软雅黑"; font-size: 16px;}
+
+.wrap .cont { padding-bottom: 15px;}
+
+.right .cont { padding-bottom: 10px;}
+
+.wrap .cont .block { margin: 18px 20px 0; padding: 10px 6px; border: 1px solid #c8c8c8; color: #4d4d4d; }
+
+.wrap .cont .block p { line-height: 22px; font-size: 14px;}
+
+.wrap .ti { text-indent: 2em;}
+
+.wrap .block .grey { margin: 0 0 5px; font-size: 16px; color: #7a3700; font-family: "微软雅黑"; }
+
+
+
+.pr_info { margin: 18px 20px 0; padding: 0 6px; width: 94%; border: 1px solid #c8c8c8;}
+
+.pr_info thead th { height: 34px; border-bottom: 1px dashed #c8c8c8; font-size: 14px; color: #757575; text-align: center;}
+
+.pr_info td { height: 28px; text-align: center;}
+
+.pr_info .w1 { width: 20%;}
+
+.pr_info .w2 { width: 10%;}
+
+.pr_info .w3 { width: 55%;}
+.pr_info tbody .w3 { padding: 0 20px; width: 307px;}
+
+.pr_info .w4 { width: 15%;}
+
+.pr_info ul { clear: left; padding: 5px 0; overflow: hidden; zoom: 1; border-bottom: 1px dotted #c8c8c8;}
+
+.pr_info li { float: left; }
+
+
+
+.coo .cont { padding: 18px 0 0 20px;}
+
+.coo .item { float: left; display: inline; margin: 0 2px 4px; width: 179px; height: 66px; border: 1px solid #d8d8d8;}
+
+
+
+.coc .item { margin: 6px 0 0 5px; width: 252px; height: 50px; border: 1px solid #d8d8d8; }
+
+
+
+.red { color: #f00; font-weight: bold; font-size: 14px;}
+
+.link { padding-right: 10px; color: #f60; font-weight: bold; text-decoration: underline;}
+
+.link:hover { color: #f40;}
+
+
+
+.pr { margin: 20px auto 0; width: 92%; border: 1px solid #c8c8c8; font-size: 14px;}
+
+.pr thead { text-align: center; }
+
+.pr thead th { height: 32px;}
+
+.pr tbody th { padding: 0 5px; }
+
+.pr td, .pr th { border: 1px solid #c8c8c8;}
+
+.pr td.c { text-align: center;}
+
+
+
+.footer { clear: both; margin-top: 20px; padding-top: 10px; border-top: 1px solid #c8c8c8; text-align: center;}
+
+
+
+#Js_mq { position: relative; height: 300px; overflow: hidden;}

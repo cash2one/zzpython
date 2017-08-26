@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<title>留言成功-ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-slider-full.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<style>
+			.topmain {
+				position: relative;
+				background-color: #01AA2A;
+				color: #fff;
+				padding-bottom: 10px;
+			}
+			.compname{
+				padding: 10px;
+				text-align:center;
+				padding-top:20px;
+				color:#FFCC00;
+				
+			}
+			.compname p {
+				padding: 5px;
+				font-size: 18px;
+				line-height: 32px;
+				color:#fff
+			}
+			
+			.gongqiunav {
+				background-color: #ebebeb;
+				line-height: 40px;
+				padding-left: 10px;
+			}
+			.compinstro {
+				padding: 5px;
+				color: #fff
+			}
+			.jointxl {
+				position: absolute;
+				right: 10px;
+				top: 40px
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <div class="aui-title">留言成功</div>
+		    <a class="aui-pull-right" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		</header>
+		<div class="topmain">
+			<div class="compname">
+				<i class="aui-iconfont aui-icon-check" style="font-size: 46px;"></i>
+				<p class="aui-ellipsis-1">您的留言信息已经发送给客户<br />或你也可以直接联系客户</p>
+				<a href="/company/shop{{forcompany_id}}.html" class="aui-btn aui-btn-warning aui-pull-left">
+					直接联系客户
+				</a>
+				<a href="/myrc/bindweixin.html" class="aui-btn aui-btn-info aui-pull-right">
+					我要开通微信留言提醒
+				</a>
+				<div style="clear: both;height: 20px;"></div>
+				{%if quanfachecked%}
+				<div class="aui-line-x"></div>
+				<div style="height: 10px;"></div>
+				<p>我们已为您匹配100个最新相关需求客户，我们会再2个工作日内为您群发</p>
+				{%endif%}
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<div class="gongqiunav">
+			其他相关服务
+			<div style="float: right;padding-right: 10px;" class="morepro"><a href="/service/index.html" style="text-align: left">查看更多</a></div></div>
+		</div>
+		<div class="aui-content">
+			<ul class="aui-list-view allservice">
+				<li class="aui-list-view-cell aui-img">
+					<a class="aui-arrow-right" href="/qianbao/llb_index.html"> <img class="aui-img-object aui-pull-left" src="http://static.m.zz91.com/image/jingjia.jpg">
+					<div class="aui-img-body aui-pull-left">
+						<span style="font-weight: bold;color: #FF2600;font-size: 18px">流量宝</span>
+						<p>
+							看得到的推广方式
+						</p>
+					</div>
+					<div style="float:right;margin-right:20px;margin-top:15px;color:#009900">
+						<img src="http://static.m.zz91.com/image/new.jpg" style="width: 30px;">
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell aui-img">
+					<a class="aui-arrow-right" href="/service/cp_lookcontact.html">
+					<img class="aui-img-object aui-pull-left" src="http://static.m.zz91.com/image/addr_chk.jpg">
+					<div class="aui-img-body">
+						<span>查看联系方式</span>
+						<p>
+							¥ :10元/公司
+						</p>
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell aui-img">
+					<a class="aui-arrow-right" href="/service/cp_showcontact.html">
+					<img class="aui-img-object aui-pull-left" src="http://static.m.zz91.com/image/gallery.png">
+					<div class="aui-img-body">
+						<span>显示联系方式</span>
+						<p>
+							¥ :300元/月
+						</p>
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell aui-img">
+					<a class="aui-arrow-right" href="/service/cp_autoreflush.html">
+					<img class="aui-img-object aui-pull-left" src="http://static.m.zz91.com/image/shuaxin.jpg">
+					<div class="aui-img-body">
+						<span>供求自动刷新</span>
+						<p>
+							¥ :300元/月
+						</p>
+					</div>
+					</a>
+				</li>
+				
+				<li class="aui-list-view-cell aui-img">
+					<a class="aui-arrow-right" href="/service/cp_qyx.html"> <img class="aui-img-object aui-pull-left" src="http://static.m.zz91.com/image/service/xiu.png">
+					<div class="aui-img-body">
+						<span>企业秀（微站）服务</span>
+						<p>
+							¥ :200元/月
+						</p>
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell aui-img">
+					<a class="aui-arrow-right" href="/service/cp_book.html"> <img class="aui-img-object aui-pull-left" src="http://static.m.zz91.com/image/huangye.png">
+					<div class="aui-img-body">
+						<span>再生资源商务大全</span>
+						<p>
+							¥ :300元/本
+						</p>
+					</div>
+					</a>
+				</li>
+				
+				<li class="aui-list-view-cell aui-img">
+					<a class="aui-arrow-right" href="/service/cp_createwebsite.html"> <img class="aui-img-object aui-pull-left" src="http://static.m.zz91.com/image/service/weizhan.png">
+					<div class="aui-img-body">
+						<span>企业建站服务</span>
+						<p class='aui-ellipsis-2'>
+							根据你的需求定价。
+						</p>
+					</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function(){
+			//更多
+			$(".morepro").on("click", function() {
+				window.location='/trade/?keywords={{keywords}}&ptype={{ptype}}'
+			})
+			//我的供求
+			$(".my-buyin").on("click", function() {
+				window.location='/myrc_products/'
+			})
+		});
+		
+	</script>
+	{%include 'aui/bottom.html'%}
+</html>

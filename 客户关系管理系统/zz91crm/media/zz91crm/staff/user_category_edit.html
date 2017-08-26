@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>添加团队</title>
+ <link href="../assets/css/dpl-min.css" rel="stylesheet">
+  <link href="../assets/css/bui-min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="demo-content">
+    
+    <!-- 简单表单页 ================================================== --> 
+    <div class="row">
+        <div class="span16 doc-content">
+            
+          <form action="usercategoryeditok.html" class="form-horizontal" method="post" id="J_Form">
+            <br />
+            <br />
+            <div class="control-group">
+              <label class="control-label">团队名称：</label>
+              <div class="controls">
+                <input type="text" class="input-large" name="label" value="{{result.label}}">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">排序：</label>
+              <div class="controls">
+                <input type="text" class="input-large" name="ord" value="{{result.ord}}">
+              </div>
+            </div>
+            <div class="row actions-bar">       
+                <div class="form-actions span13 offset3">
+                  <button type="submit" class="button button-primary">保存</button>
+                  <button  class="button">返回</button>
+                  <input type="hidden" name="user_category_id" value="{{user_category_id}}" />
+                  <input type="hidden" name="request_url" value="{{request_url}}" />
+                </div>
+            </div>       
+          </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="../assets/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="../assets/js/bui-min.js"></script>
+  <script type="text/javascript" src="../assets/js/config-min.js"></script>
+  <!-- 表单验证必须加上下面的JS -->
+     <script type="text/javascript">
+      BUI.use('bui/form',function(Form){
+      new Form.Form({
+        srcNode : '#J_Form'
+      	}).render();
+  		});  
+	</script>
+<!-- script end -->
+  </div>
+</body>
+</html> 

@@ -1,0 +1,29 @@
+{%if newslist.list%}
+<ul id="mynewslist">
+	{%for list in newslist.list%}
+	<li data-id="417145" onclick="javascript:toDetail({{list.id}});" tapmode="liActive">
+		{%if list.litpic%}
+		<div class="newsimg">
+			<img src="{{list.litpic}}" width="90" height="67" align="absmiddle">
+		</div>
+		{%endif%}
+		<span class="newst"><a href="##">{{list.title|safe}}</a></span>
+		<span class="newsTips">
+			<ul>
+				<li class="tname">
+					阳光 ｜
+				</li>
+				<li class="ttime">
+					10分钟前
+				</li>
+				<li style="float:right;">
+					<div class="tpinglun">
+						<a href="http://m.mydrivers.com/comment/review.aspx?tid=417145">0</a>
+					</div>
+				</li>
+			</ul>
+		</span>
+	</li>
+	{%endfor%}
+</ul>
+{%endif%}

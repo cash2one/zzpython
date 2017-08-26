@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>问题详情-ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css" />
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-tab.js" ></script>
+		<style>
+			.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+			.clearfix{height:1%}
+			.clearfix{display:block}
+			.aui-bar{
+				position: fixed;
+				z-index: 5;
+				top: 0px;
+			}
+			.text-33{
+				color:#9B9B9B;
+			}
+			.aui-tab{
+				position: fixed;
+				z-index: 5;
+				top: 45px;
+			}
+			.aui-tab-item.aui-active{
+				color: #009900;
+    			border-bottom: 2px solid #009900;
+			}
+			.aui-timeline:before{
+				width: 0px;
+			}
+			.foot-btn{
+				position: fixed;
+				bottom: 0;
+				border-radius: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary">
+	    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+		        <span class="aui-iconfont aui-icon-left"></span>
+		    </a>
+		    <a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-title">问题详情</div>
+		    <a class="aui-pull-right" href="/myrc_index/">
+		        <span class="aui-iconfont aui-icon-my"></span>
+		    </a>
+		</header>
+		<div style="height: 45px;"></div>
+		
+		<div class="aui-content">
+		    <ul class="aui-timeline">
+		        <li>
+		            <div class="aui-timeline-item aui-margin-l-0 aui-padded-b-5">
+		                <div class="aui-timeline-header">
+		                	<p class="aui-font-size-16 aui-text-info">
+		                		{{details.question|safe}}
+		                	</p>
+		                	<p class="aui-font-size-12 text-33  aui-padded-t-15">提问时间：{{details.question_time}}</p>
+		                </div>
+		                {%if details.answerlist%}
+		                {%for list in details.answerlist%}
+		                <div class="clear aui-margin-t-10 aui-padded-l-10 aui-padded-r-10">
+		                	<p class="aui-pull-left aui-font-size-12 text-33">
+		                		{%if list.postuser%}<b>我</b>的{%else%}ZZ91再生网服务人员{%endif%}回复：
+		                	</p>
+		                	<p class="aui-pull-right aui-font-size-12 text-33">
+		                		{{list.answer_time}}
+		                	</p>
+		                </div>
+		                <div class="aui-timeline-footer aui-margin-t-10 aui-margin-b-10 aui-margin-l-10 aui-margin-r-10">
+		                    <div {%if list.postuser%}{%else%}style='color: #003399;'{%endif%}>{{list.answer|safe}}</div>
+		                    <div class="clear"></div>
+		                </div>
+		                {%endfor%}
+		                {%else%}
+		                <div class="aui-timeline-footer aui-margin-t-10 aui-margin-b-10 aui-margin-l-10 aui-margin-r-10">
+		                    工作人员还未回复，请稍等！
+		                </div>
+		                {%endif%}
+		            </div>
+		        </li>
+		    </ul>
+		</div>
+		<div style="height: 50px;"></div>
+		<a href="reply.html?question_id={{id}}" class="foot-btn aui-btn aui-btn-success aui-btn-block">
+			我要回复
+		</a>
+		{%include 'aui/bottom.html'%}
+	</body>
+</html>

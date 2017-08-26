@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/offer.css" />
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="search">
+<form action="/offerlist/" method="get">
+	<div class="search-content">
+    	<input type="text" class="search-text" name="keywords"  placeholder="请输入您要搜索的产品..."/>
+    </div>
+    <div class="search-button">
+    	<center>
+    		<input type="submit" class="search-ok" value="搜  索" />
+        </center>
+    </div>
+    <div class="cb"></div>
+</form>
+</div>
+<script type="text/javascript">
+/*手机站：首页 20:3，创建于2014-7-22*/
+var cpro_id = "u1629209";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/cm.js" type="text/javascript"></script>
+<div class="mainContent" style="margin:0 0px;padding:0px;">
+
+		<ul class="listSelect">
+		<li>分类</li>
+		{%for list in categorylist%}
+		<li><a class="parentSN" href="/offerlist/?keywords={{list.label}}"> {{list.label}}<span class="c6"></span></a></li>
+		{%endfor%}
+		</ul>
+
+</div>
+{%include 'bottom.html'%}
+</div>
+
+</body>
+</html>

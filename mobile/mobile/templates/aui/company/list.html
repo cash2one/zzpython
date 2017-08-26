@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title>公司黄页-ZZ91再生网</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css">
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-scroll.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/aui-popup.js"></script>
+		<style>
+			.aui-bar-fixed{
+				position: fixed;
+				top: 0;
+				width: 100%;
+    			z-index: 999;
+			}
+			.popsearch{
+		    	padding: 10px;
+		    	height: 100%;
+		    	position: fixed;
+		    	width: 100%;
+		    	top: 0px;
+		    	background-color: #F4F5F7;
+		    	z-index: 9999;
+		    	display: none;
+		    }
+		    .nearseach{
+		    	display: block;
+		    	padding: 10px;
+		    	margin-top: 10px;
+		    	background-color: #f9f9f9;
+		    }
+		    .nearseach a{
+		    	margin-right: 10px;
+		    	text-align: center;
+		    	padding: 10px;
+		    }
+		    
+		    .floatpage{
+				position: fixed;
+				bottom:0px;
+				width:100%;
+				height:54px;
+			}
+			.am-type-nav{
+		        position: fixed;
+		        top: 45px;
+		        z-index: 2;
+		        background-color: #fff;
+		        font-size: 12px;
+		        border-bottom: 1px solid #e6e6e6;
+		    }
+		    .am-g {
+			    margin: 0 auto;
+			    width: 100%;
+			}
+		    .am-type-list-indo{
+		        padding-top: 31px;
+		        background-color: #fff
+		    }
+		    .am-nav-get .aui-col-xs-4{
+		        border-right: 1px solid #e6e6e6;
+		        position: relative;
+		        padding: 3px 0;
+		    }
+		    .am-nav-get .am-u-sm-4:last-child{
+		        border-right: 0
+		    }
+		    .am-icon-sanjiao{
+		        display: inline-block;
+		        width: 0;
+		        height: 0;
+		        border-width: 0px 0px 6px 6px;
+		        border-style: solid dashed dashed dashed;
+		        border-color:  transparent transparent #333 transparent;
+		        position: absolute;
+		        right: 8px;
+		        bottom:3px;
+		    }
+		    .am-list-news-default .am-list .am-list-item-text{
+		        -webkit-line-clamp:1;
+		    }
+		    .this_select {
+			    color: red;
+			}
+			.pop {
+			    position: fixed;
+			    height: 100%;
+			    background-color: rgba(0,0,0,.5);
+			    top: 0;
+			    width: 100%;
+			    -moz-opacity: 0;
+			    -webkit-opacity: 0;
+			    -o-opacity: 0;
+			    z-index: -1;
+			}
+			.popshow {
+			    z-index: 1;
+			    display: block;
+			    -moz-opacity: 1;
+			    -webkit-opacity: 1;
+			    -o-opacity: 1;
+			    -moz-transition: -moz-opacity 0.5s;
+			    -webkit-transition: -webkit-opacity 0.5s;
+			    -o-transition: -o-opacity 0.5s;
+			}
+			.pop-main{
+				position: absolute;
+			    width: 100%;
+			    top: 69px;
+			    background-color: #f2f2f2;
+			    -moz-transform: translate(0px,-240px);
+			    -webkit-transform: translate(0px,-240px);
+			    -o-transform: translate(0px,-240px);
+			}
+			.popshow .pop-main {
+			    -moz-transform: translate(0px,0px);
+			    -webkit-transform: translate(0px,0px);
+			    -o-transform: translate(0px,0px);
+			    -moz-transition: -moz-transform 0.5s;
+			    -webkit-transition: -webkit-transform 0.5s;
+			    -o-transition: -o-transform 0.5s;
+			}
+			.scrollable-vertical{
+				overflow-y: scroll;
+			    -webkit-overflow-scrolling: touch;
+			    resize: vertical;
+			}
+			.nav-left-type{
+				width: 32%;
+				background-color: #e6e6e6;
+				float: left;
+			}
+			.nav-left-type li{
+				border-bottom: 1px solid #CDCDCD;
+				text-align: center;
+			}
+			.aui-list .aui-list-header{
+				background-color: #e6e6e6;
+				padding: 0.5rem 0.4rem;
+			}
+			.box{}
+		    .box-div{
+		    	border:0px solid #006600;
+		    }
+			.box-item{
+				text-align:left;
+				clear: both;
+				border-bottom: 1px solid #e6e6e6;
+			} 
+			.box-item-title{
+				margin-bottom:5px;
+			}
+			.box-item-title a{
+				color:#333;
+				font-size:0.6rem;
+				font-weight: bold;
+			}
+			.box-item-content ul{
+				padding:0px;
+			}
+			.box-item-content ul li{
+				margin-right:10px;
+				margin-bottom:5px;
+				line-height:24px;
+				width: 45%;
+				float:left;
+				display:inline;
+				background: #fff;
+			}
+			.box-item-content ul li a{
+				padding:0 4px;
+				font-size:0.6rem;
+				display: block;
+				width: 100%;
+			}
+			.box-item-click{
+				color:#aaa;
+			}
+			.hy-dz{
+				padding-bottom: 10px;
+			}
+			.hy-dz a{
+				color: #000;
+				font-size: 0.6rem;
+			}
+			.hy-jsd p{
+				color: #000;
+				font-size: 0.6rem;
+				font-weight: bold;
+			}
+			.hy-jsd a{
+				color: #000;
+				font-size: 0.6rem;
+			}
+			.aui-grid-nine li{
+				padding: 3px 10px;
+			}
+			.hy-main{
+				padding: 68px 0 63px 0;
+			}
+			.hy-tle{
+				color: #000;
+			}
+			.hy-tle span{
+				display: inline-block;
+				text-indent: 10px;
+			}
+			.hy-c9{
+				color: #999;
+			}
+			.hy-tle-con{
+				font-size: 12px;
+				color: #999;
+			}
+			.ptop{
+	    		background-color: #009900;
+	    		text-align:center;
+	    		width:100%;
+	    		clear:both;
+	    		line-height:33px;
+	    		overflow: hidden;
+	    		padding-left:5px;
+	    		position: fixed;
+	    		bottom: 45px;
+	    		left: 0px;
+	    		z-index: 1;
+	    	}
+	    	.zdbotton{
+	    		background-color:#C0392B;
+	    		color:#fff;
+	    		width:60px;
+	    		font-size:12px;
+	    		margin-top:8px;
+	    		display:block;
+	    		line-height:20px;
+	    		border-radius:2px;
+	    		position: absolute;
+	    		right:10px;
+	    		top:0px;
+	    		padding-left:4px;
+	    		padding-right:4px;
+	    		text-align:center;
+	    	}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-primary aui-bar-fixed">
+	    	<a class="aui-pull-left" href="/">
+		        <span class="aui-iconfont aui-icon-home"></span>
+		    </a>
+		    <div class="aui-searchbar aui-border-radius searchcenter" onclick="opensearch()">
+	            <i class="aui-iconfont aui-icon-search"></i>
+	            <div class="aui-searchbar-text">输入你感兴趣的关键词</div>
+	        </div>
+	        <a class="aui-pull-right" onclick="showPopup()">
+		        <span class="aui-iconfont aui-icon-sort"></span>
+		    </a>
+		</header>
+		
+		<div class="topdiv" onclick="pagetotop();" style="bottom: 90px; display: none;"><span class="aui-iconfont aui-icon-top"></span></div>
+		
+		<div class="aui-popup aui-popup-top-right" id="top-right" style="margin-top: 45px;">
+		    <div class="aui-popup-arrow"></div>
+		    <div class="aui-popup-content">
+		        <ul class="aui-list aui-list-noborder">
+		            <li class="aui-list-item">
+		                <a href="/trade/" class="aui-arrow-right"><div class="aui-list-item-inner aui-list-item-middle">交易中心</div></a>
+		            </li>
+		            <li class="aui-list-item">
+		                <a href="/jiage/" class="aui-arrow-right"><div class="aui-list-item-inner">行情报价</div></a>
+		            </li>
+		            <li class="aui-list-item">
+		                <a href="/news/" class="aui-arrow-right"><div class="aui-list-item-inner">资讯中心</div></a>
+		            </li>
+		            <li class="aui-list-item">
+		                <a href="/company/" class="aui-arrow-right"><div class="aui-list-item-inner">公司黄页</div></a>
+		            </li>
+		            <li class="aui-list-item">
+		                <a href="/ye/" class="aui-arrow-right"><div class="aui-list-item-inner">产业带</div></a>
+		            </li>
+		            <li class="aui-list-item">
+		                <a href="/qianbao/" class="aui-arrow-right"><div class="aui-list-item-inner">再生钱包</div></a>
+		            </li>
+		            <li class="aui-list-item">
+		                <a href="/myrc_index/" class="aui-arrow-right"><div class="aui-list-item-inner">生意管家</div></a>
+		            </li>
+		        </ul>
+		    </div>
+		</div>
+		
+		<div class="popsearch" style="display: none;">
+			<div class="aui-searchbar" id="search" style="margin: 0px;">
+		        <div class="aui-searchbar-input aui-border-radius" style="padding-left: 0px;">
+		            <i class="aui-iconfont aui-icon-search"></i>
+		            <input type="search" placeholder="请输入搜索内容" id="search-input">
+		            <div class="aui-searchbar-clear-btn">
+		                <i class="aui-iconfont aui-icon-close"></i>
+		            </div>
+		        </div>
+		    </div>
+		    <div style="width: 300px;margin: 0 auto;padding: 20px;">
+			    <div class="aui-btn aui-pull-left" onclick="closesearch()">取消</div>
+			    <div class="aui-btn aui-btn-success aui-pull-right searchbtn">搜索</div>
+		    </div>
+		    <div style="clear: both;"></div>
+		    <section class="nearseach">
+		        最近搜索：
+		        {%for l in mysearchkeylist%}
+		        <a href="/company/?keywords={{l.keywords}}">{{l.keywords}}</a>
+		        {%endfor%}
+		    </section>
+		    <section class="nearseach">
+		        热门搜索：
+		        {%for l in abountkeywords%}
+		        <a href="/company/?keywords={{l.keywords}}">{{l.keywords}}</a>
+		        {%endfor%}
+		    </section>
+		</div>
+		
+		<div class="am-type-nav aui-row am-g j_type_nav am-nav-get j_select">
+	        <div class="aui-col-xs-4 aui-text-center">{%if keywords%}{{keywords}}{%else%}类目{%endif%}<i class="am-icon-sanjiao"></i></div>
+	        <div class="aui-col-xs-4 aui-text-center">{%if province%}{{province}}{%else%}地区{%endif%}<i class="am-icon-sanjiao"></i></div>
+	        <div class="aui-col-xs-4 aui-text-center">{%if jisd%}{{jisd}}{%else%}集散地{%endif%}<i class="am-icon-sanjiao"></i></div>
+	    </div>
+	    <div class="aui-tips-danger ptop">
+			<div class="aui-ellipsis-1" style="text-align: left">
+				<i class="aui-iconfont aui-icon-creative"></i>
+				<font style="font-size:14px" color="#fff">下载APP，获取<font color="#FEE900">20</font>元红包</font>
+				<a class="zdbotton" href="http://m.zz91.com/app.html">免费下载</a>
+			</div>
+		</div>
+	    <div class="pop">
+	        <div class="pop-main aui-row">
+	        	<div class="nav-left-type scrollable-vertical" style="height: 350px;">
+	        		<ul class="aui-list aui-list-in tradecategorycode">
+	        			<li class="aui-list-header " code="1000">
+				            <p>废金属</p>
+				        </li>
+				        <li class="aui-list-header" code="1001">
+				            <p>废塑料</p>
+				        </li>
+				        <li class="aui-list-header" code="1003">
+				            <p>废纺织品</p>
+				        </li>
+				        <li class="aui-list-header" code="1004">
+				            <p>废纸</p>
+				        </li>
+				        <li class="aui-list-header" code="1007">
+				            <p>二手设备</p>
+				        </li>
+				        <li class="aui-list-header" code="1005">
+				            <p>电子电器</p>
+				        </li>
+				        <li class="aui-list-header" code="1002">
+				            <p>橡胶轮胎</p>
+				        </li>
+				        <li class="aui-list-header" code="1006">
+				            <p>废玻璃</p>
+				        </li>
+				        <li class="aui-list-header" code="1009">
+				            <p>服务</p>
+				        </li>
+				        <li class="aui-list-header" code="1008">
+				            <p>其他废料</p>
+				        </li>
+				        
+	        		</ul>
+	        	</div>
+	        	<div class="aui-col-xs-8 aui-pull-right scrollable-vertical box-div"  style="height: 350px;">
+	        		<!--<div class="box-item">
+	        			<div class="box-item-title">
+	        				<a href="/trade/feigangtie/">废钢铁</a>
+	        			</div>
+	        			<div class="box-item-content">
+	        				<ul class="clear">
+	        					<li>
+	        						<a href="/trade/feitie1/" class="box-item-click">废铁</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feigang/" class="box-item-click">废钢</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feigangtie1/" class="box-item-click">废钢铁</a>
+	        					</li>
+	        					<div class="cb"></div>
+	        				</ul>
+	        			</div>
+	        		</div>
+	        		
+	        		<div class="box-item">
+	        			<div class="box-item-title">
+	        				<a href="/trade/feigangtie/">废钢铁</a>
+	        			</div>
+	        			<div class="box-item-content">
+	        				<ul class="clear">
+	        					<li>
+	        						<a href="/trade/feitie1/" class="box-item-click">废铁</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feigang/" class="box-item-click">废钢</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feigangtie1/" class="box-item-click">废钢铁</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feitie1/" class="box-item-click">废铁</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feigang/" class="box-item-click">废钢</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feigangtie1/" class="box-item-click">废钢铁</a>
+	        					</li>
+	        					<div class="cb"></div>
+	        				</ul>
+	        			</div>
+	        		</div>
+	        		<div class="box-item">
+	        			<div class="box-item-title">
+	        				<a href="/trade/feigangtie/">废钢铁</a>
+	        			</div>
+	        			<div class="box-item-content">
+	        				<ul class="clear">
+	        					<li>
+	        						<a href="/trade/feitie1/" class="box-item-click">废铁</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feigang/" class="box-item-click">废钢</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feigangtie1/" class="box-item-click">废钢铁</a>
+	        					</li>
+	        					<div class="cb"></div>
+	        				</ul>
+	        			</div>
+	        		</div>
+	        		
+	        		<div class="box-item">
+	        			<div class="box-item-title">
+	        				<a href="/trade/feigangtie/">废钢铁</a>
+	        			</div>
+	        			<div class="box-item-content">
+	        				<ul class="clear">
+	        					<li>
+	        						<a href="/trade/feitie1/" class="box-item-click">废铁</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feigang/" class="box-item-click">废钢</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feigangtie1/" class="box-item-click">废钢铁</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feitie1/" class="box-item-click">废铁</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feigang/" class="box-item-click">废钢</a>
+	        					</li>
+	        					<li>
+	        						<a href="/trade/feigangtie1/" class="box-item-click">废钢铁</a>
+	        					</li>
+	        					<div class="cb"></div>
+	        				</ul>
+	        			</div>
+	        		</div>-->
+	        	</div>
+	        </div>
+	    </div>
+	    
+	    <div class="pop">
+	        <div class="pop-main aui-row">
+	        	<ul class="aui-grid-nine hy-dz scrollable-vertical" style="height: 350px;">
+	        		<li class="aui-col-xs-12 aui-text-center">
+			            <a href="">不限</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">浙江</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">广东</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">江苏</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">福建</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">安徽</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">河南</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">河北</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">湖北</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">湖南</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">四川</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">江西</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">山东</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">海南</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">黑龙江</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">北京</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">上海</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">天津</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">青海</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">陕西</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">山西</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">贵州</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">辽宁</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">宁夏</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">吉林</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">内蒙古</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">广西</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">云南</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">西藏</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">重庆</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">甘肃</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">新疆</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">台湾</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">香港</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">澳门</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">&nbsp;</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">&nbsp;</a>
+			        </li>
+				</ul>
+	        </div>
+	    </div>
+	    
+	    <div class="pop">
+	        <div class="pop-main aui-row">
+	        	<ul class="aui-grid-nine hy-jsd scrollable-vertical jisd" style="height: 350px;">
+	        		<li class="aui-col-xs-12">
+			            <p>废金属</p>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">广东南海</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">浙江永康</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">河南长葛</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">湖南汨罗</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">宁波镇海</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">浙江台州</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">天津子牙</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">山东临沂</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">山东聊城</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">江苏太仓</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">天津静海</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">辽宁大石桥</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">河北邢台</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">安徽界首</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">四川新津</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">福建全通</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">湖南郴州</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">&nbsp;</a>
+			        </li>
+			        
+			        <li class="aui-col-xs-12">
+			            <p>废塑料</p>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">广东南海</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">广东顺德</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">汕头贵屿</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">山东临沂</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">山东莱州</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">浙江温州</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">烟台龙口</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">浙江慈溪</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">余姚塑料城</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">浙江台州</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">金华东阳</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">江苏徐州</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">江苏兴化</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">江苏太仓</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">江苏宿迁</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">河北文安</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">河北定州</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">湖南汨罗</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">安徽五河</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">河南安阳</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">河南长葛</a>
+			        </li>
+			        
+			        <li class="aui-col-xs-12">
+			            <p>二手设备</p>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">广东深圳</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">江苏徐州</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">浙江台州</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">广西南宁</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">河北廊坊</a>
+			        </li>
+			        <li class="aui-col-xs-4 aui-text-center">
+			            <a href="">&nbsp;</a>
+			        </li>
+				</ul>
+	        </div>
+	    </div>
+	    
+	    <section>
+	    	<div class="aui-content hy-main">
+	    		{%if companylist%}
+			    <ul class="aui-list-view">
+			    	{%for list in companylist%} 
+			        <li class="aui-list-view-cell aui-img">
+			            <a href="/company/shop{{list.id}}.html">
+			            	<div class="aui-img-body">
+				                <p class="hy-tle">
+				                	{{list.compname}}<span class="hy-c9">[{{list.area_province}}]</span>
+				                </p>
+				                <p class="aui-ellipsis-2 hy-tle-con">
+				                	{{list.business}}
+				                </p>
+				            </div>
+				        </a>
+			        </li>
+			        {%endfor%}
+			    </ul>
+			    {%else%}
+			    <div class="nodata">没有找到您要的公司信息，请选择其他类别试试！</div>
+			    {%endif%}
+			    <script type="text/javascript">
+				    /*kangxianyue 20:5 创建于 2017/4/19*/
+				    var cpro_id = "u2958427";
+				</script>
+				<script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/cm.js"></script>
+			    <div class="floatpage">
+				    <div class="page">
+						<ul>
+							{% if firstpage %}
+							<li class="page_prev">
+								<a href="/company/{%if ldb%}ldb/{%endif%}p{{prvpage}}.html?{%if keywords%}keywords={{keywords}}{%endif%}{%if province%}&province={{province}}{%endif%}{%if jisd%}&jisd={{jisd}}{%endif%}">上一页</a>
+							</li>
+							{%else%}
+							<li class="page_prev" style="color:gray">上一页</li>
+							{% endif %}
+							<li class="page_no">
+								<select onChange="window.location='/company/{%if ldb%}ldb/{%endif%}p'+this.value+'.html?{%if keywords%}keywords={{keywords}}{%endif%}{%if province%}&province={{province}}{%endif%}{%if jisd%}&jisd={{jisd}}{%endif%}'">
+									<option>第{{page}}页</option>
+									{%for p in page_range%}
+									<option value="{{p.number}}">第{{p.number}}页</option>
+									{%endfor%}
+								</select> /{{page_listcount}}页
+							</li>
+							{% if lastpage%}
+							<li class="page_next">
+								<a href="/company/{%if ldb%}ldb/{%endif%}p{{nextpage}}.html?{%if keywords%}keywords={{keywords}}{%endif%}{%if province%}&province={{province}}{%endif%}{%if jisd%}&jisd={{jisd}}{%endif%}">下一页</a>
+							</li>
+							{%else%}
+							<li class="page_prev" style="color:gray">下一页</li>
+							{% endif %}
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+			
+	    </section>
+		
+		{%include 'aui/bottom.html'%}
+	</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+        $(".j_select").children().on("click",function(){
+            if($(this).hasClass("this_select")){
+                closePop();
+                return;
+            }
+            $(".this_select").removeClass("this_select");
+            $(this).addClass("this_select")
+            var indexNum = $(this).index();
+            $(".popshow").removeClass("popshow")
+            $(".pop").eq(indexNum).addClass("popshow")
+        })
+        $(".searchbtn").on("click",function(){
+        	var searchtext=$("#search-input").val()
+        	if (searchtext!=""){
+        		window.location='?keywords='+searchtext;
+        	}
+        })
+        $(".hy-dz").on("click","li",function(){
+        	var searchtext=$(this).find("a").text();
+        	if (searchtext!=""){
+        		window.location='?keywords={{keywords}}&province='+searchtext;
+        	}
+        })
+        $(".jisd").on("click","li",function(){
+        	var searchtext=$(this).find("a").text();
+        	if (searchtext!=""){
+        		window.location='?jisd='+searchtext;
+        	}
+        })
+        
+        $('.tradecategorycode li').click(function(){
+			$('.tradecategorycode li').css("background-color","");
+			$('.tradecategorycode li').find("p").css("color","");
+			$(this).css("background-color","#006600");
+			$(this).find("p").css("color","#fff")
+			var categorycode=$(this).attr("code");
+			var ajaxurl="/categoryinfo.html?categorycode="+categorycode+"&ctype=company";
+			layer.load(1)
+			$.getScript(ajaxurl, function() {
+				var result = categorylist;
+				$(".box-div").html(result);
+				layer.closeAll("loading")
+				return false;
+			});
+		});
+        var scroll = new auiScroll({
+	        listen:true,
+	        distance:200 //判断到达底部的距离，isToBottom为true
+	    },function(ret){
+	        if(ret.isToBottom){
+	        	//alert(1)
+	        	//getmoreinfo()
+	            //document.getElementById("demo").textContent = "已到达底部";
+	        }else{
+		        if (ret.scrollTop>150){
+		        	$(".topdiv").fadeIn();
+		        }else{
+		        	$(".topdiv").fadeOut();
+		        }
+	        }
+	
+	    });
+	    
+    })
+    
+	var popup = new auiPopup();
+    function showPopup(){
+        popup.show(document.getElementById("top-right"))
+    }
+    //关闭弹窗
+    function closePop(){
+        $(".this_select").removeClass("this_select");
+        $(".popshow").removeClass("popshow");
+    }
+    
+	function opensearch(){
+		$(".popsearch").show();
+		$("#search-input").focus();
+		document.getElementById("search-input").focus();
+	}
+	function closesearch(){
+		$(".popsearch").hide();
+	}
+	function pagetotop(){
+		$('body').animate( {scrollTop: 0}, 500);
+	}
+	
+    //点击遮罩
+    $(document).on("click",function(e){ 
+        e = window.event || e; // 兼容IE7
+        obj = $(e.srcElement || e.target);
+        if ($(obj).is(".pop")) { 
+        //要执行的函数b
+            closePop()
+        } 
+    }); 
+    //点击遮罩
+    $(".pop").on("click",function(){
+    })
+</script>

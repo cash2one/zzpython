@@ -1,0 +1,2551 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="shortcut icon" href="http://img0.zz91.com/front/images/logo/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/mini/css/microPortal.css" />
+<script type="text/javascript" src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="http://img0.zz91.com/zz91/mini/js/microPortal.js"></script>
+</head>
+<body>
+<div class="logosearch" id="logosearch">
+  <div class="logo"> <a href="http://www.zz91.com" target="_blank"> <img src="http://img0.zz91.com/zz91/mini/images/icon_zz91.jpg" alt="ZZ91再生网" width="162" height="58" /> </a> </div>
+  <!--end logo-->
+  <div class="mini_search">
+    <form id="searchMarket" action="#" method="post" onsubmit="return zz91searchindex(this,0);">
+      <div class="search_bar">
+        <div class="box left">
+          <input name="keywords" id="keywords" type="text" class="searchtext" />
+        </div>
+        <div class="right"> <a href="javascript:void(0)" data="1" class="searchlink" id="searchlink"></a> </div>
+      </div>
+    </form>
+  </div>
+  <!--end mini_search-->
+  <div class="cb"></div>
+</div>
+<!--end logosearch-->
+<div class="micro_nav">
+  <ul class="micro_ul">
+    <li class="ml25"><a href="/" class="on">首页</a></li>
+    <li><a href="/">微门户{{messagelist}}</a></li>
+  </ul>
+</div>
+<!--end micro_nav-->
+<div class="cb"></div>
+<div class="micro">
+	<div class="mini_wrap clearfix">
+    	<div class="wrap_block">
+    	<div class="mini_nav">
+        	<h3>产品分类导航</h3>
+        	<ul class="nav_list">
+            	<li>
+                	<a href="/" target="_blank">钢铁</a>
+                    <a href="/" target="_blank">稀有金属</a>
+                </li>
+                <li>
+                	<a href="/" target="_blank">有色金属</a>
+                    <a href="/" target="_blank">金属混合</a>
+                </li>
+                <li>
+                	<a href="/" target="_blank">通用废塑料</a>
+                    <a href="/" target="_blank">工程废塑料</a>
+                </li>
+                <li>
+                	<a href="/" target="_blank">塑料颗粒</a>
+                    <a href="/" target="_blank">特种废塑料</a>
+                </li>
+                <li>
+                	<a href="/" target="_blank">化纤</a>
+                    <a href="/" target="_blank">坯布面料</a>
+                </li>
+                <li>
+                	<a href="/" target="_blank">皮革</a>
+                    <a href="/" target="_blank">废棉料</a>
+                </li>
+                <li>
+                	<a href="/" target="_blank">丝</a>
+                    <a href="/" target="_blank">牛仔布</a>
+                </li>
+                <li>
+                	<a href="/" target="_blank">包装废纸</a>
+                    <a href="/" target="_blank">印刷废纸</a>
+                </li>
+                <li>
+                	<a href="/" target="_blank">工程设备</a>
+                    <a href="/" target="_blank">化工设备</a>
+                </li>
+                <li>
+                	<a href="/" target="_blank">废电子</a>
+                    <a href="/" target="_blank">废电器</a>
+                </li>
+            </ul>
+        </div>
+        <div class="mini_main">
+        	<div class="mini_main_banner">
+            	<div class="banner_bd"><a href="/" target="_blank"><img src="" alt="" /></a></div>
+                <!--end banner_bd-->
+                <div class="banner_list">
+                	<div class="banner_list_title">
+                    	<dl>
+                        	<dt>最新</dt>
+                            <dd>
+                                {% for list in listnewest %}
+								<a href="cp/{{list.pingyin}}" target="_blank">{{list.label}}</a>
+								{%endfor%}	
+                            </dd>
+                        </dl>
+                    </div>
+                    <h3>热门搜索</h3>
+                    <div class="banner_list_box">
+                    {% for list in listhot %}
+                    	<div class="banner_item">
+                        	<div class="banner_item_img">
+                            	<a href="cp/{{list.pingyin}}" title="" target="_blank"><img src="http://img1.zz91.com/{{list.pic_address}}" width="104" height="66" alt="" /></a>
+                            </div>
+                            <div class="banner_item_text">
+                            	<a href="cp/{{list.pingyin}}" target="_blank">{{list.label}}</a>
+                            </div>
+                        </div>
+                        <!--end banner_item-->
+                    {%endfor%}	   
+                    </div>
+                </div>
+                <!--end banner_list-->
+            </div>
+            <!--end mini_main_banner-->
+            <div class="mini_main_info">
+            	<div class="info_box">
+                	<div class="info_box_title">
+                    	<div class="info_box_link">微门户</div>
+                        <div class="info_box_link">
+                        	<a href="/" target="_blank">立即登入</a>
+                        </div>
+                        <div class="cb"></div>
+                    </div>
+                	<div class="info_box_content">
+                    	微门户，是由ZZ91再生网针对废料行业关键词集合海量优质供应商、求购商、报价与资讯信息，提供买卖双方在线洽谈的机会。
+                    </div>
+                </div>
+                <!--end info_box-->
+                <div class="info_box">
+                	<div class="info_box_title2">VIP商家展示</div>
+                    <div class="info_box_content2">
+                    	<ul>
+                    	{% for list in companylist %}
+                        	<li>
+                            	<a href="http://{{list.domain_zz91}}.zz91.com" target="_blank" title="{{list.comname}}">{{list.area_province}}</a>
+                            </li>
+						{%endfor%}
+                            <li>
+                        </ul>
+                    </div>
+                </div>
+                <!--end info_box-->
+            </div>
+            <!--end mini_main_info-->
+        </div>
+        <!--end mini_main-->
+        </div>
+        <!--end wrap_block-->
+        <div class="cb"></div>
+        <div class="wrap_block">
+        	<div class="mini_square">
+            	<div class="ms_title"><strong>1F&nbsp;&nbsp;&nbsp;废金属</strong></div>
+                <div class="ms_content">
+                	<div class="msc_left">
+                    	<div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="http://trade.zz91.com/trade/s-e992a2e99381.html" title="钢铁" target="_blank">钢铁</a>&nbsp;
+    						</div>
+                            <ul>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="氧化铁 " target="_blank">
+        								<span>氧化铁 </span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e4b88de99488e99381.html" title="不锈铁" target="_blank">
+        								<span>不锈铁</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e783ade8bda7e992a2.html" title="热轧钢" target="_blank">
+        								<span>热轧钢</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e5ba9fe992a2e99381.html" title="废钢铁" target="_blank">
+        								<span>废钢铁</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e5ba9fe4b88de99488e992a2.html" title="废不锈钢" target="_blank">
+        								<span>废不锈钢</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e5ba9fe99381e8bda8.html" title="废铁轨" target="_blank">
+        								<span>废铁轨</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e586b7e8bda7e992a2.html" title="冷轧钢" target="_blank">
+        								<span>冷轧钢</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e992a2e7aea1.html" title="钢管" target="_blank">
+        								<span>钢管</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e992a2e6b8a3.html" title="钢渣" target="_blank">
+        								<span>钢渣</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e5ba9fe99381.html" title="废铁" target="_blank">
+        								<span>废铁</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e79fbde992a2.html" title="矽钢" target="_blank">
+        								<span>矽钢</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e789b9e7a78de992a2.html" title="特种钢" target="_blank">
+        								<span>特种钢</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e992a2e7ad8b.html" title="钢筋" target="_blank">
+        								<span>钢筋</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e5ba9fe992a2.html" title="废钢" target="_blank">
+        								<span>废钢</span>
+                                	</a>
+    							</li>
+    					    </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="http://trade.zz91.com/trade/s-e7a880e69c89e98791e5b19e.html" title = "稀有金属"  target= "_blank">稀有金属</a>&nbsp;
+                                <a href="http://trade.zz91.com/trade/s-e8b4b5e98791e5b19e.html" title = "贵金属"  target= "_blank">贵金属</a>&nbsp;
+    						</div>
+                            <ul>
+								<li>
+									<a href="http://trade.zz91.com/trade/s-e99292.html" title="钒" target="_blank">
+										<span>钒</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e9938c.html" title="铌" target="_blank">
+										<span>铌</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e9938d.html" title="铍" target="_blank">
+										<span>铍</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e9929b.html" title="钛" target="_blank">
+										<span>钛</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e99486.html" title="锆" target="_blank">
+										<span>锆</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e99593.html" title="镓" target="_blank">
+										<span>镓</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e992bd.html" title="钽" target="_blank">
+										<span>钽</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e992bc.html" title="钼" target="_blank">
+										<span>钼</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e992a8.html" title="钨" target="_blank">
+										<span>钨</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e99482.html" title="锂" target="_blank">
+										<span>锂</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e9939f.html" title="铟" target="_blank">
+										<span>铟</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e993bc.html" title="铼" target="_blank">
+										<span>铼</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e7a192.html" title="硒" target="_blank">
+										<span>硒</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e8b4b5e98791e5b19e.html" title="贵金属" target="_blank">
+										<span>贵金属</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e98791.html" title="金" target="_blank">
+										<span>金</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e993b6.html" title="银" target="_blank">
+										<span>银</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e99382.html" title="铂" target="_blank">
+										<span>铂</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e992af.html" title="钯" target="_blank">
+										<span>钯</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e99391.html" title="铑" target="_blank">
+										<span>铑</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e5ba9fe8a7a6e5aa92.html" title="废触媒" target="_blank">
+										<span>废触媒</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e98791e5b19ee58aa9e58982.html" title="金属助剂" target="_blank">
+										<span>金属助剂</span>
+									</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="http://trade.zz91.com/trade/s-e69c89e889b2e98791e5b19e.html" title = "有色金属"  target= "_blank">有色金属</a>&nbsp;
+    						</div>
+                            <ul>
+                    	    	<li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="废锡" target="_blank">
+    									<span>废锡</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe99385.html" title="废铅" target="_blank">
+    									<span>废铅</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e58589e4baaee9939c.html" title="光亮铜" target="_blank">
+    									<span>光亮铜</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e9bb84e69d82e9939c.html" title="黄杂铜" target="_blank">
+    									<span>黄杂铜</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e9939de59088e98791.html" title="铝合金" target="_blank">
+    									<span>铝合金</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9948c.html" title="氧化锌" target="_blank">
+    									<span>氧化锌</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9939d.html" title="氧化铝" target="_blank">
+    									<span>氧化铝</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe9939d.html" title="废铝" target="_blank">
+    									<span>废铝</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe9939c.html" title="废铜" target="_blank">
+    									<span>废铜</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe9958d.html" title="废镍" target="_blank">
+    									<span>废镍</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe9948c.html" title="废锌" target="_blank">
+    									<span>废锌</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe99581.html" title="废镁" target="_blank">
+    									<span>废镁</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e7a19de985b8e9958d.html" title="硝酸镍" target="_blank">
+    									<span>硝酸镍</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e99581e59088e98791e5ba9fe69699.html" title="镁合金废料" target="_blank">
+    									<span>镁合金废料</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe992bd.html" title="废钽" target="_blank">
+    									<span>废钽</span>
+    								</a>
+                            	</li>
+                               	<li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994b0.html" title="废锰" target="_blank">
+    									<span>废锰</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe993ac.html" title="废铬" target="_blank">
+    									<span>废铬</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe99589.html" title="废镉" target="_blank">
+    									<span>废镉</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe99491.html" title="废锑" target="_blank">
+    									<span>废锑</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe992b4.html" title="废钴" target="_blank">
+    									<span>废钴</span>
+    								</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="http://trade.zz91.com/trade/s-e98791e5b19ee6b7b7e590882fe5a48de59088e69699.html" title = "金属混合/复合料"  target= "_blank">金属混合/复合料</a>&nbsp;
+						        <a href="http://trade.zz91.com/trade/s-e7a185.html" title = "硅"  target= "_blank">硅</a>&nbsp;
+    						</div>
+                            <ul>
+                    	    	<li>
+                                	<a href="http://trade.zz91.com/trade/s-e5ba9fe4ba94e98791.html" title="废五金" target="_blank">
+										<span>废五金</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="http://trade.zz91.com/trade/s-e794b5e7babf2fe794b5e7bc86.html" title="电线/电缆" target="_blank">
+										<span>电线/电缆</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="http://trade.zz91.com/trade/s-e5ba9fe9a9ace8bebe28e794b5e69cba29.html" title="废马达(电机)" target="_blank">
+										<span>废马达(电机)</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="http://trade.zz91.com/trade/s-e5ba9fe794b5e8b7afe69dbf.html" title="废电路板" target="_blank">
+										<span>废电路板</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="http://trade.zz91.com/trade/s-e5ba9fe7babfe8b7afe69dbf.html" title="废线路板" target="_blank">
+										<span>废线路板</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="http://trade.zz91.com/trade/s-e5ba9fe58f98e58e8be599a8.html" title="废变压器" target="_blank">
+										<span>废变压器</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="http://trade.zz91.com/trade/s-e5ba9fe6b6b2.html" title="废液" target="_blank">
+										<span>废液</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="http://trade.zz91.com/trade/s-e5b0bee79fbfefbc88e79fbfe79fb3efbc89.html" title="尾矿（矿石）" target="_blank">
+										<span>尾矿（矿石）</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="http://trade.zz91.com/trade/s-e5ba9fe8bdb4e689bf.html" title="废轴承" target="_blank">
+										<span>废轴承</span>
+                                	</a>
+                            	</li>
+                                <li>
+                               		<a href="http://trade.zz91.com/trade/s-e4ba8ce7baa7e69dbf.html" title="二级板" target="_blank">
+										<span>二级板</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="http://trade.zz91.com/trade/s-e4b889e58583e582ace58c96e599a8.html" title="三元催化器" target="_blank">
+										<span>三元催化器</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="http://trade.zz91.com/trade/s-e7a185.html" title="硅" target="_blank">
+										<span>硅</span>
+                                	</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->                        
+                    </div>
+                    <div class="msc_right">
+                    	<div class="msc_item_title2">废金属报价</div>
+                        <div class="msc_right_box">
+                        	<ul>
+                            	<li>
+                                	<a href="" title="废五金" target="_blank">
+										<span>废铜</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="电线/电缆" target="_blank">
+										<span>废铝</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="废马达(电机)" target="_blank">
+										<span>废铁</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="废电路板" target="_blank">
+										<span>生铁</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="废线路板" target="_blank">
+										<span>废钢</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="废变压器" target="_blank">
+										<span>废镍</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废钼钛</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废锡</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废铅废锌</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废不锈钢</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废钢采购</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>国外废金属</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废金属网上报价</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>LME/期货</span>
+                                	</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                            <div class="msc_right_list">
+                            	<div class="msc_right_item fl">
+                                	<ul class="msc_right_ul">
+                                    	<li>
+                                        	<a href="" target="_blank" title="">07月09日(下午)上海长江有色价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日(下午)上海长江有色价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日(下午)上海长江有色价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日(下午)上海长江有色价格</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end fl-->
+                                <div class="msc_right_item fr">
+                                	<ul class="msc_right_ul">
+                                    	<li>
+                                        	<a href="" target="_blank" title="">07月09日(下午)上海长江有色价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日(下午)上海长江有色价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日(下午)上海长江有色价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日(下午)上海长江有色价格</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end fr-->
+                                <div class="cb"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+            </div>
+            <!--end mini_square-->
+            <div class="mini_square">
+            	<div class="ms_title"><strong>2F&nbsp;&nbsp;&nbsp;废塑料</strong></div>
+                <div class="ms_content">
+                	<div class="msc_left">
+                    	<div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="http://trade.zz91.com/trade/s-e992a2e99381.html" title="" target="_blank">通用废塑料</a>&nbsp;
+    						</div>
+                            <ul>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>PP</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>PE</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>HDPE</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>PVC</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>PS</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>HIPS</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>ABS</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>EVA</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>EPS</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>PPC</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>LDPE</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>PPN</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>LLDPE</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>BOPP</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="http://trade.zz91.com/trade/s-e6b0a7e58c96e9938120.html" title="" target="_blank">
+        								<span>PPR</span>
+                                	</a>
+    							</li>
+    					    </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="/" title = ""  target= "_blank">工程废塑料</a>&nbsp;
+    						</div>
+                            <ul>
+                    	    	<li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>PVB</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>TPU</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>PPO</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>PMMA</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>PPS</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>PET</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>PC</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>PU</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>PA</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>POM</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>LCP</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>AS</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>K胶</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>PA66</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>PA6</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="http://trade.zz91.com/trade/s-e5ba9fe994a1.html" title="" target="_blank">
+    									<span>纤维素类</span>
+    								</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="http://trade.zz91.com/trade/s-e7a880e69c89e98791e5b19e.html" title = "" target= "_blank">塑料颗粒</a>&nbsp;
+    						</div>
+                            <ul>
+								<li>
+									<a href="http://trade.zz91.com/trade/s-e99292.html" title="" target="_blank">
+										<span>PP再生颗粒</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="http://trade.zz91.com/trade/s-e99292.html" title="" target="_blank">
+										<span>PE再生颗粒</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="http://trade.zz91.com/trade/s-e99292.html" title="" target="_blank">
+										<span>PVC再生颗粒</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="http://trade.zz91.com/trade/s-e99292.html" title="" target="_blank">
+										<span>ABS再生颗粒</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="http://trade.zz91.com/trade/s-e99292.html" title="" target="_blank">
+										<span>PS再生颗粒</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="http://trade.zz91.com/trade/s-e99292.html" title="" target="_blank">
+										<span>EVA再生颗粒</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="http://trade.zz91.com/trade/s-e99292.html" title="" target="_blank">
+										<span>PA再生颗粒</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="http://trade.zz91.com/trade/s-e99292.html" title="" target="_blank">
+										<span>PET再生颗粒</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="http://trade.zz91.com/trade/s-e99292.html" title="" target="_blank">
+										<span>PC再生颗粒</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="http://trade.zz91.com/trade/s-e99292.html" title="" target="_blank">
+										<span>PPO再生颗粒</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="http://trade.zz91.com/trade/s-e99292.html" title="" target="_blank">
+										<span>再生颗粒</span>
+									</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="http://trade.zz91.com/trade/s-e98791e5b19ee6b7b7e590882fe5a48de59088e69699.html" title = ""  target= "_blank">特种废塑料</a>&nbsp;
+						        <a href="http://trade.zz91.com/trade/s-e7a185.html" title = ""  target= "_blank">塑料混合/复合料</a>&nbsp;
+    						</div>
+                            <ul>
+                    	    	<li>
+                                	<a href="" title="" target="_blank">
+										<span>增强塑料</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>氟塑料类</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>纸塑复合料</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>增强塑料</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>氟塑料类</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>纸塑复合料</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>塑料合金</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>PTFE</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>塑料泡沫</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>FEP牙膏皮</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废渔网</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>塑料混合</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>塑料复合膜</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>牙膏皮</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>电线/电缆皮</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>玻璃胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>有机硅塑料</span>
+                                	</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->                        
+                    </div>
+                    <div class="msc_right">
+                    	<div class="msc_item_title2">废塑料价格</div>
+                        <div class="msc_right_box">
+                        	<ul>
+                            	<li>
+                                	<a href="" title="" target="_blank">
+										<span>PET</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>PP</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>PVC</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>PC</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>ABS</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>PS</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>PA</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>PE</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>PMMA</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>EVA</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>LDPE</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>HDPE</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>LLDPE</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>ABS/PS</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>TPU</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>HIPS</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>GPPS</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>PTA</span>
+                                	</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                            <div class="msc_right_list">
+                            	<div class="msc_right_item fl">
+                                	<ul class="msc_right_ul">
+                                    	<li>
+                                        	<a href="" target="_blank" title="">07月10日江浙沪废锡价格行情</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月10日江浙沪废锡价格行情</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月10日江浙沪废锡价格行情</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月10日江浙沪废锡价格行情</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end fl-->
+                                <div class="msc_right_item fr">
+                                	<ul class="msc_right_ul">
+                                    	<li>
+                                        	<a href="" target="_blank" title="">07月10日江浙沪废锡价格行情</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月10日江浙沪废锡价格行情</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月10日江浙沪废锡价格行情</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月10日江浙沪废锡价格行情</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end fr-->
+                                <div class="cb"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+            </div>
+            <!--end mini_square-->
+            <div class="mini_square">
+            	<div class="ms_title"><strong>3F&nbsp;&nbsp;&nbsp;废纺织品&nbsp;&nbsp;&nbsp;综合服务</strong></div>
+                <div class="ms_content">
+                	<div class="msc_left">
+                    	<div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title="" target="_blank">化纤</a>&nbsp;
+                                <a href="" title="" target="_blank">纱线</a>&nbsp;
+                                <a href="" title="" target="_blank">坯布面料</a>&nbsp;
+    						</div>
+                            <ul>
+    					    	<li>
+        							<a href="" title="" target="_blank">
+        								<span>合成化纤</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="" title="" target="_blank">
+        								<span>人造纤维</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>特种化纤</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>坯布</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>服装下脚料</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>无纺布</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="" title="" target="_blank">
+        								<span>擦机布</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>旧衣服</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>手套</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>废布/碎布</span>
+                                	</a>
+    							</li>
+    					    </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title = ""  target= "_blank">皮革</a>&nbsp;
+                                <a href="" title = ""  target= "_blank">废棉料</a>&nbsp;
+    						</div>
+                            <ul>
+								<li>
+									<a href="" title="" target="_blank">
+										<span>人造皮革</span>
+									</a>
+                            	</li>
+                        		<li>
+									<a href="" title="" target="_blank">
+										<span>动物皮革</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>皮料</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>头层皮</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>二层皮</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>废棉料</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>精硫落棉</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>聚酯/脱脂棉</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>再生棉</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>涤棉</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>热风棉</span>
+									</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title = ""  target= "_blank">丝</a>&nbsp;
+                                <a href="" title = ""  target= "_blank">牛仔布</a>&nbsp;
+                                <a href="" title = ""  target= "_blank">家纺废料</a>&nbsp;
+    						</div>
+                            <ul>
+                    	    	<li>
+    								<a href="" title="" target="_blank">
+    									<span>真丝</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>废丝</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>地毯料</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>毛巾</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>麻</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>编织料</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>纺织设备</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>绒布花边</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>布条</span>
+    								</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title = ""  target= "_blank">废玻璃</a>&nbsp;
+						        <a href="" title = ""  target= "_blank">废木</a>&nbsp;
+                                <a href="" title = ""  target= "_blank">化工废料</a>&nbsp;
+						        <a href="" title = ""  target= "_blank">服务</a>&nbsp;
+    						</div>
+                            <ul>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>玻璃纤维</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>碎玻璃</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>玻璃瓶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废木制品</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>木屑/木粉</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废油</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废甲醇</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废乙醇</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>代理物流</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>服务</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>技术</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>报关清关</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>AQSIQ</span>
+                                	</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->                        
+                    </div>
+                    <div class="msc_right">
+                    	<div class="msc_item_title2">废纸价格</div>
+                        <div class="msc_right_box">
+                        	<ul>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废纸市场动态</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废纸网上报价</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>各地废纸</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>国内欧废</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>国内美废</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>国内日废</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>国外废纸</span>
+                                	</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                            <div class="msc_right_list">
+                            	<div class="msc_right_item fl">
+                                	<ul class="msc_right_ul">
+                                    	<li>
+                                        	<a href="" target="_blank" title="">07月10日华通有色金属价格(上午)</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月10日华通有色金属价格(上午)</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月10日华通有色金属价格(上午)</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月10日华通有色金属价格(上午)</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end fl-->
+                                <div class="msc_right_item fr">
+                                	<ul class="msc_right_ul">
+                                    	<li>
+                                        	<a href="" target="_blank" title="">07月10日华通有色金属价格(上午)</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月10日华通有色金属价格(上午)</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月10日华通有色金属价格(上午)</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月10日华通有色金属价格(上午)</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end fr-->
+                                <div class="cb"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+            </div>
+            <!--end mini_square-->
+            <div class="mini_square">
+            	<div class="ms_title"><strong>4F&nbsp;&nbsp;&nbsp;包装废纸&nbsp;&nbsp;&nbsp;工业废纸</strong></div>
+                <div class="ms_content">
+                	<div class="msc_left">
+                    	<div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title="" target="_blank">包装废纸</a>&nbsp;
+                                <a href="" title="" target="_blank">工业废纸</a>&nbsp;
+    						</div>
+                            <ul>
+    					    	<li>
+        							<a href="" title="" target="_blank">
+        								<span>白板纸</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>白卡纸</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>牛皮纸</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>瓦楞纸</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>箱板纸</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>淋膜纸</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>商标纸</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>标签纸</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>利乐包</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>羊皮纸</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>灰卡纸</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>黄板纸</span>
+                                	</a>
+    							</li>
+    					    </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title = ""  target= "_blank">印刷废纸</a>&nbsp;
+                                <a href="" title = ""  target= "_blank">办公废纸</a>&nbsp;
+    						</div>
+                            <ul>
+                        		<li>
+									<a href="" title="" target="_blank">
+										<span>废报纸(ONP)</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>书刊</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>铜版纸</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>新闻纸</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>乱码纸</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>复写纸</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>打印纸</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>复印纸</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>相纸</span>
+									</a>
+                            	</li>
+                                <li>
+									<a href="" title="" target="_blank">
+										<span>绵纸</span>
+									</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title = ""  target= "_blank">生活废纸</a>&nbsp;
+                                <a href="" title = ""  target= "_blank">特种废纸</a>&nbsp;
+                                <a href="" title = ""  target= "_blank">废纸制品</a>&nbsp;
+    						</div>
+                            <ul>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>卫生纸</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>面巾纸</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>餐巾纸</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>纸尿裤</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>卫生巾</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>湿巾纸</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>特种废纸</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>贴墙纸</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>纸箱</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>纸盒(OCC)</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>纸板箱</span>
+    								</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title = ""  target= "_blank">美废</a>&nbsp;
+						        <a href="" title = ""  target= "_blank">欧废</a>&nbsp;
+                                <a href="" title = ""  target= "_blank">日废</a>&nbsp;
+						        <a href="" title = ""  target= "_blank">纸浆</a>&nbsp;
+                                <a href="" title = ""  target= "_blank">卡纸</a>&nbsp;
+						        <a href="" title = ""  target= "_blank">纸边</a>&nbsp;
+    						</div>
+                            <ul>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>进口废纸</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>纸塑复合纸</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>纸金属复合纸</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废纸处理设备</span>
+                                	</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->                        
+                    </div>
+                    <div class="msc_right">
+                    	<div class="msc_item_title2">废橡胶价格</div>
+                        <div class="msc_right_box">
+                        	<ul>
+                            	<li>
+                                	<a href="" title="" target="_blank">
+										<span>国内橡胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废橡胶行情综述</span>
+                                	</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                            <div class="msc_right_list">
+                            	<div class="msc_right_item fl">
+                                	<ul class="msc_right_ul">
+                                    	<li>
+                                        	<a href="" target="_blank" title="">07月07日主要钢厂生铁采购价</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月07日主要钢厂生铁采购价</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日江浙沪地区废钢价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日江浙沪地区废钢价格</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end fl-->
+                                <div class="msc_right_item fr">
+                                	<ul class="msc_right_ul">
+                                    	<li>
+                                        	<a href="" target="_blank" title="">07月09日山东临沂废镍价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日山东临沂废镍价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日山东临沂废镍价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日山东临沂废镍价格</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end fr-->
+                                <div class="cb"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+            </div>
+            <!--end mini_square-->
+            <div class="mini_square">
+            	<div class="ms_title"><strong>5F&nbsp;&nbsp;&nbsp;二手设备</strong></div>
+                <div class="ms_content">
+                	<div class="msc_left">
+                    	<div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title="" target="_blank">工程设备</a>&nbsp;
+    						</div>
+                            <ul>
+    					    	<li>
+        							<a href="" title="" target="_blank">
+        								<span>二手起重机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>二手沥青桶</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>二手抽水机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>二手挖土机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>挖掘机械</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>装载机械</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>搅拌机械</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>工程车</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>叉车</span>
+                                	</a>
+    							</li>
+    					    </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title = ""  target= "_blank">化工设备</a>&nbsp;
+    						</div>
+                            <ul>
+								<li>
+        							<a href="" title="" target="_blank">
+        								<span>清洗机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>挤压机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>撕碎机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>离心机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>炼焦机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>电解槽</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>应釜</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>磨碎机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>储罐/贮罐</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>反应设备</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>化工装置</span>
+                                	</a>
+    							</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title = ""  target= "_blank">制冷设备</a>&nbsp;
+                                <a href="" title = ""  target= "_blank">冶炼设备</a>&nbsp;
+    						</div>
+                            <ul>
+                    	    	<li>
+        							<a href="" title="" target="_blank">
+        								<span>蒸发器</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>制冷配件</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>制冷机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>空调</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>压缩机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>锅炉</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>转炉</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>压铸机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>油压机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>轧管机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>冷轧机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>钢管设备</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>二手设备</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>冷却塔</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>冷库</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>液压设备</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>拉丝设备</span>
+                                	</a>
+    							</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title = ""  target= "_blank">交通工具</a>&nbsp;
+						        <a href="" title = ""  target= "_blank">二手商品</a>&nbsp;
+    						</div>
+                            <ul>
+                    	    	<li>
+        							<a href="" title="" target="_blank">
+        								<span>废旧汽车</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>废旧摩托车</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>造纸设备</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>汽配加工设备</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>纺织设备</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>石油设备</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>压缩分离</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>火车</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>搬运设备</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>车辆修理设备</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title="" target="_blank">
+        								<span>各种汽车配件</span>
+                                	</a>
+    							</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->                        
+                    </div>
+                    <div class="msc_right">
+                    	<div class="msc_item_title2">废橡胶价格</div>
+                        <div class="msc_right_box">
+                        	<ul>
+                            	<li>
+                                	<a href="" title="" target="_blank">
+										<span>国内橡胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废橡胶行情综述</span>
+                                	</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                            <div class="msc_right_list">
+                            	<div class="msc_right_item fl">
+                                	<ul class="msc_right_ul">
+                                    	<li>
+                                        	<a href="" target="_blank" title="">07月07日主要钢厂生铁采购价</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月07日主要钢厂生铁采购价</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日江浙沪地区废钢价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日江浙沪地区废钢价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日江浙沪地区废钢价格</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end fl-->
+                                <div class="msc_right_item fr">
+                                	<ul class="msc_right_ul">
+                                    	<li>
+                                        	<a href="" target="_blank" title="">07月09日山东临沂废镍价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日山东临沂废镍价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日山东临沂废镍价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日山东临沂废镍价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日江浙沪地区废钢价格</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end fr-->
+                                <div class="cb"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+            </div>
+            <!--end mini_square-->
+            <div class="mini_square">
+            	<div class="ms_title"><strong>6F&nbsp;&nbsp;&nbsp;废电子电器&nbsp;&nbsp;&nbsp;废橡胶&nbsp;&nbsp;&nbsp;废轮胎</strong></div>
+                <div class="ms_content">
+                	<div class="msc_left">
+                    	<div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title="" target="_blank">废电子</a>&nbsp;
+                                <a href="" title="" target="_blank">办公设备</a>&nbsp;
+    						</div>
+                            <ul>
+    					    	<li>
+        							<a href="" title=" " target="_blank">
+        								<span>电路板</span>
+                                	</a>
+    							</li>
+    					    	<li>
+        							<a href="" title=" " target="_blank">
+        								<span>线路板</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>CPU</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>主板</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>电容</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>电池</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>电瓶</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>光驱</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>扬声器</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>硬盘</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>IC芯片</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>内存条</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>传真机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>打印机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>电话机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>印刷机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>喷码机</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>数据绘图仪</span>
+                                	</a>
+    							</li>
+                                <li>
+        							<a href="" title=" " target="_blank">
+        								<span>复印机</span>
+                                	</a>
+    							</li>
+    					    </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title = ""  target= "_blank">废电器</a>&nbsp;
+    						</div>
+                            <ul>                    	    	
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>变压器</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>电源</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>电表</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>废电脑显示器</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>旧电脑</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>手机</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>主机</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>笔记本电脑</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>洗衣机</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>电视机</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>监视器</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>照相机</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>照相机</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>液晶屏(LCD)</span>
+    								</a>
+                            	</li>
+                                <li>
+    								<a href="" title="" target="_blank">
+    									<span>其他废电器</span>
+    								</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title = ""  target= "_blank">废橡胶</a>&nbsp;
+						        <a href="" title = ""  target= "_blank">合成橡胶</a>&nbsp;
+    						</div>
+                            <ul>                    	    	
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>乳胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>天然橡胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>硅橡胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>氟橡胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>丁苯橡胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>顺丁橡胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>氯丁橡胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>乙丙橡胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>丁腈橡胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>聚硫橡胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>丁基橡胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>生胶</span>
+                                	</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->
+                        <div class="msc_item">
+                        	<div class="msc_item_title">
+    							<a href="" title = ""  target= "_blank">再生胶</a>&nbsp;
+						        <a href="" title = ""  target= "_blank">废轮胎</a>&nbsp;
+                                <a href="" title = ""  target= "_blank">废橡胶处理设备</a>&nbsp;
+    						</div>
+                            <ul>                    	    	
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>胶鞋(鞋底)</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>橡胶粉</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>橡胶颗粒</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>橡胶破碎料</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>内胎</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>外胎</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>外橡胶处理油</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>切胶机</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>打磨机</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>剥皮机</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>橡胶挤出机</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>密炼机</span>
+                                	</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                        </div>
+                        <!--end msc_item-->                        
+                    </div>
+                    <div class="msc_right">
+                    	<div class="msc_item_title2">废橡胶价格</div>
+                        <div class="msc_right_box">
+                        	<ul>
+                            	<li>
+                                	<a href="" title="" target="_blank">
+										<span>国内橡胶</span>
+                                	</a>
+                            	</li>
+                                <li>
+                                	<a href="" title="" target="_blank">
+										<span>废橡胶行情综述</span>
+                                	</a>
+                            	</li>
+                            </ul>
+                            <div class="cb"></div>
+                            <div class="msc_right_list">
+                            	<div class="msc_right_item fl">
+                                	<ul class="msc_right_ul">
+                                    	<li>
+                                        	<a href="" target="_blank" title="">07月07日主要钢厂生铁采购价</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月07日主要钢厂生铁采购价</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日江浙沪地区废钢价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日江浙沪地区废钢价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日江浙沪地区废钢价格</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end fl-->
+                                <div class="msc_right_item fr">
+                                	<ul class="msc_right_ul">
+                                    	<li>
+                                        	<a href="" target="_blank" title="">07月09日山东临沂废镍价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日山东临沂废镍价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日山东临沂废镍价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日山东临沂废镍价格</a>
+                                        </li>
+                                        <li>
+                                        	<a href="" target="_blank" title="">07月09日江浙沪地区废钢价格</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--end fr-->
+                                <div class="cb"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cb"></div>
+                </div>
+            </div>
+            <!--end mini_square-->
+            <dl class="main_box fri_link clearfix">
+    			<dt>
+					<a href="javascript:return false;" onclick="return friendClick()" >友情连接</a>|
+					<a href="javascript:return false;" onclick="return friendClick1()" >产品导航</a>|
+                    <a rel="nofollow" target="_blank" href="http://wpa.qq.com/msgrd?V=1&amp;uin=2838349004&amp;Site=%B7%CF%BE%C9%CE%EF%D7%CA%CD%F8&amp;Menu=yes" title="请注明您是在ZZ91与我洽谈！">QQ在线联系</a>
+				</dt>
+				<dd>
+         			<a href="http://bf.china-nengyuan.com/" target="_blank" title="生物质颗粒燃料">生物质颗粒燃料	</a>|
+    				<a href="http://plas.chem365.net/web/index.do" target="_blank" title="中宇资讯橡塑网">中宇资讯橡塑网</a>|
+    				<a href="http://www.qeoso.com/" target="_blank" title="免费B2B平台">免费B2B平台</a>|
+    				<a href="http://www.feipin.com/" target="_blank" title="废品">废品</a>|
+    				<a href="http://www.plas100.com/" target="_blank" title="中国塑料网">中国塑料网</a>|
+    				<a href="http://jiangmen.liebiao.com/" target="_blank" title="江门分类信息">江门分类信息</a>|
+    				<a href="http://www.steel99.cn/" target="_blank" title="无缝钢管">无缝钢管</a>|
+    				<a href="http://www.gonglujiance.com/" target="_blank" title="桥梁检测">桥梁检测</a>|
+    				<a href="http://slsb.feijiu.net" target="_blank" title="二手塑料机械">	二手塑料机械</a>|
+    				<a href="http://www.diyilvye.com/" target="_blank" title="中国铝业网">中国铝业网</a>|
+    				<a href="http://fg.ometal.com/" target="_blank" title="废钢网">废钢网</a>|
+    				<a href="http://www.b2bshang.com/" target="_blank" title="中国B2B商务网">中国B2B商务网</a>|
+    				<a href="http://www.zd360.com/shop/index.php" target="_blank" title="中仪电商">中仪电商</a>|
+    				<a href="http://www.zggthymh.com/" target="_blank" title="钢铁">钢铁</a>|
+    				<a href="http://www.diyijixie.com/" target="_blank" title="中国机械网">中国机械网</a>|
+    				<a href="http://www.521steel.com/" target="_blank" title="爱钢网">爱钢网</a>|
+    				<a href="http://caigou.99114.com/" target="_blank" title="采购">采购</a>|
+    				<a href="http://www.bz800.com/" target="_blank" title="塑料包装网">塑料包装网</a>|
+    	    	</dd>
+        	</dl>
+        </div>
+    </div>
+    <!--end mini_wrap-->    
+</div>
+<!--end micro-->
+</body>
+</html>

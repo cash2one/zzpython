@@ -1,0 +1,364 @@
+@charset "utf-8";
+
+
+
+/*------- top -------*/
+.top {
+	height: 270px;
+	background: url(../images/top.jpg) no-repeat;
+	background-position: center;	
+}
+/*------- bottom -------*/
+.bottom {
+	height: 168px;
+	background: url(../images/bottom.jpg) no-repeat;
+	background-position: center;	
+}
+.mt100 {
+	margin-top: 100px;	
+}
+
+
+/*------- body -------*/
+.bg-wrap {
+	height: 60px;
+	background-color: #002a5f;	
+}
+.bg01 {
+	background-color: #285fa2;	
+}
+.bg02 {
+	background-color: #f1f7ff;	
+}
+.wrap .title01 {
+	width: 340px;
+	height: 60px;
+	line-height: 60px;
+	color: #fff;
+	font-size: 30px;
+	font-weight: bold;
+	background-color: #001b3c;
+	padding-left: 30px;
+}
+.wrap .box {
+	width: 1000px;
+	margin: 0 auto;	
+}
+.wrap .block {
+	padding: 50px 0;	
+}
+.wrap .title01-bg {
+	background: url(../images/title01.jpg) no-repeat;
+}
+.wrap .title02-bg {
+	background: url(../images/title02.jpg) no-repeat;
+}
+.wrap .advert {
+	width: 939px;
+	height: 190px;
+	background: url(../images/ad_bg.jpg) no-repeat;
+	margin: 0 auto;	
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.wrap .Lbox {
+	width: 350px;
+	float: left;	
+}
+.wrap .Lbox .item01 {
+	height: 481px;	
+}
+.wrap .Lbox .item01_img {
+    width: 350px;
+    height: 261px;
+}
+.wrap .Lbox .item01_text {
+    padding: 15px 25px;
+	background-color: #fff;
+}
+.wrap .Lbox .item01 h4 {
+    line-height: 25px;
+    height: 50px;
+}
+.wrap .Lbox .item01 h4 a {
+    font-size: 16px;
+    font-weight: bold;
+}
+.wrap .Lbox .item01 p {
+    text-indent: 2em;
+	line-height: 24px;
+	margin-bottom: 12px;
+}
+.wrap .Lbox .item01 a.more, .Rbox .boxRM a.more {
+    height: 30px;
+    border: 1px solid #285fa2;
+    font-family: "Arial";
+    font-size: 12px;
+    color: #285fa2;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    padding: 0 8px;
+    width: 85px;
+    display: block;
+	margin: 0 auto;
+}
+.wrap .Lbox .item01 a.more:hover, .Rbox .boxRM a.more:hover {
+    background-color: #285fa2;
+    border: solid 1px #285fa2;
+    color: #fff;
+    text-decoration: none;
+}
+
+.wrap .Rbox {
+	width: 620px;
+	float: right;	
+}
+.wrap .Rbox .boxRM {
+	width: 325px;
+	height: 481px;
+	overflow: hidden;
+	float: left;	
+}
+.Rbox .boxRM .Tit01 {
+	background: url(../images/icon_arrow.jpg) no-repeat left center;
+    height: 25px;
+    font-size: 16px;
+    font-weight: bold;
+	padding-left: 16px;	
+	border-bottom: 1px solid #224776;
+	margin-bottom: 12px;
+}
+.Rbox .boxRM .Tit01 a {
+    color: #224776;
+}
+.Rbox .boxRM .Con01 {
+    height: 396px;
+	overflow: hidden;
+}
+.Rbox .boxRM .Con01 p {
+    line-height: 24px;
+}
+.Rbox .boxRM .Con01 strong {
+    font-weight: bold;
+}
+
+
+.wrap .Rbox .boxRR {
+	width: 270px;
+	float: right;	
+}
+.Rbox .boxRR .Tit02 {
+    height: 24px;
+    font-size: 16px;
+    font-weight: bold;
+	border-bottom: 1px solid #224776;
+	margin-bottom: 12px;
+}
+.Rbox .boxRR .Tit02 span {
+	color: #fff;
+	text-align: center;
+	overflow: hidden;
+	display: block;
+	background-color: #002a5f;    
+}
+.Rbox .boxRR .Tit02 span.wh01 {
+    width: 90px;  
+    height: 24px;  
+}
+.Rbox .boxRR .Tit02 span.wh02 {
+    width: 120px;   
+    height: 27px; 
+}
+.Rbox .boxRR .Con02 li {
+    font-size: 12px;
+    height: 55px;
+    line-height: 24px;
+	border-bottom: 1px dashed #a8acb2;
+	margin-bottom: 4px;
+}
+.Rbox .boxRR .Con02 em {
+	font-size: 18px;
+	font-weight: bold;
+	color: #9fb1c8;	
+	margin-right: 5px;
+}
+
+
+.wrap .box .Tit03 {
+	font-size: 20px;
+	font-weight: bold;
+	padding-left: 28px;	
+}
+.wrap .box .Tit03 a {
+	color: #fff;	
+}
+.wrap .box .Con03 {
+	margin: 50px 0;	
+}
+.wrap .box .Con03 .Con03_L {
+	width: 760px;
+	float: left;	
+}
+.wrap .box .Con03 .Con03_R {
+	width: 210px;
+	overflow: hidden;
+	float: right;	
+}
+.wrap .box .Con03 .Con03_R dl {
+	margin-top: 40px;	
+}
+.wrap .box .Con03 .Con03_R dd {
+	font-size: 14px;
+	color: #fff;
+	line-height: 24px;	
+}
+
+
+.Rbox .boxRM .Tit04 {
+	background: url(../images/icon_mark.jpg) no-repeat left 7px;
+    height: 27px;
+    font-size: 14px;
+    font-weight: bold;
+	padding-left: 14px;	
+	border-bottom: 1px dashed #b8bcc1;
+}
+.Rbox .boxRM .Tit04 a {
+    color: #002a5f;
+}
+.Rbox .boxRM .Con04 p {
+	line-height: 25px;
+	margin: 10px 0;
+	text-indent: 2em;
+}
+.wrap .box .Con03 .Con03_R a.all, .Rbox .boxRM .Con04 a.all {
+	color: #6dadfe;
+}
+
+.wrap .Lbox .item02 {
+	height: 390px;
+	background-color: #fff;	
+}
+
+
+
+/*------- Pics AutoPlay -------*/
+.swap{
+	width: 280px; 
+	height: 320px; 
+	margin: 0 auto;
+	padding: 20px 0 10px;
+}
+#slider{
+	list-style: none; 
+	width: 280px; 
+	height: 320px; 
+	margin: 0; 
+	padding: 0; 
+}
+#slider li{
+	width: 280px; 
+	height: 320px; 
+	display: none; 
+	position: absolute;
+}
+
+#naviSlider{
+	list-style: none;  
+	margin: 0 auto; 
+	width: auto; 
+	text-align: center; 
+	margin-top: 3px; 
+	*margin-top: 5px;
+	
+}
+#naviSlider  li{
+	height: 10px; 
+	width: 10px;   
+	cursor: pointer; 
+	display: inline-block; 
+	background: url(../images/dot.png) -10px center no-repeat;
+	_background: url(../images/dot_ie6.png) -10px center no-repeat;
+	*zoom: 1;
+	*display: inline;
+	*margin-left: 2px;
+}
+#naviSlider li.on{
+	background: url(../images/dot.png) left center no-repeat;
+	_background: url(../images/dot_ie6.png) left center no-repeat;
+}
+
+
+
+/*------- mkeFocus -------*/
+.red {
+	color: #ff0000;
+}
+.mkeFocus { 
+	height: 400px; 
+	width: 755px; 
+	position: relative;
+}
+.mkeUl { 
+	margin: 0px auto; 
+	width: 478px; 
+	height: 376px; 
+	overflow: hidden; 
+	position: relative; 
+}
+.mkeUl ul { 
+	position: absolute; 
+	left: 0px; 
+	top: 0px; 
+	height: 376px; 
+}
+.mkeUl ul li { 
+	float: left; 
+	text-align: center; 
+	font: 20px "微软雅黑"; 
+}
+.mkeLbtn { 
+	background: url(../images/kelBtn.png) no-repeat; 
+	height: 98px; 
+	width: 36px; 
+	position: absolute; 
+	left: 6px; 
+	top: 165px; 
+	cursor: pointer; 
+	z-index: 10; 
+}
+.mkeRbtn { 
+	position: absolute; 
+	top: 165px; 
+	right: 6px; 
+	background: url(../images/kerBtn.png) no-repeat; 
+	height: 98px; 
+	width: 36px; 
+	cursor: pointer; 
+	z-index: 10; 
+}
+.mkeTab {
+	width: 478px;	
+}
+.mkeTab tr th {
+	font-weight: bold;		
+}
+.mkeTab tr th, td {
+	text-align: center;
+	padding: .5em;
+	font-size: 12px;
+	color: #666666;		
+}
+.mkeTab tr.odd th, td {
+	background-color: #f2f2f2;		
+}
+.mkeTab tr.even td {
+	background-color: #fff;		
+}

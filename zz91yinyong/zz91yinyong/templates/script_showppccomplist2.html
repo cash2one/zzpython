@@ -1,0 +1,23 @@
+﻿var _suggest_result_="";
+_suggest_result_=""+
+{%for list in listall%}
+"<div class=\"ppcadbox\">"+
+{%if list.ptitle%}
+"<div class=\"ptitle\"><b><a href=\"{{list.purl}}\" target=_blank rel=\"nofollow\">{{list.pdttxt}}{{list.ptitle}}</a></b></div>"+
+{%endif%}
+"<div class=\"ppctxt\">"+
+    {%if list.pdt_images%}
+    "<div class=\"img\"><a href=\"{{list.purl}}\" target=_blank rel=\"nofollow\"><img src=\"{{list.pdt_images}}\" /></a></div>"+
+    {%endif%}
+    "<div class=\"txt\"><a href=\"{{list.curl}}\" target=\"_blank\" rel=\"nofollow\">{{list.ppckeywords}}</a></div>"+
+    "<div style=\"clear:both\"></div>"+
+	"<div class='adClickToShow' onclick='$(this).hide();$(this).next().show();$.getScript(\"http://www.zz91.com/app/mongoClickPhone.htm?tel={{list.ppctel}}\");' ><span>{{list.ppctel|slice:'8'}}****</span> <span style='color:#1e50a2;font-weight: normal;cursor:pointer;'>[ 查看 ]</span></div>"+
+    "<div style='display:none'><span>{{list.ppctel}}</span></div>"+
+    {%if list.contact%}
+    "<div class=\"comp\">联系人：<a href=\"{{list.curl}}\" target=\"_blank\" rel=\"nofollow\">{{list.contact}}</a></div>"+
+    {%endif%}
+"</div>"+
+"</div>"+
+
+{%endfor%}
+"";

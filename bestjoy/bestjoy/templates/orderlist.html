@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>layui</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="layui/css/layui.css" media="all">
+		<style>
+			body{
+				padding: 10px;
+				
+			}
+			::-webkit-scrollbar{width:20px;height: 20px;}
+			::-webkit-scrollbar-corner,::-webkit-scrollbar-track{background-color: #5fb878;}
+		</style>
+	</head>
+
+	<body>
+		<div class="panel-title" style="margin-bottom: 5px;">
+			<input type="button" class="layui-btn" onclick="opensearch(this)" value="查询>>" />
+		</div>
+		<form class="layui-form" id="searchfrm" action="">
+		<fieldset class="layui-elem-field" id="searchbar" style="display: none;">
+			<legend>搜索</legend>
+			<div class="layui-field-box">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">订单编号</label>
+						<div class="layui-input-inline">
+							<input type="number" name="orderno" placeholder="" value="{{orderno}}" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">产品名称</label>
+						<div class="layui-input-inline">
+							<input type="text" name="proname" autocomplete="off" value="{{proname}}" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">款式/型号</label>
+						<div class="layui-input-inline">
+							<input type="text" name="protype" autocomplete="off" value="{{protype}}" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">尺码</label>
+						<div class="layui-input-inline" style="width: 80px;">
+							<input type="number" name="prosize1" id="prosize1" value="{{prosize1}}" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-form-mid">-</div>
+						<div class="layui-input-inline" style="width: 85px;">
+							<input type="number" name="prosize2" id="prosize2" value="{{prosize2}}" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">单价</label>
+						<div class="layui-input-inline" style="width: 80px;">
+							<input type="number" name="proprice1" id="proprice1" value="{{proprice1}}" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-form-mid">-</div>
+						<div class="layui-input-inline" style="width: 85px;">
+							<input type="number" name="proprice2" id="proprice2" value="{{proprice2}}" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">数量</label>
+						<div class="layui-input-inline" style="width: 80px;">
+							<input type="number" name="pronumber1" id="pronumber1" value="{{pronumber1}}" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-form-mid">-</div>
+						<div class="layui-input-inline" style="width: 85px;">
+							<input type="number" name="pronumber2" id="pronumber2" value="{{pronumber2}}" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">地区</label>
+						<div class="layui-input-inline">
+							<input type="text" name="areatext" id="areatext" readonly="" value="{{areatext}}" placeholder="点击选择地区" class="layui-input">
+							<input type="hidden" name="area" id="area" value="{{area}}">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">收货人</label>
+						<div class="layui-input-inline">
+							<input type="text" name="contactname" autocomplete="off" value="{{contactname}}" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">手机</label>
+						<div class="layui-input-inline">
+							<input type="number" name="mobile" autocomplete="off" value="{{mobile}}" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">电话</label>
+						<div class="layui-input-inline">
+							<input type="number" name="phone" autocomplete="off" value="{{phone}}" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">地址</label>
+						<div class="layui-input-inline">
+							<input type="text" name="address" autocomplete="off" value="{{address}}" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">备注</label>
+						<div class="layui-input-inline">
+							<input type="text" name="prodesc" autocomplete="off" value="{{prodesc}}" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-inline">
+						<label class="layui-form-label">代理商</label>
+						<div class="layui-input-inline">
+							<input type="text" name="agentlist_id" autocomplete="off" value="{{agentlist_id}}" class="layui-input">
+						</div>
+					</div>
+
+					<div class="layui-inline">
+						<div class="layui-input-inline">
+							<button class="layui-btn searchbotton" lay-submit="" lay-filter="searchbutton">搜索</button>
+							<button class="layui-btn layui-btn-primary orderout" type="button">导出订单</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</fieldset>
+		</form>
+		<div class="layui-tab layui-tab-card" lay-filter="docDemoTabBrief" style="float: left;">
+			<ul class="layui-tab-title">
+				<li {%ifequal status '0'%}class="layui-this"{%endifequal%}><a href="?{{searchurl}}&status=0">未分配订单</a></li>
+				<li {%ifequal status '1'%}class="layui-this"{%endifequal%}><a href="?{{searchurl}}&status=1">已分配订单</a></li>
+				<li {%ifequal status '2'%}class="layui-this"{%endifequal%}><a href="?{{searchurl}}&status=2">分配失败订单</a></li>
+				<li {%ifequal status '3'%}class="layui-this"{%endifequal%}><a href="?{{searchurl}}&status=3">取消的订单</a></li>
+			</ul>
+			<div class="layui-tab-content">
+				<table class="layui-table" lay-even="" lay-skin="row">
+					<colgroup>
+						<col width="150">
+						<col width="150">
+						<col width="200">
+						<col>
+					</colgroup>
+					<thead>
+						<tr>
+							<th nowrap>订单编号</th>
+							<th nowrap>订单状态</th>
+							<th nowrap>分配</th>
+							<th nowrap>产品名称</th>
+							<th nowrap>款式/型号</th>
+							<th nowrap>尺码</th>
+							<th nowrap>单价</th>
+							<th nowrap>数量</th>
+							<th nowrap>备注</th>
+							<th nowrap>地区</th>
+							<th nowrap>地址</th>
+							<th nowrap>收货人</th>
+							<th nowrap>电话/手机号码</th>
+							<th nowrap>预约时间</th>
+							<th nowrap>邮编</th>
+							<th nowrap>添加时间</th>
+							<th nowrap>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						{%for list in listall%}
+						<tr>
+							<td nowrap>{{list.orderno}}</td>
+							<td nowrap>{{list.statustext|safe}}</td>
+							<td nowrap>
+								{%ifequal list.status 0%}
+									<button class="layui-btn assign" orderid="{{list.id}}" area="{{list.area}}">确定分配</button>
+								{%else%}
+									{%ifequal list.status 2%}
+										<button class="layui-btn reassign" orderid="{{list.id}}" area="{{list.area}}">放入未分配</button>
+									{%else%}
+									-
+									{%endifequal%}
+								{%endifequal%}
+							</td>
+							<td nowrap>{{list.proname}}</td>
+							<td nowrap>{{list.protype}}</td>
+							<td nowrap>{{list.prosize}}</td>
+							<td nowrap>{{list.proprice}}</td>
+							<td nowrap>{{list.pronumber}}</td>
+							<td nowrap>{{list.prodesc}}</td>
+							<td nowrap>{{list.arealabel}}</td>
+							<td nowrap>{{list.address}}</td>
+							<td nowrap>{{list.contactname}}</td>
+							<td nowrap>{{list.phone}}<br />{{list.mobile}}</td>
+							<td nowrap>{{list.yuyue_time}}</td>
+							<td nowrap>{{list.postcode}}</td>
+							<td nowrap>{{list.gmt_created}}</td>
+							<td nowrap>
+								{%ifequal status '0'%}<a href="modorder.html?id={{list.id}}" class="layui-btn">修改</a>{%endifequal%}
+								{%ifequal status '2'%}<a href="modorder.html?id={{list.id}}" class="layui-btn">修改</a>{%endifequal%}
+								{%ifequal status '0'%}<a href="order_del.html?id={{list.id}}" onclick="return confirm('确实要取消订单吗？')" class="layui-btn">取消订单</a>{%endifequal%}
+							</td>
+						</tr>
+						{%endfor%}
+					</tbody>
+				</table>
+				<div id="pagelist"></div>
+			</div>
+
+		</div>
+	</body>
+	<script src="layui/layui.js" charset="utf-8"></script>
+	<script src="js/jquery.js" charset="utf-8"></script>
+	<script src="js/comm.js" charset="utf-8"></script>
+	<script>
+		layui.use(['laypage', 'layer'], function() {
+			var laypage = layui.laypage,
+				layer = layui.layer;
+
+			laypage({
+				cont: 'pagelist',
+				pages: {{page_listcount}}, //总页数
+				groups: 10, //连续显示分页数
+				curr:{{page}},
+				jump: function(obj, first){
+					//得到了当前页，用于向服务端请求对应数据
+					var curr = obj.curr;
+					if (!first){
+						window.location='?{{searchurl}}&page='+curr
+					}
+					//
+				}
+			});
+		})
+		$(function(){
+			$("#areatext").on("click", function() {
+				layer.open({
+					type: 2,
+					title: '选择地区',
+					shadeClose: true,
+					shade: 0.3,
+					scrollbar: false,
+					area: ['400px', '500px'],
+					content: '/province.html' //iframe的url
+				}); 
+			});
+			$(".assign").on("click", function() {
+				var orderid=$(this).attr("orderid");
+				var area=$(this).attr("area")
+				layer.open({
+					type: 2,
+					title: '订单分配',
+					shadeClose: true,
+					shade: 0.3,
+					scrollbar: true,
+					area: ['1000px', '500px'],
+					content: '/assign.html?orderid='+orderid+'&area='+area //iframe的url
+				}); 
+			});
+			$(".reassign").on("click", function() {
+				var orderid=$(this).attr("orderid");
+				window.location='reassign.html?orderid='+orderid;
+			})
+			$(".orderout").on("click", function() {
+				$("#searchfrm").attr("action","orderout.html");
+				$("#searchfrm").submit()
+			})
+			$(".searchbotton").on("click", function() {
+				$("#searchfrm").attr("action","")
+			})
+			
+		})
+		function xzprovincecode(parea,code){
+			$("#area").val(code);
+			$("#areatext").val(parea)
+		}
+	</script>
+
+</html>

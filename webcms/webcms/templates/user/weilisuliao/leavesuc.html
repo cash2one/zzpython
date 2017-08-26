@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{typename}}_山东伟力塑料有限公司</title>
+<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/newcompany/css/forceplastics.css" />
+</head>
+<body>
+{%include "user/weilisuliao/detail_head.html"%}
+
+  <div class="layout mod-spm">
+    <div class="mod-ind">
+    	<div class="header">
+            <h1 class="title ms-yh">
+            	<span class="index"><a href=""><img src="http://img0.zz91.com/zz91/newcompany/images/nav_img.jpg" /></a></span>
+            	<a href="">留言咨询</a>
+             </h1>
+        </div>
+        <!--end header-->
+        <div class="content">
+        	<table class="contact_us" cellpadding="0" cellspacing="0">
+            	<tr>
+            		<td><span class="red">&nbsp;</span></td>
+            		{%if errortxt%}
+                	<td><span class="red">{{errortxt}}</span></td>
+            		{%else%}
+                	<td><span class="red">留言成功! 我们会尽快和您联系.</span></td>
+                	{%endif%}
+                	<td><span class="red"> 3秒后自动跳转..</span></td>
+                </tr>
+            </table>
+        </div>
+        <!--end content-->
+    </div>
+    <!--end mod-ind-->
+{%include "user/weilisuliao/button.html"%}
+  </div>
+  <!--end layout mod-spm-->
+<script type='text/javascript'>
+function pload(){
+setTimeout("location.href='{{liuyanurl}}'",3000);
+}
+pload()
+</script>
+</body>
+</html>

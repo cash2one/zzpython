@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>联系我们|B2B|B2C-杭州阿思拓电子商务有限公司</title>
+<link href="css/common.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.6.2.min.js"></script>
+</head>
+
+<body>
+{%include 'top.html'%}
+
+<!-- position start -->
+<div class="place">
+ <p><a href="/">首页</a> > <a href="contact.html" class="blue">联系我们</a></p> 
+</div>
+<!-- position end -->
+<!-- box start -->
+<div class="clearfix wrap">
+ <div class="w_left">
+    <strong class="t_title">联系我们</strong>
+    <div class="subNav_bd pt20">
+     <span><img src="images/con_pic.png"></span>
+     <div class="l_title mt15">联系我们</div>
+     <p class="con_p">地址： 杭州市江干区九堡九盛路9号东方电子商务园A13栋3楼（由Mr.I大门进入）<br>
+       联系电话：0571-56633104 <br>
+       邮箱：<a href="mailto:hr@asto.com.cn" target="_blank">hr@asto.com.cn</a> <br>
+       邮编：310019<br>
+       传真：0571-56637777</p>
+ </div>
+</div>
+{%include 'right_cluster.html'%}
+</div>
+<div class="edgeright">
+	<img class="fl eide _animate" src="/images/eide1.png">
+   
+    <div class="contenctBlue">
+    	<ul>
+        	<li>
+            	<div class="edgeTel">
+                	 <h3>0571-56633104</h3>
+                </div>
+            </li>
+            <li>
+            	<div class="edgekf">
+                	<a target="blank" href="http://wpa.qq.com/msgrd?v=3&uin=2661124998&site=www.asto.com.cn&menu=yes">点击交流</a>
+                </div>
+            </li>
+            <li>
+            	<div class="edgewx">
+                	 
+                </div>
+            </li>
+            <li><div style="padding-left:20px;color:#FFF;font-size:16px; line-height:30px;">邮箱：hr@asto.com.cn</div></li>
+            <li>
+            	<div class="fwtime"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+$('.eide').click(function(){
+	var _this_left = $(this).css("right");
+	if(_this_left=="0px"){
+		var _img_url = $("#_img_url").val();
+		if(!$(this).parent().is(":animated")){
+			$(this).parent().animate({'right':'0'},'fast')
+			$('._animate').attr('src','/images/eide2.png').animate({'right':'225px'},'fast');
+			$('.edgebg').fadeIn(1).fadeTo(1,0.6);
+			$('.contenctBlue').animate({'right':'0px'},'fast');
+		}	
+	}else if(_this_left=="225px"){
+		var _img_url = $("#_img_url").val();
+		if(!$(this).parent().is(":animated")){
+			$(this).parent().animate({'right':'-225px'},'fast')
+			$('.contenctBlue').animate({'right':'-225px'},'fast');
+			$('.edgebg').fadeOut();
+			$('._animate').attr('src','/images/eide1.png').animate({'right':'0'},'fast')
+		}
+	}
+	
+		
+})
+
+
+$('.edgebg').click(function(){
+		var _img_url = $("#_img_url").val();
+		$('.edgeright').animate({'right':'-225px'},'fast')
+		if(!$(this).is(":animated")){
+		$(this).animate({'right':'-225px'},'fast')
+		$('.contenctBlue').animate({'right':'-225px'},'fast');
+		$('.edgebg').fadeOut();
+		$('._animate').attr('src',_img_url+'images/yuanbaopu/eide1.png').animate({'right':'0'},'fast')
+	}
+})
+
+</script>
+<!-- box end -->
+{%include 'bottom.html'%}
+</body>
+</html>

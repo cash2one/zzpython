@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+{%include 'head.html'%}
+<link rel="stylesheet"  href="/css/huzhu.css" />
+<link rel="stylesheet"  href="/css/comm-searchbar-old.css" />
+<link rel="stylesheet" href="/css/comm-searchbar.css" />
+<link rel="stylesheet" href="/css/comm-more.css" />
+<link rel="stylesheet" type="text/css" href="/css/qianbao/shop_index.css"/>
+<script type="text/javascript" src="/js/shop/jquery.lightbox_me.js"></script>
+<script>
+function reflushpro(id,datastr){
+	var obj=document.getElementById("p"+id)
+	//alert(datastr)
+	if (obj){
+		$("#p"+id).html(datastr)
+		$("#b"+id).html("已是最新")
+		//obj.innerHTML(datastr)
+	}
+}
+</script>
+<script>
+$(function(){
+	$('.protop').click(function(e){
+		var proid=$(this).attr('proid');
+		$('#proid').val(proid);
+		//alert(proid)
+		$('#text1').lightbox_me({
+					overlaySpeed:0,
+					lightboxSpeed:0,
+            		centered: true, 
+            		onLoad: function() { 
+            		}
+        	});
+		e.preventDefault();
+	})
+});
+$(function(){
+	$('#text2').click(function(e){
+		//var proid=$(this).attr('proid');
+		//$('#proid').val(proid);
+		//alert(proid)
+		$('#contact1').lightbox_me({
+					overlaySpeed:0,
+					lightboxSpeed:0,
+            		centered: true, 
+            		onLoad: function() { 
+            		}
+        	});
+		e.preventDefault();
+	})
+});
+$(function(){
+	$('#stick_buy2').click(function(e){
+		var mobile=$('#mobile').val();
+		if (mobile.length==11){
+			var proid=$('#proid').val();
+			//alert(proid)
+			var qianbaoblance=$('#qianbaoblance').val();
+			if (parseInt(qianbaoblance)>=500){
+				$.ajax({
+				   type: "GET",
+				   url: "/qianbao/qianbaopay.html",
+				   data: "paytype=9"+"&proid="+proid+"&mobile="+mobile,
+				   success:function(data){
+						//alert(data);
+						if (data=='1'){
+							qianbaoblance=parseInt(qianbaoblance)-500
+							$('#qianbaoblance').val(qianbaoblance);
+							$('#sucess1').lightbox_me({
+							overlaySpeed:0,
+							lightboxSpeed:0,
+							centered: true, 
+							onLoad: function() { 
+							}
+							});
+							e.preventDefault();
+						}
+						if (data=='2'){
+							$('#sucess2').lightbox_me({
+										overlaySpeed:0,
+										lightboxSpeed:0,
+										centered: true, 
+										onLoad: function() { 
+										}
+								});
+							e.preventDefault();
+						}
+				   },
+				   error:function(data){
+						//alert("错误!青重试.");
+				   }
+				});
+			}else{
+				//alert(qianbaoblance);
+				$('#bal').lightbox_me({
+				overlaySpeed:0,
+				lightboxSpeed:0,
+				centered: true, 
+				onLoad: function() { 
+				}
+				});
+				e.preventDefault();
+			}
+		}else{
+			alert('请填写正确的手机号');
+			$('#contact1').lightbox_me({
+			overlaySpeed:0,
+			lightboxSpeed:0,
+			centered: true, 
+			onLoad: function() { 
+			}
+			});
+			e.preventDefault();
+		}
+	})
+});
+function dismiss(){
+	$('#buyTipp').trigger('close');
+	$('#contact1').trigger('close');
+	$('#sucess1').trigger('close');
+	$('#sucess2').trigger('close');
+	$('#sucess3').trigger('close');
+	$('#text1').trigger('close');
+}
+</script>
+</head>
+<body>
+<div class="wrapper">
+{%include 'top.html'%}
+<div class="mainContent t-quick-hidden" style="margin:0 0px;padding:0px;">
+<ul class="bread Fix">
+    <li><a href="/">首页</a></li>
+	<li class="li-bread"><a href="/myrc_index/">生意管家</a></li>
+    <li class="li-bread c9"><span>供求管理</span></li>
+</ul>
+<div style="padding:10px;"><div class="comm-btn-auto" onClick="window.location='/products_publish/'">发布供求</div></div>
+<nav class="t-nav-tab t-nav-tab-3">
+	<ul>
+	{%ifequal checkStatus "1"%}
+		<li class="chk"><a href="/myrc_products/?checkStatus=1">已审核(<span class="c-red">{{alist1}}</span>)</a></li>
+		{%else%}
+		<li><a href="/myrc_products/?checkStatus=1">已审核(<span class="c-red">{{alist1}}</span>)</a></li>
+	{%endifequal%}
+	{%ifequal checkStatus "0"%}
+		<li class="chk"><a href="/myrc_products/?checkStatus=0">审核中(<span class="c-red">{{alist0}}</span>)</a></li>
+		{%else%}
+		<li><a href="/myrc_products/?checkStatus=0">审核中(<span class="c-red">{{alist0}}</span>)</a></li>
+	{%endifequal%}
+	{%ifequal checkStatus "2"%}
+		<li class="chk"><a href="/myrc_products/?checkStatus=2">审核未通过(<span class="c-red">{{alist2}}</span>)</a></li>
+		{%else%}
+		<li><a href="/myrc_products/?checkStatus=2">审核未通过(<span class="c-red">{{alist2}}</span>)</a></li>
+	{%endifequal%}
+	</ul>
+</nav>
+<div class="result-tip">共有<span class="c-hl">{{qlistcount}}</span>供求信息</div>
+
+
+{%for list in qlist%}
+<div class="list">
+	<div class="item" style="border-top:1px solid #FFF;">    
+			<p class="c-link lh28"><a href="/products_update/?proid={{list.proid}}">{{list.protitle}}</a>{%if list.is_expire%} [<span style="color:red">信息已过期</span>]{%endif%} <span class="c-gray1" id="p{{list.proid}}">{{list.refresh_time}}</span></p>
+			{%ifequal checkStatus "2"%}退回原因: {{list.unpass_reason}}{%endifequal%}
+			<div class="c9 lh28" class="c-gray1">
+                <div id="b{{list.proid}}" style="float:left; margin-right:10px;" class="c-gray1"><a href="/products_refresh/?proid={{list.proid}}&checkStatus={{checkStatus}}&page={{page}}" class="comm-btn-secondary" target="ptarget">刷新</a></div>
+                <a href="/products_update/?proid={{list.proid}}" class="comm-btn-secondary">修改</a>
+                {%if isnotldb%}{%ifequal checkStatus "1"%}<a href="" class="comm-btn-secondary protop" proid="{{list.proid}}">置顶</a>{%endifequal%}{%endif%}
+            </div>
+	</div>
+	<div id="moreDiv"></div>
+</div>
+{%endfor%}
+<iframe src="" frameborder="0" name="ptarget" style="display:none" width="0" height="0"></iframe>
+<div>
+<nav class="page Fix">
+	<span class="left">
+    {% if firstpage %}
+    <a class="pageBtnEnable" href="/myrc_products/?page={{prvpage}}&checkStatus={{checkStatus}}"><span>上一页</span></a>
+    {% endif %}
+    </span>
+	<i class="ac f14">{{page}}/{{page_listcount}}</i>
+	<span class="right">
+    {% if lastpage%}
+    <a class="pageBtnEnable" href="/myrc_products/?page={{nextpage}}&checkStatus={{checkStatus}}"><span>下一页</span></a>
+    {% endif %}
+    </span>
+</nav>
+</div>
+<div class="h20"></div>
+</div>
+{%include 'bottom_myrc.html'%}
+</div>
+
+<input type="hidden" id="qianbaoblance" value="{{qianbaoblance}}">
+<input type="hidden" id="proid">
+<div id="buyTipp" class="tipp">
+	<p>您想购买的置顶时间为：</p>
+    <p class="radio">
+        <span class="pay"><input type="radio" name="stick" checked="checked"/> 500元/月</span>
+    </p>
+	<div align="center" style="margin-top:10px;">
+		<div class="btn btn_confirm" onclick="dismiss();">确定</div>
+		<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+   </div>
+</div>
+<div id="bal" class="tipp" align="center">
+	<p>您的余额不足，是否在线充值？</p>
+    {%if not isldb%}<p style="color:#909090;font-size:13px;margin-top:10px">{{ggc}}</p>{%endif%}
+	 <div align="center" style="margin-top:10px;">
+	<div class="btn btn_confirm" onClick="window.location.href='{%if isldb%}/ldb_weixin/balance.html?backurl={{host}}{%else%}/qianbao/chongzhi.html{%endif%}'">确定</div>
+	<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+   </div>
+</div>
+<div id="text1" class="tipp" align="center">
+	<p>购买后，可将该条供求信息在供求列表置顶（500元/月）</p>
+	<div align="center" style="margin-top:10px;">
+	<div class="btn btn_confirm" id="text2" onclick="dismiss();">确定</div>
+   	<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+   </div>
+</div>
+<div id="contact1" class="tipp" align="center">
+	<p>请填写您的手机号码</p>
+	<p><input type="text" id="mobile" style="height:27px"></p>
+	<div align="center" style="margin-top:10px;">
+	<div class="btn btn_confirm" id="stick_buy2" onclick="dismiss();">确定</div>
+   	<div class="btn btn_cancel" onclick="dismiss();">取消</div>
+   </div>
+</div>
+<div id="sucess1" class="tipp" align="center">
+	<p>您已经购买成功,我们会在两个工作日内与您联系!</p>
+	<div align="center" style="margin-top:10px;">
+	<div class="btn btn_confirm" onclick="dismiss();">确定</div>
+   </div>
+</div>
+<div id="sucess2" class="tipp" align="center">
+	<p>此供求已经申请过了,正在审核中...</p>
+	<div align="center" style="margin-top:10px;">
+	<div class="btn btn_confirm" onclick="dismiss();">确定</div>
+   </div>
+</div>
+<div id="sucess3" class="tipp" align="center">
+	<p>您的信息已经提交,正在审核中...</p>
+	<div align="center" style="margin-top:10px;">
+	<div class="btn btn_confirm" onclick="dismiss();">确定</div>
+   </div>
+</div>
+
+<!--end 置顶弹框-->
+
+
+</body>
+</html>

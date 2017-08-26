@@ -1,0 +1,361 @@
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>添加公司</title>
+		<link href="/assets/css/dpl-min.css" rel="stylesheet" type="text/css">
+		<link href="/assets/css/bui-min.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+		<style>
+			body {
+				padding: 20px;
+			}
+			.table .text{
+				width: 200px;
+				line-height: 25px;
+				height: 25px;
+			}
+		</style>
+	</head>
+
+	<body>
+		{%if zstflag%}
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered">
+			<tr>
+				<td style="line-height:20px">
+					<p style="color:#F00">
+						<STRONG>【责任明确】本着有发现规定期内客户接到电话会告知其它同事，我对此申请已确保查询过&ldquo;公司名称&rdquo;&ldquo;座机&rdquo;&ldquo;手机&rdquo;这3要素重复，如在申请时有撞单的，我对此撞单负责。</STRONG>
+					</p>
+					<p>
+						<STRONG>【撞单制度.录入事项规范】</STRONG>
+						<BR>
+						<STRONG>&nbsp;6.1.2、录入规范：</STRONG>
+						<BR> &nbsp;&nbsp;6.1.2.1、公司、手机、座机3要素录入者必须第一先查明是否有重复。如无重复，需要录入信息详细真实填写。
+						<BR> &nbsp;&nbsp;6.1.2.2、录入如有发现公司、手机、座机已有重复的不用再录入，有在别人库中的需要判单处理，提交客户申请邮件。
+						<BR> &nbsp;&nbsp;6.1.2.3、发现有重复号码需要帮客户录入一个新的邮箱的，需要确定其它几个已有账号没有撞单冲突，且需要在每个原来账号里面写上&ldquo;关联小记&rdquo;。
+					</p>
+					<p>
+						<STRONG>&nbsp;6.1.3、审核标准：</STRONG>
+						<BR> &nbsp;&nbsp;6.1.3.1、资料完善，发现公司名称、手机、座机、邮箱乱填和不真实的不予通过审核。
+						<BR> &nbsp;&nbsp;6.1.3.2、录入公司、手机、座机均无重复可方通过录入审核。如有号码需要重复录入的确保没有和其他人发生此客户的撞单，再发客户申请邮件并且需要注明具体情况。让审核人可以了解具体情况。
+					</p>
+					<p>
+						<STRONG>&nbsp;6.1.4、录入违规，审核违规处罚：</STRONG>
+						<BR> 如发现违规情况，审核人与录入者各受50-100元罚款。违规并造成不良后果的，根据情节严重处以行政处罚。&nbsp;&nbsp;&nbsp;&nbsp;
+						<STRONG>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <br>
+    有故意引导客户或&ldquo;刻意&rdquo;录入不同公司/电话号码用来&ldquo;避免撞单&rdquo;的，属于价值观问题的，依照公司制度，严惩！</STRONG>
+					</p>
+				</td>
+			</tr>
+		</table>
+
+		<table width="100%" border="0" cellpadding="5" cellspacing="1" bgcolor="#999999" class="table table-bordered">
+			<tr>
+				<td bgcolor="#f2f2f2">预录入查询</td>
+			</tr>
+			<form name="form2" method="post" target="maina" action="http://adminasto.zz91.com/searchcomplist/">
+				<tr>
+					<td align="center" bgcolor="#FFFFFF">
+						账号
+						<input type="text" name="account" id="account"> 电话
+						<input type="text" name="com_tel" id="com_tel"> 手机
+						<input type="text" name="com_mobile" id="com_mobile"> 公司名称
+						<input type="text" name="com_name" id="com_name"> EMAIL
+						
+						<input type="hidden" name="newcrm" id="newcrm" value="1">
+						<input type="hidden" name="hosturl" id="hosturl" value="http://{{host}}">
+						
+						<input type="text" name="com_email" id="com_email">
+						<input type="submit" name="button" id="button" value="查询">
+						<input type="hidden" name="personid" id="personid" value="{{personid}}">
+					</td>
+				</tr>
+			</form>
+
+		</table>
+
+		<iframe scrolling="yes" id="maina" name="maina" style="HEIGHT: 100px; VISIBILITY: inherit; WIDTH: 100%; Z-INDEX: 1" frameborder="0" src=""></iframe>
+		{%endif%}
+		<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC" class="table table-bordered">
+		  <tr>
+		    <td height="50" bgcolor="#FFFFFF">
+		    <iframe scrolling="no" id="mainb" name="mainb" style="HEIGHT: 100%; VISIBILITY: inherit; WIDTH: 100%; Z-INDEX: 1" frameborder="0" src=""></iframe>
+		    </td>
+		  </tr>
+		</table>
+
+		<table width="100%" border="0" align="center" cellpadding="4" cellspacing="0" class="table table-bordered mainaddcomp">
+			<form name="form1" method="post" action="companysave.html" target="mainb" onSubmit="return chkfrm(this)">
+
+				<tr bgcolor="#D9ECFF">
+					<td height="30" colspan="4" class="tbar"><span class="bold">基本信息</span></td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+					<td width="80" align="right">公司名称：
+						<input type="hidden" name="personid" id="personid" value="{{personid}}">
+						<input type="hidden" name="sid" id="sid" value="{{sid}}">
+						<input type="hidden" name="addtype" id="addtype" value="{{addtype}}"></td>
+					<td><input name="cname" type="text" id="cname" class="text" value="" size="30" maxlength="96">
+						<input type="button" class="button" onClick="enterComp(this.form)" value="默认个体生成" />
+					</td>
+					<td width="80" align="right" nowrap>联系人：</td>
+					<td nowrap><input class=text name="ccontactp" type="text" id="ccontactp" size="20" maxlength="48" value="{{com_contactperson}}"> 称呼：
+						<input name="cdesi" type="radio" id="cdesi" value="0" checked selected> 先生
+						<input type="radio" name="cdesi" id="cdesi" value="1"> 女士
+					</td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+					<td align="right">所处行业：</td>
+					<td>
+						<select id="industry_code" name="industry_code">
+							<option value="">--请选择--</option>
+							<option value="10001000">废塑料</option>
+							<option value="10001001">废金属</option>
+							<option value="10001002">废纸</option>
+							<option value="10001003">废旧轮胎与废橡胶</option>
+							<option value="10001004">废纺织品与废皮革</option>
+							<option value="10001005">废电子电器</option>
+							<option value="10001006">废玻璃</option>
+							<option value="10001007">废旧二手设备</option>
+							<option value="10001008">其他废料</option>
+							<option value="10001009">服务</option>
+							<option value="10001010">塑料原料</option>
+						</select>
+						参加活动
+						<select name="active_flag" id="active_flag">
+							<option value="">请选择参加活动</option>
+							{%for list in activelist%}
+							<option value="{{list.label}}">{{list.label}}</option>
+							{%endfor%}
+						</select>
+					</td>
+					<td align="right">公司类型：</td>
+					<td>
+						<select id="service_code" name="service_code">
+							<option value="">--请选择--</option>
+							<option value="10201001">国外供货商</option>
+							<option value="10201002">国外回收贸易商</option>
+							<option value="10201003">码头，仓库储存商</option>
+							<option value="10201004">国内供应商</option>
+							<option value="10201005">国内回收贸易商</option>
+							<option value="10201006">国内加工，拆解商</option>
+							<option value="10201007">利废企业</option>
+							<option value="10201008">设备，技术，服务提供商</option>
+							<option value="10201009">冶炼厂</option>
+							<option value="10201010">电子厂</option>
+							<option value="10201011">造粒厂</option>
+						</select>
+					</td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+					<td align="right">国家</td>
+					<td>
+						<select name="country" id="country" onchange="selectcountry(this.value)">
+							<option value="1">中国</option>
+							<option value="0">其他国家/地区</option>
+						</select>
+					</td>
+					<td align="right">省市：</td>
+					<td>
+						<span id="othercountrys" style="display:none;">
+							<select name="ccountry" id="ccountry">
+								<option value="">--请选择其他国家--</option>
+								{%for list in guowaiprovincelist%}
+								<option value="{{list.code}}">{{list.label}}</option>
+								{%endfor%}
+							</select>
+						</span>
+						<span id="mycountry">
+							<select name="p" id="p">
+								<option value="">--请选择省份--</option>
+								{%for province in provincelist%}
+								<option value="{{province.code}}">{{province.label}}</option>
+								{%endfor%}
+							</select>
+							<select name="c" id="c">
+								<option value="">--请选择城市--</option>
+							</select>
+							<select name="d" id="d">
+								<option value="">--请选择市区--</option>
+							</select>
+						</span>
+						<input type="hidden" name="area_code" id="area_code" value="">
+						<input type="hidden" name="area_text" id="area_text" value="">
+					</td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+					<td align="right">地址：</td>
+					<td><input name="cadd" type="text" class=text id="cadd" size="50" maxlength="20"></td>
+					<td align="right">邮编：</td>
+					<td><input class=text name="czip" type="text" id="czip" size="20" maxlength="48"></td>
+				</tr>
+
+				<tr bgcolor="#FFFFFF">
+					<td align="right">电话：</td>
+					<td><input name="ctel" type="text" id="ctel" class=text size="30" maxlength="96"></td>
+					<td align="right">手机：</td>
+					<td><input name="cmobile" type="text" id="cmobile" class=text size="30" maxlength="96" value="{{com_mobile}}"></td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+					<td align="right">传真：</td>
+					<td><input name="cfax" type="text" class=text id="cfax" size="30" maxlength="96"></td>
+					<td align="right">登录用户名：</td>
+					<td nowrap><input class=text name="account" type="text" id="account" size="20" maxlength="48"></td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+					<td align="right">网站：</td>
+					<td><input name="cweb" class=text type="text" id="cweb" size="30" maxlength="255"></td>
+					<td align="right">电子邮箱：</td>
+					<td><input name="cemail" class=text type="text" id="cemail" size="30" maxlength="48">
+						<input name="Submit2" type="button" class="button" onClick="enteremail(this.form)" value="生成"> 如果没有email请用 (手机或电话@zz91.com)</td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+					<td align="right" nowrap>公司简介：</td>
+					<td colspan="3" align="left"><textarea name="cintroduce" cols="60" rows="6" id="cintroduce" style="width: 100%;height: 100px;"></textarea></td>
+				</tr>
+
+				<tr align="center" bgcolor="#FFFFFF">
+					<td align="right">主营业务：</td>
+					<td colspan="3" align="left"><textarea name="cproductslist_en" cols="50" rows="4" id="cproductslist_en" style="width: 100%;"></textarea></td>
+				</tr>
+				<tr align="center" bgcolor="#FFFFFF">
+					<td colspan="4" style="text-align: center;"><input name="Submit" type="submit" class="button" value=" 保存客户信息 "></td>
+				</tr>
+
+			</form>
+		</table>
+	</body>
+	<script>
+		$(document).ready(function() {
+			$("#p").change(function() {
+				getcity()
+			});
+			$("#c").change(function() {
+				getcityarea()
+			});
+		});
+		function submt(){
+			var p = $("#p").val();
+			var c = $("#c").val();
+			var d = $("#d").val();
+			var area_code = "";
+			var area_text = "";
+			if (p != "" && c == "") {
+				area_text = $("#p").find("option:selected").text();
+				area_code = $("#p").find("option:selected").val();
+			}
+			if (p != "" && c !== "" && d =="") {
+				area_text = $("#c").find("option:selected").text();
+				area_code = $("#c").find("option:selected").val();
+			}
+			if (p != "" && c !== "" && d !="") {
+				area_text = $("#d").find("option:selected").text();
+				area_code = $("#d").find("option:selected").val();
+			}
+			var country=$("#country").find("option:selected").val();
+			var ccountry=$("#ccountry").find("option:selected").val();
+			var ccountry_text=$("#ccountry").find("option:selected").text();
+			if (country=="0"){
+				$("#area_text").val(ccountry_text);
+				$("#area_code").val(ccountry);
+			}else{
+				$("#area_text").val(area_text);
+				$("#area_code").val(area_code);
+			}
+		}
+		function chkfrm(frm) {
+			submt()
+			if(frm.cname.value.length <= 0) {
+				alert("请输入公司名称!");
+				frm.cname.focus();
+				return false;
+			}
+			if(frm.ccontactp.value.length <= 0) {
+				alert("请输入联系人!");
+				frm.ccontactp.focus();
+				return false;
+			}
+			if(frm.industry_code.value == "") {
+				alert("请选择主营业务！");
+				frm.industry_code.focus()
+				return false
+			}
+			if(frm.area_code.value == "") {
+				alert("请选择地区！");
+				frm.area_code.focus()
+				return false
+			}
+			if(frm.cadd.value.length <= 0) {
+				alert("请输入地址!");
+				frm.cadd.focus();
+				return false;
+			}
+
+			if(frm.ctel.value == "") {
+				alert("请输入电话!");
+				frm.ctel.focus();
+				return false;
+			}
+
+			if(frm.service_code.value == "") {
+				alert("请选择公司类型！");
+				frm.service_code.focus();
+				return false;
+			}
+			
+			if(frm.account.value.length <= 0) {
+				alert("请输登录用户名!");
+				frm.account.focus();
+				return false;
+			}
+			if(frm.cemail.value.length <= 0) {
+				alert("请输入电子邮件!");
+				frm.cemail.focus();
+				return false;
+			}
+
+			if(!/^(.+)@(.+)(\.\w+)+$/ig.test(frm.cemail.value)) {
+				alert("电子邮箱格式错误");
+				frm.cemail.focus();
+				return false;
+			}
+			var cintroduce = frm.cintroduce.value.replace(/\s/gi, '');
+			if(cintroduce.length <= 0) {
+				alert("公司简介不能为空");
+				frm.cintroduce.focus();
+				return false;
+			}
+			var cproductslist_en = frm.cproductslist_en.value.replace(/\s/gi, '');
+			if(cproductslist_en.length <= 0) {
+				alert("主营业务不能为空");
+				frm.cproductslist_en.focus();
+				return false;
+			}
+
+		}
+
+		function enteremail(frm) {
+			if(frm.cmobile.value == "" && frm.ctel.value == "") {
+				alert("请输入联系方式！")
+			} else {
+				if(frm.cmobile.value != "") {
+					frm.cemail.value = frm.cmobile.value + "@139.com"
+				} else {
+					frm.cemail.value = frm.ctel.value + "@139.com"
+				}
+			}
+		}
+
+		function enterComp(frm) {
+			if(frm.ccontactp.value == "") {
+				alert("请输入联系人！")
+			} else {
+				frm.cname.value = "个体经营(" + frm.ccontactp.value + ")"
+			}
+		}
+		function addsucss(){
+			$(".mainaddcomp").hide()
+		}
+	</script>
+</html>

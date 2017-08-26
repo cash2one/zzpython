@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+</head>
+<body>
+<form class="form-inline definewidth m20">
+<select name="ptype" style="width:100px">
+	<option value="">--选择类型</option>
+	<option value="2">已成功</option>
+	<option value="1">处理中</option>
+	<option value="0">已退回</option>
+</select>
+	订单号：<input type="text" name="orderID" />
+	<input class="btn btn-success" type="submit" value="查询">
+</form>
+
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+	  <th>订单ID</th>
+	  <th>商品ID</th>
+	  <th>用户ID</th>
+	  <th>订购时间</th>
+	  <th>备注信息</th>
+	  <th>订购状态</th>
+	  <th>更改订单状态</th>
+	  <th>操作<th>
+    </tr>
+    </thead>
+    {%for list in listall%}
+	     <tr>
+		  <td>{{ list.orderID }}</td>
+		  <td>{{ list.goodsID }}</td>
+		  <td>{{ list.company_id }}</td>
+		  <td>{{ list.order_Time }}</td>
+		  <td>{{ list.beizhu }}</td>
+		  <td>{{ list.order_Statustxt }}</td>
+	        <td>
+			<a href="success.html?orderID={{list.orderID}}">成功</a>
+   			<a href="tuihui.html?orderID={{list.orderID}}">退回</a>
+			</td>
+		  <td>
+		  		<a href="#" title="编辑"><img src="123/imgs/gtk-edit.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="delgoods.html?id={{list.id}}" onClick="return confirm('是否将此信息删除?')" title="删除"><img src="123/imgs/b_drop.png"></a>
+		  </td>
+        </tr>
+     {%endfor%}
+</table>
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<input type="button" value="跳到" onClick=turnpage()> <span style="font-size:15px">第 <input type="text" id="page1" style="width:28px" value="{{page}}"> /{{page_listcount}} 页  </span><input type="submit" style="display:none"> &nbsp;&nbsp;
+<a href='?page=1{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}' >首页</a><a href='?page={{page_listcount}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}' >尾页</a> 
+</div>
+</body>
+<script>
+function turnpage(){
+	var page1=document.getElementById("page1").value;
+	if (page1<1)
+	{
+	page1=1;
+	}
+	window.location.href='?page='+page1+'{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}';
+}
+</script>
+</html>

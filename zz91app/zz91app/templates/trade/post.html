@@ -1,0 +1,104 @@
+<style>
+.radio{border: none;background: none;}
+.mui-input-row label{line-height: 28px;font-size: 17px;}
+.picupload{text-align: center;padding: 30px;}
+#imglist{padding: 20px;text-align: center;}
+#imglist img{
+	width: 80px;
+	height:80px;
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+</style>
+<div class="mui-content-padded">
+	<div class="picupload" id="imglist">
+		<a href="#mark"><img src="images/camera.png" ></a>
+	</div>
+	<div class="mui-clearfix"></div>
+<form class="mui-input-group" method="post" name="postform" id="postform">
+    <div class="mui-clearfix"></div>
+	<div class="mui-input-row">
+		<input type="text" name="title" value="{{title}}"  placeholder="请输入产品名称" required="required" title="*请输入产品名称"/>
+		<font style="color:red">{{error2}}</font>
+	</div>
+	<div class="mui-input-row mui-select">
+		<input type="text" name="quantity" value="{{quantity}}" style="width:60%" placeholder="请输入产品数量"  required="required"/>
+		<select name="quantity_unit" id="quantity_unit" style="width:36%;padding-right:6px; ">
+		<option value="斤">斤</option>
+		<option value="吨">吨</option>
+		<option value="千克">千克</option>
+		<option value="台">台</option>
+		<option value="辆">辆</option>
+		</select>
+		<font style="color:red" class="err">{{error3}}</font>
+	</div>
+<span id="postytpeflag">
+	<div class="mui-input-row mui-radio mui-left mui-pull-left" style="width: 50%;">
+		<input type="radio" name="pricetype" value="1" checked class="radio" style="background: none;"/>
+		<label>公开价格</label>
+	</div>
+	<div class="mui-input-row mui-radio mui-left mui-pull-left" style="width: 50%;">
+		<input type="radio" name="pricetype" value="0" class="radio" style="background: none;"/>
+		<label>电议或面议</label>
+	</div>
+	<div class="mui-clearfix"></div>
+	<font style="color:red">{{error7}}</font>
+	<!--<div class="mui-input-clear">建议您选择公开报价，真实的价格有助于买/卖家找到您 </div>-->
+
+	<div id="priceviews" class="mui-input-row mui-select">
+		<input type="text" name="price" id="price" value="{{price}}" style="width:60%" placeholder="请输入价格" required="required"/>
+		<select name="price_unit" id="price_unit" style="width:36%; padding-right:6px;" >
+		<option value="元">元</option>
+		<option value="美元">美元</option>
+		<option value="欧元">欧元</option>
+		<option value="日元">日元</option>
+		</select>
+		<font style="color:red">{{error4}}</font>
+	</div>
+</span>
+	<div style="margin: 10px 5px;">
+		<textarea rows="6" cols="20" name="details" style="height: 100px;" placeholder="信息描述: 建议您从产品性能、用途、包装、售后服务等方面来描述">{{details}}</textarea>
+		<font style="color:red">{{error5}}</font>
+	</div>
+	<div class="mui-input-row mui-radio mui-left mui-pull-left" style="width: 50%;">
+		<input type="radio" name="validity" class="radio" value="-1" checked style="background: none;"/>
+		<label>长期有效</label>
+	</div>
+	
+	<div class="mui-input-row mui-radio mui-left mui-pull-left" style="width: 50%;">
+		<input type="radio" name="validity" class="radio" value="90" style="background: none;"/>
+		<label>三个月</label>
+	</div>
+	<div class="mui-clearfix"></div>
+	<div class="mui-input-row mui-radio mui-left mui-pull-left" style="width: 50%;">
+		<input type="radio" name="validity" class="radio" value="30" style="background: none;"/>
+		<label>一个月</label>
+	</div>
+	
+	<div class="mui-input-row mui-radio mui-left mui-pull-left" style="width: 50%;">
+		<input type="radio" name="validity" class="radio" value="20" style="background: none;"/>
+		<label>二十天</label>
+	</div>
+	<div class="mui-clearfix"></div>
+	<div class="mui-input-row mui-radio mui-left mui-pull-left" style="width: 50%;">
+		<input type="radio" name="validity" class="radio" value="10" style="background: none;"/>
+		<label>十天</label>
+	</div>
+	<font style="color:red">{{error8}}</font>
+	<div class="mui-clearfix"></div>
+	<input type="hidden" name="proid" value="{{proid}}">
+	<input type="hidden" name="picidlist" id="picidlist" />
+</div>
+<div id="mark" class="mui-popover mui-popover-action mui-popover-bottom">
+    <div class="mui-content-padded" style="padding: 20px;">
+        <button class="mui-btn mui-btn-block mui-btn-success" onclick="appendByCamera()">拍照</button>
+        <button class="mui-btn mui-btn-block mui-btn-success" onclick="appendByGallery()">从相册选择</button>
+        <a class="mui-btn mui-btn-block" href="#mark">取消</a>
+    </div>
+</div>
+<nav class="mui-bar mui-bar-tab">
+	<center><button type="submit" style="font-size: 16px;" class="mui-btn mui-btn-success" onclick="return submitfrm(document.getElementById('postform'),'')">  立即发布    </button></center>
+</nav>
+</form>
+</div>

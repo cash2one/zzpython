@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>杭州阿思拓电子商务有限公司-B2B|B2C</title>
+<meta name="keywords" content="B2B|B2C,杭州阿思拓电子商务有限公司,杭州阿思拓信息科技有限公司" />
+<meta name="description" content="杭州阿思拓信息科技有限公司，专注于电子商务领域，核心业务涉及B2B、B2C。在B2B领域致力于成为我国资源再生、新能源、节能减排等低碳环保经济领域的具有影响力的信息服务供应商。 B2C倾力打造的项目细分国内行业龙头前三" />
+<link href="css/common.css" rel="stylesheet" type="text/css">
+<link href="css/main.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.js"></script>
+</head>
+
+<body>
+{%include 'top.html'%}
+
+<!-- banner start -->
+<div class="banner" id="Js_banner">
+<div class="pic_cont img2"></div>
+<div class="pic_cont img1"></div>
+<div class="pic_cont img0"></div>
+</div>
+<!-- banner end -->
+<!-- box start -->
+<div class="box clearfix">
+ <div class="b_left w200">
+    <div class="career mt5 clearfix" style="margin-top:0px;">
+       <font class="title"><a href="cluster.html"><img src="images/B2B.png" ></a></font>
+      <ul class="linklist">
+          <li><a href="cluster.html">再生网</a></li>
+          <li><a href="cluster.html">环保网</a></li>
+          <li><a href="cluster.html">节能网</a></li>
+      </ul>
+    </div>
+     <div class="career clearfix">
+       <font class="title"><a href="b2c_cluster.html"><img src="images/B2C.png"></a></font>
+       <ul class="linklist">
+         <li><a href="b2c_cluster.html">忆红妆</a></li>
+      </ul>
+    </div>  
+      <div class="career clearfix">
+       <font class="title"><a href="mr_cluster.html"><img src="images/Mr.png"></a></font>
+       <ul class="linklist">
+         <li><a href="mr_cluster.html">4.CN</a></li>
+         <li><a href="mr_cluster.html">米折网</a></li>
+         <li><a href="mr_cluster.html">NALA</a></li>
+         <li><a href="mr_cluster.html">苏娜国际</a></li>
+         <li><a href="mr_cluster.html">淘安居</a></li>
+      </ul>
+    </div> 
+ </div>
+ <div class="b_middle clearfix">
+  <div class="about">
+   <font><img src="images/ABOUT.png" width="160" height="24"></font>
+   <div class="m_content">
+    <img src="images/indexmid.gif" width="124" height="93">
+    <strong>杭州阿思拓电子商务有限公司</strong>【简称ASTO】成立于2006年，专注于电子商务领域，核心业务涉及B2B、B2C。在B2B领域致力于成为我国资源再生、新能源、节能减排等低碳环保经济领域的具有影响力的信息服务供应商。
+B2C倾力打造的项目细分国内行业龙头前三。
+
+    <a href="about.html" class="more">了解更多 >></a> 
+   </div>
+  </div>
+   <div class="career">
+       <font class="title"><img src="images/index_19.png" width="135" height="26"></font>
+       <ul class="linklist01">
+         {%for list in listall%}
+         <li><a href="news{{list.aid}}.html" target="_blank">{{list.subject}}</a></li>
+         {%endfor%}
+         
+      </ul>
+    </div> 
+ </div>
+ <div class="b_right w200 clearfix">
+    <div class="career r_content" style="margin-top:0px;">
+       <font class="title"><img src="images/join.png" width="141" height="24"></font>
+    <p>为<strong>富有理想、追求成就</strong>的有志青年打造创业平台&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="about.html" class="more">了解更多 >></a> </p>
+  </div>
+     <div class="career r_content">
+       <font class="title"><img src="images/wain.png" width="141" height="26"></font>
+       <p><strong class="f14">简单、勤奋、开放<br>
+担当、主动、快速、严谨</strong><br>
+<div style="text-align:right"><a href="culture.html" class="more">了解更多 >></a>&nbsp;&nbsp;</div> </p>
+     </div>  
+      <div class="career r_content">
+       <font class="title"><img src="images/person.png" width="141" height="22"></font>
+       <div class="r_dl clearfix">
+         <dl class="mr10">
+           <dt><img src="images/asto.png" width="81" height="56"></dt>
+           <dd>拓展</dd>
+         </dl>
+         <dl>
+           <dt><img src="images/index_09.png" width="74" height="56"></dt>
+           <dd>三亚之旅</dd>
+         </dl>
+       </div>
+       <div style="text-align:right"><a href="astoer.html" class="more">了解更多 >></a>&nbsp;&nbsp;</div>
+    </div> 
+ </div>
+</div>
+<!-- box end -->
+
+<script>
+$(function(){
+	var target = $("#Js_banner"),
+		img = target.find("div"),
+		i = 0;
+	function fader(){
+		img.eq(i).fadeIn("slow");
+		img.eq(i).siblings().fadeOut("slow");
+		i=i+1;
+		if (i>=3)
+		{
+			i=0
+		}
+		//i = i === 1 ? 0 : i + 1;	
+	}
+	setInterval(fader, 5000);
+})
+</script>
+{%include 'bottom.html'%}
+
+</body>
+</html>

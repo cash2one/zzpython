@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> {% include 'comm/seo.html' %}
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/zz91/price/new/css/main/style.css" />
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+		<link rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+		<script src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+		<script src="http://img0.zz91.com/front/js/search/zz91.search.js"></script>
+		<script src="http://img0.zz91.com/zz91/pricesearch/style.js"></script>
+		<script type="text/javascript" src="http://img0.zz91.com/front/js/lib/jquery/jquery_lib/jquery-1.4.3.js"></script>
+
+		<script type="text/javascript">
+			function send1() {
+				document.form.action = "/{{pinyin}}/"
+				document.form.submit()
+			}
+
+			function turnpage() {
+				var page1 = document.getElementById("page1").value;
+				if (page1 < 1) {
+					page1 = 1;
+				}
+				window.location.href = '/cprice{%if code%}-{{code}}{%endif%}{%if searcharg%}/{%endif%}{%if hexkwd %}_k{{hexkwd}}_{%endif%}{%if provincecode %}_c{{provincecode}}_{%endif%}{%if citycode %}_t{{citycode}}_{%endif%}{%if postInDays %}_d{{postInDays}}_{%endif%}{%if price1 %}_q{{price1}}_{%endif%}/p' + page1 + '.html';
+			}
+			$(function() {
+				$('#province').change(function() {
+					var provincecode = $(this).children('option:selected').val(); //获得select的值
+					$.ajax({
+						type: "GET",
+						url: "/getcitylist.html",
+						data: "provincecode=" + provincecode,
+						//data:{baidusl:baidusl,numb:"1"},
+						//dataType: 'html',
+						success: function(data) {
+							//alert(data);
+							$('#city').html('<option value="">-请选择城市</option>' + data)
+						},
+						error: function(data) {
+							//alert("错误!青重试.");
+							$('#city').html('<option value="">-请选择城市</option>')
+						}
+					});
+				});
+			})
+			$(function() {
+				$('#searchcomp').click(function() {
+					htmltxt = '/cprice{%if code%}-{{code}}{%endif%}/';
+					var hexkwd = document.getElementById("hexkwd").value
+					var pvce = document.getElementById("province")
+					var province = pvce.options[pvce.selectedIndex].value
+					var cty = document.getElementById("city")
+					var city = cty.options[cty.selectedIndex].value
+					var postInDays = document.getElementById("postInDays").value
+					var price1 = document.getElementById("price1").value
+					arg = 0
+					postInDays = $("#postInDays").val();
+					if (hexkwd.length > 0) {
+						htmltxt += '_k' + hexkwd + '_'
+						arg = 1
+					}
+					if (province.length > 0) {
+						htmltxt += '_c' + province + '_'
+						arg = 1
+					}
+					if (city.length > 0) {
+						htmltxt += '_t' + city + '_'
+						arg = 1
+					}
+					if (postInDays.length > 0) {
+						htmltxt += '_d' + postInDays + '_'
+						arg = 1
+					}
+					if (price1.length > 0) {
+						htmltxt += '_q' + price1 + '_'
+						arg = 1
+					}
+					if (arg == 1) {
+						htmltxt += '/'
+						window.location.href = htmltxt;
+					} else {
+						window.location.href = '/cprice/';
+					}
+				});
+			});
+			$(function() {
+				$('#keywords').change(function() {
+					keywords = $("#keywords").val();
+					$.ajax({
+						type: "GET",
+						url: "/gethexkwd.html",
+						data: "keywords=" + keywords,
+						success: function(data) {
+							//alert(data);
+							//var hexkwd=data;
+							$("#hexkwd").val(data)
+						},
+						error: function(data) {
+							//alert("错误!青重试.");
+						}
+					});
+				});
+			});
+		</script>
+		<style>
+			ul.item-zb-box-list {
+				margin: 10px 0
+			}
+			
+			ul.item-zb-box-list a {
+				padding: 5px 10px;
+				border: 1px solid #ccc;
+				background: #fff;
+				margin-right: 5px
+			}
+			
+			ul.item-zb-box-content {
+				margin: 20px 0
+			}
+			
+			ul.item-zb-box-content a {
+				padding: 5px 10px;
+				border: 1px solid #ccc;
+				background: #fff;
+				color: #009944;
+				margin-right: 5px
+			}
+			
+			.pl_box {
+				display: inline-block;
+				margin-top: 10px
+			}
+			
+			.pl_box a.pl_box_sub {
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				color: #fff;
+				font-size: 14px;
+				font-weight: bold;
+				display: block
+			}
+			
+			.pl_box a.search_btn {
+				width: 90px;
+				background: url(/images/main/search_1.jpg) no-repeat
+			}
+			
+			.pl_box a.publish_btn {
+				width: 140px;
+				background: url(/images/main/publish_1.jpg) no-repeat
+			}
+			
+			.pl_box a.search_btn:hover {
+				width: 90px;
+				background: url(/images/main/search_2.jpg) no-repeat
+			}
+			
+			.pl_box a.publish_btn:hover {
+				width: 140px;
+				background: url(/images/main/publish_2.jpg) no-repeat
+			}
+			
+			.item-zb-box_ input,
+			select {
+				font-size: 14px
+			}
+		</style>
+	</head>
+
+	<body>
+		{% include 'comm/top.html' %}{% include 'comm/mid.html'%}
+		
+		<div class="part">
+			<div class="item">
+				<div class="item-zb">
+					<div class="item-zb-tle">您所在的位置：<a href="http://jiage.zz91.com/cprice/" target="_blank">企业报价首页</a> > {{label}} </div>
+					<!--end item-zb-tle-->
+					<div class="item-zb-box_">
+						<div class="item-zb-box-title">
+							<div class="zb-tle-arr">
+								<div class="zb-tle-arr-l">所有品类</div>
+								<!--end zb-tle-arr-l-->
+								<div class="zb-tle-arr-r">{{label}} </div>
+								<!--end zb-tle-arr-r-->
+								<div class="cb"></div>
+							</div>
+							<!--end zb-tle-arr-->
+							<div class="zb-tle-piece">共{{listcount}}条行情</div>
+							<!--end zb-tle-piece-->
+							<div class="cb"></div>
+						</div>
+
+						<ul class="item-zb-box-list">
+							<a style="font-weight:{%ifequal maincode '1000'%}bold{%endifequal%};font-size:15px;" href="/cprice-1000/">废塑料</a>
+							<a style="font-weight:{%ifequal maincode '1001'%}bold{%endifequal%};font-size:15px;" href="/cprice-1001/">废金属</a>
+							<a style="font-weight:{%ifequal maincode '1002'%}bold{%endifequal%};font-size:15px;" href="/cprice-1002/">废纸</a>
+							<a style="font-weight:{%ifequal maincode '1003'%}bold{%endifequal%};font-size:15px;" href="/cprice-1003/">综合废料</a>
+						</ul>
+						<ul class="item-zb-box-content">
+							{%for nl in nextlabelist%}
+							<a href="/cprice-{{nl.code}}/">{{nl.label}}</a> {%endfor%}
+						</ul>
+
+						<label for="keywords" id="keywords-lable">查找关键字</label>
+						<input name="keyword" id="keywords" type="text" size="13" {%if keyword%}value="{{keyword}}" {%endif%}/>
+						<input id="hexkwd" type="hidden" {%if hexkwd%}value="{{hexkwd}}" {%endif%}/>
+						<select name="province" id="province">
+							{%if province%}
+							<option value="{{provincecode}}">{{province}}</option>{%endif%}
+							<option value="">-请选择省份</option>
+							{%for pro in provincelist%}
+							<option value="{{pro.code}}">{{pro.label}}</option>
+							{%endfor%}
+						</select>
+						<select name="city" id="city">
+							{%if citycode%}
+							<option value="{{citycode}}">{{city}}</option>{%endif%}
+							<option value="">-请选择城市</option>
+							{%if ctlist%}{{ctlist|safe}}{%endif%}
+						</select>
+						<span id="validTime1">
+                    <select name="postInDays" id="postInDays" class="validTime">
+					{%if postInDays%}<option value="{{postInDays}}">{{daytxt}}</option>{%endif%}
+                        <option value="" >-日期</option>
+                        <option value='1' >最近一天</option>
+                        <option value='7' >最近一周</option>
+                        <option value='20' >最近20天</option>
+                        <option value='30' >最近一月</option>
+                    </select>
+                </span>
+						<span id="prices1">
+                    <select name="price1" id="price1" onchange="changeprices(this.value)"  class="price1">
+					{%if price1%}<option value="{{price1}}">{{pricetxt}}</option>{%endif%}
+                        <option value="">-价格</option>
+                        <option value="1a1000" >1000以下</option>
+                        <option value="1000a3000" >1000-3000</option>
+                        <option value="3000a5000" >3000-5000</option>
+                        <option value="5000a10000" >5000-10000</option>
+                        <option value="10000a1000000" >10000以上</option>
+                        <option value="0"  >其他价格</option>
+                    </select>
+                </span>
+						<div class="cb"></div>
+						<div class="pl_box"><a id="searchcomp" class="pl_box_sub search_btn">搜 索</a></div>
+						<div class="pl_box"><a href="http://myrc.zz91.com/mycompanyprice/createPrice.htm" target="_blank" class="pl_box_sub publish_btn">立即发布报价</a></div>
+						<div class="cb"></div>
+
+					</div>
+					<!--end item-zb-box-->
+					<div class="item-zb-tab">
+						<table class="zb-tab" cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td class="zb-tab-td0">日期</td>
+								<td class="zb-tab-td0">产品</td>
+								<td class="zb-tab-td1">地区</td>
+								<td class="zb-tab-td">报价</td>
+								<td class="zb-tab-td">商家</td>
+							</tr>
+							{%for cpl in complist%}
+							<tr>
+								<td class="zb-tab-td_">{{cpl.td_time}}</td>
+								<td class="zb-tab-td_"><a href="{{cpl.curl}}" target="_blank">{{cpl.td_title}}</a></td>
+								<td class="zb-tab-td_">{{cpl.province}} {{cpl.city}}</td>
+								<td class="zb-tab-td_">{{cpl.price}}</td>
+								<td class="zb-tab-td_"><a href="{{cpl.companyurl}}" target="_blank">{{cpl.companyname}}</a></td>
+							</tr>
+							{%endfor%}
+						</table>
+					</div>
+					<!--end item-zb-tab-->
+
+					<div class="page">
+						{% if firstpage %}
+						<div class="page-style"> <a href="/cprice{%if code%}-{{code}}{%endif%}{%if searcharg%}/{%endif%}{%if hexkwd %}_k{{hexkwd}}_{%endif%}{%if provincecode %}_c{{provincecode}}_{%endif%}{%if citycode %}_t{{citycode}}_{%endif%}{%if postInDays %}_d{{postInDays}}_{%endif%}{%if price1 %}_q{{price1}}_{%endif%}/p{{prvpage}}.html">上一页</a>							</div>
+						{%endif%}
+						<ul>
+							{%for pg in page_range%} {%if pg.nowpage%}
+							<li> <a style="background:#eaeaea;font-weight:bold">{{pg.number}}</a> </li>
+							{%else%}
+							<li> <a href="/cprice{%if code%}-{{code}}{%endif%}{%if searcharg%}/{%endif%}{%if hexkwd %}_k{{hexkwd}}_{%endif%}{%if provincecode %}_c{{provincecode}}_{%endif%}{%if citycode %}_t{{citycode}}_{%endif%}{%if postInDays %}_d{{postInDays}}_{%endif%}{%if price1 %}_q{{price1}}_{%endif%}/p{{pg.number}}.html">{{pg.number}}</a>								</li>
+							{%endif%} {%endfor%}
+						</ul>
+						{% if lastpage%}
+						<div class="page-style"> <a href="/cprice{%if code%}-{{code}}{%endif%}{%if searcharg%}/{%endif%}{%if hexkwd %}_k{{hexkwd}}_{%endif%}{%if provincecode %}_c{{provincecode}}_{%endif%}{%if citycode %}_t{{citycode}}_{%endif%}{%if postInDays %}_d{{postInDays}}_{%endif%}{%if price1 %}_q{{price1}}_{%endif%}/p{{nextpage}}.html">下一页</a>							</div>
+						{%endif%}
+						<div class="page-txt">共{{page_listcount}}页</div>
+						<div class="page-confirm" onClick="turnpage()">确定</div>
+						<div class="page-style_">
+							<div class="page-style-info">到 </div>
+							<!--end page-style-info-->
+							<div class="page-style-info">
+								<input type="text" id="page1" value="">
+							</div>
+							<!--end page-style-info-->
+							<div class="page-style-info">页</div>
+							<!--end page-style-info-->
+							<div class="cb"></div>
+						</div>
+					</div>
+					<!--end page-->
+
+					<script type="text/javascript">
+						/*企业报价列表页 下 640*60，创建于2013-3-13*/
+						var cpro_id = "u1233044";
+					</script>
+					<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+
+				</div>
+				<!--end item-zb-->
+				<div class="item-yb">
+					<div class="item-yb-box_">
+						<div class="item-yb-box-tle">{{categoryname}}行情导读</div>
+						<div class="item-yb-box-info">
+							<ul>
+								{%for hqdd in hangqinglist%}
+								<li><a href="{{hqdd.url}}" target="_blank">{{hqdd.td_title}}</a></li>
+								{%endfor%} </ul>
+						</div>
+						<!--end item-yb-box-info-->
+					</div>
+					<div class="item-yb-box-info">
+						<center>
+							<script type="text/javascript">
+								/*新老站 资讯中部 250*250，创建于2013-12-9*/
+								var cpro_id = "u1429359";
+							</script>
+							<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+						</center>
+					</div>
+					<!--end item yb-box_-->
+					<div class="item-yb-box">
+						<div class="yb-box-bg">
+							<div class="yb-bg-tab">
+								<table class="bg-tab" cellspacing="0" border="0">
+									<tr>
+										<td><a href="http://map.zz91.com/guangdong.htm" target="_blank" title="广东废料网">广东废料网</a></td>
+										<td><a href="http://map.zz91.com/zhejiang.htm" target="_blank" title="浙江废料网">浙江废料网</a></td>
+									</tr>
+									<tr>
+										<td><a href="http://map.zz91.com/shandong.htm" target="_blank" title="山东废料网">山东废料网</a></td>
+										<td><a href="http://map.zz91.com/jiangsu.htm" target="_blank" title="江苏废料网">江苏废料网</a></td>
+									</tr>
+									<tr>
+										<td><a href="http://map.zz91.com/beijing.htm" target="_blank" title="北京废料网">北京废料网</a></td>
+										<td><a href="http://map.zz91.com/shanghai.htm" target="_blank" title="上海废料网">上海废料网</a></td>
+									</tr>
+									<tr>
+										<td><a href="http://map.zz91.com/tianjin.htm" target="_blank" title="天津废料网">天津废料网</a></td>
+										<td><a href="http://map.zz91.com/hebei.htm" target="_blank" title="河北废料网">河北废料网</a></td>
+									</tr>
+									<tr>
+										<td><a href="http://map.zz91.com/henan.htm" target="_blank" title="河南废料网">河南废料网</a></td>
+										<td><a href="http://map.zz91.com/hunan.htm" target="_blank" title="湖南废料网">湖南废料网</a></td>
+									</tr>
+								</table>
+							</div>
+							<!--end yb-bg-tab-->
+						</div>
+						<!--end yb-box-bg-->
+						<div class="yb-box-bg-tle">一键寻找最匹配商机</div>
+						<!--end yb-box-bg-tle-->
+					</div>
+					{%if suliao_zaowan%}
+					<!--end item-yb-box-->
+					<div class="item-yb-box_">
+						<div class="item-yb-box-tle">{{maintypename}}早参/晚报</div>
+						<div class="item-yb-box-info">
+							<ul>
+								{%for slzw in suliao_zaowan%}
+								<li><a href="{{slzw.url}}" target="_blank">{{slzw.td_title}}</a></li>
+								{%endfor%}
+							</ul>
+						</div>
+						<!--end item-yb-box-info-->
+					</div>
+					{%endif%}
+					<!--end item yb-box_-->
+
+					<div class="item-yb-box_">
+						<div class="item-yb-box-info">
+							<script src="http://pyapp.zz91.com/showppctxtadscript/?keywords={{lable}}&amp;showposition=&amp;m=6&amp;w=240&amp;showborder=1&amp;adposition=636"></script>
+						</div>
+						<!--end item-yb-box-info-->
+					</div>
+
+				</div>
+				<!--end item-yb-->
+				<div class="cb"></div>
+			</div>
+			<!--end item-->
+		</div>
+		<!--end part-->
+		<div style="width:100%;">
+			<div style="width:960px;margin:0 auto;text-align:center;">
+				{% include 'comm/buttom.html' %}
+			</div>
+		</div>
+	</body>
+
+</html>

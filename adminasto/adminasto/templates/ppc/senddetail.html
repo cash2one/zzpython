@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+body
+{
+	font-size:12px;
+}
+</style>
+<script>
+function selectOption(menuname,value)
+{
+    var menu = document.getElementById(menuname);
+	if (menu)
+	{
+	for(var i=0;i<=menu.options.length;i++){
+		if(menu.options[i].value==value)
+		{
+			menu.options[i].selected = true;
+			break;
+		}
+	}
+	}
+}
+function selectCheckBox(boxname,thevalue)
+{
+	//var boxes = document.form1.elements[boxname];
+	var boxes =document.getElementsByName(boxname)
+	for(var i=0;i<boxes.length;i++){
+		if(thevalue.indexOf(boxes[i].value)>=0)
+		{
+			boxes[i].checked = true;
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+<table width="600" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#666666">
+  <form id="form1" name="form1" method="get" action=""><tr>
+    <td width="100" bgcolor="#FFFFFF">标题</td>
+    <td bgcolor="#FFFFFF"><input type="text" name="sendtitle" id="sendtitle" value="{{sendtitle}}" />
+      <input name="company_id" type="hidden" id="company_id" value="{{company_id}}" /></td>
+    </tr>
+    <tr>
+      <td bgcolor="#FFFFFF">内容</td>
+      <td bgcolor="#FFFFFF"><textarea name="sendcontent" id="sendcontent" cols="45" rows="5">{{sendcontent}}</textarea></td>
+    </tr>
+    </form>
+    <form id="form1" name="form1" method="get" action="/ppc/senddetail/">
+    <tr>
+      <td bgcolor="#FFFFFF">&nbsp;</td>
+      <td bgcolor="#FFFFFF"><input type="submit" name="button2" id="button2" value="发送" /></td>
+    </tr>
+    <tr>
+    <td bgcolor="#FFFFFF">搜索标题</td>
+    <td bgcolor="#FFFFFF">
+      <input type="text" name="stitle" id="stitle" value="{{keywords}}" />
+    </td>
+    </tr>
+    <tr>
+      <td bgcolor="#FFFFFF">供求</td>
+      <td bgcolor="#FFFFFF"><input type="radio" name="type" id="type" value="0" {{std1}} />
+        供求
+        <input type="radio" name="type" id="type" value="1" {{std2}}/>
+        求购
+  <input type="hidden" name="company_id" id="company_id" value="{{company_id}}" />
+  <input type="hidden" name="sid" id="sid" value="{{sid}}" /></td>
+    </tr>
+    <tr>
+      <td bgcolor="#FFFFFF">&nbsp;</td>
+      <td bgcolor="#FFFFFF"><input name="stype" type="radio" id="stype" value="email" />
+        邮件
+        <input type="radio" name="stype" id="stype" value="question" />
+        询盘
+        <input type="radio" name="stype" id="stype" value="sms" />
+        短信
+        <script>selectCheckBox("stype","{{s_type}}")</script>
+        </td>
+    </tr>
+    <tr>
+      <td bgcolor="#FFFFFF">&nbsp;</td>
+      <td bgcolor="#FFFFFF"><input type="submit" name="button" id="button" value="放入待发列表" /></td>
+    </tr>
+    </form>
+  
+</table>
+<table width="800" border="0" align="center" cellpadding="5" cellspacing="1" bgcolor="#666666">
+  <tr>
+    <td nowrap="nowrap" bgcolor="#ebebeb">供求</td>
+    <td bgcolor="#ebebeb">标题</td>
+    <td bgcolor="#ebebeb">邮箱</td>
+    <td bgcolor="#ebebeb">手机</td>
+    <td bgcolor="#ebebeb">发布时间</td>
+  </tr>
+  {%for a in listall%}
+  <tr>
+    <td nowrap="nowrap" bgcolor="#FFFFFF">{{a.pdt_kind}}</td>
+    <td bgcolor="#FFFFFF">{{a.pdt_name}}</td>
+    <td bgcolor="#FFFFFF">{{a.email}}</td>
+    <td bgcolor="#FFFFFF">{{a.mobile}}</td>
+    <td nowrap="nowrap" bgcolor="#FFFFFF">{{a.refresh_time}}</td>
+  </tr>
+  {%endfor%}
+  <div class='pageBar'>
+		{% if firstpage %}
+		<a href="?page=1{{sear}}" title="首 页" style="margin-right:5px;">首 页</a>&nbsp;
+		<a href="?page={{prvpage}}{{sear}}" title="上一页" style="margin-right:5px;">上一页</a>&nbsp; 
+		{% endif %}
+		{% for p in page_range %}
+		{% if p.nowpage %}
+		<span class="cpb" style="margin-right:5px;">{{p.number}}</span>
+		{% else %}
+		<a href="?page={{p.number}}{{sear}}" title="第{{p.number}}页" style="margin-right:5px;">{{p.number}}</a>
+		{% endif %}
+		{% endfor %}
+		&nbsp;
+		{% if lastpage%}
+		<a href="?page={{nextpage}}{{sear}}" title="下一页" style="margin-right:5px;">下一页</a>&nbsp;
+		<a href="?page={{page_listcount}}{{sear}}" title="末 页" style="margin-right:5px;">末 页</a>&nbsp;
+		{% endif %}
+</div>
+</table>
+</body>
+</html>

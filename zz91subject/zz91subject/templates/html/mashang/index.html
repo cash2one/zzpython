@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>PET专场推广</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" href="http://subject.zz91.com/comm/comm.css"/>
+<link rel="stylesheet" type="text/css" href="css/extension.css"/>
+ <link rel="stylesheet" type="text/css" href="source/jquery.fancybox.css?v=2.1.5" media="screen" />
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="source/jquery.fancybox.pack.js?v=2.1.5"></script>
+<script src="js/Png.js"></script>
+<!--[if IE 6]>
+<script type="text/javascript" src="js/Png.js"></script>
+<script type="text/javascript">
+EvPNG.fix('div, ul, img, li, input, a');
+</script>
+<![endif]-->
+</head>
+<script>
+$(document).ready(function() {
+	/*
+	 *  Simple image gallery. Uses default settings
+	 */
+
+	$('.fancybox').fancybox();
+
+	/*
+	 *  Different effects
+	 */
+
+	// Change title type, overlay closing speed
+	$(".fancybox-effects-a").fancybox({
+		helpers: {
+			title : {
+				type : 'outside'
+			},
+			overlay : {
+				speedOut : 0
+			}
+		}
+	});
+
+	// Disable opening and closing animations, change title type
+	$(".fancybox-effects-b").fancybox({
+		openEffect  : 'none',
+		closeEffect	: 'none',
+
+		helpers : {
+			title : {
+				type : 'over'
+			}
+		}
+	});
+
+	// Set custom style, close if clicked, change title type and overlay color
+	$(".fancybox-effects-c").fancybox({
+		wrapCSS    : 'fancybox-custom',
+		closeClick : true,
+
+		openEffect : 'none',
+
+		helpers : {
+			title : {
+				type : 'inside'
+			},
+			overlay : {
+				css : {
+					'background' : 'rgba(238,238,238,0.85)'
+				}
+			}
+		}
+	});
+
+	// Remove padding, set opening and closing animations, close if clicked and disable overlay
+	$(".fancybox-effects-d").fancybox({
+		padding: 0,
+
+		openEffect : 'elastic',
+		openSpeed  : 150,
+
+		closeEffect : 'elastic',
+		closeSpeed  : 150,
+
+		closeClick : true,
+
+		helpers : {
+			overlay : null
+		}
+	});
+
+	/*
+	 *  Button helper. Disable animations, hide close button, change title type and content
+	 */
+
+	$('.fancybox-buttons').fancybox({
+		openEffect  : 'none',
+		closeEffect : 'none',
+
+		prevEffect : 'none',
+		nextEffect : 'none',
+
+		closeBtn  : false,
+
+		helpers : {
+			title : {
+				type : 'inside'
+			},
+			buttons	: {}
+		},
+
+		afterLoad : function() {
+			this.title = 'Image ' + (this.index + 1) + ' of ' + this.group.length + (this.title ? ' - ' + this.title : '');
+		}
+	});
+
+
+	/*
+	 *  Thumbnail helper. Disable animations, hide close button, arrows and slide to next gallery item if clicked
+	 */
+
+	$('.fancybox-thumbs').fancybox({
+		prevEffect : 'none',
+		nextEffect : 'none',
+
+		closeBtn  : false,
+		arrows    : false,
+		nextClick : true,
+
+		helpers : {
+			thumbs : {
+				width  : 50,
+				height : 50
+			}
+		}
+	});
+
+	/*
+	 *  Media helper. Group items, disable animations, hide arrows, enable media and button helpers.
+	*/
+	$('.fancybox-media')
+		.attr('rel', 'media-gallery')
+		.fancybox({
+			openEffect : 'none',
+			closeEffect : 'none',
+			prevEffect : 'none',
+			nextEffect : 'none',
+
+			arrows : false,
+			helpers : {
+				media : {},
+				buttons : {}
+			}
+		});
+
+	/*
+	 *  Open manually
+	 */
+
+	$("#fancybox-manual-a").click(function() {
+		$.fancybox.open('1_b.jpg');
+	});
+
+	$("#fancybox-manual-b").click(function() {
+		$.fancybox.open({
+			href : 'iframe.html',
+			type : 'iframe',
+			padding : 5
+		});
+	});
+
+	$("#fancybox-manual-c").click(function() {
+		$.fancybox.open([
+			{
+				href : '1_b.jpg',
+				title : 'My title'
+			}, {
+				href : '2_b.jpg',
+				title : '2nd title'
+			}, {
+				href : '3_b.jpg'
+			}
+		], {
+			helpers : {
+				thumbs : {
+					width: 75,
+					height: 50
+				}
+			}
+		});
+	});
+
+
+		});
+</script>
+<body>
+<div style="width:100%; background-color:#F9F7EC">
+	<div style="width:933px;margin:0 auto">
+		{%include 'html/comm/top.html'%}
+    </div>
+</div>
+<div class="top">
+	<div class="top-main">
+        <a href="1.html" class="fancybox fancybox.iframe top-img"></a>
+        <a href="http://www.zz91.com/weixin2014" class="top-text" target="_blank"></a>
+    </div>
+    <!--end top-main-->
+</div>
+<!--end top-->
+<div class="extension">
+	<a id="hy"></a>
+	<div class="mainblock1">
+    	<div class="m1-title">
+        	高级会员专区
+        </div>
+        <!--end m1-title-->
+        <div class="m1-content">
+        	<div class="m1-block">
+            {%for list in listall%}
+            	<div class="m1-item">
+                	<div class="m1-item-img">
+                        {%if list.ldbflag%}
+						<a href="http://www.zz91.com/ppc/index{{list.com_id}}.htm" target="_blank"><img src="{{list.pdt_images}}" title="{{list.pdt_kind.kindtxt}}{{list.pdt_name}}" /></a>
+						{%else%}
+                        <a href="http://{{list.com_subname}}.zz91.com" target="_blank"><img src="{{list.pdt_images}}" title="{{list.pdt_kind.kindtxt}}{{list.pdt_name}}" /></a>
+						{%endif%}
+                        <div>{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</div>
+                    </div>
+                    <!--end m1-item-img-->
+                    <div class="m1-item-text">
+                        {%if list.ldbflag%}
+							<a href="http://www.zz91.com/ppc/index{{list.com_id}}.htm" target="_blank">{{list.com_name}}</a>
+						{%else%}
+						<a href="http://{{list.com_subname}}.zz91.com" target="_blank">{{list.com_name}}</a>
+						{%endif%}
+                    </div>
+                    <!--end m1-item-text-->
+                    <div class="m1-item-text">
+                    	<div class="block-item-text2" onmouseover="show(this)" onmouseout="show_close(this)">
+                            地区：{{list.com_province}}<Br />
+                            
+                        </div>
+                       
+                        
+                        <div class="cb"></div>
+                    </div>
+                </div>
+            {%endfor%}    
+                
+                
+                <div class="cb"></div>
+            </div>
+            <!--end m1-block-->
+            <div class="page_border">
+                <div class="page">
+                    <ul class="page_ul" id="page_ul">
+                        {% if firstpage %}
+						<li><a href="?page=1#hy">上一页</a></li>
+						{% endif %} 
+						{% for p in page_range %}
+						{% if p.nowpage %}
+						<li style="background:#fdeaa6;border:1px solid #f7bf4f"><a href="javascript:void(0)" style="color:#a90000;font-weight:bold">{{p.number}}</a></li>
+						{% else %}
+						<li><a href="?page={{p.number}}#hy">{{p.number}}</a></li>
+						{% endif %}
+						{% endfor %}
+						{% if lastpage%}
+						<li><a href="?page={{nextpage}}#hy">下一页</a></li>
+						{% endif %}
+						<li style="border:0">共{{page_listcount}}页</li>
+                     </ul> 
+                </div>
+                <!--end page-->
+                <div style="clear:both"></div>
+            </div>
+            <!--end page_border-->
+        </div>
+        <!--end m1-content-->
+    </div>
+    <!--end mainblock1-->
+    <script type="text/javascript">
+	function AutoScroll(obj){
+		$(obj).find("ul").animate({
+			marginTop:"-25px"
+		},500,function(){
+			$(this).css({marginTop:"0px"}).find("li:first").appendTo(this);
+		});
+	}
+	$(document).ready(function(){
+		setInterval('AutoScroll("#s1")',3000);
+		setInterval('AutoScroll("#s2")',3000);
+	});
+	</script>
+    <div class="mainblock2">
+    	<div class="m2-title">
+        	普通会员专区
+        </div>
+        <!--end m2-title-->
+        <div class="m2-content">
+        	<div class="m2-block">
+            	<div class="m2-item fl" id="s1">
+                	<ul>
+					{%for list in comcompanylist.list%}
+                    	<li>
+                            <div class="m2-item-title">
+                                {%if list.ldbflag%}
+									<a href="http://www.zz91.com/ppc/productdetail{{list.pdt_id}}.htm" target="_blank">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a>
+								{%else%}
+								<a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target="_blank">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a>
+								{%endif%}
+                            </div>	
+                            <div class="m2-item-text">
+                                {%if list.ldbflag%}
+									<a href="http://www.zz91.com/ppc/index{{list.com_id}}.htm" target="_blank">{{list.com_name}}</a>
+								{%else%}
+								<a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target="_blank">{{list.com_name}}</a>
+								{%endif%}
+                            </div>
+                            <div class="cb"></div>
+                        </li>
+					{%endfor%}
+                     
+                    </ul>
+                </div>
+                
+                <div class="m2-item-line"></div>
+                
+                <div class="m2-item fr" id="s2">
+                	<ul>
+                    	{%for list in comcompanylist1.list%}
+                    	<li>
+                            <div class="m2-item-title">
+                                {%if list.ldbflag%}
+									<a href="http://www.zz91.com/ppc/productdetail{{list.pdt_id}}.htm" target="_blank">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a>
+								{%else%}
+								<a href="http://trade.zz91.com/productdetails{{list.pdt_id}}.htm" target="_blank">{{list.pdt_kind.kindtxt}}{{list.pdt_name}}</a>
+								{%endif%}
+                            </div>	
+                            <div class="m2-item-text">
+                                {%if list.ldbflag%}
+									<a href="http://www.zz91.com/ppc/index{{list.com_id}}.htm" target="_blank">{{list.com_name}}</a>
+								{%else%}
+								<a href="http://company.zz91.com/compinfo{{list.com_id}}.htm" target="_blank">{{list.com_name}}</a>
+								{%endif%}
+                            </div>
+                            <div class="cb"></div>
+                        </li>
+					{%endfor%}
+                    </ul>
+                </div>
+                
+                <div class="cb"></div>
+            </div>
+            <!--end m2-blcok-->
+        </div>
+        <!--end m2-content-->
+    </div>
+    <!--end mainblock2-->
+    
+   
+    <div class="mainblock2">
+    	<div class="m2-title">
+        	下场预告
+        </div>
+        <!--end m2-title-->
+        <div class="m2-content">
+        	<div class="m2-block">
+            	<div class="m2-div">
+                	<div class="m2-div-button">
+                    	<a class="fancybox-effects-a" href="http://www.zz91.com/register/register_stp1.htm" target=_blank><img src="images/ok.jpg" /></a>
+                    </div>
+                    <!--end m2-div2-button-->
+                </div>
+                <!--end m2-div-->
+            </div>
+            <!--end m2-blcok-->
+        </div>
+        <!--end m2-content-->
+    </div>
+    <!--end mainblock2-->
+</div>
+<!--end extension-->
+<div style="width:100%; background-color:#fbefc1">
+	<div style="width:950px;margin:0 auto;text-align:center">
+		{% include 'html/comm/buttom.html' %}
+    </div>
+</div>
+
+</body>
+</html>

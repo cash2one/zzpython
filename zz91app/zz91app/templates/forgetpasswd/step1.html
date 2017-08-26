@@ -1,0 +1,15 @@
+<div class="m-main">
+	<form name="formforgetpasswd" id="formforgetpasswd" method="post" action="#">
+    <ul class="regbox">
+    	<li>填写账户名，获取短信验证码</li>
+        <li><input id="username" type="text" name="username" class="mui-input-clear" value="{{username}}" placeholder="请输入手机 或 用户名 或 邮箱" autocomplete="off" maxlength="20"></li>
+        <li><div class="c-red"></div></li>
+        <li><input type="hidden" name="step" id="step" value="1">
+        <button class="mui-btn mui-btn-green" style="width: 100%;" onclick="myrc.forgetpasswd(document.getElementById('formforgetpasswd'),'http://app.zz91.com/forgetpasswd.html')" />获取验证码</button> </li>
+        <li style="text-align: center;">或咨询电话<br><a onclick="dialtel('0571-56612345')">0571-56612345</a></li>
+        <div class="cb"></div>
+    </ul> 
+    </form>
+    <input type="hidden" id="appnavname" value="忘记密码" />
+    <div class="cb"></div>
+</div>

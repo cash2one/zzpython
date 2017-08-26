@@ -1,0 +1,1 @@
+python /mnt/pythoncode/zz91crm/zz91crm/manage.py runserver 192.168.2.4:9090 &

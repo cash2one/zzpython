@@ -1,0 +1,41 @@
+{%if listall%}
+var adstr="";
+adstr="<style>"+
+".ppcmain_yang .ppcadbox img{padding:0;margin:0}"+
+".ppcmain_yang{width:{{w}}px;}"+
+".ppcmain_yang .ppcbox{padding:0px;margin-bottom:5px;position:relative;}"+
+".ppcmain_yang .ppcadbox .ptitle{background-color:#371718; padding:5px;overflow:hidden; text-align:left; font-weight:bold;overflow:hidden;text-overflow:ellipsis;white-space:nowrap; color:#FFF}"+
+".ppcmain_yang .ppcadbox .ptitle a{color:#fff;text-decoration:none;}"+
+".ppcmain_yang .ppcadbox .ptitle a:hover{color:#FF0}"+
+".ppcmain_yang .ppcadbox{width:{{pw}}px; border:solid 1px #ccc; font-size:12px;margin-bottom:5px;padding-bottom:5px;margin-right:5px;;line-height:20px;float:left;background-color:#fff}"+
+".ppcmain_yang .ppcadbox .ppctxt{color:#000; padding:5px;}"+
+".ppcmain_yang .ppcadbox .img{width:{{pw}}px;*width:100%;height:108px;padding-top:2px;padding-bottom:2px;display:table-cell;text-align:center;vertical-align:middle; *display: block; *font-size: 100px;/*约为高度的0.873，200*0.873 约为175*/ *font-family:Arial;/*防止非utf-8引起的hack失效问题，如gbk编码*/;background-color:#ebebeb}"+
+".ppcmain_yang .ppcadbox .comp {overflow:hidden; 	text-overflow:ellipsis;	white-space:nowrap; width:{{pw}}px;}"+
+".ppcmain_yang .ppcadbox .comp a{color:#666;text-decoration:none;}"+
+".ppcmain_yang .ppcadbox .txt{ overflow:hidden; 	text-overflow:ellipsis;	white-space:nowrap;width:{{pw}}px;}"+
+".ppcmain_yang .ppcadbox .txt a{color:#000;text-decoration:none;}"+
+".ppcmain_yang .ppcadbox span{ color:#C00; font-weight:bold}"+
+".ppcmain_yang .ppcbox .ppcpage{ position:absolute; right:4px; bottom:4px; z-index:3; }"+
+".ppcmain_yang .ppcbox .ppcpage span{ background:#DFDFDF; margin:0 1px; padding:4px 6px; border:1px solid #DFDFDF; font:normal bold 14px/18px; color:#262425; text-decoration:none; display:block; float:left; opacity:0.8; -moz-opacity:0.8; filter:alpha(opacity:80);cursor:pointer;}"+
+".ppcmain_yang .ppcbox .ppcpage a.selected{ background:#F60; border:1px solid #F60; color:#FFF;text-decoration:underline;}"+
+".ppcmain_yang .ppcadbox .comp a:hover{color:#F30;}"+
+"</style>"+
+"<div class=\"ppcmain_yang\"><div class=\"ppcbox\">"+
+	"<div id=\"ppccomplist\">"+
+{%for list in listall%}
+"<div class=\"ppcadbox\">"+
+
+"<div class=\"ppctxt\">"+
+    {%if list.pdt_images%}
+    "<div class=\"img\"><a href=\"{{list.yurl}}\" target=_blank rel=\"nofollow\"><img src=\"{{list.pdt_images}}\" /></a></div>"+
+    {%endif%}
+    "<div class=\"txt\"><a href=\"{{list.yurl}}\" target=\"_blank\">{{list.title}}</a></div>"+
+    "<div style=\"clear:both\"></div>"+
+    "<div>拿样价：{%ifequal list.take_price "0.0" %}免费{%else%}<span>{{list.take_price}}</span>元/件{%endifequal%}</div>"+
+"</div>"+
+"</div>"+
+{%endfor%}
+"</div><div style=\"clear:both\"></div>"+
+"</div></div><div style=\"clear:both\"></div>";
+document.write(adstr);
+{%endif%}

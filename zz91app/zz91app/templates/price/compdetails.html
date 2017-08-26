@@ -1,0 +1,64 @@
+     <div class="content">
+       
+      		<div class="item">
+            	<div class="i-tle">{{title}}</div>
+                <!--end i-tle-->
+                <div class="i-tle time">时间：{{gmt_created|safe}}</div>
+                <!--end i-tle-->
+                <div class="i-tab">
+                	{{content|safe}}<br /><br />
+                </div>
+                <!--end i-tab-->
+                {%if priceabout%}
+                <div class="box1">
+                	<div class="b-tle">相关报价</div>
+                    <!--end b-tle-->
+                    <div class="b-dt">
+                    	<dt>
+                    	{%for about in priceabout%}
+                			<dl><a href="/priceviews/?id={{about.id}}{%if category_id%}&category_id={{category_id}}{%endif%}{%if assist_id%}&assist_id={{assist_id}}{%endif%}{%if keywords%}&keywords={{keywords}}{%endif%}">{{about.title}}</a></dl>
+                		{%endfor%}
+                		</dt>
+                    </div>
+                    <!--end b-dt-->
+                </div>
+                {%endif%}
+                
+                {%if zhibuy or zhioffer%}
+                <div class="box1">
+                	<div class="b-tle">相关供求</div>
+                    <!--end b-tle-->
+                    <div class="b-dt">
+                    	<dt>
+                    	{%for zhi in zhibuy%}
+                			<dl><a href="/detail/?id={{zhi.id}}">{{zhi.title}}</a></dl>
+                		{%endfor%}
+                    	{%for zhi in zhioffer%}
+                			<dl><a href="/detail/?id={{zhi.id}}">{{zhi.title}}</a></dl>
+                		{%endfor%}
+                		</dt>
+                    </div>
+                    <!--end b-dt-->
+                </div>
+                {%endif%}
+                <!--end box-->
+                {%if feizhibbs%}
+                 <div class="box1">
+                	<div class="b-tle">相关问答</div>
+                    <!--end b-tle-->
+                    <div class="b-dt">
+                    	<dt>
+                    	{%for bbs in feizhibbs%}
+                			<dl><a href="/huzhuview/{{bbs.td_id}}.htm">{{bbs.td_title}}</a></dl>
+                		{%endfor%}
+                		</dt>
+                    </div>
+                    <!--end b-dt-->
+                </div>
+                {%endif%}
+                <!--end box-->
+            </div>
+            <!--end item-->
+       </div>
+       <input type="hidden" id="appnavname" value="企业报价" />
+      

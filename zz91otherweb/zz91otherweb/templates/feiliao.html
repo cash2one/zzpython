@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<base target="_blank">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>废料网址之家-开启废料商家上网导航</title>
+<meta name="keywords" content="废料导航,废料网址之家,废料网址大全,废料网址导航,废料安全网址,网址大全,废料上网导航,废料网址"/>
+<meta name="description" content="废料123导航--新一代上网上网导航，为用户提供再生资源各个行业,废金属,废塑料,废橡胶,废纺织,废纸,二手设备等各种分类的优秀内容和网站入口，提供最简单便捷的上网导航服务。快捷上网，从废料123导航开始。"/>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+ function input_focus(){
+	document.getElementById("input_focus").className = "srch_text srch_text2";
+}
+function input_blur(){
+	document.getElementById("input_focus").className = "srch_text";
+}
+</script>
+<!-- 请置于所有广告位代码之前 -->
+<script type="text/javascript" src="http://cbjs.baidu.com/js/m.js"></script>
+</head>
+
+<body onload="document.getElementById('input_focus').focus()">
+<div class="container">
+    <div class="topnav">
+    	<div class="logo"><a href="/" title="废料网址之家" target="_self"><img src="images/logo.gif" alt="废料网址之家" /></a></div>
+        <ul>
+        	<li><a href="#" target="_self" style="BEHAVIOR: url(#default#homepage); " onClick="this.style.behavior='url(#default#homepage)';this.setHomePage('http://www.feiliao123.com');return(false);">设为首页</a> |</li>
+            <li><a href="javascript:window.external.AddFavorite('http://www.feiliao123.com','废料123网址导航 ')" target="_self" >加入收藏</a> |</li>
+            <li><a href="feedback/">留言反馈</a></li>
+		</ul>
+    </div>
+    
+    <div class="clearfix search">
+	<form action="http://trade.zz91.com/trade/searchfirst/" method="get" id="frmSearch" name="frmSearch" target="_blank"/>
+        <input class="srch_text" type="text" name="keywords" id="keywords" baiduSug="1"/>
+        <input class="srch_button" type="submit" value="搜索" />
+    </form>
+    </div>
+    <div style="clear: both;"></div>
+    <script type="text/javascript">BAIDU_CLB_fillSlot("1077678");</script>
+    <div style="clear: both;"></div>
+    <div class="clearfix nav_list icon_list">
+        <div class="clearfix title_bar">
+        	<span class="fl title">名站导航</span>
+            <div class="fl line_hr"></div>
+            <a class="fl more_nav" href="http://www.zz91.com/" target="_self"><span>ZZ91再生网</span></a>
+        </div>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 微门户 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5512236620584335"
+     data-ad-slot="8274972003"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+        <ul class="icon_list">
+        {%for rl in recommendlist%}
+            <li>
+            	<a class="icon_box" href="{{rl.url}}">
+                    <img src="{{rl.pic}}" />
+                	<span>{{rl.name}}</span>
+                </a>
+            </li>
+        {%endfor%}
+        </ul>
+    </div>
+    <script type="text/javascript">
+    /*960*60 创建于 2015-10-06*/
+    var cpro_id = "u2340820";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+
+	{%for tp in webtypelist%}
+    <div class="nav_list list1">
+        <div class="clearfix title_bar">
+        	<span class="fl title">{{tp.typename}}</span>
+            <div class="fl line_hr"></div>
+        </div>
+        
+      {%for tp2 in tp.typelist%}
+        <div class="category"> 
+            <div class="type video"><a href="listmore{{tp2.id}}.html">{{tp2.typename}}</a></div>
+            <ul>
+            {%for web in tp2.listweb%}
+                <li><a href="{{web.url}}" title="{{web.name}}">{{web.name}}</a></li>
+            {%endfor%}
+            </ul>
+            <a href="listmore{{tp2.id}}.html" class="more">更多 &raquo;</a> 
+        </div>
+    {%endfor%}
+        
+    </div>
+	{%endfor%}
+    
+</div>
+<div class="footer">
+<p>欢迎使用 2014 <a href="http://www.feiliao123.com/">废料网站导航</a>，最全，最多的废料网址导航 - 浙ICP备10030021号-3</p>
+</div>
+
+<script>
+
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?201bba55f5f1e9005a2792bd0967bb4c";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</body>
+</html>

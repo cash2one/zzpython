@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="/bootstrap/Css/style.css" />
+</head>
+<body>
+<form class="form-inline definewidth m20" action="index.html" method="get">  
+<button type="button" class="btn btn-success" onClick="window.location.href='choicetemp.html'">{%if listall%}切换模板{%else%}选择模版{%endif%}</button>
+{%if listall%}&nbsp;&nbsp;<font color="blue">切换模版后, 请重新选择栏目模板</font>{%endif%}
+</form>
+{%if listall%}
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>帐号</th>
+        <th>图片</th>
+        <th>名称</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+<form action="updatetypeok.html">
+<input type="hidden" name="typeid" value="{{typeid}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+    {%for list in listall%}
+	<tr>
+        <td>{{list.user_name}}</td>
+	        <td><a title="点击预览" href="/{{list.pinyin}}/index.html" target="_blank"><img width="120px" height="80px" src="{{list.pic}}"></a></td>
+	        <td>{{list.name}}</td>
+	        <td>
+	        <a href="/{{list.pinyin}}/index.html" class="btn btn-success" target="_blank">预览</a>&nbsp;&nbsp;
+	        <a href="choicetemp.html" class="btn btn-success">切换</a>&nbsp;&nbsp;
+	        <a href="delusertemp.html?id={{list.id}}" onClick="return confirm('是否将此信息删除?')" class="btn btn-success">删除</a>&nbsp;&nbsp;
+        </tr>
+     {%endfor%}
+</form>
+</table>
+{%else%}<br /><br />
+&nbsp;&nbsp;没有选择模板,请选择一套
+{%endif%}
+{%include 'common/turnpage.html'%}
+</body>
+</html>

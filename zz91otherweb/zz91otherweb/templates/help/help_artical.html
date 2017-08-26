@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="Js/jquery.js"></script>
+    <script type="text/javascript" src="123/function.js"></script>
+    <script type="text/javascript" src="Js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="Js/bootstrap.js"></script>
+    <script type="text/javascript" src="Js/ckform.js"></script>
+    <script type="text/javascript" src="Js/common.js"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="overlay"></div>
+
+<form class="form-inline definewidth m20">
+<button type="button" class="btn btn-success" onClick="window.location.href='addhelpartical.html'">添加文章</button>&nbsp;&nbsp;
+标题 <input type="text" name="subject" value="{%if subject%}{{subject}}{%endif%}" style="width:180px">&nbsp;
+<select name="typeid" style="width:150px">
+{%if typename%}<option value="{{typeid}}">{{typename}}</option>{%endif%}
+    <option value="">请选择栏目...</option>
+    {%for tp in columnlist%}
+	<option disabled="disabled" style="background-color:#CCFFFF" value="{{tp.cid}}">{{tp.cat_name}}</option>
+	{%for tp1 in tp.nextcolumn%}
+	<option value="{{tp1.cid}}">--{{tp1.cat_name}}</option>
+	{%endfor%} {%endfor%}
+</select>
+
+
+ <input class="btn btn-success" type="submit" value="查询">
+</form>
+<table class="table table-bordered table-hover definewidth m10" >
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>日期</th>
+        <th>标题</th>
+        <th>栏目名称</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+<input type="hidden" name="typeid" value="{{typeid}}">
+<input type="hidden" name="request_url" value="{{request_url}}">
+    {%for l in listall%}
+	     <tr>
+	     <td>{{l.aid}}</td>
+	     <td>{{l.gmt_modified}}</td>
+	     <td>{{l.subject}}</td>
+	     <td>{{l.f_cat_name}}-----{{l.s_cat_name}}</td>
+	     <td>
+
+<!--  <a href="update_artical.html?artid={{l.id}}" title="编辑"><img src="123/imgs/gtk-edit.png"></a>-->
+<a href="addhelpartical.html?aid={{l.aid}}" title="编辑"><img src="123/imgs/gtk-edit.png"></a>&nbsp;&nbsp;
+<a href="deletehelpartical.html?aid={{l.aid}}" onClick="return confirm('是否将此信息删除?')" title="删除"><img src="123/imgs/b_drop.png"></a>
+
+	     </td>
+	     
+        </tr>
+     {%endfor%}
+        </table>
+
+<div class="inline pull-right page">
+<form>
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+
+{%if flag%}<input type="hidden" name="flag" value="{{flag}}">{%endif%}
+{%if writer%}<input type="hidden" name="writer" value="{{writer}}">{%endif%}
+<input type="hidden" name="page_listcount" value="{{page_listcount}}">&nbsp;&nbsp;
+去第<input type="text" name="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页  <input type="submit" style="display:none"> &nbsp;&nbsp;
+<a href='?page=1&{{searchurl}}' >首页</a><a href='?page={{page_listcount}}&{{searchurl}}' >尾页</a> 
+</form>
+
+</div>
+</body>
+</html>

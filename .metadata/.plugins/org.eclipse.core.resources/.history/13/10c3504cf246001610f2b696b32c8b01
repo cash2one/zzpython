@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>底部导航</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+		<style>
+			header {
+				background-color: #f2f2f2;
+			}
+			header ul li {
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				display: none;
+				color: #323237;
+				position: relative;
+				font-size: 18px;
+			}
+			header ul li.active {
+				display: block;
+			}
+			#footer {
+				background-color: #f2f2f2;
+			}
+			#footer ul li {
+				padding-top: 36px;
+				padding-bottom: 4px;
+				background: url() no-repeat center 2px;
+				background-size: auto 30px;
+				text-align: center;
+			}
+			#footer ul li.active {
+				color: #6ab494;
+			}
+			.navon,.active-dark{
+				color:#01ba2e;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap" class="flex-wrap flex-vertical">
+			<div id="main" class="flex-con"></div>
+			<footer class="aui-nav" id="footer">
+				<ul class="aui-bar-tab">
+					<li class="active-dark" index=1>
+						<span class="aui-iconfont aui-icon-favorfill" style="color:#01ba2e;"></span>
+						<p>
+							推荐
+						</p>
+					</li>
+					<li index=2>
+						<span class="aui-iconfont aui-icon-friendadd"></span>
+						<p>
+							健康
+						</p>
+					</li>
+					<li index=3>
+						<span class="aui-iconfont aui-icon-home"></span>
+						<p>
+							家庭
+						</p>
+					</li>
+					<li index=4>
+						<span class="aui-iconfont aui-icon-repair"></span>
+						<p>
+							工作
+						</p>
+					</li>
+					
+					<li index=5>
+						<span class="aui-iconfont aui-icon-forward"></span>
+						<p>
+							分享
+						</p>
+					</li>
+				</ul>
+			</footer>
+		</div>
+		<input type="hidden" id="frame1" value="0">
+		<input type="hidden" id="frame2" value="0">
+		<input type="hidden" id="frame3" value="0">
+		<input type="hidden" id="frame4" value="0">
+		<input type="hidden" id="frame5" value="0">
+	</body>
+</html>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../../script/zepto.min.js"></script>
+<script type="text/javascript" src="../script/jquery.js"></script>
+<script type="text/javascript" src="../script/common.js"></script>
+<script type="text/javascript">
+	var frame1 = 0, frame2 = 0, frame3 = 0 ,frame4=0;
+	apiready = function() {
+		//$api.fixStatusBar( $api.dom('header') );
+		api.setStatusBarStyle({
+			style : 'dark',
+			color : '#01ba2e'
+		});
+		var body_h = api.winHeight;
+		var footer_h = $("footer").height();
+		var fheight = body_h - footer_h;
+		$(".aui-bar-tab").on("click", "li", function() {
+			var index = $(this).attr("index");
+			//把当前窗口推到前面
+			api.bringFrameToFront({
+				from : 'frame' + index,
+			});
+			api.setFrameGroupAttr({
+				name : 'framegroup'+index,
+				hidden : false
+			});
+			api.setFrameAttr({
+				name : 'frame'+index,
+				hidden : false
+			});
+			//隐藏group
+			for (i=1;i<=4;i++){
+				if (i!=index){
+					api.setFrameGroupAttr({
+						name : 'framegroup'+i,
+						hidden : true
+					});
+				}
+			}
+			//
+			api.setFrameClient({
+				frameName : "frame"+index
+			}, function(ret, err) {
+				//范围：0-开始加载；1-加载进度发生变化；2-结束加载；3-title发生变化；4-url发生变化
+				if (ret.state == 2) {
+					$("#frame"+index).val("1");
+				}
+			});
+			//隐藏frame
+			for (i=1;i<=4;i++){
+				if (i!=index){
+					api.setFrameAttr({
+						name : 'frame'+i,
+						hidden : true
+					});
+				}
+			}
+			
+			var noobj = $("#footer").find("span");
+			if (noobj.attr("class").indexOf("fill")>0){
+				var noclass = noobj.attr("class").replace("aui-iconfont ", "");
+				var newclass=noclass.replace("fill","")
+				noobj.removeClass(noclass)
+				noobj.addClass(newclass);
+			}
+			var noobj = $(this).find("span");
+			var noclass = noobj.attr("class").replace("aui-iconfont ", "");
+			noobj.removeClass(noclass)
+			noobj.addClass(noclass + "fill");
+			
+			if (index==1 || index==2){
+				fheight=75
+			}
+			var pageParam = {
+				wintitle : "列表",
+				type : "frame" + index,
+				bounces : true,
+				footerheight:footer_h,
+			};
+			if ($("#frame"+index).val()=="0"){
+				opencommframe("frame" + index, "main/frame" + index + ".html", pageParam,fheight);
+			}
+		});
+		
+		var pageParam = {
+			wintitle : "列表",
+			type : "frame1",
+			bounces : true,
+			footerheight:footer_h,
+			
+		};
+		opencommframe("frame1", "main/frame1.html", pageParam,fheight);
+	}
+	function opencommframe(wname, url, pageParam,frameheight) {
+		api.openFrame({
+			name : wname,
+			url : url,
+			rect : {
+				x : 0,
+				y : 0,
+				w : 'auto',
+				h : frameheight
+			},
+			pageParam : pageParam,
+			bounces : false,
+			bgColor : 'rgb(255,255,255,255)',
+			vScrollBarEnabled : false,
+			hScrollBarEnabled : false,
+			showProgress : true,
+			allowEdit : false,
+			reload : false,
+			
+		});
+	}
+</script>

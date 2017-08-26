@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="Csss/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="Csss/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="Csss/style.css" />
+		<script type="text/javascript" charset="utf-8" src="ueditor.config.js"></script>
+		<script type="text/javascript" charset="utf-8" src="editor_api.js"></script>
+		<script type="text/javascript" charset="utf-8" src="lang/zh-cn/zh-cn.js"></script>
+		<style type="text/css">
+			body {
+				font-size: 14px;
+			}
+		</style>
+	</head>
+
+	<body style="padding: 10px;">
+		<form method="post" action="addnewsok.html" style="display: block;width: 80%;">
+			<input type="hidden" name="request_url" value="{{request_url}}">
+			<input type="hidden" name="artid" value="{{artid}}">
+			<table class="table table-bordered table-hover m10">
+				<tr>
+					<td class="tableleft" style="width:80px">标题</td>
+					<td style="width:300px"><input type="text" name="title" value="{{title}}" style="width:250px"></td>
+					<td class="tableleft" style="width:80px">简略标题</td>
+					<td><input type="text" name="shorttitle" value="{{shorttitle}}" style="width:150px"></td>
+				</tr>
+				<tr>
+					<td class="tableleft" style="width:80px">缩略图</td>
+					<td style="width:300px"><input type="text" id="litpic6" name="litpic" value="{{litpic}}"></td>
+					<td class="tableleft">发布时间</td>
+					<td><input type="text" name="pubdate" {%if pubdate%}value="{{pubdate}}" {%endif%} readonly="readonly"></td>
+				</tr>
+				<tr>
+					<td class="tableleft" style="width:80px">跳转url</td>
+					<td colspan="3"><input style="width: 100%;" type="text" id="redirecturl" name="redirecturl" value="{{redirecturl}}"></td>
+				</tr>
+				<tr>
+					<td class="tableleft">主栏目</td>
+					<td>
+						<select name="typeid" style="width:120px">
+							{%if newsdetail.typeid%}
+							<option value="{{typeid}}">{{typename}}</option>{%endif%}
+							<option value="">请选择...</option>
+							{%for tp in typelist.list%}
+							<option value="{{tp.id}}">{{tp.typename}}</option>
+							{%for tp1 in tp.nexttype%}
+							<option value="{{tp1.id}}">--{{tp1.typename}}</option>
+							{%endfor%} {%endfor%}
+						</select>
+					</td>
+					<td class="tableleft">辅助栏目</td>
+					<td>
+						<select name="typeid2" style="width:120px">
+							{%if newsdetail.typeid%}
+							<option value="{{typeid2}}">{{typename2}}</option>{%endif%}
+							<option value="">请选择...</option>
+							{%for tp in typelist.list%}
+							<option value="{{tp.id}}">{{tp.typename}}</option>
+							{%for tp1 in tp.nexttype%}
+							<option value="{{tp1.id}}">--{{tp1.typename}}</option>
+							{%endfor%} {%endfor%}
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="tableleft">点击数</td>
+					<td><input type="text" style="width:80px" name="click" value="{%if click%}{{click}}{%else%}10{%endif%}"></td>
+					<td class="tableleft">作者</td>
+					<td><input type="text" style="width:80px" name="writer" {%if writer%}value="{{writer}}" {%endif%}></td>
+				</tr>
+			</table>
+			<table class="table table-bordered table-hover m10">
+				<tr>
+					<td>
+						<script type="text/plain" id="myEditor" name="myEditor">
+							{{body|safe}}
+						</script>
+					</td>
+				</tr>
+			</table>
+		
+		<button type="submit" class="btn btn-primary" type="button">保存</button> &nbsp;&nbsp;<button type="button" class="btn btn-success" name="backid" onClick="window.location.href='returnpage.html?request_url={{request_url}}'">返回列表</button>
+		</form>
+		<script>
+			var ue = new UE.ui.Editor();
+			ue.render('content');
+		</script>
+		<script type="text/javascript">
+			var editor_a = UE.getEditor('myEditor', { initialFrameHeight: 500, initialFrameWidth: 1000 });
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+</head>
+
+<body><form id="form1" name="form1" method="post" action="/index-data-add/">
+<table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#FFFFFF">
+      label
+      <input type="text" name="label" id="label" />
+      <input type="submit" name="button" id="button" value="添加" />
+      <input type="hidden" name="code" id="code" value="{{code}}" /></td>
+  </tr>
+</table> </form>
+<a href="/indexdatamain/?code={{procode}}">返回上级</a><br />
+<table width="100%" border="0" cellspacing="1" cellpadding="5" bgcolor="#666666">
+  <tr>
+    <td bgcolor="#FFFFFF">id</td>
+    <td bgcolor="#FFFFFF">code</td>
+    <td bgcolor="#FFFFFF">label</td>
+    <td bgcolor="#FFFFFF">详细类别</td>
+    <td bgcolor="#FFFFFF">操作</td>
+  </tr>
+  {%for list in listall%}
+  <tr>
+    <td bgcolor="#FFFFFF">{{list.id}}</td>
+    <td bgcolor="#FFFFFF">{{list.code}}</td>
+    <td bgcolor="#FFFFFF"><a href="/indexdatamain/?code={{list.code}}">{{list.label}}</a></td>
+    <td bgcolor="#FFFFFF"><a href="/indexdata/?category_code={{list.code}}" target="_blank">查看</a></td>
+    <td bgcolor="#FFFFFF"><a href="/indexdatamain/?code={{list.code}}&del=1&id={{list.id}}" onclick="return confirm('确实要删除吗？')">删除</a></td>
+  </tr>
+  {%endfor%}
+</table>
+</body>
+</html>

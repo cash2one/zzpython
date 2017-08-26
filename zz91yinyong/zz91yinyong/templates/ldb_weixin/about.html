@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>公司简介_ZZ91再生网来电宝</title>
+        <link rel="stylesheet" type="text/css" href="../css/ldb_weixin/index.css"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1">
+        <meta name="format-detection" content="telephone=no">
+		<script>
+			function tabView(tblId)
+			{
+				var children = document.getElementById("tabUL").getElementsByTagName("li");
+				for(var i = 0; i < children.length; i++)
+				{
+					children[i].setAttribute("class","m-li");
+					document.getElementById("tab" + (i+1)).style.display="none";
+				}
+				children[parseInt(tblId.replace("tab",""))-1].setAttribute("class","m-li_");
+				document.getElementById(tblId).style.display = "table";
+			
+			}
+		</script>
+	</head>
+	<body style="background:#e0f0fa">
+      <div class="top">
+      	<img src="../images/ldb_weixin/top_.jpg" />
+      </div>
+      <!--end top-->
+      	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<ul class="m-ul" id="tabUL">
+						   <li class="m-li_" onClick="tabView('tab1');">公司简介</li>
+						   <li class="m-li" onClick="tabView('tab2');">资质荣誉</li>
+					  </ul>
+				   </td>
+				</tr>
+				<tr>
+                  <td>
+					<center>
+                    	<div class="nav_" id="tab1">
+                        	<div class="nav_item">
+                            	<section class="item_sec">
+                                	<p>　　杭州阿思拓信息科技有限公司【简称ASTO】成立于2005年，一直致力于成为我国资源再生、新能源、节能减排等低碳环保经济领域的具有影响力 信息服务供应商。经过八年的不懈努力，现旗下拥有ZZ91再生网（www.zz91.com中文站和www.recyclechina.com英文站）、中国环保网（www.huanbao.com）、中国节能网（www.jnmaimai.com）等一系列再生环保低碳品牌网站，成为再生行业内的知名B to B电子商务品牌。</p>
+                                    <p>　　公司于2010年6月份正式落户江干东方电子商务园。近年来，公司规模快速扩大，提供就职岗位200余个，产品（服务）市场占有率在同行业中处于领先地位，竞争优势显著，发展前景巨大。市委书记黄坤明，浙江省发改委副主任黄勇，市委副书记叶明，副市长佟桂莉，江干区委书记徐立毅，江干区区长蔡仲光等领导先后莅临观察指导工作。并荣获浙江省国家级高新技术企业，杭州雏鹰计划重点培育企业，杭州科技创业种子资金支助企业，江干区双十佳最佳成长型企业，杭州大学生见习基地，中国电子商务百强行业网站. . . . . .</p>
+                                    <p>　　ASTO价值观：简单、勤奋、开放、担当、主动、快速、严谨</p>
+                                </section>
+                            </div>
+                            <!--end nav_item-->
+                        </div>
+                        <!--end nav_-->
+                    </center>
+                   <center>
+                    <div class="nav" id="tab2">
+                    	<div class="nav_item">
+                        	<ul>
+                            	<li><img src="../images/ldb_weixin/a.jpg" /></li>
+                                <li><img src="../images/ldb_weixin/b.jpg" /></li>
+                                <li><img src="../images/ldb_weixin/c.jpg" /></li>
+                                <li><img src="../images/ldb_weixin/d.jpg" /></li>
+                                <li><img src="../images/ldb_weixin/e.jpg" /></li>
+                                <li><img src="../images/ldb_weixin/f.jpg" /></li>
+                                <li><img src="../images/ldb_weixin/g.jpg" /></li>
+                                <li><img src="../images/ldb_weixin/h.jpg" /></li>
+                            </ul>
+                        </div>
+                        <!--end nav_item-->
+                    </div>
+                    <!--end nav-->
+                  </center>
+		       </td>
+            </tr>
+        </table>
+{%include 'ldb_weixin/bottom_ldb.html'%}
+	</body>
+</html>

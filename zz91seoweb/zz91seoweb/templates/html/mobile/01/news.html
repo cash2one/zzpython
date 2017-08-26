@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=2,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>公司动态-{{list.name}}</title>
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+<script src="{{htmlincludes.img}}js/jquery.js"></script>
+<script src="{{htmlincludes.img}}js/index.js"></script>
+</head>
+<body>
+{%include "html/mobile/01/top.html"%}
+<div class="phoneInfo">
+	<img src="{{htmlincludes.img}}images/contact_icon.jpg" />联系方式
+</div>
+
+	<!-- 右面主题板块-->
+<div class="main-wrap fr">
+	<!--明星产品-->
+	<div class="mod mod-starpro">
+		<div class="m-body">
+			<div class="m-content">
+                <div class="star-region pro-newscon">
+                {%for nlist in newslist%}
+                    <dl class="pro-newslist">
+                    <dt><a href="n{{nlist.id}}.html" target="_blank">{{nlist.title}}</a></dt>
+                    <dd>{{nlist.content}}...</dd>
+                    </dl>
+                {%endfor%}
+                    <!--  翻页开始-->   
+					<div class="apartpageBox">
+                    {% if firstpage %}
+                    <span class='prev-page'><a href="news-{{prvpage}}.html">上一页</a></span>
+                    {% endif %}
+                    {% for p in page_range %}
+                    {% if p.nowpage %}
+                    <strong class="current">{{p.number}}</strong>
+                    {% else %}
+                    <a href='news-{{p.number}}.html' >{{p.number}}</a>
+                    {% endif %}
+					{% endfor %}
+                    {% if lastpage%}
+                    <a class="next-page" href='news-{{nextpage}}.html' >下一页</a></div>
+                    {% endif %}
+					<!--  翻页结束-->
+                </div>
+							</div>
+		</div>
+	</div>
+	<!--明星产品结束-->
+</div>
+<!-- 右面主题板块结束-->
+</div>
+<!--end contact-->
+<div class="phoneRuturntop">
+	<img src="{{htmlincludes.img}}images/ruturn_top.jpg" class="fr" onclick="bookmarks();" />
+    <div class="cb"></div>
+</div>
+<!--phoneRuturntop-->
+{%include "html/mobile/01/foot.html"%}
+<!--end phoneFooter-->
+</body>
+</html>

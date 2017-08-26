@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>zz91年底推荐专场</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+<link rel="stylesheet" type="text/css" href="{{htmlincludes.img}}css/moblie.css"/>
+<script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+<script src="{{htmlincludes.img}}js/style.js"></script>
+</head>
+<body>
+
+<div class="moblie">
+	<div class="moblie-top">
+        <div class="moblie-title">
+        	<div class="moblite-logo">
+            	<img src="{{htmlincludes.img}}images/logo.png" />
+            </div>
+            <div class="moblie-title-text">
+               {{list.name}}
+            </div>
+            <div class="moblie-title-collect">
+                <img src="{{htmlincludes.img}}images/collection.jpg" />
+            </div>
+            <div class="cb"></div>
+        </div>
+        <!--end moblie-title-->
+    </div>
+    <!--end moblie-top-->
+    <div class="moblie-banner">
+        <img src="{{htmlincludes.img}}images/banner.jpg" />
+    </div>
+    <!--end moblie-banner-->
+	<div class="company">
+        <div class="company-content">
+        	<div class="company-info">
+            	<img src="{{list.viptype.vippic}}" />{%if list.zst_year%}第<span>{{list.zst_year}}</span>年{%endif%}
+            </div>
+        	<table class="company-table">
+            	<tr>
+                	<td colspan="2" style="font-size:16px;font-family:'微软雅黑'">供应商信息</td>
+                </tr>
+                <tr>
+                	<td colspan="2" style="color:#1359e7;font-size:14px;font-weight:bold">{{list.name}}</td>
+                </tr>
+                <tr>
+                	<td>联&nbsp;系&nbsp;&nbsp;人：</td>
+                    <td>{{list.contact}}</td>
+                </tr>
+                {%if list.ppcphone%}
+                <tr>
+                	<td>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</td>
+                    <td><a href="tel:{{list.ppcphone}}">{{list.ppcphone}}</a></td>
+                </tr>
+                {%else%}
+                {%if list.showcontact%}
+                <tr>
+                	<td>电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话：</td>
+                    <td><a href="tel:{{list.tel_country_code}}-{{list.tel_area_code}}-{{list.tel}}">{{list.tel_country_code}}-{{list.tel_area_code}}-{{list.tel}}</a></td>
+                </tr>
+                <tr>
+                	<td>移动电话：</td>
+                    <td>{{list.mobile}}</td>
+                </tr>
+                {%endif%}
+                {%endif%}
+                <tr>
+                	<td colspan="2" style="border-bottom:1px dashed #3e3e3e;margin:5px 0"></td>
+                </tr>
+                <tr>
+                	<td>诚信指数：</td>
+                    <td>{%if integral%}{{integral}}{%endif%}</td>
+                </tr>
+                <tr>
+                	<td>经营范围：</td>
+                    <td>{{list.business}}</td>
+                </tr>
+                <tr>
+                	<td colspan="2" style="border-bottom:1px dashed #3e3e3e;margin:5px 0"></td>
+                </tr>
+                <tr>
+                	<td>所在地区：</td>
+                    <td>{{list.address}}</td>
+                </tr>
+            </table>
+            
+        </div>
+        <!--end company-content-->
+        <table class="company-table2">
+            <tr>
+                <td colspan="2" style="font-size:18px;font-family:'微软雅黑'">最新供求</td>
+                <td colspan="2" style="text-align:right"><a href='/mobile/products{{company_id}}-0-1.htm'>更多</a></td>
+            </tr>
+            <tr>
+            
+ 			{%for list in prolist.list%}
+                <td>
+                <a href="/mobile/productdetail{{list.pdt_id}}.htm">
+                	<div class="company-table2-img">
+                    	<img src="{{list.pdt_images}}" />
+                    </div>
+                    <div class="company-table2-text">
+                    	{{list.pdt_name}}
+                    </div>
+                  </a>
+                </td>
+              {%endfor%}
+                
+                
+            </tr>
+            <tr>
+  {%for list in prolist1.list%}
+                <td>
+                <a href="/mobile/productdetail{{list.pdt_id}}.htm">
+                	<div class="company-table2-img">
+                    	<img src="{{list.pdt_images}}" />
+                    </div>
+                    <div class="company-table2-text">
+                    	{{list.pdt_name}}
+                    </div>
+                </a>
+                </td>
+               {%endfor%}
+            </tr>
+        </table>
+        <div class="company-return">
+			<img src="{{htmlincludes.img}}images/ruturn_top.jpg" class="fr" onclick="bookmarks();" />
+        </div>
+        <!--end company-return-->
+        <div class="cb"></div>
+        <center>
+        <div class="company-text">
+           {{list.name}}<br />
+            技术支持：<a href="http://m.zz91.com">ZZ91再生网</a>
+        </div>
+        <!--end company-text-->
+        </center>
+    </div>
+    <!--end company-->
+    <div class="moblie-footer2">
+    	<ul>
+        	<li><a href="/mobile/index{{company_id}}.htm" style="color:#fff;background:#117ec2;border-color:#09649d;border-right:none">首页</a></li>
+            <li><a href="/mobile/about{{company_id}}.htm">公司简介</a></li>
+            <li><a href="/mobile/products{{company_id}}-0-1.htm">产品信息</a></li>
+            <li><a href="/mobile/contact{{company_id}}.htm">联系方式</a></li>
+            <div class="cb"></div>
+        </ul>
+    </div>
+    <!--end moblie-footer-->
+
+</div>
+<!--moblie-->
+{%include "html/mobile/03/footer.html"%}
+</body>
+</html>

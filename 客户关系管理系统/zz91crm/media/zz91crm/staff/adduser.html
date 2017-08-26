@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>添加团队</title>
+ <link href="../assets/css/dpl-min.css" rel="stylesheet">
+  <link href="../assets/css/bui-min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="demo-content">
+    <!-- 简单表单页 ================================================== --> 
+    <div class="row">
+        <div class="span20 doc-content">
+            
+          <form action="adduserok.html" class="form-horizontal" method="post" id="J_Form">
+            <br />
+            <br />
+            <div class="control-group">
+              <label class="control-label">用户名：</label>
+              <div class="controls">
+                <input type="text" class="input-large" name="username" data-rules="{required:true}" class="input-normal control-text" {%if result.username%}value="{{result.username}}"{%endif%}>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">密码：</label>
+              <div class="controls">
+                <input type="grade" class="input-large" name="password" data-rules="{minlength:6}" class="input-normal control-text" {%if result.password%}value="{{result.password}}"{%endif%}>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">员工姓名：</label>
+              <div class="controls">
+                <input type="text" class="input-large" name="realname" data-rules="{required:true}" class="input-normal control-text" {%if result.realname%}value="{{result.realname}}"{%endif%}>
+              </div>
+            </div>
+            <div class="control-group">
+        		<label class="control-label">团队所属：</label>
+        		<div class="controls bui-form-group-select" >
+	          		<select class="input-small" name="user_category">
+	          			{%if result.user_category_code%}<option value="{{result.user_category_code}}">{{result.user_category}}</option>{%endif%}
+	          			<option value="">请选择团队</option>
+	          			{%for t in user_category_all%}
+	          			<option value="{{t.code}}">{{t.label}}</option>
+	          			{%endfor%}
+	          		</select>
+        		</div>
+      		</div>
+            <div class="control-group">
+              <label class="control-label">是否主管：</label>
+              <div class="controls">
+                	<label class="radio" for="isadmin0"><input type="radio" id="isadmin0" name="isadmin"  value="1"/>是</label>&nbsp;&nbsp;&nbsp;
+                	<label class="radio" for="isadmin1"><input type="radio" id="isadmin1" name="isadmin" value="0" checked=""/>否</label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">团队权限：</label>
+              <div class="controls" style="height: auto;">
+              	{%for uc_code4 in usercategory_code4%}
+              	<div>
+              		<div><label class="checkbox" for="user_category_id{{uc_code4.code}}"><input name='user_category_id' type="checkbox" id="user_category_id{{uc_code4.code}}" value="{{uc_code4.code}}"/>{{uc_code4.label}}</label></div>
+              		{%for list in uc_code4.child%}
+                	<div style="margin-left: 10px;">┆&nbsp;&nbsp;┿<label class="checkbox" for="user_category_id{{list.code}}"><input name='user_category_id' type="checkbox" id="user_category_id{{list.code}}" value="{{list.code}}"/>{{list.label}}</label></div>
+                	{%endfor%}
+                	<div style="clear: both;"></div>
+                </div>
+                {%endfor%}
+              </div>
+            </div>
+            
+            <!--  
+            <div class="control-group">
+              <label class="control-label">权限级别：</label>
+              <div class="controls">
+              	{%for a in auth_category_all%}
+                <label class="radio" for=""><input type="radio" id="" name="auth_category" value="{{a.id}}" />{{a.label}}</label>&nbsp;&nbsp;&nbsp;
+                {%endfor%}
+              </div>
+            </div>
+            -->
+            
+            <div class="control-group">
+              <label class="control-label">权限级别：</label>
+              <div class="controls">
+              	{%for a in auth_category_all%}
+              		<label class="checkbox" for=""><input name='auth_category' type="checkbox" value="{{a.id}}"/>{{a.label}}</label>
+                {%endfor%}
+              </div>
+            </div>
+ 
+            <div class="control-group">
+              <label class="control-label">开通冻结：</label>
+              <div class="controls">
+                <label class="radio" for="closeflag0"><input type="radio" id="closeflag0" name="closeflag" checked="" value="0"/>开通</label>&nbsp;&nbsp;&nbsp;
+                <label class="radio" for="closeflag1"><input type="radio" id="closeflag1" name="closeflag" value="1"/>冻结</label>
+              </div>
+            </div>
+            <div class="row actions-bar">       
+                <div class="form-actions span13 offset3">
+                  <button type="submit" class="button button-primary">保存</button>
+                  {%if userid%}<input type="hidden" name="userid" value="{{userid}}">{%endif%}
+                  <button type="reset" class="button">重置</button>
+                </div>
+            </div> 
+            <input type="hidden" value="{{request_url}}" name="request_url" />
+          </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="../assets/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="../assets/js/bui-min.js"></script>
+  <script type="text/javascript" src="../assets/js/config-min.js"></script>
+  <!-- 表单验证必须加上下面的JS -->
+     <script type="text/javascript">
+      BUI.use('bui/form',function(Form){
+      new Form.Form({
+        srcNode : '#J_Form'
+      	}).render();
+  		});  
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+	    var str = "{{user_category_id}}";
+	    $(str.split(",")).each(function (i,dom){
+	        $(":checkbox[name=user_category_id][value='"+dom+"']").prop("checked",true);
+	        $(":checkbox[name=user_category_id][id='"+dom+"']").prop("checked",true);
+	    });
+	    var isadmin="{{result.isadmin}}"
+	    $("input[name=isadmin][value='"+isadmin+"']").attr("checked",'checked');
+	    
+	    var closeflag="{{result.closeflag}}"
+	    $("input[name=closeflag][value='"+closeflag+"']").attr("checked",'checked');
+	    
+	    var str = "{{auth_category_id}}";
+	    $(str.split(",")).each(function (i,dom){
+	        $(":checkbox[name=auth_category][value='"+dom+"']").prop("checked",true);
+	        $(":checkbox[name=auth_category][id='"+dom+"']").prop("checked",true);
+	    });
+	});
+	</script>
+<!-- script end -->
+  </div>
+</body>
+</html> 

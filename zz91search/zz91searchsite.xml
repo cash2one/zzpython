@@ -1,0 +1,19 @@
+<uwsgi>
+ <socket>:8016</socket>
+ <workers>6</workers>
+ <master>true</master>
+ <processes>6</processes>
+ <listen>1000</listen>
+ <pythonpath>.</pythonpath>
+ <module>zz91search.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>zz91search/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>5000</limit-as>
+ <reload-on-as>1000</reload-on-as>
+ <reload-on-rss>1000</reload-on-rss>
+ <max-requests>1000</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/zz91search.log</daemonize>
+</uwsgi>

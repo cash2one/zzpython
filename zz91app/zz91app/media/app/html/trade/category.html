@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/trade/product-category.css"/>
+		<style>
+			html, body {
+				background: transparent;
+				height: 100%;
+				background: rgba(0,0,0,0.1);
+				overflow: hidden;
+			}
+			#aui-header {
+				position: absolute;
+				top: 40px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				padding-top: 0px;
+			}
+			.type-small {
+				background-color: #fff;
+				border-top: none;
+				overflow: auto;
+				position: absolute;
+				bottom: 40px;
+				top: 85px;
+				left: 5%;
+				right: 5%;
+				width: 90%;
+				color: #666
+			}
+			.product-list-class span {
+				background-color: #fff;
+			}
+			.category li {
+				height: auto;
+				line-height: 35px;
+				padding-top: 0px;
+				border-top: 0px solid #fff;
+				padding: 5px;
+				border-bottom: 1px solid #c5c5c5;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="aui-bar aui-bar-nav aui-bar-success" id="aui-header">
+			<a class="aui-btn aui-btn-success aui-pull-left"> <span class="aui-iconfont aui-icon-info"></span> </a>
+			<a class="aui-btn aui-btn-success aui-pull-right" tapmode onclick="closeselect()"> <span class="aui-iconfont aui-icon-roundclosefill"></span> </a>
+			<div class="aui-title">
+				请选择供求
+			</div>
+		</header>
+		<div class="type-small">
+			<ul class="category" style="overflow: auto;position: absolute;width:25%;height:100%;top:0px;left:0px;z-index:2000">
+				<li code="1000" class="click-li">
+					<p>
+						废金属
+					</p>
+				</li>
+				<li code="1001">
+					<p>
+						废塑料
+					</p>
+				</li>
+				<li code="1003">
+					<p>
+						废纺织品
+					</p>
+				</li>
+				<li code="1004">
+					<p>
+						废纸
+					</p>
+				</li>
+				<li code="1007">
+					<p>
+						二手设备
+					</p>
+				</li>
+				<li code="1005">
+					<p>
+						电子电器
+					</p>
+				</li>
+				<li code="1002">
+					<p>
+						橡胶轮胎
+					</p>
+				</li>
+				<li code="1006">
+					<p>
+						废玻璃
+					</p>
+				</li>
+				<li code="1009">
+					<p>
+						服务
+					</p>
+				</li>
+				<li code="1008">
+					<p>
+						其他废料
+					</p>
+				</li>
+			</ul>
+			<div style="padding-left: 25%;overflow: auto;position: absolute;bottom:80px;width:100%;top:0px;height:100%">
+				<div class="product-list" style="background-color: #f2f2f2;margin-left:0px;margin-right:0px;padding-left:10px">
+				</div>
+			</div>
+		</div>
+		<div style="position: absolute;bottom:0px;height:80px;width:100%" onclick="closeselect()"></div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script>
+		function closeselect(){
+			api.execScript({
+				name : api.winName,
+				script : "keybackFun('1')"
+			});
+			api.closeFrame();
+		}
+		apiready = function() {
+			$(".category li").on("click", function() {
+				var code = $(this).attr("code");
+				ajaxInfo(code);
+				$(".product-list").show();
+				$(".click-li").removeClass("click-li");
+				$(this).addClass("click-li");
+			})
+			$(".product-list").on("click","span",function() {
+				closeselect();
+				api.execScript({
+					name : api.winName,
+					frameName : api.winName+'_',
+					script : "xztradecode('"+$(this).text()+"','"+$(this).attr("code")+"')"
+				});
+			})
+			$(".product-list").on("click","h5",function() {
+				closeselect();
+				api.execScript({
+					name : api.winName,
+					frameName : api.winName+'_',
+					script : "xztradecode('"+$(this).text()+"','')"
+				});
+			})
+			ajaxInfo(1000);
+			var $body = $api.dom('body');
+			$api.addEvt($body, 'click', function(e){
+		        if(e.target == $body){
+		            closeselect();
+		        }else{
+		            e.stopPropagation();
+		        }
+		    });
+		};
+		function ajaxInfo(code){
+			api.showProgress({title:'加载中',modal:false});
+			api.ajax({
+		        url : hosturl + 'category/?code='+ code +'&type=1&datatype=json',
+		        method : 'get',
+		        timeout : 30,
+		        dataType : 'json',
+		        returnAll : false
+		    }, function(ret, err) {
+		        if (ret) {
+		        	var listHtml = "";
+		        	var allHtml = "";
+		            $.each(ret,function(index,item){
+		            	listHtml = "<h5 label_hex='"+ item.label_hex +"' code='"+item.code+"'>"+ item.label +"</h5>";
+		            	$.each(item.catelist,function(i,catelist){
+		            		listHtml =listHtml +"<span label_hex='"+ catelist.label_hex +"' code='"+catelist.code+"'>"+ catelist.label +"</span>";
+		            	})
+		            	listHtml = "<div class='product-list-class'>" + listHtml + "</div>";
+		            	allHtml +=listHtml;
+		            })
+		            $(".product-list").html(allHtml)
+		            api.hideProgress();
+		        } else {
+		        };
+		    });
+		}
+	</script>
+</html>

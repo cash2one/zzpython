@@ -1,0 +1,1098 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>APP</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+	</head>
+	<style>
+		body {
+			background: #F4F4F4;
+		}
+		.my-header {
+			background-color: #009900;
+			min-height: 180px;
+			position: relative;
+		}
+		.my-info {
+			position: relative;
+			padding: 10px 0;
+			width: 100%;
+			bottom: 0;
+			vertical-align: center;
+			color: #ffffff;
+		}
+		.my-info img {
+			width: 70px;
+			height: 70px;
+			border-radius: 50%;
+			margin-top: 10px;
+		}
+		.my-info p {
+			color: #ffffff;
+			font-size: 15px;
+			margin-top: 5px;
+		}
+		.my-info p.nickname {
+			margin-top: 5px;
+		}
+		.my-menu {
+			position: absolute;
+			width: 100%;
+			height: 45px;
+			line-height: 45px;
+			left: 0;
+			bottom: 0;
+			text-align: center;
+			background: #ffffff;
+			filter: Alpha(opacity=50);
+			background: rgba(255, 255, 255, 0.2) none repeat scroll 0 0 !important;
+			color: #ffffff;
+			font-size: 14px;
+		}
+		.my-menu .aui-col-xs-3 {
+			border-right: 1px solid #009900;
+			width: 33.3%
+		}
+		.my-menu .aui-col-xs-3:last-child {
+			border-right: none;
+		}
+		.my-menu > div:active {
+			background: #ffffff;
+			filter: Alpha(opacity=50);
+			background: rgba(255, 255, 255, 0.2) none repeat scroll 0 0 !important;
+		}
+		.aui-list-view-cell {
+			line-height: 22px;
+		}
+		.aui-list-view i.aui-iconfont,.aui-list-view i.aui-iconfont1 {
+			color: #000
+		}
+		.qiandaobtn {
+			
+		}
+		.qiandaomain{
+			float: left;
+			display:none;
+		}
+		.ldbmain{
+			float: left;
+		}
+		.haveqiandao {
+			
+			line-height:22px;
+			width: 70px;
+			margin-right: 10px;
+			float: left;
+			color: #fff;
+			text-align:left;
+			font-size: 12px;
+			
+		}
+		.shownotinfo{
+			position:relative;
+			margin-top:-15px;
+			text-align:left;
+		}
+		.ptop{
+    		border: solid 0px #F1C40F;
+    		background-color: rgba(255,242,183,.9);
+    		text-align:center;
+    		width:100%;
+    		clear:both;
+    		line-height:33px;
+    		z-index: 9999;
+    	}
+    	.zdbotton{
+    		background-color:#C0392B;
+    		color:#fff;
+    		width:53px;
+    		font-size:12px;
+    		margin-top:8px;
+    		display:block;
+    		float:right;
+    		line-height:18px;
+    		border-radius:2px;
+    		text-align:center
+    	}
+    	.qiyexiu{
+    		line-height:22px;
+    		color:#fff;
+    		font-size:12px;
+    		float: left;
+    		
+    	
+    	}
+    	
+	</style>
+	<body>
+		
+		<div class="aui-toast" id="loading">
+	        <div class="aui-toast-loading"></div>
+	        <div class="aui-toast-content">加载中</div>
+	    </div>
+		<div class="aui-content my-header" id="topbar">
+			<div class="my-info">
+				
+				<div style="float:left;width:130px;height:150px;text-align:center" class="my-revise" id="faceurl"><img src="../../image/noavatar.gif">
+				</div>
+				<p class="nickname my-name havelogin" style="display:none"></p>
+				<p class="aui-btn aui-btn-success nologin login" style="display:none;margin-top:30px">请登录</p>
+				
+				<div class="qiandaomain">
+					<p>
+						钱包余额：￥ <span class="blance">0.00</span>
+					</p>
+					<div class="qiandaobtn aui-btn aui-btn-success" style="height: 27px;line-height: 16px;padding: 5px;width: 80px;margin-right: 10px;display:none">
+						<span class="aui-iconfont aui-icon-write"></span>签到
+					</div>
+					<div class="haveqiandao">
+						今天已签到 
+					</div>
+					<span style="font-size:12px;color:#FFCC00">签到 + ￥0.5</span>
+					
+				</div>
+				<div class="ldbmain" style="display:none">
+					<p style="color:#fff;font-size:12px;">
+						来电宝余额：￥ <span class="blance">0.00</span>
+					</p>
+					<!--<div style="color:#fff;font-size:14px" class="ldbtel"></div>-->
+					<p style="color:#fff;font-size:12px;">
+						您的接听率    <span class="ldbjtl">--</span>
+					</p>
+					<!--<span style="font-size:12px;color:#FFCC00">请及时接听您的电话</span>-->
+				</div>
+				
+				<div class="qiyexiu" style="display: none">我的企业秀<div class="aui-btn aui-btn-success" style="height: 27px;line-height: 16px;padding: 5px;width: 50px;margin-left: 10px;">查看</div></div>
+				
+			</div>
+			
+			<div class="my-menu nomalnav" style="display:none">
+				<div class="aui-col-xs-3 my-xp" style="position:relative">
+					<span class="aui-iconfont aui-icon-comment"></span> 我的留言 <span class="aui-badge aui-badge-danger questioncount" style="position: absolute;right:10px;top:-3px;display:none"></span>
+				</div>
+				<div class="aui-col-xs-3 my-vcard">
+					<span class="aui-iconfont aui-icon-qrcode"></span> 我的名片
+				</div>
+				<div class="aui-col-xs-3 my-pay">
+					<span class="aui-iconfont aui-icon-pay"></span> 再生钱包
+				</div>
+			</div>
+			<div class="my-menu ldbnav" style="display:none">
+				<div class="aui-col-xs-3 my-ldbphone" style="position:relative">
+					<span class="aui-iconfont aui-icon-copy"></span> 我的话单 <span class="aui-badge aui-badge-danger questioncount" style="position: absolute;right:10px;top:-3px;display:none"></span>
+				</div>
+				<div class="aui-col-xs-3 my-vcard">
+					<span class="aui-iconfont aui-icon-qrcode"></span> 我的名片
+				</div>
+				<div class="aui-col-xs-3 ldbchongzhi">
+					<span class="aui-iconfont aui-icon-rechargefill"></span> 在线充值
+				</div>
+			</div>
+		</div>
+		<div class="shownotinfo my-revise completediv" style="display:none">
+			<div class="aui-tips-warning ptop">
+				<div class="aui-ellipsis-1" style="text-align: left">
+					<i class="aui-iconfont aui-icon-warnfill"></i>
+					<font style="font-size:12px" color="red">您的资料未填写完善，<span class="showtext"></span></font>
+					<span class="zdbotton">立即完善</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="shownotinfo my-credibility zxinfo" style="display:none;">
+			<div class="aui-tips-warning ptop">
+				<div class="aui-ellipsis-1" style="text-align: left">
+					<i class="aui-iconfont aui-icon-warnfill"></i>
+					<font style="font-size:12px" color="red">请上传您的安全认证信息！</font>
+					<span class="zdbotton">立即上传</span>
+				</div>
+			</div>
+		</div>
+		<div style="line-height: 50px;text-align: center;display: none" class="cszhuli">我的商务助理：<span style="color:#FC9A30" class="csname">黄芩</span>  电话：<span class="cstel"><a href="tel:0571-56612345">0571-56612345</a></span></div>
+		<div class="aui-content mycontent1">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell my-infoout">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-post"></i>发布供求</a>
+				</li>
+				<li class="aui-list-view-cell my-buyin">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-list"></i>我的供求</a>
+				</li>
+				<li class="aui-list-view-cell my-hd">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-creative"></i>互助社区</a>
+				</li>
+				<li class="aui-list-view-cell my-shouc">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-favor"></i>我的收藏</a>
+				</li>
+				<li class="aui-list-view-cell my-credibility">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-safe"></i>诚信档案
+					<div style="float:right;margin-right:20px;color:#FF0000;display: none" class="norenzheng">
+						未认证
+					</div>
+					</a>
+				</li>
+				<li class="aui-list-view-cell my-revise">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-copy"></i>我的资料
+					<div style="float:right;margin-right:20px;color:#FF0000;display: none" class="nowanshan">
+						未完善
+					</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="aui-content mycontent2">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell my-jingjia">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-refund"></i>我的竞价推广</a>
+				</li>
+				<li class="aui-list-view-cell my-addressbook">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-addressbook"></i>我的通信录</a>
+				</li>
+				
+				<li class="aui-list-view-cell my-service">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-service"></i>我的服务</a>
+				</li>
+				
+				<li class="aui-list-view-cell my-password">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-command"></i>修改密码</a>
+				</li>
+			</ul>
+		</div>
+		<div class="aui-content">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell my-servertel">
+					<a class="aui-arrow-right" href="tel:0571-56612345"><i class="aui-iconfont aui-icon-phone"></i>客服电话
+					<div style="float:right;margin-right:20px;color:#009900">
+						0571-56612345
+					</div></a>
+				</li>
+				<li class="aui-list-view-cell my-tuijian">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-share"></i>推荐给好友</a>
+				</li>
+				<li class="aui-list-view-cell my-yaoqi">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-barcode"></i>邀请码</a>
+				</li>
+				<li class="aui-list-view-cell my-weixin">
+					<a class="aui-arrow-right"><i class="aui-iconfont1 aui-icon1-wechat"></i>微信公众号（zz91com）</a>
+				</li>
+			</ul>
+		</div>
+		<div class="aui-content">
+			<ul class="aui-list-view">
+				<li class="aui-list-view-cell my-ask">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-question"></i>意见反馈</a>
+				</li>
+				<li class="aui-list-view-cell my-about">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-info"></i>关于我们</a>
+				</li>
+				<li class="aui-list-view-cell versionupate">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-upload"></i>检查更新（当前版本<span class="version"></span>）</a>
+				</li>
+				<li class="aui-list-view-cell loginout">
+					<a class="aui-arrow-right"><i class="aui-iconfont aui-icon-roundclose"></i>退出</a>
+				</li>
+			</ul>
+		</div>
+		<div style="height:10px"></div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/zepto.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/aui-alert.js" ></script>
+	<script type="text/javascript">
+		var mobilevalue="";
+		var companyname="";
+		function showquestionnum(num){
+			//我的留言提示数字
+			if (num==0){
+				$(".questioncount").hide();
+				api.execScript({
+					name : 'root',
+					script : "hidemainmyhome()"
+				});
+			}else{
+				$(".questioncount").show();
+				$(".questioncount").text(num);
+			}
+		}
+		//显示，修改头像
+		function showfacehtml(faceurl){
+			if (faceurl){
+				var facehtml="<img src='"+faceurl+"'>";
+			}else{
+				var facehtml="<img src='../../image/noavatar.gif'>"
+			}
+			$("#faceurl").html(facehtml)
+		}
+		//重新显示登陆
+		function relogin(){
+			$(".havelogin").hide();
+			$(".nologin").show();
+			$("#loading").hide();
+			$(".qiandaomain").hide();
+			showfacehtml();
+		}
+		var n=0;
+		function ajaxInfo(){
+			var login_sn = UserInfo.has_login();
+			
+			if (login_sn){
+				
+				$(".havelogin").show();
+				$(".nologin").hide();
+				var data={
+					company_id : UserInfo.memberID(),
+					usertoken : UserInfo.token(),
+					appsystem : api.systemType,
+					clientid : api.deviceId,
+					datatype : "json",
+				}
+				//alert(UserInfo.token())
+				api.ajax({
+					url : hosturl +"myrc_index/",
+					method : "get",
+					timeout : 30,
+					dataType : 'json',
+					returnAll : false,
+					data : {
+						values : data
+					}
+				}, function(ret, err) {
+					if (ret){
+						if (ret.hasOwnProperty("tokenerr")){
+							n=n+1;
+							if (n>=5){
+								relogin();
+							}else{
+								if (ret.tokenerr=='true'){
+									tokeninfo();
+									ajaxInfo()
+								}
+							}
+							return;
+						}
+						if (ret.err=="true"){
+							zzalert(ret.errkey);
+							relogin();
+							return;
+						}
+						//未完善公司信息提示完善
+						if (ret.completeflag){
+							if (ret.completeflag.showflag==1){
+								$(".completediv").show();
+								$(".zxinfo").css("margin-top","1px");
+								$(".showtext").html(ret.completeflag.text);
+								$(".nowanshan").show();
+							}else{
+								$(".completediv").hide();
+								$(".zxinfo").css("margin-top","-15px");
+								$(".nowanshan").hide();
+							}
+						}
+						//是否企业秀
+						if (ret.isqiyexiu){
+							$(".qiyexiu").show();
+						}else{
+							$(".qiyexiu").hide();
+						}
+						companyname=ret.companyname;
+						//诚信认证
+						if (!ret.zxinfo){
+							$(".zxinfo").show();
+							$(".norenzheng").show();
+						}else{
+							$(".zxinfo").hide();
+							$(".norenzheng").show();
+							if (ret.zxinfo=='0'){
+								$(".norenzheng").html("未审核")
+							}
+							if (ret.zxinfo=='2'){
+								$(".norenzheng").html("审核未通过")
+							}
+							if (ret.zxinfo=='1'){
+								$(".norenzheng").hide();
+							}
+						}
+						if(ret.ldbvalue){
+							//设置来电宝客户类型
+							$api.setStorage("ldbvalue", 1);
+							$(".ldbmain").show();
+							$(".ldbnav").show();
+							$(".qiandaomain").hide();
+							$(".nomalnav").hide();
+							$(".my-name").html("您好，" + ret.contact + "！")
+							$(".blance").text(ret.blance);
+							$(".ldbtel").text("您的来电宝电话："+ret.ldbvalue.front_tel)
+							$(".ldbjtl").text(ret.ldbjtl);
+							mobilevalue=ret.mobile;
+							var faceurl=ret.faceurl;
+							showfacehtml(faceurl)
+						}else{
+							$api.setStorage("ldbvalue", 0);
+							$(".ldbmain").hide();
+							$(".ldbnav").hide();
+							$(".qiandaomain").show();
+							$(".nomalnav").show();
+							$(".my-name").html("您好，" + ret.contact + "！")
+							$(".blance").text(ret.blance);
+							mobilevalue=ret.mobile;
+							var faceurl=ret.faceurl;
+							showfacehtml(faceurl)
+							//我的留言提示数字
+							if (ret.qcount==0){
+								$(".questioncount").hide();
+							}else{
+								$(".questioncount").show();
+								$(".questioncount").text(ret.qcount);
+							}
+							//签到
+							if (ret.qiandao){
+								$(".haveqiandao").show();
+								$(".qiandaobtn").hide();
+							}else{
+								$(".haveqiandao").hide();
+								$(".qiandaobtn").show();
+							}
+						}
+						//商务助理
+						if (ret.cslist){
+							$(".csname").html(ret.cslist.name);
+							$(".cstel").html("<a href='tel:"+ret.cslist.tel+"'>"+ret.cslist.tel+"</a>");
+							$(".cszhuli").show();
+						}
+						
+						
+					}else{
+						if (n<=20){
+							ajaxInfo();
+							n=n+1
+						}else{
+							relogin()
+							return;
+						}
+						if(err){
+							saveerrlog(err.body);
+						}
+					}
+					$("#loading").hide();
+					//zzalert(JSON.stringify(ret))
+				});
+			}else{
+				relogin();
+			}
+		}
+		apiready = function() {
+			var closeiosflag=$api.getStorage("closeiosflag");
+			if (!closeiosflag || closeiosflag==1){
+				$(".versionupate").hide();
+				var login_sn = UserInfo.has_login();
+				if (!login_sn) {
+					$(".mycontent1").hide();
+					$(".mycontent2").hide();
+				}else{
+					$(".mycontent1").show();
+					$(".mycontent2").show();
+				}
+			}
+			
+			tokeninfo();
+			//var header = $api.byId('topbar');
+			//$api.fixStatusBar(header);
+			$(".version").html(api.appVersion);
+			//如监听网络连接事件
+			api.addEventListener({
+			    name: 'online'
+			}, function(ret, err){
+			    if( ret ){
+			    	ajaxInfo();
+			    	api.hideProgress();
+			    }else{
+			    	
+			    }
+			});
+			ajaxInfo();
+			
+			
+			$(".loginout").on("click", function() {
+				api.confirm({
+					title : '提示',
+					msg : '确实要退出吗？',
+					buttons : ['取消', '确定']
+				}, function(ret, err) {
+					if (ret) {
+						if (ret.buttonIndex == 2) {
+							UserInfo.clear();
+							ajaxInfo();
+							api.toast({
+								msg : '成功退出！',
+								duration : 2000,
+								location : 'bottom'
+							});
+							$(".qiandaomain").hide();
+							$(".ldbmain").hide();
+							$(".havelogin").hide();
+							$(".nologin").show();
+							$(".qiyexiu").hide();
+						}
+						//zzalert( JSON.stringify( ret ) );
+					} else {
+						//zzalert( JSON.stringify( err ) );
+					}
+				});
+			})
+			$(".login").on("click", function() {
+				var login_sn = UserInfo.has_login();
+				if (login_sn) {
+					var pageParam = {
+						wintitle : "修改资料",
+						type : "pust-data",
+						bounces : false
+					};
+					openWin("pust-data", "../myrc/pust-data.html", pageParam);
+				} else {
+					var pageParam = {
+						wintitle : "登录",
+						type : "frm-login",
+						bounces : false
+					};
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			$(".qiyexiu").on("click",".aui-btn", function() {
+				var pageParam = {
+					wintitle : "我的企业秀",
+					type : "myqiyexiu",
+					bounces : false
+				};
+				localStorage.setItem("share_title",""+companyname+"--ZZ91再生网企业秀");
+				localStorage.setItem("share_description","");
+				localStorage.setItem("share_url","http://h5.zz91.com/xiu/"+UserInfo.memberID().toString()+".html");
+				localStorage.setItem("share_pic","http://img0.zz91.com/zz91/images/indexLogo.png");
+				openWin("myqiyexiu", "http://h5.zz91.com/xiu/"+UserInfo.memberID()+".html", pageParam);
+			})
+			//签到
+			$(".qiandaobtn").on("click", function() {
+				//未登录
+				if (!havelogin()) {
+					return false;
+				} else {
+					qiandao();
+				};
+			})
+			//来电宝充值
+		    $(".ldbchongzhi").on("click",function(){
+		        if (!UserInfo.has_login()) {
+		        	var pageParam = {
+						wintitle : "在线充值",
+						type : "chongzhi",
+						nextUrl : "../myrc/call-moery.html",
+						winName : "chongzhi"
+					};
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+					return false;
+		        }
+		        var pageParam = {
+		            wintitle:"在线充值",
+		            type:"chongzhi",
+		            paytype : "ldb",
+		        };
+		        var url="../myrc/call-moery.html"
+		        //var url=hosturl+"qianbao/chongzhi_new.html?company_id="+UserInfo.memberID()+"&paytype=ldb"
+		        openWin("chongzhi",url,pageParam);
+		    });
+			//我的名片
+			$(".my-vcard").on("click", function() {
+				/*
+				var sid=$api.getStorage("socketsid");
+				var socketManager = api.require('socketManager');
+				socketManager.write({
+				    sid: sid,            //由createSocket方法获取得到
+				    host:'121.40.103.220',
+				    port:'5000',
+				    data: 'sdfddddjhk'
+				}, function(ret, err){
+					zzalert(JSON.stringify(ret))
+				    if(ret.status){
+				        api.alert({msg:'发送成功'});
+				    }else{
+				        api.alert({msg:'error'});
+				    }
+				});
+				*/
+				var pageParam = {
+					wintitle : "我的名片",
+					type : "vcard",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {
+					openWin("vcard", "../myrc/vcard.html", pageParam);
+				} else {
+					pageParam.nextUrl = "../myrc/vcard.html";
+					pageParam.winName = "vcard";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			$(".my-tell").on("click", function() {
+				var pageParam = {
+					wintitle : "来电宝",
+					type : "call",
+					bounces : false
+				};
+				openWin("call", "../myrc/call.html", pageParam);
+			})
+			//我的竞价排名
+			$(".my-jingjia").on("click", function() {
+				if (!havelogin()) {
+					return false;
+				}
+				var pageParam = {
+					wintitle : "我的竞价推广",
+					type : "jingjia",
+					bounces : false
+				};
+				openWin("jingjia", "../myrc/my-jingjia.html", pageParam);
+			})
+			
+			//版本更新
+			$(".versionupate").on("click", function() {
+				checkUpdate(1);
+				var pageParam = {
+					wintitle : "更新版本",
+					type : "updateversion",
+					bounces : false
+				};
+				//openWin("updateversion", "../update/index.html", pageParam);
+			})
+			//我的服务
+			$(".my-service").on("click", function() {
+				if (havelogin()){
+					var pageParam = {
+						wintitle : "我的服务",
+						type : "myservice",
+						bounces : false,
+					};
+					openWin("myservice", "../service/myservice.html", pageParam);
+				}
+			})
+			//消息中心
+			$(".my-infolist").on("click", function() {
+				var pageParam = {
+					wintitle : "消息中心",
+					type : "heart-info"
+				};
+				if (UserInfo.has_login()) {
+					openWin("heart-info", "../comm/heart-info.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/comm/heart-info.html";
+					pageParam.winName = "heart-info";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			//来电宝话单
+			$(".my-ldbphone").on("click", function() {
+				var pageParam = {
+					wintitle : "来电宝话单",
+					type : "my-ldbphone",
+					showbottom : 1,
+				};
+				if (UserInfo.has_login()) {
+					openWin("my-ldbphone", "../ldb/phonerecords.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/ldb/phonerecords.html";
+					pageParam.winName = "my-ldbphone";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			
+			//再生钱包
+			$(".my-pay").on("click", function() {
+				var pageParam = {
+					wintitle : "再生钱包",
+					type : "burse",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {//判断是否登录
+					openWin("burse", "../myrc/burse.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/myrc/burse.html";
+					pageParam.winName = "burse";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			});
+			//我的供求
+			$(".my-buyin").on("click", function() {
+				var pageParam = {
+					wintitle : "我的供求",
+					type : "infomation-heart",
+					nav_list : [{
+						"typename" : "已经审核",
+						"id" : 1
+					}, {
+						"typename" : "审核中",
+						"id" : 2
+					}, {
+						"typename" : "未通过",
+						"id" : 3
+					}, {
+						"typename" : "暂不发布",
+						"id" : 4
+					}],
+					//frame_url : ["../myrc/audit.html", "../myrc/my-supply.html", "../myrc/not-by.html", "../myrc/notout.html"],
+					frame_url : ["../myrc/audit.html"],
+					topnumber : 3,
+					bounces : false
+				};
+				if (UserInfo.has_login()) {//判断是否登录
+					openWin("buyinout", "widget://html/comm/infomation-heart.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/comm/infomation-heart.html";
+					pageParam.winName = "buyinout";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			//我的收藏
+			$(".my-shouc").on("click", function() {
+				var pageParam = {
+					wintitle : "我的收藏",
+					type : "infomation-heart",
+					nav_list : [{
+						"typename" : "供求",
+						"id" : 1
+					}, {
+						"typename" : "公司",
+						"id" : 2
+					}, {
+						"typename" : "报价",
+						"id" : 3
+					}, {
+						"typename" : "社区",
+						"id" : 4
+					}, {
+						"typename" : "资讯",
+						"id" : 5
+					}],
+					frame_url : ["../myrc/house.html"],
+					topnumber : 5,
+					bounces : false
+				};
+				if (UserInfo.has_login()) {//判断是否登录
+					openWin("infomation-heart-2", "widget://html/comm/infomation-heart.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/comm/infomation-heart.html";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			//我的询盘
+			$(".my-xp").on("click", function() {
+				var pageParam = {
+					wintitle : "我的询盘",
+					type : "infomation-heart",
+					nav_list : [{
+						"typename" : "收到留言",
+						"id" : 1
+					}, {
+						"typename" : "发送的留言",
+						"id" : 2
+					}],
+					bounces : false,
+					frame_url : ["../myrc/liuyan-in.html", "../myrc/liuyan-out.html"],
+					topnumber : 2
+				};
+				if (UserInfo.has_login()) {//判断是否登录
+					openWin("infomation-heart-2", "widget://html/comm/infomation-heart.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/comm/infomation-heart.html";
+					pageParam.winName = "infomation-heart-2";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			//我的互助社区
+			$(".my-hd").on("click", function() {
+				var pageParam = {
+					wintitle : "我的社区",
+					type : "infomation-heart",
+					nav_list : [{
+						"typename" : "消息中心",
+						"id" : 1
+					}, {
+						"typename" : "我的提问",
+						"id" : 2
+					}, {
+						"typename" : "我的回复",
+						"id" : 3
+					}, {
+						"typename" : "我的关注",
+						"id" : 4
+					}],
+					frame_url : ["../myrc/shequ-xx.html", "../myrc/shequ-tw.html", "../myrc/shequ-hf.html", "../myrc/shequ-gz.html"],
+					topnumber : 4,
+					bounces : false
+				};
+				if (UserInfo.has_login()) {//判断是否登录
+					openWin("infomation-heart-2", "widget://html/comm/infomation-heart.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/comm/infomation-heart.html";
+					pageParam.winName = "infomation-heart-2";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			})
+			//发布信息
+			$(".my-infoout").on("click", function() {
+				var pageParam = {
+					wintitle : "发布信息",
+					type : "issue-info",
+					module : "发布",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {
+					openWin("issue-info", "../myrc/issue-info.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/myrc/issue-info.html";
+					pageParam.winName = "issue-info";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+				
+			});
+			//修改密码
+			$(".my-password").on("click", function() {
+				var pageParam = {
+					wintitle : "修改密码",
+					type : "pust-password",
+					bounces : false,
+					mobile : mobilevalue
+				};
+				if (UserInfo.has_login()) {
+					openWin("pust-password", "../myrc/pust-password.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/myrc/pust-password.html";
+					pageParam.winName = "pust-password";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+				
+			});
+			//客服电话
+			$(".my-servertel").on("click", function() {
+				//api.call({
+				//	type : 'tel_prompt',
+				//	number : '0571-56612345'
+				//});
+			});
+			//推荐给好友
+			$(".my-tuijian").on("click", function() {
+				//保存分享数据到本地
+				var title="ZZ91再生网-废料商人的移动管家";
+				localStorage.setItem("share_title",""+title);
+				localStorage.setItem("share_description","ZZ91再生网-再生商机随身携带，赶紧跟我一起来体验！http://m.zz91.com/app.html 点击链接查看");
+				localStorage.setItem("share_url","http://m.zz91.com/app.html");
+				localStorage.setItem("share_pic","http://img0.zz91.com/zz91/images/indexLogo.png");
+				//分享
+				var html = "";
+				html += '<div class="sharebox"><ul><li class="share_qq"><img src="../image/share/share_to_icon_qq.png"><br />QQ好友</li><li class="share_wx"><img src="../image/share/share_to_icon_wx.png"><br />微信好友</li><li class="share_wxq"><img src="../image/share/share_to_icon_wxq.png"><br />朋友圈</li><li class="share_weibo"><img src="../image/share/share_to_icon_weibo.png"><br />新浪微博</li></div>'
+				$aui.alert({
+					title : '',
+					content : html,
+					buttons : ['取消'],
+					radius : 10,
+					titleColor : '#333',
+					contColor : '#333',
+					btnColor : ''
+				}, function(ret) {
+					//处理回调函数
+					if (ret) {
+						if (ret == 0) {
+							return;
+						}
+					}
+				});
+			});
+			//我的通信录
+			$(".my-addressbook").on("click", function() {
+				var pageParam = {
+					wintitle : "我的通讯录",
+					type : "my-addressbook",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {//判断是否登录
+					openWin("my-addressbook", "../myrc/addressbook.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/myrc/addressbook.html";
+					pageParam.winName = "my-addressbook";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			});
+			//我的邀请码
+			$(".my-yaoqi").on("click", function() {
+				var pageParam = {
+					wintitle : "邀请码",
+					type : "invite-code",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {
+					openWin("invite-code", "../myrc/invite-code.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/myrc/invite-code.html";
+					pageParam.winName = "invite-code";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			});
+			//微信公众号
+			$(".my-weixin").on("click", function() {
+				var pageParam = {
+	                wintitle:"ZZ91再生网微信服务号",
+	                type:"weixinservice",
+	                bounces:false
+	            };
+	            openWin("weixinservice", "../comm/weixin.html", pageParam);
+			});
+			
+			//修改资料
+			$(".my-revise").on("click", function() {
+				var pageParam = {
+					wintitle : "修改资料",
+					type : "pust-data",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {
+					openWin("pust-data", "../myrc/pust-data.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/myrc/pust-data.html";
+					pageParam.winName = "pust-data";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			});
+			//修改资料
+			$(".my-credibility").on("click", function() {
+				var pageParam = {
+					wintitle : "诚信档案",
+					type : "credibility",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {
+					openWin("credibility", "../myrc/credibility.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/myrc/credibility.html";
+					pageParam.winName = "pust-data";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			});
+			//问题反馈
+			$(".my-ask").on("click", function() {
+				var pageParam = {
+					wintitle : "问题反馈",
+					type : "my-ask",
+					bounces : false
+				};
+				if (UserInfo.has_login()) {
+					openWin("my-ask", "../myrc/ask.html", pageParam);
+				} else {
+					pageParam.nextUrl = "widget://html/myrc/ask.html";
+					pageParam.winName = "my-ask";
+					openWin("frm-login", "../myrc/frm-login.html", pageParam);
+				}
+			});
+			//问题反馈
+			$(".my-about").on("click", function() {
+				var pageParam = {
+					wintitle : "关于我们",
+					type : "my-about",
+					bounces : false
+				};
+				openWin("my-about", "../myrc/about.html", pageParam);
+			});
+			
+			
+			(function(d, t) {
+				var r = d.createElement(t),
+					s = d.getElementsByTagName(t)[0];
+				r.async = 1;
+				r.src = hosturl + '/js/new/home.js?' + (new Date()).getTime().toString();
+				s.parentNode.insertBefore(r, s);
+			})(document, "script");
+		}
+		function isLogin() {
+			var login_sn = UserInfo.has_login();
+			if (login_sn) {
+				var contact = UserInfo.contactName();
+				$(".havelogin").show();
+				$(".nologin").hide();
+				$(".qiandaomain").show();
+				//$(".my-name").text("您好，" + contact + "！")
+			} else {
+				$(".havelogin").hide();
+				$(".nologin").show();
+				$(".qiandaomain").hide();
+				//$(".my-name").text("请登录")
+			}
+		}
+
+		//签到
+		function hideqiandao(){
+			$(".qiandaobtn").hide();
+			$(".haveqiandao").show();
+		}
+		var haveqiandao=false
+		function qiandao() {
+			if (haveqiandao==true){
+				return false;
+			}
+			haveqiandao=true
+			var data = {
+				company_id : UserInfo.memberID(),
+				usertoken : UserInfo.token(),
+				appsystem : api.systemType,
+				clientid : api.deviceId,
+				datatype : "json",
+			}
+			api.ajax({
+				url : hosturl + 'qianbao/qiandao.html',
+				method : 'get',
+				timeout : 30,
+				dataType : 'json',
+				returnAll : false,
+				data : {
+					values : data
+				}
+			}, function(ret, err) {
+				if (ret) {
+					if (ret.err == "false") {
+						api.toast({
+							msg : '签到成功！再生钱包  + 0.5元',
+							duration : 2000,
+							location : 'middle'
+						});
+						ajaxInfo();
+						$(".qiandaobtn").hide();
+						$(".haveqiandao").show();
+						api.execScript({
+							name : 'root',
+							frameName : 'index-frame',
+							script : 'hideqiandao()'
+						});
+					} else {
+						api.toast({
+							msg : '你今天已经签到',
+							duration : 2000,
+							location : 'middle'
+						});
+					}
+					$api.rmStorage("indexdata");
+				} else {
+					if(err){
+						saveerrlog(err.body);
+					}
+					api.toast({
+						msg : '系统错误',
+						duration : 2000,
+						location : 'middle'
+					});
+				};
+				haveqiandao=false;
+			});
+		}
+		
+	</script>
+	<script type="text/javascript" src="../../script/servercomm.js"></script>
+</html>

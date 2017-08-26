@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<title>商铺榜单_商机排行榜-zz91再生网</title>
+		<meta name="keywords" content="商铺榜单,精品商铺榜单,人气商铺榜单,潜力商铺榜单,新入商铺榜单,商铺">
+		<meta name="description" content="ZZ91再生网商铺榜单为广大客户提供优质商铺信息、商机榜单信息、商铺商机信息。让客户不再错过任何一家商铺。">
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/zz91/nav/css/nav.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.nav.comm.css" />
+		<link type="text/css" rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.comm.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/header.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/seller.css" />
+		<link rel="stylesheet" href="http://b.zz91.com/cp/paihang/css/banner.css" />
+		<link rel="stylesheet" href="http://img0.zz91.com/front/css/zz91.base.css"/>
+		<meta http-equiv="Cache-Control" content="no-transform"/>
+		<meta http-equiv="Cache-Control" content="no-siteapp"/>
+	</head>
+	<body>
+		{% include 'nav.html' %}
+		<div style="clear: both;"></div>
+		<div class="warp">
+			<div class="logosearch fl">
+				<div class="logo fl">
+					<img src="http://b.zz91.com/cp/paihang/img/img-01.png" class="fl"/>
+					<p class="fl logo-title">商机排行榜</p>
+				</div>
+				<div class="search fl">
+					<form action="http://trade.zz91.com/trade/searchfirst/" method="get" id="searchForm1" target="_blank">
+					<input class="searchInput fl" name="keywords" placeholder="输入产品关键词,获取对应产品信息" style="font-size: 14px;" /> 
+					<a class="searchButtom fl">搜索关键词</a>
+					</form>
+				</div>
+			</div>
+			<div class="nav fl">
+				<a href="/cp/" class="nav-oth">微门户首页</a>
+				<a href="sj-index.html" class="nav-oth" >商机排行榜</a>
+				<a href="sj-hotcp.html" class="nav-oth">热门产品词</a>
+				<a href="sj-sjbd.html" class="nav-oth">商机榜单</a>
+				<a href="sj-spbd.html" class="nav-idx">商铺榜单</a>
+			</div>
+			<div class="Main fl">
+				<div class="main-top">
+					<div class="main-topL fl">
+						<p class="main-topL1">{{ now_month }}月商铺榜单</p>
+						<p class="main-topL2">ZZ91再生网商铺排行榜每月对数千万商家进行统计分析，凸显信誉商家榜、人气商家榜、活跃商家榜、新入商家榜，让您的采购变轻松。</p>
+					</div>
+					<div class="main-topR fr">
+						<a class="fr main-topRb" href="http://www.zz91.com/register/register_stp1.htm" target="_blank">我也要出现在这里</a>
+					</div>
+				</div>
+				<div class="main-left fl">
+					<div class="seller fl">
+						<div class="seller-top">
+							<img src="http://b.zz91.com/cp/paihang/img/img-05.png" class="fl"/>
+							<p class="seller-c fl">信誉商家</p>
+							<a class="more" href="sj-spbd-more.html">更多</a>
+						</div>
+						<div class="seller-main fl">
+							{% for each_member in new_member %}
+							<div class="seller-content">
+								<div class="seller-content1 fl">
+									<p class="seller-contentT">{{ each_member.0 | add:"1" }}　 {{ each_member.1.comp_name }}</p>
+									<p class="seller-contentB">主要产品：{{ each_member.1.comp_business | truncatechars:30 }}</p>
+								</div>
+								<a href="http://trade.zz91.com/productdetails{{ each_member.1.pdt_img_info.pdt_id }}.htm" target="_blank">
+									<img src="{{ each_member.1.pdt_img_info.pdt_img_url }}" class="fl" style="width: 89px;height: 82px;" />
+								</a>
+								<div class="fr seller-content2">
+									<div class="fr">
+										<p>
+											<span class="sellerG">诚信指数</span>
+											<span>：{{ each_member.1.comp_all_score | default:"0"  }}</span>
+										</p>
+										<p>
+											<span class="sellerG">地区</span>
+											<span>：{{ each_member.1.comp_info.comp_p_area }}</span>
+										</p>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<div class="main-right fl">
+					<div class="seller fl">
+						<div class="seller-top">
+							<img src="http://b.zz91.com/cp/paihang/img/img-05.png" class="fl"/>
+							<p class="seller-c fl">人气商铺</p>
+							<a class="more" href="sj-spbd-more.html">更多</a>
+						</div>
+						<div class="seller-main fl">
+							{% for each_member in hot_member %}
+							<div class="seller-content">
+								<div class="seller-content1 fl">
+									<p class="seller-contentT">{{ each_member.0 | add:"1" }}　 {{ each_member.1.comp_name }}</p>
+									<p class="seller-contentB">主要产品：{{ each_member.1.comp_business | truncatechars:30 }}</p>
+								</div>
+								<a href="http://trade.zz91.com/productdetails{{ each_member.1.pdt_img_info.pdt_id }}.htm" target="_blank">
+									<img src="{{ each_member.1.pdt_img_info.pdt_img_url }}" class="fl" style="width: 89px;height: 82px;" />
+								</a>
+								<div class="fr seller-content2">
+									<div class="fr">
+										<p>
+											<span class="sellerG">诚信指数</span>
+											<span>：{{ each_member.1.comp_all_score | default:"0" }}</span>
+										</p>
+										<p>
+											<span class="sellerG">地区</span>
+											<span>：{{ each_member.1.comp_info.comp_p_area }}</span>
+										</p>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% include 'bottom.html' %}
+	</body>
+</html>

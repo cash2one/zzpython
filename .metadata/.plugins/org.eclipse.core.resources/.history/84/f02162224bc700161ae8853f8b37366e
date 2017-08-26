@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>APP</title>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <style>
+    	.keylist{
+    		border:solid 1px #E6E6E6
+    	}
+    	.keylist td{
+    		text-align:center;
+    		border-bottom:solid 1px #ebebeb;
+    		line-height:30px;
+    	}
+    	.keylist thead{
+    		background-color: #E6E6E6
+    	}
+    </style>
+</head>
+<body>
+    <div class="aui-content aui-padded-10">
+        <ul class="aui-grid-nine"  style="line-height: 40px">
+            <li class="aui-col-xs-6 aui-text-center">
+                <span>展现量</span>
+                <p>33324.99</p>
+            </li>
+            <li class="aui-col-xs-6 aui-text-center">
+                <span>点击量</span>
+                <p>33324.99</p>
+            </li>
+            <li class="aui-col-xs-6 aui-text-center">
+                <span>消费</span>
+                <p>33324.99</p>
+            </li>
+            <li class="aui-col-xs-6 aui-text-center">
+                <span>拨打电话量</span>
+                <p>33324.99</p>
+            </li>
+        </ul>
+        <div class="aui-padded-20">
+	        <div class="aui-pull-left"><div class="aui-btn aui-btn-success keywords_add">添加关键词</div></div>
+	        <div class="aui-pull-right"><div class="aui-btn aui-btn-success">数据明细</div></div>
+        </div>
+        <table class="aui-tab keylist">
+        	<thead>
+	        	<tr>
+	        		<th>关键词</th>
+	        		<th>展现量</th>
+	        		<th>点击量</th>
+	        		<th>消费</th>
+	        		<th>电话量</th>
+	        	</tr>
+        	</thead>
+        	<tr>
+        		<td>pp破碎料</td>
+        		<td>3423432</td>
+        		<td>334</td>
+        		<td>￥98.00</td>
+        		<td>34</td>
+        	</tr>
+        	<tr>
+        		<td>pp破碎料</td>
+        		<td>3423432</td>
+        		<td>334</td>
+        		<td>￥98.00</td>
+        		<td>34</td>
+        	</tr>
+        	<tr>
+        		<td>pp破碎料</td>
+        		<td>3423432</td>
+        		<td>334</td>
+        		<td>￥98.00</td>
+        		<td>34</td>
+        	</tr>
+        	<tr>
+        		<td>pp破碎料</td>
+        		<td>3423432</td>
+        		<td>334</td>
+        		<td>￥98.00</td>
+        		<td>34</td>
+        	</tr>
+        	<tr>
+        		<td>pp破碎料</td>
+        		<td>3423432</td>
+        		<td>334</td>
+        		<td>￥98.00</td>
+        		<td>34</td>
+        	</tr>
+        	<tr>
+        		<td>pp破碎料</td>
+        		<td>3423432</td>
+        		<td>334</td>
+        		<td>￥98.00</td>
+        		<td>34</td>
+        	</tr>
+        	<tr>
+        		<td>pp破碎料</td>
+        		<td>3423432</td>
+        		<td>334</td>
+        		<td>￥98.00</td>
+        		<td>34</td>
+        	</tr>
+        	<tr>
+        		<td>pp破碎料</td>
+        		<td>3423432</td>
+        		<td>334</td>
+        		<td>￥98.00</td>
+        		<td>34</td>
+        	</tr>
+        	<tr>
+        		<td>pp破碎料</td>
+        		<td>3423432</td>
+        		<td>334</td>
+        		<td>￥98.00</td>
+        		<td>34</td>
+        	</tr>
+        </table>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js" ></script>
+<script type="text/javascript">
+	apiready = function() {
+		$(".my-weixin").on("click", function() {
+			var pageParam = {
+                wintitle:"ZZ91再生网微信服务号",
+                type:"weixinservice",
+                bounces:false
+            };
+            openWin("weixinservice", "../comm/weixin.html", pageParam);
+		});
+	}
+</script>
+</html>

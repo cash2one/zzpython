@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    <link rel="stylesheet" type="text/css" href="Css/style.css" />
+    <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="Js/jquery-1.7.2.js"></script>
+</head>
+
+
+<body>
+<form class="form-inline definewidth m20" id="searchform">
+	<select name="ptype" style="width:120px">
+		<option value="">--选择审核状态</option>
+		<option value="1">已审核</option>
+		<option value="0">未审核</option>
+	</select>
+	&nbsp;关键词：<input type="text" name="keywords" />
+	&nbsp;拼音：<input type="text" name="pinyin" />
+	<input class="btn btn-success" type="submit" value="查询">
+	<input  class="btn btn-success" type="button" value="回收站" onclick="window.location='key_list_del.html'" />
+	<input  class="btn btn-success" type="button" value="导入关键词" onclick="window.location='key_daoru.html'" />
+</form>
+
+<form name="keylist" id="keylist">
+<table class="table table-bordered table-hover definewidth m10" id="senfe">
+    <thead>
+    <tr>
+    	<th>选择</th>
+        <th>id</th>
+        <th>关键词</th>
+        <th>pinyin</th>
+        <th>更新时间</th>
+		<th>审核状态</th>
+		<th>审核人</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    {%for list in listall%}
+	     <tr>
+	     	<td><input type="checkbox" name="checkid" value="{{list.id}}"  id="subcheck"></td>	
+	        <td>{{list.id}}</td>
+	        <td><a href="http://www.zz91.com/cp/{{list.pingyin}}/" target="_blank">{{list.label}}<a></td>
+	        <td>{{list.pingyin}}</td>
+	        <td>{{list.gmt_created}}</td>
+	        <td>{{list.checkedtxt}}</td>
+	        <td>{{list.checkperson}}</td>
+	        <td>
+	        	<a href="key_mod.html?id={{list.id}}">修改</a>
+			<a href="delthis.html?id={{list.id}}" onClick="return confirm('是否将此信息删除?')" title="删除"><img src="123/imgs/b_drop.png"></a>
+			<a href="shenhe_ok.html?id={{list.id}}">已审</a>
+			<a href="shenhe_no.html?id={{list.id}}">未审</a>
+			</td>
+        </tr>
+     {%endfor%}    
+</table>
+<br/>
+全选&nbsp;&nbsp;<input type="checkbox" id="SelectAll"  value="全选" onclick="selectAll();"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-success" value="一键审核" onclick="shenheokallAction(this.form)">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-success" type="button" value="一键删除" onclick="deleteallAction(this.form)">
+</form>
+
+<div class="inline pull-right page">
+        共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页  &nbsp;&nbsp;
+{% if firstpage %}
+<a href="?page={{prvpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%}
+     {%for p in page_range%}
+{%if p.nowpage%}
+<span class='current'>{{p.number}}</span>&nbsp;
+{%else%}
+<a href="?page={{p.number}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">{{p.number}}&nbsp;</a>
+{%endif%}
+	{%endfor%}
+{% if lastpage%}
+<a href="?page={{nextpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp;
+<input type="button" value="跳到" onClick=turnpage()> <span style="font-size:15px">第 <input type="text" id="page1" style="width:28px" value="{{page}}"> /{{page_listcount}} 页  </span><input type="submit" style="display:none"> &nbsp;&nbsp;
+<a href='?page=1{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}' >首页</a><a href='?page={{page_listcount}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}' >尾页</a> 
+</div>
+</body>
+<script>
+function turnpage(){
+	var page1=document.getElementById("page1").value;
+	if (page1<1)
+	{
+	page1=1;
+	}
+	window.location.href='?page='+page1+'{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}';
+}
+
+function selectAll(){  
+    if ($("#SelectAll").attr("checked")) {  
+        $(":checkbox").attr("checked", true);  
+    } else {  
+        $(":checkbox").attr("checked", false);  
+    }  
+}  
+//子复选框的事件  
+function setSelectAll(){  
+    //当没有选中某个子复选框时，SelectAll取消选中  
+    if (!$("#subcheck").checked) {  
+        $("#SelectAll").attr("checked", false);  
+    }  
+    var chsub = $("input[type='checkbox'][id='subcheck']").length; //获取subcheck的个数  
+    var checkedsub = $("input[type='checkbox'][id='subcheck']:checked").length; //获取选中的subcheck的个数  
+    if (checkedsub == chsub) {  
+        $("#SelectAll").attr("checked", true);  
+    }  
+}  
+//一键审核
+function shenheokallAction(frm){
+    frm.action="shenhe_ok_all.html";
+    frm.submit();
+}
+//一键删除
+function deleteallAction(frm){
+    frm.action="del_all1.html";
+    frm.submit();
+}
+$(function(){
+    $("#senfe").find("tr").click(function(){
+        $(this).find("input[type='checkbox']").attr("checked",!$(this).find("input[type='checkbox']").attr("checked"));
+    });
+})
+</script>
+</html>

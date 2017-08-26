@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>废料交易页</title>
+<link href="/new/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="/new/css/price.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+	.mo-news-lsit li span{
+        width:90px;
+        height:20px;
+	  	white-space: nowrap;
+	  	overflow: hidden;
+	  	text-overflow: ellipsis;
+	}
+	
+</style>
+</head>
+
+<body>
+	<div class="header">
+		<div class="top">
+			<div class="top-mo clear">
+				<a class="top-link" href="#">
+					<img src="/new/images/fei123.jpg" height="31">
+				</a>
+				<div class="fr top-handle">
+					<a href="#">首页推荐</a> |
+					<a href="#">加入收藏</a> |
+					<a href="#">留言反馈</a>
+				</div>
+			</div>
+		</div>
+		<div class="search">
+			<ul class="search-ul clear">
+				<li><img src="/new/images/logo.jpg" height="35"></li>
+				<li><input type="text" class="input-text"></li>
+				<li><input type="submit" class="btn" value="搜索"></li>
+			</ul>
+		</div>
+		<div class="advert-top">
+			广告
+		</div>
+		<div class="nav clear">
+			<div class="nav-td"><a href="">首页</a></div>
+			<div class="nav-td nav-now"><a href="">废料交易</a></div>
+			<div class="nav-td"><a href="http://jiage.zz91.com" target="_black">废料行情</a></div>
+			<div class="nav-td"><a href="">废料资讯</a></div>
+			<div class="nav-td"><a href="http://company.zz91.com/" target="_black">废料企业</a></div>
+			<div class="nav-td last-nav"><a href="http://huzhu.zz91.com/" target="_black">废料社区</a></div>
+		</div>
+	</div>
+	<div class="content clear">
+		<div class="iron-type clear">
+			<a href="http://trade.zz91.com/metal.htm" target="_black">废金属</a>
+			<a href="http://trade.zz91.com/plastic.htm" target="_black">废塑料</a>
+			<a href="http://trade.zz91.com/waste.htm" target="_black">废电子电器</a>
+			<a href="http://trade.zz91.com/waste.htm" target="_black">废橡胶</a>
+			<a href="http://trade.zz91.com/waste.htm" target="_black">废纸</a>
+			<a href="http://trade.zz91.com/waste.htm" target="_black">废纺织品和皮革</a>
+			<a href="http://trade.zz91.com/waste.htm" target="_black">废旧二手设备</a>
+			<a href="http://trade.zz91.com/waste.htm" target="_black">废玻璃</a>
+			<a href="http://trade.zz91.com/waste.htm" target="_black">其他废料</a>
+			<a href="http://trade.zz91.com/waste.htm" target="_black">服务</a>
+		</div>
+		<div class="info-list">
+			<ul class="info-ul clear">
+				{%for list in productlist%}
+				<li class="clear">
+					<img class="img-info" src="{{list.pic_url}}">
+					<a href="{{list.t_url}}" target="_black"" class="title-info">{{list.title}}</a>
+					<div class="number-info">供应量:{{list.total_quantity}}{{list.quantity_unit}}</div>
+					<div class="mite-info">货源地：{{list.source}} | 加工说明：{{list.manufacture}}</div>
+				</li>
+				{%endfor%}
+				
+			</ul>
+		</div>
+		<div class="advert-content">
+		广告
+		</div>
+		<div class="news-list clear">
+			<div class="news-lf">
+				<div class="mo-news">
+					<div class="title-news clear">
+						<span>废塑料</span>
+						<a href="http://trade.zz91.com/plastic.htm">更多>></a>
+					</div>
+					<ul class="mo-news-lsit">
+						{%for list in listall_suliao%}
+						<li>
+							<span class="infotg"><a href="{{list.companyurl}}">{{list.td_title}}</a></span>
+							<span >{{list.price}}</span>
+							<span class="news-time">{{list.td_time}}</span>
+						</li>
+						{%endfor%}
+					</ul>
+				</div>
+				<div class="mo-news">
+					<div class="title-news clear">
+						<span>废金属</span>
+						<a href="http://trade.zz91.com/metal.htm">更多>></a>
+					</div>
+					<ul class="mo-news-lsit">
+						{%for list in listall_jinshu%}
+						<li>
+							<span class="infotg"><a href="{{list.companyurl}}" class="infotg1">{{list.td_title}}</a></span>
+							<span >{{list.price}}</span>
+							<span class="news-time">{{list.td_time}}</span>
+						</li>
+						{%endfor%}
+					</ul>
+				</div>
+				<div class="mo-news">
+					<div class="title-news clear">
+						<span>废纸</span>
+						<a href="http://trade.zz91.com/waste.htm">更多>></a>
+					</div>
+					<ul class="mo-news-lsit">
+						{%for list in listall_feizhi%}
+						<li>
+							<span class="infotg"><a href="{{list.companyurl}}" >{{list.td_title}}</a></span>
+							<span>{{list.price}}</span>
+							<span class="news-time">{{list.td_time}}</span>
+						</li>
+						{%endfor%}
+						
+					</ul>
+				</div>
+				<div class="mo-news">
+					<div class="title-news clear">
+						<span>综合</span>
+						<a href="http://trade.zz91.com/waste.htm">更多>></a>
+					</div>
+					<ul class="mo-news-lsit">
+						{%for list in listall_zonghe%}
+						<li>
+							<span class="infotg"><a href="{{list.companyurl}}">{{list.td_title}}</a></span>
+							<span>{{list.price}}</span>
+							<span class="news-time">{{list.td_time}}</span>
+						</li>
+						{%endfor%}
+					</ul>
+				</div>
+			</div>
+			<div class="advert-last">
+				广告
+			</div>
+		</div>
+	</div>
+	<div class="footer">欢迎使用 2014 废料网站导航，最全，最多的废料网址导航 - 浙ICP备10030021号-3</div>
+</body>
+</html>

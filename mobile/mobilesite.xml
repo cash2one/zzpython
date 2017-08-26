@@ -1,0 +1,19 @@
+<uwsgi>
+ <socket>:8005</socket>
+ <workers>8</workers>
+ <master>true</master>
+ <processes>2</processes>
+ <listen>50</listen>
+ <pythonpath>.</pythonpath>
+ <module>mobile.wsgi</module>
+ <profiler>true</profiler>
+ <memory-report>true</memory-report>
+ <enable-threads>true</enable-threads>
+ <wsgi-file>mobile/wsgi.py</wsgi-file>
+ <logdate>true</logdate>
+ <limit-as>500</limit-as>
+ <reload-on-as>300</reload-on-as>
+ <reload-on-rss>300</reload-on-rss>
+ <max-requests>300</max-requests>
+ <daemonize>/mnt/var/log/uwsgi/mobile.log</daemonize>
+</uwsgi>

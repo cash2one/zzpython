@@ -1,0 +1,17 @@
+<chart>
+    <data>
+        <indexAxis name="月份">
+            <labels>
+                {%for ch in chartpricelist%}{{ch.postdate2}},{%endfor%}
+            </labels>
+        </indexAxis>
+        <valueAxis name="报价" unit="元"></valueAxis>
+        <dataSets>
+            <set name="{{label}}">
+                <values>
+                {%for ch in chartpricelist%}{{ch.aveprice}},{%endfor%}
+                </values>
+            </set>
+        </dataSets>
+    </data>
+</chart>

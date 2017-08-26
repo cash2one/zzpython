@@ -1,0 +1,24 @@
+    <ul class="mui-table-view">
+        <form method="post">
+	    	<span class="mui-table-view-cell" style="margin-top: 0px;display:block;padding-top: 0px;padding-bottom: 0px;border: 0px;background-image: none;">
+	            <button class="mui-btn mui-btn-primary mui-icon mui-icon-search" onclick="zz91search(this.form,'/offerlist/?keywords=','blank')" type="button">搜供求</button>
+	            <input type="search" id="searchtext" placeholder="请输入关键字搜索" style="float: left;width: 70%; margin-top:15px ;" />
+	        </span>
+	    </form>
+    </ul>
+    
+    <ul class="mui-table-view" style="padding:10px;">
+    {%for ct in categorylist%}
+	    {%if ct.catelist%}
+	    <li class="mui-table-view-cell" style="margin-bottom: 5px;background: none;">
+        	<a href=#>{{ct.label}}</a>
+        </li>
+			{%for ct1 in ct.catelist%}
+		    	<a href="javascript:gotourl('/offerlist/?keywords={{ct1.label_hex}}','blank');" class="mui-btn" style="margin-bottom: 5px;width:32%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ct1.label}}</a>
+		    {%endfor%}
+		{%else%}
+			<a href="javascript:gotourl('/offerlist/?keywords={{ct.label_hex}}','blank');" class="mui-btn" style="margin-bottom: 5px;width:32%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ct.label}}</a>
+	  	{%endif%}
+    {%endfor%}
+    </ul>
+<input type="hidden" id="appnavname" value="交易中心" />

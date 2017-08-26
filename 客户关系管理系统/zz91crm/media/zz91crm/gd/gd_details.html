@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>工单详情</title>
+	</head>
+	<body>问题描述：
+		{%for list in result%}
+			<tr>{{list.company_id}}:{{list.question}}</tr><br />
+			<a style="font-size:10px">{{list.time}}</a>
+            <hr />
+		{%endfor%}
+		<form action="answer.html?question_id={{result1.id}}&company_id={{result1.company_id}}" enctype="multipart/form-data" method="post">
+		<textarea name="answer" cols="150" rows="4" placeholder="回复内容"></textarea><br />
+        <input type="file" name="fileField" id="fileField"><br />
+		<input type="submit" value="回复"/>
+		</form>
+	</body>
+</html>

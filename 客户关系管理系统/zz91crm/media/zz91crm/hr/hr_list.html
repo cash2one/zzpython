@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>人事</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="/layui/css/layui.css" type="text/css">
+		<script type="text/javascript" src="/assets/js/jquery-1.8.1.min.js"></script>
+		<script type="text/javascript" src="/assets/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<script src="/layui/layui.js" type="text/javascript"></script>
+		<style>
+			::-webkit-scrollbar {
+				width: 20px;
+				height: 20px;
+			}
+			
+			::-webkit-scrollbar-corner,
+			::-webkit-scrollbar-track {
+				background-color: #5fb878;
+			}
+			table {
+				white-space: nowrap;
+			}
+			body{
+				padding: 10px;
+			}
+			.layui-input, .layui-select, .layui-textarea{
+				height: 28px;
+			}
+			.layui-table .button {
+				border: solid 1px #ccc;
+				background-color: #EBEBE4;
+				line-height: 25px;
+				padding: 5px;
+			}
+			
+			.layui-table td {
+				padding: 2px 5px;
+				font-size: 12px;
+				text-align: center;
+				width: 100%;
+				word-wrap: break-word;
+				overflow: hidden;
+			}
+			
+			.layui-btn {
+				height: 28px;
+				line-height: 28px;
+				padding: 0 8;
+			}
+
+			.layui-textarea {
+				height: 28px;
+				line-height: 28px;
+			}
+			
+			.layui-form-label {
+				padding: 2px 5px;
+			}
+			
+			.layui-form-item {
+				margin-bottom: 5px;
+			}
+			a{
+				cursor: pointer;
+			}
+		</style>
+
+		<script>
+			function CheckAll(form) {
+				for(var i = 0; i < form.elements.length; i++) {
+					var e = form.elements[i];
+					if(e.name.substr(0, 14) == 'check_box_list')
+						e.checked = form.cball.checked;
+				}
+			}
+
+			function searchfrm(frm) {
+				frm.outflag.value = "0"
+				frm.target = ""
+				frm.submit();
+			}
+		</script>
+	</head>
+
+	<body>
+		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+			<legend>应聘人员列表</legend>
+		</fieldset>
+		<form class="layui-form" action="">
+			<div class="layui-form-item" style="min-width: 800px;">
+				<label class="layui-form-label">手机</label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input type="text" name="mobile" lay-verify="required" value="{{mobile}}" placeholder="请输入" autocomplete="off" class="layui-input">
+				</div>
+
+				<label class="layui-form-label">姓名</label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input type="text" name="username" lay-verify="required" value="{{username}}" placeholder="请输入" autocomplete="off" class="layui-input">
+				</div>
+
+				<label class="layui-form-label">邮箱</label>
+				<div class="layui-input-inline" style="width: 100px;">
+					<input type="text" name="email" lay-verify="required" value="{{email}}" placeholder="请输入" autocomplete="off" class="layui-input">
+				</div>
+
+				<label class="layui-form-label">性别</label>
+				<div class="layui-input-inline" style="width: 60px;">
+					<select name="sex" id="sex">
+						<option value="">....</option>
+						<option value="男">男</option>
+						<option value="女">女</option>
+					</select>
+				</div>
+				<script>selectOption("sex","{{sex}}")</script>
+				<div class="layui-inline">
+					<label class="layui-form-label">面谈时间从</label>
+					<div class="layui-inline">
+						<div class="layui-input-inline" style="width: 100px;">
+							<input type="text" name="interviewTime1" id="interviewTime1" value="{{interviewTime1}}" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
+						</div>
+					</div>
+					到&nbsp;&nbsp;&nbsp;&nbsp;
+					<div class="layui-inline">
+						<div class="layui-input-inline" style="width: 100px;">
+							<input type="text" name="interviewTime2" id="interviewTime2" value="{{interviewTime2}}" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">录入人</label>
+				<div class="layui-input-inline" style="width: 150px;">
+					<select class="" name="rpersonid" id="rpersonid" style="width: auto;">
+						<option value="">人员</option>
+						{%for salesman in allsalesman%}
+						<option value="">|—{{salesman.cate_label}}</option>
+						{%for man in salesman.thiscateman%}
+						<option value="{{man.id}}">|——{{man.realname}}</option>
+						{%endfor%} {%endfor%}
+					</select>
+					<script>selectOption("rpersonid","{{rpersonid}}")</script>
+				</div>
+				<label class="layui-form-label">所有者</label>
+				<div class="layui-input-inline" style="width: 150px;">
+					<select class="" name="personid" id="personid" style="width: auto;">
+						<option value="">所有者</option>
+						{%for salesman in allsalesman%}
+						<option value="">|—{{salesman.cate_label}}</option>
+						{%for man in salesman.thiscateman%}
+						<option value="{{man.id}}">|——{{man.realname}}</option>
+						{%endfor%} {%endfor%}
+					</select>
+					<script>selectOption("personid","{{personid}}")</script>
+				</div>
+				<label class="layui-form-label">记录时间从</label>
+				<div class="layui-inline">
+					<div class="layui-input-inline" style="width: 100px;">
+						<input type="text" name="gmt_created1" id="gmt_created1" value="{{gmt_created1}}" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
+					</div>
+				</div>
+				到&nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="layui-inline">
+					<div class="layui-input-inline" style="width: 100px;">
+						<input type="text" name="gmt_created2" id="gmt_created2" value="{{gmt_created2}}" lay-verify="date" placeholder="yyyy-mm-dd" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this})">
+					</div>
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">星级</label>
+				<div class="layui-input-inline" style="width: 80px;">
+					<select name="star" id="star">
+						<option value="">请选择</option>
+						<option value="5">5星</option>
+						<option value="4">4星</option>
+						<option value="3">3星</option>
+						<option value="2">2星</option>
+						<option value="1">1星</option>
+					</select>
+					<script>selectOption("star","{{star}}")</script>
+				</div>
+				<label class="layui-form-label">邀约记录</label>
+				<div class="layui-input-inline">
+
+					<select name="jl1" id="jl1">
+						<option value="">请选择...</option>
+						{%for list in jl1_list%}
+						<option value="{{list.code}}">{{list.label}}</option>
+						{%endfor%}
+					</select>
+					<script>selectOption("jl1","{{jl1}}")</script>
+				</div>
+				<label class="layui-form-label">初试记录</label>
+				<div class="layui-input-inline">
+
+					<select name="jl2" id="jl2">
+						<option value="">请选择...</option>
+						{%for list in jl2_list%}
+						<option value="{{list.code}}">{{list.label}}</option>
+						{%endfor%}
+					</select>
+					<script>selectOption("jl2","{{jl2}}")</script>
+				</div>
+				<label class="layui-form-label">复试记录</label>
+				<div class="layui-input-inline">
+
+					<select name="jl3" id="jl3">
+						<option value="">请选择...</option>
+						{%for list in jl3_list%}
+						<option value="{{list.code}}">{{list.label}}</option>
+						{%endfor%}
+					</select>
+					<script>selectOption("jl3","{{jl3}}")</script>
+				</div>
+				
+			</div>
+			
+			<div class="layui-form-item">
+				<label class="layui-form-label">报到记录</label>
+				<div class="layui-input-inline">
+					<select name="jl4" id="jl4">
+						<option value="">请选择...</option>
+						{%for list in jl4_list%}
+						<option value="{{list.code}}">{{list.label}}</option>
+						{%endfor%}
+					</select>
+					<script>selectOption("jl4","{{jl4}}")</script>
+				</div><label class="layui-form-label">过程结束</label>
+				<div class="layui-input-inline">
+					<select name="jl5" id="jl5">
+						<option value="">请选择...</option>
+						{%for list in jl5_list%}
+						<option value="{{list.code}}">{{list.label}}</option>
+						{%endfor%}
+					</select>
+					<script>selectOption("jl5","{{jl5}}")</script>
+				</div>
+				<label class="layui-form-label">联系状态</label>
+				<div class="layui-input-inline">
+
+					<select name="contactstat" id="contactstat">
+						<option value="">请选择...</option>
+						{%for list in contactstat_list%}
+						<option value="{{list.code}}">{{list.label}}</option>
+						{%endfor%}
+					</select>
+					<script>selectOption("contactstat","{{contactstat}}")</script>
+				</div>
+				<input type="hidden" name="dotype" id="dotype" value="luyong">
+				<label class="layui-form-label">选择排序</label>
+				<div class="layui-input-inline">
+					<select name="orderstr" id="orderstr">
+						<option value="">选择排序</option>
+						<option value="1">面谈时间</option>
+						<option value="2">添加时间</option>
+					</select>
+					<script>selectOption("orderstr","{{orderstr}}")</script>
+				</div>
+				<div class="layui-input-inline">
+					<button class="layui-btn" name="Submit2" type="submit" onclick="searchfrm(this.form)">搜索</button>
+					<input name="outflag" type="hidden" id="outflag" value="0">
+				</div>
+			</div>
+		</form>
+		<div class="layui-form">
+			<form action="all.html" method="post">
+
+				<table class="layui-table">
+					<thead>
+						<tr>
+							<td><input type="checkbox" name="" lay-skin="primary" lay-filter="allChoose"></td>
+							<td nowrap="">星级</td>
+							<td nowrap="">手机</td>
+							<td nowrap="">姓名</td>
+							<td nowrap="">性别</td>
+
+							<td align="right" nowrap="">最高学历</td>
+							<td align="right" nowrap="">
+								<a href="?b_name=&amp;rn=&amp;dotype=luyong&amp;orderstr=&amp;orderstr1=1">面谈时间</a>
+							</td>
+							<td align="right" nowrap="">联系状态</td>
+
+							<td align="right" nowrap="">邀约记录</td>
+							<td align="right" nowrap="">初试记录</td>
+							<td align="right" nowrap="">复试记录</td>
+							<td align="right" nowrap="">报到记录</td>
+							<td align="right" nowrap="">简历来源</td>
+							<td align="right" nowrap="">过程结束</td>
+
+							<td align="right" nowrap="">其他联系方式</td>
+							<td align="right" nowrap="">电子信箱</td>
+
+							<td align="right" nowrap="">
+								<a href="?b_name=&amp;rn=&amp;dotype=luyong&amp;orderstr=&amp;orderstr1=2">时间记录</a>
+							</td>
+							<td align="right" nowrap="">最后跟进人员</td>
+							<td align="right" nowrap="">所有者</td>
+
+							<td align="right" nowrap="">
+								<font color="#000000">操作</font>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						{%for list in listall%}
+						<tr>
+							<td><input type="checkbox" name="check_box_list" id="check_box_list{{list.id}}" lay-skin="primary" value="{{list.id}}"></td>
+							<td nowrap="">{{list.star}}</td>
+							<td nowrap="">{{list.mobile}}</td>
+							<td nowrap="">
+								<a href="usershow.html?uid={{list.id}}" target="_blank">{{list.username}}</a>
+							</td>
+							<td nowrap="">{{list.sex}}</td>
+							<td align="right" nowrap="">{{list.education_name}}</td>
+							<td align="right" nowrap="">{{list.interviewTime}}</td>
+							<td align="right" nowrap="">
+								<a class="button" name="contactstat" code="22" value="{{list.contactstat}}" hid="{{list.id}}">{{list.contactstat_name}}</a>
+							</td>
+							<td align="right" nowrap="">
+								<a class="button" name="jl1" code="17" value="{{list.jl1}}" hid="{{list.id}}">{{list.jl1_name}}</a>
+							</td>
+							<td align="right" nowrap="">
+								<a class="button" name="jl2" code="17" value="{{list.jl2}}" hid="{{list.id}}">{{list.jl2_name}}</a>
+							</td>
+							<td align="right" nowrap="">
+								<a class="button" name="jl3" code="19" value="{{list.jl3}}" hid="{{list.id}}">{{list.jl3_name}}</a>
+							</td>
+							<td align="right" nowrap="">
+								<a class="button" name="jl4" code="20" value="{{list.jl4}}" hid="{{list.id}}">{{list.jl4_name}}</a>
+							</td>
+							<td align="right" nowrap="">{{list.laiyuan}}<br>
+							</td>
+							<td align="right" nowrap="">
+								<a class="button" name="jl5" code="21" value="{{list.jl5}}" hid="{{list.id}}">{{list.jl5_name}}</a>
+							</td>
+							<td align="right" nowrap="">{{list.othercontact}}</td>
+							<td align="right" nowrap="">{{list.email}}</td>
+
+							<td align="right" nowrap="">
+								{{list.gmt_created}}
+							</td>
+							<td align="right" nowrap="">
+								{{list.last_realname}}
+							</td>
+							<td align="right" nowrap="">
+								{{list.realname}}
+							</td>
+
+							<td align="right" nowrap="">
+								<a href="usershow_history.html?uid={{list.id}}" target="_blank">过程记录</a> |
+								<a href="mod.html?id={{list.id}}" target="_blank">修改</a>
+							</td>
+							<input type="hidden" name="id" value="{{list.id}}">
+						</tr>
+						{%endfor%}
+					</tbody>
+				</table>
+				<table>
+					<button class="layui-btn" type="button" onclick="postAll(this.form,'确定要删除吗？','')">删除</button>
+					<button class="layui-btn" type="button" name="button4" id="button4" onclick="postAll(this.form,'确实要分配吗?','assignto')">分配给</button>
+					<div class="layui-input-inline">
+						<select class="" name="topersonid" id="topersonid" style="width: auto;">
+							<option value="">人员</option>
+							{%for salesman in allsalesman%}
+							<option value="">┆&nbsp;&nbsp;┿{{salesman.cate_label}}</option>
+							{%for man in salesman.thiscateman%}
+							<option value="{{man.id}}">┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿{{man.realname}}</option>
+							{%endfor%} {%endfor%}
+						</select>
+					</div>
+					<button class="layui-btn" type="button" name="button2" id="button2" onclick="postAll(this.form,'确实要放到我的库吗?','tomy')">放入我的库</button>
+					<button class="layui-btn" type="button" name="button3" id="button3" onclick="postAll(this.form,'确实要放入公海吗?','gonghai')">放入公海</button>
+					<td align="right"><input type="hidden" name="dostay"><input type="hidden" name="selectcb"></td>
+				</table>
+
+			</form>
+
+		</div>
+		<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" style="margin: 20px;">
+			<tr>
+				页次:
+				<font color="black">{{page}}</font>/
+				<font color="black">{{page_listcount}}</font>&nbsp; 每页:
+				<font color="black">{{limitNum}}</font>&nbsp; 共计:
+				<font color="black">{{listcount}}</font>&nbsp; {% if firstpage %}
+				<font color="gray">上一页</font>
+				{%else%}
+				<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>
+				{%endif%}&nbsp;{%for p in page_range%} {%if p.nowpage%}
+				<span class='current'>{{p.number}}</span>&nbsp; {%else%}
+				<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a> {%endif%} {%endfor%} &nbsp;{% if lastpage%}
+				<font color="gray">下一页</font>
+				{%else%}
+				<a href="?page={{nextpage}}&{{searchurl}}">下一页</a>{%endif%}&nbsp;&nbsp;&nbsp; {%if flag%}
+				<input type="hidden" name="flag" value="{{flag}}">{%endif%} {%if writer%}
+				<input type="hidden" name="writer" value="{{writer}}">{%endif%}
+				<input type="hidden" name="page_listcount" value="{{page_listcount}}">&nbsp;&nbsp; 去第
+				<input type="text" name="page" style="width:35px" value="{{page}}"> /{{page_listcount}} 页
+				<input type="submit" style="display:none"> &nbsp;&nbsp;
+				<a href='?page=1&{{searchurl}}'>首页</a>&nbsp;
+				<a href='?page={{page_listcount}}&{{searchurl}}' >尾页</a>
+			</tr>
+		</table>
+		<script>
+			layui.use(['form', 'layedit', 'laydate'], function() {
+				var form = layui.form(),
+					layer = layui.layer,
+					layedit = layui.layedit,
+					laydate = layui.laydate;
+
+				//监听提交
+				form.on('submit(demo1)', function(data) {
+					layer.alert(JSON.stringify(data.field), {
+						title: '最终的提交信息'
+					})
+					return false;
+				});
+				//全选
+				form.on('checkbox(allChoose)', function(data) {
+					var child = $(data.elem).parents('table').find('tbody input[type="checkbox"]');
+					child.each(function(index, item) {
+						item.checked = data.elem.checked;
+					});
+					form.render('checkbox');
+				});
+			});
+
+			function postAll(form, promptText, value) {
+				selectcb = "0"
+				for(var i = 0; i < form.elements.length; i++) {
+					var e = form.elements[i];
+					if(e.name.substr(0, 14) == 'check_box_list')
+					if(e.checked == true) {
+						var selectcb = selectcb + "," + e.value
+					}
+				}
+				form.selectcb.value = selectcb.substr(2)
+				if(selectcb == "0") {
+					alert("选择你要的信息！")
+					return false
+				} else {
+					if(confirm(promptText)) {
+						form.dostay.value = value
+						form.submit()
+					}
+				}
+			}
+			$(function() {
+				$(".layui-table .button").click(function() {
+					var code = $(this).attr("code");
+					var svalue = $(this).attr("value");
+					var hid = $(this).attr("hid");
+					var hname = $(this).attr("name");
+					var self = $(this);
+					var data = {
+						code: code
+					}
+					crmajax("get", "/hr/hr_categorylist.html", data, function(ret) {
+						var oplist = '';
+						$.each(ret, function(n, item) {
+							if(item['code'] == svalue) {
+								oplist += "<option value=" + item['code'] + " selected>" + item['label'] + "</option>"
+							} else {
+								oplist += "<option value=" + item['code'] + ">" + item['label'] + "</option>"
+							}
+						});
+						layer.open({
+							type: 0 //此处以iframe举例
+								,
+							title: '选择',
+							content: '<center><select id=selectcategory style="cursor: pointer;"><option value="">请选择...</option>' + oplist + '</select></center>',
+							yes: function() {
+								var hvalue = $("#selectcategory").val();
+								var data = {
+									hid: hid,
+									hvalue: hvalue,
+									hfild: hname
+								}
+								crmajax("get", "/hr/hr_list_save.html", data, function(ret) {
+									layer.closeAll()
+									self.html($("#selectcategory").find("option:selected").text())
+									self.attr("value", hvalue)
+								})
+							}
+						});
+					}, function() {})
+
+				})
+			})
+		</script>
+	</body>
+
+</html>

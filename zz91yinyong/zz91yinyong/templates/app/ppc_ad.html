@@ -1,0 +1,105 @@
+{%if listall%}
+var adstr="";
+adstr="<style>"+
+".ppcmain .ppcadbox img{padding:0;margin:0}"+
+".ppcmain{width:{{w}}px;}"+
+
+".ppcmain .ppcbox{padding:0px;margin-bottom:5px;position:relative;}"+
+".ppcmain .ppcadbox .ptitle{background-color:#371718; padding:5px;overflow:hidden; text-align:left; font-weight:bold;text-overflow:ellipsis;white-space:nowrap; color:#FFF}"+
+".ppcmain .ppcadbox .ptitle a{color:#fff;text-decoration:none;}"+
+".ppcmain .ppcadbox .ptitle a:hover{color:#FF0}"+
+".ppcmain .ppcadbox{width:{{pw}}px; font-size:12px;margin-bottom:5px;padding-bottom:5px;{%if boxright%}margin-right:5px;{%endif%};line-height:20px;float:left;background-color:#eee;overflow:hidden;}"+
+".ppcmain .ppcadbox .ppctxt{color:#000; padding:5px;}"+
+".ppcmain .ppcadbox .img{float:left;margin-right:3px;display:none}"+
+".ppcmain .ppcadbox .comp {overflow:hidden; 	text-overflow:ellipsis;	white-space:nowrap; width:{{pw}}px;}"+
+".ppcmain .ppcadbox .comp a{color:#666;text-decoration:none;}"+
+".ppcmain .ppcadbox .txt{width:160px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}"+
+".ppcmain .ppcadbox .txt a{color:#000;text-decoration:none;}"+
+".ppcmain .ppcadbox span{ color:#C00; font-weight:bold}"+
+".ppcmain .ppcbox .ppcpage{  right:4px; bottom:4px; z-index:3; }"+
+".ppcmain .ppcbox .ppcpage span{ background:#DFDFDF; margin:0 1px; padding:4px 6px; border:1px solid #DFDFDF; font:normal bold 14px/18px; color:#262425; text-decoration:none; display:block; float:left; opacity:0.8; -moz-opacity:0.8; filter:alpha(opacity:80);cursor:pointer;}"+
+".ppcmain .ppcbox .ppcpage a.selected{ background:#F60; border:1px solid #F60; color:#FFF;text-decoration:underline;}"+
+".ppcmain .ppcadbox .comp a:hover{color:#F30;}"+
+"</style>"+
+"<div class=\"ppcmain\"><div class=\"ppcbox\">"+
+	"<div id=\"ppccomplist\">"+
+{%for list in listall%}
+"<div class=\"ppcadbox\">"+
+{%if list.ptitle%}
+"<div class=\"ptitle\"><b><a href=\"{{list.purl}}\" target=_blank>{{list.pdttxt}}{{list.ptitle}}</a></b></div>"+
+{%endif%}
+"<div class=\"ppctxt\">"+
+    
+    "<div class=\"txt\"><a href=\"{{list.purl}}\" target=\"_blank\">{{list.ppckeywords}}</a></div>"+
+    "<div style=\"color:#666;\">{{list.quantityinfo}}&nbsp;&nbsp;&nbsp;&nbsp;{{list.priceinfo}}</div>"+
+    "<div><span>{{list.ppctel}}</span></div>"+
+    {%if list.contact%}
+    "<div class=\"comp\">联系人：<a href=\"{{list.curl}}\" target=\"_blank\">{{list.contact}}</a></div>"+
+    {%endif%}
+"</div>"+
+"</div>"+
+{%endfor%}
+
+	"</div><div style=\"clear:both\"></div>"+
+"<div class=\"ppcpage\">"+
+	"<span onclick=\"javascript:ppcpagep('{{keywords}}',1,{{m}},this)\" id=pageup style='display:none'>上一页</span><input type=hidden id=lastpage value={{lastpage}} />"+
+	"<span onclick=\"javascript:ppcpagen('{{keywords}}',1,{{m}},this)\" id=pagedown >下一页</span><input type=hidden id=pagenext value=1 />"+
+"</div>"+
+"<div style=\"clear:both\"></div>"+
+"</div><div style='clear:both'></div></div><div style='clear:both'></div>";
+document.write(adstr);
+function ppcpagen(keywords,page,m,th)
+{
+    var npage=$("#pagenext").val();
+	var lastpage=$("#lastpage").val();
+	var npage=$("#pagenext").val();
+	if (parseInt(npage)<parseInt(lastpage))
+	{
+		th.style.display="";
+		$("#pageup").css("display","");
+		$("#pagenext").val(parseInt(npage)+1);
+		npage=$("#pagenext").val();
+		if (npage==lastpage)
+		{th.style.display="none";}
+	}else{
+		$("#pageup").css("display","");
+		th.style.display="none";
+	}
+	
+	if (parseInt(npage)>=parseInt(lastpage))
+	{
+		npage=lastpage;
+	}
+	var ajaxurl="http://pyapp.zz91.com/showppccomplist/?keywords="+keywords+"&mm="+m+"&page="+npage+"";
+	$.getScript(ajaxurl, function() {
+			var result = _suggest_result_;
+			$(".ppcmain #ppccomplist").html(result);
+	})
+}
+function ppcpagep(keywords,page,m)
+{ 
+	var npage=$("#pagenext").val();
+	$("#pagenext").val(parseInt(npage)-1);
+	var npage=$("#pagenext").val();
+	$("#pagedown").css("display","");
+	if (parseInt(npage)<=1){$("#pageup").css("display","none");}
+	if (parseInt(npage)<=0){npage=1;$("#pagenext").val(1)};
+	var ajaxurl="http://pyapp.zz91.com/showppccomplist/?keywords="+keywords+"&mm="+m+"&page="+npage+"";
+	$.getScript(ajaxurl, function() {
+			var result = _suggest_result_;
+			$(".ppcmain #ppccomplist").html(result);
+	})
+}
+function firstpage()
+{
+	var lastpage=$("#lastpage").val();
+	if (lastpage=='1')
+	{
+		$("#pagedown").css("display","none");
+		$("#pageup").css("display","none");
+	}
+}
+$(document).ready(function(e) {
+	firstpage();
+});
+{%endif%}

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script>
+function selectOption(menuname,value)
+{
+    var menu = document.getElementById(menuname);
+	if (menu)
+	{
+	for(var i=0;i<=menu.options.length;i++){
+		if(menu.options[i].value==value)
+		{
+			menu.options[i].selected = true;
+			break;
+		}
+	}
+	}
+}
+function getproductlist(obj,frm)
+{
+	frm.cproductslist1.value=obj.value;
+}
+</script>
+</head>
+<body>
+<form id="form1" name="form1" method="get" action="/huangye2013/">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td><select name="membertype1" id="membertype1">
+<option value="">会员类型</option>
+<option value="1">高会</option>
+<option value="0">普会</option>
+</select>
+<script>selectOption("membertype1","{{membertype1}}")</script>
+</td>
+<td>
+<select name="comkeywords1" id="comkeywords1">
+<option value="">--请选择--</option>
+<option value="1">废金属</option>
+<option value="2">废塑料</option>
+<option value="3">废旧轮胎与废橡胶</option>
+<option value="4">废纺织品与废皮革</option>
+<option value="5">废纸</option>
+<option value="6">废电子电器</option>
+<option value="10">废玻璃</option>
+<option value="12">废旧二手设备</option>
+<option value="14">其他废料</option>
+<option value="15">服务</option>
+</select>
+<script>selectOption("comkeywords1","{{comkeywords1}}")</script>
+</td>
+<td>主营
+  <select name="slselect" id="slselect" onchange="return getproductlist(this,this.form)">
+    <option value="">请选择废塑料</option>
+    <option value="PP">PP</option>
+    <option value="PET">PET</option>
+    <option value="PE">PE</option>
+    <option value="ABS">ABS</option>
+    <option value="PVC">PVC</option>
+    <option value="PS">PS</option>
+    <option value="PA">PA</option>
+    <option value="PC">PC</option>
+    <option value="PVB">PVB</option>
+    <option value="PMMA">PMMA</option>
+    <option value="EVA">EVA</option>
+    <option value="(otherlist !PET !pp !PE !ABS !PVC !PS !PA !PC !PVB !PMMA !EVA)">其他类</option>
+  </select> 
+  <script>selectOption("slselect","{{slselect}}")</script>
+  <select name="jsselect" id="jsselect" onchange="return getproductlist(this,this.form)">
+    <option value="">请选择废金属</option>
+    <option value="铜">铜</option>
+    <option value="铁">铁</option>
+    <option value="铝">铝</option>
+    <option value="镍">镍</option>
+    <option value="锌">锌</option>
+    <option value="锡">锡</option>
+    <option value="电线">电线</option>
+    <option value="电缆">电缆</option>
+    <option value="合金">合金</option>
+    <option value="工具钢">工具钢</option>
+    <option value="(otherlist !铜 !铁 !铝 !镍 !锌 !锡 !电缆 !电线 !合金 !工具钢)">其他类</option>
+  </select>
+  <input type="hidden" name="otherjs" id="otherjs" value="(otherlist !PET !pp !PE !ABS !PVC !PS !PA !PC !PVB !PMMA !EVA)" />
+<script>selectOption("jsselect","{{jsselect}}")</script>
+  <input name="cproductslist1" type="hidden" id="cproductslist1" size="15" value="{{cproductslist1}}" />
+</td>
+<td>地区
+  <select name="cadd1" id="cadd1">
+  	<option value="">地区</option>
+    <option value="浙江|江苏|上海">江浙沪</option>
+    <option value="广东">广东</option>
+    <option value="河北">河北</option>
+    <option value="山东">山东</option>
+    <option value="河南">河南</option>
+    <option value="(otherprovince !浙江 !江苏 !上海 !广东 !河北 !山东 !河南)">其他地区</option>
+  </select>  
+  <script>selectOption("cadd1","{{cadd1}}")</script>
+  </td>
+<td>&nbsp;</td>
+<td><input type="submit" name="button" id="button" value="提交" /></td>
+</tr>
+</table></form>
+{{searchstr}}
+<div>结果：{{listcount}}</div>
+<br>
+{%for list in listall%}
+<font style="font-size:16px; font-family:'Adobe 黑体 Std R'"><b>公司名称：{{list.cname}}</b></font><br>
+<font style="font:12px; line-height:22px; font-family:'黑体'">主营：{{list.cproductslist}}<br>
+联系人：{{list.ccontactp}}<br>
+{%if list.ctel%}
+电话：{{list.ctel}}<br>
+{%endif%}
+手机：{{list.cmobile}}<br>
+地址：{{list.cadd}}<br>
+<br>
+<br></font>
+{%endfor%}
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>微信绑定</title>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/common.css"/>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js" ></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+	</head>
+	<body>
+		<div style="padding: 30px;">
+		{%if havebind%}
+		<div>该二维码已经确认绑定过，请不要重复绑定！</div>
+		{%else%}
+		<div class="aui-content">
+	        <ul class="aui-list-view">
+	            <li class="aui-list-view-cell">
+	                <div class="aui-ellipsis-2">
+	                代理商名称：{{resulta.aname}}
+	                </div>
+	            </li>
+	            <li class="aui-list-view-cell">
+	                <div class="aui-ellipsis-2">
+	                联系人：{{resulta.contactname}}
+	                </div>
+	            </li>
+	        </ul>
+	    </div>
+        <a class="aui-btn aui-btn-block aui-btn-warning modifiedbutton" href="/agent/auth_login.html?randomstr={{randomstr}}">确定绑定</a>
+		{%endif%}
+		</div>
+	</body>
+</html>

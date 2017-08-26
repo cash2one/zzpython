@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>简单表单页</title>
+<!-- 此文件为了显示Demo样式，项目中不需要引入 -->
+  <link href="../assets/css/dpl-min.css" rel="stylesheet">
+  <link href="../assets/css/bui-min.css" rel="stylesheet">
+  <style>
+	  #overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:white;opacity:0.5;filter:alpha(opacity=50);display:none;}
+	  .win{position:absolute;top:50%;left:50%;width:400px;height:100px;background:#fff;border:4px solid gray;margin:-102px 0 0 10px;display:none;padding: 20px;}
+  </style>
+</head>
+<body>
+  <div class="demo-content">
+    
+<!-- 简单搜索页 ================================================== -->
+    <div class="row">
+      <div class="span24 doc-content">
+      {{n}}
+        <form id="search" class="form-panel">
+          <ul class="panel-content">
+            <li>
+              <select name="level">
+                <option>一级类目</option>
+              </select>
+              团队名称：<input type="text" name="user_category_label" value="{%if user_category_label%}{{user_category_label}}{%endif%}"/>
+              <button type="button" class="button button-primary" onClick=send1()>查询>></button>
+              <button type="button" class="button button-success" onclick="window.location='user_category_add.html?code='">添加顶级团队</button>
+            </li>
+          </ul>
+        </form>
+        <table cellspacing="0" class="table table-bordered">
+          <thead>
+            <tr>
+              <th width="15"></th>
+              <th>团队代号</th>
+              <th>团队名称</th>
+              <th>子栏目</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          	{%for list in listall%}
+            <tr>
+              <td><input type="checkbox"></td>
+              <td ><span class="x-tree-icon-wraper"><span class="x-tree-icon x-tree-elbow-expander"></span><span class="x-tree-icon x-tree-elbow-dir"></span></span>{{list.code}}</td>
+              <td>{{list.label}}</td>
+              <td>
+              	{%if list.has_son%}<a href="?code={{list.code}}">进入子栏目</a>{%endif%}
+              	&nbsp;&nbsp;
+              	{%if list.has_father%}<a href="?code={{list.father_code}}">返回父栏目</a>{%endif%}
+              	<!--  <a href="?code={{list.code}}">{%if list.has_son%}返回上一级{%endif%}</a>-->
+              </td>
+              <td>{{list.statustxt|safe}}</td>
+              <td>
+              	<!--<span class="grid-command"><a class="edit"  user_category_id="{{list.id}}" user_category_label="{{list.label}}" title="编辑属性">编辑</a></span>-->
+              	<span class="grid-command"><a href="usercategoryedit.html?user_category_id={{list.id}}" title="编辑属性">编辑</a></span>
+              	<span class="grid-command"><a href="user_category_add.html?code={{list.code}}">添加子团队</a></span>
+              	<span class="grid-command">
+              		{%ifequal list.closeflag 1%}
+              			<a href="changestatus_usercate.html?id={{list.id}}&status={{list.closeflag}}">开通</a>
+              		{%endifequal%}
+              		{%ifequal list.closeflag 0%}
+              			<a href="changestatus_usercate.html?id={{list.id}}&status={{list.closeflag}}">冻结</a>
+              		{%endifequal%}
+              	</span>
+              	<span class="grid-command"><a onclick="return confirm('确实要删除吗')" href="user_category_del.html?id={{list.id}}">删除</a></span>
+              </td>
+            </tr>
+            {%endfor%}
+          </tbody>
+        </table>
+        <div>
+          <!--  <div class="pagination pull-right">
+            <ul>
+              <li class="disabled"><a href="#">« 上一页</a></li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">下一页 »</a></li>
+            </ul>
+          </div>-->
+          <div class="inline pull-right page">
+			<form>
+				共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页 &nbsp;&nbsp; {% if firstpage %}
+				<a href="?page={{prvpage}}&{{searchurl}}">上一页</a>{%else%}<font color="gray">上一页</font>{%endif%} {%for p in page_range%} {%if p.nowpage%}
+				<span class='current'>{{p.number}}</span>&nbsp; {%else%}
+				<a href="?page={{p.number}}&{{searchurl}}">{{p.number}}&nbsp;</a> {%endif%} {%endfor%} {% if lastpage%}
+				<a href="?page={{nextpage}}&{{searchurl}}"><!--<a href="javascript:void(0)" class="nextpage" value="{{nextpage}}">-->下一页</a>{%else%}<font color="gray">下一页</font>{%endif%}&nbsp;&nbsp;&nbsp; {%if flag%}
+				<input type="hidden" name="flag" value="{{flag}}">{%endif%} {%if writer%}
+				<input type="hidden" name="writer" value="{{writer}}">{%endif%}
+				<input type="hidden" name="page_listcount" value="{{page_listcount}}">&nbsp;&nbsp; 去第
+				<input type="text" name="page" style="width:28px" value="{{page}}"> /{{page_listcount}} 页
+				<input type="submit" style="display:none"> &nbsp;&nbsp;
+				<a href='?page=1&{{searchurl}}'>首页</a><a href='?page={{page_listcount}}&{{searchurl}}'>尾页</a>
+			</form>
+		</div>
+        </div>
+      </div>
+    </div> 
+<!-- script end -->
+  </div>
+  <br />
+  <br />
+   <script type="text/javascript" src="../assets/js/jquery-1.8.1.min.js"></script>
+   <script type="text/javascript" src="../assets/js/jquery.lightbox_me.js"></script>
+  <script type="text/javascript">
+  function send1()
+	{
+		//$("#search").action="http://www.baidu.com"
+		$("#search").submit()
+	}
+  </script>
+  <!-- 快速编辑开始 -->
+  <script type="text/javascript">
+  $(document).ready(function(){
+	  $(".edit").click(function(e){
+			var user_category_id=$(this).attr("user_category_id");
+			$('#user_category_id').val(user_category_id);
+			//alert(authid);
+			var user_category_label=$(this).attr("user_category_label");
+			$('#user_category_label').val(user_category_label);
+			//alert(authlabel);
+			$('#win9').lightbox_me({
+				overlaySpeed:0,
+				lightboxSpeed:0,
+        		centered: true, 
+        		onLoad: function() { 
+        		}
+        	});
+			e.preventDefault();
+   });
+	  $('#win10').click(function(e){
+		  var user_category_id=$('#user_category_id').val();
+		  var user_category_label=$('#user_category_label').val();
+		  $.ajax({
+			  type: "GET",
+			  url: "quickusercategoryeditok.html?user_category_id="+user_category_id+"&user_category_label="+user_category_label,
+			  data:'',
+			  success:function(data){
+			   		window.location.href="";
+			   },
+			   error:function(data){
+					//alert("错误!青重试.");
+			   }
+		  });
+	  });
+	 
+ });
+//关闭窗口
+  function dismiss(){
+		$('#win9').trigger('close');
+	}
+  
+  </script>
+  <!-- 快速编辑结束 -->
+  
+  <!-- 编辑框div开始 -->
+  <div class="win" id="win9" name="win">
+	  <input type="hidden" id="user_category_id" >
+	  <h2><div style="width:200px;height:1px;text-align:left"> &nbsp;快速属性编辑</div> &nbsp;</h2>
+	  <br />
+	  <table>
+				<tr>
+					<td style="width:60px">&nbsp;权限名称:</td>
+					<td>
+						<input type="text" id="user_category_label" name="user_category_label" value="" style="width:300px">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input type="button" value="确认" id="win10" onclick="dismiss()">
+						<input type="button" onclick="dismiss()" value="返回">
+					</td>
+				</tr>
+	  </table>
+</div>
+  <!-- 编辑框div结束 -->
+</body>
+</html>  

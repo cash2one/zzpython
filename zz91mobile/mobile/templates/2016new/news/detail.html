@@ -1,0 +1,294 @@
+<!doctype html>
+<html class="no-js">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="keywords" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>{{content.title}}-资讯中心-ZZ91再生网-手机端</title>
+		<!-- Set render engine for 360 browser -->
+		<meta name="renderer" content="webkit">
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<link rel="icon" type="image/png" href="/assets/i/favicon.png">
+		<!-- Add to homescreen for Chrome on Android -->
+		<meta name="mobile-web-app-capable" content="yes">
+		<link rel="icon" sizes="192x192" href="http://img0.zz91.com/front/favicon.ico">
+		<!-- Add to homescreen for Safari on iOS -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Amaze UI" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/front/favicon.ico">
+		<!-- Tile icon for Win8 (144x144 + tile color) -->
+		<meta name="msapplication-TileImage" content="http://img0.zz91.com/front/favicon.ico">
+		<meta name="msapplication-TileColor" content="#0e90d2">
+		<link rel="stylesheet" href="/assets/css/amazeui.min.css">
+		<link rel="stylesheet" href="/assets/css/app.css">
+		<script type="text/javascript" src="http://img0.zz91.com/zz91/mobile/js/jquery.js"></script>
+		<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+		<style type="text/css">
+			.am-get-tell {
+				position: fixed;
+				background: #01ba2e;
+				right: 20px;
+				bottom: 20px;
+				display: inline-block;
+				z-index: 5;
+				color: #fff;
+				height: 40px;
+				width: 40px;
+				border-radius: 50%;
+				text-align: center;
+				line-height: 40px;
+				box-shadow: 0 0 3px #000;
+			}
+			
+			.am-font-small {
+				font-style: normal;
+				vertical-align: middle;
+			}
+			
+			.am-font-big {
+				font-style: normal;
+				vertical-align: middle;
+			}
+			
+			html {
+				font-size: 11px;
+			}
+		</style>
+		{%if seohost%}
+		<link rel="canonical" href="http://news.zz91.com/{{seohost}}">{%endif%}
+	</head>
+
+	<body ng-app="myApp" ng-controller="userCtrl">
+		<div class="topada">
+			<script type="text/javascript" src="http://gg.zz91.com/show?p=743"></script>
+		</div>
+		<header data-am-widget="header" class="am-header am-header-default">
+			<div class="am-header-left am-header-nav">
+				<a href="javascript:void(0)" class="" onClick="javascript :history.back(-1)">
+					<i class="am-header-icon am-icon-chevron-left"></i>
+				</a>
+			</div>
+			<h1 class="am-header-title">资讯详情</h1>
+			<div class="am-header-right am-header-nav">
+				<a href="javascript:void(0)" class="">
+					<i class="am-header-icon am-icon-star-o"></i>
+				</a>
+				<a href="javascript:void(0)" class="" data-am-modal="{target: '#my-alert'}">
+					<i class="am-header-icon am-icon-share-alt"></i>
+				</a>
+			</div>
+		</header>
+
+		<a class="am-get-tell" href="huzhu-fabu.html"><i class="am-icon-pencil"></i></a>
+
+		<section>
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5512236620584335" data-ad-slot="9255868807" data-ad-format="auto"></ins>
+			<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+			<h2 class="am-text-sm am-text-left am-margin-xs am-margin-bottom-0" style="font-size: 18px;line-height: 30px;font-weight: bold;">{{content.title|safe}}</h2>
+			<div class="am-cf am-text-xs am-padding-xs color-99">
+				<div class="am-fl">来源：ZZ91 | {{content.pubdate}}</div>
+				<div class="am-fr"> <span><em class="am-font-small am-text-xs">A</em> | <em class="am-font-big am-text-lg">A</em></span> <span class="am-icon-eye am-margin-left-xs"> {{content.click}}</span></div>
+			</div>
+			<article style="line-height: 30px;" data-am-widget="paragraph" class="am-paragraph am-paragraph-default" data-am-paragraph="{ tableScrollable: true, pureview: true }">
+				<div>{{content.content|safe}}</div>
+			</article>
+
+			<div class="am-list-news-default am-margin-0">
+				<h3 class="am-padding-xs am-margin-bottom-xs">相关阅读</h3>
+				<ul class="am-list am-margin-top-0">
+					{%for t in typenews%}
+					<li class="am-g am-list-item-desced ">
+						<!--<div class="am-u-sm-3 am-list-thumb">
+                        <a href="news-view.html">
+                            <img src="http://kpcdn.qiniudn.com/upload/201625/145465522482656b446f88265c.jpg-200">
+                        </a>
+                    </div>-->
+						<div class="am-u-sm">
+							<h3 class="am-list-item-hd am-margin-bottom-xs am-list-item-text am-margin-top-0">
+                            <a href="/news/{{url}}/newsdetail{{t.id}}.htm" class="color-brue">{{t.title}}</a>
+                        </h3>
+							<div class="am-margin-bottom-xs am-text-small color-99">{{t.description}} <span class="am-icon-eye am-text-small am-fr"> {{t.click}}</span></div>
+						</div>
+					</li>
+					{%endfor%}
+				</ul>
+			</div>
+		</section>
+		<script>
+			var browser = {
+				versions: function() {
+					var u = navigator.userAgent,
+						app = navigator.appVersion;
+					return { //移动终端浏览器版本信息 
+						trident: u.indexOf('Trident') > -1, //IE内核
+						presto: u.indexOf('Presto') > -1, //opera内核
+						webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+						gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+						mobile: !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/), //是否为移动终端
+						ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+						android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+						iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+						iPad: u.indexOf('iPad') > -1, //是否iPad
+						webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+					};
+				}(),
+				language: (navigator.browserLanguage || navigator.language).toLowerCase()
+			}
+
+			function openappdown() {
+				if (browser.versions.ios || browser.versions.iPhone || browser.versions.iPad) {
+					window.location = "https://itunes.apple.com/us/app/zz91zai-sheng-wang/id944851616?l=zh&ls=1&mt=8";
+				} else if (browser.versions.android) {
+					window.location = "http://m.zz91.com/app.html";
+				}
+			}
+
+			function closeapp(url) {
+				$.get(url, function(result) {
+					if (result == "1") {
+						document.getElementById('J_appJump').style.display = 'none';
+					}
+					if (result == "0") {
+						document.getElementById('J_appJump').style.display = '';
+					}
+				});
+			}
+			var config = {
+				url: 'http://m.zz91.com/news/newsdetail{{id}}.htm',
+				title: '{{content.title}}-资讯中心-ZZ91再生网',
+				desc: '',
+				img: 'http://img0.zz91.com/zz91/images/48R.png',
+				img_title: '{{content.title}}',
+				from: 'ZZ91再生网'
+			};
+		</script>
+		
+		
+		<aside class="download-bar J_fixBar" id="J_appJump" style="display: none;">
+			<div class="download">
+				<a class="close J_closeBtn J_closeAPP" href="javascript:closeapp('/closefloatapp.html?close=1')" target="J_appJumpFrame"></a>
+				<div class="intro" style="padding-top: 5px;;">
+					<div class="logo"></div>
+					<ul>
+						<li class="logo-title">安卓（IOS）客户端全新升级</li>
+						<li style="font-size: 12px;">下载获取<b style="color: #FFFF00;">20</b>元红包</li>
+					</ul>
+				</div>
+				<div class="download-btn"> <a class="J_app" href="http://m.zz91.com/app.html">免费下载</a> </div>
+			</div>
+		</aside>
+
+		<script>
+			$(document).ready(function() {
+				closeapp("/closefloatapp.html")
+			});
+		</script>
+		<!--在这里编写你的代码-->
+
+		<!--[if (gte IE 9)|!(IE)]><!-->
+		<script src="/assets/js/jquery.min.js"></script>
+		<!--<![endif]-->
+		<!--[if lte IE 8 ]>
+		<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+		<script src="/assets/js/amazeui.ie8polyfill.min.js"></script>
+		<![endif]-->
+		<script src="/assets/js/amazeui.min.js"></script>
+		
+		
+		<!--分享-->
+		<div id="mcover" onclick="$('#mcover').hide();">
+			<img src="http://img0.zz91.com/zz91/mobile/images/guide.png" />
+		</div>
+		<div class="am-modal am-modal-alert am-modal-active" tabindex="-1" id="my-alert">
+			<div class="am-modal-dialog" id="nativeShare">
+				<ul class="am-share-sns am-avg-sm-4">
+					<li class="nativeShare" data-app="QQ">
+						<a href="#" data-am-share-to="qq">
+							<i class="am-icon-qq"></i><span class="am-text-xs">qq好友</span>
+						</a>
+					</li>
+					<li class="nativeShare" data-app="QZone">
+						<a href="#" data-am-share-to="QZone">
+							<i class="am-icon-star"></i><span class="am-text-xs">qq空间</span>
+						</a>
+					</li>
+					<li class="nativeShare" data-app="weixin">
+						<a href="#" data-am-share-to="weixin">
+							<i class="am-icon-wechat"></i><span class="am-text-xs">微信好友</span>
+						</a>
+					</li>
+					<li class="nativeShare" data-app="weixinFriend">
+						<a href="#" data-am-share-to="weixinFriend">
+							<i class="am-icon-wechat"></i><span class="am-text-xs">朋友圈</span>
+						</a>
+					</li>
+					<li class="nativeShare" data-app="sinaWeibo">
+						<a href="#" data-am-share-to="weibo">
+							<i class="am-icon-weibo"></i><span class="am-text-xs">新浪微博</span>
+						</a>
+					</li>
+				</ul>
+				<div class="am-modal-bd am-padding-0"></div>
+				<div class="am-modal-footer"><span class="am-modal-btn am-modal-btn-bold">取消</span></div>
+			</div>
+		</div>
+		<script src="/assets/js/nativeShare.js"></script>
+		<script type="text/javascript">
+			
+			var share_obj = new nativeShare('nativeShare', config);
+			angular.module('myApp', []).controller('userCtrl', function($scope) {})
+		</script>
+		<div style="display:none">
+			<script>
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+					var s = document.getElementsByTagName("script")[0];
+					s.parentNode.insertBefore(hm, s);
+				})();
+			</script>
+			<!--baidu analysis-->
+			<script>
+				var _hmt = _hmt || [];
+				(function() {
+					var hm = document.createElement("script");
+					hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+					var s = document.getElementsByTagName("script")[0];
+					s.parentNode.insertBefore(hm, s);
+				})();
+			</script>
+			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+			<script>
+				(adsbygoogle = window.adsbygoogle || []).push({
+					google_ad_client: "ca-pub-5512236620584335",
+					enable_page_level_ads: true
+				});
+			</script>
+			<script>
+				(function(i, s, o, g, r, a, m) {
+					i['GoogleAnalyticsObject'] = r;
+					i[r] = i[r] || function() {
+						(i[r].q = i[r].q || []).push(arguments)
+					}, i[r].l = 1 * new Date();
+					a = s.createElement(o),
+						m = s.getElementsByTagName(o)[0];
+					a.async = 1;
+					a.src = g;
+					m.parentNode.insertBefore(a, m)
+				})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+				ga('create', 'UA-62929713-1', 'auto');
+				ga('send', 'pageview');
+			</script>
+	</body>
+
+</html>

@@ -1,0 +1,163 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <title>查看排名-ZZ91再生网金牌供应商评选活动</title>
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <meta content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <link rel="stylesheet" href="css/base-min.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.8.0.min.js"></script>
+    <style type="text/css">
+        @font-face {
+  font-family: 'iconfont';
+  src: url('//at.alicdn.com/t/font_1465185506_6753018.eot'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_1465185506_6753018.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_1465185506_6753018.woff') format('woff'), /* chrome、firefox */
+  url('//at.alicdn.com/t/font_1465185506_6753018.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_1465185506_6753018.svg#iconfont') format('svg'); /* iOS 4.1- */
+    }
+
+
+.iconfont{font-family:"iconfont";
+
+font-size:16px;font-style:normal;}
+        .backtop{
+            background: #ff0000;
+            height: 30px;
+            line-height: 30px;
+        }
+        .backtop a{
+            color: #fff
+        }
+        .icon-back{
+            position: relative;
+            top: 2px;
+        }
+        .listpage{
+            padding: 0 10px;
+        }
+        .play-title{
+            font-size: 14px;
+            line-height: 35px;
+        }
+        .bk{
+            background: #ccc;
+            height: 1px
+        }
+        .paly-list li{
+            border-bottom: 1px solid #ccc;
+            padding: 5px 10px;
+            line-height: 20px;
+        }
+        .playmc{
+            border-radius: 3px;
+            display: inline-block;
+            height: 20px;
+            line-height: 20px;
+            width: 40px;
+            text-align: center;
+            color: #fff;
+            background: #cc9900;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px #000;
+        }
+        .paly-list li:nth-child(2) .playmc{
+            background: #ff6600
+        }
+        .paly-list li:nth-child(3) .playmc{
+            background: #ffcc00
+        }
+        .paly-list li:nth-child(4) .playmc{
+            background: #ff9900
+        }
+        .paly-list li:nth-child(5) .playmc{
+            background: #cc6600
+        }
+        .paly-list li:nth-child(6) .playmc{
+            background: #cc0033
+        }
+        .paly-list li:nth-child(7) .playmc{
+            background: #336633
+        }
+        .paly-list li:nth-child(8) .playmc{
+            background: #996600
+        }
+        .paly-list li:nth-child(9) .playmc{
+            background: #669900
+        }
+        .paly-list li:nth-child(10) .playmc{
+            background: #cccc00
+        }
+        .palyman{
+            margin-left: 15px;
+        }
+        .playnun{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="backtop">
+        <a href="javascript:void(0)"  onClick="javascript :history.back(-1)">
+            <i class="iconfont icon-back">&#xe600</i>返回
+        </a>
+    </div>
+    <div class="listpage">
+        <h2 class="play-title">2015-2016年年度金牌供应商评选活动（截至到 2016-6-12 23:59:59 结束投票）</h2>
+        <p><i class="iconfont icon-back">&#xe602</i> 截至时间:2016-6-12 23:59:59</p>
+        <p style="color: #ff0000;">2016-6-13 以后的投票无效</p>
+        <hr class="bk">
+        <p><i class="iconfont icon-back">&#xe601</i> 投票规则：</p>
+        <p>1. 每一个微信号每天最多拥有3次投票机会</p>
+        <p>2. 每天投票超过三次者，当天不能再进行投票</p>
+        <hr class="bk">
+        <hr>
+        <h3 class="play-title">当前最新排名</h3>
+        <hr class="bk">
+        <ol class="paly-list">
+        	{%for list in listall%}
+            <li class="clear">
+                <span class="playmc">第{{list.n}}名</span>
+                <span class="palyman">{{list.orderid}}号：{{list.company_name}} </span>
+                <span class="playnun">{{list.votecount}}票</span>
+            </li>
+            {%endfor%}
+        </ol>
+    </div>
+
+    <div style="display:none">
+    <script>
+           var _hmt = _hmt || [];
+           (function() {
+               var hm = document.createElement("script");
+               hm.src = "//hm.baidu.com/hm.js?c120670c814d08922e7048797e6472c1";
+               var s = document.getElementsByTagName("script")[0];
+               s.parentNode.insertBefore(hm, s);
+           })();
+    </script>
+    <!--baidu analysis-->
+    <script>
+        var _hmt = _hmt || [];
+        
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?f41f07cad5c54cf66717306958dd62ed";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    </div>
+</body>
+<script>
+
+</script>
+
+</html>

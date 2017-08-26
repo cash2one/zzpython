@@ -1,0 +1,42 @@
+
+        <link rel="stylesheet" type="text/css" href="http://m.zz91.com/css/ldb_weixin/index.css"/>
+
+        <div class="record"><center>
+        	<a onclick="loaddata('http://app.zz91.com/ldb_weixin/phonerecords-1.html?company_id={{company_id}}');" {%ifequal datearg "1"%}class="on"{%endifequal%}>1个月</a>
+        	<a onclick="loaddata('http://app.zz91.com/ldb_weixin/phonerecords-2.html?company_id={{company_id}}');" {%ifequal datearg "2"%}class="on"{%endifequal%}>3个月</a>
+        	<a onclick="loaddata('http://app.zz91.com/ldb_weixin/phonerecords-3.html?company_id={{company_id}}');" {%ifequal datearg "3"%}class="on"{%endifequal%}>1年</a>
+        	<a onclick="loaddata('http://app.zz91.com/ldb_weixin/phonerecords-4.html?company_id={{company_id}}');" {%ifequal datearg "4"%}class="on"{%endifequal%}>1年以前</a>
+        	<a onclick="loaddata('http://app.zz91.com/ldb_weixin/phonerecords.html?company_id={{company_id}}');" {%ifequal datearg ""%}class="on"{%endifequal%}>全部</a></center>
+        </div>
+        <!--end record-->
+         <div class="box" id="box_1">
+          <center>
+        	<div class="tab" id="tab">
+                    	<div class="tab-name">电话量：{{phonerecords.count}}通</div>
+                        <!--end tab-name-->
+                        <div class="tab-name">消费金额：{{phonerecords.sum_call_fee}}元</div>
+                        <div style="clear:both"></div>
+{%for list in listall%}
+      <div class="td_lst">
+    	<div class="tab-lst">
+        	<div class="lst-phone" id="lst-phone{{list.id}}">{%ifequal list.state "1"%}<a onclick="dialtel('{{list.caller_id}}')">{{list.caller_id}}</a>{%else%}<a onclick="lookfirst({{company_id}},{{list.id}});">{{list.caller_id_}}<font color=red>未接</font>查看</a>{%endifequal%}</div>
+            <div class="lst-price">{{list.call_fee}}元</div>
+        </div>
+        <div class="tab-lst">
+        	<div class="lst-date">{{list.start_time}}</div>
+            <div class="lst-date_">{{list.province}}</div>
+        </div>
+      </div>
+{%endfor%}
+{%if count > 10%}
+        <div id="pulldiv" class='pulldiv' onclick="loadmorep(this,'/ldb_weixin/phonerecordsmore.html?datearg={{datearg}}')" title="/ldb_weixin/phonerecordsmore.html?datearg={{datearg}}"><span class='mui-icon mui-icon-down'></span><span>点此加载更多</span></div>
+    {%endif%}
+</div>
+
+    
+        
+        
+          </center>
+         </div>
+<input type="hidden" id="appnavname" value="电话清单" />
+         

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>批量收录/推送-seo客户管理系统</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+    <script type="text/javascript" src="http://192.168.2.4/assets/js/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript">
+    // 批量收录
+    function asubmit() {
+    	var urls = $("#bdurls").val();
+    	if (urls == '')
+    	{
+    		alert('请输入需要查询的url……');
+    		$('#bdurls').focus();
+    		return false;
+    	}
+		with (document.getElementById("pl-cx")) {
+			action="pl_sl2.html";
+			method="post";
+			submit();
+		}
+	}
+
+	// 批量推送
+	function tsSubmit() {
+		var bdUrls = $("#bdurls").val();
+		if (bdUrls == '') {
+			alert("请输入需要推送的url……")
+			$('#bdurls').focus();
+			return false;
+		}
+		with (document.getElementById("pl-cx")) {
+			action="pl_ts2.html";
+			method="post";
+			submit();
+		}
+	}
+	// $(document).ready(function() {
+	// 	$('input:radio').click(function() {
+	// 		var seValue = $(this).attr("name").substr(6);
+	// 		// alert(seValue);
+	// 		$('.ts-wz').children().removeAttr("checked");
+	// 		$("input:radio[name=ts-wz-"+seValue+']').attr("checked",true);
+	// 	});
+	// });
+    </script>
+        <style type="text/css">
+        .container {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="ta container">
+    <form id="pl-cx" name="pl-cx" role="form">
+        {% csrf_token %}
+        <div class="form-group">
+            <textarea rows="25" cols="100" id="bdurls" name="bdurls" placeholder="输入要查询的网址,一行一个（回车换行） &#xA &#xA例如:http://www.baidu.com" class="form-control" style="width: 80%;"></textarea>
+        </div>
+        <!-- <div class="ts-wz form-group">
+            <label>推送选择:</label>
+            <label class="radio-inline">
+                <input type="radio" name="ts-wz" value="ts-zz91" checked="checked">&nbsp;zz91商铺
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="ts-wz" value="ts-dlwz">&nbsp;独立网站
+            </label>
+        </div> -->
+        <div class="form-group">
+            <input type="button" id="tj" name="tj" value="收录查询" onclick="asubmit()" class="btn btn-success">
+            <input type="button" id="bd-ts" name="bd-ts" value="主动推送" onclick="tsSubmit()" class="btn btn-info">
+            <input type="reset" value="清空输入" class="btn btn-danger">
+        </div>
+    </form>
+</div>
+<div class="fx-jdt"></div>
+<div class="all-nums"></div>
+<div class="sl-num"></div>
+<div class="sl-rate"></div>
+<div></div>
+</body>
+</html>
