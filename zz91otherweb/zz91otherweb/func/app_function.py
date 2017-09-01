@@ -724,4 +724,61 @@ class zapp:
                 listall.append(list)
         return {'list':listall,'count':count}
 
-    
+    #weixinlist
+    def weixinlist(self,frompageCount,limitNum,account="",gmt_created="",livetime=""):
+        sqls=''
+        argument=[]
+        if account:
+            sqls+='and a.account=%s'
+            argument.append(account)
+        if gmt_created:
+            sqls+='and d.gmt_created like %s'
+            argument.append(gmt_created+'%')
+        if livetime:
+            sqls+='and e.livetime=%s'
+            argument.append(livetime+'%s')
+        sql='select a.weixin,a.account,b.name,c.label,b.business,d.gmt_created,d.closeflag,e.livetime,f.label as price_label,g.keywordslist as trade_label from company_account as a left join company as b on a.company_id=b.old_id left join category as c on c.code=b.industry_code left join oauth_access as d on d.company_id=a.company_id left join weixin_live as e on e.weixinid=d.open_id left join app_order_price as f on f.company_id=a.company_id left join app_order_trade as g on g.company_id=a.company_id where a.id>0 '+sqls+' limit '+str(frompageCount)+','+str(limitNum)+''
+        result=self.dbc.fetchalldb(sql,argument)
+        sqlc='select count(0) as count from company_account as a left join company as b on a.company_id=b.old_id left join category as c on c.code=b.industry_code left join oauth_access as d on d.company_id=a.company_id left join weixin_live as e on e.weixinid=d.open_id left join app_order_price as f on f.company_id=a.company_id left join app_order_trade as g on g.company_id=a.company_id where a.id>0 '+sqls+''
+        count=self.dbc.fetchonedb(sqlc,argument)
+        if count is None:
+            count=0
+        else:
+            count=count[0]
+        listall=[]
+        if result:
+            for list in result:
+                weixin=list[0]
+                if weixin is None:
+                    weixin=''
+                account=list[1]
+                if account is None:
+                    account=''
+                name=list[2]
+                if name is None:
+                    name=''
+                industry=list[3]
+                if industry is None:
+                    industry=''
+                business=list[4]
+                if business is None:
+                    business=''
+                gmt_created=list[5]
+                if gmt_created is None:
+                    gmt_created=''
+                closeflag=list[6]
+                if closeflag is None:
+                    closeflag=''
+                livetime=list[7]
+                if livetime is None:
+                    livetime=''
+                price_label=list[8]
+                if price_label is None:
+                    price_label=''
+                trade_label=list[9]
+                if trade_label is None:
+                    trade_label=''
+                list={'weixin':weixin,'account':account,'name':name,'industry':industry,'business':business,'gmt_created':gmt_created,'closeflag':closeflag,'livetime':livetime,'price_label':price_label,'trade_label':trade_label}
+                listall.append(list)
+        return {'list':listall,'count':count}
+            

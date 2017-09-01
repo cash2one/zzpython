@@ -112,6 +112,60 @@ def appinstalluser(request):
     prvpage = funpage.prvpage()
     return render_to_response('app/appinstalluser.html',locals())
 
+#weixinlist
+def weixinlist(request):
+    page=request.GET.get('page')
+    account=request.GET.get('account')
+    gmt_created=request.GET.get('gmt_created')
+    livetime=request.GET.get('livetime')
+    searchlist={}
+    if account:
+        searchlist['account']=account
+    if gmt_created:
+        searchlist['gmt_created']=gmt_created
+    if livetime:
+        searchlist['livetime']=livetime
+    searchurl=urllib.urlencode(searchlist)
+    if not page:
+        page=1
+    funpage=zz91page()
+    limitNum=funpage.limitNum(20)
+    nowpage=funpage.nowpage(int(page))
+    frompageCount=funpage.frompageCount()
+    after_range_num = funpage.after_range_num(3)
+    before_range_num = funpage.before_range_num(6)
+    messagelist=zzapp.weixinlist(frompageCount,limitNum,account=account,gmt_created=gmt_created,livetime=livetime)
+    listcount=0
+    listall=messagelist['list']
+    listcount=messagelist['count']
+    if (int(listcount)>1000000):
+        listcount=1000000-1
+    listcount = funpage.listcount(listcount)
+    page_listcount=funpage.page_listcount()
+    firstpage = funpage.firstpage()
+    lastpage = funpage.lastpage()
+    page_range  = funpage.page_range()
+    if len(page_range)>7:
+        page_range=page_range[:7]
+    nextpage = funpage.nextpage()
+    prvpage = funpage.prvpage()
+    return render_to_response('app/weixinlist.html',locals())
+#发送服务号推广消息
+def send_service_message(request):
+    if request.method=='GET':
+        return render_to_response('app/send_service_message.html',locals())
+    if request.method=="POST":
+        content=request.POST.get('content')
+
+#发送其他推广消息
+def send_other_message(request):
+    if request.method=='GET':
+        return render_to_response('app/send_other_message.html',locals())
+    if request.method=="POST":
+        content=request.POST.get('content')
+        
+        
+    
 def addmessage(request):
     request_url=request.META.get('HTTP_REFERER','/')
     return render_to_response('app/addmessage.html',locals())

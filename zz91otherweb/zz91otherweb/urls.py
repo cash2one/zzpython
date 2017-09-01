@@ -274,6 +274,12 @@ urlpatterns += patterns('zz91otherweb.app',
     (r'^feiliao123/activechart.html$', 'activechart'),
     (r'^feiliao123/activecharturl.html$', 'activecharturl'),
     
+    #微信后台管理
+    (r'^feiliao123/weixinlist.html$', 'weixinlist'),
+    (r'^feiliao123/send_service_message.html$', 'send_service_message'),
+    (r'^feiliao123/send_other_message.html$', 'send_other_message'),
+    
+    
 	(r'^feiliao123/userKeywords.html$', 'userKeywords'),
 	
 	#抢购首页
