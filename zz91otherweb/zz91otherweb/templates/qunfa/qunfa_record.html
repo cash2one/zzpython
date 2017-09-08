@@ -36,7 +36,8 @@
     		{
     			var startTime = new Date(refreshStart.replace('/\-/g', '\/'));
     			var endTime = new Date(refreshEnd.replace('/\-/g', '\/'));
-    			// alert(startTime, endTime);
+    			// alert(startTime);
+    			// alert(endTime);
     			if (startTime > endTime) 
     			{
     				alert('刷新结束时间不能大于开始时间……');
@@ -58,7 +59,12 @@
     			submit();
     		}
     	}
-
+    	// jQuery(document).ready(function() {
+    	// 	doc = $(window.frames['add_task'].document);
+    	// 	alert(doc.find('#fh-btn').prop('disabled', true));
+    	// 	doc2 = $(window.frames['form_iframe'].document);
+    	// 	alert(doc2.find('#cbb').val());
+    	// });
     </script>
 </head>
 <body>
@@ -67,7 +73,10 @@
 	<table class="table table-bordered" style="margin-bottom: 0px;">
 		<tbody>
 			<tr>
-				<td>群发内容</td>
+				<td>
+					群发内容
+					<button class="btn btn-success pull-right" style="padding: 0 20px;margin-top: -2.5px;margin-bottom: -2.5px;" onclick="window.location='qunfa_list.html'">返回</button>
+				</td>
 			</tr>
 			<tr>
 				<td>

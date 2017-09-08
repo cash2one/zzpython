@@ -118,6 +118,8 @@ def weixinlist(request):
     account=request.GET.get('account')
     gmt_created=request.GET.get('gmt_created')
     livetime=request.GET.get('livetime')
+    order=request.GET.get('order')
+    service=request.GET.get('service')
     searchlist={}
     if account:
         searchlist['account']=account
@@ -125,6 +127,10 @@ def weixinlist(request):
         searchlist['gmt_created']=gmt_created
     if livetime:
         searchlist['livetime']=livetime
+    if order:
+        searchlist['order']=order
+    if service:
+        searchlist['service']=service
     searchurl=urllib.urlencode(searchlist)
     if not page:
         page=1

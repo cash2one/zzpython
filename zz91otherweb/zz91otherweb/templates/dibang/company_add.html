@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/style.css" />
+		<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<style>
+			.form-inline input{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<form class="form-inline definewidth m20" action="company_save.html" method="post">
+			<table class="table table-bordered table-hover definewidth m10">
+			<tr><td class="tableleft">公司名称</td><td><input type="text" name="name"/></td></tr>
+			<tr><td class="tableleft">公司类型</td><td><select name="ctype" style="display: block;">
+				<option value="">请选择...</option>
+				<option value="1">公司</option>
+				<option value="2">个人</option>
+			</select></td></tr>
+			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /></td></tr>
+			</table>
+			<input type="hidden" name="group_id" value={{group_id}} />
+		</form>
+	</body>
+</html>
+

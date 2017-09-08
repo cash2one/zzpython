@@ -35,15 +35,15 @@
     <div class="container clearfix logo-search">
         <div class="row">
             <div class="col-md-6 col-sm-12">
-                <img src="http://b.zz91.com/cp/prolist/images/logo.jpg" ><span class="module-name text-cl66">PP破碎料</span>
+                <img src="http://b.zz91.com/cp/prolist/images/logo.jpg" ><span class="module-name text-cl66">{{keywords}}</span>
             </div>
             <div class="col-md-6 col-sm-12">
 
                 <div class="col-md-8 col-md-offset-4 padding-0 ">
-                    <input class="col-md-9 col-sm-12 col-xs-12 search-ipt">
+                    <input class="col-md-9 col-sm-12 col-xs-12 search-ipt" id="input">
                        
                     </input>
-                    <button type="button"  class="col-md-3 col-sm-12 col-xs-12 search-btn">
+                    <button type="button"  class="col-md-3 col-sm-12 col-xs-12 search-btn" onclick="search()">
                         搜 索
                     </button >
                 </div>
@@ -81,7 +81,7 @@
         <div class="smallNav-box">
             <div class="clearfix smallNav text-ff">
                
-                <div class="pull-left smallNav-right">共123家 <span class="text-yel">PET瓶脱标机</span> 商家信息</div>
+                <div class="pull-left smallNav-right">共{{listcount}}家 <span class="text-yel">{{keywords}}</span> 商家信息</div>
              
                 <div class="pull-right ">
                     <ul class="clearfix smallNav-ul row">
@@ -91,29 +91,11 @@
                             <!-- <div class="bt-xian"></div> -->
                             <div class="smallNav-ul-all">
                                 <ul class="smallNav-ads clearfix smallNav-ul-ads1">
-                                    <li class="pull-left"><a href="#">江浙沪</a></li>
-                                    <li class="pull-left"><a href="">华东区</a></li>
-                                    <li class="pull-left"><a href="">华南区</a></li>
-                                    <li class="pull-left"><a href="">华中区</a></li>
-                                    <li class="pull-left"><a href="">华北区</a></li>
-                                    <li class="pull-left"><a href="">海外</a></li>
-                                    <li class="pull-left"><a href="">北京</a></li>
-                                    <li class="pull-left"><a href="">上海</a></li>
-                                    <li class="pull-left"><a href="">山东</a></li>
-                                    <li class="pull-left"><a href="">重庆</a></li>
-
+                                	{%for list in arealist%}
+                                    <li class="pull-left"><a href="/cp/price-{{keyword}}.html?province={{list.label}}">{{list.label}}</a></li>
+                                	{%endfor%}
                                 </ul>
                                 <ul class="smallNav-ads clearfix">
-                                    <li class="pull-left"><a href="">海外</a></li>
-                                    <li class="pull-left"><a href="">北京</a></li>
-                                    <li class="pull-left"><a href="">上海</a></li>
-                                    <li class="pull-left"><a href="">山东</a></li>
-                                    <li class="pull-left"><a href="">重庆</a></li>
-                                    <li class="pull-left"><a href="">海外</a></li>
-                                    <li class="pull-left"><a href="">北京</a></li>
-                                    <li class="pull-left"><a href="">上海</a></li>
-                                    <li class="pull-left"><a href="">山东</a></li>
-                                    <li class="pull-left"><a href="">重庆</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -126,53 +108,46 @@
 
     <div class="container">
         <div class="row">
+        	{%for list in listall%}
             <div class="col-md-6 col-sm-12 ">
                 <div class="price-info-box">
                     <div class="row">
                         <div class="col-md-5 col-sm-5 col-xs-5">
                             <div class="price-info-img">
-                                <a href=""><img src="http://img3.zz91.com/220x180/other/2017/08/10/1502377936520.PNG" alt=""></a>
+                                {%if list.domain_zz91%}<a href="http://{{list.domain_zz91}}.zz91.com"><img src="http://img3.zz91.com/220x180/{{list.pic_address}}" alt=""></a>{%else%}
+						                    <img src="http://img3.zz91.com/220x180/{{list.pic_address}}" alt="">{%endif%}
                             </div>
                             
                         </div>
                         <div class="col-md-7 col-sm-7 col-xs-7">
-                            <strong class="ellipsis-2"><a href="">渔网 PA06废网 PA渔网 供应废渔网 1000吨</a></strong>
-                            <div class="margin-t-10">价格：￥<span class="text-danger">2500.00</span>元/吨</div>
-                            <div class="margin-t-10">个体经营(陈志凯)&nbsp;&nbsp;&nbsp;<span class="text-cl99">福建福州</span></div>
-                            <div class="margin-t-10 text-cl66">2015-03-23</div>
+                            <strong class="ellipsis-2"><a href="{{list.url}}">{{list.title}}</a></strong>
+                            <div class="margin-t-10">价格：{%if list.price%}￥<span class="text-danger">{{list.price}}</span>{%endif%}</div>
+                            <div class="margin-t-10"><a href="http://{{list.domain_zz91}}.zz91.com">{{list.companyname}}</a>&nbsp;&nbsp;&nbsp;<span class="text-cl99">{{list.area}}</span></div>
+                            <div class="margin-t-10 text-cl66">{{list.gmt_time}}</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-sm-12 ">
-                <div class="price-info-box">
-                    <div class="row">
-                        <div class="col-md-5 col-sm-5 col-xs-5">
-                            <div class="price-info-img">
-                                <a href=""><img src="http://img3.zz91.com/220x180/other/2017/08/10/1502377936520.PNG" alt=""></a>
-                            </div>
-                            
-                        </div>
-                        <div class="col-md-7 col-sm-7 col-xs-7">
-                            <strong class="ellipsis-2"><a href="">渔网 PA06废网 PA渔网 供应废渔网 1000吨</a></strong>
-                            <div class="margin-t-10">价格：￥<span class="text-danger">2500.00</span>元/吨</div>
-                            <div class="margin-t-10">个体经营(陈志凯)&nbsp;&nbsp;&nbsp;<span class="text-cl99">福建福州</span></div>
-                            <div class="margin-t-10 text-cl66">2015-03-23</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           {%endfor%}
         </div> 
     </div>
 
     <ul class="pager">
-        <li><a href="#">上一页</a></li>
-        <li><a href="#" class="thispage">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">下一页</a></li>
+        {% if firstpage %}
+        <li><a href="/cp/price-{{keyword}}-{{prvpage}}.html?province={{province}}">上一页</a></li>
+        {%endif%}
+        
+        {% for p in page_range %} 
+        {% if p.number == nowpage %}
+        <li><a href="/cp/price-{{keyword}}-{{p.number}}.html?province={{province}}" class="thispage">{{p.number}}</a></li>
+        {% else %}
+        <li><a href="/cp/price-{{keyword}}-{{p.number}}.html?province={{province}}">{{p.number}}</a></li>
+        {%endif%}
+      	{% endfor %}
+      	
+      	{% if lastpage%}
+        <li><a href="/cp/price-{{keyword}}-{{nextpage}}.html?province={{province}}">下一页</a></li>
+        {%endif%}
     </ul>
 
     <div class="container">
@@ -180,29 +155,16 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="infobox">
                     <div class="infobox-title clearfix">
-                        <div class="infobox-name pull-left">pp相关资讯</div>
-                        <div class="infobox-more pull-right"><a href="#">更多>></a></div>
+                        <div class="infobox-name pull-left">{{keywords_hex}}相关资讯</div>
+                        <div class="infobox-more pull-right"><a href="http://huzhu.zz91.com">更多>></a></div>
                     </div>
                     <div class="infobox-list">
                         <div class="row">
+                        	{%for list in newslist%}
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
-                                <a href="#">年前供需压力仍存PP期价受抑中长期供应压力</a>
+                                <a href="/news/news{{list.id}}.html">{{list.title}}</a>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
-                                <a href="#">年前供需压力仍存PP期价受抑中长期供应压力</a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
-                                <a href="#">年前供需压力仍存PP期价受抑中长期供应压力</a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
-                                <a href="#">年前供需压力仍存PP期价受抑中长期供应压力</a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
-                                <a href="#">年前供需压力仍存PP期价受抑中长期供应压力</a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
-                                <a href="#">年前供需压力仍存PP期价受抑中长期供应压力</a>
-                            </div>
+                           {%endfor%}
                         </div>
                     </div>
                 </div>
@@ -210,29 +172,16 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="infobox">
                     <div class="infobox-title clearfix">
-                        <div class="infobox-name pull-left">pp相关资讯</div>
-                        <div class="infobox-more pull-right"><a href="#">更多>></a></div>
+                        <div class="infobox-name pull-left">{{keywords_hex}}相关行情</div>
+                        <div class="infobox-more pull-right"><a href="http://jiage.zz91.com">更多>></a></div>
                     </div>
                     <div class="infobox-list">
                         <div class="row">
+                        		{%for list in pricelist%}
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
-                                <a href="#">年前供需压力仍存PP期价受抑中长期供应压力</a>
+                                <a href="{{list.url}}">{{list.title}}</a>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
-                                <a href="#">年前供需压力仍存PP期价受抑中长期供应压力</a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
-                                <a href="#">年前供需压力仍存PP期价受抑中长期供应压力</a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
-                                <a href="#">年前供需压力仍存PP期价受抑中长期供应压力</a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
-                                <a href="#">年前供需压力仍存PP期价受抑中长期供应压力</a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
-                                <a href="#">年前供需压力仍存PP期价受抑中长期供应压力</a>
-                            </div>
+                            {%endfor%}
                         </div>
                     </div>
                 </div>
@@ -242,10 +191,10 @@
     
     <div class="container footbox">
         <div class="text-center footbox-dogo">
-            <a href="#">会员服务</a>
-            <a href="#">APP下载</a>
-            <a href="#">关于我们</a>
-            <a href="#">废料导航</a>
+             <a href="http://service.zz91.com/" target="_blank">会员服务</a>
+            <a href="http://www.zz91.com/zt/mb/index.html" target="_blank">APP下载</a>
+            <a href="http://about.zz91.com/" target="_blank">关于我们</a>
+            <a href="http://www.zz91.com/cp/" target="_blank">废料导航</a>
         </div>
         <div class="text-center">
             <img src="http://b.zz91.com/cp/prolist/images/erwei.jpg" class="footbox-erwei">
@@ -280,4 +229,8 @@
             }
         })
     })
+    function search(){
+    	var value=$("#input").val();
+    	location.href='/cp/price-'+value+'.html'
+    }
 </script>

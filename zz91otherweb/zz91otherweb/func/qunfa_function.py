@@ -35,9 +35,10 @@ def get_qf_info(from_page_count='', limit_num='', qf_id=''):
                  "from shop_qunfa as sq left join company as c on sq.company_id=c.id left join " \
                  "company_account as ca on sq.company_id=ca.company_id"
         if from_page_count and limit_num:
-            sql_qf += " and limit %s,%s"
+            sql_qf += " and limit %s,%s order by sq.gmt_created desc"
             all_qf_data = dbc.fetchalldb(sql_qf, [from_page_count, limit_num])
         else:
+            sql_qf += " order by sq.gmt_created desc"
             all_qf_data = dbc.fetchalldb(sql_qf)
         # cache.set('qunfa_info', all_qf_data, 60 * 10)
     else:

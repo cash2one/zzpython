@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/style.css" />
+		<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<style>
+			.form-inline input{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<form class="form-inline definewidth m20" action="storage_save.html" method="post">
+			<table class="table table-bordered table-hover definewidth m10">
+			<tr><td class="tableleft">单号</td><td><input type="text" name="code"></td></tr>
+			<tr><td class="tableleft">价格</td><td><input type="text" name="price"></td></tr>
+			<tr><td class="tableleft">毛重</td><td><input type="text" name="gw"></td></tr>
+			<tr><td class="tableleft">净重</td><td><input type="text" name="nw"></td></tr>
+			<tr><td class="tableleft">皮重</td><td><input type="text" name="tare"></td></tr>
+			<tr><td class="tableleft">总价</td><td><input type="text" name="total"></td></tr>
+			<tr><td class="tableleft">订单状态</td><td><select name="status" style="display: block;">
+				<option value="">请选择...</option>
+				<option value="0">过磅中</option>
+				<option value="1">过磅完成</option>
+				<option value="2">定价完成</option>
+				<option value="3">完成皮重</option>
+				<option value="4">结算完成</option>
+				<option value="99">作废</option>
+			</select></td></tr>
+			
+			<tr><td class="tableleft">经手人</td><td><input type="text" name="price_users_selfid"></td></tr>
+			<tr><td class="tableleft">定价时间</td><td><input class="Wdate" type="text" style="width:100px" name="price_time" id="datebegin" onClick="WdatePicker()"></td></tr>
+			
+			<tr><td class="tableleft">是否支付</td><td><select name="ispay" style="display: block;">
+				<option value="">请选择...</option>
+				<option value="0">未支付</option>
+				<option value="1">已支付</option>
+				<option value="2">积分结算</option>
+			</select></td></tr>
+			
+			<tr><td class="tableleft">积分是否提现</td><td><select name="scorecheck" style="display: block;">
+				<option value="">请选择...</option>
+				<option value="0">未提现</option>
+				<option value="1">已提现</option>
+			</select></td></tr>
+			
+			<tr><td class="tableleft">支付时间</td><td><input class="Wdate" type="text" style="width:100px" name="pay_time" id="datebegin" onClick="WdatePicker()"></td></tr>
+			
+			<tr><td class="tableleft">支付人员</td><td><input type="text" name="pay_users_selfid"></td></tr>
+			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /></td></tr>
+			</table>
+			<input type="hidden" name="group_id" value={{group_id}} />
+			<input type="hidden" name="company_id" value={{company_id}}/>
+			<input type="hidden" name="products_selfid" value={{products_selfid}} />
+		</form>
+	</body>
+</html>
+

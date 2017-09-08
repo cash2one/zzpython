@@ -3,7 +3,7 @@ import os
 import sys
 import json
 import urllib
-from zz91page2 import zz91page
+from zz91page import zz91page
 from get_time import GetTime
 from zz91db_ast import companydb
 from django.shortcuts import render
@@ -290,6 +290,7 @@ def fix_task(request):
         qun_fa_content = get_qf_info('', '', sq_id)
         get_time = GetTime()
         time_now = get_time.time_now()
+        time_now2 = get_time.get_strf_time2()
         if content and start_date and exec_time and task_status:
             sql_modify = "update shop_qunfa set content=%s,start_time=%s,start_hour=%s,isqunfa=%s," \
                          "gmt_modified=%s where id=%s"

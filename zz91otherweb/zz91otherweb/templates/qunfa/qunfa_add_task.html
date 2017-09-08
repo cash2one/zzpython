@@ -68,7 +68,6 @@
     		if (resetStatus == true) {
     			form.submit();
     		}
-
     	}
     </script>
     <style type="text/css">
@@ -84,8 +83,9 @@
 		<thead>
 			<tr style="height: 35px;">
 				<td colspan="6">
-					<span>待发客户</span> 
-					<input type="button" name="reset-all" value="清空" class="btn btn-default pull-right" style="padding: 0 20px;margin-top: -2.5px;margin-bottom: -2.5px;" onclick="return resetAll(form)">
+					<span>待发客户</span>
+					<input type="button" name="reset-all" value="清空" class="btn btn-danger pull-right" style="padding: 0 20px;margin-top: -2.5px;margin-bottom: -2.5px;margin-left: 10px;" onclick="return resetAll(form)">
+                    <input type="button" name="fh-btn" id="fh-btn" value="返回" class="btn btn-success pull-right" style="padding: 0 20px;margin-top: -2.5px;margin-bottom: -2.5px;" onclick="window.location='qunfa_manage.html'">
 					<input type="hidden" name="sq-id" value="{{ qf_id }}">
 				</td>
 			</tr>

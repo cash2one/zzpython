@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>{{keywords_hex}}-公司</title>
+
+    <!-- Bootstrap -->
+    <link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+    <link href="http://b.zz91.com/comm/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://b.zz91.com/cp/prolist/css/keyword.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://b.zz91.com/comm/bootstrap/js/html5shiv.min.js"></script>
+      <script src="http://b.zz91.com/comm/bootstrap/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="bs-docs-header">
+        <div class="pagetop">
+            <div class="container clearfix">
+                <div class="pull-left">
+                    <a href="#" class="text-cl66 text-ft12">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="text-cl66 text-ft12">注册</a>
+                </div>
+                <div class="pull-right text-cl66 text-ft12">联系电话：0571-56611111</div>
+            </div>
+         </div>
+    </div>
+
+    <div class="container clearfix logo-search">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <img src="http://b.zz91.com/cp/prolist/images/logo.jpg" ><span class="module-name text-cl66">{{keywords_hex}}</span>
+            </div>
+            <div class="col-md-6 col-sm-12">
+
+                <div class="col-md-8 col-md-offset-4 padding-0 ">
+                    <input class="col-md-9 col-sm-12 col-xs-12 search-ipt" id="input">
+                       
+                    </input>
+                    <button type="button"  class="col-md-3 col-sm-12 col-xs-12 search-btn" onclick='search()'>
+                        搜 索
+                    </button >
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="smallNav-box">
+            <div class="clearfix smallNav text-ff">
+                <div class="pull-left smallNav-right">共{{companylist.count}}家 <span class="text-yel">{{keywords_hex}}</span> 商家信息</div>
+
+                <div class="pull-right smallNav-left">
+                    <ul class="clearfix smallNav-ul row">
+                        <li class="pull-left smallNav-ul-ls col-xs-4">
+                            经营模式
+                            
+                            <div class="secd-nav">
+                            	
+                            	{%for list in business_mod%}
+                                <div><a href="/cp/firm-{{keywords}}.html?business_mod={{list.label}}">{{list.label}}</a></div>
+                               {%endfor%}
+                            </div>
+                        </li>
+                        <li class="pull-left smallNav-ul-ls  col-xs-4">
+                            主营行业
+                            <div class="secd-nav">
+                            {%for list in industry_label%}
+                                <div><a href="/cp/firm-{{keywords}}.html?industry={{list.label}}">{{list.label}}</a></div>
+                            {%endfor%}
+                            </div>
+                        </li>
+                        <li class="pull-left smallNav-ul-ls col-xs-4">
+                            所在地
+                            <!-- <div class="bt-xian"></div> -->
+                            <div class="smallNav-ul-all">
+                                <ul class="smallNav-ads clearfix smallNav-ul-ads1">
+                                	{%for list in arealist%}
+                                    <li class="pull-left"><a href="/cp/firm-{{keywords}}.html?province={{list.label}}">{{list.label}}</a></li>
+                                	{%endfor%}
+                                </ul>
+                                <ul class="smallNav-ads clearfix">
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="container visible-md visible-lg">
+        <div class="page-way">
+            <a href="">公司黄页</a> >  <a href="">{{keywords_hex}}</a>
+        </div>
+    </div>
+		{%for list in listall%}
+    <div class="container">
+        <div class="ifmation-top">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-3  col-xs-12"><a href="http://{{list.domain_zz91}}.zz91.com" target="_blank">{{list.compname}}</a></div>
+                <div class="col-lg-4 col-md-4 col-sm-5  col-xs-12"><span class="text-cl99">联系人：</span> {{list.contact}}&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-cl99">所在地区：</span>{{list.area_province}}</div>
+
+                <div class="col-lg-4 visible-lg"></div>
+                <div class="col-md-3 visible-md"></div> 
+                <div class="col-sm-1 visible-sm"></div> 
+                <!-- <div class="col-xs-4 visible-xs"></div> --> 
+                <div class="col-lg-2 col-md-3 col-sm-3  col-xs-12">企业类型：{{list.service}}&nbsp;&nbsp;&nbsp;&nbsp;{%if list.zst_year%}第{{list.zst_year}}年{%endif%}</div>
+            </div>
+        
+        </div>
+        <div class="ifmation-all"> 
+            <div class="row ">
+            	  {%if list.productlist.list%}
+                <div class="col-md-5 col-sm-12">
+                	{%for p in list.productlist.list%}
+                    <div class="col-xs-6 text-center">
+                        <div class="ifmation-imgbox">
+                            <a href="http://trade.zz91.com/productdetails{{p.pdt_id}}.htm" target="_blank">
+                                <img src="{{p.pdt_images}}" alt="{{p.pdt_name}}">
+                            </a>
+                        </div>
+                        <div class="ifmation-title">{{p.pdt_name}}</div>
+                    </div>
+                  {%endfor%}
+                </div>
+                {%endif%}
+                <div class="col-md-5 col-sm-12 ">
+                    <div class="ifmation-detail">
+                        <h4 class="text-cl66">{%if list.business%}主营产品{%elif list.introduction%}公司简介{%endif%} </h4>
+                        <div>{%if list.business%}{{list.business}}{%elif list.introduction%}{{list.introduction}}{%endif%}</div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-12" style="float: right;width: 100%;">
+                    <div class="col-md-12 col-xs-6 text-center ifmation-btnbox">
+                        <button type="button" class="btn btn-success " onclick="location.href='http://china.zz91.com/inquiry/inquiryApi.htm?companyId={{list.id}}#messeges'">在线询价</button>
+                    </div>
+                    {%if list.vipflag%}
+                    <div class="col-md-12 col-xs-6 text-center ifmation-btnbox">
+                        <button type="button" class="btn btn-warning " onclick="location.href='http://{{list.domain_zz91}}.zz91.com/lxfs.htm'">联系方式</button>
+                    </div>
+                    {%else%}
+                    <div class="col-md-12 col-xs-6 text-center ifmation-btnbox">
+                        <button type="button" class="btn btn-warning " onclick="location.href='http://company.zz91.com/compinfo{{list.id}}.htm'">联系方式</button>
+                    </div>
+                    {%endif%}
+                </div>
+            </div>
+        </div>  
+    </div>
+    {%endfor%}
+    <ul class="pager">
+    		{% if firstpage %}
+        <li><a href="/cp/firm-{{keywords}}-{{prvpage}}.html?province={{province}}&business_mod={{business}}&industry={{industry}}">上一页</a></li>
+        {%endif%}
+        
+        {% for p in page_range %} 
+        {% if p.number == nowpage %}
+        <li><a href="/cp/firm-{{keywords}}-{{p.number}}.html?province={{province}}&business_mod={{business}}&industry={{industry}}" class="thispage">{{p.number}}</a></li>
+        {% else %}
+        <li><a href="/cp/firm-{{keywords}}-{{p.number}}.html?province={{province}}&business_mod={{business}}&industry={{industry}}">{{p.number}}</a></li>
+        {%endif%}
+      	{% endfor %}
+      	
+      	{% if lastpage%}
+        <li><a href="/cp/firm-{{keywords}}-{{nextpage}}.html?province={{province}}&business_mod={{business}}&industry={{industry}}">下一页</a></li>
+        {%endif%}
+    </ul>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="infobox">
+                    <div class="infobox-title clearfix">
+                        <div class="infobox-name pull-left">{{keywords_hex}}相关资讯</div>
+                        <div class="infobox-more pull-right"><a href="http://huzhu.zz91.com">更多>></a></div>
+                    </div>
+                    <div class="infobox-list">
+                        <div class="row">
+                        	{%for list in newslist%}
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
+                                <a href="/news/news{{list.id}}.html">{{list.title}}</a>
+                            </div>
+                          {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="infobox">
+                    <div class="infobox-title clearfix">
+                        <div class="infobox-name pull-left">{{keywords_hex}}相关行情</div>
+                        <div class="infobox-more pull-right"><a href="http://jiage.zz91.com">更多>></a></div>
+                    </div>
+                    <div class="infobox-list">
+                        <div class="row">
+                        {%for list in pricelist%}
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 infobox-list-li">
+                                <a href="{{list.url}}">{{list.title}}</a>
+                            </div>
+                        {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container footbox">
+        <div class="text-center footbox-dogo">
+            <a href="http://service.zz91.com/" target="_blank">会员服务</a>
+            <a href="http://www.zz91.com/zt/mb/index.html" target="_blank">APP下载</a>
+            <a href="http://about.zz91.com/" target="_blank">关于我们</a>
+            <a href="http://www.zz91.com/cp/" target="_blank">废料导航</a>
+        </div>
+        <div class="text-center">
+            <img src="http://b.zz91.com/cp/prolist/images/erwei.jpg" class="footbox-erwei">
+            <p>关注我们</p>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://img0.zz91.com/lib/jquery/jquery-1.9.1.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://b.zz91.com/comm/bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
+<script type="text/javascript">
+    $(function(){
+
+        $(".smallNav-ul-ls").on({
+            "mouseenter":function(){
+                $(this).addClass("thisNva");
+            },
+            "mouseleave":function(){
+                $(this).removeClass("thisNva");
+            },
+            "touchstart":function(even){
+                if($(even.target).is(".smallNav-ul-ls")){
+                    if($(this).hasClass("thisNva")){
+                    $(this).removeClass("thisNva");
+                    }else{
+                        $(this).addClass("thisNva");
+                    }
+                }
+                
+            }
+        })
+    })
+    function search(){
+    	var value=$("#input").val();
+    	location.href='/cp/firm-'+value+'.html'
+    }
+</script>

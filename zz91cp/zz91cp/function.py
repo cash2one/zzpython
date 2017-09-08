@@ -288,20 +288,29 @@ def getcompanypricelistmore(kname="",frompageCount="",limitNum="",titlelen="",co
                 province=attrs['province']
                 city=attrs['city']
                 companyname=None
-                if company:
-                    sqlc="select name from company where id=%s"
-                    #cursor.execute(sqlc,[company_id])
-                    #alist = cursor.fetchone()
-                    alist=dbc.fetchonedb(sqlc,[company_id])
-                    if alist:
-                        companyname=alist[0]
+                sqlc="select name from company where id=%s"
+                #cursor.execute(sqlc,[company_id])
+                #alist = cursor.fetchone()
+                alist=dbc.fetchonedb(sqlc,[company_id])
+                sql='select b.domain_zz91 from company_price as a left join company as b on a.company_id=b.id where a.company_id=%s'
+                result=dbc.fetchonedb(sql,[company_id])
+                if result:
+                    domain_zz91=result[0]
+                if alist:
+                    companyname=alist[0]
                 product_id=None
                 sqlp="select product_id from company_price where id=%s"
                 alist=dbc.fetchonedb(sqlp,[id])
                 if alist:
                     product_id=alist[0]
-                if product_id:        
-                    list1={'title':title,'id':id,'product_id':product_id,'gmt_time':gmt_time,'min_price':min_price,'max_price':max_price,'price_unit':price_unit,'price':price,'area':province+city,'company_id':company_id,'companyname':companyname,'fulltitle':attrs['ptitle'],'url':'http://jiage.zz91.com/cdetail/'+str(id)+'.html','k':k}
+                if product_id:
+                    sql='select pic_address from products_pic where product_id=%s'
+                    result=dbc.fetchonedb(sql,[product_id])
+                    if result:
+                        pic_address=result[0]
+                    else:
+                        pic_address=''
+                    list1={'title':title,'id':id,'product_id':product_id,'gmt_time':gmt_time,'min_price':min_price,'max_price':max_price,'price_unit':price_unit,'price':price,'area':province+city,'company_id':company_id,'companyname':companyname,'fulltitle':attrs['ptitle'],'url':'http://jiage.zz91.com/cdetail/'+str(id)+'.html','k':k,'pic_address':pic_address,'domain_zz91':domain_zz91}
                     listall_baojia.append(list1)
             listcount_baojia=res['total_found']
             return {'list':listall_baojia,'count':listcount_baojia}
@@ -554,7 +563,131 @@ def getcompanylist(kname,frompageCount,limitNum,allnum):
             listcount_comp=res['total_found']
 
             return {'list':listall_comp,'count':listcount_comp}
+#关键词搜索公司
+def getcompanylist_firm(kname,frompageCount,limitNum,allnum):
+    port = SPHINXCONFIG['port']
+    cl = SphinxClient()
+    cl.SetServer ( SPHINXCONFIG['serverid'], port )
+    cl.SetMatchMode ( SPH_MATCH_BOOLEAN )
+    cl.SetSortMode( SPH_SORT_EXTENDED,"membership_code desc,gmt_start desc" )
+    cl.SetLimits (frompageCount,limitNum,allnum)
+    if (kname):
+        res = cl.Query ('@(name,business,address,sale_details,buy_details,tags,area_name,area_province) '+kname,'company')
+    else:
+        res = cl.Query ('','company')
+    if res:
+        if res.has_key('matches'):
+            tagslist=res['matches']
+            listall_comp=[]
+            for match in tagslist:
+                id=match['id']
+                attrs=match['attrs']
+                compname=attrs['compname']
+                viptype=str(attrs['membership_code'])
+                domain_zz91=attrs['domain_zz91']
+                address=attrs['paddress']
+                service_code=attrs['service_code']
+                sql1='select contact from company_account where company_id=%s'
+                result1=dbc.fetchonedb(sql1,[id])
+                sql2='select zst_year from company where id=%s'
+                result2=dbc.fetchonedb(sql2,[id])
+                sql3='select label from category where code=%s'
+                result3=dbc.fetchonedb(sql3,[service_code])
+                if result1:
+                    contact=result1[0]
+                else:
+                    contact=''
+                if result2:
+                    zst_year=result2[0]
+                if result3:
+                    service=result3[0]
+                membership="普通会员"
+                vipflag=None
+                if (viptype == '10051000'):
+                    membership='普通会员'
+                    vipflag=None
+                if (viptype == '10051001'):
+                    membership='再生通'
+                    vipflag=1
+                if (viptype == '1725773192'):
+                    membership='银牌品牌通'
+                    vipflag=1
+                if (viptype == '1725773193'):
+                    membership='金牌品牌通'
+                    vipflag=1
+                if (viptype == '1725773194'):
+                    membership='钻石品牌通'
+                    vipflag=1
+                pbusiness=attrs['pbusiness']
+                if pbusiness:
+                    pbusiness=subString(filter_tags(pbusiness),500)
+                parea_province=attrs['parea_province']
+                productlist=getcompanyproductslist('',1,2,id,'')
+                list1={'id':id,'compname':compname,'business':pbusiness,'area_province':parea_province,'address':address,'membership':membership,'viptype':viptype,'vipflag':vipflag,'domain_zz91':domain_zz91,'productlist':productlist,'contact':contact,'zst_year':zst_year,'service':service}
+                listall_comp.append(list1)
+            listcount_comp=res['total_found']
 
+            return {'list':listall_comp,'count':listcount_comp}
+#关键词搜索价格
+def getindexcompanylist_price(kname,frompageCount,limitNum,allnum):
+    port = SPHINXCONFIG['port']
+    cl = SphinxClient()
+    cl.SetServer ( SPHINXCONFIG['serverid'], port )
+    cl.SetMatchMode ( SPH_MATCH_BOOLEAN )
+    cl.SetSortMode( SPH_SORT_EXTENDED,"membership_code desc,gmt_start desc" )
+    cl.SetLimits (frompageCount,limitNum,allnum)
+    if (kname):
+        res = cl.Query ('@(name,business,address,sale_details,buy_details,tags,area_name,area_province) '+kname,'company')
+    else:
+        res = cl.Query ('','company')
+    if res:
+        if res.has_key('matches'):
+            tagslist=res['matches']
+            listall_comp=[]
+            for match in tagslist:
+                id=match['id']
+                attrs=match['attrs']
+                compname=attrs['compname']
+                viptype=str(attrs['membership_code'])
+                domain_zz91=attrs['domain_zz91']
+                address=attrs['paddress']
+                sql1='select contact from company_account where company_id=%s'
+                result1=dbc.fetchonedb(sql1,[id])
+                sql2='select zst_year from company where id=%s'
+                result2=dbc.fetchonedb(sql2,[id])
+                if result1:
+                    contact=result1[0]
+                else:
+                    contact=''
+                if result2:
+                    zst_year=result2[0]
+                membership="普通会员"
+                vipflag=None
+                if (viptype == '10051000'):
+                    membership='普通会员'
+                    vipflag=None
+                if (viptype == '10051001'):
+                    membership='再生通'
+                    vipflag=1
+                if (viptype == '1725773192'):
+                    membership='银牌品牌通'
+                    vipflag=1
+                if (viptype == '1725773193'):
+                    membership='金牌品牌通'
+                    vipflag=1
+                if (viptype == '1725773194'):
+                    membership='钻石品牌通'
+                    vipflag=1
+                pbusiness=attrs['pbusiness']
+                if pbusiness:
+                    pbusiness=subString(filter_tags(pbusiness),500)
+                parea_province=attrs['parea_province']
+                productlist=getcompanyproductslist('',1,2,id,'')
+                list1={'id':id,'compname':compname,'business':pbusiness,'area_province':parea_province,'address':address,'membership':membership,'viptype':viptype,'vipflag':vipflag,'domain_zz91':domain_zz91,'productlist':productlist,'contact':contact,'zst_year':zst_year}
+                listall_comp.append(list1)
+            listcount_comp=res['total_found']
+
+            return {'list':listall_comp,'count':listcount_comp}
 #获得帐号
 def getcompanyaccount(company_id):
     #获得缓存
@@ -1236,6 +1369,7 @@ def getindexcompanylist_pic(keywords="",num="",frompageCount="",limitNum="",pdt_
                 listall_company.append(list)
             listcount=res['total_found']
             return {'list':listall_company,'listcount':listcount}
+
 #最新加入普会
 def getcommoncompanylist(keywords="",num="",frompageCount="",limitNum="",pic="",companyflag=""):
     #-------------供求列表
@@ -1767,7 +1901,24 @@ def getmingganword(s):
     if "乙醚" in s:
         return 2
     return None
-   
+#获得经营模式
+def getbusiness_mod(code):
+    sql='select label,code from category where parent_code=%s'
+    result=dbc.fetchalldb(sql,[code])
+    business_mod=[]
+    for list in result:
+        dict={'label':list[0],'code':list[1]}
+        business_mod.append(dict)
+    return business_mod
+#获得行业类别
+def getindustry_label(code):
+    sql='select label,code from category where parent_code=%s'
+    result=dbc.fetchalldb(sql,[code])
+    industry_label=[]
+    for list in result:
+        dict={'label':list[0],'code':list[1]}
+        industry_label.append(dict)
+    return industry_label
 #微门户首页类
 class weimenhu:
     def __init__(self):

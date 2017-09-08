@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/style.css" />
+		<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<style>
+			.form-inline input{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<form class="form-inline definewidth m20" action="category_save.html" method="post">
+			<table class="table table-bordered table-hover definewidth m10">
+			<tr><td class="tableleft">父级类别ID</td><td><input type="text" name="sub_selfid" value={{sub_selfid}}></td></tr>
+			<tr><td class="tableleft">类别名称</td><td><input type="text" name="name" value={{name}}></td></tr>
+			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /></td></tr><input type="hidden" name="id" value={{id}}>
+			
+			</table>
+		</form>
+	</body>
+</html>

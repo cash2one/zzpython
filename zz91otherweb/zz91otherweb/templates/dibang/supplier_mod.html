@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/style.css" />
+		<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<style>
+			.form-inline input{
+				display: block;
+			}
+		</style>
+		<script>
+		function selectoption(id,value){
+			$("#"+id).val(value)
+		}
+		</script>
+	</head>
+	<body>
+		<form class="form-inline definewidth m20" action="supplier_save.html" method="post">
+			<table class="table table-bordered table-hover definewidth m10">
+			<tr><td class="tableleft">供应商类型</td><td><select name="ctype" id="select" style="display: block;">
+				<option value="1">公司</option>
+				<option value="2">个人</option>
+			</select>
+			<script>
+				selectoption("select",{{ctype}})
+			</script></td></tr>
+			
+			<tr><td class="tableleft">供应商/供货人名称</td><td><input type="text" name="name" value={{name}}></td></tr>
+			<tr><td class="tableleft">合作关系</td><td><select name="htype" id="select1" style="display: block;">
+				<option value="长期">长期</option>
+				<option value="短期">短期</option>
+			</select>
+			<script>
+				selectoption("select1","{{htype}}")
+			</script></td></tr>
+			
+			<tr><td class="tableleft">联系人</td><td><input type="text" name="contact" value={{contact}}></td></tr>
+			<tr><td class="tableleft">手机/电话</td><td><input type="text" name="mobile" value={{mobile}}></td></tr>
+			<tr><td class="tableleft">密码</td><td><input type="text" name="pwd" value={{pwd}}></td></tr>
+			<tr><td class="tableleft">地址</td><td><input type="text" name="address" value={{address}}></td></tr>
+			<tr><td class="tableleft">备注</td><td><input type="text" name="bz" value={{bz}}></td></tr>
+			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /><input type="hidden" name="id" value={{id}}></td></tr>
+			
+			</table>
+		</form>
+	</body>
+</html>

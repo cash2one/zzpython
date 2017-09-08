@@ -736,10 +736,11 @@ class zapp:
             argument.append(gmt_created+'%')
         if livetime:
             sqls+='and e.livetime=%s'
-            argument.append(livetime+'%s')
+            argument.append(livetime+'%')
         sql='select a.weixin,a.account,b.name,c.label,b.business,d.gmt_created,d.closeflag,e.livetime,f.label as price_label,g.keywordslist as trade_label from company_account as a left join company as b on a.company_id=b.old_id left join category as c on c.code=b.industry_code left join oauth_access as d on d.company_id=a.company_id left join weixin_live as e on e.weixinid=d.open_id left join app_order_price as f on f.company_id=a.company_id left join app_order_trade as g on g.company_id=a.company_id where a.id>0 '+sqls+' limit '+str(frompageCount)+','+str(limitNum)+''
         result=self.dbc.fetchalldb(sql,argument)
-        sqlc='select count(0) as count from company_account as a left join company as b on a.company_id=b.old_id left join category as c on c.code=b.industry_code left join oauth_access as d on d.company_id=a.company_id left join weixin_live as e on e.weixinid=d.open_id left join app_order_price as f on f.company_id=a.company_id left join app_order_trade as g on g.company_id=a.company_id where a.id>0 '+sqls+''
+        #sqlc='select count(0) as count from company_account as a left join company as b on a.company_id=b.old_id left join category as c on c.code=b.industry_code left join oauth_access as d on d.company_id=a.company_id left join weixin_live as e on e.weixinid=d.open_id left join app_order_price as f on f.company_id=a.company_id left join app_order_trade as g on g.company_id=a.company_id where a.id>0 '+sqls+''
+        sqlc='select count(0) as count from company_account as a left join oauth_access as d on d.company_id=a.company_id left join weixin_live as e on e.weixinid=d.open_id where a.id>0 '+sqls+''
         count=self.dbc.fetchonedb(sqlc,argument)
         if count is None:
             count=0
@@ -781,4 +782,3 @@ class zapp:
                 list={'weixin':weixin,'account':account,'name':name,'industry':industry,'business':business,'gmt_created':gmt_created,'closeflag':closeflag,'livetime':livetime,'price_label':price_label,'trade_label':trade_label}
                 listall.append(list)
         return {'list':listall,'count':count}
-            

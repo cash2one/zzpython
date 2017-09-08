@@ -4,62 +4,64 @@
 	<head>
 		<title></title>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
-		<link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
-		<link rel="stylesheet" type="text/css" href="Css/style.css" />
-		<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/style.css" />
+		<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
 		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
 		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script>
+			function selectAll(){  
+			    if ($("#SelectAll").prop("checked")) {
+			        $(":checkbox").prop("checked", true);  
+			    } else {
+			        $(":checkbox").prop("checked", false);
+			    }  
+			}  
+		</script>
 	</head>
 
 	<body>
-		{{token}} {%for list in token.groups%} {{list.id}} | {{list.name}} {%endfor%}
 		
-		<form class="form-inline definewidth m20" action="weixinlist.html" method="GET">
-			账号：<input type="text" name="account" /> &nbsp;&nbsp;&nbsp;
-			<input type="radio" name="order" value="1"/>订阅号
-			<input type="radio" name="service" value="1"/>服务号
-			加入时间：<input class="Wdate" type="text" style="width:100px" name="gmt_created" id="datebegin" onClick="WdatePicker()">
-			活跃时间：<input class="Wdate" type="text" style="width:100px" name="livetime" id="datebegin" onClick="WdatePicker()">
+		<form class="form-inline definewidth m20" action="company_list.html" method="GET" style="display: inline;">
+			公司名：<input type="text" name="name" /> &nbsp;&nbsp;&nbsp;
 			<input class="btn btn-success" type="submit" value="查询">
 		</form>
 		
+		<form action="company_del.html">
 		<table class="table table-bordered table-hover definewidth m10">
 			<thead>
 				<tr>
-					<th>微信ID</th>
-					<th>帐号</th>
+					<th>选择</th>
+					<th>公司ID</th>
+					<th>集团ID</th>
 					<th>公司名</th>
-					<th>行业</th>
-					<th>主营业务</th>
-					<th>是否取消关注</th>
-					<th>加入时间</th>
-					<th>最近活跃时间</th>
-					<th>行情订阅情况</th>
-					<th>商机订阅情况</th>
-					<th>发送服务号推广信息</th>
-					<th>发送其他推广信息</th>
+					<th>公司类型</th>
+					<th>创建时间</th>
+					<th>修改时间</th>
+					<th>操作</th>
+					<th>添加用户</th>
+					<th>添加供应商/供货人</th>
 				</tr>
 			</thead>
 			{%for list in listall%}
 			<tr>
-				<td>{{list.weixin}}</td>
-				<td>{{list.account}}</td>
+				<td><input type="checkbox" id="checkboxlist" value="{{list.id}}" name="check_box_list"></td>
+				<td>{{list.id}}</td>
+				<td>{{list.group_id}}</td>
 				<td>{{list.name}}</td>
-				<td>{{list.industry}}</td>
-				<td>{{list.business}}</td>
-				<td>{{list.closeflag}}</td>
+				<td>{{list.ctype}}</td>
 				<td>{{list.gmt_created}}</td>
-				<td>{{list.livetime}}</td>
-				<td>{{list.price_label}}</td>
-				<td>{{list.trade_label}}</td>
-				<td><input type="button" value="发送" onclick="send_service_message({{list.weixin}})" />
-					{{list.weixin}}</td>
-				<td><input type="button" value="发送" onclick="send_other_message({{list.weixin}})" />
-				{{list.weixin}}</td>
+				<td>{{list.gmt_modified}}</td>
+				<td><a href="company_mod.html?id={{list.id}}">修改</a>/<a href="company_del.html?id={{list.id}}" onclick="if(confirm('确定删除?')==false)return false;">删除</a></td>
+				<td><a href="user_add.html?group_id={{list.group_id}}&company_id={{list.id}}" target="_blank">添加用户</a></td>
+				<td><a href="supplier_add.html?group_id={{list.group_id}}&company_id={{list.id}}" target="_blank">添加供应商/供货人</a></td>
 			</tr>
 			{%endfor%}
 		</table>
+		<input class="btn btn-success" type="submit" value="一键删除">
+		<input type="checkbox" id="SelectAll" value="全选" onclick="selectAll();" />全选
+		</form>
 		<div class="inline pull-right page">
 			共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页 &nbsp;&nbsp; {% if firstpage %}
 			<a href="?page={{prvpage}}{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}">上一页</a>{%else%}
@@ -81,12 +83,6 @@
 				page1 = 1;
 			}
 			window.location.href = '?page=' + page1 + '{%if searchurl%}&{{searchurl}}{%endif%}{%if order%}&order={{order}}{%endif%}';
-		}
-		function send_service_message(weixin){
-			window.open('/feiliao123/send_service_message.html?weixin='+weixin,'_blank')
-		}
-		function send_other_message(weixin){
-			window.open('/feiliao123/send_other_message.html?weixin='+weixin,'_blank')
 		}
 	</script>
 

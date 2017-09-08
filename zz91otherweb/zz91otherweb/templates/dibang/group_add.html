@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/style.css" />
+		<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<style>
+			.form-inline input{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<form class="form-inline definewidth m20" action="group_save.html" method="post">
+			<table class="table table-bordered table-hover definewidth m10">
+			<tr><td class="tableleft">集团名称</td><td><input type="text" name="name" value={{name}}></td></tr>
+			<tr><td class="tableleft">地址</td><td><input type="text" name="address" value={{address}}></td></tr>
+			<tr><td class="tableleft">集团类型</td><td><input type="text" name="ctype" value={{ctype}}></td></tr>
+			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /></td></tr>
+			</table>
+		</form>
+	</body>
+</html>
+

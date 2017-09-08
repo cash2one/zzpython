@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/style.css" />
+		<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<style>
+			.form-inline input{
+				display: block;
+			}
+		</style>
+		<script>
+		function selectoption(id,value){
+			$("#"+id).val(value)
+		}
+	</script>
+	</head>
+	<body>
+		<form class="form-inline definewidth m20" action="user_save.html" method="post">
+			<table class="table table-bordered table-hover definewidth m10">
+			<tr><td class="tableleft">用户类别</td><td><select name="utype" id="select" style="display: block;">
+				<option value="1">管理员</option>
+				<option value="2">校验员</option>
+				<option value="3">财务人员</option>
+			</select>
+			<script>selectoption("select",{{utype}})</script></td></tr>
+			
+			<tr><td class="tableleft">用户名</td><td><input type="text" name="username" value={{username}}></td></tr>
+			<tr><td class="tableleft">密码</td><td><input type="text" name="pwd" value={{pwd}}></td></tr>
+			<tr><td class="tableleft">姓名</td><td><input type="text" name="contact" value={{contact}}></td></tr>
+			<tr><td class="tableleft">性别</td><td><select name="sex" id="select1" style="display: block;">
+				<option value="">请选择...</option>
+				<option value="男">男</option>
+				<option value="女">女</option>
+			</select>
+			<script>selectoption("select1","{{sex}}")</script></td></tr>
+			
+			<tr><td class="tableleft">手机</td><td><input type="text" name="mobile" value={{mobile}}></td></tr>
+			<tr><td class="tableleft">备注</td><td><input type="text" name="bz" value={{bz}}></td></tr>
+			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /></td></tr>
+			<input type="hidden" name="id" value={{id}}>
+			
+			</table>
+		</form>
+	</body>
+	
+</html>

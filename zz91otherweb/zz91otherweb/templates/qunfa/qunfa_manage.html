@@ -39,6 +39,15 @@
     		}
     	}
     </script>
+    <style type="text/css">
+    	th {
+    		white-space: nowrap;
+    	}
+    	.comp-name a {
+    		text-decoration: none;
+    		color: #333;
+    	}
+    </style>
 </head>
 <body>
 <div class="container" style="margin-top: 10px;">
@@ -65,7 +74,7 @@
 			<form method="post" name="task-manage" id="task-manage" action="">
 			{% for each_data in all_qf_data %}
 			<tr>
-				<td>{{ each_data.10 }}</td>
+				<td class="comp-name"><a href="http://admin1949.zz91.com/web/zz91/crm/company/detail.htm?companyId={{ each_data.2 }}" target="_blank">{{ each_data.10 }}</a></td>
 				<td>{{ each_data.11 }}</td>
 				<td>{{ each_data.1 | truncatechars:20 }}</td>
 				<td>{{ each_data.5 }}</td>
@@ -75,7 +84,7 @@
 				<td>{% if each_data.4 != 1 %}{{ each_data.7 | date:'Y-m-d H:i:s' | default:'未开始' }}{% else %}已关闭{% endif %}</td>
 				{% if each_data.4 == 0 %}<td class="text-info" style="font-weight: bold;">开启</td>{% elif each_data.4 == 1 %}<td class="text-warning" style="font-weight: bold;">已关闭</td>{% else %}<td class="text-success" style="font-weight: bold;">已完成</td>{% endif %}
 				<td>
-					<a href="qunfa_add_task.html?qf_id={{ each_data.0 }}" target="_blank">查看任务</a>
+					<a href="qunfa_add_task.html?qf_id={{ each_data.0 }}">查看任务</a>
 					<input type="hidden" name="task-id" id="task-id" value="{{ each_data.0 }}">
 				</td>
 				<td>
@@ -86,7 +95,7 @@
 			</form>
 		</tbody>
 	</table>
-	<div class="page pull-right">
+	<div class="page pull-right" style="margin-right: 0;">
 		共{{ rowcount }}条记录&nbsp;&nbsp;{{ page_num }}/{{ page_list_count }}
 		{% if first_page %}
 		<a href="?page={{ prev_page }}">上一页</a>

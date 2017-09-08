@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/bootstrap-responsive.css" />
+		<link rel="stylesheet" type="text/css" href="../Css/style.css" />
+		<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<style>
+			.form-inline input{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<form class="form-inline definewidth m20" action="product_save.html" method="post">
+			<table class="table table-bordered table-hover definewidth m10">
+			<tr><td class="tableleft">产品名称</td><td><input type="text" name="name"></td></tr>
+			<tr><td class="tableleft">产品简拼</td><td><input type="text" name="name_py"></td></tr>
+			<tr><td class="tableleft">产品规格</td><td><input type="text" name="spec"></td></tr>
+			<tr><td class="tableleft">计数单位</td><td><input type="text" name="unit"></td></tr>
+			<tr><td class="tableleft">库存</td><td><input type="text" name="stock"></td></tr>
+			<tr><td class="tableleft">备注</td><td><input type="text" name="bz"></td></tr>
+			<tr><td class="tableleft"></td><td><input class="btn btn-success" class="btn btn-success" type="submit" name="保存" /></td></tr>
+			</table>
+			<input type="hidden" name="company_id" value={{company_id}} />
+			<input type="hidden" name="category_selfid" value={{category_selfid}} />
+		</form>
+	</body>
+</html>
+

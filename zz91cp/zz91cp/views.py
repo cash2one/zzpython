@@ -650,7 +650,7 @@ def prosearch(request):
 #SEO推广客户
 def prolist(request,keywords,page=""):
     keywords_hex=keywords
-    keywords=getjiemi(keywords)
+    keywords=getjiami(keywords)
     province = request.GET.get("province")
     
     if keywords:
@@ -662,7 +662,7 @@ def prolist(request,keywords,page=""):
     if province:
         keywords=keywords+" "+province
     pdt_kind = request.GET.get("pdt_kind")
-    if (not page):
+    if not page:
         page=1
     funpage = zz91page()
     limitNum=funpage.limitNum(18)
@@ -687,6 +687,119 @@ def prolist(request,keywords,page=""):
     if not listall:
         keywords='暂无'
     return render_to_response('prolist/list.html',locals())
+
+#关键词页面公司
+def firm(request,keywords,page=""):
+    keywords_hex=keywords
+    #keywords=getjiami(keywords)
+    province = request.GET.get("province")
+    business_mod=request.GET.get("business_mod")
+    industry=request.GET.get("industry")
+    
+    
+    if keywords:
+        xgcategorylist1=getcategorylist(kname=keywords,limitcount=12)
+        xgcategorylist2=getcategorylist(kname=keywords,limitcount=30,frompageCount=12)
+        
+        newslist=getindexbbslist(kname=keywords_hex,limitcount=6)
+        pricelist=getindexpricelist(kname=keywords_hex,limitcount=6)
+    if province:
+        keywords_hex=keywords_hex+" "+province
+    else:
+        province=''
+    if business_mod:
+        keywords_hex=keywords_hex+" "+business_mod
+    else:
+        business_mod=''
+    if industry:
+        keywords_hex=keywords_hex+" "+industry
+    else:
+        industry=''
+    pdt_kind = request.GET.get("pdt_kind")
+    if (not page):
+        page=1
+    funpage = zz91page()
+    limitNum=funpage.limitNum(4)
+    nowpage=funpage.nowpage(int(page))
+    frompageCount=funpage.frompageCount()
+    after_range_num = funpage.after_range_num(2)
+    before_range_num = funpage.before_range_num(3)
+    companylist=getcompanylist_firm(kname=keywords_hex,frompageCount=frompageCount,limitNum=limitNum,allnum=1000)
+    listcount=0
+    if (companylist):
+        listall=companylist['list']
+        listcount=companylist['count']
+        if (int(listcount)>1000000):
+            listcount=1000000-1
+    listcount = funpage.listcount(listcount)
+    page_listcount=funpage.page_listcount()
+    firstpage = funpage.firstpage()
+    lastpage = funpage.lastpage()
+    page_range  = funpage.page_range()
+    nextpage = funpage.nextpage()
+    prvpage = funpage.prvpage()
+    if not listall:
+        keywords='暂无'
+    business_mod=getbusiness_mod(1020)
+    industry_label=getindustry_label(1000)
+    arealist=getarealist("10011000")
+    return render_to_response('prolist/firm.html',locals())
+    
+#关键词页面价格
+
+def pro_price(request,keywords,page=""):
+    newflag=request.GET.get("newflag")
+    mobileflag=request.GET.get("mobileflag")
+    province = request.GET.get("province")
+    keyword=keywords
+    if keywords:
+        newslist=getindexbbslist(kname=keywords,limitcount=6)
+        pricelist=getindexpricelist(kname=keywords,limitcount=6)
+    if province:
+        keywords=keywords+" "+province
+    else:
+        province=''
+    mingang=getmingganword(keywords)
+    if mingang:
+        return HttpResponseNotFound("<h1>FORBIDDEN</h1>")
+    if not mobileflag:
+        plist_pic=getindexofferlist_pic(kname=keywords,pdt_type=None,limitcount=4)
+        salesproducts=getindexofferlist(keywords,0,9)
+        buyproducts=getindexofferlist(keywords,1,9)
+        newjoincomplist=getsycompanylist(keywords,0,20,None,10)
+    arealist=getarealist("10011000")
+    if (not page):
+        page=1
+    funpage = zz91page()
+    limitNum=funpage.limitNum(10)
+    nowpage=funpage.nowpage(int(page))
+    frompageCount=funpage.frompageCount()
+    after_range_num = funpage.after_range_num(2)
+    before_range_num = funpage.before_range_num(3)
+    compnaypricelist=getcompanypricelistmore(kname=keywords,frompageCount=frompageCount,limitNum=limitNum)
+    listcount=0
+    if (compnaypricelist):
+        listall=compnaypricelist['list']
+        listcount=compnaypricelist['count']
+        if (int(listcount)>1000000):
+            listcount=1000000-1
+    listcount = funpage.listcount(listcount)
+    page_listcount=funpage.page_listcount()
+    firstpage = funpage.firstpage()
+    lastpage = funpage.lastpage()
+    page_range  = funpage.page_range()
+    nextpage = funpage.nextpage()
+    prvpage = funpage.prvpage()
+    pricelist=getindexpricelist(kname=keywords,limitcount=15,searchmode=2)
+    cplist=getcplist(keywords,50)
+    hidfloat=1
+    #----进入手机模版
+    if mobileflag:
+        adlist=getadlistkeywords("793",pingyinname)
+        return render_to_response('mobile/mprice.html',locals())
+    arealist=getarealist("10011000")
+    return render_to_response('prolist/price.html',locals())
+
 def carveoutmore(request,keywords,page):
     lb1=gettjhex1()
     lb2=gettjhex2()

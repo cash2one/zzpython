@@ -467,6 +467,52 @@ urlpatterns += patterns('zz91otherweb.price',
 	(r'^feiliao123/update_pricefield.html$', 'update_pricefield'),
 	(r'^feiliao123/del_pricefield.html$', 'del_pricefield'),
 )
+#----地磅系统
+urlpatterns += patterns('zz91otherweb.dibang',
+	#公司列表
+	(r'^feiliao123/dibang/company_list.html$', 'company_list'),
+	(r'^feiliao123/dibang/company_add.html$', 'company_add'),
+	(r'^feiliao123/dibang/company_del.html$', 'company_del'),
+	(r'^feiliao123/dibang/company_mod.html$', 'company_mod'),
+	(r'^feiliao123/dibang/company_save.html$', 'company_save'),
+	#人员管理
+	(r'^feiliao123/dibang/user_list.html$', 'user_list'),
+	(r'^feiliao123/dibang/user_add.html$', 'user_add'),
+	(r'^feiliao123/dibang/user_del.html$', 'user_del'),
+	(r'^feiliao123/dibang/user_mod.html$', 'user_mod'),
+	(r'^feiliao123/dibang/user_save.html$', 'user_save'),
+	#入库管理
+	(r'^feiliao123/dibang/storage_list.html$', 'storage_list'),
+	(r'^feiliao123/dibang/storage_add.html$', 'storage_add'),
+	(r'^feiliao123/dibang/storage_del.html$', 'storage_del'),
+	(r'^feiliao123/dibang/storage_mod.html$', 'storage_mod'),
+	(r'^feiliao123/dibang/storage_save.html$', 'storage_save'),
+	#集团管理
+	(r'^feiliao123/dibang/group_list.html$', 'group_list'),
+	(r'^feiliao123/dibang/group_add.html$', 'group_add'),
+	(r'^feiliao123/dibang/group_del.html$', 'group_del'),
+	(r'^feiliao123/dibang/group_mod.html$', 'group_mod'),
+	(r'^feiliao123/dibang/group_save.html$', 'group_save'),
+	#供应商管理
+	(r'^feiliao123/dibang/supplier_list.html$', 'supplier_list'),
+	(r'^feiliao123/dibang/supplier_add.html$', 'supplier_add'),
+	(r'^feiliao123/dibang/supplier_del.html$', 'supplier_del'),
+	(r'^feiliao123/dibang/supplier_mod.html$', 'supplier_mod'),
+	(r'^feiliao123/dibang/supplier_save.html$', 'supplier_save'),
+	#产品信息管理
+	(r'^feiliao123/dibang/product_list.html$', 'product_list'),
+	(r'^feiliao123/dibang/product_add.html$', 'product_add'),
+	(r'^feiliao123/dibang/product_del.html$', 'product_del'),
+	(r'^feiliao123/dibang/product_mod.html$', 'product_mod'),
+	(r'^feiliao123/dibang/product_save.html$', 'product_save'),
+	#废品类别管理
+	(r'^feiliao123/dibang/category_list.html$', 'category_list'),
+	(r'^feiliao123/dibang/category_add.html$', 'category_add'),
+	(r'^feiliao123/dibang/category_del.html$', 'category_del'),
+	(r'^feiliao123/dibang/category_mod.html$', 'category_mod'),
+	(r'^feiliao123/dibang/category_save.html$', 'category_save'),
+	
+)
 
 urlpatterns += patterns('zz91otherweb.automation',
 	(r'^feiliao123/automation.html$', 'feisuliao'),
