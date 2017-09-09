@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="http://b.zz91.com/layui/css/layui.css"/>	
+		<script type="text/javascript" src="http://b.zz91.com/layui/layui.js"></script>
+		<style>
+			body{
+				padding: 10px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="mainbox">
+			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+				<legend>添加分站</legend>
+			</fieldset>
+			<form class="layui-form" action="company_save.html" method="post">
+				<div class="layui-form-item">
+				    <label class="layui-form-label"><span style="color: red;">*</span> 公司名称</label>
+				    <div class="layui-input-block">
+				      	<input type="text" name="name" id="name" lay-verify="required" autocomplete="off" placeholder="请输入公司名称" class="layui-input">
+				    </div>
+			  	</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label"><span style="color: red;">*</span> 公司类型</label>
+					<div class="layui-input-inline">
+						<select name="ctype" id="ctype" lay-verify="required" lay-search="">
+							<option value="">请公司类型</option>
+							<option value="公司">公司</option>
+							<option value="个人">个人</option>
+						</select>
+					</div>
+				</div>	
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label">公司地址</label>
+				    <div class="layui-input-block">
+				      	<input type="text" name="address" id="address" lay-verify="title" autocomplete="off" placeholder="请输入公司地址" class="layui-input">
+				    </div>
+			  	</div>
+			  	
+				<div class="layui-form-item layui-col">
+					<div class="layui-input-block">
+					    <button type="reset" class="layui-btn layui-btn-primary layui-col-xs2">清除</button>
+					    <button class="layui-btn layui-btn-normal layui-col-xs2" lay-submit="" lay-filter="demo1">保存</button>
+					</div>
+				</div>
+			</form>
+		</div>
+			
+	</body>
+	<script src="js/jquery.js" charset="utf-8"></script>
+	<script src="js/comm.js" charset="utf-8"></script>
+	<script>
+		layui.use(['form', 'layedit', 'laydate'], function(){
+		  var form = layui.form
+		  ,layer = layui.layer
+		  
+		  //监听提交
+		  form.on('submit(demo1)', function(data){
+		    layer.alert(JSON.stringify(data.field), {
+		      title: '最终的提交信息',
+		      name: $("#name").val(),
+		      ctype: $("#ctype").val(),
+		      address: $("#address").val()
+		    })
+		  });
+		});
+	</script>
+</html>

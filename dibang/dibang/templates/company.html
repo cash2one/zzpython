@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="/layui/css/layui.css"/>	
+		<script type="text/javascript" src="/layui/layui.js"></script>
+		<style>
+			.mainbox{
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mainbox">
+			<div class="demoTable">
+			  公司名称：
+			  	<div class="layui-inline">
+			    	<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+			  	</div>
+			  	<button class="layui-btn layui-btn-normal" data-type="reload">查询</button>
+			  	<a href="company_add.html" class="layui-btn layui-btn-danger" data-type="">添加</a>
+			</div>
+			 
+			<table class="layui-hide" id="LAY_table_user" lay-filter="user"></table> 
+		</div>
+		<script id="barcaozuo" type="text/html">
+		  <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+		  <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+		</script>
+		<script id="baryonghu" type="text/html">
+		  <a class="layui-btn layui-btn-mini" lay-event="user_add">添加用户</a>
+		</script>
+		<script id="barsupplier" type="text/html">
+		  <a class="layui-btn layui-btn-mini" lay-event="supplier_add">添加供应商/联系人</a>
+		</script>
+		           
+	</body>
+	<script src="js/jquery.js" charset="utf-8"></script>
+	<script src="js/comm.js" charset="utf-8"></script>
+	<script>
+		layui.use('table', function(){
+		  var table = layui.table;
+		  //监听表格复选框选择
+		  table.on('checkbox(user)', function(obj){
+		    console.log(obj)
+		  });
+
+		  //方法级渲染
+		  table.render({
+		    elem: '#LAY_table_user'
+		    ,url: 'company_data.html'
+		    ,cols: [[
+		      {checkbox: true, fixed: true}
+		      ,{field:'groupname', title: '总公司名称', width:150, fixed: true}
+		      ,{field:'name', title: '分站名称', width:150}
+		      ,{field:'ctype', title: '分站类型', width:100}
+		      ,{field:'address', title: '地址', width:100}
+		      ,{field:'gmt_created', title: '创建时间', width:100}
+		      ,{field:'gmt_modified', title: '修改时间', width:100}
+		      ,{field:'caozuo', title: '操作', width:200,toolbar:'#barcaozuo'}
+		      ,{field:'tianjiayonghu', title: '添加用户', width:100,toolbar:'#baryonghu'}
+		      ,{field:'tianjiagongyingshang', title: '添加供应商/供货人', width:100,toolbar:'#barsupplier'}
+		    ]]
+		    ,id: 'testReload'
+		    ,page: true
+		    ,height: 315
+		  });
+		  
+		  //监听工具条
+		  table.on('tool(user)', function(obj){
+		    var data = obj.data;
+		    if(obj.event === 'del'){
+		      layer.confirm('真的删除行么', function(index){
+		        data={id:data.id};
+		        crmajax('post','company_del.html',data,function(){obj.del();},function(){});
+		        layer.close(index);
+		      });
+		    } else if(obj.event === 'edit'){
+		    	window.location='company_mod.html?id='+data.id;
+		      //layer.alert('编辑行：<br>'+ JSON.stringify(data))
+		    };
+		    if(obj.event === 'user_add'){
+		    	window.location='user_add.html?company_id='+data.id
+		    };
+		    if(obj.event === 'supplier_add'){
+		    	window.location='supplier_add.html?company_id='+data.id
+		    }
+		  });
+
+		  
+		  $('.demoTable .layui-btn').on('click', function(){
+		    var type = $(this).data('type');
+		    active[type] ? active[type].call(this) : '';
+		  });
+		});
+	</script>
+
+</html>

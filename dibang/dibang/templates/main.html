@@ -1,0 +1,130 @@
+
+ 
+ 
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>废料回收智能系统</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  
+  <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+  <style>
+    	.admin-iframe{position:absolute;border:0;width:100%;height:100%}
+    	body{
+    		SCROLLBAR-FACE-COLOR: #e8e7e7; 
+ SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; 
+ SCROLLBAR-SHADOW-COLOR: #ffffff; 
+ SCROLLBAR-3DLIGHT-COLOR: #cccccc; 
+ SCROLLBAR-ARROW-COLOR: #03B7EC; 
+ SCROLLBAR-TRACK-COLOR: #EFEFEF; 
+ SCROLLBAR-DARKSHADOW-COLOR: #b2b2b2; 
+ SCROLLBAR-BASE-COLOR: #000000;
+    	}
+    </style>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">废料回收智能系统</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left">
+      <li class="layui-nav-item"><a href="">人员管理</a></li>
+      <li class="layui-nav-item"><a href="">消息中心<span class="layui-badge">9</span></a></li>
+      <li class="layui-nav-item"><a href="">废料回收地磅软件下载</a></li>
+      <!--<li class="layui-nav-item">
+        <a href="javascript:;">其它系统</a>
+        <dl class="layui-nav-child">
+          <dd><a href="">邮件管理</a></dd>
+          <dd><a href="">消息管理</a></dd>
+          <dd><a href="">授权管理</a></dd>
+        </dl>
+      </li>-->
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          {{username}}
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          设置
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">计量单位</a></dd>
+          <dd><a href="">操作日志</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退了</a></li>
+    </ul>
+  </div>
+  
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">分站管理</a>
+          <dl class="layui-nav-child">
+            <dd><a href="company_add.html" target="main">添加分站</a></dd>
+            <dd><a href="company.html" target="main">分站（打包站）列表</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">供货商管理</a>
+          <dl class="layui-nav-child">
+          	
+            <dd><a href="supplier_add.html" target="main">添加供货商</a></dd>
+            <dd><a href="supplier.html" target="main">供货商列表</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+        	<a href="javascript:;">产品管理</a>
+        	<dl class="layui-nav-child">
+        		<dd><a href="category.html" target="main">产品类别</a></dd>
+	            <dd><a href="product_add.html" target="main">添加产品</a></dd>
+	            <dd><a href="product.html" target="main">产品列表</a></dd>
+	          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">库存明细</a></li>
+        <li class="layui-nav-item"><a href="">财务数据明细</a></li>
+        <li class="layui-nav-item"><a href="">每日账目清单</a></li>
+      </ul>
+    </div>
+    
+  </div>
+  <div class="layui-body" style="bottom: 0px;">
+	    <!-- 顶部切换卡 -->
+	    <div class="layui-tab layui-tab-brief" lay-filter="top-tab" lay-allowClose="true" style="margin: 0;">
+	        <!--<ul class="layui-tab-title"></ul>-->
+	        <div class="layui-tab-content" style="padding: 0px;">
+	        	<!--<div class="iframe-mask" id="iframe-mask"></div>-->
+				<iframe class="admin-iframe" id="admin-iframe" name="main" src="./index.html"></iframe>
+	        </div>
+	    </div>
+	</div>
+  
+  
+</div>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script>
+//JavaScript代码区域
+layui.use('element', function(){
+  var element = layui.element;
+  
+});
+</script>
+</body>
+</html>

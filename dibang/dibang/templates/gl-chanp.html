@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="http://b.zz91.com/layui/css/layui.css"/>	
+		<script type="text/javascript" src="http://b.zz91.com/layui/layui.js"></script>
+		<style>
+			.mainbox{
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mainbox">
+			<div class="demoTable">
+				<button class="layui-btn layui-btn-primary" data-type="">删除</button>
+			  	<button class="layui-btn layui-btn-primary" data-type="">添加</button>
+			  	<div class="layui-inline">
+			    	<input class="layui-input" name="id" id="demoReload" autocomplete="off" placeholder="名称">
+			  	</div>
+			  	<button class="layui-btn layui-btn-normal" data-type="reload">查询</button>
+			</div>
+			 
+			<table class="layui-hide" id="LAY_table_user" lay-filter="user"></table> 
+		</div>
+	</body>
+	
+	<script>
+		layui.use('table', function(){
+		  var table = layui.table;
+		  
+		  //方法级渲染
+		  table.render({
+		    elem: '#LAY_table_user'
+		    ,url: 'gl_chanp_data.json'
+		    ,cols: [[
+		      {checkbox: true, fixed: true}
+		      ,{field:'id', title: '产品编号', width:150, fixed: true}
+		      ,{field:'cpname', title: '产品名称', width:120}
+		      ,{field:'jianp', title: '名称简拼', width:100}
+		      ,{field:'leibie', title: '产品类别', width:100}
+		      ,{field:'guig', title: '规格', width:100}
+		      ,{field:'danw', title: '计数单位', width:120}
+		      ,{field:'cnum', title: '库存数量', width:120}
+		      ,{field:'beizhu', title: '备注', width:200}
+		    ]]
+		    ,id: 'testReload'
+		    ,page: true
+		    ,height: 315
+		  });
+		  
+		  var $ = layui.$, active = {
+		    reload: function(){
+		      var demoReload = $('#demoReload');
+		      
+		      table.reload('testReload', {
+		        where: {
+		          key: {
+		            id: demoReload.val()
+		          }
+		        }
+		      });
+		    }
+		  };
+		  
+		  $('.demoTable .layui-btn').on('click', function(){
+		    var type = $(this).data('type');
+		    active[type] ? active[type].call(this) : '';
+		  });
+		});
+	</script>
+</html>

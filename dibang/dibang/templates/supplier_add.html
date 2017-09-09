@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="http://b.zz91.com/layui/css/layui.css"/>	
+		<script type="text/javascript" src="http://b.zz91.com/layui/layui.js"></script>
+		<style>
+			.mainbox{
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mainbox">
+			<form class="layui-form" action="supplier_save.html" method="post">
+				<div class="layui-form-item">
+				    <label class="layui-form-label">编号</label>
+				    <div class="layui-input-block">
+				      	<input type="text" name="id" lay-verify="title" autocomplete="off" placeholder="请输入编号" class="layui-input">
+				    </div>
+			  	</div>
+				
+				<div class="layui-form-item">
+				    <label class="layui-form-label">供应商类型</label>
+				    <div class="layui-input-block">
+				      	<select name="leixing" lay-filter="aihao">
+				        	<option value=""></option>
+				        	<option value="0">个人</option>
+				        	<option value="1" selected="">公司</option>
+				      	</select>
+				    </div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label">供应商名称</label>
+				    <div class="layui-input-block">
+				      	<input type="text" name="gyname" lay-verify="title" autocomplete="off" placeholder="请输入供应商名称" class="layui-input">
+				    </div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+			    	<label class="layui-form-label">IC卡编号</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="icid" lay-verify="title" placeholder="请输入IC卡编号" autocomplete="off" class="layui-input">
+			    	</div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label">合作关系</label>
+				    <div class="layui-input-block">
+				      	<select name="guanxi" lay-filter="aihao">
+				        	<option value=""></option>
+				        	<option value="0">长期</option>
+				        	<option value="1" selected="">短期</option>
+				      	</select>
+				    </div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+			    	<label class="layui-form-label">联系人</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="user" lay-verify="required" placeholder="请输入联系人" autocomplete="off" class="layui-input">
+			    	</div>
+			  	</div>
+			  	
+				<div class="layui-form-item">
+				    <label class="layui-form-label">手机号码</label>
+				    <div class="layui-input-inline">
+				        <input type="tel" name="phone" lay-verify="phone" autocomplete="off" class="layui-input">
+				    </div>
+				</div>
+				
+				<div class="layui-form-item">
+				    <label class="layui-form-label">密码</label>
+				    <div class="layui-input-inline">
+				        <input type="tel" name="pwd" lay-verify="required" autocomplete="off" class="layui-input">
+				    </div>
+				</div>
+				<div class="layui-form-item">
+				    <label class="layui-form-label">其他联系方式</label>
+				    <div class="layui-input-inline">
+				        <input type="tel" name="order" lay-verify="phone" autocomplete="off" class="layui-input">
+				    </div>
+				</div>
+				
+				<div class="layui-form-item">
+			    	<label class="layui-form-label">地址</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="dizhi" lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input">
+			    	</div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item layui-form-text">
+				    <label class="layui-form-label">备注</label>
+				    <div class="layui-input-block">
+				      <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+				    </div>
+				</div>
+				
+				<div class="layui-form-item layui-col">
+					<div class="layui-input-block">
+					    <button type="reset" class="layui-btn layui-btn-primary layui-col-xs2">清除</button>
+					    <button class="layui-btn layui-btn-normal layui-col-xs2" lay-submit="" lay-filter="demo1">保存</button>
+					</div>
+				</div>
+				<input type="hidden" name="company_id" value={{company_id}} />
+			</form>
+		</div>
+			
+	</body>
+	<script>
+		layui.use(['form', 'layedit', 'laydate'], function(){
+		  var form = layui.form
+		  ,layer = layui.layer
+		  ,layedit = layui.layedit
+		  
+		  //自定义验证规则
+		  form.verify({
+		    title: function(value){
+		      if(value.length < 5){
+		        return '标题至少得5个字符啊';
+		      }
+		    }
+		    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+		    ,content: function(value){
+		      layedit.sync(editIndex);
+		    }
+		  });
+		  
+		  //监听提交
+		  form.on('submit(demo1)', function(data){
+		    layer.alert(JSON.stringify(data.field), {
+		    })
+		  });
+		  
+		  
+		});
+	</script>
+</html>

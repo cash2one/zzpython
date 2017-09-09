@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="http://b.zz91.com/layui/css/layui.css"/>	
+		<script type="text/javascript" src="http://b.zz91.com/layui/layui.js"></script>
+		<style>
+			.mainbox{
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mainbox">
+			<form class="layui-form" action="">
+				<div class="layui-form-item">
+				    <label class="layui-form-label">产品编号</label>
+				    <div class="layui-input-block">
+				      	<input type="text" name="id" lay-verify="title" autocomplete="off" placeholder="请输入产品编号" class="layui-input">
+				    </div>
+			  	</div>
+				
+				<div class="layui-form-item">
+				    <label class="layui-form-label">产品名称</label>
+				    <div class="layui-input-block">
+				      	<input type="text" name="cpname" lay-verify="title" autocomplete="off" placeholder="请输入产品名称" class="layui-input">
+				    </div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label">名称简拼</label>
+				    <div class="layui-input-block">
+				      	<input type="text" name="jianp" lay-verify="title" autocomplete="off" placeholder="请输入名称简拼" class="layui-input">
+				    </div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+			    	<label class="layui-form-label">产品类别</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="leibie" lay-verify="title" placeholder="请输入产品类别" autocomplete="off" class="layui-input">
+			    	</div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+			    	<label class="layui-form-label">规格</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="guig" lay-verify="title" placeholder="请输入规格" autocomplete="off" class="layui-input">
+			    	</div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+			    	<label class="layui-form-label">计数单位</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="danw" lay-verify="title" placeholder="请输入计数单位" autocomplete="off" class="layui-input">
+			    	</div>
+			  	</div>
+			  	
+				<div class="layui-form-item">
+				    <label class="layui-form-label">库存数量</label>
+				    <div class="layui-input-inline">
+				        <input type="tel" name="cnum" lay-verify="title" placeholder="请输入库存数量" autocomplete="off" class="layui-input">
+				    </div>
+				</div>
+				
+			  	<div class="layui-form-item layui-form-text">
+				    <label class="layui-form-label">备注</label>
+				    <div class="layui-input-block">
+				      <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+				    </div>
+				</div>
+				
+				<div class="layui-form-item layui-col">
+					<div class="layui-input-block">
+					    <button type="reset" class="layui-btn layui-btn-primary layui-col-xs2">清除</button>
+					    <button class="layui-btn layui-btn-normal layui-col-xs2" lay-submit="" lay-filter="demo1">保存</button>
+					</div>
+				</div>
+			</form>
+		</div>
+			
+	</body>
+	<script>
+		layui.use(['form', 'layedit', 'laydate'], function(){
+		  var form = layui.form
+		  ,layer = layui.layer
+		  ,layedit = layui.layedit
+		  
+		  //自定义验证规则
+		  form.verify({
+		    title: function(value){
+		      if(value.length < 5){
+		        return '标题至少得5个字符啊';
+		      }
+		    }
+		    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+		    ,content: function(value){
+		      layedit.sync(editIndex);
+		    }
+		  });
+		  
+		  //监听提交
+		  form.on('submit(demo1)', function(data){
+		    layer.alert(JSON.stringify(data.field), {
+		      title: '最终的提交信息'
+		    })
+		    return false;
+		  });
+		  
+		  
+		});
+	</script>
+</html>
