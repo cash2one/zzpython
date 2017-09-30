@@ -1,4 +1,5 @@
 ﻿from math import ceil
+import math
 class zz91page:
 	def __init__ (self):
 		self._limitNum          = 20
@@ -55,7 +56,6 @@ class zz91page:
 	def page_listcount(self):
 		self._page_listcount=int(ceil(self._listcount / self._limitNum))+1
 		return int(ceil(self._listcount / self._limitNum))+1
-		
 	
 	def firstpage(self):
 		if (self._page_listcount>1 and self._nowpage>1):

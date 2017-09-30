@@ -19,6 +19,11 @@
 			    }  
 			}  
 		</script>
+		<style>
+			body{
+				margin: 10px;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -29,15 +34,15 @@
 		</form>
 	
 		<form action="storage_del.html">
-		<table class="table table-bordered table-hover definewidth m10">
+		<table class="table table-bordered table-hover  m10">
 			<thead>
 				<tr>
 					<th>选择</th>
 					<th>集团ID</th>
 					<th>公司ID</th>
 					<th>单号</th>
-					<th>产品selfid</th>
-					<th>供应商selfid</th>
+					<th>产品名称</th>
+					<th>供应商</th>
 					<th>价格</th>
 					<th>毛重</th>
 					<th>净重</th>
@@ -46,6 +51,7 @@
 					<th>订单状态</th>
 					<th>经手人</th>
 					<th>定价时间</th>
+					<th>出场时间</th>
 					<th>是否支付</th>
 					<th>积分是否提现</th>
 					<th>支付时间</th>
@@ -71,13 +77,14 @@
 				<td>{{list.status}}</td>
 				<td>{{list.price_users_selfid}}</td>
 				<td>{{list.price_time}}</td>
+				<td>{{list.out_time}}</td>
 				<td>{{list.ispay}}</td>
 				<td>{{list.scorecheck}}</td>
 				<td>{{list.pay_time}}</td>
 				<td>{{list.pay_users_selfid}}</td>
 				<td>{{list.gmt_created}}</td>
 				<td>{{list.gmt_modified}}</td>
-				<td><a href="storage_mod.html?id={{list.id}}">修改</a>/<a href="storage_del.html?id={{list.id}}" onclick="if(confirm('确定删除?')==false)return false;">删除</a></td>
+				<td><a href="storage_mod.html?id={{list.id}}&group_id={{list.group_id}}&company_id={{list.company_id}}">修改</a>/<a href="storage_del.html?id={{list.id}}" onclick="if(confirm('确定删除?')==false)return false;">删除</a></td>
 			</tr>
 			{%endfor%}
 		</table>

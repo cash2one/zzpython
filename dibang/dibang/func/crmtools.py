@@ -19,11 +19,25 @@ def formattime(value,flag=''):
             beginw=begind.strftime('%W')
             #return beginw
             return int(value.strftime('%W'))-int(beginw)+1
+        #时间去格式
+        elif flag==5:
+            return value.strftime('%Y%m%d%H%M%S')
         else:
             return value.strftime('%Y-%m-%d %H:%M:%S')
     else:
         return ''
-
+#获取两个时间段的所有时间,返回list  
+def getDays(beginDate,endDate):   
+    format="%Y-%m-%d";   
+    bd=strtodatetime(beginDate,format)   
+    ed=strtodatetime(endDate,format)   
+    oneday=datetime.timedelta(days=1)    
+    num=datediff(beginDate,endDate)+1    
+    li=[]   
+    for i in range(0,num):    
+        li.append(datetostr(ed))   
+        ed=ed-oneday   
+    return li 
 #----所有时间转换函数
 def str_to_date(stringDate):
     if not ':' in stringDate:
@@ -197,6 +211,110 @@ def savekhlog(company_id,user_id,admin_user_id,details):
     db.updatetodb(sql,[company_id,user_id,details,admin_user_id,gmt_created])
     return 1
     
-#更新当天数据
-def updateseekoneday():
-    os.system("/usr/local/coreseek/bin/indexer --config /mnt/pythoncode/zz91crm/coreseek/etc/company.conf delta_company --rotate")
+#-----微信自动回复
+def backxml(xmltype="",fromUserName="",toUserName="",title="",Description="",PicUrl="",Url="",ArticleCount="",titlelist=""):
+    #图文回复(搜索)
+    CreateTime=str(int(time.time()))
+    reply_news = """<xml>
+    <ToUserName><![CDATA["""+fromUserName+"""]]></ToUserName>
+    <FromUserName><![CDATA["""+toUserName+"""]]></FromUserName>
+    <CreateTime>"""+CreateTime+"""</CreateTime>
+    <MsgType><![CDATA[news]]></MsgType>
+    <ArticleCount>3</ArticleCount>
+    <Articles>    
+    <item>
+    <Title><![CDATA[ZZ91手机网]]></Title> 
+    <Description><![CDATA['']]></Description>
+    <PicUrl><![CDATA[http://img1.zz91.com/ads/1364745600000/0ba7bf8d-8bb2-4add-a475-aa26e3103105.jpg]]></PicUrl>
+    <Url><![CDATA[http://m.zz91.com]]></Url>
+    </item>
+    <item>
+    <Title><![CDATA[点此查看相关"""+title+"""的行情报价]]></Title> 
+    <Description><![CDATA['']]></Description>
+    <PicUrl><![CDATA[picurl]]></PicUrl>
+    <Url><![CDATA[http://m.zz91.com/price/?keywords="""+title+"""]]></Url>
+    </item>
+    <item>
+    <Title><![CDATA[点此查看相关"""+title+"""的供求商机]]></Title> 
+    <Description><![CDATA['']]></Description>
+    <PicUrl><![CDATA[picurl]]></PicUrl>
+    <Url><![CDATA[http://m.zz91.com/offerlist/?keywords="""+title+"""]]></Url>
+    </item>
+    
+    </Articles>
+    </xml>"""
+    reply_tw = """<xml>
+    <ToUserName><![CDATA["""+fromUserName+"""]]></ToUserName>
+    <FromUserName><![CDATA["""+toUserName+"""]]></FromUserName>
+    <CreateTime>"""+CreateTime+"""</CreateTime>
+    <MsgType><![CDATA[news]]></MsgType>
+    <ArticleCount>"""+str(ArticleCount)+"""</ArticleCount>
+    <Articles>"""
+    for list in titlelist:
+        title=list['title']
+        reply_tw=reply_tw+"""
+        <item>
+        <Title><![CDATA["""+list['title']+"""]]></Title> 
+        <Description><![CDATA['"""+list['Description']+"""']]></Description>
+        <PicUrl><![CDATA["""+list['PicUrl']+"""]]></PicUrl>
+        <Url><![CDATA["""+list['Url']+"""]]></Url>
+        </item>"""
+    reply_tw=reply_tw+"""
+    </Articles>
+    </xml>"""
+    #图文（生意管家）
+    reply_myrc = """<xml>
+    <ToUserName><![CDATA["""+fromUserName+"""]]></ToUserName>
+    <FromUserName><![CDATA["""+toUserName+"""]]></FromUserName>
+    <CreateTime>"""+CreateTime+"""</CreateTime>
+    <MsgType><![CDATA[news]]></MsgType>
+    <ArticleCount>3</ArticleCount>
+    <Articles>    
+    <item>
+    <Title><![CDATA[ZZ91手机网]]></Title> 
+    <Description><![CDATA['']]></Description>
+    <PicUrl><![CDATA[http://img1.zz91.com/ads/1364745600000/0ba7bf8d-8bb2-4add-a475-aa26e3103105.jpg]]></PicUrl>
+    <Url><![CDATA[http://m.zz91.com]]></Url>
+    </item>
+    <item>
+    <Title><![CDATA[点此查看相关"""+title+"""的行情报价]]></Title> 
+    <Description><![CDATA['']]></Description>
+    <PicUrl><![CDATA[picurl]]></PicUrl>
+    <Url><![CDATA[http://m.zz91.com/price/?keywords="""+title+"""]]></Url>
+    </item>
+    <item>
+    <Title><![CDATA[点此查看相关"""+title+"""的供求商机]]></Title> 
+    <Description><![CDATA['']]></Description>
+    <PicUrl><![CDATA[picurl]]></PicUrl>
+    <Url><![CDATA[http://m.zz91.com/offerlist/?keywords="""+title+"""]]></Url>
+    </item>
+    
+    </Articles>
+    </xml>"""
+    
+    #文本回复
+    reply_text = """<xml>
+    <ToUserName><![CDATA["""+fromUserName+"""]]></ToUserName>
+    <FromUserName><![CDATA["""+toUserName+"""]]></FromUserName>
+    <CreateTime>"""+CreateTime+"""</CreateTime>
+    <MsgType><![CDATA[text]]></MsgType>
+    <Content><![CDATA["""+str(title).replace("(t)","\n")+"""]]></Content>
+    <FuncFlag>0</FuncFlag>
+    </xml>"""
+    #链接跳转
+    reply_link = """<xml>
+    <ToUserName><![CDATA["""+fromUserName+"""]]></ToUserName>
+    <FromUserName><![CDATA["""+toUserName+"""]]></FromUserName>
+    <CreateTime>"""+CreateTime+"""</CreateTime>
+    <MsgType><![CDATA[event]]></MsgType>
+    <Event><![CDATA[VIEW]]></Event>
+    <EventKey><![CDATA["""+Url+"""?weixinid="""+fromUserName+"""]]></EventKey>
+    </xml>"""
+    if (xmltype==1):
+        return reply_news
+    if (xmltype==3):
+        return reply_tw
+    if (xmltype==4):
+        return reply_link
+    else:
+        return reply_text

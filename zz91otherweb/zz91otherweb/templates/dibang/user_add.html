@@ -14,27 +14,32 @@
 				display: block;
 			}
 		</style>
+		<script>function selectoption(id,value){
+			$("#"+id).val(value)
+		}</script>
 	</head>
 	<body>
 		<form class="form-inline definewidth m20" action="user_save.html" method="post">
 			<table class="table table-bordered table-hover definewidth m10">
-			<tr><td class="tableleft">用户类别</td><td><select name="utype" style="display: block;">
+			<tr><td class="tableleft">用户类别</td><td><select name="utype" id="utype" style="display: block;">
 				<option value="">请选择...</option>
-				<option value="1">管理员</option>
+				<option value="1">集团管理员</option>
+				<option value="4">分站管理员</option>
 				<option value="2">校验员</option>
 				<option value="3">财务人员</option>
 			</select></td></tr>
-			<tr><td class="tableleft">用户名</td><td><input type="text" name="username"/></td></tr>
-			<tr><td class="tableleft">密码</td><td><input type="text" name="pwd"/></td></tr>
-			<tr><td class="tableleft">姓名</td><td><input type="text" name="contact"/></td></tr>
-			<tr><td class="tableleft">性别</td><td><select name="sex" style="display: block;">
+			<script>selectoption("utype","{{utype}}")</script>
+			<tr><td class="tableleft">用户名</td><td><input type="text" name="username" value="{{username}}"/><a style="color: red;">{{errtext1}}</a></td></tr>
+			<tr><td class="tableleft">密码</td><td><input type="text" name="pwd" value="{{pwd}}"/></td></tr>
+			<tr><td class="tableleft">姓名</td><td><input type="text" name="contact" value="{{contact}}"/></td></tr>
+			<tr><td class="tableleft">性别</td><td><select name="sex" id="sex" style="display: block;">
 				<option value="">请选择</option>
 				<option value="男">男</option>
 				<option value="女">女</option>
 			</select></td></tr>
-			
-			<tr><td class="tableleft">手机</td><td><input type="text" name="mobile"/></td></tr>
-			<tr><td class="tableleft">备注</td><td><input type="text" name="bz"/></td></tr>
+			<script>selectoption("sex","{{sex}}")</script>
+			<tr><td class="tableleft">手机</td><td><input type="text" name="mobile" value="{{mobile}}"/><a style="color: red;">{{errtext2}}</a></td></tr>
+			<tr><td class="tableleft">备注</td><td><input type="text" name="bz" value="{{bz}}"/></td></tr>
 			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /></td></tr>
 			</table>
 			<input type="hidden" name="group_id" value={{group_id}} />

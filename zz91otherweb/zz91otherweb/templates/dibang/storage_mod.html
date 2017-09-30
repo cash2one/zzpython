@@ -23,6 +23,23 @@
 	<body>
 		<form class="form-inline definewidth m20" action="storage_save.html" method="post">
 			<table class="table table-bordered table-hover definewidth m10">
+			<tr><td class="tableleft">产品名称</td><td><select name="products_selfid" id="products_selfid">
+					<option value="">请选择...</option>
+					{% for list in product_list%}
+					<option value="{{list.id}}">{{list.name}}</option>
+					{%endfor%}
+			</select></td>
+			</tr>
+			<script>selectoption("products_selfid","{{products_selfid}}")</script>
+			<tr><td class="tableleft">供货商</td><td>
+				<select name="suppliers_selfid" id="suppliers_selfid">
+				<option value="">请选择...</option>
+				{% for list in supplier_list%}
+				<option value="{{list.id}}">{{list.name}}</option>
+				{%endfor%}</select>
+			</td>
+			</tr>
+			<script>selectoption("suppliers_selfid","{{suppliers_selfid}}")</script>
 			<tr><td class="tableleft">单号</td><td><input type="text" name="code" value={{code}}></td></tr>
 			<tr><td class="tableleft">价格</td><td><input type="text" name="price" value={{price}}></td></tr>
 			<tr><td class="tableleft">毛重</td><td><input type="text" name="gw" value={{gw}}></td></tr>
@@ -41,9 +58,13 @@
 				selectoption("select",{{status}})
 			</script></td></tr>
 			
-			<tr><td class="tableleft">经手人</td><td><input type="text" name="price_users_selfid" value={{price_users_selfid}}></td></tr>
+			<tr><td class="tableleft">经手人</td><td><select name="price_users_selfid" id="price_users_selfid">
+				{%for list in user_list%}
+				<option value="{{list.id}}">{{list.contact}}</option>
+				{%endfor%}
+			</select></td></tr>
+			<script>selectoption("price_users_selfid","{{price_users_selfid}}")</script>
 			<tr><td class="tableleft">定价时间</td><td><input class="Wdate" type="text" style="width:100px" name="price_time" id="datebegin" onClick="WdatePicker()" value="{{price_time}}"></td></tr>
-			
 			<tr><td class="tableleft">是否支付</td><td><select name="ispay" id="select1" style="display: block;">
 				<option value="0">未支付</option>
 				<option value="1">已支付</option>
@@ -63,7 +84,12 @@
 			
 			<tr><td class="tableleft">支付时间</td><td><input class="Wdate" type="text" style="width:100px" name="pay_time" id="datebegin" onClick="WdatePicker()" value="{{pay_time}}"></td></tr>
 			
-			<tr><td class="tableleft">支付人员</td><td><input type="text" name="pay_users_selfid" value={{pay_users_selfid}}></td></tr>
+			<tr><td class="tableleft">支付人员</td><td><select name="pay_users_selfid" id="pay_users_selfid">
+				{%for list in user_list%}
+				<option value="{{list.id}}">{{list.contact}}</option>
+				{%endfor%}
+			</select></td></tr>
+			<script>selectoption("pay_users_selfid","{{pay_users_selfid}}")</script>
 			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /></td></tr><input type="hidden" name="id" value={{id}}>
 			
 			</table>

@@ -20,12 +20,14 @@ execfile(nowpath+"/func/mobile_function.py")
 execfile(nowpath+"/func/weixin_function.py")
 execfile(nowpath+"/func/huzhu_function.py")
 execfile(nowpath+"/func/products_function.py")
+execfile(nowpath+"/func/company_function.py")
 
 zzm=mobile()
 zzms=mshop()
 zzweixin=zweixin()
 zzhuzhu=zz91huzhu()
 zzpro=zz91products()
+zzc=zzcompany()
 def login(request):
     username=request.session.get('username')
     if username:
@@ -106,6 +108,48 @@ def trade(request):
     nextpage = funpage.nextpage()
     prvpage = funpage.prvpage()
     return render_to_response('adminmobile/trade.html',locals())
+
+def my_trade(request):
+    username=request.session.get('username')
+    if not username:
+        return HttpResponseRedirect('login.html')
+    proid=request.GET.get('proid')
+    page=request.GET.get('page')
+    check_status=request.GET.get('check_status')
+    if not check_status:
+        check_status="0"
+    searchlist={}
+    if check_status:
+        searchlist['check_status']=str(check_status)
+    searchurl=urllib.urlencode(searchlist)
+    sql='select company_id from products where id=%s'
+    result=dbc.fetchonedb(sql,[proid])
+    if result:
+        company_id=result[0]
+    if not page:
+        page=1
+    funpage=zz91page()
+    limitNum=funpage.limitNum(10)
+    nowpage=funpage.nowpage(int(page))
+    frompageCount=funpage.frompageCount()
+    after_range_num = funpage.after_range_num(3)
+    before_range_num = funpage.before_range_num(6)
+    messagelist=zzpro.getproductslist(frompageCount,limitNum,check_status=check_status,company_id=company_id)
+    listcount=0
+    listall=messagelist['list']
+    listcount=messagelist['count']
+    if (int(listcount)>1000000):
+        listcount=1000000-1
+    listcount = funpage.listcount(listcount)
+    page_listcount=funpage.page_listcount()
+    firstpage = funpage.firstpage()
+    lastpage = funpage.lastpage()
+    page_range  = funpage.page_range()
+    if len(page_range)>7:
+        page_range=page_range[:7]
+    nextpage = funpage.nextpage()
+    prvpage = funpage.prvpage()
+    return render_to_response('adminmobile/my_trade.html',locals())
 
 def huzhu(request):
     username=request.session.get('username')
@@ -192,7 +236,8 @@ def del_bbs_post(request):
     request_url=request.META.get('HTTP_REFERER','/')
     postid=request.GET.get('postid')
     is_del=request.GET.get('is_del')
-    zzhuzhu.updatedb(is_del,postid)
+    check_status=request.GET.get('check_status')
+    zzhuzhu.updatedb(check_status,is_del,postid)
     return HttpResponseRedirect(request_url)
 def shop_product(request):
     username=request.session.get('username')
@@ -411,11 +456,48 @@ def paylist(request):
     nextpage = funpage.nextpage()
     prvpage = funpage.prvpage()
     return render_to_response('adminmobile/paylist.html',locals())
+def companylist(request):
+    username=request.session.get('username')
+    if not username:
+        return HttpResponseRedirect('login.html')
+    mobile=request.GET.get('mobile')
+    account=request.GET.get('account')
+    searchlist={}
+    if mobile:
+        searchlist['mobile']=mobile
+    if account:
+        searchlist['account']=account
+    searchurl=urllib.urlencode(searchlist)
+    page=request.GET.get('page')
+    if not page:
+        page=1
+    funpage=zz91page()
+    limitNum=funpage.limitNum(10)
+    nowpage=funpage.nowpage(int(page))
+    frompageCount=funpage.frompageCount()
+    after_range_num = funpage.after_range_num(3)
+    before_range_num = funpage.before_range_num(6)
+    companylist=zzc.getcompanylistdb(frompageCount,limitNum,searchlist=searchlist)
+    listcount=0
+    listall=companylist['list']
+    listcount=companylist['count']
+    if (int(listcount)>1000000):
+        listcount=1000000-1
+    listcount = funpage.listcount(listcount)
+    page_listcount=funpage.page_listcount()
+    firstpage = funpage.firstpage()
+    lastpage = funpage.lastpage()
+    page_range  = funpage.page_range()
+    if len(page_range)>7:
+        page_range=page_range[:7]
+    nextpage = funpage.nextpage()
+    prvpage = funpage.prvpage()
+    return render_to_response('adminmobile/companylist.html',locals())
 def chongzhisearch(request):
     mobile=request.GET.get("mobile")
     company_id=None
     if mobile:
-        company_id=zzm.getcompany_id(mobile,mobile)
+        company_id=zzm.getcompany_id(mobile)
         companyname=zzm.getcompany_name(company_id)
     return render_to_response('adminmobile/chongzhi_add.html',locals())
 def chongzhi(request):

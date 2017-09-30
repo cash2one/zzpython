@@ -1,0 +1,152 @@
+﻿登录接口 ajax post 用户名username 密码pwd
+url http://dibang.zz91.com/app/logincheck.html
+登录成功 {'err':'false','errtext':'','result':result,'username':username,'md5pwd':md5pwd,'group_id':group_id}
+登录失败 {'err':'true','errtext':'用户名或密码错误','result':''}
+
+
+
+立即定价保存 ajax post
+url http://dibang.zz91.com/app/pricing_now_save.html id pricing_now=1 products_selfid price
+返回数据 {'answer':'answer'}
+
+
+待定价榜单 待定价/今日已定价 ajax post
+url http://dibang.zz91.com/app/pricing.html company_id pricing_today=1 pricing=1 page
+返回数据  {'listall':listall,'listcount':listcount,'page_listcount':page_listcount}
+listall 供应商编号iccode 供应商名称supplier_name 进场时间gmt_created 毛重gw 皮重tare 单价price 产品product_name
+
+待定价榜单搜索 iccode
+
+获取待定价榜单数量ajax post
+url http://dibang.zz91.com/app/pricing_num.html company_id
+返回数据{'num':num}
+
+数据汇总ajax post
+url http://dibang.zz91.com/app/alldata.html
+返回数据 
+
+入库明细ajax post
+url http://dibang.zz91.com/app/storage.html
+返回数据 
+
+分站管理ajax post
+url http://dibang.zz91.com/app/company.html group_id
+返回数据 {'listall':listall,'listcount':listcount,'page_listcount':page_listcount}
+分站管理搜索 name
+
+产品类别ajax post
+url http://dibang.zz91.com/app/category.html company_id
+返回数据 {'listall':listall,'listcount':listcount,'page_listcount':page_listcount}
+产品类别搜索 name
+
+产品管理ajax post
+url http://dibang.zz91.com/app/product.html company_id
+返回数据{'listall':listall,'listcount':listcount,'page_listcount':page_listcount}
+产品搜索 name
+
+人员管理ajax post
+url http://dibang.zz91.com/app/user.html company_id
+返回数据{'listall':listall,'listcount':listcount,'page_listcount':page_listcount}
+人员搜索 contact
+
+个人信息读取ajax post
+url http://dibang.zz91.com/app/myinfo.html   发送数据 username
+返回数据 {'sex':sex,'username':username,'mobile':mobile,'id':id,contact:contact}
+个人信息保存ajax post
+url http://dibang.zz91.com/app/myinfo_save.html  发送数据 isapp=1
+返回数据   {"answer":"answer"}
+
+获取产品类别ajax post
+url http://dibang.zz91.com/app/category_list.html company_id
+返回数据 {'listall':listall,'listcount':listcount}
+listall 类别ID id
+
+获取类别对应的所有产品ajax post
+url http://dibang.zz91.com/app/product.html category_selfid company_id
+返回数据 {'listall':listall,'listcount':listcount}
+listall 产品ID id 
+
+供应商ajax post
+url http://dibang.zz91.com/app/supplier.html company_id
+返回数据{'listall':listall,'listcount':listcount,'page_listcount':page_listcount}
+listall 供货人编码iccode 供货商名称name 联系电话mobile 地址address 供货量total_supply
+供应商保存ajax post
+url http://dibang.zz91.com/app/supplier_save.html 发送数据  供货人编码iccode 供货人姓名contact 联系电话mobile 地址address 备注bz isapp
+成功返回数据{'err':false}
+失败返回数据{'err':true}
+
+供应商搜索  name 
+
+主界面气泡number ajax post
+url http://dibang.zz91.com/app/get_num.html company_id
+返回数据{'count':count}
+
+自动获取供货人编码iccode ajax post
+url http://dibang.zz91.com/app/get_iccode.html
+返回的数据 {'iccode':iccode}
+
+获取人员 ajax post
+url http://dibang.zz91.com/app/user.html company_id 搜索添加contact
+返回数据{'listall':listall,'listcount':listcount}
+listall 用户类别utype 登录名username 姓名contact 手机mobile 备注bz
+
+人员保存 ajax post
+url http://dibang.zz91.com/app/user_save.html
+添加人员  用户级别utype 用户名username 密码pwd 姓名contact 性别sex 手机mobile 备注bz 集团ID group_id 公司ID company_id
+修改人员  id 用户级别utype 用户名username 姓名contact 性别sex 手机mobile 备注bz ischange_pwd 密码pwd
+成功返回数据{'err':false}
+失败返回数据{'err':true}
+
+获取产品列表ajax post
+url http://dibang.zz91.com/app/product.html company_id 搜索添加字段name
+返回的数据{'listall':listall,'listcount':listcount}
+listall 产品名称name 产品简拼name_py 产品类别category_selfid 规格spec 计数单位unit 备注bz
+
+保存产品
+url http://dibang.zz91.com/app/product_save.html
+添加产品ajax post 产品名称name 名称简拼name_py 产品类别category_selfid 规格spec 计数单位unit 备注bz isapp=1 集团ID group_id 公司ID company_id
+修改产品 ajax post id 产品名称name 名称简拼name_py 产品类别category_selfid 规格spec 计数单位unit 备注bz isapp=1
+成功返回数据{"answer":"answer"}
+
+获取产品类别列表ajax post
+url http://dibang.zz91.com/app/category.html company_id
+返回的数据{'listall':listall,'listcount':listcount}
+listall 类别名称name 产品id id
+
+保存产品类别ajax post
+url http://dibang.zz91.com/app/category_save.html
+添加产品类别 类别名称name company_id
+修改产品类别  id name
+成功返回数据{"answer":"answer"}
+
+分站列表ajax post
+url http://dibang.zz91.com/app/company.html company_id
+返回的数据{'listall':listall,'listcount':listcount}
+listall 分站名称name 分站类型ctype 地址address
+添加分站 分站名称name 分站类型ctype 地址address 集团ID group_id
+修改分站 id 分站名称name 分站类型ctype 地址address
+成功返回数据{'answer':'answer'}
+
+入库明细ajax post
+url http://dibang.zz91.com/app/storage.html company_id
+返回的数据{'listall':listall,'listcount':listcount,'total_price':total_price}
+入库量listcount 金额total_price listall 供货人编号iccode 供货人contact 品名product_name 类别category_name 毛重gw 皮重tare 净重nw 单价price 计量单位unit 进场时间gmt_created 总额total 出场时间out_time
+
+入库明细搜索功能
+供应编号 searchtype=iccode					searchinfo			company_id
+供货人  searchtype=supplier					searchinfo			company_id
+毛重 searchtype=gw                           searchinfo			company_id
+入场时间 searchtype=gmt_created				searchinfo			company_id
+单号 searchtype=price						searchinfo			company_id
+
+
+
+数据汇总
+url http://dibang.zz91.com/app/alldata.html company_id
+返回的数据{"total_weight":total_weight,"total_price":total_price,"listall":listall}
+入库量合计total_weight 入库金额合计total_price listall 品名name 入库量total_gw 入库总额total_price 均价average
+
+数据汇总搜索
+url http://dibang.zz91.com/app/alldata.html company_id time_min time_max
+返回的数据{"total_weight":total_weight,"total_price":total_price,"listall":listall}
+入库量合计total_weight 入库金额合计total_price listall 品名name 入库量total_gw 入库总额total_price 均价average

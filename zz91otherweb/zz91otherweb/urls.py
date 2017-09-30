@@ -462,6 +462,12 @@ urlpatterns += patterns('zz91otherweb.price',
 	(r'^feiliao123/del_priceattr.html$', 'del_priceattr'),
 	(r'^feiliao123/getc_label.html$', 'getc_label'),
 	(r'^feiliao123/price_category_field.html$', 'price_category_field'),
+	(r'^feiliao123/price_table_list.html$', 'price_table_list'),
+	(r'^feiliao123/update_price_list.html$', 'update_price_list'),
+	(r'^feiliao123/add_price_list.html$', 'add_price_list'),
+	(r'^feiliao123/save_price_list.html$', 'save_price_list'),
+	(r'^feiliao123/del_price_list.html$', 'del_price_list'),
+	
 	(r'^feiliao123/add_pricefield.html$', 'add_pricefield'),
 	(r'^feiliao123/add_pricefieldok.html$', 'add_pricefieldok'),
 	(r'^feiliao123/update_pricefield.html$', 'update_pricefield'),
@@ -543,6 +549,7 @@ urlpatterns += patterns('zz91otherweb.adminmobile',
 	(r'^adminmobile/loginpage.html$', 'loginpage'),
 	
 	(r'^adminmobile/trade.html$', 'trade'),
+	(r'^adminmobile/my_trade.html$', 'my_trade'),
 	(r'^adminmobile/editpro.html$', 'editpro'),
 	(r'^adminmobile/editcompany.html$', 'editcompany'),
 	(r'^adminmobile/procontent.html$', 'procontent'),
@@ -565,6 +572,8 @@ urlpatterns += patterns('zz91otherweb.adminmobile',
 	
 	(r'^adminmobile/chongzhisearch.html$', 'chongzhisearch'),
 	(r'^adminmobile/servicelist.html$','servicelist'),
+	
+	(r'^adminmobile/companylist.html$', 'companylist'),
 	
 )
 

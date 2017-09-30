@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="http://b.zz91.com/layui/css/layui.css"/>	
+		<script type="text/javascript" src="http://b.zz91.com/layui/layui.js"></script>
+		<!--[if lt IE 9]>
+		  <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+		  <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]--> 
+		<style>
+			.mainbox{
+				margin: 10px;
+			}
+			.grid-demo{
+				padding: 20px; 
+				text-align: center;
+				background-color: #79C48C; 
+				color: #fff;
+				margin: 20px 0 10px;
+			}
+			.grid-demo span{
+				font-size: 18px;
+				font-weight: bold;
+			}
+			.grid-demo-bg1{
+				background-color: #fb7885;
+			}
+			.grid-demo-bg2{
+				background-color: #02a9f3;
+			}
+			.grid-demo-bg3{
+				background-color: #9774cf;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mainbox">
+			<div class="demoTable">
+				<div class=" layui-form">
+					
+				  	<div class="layui-inline">
+				  		<div class="layui-input-inline">
+					    	<select name="suppliers_selfid" id="suppliers_selfid">
+					          	<option value="">选择供应商</option>
+					          	{%for list in supplier_list%}
+					          	<option value={{list.id}}>{{list.name}}</option>
+					          	{%endfor%}
+					        </select>
+				        </div>
+				  	</div>
+				  	<div class="layui-inline">
+				  		<div class="layui-input-inline">
+					    	<select name="company_id" id="company_id">
+					          	<option value="">选择分站</option>
+					          	{%for list in company_list%}
+					          	<option value={{list.id}}>{{list.name}}</option>
+					          	{%endfor%}
+					        </select>
+				        </div>
+				  	</div>
+				  	
+				    <div class="layui-inline layui-form-item" style="margin-bottom: 0;">
+				    	<label class="layui-form-label" style="width: 30px;">时间</label>
+				      	<div class="layui-input-inline" style="width: 100px;">
+				        	<input type="text" name="time_min" id="time_min" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+				     	</div>
+				      	<div class="layui-form-mid">至</div>
+				      	<div class="layui-input-inline" style="width: 100px;">
+				        	<input type="text" name="time_max" id="time_max" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+				      	</div>
+				    </div>
+				    
+				    <div class="layui-inline">
+				      	<div class="layui-input-inline">
+				        	<input type="text" name="proname" id="proname" lay-verify="title" placeholder="产品名称" autocomplete="off" class="layui-input">
+				      	</div>
+				    </div>
+				    
+				    <div class="layui-inline">
+				  		<div class="layui-input-inline">
+					    	<select name="products_selfid" id="products_selfid">
+					          	<option value="">产品</option>
+					          	{%for list in productslist%}
+					          	<option value="{{list.selfid}}">{{list.name}}</option>
+					          	{%endfor%}
+					        </select>
+				        </div>
+				  	</div>
+				  	
+			  		<button class="layui-btn layui-btn-normal" data-type="reload">搜索</button>
+				</div>
+			</div>
+			
+		 	<div class="layui-row layui-col-space10">
+			    <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+			      	<div class="grid-demo grid-demo-bg1"><span>{{storage_count}}车</span><br />入库车数</div>
+			    </div>
+			    <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+			      	<div class="grid-demo layui-bg-red"><span>{{storage_weight}}kg</span><br />净重量</div>
+			    </div>
+			    <div class="layui-col-xs4 layui-col-sm12 layui-col-md4">
+			      	<div class="grid-demo layui-bg-blue"><span>{{total_amount}}元</span><br />入库总额</div>
+			    </div>
+			</div>
+			 
+			<table class="layui-hide" id="LAY_table_user" lay-filter="user"></table> 
+		</div>
+	</body>
+	
+	<script id="barcaozuo" type="text/html">
+		  <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+		  <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+	</script>
+	<script src="js/jquery.js" charset="utf-8"></script>
+	<script src="js/comm.js" charset="utf-8"></script>
+	<script>
+		layui.use(['table','laydate'], function(){
+		  var table = layui.table;
+		  var $ = layui.$;
+		  var laydate = layui.laydate;
+		  //日期
+			laydate.render({
+				elem: '#time_min'
+			});
+			laydate.render({
+				elem: '#time_max'
+			});
+			
+		  //方法级渲染
+		  function tablerender(){table.render({
+		    elem: '#LAY_table_user'
+		    ,url: 'storage_data.html?suppliers_selfid='+$('#suppliers_selfid').val()+'&company_id='+$('#company_id').val()+'&products_selfid='+$('#products_selfid').val()+'&time_min='+$('#time_min').val()+'&time_max='+$('#time_max').val()+'&proname='+$('#proname').val()
+		    ,cols: [[
+		      {field:'id', title: '序号', width:120, fixed: true}
+		      ,{field:'code', title: '单号', width:120}
+		      ,{field:'product_name', title: '品名', width:120}
+		      ,{field:'price', title: '价格', width:120}
+		      ,{field:'gw', title: '毛重', width:100}
+		      ,{field:'tare', title: '皮重', width:120}
+		      ,{field:'nw', title: '净重', width:100}
+		      ,{field:'total', title: '总价', width:120}
+		      ,{field:'status', title: '订单状态', width:120}
+		      ,{field:'pricename', title: '经手人', width:100}
+		      ,{field:'price_time', title: '定价时间', width:100}
+		      ,{field:'ispay', title: '是否支付', width:100}
+		      ,{field:'scorecheck', title: '积分是否提现', width:120}
+		      ,{field:'pay_time', title: '支付时间', width:120}
+		      ,{field:'payname', title: '支付人员', width:200}
+		      ,{field:'gmt_created', title: '创建时间', width:200}
+		      ,{field:'gmt_modified', title: '修改时间', width:200}
+//		      ,{field:'caozuo', title: '操作', width:200,toolbar:"#barcaozuo"}
+		    ]]
+		    ,id: 'testReload'
+		    ,page: true
+		    ,limit: 10
+		    ,limits:[]
+		    ,height: 500
+		  })};
+		  tablerender();
+
+		  $('.demoTable .layui-btn').on('click', function(){
+		  	tablerender();
+		  });
+		});
+	</script>
+</html>

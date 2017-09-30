@@ -28,16 +28,19 @@
 绑定类型：
 <select name="btype" id="btype" style="width:100px">
 	<option value="">--选择类型</option>
-	{%for l in BANGDING_t%}
-	<option value="{{l.btype}}">{{l.bname}}</option>
+	{%for l in categorycj%}
+	<option value="{{l.id}}">{{l.label}}</option>
 	{%endfor%}
 </select>
 <script>selectOption("btype","{{btype}}")</script>
 奖品：
 <select name="jiangpin" id="jiangpin" style="width:100px">
 	<option value="">--选择类型</option>
-	{%for l in JIANGPIN%}
-	<option value="{{l.btype}}">{{l.bname}}</option>
+	{%for l in categorycj%}
+	<option value="{{l.id}}">{{l.label}}</option>
+		{%for ll in l.child%}
+		<option value="{{ll.id}}">|__{{ll.label}}</option>
+		{%endfor%}
 	{%endfor%}
 </select>
 <script>selectOption("jiangpin","{{jiangpin}}")</script>

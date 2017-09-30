@@ -217,3 +217,139 @@ class zz91price:
             list={'id':id,'price_category_id':price_category_id,'price_category_label':price_category_label,'assist_type_id':assist_type_id,'assist_type_label':assist_type_label,'name':name,'field':field,'sortrank':sortrank}
             listall.append(list)
         return {'list':listall,'count':count}
+    def getpricetablelist(self,frompageCount='',limitNum='',searchlist=''):
+        postdate_min=searchlist.get('postdate_min')
+        postdate_max=searchlist.get('postdate_max')
+        gmt_modified_min=searchlist.get('gmt_modified_min')
+        gmt_modified_max=searchlist.get('gmt_modified_max')
+        type_id=searchlist.get('type_id')
+        priceid=searchlist.get('priceid')
+        assist_type_id=searchlist.get('assist_type_id')
+        sqls=''
+        argument=[]
+        if postdate_min:
+            sqls+=' and postdate > %s'
+            argument.append(postdate_min)
+        if postdate_max:
+            sqls+=' and postdate < %s'
+            argument.append(postdate_max)
+        if gmt_modified_min:
+            sqls+=' and gmt_modified > %s'
+            argument.append(gmt_modified_min)
+        if gmt_modified_max:
+            sqls+=' and gmt_modified < %s'
+            argument.append(gmt_modified_max)
+        if type_id:
+            sqls+=' and type_id=%s'
+            argument.append(type_id)
+        if priceid:
+            sqls+=' and priceid=%s'
+            argument.append(priceid)
+        if assist_type_id:
+            sqls+=' and assist_type_id=%s'
+            argument.append(assist_type_id)
+        sql='select id,priceid,typename,title,type_id,assist_type_id,label,label1,label2,spec,spec1,spec2,price,area,area1,area2,price1,price2,price3,price4,price5,price6,unit,qushi,qushi1,postdate,othertext,othertext1,num,gmt_modified from price_list where id>0 '+sqls+' order by id desc limit '+str(frompageCount)+','+str(limitNum)+''
+        sqlc='select count(0) as count from price_list where id>0 '+sqls+''
+        resultlist=self.dbc.fetchalldb(sql,argument)
+        count=self.dbc.fetchonedb(sqlc,argument)[0]
+        listall=[]
+        for result in resultlist:
+            id=result[0]
+            priceid=result[1]
+            if priceid is None:
+                priceid=''
+            typename=result[2]
+            if typename is None:
+                typename=''
+            title=result[3]
+            if title is None:
+                title=''
+            type_id=result[4]
+            if type_id is None:
+                type_name=''
+            else:
+                type_name=self.getpricecategorylabel(type_id)
+            assist_type_id=result[5]
+            if assist_type_id is None:
+                assist_type_name=''
+            else:
+                assist_type_name=self.getpricecategorylabel(assist_type_id)
+            label=result[6]
+            if label is None:
+                label=''
+            label1=result[7]
+            if label1 is None:
+                label1=''
+            label2=result[8]
+            if label2 is None:
+                label2=''
+            spec=result[9]
+            if spec is None:
+                spec=''
+            spec1=result[10]
+            if spec1 is None:
+                spec1=''
+            spec2=result[11]
+            if spec2 is None:
+                spec2=''
+            price=result[12]
+            if price is None:
+                price=''
+            area=result[13]
+            if area is None:
+                area=''
+            area1=result[14]
+            if area1 is None:
+                area1=''
+            area2=result[15]
+            if area2 is None:
+                area2=''
+            price1=result[16]
+            if price1 is None:
+                price1=''
+            price2=result[17]
+            if price2 is None:
+                price2=''
+            price3=result[18]
+            if price3 is None:
+                price3=''
+            price4=result[19]
+            if price4 is None:
+                price4=''
+            price5=result[20]
+            if price5 is None:
+                price5=''
+            price6=result[21]
+            if price6 is None:
+                price6=''
+            unit=result[22]
+            if unit is None:
+                unit=''
+            qushi=result[23]
+            if qushi is None:
+                qushi=''
+            qushi1=result[24]
+            if qushi1 is None:
+                qushi1=''
+            postdate=result[25]
+            if postdate is None:
+                postdate=''
+            else:
+                postdate=formattime(postdate,flag=2)
+            othertext=result[26]
+            if othertext is None:
+                othertext=''
+            othertext1=result[27]
+            if othertext1 is None:
+                othertext1=''
+            num=result[28]
+            if num is None:
+                num=''
+            gmt_modified=result[29]
+            if gmt_modified is None:
+                gmt_modified=''
+            else:
+                gmt_modified=formattime(gmt_modified,flag=2)
+            list={'id':id,'priceid':priceid,'typename':typename,'title':title,'type_name':type_name,'assist_type_name':assist_type_name,'label':label,'label1':label1,'label2':label2,'spec':spec,'spec1':spec1,'spec2':spec2,'price':price,'area':area,'area1':area1,'area2':area2,'price1':price1,'price2':price2,'price3':price3,'price4':price4,'price5':price5,'price6':price6,'unit':unit,'qushi':qushi,'qushi1':qushi1,'postdate':postdate,'othertext':othertext,'othertext1':othertext1,'num':num,'gmt_modified':gmt_modified}
+            listall.append(list)
+        return {'list':listall,'count':count}

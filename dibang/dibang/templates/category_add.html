@@ -24,17 +24,28 @@
 	<body>
 		<div class="mainbox">
 			<form class="layui-form" action="category_save.html" method="post">
-				<div class="layui-form-item">
+				<!--<div class="layui-form-item">
 				    <label class="layui-form-label">编号</label>
 				    <div class="layui-input-block">
 				      	<input type="text" name="id" lay-verify="title" autocomplete="off" placeholder="请输入编号" class="layui-input">
 				    </div>
-			  	</div>
-				
-			  	<div class="layui-form-item">
-				    <label class="layui-form-label">品名</label>
+			  	</div>-->
+				<div class="layui-form-item">
+				    <label class="layui-form-label"><span style="color: red;">*</span>分站（分公司）</label>
 				    <div class="layui-input-block">
-				      	<input type="text" name="pname" lay-verify="title" autocomplete="off" placeholder="请输入品名" class="layui-input">
+				      	<select name="ucompany_id" id="ucompany_id" lay-verify="required">
+				      		<option value="">请选择...</option>
+				      		{%for list in company_list%}
+							<option value="{{list.id}}">{{list.name}}</option>
+							{%endfor%}
+				      	</select>
+				    </div>
+				    <script>selectoption("ucompany_id","{{result.company_id}}")</script>
+			  	</div>
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label"><span style="color: red;">*</span>品名</label>
+				    <div class="layui-input-block">
+				      	<input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入品名" class="layui-input">
 				    </div>
 			  	</div>
 			  	
@@ -44,6 +55,8 @@
 					    <button class="layui-btn layui-btn-normal layui-col-xs2" lay-submit="" lay-filter="demo1">保存</button>
 					</div>
 				</div>
+				<input type="hidden" name="company_id" value="{{company_id}}" />
+				<input type="hidden" name="sub_selfid" value="{{sub_selfid}}" />
 			</form>
 		</div>
 			
@@ -56,26 +69,11 @@
 		  
 		  //自定义验证规则
 		  form.verify({
-		    title: function(value){
-		      if(value.length < 5){
-		        return '标题至少得5个字符啊';
-		      }
-		    }
-		    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+		  	pass: [/(.+){6,12}$/, '密码必须6到12位']
 		    ,content: function(value){
 		      layedit.sync(editIndex);
 		    }
 		  });
-		  
-		  //监听提交
-		  form.on('submit(demo1)', function(data){
-		    layer.alert(JSON.stringify(data.field), {
-		      title: '最终的提交信息'
-		    })
-		    return false;
-		  });
-		  
-		  
 		});
 	</script>
 </html>

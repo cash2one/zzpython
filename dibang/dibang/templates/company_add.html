@@ -45,9 +45,9 @@
 					</div>
 				</div>	
 			  	<div class="layui-form-item">
-				    <label class="layui-form-label">公司地址</label>
+				    <label class="layui-form-label"><span style="color: red;">*</span>公司地址</label>
 				    <div class="layui-input-block">
-				      	<input type="text" name="address" id="address" lay-verify="title" autocomplete="off" placeholder="请输入公司地址" class="layui-input">
+				      	<input type="text" name="address" id="address" lay-verify="required" autocomplete="off" placeholder="请输入公司地址" class="layui-input">
 				    </div>
 			  	</div>
 			  	
@@ -67,16 +67,6 @@
 		layui.use(['form', 'layedit', 'laydate'], function(){
 		  var form = layui.form
 		  ,layer = layui.layer
-		  
-		  //监听提交
-		  form.on('submit(demo1)', function(data){
-		    layer.alert(JSON.stringify(data.field), {
-		      title: '最终的提交信息',
-		      name: $("#name").val(),
-		      ctype: $("#ctype").val(),
-		      address: $("#address").val()
-		    })
-		  });
 		});
 	</script>
 </html>

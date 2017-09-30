@@ -19,6 +19,11 @@
 			    }  
 			}  
 		</script>
+		<style>
+			body{
+				margin: 10px;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -29,7 +34,7 @@
 		</form>
 		
 		<form action="user_del.html">
-		<table class="table table-bordered table-hover definewidth m10">
+		<table class="table table-bordered table-hover  m10">
 			<thead>
 				<tr>
 					<th>选择</th>
@@ -49,8 +54,8 @@
 			{%for list in listall%}
 			<tr>
 				<td><input type="checkbox" id="checkboxlist" value="{{list.id}}" name="check_box_list"></td>
-				<td>{{list.group_id}}</td>
-				<td>{{list.company_id}}</td>
+				<td>{{list.group_name}}</td>
+				<td>{{list.company_name}}</td>
 				<td>{{list.utype}}</td>
 				<td>{{list.username}}</td>
 				<td>{{list.contact}}</td>
@@ -63,8 +68,10 @@
 			</tr>
 			{%endfor%}
 		</table>
-		<input class="btn btn-success" type="submit" value="一键删除">
-		<input type="checkbox" id="SelectAll" value="全选" onclick="selectAll();" />全选
+		<div class="m10">
+		
+		<input type="checkbox" id="SelectAll" value="全选" onclick="selectAll();" />全选<input class="btn btn-success" type="submit" value="一键删除">
+		</div>
 		</form>
 		<div class="inline pull-right page">
 			共{{listcount}} 条记录 {{page}}/{{page_listcount}} 页 &nbsp;&nbsp; {% if firstpage %}

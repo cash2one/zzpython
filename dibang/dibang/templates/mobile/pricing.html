@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>待定价磅单-再生资源智能管理系统</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="/css/index.css"/>
+	</head>
+	<body>
+		<div style="height:45px;">
+			<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+		    	<a class="aui-pull-left" href="index.html">
+			        <span class="aui-iconfont aui-icon-left"></span>
+			    </a>
+			    <div class="aui-title">
+			    	待定价磅单
+			    </div>
+			</header>
+		</div>
+		<div style="height:45px;">
+			<div class="aui-tab aui-tab-success dingjia-table">
+			    <ul class="aui-tab-nav">
+			        <li class="active"><a href="pricing.html?pricing=1">待定价</a></li>
+			        <li><a href="pricing_today.html?pricing_today=1">已定价未结算</a></li>
+			        <li><a href="pricing_today.html?jiesuan=1">已结算</a></li>
+			    </ul>
+			</div>
+		</div>
+		<form action="pricing.html?pricing=1" method="post" id="form">
+		<div class="aui-padded-15">
+			<div class="zz-div-box">
+				<div class="zz-div-td1">
+					<input type="text" class="aui-input aui-font-size-12 db-input" name="iccode" placeholder="请输入供应商编号"/>
+				</div>
+				<div class="aui-margin-l-10 aui-margin-r-5">
+					<div class="aui-btn aui-btn-success" onclick="document.getElementById('form').submit()">搜索</div>
+				</div>
+				<a href="pricing.html?pricing=1" class="aui-btn aui-btn-info">刷新</a>
+			</div>
+		</div>
+		</form>
+		{%for list in listall%}
+		<div class="db-bg-white aui-padded-15 aui-content">
+			<div class="zz-div-box">
+				<div class="qj-center-title aui-text-success">供应商编号</div>
+				<div class="zz-div-td1">{{list.iccode}}</div>
+			</div>
+			<div class="zz-div-box">
+				<div class="qj-center-title aui-text-success">供应商</div>
+				<div class="zz-div-td1">{{list.supplier_name}}</div>
+			</div>
+			<div class="zz-div-box">
+				<div class="qj-center-title aui-text-success">进场时间</div>
+				<div class="zz-div-td1">{{list.gmt_created}}</div>
+			</div>
+			<div class="zz-div-box">
+				<div class="qj-center-title aui-text-success">毛重</div>
+				<div class="zz-div-td1">{{list.gw}}</div>
+			</div>
+			<div class="zz-div-box">
+				<div class="qj-center-title aui-text-success">皮重</div>
+				<div class="zz-div-td1">{{list.tare}}</div>
+			</div>
+			<div class="zz-div-box">
+				<div class="qj-center-title aui-text-success">净重</div>
+				<div class="zz-div-td1">{{list.nw}}</div>
+			</div>
+			<div class="aui-text-center" style="margin-top: 10px;">
+				<span class="aui-btn aui-btn-info btn-dj{{list.id}}">立即定价</span>
+			</div>
+		</div>
+		{%endfor%}
+	
+		{%for list in listall%}
+		<form action="/mobile/pricing_now_save.html" method="post" onsubmit="return subfrm(this,'{{list.id}}')">
+		<div class="db-bg-white pop-dingjia{{list.id}} dingjiabox" style="display:none">
+			<div class="aui-padded-15  zz-div-box">
+				<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">供应商</div>
+				<div class="zz-div-td1">
+					{{list.supplier_name}}
+				</div>
+			</div>
+			<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+				<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">产品类别</div>
+				<div class="zz-div-td1">
+					<div class="db-select-box">
+						<select name="category_selfid" class="db-select category_selfid" dingjiaid="{{list.id}}">
+							<option value="">请选择产品类别</option>
+							{%for list in category_list%}
+							<option value="{{list.selfid}}">{{list.name}}</option>
+							{%endfor%}
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+				<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">产品名称</div>
+				<div class="zz-div-td1">
+					<select name="products_selfid" class="db-select products_selfid">
+						<option value=''>请选择产品</option>
+					</select>
+				</div>
+			</div>
+			<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+				<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">毛重</div>
+				<div class="zz-div-td1">
+					{{list.gw}}
+				</div>
+			</div>
+			{%if list.tare%}
+			<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+				<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">皮重</div>
+				<div class="zz-div-td1">
+					{{list.tare}}
+				</div>
+			</div>
+			{%endif%}
+			<!--<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+				<div class="acolumn-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">最近定价</div>
+				<div class="zz-div-td1">
+					{{list.price}}
+				</div>
+			</div>-->
+			<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+				<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">确定定价</div>
+				<div class="zz-div-td1">
+					<input type="text" class="aui-margin-b-0 mustipt db-input price" name="price">
+				</div>
+			</div>
+			<div class="aui-padded-15  aui-padded-t-0 aui-text-center">
+				<button type="submit" class="aui-btn aui-btn-info ensure_price">&nbsp;确定价格&nbsp;</button>
+				&nbsp;&nbsp;&nbsp;
+				<span class="aui-btn close-pop">&nbsp;关闭&nbsp;</span>
+			</div>
+		</div>
+		<input type="hidden" name="id" value="{{list.id}}"/>
+		<input type="hidden" name="pricing_now" value="1" />
+		<input type="hidden" name="page" value="{{page}}" />
+		</form>
+		{%endfor%}
+		{%if not listall%}
+		<div class="nodata" style="display: block">
+			暂无相关数据
+		</div>
+		{%endif%}
+		<div style="height: 60px;"></div>
+		<div class="floatpage">
+			<div class="page">
+				<ul>
+					{% if firstpage %}
+					<li class="page_prev">
+						<a href="?{{searchurl}}&page={{prvpage}}">上一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+					<li class="page_no">
+						<select onChange="window.location='?{{searchurl}}&page='+this.value">
+							<option>第{{page}}页</option>
+							<option value="1">首页</option>
+							{%for p in page_range%}
+							<option value="{{p.number}}">第{{p.number}}页</option>
+							{%endfor%}
+							<option value="{{page_listcount}}">末页</option>
+						</select> /{{page_listcount}}页
+					</li>
+					{% if lastpage%}
+					<li class="page_next">
+						<a href="?{{searchurl}}&page={{nextpage}}">下一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+
+	</body>
+</html>
+<script>
+{%for list in listall%}
+$(".btn-dj{{list.id}}").on("click",function(){
+	layer.open({
+		area: ',300px',
+		title: false,
+	  	type: 1,
+	  	skin: 'layui-layer-demo', //样式类名
+	  	closeBtn: 0, //不显示关闭按钮
+	  	anim: 2,
+	  	shadeClose: true, //开启遮罩关闭
+	  	content: $(".pop-dingjia{{list.id}}")
+	});
+})
+{%endfor%}
+
+$(".close-pop").on("click",function(){
+	layer.closeAll();
+})
+function subfrm(frm,id){
+	var dingjiabox="pop-dingjia"+id;
+	var self=$("."+dingjiabox);
+	if (self.find(".category_selfid").val()==""){
+		layer.msg("请选择产品类别！");
+		self.find(".category_selfid").focus();
+		return false;
+	}
+	if (self.find(".price").val()==""){
+		layer.msg("请输入价格！");
+		self.find(".price").focus();
+		return false;
+	}else{
+		var isnumflag=isNaN(self.find(".price").val());
+		if (isnumflag){
+			layer.msg("价格必须是数字！")
+			return false;
+		}
+	}
+	return true;
+}
+$(document).ready(function(){
+	$(".dingjiabox .category_selfid").change(function(){
+		var dingjiaid=$(this).attr("dingjiaid");
+		var data={
+			category_selfid:$(this).val(),
+			company_id:{{company_id}},
+		}
+		var category_selfid=$(this).val();
+		
+		var products_selfid=$(".pop-dingjia"+dingjiaid).find(".products_selfid");
+		products_selfid.html("");
+		if(category_selfid!=""){
+			zzajax("post","/app/product.html",data,function(ret){
+				if(ret!="" && ret!= null){
+					$.each(ret.listall, function(i,item) {
+						products_selfid.append("<option value=" +item.selfid +">" +item.name+ "</option>");
+					})
+				};
+			},function(){});
+		};
+	})
+})
+</script>

@@ -51,6 +51,17 @@ def get_qf_info(from_page_count='', limit_num='', qf_id=''):
     return all_qf_data
 
 
+def member_style(company_id):
+    # 根据公司id获取会员类型
+    sql_memeber = "select ca.label from company as c left join category as ca on c.membership_code=ca.code " \
+                  "where c.id=%s"
+    result = dbc.fetchonedb(sql_memeber, [company_id])
+    if result:
+        return result[0]
+    else:
+        return 0
+
+
 def get_all_products(start_num, end_num, limit_num, pdt_kind='', keywords='', start_time='', end_time='', area=''):
     # 获取供求信息
     list_all = []
@@ -58,8 +69,8 @@ def get_all_products(start_num, end_num, limit_num, pdt_kind='', keywords='', st
     cl.SetServer(SPHINXCONFIG['serverid'], SPHINXCONFIG['port'])
     cl.SetMatchMode(SPH_MATCH_BOOLEAN)
     cl.SetLimits(start_num, end_num, limit_num)
+    cl.SetGroupBy('company_id', SPH_GROUPBY_ATTR, "refresh_time desc")
     cl.SetSortMode(SPH_SORT_EXTENDED, 'refresh_time desc')
-    cl.SetGroupBy('company_id', SPH_GROUPBY_ATTR)
     # 限制供应还是求购
     if pdt_kind:
         cl.SetFilter('pdt_kind', [int(pdt_kind)])
@@ -71,7 +82,8 @@ def get_all_products(start_num, end_num, limit_num, pdt_kind='', keywords='', st
         cl.SetFilterRange('refresh_time', get_timestamp(start_time), get_timestamp(end_time))
     # 限制关键词
     if keywords:
-        query_result = cl.Query('' + keywords, 'offersearch_new,offersearch_new_vip')
+        query_result = cl.Query('@(title,label0,label1,label2,label3,label4,city,province,tags) ' + keywords,
+                                'offersearch_new,offersearch_new_vip')
     else:
         query_result = cl.Query('', 'offersearch_new,offersearch_new_vip')
     if query_result and 'matches' in query_result:
@@ -83,6 +95,22 @@ def get_all_products(start_num, end_num, limit_num, pdt_kind='', keywords='', st
             pdt_kind = each_attr['pdt_kind']
             refresh_time = each_attr['refresh_time']
             company_id = each_attr['company_id']
+
+            # 获取会员类型
+            member_ship = member_style(company_id)
+            # if member_ship == '10051001':
+            #     vip_type = '再生通'
+            # elif member_ship == '1725773192':
+            #     vip_type = '银牌品牌通'
+            # elif member_ship == '1725773193':
+            #     vip_type = '金牌品牌通'
+            # elif member_ship == '1725773194':
+            #     vip_type = '钻石品牌通'
+            # else:
+            #     vip_type = '普通会员'
+
+            # 过滤是否为来电宝
+
             # 默认过滤已添加
             sql_filter = "select id from shop_qunfa_record where pdt_id=%s"
             result_filter = dbc.fetchonedb(sql_filter, [pro_id])
@@ -92,7 +120,8 @@ def get_all_products(start_num, end_num, limit_num, pdt_kind='', keywords='', st
                 had_added = 0
             # 返回数据
             data_dict = {'pro_id': pro_id, 'pro_title': pro_title, 'pdt_kind': pdt_kind,
-                         'refresh_time': refresh_time, 'company_id': company_id, 'had_added': had_added}
+                         'refresh_time': refresh_time, 'company_id': company_id, 'had_added': had_added,
+                         'vip_type': member_ship}
             list_all.append(data_dict)
         all_num = query_result['total_found']
         dict_all = {'list_all': list_all, 'all_num': all_num}

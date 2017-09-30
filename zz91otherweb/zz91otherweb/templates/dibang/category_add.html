@@ -18,11 +18,12 @@
 	<body>
 		<form class="form-inline definewidth m20" action="category_save.html" method="post">
 			<table class="table table-bordered table-hover definewidth m10">
-			<tr><td class="tableleft">父级类别ID</td><td><input type="text" name="sub_selfid"></td></tr>
 			<tr><td class="tableleft">类别名称</td><td><input type="text" name="name"></td></tr>
 			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /></td></tr>
 			</table>
-			<input type="hidden" name="company_selfid" value={{company_selfid}} />
+			<input type="hidden" name="company_id" value={{company_id}} />
+			<input type="hidden" name="group_id" value={{group_id}} />
+			<input type="hidden" name="sub_selfid" value={{sub_selfid}} />
 		</form>
 	</body>
 </html>

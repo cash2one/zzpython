@@ -9,6 +9,8 @@
 		<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
 		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/comm.js"></script>
 		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://b.zz91.com/layui/css/layui.css"/>
 		<style>
 			.form-inline input{
 				display: block;
@@ -18,6 +20,21 @@
 	<body>
 		<form class="form-inline definewidth m20" action="storage_save.html" method="post">
 			<table class="table table-bordered table-hover definewidth m10">
+			<tr><td class="tableleft">产品名称</td><td><select name="products_selfid">
+					<option value="">请选择...</option>
+					{% for list in product_list%}
+					<option value="{{list.id}}" id="{{list.id}}">{{list.name}}</option>
+					{%endfor%}
+			</select></td>
+			</tr>
+			<tr><td class="tableleft">供货商</td><td>
+				<select name="suppliers_selfid" id="suppliers_selfid">
+				<option value="">请选择...</option>
+				{% for list in supplier_list%}
+				<option value="{{list.id}}" id="{{list.id}}">{{list.name}}</option>
+				{%endfor%}</select>
+			</td>
+			</tr>
 			<tr><td class="tableleft">单号</td><td><input type="text" name="code"></td></tr>
 			<tr><td class="tableleft">价格</td><td><input type="text" name="price"></td></tr>
 			<tr><td class="tableleft">毛重</td><td><input type="text" name="gw"></td></tr>
@@ -34,9 +51,13 @@
 				<option value="99">作废</option>
 			</select></td></tr>
 			
-			<tr><td class="tableleft">经手人</td><td><input type="text" name="price_users_selfid"></td></tr>
+			<tr><td class="tableleft">经手人</td><td><select name="price_users_selfid">
+				<option value="">选择经手人</option>
+				{%for list in user_list%}
+				<option value="{{list.id}}">{{list.contact}}</option>
+				{%endfor%}
+			</select></td></tr>
 			<tr><td class="tableleft">定价时间</td><td><input class="Wdate" type="text" style="width:100px" name="price_time" id="datebegin" onClick="WdatePicker()"></td></tr>
-			
 			<tr><td class="tableleft">是否支付</td><td><select name="ispay" style="display: block;">
 				<option value="">请选择...</option>
 				<option value="0">未支付</option>
@@ -52,13 +73,35 @@
 			
 			<tr><td class="tableleft">支付时间</td><td><input class="Wdate" type="text" style="width:100px" name="pay_time" id="datebegin" onClick="WdatePicker()"></td></tr>
 			
-			<tr><td class="tableleft">支付人员</td><td><input type="text" name="pay_users_selfid"></td></tr>
+			<tr><td class="tableleft">支付人员</td><td><select name="pay_users_selfid">
+				<option value="">选择支付人员</option>
+				{%for list in user_list%}
+				<option value="{{list.id}}">{{list.contact}}</option>
+				{%endfor%}
+			</select></td></tr>
 			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /></td></tr>
 			</table>
 			<input type="hidden" name="group_id" value={{group_id}} />
 			<input type="hidden" name="company_id" value={{company_id}}/>
-			<input type="hidden" name="products_selfid" value={{products_selfid}} />
 		</form>
+		<script>
+//				$(".button").click(function() {
+//						var oplist=$("#center").html();
+//						var optist=
+//						layer.open({
+//							type: 0,
+//							title: '选择供货商',
+//							content: '<center>' + oplist + '</center>',
+//							yes: function() {
+//								var suppliers_selfid=$("#select").val();
+//								alert(suppliers_selfid);
+//								$("#suppliers_selfid").val(suppliers_selfid);
+//								layer.closeAll()
+//							}
+//								
+//						});
+//				})
+		</script>
 	</body>
 </html>
 

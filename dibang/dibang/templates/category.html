@@ -13,9 +13,8 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="http://b.zz91.com/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="/layui/css/layui.css"/>
 		<script type="text/javascript" src="http://b.zz91.com/layui/layui.js"></script>
-		
 		
 		<style>
 			.mainbox{
@@ -26,12 +25,12 @@
 	<body>
 		<div class="mainbox">
 			<div class="demoTable">
-				<button class="layui-btn layui-btn-primary" data-type="">删除</button>
-			  	<button class="layui-btn layui-btn-primary" data-type="">添加</button>
+				品名：
 			  	<div class="layui-inline">
-			    	<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+			    	<input class="layui-input" name="name" id="name" autocomplete="off">
 			  	</div>
 			  	<button class="layui-btn layui-btn-normal" data-type="reload">查询</button>
+			  	<a href="category_add.html" class="layui-btn layui-btn-primary">添加</a>
 			</div>
 			 
 			<table class="layui-hide" id="LAY_table_user" lay-filter="user"></table> 
@@ -40,30 +39,38 @@
 		  <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
 		  <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
 		</script>
+		<!--<script id="barcategoryadd" type="text/html">
+		  <a class="layui-btn layui-btn-mini" lay-event="category_add">添加小类</a>
+		</script>-->
 	</body>
 	<script src="js/jquery.js" charset="utf-8"></script>
 	<script src="js/comm.js" charset="utf-8"></script>
 	<script>
 		layui.use('table', function(){
 		  var table = layui.table;
+		  var $ = layui.$;
 		  //监听表格复选框选择
 		  table.on('checkbox(user)', function(obj){
 		    console.log(obj)
 		  });
 		  //方法级渲染
-		  table.render({
+		  function tablerender(){ table.render({
 		    elem: '#LAY_table_user'
-		    ,url: 'category_data.html'
+		    ,url: 'category_data.html?name='+$("#name").val()
 		    ,cols: [[
 		      {checkbox: true, fixed: true}
-		      ,{field:'id', title: '编号', width:150}
-		      ,{field:'name', title: '品名', width:100}
+		      ,{field:'id', title: '序号', width:100,fixed:true}
+		      ,{field:'name', title: '品名', width:200}
 		      ,{field:'caozuo', title: '操作', width:200,toolbar:'#barDemo'}
+//		      ,{field:'category_add', title: '添加', width:200,toolbar:'#barcategoryadd'}
 		    ]]
 		    ,id: 'testReload'
 		    ,page: true
-		    ,height: 315
-		  });
+		    ,limit: 10
+		    ,limits:[]
+		    ,height: 500
+		  })};
+		  tablerender();
 		  //监听工具条
 		  table.on('tool(user)', function(obj){
 		    var data = obj.data;
@@ -73,17 +80,19 @@
 		        crmajax('post','category_del.html',data,function(){obj.del();},function(){});
 		        layer.close(index);
 		      });
-		    } else if(obj.event === 'edit'){
+		    }; if(obj.event === 'edit'){
 		    	window.location='category_mod.html?id='+data.id;
 		       //layer.alert('编辑行：<br>'+ JSON.stringify(data))
-		    }
+		    }; if(obj.event === 'category_add'){
+		    	window.location='category_add.html?sub_selfid='+data.selfid+'&company_id='+data.company_id;
+		    };
 		  });
-		  $('.demoTable .layui-btn').on('click', function(){
-		    var type = $(this).data('type');
-		    active[type] ? active[type].call(this) : '';
+		  
+		  $('.demoTable .layui-btn-normal').on('click', function(){
+				tablerender();
 		  });
+		  
 		});
-		
 		
 	</script>
 </html>

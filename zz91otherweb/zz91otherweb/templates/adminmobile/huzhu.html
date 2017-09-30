@@ -17,6 +17,11 @@
 		.aui-nav li {
 			line-height: 50px;
 		}
+		.aui-list-view-cell > a{
+			display:inline;
+			margin: 0 auto;
+			width: 50%;
+		}
 	</style>
 
 	<body>
@@ -40,6 +45,7 @@
 					</div>
 					<div style="clear: both;height: 20px;"></div>
 					<a class="aui-btn aui-btn-warning" href="del_bbs_post.html?postid={{list.id}}&is_del=1" onClick="return confirm('是否将此信息删除?')" title="删除">删除</a>
+					<a class="aui-btn aui-btn-warning" href="del_bbs_post.html?postid={{list.id}}&check_status=3" onClick="return confirm('是否将此信息退回?')" title="退回">退回</a>
 				</li>
 				<div style="clear: both;"></div>
 				{%endfor%}

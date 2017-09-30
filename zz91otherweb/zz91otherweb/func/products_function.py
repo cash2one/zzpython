@@ -3,13 +3,16 @@
 class zz91products:
     def __init__(self):
         self.dbc=dbc
-    def getproductslist(self,frompageCount,limitNum,check_status=''):
+    def getproductslist(self,frompageCount,limitNum,check_status='',company_id=''):
         argument=[]
         #DATEDIFF(CURDATE(),gmt_created)>7
         sqlarg=' from products where gmt_modified>"2016-8-28"'
         if check_status:
             sqlarg+=' and check_status=%s'
             argument.append(check_status)
+        if company_id:
+            sqlarg+=' and company_id=%s'
+            argument.append(company_id)
         sqlc='select count(0)'+sqlarg
         sql='select id,title,products_type_code,gmt_created'+sqlarg
         sql+=' order by id desc limit '+str(frompageCount)+','+str(limitNum)

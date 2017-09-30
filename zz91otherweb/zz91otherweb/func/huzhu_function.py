@@ -48,10 +48,14 @@ class huzhu_zhishi:
 class zz91huzhu:
     def __init__(self):
         self.db_huzhu=dbc
-    def updatedb(self,is_del,postid):
+    def updatedb(self,check_status,is_del,postid):
         gmt_created=datetime.datetime.now()
-        sql='update bbs_post set is_del=%s,gmt_modified=%s where id=%s'
-        self.db_huzhu.updatetodb(sql,[is_del,gmt_created,postid])
+        if is_del:
+            sql='update bbs_post set is_del=%s,gmt_modified=%s where id=%s'
+            self.db_huzhu.updatetodb(sql,[is_del,gmt_created,postid])
+        elif check_status:
+            sql='update bbs_post set check_status=%s,gmt_modified=%s where id=%s'
+            self.db_huzhu.updatetodb(sql,[check_status,gmt_created,postid])
     def update_bbs_post(self,bbs_post_category_id,title,content,check_status,gmt_created,postsource,litpic,postid):
         content_query=filter_tags(content)
         gmt_modified=datetime.datetime.now()

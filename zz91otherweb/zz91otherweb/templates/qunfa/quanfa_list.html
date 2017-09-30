@@ -11,6 +11,9 @@
     		text-decoration: none;
     		color: #333;
     	}
+    	th,td {
+    		white-space: nowrap;
+    	}
     </style>
 </head>
 <body>
@@ -19,17 +22,17 @@
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
-				<th>公司名称</th>
+				<th width="120">公司名称</th>
 				<th>留言内容</th>
-				<th>操作</th>
-				<th>购买时间</th>
+				<th width="80">操作</th>
+				<th width="80">购买时间</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for each_data in all_qf_data %}
 			<tr>
-				<td class="comp-name"><a href="http://admin1949.zz91.com/web/zz91/crm/company/detail.htm?companyId={{ each_data.2 }}" target="_blank">{{ each_data.10 }}</a></td>
-				<td>{{ each_data.1 }}</td>
+				<td class="comp-name"><a href="http://admin1949.zz91.com/web/zz91/crm/company/detail.htm?companyId={{ each_data.2 }}" target="_blank">{{ each_data.10 | truncatechars:'13' }}</a></td>
+				<td class="message">{{ each_data.1 | truncatechars:'20' }}</td>
 				<td><a href="qunfa_record.html?qf_id={{ each_data.0 }}">开始群发</a></td>
 				<td>{{ each_data.3 | date:'Y-m-d H:i:s' }}</td>
 			</tr>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="http://b.zz91.com/layui/css/layui.css"/>	
+		<script type="text/javascript" src="http://b.zz91.com/layui/layui.js"></script>
+		<script type="text/javascript" src="/js/comm.js"></script>
+		<script type="text/javascript" src="/js/jquery.js"></script>
+		<style>
+			.mainbox{
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mainbox">
+			<form class="layui-form" action="product_save.html" method="post">
+				<!--<div class="layui-form-item">
+				    <label class="layui-form-label">产品编号</label>
+				    <div class="layui-input-block">
+				      	<input type="text" name="id" lay-verify="title" autocomplete="off" placeholder="请输入产品编号" class="layui-input">
+				    </div>
+			  	</div>-->
+				
+				<div class="layui-form-item">
+				    <label class="layui-form-label"><span style="color: red;">*</span>产品名称</label>
+				    <div class="layui-input-block">
+				      	<input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入产品名称" class="layui-input" value={{result.name}}>
+				    </div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label">名称简拼</label>
+				    <div class="layui-input-block">
+				      	<input type="text" name="name_py" autocomplete="off" placeholder="请输入名称简拼" class="layui-input" value={{result.name_py}}>
+				    </div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+			    	<label class="layui-form-label"><span style="color: red;">*</span>产品类别</label>
+			    	<div class="layui-input-block">
+			    		<select name="category_selfid" id="category_selfid" lay-verify="required">
+				      		<option value="">请选择...</option>
+				      		{%for list in categorylist%}
+							<option value="{{list.selfid}}">{{list.name}}</option>
+							{%endfor%}
+				      	</select>
+			    	</div>
+			    	<script>selectOption("category_selfid","{{result.category_selfid}}")</script>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+			    	<label class="layui-form-label">规格</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="spec" placeholder="请输入规格" autocomplete="off" class="layui-input" value={{result.spec}}>
+			    	</div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+			    	<label class="layui-form-label">计数单位</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="unit"  placeholder="请输入计数单位" autocomplete="off" class="layui-input" value={{result.unit}}>
+			    	</div>
+			  	</div>
+			  	
+				<div class="layui-form-item">
+				    <label class="layui-form-label">库存数量</label>
+				    <div class="layui-input-inline">
+				        <input type="tel" name="stock" placeholder="请输入库存数量" autocomplete="off" class="layui-input" value={{result.stock}}>
+				    </div>
+				</div>
+				
+			  	<div class="layui-form-item layui-form-text">
+				    <label class="layui-form-label">备注</label>
+				    <div class="layui-input-block">
+				      <textarea placeholder="请输入内容" class="layui-textarea" name="bz">{{result.bz}}</textarea>
+				    </div>
+				</div>
+				
+				<div class="layui-form-item layui-col">
+					<div class="layui-input-block">
+					    <button type="reset" class="layui-btn layui-btn-primary layui-col-xs2">清除</button>
+					    <button class="layui-btn layui-btn-normal layui-col-xs2" lay-submit="" lay-filter="demo1">保存</button>
+					</div>
+				</div>
+				<input type="hidden" name="company_id" value={{company_id}} />
+				<input type="hidden" name="id" value={{id}} />
+			</form>
+		</div>
+			
+	</body>
+	<script>
+		layui.use(['form', 'layedit', 'laydate'], function(){
+		  var form = layui.form
+		  ,layer = layui.layer
+		  ,layedit = layui.layedit
+		  
+		  //自定义验证规则
+		  form.verify({
+		    pass: [/(.+){6,12}$/, '密码必须6到12位']
+		    ,content: function(value){
+		      layedit.sync(editIndex);
+		    }
+		  });
+		  
+		});
+	</script>
+</html>
+

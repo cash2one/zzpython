@@ -85,7 +85,30 @@
 					<span class="aui-input-addon">年限</span>
 					<span class="aui-margin-l-10">{{list.zst_year}}</span>
 				</div>
-				
+				{%if list.crm_service_authority_id%}
+				<div class="aui-input-row">
+					<span class="aui-input-addon">供求自动刷新</span>
+					<span class="aui-margin-l-10">
+						<select name="is_auto_refresh" type="select" class="aui-input selectlist" id="is_auto_refresh" sid="{{list.crm_service_authority_id}}">
+							<option value="0">未开通</option>
+							<option value="1">已开通</option>
+						</select>
+						<script>selectOption("is_auto_refresh","{{list.is_auto_refresh}}")</script>
+					</span>
+				</div>
+				{%endif%}
+				{%if list.company_account_contact_id%}
+				<div class="aui-input-row">
+					<span class="aui-input-addon">显示联系方式</span>
+					<span class="aui-margin-l-10">
+						<select name="is_hidden" type="select" class="aui-input selectlist" id="is_hidden" sid="{{list.company_account_contact_id}}">
+							<option value="1">未开通</option>
+							<option value="0">已开通</option>
+						</select>
+						<script>selectOption("is_hidden","{{list.is_hidden}}")</script>
+					</span>
+				</div>
+				{%endif%}
 				<div style="clear: both;"></div>
 			<div style="clear: both;"></div>
 		</div>
@@ -139,7 +162,15 @@
 				var fildvalue=$(this).val();
 				var fild=$(this).attr("id");
 				var sid=$(this).attr("sid");
-				savecontent(fild,fildvalue,'crm_company_service',sid)
+				if(fild=='apply_status'){
+					savecontent(fild,fildvalue,'crm_company_service',sid)
+				};
+				if(fild=='is_auto_refresh'){
+					savecontent(fild,fildvalue,'crm_service_authority',sid);
+				};
+				if(fild=='is_hidden'){
+					savecontent(fild,fildvalue,'company_account_contact',sid);
+				}
 			})
 			$("body").on("click",".aui-input",function() {
 				if ($(this).attr("type")=="text"){
@@ -161,7 +192,7 @@
 					fildvalue : fildvalue,
 					tablevalue : tablevalue,
 					id : id
-				}
+				};
 				$.ajax({
 					url : 'savecontent.html',
 					type : 'post',

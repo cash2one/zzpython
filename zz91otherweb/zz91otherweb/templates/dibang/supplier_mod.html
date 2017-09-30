@@ -23,26 +23,29 @@
 	<body>
 		<form class="form-inline definewidth m20" action="supplier_save.html" method="post">
 			<table class="table table-bordered table-hover definewidth m10">
-			<tr><td class="tableleft">供应商类型</td><td><select name="ctype" id="select" style="display: block;">
+			<tr><td class="tableleft">供应商类型</td><td>
+			<select name="ctype" id="ctype" style="display: block;">
 				<option value="1">公司</option>
 				<option value="2">个人</option>
 			</select>
 			<script>
-				selectoption("select",{{ctype}})
-			</script></td></tr>
+				selectoption("ctype",{{ctype}})
+			</script>
+			</td></tr>
 			
 			<tr><td class="tableleft">供应商/供货人名称</td><td><input type="text" name="name" value={{name}}></td></tr>
+			<tr><td class="tableleft">IC卡编号</td><td><input type="text" name="iccode" value={{iccode}}></td></tr>
 			<tr><td class="tableleft">合作关系</td><td><select name="htype" id="select1" style="display: block;">
-				<option value="长期">长期</option>
-				<option value="短期">短期</option>
+				<option value="0">长期</option>
+				<option value="1">短期</option>
 			</select>
 			<script>
 				selectoption("select1","{{htype}}")
 			</script></td></tr>
 			
 			<tr><td class="tableleft">联系人</td><td><input type="text" name="contact" value={{contact}}></td></tr>
-			<tr><td class="tableleft">手机/电话</td><td><input type="text" name="mobile" value={{mobile}}></td></tr>
-			<tr><td class="tableleft">密码</td><td><input type="text" name="pwd" value={{pwd}}></td></tr>
+			<tr><td class="tableleft">手机</td><td><input type="text" name="mobile" value={{mobile}}></td></tr>
+			<tr><td class="tableleft">密码</td><td><input type="text" name="pwd"><input type="checkbox" name="ischange_pwd" value="1">是否更改密码</td></tr>
 			<tr><td class="tableleft">地址</td><td><input type="text" name="address" value={{address}}></td></tr>
 			<tr><td class="tableleft">备注</td><td><input type="text" name="bz" value={{bz}}></td></tr>
 			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /><input type="hidden" name="id" value={{id}}></td></tr>

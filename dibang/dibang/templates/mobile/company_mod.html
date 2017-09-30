@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>修改分站-再生资源智能管理系统</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<script>
+			function selectoption(id,value){
+				$("#"+id).val(value)
+			}
+		</script>
+		<link rel="stylesheet" type="text/css" href="/css/index.css"/>
+		</head>
+	<body>
+		<div style="height:45px;">
+			<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+		    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+			        <span class="aui-iconfont aui-icon-left"></span>
+			    </a>
+			    <div class="aui-title">
+			    	修改分站
+			    </div>
+			</header>
+		</div>
+		{%if result%}
+		<form action="company_save.html" method="post" id="form">
+			<div class="db-bg-white">
+				<div class="aui-padded-15  zz-div-box">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">分站名称</div>
+					<div class="zz-div-td1">
+						<input type="text" class="aui-margin-b-0 mustipt db-input" name="name" id="name" value="{{result.name}}">
+					</div>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">分站类型</div>
+					<div class="zz-div-td1">
+						<div class="db-select-box">
+							<select name="ctype" id="ctype" class="db-select">
+								<option value="2">个人</option>
+								<option value="1">公司</option>
+							</select>
+							<script>selectoption("ctype","{{result.ctype}}")</script>
+						</div>
+					</div>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">地址</div>
+					<div class="zz-div-td1">
+						<input type="text" class="aui-margin-b-0 mustipt db-input" name="address" id="address" value="{{result.address}}">
+					</div>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title"></div>
+					<div class="zz-div-td1">
+						<div class="aui-btn aui-btn-success">&nbsp;保存&nbsp;</div>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" name="id" value="{{id}}"/>
+			<input type="hidden" name="request_url" value="{{request_url}}"/>
+			
+		</form>
+		{%else%}
+		<div class="nodata" style="display: block">
+			错误的分站数据
+		</div>
+		{%endif%}
+	</body>
+</html>
+<script>
+	$(".aui-btn").on("click",function(){
+		if($("#name").val().length==0){
+			layer.msg('分站名称不能为空!');
+			return false;
+		}
+		if($("#address").val().length==0){
+			layer.msg('地址不能为空!');
+			return false;
+		}
+		else{
+			$("#form").submit();
+		}
+	})
+</script>

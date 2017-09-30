@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>产品添加-再生资源智能管理系统</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/index.css"/>
+		</head>
+	<body>
+		<div style="height:45px;">
+			<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+		    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+			        <span class="aui-iconfont aui-icon-left"></span>
+			    </a>
+			    <div class="aui-title">
+			    	添加产品
+			    </div>
+			</header>
+		</div>
+		
+		<form action="product_save.html" method="post" id="form">
+			<div class="db-bg-white">
+				<div class="aui-padded-15  zz-div-box">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">产品名称</div>
+					<div class="zz-div-td1">
+						<input type="text" class="aui-margin-b-0 mustipt db-input" name="name" id="name">
+					</div>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">名称简拼</div>
+					<div class="zz-div-td1">
+						<input type="text" class="aui-margin-b-0 mustipt db-input" name="name_py" id="name_py">
+					</div>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">产品类别</div>
+					<div class="zz-div-td1">
+						<div class="db-select-box">
+							<span class="aui-iconfont aui-icon-unfold"></span>
+							<select name="category_selfid" id="category_selfid" class="db-select">
+							<option value="">请选择产品类别</option>
+							{%for list in category_list%}
+							<option value="{{list.selfid}}">{{list.name}}</option>
+							{%endfor%}
+						</select>
+						</div>
+					</div>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">规格</div>
+					<div class="zz-div-td1">
+						<input type="text" class="aui-margin-b-0 mustipt db-input" name="spec" id="spec">
+					</div>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">计数单位</div>
+					<div class="zz-div-td1">
+						<div class="db-select-box">
+							<span class="aui-iconfont aui-icon-unfold"></span>
+							<select name="unit" id="unit" class="db-select">
+								<option value="千克">千克</option>
+								<option value="吨">吨</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="aui-padded-r-10 aui-font-size-18 db-gy-title row-right">备注</div>
+					<div class="zz-div-td1">
+						<textarea name="bz"></textarea>
+					</div>
+				</div>
+
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title"></div>
+					<div class="zz-div-td1">
+						<div class="aui-btn aui-btn-success">&nbsp;保存&nbsp;</div>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" name="request_url" value="{{request_url}}" />
+		</form>
+	</body>
+</html>
+<script>
+	$(".aui-btn").on("click",function(){
+		if($("#name").val().length==0){
+			layer.msg('产品名称不能为空!');
+			return false;
+		}
+		if($("#name_py").val().length==0){
+			layer.msg('产品简拼不能为空!');
+			return false;
+		}
+		if($("#category_selfid").val().length==0){
+			layer.msg('产品类别不能为空!');
+			return false;
+		}
+//		if($("#spec").val().length==0){
+//			layer.msg('规格不能为空!');
+//			return false;
+//		}
+//		if($("#unit").val().length==0){
+//			layer.msg('计数单位不能为空!');
+//			return false;
+//		}
+		else{
+			$("#form").submit();
+		}
+	})
+</script>

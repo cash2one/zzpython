@@ -24,14 +24,15 @@
 		<form class="form-inline definewidth m20" action="user_save.html" method="post">
 			<table class="table table-bordered table-hover definewidth m10">
 			<tr><td class="tableleft">用户类别</td><td><select name="utype" id="select" style="display: block;">
-				<option value="1">管理员</option>
+				<option value="1">集团管理员</option>
+				<option value="4">分站管理员</option>
 				<option value="2">校验员</option>
 				<option value="3">财务人员</option>
 			</select>
 			<script>selectoption("select",{{utype}})</script></td></tr>
 			
-			<tr><td class="tableleft">用户名</td><td><input type="text" name="username" value={{username}}></td></tr>
-			<tr><td class="tableleft">密码</td><td><input type="text" name="pwd" value={{pwd}}></td></tr>
+			<tr><td class="tableleft">用户名</td><td><input type="text" name="username" value={{username}}><a style="color: red;">{{errtext1}}</a></td></tr>
+			<tr><td class="tableleft">密码</td><td><input type="text" name="pwd"><input type="checkbox" name="ischange_pwd" value="1" />是否更改密码</td></tr>
 			<tr><td class="tableleft">姓名</td><td><input type="text" name="contact" value={{contact}}></td></tr>
 			<tr><td class="tableleft">性别</td><td><select name="sex" id="select1" style="display: block;">
 				<option value="">请选择...</option>
@@ -40,12 +41,11 @@
 			</select>
 			<script>selectoption("select1","{{sex}}")</script></td></tr>
 			
-			<tr><td class="tableleft">手机</td><td><input type="text" name="mobile" value={{mobile}}></td></tr>
+			<tr><td class="tableleft">手机</td><td><input type="text" name="mobile" value={{mobile}}><a style="color: red;">{{errtext2}}</a></td></tr>
 			<tr><td class="tableleft">备注</td><td><input type="text" name="bz" value={{bz}}></td></tr>
 			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /></td></tr>
-			<input type="hidden" name="id" value={{id}}>
-			
 			</table>
+			<input type="hidden" name="id" value="{{id}}">
 		</form>
 	</body>
 	

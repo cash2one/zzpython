@@ -5,21 +5,35 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="http://www.feiliao123.com/feiliao123/Css/bootstrap-responsive.css" />
     <link rel="stylesheet" href="http://www.feiliao123.com/feiliao123/Css/style.css"> 
-<!--     <script type="text/javascript" src="http://www.feiliao123.com/feiliao123/Js/jquery-1.7.2.js"></script> -->
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="http://www.feiliao123.com/feiliao123/My97DatePicker/WdatePicker.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>修改群发任务-群发速配管理</title>
     <style type="text/css">
     	.main {
+    		height: auto;
     		margin-top: 20px;
     		margin: 0 auto;
-    		width: 800px;
-    		border-radius: 9px;
-    		box-shadow: 0 0 5px #ccc;
+    		width: 1200px;
+/*    		border-radius: 9px;
+    		box-shadow: 0 0 5px #ccc;*/
+    	}
+    	.container {
+    		width: 1200px;
+    		margin: 0 auto;
     	}
     	label {
     		font-weight: normal;
+    	}
+    	.spw120 {
+    		width: 120px;
+    	}
+    	.spw200 {
+    		width: 200px;
+    	}
+    	.spw150 {
+    		width: 150px;
+    		text-align: center;
     	}
     </style>
     <script type="text/javascript">
@@ -60,101 +74,80 @@
 </head>
 <body>
 <div class="main">
-	<div class="container" style="margin-top: 30px;padding: 5px;">
-		<div class="alert alert-danger alert-dismissable col-sm-4 col-sm-offset-2 tishi_text" style="display: none;">
-		  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		  提交成功。
-		</div>
-	</div>
-	<div class="container" style="padding: 5px;">
+	<div class="container" style="padding: 5px;margin-top: 30px;">
+		<div class="row">
 			<form role="form" class="form-horizontal" method="post">
 				<div class="form-group">
-					<label for="comp-name" class="col-sm-2 control-label">客户名称：</label>
-					<div class="col-sm-4">
+					<label for="comp-name" class="col-sm-3 control-label">客户名称：</label>
+					<div class="col-sm-9">
 						<label class="control-label" style="font-weight: normal;">{{ qun_fa_content.10 }}</label>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="comp-account" class="col-sm-2 control-label"">账号：</label>
-					<div class="col-sm-4">
+					<label for="comp-account" class="col-sm-3 control-label"">账号：</label>
+					<div class="col-sm-9">
 						<label class="control-label" style="font-weight: normal;">{{ qun_fa_content.11 }}</label>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="content" class="col-sm-2 control-label"">群发内容：</label>
-					<div class="col-sm-4">
-						{% if qun_fa_content.4 != 2 %}
-						<textarea name="qf-content" class="form-control" rows="5" style="resize: vertical;">{{ qun_fa_content.1 }}</textarea>
-						{% else %}
-						<label class="control-label" style="font-weight: normal;">{{ qun_fa_content.1 }}</label>
-						{% endif %}
+					<label for="content" class="col-sm-3 control-label"">群发内容：</label>
+					<div class="col-sm-6">
+						<textarea name="qf-content" class="form-control" rows="10" style="resize: vertical;">{{ qun_fa_content.1 }}</textarea>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">群发条数：</label>
-					<div class="col-sm-4">
+					<label class="col-sm-3 control-label">群发条数：</label>
+					<div class="col-sm-9">
 						<label class="control-label" style="font-weight: normal;">{{ qun_fa_content.5 | default:0 }}</label>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">已完成条数：</label>
-					<div class="col-sm-4">
+					<label class="col-sm-3 control-label">已完成条数：</label>
+					<div class="col-sm-9">
 						<label class="control-label" style="font-weight: normal;">{{ qun_fa_content.6 | default:0 }}</label>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">任务开始日期：</label>
-					<div class="col-sm-4">
-						{% if qun_fa_content.4 != 2 %}
-						<input type="text" name="start-date" id="start-date" class="form-control Wdate" onclick="WdatePicker()" style="height: 34px;" value="{% if qun_fa_content.8 %}{{ qun_fa_content.8 | date:'Y-m-d' }}{% else %}{{ time_now2 }}{% endif %}">
-						{% else %}
-						<label class="control-label" style="font-weight: normal;">{{ qun_fa_content.8 | date:'Y-m-d' }}</label>
-						{% endif %}
+					<label class="col-sm-3 control-label">任务开始日期：</label>
+					<div class="col-sm-9">
+						<input type="text" name="start-date" id="start-date" class="form-control Wdate spw120" onclick="WdatePicker()" style="height: 34px;" value="{% if qun_fa_content.8 %}{{ qun_fa_content.8 | date:'Y-m-d' }}{% else %}{{ time_now2 }}{% endif %}">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">任务执行时间：</label>
-					<div class="col-sm-4">
-						{% if qun_fa_content.4 != 2 %}
+					<label class="col-sm-3 control-label">任务执行时间：</label>
+					<div class="col-sm-9 spw150">
 						<select name="exec-time" id="exec-time" class="form-control">
 							<option value="9" selected="selected">9</option>
 							<option value="15">15</option>
 						</select>
 						<script type="text/javascript">selectOption('exec-time','{{ qun_fa_content.9 }}')</script>
-						{% else %}
-						<label class="control-label" style="font-weight: normal;">{{ qun_fa_content.9 }}</label>
-						{% endif %}
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">任务完成时间：</label>
-					<div class="col-sm-4">
+					<label class="col-sm-3 control-label">任务完成时间：</label>
+					<div class="col-sm-9">
 						<label class="control-label" style="font-weight: normal;">{% if qun_fa_content.4 != 1 %}{{ qun_fa_content.7 | date:'Y-m-d H:i:s' | default:'未完成' }}{% else %}已关闭{% endif %}</label>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">任务状态：</label>
-					<div class="col-sm-4">
-						{% if qun_fa_content.4 != 2 %}
+					<label class="col-sm-3 control-label">任务状态：</label>
+					<div class="col-sm-9 spw150">
 						<select name="task-status" id="task-status" class="form-control">
 							<option value="0" selected="selected">开启</option>
 							<option value="1">关闭</option>
+							<option value="2">完成</option>
 						</select>
 						<script type="text/javascript">selectOption('task-status','{{ qun_fa_content.4 }}')</script>
-						{% else %}
-						<label class="control-label" style="font-weight: normal;">已完成</label>
-						{% endif %}
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-2 col-sm-10 ">
-						{% if qun_fa_content.4 != 2 %}
+					<div class="col-sm-offset-3 col-sm-9">
 						<button type="button" class="btn btn-success" onclick="return modifyTask(form)">修改</button>
-						{% endif %}
 						<button type="button" class="btn btn-danger" onclick="window.location='qunfa_manage.html'">返回</button>
 					</div>
 				</div>
 			</form>
+		</div>
 	</div>
 	<div class="container">
 	  <div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

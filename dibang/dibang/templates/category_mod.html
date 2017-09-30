@@ -24,17 +24,11 @@
 	<body>
 		<div class="mainbox">
 			<form class="layui-form" action="category_save.html" method="post">
-				<div class="layui-form-item">
-				    <label class="layui-form-label">编号</label>
-				    <div class="layui-input-block">
-				      	<input type="text" name="" lay-verify="title" autocomplete="off" placeholder="请输入编号" class="layui-input">
-				    </div>
-			  	</div>
 				
 			  	<div class="layui-form-item">
-				    <label class="layui-form-label">品名</label>
+				    <label class="layui-form-label"><span style="color: red;">*</span>品名</label>
 				    <div class="layui-input-block">
-				      	<input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入品名" class="layui-input">
+				      	<input type="text" name="name" lay-verify="required" value="{{result.name}}" autocomplete="off" placeholder="请输入品名" class="layui-input">
 				    </div>
 			  	</div>
 			  	
@@ -57,25 +51,11 @@
 		  
 		  //自定义验证规则
 		  form.verify({
-		    title: function(value){
-		      if(value.length < 5){
-		        return '标题至少得5个字符啊';
-		      }
-		    }
-		    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+		  	pass: [/(.+){6,12}$/, '密码必须6到12位']
 		    ,content: function(value){
 		      layedit.sync(editIndex);
 		    }
 		  });
-		  
-		  //监听提交
-		  form.on('submit(demo1)', function(data){
-		    layer.alert(JSON.stringify(data.field), {
-		      title: '最终的提交信息'
-		    })
-		  });
-		  
-		  
 		});
 	</script>
 </html>

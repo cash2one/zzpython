@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>人员添加-再生资源智能管理系统</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="/css/index.css"/>
+		</head>
+	<body>
+		<div style="height:45px;">
+			<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+		    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+			        <span class="aui-iconfont aui-icon-left"></span>
+			    </a>
+			    <div class="aui-title">
+			    	添加人员
+			    </div>
+			</header>
+		</div>
+		
+		<form action="user_save.html" method="post" id="form">
+			<div class="db-bg-white">
+				<div class="aui-padded-15  zz-div-box">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">用户级别</div>
+					<div class="zz-div-td1">
+						<div class="db-select-box">
+							<select name="utype" id="utype" class="db-select">
+								<option value="">请选择...</option>
+					      		{%ifequal utype "1"%}
+								<option value="1">集团管理员</option>
+								{%endifequal%}
+								<option value="4">分站管理员</option>
+								<option value="2">校验员</option>
+								<option value="3">财务人员</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="aui-padded-15  zz-div-box">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">分站</div>
+					<div class="zz-div-td1">
+						<div class="db-select-box">
+							<select name="company_id" id="company_id" class="db-select">
+					      		{%for list in company_list%}
+								<option value="{{list.id}}">{{list.name}}</option>
+								{%endfor%}
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">用户名</div>
+					<div class="zz-div-td1">
+						<input type="text" class="aui-margin-b-0 mustipt db-input" name="username" id="username">
+					</div>
+					<a style="color: red;">{{errtext1}}</a>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">密码</div>
+					<div class="zz-div-td1">
+						<input type="text" class="aui-margin-b-0 mustipt db-input" name="pwd" id="pwd">
+					</div>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">姓名</div>
+					<div class="zz-div-td1">
+						<input type="text" class="aui-margin-b-0 mustipt db-input" name="contact" id="contact">
+					</div>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">性别</div>
+					<div class="zz-div-td1">
+						<input class="aui-radio aui-radio-success" type="radio" name="sex" checked value="男"><div class="aui-radio-name">男</div>
+                		<input class="aui-radio aui-radio-success" type="radio" name="sex" value="女"><div class="aui-radio-name">女</div>
+					</div>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title row-right">手机</div>
+					<div class="zz-div-td1">
+						<input type="text" class="aui-margin-b-0 mustipt db-input" name="mobile" id="mobile">
+					</div>
+					<a style="color: red;">{{errtext2}}</a>
+				</div>
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="aui-padded-r-10 aui-font-size-18 db-gy-title row-right">备注</div>
+					<div class="zz-div-td1">
+						<textarea name="bz"></textarea>
+					</div>
+				</div>
+
+				<div class="aui-padded-15  zz-div-box aui-padded-t-0">
+					<div class="column-cnt aui-padded-r-10 aui-font-size-18 db-gy-title"></div>
+					<div class="zz-div-td1">
+						<div class="aui-btn aui-btn-success">&nbsp;保存&nbsp;</div>
+					</div>
+				</div>
+			</div>
+		</form>
+
+
+
+	</body>
+</html>
+<script>
+	$(".aui-btn").on("click",function(){
+		if($("#utype").val().length==0){
+			layer.msg('用户级别不能为空!');
+			return false;
+		}
+		if($("#username").val().length==0){
+			layer.msg('用户名不能为空!');
+			return false;
+		}
+		if($("#pwd").val().length==0){
+			layer.msg('密码不能为空!');
+			return false;
+		}
+		if($("#contact").val().length==0){
+			layer.msg('姓名不能为空!');
+			return false;
+		}
+		if($("#mobile").val().length==0){
+			layer.msg('手机不能为空!');
+			return false;
+		}
+		else{
+			$("#form").submit();
+		}
+	})
+</script>

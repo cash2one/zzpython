@@ -701,6 +701,8 @@ def choujiang(request):
     if not page:
         page=1
     btype=request.GET.get('btype')
+    
+    """
     BANGDING_t=[]
     for l in BANGDING:
         BANGDING_t.append({'btype':l[0],'bname':BANGDING[str(l[0])]})
@@ -737,7 +739,23 @@ def choujiang(request):
                 JIANGPIN.append({'btype':str(l),'bname':JIANGPIN_taizhou[str(l[0])]})
         if jiangpin:
             jiangpinname=JIANGPIN_taizhou[str(jiangpin)]
-    
+    """
+    sql="select id,label from subject_choujiang_categroy where sub_id=0"
+    result=dbc.fetchalldb(sql)
+    categorycj=[]
+    if result:
+        for list in result:
+            l={'id':list[0],'label':list[1]}
+            sql1="select id,label from subject_choujiang_categroy where sub_id=%s"
+            result1=dbc.fetchalldb(sql1,[list[0]])
+            if result1:
+                categorycj1=[]
+                for list1 in result1:
+                    ll={'id':list1[0],'label':list1[1]}
+                    categorycj1.append(ll)
+                l['child']=categorycj1
+            categorycj.append(l)
+    jiangpin=request.GET.get('jiangpin')
     company_id=request.GET.get('company_id')
     gmt_begin=request.GET.get('gmt_begin')
     gmt_end=request.GET.get('gmt_end')

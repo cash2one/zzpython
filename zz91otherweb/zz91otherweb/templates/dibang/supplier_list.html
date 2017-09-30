@@ -19,6 +19,11 @@
 			    }  
 			}  
 		</script>
+		<style>
+			body{
+				margin: 10px;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -29,7 +34,7 @@
 		</form>
 		
 		<form action="supplier_del.html">
-		<table class="table table-bordered table-hover definewidth m10">
+		<table class="table table-bordered table-hover m10">
 			<thead>
 				<tr>
 					<th>选择</th>
@@ -37,15 +42,15 @@
 					<th>集团ID</th>
 					<th>打包站ID</th>
 					<th>供应商/供货人名称</th>
+					<th>IC卡编号</th>
 					<th>合作关系</th>
 					<th>联系人</th>
-					<th>手机/电话</th>
+					<th>手机</th>
 					<th>地址</th>
 					<th>备注</th>
 					<th>创建时间</th>
 					<th>修改时间</th>
 					<th>操作</th>
-					<th>添加产品类别</th>
 				</tr>
 			</thead>
 			{%for list in listall%}
@@ -55,6 +60,7 @@
 				<td>{{list.group_id}}</td>
 				<td>{{list.company_id}}</td>
 				<td>{{list.name}}</td>
+				<td>{{list.iccode}}</td>
 				<td>{{list.htype}}</td>
 				<td>{{list.contact}}</td>
 				<td>{{list.mobile}}</td>
@@ -63,7 +69,6 @@
 				<td>{{list.gmt_created}}</td>
 				<td>{{list.gmt_modified}}</td>
 				<td><a href="supplier_mod.html?id={{list.id}}">修改</a>/<a href="supplier_del.html?id={{list.id}}" onclick="if(confirm('确定删除?')==false)return false;">删除</a></td>
-				<td><a href="category_add.html?company_selfid={{list.company_id}}" target="_blank">添加产品类别</a></td>
 			</tr>
 			{%endfor%}
 		</table>

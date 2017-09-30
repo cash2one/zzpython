@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="Css/bootstrap.css" />
+    	<link rel="stylesheet" type="text/css" href="Css/bootstrap-responsive.css" />
+    	<link rel="stylesheet" type="text/css" href="Css/style.css" />
+		<script src="chart/jquery-1.7.2.js"></script>
+		<script type="text/javascript" src="/feiliao123/My97DatePicker/WdatePicker.js"></script>
+		<script>
+		function selectoption(id,value){
+			$("#"+id).val(value)
+		}
+		</script>
+	</head>
+	<body>
+		<form class="table table-bordered table-hover definewidth m10" action="save_price_list.html" method="post">
+			<table class="table table-bordered table-hover definewidth m10">
+			<tr><td class="tableleft" style="width: 150px;">priceid</td><td><input type="text" name="priceid" value="{{priceid}}" readonly=""/></td></tr>
+			<tr><td class="tableleft">typename</td><td><input type="text" name="typename" value={{typename}} style="width: 100%;"></td></tr>
+			<tr><td class="tableleft">title</td><td><input type="text" name="title" value={{title}}></td></tr>
+			<tr><td class="tableleft">type_id</td><td>
+				<!--<input type="text" name="type_id" value={{type_id}}>-->
+				<select name="type_id" id="type_id">
+<option value="">--选择主类别</option>
+
+{%for prl in pricecategorylist%}
+<option value="{{prl.id}}">┆&nbsp;&nbsp;┿{{prl.name}}({{prl.id}})</option>
+{%for prl2 in prl.nextclist%}
+<option value="{{prl2.id}}">┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿{{prl2.name}}({{prl2.id}})</option>
+{%for prl3 in prl2.nextclist%}
+<option value="{{prl3.id}}">┆&nbsp;&nbsp;┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿{{prl3.name}}({{prl3.id}})</option>
+{%for prl4 in prl3.nextclist%}
+<option value="{{prl4.id}}">┆&nbsp;&nbsp;┆&nbsp;&nbsp;┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿{{prl4.name}}({{prl4.id}})</option>
+{%for prl5 in prl4.nextclist%}
+<option value="{{prl5.id}}">┆&nbsp;&nbsp;┆&nbsp;&nbsp;┆&nbsp;&nbsp;┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿{{prl5.name}}({{prl5.id}})</option>
+
+{%endfor%}
+{%endfor%}
+{%endfor%}
+{%endfor%}
+{%endfor%}
+
+</select></td>
+			</tr>
+			<script>selectoption("type_id","{{type_id}}")</script>
+			<tr><td class="tableleft">assist_type_id</td><td>
+				<!--<input type="text" name="assist_type_id" value={{assist_type_id}}>-->
+				<select name="assist_type_id" id="assist_type_id">
+<option value="">--选择辅助类别</option>
+
+{%for prl in pricecategorylist1%}
+<option value="{{prl.id}}">┆&nbsp;&nbsp;┿{{prl.name}}({{prl.id}})</option>
+{%for prl2 in prl.nextclist%}
+<option value="{{prl2.id}}">┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿{{prl2.name}}({{prl2.id}})</option>
+{%for prl3 in prl2.nextclist%}
+<option value="{{prl3.id}}">┆&nbsp;&nbsp;┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿{{prl3.name}}({{prl3.id}})</option>
+{%for prl4 in prl3.nextclist%}
+<option value="{{prl4.id}}">┆&nbsp;&nbsp;┆&nbsp;&nbsp;┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿{{prl4.name}}({{prl4.id}})</option>
+{%for prl5 in prl4.nextclist%}
+<option value="{{prl5.id}}">┆&nbsp;&nbsp;┆&nbsp;&nbsp;┆&nbsp;&nbsp;┆&nbsp;&nbsp;┆&nbsp;&nbsp;┿{{prl5.name}}({{prl5.id}})</option>
+
+{%endfor%}
+{%endfor%}
+{%endfor%}
+{%endfor%}
+{%endfor%}
+
+</select>
+			</td>
+			</tr>
+			<script>selectoption("assist_type_id","{{assist_type_id}}")</script>
+			<tr><td class="tableleft">label</td><td><input type="text" name="label" value={{label}}></td></tr>
+			<tr><td class="tableleft">label1</td><td><input type="text" name="label1" value={{label1}}></td></tr>
+			<tr><td class="tableleft">label2</td><td><input type="text" name="label2" value={{label2}}></td></tr>
+			<tr><td class="tableleft">spec</td><td><input type="text" name="spec" value={{spec}}></td></tr>
+			<tr><td class="tableleft">spec1</td><td><input type="text" name="spec1" value={{spec1}}></td></tr>
+			<tr><td class="tableleft">spec2</td><td><input type="text" name="spec2" value={{spec2}}></td></tr>
+			<tr><td class="tableleft">price</td><td><input type="text" name="price" value={{price}}></td></tr>
+			<tr><td class="tableleft">area</td><td><input type="text" name="area" value={{area}}></td></tr>
+			<tr><td class="tableleft">area1</td><td><input type="text" name="area1" value={{area1}}></td></tr>
+			<tr><td class="tableleft">area2</td><td><input type="text" name="area2" value={{area2}}></td></tr>
+			<tr><td class="tableleft">price1</td><td><input type="text" name="price1" value={{price1}}></td></tr>
+			<tr><td class="tableleft">price2</td><td><input type="text" name="price2" value={{price2}}></td></tr>
+			<tr><td class="tableleft">price3</td><td><input type="text" name="price3" value={{price3}}></td></tr>
+			<tr><td class="tableleft">price4</td><td><input type="text" name="price4" value={{price4}}></td></tr>
+			<tr><td class="tableleft">price5</td><td><input type="text" name="price5" value={{price5}}></td></tr>
+			<tr><td class="tableleft">price6</td><td><input type="text" name="price6" value={{price6}}></td></tr>
+			<tr><td class="tableleft">unit</td><td><input type="text" name="unit" value={{unit}}></td></tr>
+			<tr><td class="tableleft">qushi</td><td><input type="text" name="qushi" value={{qushi}}></td></tr>
+			<tr><td class="tableleft">qushi1</td><td><input type="text" name="qushi1" value={{qushi1}}></td></tr>
+			<tr><td class="tableleft">postdate</td><td><input class="Wdate" type="text" style="width:100px" name="postdate" id="postdate" onClick="WdatePicker()" value="{{postdate}}"></td></tr>
+			<tr><td class="tableleft">othertext</td><td><input type="text" name="othertext" value={{othertext}}></td></tr>
+			<tr><td class="tableleft">othertext1</td><td><input type="text" name="othertext1" value={{othertext1}}></td></tr>
+			<tr><td class="tableleft">num</td><td><input type="text" name="num" value={{num}}></td></tr>
+			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /></td></tr><input type="hidden" name="id" value={{id}}>
+			</table>
+		</form>
+	</body>
+</html>

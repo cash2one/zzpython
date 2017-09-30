@@ -48,11 +48,12 @@ def company_list(request):
 
 def company_mod(request):
     id=request.GET.get('id')
-    sql='select group_id,name,ctype from company where id=%s'
+    sql='select group_id,name,address,ctype from company where id=%s'
     result=dbd.fetchonedb(sql,[id])
     group_id=result['group_id']
     name=result['name']
     ctype=result['ctype']
+    address=result['address']
     return render_to_response('dibang/company_mod.html',locals())
     
 def company_add(request):
@@ -142,6 +143,36 @@ def user_del(request):
     return HttpResponseRedirect('user_list.html',locals())
 
 def user_save(request):
+    id=request.POST.get('id')
+    utype=request.POST.get('utype')
+    username=request.POST.get('username')
+    mobile=request.POST.get('mobile')
+    pwd=request.POST.get('pwd')
+    contact=request.POST.get('contact')
+    sex=request.POST.get('sex')
+    bz=request.POST.get('bz')
+    if id:
+        sql1='select id from users where username=%s and id!=%s'
+        result1=dbd.fetchonedb(sql1,[username,id])
+        sql2='select id from users where mobile=%s and id!=%s'
+        result2=dbd.fetchonedb(sql2,[mobile,id])
+        if result1 or result2:
+            if result1:
+                errtext1="该用户名已被占用！"
+            if result2:
+                errtext2="该手机号已被占用！"
+            return render_to_response('dibang/user_mod.html',locals())
+    else:
+        sql3='select id from users where username=%s'
+        result3=dbd.fetchonedb(sql3,[username])
+        sql4='select id from users where mobile=%s'
+        result4=dbd.fetchonedb(sql4,[mobile])
+        if result3 or result4:
+            if result3:
+                errtext1="该用户名已被占用！"
+            if result4:
+                errtext2="该手机号已被占用！"
+            return render_to_response('dibang/user_add.html',locals())
     result=zzdibang.user_save(request)
     return HttpResponseRedirect('user_list.html',locals())
 
@@ -180,9 +211,11 @@ def storage_list(request):
     return render_to_response('dibang/storage_list.html',locals())
 
 def storage_add(request):
+    product_list=zzdibang.getproductlist(request)
+    supplier_list=zzdibang.getsupplierlist(request)
+    user_list=zzdibang.getuserlist(request)
     group_id=request.GET.get('group_id')
     company_id=request.GET.get('company_id')
-    products_selfid=request.GET.get('products_selfid')
     return render_to_response('dibang/storage_add.html',locals())
 
 def storage_mod(request):
@@ -202,8 +235,8 @@ def storage_mod(request):
     total=result['total']
     status=result['status']
     price_users_selfid=result['price_users_selfid']
-    price_time=result['price_time']
-    price_time=formattime(price_time,flag=1)
+    out_time=result['price_time']
+    out_time=formattime(out_time,flag=1)
     ispay=result['ispay']
     scorecheck=result['scorecheck']
     pay_time=result['pay_time']
@@ -212,6 +245,9 @@ def storage_mod(request):
     gmt_created=result['gmt_created']
     gmt_created=formattime(gmt_created,flag=2)
     gmt_modified=result['gmt_modified']
+    user_list=zzdibang.getuserlist(request)
+    product_list=zzdibang.getproductlist(request)
+    supplier_list=zzdibang.getsupplierlist(request)
     return render_to_response('dibang/storage_mod.html',locals())
 
 def storage_del(request):
@@ -333,11 +369,12 @@ def supplier_add(request):
 
 def supplier_mod(request):
     id=request.GET.get('id')
-    sql='select ctype,group_id,company_id,name,htype,contact,mobile,pwd,address,bz from suppliers where id=%s'
+    sql='select ctype,group_id,company_id,iccode,name,htype,contact,mobile,pwd,address,bz from suppliers where id=%s'
     result=dbd.fetchonedb(sql,[id])
     ctype=result['ctype']
     group_id=result['group_id']
     company_id=result['company_id']
+    iccode=result['iccode']
     name=result['name']
     htype=result['htype']
     contact=result['contact']
@@ -400,6 +437,7 @@ def product_list(request):
 def product_add(request):
     company_id=request.GET.get('company_id')
     category_selfid=request.GET.get('category_selfid')
+    category_list=zzdibang.getcategorylist(request)
     return render_to_response('dibang/product_add.html',locals())
 
 def product_mod(request):
@@ -415,6 +453,7 @@ def product_mod(request):
     unit=result['unit']
     stock=result['stock']
     bz=result['bz']
+    category_list=zzdibang.getcategorylist(request)
     return render_to_response('dibang/product_mod.html',locals())
 
 def product_del(request):
@@ -438,9 +477,14 @@ def product_save(request):
 def category_list(request):
     page=request.GET.get('page')
     name=request.GET.get('name')
+    sub_selfid=request.GET.get("sub_selfid")
     searchlist={}
     if name:
         searchlist['name']=name
+    if sub_selfid:
+        searchlist['sub_selfid']=sub_selfid
+    else:
+        searchlist['sub_selfid']="0"
     searchurl=urllib.urlencode(searchlist)
     if not page:
         page=1
@@ -450,10 +494,10 @@ def category_list(request):
     frompageCount=funpage.frompageCount()
     after_range_num = funpage.after_range_num(3)
     before_range_num = funpage.before_range_num(6)
-    supplier_list=zzdibang.category_list(frompageCount,limitNum,name=name)
+    category_list=zzdibang.category_list(frompageCount,limitNum,searchlist=searchlist)
     listcount=0
-    listall=supplier_list['list']
-    listcount=supplier_list['count']
+    listall=category_list['list']
+    listcount=category_list['count']
     if (int(listcount)>1000000):
         listcount=1000000-1
     listcount = funpage.listcount(listcount)
@@ -468,15 +512,15 @@ def category_list(request):
     return render_to_response('dibang/category_list.html',locals())
 
 def category_add(request):
-    company_selfid=request.GET.get('company_selfid')
+    sub_selfid=request.GET.get('sub_selfid')
+    company_id=request.GET.get('company_id')
+    group_id=request.GET.get('group_id')
     return render_to_response('dibang/category_add.html',locals())
 
 def category_mod(request):
     id=request.GET.get('id')
-    sql='select sub_selfid,company_selfid,name from category_products where id=%s'
+    sql='select name from category_products where id=%s'
     result=dbd.fetchonedb(sql,[id])
-    sub_selfid=result['sub_selfid']
-    company_selfid=result['company_selfid']
     name=result['name']
     return render_to_response('dibang/category_mod.html',locals())
 

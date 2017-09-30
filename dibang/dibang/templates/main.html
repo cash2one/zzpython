@@ -1,6 +1,3 @@
-
- 
- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +10,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black"> 
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="format-detection" content="telephone=no">
-  
   <link rel="stylesheet" href="layui/css/layui.css"  media="all">
   <style>
     	.admin-iframe{position:absolute;border:0;width:100%;height:100%}
@@ -27,7 +23,7 @@
  SCROLLBAR-DARKSHADOW-COLOR: #b2b2b2; 
  SCROLLBAR-BASE-COLOR: #000000;
     	}
-    </style>
+  </style>
 </head>
 <body>
 <div class="layui-layout layui-layout-admin">
@@ -35,8 +31,10 @@
     <div class="layui-logo">废料回收智能系统</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-left">
-      <li class="layui-nav-item"><a href="">人员管理</a></li>
-      <li class="layui-nav-item"><a href="">消息中心<span class="layui-badge">9</span></a></li>
+    	{%if isadmin%}
+      <li class="layui-nav-item"><a href="user.html" target="main">人员管理</a></li>
+      {%endif%}
+      <!--<li class="layui-nav-item"><a href="">消息中心<span class="layui-badge">9</span></a></li>-->
       <li class="layui-nav-item"><a href="">废料回收地磅软件下载</a></li>
       <!--<li class="layui-nav-item">
         <a href="javascript:;">其它系统</a>
@@ -53,12 +51,12 @@
           <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
           {{username}}
         </a>
-        <dl class="layui-nav-child">
+        <!--<dl class="layui-nav-child">
           <dd><a href="">基本资料</a></dd>
           <dd><a href="">安全设置</a></dd>
-        </dl>
+        </dl>-->
       </li>
-      <li class="layui-nav-item">
+      <!--<li class="layui-nav-item">
         <a href="javascript:;">
           设置
         </a>
@@ -66,8 +64,8 @@
           <dd><a href="">计量单位</a></dd>
           <dd><a href="">操作日志</a></dd>
         </dl>
-      </li>
-      <li class="layui-nav-item"><a href="">退了</a></li>
+      </li>-->
+      <li class="layui-nav-item"><a href="logout.html">退了</a></li>
     </ul>
   </div>
   
@@ -75,13 +73,15 @@
     <div class="layui-side-scroll">
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
       <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-        <li class="layui-nav-item layui-nav-itemed">
+        {%ifequal utype "1"%}
+        <li class="layui-nav-item">
           <a class="" href="javascript:;">分站管理</a>
           <dl class="layui-nav-child">
             <dd><a href="company_add.html" target="main">添加分站</a></dd>
             <dd><a href="company.html" target="main">分站（打包站）列表</a></dd>
           </dl>
         </li>
+        {%endifequal%}
         <li class="layui-nav-item">
           <a href="javascript:;">供货商管理</a>
           <dl class="layui-nav-child">
@@ -96,11 +96,17 @@
         		<dd><a href="category.html" target="main">产品类别</a></dd>
 	            <dd><a href="product_add.html" target="main">添加产品</a></dd>
 	            <dd><a href="product.html" target="main">产品列表</a></dd>
-	          </dl>
+	        </dl>
         </li>
-        <li class="layui-nav-item"><a href="">库存明细</a></li>
-        <li class="layui-nav-item"><a href="">财务数据明细</a></li>
-        <li class="layui-nav-item"><a href="">每日账目清单</a></li>
+        <li class="layui-nav-item">
+        	<a href="storage.html" target="main">入库单列表</a>
+        	<!--<dl class="layui-nav-child">
+        			<dd><a href="storage_add.html" target="main">添加入库单</a></dd>
+	            <dd><a href="storage.html" target="main">入库单列表</a></dd>
+	        </dl>-->
+        </li>
+        <li class="layui-nav-item"><a href="finance.html" target="main">财务数据明细</a></li>
+        <li class="layui-nav-item"><a href="finance_everyday.html" target="main">每日账目清单</a></li>
       </ul>
     </div>
     

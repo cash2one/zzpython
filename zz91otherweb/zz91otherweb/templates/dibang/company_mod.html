@@ -24,12 +24,14 @@
 		<form class="form-inline definewidth m20" action="company_save.html" method="post">
 			<table class="table table-bordered table-hover definewidth m10">
 			<tr><td class="tableleft">公司名称</td><td><input type="text" name="name" value={{name}}></td></tr>
-			<tr><td class="tableleft">公司类型</td><td><select name="ctype" id="select" style="dispaly: block;" >
-				<option value="1">公司</option>
-				<option value="2">个人</option>
+			<tr><td class="tableleft">公司类型</td><td>
+				<select name="ctype" id="ctype" style="dispaly: block;" >
+				<option value="公司">公司</option>
+				<option value="个人">个人</option>
 			</select>
-			<script>selectoption("select",{{ctype}})</script></td>
+			<script>selectoption("ctype","{{ctype}}")</script></td>
 			</tr>
+			<tr><td class="tableleft">公司地址</td><td><input type="text" name="name" value={{address}}></td></tr>
 			<tr><td class="tableleft"></td><td><input class="btn btn-success" type="submit" name="保存" /></td>
 			</tr>
 			</table>

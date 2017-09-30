@@ -29,7 +29,6 @@
 			    	<input class="layui-input" name="id" id="demoReload" autocomplete="off">
 			  	</div>
 			  	<button class="layui-btn layui-btn-normal" data-type="reload">查询</button>
-			  	<a href="company_add.html" class="layui-btn layui-btn-danger" data-type="">添加</a>
 			</div>
 			 
 			<table class="layui-hide" id="LAY_table_user" lay-filter="user"></table> 
@@ -38,44 +37,49 @@
 		  <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
 		  <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
 		</script>
-		<script id="baryonghu" type="text/html">
-		  <a class="layui-btn layui-btn-mini" lay-event="user_add">添加用户</a>
+		<script id="baradd" type="text/html">
+		  <!--<a class="layui-btn layui-btn-mini" lay-event="user_add">添加用户</a>-->
+		  <!--<a class="layui-btn layui-btn-mini" lay-event="supplier_add">添加供应商/联系人</a>-->
+		  <!--<a class="layui-btn layui-btn-mini" lay-event="category_add">添加产品类别</a>
+		  <a class="layui-btn layui-btn-mini" lay-event="product_add">添加产品</a>-->
+		  <!--<a class="layui-btn layui-btn-mini" lay-event="storage_add">添加入库单</a>-->
 		</script>
-		<script id="barsupplier" type="text/html">
-		  <a class="layui-btn layui-btn-mini" lay-event="supplier_add">添加供应商/联系人</a>
-		</script>
-		           
 	</body>
 	<script src="js/jquery.js" charset="utf-8"></script>
 	<script src="js/comm.js" charset="utf-8"></script>
 	<script>
 		layui.use('table', function(){
 		  var table = layui.table;
+		  var $ = layui.$;
 		  //监听表格复选框选择
-		  table.on('checkbox(user)', function(obj){
-		    console.log(obj)
-		  });
-
+//		  table.on('checkbox(user)', function(obj){
+//		    console.log(obj)
+//		  });
+		//layer.load(2)
 		  //方法级渲染
-		  table.render({
+		function tablerender(){table.render({
+		  	loading: true,
 		    elem: '#LAY_table_user'
-		    ,url: 'company_data.html'
+		    ,url: 'company_data.html?name=' + $('#demoReload').val()
 		    ,cols: [[
 		      {checkbox: true, fixed: true}
-		      ,{field:'groupname', title: '总公司名称', width:150, fixed: true}
+		      ,{field:'id', title: '序号', width:150}
+		      ,{field:'groupname', title: '总公司名称', width:150}
 		      ,{field:'name', title: '分站名称', width:150}
 		      ,{field:'ctype', title: '分站类型', width:100}
 		      ,{field:'address', title: '地址', width:100}
 		      ,{field:'gmt_created', title: '创建时间', width:100}
 		      ,{field:'gmt_modified', title: '修改时间', width:100}
 		      ,{field:'caozuo', title: '操作', width:200,toolbar:'#barcaozuo'}
-		      ,{field:'tianjiayonghu', title: '添加用户', width:100,toolbar:'#baryonghu'}
-		      ,{field:'tianjiagongyingshang', title: '添加供应商/供货人', width:100,toolbar:'#barsupplier'}
+		      ,{field:'add', title: '添加', width:600,toolbar:'#baradd'}
 		    ]]
 		    ,id: 'testReload'
 		    ,page: true
-		    ,height: 315
-		  });
+		    ,limit: 10
+		    ,limits:[]
+		    ,height: 500
+		  })};
+		 tablerender();
 		  
 		  //监听工具条
 		  table.on('tool(user)', function(obj){
@@ -91,18 +95,26 @@
 		      //layer.alert('编辑行：<br>'+ JSON.stringify(data))
 		    };
 		    if(obj.event === 'user_add'){
-		    	window.location='user_add.html?company_id='+data.id
+		    	window.location='user_add.html?company_id='+data.id+'&group_id='+data.group_id
 		    };
 		    if(obj.event === 'supplier_add'){
-		    	window.location='supplier_add.html?company_id='+data.id
-		    }
+		    	window.location='supplier_add.html?company_id='+data.id+'&group_id='+data.group_id
+		    };
+		    if(obj.event === 'category_add'){
+		    	window.location='category_add.html?company_id='+data.id+'&group_id='+data.group_id
+		    };
+		    if(obj.event === 'product_add'){
+		    	window.location='product_add.html?company_id='+data.id+'&group_id='+data.group_id
+		    };
+		    if(obj.event === 'storage_add'){
+		    	window.location='storage_add.html?company_id='+data.id+'&group_id='+data.group_id
+		    };
 		  });
 
-		  
-		  $('.demoTable .layui-btn').on('click', function(){
-		    var type = $(this).data('type');
-		    active[type] ? active[type].call(this) : '';
+		  $('.demoTable .layui-btn-normal').on('click', function(){
+		  	tablerender();
 		  });
+		  
 		});
 	</script>
 

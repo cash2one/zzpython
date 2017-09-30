@@ -44,7 +44,7 @@
 					<label class="layui-form-label"><span style="color: red;">*</span> 公司类型</label>
 					<div class="layui-input-inline">
 						<select name="ctype" lay-verify="required" lay-search="" id="ctype">
-							<option value="">请公司类型</option>
+							<option value="">请选择...</option>
 							<option value="公司">公司</option>
 							<option value="个人">个人</option>
 						</select>
@@ -52,9 +52,9 @@
 				</div>
 				<script>selectoption("ctype","{{result.ctype}}")</script>
 			  	<div class="layui-form-item">
-				    <label class="layui-form-label">公司地址</label>
+				    <label class="layui-form-label"><span style="color: red;">*</span>公司地址</label>
 				    <div class="layui-input-block">
-				      	<input type="text" name="address" lay-verify="title" autocomplete="off" placeholder="请输入公司地址" class="layui-input" value={{result.address}}>
+				      	<input type="text" name="address" lay-verify="required" autocomplete="off" placeholder="请输入公司地址" class="layui-input" value={{result.address}}>
 				    </div>
 			  	</div>
 			  	
@@ -76,16 +76,11 @@
 		  var form = layui.form
 		  ,layer = layui.layer
 	
-		  
-		  
 		  //监听提交
-		  form.on('submit(demo1)', function(data){
-		    layer.alert(JSON.stringify(data.field), {
-		      title: '最终的提交信息'
-		    })
-		  });
-		  
-		  
+//		  form.on('submit(demo1)', function(data){
+//		    layer.alert(JSON.stringify(data.field), {
+//		    })
+//		  });
 		});
 	</script>
 </html>

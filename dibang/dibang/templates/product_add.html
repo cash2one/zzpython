@@ -23,60 +23,65 @@
 	</head>
 	<body>
 		<div class="mainbox">
-			<form class="layui-form" action="">
-				<div class="layui-form-item">
+			<form class="layui-form" action="product_save.html" method="post">
+				<!--<div class="layui-form-item">
 				    <label class="layui-form-label">产品编号</label>
 				    <div class="layui-input-block">
 				      	<input type="text" name="id" lay-verify="title" autocomplete="off" placeholder="请输入产品编号" class="layui-input">
 				    </div>
-			  	</div>
+			  	</div>-->
 				
 				<div class="layui-form-item">
-				    <label class="layui-form-label">产品名称</label>
+				    <label class="layui-form-label"><span style="color: red;">*</span>产品名称</label>
 				    <div class="layui-input-block">
-				      	<input type="text" name="cpname" lay-verify="title" autocomplete="off" placeholder="请输入产品名称" class="layui-input">
+				      	<input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入产品名称" class="layui-input">
 				    </div>
 			  	</div>
 			  	
 			  	<div class="layui-form-item">
-				    <label class="layui-form-label">名称简拼</label>
+				    <label class="layui-form-label"><span style="color: red;">*</span>名称简拼</label>
 				    <div class="layui-input-block">
-				      	<input type="text" name="jianp" lay-verify="title" autocomplete="off" placeholder="请输入名称简拼" class="layui-input">
+				      	<input type="text" name="name_py" lay-verify="required" autocomplete="off" placeholder="请输入名称简拼" class="layui-input">
 				    </div>
 			  	</div>
 			  	
 			  	<div class="layui-form-item">
-			    	<label class="layui-form-label">产品类别</label>
+			    	<label class="layui-form-label"><span style="color: red;">*</span>产品类别</label>
 			    	<div class="layui-input-block">
-			      		<input type="text" name="leibie" lay-verify="title" placeholder="请输入产品类别" autocomplete="off" class="layui-input">
+			    		<select name="category_selfid" id="category_selfid" lay-verify="required">
+				      		<option value="">请选择...</option>
+				      		{%for list in categorylist%}
+							<option value="{{list.selfid}}">{{list.name}}</option>
+							{%endfor%}
+				      	</select>
 			    	</div>
 			  	</div>
 			  	
 			  	<div class="layui-form-item">
 			    	<label class="layui-form-label">规格</label>
 			    	<div class="layui-input-block">
-			      		<input type="text" name="guig" lay-verify="title" placeholder="请输入规格" autocomplete="off" class="layui-input">
+			      		<input type="text" name="spec" placeholder="请输入规格" autocomplete="off" class="layui-input">
 			    	</div>
 			  	</div>
 			  	
 			  	<div class="layui-form-item">
 			    	<label class="layui-form-label">计数单位</label>
 			    	<div class="layui-input-block">
-			      		<input type="text" name="danw" lay-verify="title" placeholder="请输入计数单位" autocomplete="off" class="layui-input">
+			      		<input type="text" name="unit" placeholder="请输入计数单位" autocomplete="off" class="layui-input">
 			    	</div>
 			  	</div>
 			  	
 				<div class="layui-form-item">
 				    <label class="layui-form-label">库存数量</label>
 				    <div class="layui-input-inline">
-				        <input type="tel" name="cnum" lay-verify="title" placeholder="请输入库存数量" autocomplete="off" class="layui-input">
+				        <input type="number" name="stock" placeholder="请输入库存数量" autocomplete="off" class="layui-input">
 				    </div>
 				</div>
 				
 			  	<div class="layui-form-item layui-form-text">
 				    <label class="layui-form-label">备注</label>
 				    <div class="layui-input-block">
-				      <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+				      <textarea placeholder="请输入内容" class="layui-textarea" name="bz"></textarea>
 				    </div>
 				</div>
 				
@@ -86,6 +91,8 @@
 					    <button class="layui-btn layui-btn-normal layui-col-xs2" lay-submit="" lay-filter="demo1">保存</button>
 					</div>
 				</div>
+				<input type="hidden" name="company_id" value={{company_id}} />
+				<input type="hidden" name="group_id" value={{group_id}} />
 			</form>
 		</div>
 			
@@ -98,25 +105,11 @@
 		  
 		  //自定义验证规则
 		  form.verify({
-		    title: function(value){
-		      if(value.length < 5){
-		        return '标题至少得5个字符啊';
-		      }
-		    }
-		    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+		  	pass: [/(.+){6,12}$/, '密码必须6到12位']
 		    ,content: function(value){
 		      layedit.sync(editIndex);
 		    }
 		  });
-		  
-		  //监听提交
-		  form.on('submit(demo1)', function(data){
-		    layer.alert(JSON.stringify(data.field), {
-		      title: '最终的提交信息'
-		    })
-		    return false;
-		  });
-		  
 		  
 		});
 	</script>

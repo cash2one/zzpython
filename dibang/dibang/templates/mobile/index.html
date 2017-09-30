@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>再生资源智能管理系统</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_413881_epzj5f4kitacerk9.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="/css/index.css"/>
+		</head>
+	<body>
+		<div style="height:45px;">
+			<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+		    	<a class="aui-pull-left" href="">
+			        再生资源智能管理系统
+			    </a>
+			    <a class="aui-pull-right" href="/mobile/myinfo.html">
+			        <i class="aui-iconfont aui-icon-peoplefill"></i>
+			    </a>
+			</header>
+		</div>
+
+		<div class="aui-content">
+			<ul class="aui-list-view  aui-in">
+				
+				<li class="aui-list-view-cell my-infoout">
+					<a class="aui-arrow-right" href="/mobile/pricing.html?pricing=1">
+						<i class="iconfont icon-dingjiatianxiejiage aui-text-success"></i>待定价磅单
+						<span class="aui-badge aui-badge-danger dingjiacount">{{count}}</span>
+					</a>
+				</li>
+				<li class="aui-list-view-cell my-buyin">
+					<a class="aui-arrow-right" href="/mobile/supplier.html">
+						<i class="iconfont icon-supplier-mgr-copy aui-text-success"></i>供应商管理
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="aui-content">
+			<ul class="aui-list-view  aui-in">
+				
+				<li class="aui-list-view-cell my-infoout">
+					<a class="aui-arrow-right" href="/mobile/alldata.html">
+						<i class="iconfont icon-huizong aui-text-success"></i>数据汇总
+					</a>
+				</li>
+				<li class="aui-list-view-cell my-buyin">
+					<a class="aui-arrow-right" href="/mobile/storage.html">
+						<i class="iconfont icon-caigourukumingxi aui-text-success"></i>入库明细
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="aui-content">
+			<ul class="aui-list-view  aui-in">
+				{%ifequal utype '1'%}
+				<li class="aui-list-view-cell my-infoout">
+					<a class="aui-arrow-right" href="/mobile/company.html">
+						<i class="iconfont icon-aaa aui-text-success"></i>分站管理
+					</a>
+				</li>
+				{%endifequal%}
+				<li class="aui-list-view-cell my-buyin">
+					<a class="aui-arrow-right" href="/mobile/category.html">
+						<i class="iconfont icon-icon aui-text-success"></i>产品类别
+					</a>
+				</li>
+				<li class="aui-list-view-cell my-infoout">
+					<a class="aui-arrow-right" href="/mobile/product.html">
+						<i class="iconfont icon-chanpinguanli5 aui-text-success"></i>产品管理
+					</a>
+				</li>
+				{%if isadmin%}
+				<li class="aui-list-view-cell my-buyin">
+					<a class="aui-arrow-right" href="/mobile/user.html">
+						<i class="iconfont icon-renyuanguanli aui-text-success"></i>人员管理
+					</a>
+				</li>
+				{%endif%}
+			</ul>
+		</div>
+	</body>
+</html>
+<script>
+	$(document).ready(function(){
+		var dcout="{{count}}";
+		if (dcout=="0"){
+			$(".dingjiacount").hide();
+		}
+	})
+</script>

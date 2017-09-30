@@ -18,6 +18,12 @@
 	<body>
 		<form class="form-inline definewidth m20" action="product_save.html" method="post">
 			<table class="table table-bordered table-hover definewidth m10">
+			<tr><td class="tableleft">产品类别</td><td><select name="category_selfid">
+				<option value="">请选择...</option>
+				{% for list in category_list%}
+				<option value="{{list.id}}">{{list.name}}</option>
+				{% endfor%}
+			</select></td></tr>
 			<tr><td class="tableleft">产品名称</td><td><input type="text" name="name"></td></tr>
 			<tr><td class="tableleft">产品简拼</td><td><input type="text" name="name_py"></td></tr>
 			<tr><td class="tableleft">产品规格</td><td><input type="text" name="spec"></td></tr>
@@ -27,7 +33,6 @@
 			<tr><td class="tableleft"></td><td><input class="btn btn-success" class="btn btn-success" type="submit" name="保存" /></td></tr>
 			</table>
 			<input type="hidden" name="company_id" value={{company_id}} />
-			<input type="hidden" name="category_selfid" value={{category_selfid}} />
 		</form>
 	</body>
 </html>

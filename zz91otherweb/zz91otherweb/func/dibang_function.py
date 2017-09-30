@@ -10,7 +10,7 @@ class zzdibang:
         if name:
             sqls+='and name=%s'
             argument.append(name)
-        sql='select id,group_id,name,ctype,gmt_created,gmt_modified from company where id>0 '+sqls+' limit '+str(frompageCount)+','+str(limitNum)+''
+        sql='select id,group_id,address,name,ctype,gmt_created,gmt_modified from company where id>0 '+sqls+' limit '+str(frompageCount)+','+str(limitNum)+''
         sqlc='select count(0) as count from company where id>0 '+sqls+''
         resultlist=self.dbd.fetchalldb(sql,argument)
         count=self.dbd.fetchonedb(sqlc,argument)
@@ -22,6 +22,7 @@ class zzdibang:
         for result in resultlist:
             id=result['id']
             group_id=result['group_id']
+            address=result['address']
             name=result['name']
             ctype=result['ctype']
             if ctype=='1':
@@ -37,7 +38,7 @@ class zzdibang:
                 gmt_modified=formattime(gmt_modified,flag=2)
             if group_id is None:
                 group_id=''
-            list={'id':id,'group_id':group_id,'name':name,'ctype':ctype,'gmt_created':gmt_created,'gmt_modified':gmt_modified}
+            list={'id':id,'address':address,'group_id':group_id,'name':name,'ctype':ctype,'gmt_created':gmt_created,'gmt_modified':gmt_modified}
             listall.append(list)
         return {'list':listall,'count':count}
     
@@ -45,14 +46,16 @@ class zzdibang:
         id=request.POST.get('id')
         name=request.POST.get('name')
         ctype=request.POST.get('ctype')
+        group_id=request.POST.get('group_id')
+        address=request.POST.get('address')
         gmt_created=datetime.datetime.now()
         gmt_modified=datetime.datetime.now()
         if id:
-            sql='update company set name=%s,ctype=%s,gmt_modified=%s where id=%s'
-            result=self.dbd.updatetodb(sql,[name,ctype,gmt_modified,id])
+            sql='update company set name=%s,address=%s,ctype=%s,gmt_modified=%s where id=%s'
+            result=self.dbd.updatetodb(sql,[name,address,ctype,gmt_modified,id])
         else:
-            sql='insert into company(group_id,name,ctype,gmt_created) values(%s,%s,%s,%s)'
-            result=self.dbd.updatetodb(sql,[group_id,name,ctype,gmt_created])
+            sql='insert into company(group_id,name,address,ctype,gmt_created) values(%s,%s,%s,%s,%s)'
+            result=self.dbd.updatetodb(sql,[group_id,name,address,ctype,gmt_created])
             
     def user_list(self,frompageCount,limitNum,name=''):
         sqls=''
@@ -72,15 +75,19 @@ class zzdibang:
         for result in resultlist:
             id=result['id']
             group_id=result['group_id']
+            group_name=self.getgroupname(group_id)
             company_id=result['company_id']
+            company_name=self.getcompanyname(company_id)
             clientid=result['clientid']
             utype=result['utype']
             if utype=='1':
-                utype='管理员'
+                utype='集团管理员'
             elif utype=='2':
                 utype='校验员'
             elif utype=='3':
                 utype='财务人员'
+            elif utype=='4':
+                utype='分站管理员'
             username=result['username']
             contact=result['contact']
             sex=result['sex']
@@ -95,18 +102,23 @@ class zzdibang:
             gmt_created=formattime(gmt_created,flag=2)
             if group_id is None:
                 group_id=''
-            list={'id':id,'group_id':group_id,'company_id':company_id,'clientid':clientid,'utype':utype,'username':username,'contact':contact,'sex':sex,'mobile':mobile,'bz':bz,'gmt_created':gmt_created,'gmt_modified':gmt_modified}
+            list={'id':id,'group_id':group_id,'group_name':group_name,'company_name':company_name,'company_id':company_id,'clientid':clientid,'utype':utype,'username':username,'contact':contact,'sex':sex,'mobile':mobile,'bz':bz,'gmt_created':gmt_created,'gmt_modified':gmt_modified}
             listall.append(list)
         return {'list':listall,'count':count}
     
     def user_save(self,request):
         id=request.POST.get('id')
+        ischange_pwd=request.POST.get('ischange_pwd')
         group_id=request.POST.get('group_id')
         company_id=request.POST.get('company_id')
-        list=['0','1','2','3','4','5','6','7','8','9']
-        clientid=str(time.time())[:-3]+str(company_id)+random.choice(list)+random.choice(list)+random.choice(list)
+        #list=['0','1','2','3','4','5','6','7','8','9']
+        t=random.randrange(0,1000000)
+        clientid=str(time.time())[:-3]+str(company_id)+str(t)
         md5clientid = hashlib.md5(clientid)
         clientid = md5clientid.hexdigest()[8:-8]
+        
+        
+        
         utype=request.POST.get('utype')
         username=request.POST.get('username')
         pwd=request.POST.get('pwd')
@@ -118,12 +130,15 @@ class zzdibang:
         bz=request.POST.get('bz')
         gmt_created=datetime.datetime.now()
         gmt_modified=datetime.datetime.now()
-        if id:
+        if id and ischange_pwd:
             sql='update users set utype=%s,username=%s,pwd=%s,contact=%s,sex=%s,mobile=%s,bz=%s,gmt_modified=%s where id=%s'
             result=self.dbd.updatetodb(sql,[utype,username,pwd,contact,sex,mobile,bz,gmt_modified,id])
+        elif id and not ischange_pwd:
+            sql='update users set utype=%s,username=%s,contact=%s,sex=%s,mobile=%s,bz=%s,gmt_modified=%s where id=%s'
+            result=self.dbd.updatetodb(sql,[utype,username,contact,sex,mobile,bz,gmt_modified,id])
         else:
-            sql='insert into users(group_id,company_id,clientid,utype,username,pwd,contact,sex,mobile,bz,gmt_created) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
-            result=self.dbd.updatetodb(sql,[group_id,company_id,clientid,utype,username,pwd,contact,sex,mobile,bz,gmt_created])
+            sql='insert into users(group_id,company_id,selfid,clientid,utype,username,pwd,contact,sex,mobile,bz,gmt_created,gmt_modified) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+            result=self.dbd.updatetodb(sql,[group_id,company_id,clientid,clientid,utype,username,pwd,contact,sex,mobile,bz,gmt_created,gmt_modified])
             
     def storage_list(self,frompageCount,limitNum,code=''):
         sqls=''
@@ -147,7 +162,19 @@ class zzdibang:
             company_id=result['company_id']
             code=result['code']
             products_selfid=result['products_selfid']
+            sql='select name from products where id=%s'
+            result0=dbd.fetchonedb(sql,[products_selfid])
+            if result0:
+                products_selfid=result0['name']
+            else:
+                products_selfid=''
             suppliers_selfid=result['suppliers_selfid']
+            sql='select name from suppliers where id=%s'
+            result1=dbd.fetchonedb(sql,[suppliers_selfid])
+            if result1:
+                suppliers_selfid=result1['name']
+            else:
+                suppliers_selfid=''
             price=result['price']
             gw=result['gw']
             nw=result['nw']
@@ -167,6 +194,12 @@ class zzdibang:
             elif status==99:
                 status='作废'
             price_users_selfid=result['price_users_selfid']
+            sql='select contact from users where id=%s'
+            result2=dbd.fetchonedb(sql,[price_users_selfid])
+            if result2:
+                price_users_selfid=result2['contact']
+            else:
+                price_users_selfid=''
             price_time=result['price_time']
             ispay=result['ispay']
             if ispay==0:
@@ -180,6 +213,12 @@ class zzdibang:
                 scorecheck='已提现'
             pay_time=result['pay_time']
             pay_users_selfid=result['pay_users_selfid']
+            sql='select contact from users where id=%s'
+            result3=dbd.fetchonedb(sql,[pay_users_selfid])
+            if result3:
+                pay_users_selfid=result3['contact']
+            else:
+                pay_users_selfid=''
             gmt_created=result['gmt_created']
             gmt_created=formattime(gmt_created,flag=2)
             gmt_modified=result['gmt_modified']
@@ -205,15 +244,13 @@ class zzdibang:
         id=request.POST.get('id')
         group_id=request.POST.get('group_id')
         company_id=request.POST.get('company_id')
-        sql='select id from suppliers where group_id=%s and company_id=%s'
-        result=dbd.fetchonedb(sql,[group_id,company_id])
-        suppliers_selfid=result['id']
         list=['0','1','2','3','4','5','6','7','8','9']
         selfid=str(time.time())[:-3]+str(company_id)+random.choice(list)+random.choice(list)+random.choice(list)
         md5selfid = hashlib.md5(selfid)
         selfid = md5selfid.hexdigest()[8:-8]
         code=request.POST.get('code')
         products_selfid=request.POST.get('products_selfid')
+        suppliers_selfid=request.POST.get('suppliers_selfid')
         price=request.POST.get('price')
         gw=request.POST.get('gw')
         nw=request.POST.get('nw')
@@ -222,6 +259,7 @@ class zzdibang:
         status=request.POST.get('status')
         price_users_selfid=request.POST.get('price_users_selfid')
         price_time=request.POST.get('price_time')
+        out_time=request.POST.get('out_time')
         ispay=request.POST.get('ispay')
         scorecheck=request.POST.get('scorecheck')
         pay_time=request.POST.get('pay_time')
@@ -229,8 +267,8 @@ class zzdibang:
         gmt_created=datetime.datetime.now()
         gmt_modified=datetime.datetime.now()
         if id:
-            sql='update storage set code=%s,price=%s,gw=%s,nw=%s,tare=%s,total=%s,status=%s,price_time=%s,ispay=%s,scorecheck=%s,pay_time=%s,gmt_modified=%s where id=%s'
-            result=self.dbd.updatetodb(sql,[code,price,gw,nw,tare,total,status,price_time,ispay,scorecheck,pay_time,gmt_modified,id])
+            sql='update storage set suppliers_selfid=%s,products_selfid=%s,code=%s,price=%s,gw=%s,nw=%s,tare=%s,total=%s,status=%s,price_time=%s,out_time=%s,ispay=%s,scorecheck=%s,pay_time=%s,gmt_modified=%s where id=%s'
+            result=self.dbd.updatetodb(sql,[suppliers_selfid,products_selfid,code,price,gw,nw,tare,total,status,price_time,out_time,ispay,scorecheck,pay_time,gmt_modified,id])
         else:
             sql='insert into storage(selfid,group_id,company_id,code,products_selfid,suppliers_selfid,price,gw,nw,tare,total,status,price_users_selfid,price_time,ispay,scorecheck,pay_time,pay_users_selfid,gmt_created) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
             result=self.dbd.updatetodb(sql,[selfid,group_id,company_id,code,products_selfid,suppliers_selfid,price,gw,nw,tare,total,status,price_users_selfid,price_time,ispay,scorecheck,pay_time,pay_users_selfid,gmt_created])
@@ -287,7 +325,7 @@ class zzdibang:
         if name:
             sqls+='and name=%s'
             argument.append(name)
-        sql='select id,selfid,ctype,group_id,company_id,name,htype,contact,mobile,address,bz,gmt_created,gmt_modified from suppliers where id>0 '+sqls+' limit '+str(frompageCount)+','+str(limitNum)+''
+        sql='select id,selfid,ctype,group_id,company_id,name,iccode,htype,contact,mobile,address,bz,gmt_created,gmt_modified from suppliers where id>0 '+sqls+' limit '+str(frompageCount)+','+str(limitNum)+''
         sqlc='select count(0) as count from suppliers where id>0 '+sqls+''
         resultlist=self.dbd.fetchalldb(sql,argument)
         count=self.dbd.fetchonedb(sqlc,argument)
@@ -306,8 +344,13 @@ class zzdibang:
                 ctype='个人'
             group_id=result['group_id']
             company_id=result['company_id']
+            iccode=result['iccode']
             name=result['name']
             htype=result['htype']
+            if htype=='0':
+                htype='长期'
+            elif htype=='1':
+                htype='短期'
             contact=result['contact']
             mobile=result['mobile']
             address=result['address']
@@ -319,7 +362,7 @@ class zzdibang:
                 gmt_modified=''
             else:
                 gmt_modified=formattime(gmt_modified,flag=2)
-            list={'id':id,'selfid':selfid,'ctype':ctype,'group_id':group_id,'company_id':company_id,'name':name,'htype':htype,'contact':contact,'mobile':mobile,'address':address,'bz':bz,'gmt_created':gmt_created,'gmt_modified':gmt_modified}
+            list={'id':id,'selfid':selfid,'ctype':ctype,'group_id':group_id,'company_id':company_id,'iccode':iccode,'name':name,'htype':htype,'contact':contact,'mobile':mobile,'address':address,'bz':bz,'gmt_created':gmt_created,'gmt_modified':gmt_modified}
             listall.append(list)
         return {'list':listall,'count':count}
 
@@ -332,10 +375,12 @@ class zzdibang:
         selfid=str(time.time())[:-3]+str(company_id)+random.choice(list)+random.choice(list)+random.choice(list)
         md5selfid = hashlib.md5(selfid)
         selfid = md5selfid.hexdigest()[8:-8]
+        iccode=request.POST.get('iccode')
         name=request.POST.get('name')
         pwd=request.POST.get('pwd')
         md5pwd = hashlib.md5(pwd)
         pwd = md5pwd.hexdigest()[8:-8]
+        ischange_pwd=request.POST.get('ischange_pwd')
         htype=request.POST.get('htype')
         contact=request.POST.get('contact')
         mobile=request.POST.get('mobile')
@@ -343,12 +388,15 @@ class zzdibang:
         bz=request.POST.get('bz')
         gmt_created=datetime.datetime.now()
         gmt_modified=datetime.datetime.now()
-        if id:
-            sql='update suppliers set ctype=%s,name=%s,htype=%s,contact=%s,mobile=%s,pwd=%s,address=%s,bz=%s,gmt_modified=%s where id=%s'
-            result=self.dbd.updatetodb(sql,[ctype,name,htype,contact,mobile,pwd,address,bz,gmt_modified,id])
+        if id and ischange_pwd:
+            sql='update suppliers set ctype=%s,iccode=%s,name=%s,htype=%s,contact=%s,mobile=%s,pwd=%s,address=%s,bz=%s,gmt_modified=%s where id=%s'
+            result=self.dbd.updatetodb(sql,[ctype,iccode,name,htype,contact,mobile,pwd,address,bz,gmt_modified,id])
+        elif id and not ischange_pwd:
+            sql='update suppliers set ctype=%s,iccode=%s,name=%s,htype=%s,contact=%s,mobile=%s,address=%s,bz=%s,gmt_modified=%s where id=%s'
+            result=self.dbd.updatetodb(sql,[ctype,iccode,name,htype,contact,mobile,address,bz,gmt_modified,id])
         else:
-            sql='insert into suppliers(selfid,ctype,group_id,company_id,name,htype,contact,mobile,pwd,address,bz,gmt_created) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
-            result=self.dbd.updatetodb(sql,[selfid,ctype,group_id,company_id,name,htype,contact,mobile,pwd,address,bz,gmt_created])
+            sql='insert into suppliers(selfid,ctype,group_id,company_id,iccode,name,htype,contact,mobile,pwd,address,bz,gmt_created) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+            result=self.dbd.updatetodb(sql,[selfid,ctype,group_id,company_id,iccode,name,htype,contact,mobile,pwd,address,bz,gmt_created])
             
             
     def product_list(self,frompageCount,limitNum,name=''):
@@ -416,13 +464,18 @@ class zzdibang:
             result=self.dbd.updatetodb(sql,[selfid,group_id,company_id,name,name_py,category_selfid,spec,unit,stock,bz,gmt_created])
             
             
-    def category_list(self,frompageCount,limitNum,name=''):
+    def category_list(self,frompageCount,limitNum,searchlist=''):
         sqls=''
         argument=[]
+        name=searchlist.get("name")
+        sub_selfid=searchlist.get("sub_selfid")
         if name:
             sqls+='and name=%s'
             argument.append(name)
-        sql='select id,sub_selfid,company_selfid,name,gmt_created,gmt_modified from category_products where id>0 '+sqls+' limit '+str(frompageCount)+','+str(limitNum)+''
+        if sub_selfid:
+            sqls+='and sub_selfid=%s'
+            argument.append(sub_selfid)
+        sql='select id,sub_selfid,selfid,company_id,name,gmt_created,gmt_modified from category_products where id>0 '+sqls+' limit '+str(frompageCount)+','+str(limitNum)+''
         sqlc='select count(0) as count from category_products where id>0 '+sqls+''
         resultlist=self.dbd.fetchalldb(sql,argument)
         count=self.dbd.fetchonedb(sqlc,argument)
@@ -434,33 +487,87 @@ class zzdibang:
         for result in resultlist:
             id=result['id']
             sub_selfid=result['sub_selfid']
-            company_selfid=result['company_selfid']
+            selfid=result['selfid']
             name=result['name']
             gmt_created=result['gmt_created']
+            company_id=result['company_id']
             gmt_created=formattime(gmt_created,flag=2)
             gmt_modified=result['gmt_modified']
             if gmt_modified is None:
                 gmt_modified=''
             else:
                 gmt_modified=formattime(gmt_modified,flag=2)
-            list={'id':id,'sub_selfid':sub_selfid,'company_selfid':company_selfid,'name':name,'gmt_created':gmt_created,'gmt_modified':gmt_modified}
+            list={'id':id,'company_id':company_id,'sub_selfid':sub_selfid,'selfid':selfid,'name':name,'gmt_created':gmt_created,'gmt_modified':gmt_modified}
             listall.append(list)
         return {'list':listall,'count':count}
 
     def category_save(self,request):
         id=request.POST.get('id')
         sub_selfid=request.POST.get('sub_selfid')
-        company_selfid=request.POST.get('company_selfid')
+        if sub_selfid=='None':
+            sub_selfid=0
+        company_id=request.POST.get('company_id')
+        group_id=request.POST.get('group_id')
         list=['0','1','2','3','4','5','6','7','8','9']
-        selfid=str(time.time())[:-3]+str(company_selfid)+random.choice(list)+random.choice(list)+random.choice(list)
+        selfid=str(time.time())[:-3]+str(company_id)+random.choice(list)+random.choice(list)+random.choice(list)
         md5selfid = hashlib.md5(selfid)
         selfid = md5selfid.hexdigest()[8:-8]
         name=request.POST.get('name')
         gmt_created=datetime.datetime.now()
         gmt_modified=datetime.datetime.now()
         if id:
-            sql='update category_products set sub_selfid=%s,name=%s,gmt_modified=%s where id=%s'
-            result=self.dbd.updatetodb(sql,[sub_selfid,name,gmt_modified,id])
+            sql='update category_products set name=%s,gmt_modified=%s where id=%s'
+            result=self.dbd.updatetodb(sql,[name,gmt_modified,id])
         else:
-            sql='insert into category_products(selfid,sub_selfid,company_selfid,name,gmt_created) values(%s,%s,%s,%s,%s)'
-            result=self.dbd.updatetodb(sql,[selfid,sub_selfid,company_selfid,name,gmt_created])
+            sql='insert into category_products(selfid,sub_selfid,group_id,company_id,name,gmt_created) values(%s,%s,%s,%s,%s,%s)'
+            result=self.dbd.updatetodb(sql,[selfid,sub_selfid,group_id,company_id,name,gmt_created])
+            
+    def getsupplierlist(self,request):
+        group_id=request.GET.get('group_id')
+        company_id=request.GET.get('company_id')
+        sql='select id,name from suppliers where group_id=%s and company_id=%s'
+        result=self.dbd.fetchalldb(sql,[group_id,company_id])
+        return result
+    
+    def getcompanylist(self):
+        sql='select id,name from company'
+        result=self.dbd.fetchalldb(sql)
+        return result
+    def getcategorylist(self,request):
+        sql='select id,name from category_products'
+        result=self.dbd.fetchalldb(sql)
+        return result
+    
+    def getproductlist(self,request):
+        group_id=request.GET.get('group_id')
+        company_id=request.GET.get('company_id')
+        sql='select id,name from products where group_id=%s and company_id=%s'
+        result=self.dbd.fetchalldb(sql,[group_id,company_id])
+        return result
+    
+    def getuserlist(self,request):
+        group_id=request.GET.get('group_id')
+        company_id=request.GET.get('company_id')
+        sql='select id,contact from users where group_id=%s and company_id=%s'
+        result=self.dbd.fetchalldb(sql,[group_id,company_id])
+        return result
+    #获取集团名称
+    def getgroupname(self,group_id):
+        sql="select name from grouplist where id=%s"
+        result=self.dbd.fetchonedb(sql,[group_id])
+        if result:
+            return result['name']
+        else:
+            return ''
+    #获取分站名称
+    def getcompanyname(self,company_id):
+        sql="select name from company where id=%s"
+        result=self.dbd.fetchonedb(sql,[company_id])
+        if result:
+            return result['name']
+        else:
+            return ''
+    #----是否管理员
+    def isadmin(self,utype):
+        if str(utype)=="1" or str(utype)=="4":
+            return 1

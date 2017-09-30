@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>登录-再生资源智能管理系统</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+		<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_413881_7ancutcxojwf80k9.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="/css/index.css"/>
+	</head>
+	<body>
+		<div style="height:45px;">
+			<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+		    	<a class="aui-pull-left" href="javascript:history.back(-1)">
+			        废料回收地磅系统
+			    </a>
+			    <a class="aui-pull-right" href="myinfo.html">
+			        <i class="aui-iconfont aui-icon-peoplefill"></i>
+			    </a>
+			</header>
+		</div>
+		{%if errtext%}
+		<center style="color: red;margin: 20px;">{{errtext}}</center>
+		{%endif%}
+		<form action="/mobile/logincheck.html" id="form" method="post">
+		<div class="aui-card aui-margin-t-15">
+			
+		    <div class="aui-form">
+		        <div class="aui-input-row">
+		        	<i class="aui-input-addon  iconfont icon-zhanghao aui-font-size-24 aui-text-info"></i>
+		            <input type="text" class="aui-input" name="username" value="{{username}}" placeholder="请输入用户名"/>
+		        </div>
+		        <div class="aui-input-row">
+		        	<i class="aui-input-addon  iconfont icon-suo aui-font-size-24 aui-text-warning"></i>
+		            <input class="aui-input" name="password" type="password" placeholder="请输入密码"/>
+		        </div>
+		        <div class="aui-btn-row">
+		            <div class="aui-btn aui-block aui-btn-success" onclick="document.getElementById('form').submit()">确认</div>
+		        </div>
+		    </div>
+		</div>
+		</form>
+		<div class="aui-text-center aui-padded-t-15 aui-font-size-18">
+			ZZ91再生网技术支持
+		</div>
+	</body>
+</html>
+<script>
+</script>

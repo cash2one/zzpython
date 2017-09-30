@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>入库明细-再生资源智能管理系统</title>
+		<script type="text/javascript" src="http://static.m.zz91.com/aui/js/jquery.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui.css"/>
+		<link rel="stylesheet" type="text/css" href="http://static.m.zz91.com/aui/css/aui-flex.css"/>	
+		<script type="text/javascript" src="http://static.m.zz91.com/layer/layer.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="/css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/mobiscroll.custom-2.6.2.min.css"/>
+		<script type="text/javascript" src="/js/mobiscroll.custom-2.6.2.min.js"></script>
+		<script>function selectoption(id,value){
+			$("#"+id).val(value)
+		}</script>
+	</head>
+	<body>
+		<div style="height:45px;">
+			<header class="aui-bar aui-bar-nav aui-bar-primary zz-header aui-border-b aui-bg-success">
+		    	<a class="aui-pull-left" href="index.html">
+			        <span class="aui-iconfont aui-icon-left"></span>
+			    </a>
+			    <div class="aui-title">
+			    	入库明细
+			    </div>
+			</header>
+		</div>
+		<div class="aui-padded-10">
+			<div class="zz-div-box">
+				<div class="db-mgst">
+					<div class="db-select-box">
+						<select name="searchtype" id="searchtype" class="db-select">
+							<option value="iccode" selected="">供应编号</option>
+							<option value="ucompany_id">分站</option>
+							<option value="suppliers_selfid">供应商</option>
+							<option value="contact">联系人</option>
+							<option value="nw">净重 > </option>
+							<option value="gmt_created">入场时间</option>
+							<option value="price">单价 > </option>
+						</select>
+						<script>selectoption("searchtype","{{searchtype}}")</script>
+					</div>
+				</div>
+				<div class="zz-div-td1">
+					<select id="suppliers_selfid" style="display: none;">
+			          	<option value="">选择供应商</option>
+			          	{%for list in supplier_list%}
+			          	<option value={{list.selfid}}>{{list.name}}</option>
+			          	{%endfor%}
+			        </select>
+			        <select id="ucompany_id" style="display: none;">
+			          	<option value="">选择分站</option>
+			          	{%for list in company_list%}
+			          	<option value={{list.id}}>{{list.name}}</option>
+			          	{%endfor%}
+			        </select>
+			        <input type="text" class="aui-margin-b-0 mustipt db-input" id="iccode" value="">
+			        <input type="text" class="aui-margin-b-0 mustipt db-input" id="contact" value="" style="display: none;">
+					<input type="text" class="aui-margin-b-0 mustipt db-input" id="nw" value="" style="display: none;">
+					<input type="text" class="aui-margin-b-0 mustipt db-input" id="gmt_created" style="display: none;">
+					<input type="text" class="aui-margin-b-0 mustipt db-input" id="price" style="display: none;">
+				
+				</div>
+				<div class="aui-padded-l-10">
+					<div class="aui-btn aui-btn-success searchbutton">搜索</div>
+				</div>
+			</div>
+		</div>
+		{%for list in listall%}
+		<div class="hz-table db-bg-white aui-margin-t-10 aui-contront hz-table-mx">
+			<div class="hz-table-row aui-flex-col ">
+				<div class="aui-flex-auto aui-text-success">供货人编号</div>
+				<div class="aui-flex-item-4">{{list.iccode}}</div>
+				<div class="aui-flex-auto aui-text-success">供货人</div>
+				<div class="aui-flex-item-3">{{list.contact}}</div>
+			</div>
+			<div class="hz-table-row aui-flex-col ">
+				<div class="aui-flex-auto aui-text-success">品名</div>
+				<div class="aui-flex-item-4">{{list.product_name}}</div>
+				<div class="aui-flex-auto aui-text-success">类别</div>
+				<div class="aui-flex-item-3">{{list.category_name}}</div>
+			</div>
+			<div class="hz-table-row aui-flex-col ">
+				<div class="aui-flex-auto aui-text-success">毛重</div>
+				<div class="aui-flex-item-4">{{list.gw}}</div>
+				<div class="aui-flex-auto aui-text-success">皮重</div>
+				<div class="aui-flex-item-3">{{list.tare}}</div>
+			</div>
+			<div class="hz-table-row aui-flex-col ">
+				<div class="aui-flex-auto aui-text-success">净重</div>
+				<div class="aui-flex-item-4">{{list.nw}}</div>
+				<div class="aui-flex-auto aui-text-success">单价</div>
+				<div class="aui-flex-item-3">{{list.price}}</div>
+			</div>
+			<div class="hz-table-row aui-flex-col ">
+				<div class="aui-flex-auto aui-text-success">计量单位</div>
+				<div class="aui-flex-item-4">{{list.unit}}</div>
+				<div class="aui-flex-auto aui-text-success">进场时间</div>
+				<div class="aui-flex-item-3">{{list.gmt_created}}</div>
+			</div>
+			<div class="hz-table-row aui-flex-col ">
+				<div class="aui-flex-auto aui-text-success">总额</div>
+				<div class="aui-flex-item-4">{{list.total}}</div>
+				<div class="aui-flex-auto aui-text-success">出场时间</div>
+				<div class="aui-flex-item-3">{{list.out_time}}</div>
+			</div>
+		</div>
+		{%endfor%}
+		{%if not listall%}
+		<div class="nodata" style="display: block">
+			暂无相关数据
+		</div>
+		{%endif%}
+		<div style="height: 54px;">
+			<div class="aui-flex-col mg-heji">
+				<div class="aui-flex-item-2 aui-text-center">合计</div>
+				<div class="aui-flex-item-5">入库量：<span class="aui-text-danger">{{listcount}}</span></div>
+				<div class="aui-flex-item-5">金额：<span class="aui-text-success">{{total_price}}</span></div>
+			</div>
+		</div>
+
+		<div style="height: 60px;"></div>
+		<div class="floatpage">
+			<div class="page">
+				<ul>
+					{% if firstpage %}
+					<li class="page_prev">
+						<a href="?{{searchurl}}&page={{prvpage}}">上一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">上一页</li>
+					{% endif %}
+					<li class="page_no">
+						<select onChange="window.location='?{{searchurl}}&page='+this.value">
+							<option>第{{page}}页</option>
+							<option value="1">首页</option>
+							{%for p in page_range%}
+							<option value="{{p.number}}">第{{p.number}}页</option>
+							{%endfor%}
+							<option value="{{page_listcount}}">末页</option>
+						</select> /{{page_listcount}}页
+					</li>
+					{% if lastpage%}
+					<li class="page_next">
+						<a href="?{{searchurl}}&page={{nextpage}}">下一页</a>
+					</li>
+					{%else%}
+					<li class="page_prev" style="color:gray">下一页</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+
+	</body>
+</html>
+<script>
+	function selectsearch(searchtype){
+		$("#suppliers_selfid").hide();
+		if (searchtype=="suppliers_selfid"){
+			$("#suppliers_selfid").show()
+		}
+		$("#ucompany_id").hide();
+		if (searchtype=="ucompany_id"){
+			$("#ucompany_id").show()
+		}
+		$("#iccode").hide();
+		if (searchtype=="iccode"){
+			$("#iccode").show()
+		}
+		
+		$("#gmt_created").hide();
+		if (searchtype=="gmt_created"){
+			$("#gmt_created").show()
+		}
+		$("#contact").hide();
+		if (searchtype=="contact"){
+			$("#contact").show()
+		}
+		
+		$("#nw").hide();
+		if (searchtype=="nw"){
+			$("#nw").show()
+		}
+		
+		$("#price").hide();
+		if (searchtype=="price"){
+			$("#price").show()
+		}
+		
+	}
+	$("#searchtype").change(function(){
+		var searchtype=$(this).val();
+		selectsearch(searchtype)
+	})
+	$(".searchbutton").click(function(){
+		var searchtype=$("#searchtype").val();
+		window.location="?searchtype="+searchtype+"&"+searchtype+"="+$("#"+searchtype).val();
+	})
+	selectsearch("{{searchtype}}")
+</script>
+<script>
+	var currYear = (new Date()).getFullYear();
+	$("#gmt_created").mobiscroll(
+			{
+	            preset: 'date', //日期
+	            theme: 'android-ics light', //皮肤样式
+	            display: 'modal', //显示方式
+	            mode: 'scroller', //日期选择模式
+	            dateFormat: 'yy-mm-dd', // 日期格式
+	            language: 'Chinese',
+	            demo: 'date',
+	            setText: '确定', //确认按钮名称
+	            cancelText: '取消',//取消按钮名籍我
+	            dateOrder: 'yymmdd', //面板中日期排列格式
+	            // dayText: '日', monthText: '月', yearText: '年', //面板中年月日文字
+	            yearText: '年', monthText: '月',  dayText: '日',  //面板中年月日文字
+	            lang:"zh",
+	            endYear:currYear+10, //结束年份
+	            showNow:true,
+	            nowText:'今天',
+	            hourText:'小时',
+	            minuteText:'分',
+	        }
+		);
+</script>

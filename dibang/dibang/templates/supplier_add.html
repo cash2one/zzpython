@@ -15,6 +15,8 @@
 		<title></title>
 		<link rel="stylesheet" type="text/css" href="http://b.zz91.com/layui/css/layui.css"/>	
 		<script type="text/javascript" src="http://b.zz91.com/layui/layui.js"></script>
+		<script type="text/javascript" src="/js/comm.js"></script>
+		<script type="text/javascript" src="/js/jquery.js"></script>
 		<style>
 			.mainbox{
 				margin: 10px;
@@ -23,99 +25,111 @@
 	</head>
 	<body>
 		<div class="mainbox">
-			<form class="layui-form" action="supplier_save.html" method="post">
-				<div class="layui-form-item">
+			<form class="layui-form" action="#" method="post">
+				<!--<div class="layui-form-item">
 				    <label class="layui-form-label">编号</label>
 				    <div class="layui-input-block">
 				      	<input type="text" name="id" lay-verify="title" autocomplete="off" placeholder="请输入编号" class="layui-input">
 				    </div>
-			  	</div>
-				
+			  	</div>-->
 				<div class="layui-form-item">
-				    <label class="layui-form-label">供应商类型</label>
+				    <label class="layui-form-label"><span style="color: red;">*</span>分站（分公司）</label>
 				    <div class="layui-input-block">
-				      	<select name="leixing" lay-filter="aihao">
-				        	<option value=""></option>
-				        	<option value="0">个人</option>
-				        	<option value="1" selected="">公司</option>
+				      	<select name="ucompany_id" lay-verify="required">
+				      		<option value="">请选择...</option>
+				      		{%for list in company_list%}
+							<option value="{{list.id}}">{{list.name}}</option>
+							{%endfor%}
+				      	</select>
+				    </div>
+			  	</div>
+				<div class="layui-form-item">
+				    <label class="layui-form-label"><span style="color: red;">*</span>供应商类型</label>
+				    <div class="layui-input-block">
+				      	<select name="ctype" lay-verify="required">
+				        	<option value="">请选择...</option>
+				        	<option value="2">个人</option>
+				        	<option value="1">公司</option>
 				      	</select>
 				    </div>
 			  	</div>
 			  	
 			  	<div class="layui-form-item">
-				    <label class="layui-form-label">供应商名称</label>
+				    <label class="layui-form-label"><span style="color: red;">*</span>供应商名称</label>
 				    <div class="layui-input-block">
-				      	<input type="text" name="gyname" lay-verify="title" autocomplete="off" placeholder="请输入供应商名称" class="layui-input">
+				      	<input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入供应商名称" class="layui-input">
 				    </div>
 			  	</div>
 			  	
 			  	<div class="layui-form-item">
-			    	<label class="layui-form-label">IC卡编号</label>
+			    	<label class="layui-form-label"><span style="color: red;">*</span>供应商编号</label>
 			    	<div class="layui-input-block">
-			      		<input type="text" name="icid" lay-verify="title" placeholder="请输入IC卡编号" autocomplete="off" class="layui-input">
+			      		<input type="text" name="iccode" lay-verify="required" value="{{iccode}}" placeholder="请输入供应商编号" autocomplete="off" class="layui-input">
 			    	</div>
 			  	</div>
 			  	
 			  	<div class="layui-form-item">
-				    <label class="layui-form-label">合作关系</label>
+				    <label class="layui-form-label"><span style="color: red;">*</span>合作关系</label>
 				    <div class="layui-input-block">
-				      	<select name="guanxi" lay-filter="aihao">
-				        	<option value=""></option>
+				      	<select name="htype" lay-verify="required">
+				        	<option value="">请选择...</option>
 				        	<option value="0">长期</option>
-				        	<option value="1" selected="">短期</option>
+				        	<option value="1">短期</option>
 				      	</select>
 				    </div>
 			  	</div>
 			  	
 			  	<div class="layui-form-item">
-			    	<label class="layui-form-label">联系人</label>
+			    	<label class="layui-form-label"><span style="color: red;">*</span>联系人</label>
 			    	<div class="layui-input-block">
-			      		<input type="text" name="user" lay-verify="required" placeholder="请输入联系人" autocomplete="off" class="layui-input">
+			      		<input type="text" name="contact" lay-verify="required" placeholder="请输入联系人" autocomplete="off" class="layui-input">
 			    	</div>
 			  	</div>
 			  	
 				<div class="layui-form-item">
-				    <label class="layui-form-label">手机号码</label>
+				    <label class="layui-form-label"><span style="color: red;">*</span>手机号码</label>
 				    <div class="layui-input-inline">
-				        <input type="tel" name="phone" lay-verify="phone" autocomplete="off" class="layui-input">
+				        <input type="tel" name="mobile" lay-verify="phone" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
 				    </div>
 				</div>
 				
 				<div class="layui-form-item">
-				    <label class="layui-form-label">密码</label>
+				    <label class="layui-form-label"><span style="color: red;">*</span>密码</label>
 				    <div class="layui-input-inline">
-				        <input type="tel" name="pwd" lay-verify="required" autocomplete="off" class="layui-input">
+				        <input type="tel" name="pwd" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
 				    </div>
 				</div>
-				<div class="layui-form-item">
+				<!--<div class="layui-form-item">
 				    <label class="layui-form-label">其他联系方式</label>
 				    <div class="layui-input-inline">
 				        <input type="tel" name="order" lay-verify="phone" autocomplete="off" class="layui-input">
 				    </div>
-				</div>
+				</div>-->
 				
 				<div class="layui-form-item">
 			    	<label class="layui-form-label">地址</label>
 			    	<div class="layui-input-block">
-			      		<input type="text" name="dizhi" lay-verify="required" placeholder="请输入地址" autocomplete="off" class="layui-input">
+			      		<input type="text" name="address" placeholder="请输入地址" autocomplete="off" class="layui-input">
 			    	</div>
 			  	</div>
 			  	
 			  	<div class="layui-form-item layui-form-text">
 				    <label class="layui-form-label">备注</label>
 				    <div class="layui-input-block">
-				      <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+				      <textarea placeholder="请输入内容" class="layui-textarea" name="bz"></textarea>
 				    </div>
 				</div>
 				
 				<div class="layui-form-item layui-col">
 					<div class="layui-input-block">
 					    <button type="reset" class="layui-btn layui-btn-primary layui-col-xs2">清除</button>
-					    <button class="layui-btn layui-btn-normal layui-col-xs2" lay-submit="" lay-filter="demo1">保存</button>
+					    <button class="layui-btn layui-btn-normal layui-col-xs2" lay-submit="" lay-filter="*">保存</button>
 					</div>
 				</div>
 				<input type="hidden" name="company_id" value={{company_id}} />
+				<input type="hidden" name="group_id" value={{group_id}} />
 			</form>
+			
 		</div>
 			
 	</body>
@@ -126,25 +140,23 @@
 		  ,layedit = layui.layedit
 		  
 		  //自定义验证规则
-		  form.verify({
-		    title: function(value){
-		      if(value.length < 5){
-		        return '标题至少得5个字符啊';
-		      }
-		    }
-		    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
-		    ,content: function(value){
-		      layedit.sync(editIndex);
-		    }
-		  });
-		  
-		  //监听提交
-		  form.on('submit(demo1)', function(data){
-		    layer.alert(JSON.stringify(data.field), {
-		    })
-		  });
-		  
-		  
+			form.verify({
+				pass: [/(.+){6,12}$/, '密码必须6到12位']
+				,content: function(value){
+					layedit.sync(editIndex);
+				}
+			});
+			form.on('submit(*)', function(data){
+				crmajax("post","supplier_save.html",data.field,function(ret){
+					if (ret.err=="false"){
+						window.location='supplier.html'
+					}else{
+						layer.msg(ret.errtext)
+					}
+				},function(){})
+				return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+			});
+
 		});
 	</script>
 </html>

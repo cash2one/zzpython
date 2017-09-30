@@ -13,8 +13,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
 		<title></title>
-		<link rel="stylesheet" type="text/css" href="http://b.zz91.com/layui/css/layui.css"/>	
-		<!--<script type="text/javascript" src="http://b.zz91.com/layui/layui.js"></script>-->
+		<link rel="stylesheet" type="text/css" href="/layui/css/layui.css"/>	
 		<script type="text/javascript" src="/layui/layui.js"></script>
 		<style>
 			.mainbox{
@@ -25,72 +24,78 @@
 	<body>
 		<div class="mainbox">
 			<div class="demoTable">
-				<button class="layui-btn layui-btn-primary" data-type="" onclick="delAll()">删除</button>
-			  	<button class="layui-btn layui-btn-primary" data-type="" onclick="window.location.href='supplier_add.html'">添加</button>
 			  	<div class="layui-inline">
-			    	<input class="layui-input" name="id" id="demoReload" autocomplete="off" placeholder="编号">
+			    	<input class="layui-input" name="id" id="iccode" autocomplete="off" placeholder="编号">
 			  	</div>
 			  	<div class="layui-inline">
-			    	<input class="layui-input" name="id" id="demoReload" autocomplete="off" placeholder="名称">
+			    	<input class="layui-input" name="id" id="name" autocomplete="off" placeholder="名称">
 			  	</div>
-			  	<button class="layui-btn layui-btn-normal" data-type="reload" onclick="">查询</button>
+			  	<button class="layui-btn layui-btn-normal" data-type="reload">查询</button>
 			</div>
-			<form action="supplier_del.html" id="form">
 			<table class="layui-hide" id="LAY_table_user" lay-filter="user"></table> 
-			</form>
 		</div>
 	</body>
 	<script>
 		function delAll(){
+			var $=layui.jquery
 			$("#form").submit()
 		}
 	</script>
+	<script id="barcaozuo" type="text/html">
+		  <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+		  <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+		</script>
+	<script src="js/jquery.js" charset="utf-8"></script>
+	<script src="js/comm.js" charset="utf-8"></script>
 	<script>
 		layui.use('table', function(){
 		  var table = layui.table;
-		  
+		  var $ = layui.$;
 		  //方法级渲染
-		  table.render({
+		  function tablerender(){table.render({
 		    elem: '#LAY_table_user'
-		    ,url: 'supplier_data.html'
+		    ,url: 'supplier_data.html?iccode='+$("#iccode").val()+'&name='+$("#name").val()
 		    ,cols: [[
 		      {checkbox: true, fixed: true}
-		      ,{field:'id', title: '编号', width:150, fixed: true, edit: 'text'}
-		      ,{field:'iccode', title: 'IC卡编号', width:100, edit: 'text'}
+		      ,{field:'id', title: '序号', width:80,fixed:true, edit: 'text'}
+		      ,{field:'iccode', title: '供应商编号', width:150, edit: 'text'}
 		      ,{field:'ctype', title: '供应商类型', width:100, edit: 'text'}
 		      ,{field:'name', title: '供应商名称', width:100, edit: 'text'}
 		      ,{field:'htype', title: '合作关系', width:100, edit: 'text'}
 		      ,{field:'contact', title: '联系人', width:100, edit: 'text'}
 		      ,{field:'mobile', title: '手机号码', width:120, edit: 'text'}
-		      ,{field:'pwd', title: '密码', width:120, edit: 'text'}
-		      ,{field:'other', title: '其他联系方式', width:120, edit: 'text'}
 		      ,{field:'address', title: '地址', width:200, edit: 'text'}
 		      ,{field:'bz', title: '备注', width:200, edit: 'text'}
+		      ,{field:'gmt_created', title: '创建时间', width:200, edit: 'text'}
+		      ,{field:'gmt_modified', title: '修改时间', width:200, edit: 'text'}
+		      ,{field:'caozuo', title: '操作', width:200,toolbar:'#barcaozuo'}
 		    ]]
 		    ,id: 'testReload'
 		    ,page: true
-		    ,height: 315
-		  });
-		  
-		  var $ = layui.$, active = {
-		    reload: function(){
-		      var demoReload = $('#demoReload');
-		      
-		      table.reload('testReload', {
-		        where: {
-		          key: {
-		            id: demoReload.val()
-		          }
-		        }
+		    ,limit: 10
+		    ,limits:[]
+		    ,height: 500
+		  })};
+		  tablerender();
+		  //监听工具条
+		  table.on('tool(user)', function(obj){
+		    var data = obj.data;
+		    if(obj.event === 'del'){
+		      layer.confirm('真的删除行么', function(index){
+		        data={id:data.id};
+		        crmajax('post','supplier_del.html',data,function(){obj.del();},function(){});
+		        layer.close(index);
 		      });
-		    }
-		  };
-		  
-		  $('.demoTable .layui-btn').on('click', function(){
-		    var type = $(this).data('type');
-		    active[type] ? active[type].call(this) : '';
+		    } else if(obj.event === 'edit'){
+		    	window.location='supplier_mod.html?id='+data.id;
+		      //layer.alert('编辑行：<br>'+ JSON.stringify(data))
+		    };
+		   
 		  });
-		  
+
+		  $('.demoTable .layui-btn-normal').on('click', function(){
+		    tablerender();
+		  });
 		  
 		});
 	</script>

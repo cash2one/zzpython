@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+		<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<meta content="telephone=no" name="format-detection" />
+		<meta content="address=no" name="format-detection" />
+		<meta name="apple-mobile-web-app-capable" content="no" />
+		<link rel="apple-touch-icon-precomposed" href="http://img0.zz91.com/zz91/images/logo.png" />
+		<link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-precomposed" />
+		<meta name="apple-touch-fullscreen" content="YES">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="shortcut icon" href="http://img0.zz91.com/front/favicon.ico" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="/layui/css/layui.css"/>	
+		<script type="text/javascript" src="/layui/layui.js"></script>
+		<script type="text/javascript" src="/js/comm.js"></script>
+		<script type="text/javascript" src="/js/jquery.js"></script>
+		<style>
+			.mainbox{
+				margin: 10px;
+			}
+		</style>
+		<script>
+			function selectoption(id,value){
+				$("#"+id).val(value)
+			}
+		</script>
+	</head>
+	<body>
+		<div class="mainbox">
+			<form class="layui-form" action="supplier_save.html" method="post">
+				<!--<div class="layui-form-item">
+				    <label class="layui-form-label">编号</label>
+				    <div class="layui-input-block">
+				      	<input type="text" name="id" lay-verify="title" autocomplete="off" placeholder="请输入编号" class="layui-input">
+				    </div>
+			  	</div>-->
+				<div class="layui-form-item">
+				    <label class="layui-form-label"><span style="color: red;">*</span>分站（分公司）</label>
+				    <div class="layui-input-block">
+				      	<select name="ucompany_id" id="ucompany_id" lay-verify="required">
+				      		<option value="">请选择...</option>
+				      		{%for list in company_list%}
+							<option value="{{list.id}}">{{list.name}}</option>
+							{%endfor%}
+				      	</select>
+				    </div>
+				    <script>selectoption("ucompany_id","{{result.company_id}}")</script>
+			  	</div>
+				<div class="layui-form-item">
+				    <label class="layui-form-label"><span style="color: red;">*</span>供应商类型</label>
+				    <div class="layui-input-block">
+				      	<select name="ctype" id="ctype" lay-verify="required">
+				        	<option value=""></option>
+				        	<option value="2">个人</option>
+				        	<option value="1">公司</option>
+				      	</select>
+				    </div>
+				    <script>selectoption('ctype',"{{result.ctype}}")</script>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label"><span style="color: red;">*</span>供应商名称</label>
+				    <div class="layui-input-block">
+				      	<input type="text" name="name" lay-verify="required" autocomplete="off" placeholder="请输入供应商名称" class="layui-input" value={{result.name}}>
+				    </div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+			    	<label class="layui-form-label"><span style="color: red;">*</span>供应商编号</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="iccode" lay-verify="required" placeholder="请输入供应商编号" autocomplete="off" class="layui-input" value={{result.iccode}}>
+			    	</div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+				    <label class="layui-form-label"><span style="color: red;">*</span>合作关系</label>
+				    <div class="layui-input-block">
+				      	<select name="htype" id="select2"  lay-verify="required">
+				        	<option value=""></option>
+				        	<option value="0">长期</option>
+				        	<option value="1" selected="">短期</option>
+				      	</select>
+				      	<script>selectoption("select2","{{result.htype}}")</script>
+				    </div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item">
+			    	<label class="layui-form-label"><span style="color: red;">*</span>联系人</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="contact" lay-verify="required" placeholder="请输入联系人" autocomplete="off" class="layui-input" value={{result.contact}}>
+			    	</div>
+			  	</div>
+			  	
+				<div class="layui-form-item">
+				    <label class="layui-form-label"><span style="color: red;">*</span>手机号码</label>
+				    <div class="layui-input-inline">
+				        <input type="tel" name="mobile" lay-verify="phone" placeholder="请输入手机号码" autocomplete="off" class="layui-input" value={{result.mobile}}>
+				    </div>
+				</div>
+				
+				<div class="layui-form-item">
+				    <label class="layui-form-label">密码</label>
+				    <div class="layui-input-inline">
+				        <input type="tel" name="pwd" placeholder="请输入密码" autocomplete="off" class="layui-input">
+				    	<input type="checkbox" name="ischange_pwd" value="1"/>是否更改密码
+				    </div>
+				</div>
+				<!--<div class="layui-form-item">
+				    <label class="layui-form-label">其他联系方式</label>
+				    <div class="layui-input-inline">
+				        <input type="tel" name="order" lay-verify="phone" autocomplete="off" class="layui-input">
+				    </div>
+				</div>-->
+				
+				<div class="layui-form-item">
+			    	<label class="layui-form-label">地址</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="address" placeholder="请输入地址" autocomplete="off" class="layui-input" value={{result.address}}>
+			    	</div>
+			  	</div>
+			  	
+			  	<div class="layui-form-item layui-form-text">
+				    <label class="layui-form-label">备注</label>
+				    <div class="layui-input-block">
+				      <textarea placeholder="请输入内容" class="layui-textarea" name="bz">{{result.bz}}</textarea>
+				    </div>
+				</div>
+				
+				<div class="layui-form-item layui-col">
+					<div class="layui-input-block">
+					    <button type="reset" class="layui-btn layui-btn-primary layui-col-xs2">清除</button>
+					    <button class="layui-btn layui-btn-normal layui-col-xs2" lay-submit="" lay-filter="*">保存</button>
+					</div>
+				</div>
+				<input type="hidden" name="company_id" value={{result.id}} />
+				<input type="hidden" name="id" value={{id}} />
+			</form>
+		</div>
+			
+	</body>
+	<script>
+		layui.use(['form', 'layedit', 'laydate'], function(){
+		  var form = layui.form
+		  ,layer = layui.layer
+		  ,layedit = layui.layedit
+		  
+		  //自定义验证规则
+		  form.verify({
+		  	pass: [/(.+){6,12}$/, '密码必须6到12位']
+		    ,content: function(value){
+		      layedit.sync(editIndex);
+		    }
+		  });
+			form.on('submit(*)', function(data){
+				console.log(data.field)
+				crmajax("post","supplier_save.html",data.field,function(ret){
+					if (ret.err=="false"){
+						window.location='supplier.html'
+					}else{
+						layer.msg(ret.errtext)
+					}
+				},function(){})
+				return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+			});
+		});
+	</script>
+</html>

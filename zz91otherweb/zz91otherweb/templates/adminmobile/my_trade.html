@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>ZZ91再生网简易后台</title>
+		<link rel="stylesheet" type="text/css" href="../mobile/css/aui.css" />
+		<style>
+			body {
+				height: auto;
+			}
+			
+			.aui-card {
+				margin-top: 15px;
+			}
+			
+			.aui-content {
+				margin-bottom: 0;
+			}
+			
+			p {
+				padding: 0 10px;
+			}
+			
+			p.padded {
+				padding: 10px;
+			}
+			
+			.year-list {
+				background: none;
+				text-align: center;
+				overflow: hidden;
+				padding: 10px 5px;
+			}
+			
+			.year {
+				text-align: center;
+				font-size: 12px;
+				margin: 0 5px;
+				background: #fff;
+				height: 32px;
+				line-height: 32px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				color: #333;
+				overflow: hidden;
+			}
+			
+			.year.active {
+				background: #ff9900;
+				border: 1px solid #ff9900;
+				color: #ffffff;
+				-webkit-animation: fadeIn .5s ease both;
+				animation: fadeIn .5s ease both;
+			}
+			
+			.year.disabled {
+				background: #eeeeee;
+				border-color: #eeeeee;
+				color: #666;
+			}
+			
+			.price-list .amount strong {
+				font-size: 18px;
+				font-weight: 400;
+			}
+			
+			.basic-info {
+				margin-bottom: 15px;
+			}
+			
+			@-webkit-keyframes fadeIn {
+				from {
+					background: #ffffff;
+					border: 1px solid #ddd;
+				}
+				to {
+					background: #ff9900;
+					border: 1px solid #ff9900;
+				}
+			}
+			
+			.aui-content-padded {
+				margin-top: 15px;
+			}
+			.aui-input-row .aui-input-addon{
+				color: #0000FF;
+			}
+
+			.full {
+				width: 100%;
+			}
+			.aui-bar-tab{
+				padding-top: 10px;
+			}
+			.aui-nav .aui-bar-tab{
+			background-color: #ebebeb;
+		}
+		</style>
+		<script type="text/javascript" src="../mobile/js/jquery.js"></script>
+		<script type="text/javascript" src="../mobile/js/zepto.min.js"></script>
+		<script type="text/javascript" src="../mobile/js/layer/layer.js"></script>
+		<script type="text/javascript" src="../mobile/js/comm.js"></script>
+	</head>
+
+	<body>
+		<div class="aui-tab">
+			<ul class="aui-tab-nav">
+				<li><a href="javascript:window.history.back(-1)">返回列表</a></li>
+				<li class="active"><a href="my_trade.html">该公司供求</a></li>
+				<li><a href="editpro.html?proid={{proid}}">供求详情</a></li>
+				<li><a href="editpic.html?proid={{proid}}">图片{%if ispic%}<span style="color: red;">(有)</span>{%endif%}</a></li>
+				<li><a href="editcompany.html?proid={{proid}}">公司详情</a></li>
+			</ul>
+		</div>
+		<div class="aui-content">
+			<ul class="aui-list-view aui-in">
+				{%for list in listall%}
+				<li class="aui-list-view-cell aui-img">
+					<a href="editpro.html?proid={{list.id}}" class="aui-arrow-right">
+						{%if list.ispic%}
+						<img class="aui-img-object aui-pull-left" src="http://img3.zz91.com/100x100/{{list.ispic}}">
+						{%endif%}
+						<div class="aui-img-body">
+							<p class='aui-ellipsis-2'>({{list.products_type}}) {{list.title}}</p>
+							<p class='aui-ellipsis-1'>{{list.gmt_created}}</p>
+						</div>
+					</a>
+				</li>
+				{%endfor%}
+			</ul>
+			<div style="height: 60px;"></div>
+			<footer class="aui-nav" id="aui-footer">
+				<ul class="aui-bar-tab">
+					<li>
+						<p><a href="?page=1&{{searchurl}}">首页</a></p>
+					</li>
+					{% if firstpage %}
+					<li>
+						<p><a href="?page={{prvpage}}&{{searchurl}}">上一页</a></p>
+					</li>
+					{%endif%}
+					<li>
+						<p>{{page}}</p>
+					</li>
+					{% if lastpage%}
+					<li>
+						<p><a href="?page={{nextpage}}&{{searchurl}}">下一页</a></p>
+					</li>
+					{%endif%}
+				</ul>
+			</footer>
+		</div>
+	</body>
+	
+
+</html>

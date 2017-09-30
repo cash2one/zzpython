@@ -151,3 +151,34 @@ class zzcompany:
                 return None
         else:
             return None
+        
+    def getcompanylistdb(self,frompageCount,limitNum,searchlist=''):
+        sqls=''
+        argument=[]
+        mobile=searchlist.get('mobile')
+        account=searchlist.get('account')
+        if mobile:
+            sqls+=' and b.mobile=%s'
+            argument.append(mobile)
+        if account:
+            sqls+=' and b.account=%s'
+            argument.append(account)
+        sql='select a.id,a.name,b.account,b.mobile,b.gmt_created from company as a left join company_account as b on a.id=b.company_id where a.id>0 '+sqls+' limit '+str(frompageCount)+','+str(limitNum)+''
+        resultlist=self.dbc.fetchalldb(sql,argument)
+        sqlc='select count(0) as count from company as a left join company_account as b on a.id=b.company_id where a.id>0 '+sqls+''
+        count=self.dbc.fetchonedb(sqlc,argument)[0]
+        listall=[]
+        for result in resultlist:
+            id=result[0]
+            name=result[1]
+            account=result[2]
+            mobile=result[3]
+            gmt_created=result[4]
+            gmt_created=formattime(gmt_created)
+            sql='select sum(fee) from pay_mobilewallet where company_id=%s'
+            balance=self.dbc.fetchonedb(sql,[id])[0]
+            if balance is None:
+                balance=''
+            list={'id':id,'name':name,'account':account,'mobile':mobile,'gmt_created':gmt_created,'balance':balance}
+            listall.append(list)
+        return {'list':listall,'count':count}

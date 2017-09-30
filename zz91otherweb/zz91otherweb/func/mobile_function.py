@@ -335,7 +335,7 @@ class mobile:
     #开通单
     def getservicelist(self,frompageCount,limitNum,gmt_start='',gmt_end='',company_name='',company_id='',account='',mobile=''):
         argument=[]
-        sqlarg=' from crm_company_service as a left join company as b on a.company_id=b.id left join company_account as c on a.company_id=c.company_id where a.id>0'
+        sqlarg=' from crm_company_service as a left join company as b on a.company_id=b.id left join company_account as c on a.company_id=c.company_id left join crm_service_authority as d on a.company_id=d.company_id left join company_account_contact as e on c.account=e.account where a.id>0'
         if gmt_start:
             sqlarg+=' and a.gmt_start>%s'
             argument.append(gmt_start)
@@ -356,7 +356,7 @@ class mobile:
             sqlarg+=' and c.mobile=%s'
             argument.append(mobile)
         sql1='select count(a.id)'+sqlarg
-        sql='select a.id,a.company_id,a.crm_service_code,a.gmt_start,a.gmt_end,a.apply_status,a.remark,a.gmt_created,a.membership_code,a.zst_year,b.name,c.account,c.mobile'+sqlarg
+        sql='select a.id,a.company_id,a.crm_service_code,a.gmt_start,a.gmt_end,a.apply_status,a.remark,a.gmt_created,a.membership_code,a.zst_year,b.name,c.account,c.mobile,d.is_auto_refresh,d.id as crm_service_authority_id,e.id as company_account_contact_id,e.is_hidden'+sqlarg
         count=self.dbc.fetchnumberdb(sql1,argument)
         sql=sql+' order by a.gmt_created desc limit '+str(frompageCount)+','+str(limitNum)
         resultlist=self.dbc.fetchalldb(sql,argument)
@@ -383,7 +383,11 @@ class mobile:
             companyname=result[10]
             account=result[11]
             mobile=result[12]
-            list={'id':id,'company_id':company_id,'crm_service':crm_service,'gmt_start':gmt_start,'gmt_end':gmt_end,'apply_statustext':apply_statustext,'remark':remark,'membership_code':membership_code,'zst_year':zst_year,'company_name':companyname,'account':account,'mobile':mobile,'apply_status':apply_status}
+            is_auto_refresh=result[13]
+            crm_service_authority_id=result[14]
+            company_account_contact_id=result[15]
+            is_hidden=result[16]
+            list={'id':id,'company_id':company_id,'crm_service':crm_service,'gmt_start':gmt_start,'gmt_end':gmt_end,'apply_statustext':apply_statustext,'remark':remark,'membership_code':membership_code,'zst_year':zst_year,'company_name':companyname,'account':account,'mobile':mobile,'apply_status':apply_status,'is_auto_refresh':is_auto_refresh,'crm_service_authority_id':crm_service_authority_id,'company_account_contact_id':company_account_contact_id,'is_hidden':is_hidden}
             listall.append(list)
         return {'list':listall,'count':count}
             
@@ -407,13 +411,12 @@ class mobile:
         result=self.dbc.fetchonedb(sql,[proid])
         if result:
             return result[0]
-    def getcompany_id(self,account='',mobile=''):
+    def getcompany_id(self,mobile=''):
         argument=[]
-        if account:
-            argument=[account]
         if mobile:
             argument=[mobile]
-        sql='select company_id from company_account where account=%s'
+            argument.append(mobile)
+        sql='select company_id from company_account where account=%s or mobile=%s'
         if argument:
             result=self.dbc.fetchonedb(sql,argument)
             if result:

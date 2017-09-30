@@ -63,6 +63,7 @@
 				<td style="width: 45px;">选择</td>
 				<td>供求</td>
 				<td>标题</td>
+				<td>会员类型</td>
 				<td>刷新时间</td>
 			</tr>
 		</thead>
@@ -79,6 +80,7 @@
 				</td>
 				{% if each_prdt.pdt_kind == 0 %}<td>供应</td>{% else %}<td>求购</td>{% endif %}
 				<td><a href="http://trade.zz91.com/productdetails{{ each_prdt.pro_id }}.htm" target="_blank">{% if each_prdt.pdt_kind == 0 %}供应{% else %}求购{% endif %}{{ each_prdt.pro_title | truncatechars:15 }}</a></td>
+				<td>{{ each_prdt.vip_type }}</td>
 				<td>
 					{{ each_prdt.refresh_time | timestamp_to_date }}
 				</td>
